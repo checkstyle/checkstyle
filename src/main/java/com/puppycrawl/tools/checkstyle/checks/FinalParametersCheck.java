@@ -155,6 +155,7 @@ public class FinalParametersCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.LITERAL_CATCH,
             TokenTypes.FOR_EACH_CLAUSE,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -166,18 +167,27 @@ public class FinalParametersCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         // don't flag interfaces
-        final DetailAST container = ast.getParent().getParent();
-        if (container.getType() != TokenTypes.INTERFACE_DEF) {
-            if (ast.getType() == TokenTypes.LITERAL_CATCH) {
-                visitCatch(ast);
-            }
-            else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
-                visitForEachClause(ast);
-            }
-            else {
-                visitMethod(ast);
-            }
+        if (ast.getType() == TokenTypes.LITERAL_CATCH) {
+            visitCatch(ast);
         }
+        else if (ast.getType() == TokenTypes.FOR_EACH_CLAUSE) {
+            visitForEachClause(ast);
+        }
+        else if (ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF) {
+            visitPatternVariableDef(ast);
+        }
+        else {
+            visitMethod(ast);
+        }
+    }
+
+    /**
+     * Checks parameter of the pattern variable definition.
+     *
+     * @param patternVariableDef pattern variable definition to check
+     */
+    private void visitPatternVariableDef(final DetailAST patternVariableDef) {
+        checkParam(patternVariableDef);
     }
 
     /**
@@ -186,12 +196,11 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param method method or ctor to check.
      */
     private void visitMethod(final DetailAST method) {
-        final DetailAST modifiers =
-            method.findFirstToken(TokenTypes.MODIFIERS);
-
-        // ignore abstract and native methods
-        if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
-                && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
+        // skip if there is no method body
+        // - abstract method
+        // - interface method (not implemented)
+        // - native method
+        if (method.findFirstToken(TokenTypes.SLIST) != null) {
             final DetailAST parameters =
                 method.findFirstToken(TokenTypes.PARAMETERS);
             TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, this::checkParam);
@@ -213,7 +222,17 @@ public class FinalParametersCheck extends AbstractCheck {
      * @param forEachClause for each clause to check.
      */
     private void visitForEachClause(final DetailAST forEachClause) {
-        checkParam(forEachClause.findFirstToken(TokenTypes.VARIABLE_DEF));
+        final DetailAST variableDef = forEachClause.findFirstToken(TokenTypes.VARIABLE_DEF);
+        if (variableDef != null) {
+            checkParam(variableDef);
+        } else {
+            final DetailAST recordPatternComponents = forEachClause
+                .findFirstToken(TokenTypes.RECORD_PATTERN_DEF)
+                .findFirstToken(TokenTypes.RECORD_PATTERN_COMPONENTS);
+            if (recordPatternComponents != null) {
+                TokenUtil.forEachChild(recordPatternComponents, TokenTypes.PATTERN_VARIABLE_DEF, this::visitPatternVariableDef);
+            }
+        }
     }
 
     /**
