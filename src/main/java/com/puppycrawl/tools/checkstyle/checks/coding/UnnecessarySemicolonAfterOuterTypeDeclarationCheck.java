@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * This check is not applicable to nested type declarations,
  * <a
  * href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
