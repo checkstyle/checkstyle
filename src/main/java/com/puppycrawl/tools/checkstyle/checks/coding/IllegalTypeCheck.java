@@ -53,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * It is possible to set illegal class names via short or
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">canonical</a>
  * name. Specifying illegal type invokes analyzing imports and Check puts violations at

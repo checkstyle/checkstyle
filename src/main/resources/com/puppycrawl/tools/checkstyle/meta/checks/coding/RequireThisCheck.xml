@@ -26,7 +26,9 @@
    &lt;/li&gt;
  &lt;/ol&gt;
 
- &lt;p&gt;Limitations: Nothing is currently done about static variables
+ &lt;p&gt;
+ Notes:
+ Limitations: Nothing is currently done about static variables
  or catch-blocks.  Static methods invoked on a class name seem to be OK;
  both the class name and the method name have a DOT parent.
  Non-static methods invoked on either this or a variable name seem to be

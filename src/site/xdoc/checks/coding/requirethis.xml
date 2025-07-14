@@ -11,29 +11,24 @@
       <subsection name="Description" id="Description">
         <div>
           Checks that references to instance variables and methods of the present
-          object are explicitly of the form &quot;this.varName&quot; or
-          &quot;this.methodName(args)&quot; and that those references don't
-          rely on the default behavior when &quot;this.&quot; is absent.
+          object are explicitly of the form "this.varName" or "this.methodName(args)"
+          and that those references don't rely on the default behavior when "this." is absent.
         </div>
 
-        <p>
-           Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to
-           'false' and not that actual nowadays.
-        </p>
+        <p>Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to 'false'
+          and not that actual nowadays.</p>
 
-        <p>
-          Rationale:
-        </p>
+        <p>Rationale:</p>
         <ol>
-          <li>
-            The same notation/habit for C++ and Java (C++ have global methods, so having
-            &quot;this.&quot; do make sense in it to distinguish call of method of class
-            instead of global).
-          </li>
-          <li>
-            Non-IDE development (ease of refactoring, some clearness to distinguish
-            static and non-static methods).
-          </li>
+        <li>
+          The same notation/habit for C++ and Java (C++ have global methods, so having
+          &quot;this.&quot; do make sense in it to distinguish call of method of class
+          instead of global).
+        </li>
+        <li>
+          Non-IDE development (ease of refactoring, some clearness to distinguish
+          static and non-static methods).
+        </li>
         </ol>
       </subsection>
       <subsection name="Notes" id="Notes">
