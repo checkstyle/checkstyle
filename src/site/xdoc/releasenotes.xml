@@ -10,6 +10,91 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 11.0.0">
+      <div class="releaseDate">14.07.2025</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Use jdk17 as minimial required.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17321">#17321</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Google-style: Improper enforcement of horizontal whitespace for double slash `//`.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17193">#17193</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add new Notes Macro.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17310">#17310</a>
+          </li>
+          <li>
+            Update Filters Exampes to use verifyFilterWithInlineConfigParser.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16738">#16738</a>
+          </li>
+          <li>
+            Add new Description Macro.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17281">#17281</a>
+          </li>
+          <li>
+            &lt;table&gt; tags miss &lt;div class&quot;wrapper&quot;&gt; wrapping in module
+            javadocs.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17355">#17355</a>
+          </li>
+          <li>
+            XdocsJavaDocsTest expected vs actual inconsistency when dealing with new javadoc module
+            data marking.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17251">#17251</a>
+          </li>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            wesite: not wrappable property now it is causing horizontal scrolling.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17276">#17276</a>
+          </li>
+          <li>
+            Remove from Travis CI snapshot deploy and stop using of Travis CI.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17320">#17320</a>
+          </li>
+          <li>
+            Google-style: Add resources-noncompilable inputs to the google-java-format.sh.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17285">#17285</a>
+          </li>
+          <li>
+            Google-style: Add resources-noncompilable inputs to the compilation by latest jdk.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17309">#17309</a>
+          </li>
+          <li>
+            Replace &lt;source&gt;&lt;/source&gt; tag in Checkstyle javadoc content .
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17295">#17295</a>
+          </li>
+          <li>
+            JavadocMetadataScraper doesn&#39;t scrap text from javadoc inline tag for description
+            section in meta data.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17283">#17283</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.26.1">
       <div class="releaseDate">29.06.2025</div>
       <p>Bug fixes:</p>
