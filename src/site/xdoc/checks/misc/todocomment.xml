@@ -10,11 +10,10 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for <code>TODO:</code> comments. Actually
-          it is a generic
+          Checks for <code>TODO:</code> comments. Actually it is a generic
           <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
-          pattern</a> matcher on Java comments. To check for other
-          patterns in Java comments, set the <code>format</code> property.
+          pattern</a> matcher on Java comments. To check for other patterns
+          in Java comments, set the <code>format</code> property.
         </div>
       </subsection>
 
