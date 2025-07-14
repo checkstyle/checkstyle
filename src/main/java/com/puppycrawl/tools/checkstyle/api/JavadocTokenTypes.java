@@ -1703,6 +1703,7 @@ public final class JavadocTokenTypes {
      * |--NEWLINE -&gt; \n
      * |--TEXT -&gt;
      * `--EOF -&gt; <EOF>
+     * }
      * </pre>
      *
      */
