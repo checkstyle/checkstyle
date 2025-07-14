@@ -8,7 +8,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
-import static org.checkstyle.suppressionxpathfilter.interfaceistype.InputXpathInterfaceIsTypeAllowMarker.a;
+import static org.apache.commons.lang3.math.NumberUtils.INTEGER_ONE;
 
 // xdoc section -- start
 public class Example1 {
@@ -19,7 +19,7 @@ public class Example1 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {                    // violation 'Avoid nested blocks'
         System.out.println("Case 1");
         break;

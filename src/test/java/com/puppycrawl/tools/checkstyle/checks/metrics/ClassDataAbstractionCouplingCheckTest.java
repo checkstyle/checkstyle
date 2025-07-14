@@ -72,7 +72,9 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageDirectPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
 
         verifyWithInlineConfigParser(
@@ -83,10 +85,11 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testExcludedPackageCommonPackages() throws Exception {
         final String[] expected = {
-            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicHttpContext, TlsCiphers]"),
-            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicClientTlsStrategy, CommandSupport]"),
-            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[CommandSupport]"),
+            "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
         };
+
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCouplingExcludedPackagesCommonPackage.java"),
                 expected);
@@ -122,9 +125,14 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
 
     @Test
     public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
+            "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+            "38:1: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
+        };
+
         verifyWithInlineConfigParser(
-                getPath("InputClassDataAbstractionCouplingExcludedPackagesAllIgnored.java"),
+                getPath("InputClassDataAbstractionCouplingExcludedPackagesDirectPackages.java"),
                 expected);
     }
 

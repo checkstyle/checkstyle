@@ -91,7 +91,7 @@ public class Example1 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {                    // violation 'Avoid nested blocks'
         System.out.println("Case 1");
         break;
@@ -123,7 +123,7 @@ public class Example2 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {
         System.out.println("Case 1");
         break;
