@@ -137,19 +137,45 @@ public class DescriptionMacro extends AbstractMacro {
         int notesStartIndex = -1;
 
         for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
-                    paragraphNode, NOTES_LINE)) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
+                && hasHtmlTagToStoreNotesSection(node)) {
 
-                    notesStartIndex = node.getIndex() - 1;
-                    break;
-                }
+                notesStartIndex += node.getIndex();
+                break;
             }
         }
 
         return notesStartIndex;
+    }
+
+    /**
+     * Checks whether html element has tag that stores notes section data.
+     *
+     * @param htmlElement html element to check.
+     * @return true if html element has tag storing notes section, otherwise false.
+     */
+    private static boolean hasHtmlTagToStoreNotesSection(DetailNode htmlElement) {
+        final DetailNode paragraphNode = JavadocUtil.findFirstToken(
+            htmlElement, JavadocTokenTypes.PARAGRAPH);
+        final Optional<DetailNode> liNode = getLiTagNode(htmlElement);
+
+        return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
+            paragraphNode, NOTES_LINE)
+            || liNode.isPresent() && JavadocMetadataScraper.isChildNodeTextMatches(
+                liNode.get(), NOTES_LINE);
+    }
+
+    /**
+     * Gets the node of Li HTML tag.
+     *
+     * @param htmlElement html element to get li tag from.
+     * @return Optional of li tag node.
+     */
+    private static Optional<DetailNode> getLiTagNode(DetailNode htmlElement) {
+        return Optional.of(htmlElement)
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG))
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_ELEMENT))
+            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.LI));
     }
 
     /**
