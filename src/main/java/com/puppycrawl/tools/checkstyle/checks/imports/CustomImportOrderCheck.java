@@ -85,6 +85,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </ol>
  *
  * <p>
+ * Notes:
  * Rules are configured as a comma-separated ordered list.
  * </p>
  *

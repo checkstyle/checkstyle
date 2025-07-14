@@ -9,41 +9,16 @@
     <section name="RequireThis">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that references to instance variables and methods of the present
-          object are explicitly of the form "this.varName" or
-          "this.methodName(args)" and that those references don't
-          rely on the default behavior when "this." is absent.
-        </div>
-
-        <p>
-           Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to
-           'false' and not that actual nowadays.
-        </p>
-
-        <p>
-          Rationale:
-        </p>
-        <ol>
-          <li>
-            The same notation/habit for C++ and Java (C++ have global methods, so having
-            "this." do make sense in it to distinguish call of method of class
-            instead of global).
-          </li>
-          <li>
-            Non-IDE development (ease of refactoring, some clearness to distinguish
-            static and non-static methods).
-          </li>
-        </ol>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          Limitations: Nothing is currently done about static variables
-          or catch-blocks.  Static methods invoked on a class name seem to be OK;
-          both the class name and the method name have a DOT parent.
-          Non-static methods invoked on either this or a variable name seem to be
-          OK, likewise.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

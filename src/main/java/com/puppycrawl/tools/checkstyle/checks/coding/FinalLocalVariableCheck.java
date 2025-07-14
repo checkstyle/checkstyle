@@ -42,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * When configured to check parameters, the check ignores parameters of interface
  * methods and abstract methods.
  * </p>
