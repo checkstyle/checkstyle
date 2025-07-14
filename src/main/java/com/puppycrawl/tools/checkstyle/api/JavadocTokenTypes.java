@@ -1662,7 +1662,15 @@ public final class JavadocTokenTypes {
      * Table head tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;}</pre>
+     * <pre>
+     * {@code
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th&gt;Header&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * }
+     * </pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
