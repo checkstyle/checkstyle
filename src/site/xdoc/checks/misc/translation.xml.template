@@ -9,44 +9,18 @@
     <section name="Translation">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Ensures the correct translation of code by checking property files for
-          consistency regarding their keys. Two property files
-          describing one and the same context are consistent if they
-          contain the same keys. TranslationCheck also can check an existence of required
-          translations which must exist in project, if <code>requiredTranslations</code>
-          option is used.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java"/>
+        </macro>
 
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          Language code for the property <code>requiredTranslations</code> is composed of
-          the lowercase, two-letter codes as defined by
-          <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
-          Default value is empty String Set which means that only the existence
-          of default translation is checked. Note, if you specify language codes (or just
-          one language code) of required translations the check will also check for
-          existence of default translation files in project.
-        </p>
-        <p>
-          Note: If your project uses preprocessed translation files and the original files
-          do not have the <code>properties</code> extension,
-          you can specify additional file extensions
-          via the <code>fileExtensions</code> property.
-        </p>
-        <p>
-          Attention: the check will perform the validation of ISO codes if the option
-          is used. So, if you specify, for example, "mm" for language code, TranslationCheck
-          will rise violation that the language code is incorrect.
-        </p>
-        <p>
-          Attention: this Check could produce false-positives if it
-          is used with <a href="../../config.html#Checker">Checker</a> that use cache (property
-          "cacheFile") This is known design problem, will be addressed at
-          <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

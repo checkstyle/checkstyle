@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * Language code for the property {@code requiredTranslations} is composed of
  * the lowercase, two-letter codes as defined by
  * <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
