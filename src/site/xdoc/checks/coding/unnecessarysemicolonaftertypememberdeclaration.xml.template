@@ -8,19 +8,17 @@
   <body>
     <section name="UnnecessarySemicolonAfterTypeMemberDeclaration">
       <p>Since Checkstyle 8.24</p>
-      <subsection name="Description"
-        id="Description">
-        <div>
-          Checks if unnecessary semicolon is used after type member declaration.
-        </div>
+      <subsection name="Description" id="Description">
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          This check is not applicable to empty statements (unnecessary semicolons inside
-          methods or init blocks),
-          <a href="https://checkstyle.org/checks/coding/emptystatement.html">EmptyStatement</a>
-          is responsible for it.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

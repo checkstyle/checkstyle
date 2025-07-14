@@ -9,70 +9,17 @@
     <section name="UnnecessaryParentheses">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks if unnecessary parentheses are used in a statement or expression.
-          The check will flag the following with warnings:
-        </div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-return (x);          // parens around identifier
-return (x + 1);      // parens around return value
-int x = (y / 2 + 1); // parens around assignment rhs
-for (int i = (0); i &lt; 10; i++) {  // parens around literal
-t -= (z + 1);                     // parens around assignment rhs
-boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
-            || z &lt; 9;
-boolean b = (~a) &gt; -27            // parens around ~a
-            &amp;&amp; (a-- &lt; 30);        // parens around expression
-        </code></pre></div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          The check is not "type aware", that is to say, it can't tell if parentheses
-          are unnecessary based on the types in an expression. The check is partially aware about
-          operator precedence but unaware about operator associativity.
-          It won't catch cases such as:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-int x = (a + b) + c; // 1st Case
-boolean p = true; // 2nd Case
-int q = 4;
-int r = 3;
-if (p == (q &lt;= r)) {}
-        </code></pre></div>
-        <p>
-          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
-          <code>int</code> variables, the parentheses around <code>a + b</code>
-          are not needed.
-          In the second case, parentheses are required as <em>q</em>, <em>r</em> are
-          of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
-          and removing parentheses will give a compile-time error. Even if <em>q</em>
-          and <em>r</em> were <code>boolean</code> still there will be no violation
-          raised as check is not "type aware".
-        </p>
-        <p>
-          The partial support for operator precedence includes cases of the following type:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-boolean a = true, b = true;
-boolean c = false, d = false;
-if ((a &amp;&amp; b) || c) { // violation, unnecessary paren
-}
-if (a &amp;&amp; (b || c)) { // ok
-}
-if ((a == b) &amp;&amp; c) { // violation, unnecessary paren
-}
-String e = &quot;e&quot;;
-if ((e instanceof String) &amp;&amp; a || b) { // violation, unnecessary paren
-}
-int f = 0;
-int g = 0;
-if (!(f &gt;= g) // ok
-        &amp;&amp; (g &gt; f)) { // violation, unnecessary paren
-}
-if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
-}
-        </code></pre></div>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

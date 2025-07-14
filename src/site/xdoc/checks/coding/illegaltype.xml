@@ -19,8 +19,10 @@
 
         <p>
           For additional restriction of type usage see also:
-          <a href="illegalinstantiation.html#IllegalInstantiation">IllegalInstantiation</a>,
-          <a href="../imports/illegalimport.html#IllegalImport">IllegalImport</a>
+          <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html#IllegalInstantiation">
+          IllegalInstantiation</a>,
+          <a href="https://checkstyle.org/checks/imports/illegalimport.html#IllegalImport">
+          IllegalImport</a>
         </p>
       </subsection>
 
@@ -142,34 +144,36 @@
       <subsection name="Notes" id="Notes">
         <p>
           It is possible to set illegal class names via short or
-          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">
-          canonical</a> name.
-          Specifying illegal type invokes analyzing imports and Check puts violations at
-          corresponding declarations
-          (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
-          <code>java.awt.List</code> was set as illegal class name, then, code like:
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">canonical</a>
+          name. Specifying illegal type invokes analyzing imports and Check puts violations at
+          corresponding declarations (of variables, methods or parameters).
+          This helps to avoid ambiguous cases, e.g.: <code>java.awt.List</code> was set as
+          illegal class name, then, code like:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import java.util.List;
 ...
 List list; //No violation here
         </code></pre></div>
+
         <p>
           will be ok.
         </p>
+
         <p>
           In most cases it's justified to put following classes to <b>illegalClassNames</b>:
         </p>
         <ul>
-          <li>GregorianCalendar</li>
-          <li>Hashtable</li>
-          <li>ArrayList</li>
-          <li>LinkedList</li>
-          <li>Vector</li>
+        <li>GregorianCalendar</li>
+        <li>Hashtable</li>
+        <li>ArrayList</li>
+        <li>LinkedList</li>
+        <li>Vector</li>
         </ul>
+
         <p>
-          as methods that are differ from interface methods are rarely used, so in most cases user
-          will benefit from checking for them.
+          as methods that are differ from interface methods are rarely used, so in most cases user will
+          benefit from checking for them.
         </p>
       </subsection>
 
