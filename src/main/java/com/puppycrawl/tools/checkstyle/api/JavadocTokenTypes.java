@@ -1658,7 +1658,9 @@ public final class JavadocTokenTypes {
     /** Table foot tag name. */
     public static final int TFOOT_HTML_TAG_NAME = JavadocParser.TFOOT_HTML_TAG_NAME;
 
-    /** Table head tag name.
+    /**
+     * Table head tag name.
+     *
      * <p><b>Example:</b></p>
      * <pre>{@code &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;}</pre>
      * <b>Tree:</b>
@@ -1705,7 +1707,6 @@ public final class JavadocTokenTypes {
      * `--EOF -&gt; <EOF>
      * }
      * </pre>
-     *
      */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
 
