@@ -11,67 +11,131 @@
       <subsection name="Description" id="Description">
         <div>
           Filter <code>SuppressionXpathFilter</code> works as
-          <a href="suppressionfilter.html#SuppressionFilter">
+          <a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter">
           SuppressionFilter</a>.
           Additionally, filter processes <code>suppress-xpath</code> elements,
-          which contains xpath-expressions. Xpath-expressions
-          are queries for suppressed nodes inside the AST tree.
+          which contains xpath-expressions. Xpath-expressions are queries for
+          suppressed nodes inside the AST tree.
         </div>
+
         <p>
           Currently, filter does not support the following checks:
         </p>
         <ul id="IncompatibleChecks">
-          <li>NoCodeInFile (reason is that AST is not generated for a file not containing code)</li>
-          <li>Regexp (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
-          <li>RegexpSinglelineJava (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
+        <li>
+          NoCodeInFile (reason is that AST is not generated for a file not containing code)
+        </li>
+        <li>
+          Regexp (reason is at
+          <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
+        </li>
+        <li>
+          RegexpSinglelineJava (reason is at
+          <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
+        </li>
         </ul>
+
         <p>
           Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
         </p>
         <ul id="JavadocChecks">
-          <li>AtclauseOrder</li>
-          <li>JavadocBlockTagLocation</li>
-          <li>JavadocMethod</li>
-          <li>JavadocMissingLeadingAsterisk</li>
-          <li>JavadocMissingWhitespaceAfterAsterisk</li>
-          <li>JavadocParagraph</li>
-          <li>JavadocStyle</li>
-          <li>JavadocTagContinuationIndentation</li>
-          <li>JavadocType</li>
-          <li>MissingDeprecated</li>
-          <li>NonEmptyAtclauseDescription</li>
-          <li>RequireEmptyLineBeforeBlockTagGroup</li>
-          <li>SingleLineJavadoc</li>
-          <li>SummaryJavadoc</li>
-          <li>WriteTag</li>
+        <li>
+          AtclauseOrder
+        </li>
+        <li>
+          JavadocBlockTagLocation
+        </li>
+        <li>
+          JavadocMethod
+        </li>
+        <li>
+          JavadocMissingLeadingAsterisk
+        </li>
+        <li>
+          JavadocMissingWhitespaceAfterAsterisk
+        </li>
+        <li>
+          JavadocParagraph
+        </li>
+        <li>
+          JavadocStyle
+        </li>
+        <li>
+          JavadocTagContinuationIndentation
+        </li>
+        <li>
+          JavadocType
+        </li>
+        <li>
+          MissingDeprecated
+        </li>
+        <li>
+          NonEmptyAtclauseDescription
+        </li>
+        <li>
+          RequireEmptyLineBeforeBlockTagGroup
+        </li>
+        <li>
+          SingleLineJavadoc
+        </li>
+        <li>
+          SummaryJavadoc
+        </li>
+        <li>
+          WriteTag
+        </li>
         </ul>
+
         <p>
           Note, that support for these Checks will be available after resolving issue
           <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a>.
         </p>
+
         <p>
-          Currently, filter supports the following
-          xpath axes:
+          Currently, filter supports the following xpath axes:
         </p>
         <ul>
-          <li>ancestor</li>
-          <li>ancestor-or-self</li>
-          <li>attribute</li>
-          <li>child</li>
-          <li>descendant</li>
-          <li>descendant-or-self</li>
-          <li>following</li>
-          <li>following-sibling</li>
-          <li>parent</li>
-          <li>preceding</li>
-          <li>preceding-sibling</li>
-          <li>self</li>
+        <li>
+          ancestor
+        </li>
+        <li>
+          ancestor-or-self
+        </li>
+        <li>
+          attribute
+        </li>
+        <li>
+          child
+        </li>
+        <li>
+          descendant
+        </li>
+        <li>
+          descendant-or-self
+        </li>
+        <li>
+          following
+        </li>
+        <li>
+          following-sibling
+        </li>
+        <li>
+          parent
+        </li>
+        <li>
+          preceding
+        </li>
+        <li>
+          preceding-sibling
+        </li>
+        <li>
+          self
+        </li>
         </ul>
+
         <p>
-          You can use the command line helper tool to generate xpath
-          suppressions based on your configuration file and input files.
-          See
-          <a href="../cmdline.html">here</a>
+          You can use the command line helper tool to generate xpath suppressions based on your
+          configuration file and input files. See <a href="https://checkstyle.org/cmdline.html">here</a>
           for more details.
         </p>
       </subsection>
@@ -80,17 +144,18 @@
           The suppression file location is checked in following order:
         </p>
         <ol>
-          <li>as a filesystem location</li>
-          <li>
-            if no file found, and the location starts with either
-            <code>http://</code> or <code>https://</code>, then it
-            is interpreted as a URL
-          </li>
-          <li>
-            if no file found, then passed to the
-            <code>ClassLoader.getResource()</code> method.
-          </li>
+        <li>
+          as a filesystem location
+        </li>
+        <li>
+          if no file found, and the location starts with either <code>http://</code> or <code>https://</code>,
+          then it is interpreted as a URL
+        </li>
+        <li>
+          if no file found, then passed to the <code>ClassLoader.getResource()</code> method.
+        </li>
         </ol>
+
         <p>
           SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
         </p>

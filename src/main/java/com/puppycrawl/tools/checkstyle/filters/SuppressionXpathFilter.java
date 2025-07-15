@@ -163,6 +163,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * The suppression file location is checked in following order:
  * </p>
  * <ol>

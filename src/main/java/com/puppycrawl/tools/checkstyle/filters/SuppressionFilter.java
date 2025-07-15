@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * A <a href="https://checkstyle.org/dtds/suppressions_1_2.dtd">suppressions XML document</a>
  * contains a set of {@code suppress} elements, where each {@code suppress}
  * element can have the following attributes:

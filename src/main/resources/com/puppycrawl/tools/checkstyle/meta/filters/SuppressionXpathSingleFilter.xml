@@ -27,6 +27,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  &lt;code&gt;SuppressionXpathSingleFilter&lt;/code&gt; can suppress Checks that have &lt;code&gt;Treewalker&lt;/code&gt; as parent module.
  &lt;/p&gt;</description>
          <properties>
