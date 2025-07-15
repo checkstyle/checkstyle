@@ -1658,7 +1658,64 @@ public final class JavadocTokenTypes {
     /** Table foot tag name. */
     public static final int TFOOT_HTML_TAG_NAME = JavadocParser.TFOOT_HTML_TAG_NAME;
 
-    /** Table head tag name. */
+    /**
+     * Table head tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * {@code
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th&gt;Header&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * }
+     * </pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--THEAD -> THEAD
+     * |       |--THEAD_TAG_START -> THEAD_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--THEAD_HTML_TAG_NAME -> thead
+     * |       |   `--END -> >
+     * |       |--TR -> TR
+     * |       |   |--TR_TAG_START -> TR_TAG_START
+     * |       |   |   |--START -> <
+     * |       |   |   |--TR_HTML_TAG_NAME -> tr
+     * |       |   |   `--END -> >
+     * |       |   |--TH -> TH
+     * |       |   |   |--TH_TAG_START -> TH_TAG_START
+     * |       |   |   |   |--START -> <
+     * |       |   |   |   |--TH_HTML_TAG_NAME -> th
+     * |       |   |   |   `--END -> >
+     * |       |   |   |--TEXT -> Header
+     * |       |   |   `--TH_TAG_END -> TH_TAG_END
+     * |       |   |       |--START -> <
+     * |       |   |       |--SLASH -> /
+     * |       |   |       |--TH_HTML_TAG_NAME -> th
+     * |       |   |       `--END -> >
+     * |       |   `--TR_TAG_END -> TR_TAG_END
+     * |       |       |--START -> <
+     * |       |       |--SLASH -> /
+     * |       |       |--TR_HTML_TAG_NAME -> tr
+     * |       |       `--END -> >
+     * |       `--THEAD_TAG_END -> THEAD_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--THEAD_HTML_TAG_NAME -> thead
+     * |           `--END -> >
+     * |--NEWLINE -> \n
+     * |--TEXT ->
+     * `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
 
     /** `optgroup` tag name. */
