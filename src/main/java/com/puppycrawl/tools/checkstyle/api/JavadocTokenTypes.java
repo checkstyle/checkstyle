@@ -1674,45 +1674,45 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC -&gt; JAVADOC
-     * |--NEWLINE -&gt; \n
-     * |--LEADING_ASTERISK -&gt;  *
-     * |--TEXT -&gt;
-     * |--HTML_ELEMENT -&gt; HTML_ELEMENT
-     * |   `--THEAD -&gt; THEAD
-     * |       |--THEAD_TAG_START -&gt; THEAD_TAG_START
-     * |       |   |--START -&gt; <
-     * |       |   |--THEAD_HTML_TAG_NAME -&gt; thead
-     * |       |   `--END -&gt; >
-     * |       |--TR -&gt; TR
-     * |       |   |--TR_TAG_START -&gt; TR_TAG_START
-     * |       |   |   |--START -&gt; <
-     * |       |   |   |--TR_HTML_TAG_NAME -&gt; tr
-     * |       |   |   `--END -&gt; >
-     * |       |   |--TH -&gt; TH
-     * |       |   |   |--TH_TAG_START -&gt; TH_TAG_START
-     * |       |   |   |   |--START -&gt; <
-     * |       |   |   |   |--TH_HTML_TAG_NAME -&gt; th
-     * |       |   |   |   `--END -&gt; >
-     * |       |   |   |--TEXT -&gt; Header
-     * |       |   |   `--TH_TAG_END -&gt; TH_TAG_END
-     * |       |   |       |--START -&gt; <
-     * |       |   |       |--SLASH -&gt; /
-     * |       |   |       |--TH_HTML_TAG_NAME -&gt; th
-     * |       |   |       `--END -&gt; >
-     * |       |   `--TR_TAG_END -&gt; TR_TAG_END
-     * |       |       |--START -&gt; <
-     * |       |       |--SLASH -&gt; /
-     * |       |       |--TR_HTML_TAG_NAME -&gt; tr
-     * |       |       `--END -&gt; >
-     * |       `--THEAD_TAG_END -&gt; THEAD_TAG_END
-     * |           |--START -&gt; <
-     * |           |--SLASH -&gt; /
-     * |           |--THEAD_HTML_TAG_NAME -&gt; thead
-     * |           `--END -&gt; >
-     * |--NEWLINE -&gt; \n
-     * |--TEXT -&gt;
-     * `--EOF -&gt; <EOF>
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--THEAD -> THEAD
+     * |       |--THEAD_TAG_START -> THEAD_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--THEAD_HTML_TAG_NAME -> thead
+     * |       |   `--END -> >
+     * |       |--TR -> TR
+     * |       |   |--TR_TAG_START -> TR_TAG_START
+     * |       |   |   |--START -> <
+     * |       |   |   |--TR_HTML_TAG_NAME -> tr
+     * |       |   |   `--END -> >
+     * |       |   |--TH -> TH
+     * |       |   |   |--TH_TAG_START -> TH_TAG_START
+     * |       |   |   |   |--START -> <
+     * |       |   |   |   |--TH_HTML_TAG_NAME -> th
+     * |       |   |   |   `--END -> >
+     * |       |   |   |--TEXT -> Header
+     * |       |   |   `--TH_TAG_END -> TH_TAG_END
+     * |       |   |       |--START -> <
+     * |       |   |       |--SLASH -> /
+     * |       |   |       |--TH_HTML_TAG_NAME -> th
+     * |       |   |       `--END -> >
+     * |       |   `--TR_TAG_END -> TR_TAG_END
+     * |       |       |--START -> <
+     * |       |       |--SLASH -> /
+     * |       |       |--TR_HTML_TAG_NAME -> tr
+     * |       |       `--END -> >
+     * |       `--THEAD_TAG_END -> THEAD_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--THEAD_HTML_TAG_NAME -> thead
+     * |           `--END -> >
+     * |--NEWLINE -> \n
+     * |--TEXT ->
+     * `--EOF -> <EOF>
      * }
      * </pre>
      */
