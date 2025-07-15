@@ -11,7 +11,7 @@ public class InputUnusedLocalVariableTestWarningSeverity {
 
     void m() {
      @Test.A Outer p1 = new @Test.A Outer();
-     @Test.A Outer.@Test.B Inner p2 = p1.new @Test.B Inner();
+     @Test.A Outer.@Test.B Inner p2 = p1.new @Test.B Inner(); // violation, unused variable 'ab'
      // ok above until https://github.com/checkstyle/checkstyle/issues/12980
     }
 
