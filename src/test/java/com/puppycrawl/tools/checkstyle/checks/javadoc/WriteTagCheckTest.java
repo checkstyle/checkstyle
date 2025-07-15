@@ -107,7 +107,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyTag() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagEmptyTag.java"), expected);
@@ -245,7 +245,10 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegularEx() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+        };
+
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagRegularExpression.java"), expected);
     }

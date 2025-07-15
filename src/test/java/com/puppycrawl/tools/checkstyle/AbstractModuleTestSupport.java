@@ -543,10 +543,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+        checker.process(theFiles);
 
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(errs);
+        final Map<String, List<String>> actualViolations = getActualViolations();
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
 
@@ -702,8 +702,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
+        checker.process(files);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+                getActualViolations();
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
@@ -713,19 +714,21 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Each file is mapped to their corresponding violation messages. Reads input stream for these
      * messages using instance of {@link InputStreamReader}.
      *
-     * @param errorCount count of errors after checking set of files against {@link Checker}.
      * @return a {@link Map} object containing file names and the corresponding violation messages.
      * @throws IOException exception can occur when reading input stream.
      */
-    private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
+    private Map<String, List<String>> getActualViolations() throws IOException {
         // process each of the lines
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
-            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
+            for (String line = lnr.readLine(); line != null;
                  line = lnr.readLine()) {
+                if ("Audit done.".equals(line) || line.contains("at com")) {
+                    break;
+                }
                 // have at least 2 characters before the splitting colon,
                 // to not split after the drive letter on Windows
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);
