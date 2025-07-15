@@ -50,6 +50,7 @@ public class WriteTagCheckExamplesTest extends AbstractExamplesModuleTestSupport
         final String[] expected = {
             "19: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
             "24: " + getCheckMessage(WriteTagCheck.MSG_WRITE_TAG, "@since", ""),
+            "29: " + getCheckMessage(WriteTagCheck.MSG_MISSING_TAG, "@since"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
