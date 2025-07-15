@@ -142,7 +142,7 @@
     <property name="format" value="&lt;macro name=&quot;parent-module&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
+    <property name="maximum" value="1"/>
     <property name="message" value="Parent module macro usage is required in template files."/>
   </module>
 
@@ -151,7 +151,7 @@
     <property name="format" value="&lt;macro name=&quot;violation-messages&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
+    <property name="maximum" value="1"/>
     <property name="message" value="Violation messages macro usage is required in template files."/>
   </module>
 
@@ -160,7 +160,16 @@
     <property name="format" value="&lt;macro name=&quot;properties&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
+    <property name="maximum" value="1"/>
     <property name="message" value="Properties macro usage is required in template files."/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="descriptionMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;description&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Description macro usage is required in template files."/>
+  </module>
+
 </module>
