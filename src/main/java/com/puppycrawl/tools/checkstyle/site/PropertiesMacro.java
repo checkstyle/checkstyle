@@ -90,19 +90,6 @@ public class PropertiesMacro extends AbstractMacro {
     /** Reflects end of a code segment. */
     private static final String CODE_END = "</code>";
 
-    /** A newline with 10 spaces of indentation. */
-    private static final String INDENT_LEVEL_10 = SiteUtil.getNewlineAndIndentSpaces(10);
-    /** A newline with 12 spaces of indentation. */
-    private static final String INDENT_LEVEL_12 = SiteUtil.getNewlineAndIndentSpaces(12);
-    /** A newline with 14 spaces of indentation. */
-    private static final String INDENT_LEVEL_14 = SiteUtil.getNewlineAndIndentSpaces(14);
-    /** A newline with 16 spaces of indentation. */
-    private static final String INDENT_LEVEL_16 = SiteUtil.getNewlineAndIndentSpaces(16);
-    /** A newline with 18 spaces of indentation. */
-    private static final String INDENT_LEVEL_18 = SiteUtil.getNewlineAndIndentSpaces(18);
-    /** A newline with 20 spaces of indentation. */
-    private static final String INDENT_LEVEL_20 = SiteUtil.getNewlineAndIndentSpaces(20);
-
     /**
      * This property is used to change the existing properties for javadoc.
      * Tokens always present at the end of all properties.
@@ -162,10 +149,10 @@ public class PropertiesMacro extends AbstractMacro {
         sink.table();
         sink.setInsertNewline(false);
         sink.tableRows(null, false);
-        sink.rawText(INDENT_LEVEL_12);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         writeTableHeaderRow(sink);
         writeTablePropertiesRows(sink);
-        sink.rawText(INDENT_LEVEL_10);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_10);
         sink.tableRows_();
         sink.table_();
         sink.setInsertNewline(true);
@@ -183,7 +170,7 @@ public class PropertiesMacro extends AbstractMacro {
         writeTableHeaderCell(sink, "type");
         writeTableHeaderCell(sink, "default value");
         writeTableHeaderCell(sink, "since");
-        sink.rawText(INDENT_LEVEL_12);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         sink.tableRow_();
     }
 
@@ -194,7 +181,7 @@ public class PropertiesMacro extends AbstractMacro {
      * @param text the text to write.
      */
     private static void writeTableHeaderCell(Sink sink, String text) {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableHeaderCell();
         sink.text(text);
         sink.tableHeaderCell_();
@@ -272,7 +259,7 @@ public class PropertiesMacro extends AbstractMacro {
             throws MacroExecutionException {
         final Field field = SiteUtil.getField(instance.getClass(), propertyName);
 
-        sink.rawText(INDENT_LEVEL_12);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         sink.tableRow();
 
         writePropertyNameCell(sink, propertyName);
@@ -282,7 +269,7 @@ public class PropertiesMacro extends AbstractMacro {
         writePropertySinceVersionCell(
                 sink, propertyName, moduleJavadoc, propertyJavadoc);
 
-        sink.rawText(INDENT_LEVEL_12);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         sink.tableRow_();
     }
 
@@ -293,7 +280,7 @@ public class PropertiesMacro extends AbstractMacro {
      * @param propertyName the name of the property.
      */
     private static void writePropertyNameCell(Sink sink, String propertyName) {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
         sink.text(propertyName);
         sink.tableCell_();
@@ -310,7 +297,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writePropertyDescriptionCell(Sink sink, String propertyName,
                                                      DetailNode propertyJavadoc)
             throws MacroExecutionException {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
         final String description = SiteUtil
                 .getPropertyDescription(propertyName, propertyJavadoc, currentModuleName);
@@ -332,7 +319,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writePropertyTypeCell(Sink sink, String propertyName,
                                               Field field, Object instance)
             throws MacroExecutionException {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
 
         if (SiteUtil.TOKENS.equals(propertyName)) {
@@ -413,14 +400,14 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static void writeLink(Sink sink)
             throws MacroExecutionException {
-        sink.rawText(INDENT_LEVEL_16);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_16);
         final String link =
                 SiteUtil.getLinkToDocument(currentModuleName, SiteUtil.PATH_TO_TOKEN_TYPES);
         sink.link(link);
-        sink.rawText(INDENT_LEVEL_20);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_20);
         sink.text(SiteUtil.TOKENS);
         sink.link_();
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
     }
 
     /**
@@ -437,7 +424,7 @@ public class PropertiesMacro extends AbstractMacro {
             throws MacroExecutionException {
         for (int index = 0; index < tokens.size(); index++) {
             final String token = tokens.get(index);
-            sink.rawText(INDENT_LEVEL_16);
+            sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_16);
             if (index != 0) {
                 sink.text(SiteUtil.COMMA_SPACE);
             }
@@ -449,12 +436,12 @@ public class PropertiesMacro extends AbstractMacro {
             sink.rawText(CODE_END);
         }
         else if (printDotAtTheEnd) {
-            sink.rawText(INDENT_LEVEL_18);
+            sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_18);
             sink.text(SiteUtil.DOT);
-            sink.rawText(INDENT_LEVEL_14);
+            sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         }
         else {
-            sink.rawText(INDENT_LEVEL_14);
+            sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         }
     }
 
@@ -471,7 +458,7 @@ public class PropertiesMacro extends AbstractMacro {
         final String link = SiteUtil.getLinkToDocument(currentModuleName, document)
                         + "#" + tokenName;
         sink.link(link);
-        sink.rawText(INDENT_LEVEL_20);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_20);
         sink.text(tokenName);
         sink.link_();
     }
@@ -488,7 +475,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writePropertyDefaultValueCell(Sink sink, String propertyName,
                                                       Field field, Object instance)
             throws MacroExecutionException {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
 
         if (SiteUtil.TOKENS.equals(propertyName)) {
@@ -583,7 +570,7 @@ public class PropertiesMacro extends AbstractMacro {
                                                       DetailNode moduleJavadoc,
                                                       DetailNode propertyJavadoc)
             throws MacroExecutionException {
-        sink.rawText(INDENT_LEVEL_14);
+        sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
         final String sinceVersion = SiteUtil.getSinceVersion(
                 currentModuleName, moduleJavadoc, propertyName, propertyJavadoc);
