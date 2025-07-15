@@ -16,6 +16,7 @@ package com.puppycrawl.tools.checkstyle.filters.severitymatchfilter;
 
 // xdoc section -- start
 public class Example1 {
+  // filtered violation below 'must match pattern'
   public void method1(int V1){} // ok, ParameterName's severity is info
 
   public void Method2(){} // violation, MethodName's severity is defaulted to error
