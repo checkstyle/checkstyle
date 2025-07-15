@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * Setting {@code .*} value to {@code nearbyTextPattern} property will see <b>any</b>
  * text as a suppression and will likely suppress all audit events in the file. It is
  * best to set this to a key phrase not commonly used in the file to help denote it

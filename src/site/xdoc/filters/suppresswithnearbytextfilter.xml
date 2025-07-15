@@ -11,16 +11,15 @@
       <subsection name="Description" id="Description">
         <div>
           Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
-          nearby audit events. The filter can suppress all checks which have Checker
-          as a parent module.
+          nearby audit events. The filter can suppress all checks which have Checker as a parent module.
         </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
-          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see
-          <b>any</b> text as a suppression and will likely suppress all audit events in the file.
-          It is best to set this to a key phrase not commonly used in the file to help denote
-          it out of the rest of the file as a suppression. See the default value as an example.
+          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see <b>any</b>
+          text as a suppression and will likely suppress all audit events in the file. It is
+          best to set this to a key phrase not commonly used in the file to help denote it
+          out of the rest of the file as a suppression. See the default value as an example.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">

@@ -9,32 +9,16 @@
     <section name="SuppressionXpathSingleFilter">
       <p>Since Checkstyle 8.18</p>
       <subsection name="Description" id="Description">
-        <div>
-          Filter <code>SuppressionXpathSingleFilter</code> suppresses audit events for
-          Checks violations in the specified file, class, checks, message, module id,
-          and xpath.
-        </div>
-        <p>
-          Rationale: To allow users to use suppressions configured in the same config as other
-          modules. <code>SuppressionFilter</code> and <code>SuppressionXpathFilter</code> require
-          a separate file.
-        </p>
-        <p>
-          Advice: If checkstyle configuration is used for several projects, single suppressions
-          on common files/folders is better to put in checkstyle configuration as common rule.
-          All suppression that are for specific file names is better to keep in project specific
-          config file.
-        </p>
-        <p>
-          Attention: This filter only supports single suppression, and will need
-          multiple instances if users wants to suppress multiple violations.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          <code>SuppressionXpathSingleFilter</code> can suppress Checks that have
-          <code>Treewalker</code> as parent module.
-        </p>
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathSingleFilter.java"/>
+        </macro>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

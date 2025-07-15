@@ -9,19 +9,16 @@
     <section name="SuppressWithNearbyTextFilter">
       <p>Since Checkstyle 10.10.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
-          nearby audit events. The filter can suppress all checks which have Checker
-          as a parent module.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see
-          <b>any</b> text as a suppression and will likely suppress all audit events in the file.
-          It is best to set this to a key phrase not commonly used in the file to help denote
-          it out of the rest of the file as a suppression. See the default value as an example.
-        </p>
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
+        </macro>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

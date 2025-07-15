@@ -12,6 +12,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  A &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
  contains a set of &lt;code&gt;suppress&lt;/code&gt; elements, where each &lt;code&gt;suppress&lt;/code&gt;
  element can have the following attributes:

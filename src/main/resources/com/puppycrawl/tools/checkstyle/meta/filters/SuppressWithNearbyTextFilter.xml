@@ -10,6 +10,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  Setting &lt;code&gt;.*&lt;/code&gt; value to &lt;code&gt;nearbyTextPattern&lt;/code&gt; property will see &lt;b&gt;any&lt;/b&gt;
  text as a suppression and will likely suppress all audit events in the file. It is
  best to set this to a key phrase not commonly used in the file to help denote it

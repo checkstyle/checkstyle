@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * </p>
  *
  * <p>
+ * Notes:
  * SuppressWarningsFilter can suppress Checks that have Treewalker or
  * Checker as parent module.
  * </p>

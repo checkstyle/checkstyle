@@ -13,25 +13,23 @@
           Filter <code>SuppressWarningsFilter</code> uses annotation
           <code>@SuppressWarnings</code> to suppress audit events.
         </div>
+
         <p>
-          Rationale: Same as for
-          <code>SuppressionCommentFilter</code>. In the contrary to it
-          here, comments are not used comments but the builtin syntax of
-          <code>@SuppressWarnings</code>. This can be perceived as a
-          more elegant solution than using comments. Also, this approach
-          maybe supported by various IDE.
+          Rationale: Same as for <code>SuppressionCommentFilter</code>. In the contrary to it here,
+          comments are not used comments but the builtin syntax of <code>@SuppressWarnings</code>.
+          This can be perceived as a more elegant solution than using comments.
+          Also, this approach maybe supported by various IDE.
         </p>
+
         <p>
           Usage: This filter only works in conjunction with a
-          <a href="../checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
+          <a href="https://checkstyle.org/checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
           SuppressWarningsHolder</a>,
-          since that check finds
-          the annotations in the Java files and makes them available for
-          the filter. Because of that, a configuration that includes
-          this filter must also include
-          <code>SuppressWarningsHolder</code> as a child module of the
-          <code>TreeWalker</code>. Name of check in annotation is case-insensitive
-          and should be written with any dotted prefix or &quot;Check&quot; suffix removed.
+          since that check finds the annotations in the Java files and makes them available for the filter.
+          Because of that, a configuration that includes this filter must also include
+          <code>SuppressWarningsHolder</code> as a child module of the <code>TreeWalker</code>.
+          Name of check in annotation is case-insensitive and should be written with
+          any dotted prefix or "Check" suffix removed.
         </p>
       </subsection>
       <subsection name="Notes" id="Notes">
