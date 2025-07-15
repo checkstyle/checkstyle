@@ -10,6 +10,7 @@ tokens = (default)INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
+// violation 7 lines below 'Javadoc tag @emptytag='
 /**
  * Testing tag writing
  * @author Daniel Grenner
