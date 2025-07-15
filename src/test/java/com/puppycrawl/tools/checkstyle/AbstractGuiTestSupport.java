@@ -25,11 +25,17 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioExtension;
 import org.junit.jupiter.api.BeforeEach;
+
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioTest;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 /**
  * Abstract base class for testing GUI components.
  */
+@ExtendWith(CacioExtension.class)
+@CacioTest
 public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
 
     /**
