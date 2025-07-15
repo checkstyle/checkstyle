@@ -25,6 +25,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
+ Notes:
  SuppressWithNearbyCommentFilter can suppress Checks that have
  Treewalker as parent module.
  &lt;/p&gt;</description>

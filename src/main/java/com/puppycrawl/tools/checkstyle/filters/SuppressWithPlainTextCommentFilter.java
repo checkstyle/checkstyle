@@ -70,6 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
  * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
