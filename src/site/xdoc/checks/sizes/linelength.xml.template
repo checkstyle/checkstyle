@@ -15,6 +15,13 @@
         </macro>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
+        </macro>
+      </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <macro name="properties">
@@ -110,13 +117,6 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
           <param name="type" value="code"/>
-        </macro>
-      </subsection>
-
-      <subsection name="Notes" id="Notes">
-        <macro name="notes">
-            <param name="modulePath"
-                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
         </macro>
       </subsection>
 
