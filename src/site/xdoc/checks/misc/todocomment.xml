@@ -17,6 +17,13 @@
         </div>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+        <p>
+          Using <code>TODO:</code> comments is a great way to keep track of tasks that need to be done.
+          Having them reported by Checkstyle makes it very hard to forget about them.
+        </p>
+      </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -36,13 +43,6 @@
             </tr>
           </table>
         </div>
-      </subsection>
-
-      <subsection name="Notes" id="Notes">
-        <p>
-          Using <code>TODO:</code> comments is a great way to keep track of tasks that need to be done.
-          Having them reported by Checkstyle makes it very hard to forget about them.
-        </p>
       </subsection>
 
       <subsection name="Examples" id="Examples">

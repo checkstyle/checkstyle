@@ -14,6 +14,12 @@
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
         </macro>
       </subsection>
+      <subsection name="Notes" id="Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
+        </macro>
+      </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <macro name="properties">
@@ -21,12 +27,6 @@
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
           </macro>
         </div>
-      </subsection>
-      <subsection name="Notes" id="Notes">
-        <macro name="notes">
-            <param name="modulePath"
-                   value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
-        </macro>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p>
