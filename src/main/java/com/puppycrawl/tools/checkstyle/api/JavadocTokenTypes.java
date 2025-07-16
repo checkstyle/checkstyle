@@ -1652,7 +1652,76 @@ public final class JavadocTokenTypes {
      */
     public static final int OPTION_HTML_TAG_NAME = JavadocParser.OPTION_HTML_TAG_NAME;
 
-    /** Table body tag name. */
+    /**
+     * Table body tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * {@code
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td&gt;Row1&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * }
+     * </pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--TBODY -> TBODY
+     * |       |--TBODY_TAG_START -> TBODY_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--TBODY_HTML_TAG_NAME -> tbody
+     * |       |   `--END -> >
+     * |       |--NEWLINE -> \n
+     * |       |--LEADING_ASTERISK ->  *
+     * |       |--TEXT ->
+     * |       |--TR -> TR
+     * |       |   |--TR_TAG_START -> TR_TAG_START
+     * |       |   |   |--START -> <
+     * |       |   |   |--TR_HTML_TAG_NAME -> tr
+     * |       |   |   `--END -> >
+     * |       |   |--NEWLINE -> \n
+     * |       |   |--LEADING_ASTERISK ->  *
+     * |       |   |--TEXT ->
+     * |       |   |--TD -> TD
+     * |       |   |   |--TD_TAG_START -> TD_TAG_START
+     * |       |   |   |   |--START -> <
+     * |       |   |   |   |--TD_HTML_TAG_NAME -> td
+     * |       |   |   |   `--END -> >
+     * |       |   |   |--TEXT -> Row1
+     * |       |   |   `--TD_TAG_END -> TD_TAG_END
+     * |       |   |       |--START -> <
+     * |       |   |       |--SLASH -> /
+     * |       |   |       |--TD_HTML_TAG_NAME -> td
+     * |       |   |       `--END -> >
+     * |       |   |--NEWLINE -> \n
+     * |       |   |--LEADING_ASTERISK ->  *
+     * |       |   |--TEXT ->
+     * |       |   `--TR_TAG_END -> TR_TAG_END
+     * |       |       |--START -> <
+     * |       |       |--SLASH -> /
+     * |       |       |--TR_HTML_TAG_NAME -> tr
+     * |       |       `--END -> >
+     * |       |--NEWLINE -> \n
+     * |       |--LEADING_ASTERISK ->  *
+     * |       |--TEXT ->
+     * |       `--TBODY_TAG_END -> TBODY_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--TBODY_HTML_TAG_NAME -> tbody
+     * |           `--END -> >
+     * |--NEWLINE -> \n
+     * |--TEXT ->
+     * `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int TBODY_HTML_TAG_NAME = JavadocParser.TBODY_HTML_TAG_NAME;
 
     /** Table foot tag name. */
