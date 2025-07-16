@@ -37,7 +37,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;module name="SuppressionXpathFilter"&gt;
-  &lt;property name="file" value="config/suppressions.xml"/&gt;
+  &lt;property name="file" value="${config_loc}/suppressions.xml"/&gt;
   &lt;property name="optional" value="false"/&gt;
 &lt;/module&gt;
         </code></pre></div>
