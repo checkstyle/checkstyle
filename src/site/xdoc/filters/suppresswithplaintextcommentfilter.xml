@@ -39,6 +39,18 @@
           You can use more than one suppression comment each on separate line.
         </p>
       </subsection>
+      <subsection name="Notes" id="Notes">
+        <p>
+          Properties <code>offCommentFormat</code> and <code>onCommentFormat</code> must have equal
+          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
+          paren counts</a>.
+        </p>
+
+        <p>
+          SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
+        </p>
+      </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <table>
@@ -86,18 +98,6 @@
             </tr>
           </table>
         </div>
-      </subsection>
-      <subsection name="Notes" id="Notes">
-        <p>
-          Properties <code>offCommentFormat</code> and <code>onCommentFormat</code> must have equal
-          <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
-          paren counts</a>.
-        </p>
-
-        <p>
-          SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
-          Checker as parent module.
-        </p>
       </subsection>
       <subsection name="Examples" id="Examples">
         <p id="Example1-config">
