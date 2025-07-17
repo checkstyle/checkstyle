@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>UnusedTryResourceShouldBeUnnamed</title>
+  </head>
+  <body>
+    <section name="UnusedTryResourceShouldBeUnnamed">
+      <p>Since Checkstyle 10.26.0</p>
+      <subsection name="Description" id="Description">
+        <div>
+          Ensures that try resources that are not used are declared as an unnamed variable.
+        </div>
+
+        <p>
+          Rationale:
+        </p>
+        <ul>
+        <li>
+          Improves code readability by clearly indicating which resources are unused.
+        </li>
+        <li>
+          Follows Java conventions for denoting unused parameters with an underscore (<code>_</code>).
+        </li>
+        </ul>
+
+        <p>
+          See the <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
+          Java Language Specification</a> for more information about unnamed variables.
+        </p>
+
+        <p>
+          <b>Attention</b>: Unnamed variables are available as a preview feature in Java 21,
+          and became an official part of the language in Java 22.
+          This check should be activated only on source code which meets those requirements.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="UnusedTryResourceShouldBeUnnamed"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  void test() {
+    // violation below, 'Unused try resource 'a' should be unnamed'
+    try (AutoCloseable a = lock()) {
+
+    } catch (Exception e) {
+
+    }
+
+    try (AutoCloseable _ = lock()) {
+
+    } catch (Exception e) {
+
+    }
+  }
+
+  AutoCloseable lock() {
+    return null;
+  }
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedTryResourceShouldBeUnnamed">
+                Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.try.resource%22">
+              unused.try.resource
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
