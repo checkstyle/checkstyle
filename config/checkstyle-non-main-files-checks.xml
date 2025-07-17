@@ -134,7 +134,7 @@
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="9999"/>
-    <property name="message" value="Example macro usage is required in template files. If module doesn't have examples, please add this to suppressions."/>
+    <property name="message" value="Example macro usage is required in template files. If module does not have examples, please add this to suppressions."/>
   </module>
 
   <module name="RegexpSingleline">
@@ -152,7 +152,7 @@
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
-    <property name="message" value="Violation messages macro usage is required in template files. If module doesn't have violation messages, please add this to suppressions."/>
+    <property name="message" value="Violation messages macro usage is required in template files. If module does not have violation messages, please add this to suppressions."/>
   </module>
 
   <module name="RegexpSingleline">
@@ -161,7 +161,7 @@
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="1"/>
-    <property name="message" value="Properties macro usage is required in template files. If module doesn't have properties, please add this to suppressions."/>
+    <property name="message" value="Properties macro usage is required in template files. If module doesn not have properties, please add this to suppressions."/>
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="descriptionMacroMustExist"/>
