@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+  <suppress checks="JavadocStyle"
+    files="Example1.java"
+    lines="20"/>
+  <suppress checks="MagicNumber"
+    files="Example1.java"
+    lines="23,27"/>
+  <suppress message="Missing a Javadoc comment"/>
+</suppressions>
