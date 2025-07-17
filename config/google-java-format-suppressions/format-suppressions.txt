@@ -1,0 +1,17 @@
+NoLineWrapping
+OrderingAndSpacing1
+TryCatchIfElse
+OneStatementPerLine
+VerticalWhitespace
+ParenPad
+ClassWithChainedMethods
+NewKeywordChildren
+ClassAnnotations
+MethodsAndConstructorsAnnotations
+ModifierOrder
+TextBlocksGeneralForm
+CamelCaseDefined
+JavaDocTagContinuationIndentation
+InvalidJavadocPosition
+OneStatementPerLine
+SingleSwitchStatementWithoutCurly
