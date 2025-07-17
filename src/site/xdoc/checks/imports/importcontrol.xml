@@ -115,16 +115,43 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check using an import control file called
-          &quot;config/import-control.xml&quot;, then have the following:
+          &quot;${config.folder}/import-control1.xml&quot;, then have the following:
         </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name=&quot;ImportControl&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;config/import-control.xml&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control1.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="import-control1-raw">
+          Import control configuration:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;disallow class="java.io.File"/&gt;
+&lt;/import-control&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
+
+import java.io.File; // violation
+import java.io.FileReader;
+
+public class Example1 {}
+</code></pre></div><hr class="example-separator"/>
 
         <p>
           To configure the check to only check the &quot;src/main&quot; directory
@@ -321,30 +348,52 @@
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </code></pre></div>
-        <p>
-          In the next example imports <code>java.util.stream.Stream</code> and
+        <p id="Example10-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control10.xml"/&gt;
+      &lt;property name="path" value="^.*[\\/]src[\\/]main[\\/].*$"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control10-raw">
+          imports <code>java.util.stream.Stream</code> and
           <code>java.util.stream.Collectors</code> are disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol</code> package,
           but because of <code>&lt;allow pkg=&quot;java.util.stream&quot;/&gt;</code> every import
           from <code>java.util.stream</code> is allowed except described ones.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-  &lt;allow pkg=&quot;java.util.stream&quot;/&gt;
-  &lt;subpackage name=&quot;imports&quot;&gt;
-    &lt;disallow class=&quot;java.util.stream.Stream&quot;/&gt;
-    &lt;disallow class=&quot;java.util.stream.Collectors&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;allow pkg="java.util.stream"/&gt;
+  &lt;subpackage name="imports"&gt;
+    &lt;disallow class="java.util.stream.Stream"/&gt;
+    &lt;disallow class="java.util.stream.Collectors"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
-
+</code></pre></div>
+        <p id="Example10-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.imports;
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
 
-import java.util.stream.Stream;     // violation here
-import java.util.stream.Collectors; // violation here
+import java.util.stream.Stream;     // violation
+import java.util.stream.Collectors; // violation
 import java.util.stream.IntStream;
-        </code></pre></div>
+
+public class Example10 {}
+</code></pre></div><hr class="example-separator"/>
         <p>
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.

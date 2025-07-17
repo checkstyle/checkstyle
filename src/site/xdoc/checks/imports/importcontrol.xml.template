@@ -25,16 +25,31 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
           To configure the check using an import control file called
-          "config/import-control.xml", then have the following:
+          "${config.folder}/import-control1.xml", then have the following:
         </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name="ImportControl"&gt;
-  &lt;property name="file" value="config/import-control.xml"/&gt;
-&lt;/module&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control1-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example1-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p>
           To configure the check to only check the "src/main" directory
@@ -231,30 +246,34 @@
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
         </code></pre></div>
-        <p>
-          In the next example imports <code>java.util.stream.Stream</code> and
+        <p id="Example10-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control10-raw">
+          imports <code>java.util.stream.Stream</code> and
           <code>java.util.stream.Collectors</code> are disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code> package,
           but because of <code>&lt;allow pkg="java.util.stream"/&gt;</code> every import
           from <code>java.util.stream</code> is allowed except described ones.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg="java.util.stream"/&gt;
-  &lt;subpackage name="imports"&gt;
-    &lt;disallow class="java.util.stream.Stream"/&gt;
-    &lt;disallow class="java.util.stream.Collectors"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.imports;
-
-import java.util.stream.Stream;     // violation here
-import java.util.stream.Collectors; // violation here
-import java.util.stream.IntStream;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control10.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example10-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p>
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
