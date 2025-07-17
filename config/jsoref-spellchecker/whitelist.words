@@ -1323,6 +1323,7 @@ superfinalize
 Superinterface
 supertype
 suppressioncommentfilter
+suppressionexample
 suppressionfilter
 suppressionsinglefilter
 suppressionsloader

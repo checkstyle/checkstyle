@@ -187,8 +187,6 @@
 
   <!-- Examples macro suppressions -->
   <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionfilter.xml.template"/>
-  <suppress id="exampleMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
 
   <!-- there is no messages in module by design -->
