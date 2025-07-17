@@ -1,5 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule4854fieldannotations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Some javadoc. */
 public class InputFormattedFieldAnnotations {
   /** Some javadoc. */
@@ -33,6 +36,14 @@ public class InputFormattedFieldAnnotations {
   @SuppressWarnings("bla")
   @SomeAnnotation3(x = 0)
   float pi = 3.14f;
+
+  /** testing. */
+  @SomeAnnotation1 @SomeAnnotation3 (x = 14)
+  List<String> list = new ArrayList<>();
+
+  /** testing. */
+  @SuppressWarnings("bla")
+  InputFormattedFieldAnnotations obj = new InputFormattedFieldAnnotations();
 
   /** testing. */
   @SomeAnnotation1
