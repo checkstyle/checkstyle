@@ -5442,15 +5442,15 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
     <message>Could not infer type arguments for Stream.collect</message>
-    <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
+    <lineContent>.toList();</lineContent>
     <details>
       unsatisfiable constraint: @Initialized @PolyNull AbstractNode &lt;: @Initialized @NonNull AbstractNode
       use of T from Collectors.toUnmodifiableList() = @Initialized @NonNull AbstractNode
       From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= @Initialized @NonNull AbstractNode
       inference type: java.util.List&lt;T&gt; &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From complementary bound.: use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) -&gt; @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From: Constraint between method call type and target type for method call:getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList())
+      use of R from getItems(event).stream().map(AbstractNode.class::cast).toList() &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+      From complementary bound.: use of R from getItems(event).stream().map(AbstractNode.class::cast).toList() -&gt; @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+      From: Constraint between method call type and target type for method call:getItems(event).stream().map(AbstractNode.class::cast).toList()
     </details>
   </checkerFrameworkError>
 
@@ -6559,15 +6559,15 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
     <message>Could not infer type arguments for Stream.collect</message>
-    <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
+    <lineContent>.toList();</lineContent>
     <details>
       unsatisfiable constraint: T extends @Initialized @PolyNull Object &lt;: T extends @Initialized @Nullable Object
       use of T from Collectors.toUnmodifiableList() = T extends @Initialized @Nullable Object
       From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= T extends @Initialized @Nullable Object
       inference type: java.util.List&lt;T&gt; &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      From complementary bound.: use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) -&gt; @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      From: Constraint between method call type and target type for method call:items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList())
+      use of R from items.stream().map(elementType::cast).toList() &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+      From complementary bound.: use of R from items.stream().map(elementType::cast).toList() -&gt; @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+      From: Constraint between method call type and target type for method call:items.stream().map(elementType::cast).toList()
     </details>
   </checkerFrameworkError>
 

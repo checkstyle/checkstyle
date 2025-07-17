@@ -593,7 +593,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         checker.process(files);
         checker.destroy();
     }
@@ -608,7 +608,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected static void execute(Checker checker, String... filenames) throws Exception {
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         checker.process(files);
         checker.destroy();
     }
@@ -629,10 +629,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
@@ -656,10 +656,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
