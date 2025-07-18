@@ -9,7 +9,6 @@
 </module>
 */
 
-// non-compiled with javac: Compilable with Java17
 // xdoc section -- start
 package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
