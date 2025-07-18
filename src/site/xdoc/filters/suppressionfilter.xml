@@ -121,46 +121,73 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
+        <p id="Example1-config">
             For example, the following configuration fragment directs the
             Checker to use a <code>SuppressionFilter</code>
             with suppressions
-            file <code>config/suppressions.xml</code>:
+            file <code>suppressionexample1.xml</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name=&quot;SuppressionFilter&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
-  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="SuppressionFilter"&gt;
+    &lt;property name="file" value="suppressionexample1.xml"/&gt;
+    &lt;property name="optional" value="false"/&gt;
+  &lt;/module&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"/&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck"/&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-        </code></pre></div>
-        <p>
+</code></pre></div>
+        <p id="suppressionexample1-raw">
           The following suppressions XML document directs
           a <code>SuppressionFilter</code> to
           reject <code>JavadocStyleCheck</code> violations for
-          lines 82 and 108 to 122 of
-          file <code>AbstractComplexityCheck.java</code>,
-          and <code>MagicNumberCheck</code> violations for line
-          221 of file <code>JavadocStyleCheck.java</code>,
+          line 4 of
+          file <code>Example1.java</code>,
+          and <code>MagicNumberCheck</code> violations for lines
+          7 and 11 of file <code>Example1.java</code>,
           and <code>'Missing a Javadoc comment'</code> violations
           for all lines and files:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;?xml version=&quot;1.0&quot;?&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
 
 &lt;!DOCTYPE suppressions PUBLIC
-  &quot;-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN&quot;
-  &quot;https://checkstyle.org/dtds/suppressions_1_2.dtd&quot;&gt;
+  "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+  "https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress checks=&quot;JavadocStyleCheck&quot;
-    files=&quot;AbstractComplexityCheck.java&quot;
-    lines=&quot;82,108-122&quot;/&gt;
-  &lt;suppress checks=&quot;MagicNumberCheck&quot;
-    files=&quot;JavadocStyleCheck.java&quot;
-    lines=&quot;221&quot;/&gt;
-  &lt;suppress message=&quot;Missing a Javadoc comment&quot;/&gt;
+  &lt;suppress checks="JavadocStyle"
+    files="Example1.java"
+    lines="20"/&gt;
+  &lt;suppress checks="MagicNumber"
+    files="Example1.java"
+    lines="23,27"/&gt;
+  &lt;suppress message="Missing a Javadoc comment"/&gt;
 &lt;/suppressions&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  // filtered violation below 'First sentence should end with a period.'
+  /**
+   * This field a is missing period
+   */
+  int a = 10; // filtered violation ''10' is a magic number.'
+
+  public void exampleMethod() {
+
+    int num = 100; // filtered violation ''100' is a magic number.'
+
+    if (true) {
+      // violation above 'Must have at least one statement.'
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
         <p>
           Suppress check by <a href="../config.html#Id">module id</a>
           when config have two instances on the same check:
