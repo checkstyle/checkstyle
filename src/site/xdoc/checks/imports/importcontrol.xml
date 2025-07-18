@@ -196,58 +196,124 @@ import java.io.FileReader;
 public class Example2 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
+        <p id="Example3-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control3.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control3-raw">
           In the example below access to package
           <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
-          allowed from anywhere in <code>com.puppycrawl.tools.checkstyle</code> except
+          allowed from anywhere incom.puppycrawl.tools.checkstyle.checks.imports.importcontrol
+          <code></code> except
           from the <code>filters</code> subpackage where access to all
           <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
           classes are allowed by virtue of one regular expression instead of listing
           them in two separate allow rules (as it is done with the <code>Files</code>
           and <code>ClassPath</code> classes).
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle&quot;&gt;
-  &lt;disallow pkg=&quot;sun&quot;/&gt;
-  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.api&quot;/&gt;
-  &lt;allow pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;/&gt;
-  &lt;allow class=&quot;com.google.common.io.Files&quot;/&gt;
-  &lt;allow class=&quot;com.google.common.reflect.ClassPath&quot;/&gt;
-  &lt;subpackage name=&quot;filters&quot;&gt;
-    &lt;allow class=&quot;java\.lang\.ref\.(Weak|Soft)Reference&quot;
-      regex=&quot;true&quot;/&gt;
-    &lt;disallow pkg=&quot;com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+&quot;
-      regex=&quot;true&quot;/&gt;
-    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.ant&quot;/&gt;
-    &lt;disallow pkg=&quot;com.puppycrawl.tools.checkstyle.gui&quot;/&gt;
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;disallow pkg="sun"/&gt;
+  &lt;allow pkg="com.puppycrawl.tools.checkstyle.api"/&gt;
+  &lt;allow pkg="com.puppycrawl.tools.checkstyle.checks"/&gt;
+  &lt;allow class="com.google.common.io.Files"/&gt;
+  &lt;allow class="com.google.common.reflect.ClassPath"/&gt;
+  &lt;subpackage name="filters"&gt;
+    &lt;allow class="java\.lang\.ref\.(Weak|Soft)Reference"
+      regex="true"/&gt;
+    &lt;disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
+      regex="true"/&gt;
+    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.ant"/&gt;
+    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.gui"/&gt;
   &lt;/subpackage&gt;
-  &lt;subpackage name=&quot;dao&quot;&gt;
-    &lt;disallow pkg=&quot;javax.swing&quot; exact-match=&quot;true&quot;/&gt;
+  &lt;subpackage name="dao"&gt;
+    &lt;disallow pkg="javax.swing" exact-match="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
-
-        <p>
-          In the next example regular expressions are used to enforce a layering rule: In all
-          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
-          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to directly
-          access <code>dao</code> and <code>service</code> layer from <code>ui</code> packages. The
-          root package is also a regular expression that is used to handle old and new domain name
-          with the same rules.
+</code></pre></div>
+        <p id="Example3-code">
+          Results:
         </p>
-
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;(de.olddomain|de.newdomain)\..*&quot; regex=&quot;true&quot;&gt;
-  &lt;subpackage pkg=&quot;[^.]+\.dao&quot; regex=&quot;true&quot;&gt;
-    &lt;disallow pkg=&quot;.*\.ui&quot; regex=&quot;true&quot;/&gt;
-    &lt;disallow pkg=&quot;.*\.(awt|swing).\.*&quot; regex=&quot;true&quot;/&gt;
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
+
+import com.google.common.io.Files;
+import com.puppycrawl.tools.checkstyle.checks;
+// violation above, 'Disallowed import - com.puppycrawl.tools.checkstyle.checks'
+
+import java.lang.ref.ReferenceQueue;
+// violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
+import java.lang.ref.SoftReference; // ok, specifically allowed by regex expression
+
+public class Example3 {}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control4.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control4-raw">
+          Regular expressions are used to enforce a layering rule: In all
+          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
+          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to
+          directly access <code>dao</code> and <code>service</code> layer from <code>ui</code>
+          packages. The root package is also a regular expression that is used to handle old
+          and new domain name with the same rules.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.imports\.importcontrol\.(olddomain|newdomain)\..*"
+                regex="true"&gt;
+  &lt;allow class="java.io.File"/&gt;
+  &lt;allow class="java.util.Scanner"/&gt;
+  &lt;subpackage name="[^.]+\.dao" regex="true"&gt;
+    &lt;disallow pkg=".*\.ui" regex="true"/&gt;
+    &lt;disallow pkg=".*\.(awt|swing).\.*" regex="true"/&gt;
   &lt;/subpackage&gt;
-  &lt;subpackage pkg=&quot;[^.]+\.ui&quot; regex=&quot;true&quot;&gt;
-    &lt;disallow pkg=&quot;.*\.(dao|service)&quot; regex=&quot;true&quot;/&gt;
+  &lt;subpackage name="[^.]+\.ui" regex="true"&gt;
+    &lt;disallow pkg=".*\.(dao|service)" regex="true"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example4-code">
+          Example results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.newdomain.dao;
+
+import com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.ui;
+// violation above, 'Disallowed import - com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.ui'
+import java.io.File;
+import java.util.Scanner;
+import javax.swing; // violation, 'Disallowed import - javax.swing'
+
+public class Example4 {}
+</code></pre></div><hr class="example-separator"/>
 
         <p>
           In the next examples usage of <code>strategyOnMismatch</code> property is shown.

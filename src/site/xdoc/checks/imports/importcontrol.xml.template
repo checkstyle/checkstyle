@@ -79,58 +79,68 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
+        <p id="Example3-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control3-raw">
           In the example below access to package
           <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
-          allowed from anywhere in <code>com.puppycrawl.tools.checkstyle</code> except
+          allowed from anywhere incom.puppycrawl.tools.checkstyle.checks.imports.importcontrol
+          <code></code> except
           from the <code>filters</code> subpackage where access to all
           <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
           classes are allowed by virtue of one regular expression instead of listing
           them in two separate allow rules (as it is done with the <code>Files</code>
           and <code>ClassPath</code> classes).
         </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;disallow pkg="sun"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.api"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.checks"/&gt;
-  &lt;allow class="com.google.common.io.Files"/&gt;
-  &lt;allow class="com.google.common.reflect.ClassPath"/&gt;
-  &lt;subpackage name="filters"&gt;
-    &lt;allow class="java\.lang\.ref\.(Weak|Soft)Reference"
-      regex="true"/&gt;
-    &lt;disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
-      regex="true"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.ant"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.gui"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage name="dao"&gt;
-    &lt;disallow pkg="javax.swing" exact-match="true"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-
-        <p>
-          In the next example regular expressions are used to enforce a layering rule: In all
-          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
-          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to directly
-          access <code>dao</code> and <code>service</code> layer from <code>ui</code> packages. The
-          root package is also a regular expression that is used to handle old and new domain name
-          with the same rules.
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example3-code">
+          Results:
         </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="(de.olddomain|de.newdomain)\..*" regex="true"&gt;
-  &lt;subpackage pkg="[^.]+\.dao" regex="true"&gt;
-    &lt;disallow pkg=".*\.ui" regex="true"/&gt;
-    &lt;disallow pkg=".*\.(awt|swing).\.*" regex="true"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage pkg="[^.]+\.ui" regex="true"&gt;
-    &lt;disallow pkg=".*\.(dao|service)" regex="true"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <p id="Example4-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/newdomain/dao/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control4-raw">
+          Regular expressions are used to enforce a layering rule: In all
+          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
+          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to
+          directly access <code>dao</code> and <code>service</code> layer from <code>ui</code>
+          packages. The root package is also a regular expression that is used to handle old
+          and new domain name with the same rules.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control4.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">
+          Example results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/newdomain/dao/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p>
           In the next examples usage of <code>strategyOnMismatch</code> property is shown.
