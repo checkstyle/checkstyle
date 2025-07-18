@@ -34,38 +34,90 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(
+            "14:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {};
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED,
+                "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.lang.ref.ReferenceQueue"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "filters/Example3.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED,
+                "com.puppycrawl.tools.checkstyle.checks.TranslationCheck"),
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "javax.swing.ActionMap"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "newdomain/dao/Example4.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+            "15:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(getPath("Example5.java"), expected);
     }
 
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(
+            "15:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "17:1: " + getCheckMessage(
+            "16:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources-noncompilable/" + getPackageLocation() + "/"
+                + "/resources/" + getPackageLocation() + "/"
                 + "someImports/Example10.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
