@@ -2332,4 +2332,88 @@ public class XdocsPagesTest {
         }
         return result;
     }
+
+    @Test
+    public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
+        final Map<String, Set<String>> usedPropertiesByCheck = extractUsedPropertiesFromXdocsExamples();
+
+        for (Class<?> checkClass : CheckUtil.getCheckstyleChecks()) {
+            final String checkSimpleName = checkClass.getSimpleName();
+
+            final Set<String> definedProperties = Arrays.stream(
+                            PropertyUtils.getPropertyDescriptors(checkClass))
+                    .filter(descriptor -> descriptor.getWriteMethod() != null)
+                    .map(PropertyDescriptor::getName)
+                    .collect(Collectors.toSet());
+
+            final Set<String> usedProperties =
+                    usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
+
+            for (String property : definedProperties) {
+                assertWithMessage("Property '" + property + "' of " + checkSimpleName
+                        + " is not shown in any xdocs example header")
+                        .that(usedProperties)
+                        .contains(property);
+            }
+        }
+    }
+
+    private static Map<String, Set<String>> extractUsedPropertiesFromXdocsExamples() throws IOException {
+        final Path root = Paths.get("src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks");
+        final Map<String, Set<String>> checkToProperties = new HashMap<>();
+
+        try (Stream<Path> paths = Files.walk(root)) {
+            paths.filter(path -> path.toString().endsWith(".java"))
+                    .forEach(file -> {
+                        try {
+                            final String content = Files.readString(file);
+                            final Matcher xmlBlockMatcher = Pattern.compile("/\\*xml(.*?)\\*/", Pattern.DOTALL)
+                                    .matcher(content);
+
+                            if (xmlBlockMatcher.find()) {
+                                final Map.Entry<String, Set<String>> entry =
+                                        parseConfigBlock(xmlBlockMatcher.group(1));
+
+                                if (entry != null) {
+                                    checkToProperties
+                                            .computeIfAbsent(entry.getKey(), k -> new HashSet<>())
+                                            .addAll(entry.getValue());
+                                }
+                            }
+                        } catch (IOException ex) {
+                            throw new RuntimeException("Error reading file: " + file, ex);
+                        }
+                    });
+        }
+
+        return checkToProperties;
+    }
+
+    private static Map.Entry<String, Set<String>> parseConfigBlock(String configBlock) {
+        final Matcher moduleMatcher = Pattern.compile("<module name=\"([^\"]+)\"").matcher(configBlock);
+        String lastModule = null;
+        while (moduleMatcher.find()) {
+            lastModule = moduleMatcher.group(1);
+        }
+
+        final Matcher propMatcher = Pattern.compile("<property name=\"([^\"]+)\"").matcher(configBlock);
+        final Set<String> props = new HashSet<>();
+        while (propMatcher.find()) {
+            props.add(propMatcher.group(1));
+        }
+
+        Map.Entry<String, Set<String>> result = null;
+        if (lastModule != null && !props.isEmpty()) {
+            final String checkClassName;
+            if (lastModule.endsWith("Check")) {
+                checkClassName = lastModule;
+            } else {
+                checkClassName = lastModule + "Check";
+            }
+            result = Map.entry(checkClassName, props);
+        }
+
+        return result;
+    }
+
 }
