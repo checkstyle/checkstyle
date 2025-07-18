@@ -372,17 +372,16 @@ public final class JavadocTokenTypes {
      * First child of {@link #JAVADOC_INLINE_TAG} that represents left curly brace '{'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code> JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START --&gt; {
-     *         |--CODE_LITERAL --&gt; @code
-     *         |--WS --&gt;
-     *         |--TEXT --&gt; Comparable&lt;E&gt;
-     *         `--JAVADOC_INLINE_TAG_END --&gt; }
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *    JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START --> {
+     *     |--CODE_LITERAL --> @code
+     *     |--WS -->
+     *     |--TEXT --> Comparable<E>
+     *     `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -394,18 +393,16 @@ public final class JavadocTokenTypes {
      * Last child of {@link #JAVADOC_INLINE_TAG} that represents right curly brace '}'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *        |--JAVADOC_INLINE_TAG_START --&gt; {
-     *        |--CODE_LITERAL --&gt; @code
-     *        |--WS --&gt;
-     *        |--TEXT --&gt; Comparable&lt;E&gt;
-     *        `--JAVADOC_INLINE_TAG_END --&gt; }
-     *
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START --> {
+     *    |--CODE_LITERAL --> @code
+     *    |--WS -->
+     *    |--TEXT --> Comparable<E>
+     *    `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
