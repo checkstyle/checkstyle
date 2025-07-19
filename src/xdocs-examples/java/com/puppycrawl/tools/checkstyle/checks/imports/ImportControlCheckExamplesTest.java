@@ -34,38 +34,70 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "15:1: " + getCheckMessage(
+            "14:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.io.File"),
         };
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example1.java"), expected);
     }
 
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {};
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
-        verifyWithInlineXmlConfig(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineXmlConfig(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Random"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "someImports/Example6.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.awt.Image"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "someImports/Example7.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
     }
 
     @Test
     public void testExample10() throws Exception {
         final String[] expected = {
-            "16:1: " + getCheckMessage(
+            "15:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Stream"),
-            "17:1: " + getCheckMessage(
+            "16:1: " + getCheckMessage(
                     ImportControlCheck.MSG_DISALLOWED, "java.util.stream.Collectors"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources-noncompilable/" + getPackageLocation() + "/"
+                + "/resources/" + getPackageLocation() + "/"
                 + "someImports/Example10.java").getCanonicalPath();
 
-        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
     }
