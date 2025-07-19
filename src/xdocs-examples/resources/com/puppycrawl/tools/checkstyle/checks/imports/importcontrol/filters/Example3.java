@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
 
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-// violation above, 'Disallowed import - com.puppycrawl.tools.checkstyle.checks'
+// violation above, 'Disallowed import'
 
 import java.lang.ref.ReferenceQueue;
 // violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'

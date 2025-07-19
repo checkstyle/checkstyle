@@ -252,7 +252,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.filters;
 
 import com.google.common.io.Files;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
-// violation above, 'Disallowed import - com.puppycrawl.tools.checkstyle.checks'
+// violation above, 'Disallowed import'
 
 import java.lang.ref.ReferenceQueue;
 // violation above, 'Disallowed import - java.lang.ref.ReferenceQueue'
@@ -384,47 +384,109 @@ import java.util.Scanner; // ok, allowed on mismatch by default
 public class Example5 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          In the example below, any import is disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
-          package <code>javax.swing</code> and class <code>java.io.File</code>.
-          However, any import is allowed in the classes outside of
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+        <p id="Example6-config">
+          To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">e&gt;
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
-  strategyOnMismatch=&quot;allowed&quot;&gt;
-  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
-    &lt;allow pkg=&quot;javax.swing&quot;/&gt;
-    &lt;allow class=&quot;java.io.File&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control6.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control6-raw">
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package except imports from package <code>javax.swing</code> and class
+          <code>java.io.File</code>. However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"
+  strategyOnMismatch="allowed"&gt;
+  &lt;subpackage name="someImports" strategyOnMismatch="disallowed"&gt;
+    &lt;allow pkg="javax.swing"/&gt;
+    &lt;allow class="java.io.File"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example6-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
 
-        <p>
+import javax.swing.Action;
+
+import java.io.File;
+import java.util.Random; // violation, 'Disallowed import - java.util.Random'
+
+public class Example6 {}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control7.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control7-raw">
           When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
           value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
           parent rules.
           In the next example, if no matching rule was found inside
           <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking
           in the parent subpackage, while for
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
-          default.
+          <code>com.puppycrawl.tools.checkstyle.checks.someImports</code> import will be disallowed
+          by default.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-  &lt;allow class=&quot;java\.awt\.Image&quot; regex=&quot;true&quot;/&gt;
-  &lt;allow class=&quot;java\..*\.File&quot; local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
-  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
-    &lt;allow pkg=&quot;javax\.swing&quot; regex=&quot;true&quot;/&gt;
-    &lt;allow pkg=&quot;java\.io&quot; exact-match=&quot;true&quot;
-      local-only=&quot;true&quot; regex=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;allow class="java\.awt\.Image" regex="true"/&gt;
+  &lt;allow class="java\..*\.File" local-only="true" regex="true"/&gt;
+  &lt;subpackage name="someImports" strategyOnMismatch="disallowed"&gt;
+    &lt;allow pkg="javax\.swing" regex="true"/&gt;
+    &lt;allow pkg="java\.io" exact-match="true"
+      local-only="true" regex="true"/&gt;
   &lt;/subpackage&gt;
-  &lt;subpackage name=&quot;filters&quot;&gt;
-    &lt;allow class=&quot;javax.util.Date&quot;/&gt;
+  &lt;subpackage name="filters"&gt;
+    &lt;allow class="javax.util.Date"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example7-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
+
+import javax.swing.Renderer;
+
+import java.io.File;
+import java.awt.Image; // violation, 'Disallowed import - java.awt.Image'
+
+public class Example7 {}
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           In the example below, only file names that end with &quot;Panel&quot;, &quot;View&quot;, or &quot;Dialog&quot;
           in the package <code>gui</code> are disallowed to have imports from
