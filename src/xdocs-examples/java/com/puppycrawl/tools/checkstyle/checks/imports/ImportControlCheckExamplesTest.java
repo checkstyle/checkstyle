@@ -53,6 +53,23 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "18:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Random")
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources-noncompilable/" + getPackageLocation() + "/"
+                + "someImports/Example6.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources-noncompilable/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+
+    @Test
     public void testExample10() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(

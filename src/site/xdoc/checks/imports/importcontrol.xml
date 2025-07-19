@@ -289,22 +289,53 @@ public class Example2 {}
 &lt;/import-control&gt;
         </code></pre></div>
 
-        <p>
-          In the example below, any import is disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
-          package <code>javax.swing</code> and class <code>java.io.File</code>.
-          However, any import is allowed in the classes outside of
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+        <p id="Example6-config">
+          To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">e&gt;
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;
-  strategyOnMismatch=&quot;allowed&quot;&gt;
-  &lt;subpackage name=&quot;imports&quot; strategyOnMismatch=&quot;disallowed&quot;&gt;
-    &lt;allow pkg=&quot;javax.swing&quot;/&gt;
-    &lt;allow class=&quot;java.io.File&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control6.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control6-raw">
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package except imports from package <code>javax.swing</code> and class
+          <code>java.io.File</code>. However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"
+  strategyOnMismatch="allowed"&gt;
+  &lt;subpackage name="someImports" strategyOnMismatch="disallowed"&gt;
+    &lt;allow pkg="javax.swing"/&gt;
+    &lt;allow class="java.io.File"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example6-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
+
+import javax.swing;
+
+import java.io.File;
+import java.util.Random; // violation, 'Disallowed import - java.util.Random'
+
+public class Example6 {}
+</code></pre></div><hr class="example-separator"/>
 
         <p>
           When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
