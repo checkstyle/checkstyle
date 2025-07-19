@@ -122,12 +122,12 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testMethodParamPad() throws Exception {
-        verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
+        verifyWithWholeConfig(getPath("InputMethodParamPad2.java"));
     }
 
     @Test
     public void testMethodParamPadFormatted() throws Exception {
-        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad.java"));
+        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad2.java"));
     }
 
     @Test
