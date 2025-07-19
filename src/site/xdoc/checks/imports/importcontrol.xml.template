@@ -32,7 +32,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="import-control1-raw">
@@ -40,7 +40,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example1-code">
@@ -48,7 +48,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
@@ -59,7 +59,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="import-control2-raw">
@@ -67,7 +67,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control2.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control2.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example2-code">
@@ -75,7 +75,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
@@ -172,47 +172,68 @@
 &lt;/import-control&gt;
         </code></pre></div>
 
-        <p>
-          In the example below, any import is disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
-          package <code>javax.swing</code> and class <code>java.io.File</code>.
-          However, any import is allowed in the classes outside of
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+        <p id="Example6-config">
+          To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">e>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
-  strategyOnMismatch="allowed"&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="disallowed"&gt;
-    &lt;allow pkg="javax.swing"/&gt;
-    &lt;allow class="java.io.File"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control6-raw">
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package except imports from package <code>javax.swing</code> and class
+          <code>java.io.File</code>. However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control6.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example6-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <p>
+        <p id="Example7-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control7-raw">
           When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
           value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
           parent rules.
           In the next example, if no matching rule was found inside
           <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking
           in the parent subpackage, while for
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
-          default.
+          <code>com.puppycrawl.tools.checkstyle.checks.someImports</code> import will be disallowed
+          by default.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow class="java\.awt\.Image" regex="true"/&gt;
-  &lt;allow class="java\..*\.File" local-only="true" regex="true"/&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="allowed"&gt;
-    &lt;allow pkg="javax\.swing" regex="true"/&gt;
-    &lt;allow pkg="java\.io" exact-match="true"
-      local-only="true" regex="true"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage name="filters"&gt;
-    &lt;allow class="javax.util.Date"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control7.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example7-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           In the example below, only file names that end with "Panel", "View", or "Dialog"
           in the package <code>gui</code> are disallowed to have imports from
@@ -266,7 +287,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="import-control10-raw">
@@ -278,7 +299,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control10.xml"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control10.xml"/>
           <param name="type" value="raw"/>
         </macro>
         <p id="Example10-code">
@@ -286,7 +307,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p>
