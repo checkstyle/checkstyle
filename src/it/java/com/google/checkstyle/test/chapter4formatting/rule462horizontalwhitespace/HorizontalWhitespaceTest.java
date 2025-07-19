@@ -189,4 +189,14 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     public void testWhitespaceAfterDoubleSlashesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterDoubleSlashes.java"));
     }
+
+    @Test
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
+    }
+
+    @Test
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocksFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
+    }
 }
