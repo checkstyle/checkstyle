@@ -35,4 +35,13 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
         verifyWithWholeConfig(getPath("InputSpecialEscapeSequences.java"));
     }
 
+    @Test
+    public void testIllegalTokensInTextBlock() throws Exception {
+        verifyWithWholeConfig(getPath("InputSpecialEscapeSequencesInTextBlock.java"));
+    }
+
+    @Test
+    public void testIllegalTokensInTextBlock2() throws Exception {
+        verifyWithWholeConfig(getPath("InputSpecialEscapeSequencesInTextBlock2.java"));
+    }
 }

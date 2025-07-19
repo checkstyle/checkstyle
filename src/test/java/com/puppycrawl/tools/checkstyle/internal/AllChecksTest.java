@@ -239,9 +239,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // identifiers are covered by other checks
                 "IDENT",
                 // comments should be skipped as nobody write in octal or unicode code style
-                "COMMENT_CONTENT",
-                // until #14291
-                "TEXT_BLOCK_CONTENT"
+                "COMMENT_CONTENT"
                 )
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
