@@ -69,6 +69,7 @@ COMPILABLE_INPUT_PATHS=($(find src/it/resources/com/google/checkstyle/test/ -nam
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java" \
     | grep -v "rule462horizontalwhitespace/InputGenericWhitespace.java" \
     | grep -v "rule462horizontalwhitespace/InputWhitespaceAfterDoubleSlashes.java" \
+    | grep -v "rule462horizontalwhitespace/InputNoWhitespaceBeforeEllipsis.java" \
     | grep -v "rule4821onevariableperline/InputOneVariablePerDeclaration.java" \
     | grep -v "rule4841indentation/InputClassWithChainedMethods.java" \
     | grep -v "rule4841indentation/InputAnnotationArrayInitMultiline.java" \
