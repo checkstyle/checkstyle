@@ -60,6 +60,8 @@
                     LITERAL_CATCH</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#FOR_EACH_CLAUSE">
                     FOR_EACH_CLAUSE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                    PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>
