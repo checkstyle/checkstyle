@@ -372,17 +372,16 @@ public final class JavadocTokenTypes {
      * First child of {@link #JAVADOC_INLINE_TAG} that represents left curly brace '{'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code> JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START --&gt; {
-     *         |--CODE_LITERAL --&gt; @code
-     *         |--WS --&gt;
-     *         |--TEXT --&gt; Comparable&lt;E&gt;
-     *         `--JAVADOC_INLINE_TAG_END --&gt; }
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *    JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START --> {
+     *     |--CODE_LITERAL --> @code
+     *     |--WS -->
+     *     |--TEXT --> Comparable<E>
+     *     `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -394,18 +393,16 @@ public final class JavadocTokenTypes {
      * Last child of {@link #JAVADOC_INLINE_TAG} that represents right curly brace '}'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *        |--JAVADOC_INLINE_TAG_START --&gt; {
-     *        |--CODE_LITERAL --&gt; @code
-     *        |--WS --&gt;
-     *        |--TEXT --&gt; Comparable&lt;E&gt;
-     *        `--JAVADOC_INLINE_TAG_END --&gt; }
-     *
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START --> {
+     *    |--CODE_LITERAL --> @code
+     *    |--WS -->
+     *    |--TEXT --> Comparable<E>
+     *    `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      *
      * @noinspection HtmlTagCanBeJavadocTag
      * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
@@ -424,16 +421,15 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>JAVADOC_TAG -&gt; JAVADOC_TAG
-     *        |--CUSTOM_NAME -&gt; @code
-     *        |--WS -&gt;
-     *        `--DESCRIPTION -&gt; DESCRIPTION
-     *            |--TEXT -&gt; Comparable&lt;E&gt;
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--CUSTOM_NAME -> @code
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> Comparable<E>
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
@@ -455,32 +451,30 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;docRoot}</code></pre>
+     * <pre>{@code @docRoot}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>
-     * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *      |--JAVADOC_INLINE_TAG_START -&gt; {
-     *      |--DOC_ROOT_LITERAL -&gt; @docRoot
-     *      `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *      |--JAVADOC_INLINE_TAG_START -> {
+     *      |--DOC_ROOT_LITERAL -> @docRoot
+     *      `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
-     * <pre><code>Example :{&#64;docRoot
+     * <pre>{@code Example :{@docRoot
      * } in a Javadoc comment.
-     * </code></pre>
+     * }</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>
-     *   |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -&gt; {
-     *     |--DOC_ROOT_LITERAL -&gt; @docRoot
-     *     |--NEWLINE -&gt; \r\n
-     *     |--LEADING_ASTERISK -&gt;       *
-     *     |--WS -&gt;
-     *     `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     *   |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {
+     *     |--DOC_ROOT_LITERAL -> @docRoot
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->       *
+     *     |--WS ->
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
@@ -499,27 +493,26 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      *
-     * <pre><code>{&#64;link org.apache.utils.Lists.Comparator#compare(Object)}</code></pre>
+     * <pre>{@literal {@link org.apache.utils.Lists.Comparator#compare(Object)} }</pre>
      *
      * <p><b>Tree:</b></p>
      *
      * <pre>
-     * <code>
-     *   JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *    |--JAVADOC_INLINE_TAG_START -&gt; {
-     *    |--LINK_LITERAL -&gt; @link
-     *    |--WS -&gt;
-     *    |--REFERENCE -&gt; REFERENCE
-     *    |   |--PACKAGE_CLASS -&gt; org.apache.utils.Lists.Comparator
-     *    |   |--HASH -&gt; #
-     *    |   |--MEMBER -&gt; compare
-     *    |   `--PARAMETERS -&gt; PARAMETERS
-     *    |       |--LEFT_BRACE -&gt; (
-     *    |       |--ARGUMENT -&gt; Object
-     *    |       `--RIGHT_BRACE -&gt; )
-     *    `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     *   JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START -> {
+     *    |--LINK_LITERAL -> @link
+     *    |--WS ->
+     *    |--REFERENCE -> REFERENCE
+     *    |   |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *    |   |--HASH -> #
+     *    |   |--MEMBER -> compare
+     *    |   `--PARAMETERS -> PARAMETERS
+     *    |       |--LEFT_BRACE -> (
+     *    |       |--ARGUMENT -> Object
+     *    |       `--RIGHT_BRACE -> )
+     *    `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
