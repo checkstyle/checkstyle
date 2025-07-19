@@ -824,6 +824,22 @@ no-error-spotbugs)
   removeFolderWithProtectedFiles spotbugs
   ;;
 
+no-error-trino)
+  echo "Building checkstyle..."
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations -DskipTests
+  echo "Resolving Checkstyle version from pom.xml..."
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  echo "Cloning Trino sources..."
+  checkout_from https://github.com/trinodb/trino.git
+  cd .ci-temp/trino
+  echo "Running Checkstyle ${CS_POM_VERSION} on Trino..."
+  ./mvnw -e --no-transfer-progress checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+  cd ../
+  echo "Cleaning up cloned Trino repo..."
+  removeFolderWithProtectedFiles trino
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
