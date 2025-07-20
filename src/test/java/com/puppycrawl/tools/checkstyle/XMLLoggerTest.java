@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -429,7 +430,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     private static final class TestException extends RuntimeException {
-
+        @Serial
         private static final long serialVersionUID = 1L;
 
         private TestException(String msg, Throwable cause) {
