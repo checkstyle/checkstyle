@@ -108,6 +108,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
  *     "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
  * </code></pre></div>
+ *
+ * <p>
+ * Notes:
+ * For a real-life import-control file example, look at the file called
+ * <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
+ * import-control.xml</a> which is part of the Checkstyle distribution.
+ * </p>
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the file containing the

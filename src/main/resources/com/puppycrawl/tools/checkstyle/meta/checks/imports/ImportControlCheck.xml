@@ -78,7 +78,14 @@
  &amp;lt;!DOCTYPE import-control PUBLIC
      "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
      "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ &lt;p&gt;
+ Notes:
+ For a real-life import-control file example, look at the file called
+ &lt;a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml"&gt;
+ import-control.xml&lt;/a&gt; which is part of the Checkstyle distribution.
+ &lt;/p&gt;</description>
          <properties>
             <property name="file" type="java.net.URI">
                <description>Specify the location of the file containing the

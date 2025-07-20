@@ -15,6 +15,13 @@
         </macro>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java"/>
+        </macro>
+      </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <macro name="properties">
@@ -258,32 +265,39 @@
 &lt;/import-control&gt;
         </code></pre></div>
 
-        <p>
-          For a real-life import control file look at the file called <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
-          import-control.xml</a>
-          which is part of the Checkstyle distribution.
-        </p>
-
         <h4 id="blacklist-example">Example of blacklist mode</h4>
+        <p id="Example9-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage
           and to have allow rule inside parent of the current subpackage to catch classes and
           packages those are not in the blacklist.
         </p>
-        <p>
-          In the example below any import from <code>java.util</code>
-          (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except
+        <p id="import-control9-raw">
+          In the example below any import from <code>java.util</code> package is allowed except
           <code>java.util.Map</code> inside subpackage
           <code>com.puppycrawl.tools.checkstyle.filters</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;allow pkg="java.util"/&gt;
-  &lt;subpackage name="filters" &gt;
-    &lt;disallow class="java.util.Map"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control9.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example9-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p id="Example10-config">
           To configure the check:
         </p>
