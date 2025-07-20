@@ -352,7 +352,7 @@ public class FinalLocalVariableCheckTest
             "125:19: " + getCheckMessage(MSG_KEY, "e"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+                getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
             expected);
     }
 

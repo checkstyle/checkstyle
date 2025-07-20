@@ -1,3 +1,4 @@
+// non-compiled with eclipse: Annotation types do not specify explicit target element
 package com.puppycrawl.tools.checkstyle.grammar;
 
 import java.lang.annotation.ElementType;
