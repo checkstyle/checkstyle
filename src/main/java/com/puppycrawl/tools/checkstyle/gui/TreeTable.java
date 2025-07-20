@@ -169,8 +169,7 @@ public final class TreeTable extends JTable {
      * Generate Xpath.
      */
     private void generateXpath() {
-        if (tree.getLastSelectedPathComponent() instanceof DetailAST) {
-            final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();
+        if (tree.getLastSelectedPathComponent() instanceof DetailAST ast) {
             final String xpath = XpathQueryGenerator.generateXpathQuery(ast);
             xpathEditor.setText(xpath);
         }
