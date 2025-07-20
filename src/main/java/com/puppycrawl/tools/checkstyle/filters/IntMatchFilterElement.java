@@ -53,11 +53,7 @@ class IntMatchFilterElement implements IntFilterElement {
 
     @Override
     public final boolean equals(Object object) {
-        if (object instanceof IntMatchFilterElement) {
-            final IntMatchFilterElement other = (IntMatchFilterElement) object;
-            return matchValue == other.matchValue;
-        }
-        return false;
+        return object instanceof IntMatchFilterElement other && matchValue == other.matchValue;
     }
 
 }
