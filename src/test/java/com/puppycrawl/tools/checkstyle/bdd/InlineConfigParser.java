@@ -773,8 +773,7 @@ public final class InlineConfigParser {
     private static String toStringConvertForArrayValue(Object value) {
         String result = NULL_STRING;
 
-        if (value instanceof double[]) {
-            final double[] arr = (double[]) value;
+        if (value instanceof double[] arr) {
             result = Arrays.stream(arr)
                            .boxed()
                            .map(number -> {
