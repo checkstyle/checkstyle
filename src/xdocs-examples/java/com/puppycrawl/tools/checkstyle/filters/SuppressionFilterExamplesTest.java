@@ -47,4 +47,59 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "23: Line is longer than 80 characters (found 84).",
+            "30:22: String literal expressions should be on the left side of an equals comparison.",
+            "34:32: String literal expressions should be on the left side of "
+                    + "an equalsIgnoreCase comparison.",
+        };
+
+        final String[] expectedWithFilter = {
+            "23: Line is longer than 80 characters (found 84).",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "1: Duplicated property 'keyB' (2 occurrence(s)).",
+            "4: Duplicated property 'keyC' (2 occurrence(s)).",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
+                getPath("Example3.java"),
+                getPath(".hidden/hidden.properties"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "20:14: Name 'log' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "23:14: Name 'constant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "29:27: Name 'log' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "32:30: Name 'line' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
+
+        final String[] expectedWithFilter = {
+            "23:14: Name 'constant' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+            "32:30: Name 'line' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter, expectedWithFilter);
+    }
 }
