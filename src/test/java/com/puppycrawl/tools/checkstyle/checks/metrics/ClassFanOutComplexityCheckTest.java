@@ -262,7 +262,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testClassFanOutComplexityRemoveIncorrectAnnotationToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
     }
 
     @Test
