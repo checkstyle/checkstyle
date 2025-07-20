@@ -106,12 +106,11 @@ jobs:
           command: yamllint -f parsable -c config/yamllint.yaml .
 
 workflows:
-  #  until https://github.com/checkstyle/checkstyle/issues/13209
-  #  sonarqube:
-  #    jobs:
-  #      - sonarqube:
-  #          context:
-  #            - sonarqube
+  sonarqube:
+    jobs:
+      - sonarqube:
+          context:
+            - sonarqube
 
   test:
     jobs:
