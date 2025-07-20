@@ -401,7 +401,6 @@ ERRORLEVEL
 errorprone
 esac
 Eslint
-esslingen
 esversion
 etsy
 euf
@@ -438,7 +437,6 @@ FFFD
 FFFF
 Fgoogle
 Fheader
-fht
 fieldannotations
 fieldset
 filebasic
