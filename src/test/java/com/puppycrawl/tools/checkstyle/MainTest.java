@@ -27,11 +27,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.verify;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -895,6 +891,7 @@ public class MainTest {
     @Test
     public void testListFilesNotFile() throws Exception {
         final File fileMock = new File("") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -931,6 +928,7 @@ public class MainTest {
     public void testListFilesDirectoryWithNull() throws Exception {
         final File[] nullResult = null;
         final File fileMock = new File("") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             @Override

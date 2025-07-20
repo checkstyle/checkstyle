@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 import javax.swing.ListSelectionModel;
 import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
+import java.io.Serial;
 
 /**
  * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel
@@ -33,6 +34,7 @@ import javax.swing.tree.TreePath;
 final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 2267930983939339510L;
     /** TreeTable to perform updates on. */
     private final TreeTable treeTable;

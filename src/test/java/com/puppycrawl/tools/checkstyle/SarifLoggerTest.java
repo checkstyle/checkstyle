@@ -21,10 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
@@ -443,7 +440,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     private static final class TestException extends RuntimeException {
-
+        @Serial
         private static final long serialVersionUID = 1L;
 
         private TestException(String msg, Throwable cause) {

@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serial;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -205,6 +206,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
     private static final class SequencedProperties extends Properties {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = 1L;
 
         /**
