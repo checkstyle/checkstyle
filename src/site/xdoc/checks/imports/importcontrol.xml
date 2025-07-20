@@ -487,27 +487,57 @@ import java.awt.Image; // violation, 'Disallowed import - java.awt.Image'
 public class Example7 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          In the example below, only file names that end with &quot;Panel&quot;, &quot;View&quot;, or &quot;Dialog&quot;
-          in the package <code>gui</code> are disallowed to have imports from
-          <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
-          the file name named &quot;PresentationModel&quot; in the package <code>gui</code> are
+        <p id="Example8-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control8.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control8-raw">
+          In the example below, in the package <code>gui</code>, only the file names that include
+          &quot;Panel&quot;, &quot;View&quot;, or &quot;Example&quot; are disallowed to have imports from
+          <code>com.mycompany.dao</code> and any <code>sql</code> package. In addition, only
+          the file name named &quot;PresentationModel&quot; in the package <code>gui</code> is
           disallowed to have imports that match <code>javax.swing.J*</code>.
           All other imports in the package are allowed.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.mycompany.billing&quot;&gt;
-  &lt;subpackage name=&quot;gui&quot; strategyOnMismatch=&quot;allowed&quot;&gt;
-    &lt;file name=&quot;.*(Panel|View|Dialog)&quot; regex=&quot;true&quot;&gt;
-      &lt;disallow pkg=&quot;com.mycompany.dao&quot;/&gt;
-      &lt;disallow pkg=&quot;.*\.jdbc&quot; regex=&quot;true&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;subpackage name="gui" strategyOnMismatch="allowed"&gt;
+    &lt;file name=".*(Panel|View|Example).*" regex="true"&gt;
+      &lt;disallow pkg="com.mycompany.dao"/&gt;
+      &lt;disallow pkg=".*\.sql" regex="true"/&gt;
     &lt;/file&gt;
-    &lt;file name=&quot;PresentationModel&quot;&gt;
-      &lt;disallow pkg=&quot;javax\.swing\.J.*&quot; regex=&quot;true&quot;/&gt;
+    &lt;file name="PresentationModel"&gt;
+      &lt;disallow pkg="javax\.swing\.J.*" regex="true"/&gt;
     &lt;/file&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example8-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.gui;
+
+import java.sql.Blob; // violation, 'Disallowed import - java.sql.Blob'
+import java.io.File;
+
+import javax.swing.Renderer; // ok, does not match a file name for disallow rule.
+
+public class Example8 {}
+</code></pre></div><hr class="example-separator"/>
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
         <p id="Example9-config">
