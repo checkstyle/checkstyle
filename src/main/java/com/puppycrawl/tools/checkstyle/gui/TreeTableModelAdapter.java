@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
+import java.io.Serial;
+
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeExpansionEvent;
@@ -41,6 +43,7 @@ import javax.swing.tree.TreePath;
 public class TreeTableModelAdapter extends AbstractTableModel {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 8269213416115369275L;
 
     /** JTree component. */
