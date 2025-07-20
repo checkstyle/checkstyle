@@ -26,6 +26,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.Serial;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -57,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 public class MainFrame extends JFrame {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 7970053543351871890L;
 
     /** The icon to show in the OS task panel. */
@@ -215,6 +217,7 @@ public class MainFrame extends JFrame {
     private final class FileSelectionAction extends AbstractAction {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = 1762396148873280589L;
 
         @Override
@@ -238,6 +241,7 @@ public class MainFrame extends JFrame {
     private final class ReloadAction extends AbstractAction {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
@@ -253,6 +257,7 @@ public class MainFrame extends JFrame {
     private final class ExpandCollapseAction extends AbstractAction {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override
@@ -268,6 +273,7 @@ public class MainFrame extends JFrame {
     private final class FindNodeByXpathAction extends AbstractAction {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = -890320994114628011L;
 
         @Override

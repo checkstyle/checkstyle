@@ -5278,9 +5278,6 @@
   <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17300 -->
   <inspection_tool class="EnhancedSwitchMigration" enabled="false"
                    level="WARNING" enabled_by_default="true" />
-  <!-- https://github.com/checkstyle/checkstyle/issues/17301 -->
-  <inspection_tool class="MissingSerialAnnotation" enabled="false"
-                   level="WARNING" enabled_by_default="true" />
   <!-- https://github.com/checkstyle/checkstyle/issues/17302 -->
   <inspection_tool class="PatternVariableCanBeUsed" enabled="false"
                    level="WARNING" enabled_by_default="true"/>

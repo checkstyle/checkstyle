@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.io.Serial;
 
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -39,6 +40,7 @@ class TreeTableCellRenderer extends JTree implements
     /**
      * Serial ID.
      */
+    @Serial
     private static final long serialVersionUID = 4324031590789321581L;
 
     /** The text color for selected cells. */

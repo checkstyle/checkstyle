@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -49,6 +50,7 @@ public class ThreadModeSettings implements Serializable {
             new ThreadModeSettings(1, 1);
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /** The checker threads number. */

@@ -25,6 +25,7 @@ import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serial;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,6 +66,7 @@ import net.sf.saxon.trans.XPathException;
 public final class TreeTable extends JTable {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = -8493693409423365387L;
     /** The newline character. */
     private static final String NEWLINE = "\n";
@@ -116,6 +118,7 @@ public final class TreeTable extends JTable {
         setColumnsInitialWidth();
 
         final Action expand = new AbstractAction() {
+            @Serial
             private static final long serialVersionUID = -5859674518660156121L;
 
             @Override

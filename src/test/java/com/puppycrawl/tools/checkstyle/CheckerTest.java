@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -798,6 +799,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -852,8 +854,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             /**
              * Test is checking catch clause when exception is thrown.
              *
@@ -1148,8 +1150,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             @Override
             public String getAbsolutePath() {
                 return "testFile";
@@ -1226,6 +1228,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1290,6 +1293,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1344,6 +1348,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**

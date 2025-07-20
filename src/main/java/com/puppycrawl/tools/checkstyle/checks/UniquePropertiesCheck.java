@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serial;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
@@ -168,6 +169,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
     private static final class UniqueProperties extends Properties {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = 1L;
         /**
          * Map, holding duplicated keys and their count. Keys are added here only if they
