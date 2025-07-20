@@ -1675,8 +1675,12 @@ public class XdocsPagesTest {
     }
 
     private static void validateUsageExample(String fileName, String sectionName, Node subSection) {
-        final String text = subSection.getTextContent().replace("Checkstyle Style", "")
-                .replace("Google Style", "").replace("Sun Style", "").trim();
+        final String text = subSection.getTextContent()
+            .replace("Checkstyle Style", "")
+            .replace("Google Style", "")
+            .replace("Sun Style", "")
+            .replace("Checkstyle's Import Control Config", "")
+            .trim();
 
         assertWithMessage(fileName + " section '" + sectionName
                 + "' has unknown text in 'Example of Usage': " + text)
@@ -1721,6 +1725,10 @@ public class XdocsPagesTest {
                             + "' should be in sun_checks.xml or not reference 'Sun Style'")
                         .that(SUN_MODULES)
                         .contains(sectionName);
+            }
+            else if ("Checkstyle's Import Control Config".equals(linkText)) {
+                expectedUrl = "https://github.com/checkstyle/checkstyle/blob/master/config/"
+                    + "import-control.xml";
             }
 
             assertWithMessage(fileName + " section '" + sectionName
