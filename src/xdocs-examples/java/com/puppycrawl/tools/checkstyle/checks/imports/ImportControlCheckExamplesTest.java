@@ -105,6 +105,21 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(ImportControlCheck.MSG_DISALLOWED, "java.util.Map"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "filters/Example9.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
     public void testExample10() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(
