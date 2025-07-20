@@ -1,4 +1,4 @@
-// Java17
+// non-compiled with eclipse: Syntax error on token "this", Identifier expected
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionUncommon3 implements AutoCloseable {
