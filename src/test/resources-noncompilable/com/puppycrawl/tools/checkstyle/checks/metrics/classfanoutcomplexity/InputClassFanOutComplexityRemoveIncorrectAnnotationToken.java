@@ -17,7 +17,7 @@ excludedPackages = (default)
 
 
 */
-
+// non-compiled with eclipse: Annotation types do not specify explicit target element
 package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import static com.google.common.base.Preconditions.checkArgument;
