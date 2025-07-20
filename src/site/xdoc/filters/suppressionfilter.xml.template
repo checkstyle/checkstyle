@@ -62,19 +62,95 @@
                  value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p>
-          Suppress check by <a href="../config.html#Id">module id</a>
-          when config have two instances on the same check:
+        <p id="Example2-config">
+            The following configuration fragment directs the
+            Checker to use a <code>SuppressionFilter</code>
+            with suppressions
+            file <code>suppressionexample2.xml</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress id="stringEqual" files="SomeTestCode.java"/&gt;
-        </code></pre></div>
-        <p>
-          Suppress all checks for hidden files and folders:
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressionexample2-raw">
+          The following suppressions XML document directs
+          a <code>SuppressionFilter</code> to
+          reject <code>EqualsAvoidNullCheck</code> by
+          <a href="../config.html#Id">module id</a>
+          <code>stringEqual</code> violations for
+          all lines of file <code>Example2.java</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress files="[/\\]\..+" checks=".*"/&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample2.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example2-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+            The following configuration fragment directs the
+            Checker to use a <code>SuppressionFilter</code>
+            with suppressions
+            file <code>suppressionexample3.xml</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressionexample3-raw">
+          The following suppressions XML document directs
+          a <code>SuppressionFilter</code> to
+          reject all checks for hidden files and folders:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="hidden-raw">
+          Below Example is suppressed because
+          <code>hidden.properties</code> file inside
+          the <code>.hidden</code> folder:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/.hidden/hidden.properties"/>
+          <param name="type" value="raw"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+            For example, the following configuration fragment directs the
+            Checker to use a <code>SuppressionFilter</code>
+            with suppressions
+            file <code>suppressionexample4.xml</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressionexample4-raw">
+          The following suppressions XML document directs
+          a <code>SuppressionFilter</code> to
+          reject violations on variable named
+          'log' in all files:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/suppressionexample4.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionfilter/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
         <p>
           Suppress all checks for Maven-generated code:
         </p>
@@ -112,12 +188,6 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress checks="FileLength"
 files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
-        </code></pre></div>
-        <p>
-          Suppress naming violations on variable named 'log' in all files:
-        </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress message="Name 'log' must match pattern"/&gt;
         </code></pre></div>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
