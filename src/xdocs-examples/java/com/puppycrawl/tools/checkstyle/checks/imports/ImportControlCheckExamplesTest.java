@@ -105,6 +105,22 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     }
 
     @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql.Blob"),
+        };
+
+        final String examplePath = new File("src/" + getResourceLocation()
+                + "/resources/" + getPackageLocation() + "/"
+                + "gui/Example8View.java").getCanonicalPath();
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
     public void testExample10() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(
