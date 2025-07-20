@@ -53,9 +53,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final IndentLevel indentLevel;
         // if inside a method call's params, this could be part of
         // an expression, so get the previous line's start
-        if (getParent() instanceof MethodCallHandler) {
-            final MethodCallHandler container =
-                    (MethodCallHandler) getParent();
+        if (getParent() instanceof MethodCallHandler container) {
             if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())
                     || isChainedMethodCallWrapped()
                     || areMethodsChained(container.getMainAst(), getMainAst())) {
