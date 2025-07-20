@@ -170,11 +170,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int sectionIndex = 0; sectionIndex < sections.getLength(); sectionIndex++) {
             final Node sectionNode = sections.item(sectionIndex);
-            if (sectionNode instanceof Element) {
-                final Element sectionElement = (Element) sectionNode;
-                if (sectionElement.hasAttribute("name")) {
-                    return sectionElement.getAttribute("name");
-                }
+            if (sectionNode instanceof Element sectionElement
+                  && sectionElement.hasAttribute("name")) {
+                return sectionElement.getAttribute("name");
             }
         }
         final String errorFormat = "No <section name=...> found in %s";
@@ -203,14 +201,12 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int subsectionIdx = 0; subsectionIdx < subsections.getLength(); subsectionIdx++) {
             final Node subsectionNode = subsections.item(subsectionIdx);
-            if (subsectionNode instanceof Element) {
-                final Element subsectionElement = (Element) subsectionNode;
-                if ("Description".equals(subsectionElement.getAttribute("name"))) {
-                    final Optional<String> description =
+            if (subsectionNode instanceof Element subsectionElement
+                && "Description".equals(subsectionElement.getAttribute("name"))) {
+                final Optional<String> description =
                             getDescriptionFromSubsection(subsectionElement);
-                    if (description.isPresent()) {
-                        return description.get();
-                    }
+                if (description.isPresent()) {
+                    return description.get();
                 }
             }
         }

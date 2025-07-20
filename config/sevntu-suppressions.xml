@@ -17,6 +17,10 @@
   <suppress checks="CustomDeclarationOrder"
              files="JavadocTokenTypes.java"/>
 
+  <!-- Until https://github.com/checkstyle/checkstyle/issues/17472 -->
+  <suppress checks="LogicConditionNeedOptimization"
+             files="IntMatchFilterElement\.java"/>
+
   <!-- JavadocTagInfo.java, JavadocTags.java, InvalidJavadocTag.java, JavadocTag.java will be
   deprecated as we completely switch to ANTLR parser for javadoc. All the mentioned classes
   are required only for old javadoc parsers and their usage will be excluded from
