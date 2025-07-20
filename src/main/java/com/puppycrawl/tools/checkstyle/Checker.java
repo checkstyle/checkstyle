@@ -473,8 +473,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         try {
             child = moduleFactory.createModule(name);
 
-            if (child instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) child;
+            if (child instanceof AbstractAutomaticBean bean) {
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }
@@ -483,21 +482,17 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             throw new CheckstyleException(
                     getLocalizedMessage("Checker.setupChildModule", name, exc.getMessage()), exc);
         }
-        if (child instanceof FileSetCheck) {
-            final FileSetCheck fsc = (FileSetCheck) child;
+        if (child instanceof FileSetCheck fsc) {
             fsc.init();
             addFileSetCheck(fsc);
         }
-        else if (child instanceof BeforeExecutionFileFilter) {
-            final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
+        else if (child instanceof BeforeExecutionFileFilter filter) {
             addBeforeExecutionFileFilter(filter);
         }
-        else if (child instanceof Filter) {
-            final Filter filter = (Filter) child;
+        else if (child instanceof Filter filter) {
             addFilter(filter);
         }
-        else if (child instanceof AuditListener) {
-            final AuditListener listener = (AuditListener) child;
+        else if (child instanceof AuditListener listener) {
             addListener(listener);
         }
         else {
