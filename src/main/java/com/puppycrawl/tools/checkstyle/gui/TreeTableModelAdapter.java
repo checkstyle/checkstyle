@@ -27,6 +27,7 @@ import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.tree.TreePath;
+import java.io.Serial;
 
 /**
  * This is a wrapper class takes a TreeTableModel and implements
@@ -41,6 +42,7 @@ import javax.swing.tree.TreePath;
 public class TreeTableModelAdapter extends AbstractTableModel {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 8269213416115369275L;
 
     /** JTree component. */

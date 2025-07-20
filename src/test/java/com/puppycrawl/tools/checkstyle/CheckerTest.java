@@ -26,18 +26,7 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAG
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -798,6 +787,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -852,6 +842,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1148,6 +1139,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -1226,6 +1218,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1290,6 +1283,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1344,6 +1338,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
