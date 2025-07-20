@@ -48,7 +48,9 @@ public class ThreadModeSettings implements Serializable {
     public static final ThreadModeSettings SINGLE_THREAD_MODE_INSTANCE =
             new ThreadModeSettings(1, 1);
 
-    /** A unique serial version identifier. */
+    /**
+     * @serial A unique serial version identifier.
+     */
     private static final long serialVersionUID = 1L;
 
     /** The checker threads number. */
