@@ -247,7 +247,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testUncommon() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon.txt"),
-                getPath("InputAntlr4AstRegressionUncommon.java"),
+                getNonCompilablePath("InputAntlr4AstRegressionUncommon.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
@@ -275,7 +275,7 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testUncommon3() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon3.txt"),
-                getPath("InputAntlr4AstRegressionUncommon3.java"),
+                getNonCompilablePath("InputAntlr4AstRegressionUncommon3.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
