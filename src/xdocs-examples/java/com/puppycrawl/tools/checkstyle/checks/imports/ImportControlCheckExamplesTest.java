@@ -189,20 +189,32 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample11() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+                ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
             "16:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
+                ImportControlCheck.MSG_DISALLOWED, "java.util.List"),
             "19:1: " + getCheckMessage(
-                    ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
+                ImportControlCheck.MSG_DISALLOWED, "sun.misc.Signal"),
         };
 
         final String examplePath = new File("src/" + getResourceLocation()
-                + "/resources/" + getPackageLocation() + "/"
-                + "someImports/Example11.java").getCanonicalPath();
+            + "/resources/" + getPackageLocation() + "/"
+            + "someImports/Example11.java").getCanonicalPath();
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
         verifyWithInlineXmlConfig(examplePath, expected);
+    }
+
+    @Test
+    public void testExample12() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(getPath("Example12.java"), expected);
     }
 
 }

@@ -375,17 +375,31 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
+        <p id="Example12-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control12-raw">
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;disallow class="java.util.Date"/&gt;
-
-  &lt;allow pkg="java.util"/&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control12.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example12-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
