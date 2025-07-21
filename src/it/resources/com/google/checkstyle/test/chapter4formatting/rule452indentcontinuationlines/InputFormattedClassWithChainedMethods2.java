@@ -1,9 +1,9 @@
-package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
+package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines;
 
 /** some javadoc. */
-public class ClassWithChainedMethodsCorrect {
+public class InputFormattedClassWithChainedMethods2 {
   /** some javadoc. */
-  public ClassWithChainedMethodsCorrect() {
+  public InputFormattedClassWithChainedMethods() {
 
     String someString = "";
 
@@ -14,8 +14,8 @@ public class ClassWithChainedMethodsCorrect {
 
   /** some javadoc. */
   public static void main(String[] args) {
-    ClassWithChainedMethodsCorrect classWithChainedMethodsCorrect =
-        new ClassWithChainedMethodsCorrect();
+    InputFormattedClassWithChainedMethods2 classWithChainedMethodsCorrect =
+        new InputFormattedClassWithChainedMethods2();
   }
 
   /** some javadoc. */
