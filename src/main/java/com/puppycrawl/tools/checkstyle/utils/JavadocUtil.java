@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
@@ -304,6 +305,19 @@ public final class JavadocUtil {
             throw new IllegalArgumentException("Unknown javadoc token name. Given name " + name);
         }
         return id;
+    }
+
+    public static String getJavadocTokenName(int tokenType) {
+        final Map<String, Integer> tokenNameToValue;
+        final Map<Integer, String> tokenValueToName;
+        tokenNameToValue = TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
+        tokenValueToName = TokenUtil.invertMap(tokenNameToValue);
+
+        final String name = tokenValueToName.get(tokenType);
+        if (name == null) {
+            throw new IllegalArgumentException("Unknown javadoc token id. Given id: " + tokenType);
+        }
+        return name;
     }
 
     /**

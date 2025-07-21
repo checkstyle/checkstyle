@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
@@ -64,7 +64,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        final ParseStatus status = parser.parseJavadocAsDetailNode(blockComment);
+        final ParseStatus status = parser.parseJavadocComment(blockComment);
         if (status.getParseErrorMessage() != null) {
             throw new IllegalArgumentException(getParseErrorMessage(status.getParseErrorMessage()));
         }
@@ -109,19 +109,19 @@ public final class DetailNodeTreeStringPrinter {
         final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailNode node = ast;
         while (node != null) {
-            if (node.getType() == JavadocTokenTypes.JAVADOC) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC) {
                 messageBuilder.append(rootPrefix);
             }
             else {
                 messageBuilder.append(prefix);
             }
             messageBuilder.append(getIndentation(node))
-                    .append(JavadocUtil.getTokenName(node.getType())).append(" -> ")
+                    .append(JavadocUtil.getJavadocTokenName(node.getType())).append(" -> ")
                     .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
                     .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
                     .append(printTree(JavadocUtil.getFirstChild(node), rootPrefix, prefix));
-            node = JavadocUtil.getNextSibling(node);
+            node = node.getNextSibling();
         }
         return messageBuilder.toString();
     }
@@ -133,7 +133,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return the indentation in String format.
      */
     private static String getIndentation(DetailNode node) {
-        final boolean isLastChild = JavadocUtil.getNextSibling(node) == null;
+        final boolean isLastChild = node.getNextSibling() == null;
         DetailNode currentNode = node;
         final StringBuilder indentation = new StringBuilder(1024);
         while (currentNode.getParent() != null) {

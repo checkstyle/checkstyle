@@ -1,0 +1,7 @@
+JAVADOC -> JAVADOC [0:0]
+|--LEADING_ASTERISK -> * [0:0]
+|--NEWLINE -> \n [0:1]
+|--LEADING_ASTERISK -> * [1:0]
+|--NEWLINE -> \n [1:1]
+|--LEADING_ASTERISK -> * [2:0]
+`--NEWLINE -> \n [2:1]

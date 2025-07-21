@@ -78,4 +78,10 @@ public interface DetailNode {
      */
     int getIndex();
 
+    /**
+     * Sibling node.
+     *
+     * @return sibling node
+     */
+    DetailNode getNextSibling();
 }
