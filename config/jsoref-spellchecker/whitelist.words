@@ -496,6 +496,7 @@ func
 funmodifiablecollection
 Fwhitespace
 Fx
+Fxq
 gav
 Gdrox
 generalform
@@ -800,6 +801,7 @@ lombok
 lookaround
 Loughran
 lparen
+lte
 lucene
 lui
 luiframework
@@ -949,6 +951,7 @@ nonconstantfieldnames
 nondex
 nonemptyatclausedescription
 nonemptyblocks
+NONFORMATTED
 NONGROUP
 NONJAVA
 nonjavadoc
