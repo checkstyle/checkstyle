@@ -348,20 +348,33 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
-        <p>
+
+        <p id="Example11-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control11-raw">
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg=".*" regex="true"/&gt;
-  &lt;subpackage name="imports"&gt;
-    &lt;disallow class="java.util.Date"/&gt;
-    &lt;disallow class="java.util.List"/&gt;
-    &lt;disallow pkg="sun"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control11.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example11-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
