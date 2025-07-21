@@ -185,4 +185,16 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineXmlConfig(examplePath, expected);
     }
 
+    @Test
+    public void testExample12() throws Exception {
+        final String[] expected = {
+            "14:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.util.Date"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(getPath("Example12.java"), expected);
+    }
+
 }
