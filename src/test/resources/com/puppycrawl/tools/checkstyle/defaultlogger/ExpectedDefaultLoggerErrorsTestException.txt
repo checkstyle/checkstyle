@@ -1,0 +1,1 @@
+[ERROR] src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/defaultlogger/InputDefaultLoggerTestException.java:1: Got an exception - com.puppycrawl.tools.checkstyle.api.CheckstyleException: IllegalStateException occurred while parsing file /src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/defaultlogger/InputDefaultLoggerTestException.java.
