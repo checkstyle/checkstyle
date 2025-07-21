@@ -591,6 +591,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !isEmptyCtorBlockCheckedFromSlist(ast)
+                && !isEmptyMethodBlock(ast, ast.getParent().getType())
                 && !(ast.getType() == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
                 && ast.getType() != TokenTypes.ARRAY_INIT
@@ -621,8 +622,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true is block is empty
      */
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
-        return isEmptyMethodBlock(ast, parentType)
-                || isEmptyCtorBlockCheckedFromRcurly(ast)
+        return isEmptyCtorBlockCheckedFromRcurly(ast)
+                || isEmptyMethodBlockCheckedFromRcurly(ast)
                 || isEmptyLoop(ast, parentType)
                 || isEmptyLambda(ast, parentType)
                 || isEmptyCatch(ast, parentType)
@@ -655,6 +656,25 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             result = type == TokenTypes.SLIST
                 && parentType == match
                 && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+        }
+        return result;
+    }
+
+    /**
+     * Check if the given DetailAST is part of an allowed empty constructor (ctor)
+     *   block checked from RCURLY.
+     *
+     * @param ast ast
+     * @return true if ast is the `}` is part of empty method block.
+     */
+    private boolean isEmptyMethodBlockCheckedFromRcurly(DetailAST ast) {
+        boolean result = false;
+        if (ast.getType() == TokenTypes.RCURLY) {
+            final DetailAST parent = ast.getParent();
+            final DetailAST grandParent = parent.getParent();
+            result = allowEmptyMethods
+                    && parent.getType() == TokenTypes.SLIST
+                    && grandParent.getType() == TokenTypes.METHOD_DEF;
         }
         return result;
     }
