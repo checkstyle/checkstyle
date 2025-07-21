@@ -634,20 +634,54 @@ import java.util.stream.IntStream;
 
 public class Example10 {}
 </code></pre></div><hr class="example-separator"/>
-        <p>
+
+        <p id="Example11-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control11.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control11-raw">
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-  &lt;allow pkg=&quot;.*&quot; regex=&quot;true&quot;/&gt;
-  &lt;subpackage name=&quot;imports&quot;&gt;
-    &lt;disallow class=&quot;java.util.Date&quot;/&gt;
-    &lt;disallow class=&quot;java.util.List&quot;/&gt;
-    &lt;disallow pkg=&quot;sun&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;allow pkg=".*" regex="true"/&gt;
+  &lt;subpackage name="someImports"&gt;
+    &lt;disallow class="java.util.Date"/&gt;
+    &lt;disallow class="java.util.List"/&gt;
+    &lt;disallow pkg="sun"/&gt;
   &lt;/subpackage&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example11-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports;
+
+import java.io.FileFilter;
+import java.util.Date; // violation, 'Disallowed import - java.util.Date'
+import java.util.List; // violation, 'Disallowed import - java.util.List'
+import java.util.Optional;
+
+import sun.misc.Signal; // violation, 'sun.misc.Signal'
+
+public class Example11 {}
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
