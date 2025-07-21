@@ -682,17 +682,47 @@ import sun.misc.Signal; // violation, 'sun.misc.Signal'
 public class Example11 {}
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
+        <p id="Example12-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ImportControl"&gt;
+      &lt;property name="file" value="${config.folder}/import-control12.xml"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="import-control12-raw">
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg=&quot;com.puppycrawl.tools.checkstyle.checks&quot;&gt;
-  &lt;disallow class=&quot;java.util.Date&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
 
-  &lt;allow pkg=&quot;java.util&quot;/&gt;
+&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol"&gt;
+  &lt;disallow class="java.util.Date"/&gt;
+
+  &lt;allow pkg="java.util"/&gt;
 &lt;/import-control&gt;
-        </code></pre></div>
+</code></pre></div>
+        <p id="Example12-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.imports.importcontrol;
+
+import java.util.Date; // violation, 'Disallowed import - java.util.Date'
+import java.util.List;
+import java.util.Optional;
+import java.util.Map;
+
+public class Example12 {}
+</code></pre></div><hr class="example-separator"/>
 
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
