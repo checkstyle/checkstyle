@@ -257,27 +257,35 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          In the example below, only file names that end with "Panel", "View", or "Dialog"
-          in the package <code>gui</code> are disallowed to have imports from
-          <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
-          the file name named "PresentationModel" in the package <code>gui</code> are
+        <p id="Example8-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/gui/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control8-raw">
+          In the example below, in the package <code>gui</code>, only the file names that include
+          "Panel", "View", or "Example" are disallowed to have imports from
+          <code>com.mycompany.dao</code> and any <code>sql</code> package. In addition, only
+          the file name named "PresentationModel" in the package <code>gui</code> is
           disallowed to have imports that match <code>javax.swing.J*</code>.
           All other imports in the package are allowed.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.mycompany.billing"&gt;
-  &lt;subpackage name="gui" strategyOnMismatch="allowed"&gt;
-    &lt;file name=".*(Panel|View|Dialog)" regex="true"&gt;
-      &lt;disallow pkg="com.mycompany.dao"/&gt;
-      &lt;disallow pkg=".*\.jdbc" regex="true"/&gt;
-    &lt;/file&gt;
-    &lt;file name="PresentationModel"&gt;
-      &lt;disallow pkg="javax\.swing\.J.*" regex="true"/&gt;
-    &lt;/file&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control8.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example8-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/gui/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
         <p id="Example9-config">
