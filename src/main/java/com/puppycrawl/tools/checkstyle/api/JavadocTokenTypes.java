@@ -504,9 +504,6 @@ public final class JavadocTokenTypes {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int LINK_LITERAL = JavadocParser.LINK_LITERAL;
 
@@ -520,7 +517,7 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;inheritDoc}</code></pre>
+     * <pre>{@code {@inheritDoc} }</pre>
      * <b>Tree:</b>
      * <pre>{@code
      *   JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
@@ -533,9 +530,6 @@ public final class JavadocTokenTypes {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGJCHC">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int INHERIT_DOC_LITERAL = JavadocParser.INHERIT_DOC_LITERAL;
 
@@ -574,9 +568,6 @@ public final class JavadocTokenTypes {
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDGBICD">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int LINKPLAIN_LITERAL = JavadocParser.LINKPLAIN_LITERAL;
 
@@ -591,26 +582,22 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;literal #compare(Object)}</code></pre>
+     * <pre>{@code {@literal #compare(Object)} }</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>
-     *     |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *        |--JAVADOC_INLINE_TAG_START -&gt; {
-     *        |--LITERAL_LITERAL -&gt; @literal
-     *        |--WS -&gt;
-     *        |--TEXT -&gt; #compare(Object)
-     *        `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     *     |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *        |--JAVADOC_INLINE_TAG_START -> {
+     *        |--LITERAL_LITERAL -> @literal
+     *        |--WS ->
+     *        |--TEXT -> #compare(Object)
+     *        `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCFJDG">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int LITERAL_LITERAL = JavadocParser.LITERAL_LITERAL;
 
@@ -625,28 +612,24 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;value Integer#MAX_VALUE}</code></pre>
+     * <pre>{@code {@value Integer#MAX_VALUE} }</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code> JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START --&gt; {
-     *         |--VALUE_LITERAL --&gt; @value
-     *         |--WS --&gt;
-     *         |--REFERENCE --&gt; REFERENCE
-     *         |   |--PACKAGE_CLASS --&gt; Integer
-     *         |   |--HASH --&gt; #
-     *         |   `--MEMBER --&gt; MAX_VALUE
-     *         `--JAVADOC_INLINE_TAG_END --&gt; }
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START --> {
+     *    |--VALUE_LITERAL --> @value
+     *    |--WS -->
+     *    |--REFERENCE --> REFERENCE
+     *    |   |--PACKAGE_CLASS --> Integer
+     *    |   |--HASH --> #
+     *    |   `--MEMBER --> MAX_VALUE
+     *    `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDCDHH">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int VALUE_LITERAL = JavadocParser.VALUE_LITERAL;
 
@@ -1636,13 +1619,11 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>
-     * {@code
      * &lt;tbody&gt;
      * &lt;tr&gt;
      * &lt;td&gt;Row1&lt;/td&gt;
      * &lt;/tr&gt;
      * &lt;/tbody&gt;
-     * }
      * </pre>
      * <b>Tree:</b>
      * <pre>
@@ -1711,13 +1692,11 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>
-     * {@code
      * &lt;thead&gt;
      * &lt;tr&gt;
      * &lt;th&gt;Header&lt;/th&gt;
      * &lt;/tr&gt;
      * &lt;/thead&gt;
-     * }
      * </pre>
      * <b>Tree:</b>
      * <pre>
@@ -2043,20 +2022,19 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * HTML comment start symbol '&lt;&#33;--'.
+     * HTML comment start symbol {@literal '<!--' }.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <!--
+     * <pre>
+     * &lt;&#33;--
      * This is an HTML multi-line comment:
      * This is another comment
-     * -->
-     * }</pre>
+     * --&gt;
+     * </pre>
      * <b>Tree:</b>
-     * <pre>
-     * {@code
+     * <pre>{@code
      * HTML_COMMENT -> HTML_COMMENT
-     *    |--HTML_COMMENT_START -> <!--
+     *    |--HTML_COMMENT_START -> <&#33;--
      *    |--NEWLINE -> \n
      *    |--LEADING_ASTERISK ->  *
      *    |--TEXT ->  This is an HTML multi-line comment:
@@ -2067,13 +2045,12 @@ public final class JavadocTokenTypes {
      *    |--LEADING_ASTERISK ->  *
      *    |--TEXT ->
      *    `--HTML_COMMENT_END -> -->
-     * }
-     * </pre>
+     * }</pre>
      */
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
     /**
-     * HTML comment end symbol '--&gt;'.
+     * HTML comment end symbol {@code '-->'} .
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
@@ -2231,7 +2208,7 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;link String}</code></pre>
+     * <pre>{@literal {@link String} }</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2244,11 +2221,6 @@ public final class JavadocTokenTypes {
      *      `--JAVADOC_INLINE_TAG_END -> }
      * }
      * </pre>
-     *
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
             + RULE_TYPES_OFFSET;
@@ -2346,13 +2318,13 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Start html tag: &lt;XXXX&gt;.
+     * Start html tag: {@code <XXXX>}.
      */
     public static final int HTML_ELEMENT_START = JavadocParser.RULE_htmlElementStart
             + RULE_TYPES_OFFSET;
 
     /**
-     * End html tag: &lt;XXXX&gt;.
+     * End html tag: {@code <XXXX>}.
      */
     public static final int HTML_ELEMENT_END = JavadocParser.RULE_htmlElementEnd
             + RULE_TYPES_OFFSET;
@@ -3375,11 +3347,7 @@ public final class JavadocTokenTypes {
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Html comment: <code>&lt;&#33;-- --&gt;</code>.
-     *
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
+     * Html comment: {@code <!-- --> }.
      */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
             + RULE_TYPES_OFFSET;
