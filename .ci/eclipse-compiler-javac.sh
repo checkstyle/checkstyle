@@ -11,13 +11,10 @@ fi
 
 JAVA_RELEASE=${2:-11}
 
-ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
-
-# ECJ is not available in maven central, so we have to download it from eclipse.org.
-# Since ECJ has migrated to Java 17, we need to pin version until checkstyle does the same.
-# Until https://github.com/checkstyle/checkstyle/issues/13209
-# ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
-# echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
+ECLIPSE_URL="https://archive.eclipse.org/eclipse/downloads/drops4"
+ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -oE "R-[0-9]+-[0-9]{12}" \
+| head -n1)
+echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
 ECJ_MAVEN_VERSION="R-4.27-202303020300"
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
