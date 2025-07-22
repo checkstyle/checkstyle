@@ -452,6 +452,43 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Verifies logger output using the inline configuration parser for default logger.
+     * Expects an input file with configuration and violations, and separate expected output files
+     * for info and error streams.
+     * Uses full Checker configuration.
+     *
+     * @param inputFile path to the file with configuration and violations
+     * @param expectedInfoFile path to the expected info stream output file
+     * @param expectedErrorFile path to the expected error stream output file
+     * @param logger logger to test
+     * @param infoStream where the logger writes its actual info stream output
+     * @param errorStream where the logger writes its actual error stream output
+     * @throws Exception if an exception occurs during verification
+     */
+    protected final void verifyWithInlineConfigParserAndDefaultLogger(String inputFile,
+                                                         String expectedInfoFile,
+                                                         String expectedErrorFile,
+                                                         AuditListener logger,
+                                                         ByteArrayOutputStream infoStream,
+                                                         ByteArrayOutputStream errorStream)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithXmlHeader(inputFile);
+        final Configuration parsedConfig =
+                testInputConfiguration.getXmlConfiguration();
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
+        final String basePath = Path.of("").toAbsolutePath().toString();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+        checker.addListener(logger);
+        checker.process(filesToCheck);
+
+        verifyContent(expectedInfoFile, infoStream);
+        verifyCleanedMessageContent(expectedErrorFile, errorStream, basePath);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
@@ -685,6 +722,41 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
         assertWithMessage("Content should match")
                 .that(actualContent)
+                .isEqualTo(expectedContent);
+    }
+
+    /**
+     * Verifies that the logger output matches the expected report file content,
+     * keeping only severity-tagged lines (e.g. [ERROR], [WARN], [INFO]).
+     *
+     * <p>
+     * This method strips:
+     * <ul>
+     *   <li>any stack trace lines from exception outputs (i.e. lines not starting with a severity
+     *   tag),</li>
+     *   <li>any absolute {@code basePath} prefixes in the message content.</li>
+     * </ul>
+     * The result is compared with expected output that includes only severity-tagged lines.
+     *
+     * @param expectedOutputFile path to a file that contains the expected first line
+     * @param outputStream output stream containing the actual logger output
+     * @param basePath absolute path prefix to strip before comparison
+     * @throws IOException if an exception occurs while reading the file
+     */
+    private static void verifyCleanedMessageContent(
+            String expectedOutputFile,
+            ByteArrayOutputStream outputStream,
+            String basePath) throws IOException {
+        final String expectedContent = readFile(expectedOutputFile);
+        final String rawActualContent =
+                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
+        final String cleanedActualContent = rawActualContent.lines()
+                .filter(line -> line.startsWith("["))
+                .map(line -> line.replace(basePath, ""))
+                .map(line -> line.replace('\\', '/'))
+                .collect(Collectors.joining("\n", "", "\n"));
+        assertWithMessage("Content should match")
+                .that(cleanedActualContent)
                 .isEqualTo(expectedContent);
     }
 

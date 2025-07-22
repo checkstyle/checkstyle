@@ -1,0 +1,2 @@
+[ERROR] src/test/resources/com/puppycrawl/tools/checkstyle/defaultlogger/InputDefaultLoggerTestMultipleErrors.java:11:8: Unused import - java.util.Arrays. [UnusedImports]
+[ERROR] src/test/resources/com/puppycrawl/tools/checkstyle/defaultlogger/InputDefaultLoggerTestMultipleErrors.java:12:8: Unused import - java.util.List. [UnusedImports]
