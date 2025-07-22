@@ -72,12 +72,12 @@ public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentati
 
     @Test
     public void testCorrectChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethodsCorrect.java"));
+        verifyWithWholeConfig(getPath("InputFormattedClassWithChainedMethods2.java"));
     }
 
     @Test
     public void testWarnChained() throws Exception {
-        verifyWithWholeConfig(getPath("ClassWithChainedMethods.java"));
+        verifyWithWholeConfig(getPath("InputClassWithChainedMethods2.java"));
     }
 
     @Test
