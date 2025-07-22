@@ -20,11 +20,24 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int JAVADOC = JavadocCommentsLexer.JAVADOC;
 
-    /** Leading asterisk. */
+    /**
+     * Leading asterisk.
+     */
     public static final int LEADING_ASTERISK = JavadocCommentsLexer.LEADING_ASTERISK;
 
     /**
      * Newline symbol - '\n'.
      */
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
+
+    /**
+     * Token representing plain text content within a Javadoc comment.
+     */
+    public static final int TEXT = JavadocCommentsLexer.TEXT;
+
+    /**
+     * Whitespace or tab ('\t') symbol.
+     */
+    public static final int WS = JavadocCommentsLexer.WS;
+
 }

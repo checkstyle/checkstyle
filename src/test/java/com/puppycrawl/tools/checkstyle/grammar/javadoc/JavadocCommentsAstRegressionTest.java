@@ -33,4 +33,16 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(geSimplePath("ExpectedEmptyJavadocStartsWithNewline.txt"),
                 geSimplePath("InputEmptyJavadocStartsWithNewline.javadoc"));
     }
+
+    @Test
+    public void testSimpleJavadocWithText() throws Exception {
+        verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText.txt"),
+                geSimplePath("InputSimpleJavadocWithText.javadoc"));
+    }
+
+    @Test
+    public void testSimpleJavadocWithText2() throws Exception {
+        verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText2.txt"),
+                geSimplePath("InputSimpleJavadocWithText2.javadoc"));
+    }
 }
