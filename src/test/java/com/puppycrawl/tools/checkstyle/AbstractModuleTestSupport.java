@@ -124,15 +124,15 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected void configureChecker(Checker checker, Configuration moduleConfig) throws Exception {
         final Class<?> moduleClass = Class.forName(moduleConfig.getName());
 
+        final Configuration config;
         if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
                 || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-            final Configuration config = createTreeWalkerConfig(moduleConfig);
-            checker.configure(config);
+            config = createTreeWalkerConfig(moduleConfig);
         }
         else {
-            final Configuration config = createRootConfig(moduleConfig);
-            checker.configure(config);
+            config = createRootConfig(moduleConfig);
         }
+        checker.configure(config);
     }
 
     /**
