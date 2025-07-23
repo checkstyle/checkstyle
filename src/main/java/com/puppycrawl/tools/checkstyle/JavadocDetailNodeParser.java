@@ -328,7 +328,7 @@ public class JavadocDetailNodeParser {
         node.setLineNumber(getLine(parseTree) + blockCommentLineNumber);
         node.setIndex(index);
         node.setType(getTokenType(parseTree));
-        node.setParent(parent);
+        node.setParent((JavadocNodeImpl) parent);
         node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
     }

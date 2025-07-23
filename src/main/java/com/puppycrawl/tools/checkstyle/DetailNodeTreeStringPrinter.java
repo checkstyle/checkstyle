@@ -120,7 +120,7 @@ public final class DetailNodeTreeStringPrinter {
                     .append(JavadocUtil.escapeAllControlChars(node.getText())).append(" [")
                     .append(node.getLineNumber()).append(':').append(node.getColumnNumber())
                     .append(']').append(LINE_SEPARATOR)
-                    .append(printTree(JavadocUtil.getFirstChild(node), rootPrefix, prefix));
+                    .append(printTree(node.getFirstChild(), rootPrefix, prefix));
             node = node.getNextSibling();
         }
         return messageBuilder.toString();
@@ -149,7 +149,7 @@ public final class DetailNodeTreeStringPrinter {
                 }
             }
             else {
-                if (JavadocUtil.getNextSibling(currentNode) == null) {
+                if (currentNode.getNextSibling() == null) {
                     indentation.insert(0, "    ");
                 }
                 else {

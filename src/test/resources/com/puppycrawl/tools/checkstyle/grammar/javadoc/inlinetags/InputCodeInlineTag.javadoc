@@ -1,0 +1,12 @@
+* This is a code example of inline tag code.
+* {@code
+*    int x = 3 * 5;
+*    int y = 10 * 6;
+*   } int is the variable type
+* x is variable name.
+* {@code
+*      int x = 9;
+*      @Deprecated
+*      public void oldMethod() {}
+* }
+* {@code {int x;}}

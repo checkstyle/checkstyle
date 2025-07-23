@@ -16,6 +16,10 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         return getPath("simple" + File.separator + filename);
     }
 
+    private String getInlineTagsPath(String filename) throws IOException {
+        return getPath("inlinetags" + File.separator + filename);
+    }
+
     @Test
     public void testEmptyJavadoc() throws Exception {
         verifyJavadocTree(geSimplePath("ExpectedEmptyJavadoc.txt"),
@@ -44,5 +48,59 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testSimpleJavadocWithText2() throws Exception {
         verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText2.txt"),
                 geSimplePath("InputSimpleJavadocWithText2.javadoc"));
+    }
+
+    @Test
+    public void testCodeInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedCodeInlineTag.txt"),
+                getInlineTagsPath("InputCodeInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag.txt"),
+                getInlineTagsPath("InputLinkInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTag2() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag2.txt"),
+                getInlineTagsPath("InputLinkInlineTag2.javadoc"));
+    }
+
+    @Test
+    public void testLinkInlineTag3() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag3.txt"),
+                getInlineTagsPath("InputLinkInlineTag3.javadoc"));
+    }
+
+    @Test
+    public void testValueAndInheritDocInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
+                getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testSystemPropertyInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedSystemPropertyTag.txt"),
+                getInlineTagsPath("InputSystemPropertyTag.javadoc"));
+    }
+
+//    @Test
+//    public void testLiteralAndCustomInlineTag() throws Exception {
+//        verifyJavadocTree(getInlineTagsPath("ExpectedLiteralAndCustomInline.txt"),
+//                getInlineTagsPath("InputLiteralAndCustomInline.javadoc"));
+//    }
+
+    @Test
+    public void testReturnAndIndexInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedReturnAndIndexInlineTag.txt"),
+                getInlineTagsPath("InputReturnAndIndexInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testSnippetAttributeInline() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedSnippetAttributeInlineTag.txt"),
+                getInlineTagsPath("InputSnippetAttributeInlineTag.javadoc"));
     }
 }
