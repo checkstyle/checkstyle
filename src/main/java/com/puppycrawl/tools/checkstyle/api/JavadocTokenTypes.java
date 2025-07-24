@@ -1040,6 +1040,16 @@ public final class JavadocTokenTypes {
 
     /**
      * Start html tag component: {@code '<'}.
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->  '<'
+     *  |--NEWLINE -> \r\n
+     *  |--TEXT ->
+     *  }</pre>
      */
     public static final int START = JavadocParser.START;
 
