@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+
+<suppressions>
+  <suppress-xpath checks="CyclomaticComplexity"
+  files="Example1.java|Test.java"
+  query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/>
+</suppressions>

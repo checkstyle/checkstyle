@@ -153,6 +153,57 @@
 
  &lt;p&gt;
  SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ A &lt;a href="/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;&lt;em&gt;suppressions XML
+ document&lt;/em&gt;&lt;/a&gt; contains a set
+ of &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; elements, where
+ each &lt;code&gt;suppress-xpath&lt;/code&gt; element can have the
+ following attributes:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;files&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the file name associated with an audit
+ event. It is optional.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;checks&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the name of the check associated with an audit
+ event. Optional as long as &lt;code&gt;id&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;message&lt;/code&gt; -
+ a &lt;a href="../property_types.html#Pattern"&gt;Pattern&lt;/a&gt;
+ matched against the message of the check associated with an audit
+ event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;id&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;id&lt;/code&gt; -
+ a &lt;a href="../property_types.html#String"&gt;String&lt;/a&gt;
+ matched against the ID of the check associated with an audit
+ event. Optional as long as &lt;code&gt;checks&lt;/code&gt; or &lt;code&gt;message&lt;/code&gt; is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;query&lt;/code&gt; -
+ a &lt;a href="../property_types.html#String"&gt;String&lt;/a&gt;
+ xpath query. It is optional.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Each audit event is checked against
+ each &lt;code&gt;suppress&lt;/code&gt; and &lt;code&gt;suppress-xpath&lt;/code&gt; element. It is
+ suppressed if all specified attributes match against the audit
+ event.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ ATTENTION: filtering by message is dependent on runtime locale. If project is running
+ in different languages it is better to avoid filtering by message.
  &lt;/p&gt;</description>
          <properties>
             <property name="file" type="java.lang.String">
