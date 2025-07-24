@@ -1002,8 +1002,7 @@ public final class SiteUtil {
      */
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
 
             value = collection.stream()
                     .map(Pattern.class::cast)
@@ -1076,8 +1075,7 @@ public final class SiteUtil {
      */
     private static Stream<?> getValuesStream(Object value) {
         final Stream<?> valuesStream;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             valuesStream = collection.stream();
         }
         else {
@@ -1114,8 +1112,7 @@ public final class SiteUtil {
      */
     private static IntStream getIntStream(Object value) {
         final IntStream stream;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
