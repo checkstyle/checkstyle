@@ -1033,6 +1033,13 @@
                     MatchXpath</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
                   config</a>)
+                  <br/>
+                  <br/>
+                  A whitespace is not enforced between a type annotation and <code>[]</code>
+                  or <code>...</code>. It will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17451">
+                    #15791
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">
