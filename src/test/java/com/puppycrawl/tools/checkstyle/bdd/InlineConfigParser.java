@@ -452,6 +452,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
         MODULE_MAPPINGS.put("CyclomaticComplexity",
                 "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
+        MODULE_MAPPINGS.put("EmptyLineSeparator",
+                "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck");
     }
 
     /** Stop instances being created. **/
