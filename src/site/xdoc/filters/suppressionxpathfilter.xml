@@ -241,7 +241,7 @@
       <subsection name="Examples" id="Examples">
 
         <p id="Example1-config">
-          For example, the following configuration example directs the
+          For example #1, the following configuration example directs the
           Checker to use a <code>SuppressionXpathFilter</code>
           with suppressions
           file <code>config/suppressions1.xml</code>:
@@ -311,12 +311,42 @@ public class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for package definitions:
+        <p id="Example2-config">
+          For example #2, To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions2.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions2-raw">
+          In order to suppress checks for package definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="/COMPILATION_UNIT/PACKAGE_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/PACKAGE_DEF&quot;/&gt;
-        </code></pre></div>
+// filtered violation below "'package' should be separated from previous line"
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
+public class Example2 { }
+// violation above, "'CLASS_DEF' should be separated from previous line"
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           Suppress checks for parent element of the first variable definition:
         </p>
