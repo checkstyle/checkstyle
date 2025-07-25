@@ -3,14 +3,14 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.util.Vector;
 
 /** Test input for MethodDefPadCheck. */
-public class InputFormattedMethodParamPad {
+public class InputFormattedMethodParamPad2 {
   /** some javadoc. */
-  public InputFormattedMethodParamPad() {
+  public InputFormattedMethodParamPad2() {
     super();
   }
 
   /** some javadoc. */
-  public InputFormattedMethodParamPad(int param) {
+  public InputFormattedMethodParamPad2(int param) {
     super();
   }
 
@@ -23,9 +23,9 @@ public class InputFormattedMethodParamPad {
   /** some javadoc. */
   public void method(double param) {
     // invoke constructor
-    InputFormattedMethodParamPad pad = new InputFormattedMethodParamPad();
-    pad = new InputFormattedMethodParamPad();
-    pad = new InputFormattedMethodParamPad();
+    InputFormattedMethodParamPad2 pad = new InputFormattedMethodParamPad2();
+    pad = new InputFormattedMethodParamPad2();
+    pad = new InputFormattedMethodParamPad2();
 
     // call method
     method();
@@ -38,7 +38,7 @@ public class InputFormattedMethodParamPad {
     this.method();
     this.method();
 
-    InputFormattedMethodParamPad p = new InputFormattedMethodParamPad();
+    InputFormattedMethodParamPad2 p = new InputFormattedMethodParamPad2();
     p.method();
     p.method();
     p.method();

@@ -17,33 +17,33 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.google.checkstyle.test.chapter2filebasic.rule232specialescape;
+package com.puppycrawl.tools.checkstyle.filters;
 
 import org.junit.jupiter.api.Test;
 
-import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
-public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport {
+public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/google/checkstyle/test/chapter2filebasic/rule232specialescape";
+        return "com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter";
     }
 
     @Test
-    public void testIllegalTokens() throws Exception {
-        verifyWithWholeConfig(getPath("InputSpecialEscapeSequences.java"));
+    public void testExample1() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "21:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
     }
 
-    @Test
-    public void testIllegalTokensInTextBlockForOctalValues() throws Exception {
-        verifyWithWholeConfig(
-            getPath("InputSpecialEscapeSequencesInTextBlockForOctalValues.java"));
-    }
-
-    @Test
-    public void testIllegalTokensInTextBlockForUnicodeValues() throws Exception {
-        verifyWithWholeConfig(
-            getPath("InputSpecialEscapeSequencesInTextBlockForUnicodeValues.java"));
-    }
 }

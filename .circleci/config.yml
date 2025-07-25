@@ -304,7 +304,7 @@ workflows:
           command: "./.ci/validation.sh javac20"
       - validate-with-script:
           name: "javac21"
-          image-name: "cimg/openjdk:21.0.0"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/validation.sh javac21"
 
   site-validation:
