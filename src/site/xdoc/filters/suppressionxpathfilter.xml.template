@@ -31,7 +31,7 @@
       <subsection name="Examples" id="Examples">
 
         <p id="Example1-config">
-          For example, the following configuration example directs the
+          For example #1, the following configuration example directs the
           Checker to use a <code>SuppressionXpathFilter</code>
           with suppressions
           file <code>config/suppressions1.xml</code>:
@@ -76,12 +76,31 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for package definitions:
+        <p id="Example2-config">
+          For example #2, To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="/PACKAGE_DEF"/&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions2-raw">
+          In order to suppress checks for package definitions:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions2.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example2-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           Suppress checks for parent element of the first variable definition:
         </p>
