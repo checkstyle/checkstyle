@@ -28,7 +28,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.VocabularyImpl;
 import org.junit.jupiter.api.Test;
@@ -772,7 +771,7 @@ public class GeneratedJavaTokenTypesTest {
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         // Get the starting index of the sublist of tokens, or -1 if sublist
         // is not present.

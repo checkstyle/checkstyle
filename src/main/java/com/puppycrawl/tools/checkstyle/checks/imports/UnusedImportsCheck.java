@@ -26,7 +26,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.checkerframework.checker.index.qual.IndexOrLow;
@@ -366,7 +365,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final List<JavadocTag> blockTags = getTargetTags(textBlock,
                 JavadocUtil.JavadocTagType.BLOCK);
         final List<JavadocTag> targetTags = Stream.concat(inlineTags.stream(), blockTags.stream())
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         final Set<String> references = new HashSet<>();
 
@@ -393,7 +392,7 @@ public class UnusedImportsCheck extends AbstractCheck {
             .filter(tag -> isMatchingTagType(tag, javadocTagType))
             .map(UnusedImportsCheck::bestTryToMatchReference)
             .flatMap(Optional::stream)
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
     }
 
     /**

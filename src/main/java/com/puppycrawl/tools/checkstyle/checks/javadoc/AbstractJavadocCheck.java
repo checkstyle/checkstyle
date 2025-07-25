@@ -196,7 +196,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         if (javadocTokens.isEmpty()) {
             javadocTokens.addAll(
                     Arrays.stream(getDefaultJavadocTokens()).boxed()
-                        .collect(Collectors.toUnmodifiableList()));
+                        .toList());
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
@@ -225,7 +225,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         final List<Integer> missingRequiredTokenNames = Arrays.stream(getRequiredJavadocTokens())
                 .boxed()
                 .filter(token -> !defaultTokens.contains(token))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         if (!missingRequiredTokenNames.isEmpty()) {
             final String message = String.format(Locale.ROOT,

@@ -32,7 +32,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -169,7 +168,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
             .filter(Predicate.not(CommonUtil::isName))
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
         if (!invalidIdentifiers.isEmpty()) {
             throw new IllegalArgumentException(
                 "the following values are not valid identifiers: " + invalidIdentifiers);

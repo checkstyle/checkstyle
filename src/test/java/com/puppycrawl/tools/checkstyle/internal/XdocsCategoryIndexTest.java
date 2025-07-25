@@ -32,7 +32,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -148,7 +147,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                     .filter(path -> path.toString().endsWith(".xml"))
                     .filter(path -> !"index.xml".equals(path.getFileName().toString()))
                     .filter(path -> !"property_types.xml".equals(path.getFileName().toString()))
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
         }
     }
 
