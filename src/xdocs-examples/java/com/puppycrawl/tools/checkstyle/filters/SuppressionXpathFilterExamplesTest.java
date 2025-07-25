@@ -31,6 +31,25 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
+    public void testExample4() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
+            "18:3: 'METHOD_DEF' should be separated from previous line.",
+        };
+
+        final String[] expectedWithFilter = {
+            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
