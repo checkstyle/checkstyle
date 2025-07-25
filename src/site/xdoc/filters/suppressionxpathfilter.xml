@@ -396,14 +396,46 @@ public class Example3
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for elements which are either class definitions,
-          either method definitions.
+        <p id="Example4-config">
+          For example #4, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions4.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions4-raw">
+          In order to suppress checks for elements which are either class definitions,
+          or method definitions.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF | //METHOD_DEF&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example4 {
+  int y = 3;
+  int x = 5; // violation, "'VARIABLE_DEF' should be separated from previous line."
+  public void testMethod() {}
+  // filtered violation above "'METHOD_DEF' should be separated from previous line."
+
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           Suppress checks for certain methods:
         </p>
