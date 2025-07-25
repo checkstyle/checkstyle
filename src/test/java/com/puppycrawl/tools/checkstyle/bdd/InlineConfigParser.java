@@ -450,6 +450,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
         MODULE_MAPPINGS.put("JavadocStyle",
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
+        MODULE_MAPPINGS.put("CyclomaticComplexity",
+                "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
     }
 
     /** Stop instances being created. **/
@@ -730,6 +732,7 @@ public final class InlineConfigParser {
 
     private static String getResolvedPath(String fileValue, String inputFilePath) {
         final String resolvedFilePath;
+
         if (fileValue.startsWith("(resource)")) {
             resolvedFilePath =
                     getResourcePath(fileValue.substring(fileValue.indexOf(')') + 1),
@@ -739,9 +742,13 @@ public final class InlineConfigParser {
             resolvedFilePath =
                     getUriPath(fileValue.substring(fileValue.indexOf(')') + 1), inputFilePath);
         }
+        else if (fileValue.contains("/") || fileValue.contains("\\")) {
+            resolvedFilePath = fileValue;
+        }
         else {
             resolvedFilePath = getFilePath(fileValue, inputFilePath);
         }
+
         return resolvedFilePath;
     }
 
