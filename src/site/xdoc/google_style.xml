@@ -1373,6 +1373,21 @@
                 </td>
               </tr>
               <tr>
+                <td><a name="4.8.4.4"/>
+                  <a href="#4.8.4.4">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s4.8.4.4-switch-expressions">
+                    4.8.4.4 Switch expressions</a>
+                </td>
+                <td>--</td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="4.8.5"/>
                   <a href="#4.8.5">
                     <span class="wrapper inline">
