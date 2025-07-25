@@ -46,4 +46,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample2() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "14:1: 'package' should be separated from previous line.",
+            "15:1: 'CLASS_DEF' should be separated from previous line.",
+        };
+
+        final String[] expectedWithFilter = {
+            "15:1: 'CLASS_DEF' should be separated from previous line.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
