@@ -107,13 +107,33 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=".*" query="(//VARIABLE_DEF)[1]/.."/&gt;
         </code></pre></div>
-        <p>
-          Suppress checks for elements which are either class definitions,
-          either method definitions.
+
+        <p id="Example4-config">
+          For example #4, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions4-raw">
+          In order to suppress checks for elements which are either class definitions,
+          or method definitions.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions4.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           Suppress checks for certain methods:
         </p>
