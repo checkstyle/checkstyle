@@ -101,12 +101,31 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for parent element of the first variable definition:
+        <p id="Example3-config">
+          For example #3, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="(//VARIABLE_DEF)[1]/.."/&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions3-raw">
+          In order to suppress checks for parent element of the first ever variable definition:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example3-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           Suppress checks for elements which are either class definitions,
           either method definitions.
