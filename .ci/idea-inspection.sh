@@ -44,7 +44,7 @@ echo "Progress output will be flushed at end. Validation is in progress ..."
 
 # we pipe standard error to /dev/null to avoid messy IDEA output in console
 IDEA_OUTPUT=$("$IDEA_PATH"/bin/inspect.sh "$PROJECT_DIR" "$INSPECTIONS_PATH" "$RESULTS_DIR" \
-   -$NOISE_LVL 2>/dev/null)
+   -$NOISE_LVL )
 
 if [[ $IDEA_OUTPUT == "Already running" ]]; then
     echo "It might be that Intellij Idea is running, please close it."
