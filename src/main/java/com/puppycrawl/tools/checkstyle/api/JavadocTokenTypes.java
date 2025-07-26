@@ -2864,31 +2864,33 @@ public final class JavadocTokenTypes {
     /** `optgroup` html tag. */
     public static final int OPTGROUP = JavadocParser.RULE_optgroup + RULE_TYPES_OFFSET;
 
-    /**
-    *  Optgroup HTML tag start.
+/**
+     *  Optgroup HTML tag.
      *
      *  <p><b>Example:</b></p>
-     *  <pre>{@code
-     *  <select>
-     *      <optgroup label="Fruits">
-     *          <option>Apple</option>
-     *      </optgroup>
-     *  </select>
-     *  }</pre>
+     *  <pre>{@code <select><optgroup label="Fruits"><option>Apple</option></optgroup></select>}</pre>
      *
      *  <b>Tree:</b>
      *  <pre>
      *  {@code
      *     JAVADOC -> JAVADOC
+     *      |--NEWLINE -> \r\n
+     *      |--LEADING_ASTERISK -> *
+     *      |--WS ->
      *      |--JAVADOC_TAG -> JAVADOC_TAG
-     *      |   `--HTML_ELEMENT -> HTML_ELEMENT
-     *      |       `--OPTGROUP_TAG_START -> OPTGROUP_TAG_START
-     *      |           |--START -> <
-     *      |           |--OPTGROUP_HTML_TAG_NAME -> optgroup
-     *      |           `--END -> >
-     *  }
-     *  </pre>
- */
+     *      |   |--CUSTOM_NAME -> @code
+     *      |   |--WS ->
+     *      |   `--DESCRIPTION -> DESCRIPTION
+     *      |       |--HTML_ELEMENT -> HTML_ELEMENT
+     *      |       |   `--OPTGROUP_TAG_START -> OPTGROUP_TAG_START
+     *      |       |       |--START -> <
+     *      |       |       |--OPTGROUP_HTML_TAG_NAME -> optgroup
+     *      |       |       `--END -> >
+     *      |       |--NEWLINE -> \r\n
+     *      |       `--TEXT ->
+     * }
+     * </pre>
+     */
 public static final int OPTGROUP_TAG_START =
         JavadocParser.RULE_optgroupTagStart + RULE_TYPES_OFFSET;
 
