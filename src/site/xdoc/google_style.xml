@@ -1670,6 +1670,14 @@
                   <a href="checks/naming/packagename.html#PackageName">PackageName</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
                   config</a>)
+                  <span class="wrapper inline">
+                    <img src="images/ban_red.png" alt="" />
+                  </span>
+                  Modules name validation is not covered because of lack of support for
+                  Java modules Grammar, see details at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/8240">
+                    #8240
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule521packagenames">
