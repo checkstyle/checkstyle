@@ -581,4 +581,11 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testAnnotationInnerClass() throws Exception {
+        verifyWithInlineConfigParser(
+            getPath("InputRequireThisAnnotationInterfaceInnerClass.java"),
+            CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
 }
