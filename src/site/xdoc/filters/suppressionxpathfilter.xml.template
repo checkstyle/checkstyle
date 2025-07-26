@@ -107,6 +107,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=".*" query="(//VARIABLE_DEF)[1]/.."/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           Suppress checks for elements which are either class definitions,
           either method definitions.
@@ -114,6 +115,7 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           Suppress checks for certain methods:
         </p>
@@ -121,6 +123,7 @@
 &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='getSomeVar'
           or @text='setSomeVar']]"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
           inside <i>TestClass</i> class.
@@ -130,6 +133,7 @@
           //METHOD_DEF[./IDENT[@text='testMethod']]
           //VARIABLE_DEF[./IDENT[@text='testVariable']]"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           In the following sample, violations for <code>LeftCurly</code> check will be suppressed
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
@@ -138,6 +142,7 @@
 &lt;suppress-xpath checks="LeftCurly" query="//CLASS_DEF[./IDENT[@text='Main']]//*
           | //METHOD_DEF[./IDENT[@text='calculate']]/*"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           The following example demonstrates how to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
@@ -156,6 +161,7 @@ public class InputTest {
   }
 }
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
@@ -178,6 +184,7 @@ public class InputTest {
   }
 }
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
@@ -189,6 +196,7 @@ public class InputTest {
 &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
           /descendant-or-self::node()"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
 
         <p>Some elements can be suppressed in different ways.
           For example, to suppress violation on variable <code>wordCount</code> in following code:
@@ -238,6 +246,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks="." query="//VARIABLE_DEF[.//NUM_INT[@text=11]]"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>Next example is about suppressing method with certain annotation by its name and
         element value.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -320,6 +329,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 &lt;suppress-xpath checks="." query="//METHOD_DEF[.//ANNOTATION[
             ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>
