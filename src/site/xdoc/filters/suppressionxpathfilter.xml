@@ -347,12 +347,54 @@ public class Example2 { }
 // violation above, "'CLASS_DEF' should be separated from previous line"
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for parent element of the first variable definition:
+        <p id="Example3-config">
+          For example #3, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions3.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LeftCurly"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions3-raw">
+          In order to suppress checks for parent element of the first ever variable definition:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="descendant::VARIABLE_DEF[1]/.."/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;(//VARIABLE_DEF)[1]/..&quot;/&gt;
-        </code></pre></div>
+public class Example3 {
+
+  public void testMethodOne()
+  // filtered violation below "'{' at column 3 should be on the previous line."
+  {
+    int x = 5;
+  }
+
+  public void testMethodTwo()
+  // violation below, "'{' at column 3 should be on the previous line."
+  {
+    int z = 17;
+    int y;
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           Suppress checks for elements which are either class definitions,
           either method definitions.
