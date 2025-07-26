@@ -360,13 +360,70 @@ public class Example2 { }
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF | //METHOD_DEF&quot;/&gt;
         </code></pre></div>
-        <p>
-          Suppress checks for certain methods:
+
+        <p id="Example5-config">
+          For example 5, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions5.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions5-raw">
+          To suppress checks for certain methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='getSomeVar'
+          or @text='setSomeVar']]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='getSomeVar'
-          or @text='setSomeVar']]&quot;/&gt;
-        </code></pre></div>
+public class Example5 {
+
+  int a, b, c, d, e, n;
+
+  public void setSomeVar() { // filtered violation 'Cyclomatic Complexity is 4'
+    if (a == b) {
+      int x = 5;
+    }
+    else if (a == 0 &amp;&amp; b == c) {
+      System.out.println("*Silence*");
+    }
+  }
+
+  public void testMethod() { // violation, 'Cyclomatic Complexity is 5'
+    while (a &lt; b &amp;&amp; a &gt; c) {
+      fun1();
+    }
+    if (a == b) {
+      do {
+        fun1();
+      }
+      while (d==a);
+    }
+  }
+
+  public void fun1() {}
+
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
           inside <i>TestClass</i> class.
