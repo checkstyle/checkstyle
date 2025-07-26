@@ -8,7 +8,15 @@ public class InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock() {}
 
-  void method() {}
+  void method1(int k) {
+    {
+    }
+  }
+
+  void method2() {}
+
+  /** some javadoc. */
+  public void method3() {}
 
   class Class {}
 

@@ -9,7 +9,17 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
   // violation below 'WhitespaceAround: '{' is not preceded with whitespace.'
   InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){}
 
-  void method(){} // ok until #10834
+  void method1(int k) {
+    {}
+    // 2 violations above:
+    //   ''{' is not followed by whitespace.'
+    //   ''}' is not preceded with whitespace.'
+  }
+
+  void method2(){} // violation ''{' is not preceded with whitespace'
+
+  /** some javadoc. */
+  public void method3(){} // violation ''{' is not preceded with whitespace'
 
   class Class{} // ok until #10834
 
