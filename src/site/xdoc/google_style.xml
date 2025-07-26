@@ -586,6 +586,49 @@
                 </td>
               </tr>
               <tr>
+                <td><a name="3.5"/>
+                  <a href="#3.5">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s3.5-module-declaration">
+                    3.5 Module declaration
+                  </a>
+                </td>
+                <td>↓</td>
+                <td/>
+              </tr>
+              <tr>
+                <td><a name="3.5.1"/>
+                  <a href="#3.5.1">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s3.5.1-ordering-module-directives">
+                    3.5.1 Ordering and spacing of module directives</a>
+                </td>
+                <td>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle currently does not have a Parser to support
+                  <code>module-info.java</code> file Grammar. For more information,
+                  see the discussion at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17170#issuecomment-2944237497">
+                    #17170
+                  </a>
+                </td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="4"/>
                   <a href="#4">
                     <span class="wrapper inline">
