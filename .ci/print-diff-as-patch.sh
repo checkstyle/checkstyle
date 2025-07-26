@@ -11,10 +11,16 @@ patch_file="$1"
 echo "git diff > $patch_file"
 git diff > "$patch_file"
 
-echo 'If you are ok with diff of this run,'
-echo 'you will need to run the following entire multiline command:'
-echo "patch -p1 <<'EOF'"
-cat "$patch_file"
-echo "EOF"
+if [ ! -s "$patch_file" ]; then
+  echo "The file '$patch_file' is empty or does not exist."
+  exit 0
+else
+  echo 'There are some diff in repository after execution.'
+  echo 'If you are ok with diff of this run,'
+  echo 'you will need to run the following entire multiline command:'
+  echo "patch -p1 <<'EOF'"
+  cat "$patch_file"
+  echo "EOF"
+  exit 1
+fi
 
-exit 1
