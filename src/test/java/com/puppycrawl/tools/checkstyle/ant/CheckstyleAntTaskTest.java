@@ -290,7 +290,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void testNoFileOrPathSpecified() {
+    public static void testNoFileOrPathSpecified() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
 

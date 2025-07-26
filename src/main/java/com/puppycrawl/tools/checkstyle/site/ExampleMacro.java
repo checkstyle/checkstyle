@@ -54,9 +54,6 @@ public class ExampleMacro extends AbstractMacro {
     /** Ending delimiter for code snippets. */
     private static final String CODE_SNIPPET_END = "// xdoc section -- end";
 
-    /** Eight whitespace characters. All example source tags are indented 8 spaces. */
-    private static final String INDENTATION = "        ";
-
     /** The pattern of xml code blocks. */
     private static final Pattern XML_PATTERN = Pattern.compile(
             "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",

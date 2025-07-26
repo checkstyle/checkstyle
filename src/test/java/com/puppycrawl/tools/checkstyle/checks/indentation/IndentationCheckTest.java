@@ -90,7 +90,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                         processInlineComment(warn, actualIndent, lineNumber, aFileName, result);
                     }
                 }
-                else if (pendingBelowComment == null && !line.isEmpty()) {
+                else if (!line.isEmpty()) {
                     throw new IllegalStateException(String.format(Locale.ROOT,
                             "File \"%1$s\" has no indentation comment or its format "
                                     + "malformed. Error on line: %2$d",
