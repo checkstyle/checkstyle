@@ -493,7 +493,7 @@ public class RequireThisCheck extends AbstractCheck {
         if (frame.getType() == FrameType.CLASS_FRAME) {
             final DetailAST mods =
                     ast.findFirstToken(TokenTypes.MODIFIERS);
-            if (ScopeUtil.isInInterfaceBlock(ast)
+            if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
                     || mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
                 ((ClassFrame) frame).addStaticMember(ident);
             }
