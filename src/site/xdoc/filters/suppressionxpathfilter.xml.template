@@ -114,13 +114,32 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
         </code></pre></div>
-        <p>
-          Suppress checks for certain methods:
+
+        <p id="Example5-config">
+          For example 5, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='getSomeVar'
-          or @text='setSomeVar']]"/&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions5-raw">
+          To suppress checks for certain methods:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions5.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example5-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
           inside <i>TestClass</i> class.

@@ -65,4 +65,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:15: Name 'GetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        final String[] expectedWithFilter = {
+            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
