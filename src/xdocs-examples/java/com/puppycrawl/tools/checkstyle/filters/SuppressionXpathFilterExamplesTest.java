@@ -46,4 +46,20 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample6() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "21:21: There is more than 1 empty line after this line.",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example6.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
