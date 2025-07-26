@@ -41,4 +41,48 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
                 getPath("InputFormattedSingleLineJavadocAndInvalidJavadocPosition.java"));
     }
 
+    @Test
+    public void testJavadocPositionOnCompactConstructorInRecord() throws Exception {
+        verifyWithWholeConfig(getPath("InputJavadocPositionOnConstructorInRecord.java"));
+    }
+
+    @Test
+    public void testFormattedJavadocPositionOnCompactConstructorInRecord() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedJavadocPositionOnConstructorInRecord.java"));
+    }
+
+    @Test
+    public void testJavadocPositionOnCompactConstructorWithAnnotation() throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputJavadocPositionOnCompactConstructorsWithAnnotation.java"));
+    }
+
+    @Test
+    public void testFormattedJavadocPositionOnCompactConstructorWithAnnotation() throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputFormattedJavadocPositionOnCompactConstructorsWithAnnotation.java"));
+    }
+
+    @Test
+    public void testJavadocPositionOnCanonicalConstructorWithAnnotation() throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputJavadocPositionOnCanonicalConstructorsWithAnnotation.java"));
+    }
+
+    @Test
+    public void testFormattedJavadocPositionOnCanonicalConstructorWithAnnotation()
+            throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputFormattedJavadocPositionOnCanonicalConstructorsWithAnnotation.java"));
+    }
+
+    @Test
+    public void testRecordClassJavadocPosition() throws Exception {
+        verifyWithWholeConfig(getPath("InputRecordClassJavadocPosition.java"));
+    }
+
+    @Test
+    public void testFormattedRecordClassJavadocPosition() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedRecordClassJavadocPosition.java"));
+    }
 }
