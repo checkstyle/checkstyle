@@ -65,4 +65,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample5() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "21:3: Cyclomatic Complexity is 4 (max allowed is 3).",
+            "30:3: Cyclomatic Complexity is 5 (max allowed is 3).",
+        };
+
+        final String[] expectedWithFilter = {
+            "30:3: Cyclomatic Complexity is 5 (max allowed is 3).",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
