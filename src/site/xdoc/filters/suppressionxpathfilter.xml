@@ -484,6 +484,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[
             ./IDENT[@text='wordCount']]&quot;/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
         above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
         responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
@@ -563,6 +564,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 &lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
             .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
         </code></pre></div>
+        <hr class="example-separator"/>
         <p>
           The problem with query above that it will suppress violations for all methods with
           annotation <code>@Generated</code>. In order to suppress methods with
