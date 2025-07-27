@@ -31,25 +31,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample4() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
-            "18:3: 'METHOD_DEF' should be separated from previous line.",
-        };
-
-        final String[] expectedWithFilter = {
-            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
-        };
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
-                expectedWithoutFilter,
-                expectedWithFilter);
-    }
-
-    @Test
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
@@ -99,6 +80,44 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example3.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
+            "18:3: 'METHOD_DEF' should be separated from previous line.",
+        };
+
+        final String[] expectedWithFilter = {
+            "17:3: 'VARIABLE_DEF' should be separated from previous line.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example4.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:15: Name 'SetSomeVar' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        final String[] expectedWithFilter = {
+            "19:15: Name 'TestMethod' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example5.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
