@@ -142,6 +142,28 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
+    public void testExample7() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:15: Name 'DoMATH' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:19: '11' is a magic number.",
+            "23:8: Name 'FOO' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        final String[] expectedWithFilter = {
+            "18:15: Name 'DoEng' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:19: '11' is a magic number.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example7.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample8() throws Exception {
 
         final String[] expectedWithoutFilter = {
