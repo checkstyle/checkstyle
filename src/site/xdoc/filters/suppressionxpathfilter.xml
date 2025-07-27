@@ -614,29 +614,55 @@ public class Example8 {
 }
 </code></pre></div><hr class="example-separator"/>
 
+        <p id="Example9-config">
+          For example 9, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions9.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="IllegalThrows"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p>
-          Suppress <code>IllegalThrows</code> violations only for methods with name
-          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
-          Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          In order to suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions:
+        </p>
+        <p id="suppressions9-raw">
+          (Double colon is used for axis iterations. In the following example <code>ancestor</code>
           axis is used to iterate all ancestor nodes of the current node with type
-          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
-          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes
+          at <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.)
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="IllegalThrows" query="//LITERAL_THROWS
+          /IDENT[@text='RuntimeException' and
+          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS
-          /IDENT[@text='RuntimeException' and
-          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]&quot;/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  public void throwsMethod() throws RuntimeException { // violation will be suppressed
+public class Example9 {
+  // filtered violation below "Throwing 'RuntimeException' is not allowed."
+  public void throwsMethod() throws RuntimeException {
   }
 
-  public void sampleMethod() throws RuntimeException { // will throw violation here
+  // violation below, "Throwing 'RuntimeException' is not allowed."
+  public void sampleMethod() throws RuntimeException {
   }
 }
-        </code></pre></div>
-        <hr class="example-separator"/>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example10-config">
           For example #10, to configure the check:
