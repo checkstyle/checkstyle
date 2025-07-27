@@ -153,7 +153,7 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example5-config">
-          For example 5, to configure the check:
+          For example #5, to configure the check:
         </p>
         <macro name="example">
           <param name="path"
@@ -178,7 +178,7 @@
         </macro><hr class="example-separator"/>
 
         <p id="Example6-config">
-          For example 6, to configure the check:
+          For example #6, to configure the check:
         </p>
         <macro name="example">
           <param name="path"
@@ -203,18 +203,34 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          In the following sample, violations for <code>LeftCurly</code> check will be suppressed
-          for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
+        <p id="Example7-config">
+          For example #7, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="LeftCurly" query="//CLASS_DEF[./IDENT[@text='Main']]//*
-          | //METHOD_DEF[./IDENT[@text='calculate']]/*"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions7-raw">
+          In the following sample, violations for <code>MethodName</code> check will be suppressed
+          for classes with name <i>Main</i> or for methods with name <i>DoMATH</i>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions7.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example7-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p id="Example8-config">
-          For example 8, to configure the check:
+          For example #8, to configure the check:
         </p>
         <macro name="example">
           <param name="path"
@@ -264,7 +280,7 @@ public class InputTest {
         <hr class="example-separator"/>
 
         <p id="Example10-config">
-          For example 10, to configure the check:
+          For example #10, to configure the check:
         </p>
         <macro name="example">
           <param name="path"
