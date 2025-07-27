@@ -180,4 +180,20 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample12() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "16:27: '11' is a magic number.",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example12.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
