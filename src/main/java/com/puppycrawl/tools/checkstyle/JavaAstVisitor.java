@@ -421,7 +421,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         // Process all children except C style array declarators
         processChildren(methodDef, ctx.children.stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toUnmodifiableList()));
+                .toList());
 
         // We add C style array declarator brackets to TYPE ast
         final DetailAstImpl typeAst = (DetailAstImpl) methodDef.findFirstToken(TokenTypes.TYPE);
@@ -485,7 +485,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final List<ParseTree> children = ctx.children
                 .stream()
                 .filter(child -> !(child instanceof JavaLanguageParser.ArrayDeclaratorContext))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         processChildren(methodDef, children);
 
         // We add C style array declarator brackets to TYPE ast
@@ -1556,7 +1556,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
                 (Token) ctx.DOUBLE_COLON().getPayload());
         final List<ParseTree> children = ctx.children.stream()
                 .filter(child -> !child.equals(ctx.DOUBLE_COLON()))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         processChildren(doubleColon, children);
         return doubleColon;
     }
@@ -1566,7 +1566,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl root = create(ctx.QUESTION());
         processChildren(root, ctx.children.stream()
                 .filter(child -> !child.equals(ctx.QUESTION()))
-                .collect(Collectors.toUnmodifiableList()));
+                .toList());
         return root;
     }
 
