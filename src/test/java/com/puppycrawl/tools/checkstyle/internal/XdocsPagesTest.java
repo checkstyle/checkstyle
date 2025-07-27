@@ -410,7 +410,7 @@ public class XdocsPagesTest {
                 final List<String> groupNames = getNames(current);
                 final List<String> groupNamesSorted = groupNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
 
                 assertWithMessage("Group" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(groupNames)
@@ -425,7 +425,7 @@ public class XdocsPagesTest {
                         final List<String> checkNames = getNames(groupNode);
                         final List<String> checkNamesSorted = checkNames.stream()
                                 .sorted()
-                                .collect(Collectors.toUnmodifiableList());
+                                .toList();
                         assertWithMessage("Check" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                                 .that(checkNames)
                                 .containsExactlyElementsIn(checkNamesSorted)
@@ -439,7 +439,7 @@ public class XdocsPagesTest {
                 final List<String> filterNames = getNames(current);
                 final List<String> filterNamesSorted = filterNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 assertWithMessage("Filter" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(filterNames)
                         .containsExactlyElementsIn(filterNamesSorted)
@@ -449,7 +449,7 @@ public class XdocsPagesTest {
                 final List<String> fileFilterNames = getNames(current);
                 final List<String> fileFilterNamesSorted = fileFilterNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 assertWithMessage("File Filter" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(fileFilterNames)
                         .containsExactlyElementsIn(fileFilterNamesSorted)
@@ -487,7 +487,7 @@ public class XdocsPagesTest {
             final List<String> names = getNamesFromIndexPage(current);
             final List<String> namesSorted = names.stream()
                     .sorted()
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
 
             assertWithMessage(name + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH + path)
                     .that(names)
