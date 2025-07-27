@@ -255,29 +255,37 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          Suppress <code>IllegalThrows</code> violations only for methods with name
-          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
-          Double colon is used for axis iterations. In the following example <code>ancestor</code>
-          axis is used to iterate all ancestor nodes of the current node with type
-          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
-          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+        <p id="Example9-config">
+          For example 9, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="IllegalThrows" query="//LITERAL_THROWS
-          /IDENT[@text='RuntimeException' and
-          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  public void throwsMethod() throws RuntimeException { // violation will be suppressed
-  }
-
-  public void sampleMethod() throws RuntimeException { // will throw violation here
-  }
-}
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p>
+          In order to suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions:
+        </p>
+        <p id="suppressions9-raw">
+          (Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes
+          at <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.)
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions9.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example9-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p id="Example10-config">
           For example #10, to configure the check:
