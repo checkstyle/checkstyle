@@ -6,4 +6,12 @@
     <description>Return value of &apos;findFirst&apos; must be used</description>
     <lineContent>.findFirst();</lineContent>
   </error>
+  <!-- Better suggestion after https://github.com/PicnicSupermarket/error-prone-support/issues/954. -->
+  <error>
+    <sourceFile>CliOptionsXdocsSyncTest.java</sourceFile>
+    <bugPattern>CollectorMutability</bugPattern>
+    <description>Avoid `Collectors.to{List,Map,Set}` in favor of collectors that emphasize (im)mutability</description>
+    <lineContent>}).collect(Collectors.toSet()));</lineContent>
+  </error>
 </suppressedErrors>
+
