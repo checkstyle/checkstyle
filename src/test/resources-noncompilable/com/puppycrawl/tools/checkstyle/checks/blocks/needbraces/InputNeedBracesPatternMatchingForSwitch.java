@@ -1,6 +1,6 @@
 /*
 NeedBraces
-allowSingleLineStatement = false
+allowSingleLineStatement = (default)false
 allowEmptyLoopBody = (default)false
 tokens = LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
 
