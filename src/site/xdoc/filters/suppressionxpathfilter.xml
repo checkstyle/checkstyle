@@ -437,7 +437,7 @@ public class Example4 {
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-config">
-          For example 5, to configure the check:
+          For example #5, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -476,7 +476,7 @@ public class Example5 {
 </code></pre></div><hr class="example-separator"/>
 
         <p id="Example6-config">
-          For example 6, to configure the check:
+          For example #6, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -520,18 +520,52 @@ public class Example6 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p>
-          In the following sample, violations for <code>LeftCurly</code> check will be suppressed
-          for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
+        <p id="Example7-config">
+          For example #7, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions7.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions7-raw">
+          In the following sample, violations for <code>MethodName</code> check will be suppressed
+          for classes with name <i>Main</i> or for methods with name <i>DoMATH</i>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="MethodName" query="//CLASS_DEF[./IDENT[@text='Main']]//*
+          | //METHOD_DEF[./IDENT[@text='DoMATH']]/*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;//CLASS_DEF[./IDENT[@text='Main']]//*
-          | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example7 {
+  public void DoMATH() {} // filtered violation "Name 'DoMATH' must match pattern"
+  public void DoEng() {} // violation, "Name 'DoEng' must match pattern"
+}
+
+class Main {
+  int someField = 11; // violation, "'11' is a magic number."
+  void FOO() {} // filtered violation "Name 'FOO' must match pattern"
+}
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example8-config">
-          For example 8, to configure the check:
+          For example #8, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -605,7 +639,7 @@ public class InputTest {
         <hr class="example-separator"/>
 
         <p id="Example10-config">
-          For example 10, to configure the check:
+          For example #10, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
