@@ -436,19 +436,42 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
+
         <p>
           The problem with query above that it will suppress violations for all methods with
-          annotation <code>@Generated</code>. In order to suppress methods with
-          <code>@Generated("second")</code> annotations only, you need to look at AST tree again.
-          Value of the <code>ANNOTATION</code> node is stored inside sub-node with token type
-          <code>STRING_LITERAL</code>. Use the following query to suppress methods with
-          <code>@Generated("second")</code> annotation:
+          annotation <code>@Generated</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="." query="//METHOD_DEF[.//ANNOTATION[
-            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <p id="Example14-config">
+          For next example #14, to configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example14.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p>
+          In order to suppress methods with <code>@Generated("second")</code> annotations only,
+          you need to look at AST tree again. Value of the <code>ANNOTATION</code> node is stored
+          inside sub-node with token type <code>STRING_LITERAL</code>.
+        </p>
+        <p id="suppressions14-raw">
+          Use the following query to suppress methods with <code>@Generated("second")</code>
+          annotation:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions14.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example14-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example14.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

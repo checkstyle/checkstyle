@@ -137,6 +137,10 @@ public final class InlineConfigParser {
     private static final Pattern FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*filtered violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
 
+    /** A pattern to find the string: "// filtered violation X lines below". */
+    private static final Pattern FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*filtered violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
+
     /** A pattern to find the string: "// violation X lines above". */
     private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
@@ -1296,6 +1300,8 @@ public final class InlineConfigParser {
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
         final Matcher violationSomeLinesAboveMatcher =
                 FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line);
+        final Matcher violationSomeLinesBelowMatcher =
+                FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
@@ -1319,6 +1325,14 @@ public final class InlineConfigParser {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
             final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
             final int violationLineNum = lineNo - linesAbove;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+        else if (violationSomeLinesBelowMatcher.matches()) {
+            final String violationMessage = violationSomeLinesBelowMatcher.group(2);
+            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1));
+            final int violationLineNum = lineNo + linesBelow;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
