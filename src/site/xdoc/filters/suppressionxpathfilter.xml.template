@@ -177,16 +177,32 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p>
-          Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
-          inside <i>TestClass</i> class.
+        <p id="Example6-config">
+          For example 6, to configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="//CLASS_DEF[@text='TestClass']
-          //METHOD_DEF[./IDENT[@text='testMethod']]
-          //VARIABLE_DEF[./IDENT[@text='testVariable']]"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions6-raw">
+          In order to suppress checks for variable <i>TestVariable</i> inside <i>testMethod</i>
+          method inside <i>Example6</i> class.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions6.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example6-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>
           In the following sample, violations for <code>LeftCurly</code> check will be suppressed
           for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
