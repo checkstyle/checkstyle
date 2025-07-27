@@ -1660,9 +1660,16 @@
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
                   <a href="checks/naming/packagename.html#PackageName">PackageName</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageName">
                   config</a>)
+                  <br />
+                  <br />
+                  Naming requirement for modules is not covered because of lack of support
+                  for Java modules Grammer.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule521packagenames">
