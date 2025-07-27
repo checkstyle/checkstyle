@@ -254,11 +254,11 @@ nonTightElement
     ;
 
 selfClosingElement
-    : TAG_OPEN TAG_NAME htmlAttribute* TAG_SLASH_CLOSE
+    : TAG_OPEN TAG_NAME htmlAttributes+=htmlAttribute* TAG_SLASH_CLOSE
     ;
 
 htmlTagStart
-    : TAG_OPEN TAG_NAME htmlAttribute* TAG_CLOSE
+    : TAG_OPEN TAG_NAME htmlAttributes+=htmlAttribute* TAG_CLOSE
     ;
 
 htmlTagEnd

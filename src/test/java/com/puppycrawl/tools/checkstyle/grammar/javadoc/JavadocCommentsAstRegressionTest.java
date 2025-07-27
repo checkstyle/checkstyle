@@ -20,6 +20,10 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         return getPath("inlinetags" + File.separator + filename);
     }
 
+    private String getHTMLTagsPath(String filename) throws IOException {
+        return getPath("htmltags" + File.separator + filename);
+    }
+
     @Test
     public void testEmptyJavadoc() throws Exception {
         verifyJavadocTree(geSimplePath("ExpectedEmptyJavadoc.txt"),
@@ -86,11 +90,11 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
                 getInlineTagsPath("InputSystemPropertyTag.javadoc"));
     }
 
-//    @Test
-//    public void testLiteralAndCustomInlineTag() throws Exception {
-//        verifyJavadocTree(getInlineTagsPath("ExpectedLiteralAndCustomInline.txt"),
-//                getInlineTagsPath("InputLiteralAndCustomInline.javadoc"));
-//    }
+    @Test
+    public void testLiteralAndCustomInlineTag() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedLiteralAndCustomInline.txt"),
+                getInlineTagsPath("InputLiteralAndCustomInline.javadoc"));
+    }
 
     @Test
     public void testReturnAndIndexInlineTag() throws Exception {
@@ -102,5 +106,47 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testSnippetAttributeInline() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedSnippetAttributeInlineTag.txt"),
                 getInlineTagsPath("InputSnippetAttributeInlineTag.javadoc"));
+    }
+
+    @Test
+    public void testHtmlElements() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlElements.txt"),
+                getHTMLTagsPath("InputHtmlElements.javadoc"));
+    }
+
+    @Test
+    public void testHtmlVoidTags() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlVoidTags.txt"),
+                getHTMLTagsPath("InputHtmlVoidTags.javadoc"));
+    }
+
+    @Test
+    public void testEmptyHtmlContent() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedEmptyHtmlContent.txt"),
+                getHTMLTagsPath("InputEmptyHtmlContent.javadoc"));
+    }
+
+    @Test
+    public void testNonTightTags1() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags1.txt"),
+                getHTMLTagsPath("InputNonTightTags1.javadoc"));
+    }
+
+    @Test
+    public void testNonTightTags2() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags2.txt"),
+                getHTMLTagsPath("InputNonTightTags2.javadoc"));
+    }
+
+    @Test
+    public void testNonTightTags3() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags3.txt"),
+                getHTMLTagsPath("InputNonTightTags3.javadoc"));
+    }
+
+    @Test
+    public void testNonTightTags4() throws Exception {
+        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags4.txt"),
+                getHTMLTagsPath("InputNonTightTags4.javadoc"));
     }
 }

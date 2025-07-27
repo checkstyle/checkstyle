@@ -87,4 +87,21 @@ public final class JavadocCommentsTokenTypes {
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
     public static final int COLON = JavadocCommentsLexer.COLON;
+
+
+    public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
+    public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
+    public static final int HTML_CONTENT = JavadocCommentsLexer.HTML_CONTENT;
+    public static final int HTML_ATTRIBUTE = JavadocCommentsLexer.HTML_ATTRIBUTE;
+    public static final int HTML_ATTRIBUTES = JavadocCommentsLexer.HTML_ATTRIBUTES;
+    public static final int HTML_TAG_START = JavadocCommentsLexer.HTML_TAG_START;
+    public static final int HTML_TAG_END = JavadocCommentsLexer.HTML_TAG_END;
+    public static final int TAG_OPEN = JavadocCommentsLexer.TAG_OPEN;
+    public static final int TAG_NAME = JavadocCommentsLexer.TAG_NAME;
+    public static final int TAG_CLOSE = JavadocCommentsLexer.TAG_CLOSE;
+    public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
+    public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
+    public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
+
+
 }

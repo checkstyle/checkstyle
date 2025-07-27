@@ -211,6 +211,104 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return javadocNode;
     }
 
+    @Override
+    public JavadocNodeImpl visitHtmlElement(JavadocCommentsParser.HtmlElementContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_ELEMENT);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitVoidElement(JavadocCommentsParser.VoidElementContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.VOID_ELEMENT);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitTightElement(JavadocCommentsParser.TightElementContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitNonTightElement(JavadocCommentsParser.NonTightElementContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSelfClosingElement(JavadocCommentsParser.SelfClosingElementContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.VOID_ELEMENT);
+        javadocNode.addChild(create((Token) ctx.TAG_OPEN().getPayload()));
+        javadocNode.addChild(create((Token) ctx.TAG_NAME().getPayload()));
+        if (!ctx.htmlAttributes.isEmpty()) {
+            final JavadocNodeImpl htmlAttributes =
+                    createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
+            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
+                final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
+                htmlAttributes.addChild(htmlAttribute);
+            });
+            javadocNode.addChild(htmlAttributes);
+        }
+
+        javadocNode.addChild(create((Token) ctx.TAG_SLASH_CLOSE().getPayload()));
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitHtmlTagStart(JavadocCommentsParser.HtmlTagStartContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_TAG_START);
+        javadocNode.addChild(create((Token) ctx.TAG_OPEN().getPayload()));
+        javadocNode.addChild(create((Token) ctx.TAG_NAME().getPayload()));
+        if (!ctx.htmlAttributes.isEmpty()) {
+            final JavadocNodeImpl htmlAttributes =
+                    createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
+            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
+                final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
+                htmlAttributes.addChild(htmlAttribute);
+            });
+            javadocNode.addChild(htmlAttributes);
+        }
+
+        javadocNode.addChild(create((Token) ctx.TAG_CLOSE().getPayload()));
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitHtmlTagEnd(JavadocCommentsParser.HtmlTagEndContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_TAG_END);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitHtmlAttribute(JavadocCommentsParser.HtmlAttributeContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTE);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitHtmlContent(JavadocCommentsParser.HtmlContentContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_CONTENT);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
+    @Override
+    public JavadocNodeImpl visitNonTightHtmlContent(JavadocCommentsParser.NonTightHtmlContentContext ctx) {
+        final JavadocNodeImpl javadocNode =
+                createImaginary(JavadocCommentsTokenTypes.HTML_CONTENT);
+        processChildren(javadocNode, ctx.children);
+        return javadocNode;
+    }
+
     private JavadocNodeImpl flattenedTree(ParserRuleContext ctx) {
         final JavadocNodeImpl dummyNode = new JavadocNodeImpl();
         processChildren(dummyNode, ctx.children);

@@ -115,7 +115,9 @@ public class JavadocNodeImpl implements DetailNode {
             while (node != null && node.getLineNumber() == NOT_INITIALIZED) {
                 node = (JavadocNodeImpl) node.getNextSibling();
             }
-            lineNumber = node.getLineNumber();
+            if (node != null) {
+                lineNumber = node.getLineNumber();
+            }
         }
         return this.lineNumber;
     }
@@ -127,7 +129,9 @@ public class JavadocNodeImpl implements DetailNode {
             while (node != null && node.getColumnNumber() == NOT_INITIALIZED) {
                 node = (JavadocNodeImpl) node.getNextSibling();
             }
-            columnNumber = node.getColumnNumber();
+            if (node != null) {
+                columnNumber = node.getColumnNumber();
+            }
         }
         return this.columnNumber;
     }
