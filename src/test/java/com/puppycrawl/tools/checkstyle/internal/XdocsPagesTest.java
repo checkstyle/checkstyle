@@ -1426,8 +1426,7 @@ public class XdocsPagesTest {
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
         String result;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             final Pattern[] newArray = new Pattern[collection.size()];
             final Iterator<?> iterator = collection.iterator();
             int index = 0;
@@ -1474,8 +1473,7 @@ public class XdocsPagesTest {
         }
         else {
             final Stream<?> valuesStream;
-            if (value instanceof Collection) {
-                final Collection<?> collection = (Collection<?>) value;
+            if (value instanceof Collection<?> collection) {
                 valuesStream = collection.stream();
             }
             else {
@@ -1507,8 +1505,7 @@ public class XdocsPagesTest {
      */
     private static String getIntArrayPropertyValue(Object value) {
         final IntStream stream;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             stream = collection.stream()
                     .mapToInt(number -> (int) number);
         }

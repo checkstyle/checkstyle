@@ -660,13 +660,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
-    <specifier>call.ui</specifier>
-    <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
     <lineContent>final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();</lineContent>
   </checkerFrameworkError>
 
@@ -821,7 +814,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>
-    <lineContent>if (tree.getLastSelectedPathComponent() instanceof DetailAST) {</lineContent>
+    <lineContent>if (tree.getLastSelectedPathComponent() instanceof DetailAST ast) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
