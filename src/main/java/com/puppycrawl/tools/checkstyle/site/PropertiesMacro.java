@@ -335,7 +335,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 sink.text("subset of tokens");
 
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
@@ -348,7 +348,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
             sink.text("subset of javadoc tokens");
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
@@ -490,7 +490,7 @@ public class PropertiesMacro extends AbstractMacro {
                                 check.getRequiredTokens())
                         .stream()
                         .map(TokenUtil::getTokenName)
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_TOKEN_TYPES, true);
             }
         }
@@ -501,7 +501,7 @@ public class PropertiesMacro extends AbstractMacro {
                             check.getRequiredJavadocTokens())
                     .stream()
                     .map(JavadocUtil::getTokenName)
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {

@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -291,7 +290,7 @@ public class AbstractAutomaticBeanTest {
 
         final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
                 .map(Pattern::pattern)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         assertWithMessage("invalid size of result")
                 .that(bean.patterns)
@@ -312,7 +311,7 @@ public class AbstractAutomaticBeanTest {
 
         final List<String> actualPatternStrings = Arrays.stream(bean.patterns)
                 .map(Pattern::pattern)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         assertWithMessage("invalid size of result")
                 .that(bean.patterns)
