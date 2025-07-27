@@ -74,7 +74,8 @@
                        //MethodDeclaration[@Name='testTokenNumbering']
                    | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
-                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
+                   | //ClassDeclaration[@SimpleName='IndentationCheckTest']
+                   | //ClassDeclaration[@SimpleName='XdocsPagesTest']"/>
     </properties>
   </rule>
 

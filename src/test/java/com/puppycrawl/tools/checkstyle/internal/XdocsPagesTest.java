@@ -373,6 +373,8 @@ public class XdocsPagesTest {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             if (!"index.xml".equals(fileName)
+                    // Filters are excluded because they are not included in the main checks.xml
+                    // file and have their own separate validation in testFiltersIndexPageTable()
                     || path.getParent().toString().contains("filters")) {
                 continue;
             }
@@ -394,6 +396,47 @@ public class XdocsPagesTest {
                     .that(description)
                     .isEqualTo(summaries.get(checkName));
             }
+        }
+    }
+
+    @Test
+    public void testFiltersIndexPageTable() throws Exception {
+        final Path filtersIndexPath = Path.of("src/site/xdoc/filters/index.xml");
+        final String input = Files.readString(filtersIndexPath);
+        final Document document = XmlUtil.getRawXml(filtersIndexPath.toString(), input, input);
+        final NodeList sources = document.getElementsByTagName("tr");
+
+        for (int position = 0; position < sources.getLength(); position++) {
+            final Node tableRow = sources.item(position);
+            final Iterator<Node> cells = XmlUtil
+                    .findChildElementsByTag(tableRow, "td").iterator();
+
+            if (!cells.hasNext()) {
+                continue;
+            }
+
+            final Node nameCell = cells.next();
+            if (!cells.hasNext()) {
+                continue;
+            }
+
+            final Node descriptionCell = cells.next();
+            final String filterName = XmlUtil.sanitizeXml(nameCell.getTextContent().trim());
+            final String description = XmlUtil.sanitizeXml(descriptionCell.getTextContent().trim());
+
+            assertWithMessage("Filter name in filters/index.xml should not be empty")
+                    .that(filterName)
+                    .isNotEmpty();
+
+            assertWithMessage("Filter description for " + filterName
+                    + " in filters/index.xml should not be empty")
+                    .that(description)
+                    .isNotEmpty();
+
+            assertWithMessage("Filter description for " + filterName
+                    + " in filters/index.xml should end with a period")
+                    .that(description.charAt(description.length() - 1))
+                    .isEqualTo('.');
         }
     }
 
