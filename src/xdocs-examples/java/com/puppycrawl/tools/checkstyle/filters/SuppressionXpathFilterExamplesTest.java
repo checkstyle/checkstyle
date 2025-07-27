@@ -183,6 +183,25 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
+    public void testExample9() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:37: Throwing 'RuntimeException' is not allowed.",
+            "21:37: Throwing 'RuntimeException' is not allowed.",
+        };
+
+        final String[] expectedWithFilter = {
+            "21:37: Throwing 'RuntimeException' is not allowed.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example9.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample10() throws Exception {
 
         final String[] expectedWithoutFilter = {
