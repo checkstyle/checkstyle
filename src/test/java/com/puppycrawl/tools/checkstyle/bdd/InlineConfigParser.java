@@ -456,6 +456,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck");
         MODULE_MAPPINGS.put("LocalVariableName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck");
+        MODULE_MAPPINGS.put("ModifierOrder",
+                "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck");
     }
 
     /** Stop instances being created. **/

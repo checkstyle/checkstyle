@@ -262,18 +262,35 @@ public class InputTest {
 }
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>
+
+        <p id="Example10-config">
+          For example 10, to configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions10-raw">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
           all children nodes at any level. Keyword <code>node()</code> selects node elements.
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
-          /descendant-or-self::node()"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions10.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example10-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p>Some elements can be suppressed in different ways.
           For example, to suppress violation on variable <code>wordCount</code> in following code:
