@@ -196,25 +196,33 @@
           | //METHOD_DEF[./IDENT[@text='calculate']]/*"/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>
-          The following example demonstrates how to suppress <code>RequireThis</code> violations for
+
+        <p id="Example8-config">
+          For example 8, to configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions8-raw">
+          In order to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="RequireThis"
-     query="//CLASS_DEF[./IDENT[@text='InputTest']]
-          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  private int age = 23;
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions8.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example8-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-  public void changeAge() {
-    age = 24; // violation will be suppressed
-  }
-}
-        </code></pre></div>
-        <hr class="example-separator"/>
         <p>
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
