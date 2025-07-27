@@ -807,19 +807,64 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
+
         <p>
           The problem with query above that it will suppress violations for all methods with
-          annotation <code>@Generated</code>. In order to suppress methods with
-          <code>@Generated(&quot;second&quot;)</code> annotations only, you need to look at AST tree again.
-          Value of the <code>ANNOTATION</code> node is stored inside sub-node with token type
-          <code>STRING_LITERAL</code>. Use the following query to suppress methods with
-          <code>@Generated(&quot;second&quot;)</code> annotation:
+          annotation <code>@Generated</code>.
+        </p>
+        <p id="Example14-config">
+          For next example #14, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions14.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          In order to suppress methods with <code>@Generated(&quot;second&quot;)</code> annotations only,
+          you need to look at AST tree again. Value of the <code>ANNOTATION</code> node is stored
+          inside sub-node with token type <code>STRING_LITERAL</code>.
+        </p>
+        <p id="suppressions14-raw">
+          Use the following query to suppress methods with <code>@Generated(&quot;second&quot;)</code>
+          annotation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//METHOD_DEF[.//ANNOTATION[
+            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example14-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[.//ANNOTATION[
-            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example14
+{
+  // violation 2 lines below "'{' at column 23 should be on a new line."
+  @Generated("first")
+  public void test1() {
+  }
+
+  // filtered violation 2 lines below "'{' at column 23 should be on a new line."
+  @Generated("second")
+  public void test2() {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

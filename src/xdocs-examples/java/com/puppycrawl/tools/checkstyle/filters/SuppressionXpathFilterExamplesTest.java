@@ -196,4 +196,23 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
                 expectedWithFilter);
     }
 
+    @Test
+    public void testExample14() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "21:23: '{' at column 23 should be on a new line.",
+            "26:23: '{' at column 23 should be on a new line.",
+        };
+
+        final String[] expectedWithFilter = {
+            "21:23: '{' at column 23 should be on a new line.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example14.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
 }
