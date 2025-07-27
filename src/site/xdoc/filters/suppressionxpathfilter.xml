@@ -603,18 +603,55 @@ public class InputTest {
 }
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>
+
+        <p id="Example10-config">
+          For example 10, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions10.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="ModifierOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions10-raw">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
           all children nodes at any level. Keyword <code>node()</code> selects node elements.
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+&lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
+          /descendant-or-self::node()"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example10-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='legacyMethod']]
-          /descendant-or-self::node()&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example10 {
+
+  final public void legacyMethod() { // filtered violation 'modifier out of order'
+    strictfp abstract class legacyClass {}
+    // filtered violation above 'modifier out of order'
+  }
+
+  public void otherMethod() {
+    strictfp abstract class strangeClass {} // violation, 'modifier out of order'
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
 
         <p>Some elements can be suppressed in different ways.
           For example, to suppress violation on variable <code>wordCount</code> in following code:

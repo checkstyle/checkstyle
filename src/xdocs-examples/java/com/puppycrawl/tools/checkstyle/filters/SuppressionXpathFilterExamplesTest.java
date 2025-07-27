@@ -31,25 +31,6 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
-    public void testExample8() throws Exception {
-
-        final String[] expectedWithoutFilter = {
-            "22:5: Reference to instance variable 'age' needs \"this.\".",
-            "26:12: Reference to instance variable 'age' needs \"this.\".",
-        };
-
-        final String[] expectedWithFilter = {
-            "26:12: Reference to instance variable 'age' needs \"this.\".",
-        };
-
-        System.setProperty("config.folder", "src/xdocs-examples/resources/"
-            + getPackageLocation());
-        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
-                expectedWithoutFilter,
-                expectedWithFilter);
-    }
-
-    @Test
     public void testExample1() throws Exception {
 
         final String[] expectedWithoutFilter = {
@@ -156,6 +137,45 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
             + getPackageLocation());
         verifyFilterWithInlineConfigParser(getPath("Example6.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "22:5: Reference to instance variable 'age' needs \"this.\".",
+            "26:12: Reference to instance variable 'age' needs \"this.\".",
+        };
+
+        final String[] expectedWithFilter = {
+            "26:12: Reference to instance variable 'age' needs \"this.\".",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example8.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
+    public void testExample10() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "17:9: 'public' modifier out of order with the JLS suggestions.",
+            "18:14: 'abstract' modifier out of order with the JLS suggestions.",
+            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+        };
+
+        final String[] expectedWithFilter = {
+            "23:14: 'abstract' modifier out of order with the JLS suggestions.",
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example10.java"),
                 expectedWithoutFilter,
                 expectedWithFilter);
     }
