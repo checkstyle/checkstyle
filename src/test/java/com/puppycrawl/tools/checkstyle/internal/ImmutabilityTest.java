@@ -362,8 +362,7 @@ public class ImmutabilityTest {
             boolean isParameterizedTypeImmutable = false;
             final JavaType javaType = javaField.getType();
 
-            if (javaType instanceof JavaParameterizedType) {
-                final JavaParameterizedType parameterizedType = (JavaParameterizedType) javaType;
+            if (javaType instanceof JavaParameterizedType parameterizedType) {
                 isParameterizedTypeImmutable = parameterizedType.getActualTypeArguments().stream()
                     .allMatch(actualTypeArgument -> {
                         return IMMUTABLE_TYPES.contains(actualTypeArgument.toErasure().getName());
