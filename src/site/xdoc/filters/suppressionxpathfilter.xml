@@ -494,25 +494,57 @@ public class Example5 {
           | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>
-          The following example demonstrates how to suppress <code>RequireThis</code> violations for
+
+        <p id="Example8-config">
+          For example 8, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions8.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions8-raw">
+          In order to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks="RequireThis"
+     query="//CLASS_DEF[./IDENT[@text='Example8']]
+          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;RequireThis&quot;
-     query=&quot;//CLASS_DEF[./IDENT[@text='InputTest']]
-          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  private int age = 23;
+public class Example8 {
+
+  int age = 23;
 
   public void changeAge() {
-    age = 24; // violation will be suppressed
+    age = 24; // filtered violation 'Reference to instance variable'
   }
+
+  public int getAge() {
+    return age; // violation, 'Reference to instance variable'
+  }
+
 }
-        </code></pre></div>
-        <hr class="example-separator"/>
+</code></pre></div><hr class="example-separator"/>
+
         <p>
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
