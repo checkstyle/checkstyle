@@ -631,7 +631,7 @@ public class InputTest {
 "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
 
 &lt;suppressions&gt;
-&lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
+    &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
           /descendant-or-self::node()"/&gt;
 &lt;/suppressions&gt;
 </code></pre></div>
@@ -694,15 +694,48 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             ./IDENT[@text='wordCount']]&quot;/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
-        above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
-        responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
-        <p>The following example demonstrates how variable can be queried by its value, same
-        approach applies to <code>String, char, float, double, int, long</code> data types:</p>
+
+        <p id="Example12-config">
+          Another way is to suppress by variable value. To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions12.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          Again, if you look at the printed AST tree above, you will notice that one of the
+          grandchildren of <code>VARIABLE_DEF</code> node is responsible for storing variable value
+          - <code>NUM_INT</code> with value <b>11</b>.
+        </p>
+        <p id="suppressions12-raw">
+          The following example demonstrates how variable can be queried by its value, same
+          approach applies to <code>String, char, float, double, int, long</code> data types:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress-xpath checks="." query="//VARIABLE_DEF//NUM_INT[@text=11]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example12-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[.//NUM_INT[@text=11]]&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example12 {
+  private int wordCount = 11; // filtered violation "'11' is a magic number."
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p>Next example is about suppressing method with certain annotation by its name and
         element value.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">

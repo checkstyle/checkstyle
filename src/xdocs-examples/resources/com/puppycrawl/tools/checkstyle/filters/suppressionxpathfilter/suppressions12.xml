@@ -4,6 +4,5 @@
 "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 
 <suppressions>
-    <suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
-          /descendant-or-self::node()"/>
+    <suppress-xpath checks="." query="//VARIABLE_DEF//NUM_INT[@text=11]"/>
 </suppressions>
