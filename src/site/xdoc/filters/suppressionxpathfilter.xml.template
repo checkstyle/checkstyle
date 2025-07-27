@@ -333,15 +333,38 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             ./IDENT[@text='wordCount']]"/&gt;
         </code></pre></div>
         <hr class="example-separator"/>
-        <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
-        above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
-        responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
-        <p>The following example demonstrates how variable can be queried by its value, same
-        approach applies to <code>String, char, float, double, int, long</code> data types:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="." query="//VARIABLE_DEF[.//NUM_INT[@text=11]]"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+
+        <p id="Example12-config">
+          Another way is to suppress by variable value. To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p>
+          Again, if you look at the printed AST tree above, you will notice that one of the
+          grandchildren of <code>VARIABLE_DEF</code> node is responsible for storing variable value
+          - <code>NUM_INT</code> with value <b>11</b>.
+        </p>
+        <p id="suppressions12-raw">
+          The following example demonstrates how variable can be queried by its value, same
+          approach applies to <code>String, char, float, double, int, long</code> data types:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions12.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example12-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <p>Next example is about suppressing method with certain annotation by its name and
         element value.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
