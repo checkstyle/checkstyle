@@ -46,6 +46,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontal
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAfterDoubleSlashes.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeEllipsis.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceInsideArrayInitializer.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4821onevariableperline/InputOneVariablePerDeclaration.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputClassWithChainedMethods.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputAnnotationArrayInitMultiline.java
