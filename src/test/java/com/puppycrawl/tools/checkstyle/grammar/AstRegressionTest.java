@@ -126,7 +126,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava14InstanceofWithPatternMatching() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14InstanceofWithPatternMatchingAST.txt"),
-                getPath("java14/InputJava14InstanceofWithPatternMatching.java"));
+                getNonCompilablePath("java14/InputJava14InstanceofWithPatternMatching.java"));
     }
 
     @Test
@@ -197,7 +197,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testJava14SwitchExpression() throws Exception {
         verifyAst(getPath("java14/ExpectedJava14SwitchExpression.txt"),
-                getPath("java14/InputJava14SwitchExpression.java"));
+                getNonCompilablePath("java14/InputJava14SwitchExpression.java"));
     }
 
     @Test
@@ -245,7 +245,7 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testInputAnnotatedMethodVariableArityParam() throws Exception {
         verifyAst(getPath("ExpectedAstRegressionAnnotatedMethodVariableArityParam.txt"),
-                getPath("InputAstRegressionAnnotatedMethodVariableArityParam.java"));
+                getNonCompilablePath("InputAstRegressionAnnotatedMethodVariableArityParam.java"));
     }
 
     @Test
