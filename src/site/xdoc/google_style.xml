@@ -1349,7 +1349,7 @@
                 </td>
                 <td>
                   <a href="styleguides/google-java-style-20220203/javaguide.html#s4.8.4.3-switch-default">
-                    4.8.4.3 Presence of the default label</a>
+                    4.8.4.3 Exhaustiveness and presence of the default label</a>
                 </td>
                 <td>
                   <span class="wrapper inline">
