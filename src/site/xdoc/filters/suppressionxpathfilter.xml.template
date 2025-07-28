@@ -376,8 +376,10 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
-        <p id="Example12-config">
+        <p>
           Another way is to suppress by variable value.
+        </p>
+        <p id="Example12-config">
           For example #12, to configure the check:
         </p>
         <macro name="example">
@@ -413,12 +415,10 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
     @Generated("first") // should not be suppressed
-    public void test1() {
-    }
+    public void Test1() {}
 
     @Generated("second") // should be suppressed
-    public void test2() {
-    }
+    public void Test2() {}
 }
         </code></pre></div>
         <p>First of all we need to look at AST tree printed by our CLI tool: </p>
@@ -469,16 +469,32 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
         </code></pre></div>
-        <p>
+        <p id="Example13-config">
+          For example #13, to configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example13.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="suppressions13-raw">
           AST node <code>ANNOTATION -&gt; ANNOTATION [6:4]</code> has direct child
           <code>IDENT -&gt; Generated [6:5]</code>,
           therefore can be queried by <code>IDENT</code> value:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="." query="//METHOD_DEF[
-            .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions13.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example13-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example13.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p>
           The problem with query above that it will suppress violations for all methods with
