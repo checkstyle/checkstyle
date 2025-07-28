@@ -5282,4 +5282,7 @@
   <inspection_tool class="TextBlockMigration" enabled="false"
                    level="WARNING" enabled_by_default="true"/>
 
+  <inspection_tool class="FinalStaticMethod" enabled="false"
+                   level="ERROR" enabled_by_default="true"/>
+
 </profile>
