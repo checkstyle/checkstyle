@@ -346,20 +346,39 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |   `--SEMI -&gt; ; [2:30]
 `--RCURLY -&gt; } [3:0]
         </code></pre></div>
+        <p id="Example11-config">
+          For example #11, to configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
           node refers to variable declaration statement and has child node with token type
           <code>IDENT</code> which is used for storing class, method, variable names.
         </p>
-        <p>The following example demonstrates how variable can be queried by its name:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks="." query="//VARIABLE_DEF[
-            ./IDENT[@text='wordCount']]"/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+        <p id="suppressions11-raw">
+          The following example demonstrates how variable can be queried by its name:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/suppressions11.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example11-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/filters/suppressionxpathfilter/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <p id="Example12-config">
-          Another way is to suppress by variable value. To configure the check:
+          Another way is to suppress by variable value.
+          For example #12, to configure the check:
         </p>
         <macro name="example">
           <param name="path"
