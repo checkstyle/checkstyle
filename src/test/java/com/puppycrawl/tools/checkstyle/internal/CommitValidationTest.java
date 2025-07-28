@@ -159,8 +159,11 @@ public class CommitValidationTest {
     @Test
     public void testRevertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
-                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""
-                    + "\nThis reverts commit ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .that(validateCommitMessage("""
+                        Revert "doc: release notes for 10.8.0"\
+
+                        This reverts commit ff873c3c22161656794c969bb28a8cb09595f.
+                        """))
                 .isEqualTo(0);
         assertWithMessage("should accept proper revert commit message")
                 .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""))
