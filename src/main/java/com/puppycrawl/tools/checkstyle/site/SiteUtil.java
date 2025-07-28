@@ -447,7 +447,7 @@ public final class SiteUtil {
      * @return the javadocs of the properties of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    public static Map<String, DetailNode> getPropertiesJavadocs(Set<String> properties,
+    public static Map<String, DetailNode> getModuleAndPropertiesJavadocs(Set<String> properties,
                                                                 String moduleName, Path modulePath)
             throws MacroExecutionException {
         // lazy initialization
@@ -706,7 +706,7 @@ public final class SiteUtil {
             getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
 
         if (specifiedPropertyVersion.isPresent()) {
-            sinceVersion = specifiedPropertyVersion.get();
+            sinceVersion = specifiedPropertyVersion.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -750,7 +750,7 @@ public final class SiteUtil {
 
         if (propertyModuleJavadoc.isPresent()) {
             final DetailNode primaryJavadocInlineTag = JavadocUtil.findFirstToken(
-                propertyModuleJavadoc.get(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
+                    propertyModuleJavadoc.orElseThrow(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
 
             for (DetailNode textNode = JavadocUtil
                 .getNextSibling(primaryJavadocInlineTag, JavadocTokenTypes.TEXT);
