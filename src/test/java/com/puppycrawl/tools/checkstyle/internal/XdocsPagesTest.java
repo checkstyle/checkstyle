@@ -1948,21 +1948,24 @@ public class XdocsPagesTest {
 
         for (Node anchor : anchors) {
             final String actualUrl;
-            final String expectedUrl;
+            final StringBuilder expectedUrl = new StringBuilder(ruleNumber);
 
             if (position == 1) {
                 actualUrl = XmlUtil.getNameAttributeOfNode(anchor);
-                expectedUrl = ruleNumber;
+
+                if ("google_style.xml".equals(fileName)) {
+                    expectedUrl.insert(0, "a");
+                }
             }
             else {
                 actualUrl = anchor.getAttributes().getNamedItem("href").getTextContent();
-                expectedUrl = "#" + ruleNumber;
+                expectedUrl.insert(0, "#");
             }
 
             assertWithMessage(fileName + " rule '" + ruleName + "' anchor "
                     + position + " should have matching name/url")
                 .that(actualUrl)
-                .isEqualTo(expectedUrl);
+                .isEqualTo(expectedUrl.toString());
 
             position++;
         }
