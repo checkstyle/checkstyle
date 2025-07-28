@@ -480,4 +480,20 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeAboveComments.java"), expected);
     }
+
+    @Test
+    public void testJavadocWithNative() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeWithNative.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeWithBlockComment() throws Exception {
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeWithBlockComment.java"), expected);
+    }
 }
