@@ -27,7 +27,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-            git clone git@github.com:your_user_name/checkstyle.git
+git clone git@github.com:your_user_name/checkstyle.git
         </code></pre></div>
       </div>
       <p>
@@ -36,7 +36,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-            ./mvnw install
+./mvnw install
         </code></pre></div>
       </div>
     </section>
@@ -62,7 +62,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git remote add upstream https://github.com/checkstyle/checkstyle
+git remote add upstream https://github.com/checkstyle/checkstyle
         </code></pre></div>
       </div>
       <p>
@@ -70,7 +70,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git checkout -b my-new-check
+git checkout -b my-new-check
         </code></pre></div>
       </div>
       <p>
@@ -78,8 +78,8 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git add .
-          git commit -m "commit message"
+git add .
+git commit -m "commit message"
         </code></pre></div>
       </div>
       <p>
@@ -87,7 +87,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git push origin my-new-check
+git push origin my-new-check
         </code></pre></div>
       </div>
       <p>
@@ -98,8 +98,8 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git rebase -i master
-          git push --force origin my-new-check
+git rebase -i master
+git push --force origin my-new-check
         </code></pre></div>
       </div>
       <p>
@@ -108,9 +108,9 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git checkout master
-          git pull upstream master
-          git push origin master
+git checkout master
+git pull upstream master
+git push origin master
         </code></pre></div>
       </div>
       <p>
@@ -118,8 +118,8 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git checkout my-new-check
-          git rebase master
+git checkout my-new-check
+git rebase master
         </code></pre></div>
       </div>
       <p>
@@ -128,12 +128,12 @@
            After fixing conflicts, use
       </p>
       <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-        git add .
+git add .
       </code></pre></div>
       <p> to update the index with those contents, and then just run:</p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git rebase --continue
+git rebase --continue
         </code></pre></div>
       </div>
       <p>
@@ -141,7 +141,7 @@
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-          git push --force origin my-new-check
+git push --force origin my-new-check
         </code></pre></div>
       </div>
       <p>
