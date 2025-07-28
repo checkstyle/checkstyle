@@ -706,7 +706,7 @@ public final class SiteUtil {
             getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
 
         if (specifiedPropertyVersion.isPresent()) {
-            sinceVersion = specifiedPropertyVersion.get();
+            sinceVersion = specifiedPropertyVersion.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -750,7 +750,7 @@ public final class SiteUtil {
 
         if (propertyModuleJavadoc.isPresent()) {
             final DetailNode primaryJavadocInlineTag = JavadocUtil.findFirstToken(
-                propertyModuleJavadoc.get(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
+                    propertyModuleJavadoc.orElseThrow(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
 
             for (DetailNode textNode = JavadocUtil
                 .getNextSibling(primaryJavadocInlineTag, JavadocTokenTypes.TEXT);
@@ -1116,8 +1116,8 @@ public final class SiteUtil {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
