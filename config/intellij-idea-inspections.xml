@@ -5278,8 +5278,5 @@
   <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17300 -->
   <inspection_tool class="EnhancedSwitchMigration" enabled="false"
                    level="WARNING" enabled_by_default="true" />
-  <!-- https://github.com/checkstyle/checkstyle/issues/17304 -->
-  <inspection_tool class="TextBlockMigration" enabled="false"
-                   level="WARNING" enabled_by_default="true"/>
 
 </profile>

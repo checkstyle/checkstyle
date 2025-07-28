@@ -412,10 +412,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
         try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            final String configComment = "/*\n"
-                    + "com.puppycrawl.tools.checkstyle.TreeWalkerTest"
-                    + "$RequiredTokenIsEmptyIntArray\n\n"
-                    + "*/";
+            final String configComment = """
+                    /*
+                    com.puppycrawl.tools.checkstyle.TreeWalkerTest\
+                    $RequiredTokenIsEmptyIntArray
+
+                    */""";
             writer.write(configComment);
         }
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
