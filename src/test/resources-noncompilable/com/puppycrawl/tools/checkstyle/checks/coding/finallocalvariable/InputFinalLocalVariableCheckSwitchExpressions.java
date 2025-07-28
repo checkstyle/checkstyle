@@ -6,7 +6,7 @@ tokens = (default)VARIABLE_DEF
 
 */
 
-// Java17
+// non-compiled with eclipse: local variable may not have been initialized
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 public class InputFinalLocalVariableCheckSwitchExpressions {
