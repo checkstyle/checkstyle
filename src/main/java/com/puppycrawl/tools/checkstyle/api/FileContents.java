@@ -239,16 +239,31 @@ public final class FileContents implements CommentListener {
         return values.stream()
             .flatMap(List::stream)
             .filter(comment -> !javadocComments.containsValue(comment))
-            .anyMatch(comment -> {
-                final boolean lineInSideBlockComment = lineNo >= comment.getStartLineNo()
-                                                    && lineNo <= comment.getEndLineNo();
-                boolean lineHasOnlyBlockComment = true;
-                if (comment.getStartLineNo() == comment.getEndLineNo()) {
-                    final String line = line(comment.getStartLineNo() - 1).trim();
-                    lineHasOnlyBlockComment = line.startsWith("/*") && line.endsWith("*/");
-                }
-                return lineInSideBlockComment && lineHasOnlyBlockComment;
-            });
+            .anyMatch(comment -> isFullLineBlockComment(lineNo, comment));
+    }
+
+    /**
+     * Checks if the given line is inside a block comment
+     * and both the start and end lines contain only the comment.
+     *
+     * @param lineNo the line number to check
+     * @param comment the block comment to inspect
+     * @return {@code true} if it's a full-line block comment, {@code false} otherwise
+     */
+    private boolean isFullLineBlockComment(int lineNo, TextBlock comment) {
+        final boolean lineInSideBlockComment = lineNo >= comment.getStartLineNo()
+                && lineNo <= comment.getEndLineNo();
+        boolean lineHasOnlyBlockComment = true;
+        final String startLine = line(comment.getStartLineNo() - 1).trim();
+        if (!startLine.startsWith("/*")) {
+            lineHasOnlyBlockComment = false;
+        }
+
+        final String endLine = line(comment.getEndLineNo() - 1).trim();
+        if (!endLine.endsWith("*/")) {
+            lineHasOnlyBlockComment = false;
+        }
+        return lineInSideBlockComment && lineHasOnlyBlockComment;
     }
 
     /**
