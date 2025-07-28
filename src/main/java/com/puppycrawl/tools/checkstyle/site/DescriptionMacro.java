@@ -47,8 +47,8 @@ public class DescriptionMacro extends AbstractMacro {
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
         final Set<String> propertyNames = ModuleJavadocParsingUtil.getPropertyNames(moduleName);
-        final Map<String, DetailNode> moduleAndPropertiesJavadocs = SiteUtil.getPropertiesJavadocs(
-            propertyNames, moduleName, modulePath);
+        final Map<String, DetailNode> moduleAndPropertiesJavadocs =
+            SiteUtil.getModuleAndPropertiesJavadocs(propertyNames, moduleName, modulePath);
 
         final DetailNode moduleJavadoc = moduleAndPropertiesJavadocs.get(moduleName);
 
