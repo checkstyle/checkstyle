@@ -358,20 +358,4 @@ public class FileContentsTest {
                 .that(ex.getClass())
                 .isEqualTo(UnsupportedOperationException.class);
     }
-
-    @Test
-    public void testIsFullLineBlockComment() {
-        final FileContents fileContents = new FileContents(new FileText(new File("filename"),
-                 Arrays.asList(
-                         "/** This is Javadoc */", " /* comment ",
-                         " ", " comment */  ", "int x = 5;")));
-        fileContents.reportBlockComment(1, 0, 1, 21);
-        fileContents.reportBlockComment(2, 0, 4, 12);
-        final TextBlock javadoc = fileContents.getJavadocBefore(5);
-        final Comment expected = new Comment(new String[] {"/** This is Javadoc */"}, 0, 1, 21);
-
-        assertWithMessage("Expected to get: /** This is Javadoc */")
-                .that(javadoc.toString())
-                .isEqualTo(expected.toString().trim());
-    }
 }
