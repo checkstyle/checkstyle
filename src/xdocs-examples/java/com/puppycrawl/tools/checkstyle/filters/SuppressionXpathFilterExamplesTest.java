@@ -222,6 +222,22 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
+    public void testExample11() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "16:27: '11' is a magic number.",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example11.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample12() throws Exception {
 
         final String[] expectedWithoutFilter = {
