@@ -447,7 +447,7 @@ public final class SiteUtil {
      * @return the javadocs of the properties of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    public static Map<String, DetailNode> getPropertiesJavadocs(Set<String> properties,
+    public static Map<String, DetailNode> getModuleAndPropertiesJavadocs(Set<String> properties,
                                                                 String moduleName, Path modulePath)
             throws MacroExecutionException {
         // lazy initialization
@@ -1116,8 +1116,8 @@ public final class SiteUtil {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);

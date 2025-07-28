@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -48,12 +47,12 @@ public class NotesMacro extends AbstractMacro {
 
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
-        final Path modulePath = Paths.get((String) request.getParameter("modulePath"));
+        final Path modulePath = Path.of((String) request.getParameter("modulePath"));
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
         final Set<String> propertyNames = ModuleJavadocParsingUtil.getPropertyNames(moduleName);
-        final Map<String, DetailNode> moduleAndPropertiesJavadocs = SiteUtil.getPropertiesJavadocs(
-            propertyNames, moduleName, modulePath);
+        final Map<String, DetailNode> moduleAndPropertiesJavadocs =
+            SiteUtil.getModuleAndPropertiesJavadocs(propertyNames, moduleName, modulePath);
 
         final DetailNode moduleJavadoc = moduleAndPropertiesJavadocs.get(moduleName);
         if (moduleJavadoc == null) {
