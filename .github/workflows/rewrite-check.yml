@@ -39,5 +39,5 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
-      - name: Execute rewrite on compile phase
+      - name: Execute rewrite-check on compile phase
         run: groovy ./.ci/rewrite-check.groovy compile

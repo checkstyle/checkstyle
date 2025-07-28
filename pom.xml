@@ -632,23 +632,13 @@
               <exclusion>**RegexpOnFilenameCheckExamplesTest.java</exclusion>
               <exclusion>**RegexpSinglelineJavaCheck.java</exclusion>
               <exclusion>**SuppressionXpathSingleFilterExamplesTest.java</exclusion>
+              <exclusion>**PropertiesMacro.java.java</exclusion>
               <exclusion>**TreeWalkerTest.java</exclusion>
             </exclusions>
             <exportDatatables>true</exportDatatables>
             <failOnDryRunResults>true</failOnDryRunResults>
             <rewriteSkip>${rewrite.skip}</rewriteSkip>
           </configuration>
-          <!-- local execution does collide:
-          java.lang.NoClassDefFoundError: org/jacoco/agent/rt/internal_0e20598/Offline
-          <executions>
-            <execution>
-              <phase>verify</phase>
-              <goals>
-                <goal>dryRun</goal>
-              </goals>
-            </execution>
-          </executions>
-          -->
           <dependencies>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
