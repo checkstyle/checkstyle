@@ -254,15 +254,32 @@ public class SuppressionXpathFilterExamplesTest extends AbstractExamplesModuleTe
     }
 
     @Test
+    public void testExample13() throws Exception {
+
+        final String[] expectedWithoutFilter = {
+            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        final String[] expectedWithFilter = {};
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyFilterWithInlineConfigParser(getPath("Example13.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
+    }
+
+    @Test
     public void testExample14() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "21:23: '{' at column 23 should be on a new line.",
-            "26:23: '{' at column 23 should be on a new line.",
+            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:15: Name 'Test2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         final String[] expectedWithFilter = {
-            "21:23: '{' at column 23 should be on a new line.",
+            "18:15: Name 'Test1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
         System.setProperty("config.folder", "src/xdocs-examples/resources/"
