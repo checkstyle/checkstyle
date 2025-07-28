@@ -201,7 +201,7 @@ public class PropertiesMacro extends AbstractMacro {
 
         final Set<String> properties = SiteUtil.getPropertiesForDocumentation(clss, instance);
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
-                .getPropertiesJavadocs(properties, currentModuleName, currentModulePath);
+                .getModuleAndPropertiesJavadocs(properties, currentModuleName, currentModulePath);
 
         final List<String> orderedProperties = orderProperties(properties);
 
