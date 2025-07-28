@@ -784,8 +784,10 @@ public class Example11 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example12-config">
+        <p>
           Another way is to suppress by variable value.
+        </p>
+        <p id="Example12-config">
           For example #12, to configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -831,12 +833,10 @@ public class Example12 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
     @Generated(&quot;first&quot;) // should not be suppressed
-    public void test1() {
-    }
+    public void Test1() {}
 
     @Generated(&quot;second&quot;) // should be suppressed
-    public void test2() {
-    }
+    public void Test2() {}
 }
         </code></pre></div>
         <p>First of all we need to look at AST tree printed by our CLI tool: </p>
@@ -887,16 +887,49 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
         </code></pre></div>
-        <p>
+        <p id="Example13-config">
+          For example #13, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions13.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions13-raw">
           AST node <code>ANNOTATION -&gt; ANNOTATION [6:4]</code> has direct child
           <code>IDENT -&gt; Generated [6:5]</code>,
           therefore can be queried by <code>IDENT</code> value:
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//METHOD_DEF[
+            .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example13-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
-            .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
-        </code></pre></div>
-        <hr class="example-separator"/>
+public class Example13 {
+  // filtered violation 2 lines below "Name 'Test1' must match pattern"
+  @Generated("first")
+  public void Test1() {}
+
+  // filtered violation 2 lines below "Name 'Test2' must match pattern"
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
 
         <p>
           The problem with query above that it will suppress violations for all methods with
@@ -911,9 +944,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
     &lt;module name="SuppressionXpathFilter"&gt;
       &lt;property name="file" value="${config.folder}/suppressions14.xml"/&gt;
     &lt;/module&gt;
-    &lt;module name="LeftCurly"&gt;
-      &lt;property name="option" value="nl"/&gt;
-    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -941,17 +972,14 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example14
-{
-  // violation 2 lines below "'{' at column 23 should be on a new line."
+public class Example14 {
+  // violation 2 lines below "Name 'Test1' must match pattern"
   @Generated("first")
-  public void test1() {
-  }
+  public void Test1() {}
 
-  // filtered violation 2 lines below "'{' at column 23 should be on a new line."
+  // filtered violation 2 lines below "Name 'Test2' must match pattern"
   @Generated("second")
-  public void test2() {
-  }
+  public void Test2() {}
 }
 </code></pre></div><hr class="example-separator"/>
 
