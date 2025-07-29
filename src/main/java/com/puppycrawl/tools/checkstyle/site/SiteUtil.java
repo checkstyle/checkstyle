@@ -1116,8 +1116,8 @@ public final class SiteUtil {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
