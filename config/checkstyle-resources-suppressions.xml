@@ -94,10 +94,6 @@
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"
-    files="[\\/]TreeWalkerTest\.java"/>
-  <suppress id="noTrailingWhitespace"
-    files="[\\/]GeneratedJavaTokenTypesTest\.java"/>
-  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
