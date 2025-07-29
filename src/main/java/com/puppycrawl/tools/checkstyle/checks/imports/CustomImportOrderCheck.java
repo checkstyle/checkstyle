@@ -52,8 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
  * name and import name are identical:
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
- * package java.util.concurrent.locks;
- *
+ * package java.util.concurrent.locks; <br/>
  * import java.io.File;
  * import java.util.*; //#1
  * import java.util.List; //#2

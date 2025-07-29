@@ -44,8 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-text">
  * &#64;&#64; -32,4 +32,5 &#64;&#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
- * PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
- *
+ * PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type <br/>
  * StaticMethodCandidateCheck.name = Static Method Candidate
  * -StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
  * \ No newline at end of file
