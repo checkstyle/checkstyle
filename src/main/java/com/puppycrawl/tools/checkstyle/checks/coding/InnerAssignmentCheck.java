@@ -48,12 +48,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * String line;
  * while ((line = bufferedReader.readLine()) != null) { // OK
  *   // process the line
- * }
- *
+ * } <br>
  * for (;(line = bufferedReader.readLine()) != null;) { // OK
  *   // process the line
- * }
- *
+ * } <br>
  * do {
  *   // process the line
  * }

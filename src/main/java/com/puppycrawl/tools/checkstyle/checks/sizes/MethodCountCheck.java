@@ -52,22 +52,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * Methods defined in anonymous classes are not counted towards any totals.
  * Counts only go towards the main type declaration parent, and are kept separate
- * from it's children's inner types.
+ * from its children's inner types.
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class ExampleClass {
  *   public enum Colors {
- *     RED, GREEN, YELLOW;
- *
+ *     RED, GREEN, YELLOW; <br>
  *     public String getRGB() { ... } // NOT counted towards ExampleClass
- *   }
- *
+ *   } <br>
  *   public void example() { // counted towards ExampleClass
  *     Runnable r = (new Runnable() {
  *       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
  *     });
- *   }
- *
+ *   } <br>
  *   public static class InnerExampleClass {
  *     protected void example2() { ... } // NOT counted towards ExampleClass,
  *                                    // but counted towards InnerExampleClass
