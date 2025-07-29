@@ -411,12 +411,13 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
+spotbugs-pmd-rewrite)
+  mkdir -p .ci-temp/spotbugs-pmd-rewrite
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
+  cd .ci-temp/spotbugs-pmd-rewrite
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -424,7 +425,7 @@ spotbugs-and-pmd)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
+  removeFolderWithProtectedFiles spotbugs-pmd-rewrite
   exit "$RESULT"
 ;;
 
