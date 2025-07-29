@@ -438,6 +438,21 @@ public final class SiteUtil {
     }
 
     /**
+     * Gets the javadoc of module class.
+     *
+     * @param moduleName name of module.
+     * @param modulePath module's path.
+     * @return javadoc of module.
+     * @throws MacroExecutionException if an error occurs during processing.
+     */
+    public static DetailNode getModuleJavadoc(String moduleName, Path modulePath)
+            throws MacroExecutionException {
+
+        processModule(moduleName, modulePath);
+        return ClassAndPropertiesSettersJavadocScraperResult.getJavadocForModule();
+    }
+
+    /**
      * Get the javadocs of the properties of the module. If the property is not present in the
      * module, then the javadoc of the property from the superclass(es) is used.
      *
@@ -447,7 +462,7 @@ public final class SiteUtil {
      * @return the javadocs of the properties of the module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    public static Map<String, DetailNode> getModuleAndPropertiesJavadocs(Set<String> properties,
+    public static Map<String, DetailNode> getPropertiesJavadocs(Set<String> properties,
                                                                 String moduleName, Path modulePath)
             throws MacroExecutionException {
         // lazy initialization
@@ -457,21 +472,22 @@ public final class SiteUtil {
 
         processModule(moduleName, modulePath);
 
-        final Map<String, DetailNode> unmodifiableJavadocs =
-                ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
-        final Map<String, DetailNode> javadocs = new LinkedHashMap<>(unmodifiableJavadocs);
+        final Map<String, DetailNode> unmodifiablePropertiesJavadocs =
+                ClassAndPropertiesSettersJavadocScraperResult.getJavadocsForProperties();
+        final Map<String, DetailNode> propertiesJavadocs =
+            new LinkedHashMap<>(unmodifiablePropertiesJavadocs);
 
         properties.forEach(property -> {
             final DetailNode superClassPropertyJavadoc =
                     SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
             if (superClassPropertyJavadoc != null) {
-                javadocs.putIfAbsent(property, superClassPropertyJavadoc);
+                propertiesJavadocs.putIfAbsent(property, superClassPropertyJavadoc);
             }
         });
 
-        assertAllPropertySetterJavadocsAreFound(properties, moduleName, javadocs);
+        assertAllPropertySetterJavadocsAreFound(properties, moduleName, propertiesJavadocs);
 
-        return javadocs;
+        return propertiesJavadocs;
     }
 
     /**
@@ -513,9 +529,9 @@ public final class SiteUtil {
             final String superclassName = CommonUtil.getFileNameWithoutExtension(
                 fileNamePath.toString());
             processModule(superclassName, superclassPath);
-            final Map<String, DetailNode> superclassJavadocs =
-                ClassAndPropertiesSettersJavadocScraper.getJavadocsForModuleOrProperty();
-            SUPER_CLASS_PROPERTIES_JAVADOCS.putAll(superclassJavadocs);
+            final Map<String, DetailNode> superclassPropertiesJavadocs =
+                ClassAndPropertiesSettersJavadocScraperResult.getJavadocsForProperties();
+            SUPER_CLASS_PROPERTIES_JAVADOCS.putAll(superclassPropertiesJavadocs);
         }
     }
 
