@@ -20,9 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.beans.Introspector;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -40,13 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition;
 @FileStatefulCheck
 public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocCheck {
 
-    /**
-     * Map of scraped javadocs - name of property, javadoc detail node.
-     * The class javadoc is stored too, with the key being the module name.
-     */
-    private static final Map<String, DetailNode> JAVADOC_FOR_MODULE_OR_PROPERTY =
-            new LinkedHashMap<>();
-
     /** Name of the module being scraped. */
     private static String moduleName = "";
 
@@ -56,17 +46,8 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      * @param newModuleName the module name.
      */
     public static void initialize(String newModuleName) {
-        JAVADOC_FOR_MODULE_OR_PROPERTY.clear();
+        ClassAndPropertiesSettersJavadocScraperResult.clearData();
         moduleName = newModuleName;
-    }
-
-    /**
-     * Get the module or property javadocs map.
-     *
-     * @return the javadocs.
-     */
-    public static Map<String, DetailNode> getJavadocsForModuleOrProperty() {
-        return Collections.unmodifiableMap(JAVADOC_FOR_MODULE_OR_PROPERTY);
     }
 
     @Override
@@ -86,7 +67,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
                     && isMethodOfScrapedModule(methodDef)) {
                 final String methodName = methodDef.findFirstToken(TokenTypes.IDENT).getText();
                 final String propertyName = getPropertyName(methodName);
-                JAVADOC_FOR_MODULE_OR_PROPERTY.put(propertyName, ast);
+                ClassAndPropertiesSettersJavadocScraperResult.setJavadocProperty(propertyName, ast);
             }
 
         }
@@ -95,7 +76,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
             if (classDef != null) {
                 final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
                 if (className.equals(moduleName)) {
-                    JAVADOC_FOR_MODULE_OR_PROPERTY.put(moduleName, ast);
+                    ClassAndPropertiesSettersJavadocScraperResult.setJavadocForModule(ast);
                 }
             }
         }
