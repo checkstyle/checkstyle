@@ -6082,14 +6082,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/DescriptionMacro.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleJavadoc of DescriptionMacro.getDescriptionEndIndex.</message>
-    <lineContent>final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/JavadocScraperResultUtil.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
+    <lineContent>moduleJavadocNode = null;</lineContent>
     <details>
-      found   : @Initialized @Nullable DetailNode
+      found   : null (NullType)
       required: @Initialized @NonNull DetailNode
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/JavadocScraperResultUtil.java</fileName>
+    <specifier>initialization.static.field.uninitialized</specifier>
+    <message>static field moduleJavadocNode not initialized</message>
+    <lineContent>private static DetailNode moduleJavadocNode;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6100,17 +6107,6 @@
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull int @Initialized @NonNull []
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleJavadoc of PropertiesMacro.writePropertyRow.</message>
-    <lineContent>writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailNode
-      required: @Initialized @NonNull DetailNode
     </details>
   </checkerFrameworkError>
 
