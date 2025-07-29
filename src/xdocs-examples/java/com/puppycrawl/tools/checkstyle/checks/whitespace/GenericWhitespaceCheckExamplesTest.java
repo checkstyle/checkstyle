@@ -34,7 +34,7 @@ public class GenericWhitespaceCheckExamplesTest extends AbstractExamplesModuleTe
     public void testExample1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"), expected);
+                getPath("Example1.java"), expected);
     }
 
     @Test
@@ -50,6 +50,6 @@ public class GenericWhitespaceCheckExamplesTest extends AbstractExamplesModuleTe
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example2.java"), expected);
+                getPath("Example2.java"), expected);
     }
 }

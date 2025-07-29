@@ -200,7 +200,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "29:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEqualsAvoidNullEnhancedInstanceof.java"),
+                getPath("InputEqualsAvoidNullEnhancedInstanceof.java"),
                 expected);
     }
 
@@ -225,7 +225,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
             "49:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEqualsAvoidNullRecordsAndCompactCtors.java"),
+                getPath("InputEqualsAvoidNullRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -240,7 +240,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEqualsAvoidNullTextBlocks.java"),
+                getPath("InputEqualsAvoidNullTextBlocks.java"),
             expected);
     }
 

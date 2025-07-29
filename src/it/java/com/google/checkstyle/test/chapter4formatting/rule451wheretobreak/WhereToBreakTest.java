@@ -109,4 +109,34 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     public void testLambdaBodyWrapFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedLambdaBodyWrap.java"));
     }
+
+    @Test
+    public void testIllegalLineBreakAroundLambda() throws Exception {
+        verifyWithWholeConfig(getPath("InputIllegalLineBreakAroundLambda.java"));
+    }
+
+    @Test
+    public void testFormattedIllegalLineBreakAroundLambda() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedIllegalLineBreakAroundLambda.java"));
+    }
+
+    @Test
+    public void testNoWrappingAfterRecordName1() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWrappingAfterRecordName.java"));
+    }
+
+    @Test
+    public void testNoWrappingAfterRecordNameFormatted1() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWrappingAfterRecordName.java"));
+    }
+
+    @Test
+    public void testNoWrappingAfterRecordName2() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWrappingAfterRecordName2.java"));
+    }
+
+    @Test
+    public void testNoWrappingAfterRecordNameFormatted2() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWrappingAfterRecordName2.java"));
+    }
 }

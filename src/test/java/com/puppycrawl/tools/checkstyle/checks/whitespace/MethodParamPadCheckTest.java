@@ -137,7 +137,7 @@ public class MethodParamPadCheckTest
             "57:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
+                getPath("InputMethodParamPadRecords.java"), expected);
     }
 
     @Test

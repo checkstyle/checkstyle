@@ -9,7 +9,9 @@
     <section name="NestedForDepth">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="Description">
-        <div>Restricts nested <code>for</code> blocks to a specified depth.</div>
+        <div>
+          Restricts nested <code>for</code> blocks to a specified depth.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

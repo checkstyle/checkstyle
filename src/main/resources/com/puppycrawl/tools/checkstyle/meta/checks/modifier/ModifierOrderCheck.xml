@@ -13,20 +13,20 @@
  &lt;/div&gt;
 
  &lt;ol&gt;
- &lt;li&gt; {@code public} &lt;/li&gt;
- &lt;li&gt; {@code protected} &lt;/li&gt;
- &lt;li&gt; {@code private} &lt;/li&gt;
- &lt;li&gt; {@code abstract} &lt;/li&gt;
- &lt;li&gt; {@code default} &lt;/li&gt;
- &lt;li&gt; {@code static} &lt;/li&gt;
- &lt;li&gt; {@code sealed} &lt;/li&gt;
- &lt;li&gt; {@code non-sealed} &lt;/li&gt;
- &lt;li&gt; {@code final} &lt;/li&gt;
- &lt;li&gt; {@code transient} &lt;/li&gt;
- &lt;li&gt; {@code volatile} &lt;/li&gt;
- &lt;li&gt; {@code synchronized} &lt;/li&gt;
- &lt;li&gt; {@code native} &lt;/li&gt;
- &lt;li&gt; {@code strictfp} &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;public&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;protected&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;private&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;abstract&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;default&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;static&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;sealed&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;non-sealed&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;final&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;transient&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;volatile&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;synchronized&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;native&lt;/code&gt; &lt;/li&gt;
+ &lt;li&gt; &lt;code&gt;strictfp&lt;/code&gt; &lt;/li&gt;
  &lt;/ol&gt;
 
  &lt;p&gt;

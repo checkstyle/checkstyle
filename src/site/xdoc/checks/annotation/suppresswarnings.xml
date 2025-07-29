@@ -10,27 +10,28 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarnings">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>Allows to specify what warnings that <code>@SuppressWarnings</code>
-          is not allowed to suppress.
-        You can also specify a list of TokenTypes that
-        the configured warning(s) cannot be suppressed on.
+        <div>
+          Allows to specify what warnings that
+          <code>@SuppressWarnings</code> is not allowed to suppress.
+          You can also specify a list of TokenTypes that
+          the configured warning(s) cannot be suppressed on.
         </div>
 
         <p>
-        Limitations:  This check does not consider conditionals
-        inside the @SuppressWarnings annotation.
+          Limitations:  This check does not consider conditionals
+          inside the &#64;SuppressWarnings annotation.
         </p>
 
         <p>
           For example:
-          <code>@SuppressWarnings((false) ? (true) ? &quot;unchecked&quot; : &quot;foo&quot; : &quot;unused&quot;)</code>.
-          According to the above example, the &quot;unused&quot; warning is being suppressed
-          not the &quot;unchecked&quot; or &quot;foo&quot; warnings.  All of these warnings will be
+          <code>@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")</code>.
+          According to the above example, the "unused" warning is being suppressed
+          not the "unchecked" or "foo" warnings.  All of these warnings will be
           considered and matched against regardless of what the conditional
           evaluates to.
-          The check also does not support code like <code>@SuppressWarnings(&quot;un&quot; + &quot;used&quot;)</code>,
-          <code>@SuppressWarnings((String) &quot;unused&quot;)</code> or
-          <code>@SuppressWarnings({('u' + (char)'n') + (&quot;&quot;+(&quot;used&quot; + (String)&quot;&quot;)),})</code>.
+          The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
+          <code>@SuppressWarnings((String) "unused")</code> or
+          <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
         </p>
 
         <p>
@@ -45,9 +46,8 @@
           the format property these defaults no longer apply.
         </p>
 
-        <p>
-          This check can be configured so that the &quot;unchecked&quot;
-          and &quot;unused&quot; warnings cannot be suppressed on
+        <p>This check can be configured so that the "unchecked"
+          and "unused" warnings cannot be suppressed on
           anything but variable and parameter declarations.
           See below of an example.
         </p>

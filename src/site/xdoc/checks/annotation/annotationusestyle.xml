@@ -17,11 +17,16 @@
         <p>
           Annotations have three element styles starting with the least verbose.
         </p>
-
         <ul>
-          <li><code>ElementStyleOption.COMPACT_NO_ARRAY</code></li>
-          <li><code>ElementStyleOption.COMPACT</code></li>
-          <li><code>ElementStyleOption.EXPANDED</code></li>
+        <li>
+          <code>ElementStyleOption.COMPACT_NO_ARRAY</code>
+        </li>
+        <li>
+          <code>ElementStyleOption.COMPACT</code>
+        </li>
+        <li>
+          <code>ElementStyleOption.EXPANDED</code>
+        </li>
         </ul>
 
         <p>
@@ -31,7 +36,7 @@
 
         <p>
           Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
-          The expanded version is sometimes referred to as &quot;named parameters&quot; in other languages.
+          The expanded version is sometimes referred to as "named parameters" in other languages.
         </p>
 
         <p>
@@ -42,8 +47,8 @@
 
         <p>
           Using the <code>ElementStyleOption.COMPACT_NO_ARRAY</code> style is less verbose.
-          It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays
-          are flagged.
+          It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays are
+          flagged.
           With annotations a single value array does not need to be placed in an array initializer.
         </p>
 
@@ -51,19 +56,18 @@
           The ending parenthesis are optional when using annotations with no elements.
           To always require ending parenthesis use the <code>ClosingParensOption.ALWAYS</code> type.
           To never have ending parenthesis use the <code>ClosingParensOption.NEVER</code> type.
-          To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code>
-          type is provided. Set this through the <code>closingParens</code> property.
+          To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code> type is
+          provided.
+          Set this through the <code>closingParens</code> property.
         </p>
 
         <p>
           Annotations also allow you to specify arrays of elements in a standard format.
           As with normal arrays, a trailing comma is optional.
-          To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code>
-          type.
+          To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code> type.
           To never have a trailing comma use the <code>TrailingArrayCommaOption.NEVER</code> type.
-          To not enforce a trailing array comma preference a
-          <code>TrailingArrayCommaOption.IGNORE</code> type is provided.
-          Set this through the <code>trailingArrayComma</code> property.
+          To not enforce a trailing array comma preference a <code>TrailingArrayCommaOption.IGNORE</code> type
+          is provided. Set this through the <code>trailingArrayComma</code> property.
         </p>
 
         <p>
@@ -83,7 +87,7 @@
 
         <p>
           See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
-          Java Language specification, &#xa7;9.7</a>.
+          Java Language specification, &#167;9.7</a>.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">

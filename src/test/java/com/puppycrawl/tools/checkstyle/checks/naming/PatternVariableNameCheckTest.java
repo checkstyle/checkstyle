@@ -62,7 +62,7 @@ public class PatternVariableNameCheckTest
             "70:41: " + getCheckMessage(MSG_INVALID_PATTERN, "Thing2", pattern),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputPatternVariableNameEnhancedInstanceofTestDefault.java"),
                 expected);
     }
@@ -94,7 +94,7 @@ public class PatternVariableNameCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                 getPath(
                         "InputPatternVariableNameEnhancedInstanceofNoSingleChar.java"),
                 expected);
     }

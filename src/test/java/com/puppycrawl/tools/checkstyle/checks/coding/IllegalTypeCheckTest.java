@@ -307,7 +307,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalTypeTestEnhancedInstanceof.java"),
+                getPath("InputIllegalTypeTestEnhancedInstanceof.java"),
                 expected);
     }
 
@@ -324,7 +324,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalTypeRecordsAndCompactCtors.java"),
+                getPath("InputIllegalTypeRecordsAndCompactCtors.java"),
             expected);
     }
 
@@ -348,7 +348,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputIllegalTypeRecordsWithMemberModifiersDefault.java"),
                 expected);
     }
@@ -361,7 +361,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputIllegalTypeRecordsWithMemberModifiersFinal.java"),
                 expected);
     }
@@ -374,7 +374,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputIllegalTypeRecordsWithMemberModifiersPrivateFinal.java"),
                 expected);
     }
@@ -385,7 +385,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
             "45:9: " + getCheckMessage(MSG_KEY, "HashSet")};
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputIllegalTypeRecordsWithMemberModifiersPublicProtectedStatic.java"),
                 expected);
     }

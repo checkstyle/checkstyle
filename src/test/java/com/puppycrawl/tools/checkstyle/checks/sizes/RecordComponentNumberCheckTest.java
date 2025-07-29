@@ -65,7 +65,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultOne() throws Exception {
 
         final int max = 8;
 
@@ -75,12 +75,24 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "76:13: " + getCheckMessage(MSG_KEY, 14, max),
             "82:17: " + getCheckMessage(MSG_KEY, 11, max),
             "101:5: " + getCheckMessage(MSG_KEY, 15, max),
-            "122:5: " + getCheckMessage(MSG_KEY, 15, max),
-            "132:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumber.java"), expected);
+                getPath("InputRecordComponentNumberOne.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTwo() throws Exception {
+
+        final int max = 8;
+
+        final String[] expected = {
+            "38:3: " + getCheckMessage(MSG_KEY, 15, max),
+            "48:3: " + getCheckMessage(MSG_KEY, 15, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRecordComponentNumberTwo.java"), expected);
     }
 
     @Test
@@ -93,7 +105,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumberTopLevel1.java"),
+                getPath("InputRecordComponentNumberTopLevel1.java"),
                 expected);
     }
 
@@ -103,7 +115,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumberTopLevel2.java"),
+                getPath("InputRecordComponentNumberTopLevel2.java"),
                 expected);
     }
 
@@ -118,19 +130,19 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
             "36:5: " + getCheckMessage(MSG_KEY, 5, max),
             "52:5: " + getCheckMessage(MSG_KEY, 7, max),
             "57:5: " + getCheckMessage(MSG_KEY, 14, max),
-            "66:9: " + getCheckMessage(MSG_KEY, 3, max),
-            "70:9: " + getCheckMessage(MSG_KEY, 14, max),
-            "76:13: " + getCheckMessage(MSG_KEY, 14, max),
-            "82:17: " + getCheckMessage(MSG_KEY, 6, max),
-            "96:5: " + getCheckMessage(MSG_KEY, 4, max),
-            "100:5: " + getCheckMessage(MSG_KEY, 15, max),
-            "110:5: " + getCheckMessage(MSG_KEY, 3, max),
-            "114:5: " + getCheckMessage(MSG_KEY, 6, max),
-            "125:5: " + getCheckMessage(MSG_KEY, 2, max),
+            "65:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "69:9: " + getCheckMessage(MSG_KEY, 14, max),
+            "73:13: " + getCheckMessage(MSG_KEY, 14, max),
+            "77:17: " + getCheckMessage(MSG_KEY, 6, max),
+            "90:5: " + getCheckMessage(MSG_KEY, 4, max),
+            "92:5: " + getCheckMessage(MSG_KEY, 15, max),
+            "102:5: " + getCheckMessage(MSG_KEY, 3, max),
+            "106:5: " + getCheckMessage(MSG_KEY, 6, max),
+            "117:5: " + getCheckMessage(MSG_KEY, 2, max),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumberMax1.java"), expected);
+                getPath("InputRecordComponentNumberMax1.java"), expected);
     }
 
     @Test
@@ -138,22 +150,35 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumberMax20.java"), expected);
+                getPath("InputRecordComponentNumberMax20.java"), expected);
     }
 
     @Test
-    public void testRecordComponentNumberPrivateModifier() throws Exception {
+    public void testRecordComponentNumberPrivateModifierOne() throws Exception {
 
         final int max = 8;
 
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_KEY, 14, max),
             "76:13: " + getCheckMessage(MSG_KEY, 14, max),
-            "122:5: " + getCheckMessage(MSG_KEY, 15, max),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRecordComponentNumberPrivateModifier.java"), expected);
+                getPath("InputRecordComponentNumberPrivateModifierOne.java"), expected);
+    }
+
+    @Test
+    public void testRecordComponentNumberPrivateModifierTwo() throws Exception {
+
+        final int max = 8;
+
+        final String[] expected = {
+            "70:9: " + getCheckMessage(MSG_KEY, 14, max),
+            "76:13: " + getCheckMessage(MSG_KEY, 14, max),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRecordComponentNumberPrivateModifierOne.java"), expected);
     }
 
     /**

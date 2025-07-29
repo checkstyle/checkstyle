@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+// non-compiled with eclipse: s cannot be resolved
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
 import java.util.*;

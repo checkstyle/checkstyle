@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * </p>
  *
  * <p>
+ * Notes:
  * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
  * </p>
  * <ul>

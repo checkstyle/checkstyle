@@ -16,7 +16,7 @@
       </macro>
     </section>
 
-    <section name="How to set system property for CLI">
+    <section name="How To Set System Property For CLI">
       <p>
         System properties should be provided to <code>java</code> command.
         Example: <code>java -D&lt;property&gt;=&lt;value&gt; -jar ... </code>
@@ -27,7 +27,7 @@
       </p>
     </section>
 
-    <section name="Enable External DTD load">
+    <section name="Enable External DTD Load">
       <p>
         The property <code>checkstyle.enableExternalDtdLoad</code>
         defines the ability to use custom DTD files in config and load them from some location.
@@ -35,7 +35,7 @@
         is <a href="property_types.html#boolean">boolean</a> and defaults
         to <code>false</code>. Disabled by default due to security concerns.
       </p>
-      <subsection name="Examples" id="Enable_External_DTD_load_Examples">
+      <subsection name="Examples" id="Enable_External_DTD_Load_Examples">
         <p>
           The following is an example of including the contents of other xml files by using the
           ENTITY feature to keep common parts of configs in a single file and then creating
@@ -137,7 +137,7 @@ Checkstyle ends with 2 errors.
       </subsection>
     </section>
 
-    <section name="Property chaining support">
+    <section name="Property Chaining Support">
       <p>
         Checkstyle supports property expansion within property definitions, also
         known as property chaining. This feature allows you to define properties
@@ -152,7 +152,7 @@ checkstyle.suppressions.file=${checkstyle.dir}/${config.dir}/suppressions.xml
         which will resolve to
         <code>/home/user/checkstyle/configs/suppressions.xml</code>.
       </p>
-      <subsection name="Notes" id="Property_chaining_support_Notes">
+      <subsection name="Notes" id="Property_Chaining_Support_Notes">
         <p>
           Note that property variable expression must be of the form
           <code>${expression}</code>.

@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for switch rules.
@@ -58,15 +59,19 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
      * Check the indentation of the case statement.
      */
     private void checkCase() {
-        checkChildren(getMainAst(), SWITCH_RULE_CHILDREN, getIndent(),
-            true, false);
+        // only need to check if the case statement is not on the same line as
+        // the parent switch statement
+        if (!isSameLineAsSwitch(getMainAst().getParent())) {
+            checkChildren(getMainAst(), SWITCH_RULE_CHILDREN, getIndent(),
+                    true, false);
+        }
     }
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         final IndentLevel result;
 
-        if (child instanceof SlistHandler) {
+        if (child instanceof SlistHandler || isSameLineAsSwitch(child.getMainAst())) {
             // switchRule with block body (enclosed in {})
             result = getIndent();
         }
@@ -83,6 +88,19 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         checkCase();
+    }
+
+    /**
+     * Checks if the current SWITCH_RULE node is placed on the same line
+     * as the given SWITCH_LITERAL node.
+     *
+     * @param node the SWITCH_LITERAL node to compare with
+     * @return true if the current SWITCH_RULE node is on the same line
+     *     as the given SWITCH_LITERAL node
+     */
+    private boolean isSameLineAsSwitch(DetailAST node) {
+        return node.getType() == TokenTypes.LITERAL_SWITCH
+            && TokenUtil.areOnSameLine(getMainAst(), node);
     }
 
 }

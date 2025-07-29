@@ -9,35 +9,10 @@
     <section name="AbbreviationAsWordInName">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Validates abbreviations (consecutive capital letters) length in identifier name,
-          it also allows to enforce camel case naming. Please read more at
-          <a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
-          Google Style Guide</a>
-          to get to know how to avoid long abbreviations in names.
-        </div>
-
-        <p>'_' is considered as word separator in identifier name.</p>
-
-        <p>
-          <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
-          allowed in the identifier.
-           A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
-          one after the other, before a violation is printed. The identifier 'MyTEST' would be
-          allowed, but 'MyTESTS' would not be.
-          A value of <i>0</i> indicates that only 1 consecutive capital letter is allowed. This
-          is what should be used to enforce strict camel casing. The identifier 'MyTest' would
-          be allowed, but 'MyTEst' would not be.
-        </p>
-
-        <p>
-          <code>ignoreFinal</code>, <code>ignoreStatic</code>, and <code>ignoreStaticFinal</code>
-          control whether variables with the respective modifiers are to be ignored.
-          Note that a variable that is both static and final will always be considered under
-          <code>ignoreStaticFinal</code> only, regardless of the values of <code>ignoreFinal</code>
-          and <code>ignoreStatic</code>. So for example if <code>ignoreStatic</code> is true but
-          <code>ignoreStaticFinal</code> is false, then static final variables will not be ignored.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

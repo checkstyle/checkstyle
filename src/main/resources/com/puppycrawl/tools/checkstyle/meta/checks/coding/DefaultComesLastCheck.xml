@@ -5,19 +5,19 @@
              name="DefaultComesLast"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Check that the {@code default} is after all the cases in a {@code switch} statement.
+ Check that the &lt;code&gt;default&lt;/code&gt; is after all the cases in a &lt;code&gt;switch&lt;/code&gt; statement.
  &lt;/div&gt;
 
  &lt;p&gt;
- Rationale: Java allows {@code default} anywhere within the
- {@code switch} statement. But it is more readable if it comes after the last {@code case}.
+ Rationale: Java allows &lt;code&gt;default&lt;/code&gt; anywhere within the
+ &lt;code&gt;switch&lt;/code&gt; statement. But it is more readable if it comes after the last &lt;code&gt;case&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
                       name="skipIfLastAndSharedWithCase"
                       type="boolean">
-               <description>Control whether to allow {@code default}
- along with {@code case} if they are not last.</description>
+               <description>Control whether to allow &lt;code&gt;default&lt;/code&gt;
+ along with &lt;code&gt;case&lt;/code&gt; if they are not last.</description>
             </property>
          </properties>
          <message-keys>

@@ -61,8 +61,16 @@
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
+    <module name="MatchXpath">
+      <property name="id" value="singleLineCommentStartWithSpace"/>
+      <property name="query"
+                value="//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[not(starts-with(@text, ' '))
+                       and not(starts-with(@text, '/'))
+                       and not(@text = '\n') and not(ends-with(@text, '//\n'))]]"/>
+      <message key="matchxpath.match" value="''//'' must be followed by a whitespace."/>
+    </module>
     <module name="IllegalTokenText">
-      <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
+      <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL, TEXT_BLOCK_CONTENT"/>
       <property name="format"
                value="\\u00(09|0(a|A)|0(c|C)|0(d|D)|22|27|5(C|c))|\\(0(10|11|12|14|15|42|47)|134)"/>
       <property name="message"
@@ -332,8 +340,12 @@
     <module name="NoWhitespaceBefore">
       <property name="tokens"
                value="COMMA, SEMI, POST_INC, POST_DEC, DOT,
-                    LABELED_STAT, METHOD_REF"/>
+                    LABELED_STAT, METHOD_REF, ELLIPSIS"/>
       <property name="allowLineBreaks" value="true"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="NoWhitespaceBefore"/>
+      <property name="query" value="//ELLIPSIS[preceding-sibling::TYPE/ANNOTATIONS/ANNOTATION]"/>
     </module>
     <module name="ParenPad">
       <property name="tokens"

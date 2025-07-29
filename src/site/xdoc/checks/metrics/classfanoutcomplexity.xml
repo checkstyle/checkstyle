@@ -11,27 +11,27 @@
       <subsection name="Description" id="Description">
         <div>
           Checks the number of other types a given class/record/interface/enum/annotation
-          relies on. Also, the square of this has been shown to indicate the amount of
-          maintenance required in functional programs (on a file basis) at least.
+          relies on. Also, the square of this has been shown to indicate the amount
+          of maintenance required in functional programs (on a file basis) at least.
         </div>
+
         <p>
           This check processes files in the following way:
         </p>
         <ol>
-          <li>
-            Iterates over all tokens that might contain type reference.
-          </li>
-          <li>
-            If a class was imported with direct import (i.e.
-            <code>import java.math.BigDecimal</code>), or the class was referenced with the
-            package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
-            added to the <code>excludedPackages</code> parameter, the class does not increase
-            complexity.
-          </li>
-          <li>
-            If a class name was added to the <code>excludedClasses</code> parameter,
-            the class does not increase complexity.
-          </li>
+        <li>
+          Iterates over all tokens that might contain type reference.
+        </li>
+        <li>
+          If a class was imported with direct import (i.e. <code>import java.math.BigDecimal</code>),
+          or the class was referenced with the package name (i.e. <code>java.math.BigDecimal value</code>)
+          and the package was added to the <code>excludedPackages</code> parameter,
+          the class does not increase complexity.
+        </li>
+        <li>
+          If a class name was added to the <code>excludedClasses</code> parameter,
+          the class does not increase complexity.
+        </li>
         </ol>
       </subsection>
 

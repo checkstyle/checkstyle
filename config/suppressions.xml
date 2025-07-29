@@ -53,6 +53,9 @@
   <!-- Fixing these cases will decrease code readability -->
   <suppress checks="MultipleStringLiterals" files="JavadocStyleCheck\.java|XMLLogger\.java"/>
 
+  <!-- For test cases need larger file length -->
+  <suppress checks="FileLength" files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]MainTest.java" />
+
   <!-- There are a lot of setters/getters in the Check.
      A small number of methods is left for Check's logic -->
   <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
@@ -121,7 +124,6 @@
   <suppress id="noUsageOfGetFileContentsMethod" files="JavadocVariableCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocMethodCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="MissingJavadocTypeCheck.java"/>
-  <suppress id="noUsageOfGetFileContentsMethod" files="WriteTagCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="RegexpSinglelineJavaCheck.java"/>
   <suppress id="noUsageOfGetFileContentsMethod" files="AvoidEscapedUnicodeCharactersCheck.java"/>
@@ -197,6 +199,10 @@
   <!-- The file is generated -->
   <suppress checks="FileTabCharacter"
     files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
+
+  <!-- Apart from a complex logic there is a lot of small methods for a better readability. -->
+  <suppress checks="MethodCount"
+            files="src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]whitespace[\\/]EmptyLineSeparatorCheck.java"/>
 
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"

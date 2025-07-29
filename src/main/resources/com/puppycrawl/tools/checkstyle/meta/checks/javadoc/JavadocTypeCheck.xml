@@ -6,9 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks the Javadoc comments for type definitions. By default, does
- not check for author or version tags. The scope to verify is specified using the {@code Scope}
- class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
- scope to one of the {@code Scope} constants. To define the format for an author
+ not check for author or version tags. The scope to verify is specified using the &lt;code&gt;Scope&lt;/code&gt;
+ class and defaults to &lt;code&gt;Scope.PRIVATE&lt;/code&gt;. To verify another scope, set property
+ scope to one of the &lt;code&gt;Scope&lt;/code&gt; constants. To define the format for an author
  tag or a version tag, set property authorFormat or versionFormat respectively to a
  &lt;a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"&gt;
  pattern&lt;/a&gt;.
@@ -25,7 +25,7 @@
 
  &lt;p&gt;
  Error messages about type parameters and record components for which no param tags are present
- can be suppressed by defining property {@code allowMissingParamTags}.
+ can be suppressed by defining property &lt;code&gt;allowMissingParamTags&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
@@ -40,10 +40,10 @@
                       name="allowedAnnotations"
                       type="java.lang.String[]">
                <description>Specify annotations that allow
- skipping validation at all. Only short names are allowed, e.g. {@code Generated}.</description>
+ skipping validation at all. Only short names are allowed, e.g. &lt;code&gt;Generated&lt;/code&gt;.</description>
             </property>
             <property name="authorFormat" type="java.util.regex.Pattern">
-               <description>Specify the pattern for {@code @author} tag.</description>
+               <description>Specify the pattern for &lt;code&gt;@author&lt;/code&gt; tag.</description>
             </property>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc
@@ -55,7 +55,7 @@
                <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
             <property name="versionFormat" type="java.util.regex.Pattern">
-               <description>Specify the pattern for {@code @version} tag.</description>
+               <description>Specify the pattern for &lt;code&gt;@version&lt;/code&gt; tag.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
                       name="tokens"

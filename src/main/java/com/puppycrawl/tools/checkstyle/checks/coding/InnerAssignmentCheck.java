@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Note: Check allows usage of the popular assignments in loops:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * String line;
  * while ((line = bufferedReader.readLine()) != null) { // OK
  *   // process the line
@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   // process the line
  * }
  * while ((line = bufferedReader.readLine()) != null); // OK
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Assignment inside a condition is not a problem here, as the assignment is surrounded

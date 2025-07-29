@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>JavadocDetailNodeParser.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser</mutatedClass>
-    <mutatedMethod>getMissedHtmlTag</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Deque::pop</description>
-    <lineContent>htmlTagNameStart = stack.pop();</lineContent>
+    <sourceFile>TreeWalker.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable javaParseExceptionSeverity</description>
+    <lineContent>private SeverityLevel javaParseExceptionSeverity = SeverityLevel.ERROR;</lineContent>
   </mutation>
 
   <mutation unstable="false">

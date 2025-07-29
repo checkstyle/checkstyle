@@ -203,6 +203,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>Pattern.compile(input);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>result = Pattern.compile(validateRegex(line));</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter regex of Pattern.compile.</message>
@@ -680,6 +702,28 @@
       Pattern
       is not a valid method reference for method in Pattern
       @PolyRegex Matcher matcher(@PolyRegex Pattern this, CharSequence p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ModuleJavadocParsingUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of String.split.</message>
+    <lineContent>.replace(&quot;\r&quot;, &quot;&quot;));</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/NotesMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter regex of Pattern.compile.</message>
+    <lineContent>+ ModuleJavadocParsingUtil.NOTES);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
     </details>
   </checkerFrameworkError>
 

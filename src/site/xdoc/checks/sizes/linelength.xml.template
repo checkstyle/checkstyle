@@ -9,16 +9,17 @@
     <section name="LineLength">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for long lines.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
+        </macro>
+      </subsection>
 
-        <p>
-          Rationale: Long lines are hard to read in printouts or if developers
-          have limited screen space for the source code, e.g. if the IDE
-          displays additional information like project tree, class hierarchy,
-          etc.
-        </p>
+      <subsection name="Notes" id="Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -117,33 +118,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
-      </subsection>
-
-      <subsection name="Notes" id="Notes">
-        <ul>
-          <li>
-            The calculation of the length of a line takes into account the
-            number of expanded spaces for a tab character (<code>'\t'</code>). The default number
-            of spaces is <code>8</code>. To specify a different number of spaces, the user can set
-            <a href="../../config.html#Checker"><code>Checker</code></a> property
-            <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
-            or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
-          </li>
-          <li>
-            By default, package and import statements (lines matching pattern
-            <code>^(package|import) .*</code>) are not verified by
-            this check.
-          </li>
-          <li>
-            Trailing comments are taken into consideration while calculating the line
-            length.
-            <source>
-import java.util.regex.Pattern; // The length of this comment will be taken into consideration
-            </source>
-            In the example above the length of the import statement is just 31 characters
-            but total length will be 94 characters.
-          </li>
-        </ul>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

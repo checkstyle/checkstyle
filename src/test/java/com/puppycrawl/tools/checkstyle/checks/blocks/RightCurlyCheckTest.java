@@ -618,7 +618,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "41:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
+                getPath("InputRightCurlyTestRecordsAndCompactCtors.java"), expected);
     }
 
     @Test
@@ -761,7 +761,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "92:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression.java"), expected);
     }
 
     @Test
@@ -773,14 +773,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "90:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression2.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression2.java"), expected);
     }
 
     @Test
     public void testSwitchExpression3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression3.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression3.java"), expected);
     }
 
     @Test
@@ -789,14 +789,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "117:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression4.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression4.java"), expected);
     }
 
     @Test
     public void testSwitchExpression5() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression5.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression5.java"), expected);
     }
 
     @Test
@@ -818,14 +818,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     public void testSwitchExpression6() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression6.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression6.java"), expected);
     }
 
     @Test
     public void testSwitchExpression7() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyTestSwitchExpression7.java"), expected);
+                getPath("InputRightCurlyTestSwitchExpression7.java"), expected);
     }
 
     @Test
@@ -940,7 +940,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "94:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRightCurlyCaseBlocksWithSwitchRuleAlone.java"),
+                getPath("InputRightCurlyCaseBlocksWithSwitchRuleAlone.java"),
                 expected);
     }
 
@@ -959,7 +959,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "102:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };
         final String fileName = "InputRightCurlyCaseBlocksWithSwitchRuleAloneOrSingleline.java";
-        verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
+        verifyWithInlineConfigParser(getPath(fileName), expected);
     }
 
     @Test
@@ -969,7 +969,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "86:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
         };
         final String fileName = "InputRightCurlyCaseBlocksWithSwitchExpressionAlone.java";
-        verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
+        verifyWithInlineConfigParser(getPath(fileName), expected);
     }
 
     @Test
@@ -979,6 +979,6 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         };
         final String fileName =
                 "InputRightCurlyCaseBlocksWithSwitchExpressionAloneOrSingleline.java";
-        verifyWithInlineConfigParser(getNonCompilablePath(fileName), expected);
+        verifyWithInlineConfigParser(getPath(fileName), expected);
     }
 }

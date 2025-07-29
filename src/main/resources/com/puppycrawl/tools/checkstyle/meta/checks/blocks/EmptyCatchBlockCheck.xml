@@ -10,6 +10,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  There are two options to make validation more precise: &lt;b&gt;exceptionVariableName&lt;/b&gt; and
  &lt;b&gt;commentFormat&lt;/b&gt;.
  If both options are specified - they are applied by &lt;b&gt;any of them is matching&lt;/b&gt;.

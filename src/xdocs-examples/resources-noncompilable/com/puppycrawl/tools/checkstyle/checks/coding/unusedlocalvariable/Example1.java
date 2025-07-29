@@ -6,7 +6,7 @@
   </module>
 </module>
 */
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 import java.io.*;
 import java.util.function.Predicate;

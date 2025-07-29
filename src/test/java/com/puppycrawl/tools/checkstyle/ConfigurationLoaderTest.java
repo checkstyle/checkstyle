@@ -26,10 +26,13 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -65,16 +68,161 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         return ConfigurationLoader.loadConfiguration(fName, new PropertiesExpander(props));
     }
 
-    private static Method getReplacePropertiesMethod() throws Exception {
-        final Class<?>[] params = new Class<?>[3];
-        params[0] = String.class;
-        params[1] = PropertyResolver.class;
-        params[2] = String.class;
-        final Class<ConfigurationLoader> configurationLoaderClass = ConfigurationLoader.class;
-        final Method replacePropertiesMethod =
-            configurationLoaderClass.getDeclaredMethod("replaceProperties", params);
-        replacePropertiesMethod.setAccessible(true);
-        return replacePropertiesMethod;
+    private static Object getInternalLoaderInstance(PropertyResolver resolver)
+             throws Exception {
+        final Constructor<ConfigurationLoader> constructor = ConfigurationLoader.class
+                .getDeclaredConstructor(PropertyResolver.class, boolean.class,
+                        ThreadModeSettings.class);
+        constructor.setAccessible(true);
+        final ConfigurationLoader loader = constructor.newInstance(resolver, false,
+                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+
+        final Field saxHandlerField = ConfigurationLoader.class.getDeclaredField("saxHandler");
+        saxHandlerField.setAccessible(true);
+        return saxHandlerField.get(loader);
+    }
+
+    private static Method getReplacePropertiesMethod(Class<?> internalLoaderClass)
+            throws NoSuchMethodException {
+        final Class<?>[] params = {String.class, String.class};
+        final Method method = internalLoaderClass.getDeclaredMethod("replaceProperties", params);
+        method.setAccessible(true);
+        return method;
+    }
+
+    private static Method getParsePropertyStringMethod(Class<?> internalLoaderClass)
+            throws NoSuchMethodException {
+        final Class<?>[] params = {String.class, Collection.class, Collection.class};
+        final Method method = internalLoaderClass.getDeclaredMethod("parsePropertyString", params);
+        method.setAccessible(true);
+        return method;
+    }
+
+    @Test
+    public void testReplacePropertiesNoReplace() throws Exception {
+        final String[] testValues = {"", "a", "$a", "{a",
+                                     "{a}", "a}", "$a}", "$", "a$b", };
+        final Properties props = initProperties();
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getReplacePropertiesMethod(internalLoaderClass);
+
+        for (String testValue : testValues) {
+            final String value = (String) method.invoke(internalLoader, testValue, null);
+            assertWithMessage("\"" + testValue + "\"")
+                .that(testValue)
+                .isEqualTo(value);
+        }
+    }
+
+    @Test
+    public void testReplacePropertiesSyntaxError() throws Exception {
+        final Properties props = initProperties();
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getReplacePropertiesMethod(internalLoaderClass);
+
+        try {
+            final String value = (String) method.invoke(internalLoader, "${a", null);
+            assertWithMessage("expected to fail, instead got: " + value).fail();
+        }
+        catch (InvocationTargetException exc) {
+            assertWithMessage("Invalid exception cause message")
+                .that(exc.getCause())
+                .isInstanceOf(CheckstyleException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Syntax error in property: ${a");
+        }
+    }
+
+    @Test
+    public void testReplacePropertiesMissingProperty() throws Exception {
+        final Properties props = initProperties();
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getReplacePropertiesMethod(internalLoaderClass);
+
+        try {
+            final String value = (String) method.invoke(internalLoader, "${c}", null);
+            assertWithMessage("expected to fail, instead got: " + value).fail();
+        }
+        catch (InvocationTargetException exc) {
+            assertWithMessage("Invalid exception cause message")
+                .that(exc.getCause())
+                .isInstanceOf(CheckstyleException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc.getCause().getMessage())
+                .isEqualTo("Property ${c} has not been set");
+        }
+    }
+
+    @Test
+    public void testReplacePropertiesReplace() throws Exception {
+        final String[][] testValues = {
+            {"${a}", "A"},
+            {"x${a}", "xA"},
+            {"${a}x", "Ax"},
+            {"${a}${b}", "AB"},
+            {"x${a}${b}", "xAB"},
+            {"${a}x${b}", "AxB"},
+            {"${a}${b}x", "ABx"},
+            {"x${a}y${b}", "xAyB"},
+            {"${a}x${b}y", "AxBy"},
+            {"x${a}${b}y", "xABy"},
+            {"x${a}y${b}z", "xAyBz"},
+            {"$$", "$"},
+        };
+        final Properties props = initProperties();
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getReplacePropertiesMethod(internalLoaderClass);
+
+        for (String[] testValue : testValues) {
+            final String value = (String) method.invoke(internalLoader, testValue[0], null);
+            assertWithMessage("\"" + testValue[0] + "\"")
+                .that(value)
+                .isEqualTo(testValue[1]);
+        }
+    }
+
+    @Test
+    public void testReplacePropertiesDefault() throws Exception {
+        final Properties props = new Properties();
+        final String defaultValue = "defaultValue";
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getReplacePropertiesMethod(internalLoaderClass);
+
+        final String value = (String) method.invoke(
+            internalLoader, "${checkstyle.basedir}", defaultValue);
+
+        assertWithMessage("Invalid property value")
+            .that(value)
+            .isEqualTo(defaultValue);
+    }
+
+    @Test
+    public void testParsePropertyString() throws Exception {
+        final Properties props = initProperties();
+        final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
+        final Class<?> internalLoaderClass = internalLoader.getClass();
+        final Method method = getParsePropertyStringMethod(internalLoaderClass);
+
+        final List<String> propertyRefs = new ArrayList<>();
+        final List<String> fragments = new ArrayList<>();
+
+        method.invoke(internalLoader, "$", fragments, propertyRefs);
+        assertWithMessage("Fragments list has unexpected amount of items")
+            .that(fragments)
+            .hasSize(1);
+    }
+
+    private static Properties initProperties() {
+        final Properties props = new Properties();
+        props.setProperty("a", "A");
+        props.setProperty("b", "B");
+        return props;
     }
 
     @Test
@@ -349,87 +497,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReplacePropertiesNoReplace() throws Exception {
-        final String[] testValues = {"", "a", "$a", "{a",
-                                     "{a}", "a}", "$a}", "$", "a$b", };
-        final Properties props = initProperties();
-        for (String testValue : testValues) {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, testValue, new PropertiesExpander(props), null);
-            assertWithMessage("\"" + testValue + "\"")
-                .that(testValue)
-                .isEqualTo(value);
-        }
-    }
-
-    @Test
-    public void testReplacePropertiesSyntaxError() throws Exception {
-        final Properties props = initProperties();
-        try {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, "${a", new PropertiesExpander(props), null);
-            assertWithMessage("expected to fail, instead got: " + value).fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid exception cause message")
-                .that(exc)
-                .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("Syntax error in property: ${a");
-        }
-    }
-
-    @Test
-    public void testReplacePropertiesMissingProperty() throws Exception {
-        final Properties props = initProperties();
-        try {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, "${c}", new PropertiesExpander(props), null);
-            assertWithMessage("expected to fail, instead got: " + value).fail();
-        }
-        catch (ReflectiveOperationException exc) {
-            assertWithMessage("Invalid exception cause message")
-                .that(exc)
-                .hasCauseThat()
-                .hasMessageThat()
-                .isEqualTo("Property ${c} has not been set");
-        }
-    }
-
-    @Test
-    public void testReplacePropertiesReplace() throws Exception {
-        final String[][] testValues = {
-            {"${a}", "A"},
-            {"x${a}", "xA"},
-            {"${a}x", "Ax"},
-            {"${a}${b}", "AB"},
-            {"x${a}${b}", "xAB"},
-            {"${a}x${b}", "AxB"},
-            {"${a}${b}x", "ABx"},
-            {"x${a}y${b}", "xAyB"},
-            {"${a}x${b}y", "AxBy"},
-            {"x${a}${b}y", "xABy"},
-            {"x${a}y${b}z", "xAyBz"},
-            {"$$", "$"},
-        };
-        final Properties props = initProperties();
-        for (String[] testValue : testValues) {
-            final String value = (String) getReplacePropertiesMethod().invoke(
-                null, testValue[0], new PropertiesExpander(props), null);
-            assertWithMessage("\"" + testValue[0] + "\"")
-                .that(value)
-                .isEqualTo(testValue[1]);
-        }
-    }
-
-    private static Properties initProperties() {
-        final Properties props = new Properties();
-        props.setProperty("a", "A");
-        props.setProperty("b", "B");
-        return props;
-    }
-
-    @Test
     public void testSystemEntity() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
@@ -628,19 +695,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReplacePropertiesDefault() throws Exception {
-        final Properties props = new Properties();
-        final String defaultValue = "defaultValue";
-
-        final String value = (String) getReplacePropertiesMethod().invoke(
-            null, "${checkstyle.basedir}", new PropertiesExpander(props), defaultValue);
-
-        assertWithMessage("Invalid property value")
-            .that(value)
-            .isEqualTo(defaultValue);
-    }
-
-    @Test
     public void testLoadConfigurationFromClassPath() throws Exception {
         final DefaultConfiguration config =
                 (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
@@ -667,19 +721,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         // charset property uses 2 variables, one is not defined, so default becomes a result value
         expectedPropertyValues.setProperty("charset", "ASCII");
         verifyConfigNode(config, "Checker", 0, expectedPropertyValues);
-    }
-
-    @Test
-    public void testParsePropertyString() throws Exception {
-        final List<String> propertyRefs = new ArrayList<>();
-        final List<String> fragments = new ArrayList<>();
-
-        TestUtil.invokeStaticMethod(ConfigurationLoader.class,
-                "parsePropertyString", "$",
-               fragments, propertyRefs);
-        assertWithMessage("Fragments list has unexpected amount of items")
-            .that(fragments)
-            .hasSize(1);
     }
 
     @Test

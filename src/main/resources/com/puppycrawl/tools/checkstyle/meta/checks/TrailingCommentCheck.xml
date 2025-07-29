@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  The check to ensure that lines with code do not end with comment.
- For the case of {@code //} comments that means that the only thing that should precede
+ For the case of &lt;code&gt;//&lt;/code&gt; comments that means that the only thing that should precede
  it is whitespace. It doesn't check comments if they do not end a line; for example,
  it accepts the following: &lt;code&gt;Thread.sleep( 10 /*some comment here&amp;#42;/ );&lt;/code&gt;
  Format property is intended to deal with the &lt;code&gt;} // while&lt;/code&gt; example.
@@ -17,10 +17,10 @@
  comments are a bad practice. An end line comment would be one that is on
  the same line as actual code. For example:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  a = b + c;      // Some insightful comment
  d = e / f;        // Another comment for this line
- &lt;/pre&gt;
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
  Quoting &lt;cite&gt;Code Complete&lt;/cite&gt; for the justification:

@@ -9,16 +9,16 @@
     <section name="UnnecessarySemicolonAfterOuterTypeDeclaration">
       <p>Since Checkstyle 8.31</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks if unnecessary semicolon is used after type declaration.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterOuterTypeDeclarationCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Notes" id="Notes">
-        <p>
-          This check is not applicable to nested type declarations,
-          <a href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
-          UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterOuterTypeDeclarationCheck.java"/>
+        </macro>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">

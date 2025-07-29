@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = LITERAL_RETURN
-minimumDepth = (default)0
 maximumDepth = (default)2147483647
-minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
-minimumMessage = (default)null
 maximumMessage = Return from finally is not allowed.
+maximumNumber = 0
+minimumDepth = (default)0
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = LITERAL_FINALLY
 
 

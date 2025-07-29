@@ -30,19 +30,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks for over-complicated boolean return or yield statements.
  * For example the following code
  * </div>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * if (valid())
  *   return false;
  * else
  *   return true;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * could be written as
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * return !valid();
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent

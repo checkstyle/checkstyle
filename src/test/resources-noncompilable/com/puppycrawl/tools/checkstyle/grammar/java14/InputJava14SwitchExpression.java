@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+// non-compiled with eclipse: local variable x may not have been initialized
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
 import static java.time.Instant.*;

@@ -5,7 +5,7 @@ treatTryResourcesAsStatement = (default)false
 
 */
 
-//non-compiled with eclipse: extra semicolumn in imports
+// non-compiled with eclipse: extra semicolumn in imports
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
  */
 import java.awt.event.ActionEvent;
 import java.lang.annotation.Annotation;
-; // non-compilable by eclipse
+; // non-compiled with eclipse
 import java.lang.String;
 import java.lang.Integer;
 import java.util.LinkedList;

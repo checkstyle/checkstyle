@@ -9,16 +9,10 @@
     <section name="JavadocPackage">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that each Java package has a Javadoc file used for
-          commenting. By default, it only allows a <code>package-info.java</code> file, but can be
-          configured to allow a <code>package.html</code>
-          file.
-        </div>
-        <p>
-          A violation will be reported if both files exist as this is not
-          allowed by the Javadoc tool.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -51,7 +45,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/nonlegacy/Example1.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example2-config">
           To configure the check with allowlegacy set to true:
@@ -74,7 +68,7 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocpackage/legacy/Example2.java"/>
           <param name="type" value="code"/>
-        </macro>
+        </macro><hr class="example-separator"/>
 
         <p id="Example3-config">
           To configure the check with allowlegacy set to true:

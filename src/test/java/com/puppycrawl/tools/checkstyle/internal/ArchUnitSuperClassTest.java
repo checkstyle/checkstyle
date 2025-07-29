@@ -53,6 +53,7 @@ public class ArchUnitSuperClassTest {
         "com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck",
         "com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
         "com.puppycrawl.tools.checkstyle.checks.header.RegexpHeaderCheck",
+        "com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck",
         "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
         "com.puppycrawl.tools.checkstyle.checks.naming.AbstractAccessControlNameCheck",

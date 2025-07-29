@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  * </div>
  *
  * <p>
+ * Notes:
  * SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
  * </p>
  * <ul>

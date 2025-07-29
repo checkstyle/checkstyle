@@ -29,7 +29,7 @@ class InputFormattedJavaDocTagContinuationIndentation implements Serializable {
   /**
    * The client's first name.
    *
-   * @serialField secondName String Some components to be serial.
+   * @serialField secondName String Some javadoc.
    */
   private String thirdName;
 
@@ -184,6 +184,84 @@ class InputFormattedJavaDocTagContinuationIndentation implements Serializable {
     /**
      * Some text.
      *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method6() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method7() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see reference <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method8() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see reference <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method9() {
+      return "null";
+    }
+
+    /**
+     * Something.
+     *
+     * @param source <a href="https://example.com/data-source">Data Source Documentation </a>
+     */
+    String method10() {
+      return "null";
+    }
+
+    /**
+     * Something.
+     *
+     * @param source <a href="https://example.com/data-source">Data Source Documentation </a>
+     */
+    String method11() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method12() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
+     * @see <a href="https://checkstyle.org/checks/javadoc/javadoctag.html">
+     *     JavadocTagContinuationIndentation: Checks the indentation </a>
+     */
+    String method13() {
+      return "null";
+    }
+
+    /**
+     * Some text.
+     *
      * @param str Some text.
      * @param number Some text. Some javadoc.
      * @param bool Some text. Some javadoc.
@@ -191,7 +269,7 @@ class InputFormattedJavaDocTagContinuationIndentation implements Serializable {
      * @throws Exception Some text.
      * @deprecated Some text.
      */
-    String method6(String str, int number, boolean bool) throws Exception {
+    String method14(String str, int number, boolean bool) throws Exception {
       return "null";
     }
   }

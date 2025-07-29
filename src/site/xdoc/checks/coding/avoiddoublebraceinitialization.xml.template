@@ -9,26 +9,10 @@
     <section name="AvoidDoubleBraceInitialization">
       <p>Since Checkstyle 8.30</p>
       <subsection name="Description" id="Description">
-        <div>
-          Detects double brace initialization.
-        </div>
-
-        <p>
-          Rationale: Double brace initialization (set of
-          <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
-          Instance Initializers</a> in class body) may look cool,
-          but it is considered as anti-pattern and should be avoided.
-          This is also can lead to a hard-to-detect memory leak, if the anonymous class instance is
-          returned outside and other object(s) hold reference to it.
-          Created anonymous class is not static, it holds an implicit reference to the outer class
-          instance.
-          See this
-          <a href="https://blog.jooq.org/dont-be-clever-the-double-curly-braces-anti-pattern/">
-          blog post</a> and
-          <a href="https://www.baeldung.com/java-double-brace-initialization">
-          article</a> for more details.
-          Check ignores any comments and semicolons in class body.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidDoubleBraceInitializationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

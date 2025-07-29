@@ -16,7 +16,8 @@
       <subsection name="Notes" id="Notes">
         <p>
           This check is not applicable to nested type declarations,
-          <a href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
+          <a
+          href="https://checkstyle.org/checks/coding/unnecessarysemicolonaftertypememberdeclaration.html">
           UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
         </p>
       </subsection>

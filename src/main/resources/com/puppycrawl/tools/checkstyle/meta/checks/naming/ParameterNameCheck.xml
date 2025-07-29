@@ -6,12 +6,12 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that method parameter names conform to a specified pattern.
- By using {@code accessModifiers} property it is possible
+ By using &lt;code&gt;accessModifiers&lt;/code&gt; property it is possible
  to specify different formats for methods at different visibility levels.
  &lt;/div&gt;
 
  &lt;p&gt;
- To validate {@code catch} parameters please use
+ To validate &lt;code&gt;catch&lt;/code&gt; parameters please use
  &lt;a href="https://checkstyle.org/checks/naming/catchparametername.html#CatchParameterName"&gt;
  CatchParameterName&lt;/a&gt;.
  &lt;/p&gt;

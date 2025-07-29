@@ -43,7 +43,7 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     static {
         try {
             final Properties properties = new Properties();
-            properties.put("org.checkstyle.google.severity", "error");
+            properties.setProperty("org.checkstyle.google.severity", "error");
             final PropertiesExpander expander = new PropertiesExpander(properties);
             CONFIGURATION = ConfigurationLoader.loadConfiguration(XML_NAME,
                     expander);

@@ -46,12 +46,14 @@ download-files)
   PROJECTS_FILENAME=$(basename "$LINK")
   EXTENSION="${PROJECTS_FILENAME##*.}"
 
+  echo "Downloading project list ${LINK}"
   curl --fail-with-body -X GET "${LINK}" \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: token $GITHUB_TOKEN" \
     -o ".ci-temp/projects.${EXTENSION}"
 
   if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
+    echo "Downloading new module config ${NEW_MODULE_CONFIG_LINK}"
     curl --fail-with-body -X GET "${NEW_MODULE_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \
@@ -59,6 +61,7 @@ download-files)
   fi
 
   if [ -n "$DIFF_CONFIG_LINK" ]; then
+    echo "Downloading diff config ${DIFF_CONFIG_LINK}"
     curl --fail-with-body -X GET "${DIFF_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \
@@ -66,6 +69,7 @@ download-files)
   fi
 
   if [ -n "$PATCH_CONFIG_LINK" ]; then
+    echo "Downloading patch config ${PATCH_CONFIG_LINK}"
     curl --fail-with-body -X GET "${PATCH_CONFIG_LINK}" \
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: token $GITHUB_TOKEN" \

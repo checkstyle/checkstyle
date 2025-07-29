@@ -41,7 +41,7 @@ public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
             "17:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -53,6 +53,6 @@ public class RecordTypeParameterNameCheckExamplesTest extends AbstractExamplesMo
             "19:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }

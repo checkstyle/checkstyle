@@ -9,18 +9,17 @@
     <section name="EmptyCatchBlock">
       <p>Since Checkstyle 6.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for empty catch blocks.
-          By default, check allows empty catch block with any comment inside.
-        </div>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          There are two options to make validation more precise: <b>exceptionVariableName</b> and
-          <b>commentFormat</b>.
-          If both options are specified - they are applied by <b>any of them is matching</b>.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

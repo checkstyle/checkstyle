@@ -45,6 +45,7 @@ import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
@@ -52,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 
 public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport {
 
@@ -122,15 +124,15 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected void configureChecker(Checker checker, Configuration moduleConfig) throws Exception {
         final Class<?> moduleClass = Class.forName(moduleConfig.getName());
 
+        final Configuration config;
         if (ModuleReflectionUtil.isCheckstyleTreeWalkerCheck(moduleClass)
                 || ModuleReflectionUtil.isTreeWalkerFilterModule(moduleClass)) {
-            final Configuration config = createTreeWalkerConfig(moduleConfig);
-            checker.configure(config);
+            config = createTreeWalkerConfig(moduleConfig);
         }
         else {
-            final Configuration config = createRootConfig(moduleConfig);
-            checker.configure(config);
+            config = createRootConfig(moduleConfig);
         }
+        checker.configure(config);
     }
 
     /**
@@ -178,6 +180,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return new File("src/" + getResourceLocation()
                 + "/resources-noncompilable/" + getPackageLocation() + "/"
                 + filename).getCanonicalPath();
+    }
+
+    /**
+     * Creates a RootNode for non-compilable test files.
+     *
+     * @param fileName name of the test file
+     * @return RootNode for the parsed AST
+     * @throws Exception if file parsing fails
+     */
+    protected RootNode getRootNodeForNonCompilable(String fileName) throws Exception {
+        final File file = new File(getNonCompilablePath(fileName));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+        return new RootNode(rootAst);
     }
 
     /**
@@ -352,6 +367,42 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Performs verification of the file with the given file path using specified configuration
+     * and the array of expected messages. Also performs verification of the config with filters
+     * specified in the input file.
+     *
+     * @param fileWithConfig file path of the configuration file.
+     * @param targetFilePath file path of the target file to be verified.
+     * @param expectedUnfiltered an array of expected unfiltered config.
+     * @param expectedFiltered an array of expected config with filters.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyFilterWithInlineConfigParserSeparateConfigAndTarget(
+            String fileWithConfig,
+            String targetFilePath,
+            String[] expectedUnfiltered,
+            String... expectedFiltered)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithFilteredViolations(fileWithConfig);
+        final DefaultConfiguration configWithoutFilters =
+                testInputConfiguration.createConfigurationWithoutFilters();
+        final List<TestInputViolation> violationsWithoutFilters = new ArrayList<>(
+                InlineConfigParser.getFilteredViolationsFromInputFile(targetFilePath));
+        violationsWithoutFilters.addAll(
+                InlineConfigParser.getViolationsFromInputFile(targetFilePath));
+        Collections.sort(violationsWithoutFilters);
+        verifyViolations(configWithoutFilters, targetFilePath, violationsWithoutFilters);
+        verify(configWithoutFilters, targetFilePath, expectedUnfiltered);
+        final DefaultConfiguration configWithFilters =
+                testInputConfiguration.createConfiguration();
+        final List<TestInputViolation> violationsWithFilters =
+                InlineConfigParser.getViolationsFromInputFile(targetFilePath);
+        verifyViolations(configWithFilters, targetFilePath, violationsWithFilters);
+        verify(configWithFilters, targetFilePath, expectedFiltered);
+    }
+
+    /**
+     * Performs verification of the file with the given file path using specified configuration
      * and the array expected messages. Also performs verification of the config specified in
      * input file
      *
@@ -398,6 +449,46 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         checker.process(filesToCheck);
 
         verifyContent(expectedReportFile, outputStream);
+    }
+
+    /**
+     * Verifies logger output using the inline configuration parser for default logger.
+     * Expects an input file with configuration and violations, and separate expected output files
+     * for info and error streams.
+     * Uses full Checker configuration.
+     *
+     * @param inputFile path to the file with configuration and violations
+     * @param expectedInfoFile path to the expected info stream output file
+     * @param expectedErrorFile path to the expected error stream output file
+     * @param logger logger to test
+     * @param infoStream where the logger writes its actual info stream output
+     * @param errorStream where the logger writes its actual error stream output
+     * @throws Exception if an exception occurs during verification
+     * @noinspection MethodWithTooManyParameters
+     * @noinspectionreason MethodWithTooManyParameters - Method requires a lot of parameters to
+     *                     verify the default logger output.
+     */
+    protected final void verifyWithInlineConfigParserAndDefaultLogger(String inputFile,
+                                                         String expectedInfoFile,
+                                                         String expectedErrorFile,
+                                                         AuditListener logger,
+                                                         ByteArrayOutputStream infoStream,
+                                                         ByteArrayOutputStream errorStream)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithXmlHeader(inputFile);
+        final Configuration parsedConfig =
+                testInputConfiguration.getXmlConfiguration();
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
+        final String basePath = Path.of("").toAbsolutePath().toString();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+        checker.addListener(logger);
+        checker.process(filesToCheck);
+
+        verifyContent(expectedInfoFile, infoStream);
+        verifyCleanedMessageContent(expectedErrorFile, errorStream, basePath);
     }
 
     /**
@@ -492,10 +583,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
+        checker.process(theFiles);
 
         // process each of the lines
-        final Map<String, List<String>> actualViolations = getActualViolations(errs);
+        final Map<String, List<String>> actualViolations = getActualViolations();
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
 
@@ -542,7 +633,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Checker checker = createChecker(config);
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         checker.process(files);
         checker.destroy();
     }
@@ -557,7 +648,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected static void execute(Checker checker, String... filenames) throws Exception {
         final List<File> files = Arrays.stream(filenames)
                 .map(File::new)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         checker.process(files);
         checker.destroy();
     }
@@ -578,10 +669,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
@@ -605,10 +696,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final List<Integer> actualViolationLines = actualViolations.stream()
                 .map(violation -> violation.substring(0, violation.indexOf(':')))
                 .map(Integer::valueOf)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         final List<Integer> expectedViolationLines = testInputViolations.stream()
                 .map(TestInputViolation::getLineNo)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
@@ -638,6 +729,43 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Verifies that the logger output matches the expected report file content,
+     * keeping only severity-tagged lines (e.g. [ERROR], [WARN], [INFO]).
+     *
+     * <p>
+     * This method strips:
+     * <ul>
+     *   <li>any stack trace lines from exception outputs (i.e. lines not starting with a severity
+     *   tag),</li>
+     *   <li>any absolute {@code basePath} prefixes in the message content.</li>
+     * </ul>
+     * The result is compared with expected output that includes only severity-tagged lines.
+     *
+     * @param expectedOutputFile path to a file that contains the expected first line
+     * @param outputStream output stream containing the actual logger output
+     * @param basePath absolute path prefix to strip before comparison
+     * @throws IOException if an exception occurs while reading the file
+     */
+    private static void verifyCleanedMessageContent(
+            String expectedOutputFile,
+            ByteArrayOutputStream outputStream,
+            String basePath) throws IOException {
+        final String expectedContent = readFile(expectedOutputFile);
+        final String rawActualContent =
+                toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
+
+        final String cleanedActualContent = rawActualContent.lines()
+                .filter(line -> line.startsWith("["))
+                .map(line -> line.replace(basePath, ""))
+                .map(line -> line.replace('\\', '/'))
+                .collect(Collectors.joining("\n", "", "\n"));
+
+        assertWithMessage("Content should match")
+                .that(cleanedActualContent)
+                .isEqualTo(expectedContent);
+    }
+
+    /**
      * Tests the file with the check config.
      *
      * @param config check configuration.
@@ -651,8 +779,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         stream.reset();
         final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
+        checker.process(files);
         final Map<String, List<String>> actualViolations =
-                getActualViolations(checker.process(files));
+                getActualViolations();
         checker.destroy();
         return actualViolations.getOrDefault(file, new ArrayList<>());
     }
@@ -662,19 +791,21 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Each file is mapped to their corresponding violation messages. Reads input stream for these
      * messages using instance of {@link InputStreamReader}.
      *
-     * @param errorCount count of errors after checking set of files against {@link Checker}.
      * @return a {@link Map} object containing file names and the corresponding violation messages.
      * @throws IOException exception can occur when reading input stream.
      */
-    private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
+    private Map<String, List<String>> getActualViolations() throws IOException {
         // process each of the lines
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final Map<String, List<String>> actualViolations = new HashMap<>();
-            for (String line = lnr.readLine(); line != null && lnr.getLineNumber() <= errorCount;
+            for (String line = lnr.readLine(); line != null;
                  line = lnr.readLine()) {
+                if ("Audit done.".equals(line) || line.contains("at com")) {
+                    break;
+                }
                 // have at least 2 characters before the splitting colon,
                 // to not split after the drive letter on Windows
                 final String[] actualViolation = line.split("(?<=.{2}):", 2);

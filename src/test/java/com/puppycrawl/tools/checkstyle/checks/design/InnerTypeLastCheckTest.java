@@ -113,7 +113,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "52:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputInnerTypeLastRecords.java"), expected);
+                getPath("InputInnerTypeLastRecords.java"), expected);
     }
 
     @Test

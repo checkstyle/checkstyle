@@ -25,6 +25,8 @@ allclasses
 allowlegacy
 alot
 amazonaws
+amd
+amitkumardeoghoria
 androidx
 annotationlocation
 annotationonsameline
@@ -47,6 +49,7 @@ applet
 appveyor
 APRV
 Aqj
+ARCHITEW
 archunit
 arget
 Arial
@@ -145,6 +148,7 @@ caciocavallosilano
 calledmethods
 camelcase
 casegroup
+casesensitive
 catchparametername
 cba
 cbeaff
@@ -181,6 +185,7 @@ CHDHJECF
 CHDJBFDB
 checkchmod
 checkerframework
+checksandfilessuppressionfilegeneratorauditlistener
 checkstyle
 checkstyleanttask
 checkstylemeta
@@ -240,6 +245,7 @@ Contextualizable
 contextualization
 contextualized
 Contextualizing
+corrosponds
 courtlink
 courtlinkkk
 covariantequals
@@ -256,10 +262,13 @@ csv
 ctc
 ctor
 ctx
+CTYPE
 customimportorder
 CVS
 cyclomatic
 cyclomaticcomplexity
+cygpath
+cygwin
 cz
 dalvik
 Daniil
@@ -284,6 +293,7 @@ Deconstruction
 defau
 defaultcomeslast
 defaultlabelpresence
+defaultlogger
 delims
 DENORMALIZER
 Depedency
@@ -299,14 +309,12 @@ detailast
 detailnodetreestringprinter
 devops
 Dexec
-Dexpression
 dfa
 DFFF
 Dfile
 dfn
 Dfoo
 Dforbiddenapis
-Dforce
 Dgpg
 Dhttp
 Diachenko
@@ -316,6 +324,7 @@ Djacoco
 Dlinkcheck
 DMail
 Dmaven
+DMC
 Dnew
 doccheck
 Dockter
@@ -348,6 +357,7 @@ Duser
 Dversion
 Dxml
 eb
+EBFF
 EBNF
 ecj
 eclemma
@@ -395,6 +405,7 @@ Eslint
 esslingen
 esversion
 etsy
+euf
 ev
 Evt
 exceptionoverrides
@@ -486,13 +497,15 @@ func
 funmodifiablecollection
 Fwhitespace
 Fx
+Fxq
 gav
 Gdrox
 generalform
 genericwhitespace
-Getenv
+getenv
 gg
 gh
+Ghj
 gitattributes
 github
 githubusercontent
@@ -535,6 +548,7 @@ Haml
 hardcoded
 hashcode
 hashtable
+hazelcast
 hbase
 hcoles
 Headerjava
@@ -558,9 +572,10 @@ htmlunit
 http
 httpcomponents
 hurz
-hyperlinks
+hyperlink
 hz
 iae
+icm
 ico
 icu
 identifiernames
@@ -621,6 +636,7 @@ isrutf
 isset
 issuecomment
 issuehunt
+Itemtype
 itemvalue
 ith
 itr
@@ -634,6 +650,8 @@ Jakub
 jarchitect
 javaastvisitor
 javac
+JAVACCMD
+JAVACMD
 javadoc
 javadocblocktaglocation
 javadoccontentlocation
@@ -693,7 +711,6 @@ jhu
 jide
 jidesoft
 jira
-JIs
 jitpack
 jkl
 JLabel
@@ -702,7 +719,6 @@ jls
 JNDI
 jooq
 JOption
-josm
 Jpa
 JPanel
 Jpdl
@@ -735,6 +751,7 @@ JTool
 jtree
 junit
 junitpioneer
+justsometag
 jvm
 jxr
 kailasam
@@ -784,6 +801,7 @@ lombok
 lookaround
 Loughran
 lparen
+lte
 lucene
 lui
 luiframework
@@ -821,6 +839,7 @@ mfussenegger
 MHTML
 Micha
 microsoft
+mingw
 minimalistic
 Mipmap
 misconfigured
@@ -837,6 +856,7 @@ missingtag
 mixin
 mkdir
 mkordas
+mktemp
 MLINKCHECK
 moby
 mockit
@@ -853,8 +873,8 @@ mozilla
 MRELEASE
 mstudman
 MTAGLIST
-mtime
 multicharacter
+multifileregexpheader
 multiline
 Multimap
 multiplestringliterals
@@ -865,8 +885,10 @@ mutableexception
 mutationtest
 MVC
 mvn
+mvnd
 mvnrepository
 mvnw
+MWRAPPER
 Mycheckstyle
 mycompany
 mycompanychecks
@@ -909,6 +931,7 @@ NMTOKEN
 noarch
 noarg
 noarraytrailingcomma
+noblank
 nobr
 noclone
 nocode
@@ -928,6 +951,7 @@ nonconstantfieldnames
 nondex
 nonemptyatclausedescription
 nonemptyblocks
+NONFORMATTED
 NONGROUP
 NONJAVA
 nonjavadoc
@@ -937,6 +961,7 @@ nonrequiredjavadoc
 nonvalidating
 noparentfile
 NOPMD
+noprofile
 noreply
 noscript
 NOSONAR
@@ -958,13 +983,14 @@ nrmancuso
 ntokens
 NTU
 nullcase
-NULLCHECK
+nullcheck
 nullness
 numberperline
 numericliterals
 nutsandbolts
 nvim
 nvuillam
+nx
 OAuth
 objblock
 oburn
@@ -984,7 +1010,6 @@ oopsla
 OOQ
 opencollective
 openjdk
-openstreetmap
 operatorwrap
 opsummary
 optgroup
@@ -998,7 +1023,7 @@ ORELSEGET
 orm
 Osgi
 oss
-osx
+OSX
 otechie
 outertypefilename
 outertypenumber
@@ -1037,6 +1062,7 @@ Passembly
 passphrase
 pathcomplexity
 patreon
+patternvariableassignment
 patternvariablename
 Paulicke
 paypal
@@ -1073,7 +1099,7 @@ Pointcut
 POJO
 Popup
 Postgresql
-ppc
+powershell
 prebuilts
 prefs
 PRESIZE
@@ -1090,6 +1116,8 @@ propkey
 PROTECTE
 protonpack
 Psevntu
+PSHOME
+PSMODULEP
 Pstatic
 pubconstr
 pubifc
@@ -1141,6 +1169,7 @@ relativized
 releasenotes
 remkop
 reportyml
+REPOURL
 requireemptylinebeforeblocktaggroup
 requirethis
 resourceleak
@@ -1192,8 +1221,10 @@ Schneeberger
 scm
 scp
 screenshot
+Scriptblock
 Scss
 sdk
+sdkman
 sealedshouldhavepermitslist
 selfexplanatory
 Selkin
@@ -1206,6 +1237,7 @@ servlet
 severitymatchfilter
 sevntu
 shanegenschaw
+shasum
 shellcheck
 shengchen
 Shiell
@@ -1229,6 +1261,7 @@ Sms
 smth
 snyk
 socio
+Sohjiro
 solr
 someinner
 somename
@@ -1293,6 +1326,7 @@ superfinalize
 Superinterface
 supertype
 suppressioncommentfilter
+suppressionexample
 suppressionfilter
 suppressionsinglefilter
 suppressionsloader
@@ -1307,8 +1341,8 @@ suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
-svn
 sxpath
+syntastic
 Sys
 sysextensions
 sysprop
@@ -1325,6 +1359,7 @@ technotes
 temurin
 Testik
 testmodules
+textblocks
 textlevel
 tfij
 Tfo
@@ -1362,6 +1397,8 @@ treemap
 treeset
 treetable
 treewalker
+trino
+trinodb
 tschneeberger
 tstamp
 tt
@@ -1391,6 +1428,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
@@ -1410,6 +1448,7 @@ upsss
 urandom
 uri
 url
+usebackq
 userguide
 username
 usr
@@ -1428,7 +1467,6 @@ Verdana
 Versioning
 verticalwhitespace
 Vetrenko
-Veyor
 Vfs
 vh
 viesure
@@ -1447,6 +1485,7 @@ Wakelock
 Warni
 wbr
 Weakento
+webclient
 Webflow
 webjar
 Weblogic
@@ -1484,7 +1523,6 @@ writinglisteners
 Wsdl
 www
 xa
-Xandy
 xar
 xargs
 XDcompile
@@ -1537,6 +1575,7 @@ xxxxxx
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
 XYzz
+xzf
 xzvf
 yaml
 yamllint

@@ -7,7 +7,7 @@ trailingArrayComma = ALWAYS
 
 */
 
-//non-compiled with eclipse: The value for annotation attribute must be a constant expression
+// non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
 public class InputAnnotationUseStyleWithTrailingComma

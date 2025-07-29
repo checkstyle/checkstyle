@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * SuppressWithNearbyCommentFilter can suppress Checks that have
  * Treewalker as parent module.
  * </p>

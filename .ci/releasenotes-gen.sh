@@ -1,5 +1,4 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problem on Travis
 # to run on local:
 # export READ_ONLY_TOKEN=9ffd28f
 #  && export DRONE_PULL_REQUEST="master" && ./.ci/releasenotes-gen.sh
@@ -35,7 +34,6 @@ cd .ci-temp/contribution/releasenotes-builder
 mvn -e --no-transfer-progress clean compile package
 cd ../../../
 
-# we need to do full clone as Travis do "git clone --depth=50"
 if [ -d .ci-temp/checkstyle ]; then
   cd .ci-temp/checkstyle/
   git reset --hard origin/master

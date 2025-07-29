@@ -122,7 +122,7 @@ public class FinalLocalVariableCheckTest
             "20:17: " + getCheckMessage(MSG_KEY, "b"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCheckRecords.java"), expected);
+                getPath("InputFinalLocalVariableCheckRecords.java"), expected);
     }
 
     @Test
@@ -366,7 +366,7 @@ public class FinalLocalVariableCheckTest
             "92:16: " + getCheckMessage(MSG_KEY, "res"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
+                getPath("InputFinalLocalVariableCheckSwitchAssignment.java"),
             expected);
     }
 

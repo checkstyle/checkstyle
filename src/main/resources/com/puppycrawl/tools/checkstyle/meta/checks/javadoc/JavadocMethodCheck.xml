@@ -10,19 +10,19 @@
 
  &lt;p&gt;
  Violates parameters and type parameters for which no param tags are present can
- be suppressed by defining property {@code allowMissingParamTags}.
+ be suppressed by defining property &lt;code&gt;allowMissingParamTags&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;
  Violates methods which return non-void but for which no return tag is present can
- be suppressed by defining property {@code allowMissingReturnTag}.
+ be suppressed by defining property &lt;code&gt;allowMissingReturnTag&lt;/code&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;
- Violates exceptions which are declared to be thrown (by {@code throws} in the method
- signature or by {@code throw new} in the method body), but for which no throws tag is
- present by activation of property {@code validateThrows}.
- Note that {@code throw new} is not checked in the following places:
+ Violates exceptions which are declared to be thrown (by &lt;code&gt;throws&lt;/code&gt; in the method
+ signature or by &lt;code&gt;throw new&lt;/code&gt; in the method body), but for which no throws tag is
+ present by activation of property &lt;code&gt;validateThrows&lt;/code&gt;.
+ Note that &lt;code&gt;throw new&lt;/code&gt; is not checked in the following places:
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
@@ -44,15 +44,15 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Javadoc is not required on a method that is tagged with the {@code @Override}
+ Javadoc is not required on a method that is tagged with the &lt;code&gt;@Override&lt;/code&gt;
  annotation. However, under Java 5 it is not possible to mark a method required
  for an interface (this was &lt;i&gt;corrected&lt;/i&gt; under Java 6). Hence, Checkstyle
- supports using the convention of using a single {@code {@inheritDoc}} tag
+ supports using the convention of using a single &lt;code&gt;{@inheritDoc}&lt;/code&gt; tag
  instead of all the other tags.
  &lt;/p&gt;
 
  &lt;p&gt;
- Note that only inheritable items will allow the {@code {@inheritDoc}}
+ Note that only inheritable items will allow the &lt;code&gt;{@inheritDoc}&lt;/code&gt;
  tag to be used in place of comments. Static methods at all visibilities,
  private non-static methods and constructors are not inheritable.
  &lt;/p&gt;
@@ -61,12 +61,12 @@
  For example, if the following method is implementing a method required by
  an interface, then the Javadoc could be done as:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  &amp;#47;** {&amp;#64;inheritDoc} *&amp;#47;
  public int checkReturnTag(final int aTagIndex,
                            JavadocTag[] aTags,
                            int aLineNo)
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="public, protected, package, private"
                       name="accessModifiers"
@@ -79,11 +79,11 @@
             </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
                <description>Control whether to ignore violations
- when a method has parameters but does not have matching {@code param} tags in the javadoc.</description>
+ when a method has parameters but does not have matching &lt;code&gt;param&lt;/code&gt; tags in the javadoc.</description>
             </property>
             <property default-value="false" name="allowMissingReturnTag" type="boolean">
                <description>Control whether to ignore violations
- when a method returns non-void type and does not have a {@code return} tag in the javadoc.</description>
+ when a method returns non-void type and does not have a &lt;code&gt;return&lt;/code&gt; tag in the javadoc.</description>
             </property>
             <property default-value="Override"
                       name="allowedAnnotations"
@@ -91,7 +91,7 @@
                <description>Specify annotations that allow missed documentation.</description>
             </property>
             <property default-value="false" name="validateThrows" type="boolean">
-               <description>Control whether to validate {@code throws} tags.</description>
+               <description>Control whether to validate &lt;code&gt;throws&lt;/code&gt; tags.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

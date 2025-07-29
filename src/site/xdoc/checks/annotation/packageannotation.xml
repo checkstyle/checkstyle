@@ -27,7 +27,7 @@
 
         <p>
           See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.4.1">
-          Java Language Specification, &#xa7;7.4.1</a> for more info.
+          Java Language Specification, &#167;7.4.1</a> for more info.
         </p>
       </subsection>
 
@@ -53,7 +53,7 @@ class Example1 {}
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 
 class Example2 {}
-</code></pre></div><hr class="example-separator"/>
+</code></pre></div>
         <p id="package-info-code">Example of validating package-info.java:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 @Deprecated

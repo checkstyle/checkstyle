@@ -101,12 +101,12 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * For example, if the following method is implementing a method required by
  * an interface, then the Javadoc could be done as:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;** {&#64;inheritDoc} *&#47;
  * public int checkReturnTag(final int aTagIndex,
  *                           JavadocTag[] aTags,
  *                           int aLineNo)
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code accessModifiers} - Specify the access modifiers where Javadoc comments are

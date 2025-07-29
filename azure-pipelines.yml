@@ -30,75 +30,70 @@ strategy:
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
 
-    # unit tests (openjdk11)
+    # unit tests (openjdk17)
     'test':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test"
 
-    # unit tests in German locale (openjdk11)
+    # unit tests in German locale (openjdk17)
     'test-de':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-de"
 
-    # unit tests in Spanish locale (openjdk11)
+    # unit tests in Spanish locale (openjdk17)
     'test-es':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-es"
 
-    # unit tests in Finnish locale (openjdk11)
+    # unit tests in Finnish locale (openjdk17)
     'test-fi':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fi"
 
-    # unit tests in French locale (openjdk11)
+    # unit tests in French locale (openjdk17)
     'test-fr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-fr"
 
-    # unit tests in Chinese locale (openjdk11)
+    # unit tests in Chinese locale (openjdk17)
     'test-zh':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-zh"
 
-    # unit tests in Japanese locale (openjdk11)
+    # unit tests in Japanese locale (openjdk17)
     'test-ja':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ja"
 
-    # unit tests in Portuguese locale (openjdk11)
+    # unit tests in Portuguese locale (openjdk17)
     'test-pt':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-pt"
 
-    # unit tests in Turkish locale (openjdk11)
+    # unit tests in Turkish locale (openjdk17)
     'test-tr':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-tr"
 
-    # unit tests in Russian locale (openjdk11)
+    # unit tests in Russian locale (openjdk17)
     'test-ru':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-ru"
 
-    # unit tests in Albanian locale (openjdk11)
+    # unit tests in Albanian locale (openjdk17)
     'test-al':
       image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh test-al"
 
-    # OpenJDK11 verify
-    'OpenJDK11 verify':
+    # OpenJDK17 verify
+    'OpenJDK17 verify':
       image: 'ubuntu-24.04'
-      cmd: "mvn -e --no-transfer-progress verify"
-
-    # MacOS JDK11 verify
-    'MacOS JDK11 verify':
-      image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_11_X64 mvn -e --no-transfer-progress verify"
+      cmd: "./mvnw -e --no-transfer-progress verify"
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
       image: 'macOS-14'
-      cmd: "JAVA_HOME=$JAVA_HOME_17_X64 mvn -e --no-transfer-progress verify"
+      cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
 
     # versions to update
     'versions':
@@ -141,7 +136,7 @@ steps:
 
   - task: JavaToolInstaller@0
     inputs:
-      versionSpec: 11
+      versionSpec: 17
       jdkArchitectureOption: 'X64'
       jdkSourceOption: 'PreInstalled'
 
@@ -151,13 +146,15 @@ steps:
       restoreKeys: |
         maven | "$(Agent.OS)"
         maven
-      path: $(MAVEN_CACHE_FOLDER)
-    displayName: Cache Maven local repo
+      path: |
+        $(MAVEN_CACHE_FOLDER)
+        .mvn/wrapper
+    displayName: Cache Maven local repo and wrapper
     condition: ne(variables.SKIP_CACHE, 'true')
 
   - bash: |
       set -e
-      mvn --version
+      ./mvnw --version
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
       echo "cmd: "$(cmd)

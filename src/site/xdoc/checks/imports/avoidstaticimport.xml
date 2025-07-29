@@ -14,22 +14,23 @@
         </div>
 
         <p>
-          Rationale: Importing static members can lead to naming
-          conflicts between class' members. It may lead to poor code
-          readability since it may no longer be clear what class a
-          member resides in (without looking at the import statement).
+          Rationale: Importing static members can lead to naming conflicts
+          between class' members. It may lead to poor code readability since it
+          may no longer be clear what class a member resides in (without looking
+          at the import statement).
         </p>
       </subsection>
 
       <subsection name="Notes" id="Notes">
         <p>
-          If you exclude a starred import on a class this automatically
-          excludes each member individually.
+          If you exclude a starred import on a class this automatically excludes
+          each member individually.
         </p>
+
         <p>
-          For example: Excluding <code>java.lang.Math.*</code>. will allow the
-          import of each static member in the Math class
-          individually like <code>java.lang.Math.PI, java.lang.Math.cos, ...</code>.
+          For example: Excluding <code>java.lang.Math.*</code>. will allow the import
+          of each static member in the Math class individually like
+          <code>java.lang.Math.PI, java.lang.Math.cos, ...</code>.
         </p>
       </subsection>
 

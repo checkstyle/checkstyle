@@ -4,7 +4,6 @@ package com.puppycrawl.tools.checkstyle.checks.naming.recordtypeparametername;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
-import org.w3c.dom.Node;
 
 /** some javadoc. Config: pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)" */
 public record InputRecordTypeParameterName<t>(Integer x, String str) {
@@ -15,7 +14,7 @@ public record InputRecordTypeParameterName<t>(Integer x, String str) {
   <T> void foo(int i) {}
 
   // violation below 'Record type name 'foo' must match pattern'
-  record Other<foo extends Serializable & Cloneable>(LinkedHashMap<String, Node> linkedHashMap) {
+  record Other<foo extends Serializable & Cloneable>(LinkedHashMap<String, String> linkedHashMap) {
 
     foo getOne() {
       return null; // comment

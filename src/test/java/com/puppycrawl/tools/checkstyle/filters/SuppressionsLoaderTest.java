@@ -202,7 +202,6 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                     break;
                 }
                 catch (CheckstyleException exc) {
-                    // for some reason Travis CI failed sometimes (unstable) on reading this file
                     if (attemptCount < attemptLimit && exc.getMessage()
                             .contains("Unable to read")) {
                         attemptCount++;

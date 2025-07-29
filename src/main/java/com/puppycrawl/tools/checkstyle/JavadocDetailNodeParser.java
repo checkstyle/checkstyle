@@ -484,7 +484,6 @@ public class JavadocDetailNodeParser {
      *     null otherwise
      */
     private static Token getMissedHtmlTag(RecognitionException exception) {
-        Token htmlTagNameStart = null;
         final Interval sourceInterval = exception.getCtx().getSourceInterval();
         final List<Token> tokenList = ((BufferedTokenStream) exception.getInputStream())
                 .getTokens(sourceInterval.a, sourceInterval.b);
@@ -496,20 +495,13 @@ public class JavadocDetailNodeParser {
                     && prevTokenType == JavadocTokenTypes.START) {
                 stack.push(token);
             }
-            else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME && !stack.isEmpty()) {
-                if (stack.peek().getText().equals(token.getText())) {
-                    stack.pop();
-                }
-                else {
-                    htmlTagNameStart = stack.pop();
-                }
+            else if (tokenType == JavadocTokenTypes.HTML_TAG_NAME
+                    && stack.peek().getText().equals(token.getText())) {
+                stack.pop();
             }
             prevTokenType = tokenType;
         }
-        if (htmlTagNameStart == null) {
-            htmlTagNameStart = stack.pop();
-        }
-        return htmlTagNameStart;
+        return stack.pop();
     }
 
     /**

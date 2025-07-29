@@ -9,11 +9,10 @@
     <section name="SingleLineJavadoc">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="Description">
-        <div>
-           Checks that a Javadoc block can fit in a single-line and doesn't
-           contain block tags. Javadoc comment that contains at least one block tag
-           should be formatted in a few lines.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SingleLineJavadocCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

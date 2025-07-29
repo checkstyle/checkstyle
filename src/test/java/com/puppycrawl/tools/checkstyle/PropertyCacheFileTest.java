@@ -35,11 +35,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
@@ -281,6 +284,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final Path filePath = Path.of(fileName);
         final PropertyCacheFile cache = new PropertyCacheFile(config, fileName);
 
+        deleteDirectoryRecursively(filePath);
+
         // no exception expected
         cache.persist();
 
@@ -489,6 +494,31 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                     .hasCauseThat()
                         .hasMessageThat()
                         .isEqualTo("Unable to calculate hashcode.");
+        }
+    }
+
+    /**
+     * Recursively deletes the specified directory and all its contents.
+     *
+     * <p>
+     * This method walks through all files and subdirectories inside the given directory,
+     * and deletes them in reverse order (children before parents) to ensure complete deletion.
+     * It throws an {@link IOException} if any file or directory cannot be deleted.
+     * </p>
+     *
+     * @param directory the path to the directory to be deleted
+     * @throws IOException if an I/O error occurs during walking or deleting the directory
+     */
+    private static void deleteDirectoryRecursively(Path directory) throws IOException {
+        if (Files.exists(directory) && Files.isDirectory(directory)) {
+            // collect all paths inside the directory
+            try (Stream<Path> walkedPathsStream = Files.walk(directory)
+                        .sorted(Comparator.reverseOrder())) {
+                final Iterator<Path> iterator = walkedPathsStream.iterator();
+                while (iterator.hasNext()) {
+                    Files.delete(iterator.next());
+                }
+            }
         }
     }
 

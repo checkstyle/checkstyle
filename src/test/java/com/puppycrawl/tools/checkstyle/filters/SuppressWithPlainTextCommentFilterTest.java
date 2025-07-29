@@ -26,11 +26,16 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -51,6 +56,9 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSupport {
 
     private static final String MSG_REGEXP_EXCEEDED = "regexp.exceeded";
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -358,6 +366,78 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 .isTrue();
     }
 
+    /**
+     * Calls the filter twice and removes input file in between to ensure that
+     * the file readed once will not read twice.
+     * We cannot use {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser}
+     * because to kill pitest survival we need to remove target file between
+     * filter execution to accept violation
+     */
+    @Test
+    public void testCachingExecution() throws Exception {
+        final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
+        final String inputPath =
+                getPath("InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java");
+        final File tempFile = new File(temporaryFolder,
+                "InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java");
+        Files.copy(new File(inputPath).toPath(), tempFile.toPath(),
+                StandardCopyOption.REPLACE_EXISTING);
+
+        final AuditEvent auditEvent1 = new AuditEvent(
+                tempFile.getPath(), tempFile.getPath(),
+                new Violation(1, null, null, null, null,
+                        Object.class, null)
+        );
+        filter.accept(auditEvent1);
+        final boolean deleted = tempFile.delete();
+        assertWithMessage("Temporary file should be deleted.")
+                .that(deleted).isTrue();
+        final AuditEvent auditEvent2 = new AuditEvent(
+                tempFile.getPath(), tempFile.getPath(),
+                new Violation(2, null, null, null, null,
+                        Object.class, null)
+        );
+        filter.accept(auditEvent2);
+
+        assertWithMessage("Cache should handle missing file.")
+                .that(tempFile.exists()).isFalse();
+    }
+
+    /**
+     * Calls the filter on two consecutive input files and asserts that the
+     * 'currentFileSuppressions' internal field is cleared after each run.
+     * Our goal is to kill pitest survival and we need access to the implementation details
+     * so {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser} is not used.
+     *
+     * @throws IOException if an error occurs while formatting the path to the input file.
+     */
+    @Test
+    public void testSuppressionsAreClearedEachRun() throws IOException {
+        final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
+        final Violation violation = new Violation(1, null, null,
+                null, null, Object.class, null);
+
+        final String fileName1 = getPath(
+                        "InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java");
+        final AuditEvent event1 = new AuditEvent("", fileName1, violation);
+        filter.accept(event1);
+
+        final List<?> suppressions1 = getSuppressionsAfterExecution(filter);
+        assertWithMessage("Invalid suppressions size")
+            .that(suppressions1)
+            .hasSize(4);
+
+        final String fileName2 = getPath(
+                        "InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java");
+        final AuditEvent event2 = new AuditEvent("", fileName2, violation);
+        filter.accept(event2);
+
+        final List<?> suppressions2 = getSuppressionsAfterExecution(filter);
+        assertWithMessage("Invalid suppressions size")
+            .that(suppressions2)
+            .hasSize(6);
+    }
+
     @Test
     public void testSuppressByCheck() throws Exception {
         final String[] suppressedViolationMessages = {
@@ -655,6 +735,11 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         assertWithMessage("filter should accept directory")
                 .that(filter.accept(event))
                 .isTrue();
+    }
+
+    private static List<?> getSuppressionsAfterExecution(
+                            SuppressWithPlainTextCommentFilter filter) {
+        return TestUtil.getInternalState(filter, "currentFileSuppressionCache");
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,

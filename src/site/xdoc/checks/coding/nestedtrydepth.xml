@@ -9,7 +9,9 @@
     <section name="NestedTryDepth">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>Restricts nested try-catch-finally blocks to a specified depth.</div>
+        <div>
+          Restricts nested try-catch-finally blocks to a specified depth.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

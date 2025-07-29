@@ -10,11 +10,10 @@
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
         <div>
-          Validates abbreviations (consecutive capital letters) length in identifier name,
-          it also allows to enforce camel case naming. Please read more at
-          <a href="../../styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
-          Google Style Guide</a>
-          to get to know how to avoid long abbreviations in names.
+          Validates abbreviations (consecutive capital letters) length in
+          identifier name, it also allows to enforce camel case naming. Please read more at
+          <a href="https://checkstyle.org/styleguides/google-java-style-20220203/javaguide.html#s5.3-camel-case">
+          Google Style Guide</a> to get to know how to avoid long abbreviations in names.
         </div>
 
         <p>'_' is considered as word separator in identifier name.</p>
@@ -22,7 +21,7 @@
         <p>
           <code>allowedAbbreviationLength</code> specifies how many consecutive capital letters are
           allowed in the identifier.
-           A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
+          A value of <i>3</i> indicates that up to 4 consecutive capital letters are allowed,
           one after the other, before a violation is printed. The identifier 'MyTEST' would be
           allowed, but 'MyTESTS' would not be.
           A value of <i>0</i> indicates that only 1 consecutive capital letter is allowed. This

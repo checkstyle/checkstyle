@@ -9,43 +9,10 @@
     <section name="NoWhitespaceAfter">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that there is no whitespace after a token. More specifically,
-          it checks that it is not followed by whitespace, or (if linebreaks
-          are allowed) all characters on the line after are whitespace. To
-          forbid linebreaks after a token, set property <code>allowLineBreaks</code> to <code>
-          false</code>.
-        </div>
-        <p>
-          The check processes
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-              ARRAY_DECLARATOR</a>
-          and
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">INDEX_OP</a>
-          tokens specially from other tokens. Actually it is checked that there is
-          no whitespace before these tokens, not after them.
-          Space after the
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
-                ANNOTATIONS</a> before
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR">
-                ARRAY_DECLARATOR</a>
-          and
-          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
-                INDEX_OP</a>
-          will be ignored.
-        </p>
-        <p>
-          If the annotation is between the type and the array,
-          like <code>char @NotNull [] param</code>, the check will skip
-          validation for spaces.
-        </p>
-        <p>
-         Note: This check processes the
-          <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SYNCHRONIZED">
-         LITERAL_SYNCHRONIZED</a> token only when it appears as a part of a
-          <a href="https://docs.oracle.com/javase/specs/jls/se19/html/jls-14.html#jls-14.19">
-            synchronized statement</a>, i.e. <code>synchronized(this) {}</code>.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

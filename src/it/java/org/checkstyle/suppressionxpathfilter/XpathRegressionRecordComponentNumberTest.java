@@ -39,7 +39,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
 
     @Test
     public void testDefault() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNumberDefault.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
 
     @Test
     public void testCustomMax() throws Exception {
-        final File fileToProcess = new File(getNonCompilablePath(
+        final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNumberCustomMax.java"));
 
         final DefaultConfiguration moduleConfig =

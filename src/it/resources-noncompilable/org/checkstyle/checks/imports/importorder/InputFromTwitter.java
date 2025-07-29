@@ -1,4 +1,4 @@
-//non-compiled with javac: contains specially crafted set of imports for testing
+// non-compiled with javac: contains specially crafted set of imports for testing
 package org.checkstyle.checks.importorder;
 /**
  * This test-input is intended to be checked using following configuration:

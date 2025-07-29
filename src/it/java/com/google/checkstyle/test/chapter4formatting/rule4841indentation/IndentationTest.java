@@ -101,12 +101,91 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testFormattedSwitchOnTheStartOfTheLine() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedSwitchOnStartOfTheLine.java"));
+    }
+
+    @Test
     public void testSingleSwitchStatementWithoutCurly() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
+    public void testFormattedSingleSwitchStatementWithoutCurly() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedSingleSwitchStatementWithoutCurly.java"));
+    }
+
+    @Test
     public void testSwitchWrappingIndentation() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputSwitchWrappingIndentation.java"));
+    }
+
+    @Test
+    public void testFormattedSwitchWrappingIndentation() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedSwitchWrappingIndentation.java"));
+    }
+
+    @Test
+    public void testMultilineParameters() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputCatchParametersOnNewLine.java"));
+    }
+
+    @Test
+    public void testFormattedMultilineParameters() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedCatchParametersOnNewLine.java"));
+    }
+
+    @Test
+    public void testNewKeywordChildren() throws Exception {
+        verifyWithWholeConfig(getPath("InputNewKeywordChildren.java"));
+    }
+
+    @Test
+    public void testFormattedNewKeywordChildren() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNewKeywordChildren.java"));
+    }
+
+    @Test
+    public void testLambdaChild() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputLambdaChild.java"));
+    }
+
+    @Test
+    public void testFormattedLambdaChild() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedLambdaChild.java"));
+    }
+
+    @Test
+    public void testLambdaAndChildOnTheSameLine() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputLambdaAndChildOnTheSameLine.java"));
+    }
+
+    @Test
+    public void testFormattedLambdaAndChildOnTheSameLine() throws Exception {
+        verifyWithWholeConfig(
+            getNonCompilablePath("InputFormattedLambdaAndChildOnTheSameLine.java"));
+    }
+
+    @Test
+    public void testAnnotationArrayInitMultiline1() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultiline.java"));
+    }
+
+    @Test
+    public void testFormattedAnnotationArrayInitMultiline1() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedAnnotationArrayInitMultiline.java"));
+    }
+
+    @Test
+    public void testAnnotationArrayInitMultiline2() throws Exception {
+        verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultiline2.java"));
+    }
+
+    @Test
+    public void testFormattedAnnotationArrayInitMultiline2() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedAnnotationArrayInitMultiline2.java"));
     }
 }

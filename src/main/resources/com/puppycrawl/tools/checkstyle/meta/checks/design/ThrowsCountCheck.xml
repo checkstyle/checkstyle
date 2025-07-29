@@ -16,7 +16,7 @@
  a method to throw too many differently rooted
  exceptions makes exception handling onerous and leads
  to poor programming practices such as writing code like
- {@code catch(Exception ex)}. 4 is the empirical value which is based
+ &lt;code&gt;catch(Exception ex)&lt;/code&gt;. 4 is the empirical value which is based
  on reports that we had for the ThrowsCountCheck over big projects
  such as OpenJDK. This check also forces developers to put exceptions
  into a hierarchy such that in the simplest

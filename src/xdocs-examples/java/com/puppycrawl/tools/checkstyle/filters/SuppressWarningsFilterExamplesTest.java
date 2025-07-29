@@ -31,22 +31,39 @@ public class SuppressWarningsFilterExamplesTest extends AbstractExamplesModuleTe
 
     @Test
     public void testExample1() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithoutFilter = {
+            "16:7: Name 'J' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
             "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
-            "21:7: 'int' is followed by whitespace.",
-            "21:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "20:7: 'int' is followed by whitespace.",
+            "20:10: Name 'ARRAY' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "23:7: 'int' is followed by whitespace.",
+            "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        final String[] expectedWithFilter = {
+            "17:7: Name 'JJ' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "23:7: 'int' is followed by whitespace.",
+            "23:10: Name 'ARRAY2' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 
     @Test
     public void testExample2() throws Exception {
-        final String[] expected = {
+        final String[] expectedWithoutFilter = {
+            "9: Dont use System.out/err, use SLF4J instead.",
+            "23: Dont use System.out/err, use SLF4J instead.",
+            "26: Dont use System.out/err, use SLF4J instead.",
+        };
+
+        final String[] expectedWithFilter = {
             "9: Dont use System.out/err, use SLF4J instead.",
             "26: Dont use System.out/err, use SLF4J instead.",
         };
 
-        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+        verifyFilterWithInlineConfigParser(getPath("Example2.java"),
+                expectedWithoutFilter, expectedWithFilter);
     }
 }

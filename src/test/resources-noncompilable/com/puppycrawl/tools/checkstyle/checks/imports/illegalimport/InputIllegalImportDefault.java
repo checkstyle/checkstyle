@@ -7,7 +7,7 @@ regexp = true
 
 */
 
-//non-compiled with javac: contains sun package so IDEA marks it as build problem
+// non-compiled with javac: contains sun package so IDEA marks it as build problem
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import java.io.*;

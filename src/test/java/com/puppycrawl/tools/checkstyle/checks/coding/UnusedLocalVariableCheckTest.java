@@ -307,7 +307,9 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testUnusedLocalVarTestWarningSeverity() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "14:19: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "p2"),
+        };
 
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableTestWarningSeverity.java"),
@@ -367,7 +369,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "36:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "var2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableRecords.java"),
+                getPath("InputUnusedLocalVariableRecords.java"),
                 expected);
     }
 
@@ -415,7 +417,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
             "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "line2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedLocalVariableSwitchExpression.java"),
+                getPath("InputUnusedLocalVariableSwitchExpression.java"),
                 expected);
     }
 

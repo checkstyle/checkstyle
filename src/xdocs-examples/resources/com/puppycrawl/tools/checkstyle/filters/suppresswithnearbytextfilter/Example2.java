@@ -11,6 +11,7 @@
 package com.puppycrawl.tools.checkstyle.filters.suppresswithnearbytextfilter;
 // xdoc section -- start
 public class Example2 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // DO NOT CHECK THIS LINE
   int b = 43; // violation, "'43' is a magic number."
 }

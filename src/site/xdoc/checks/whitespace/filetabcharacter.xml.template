@@ -9,33 +9,17 @@
     <section name="FileTabCharacter">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that there are no tab characters (<code>'\t'</code>) in the source code.
-        </div>
-
-        <p>
-          Rationale:
-        </p>
-
-        <ul>
-          <li>
-            Developers should not need to configure the tab width of their
-            text editors in order to be able to read source code.
-          </li>
-          <li>
-            From the Apache jakarta coding standards: In a distributed
-            development environment, when the commit messages get sent
-            to a mailing list, they are almost impossible to read if you
-            use tabs.
-          </li>
-        </ul>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          When the <code>FileTabCharacter</code> check is used with the default configuration,
-          only the first instance of a tab character is reported.
-        </p>
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

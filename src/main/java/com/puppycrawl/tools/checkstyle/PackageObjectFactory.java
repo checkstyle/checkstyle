@@ -389,7 +389,7 @@ public class PackageObjectFactory implements ModuleFactory {
         final List<String> possibleNames = packages.stream()
             .map(packageName -> packageName + PACKAGE_SEPARATOR + name)
             .flatMap(className -> Stream.of(className, className + CHECK_SUFFIX))
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
         Object instance = null;
         for (String possibleName : possibleNames) {
             instance = createObject(possibleName);
@@ -563,6 +563,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.OverloadMethodsDeclarationOrderCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageDeclarationCheck",
                 BASE_PACKAGE + ".checks.coding.PackageDeclarationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("PatternVariableAssignmentCheck",
+                BASE_PACKAGE + ".checks.coding.PatternVariableAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterAssignmentCheck",
                 BASE_PACKAGE + ".checks.coding.ParameterAssignmentCheck");
         NAME_TO_FULL_MODULE_NAME.put("RequireThisCheck",
@@ -593,7 +595,7 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
         NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
-        NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsed",
+        NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsedCheck",
                 BASE_PACKAGE + ".checks.coding.WhenShouldBeUsedCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoArrayTrailingCommaCheck",
                 BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck");
@@ -605,6 +607,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnusedCatchParameterShouldBeUnnamedCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedLambdaParameterShouldBeUnnamedCheck",
                 BASE_PACKAGE + ".checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UnnecessaryNullCheckWithInstanceOfCheck",
+                BASE_PACKAGE + ".checks.coding.UnnecessaryNullCheckWithInstanceOfCheck");
     }
 
     /**
@@ -641,6 +645,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.header.HeaderCheck");
         NAME_TO_FULL_MODULE_NAME.put("RegexpHeaderCheck",
                 BASE_PACKAGE + ".checks.header.RegexpHeaderCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MultiFileRegexpHeaderCheck",
+                BASE_PACKAGE + ".checks.header.MultiFileRegexpHeaderCheck");
     }
 
     /**

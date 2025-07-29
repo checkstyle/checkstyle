@@ -7,16 +7,18 @@
   </head>
   <body>
     <section name="RegexpSinglelineJava">
-      <p>Since Checkstyle 6.0</p>
+      <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
         <div>
           Checks that a specified pattern matches a single-line in Java files.
         </div>
+
         <p>
           This class is variation on
-          <a href="regexpsingleline.html#RegexpSingleline">RegexpSingleline</a> for detecting
-          single-lines that match a supplied regular expression in Java files. It supports
-          suppressing matches in Java comments.
+          <a href="https://checkstyle.org/checks/regexp/regexpsingleline.html#RegexpSingleline">
+          RegexpSingleline</a>
+          for detecting single-lines that match a supplied regular expression in Java files.
+          It supports suppressing matches in Java comments.
         </p>
       </subsection>
 

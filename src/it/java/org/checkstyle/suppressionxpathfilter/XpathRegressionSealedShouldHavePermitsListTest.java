@@ -40,7 +40,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
     @Test
     public void testInner() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathSealedShouldHavePermitsListInner.java"));
+                new File(getPath("InputXpathSealedShouldHavePermitsListInner.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(SealedShouldHavePermitsListCheck.class);
@@ -69,7 +69,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
     @Test
     public void testTopLevel() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathSealedShouldHavePermitsListTopLevel.java"));
 
         final DefaultConfiguration moduleConfig =

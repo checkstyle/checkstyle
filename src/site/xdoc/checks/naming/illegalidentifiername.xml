@@ -10,10 +10,10 @@
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks identifiers against a regular expression pattern to detect illegal names. Since
-          this check uses a pattern to define <i>valid</i> identifiers, users will need to use
-          negative lookaheads to explicitly ban certain names (e.g., &quot;var&quot;) or patterns
-          (e.g., any identifier containing $) while still allowing all other valid identifiers.
+          Checks identifiers against a regular expression pattern to detect illegal names. Since this
+          check uses a pattern to define <i>valid</i> identifiers, users will need to use negative
+          lookaheads to explicitly ban certain names (e.g., "var") or patterns (e.g., any identifier
+          containing $) while still allowing all other valid identifiers.
         </div>
       </subsection>
 

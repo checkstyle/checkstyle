@@ -18,7 +18,7 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
+ The check can be configured to also disallow marker interfaces like &lt;code&gt;java.io.Serializable&lt;/code&gt;,
  that do not contain methods or constants at all.
  &lt;/p&gt;</description>
          <properties>

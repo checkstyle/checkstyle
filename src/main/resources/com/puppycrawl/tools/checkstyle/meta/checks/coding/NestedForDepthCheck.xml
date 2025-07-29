@@ -5,7 +5,7 @@
              name="NestedForDepth"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Restricts nested {@code for} blocks to a specified depth.
+ Restricts nested &lt;code&gt;for&lt;/code&gt; blocks to a specified depth.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="1" name="max" type="int">

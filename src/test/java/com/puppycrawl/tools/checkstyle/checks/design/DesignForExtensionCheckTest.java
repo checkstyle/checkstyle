@@ -132,7 +132,7 @@ public class DesignForExtensionCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDesignForExtensionRecords.java"), expected);
+                getPath("InputDesignForExtensionRecords.java"), expected);
     }
 
     @Test

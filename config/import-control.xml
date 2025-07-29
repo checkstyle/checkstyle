@@ -74,6 +74,7 @@
     <allow pkg="org.apache.maven" local-only="true"/>
     <allow pkg="java.nio" local-only="true"/>
     <allow pkg="org.codehaus.plexus" local-only="true"/>
+    <allow class="java.lang.module.ModuleDescriptor.Version" local-only="true"/>
     <allow class="java.lang.reflect.Field" local-only="true"/>
     <allow class="java.lang.reflect.Array" local-only="true"/>
     <allow class="java.lang.reflect.ParameterizedType" local-only="true"/>
@@ -94,6 +95,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.ModuleFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageNamesLoader" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CommonUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CheckUtil" local-only="true"/>

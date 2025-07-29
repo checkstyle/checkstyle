@@ -102,7 +102,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Enums can also contain abstract methods and methods which can be overridden by the declared
  * enumeration fields.
  * See the following example:</p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public enum EnumClass {
  *   FIELD_1,
  *   FIELD_2 {
@@ -113,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public void method1() {}
  *   public final void method2() {} // no violation expected
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>Since these methods can be overridden in these situations, the final methods are not
  * marked as redundant even though they can't be extended by other classes/enums.</p>
@@ -129,7 +129,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Public modifier for constructors in non-public non-protected classes
  * is always obsolete: </p>
  *
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class PublicClass {
  *   public PublicClass() {} // OK
  * }
@@ -137,13 +137,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * class PackagePrivateClass {
  *   public PackagePrivateClass() {} // violation expected
  * }
- * </pre>
+ * </code></pre></div>
  *
  * <p>There is no violation in the following example,
  * because removing public modifier from ProtectedInnerClass
  * constructor will make this code not compiling: </p>
  *
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * package a;
  * public class ClassExample {
  *   protected class ProtectedInnerClass {
@@ -156,7 +156,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public class ClassExtending extends ClassExample {
  *   ProtectedInnerClass pc = new ProtectedInnerClass();
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code jdkVersion} - Set the JDK version that you are using.

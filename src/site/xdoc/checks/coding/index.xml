@@ -439,6 +439,16 @@
           </tr>
           <tr>
             <td>
+              <a href="patternvariableassignment.html#PatternVariableAssignment">
+                PatternVariableAssignment
+              </a>
+            </td>
+            <td>
+              Checks for assignment of pattern variables.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="requirethis.html#RequireThis">
                 RequireThis
               </a>
@@ -510,6 +520,16 @@
             </td>
             <td>
               Checks that an overriding finalize() method invokes super.finalize().
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
+                UnnecessaryNullCheckWithInstanceOf
+              </a>
+            </td>
+            <td>
+              Checks for redundant null checks with the instanceof operator.
             </td>
           </tr>
           <tr>

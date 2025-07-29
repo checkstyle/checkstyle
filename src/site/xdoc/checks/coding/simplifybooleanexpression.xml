@@ -10,15 +10,14 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for over-complicated boolean expressions. Currently, it finds
-          code like <code> if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
-          <code>boolean a = q &gt; 12 ? true : false</code>,
+          Checks for over-complicated boolean expressions. Currently, it finds code like
+          <code>if (b == true)</code>, <code>b || true</code>, <code>!false</code>,
+          <code>boolean a = q > 12 ? true : false</code>,
           etc.
         </div>
 
         <p>
-          Rationale: Complex boolean logic makes code hard to understand and
-          maintain.
+          Rationale: Complex boolean logic makes code hard to understand and maintain.
         </p>
       </subsection>
 

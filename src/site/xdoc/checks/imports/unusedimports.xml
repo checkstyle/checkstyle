@@ -10,54 +10,49 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for unused import statements. An
-          import statement is considered unused if:
+          Checks for unused import statements. An import statement
+          is considered unused if:
         </div>
 
         <ul>
-          <li>
-            It is not referenced in the file. The algorithm does not support
-            wild-card imports like <code>import
-            java.io.*;</code>. Most IDE's provide very sophisticated checks
-            for imports that handle wild-card imports.
-          </li>
-
-          <li>
-            The class imported is from the <code>java.lang</code>
-            package. For example importing <code>java.lang.String</code>.
-          </li>
-
-          <li>
-            The class imported is from the same package.
-          </li>
-          <li>
-            A static method is imported when used as method reference. In that case,
-            only the type needs to be imported and that's enough to resolve the method.
-          </li>
-          <li>
-            <b>Optionally:</b> it is referenced in Javadoc comments. This check
-            is on by default, but it is considered bad practice to introduce
-            a compile-time dependency for documentation purposes only.
-            As an example, the import <code>java.util.List</code> would be
-            considered referenced with the Javadoc comment
-            <code>{@link List}</code>. The alternative to avoid introducing a
-            compile-time dependency would be to write the Javadoc comment as
-            <code>{@link java.util.List}</code>.
-          </li>
+        <li>
+          It is not referenced in the file. The algorithm does not support wild-card
+          imports like <code>import java.io.*;</code>. Most IDE's provide very sophisticated
+          checks for imports that handle wild-card imports.
+        </li>
+        <li>
+          The class imported is from the <code>java.lang</code> package. For example
+          importing <code>java.lang.String</code>.
+        </li>
+        <li>
+          The class imported is from the same package.
+        </li>
+        <li>
+          A static method is imported when used as method reference. In that case,
+          only the type needs to be imported and that's enough to resolve the method.
+        </li>
+        <li>
+          <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
+          default, but it is considered bad practice to introduce a compile-time
+          dependency for documentation purposes only. As an example, the import
+          <code>java.util.List</code> would be considered referenced with the Javadoc
+          comment <code>{@link List}</code>. The alternative to avoid introducing a compile-time
+          dependency would be to write the Javadoc comment as <code>{&#64;link java.util.List}</code>.
+        </li>
         </ul>
+
         <p>
           The main limitation of this check is handling the cases where:
         </p>
         <ul>
-          <li>
-            An imported type has the same name as a declaration, such as a member variable.
-          </li>
-          <li>
-            There are two or more static imports with the same method name
-            (javac can distinguish imports with same name but different parameters, but checkstyle
-            can not due to <a href="https://checkstyle.org/writingchecks.html#Limitations">
-            limitation.</a>)
-          </li>
+        <li>
+          An imported type has the same name as a declaration, such as a member variable.
+        </li>
+        <li>
+          There are two or more static imports with the same method name
+          (javac can distinguish imports with same name but different parameters, but checkstyle can not
+          due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
+        </li>
         </ul>
       </subsection>
 

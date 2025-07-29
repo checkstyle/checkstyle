@@ -54,7 +54,7 @@ public class StringLiteralEqualityCheckTest
             "28:34: " + getCheckMessage(MSG_KEY, "=="),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
+                getPath("InputStringLiteralEqualityCheckTextBlocks.java"),
             expected);
     }
 
@@ -91,7 +91,7 @@ public class StringLiteralEqualityCheckTest
             "53:31: " + getCheckMessage(MSG_KEY, "=="),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputStringLiteralEqualityConcatenatedTextBlocks.java"),
+                getPath("InputStringLiteralEqualityConcatenatedTextBlocks.java"),
                 expected);
     }
 

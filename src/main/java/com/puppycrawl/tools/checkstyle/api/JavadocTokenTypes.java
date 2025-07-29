@@ -372,21 +372,16 @@ public final class JavadocTokenTypes {
      * First child of {@link #JAVADOC_INLINE_TAG} that represents left curly brace '{'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code> JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *         |--JAVADOC_INLINE_TAG_START --&gt; {
-     *         |--CODE_LITERAL --&gt; @code
-     *         |--WS --&gt;
-     *         |--TEXT --&gt; Comparable&lt;E&gt;
-     *         `--JAVADOC_INLINE_TAG_END --&gt; }
-     * </code>
-     * </pre>
-     *
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
+     * <pre>{@code
+     *    JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START --> {
+     *     |--CODE_LITERAL --> @code
+     *     |--WS -->
+     *     |--TEXT --> Comparable<E>
+     *     `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG_START = JavadocParser.JAVADOC_INLINE_TAG_START;
 
@@ -394,22 +389,16 @@ public final class JavadocTokenTypes {
      * Last child of {@link #JAVADOC_INLINE_TAG} that represents right curly brace '}'.
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>JAVADOC_INLINE_TAG --&gt; JAVADOC_INLINE_TAG
-     *        |--JAVADOC_INLINE_TAG_START --&gt; {
-     *        |--CODE_LITERAL --&gt; @code
-     *        |--WS --&gt;
-     *        |--TEXT --&gt; Comparable&lt;E&gt;
-     *        `--JAVADOC_INLINE_TAG_END --&gt; }
-     *
-     * </code>
-     * </pre>
-     *
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
+     * <pre>{@code
+     *   JAVADOC_INLINE_TAG --> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START --> {
+     *    |--CODE_LITERAL --> @code
+     *    |--WS -->
+     *    |--TEXT --> Comparable<E>
+     *    `--JAVADOC_INLINE_TAG_END --> }
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END;
 
@@ -424,24 +413,20 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;code Comparable&lt;E&gt;}</code></pre>
+     * <pre>{@code Comparable<E>}</pre>
      * <b>Tree:</b>
-     * <pre>
-     * <code>JAVADOC_TAG -&gt; JAVADOC_TAG
-     *        |--CUSTOM_NAME -&gt; @code
-     *        |--WS -&gt;
-     *        `--DESCRIPTION -&gt; DESCRIPTION
-     *            |--TEXT -&gt; Comparable&lt;E&gt;
-     * </code>
-     * </pre>
+     * <pre>{@code
+     *   JAVADOC_TAG -> JAVADOC_TAG
+     *    |--CUSTOM_NAME -> @code
+     *    |--WS ->
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        |--TEXT -> Comparable<E>
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDFHHBB">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int CODE_LITERAL = JavadocParser.CODE_LITERAL;
 
@@ -455,40 +440,35 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example:</b></p>
-     * <pre><code>{&#64;docRoot}</code></pre>
+     * <pre>{@code @docRoot}</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>
-     * |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *      |--JAVADOC_INLINE_TAG_START -&gt; {
-     *      |--DOC_ROOT_LITERAL -&gt; @docRoot
-     *      `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *      |--JAVADOC_INLINE_TAG_START -> {
+     *      |--DOC_ROOT_LITERAL -> @docRoot
+     *      `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
-     * <pre><code>Example :{&#64;docRoot
+     * <pre>{@code Example :{@docRoot
      * } in a Javadoc comment.
-     * </code></pre>
+     * }</pre>
      * <b>Tree:</b>
      * <pre>
-     * <code>
-     *   |--JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -&gt; {
-     *     |--DOC_ROOT_LITERAL -&gt; @docRoot
-     *     |--NEWLINE -&gt; \r\n
-     *     |--LEADING_ASTERISK -&gt;       *
-     *     |--WS -&gt;
-     *     `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     *   |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {
+     *     |--DOC_ROOT_LITERAL -> @docRoot
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->       *
+     *     |--WS ->
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDBACBF">
      *     Oracle Docs</a>
      * @see #JAVADOC_INLINE_TAG
-     * @noinspection HtmlTagCanBeJavadocTag
-     * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded when
-     *      replaced with Javadoc tag
      */
     public static final int DOC_ROOT_LITERAL = JavadocParser.DOC_ROOT_LITERAL;
 
@@ -504,22 +484,21 @@ public final class JavadocTokenTypes {
      * <p><b>Tree:</b></p>
      *
      * <pre>
-     * <code>
-     *   JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     *    |--JAVADOC_INLINE_TAG_START -&gt; {
-     *    |--LINK_LITERAL -&gt; @link
-     *    |--WS -&gt;
-     *    |--REFERENCE -&gt; REFERENCE
-     *    |   |--PACKAGE_CLASS -&gt; org.apache.utils.Lists.Comparator
-     *    |   |--HASH -&gt; #
-     *    |   |--MEMBER -&gt; compare
-     *    |   `--PARAMETERS -&gt; PARAMETERS
-     *    |       |--LEFT_BRACE -&gt; (
-     *    |       |--ARGUMENT -&gt; Object
-     *    |       `--RIGHT_BRACE -&gt; )
-     *    `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </code>
-     * </pre>
+     * {@code
+     *   JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *    |--JAVADOC_INLINE_TAG_START -> {
+     *    |--LINK_LITERAL -> @link
+     *    |--WS ->
+     *    |--REFERENCE -> REFERENCE
+     *    |   |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *    |   |--HASH -> #
+     *    |   |--MEMBER -> compare
+     *    |   `--PARAMETERS -> PARAMETERS
+     *    |       |--LEFT_BRACE -> (
+     *    |       |--ARGUMENT -> Object
+     *    |       `--RIGHT_BRACE -> )
+     *    `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
      *
      * @see
      * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDDIECH">
@@ -690,19 +669,19 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SEE_LITERAL -&gt @see
-     *  |--WS -&gt
-     *  |--REFERENCE -&gt REFERENCE
-     *  |   |--PACKAGE_CLASS -&gt org.apache.utils.Lists.Comparator
-     *  |   |--HASH -&gt #
-     *  |   |--MEMBER -&gt compare
-     *  |   `--PARAMETERS -&gt PARAMETERS
-     *  |       |--LEFT_BRACE -&gt (
-     *  |       |--ARGUMENT -&gt Object
-     *  |       `--RIGHT_BRACE -&gt )
-     *  |--NEWLINE -&gt \r\n
-     *  `--WS -&gt
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SEE_LITERAL -> @see
+     *  |--WS ->
+     *  |--REFERENCE -> REFERENCE
+     *  |   |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *  |   |--HASH -> #
+     *  |   |--MEMBER -> compare
+     *  |   `--PARAMETERS -> PARAMETERS
+     *  |       |--LEFT_BRACE -> (
+     *  |       |--ARGUMENT -> Object
+     *  |       `--RIGHT_BRACE -> )
+     *  |--NEWLINE -> \r\n
+     *  `--WS ->
      * }
      * </pre>
      */
@@ -717,17 +696,17 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SEE_LITERAL -&gt @see
-     *  |--WS -&gt
-     *  |--REFERENCE -&gt REFERENCE
-     *      |--PACKAGE_CLASS -&gt org.apache.utils.Lists.Comparator
-     *      |--HASH -&gt #
-     *      |--MEMBER -&gt compare
-     *      `--PARAMETERS -&gt PARAMETERS
-     *          |--LEFT_BRACE -&gt (
-     *          |--ARGUMENT -&gt Object
-     *          `--RIGHT_BRACE -&gt )
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SEE_LITERAL -> @see
+     *  |--WS ->
+     *  |--REFERENCE -> REFERENCE
+     *      |--PACKAGE_CLASS -> org.apache.utils.Lists.Comparator
+     *      |--HASH -> #
+     *      |--MEMBER -> compare
+     *      `--PARAMETERS -> PARAMETERS
+     *          |--LEFT_BRACE -> (
+     *          |--ARGUMENT -> Object
+     *          `--RIGHT_BRACE -> )
      * }
      * </pre>
      */
@@ -765,19 +744,19 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--SEE_LITERAL -&gt @see
-     *         |--WS -&gt
-     *         |--REFERENCE -&gt REFERENCE
-     *         |   |--HASH -&gt #
-     *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
-     *         |       |--LEFT_BRACE -&gt (
-     *         |       |--ARGUMENT -&gt Processor
-     *         |       |--COMMA -&gt ,
-     *         |       |--WS -&gt
-     *         |       |--ARGUMENT -&gt String
-     *         |       `--RIGHT_BRACE -&gt )
+     * {@code JAVADOC_TAG -> JAVADOC_TAG
+     *         |--SEE_LITERAL -> @see
+     *         |--WS ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--HASH -> #
+     *         |   |--MEMBER -> method
+     *         |   `--PARAMETERS -> PARAMETERS
+     *         |       |--LEFT_BRACE -> (
+     *         |       |--ARGUMENT -> Processor
+     *         |       |--COMMA -> ,
+     *         |       |--WS ->
+     *         |       |--ARGUMENT -> String
+     *         |       `--RIGHT_BRACE -> )
      * }
      * </pre>
      */
@@ -790,19 +769,19 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--SEE_LITERAL -&gt @see
-     *         |--WS -&gt
-     *         |--REFERENCE -&gt REFERENCE
-     *         |   |--HASH -&gt #
-     *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
-     *         |       |--LEFT_BRACE -&gt (
-     *         |       |--ARGUMENT -&gt Processor
-     *         |       |--COMMA -&gt ,
-     *         |       |--WS -&gt
-     *         |       |--ARGUMENT -&gt String
-     *         |       `--RIGHT_BRACE -&gt )
+     * {@code JAVADOC_TAG -> JAVADOC_TAG
+     *         |--SEE_LITERAL -> @see
+     *         |--WS ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--HASH -> #
+     *         |   |--MEMBER -> method
+     *         |   `--PARAMETERS -> PARAMETERS
+     *         |       |--LEFT_BRACE -> (
+     *         |       |--ARGUMENT -> Processor
+     *         |       |--COMMA -> ,
+     *         |       |--WS ->
+     *         |       |--ARGUMENT -> String
+     *         |       `--RIGHT_BRACE -> )
      * }
      * </pre>
      */
@@ -815,20 +794,20 @@ public final class JavadocTokenTypes {
      * <pre>{@code @see #method(Processor, String)}</pre>
      * <b>Tree:</b>
      * <pre>
-     * {@code JAVADOC_TAG -&gt JAVADOC_TAG
-     *         |--SEE_LITERAL -&gt @see
-     *         |--WS -&gt
-     *         |--REFERENCE -&gt REFERENCE
-     *         |   |--HASH -&gt #
-     *         |   |--MEMBER -&gt method
-     *         |   `--PARAMETERS -&gt PARAMETERS
-     *         |       |--LEFT_BRACE -&gt (
-     *         |       |--ARGUMENT -&gt Processor
-     *         |       |--COMMA -&gt ,
-     *         |       |--WS -&gt
-     *         |       |--ARGUMENT -&gt String
-     *         |       `--RIGHT_BRACE -&gt )
-     *         `--NEWLINE -&gt \n
+     * {@code JAVADOC_TAG -> JAVADOC_TAG
+     *         |--SEE_LITERAL -> @see
+     *         |--WS ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--HASH -> #
+     *         |   |--MEMBER -> method
+     *         |   `--PARAMETERS -> PARAMETERS
+     *         |       |--LEFT_BRACE -> (
+     *         |       |--ARGUMENT -> Processor
+     *         |       |--COMMA -> ,
+     *         |       |--WS ->
+     *         |       |--ARGUMENT -> String
+     *         |       `--RIGHT_BRACE -> )
+     *         `--NEWLINE -> \n
      * }
      * </pre>
      */
@@ -842,21 +821,21 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -&gt JAVADOC_TAG
-     *  |--SEE_LITERAL -&gt @see
-     *  |--WS -&gt
-     *  |--REFERENCE -&gt REFERENCE
-     *  |   |--HASH -&gt #
-     *  |   |--MEMBER -&gt method
-     *  |   `--PARAMETERS -&gt PARAMETERS
-     *  |       |--LEFT_BRACE -&gt (
-     *  |       |--ARGUMENT -&gt Processor
-     *  |       |--COMMA -&gt ,
-     *  |       |--WS -&gt
-     *  |       |--ARGUMENT -&gt String
-     *  |       `--RIGHT_BRACE -&gt )
-     *  |--NEWLINE -&gt \r\n
-     *  `--WS -&gt
+     * JAVADOC_TAG -> JAVADOC_TAG
+     *  |--SEE_LITERAL -> @see
+     *  |--WS ->
+     *  |--REFERENCE -> REFERENCE
+     *  |   |--HASH -> #
+     *  |   |--MEMBER -> method
+     *  |   `--PARAMETERS -> PARAMETERS
+     *  |       |--LEFT_BRACE -> (
+     *  |       |--ARGUMENT -> Processor
+     *  |       |--COMMA -> ,
+     *  |       |--WS ->
+     *  |       |--ARGUMENT -> String
+     *  |       `--RIGHT_BRACE -> )
+     *  |--NEWLINE -> \r\n
+     *  `--WS ->
      * }
      * </pre>
      *
@@ -1089,9 +1068,9 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      *
-     * <pre>{@code
+     * <pre>
      * &lt;tag_name attr_name="attr_value">Content&lt;/tag_name&gt;
-     * }</pre>
+     * </pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1358,11 +1337,11 @@ public final class JavadocTokenTypes {
      * Body tag name.
      *
      *  <p><b>Example:</b></p>
-     *  <pre>{@code
+     *  <pre>
      *  &lt;body&gt;
      *     &lt;p&gt;Body Content&lt;/p&gt;
      *  &lt;/body&gt;
-     *  }</pre>
+     *  </pre>
      *  <b>Tree:</b>
      *  <pre>
      *  {@code
@@ -1558,12 +1537,12 @@ public final class JavadocTokenTypes {
      * Head tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * <pre>
      * &lt;head&gt;
      *   &lt;title&gt;Page Title&lt;/title&gt;
      *   &lt;meta charset="UTF-8"&gt;
      * &lt;/head&gt;
-     * }</pre>
+     * </pre>
      * <b>Tree:</b>
      * <pre>{@code
      *  HEAD -> HEAD
@@ -1616,16 +1595,175 @@ public final class JavadocTokenTypes {
     /** Html tag name. */
     public static final int HTML_HTML_TAG_NAME = JavadocParser.HTML_HTML_TAG_NAME;
 
-    /** Option tag name. */
+    /**
+     * Option tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>&lt;option value="yes"&gt;Yes&lt;/option&gt;</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--OPTION -> OPTION
+     * |       |--OPTION_TAG_START -> OPTION_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--OPTION_HTML_TAG_NAME -> option
+     * |       |   |--WS ->
+     * |       |   |--ATTRIBUTE -> ATTRIBUTE
+     * |       |   |   |--HTML_TAG_NAME -> value
+     * |       |   |   |--EQUALS -> =
+     * |       |   |   `--ATTR_VALUE -> "yes"
+     * |       |   `--END -> >
+     * |       |--TEXT -> Yes
+     * |       `--OPTION_TAG_END -> OPTION_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--OPTION_HTML_TAG_NAME -> option
+     * |           `--END -> >
+     * |--NEWLINE -> \r\n
+     * |--TEXT ->
+     * |--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int OPTION_HTML_TAG_NAME = JavadocParser.OPTION_HTML_TAG_NAME;
 
-    /** Table body tag name. */
+    /**
+     * Table body tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * {@code
+     * &lt;tbody&gt;
+     * &lt;tr&gt;
+     * &lt;td&gt;Row1&lt;/td&gt;
+     * &lt;/tr&gt;
+     * &lt;/tbody&gt;
+     * }
+     * </pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--TBODY -> TBODY
+     * |       |--TBODY_TAG_START -> TBODY_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--TBODY_HTML_TAG_NAME -> tbody
+     * |       |   `--END -> >
+     * |       |--NEWLINE -> \n
+     * |       |--LEADING_ASTERISK ->  *
+     * |       |--TEXT ->
+     * |       |--TR -> TR
+     * |       |   |--TR_TAG_START -> TR_TAG_START
+     * |       |   |   |--START -> <
+     * |       |   |   |--TR_HTML_TAG_NAME -> tr
+     * |       |   |   `--END -> >
+     * |       |   |--NEWLINE -> \n
+     * |       |   |--LEADING_ASTERISK ->  *
+     * |       |   |--TEXT ->
+     * |       |   |--TD -> TD
+     * |       |   |   |--TD_TAG_START -> TD_TAG_START
+     * |       |   |   |   |--START -> <
+     * |       |   |   |   |--TD_HTML_TAG_NAME -> td
+     * |       |   |   |   `--END -> >
+     * |       |   |   |--TEXT -> Row1
+     * |       |   |   `--TD_TAG_END -> TD_TAG_END
+     * |       |   |       |--START -> <
+     * |       |   |       |--SLASH -> /
+     * |       |   |       |--TD_HTML_TAG_NAME -> td
+     * |       |   |       `--END -> >
+     * |       |   |--NEWLINE -> \n
+     * |       |   |--LEADING_ASTERISK ->  *
+     * |       |   |--TEXT ->
+     * |       |   `--TR_TAG_END -> TR_TAG_END
+     * |       |       |--START -> <
+     * |       |       |--SLASH -> /
+     * |       |       |--TR_HTML_TAG_NAME -> tr
+     * |       |       `--END -> >
+     * |       |--NEWLINE -> \n
+     * |       |--LEADING_ASTERISK ->  *
+     * |       |--TEXT ->
+     * |       `--TBODY_TAG_END -> TBODY_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--TBODY_HTML_TAG_NAME -> tbody
+     * |           `--END -> >
+     * |--NEWLINE -> \n
+     * |--TEXT ->
+     * `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int TBODY_HTML_TAG_NAME = JavadocParser.TBODY_HTML_TAG_NAME;
 
     /** Table foot tag name. */
     public static final int TFOOT_HTML_TAG_NAME = JavadocParser.TFOOT_HTML_TAG_NAME;
 
-    /** Table head tag name. */
+    /**
+     * Table head tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * {@code
+     * &lt;thead&gt;
+     * &lt;tr&gt;
+     * &lt;th&gt;Header&lt;/th&gt;
+     * &lt;/tr&gt;
+     * &lt;/thead&gt;
+     * }
+     * </pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * JAVADOC -> JAVADOC
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--THEAD -> THEAD
+     * |       |--THEAD_TAG_START -> THEAD_TAG_START
+     * |       |   |--START -> <
+     * |       |   |--THEAD_HTML_TAG_NAME -> thead
+     * |       |   `--END -> >
+     * |       |--TR -> TR
+     * |       |   |--TR_TAG_START -> TR_TAG_START
+     * |       |   |   |--START -> <
+     * |       |   |   |--TR_HTML_TAG_NAME -> tr
+     * |       |   |   `--END -> >
+     * |       |   |--TH -> TH
+     * |       |   |   |--TH_TAG_START -> TH_TAG_START
+     * |       |   |   |   |--START -> <
+     * |       |   |   |   |--TH_HTML_TAG_NAME -> th
+     * |       |   |   |   `--END -> >
+     * |       |   |   |--TEXT -> Header
+     * |       |   |   `--TH_TAG_END -> TH_TAG_END
+     * |       |   |       |--START -> <
+     * |       |   |       |--SLASH -> /
+     * |       |   |       |--TH_HTML_TAG_NAME -> th
+     * |       |   |       `--END -> >
+     * |       |   `--TR_TAG_END -> TR_TAG_END
+     * |       |       |--START -> <
+     * |       |       |--SLASH -> /
+     * |       |       |--TR_HTML_TAG_NAME -> tr
+     * |       |       `--END -> >
+     * |       `--THEAD_TAG_END -> THEAD_TAG_END
+     * |           |--START -> <
+     * |           |--SLASH -> /
+     * |           |--THEAD_HTML_TAG_NAME -> thead
+     * |           `--END -> >
+     * |--NEWLINE -> \n
+     * |--TEXT ->
+     * `--EOF -> <EOF>
+     * }
+     * </pre>
+     */
     public static final int THEAD_HTML_TAG_NAME = JavadocParser.THEAD_HTML_TAG_NAME;
 
     /** `optgroup` tag name. */
@@ -1640,8 +1778,34 @@ public final class JavadocTokenTypes {
     /** `rtc` tag name. */
     public static final int RTC_HTML_TAG_NAME = JavadocParser.RTC_HTML_TAG_NAME;
 
-    /** `rp` tag name. */
+    /**
+     * RP tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * &lt;rp&gt;Fallback&lt;/rp&gt;
+     * </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *     `--RP -> RP
+     *         |--RP_TAG_START -> RP_TAG_START
+     *         |   |--START -> <
+     *         |   |--RP_HTML_TAG_NAME -> rp
+     *         |   `--END -> >
+     *         |--TEXT -> Fallback
+     *         `--RP_TAG_END -> RP_TAG_END
+     *             |--START -> <
+     *             |--SLASH -> /
+     *             |--RP_HTML_TAG_NAME -> rp
+     *             `--END -> >
+     * }
+     * </pre>
+     */
     public static final int RP_HTML_TAG_NAME = JavadocParser.RP_HTML_TAG_NAME;
+
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /////////////////////// SINGLETON HTML TAGS  //////////////////////////////////////////////////
@@ -1649,7 +1813,7 @@ public final class JavadocTokenTypes {
      * Area tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <pre>{@code < area shape="rect" >}</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -1713,7 +1877,29 @@ public final class JavadocTokenTypes {
     /** Col tag name. */
     public static final int COL_HTML_TAG_NAME = JavadocParser.COL_HTML_TAG_NAME;
 
-    /** Frame tag name. */
+    /**
+     * Frame tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <frame src="frame_a.html">}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>
+     * {@code
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--FRAME_TAG -> FRAME_TAG
+     * |           |--START -> <
+     * |           |--FRAME_HTML_TAG_NAME -> frame
+     * |           |--WS ->
+     * |           |--ATTRIBUTE -> ATTRIBUTE
+     * |           |   |--HTML_TAG_NAME -> src
+     * |           |   |--EQUALS -> =
+     * |           |   `--ATTR_VALUE -> "frame_a.html"
+     * |           `--END -> >
+     * }
+     * </pre>
+     */
     public static final int FRAME_HTML_TAG_NAME = JavadocParser.FRAME_HTML_TAG_NAME;
 
     /**
@@ -1822,7 +2008,7 @@ public final class JavadocTokenTypes {
      *  Meta tag name.
      *
      *   <p><b>Example:</b></p>
-     *   <pre>{@code &lt;meta charset="UTF-8"&gt;}</pre>
+     *   <pre>{@code <meta charset="UTF-8">}</pre>
      *   <b>Tree:</b>
      *   <pre>
      *   {@code
@@ -1861,10 +2047,10 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * &lt;!--
+     * <!--
      * This is an HTML multi-line comment:
      * This is another comment
-     * --&gt;
+     * -->
      * }</pre>
      * <b>Tree:</b>
      * <pre>
@@ -1891,10 +2077,10 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * &lt;!--
+     * <!--
      * This is an HTML multi-line comment:
      * This is another comment
-     * --&gt;
+     * -->
      * }</pre>
      * <b>Tree:</b>
      * <pre>
@@ -2376,11 +2562,11 @@ public final class JavadocTokenTypes {
      * Start body tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * <pre>
      * &lt;body&gt;
      * This is a test
      * &lt;/body&gt;
-     * }</pre>
+     * </pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2423,11 +2609,11 @@ public final class JavadocTokenTypes {
      * End body tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * <pre>
      *  &lt;body&gt;
      *     This is a test
      * &lt;/body&gt;
-     * }</pre>
+     * </pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2728,16 +2914,31 @@ public final class JavadocTokenTypes {
             + RULE_TYPES_OFFSET;
 
     /**
-     * Non-special empty html tag.
+     * Represents an empty (self-closing) HTML tag in Javadoc comments,
+     * such as {@code <justsometag />}.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <justsometag />}</pre>
+     *
+     * <p><b>AST Tree:</b></p>
+     * <pre>{@code
+     * --HTML_ELEMENT -> HTML_ELEMENT
+     *   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     `--EMPTY_TAG -> EMPTY_TAG
+     *       |--START -> <
+     *       |--HTML_TAG_NAME -> justsometag
+     *       |--WS
+     *       `--SLASH_END -> >
+     * }</pre>
      */
-    public static final int EMPTY_TAG = JavadocParser.RULE_emptyTag
-            + RULE_TYPES_OFFSET;
+    public static final int EMPTY_TAG =
+        JavadocParser.RULE_emptyTag + RULE_TYPES_OFFSET;
 
     /**
      * Area html tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code &lt area shape="rect" &gt}</pre>
+     * <pre>{@code < area shape="rect" >}</pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2807,9 +3008,11 @@ public final class JavadocTokenTypes {
      * Frame html tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code &lt;frameset cols="50%,50%"&gt;
+     * <pre>
+     * &lt;frameset cols="50%,50%"&gt;
      * &lt;frame src="page1.html"&gt;
-     * &lt;/frameset&gt;}</pre>
+     * &lt;/frameset&gt;
+     * </pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -2964,11 +3167,11 @@ public final class JavadocTokenTypes {
      * Isindex tag name.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
+     * <pre>
      * &lt;head&gt;
      *    &lt;isindex prompt="search"&gt;
      * &lt;/head&gt;
-     * }</pre>
+     * </pre>
      * <b>Tree:</b>
      * <pre>
      * {@code
@@ -3006,7 +3209,32 @@ public final class JavadocTokenTypes {
      */
     public static final int ISINDEX_TAG = JavadocParser.RULE_isindexTag + RULE_TYPES_OFFSET;
 
-    /** Link html tag. */
+    /**
+     * Link html tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <link rel="stylesheet" href="styles.css">}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *     `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *      `--LINK_TAG -> LINK_TAG
+     *          |--START -> <
+     *          |--LINK_HTML_TAG_NAME -> link
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> rel
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "stylesheet"
+     *          |--ATTRIBUTE -> ATTRIBUTE
+     *          |   |--HTML_TAG_NAME -> href
+     *          |   |--EQUALS -> =
+     *          |   `--ATTR_VALUE -> "styles.css"
+     *          `--END -> >
+     * }
+     * </pre>
+     */
     public static final int LINK_TAG = JavadocParser.RULE_linkTag + RULE_TYPES_OFFSET;
 
     /**
@@ -3101,9 +3329,36 @@ public final class JavadocTokenTypes {
     /**
      * HTML void element {@code <track>}.
      *
-     * @see #SINGLETON_ELEMENT
-     * @see <a
-     *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <track kind="subtitles" src="subtitles_en.file" />
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     *    |--HTML_ELEMENT -> HTML_ELEMENT
+     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *    |       `--TRACK_TAG -> TRACK_TAG
+     *    |           |--START -> <
+     *    |           |--TRACK_HTML_TAG_NAME -> track
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> kind
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "subtitles"
+     *    |           |--WS ->
+     *    |           |--ATTRIBUTE -> ATTRIBUTE
+     *    |           |   |--HTML_TAG_NAME -> src
+     *    |           |   |--EQUALS -> =
+     *    |           |   `--ATTR_VALUE -> "subtitles_en.file"
+     *    |           `--END -> />
+     *    |--NEWLINE -> \r\n
+     *    |--TEXT ->
+     * }
+     * </pre>
+     *
+     * @see #TRACK_TAG
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
      *     W3 docs</a>
      */
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;

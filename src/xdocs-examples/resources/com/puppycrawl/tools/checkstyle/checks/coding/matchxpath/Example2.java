@@ -16,8 +16,10 @@ import java.util.HashMap;
 
 // xdoc section -- start
 public class Example2 {
-  public Example2(Object c) { } // violation
-  public Example2(int a, HashMap<String, Integer> b) { } // violation
+  // violation below 'Parameterized constructors are not allowed'
+  public Example2(Object c) { }
+  // violation below 'Parameterized constructors are not allowed'
+  public Example2(int a, HashMap<String, Integer> b) { }
   public Example2() { }
 }
 // xdoc section -- end

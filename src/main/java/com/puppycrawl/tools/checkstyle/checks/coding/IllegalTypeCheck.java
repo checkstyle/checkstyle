@@ -53,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * It is possible to set illegal class names via short or
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">canonical</a>
  * name. Specifying illegal type invokes analyzing imports and Check puts violations at
@@ -60,11 +61,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This helps to avoid ambiguous cases, e.g.: {@code java.awt.List} was set as
  * illegal class name, then, code like:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * import java.util.List;
  * ...
  * List list; //No violation here
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * will be ok.
@@ -605,7 +606,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);
             if (toVisit != null && toVisit.getType() == TokenTypes.IDENT) {
-                if (canonicalNameBuilder.length() > 0) {
+                if (!canonicalNameBuilder.isEmpty()) {
                     canonicalNameBuilder.append('.');
                 }
                 canonicalNameBuilder.append(toVisit.getText());

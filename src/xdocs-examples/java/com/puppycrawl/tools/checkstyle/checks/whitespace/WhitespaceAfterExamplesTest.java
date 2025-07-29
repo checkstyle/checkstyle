@@ -47,7 +47,7 @@ public class WhitespaceAfterExamplesTest extends AbstractExamplesModuleTestSuppo
             "59:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test

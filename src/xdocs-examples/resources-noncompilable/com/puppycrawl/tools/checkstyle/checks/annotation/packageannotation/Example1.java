@@ -6,7 +6,7 @@
 </module>
 */
 
-//non-compiled with javac: Compilable with Java7
+// non-compiled with javac: Compilable with Java7
 
 // xdoc section -- start
 @Deprecated

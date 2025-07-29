@@ -6,8 +6,7 @@
            value="//VARIABLE_DEF[./ASSIGN/EXPR/LITERAL_NEW
                   and not(./TYPE/IDENT[@text='var'])]"/>
       <message key="matchxpath.match"
-           value="New instances should be created via 'var' keyword
-                  to avoid duplication of type reference in statement"/>
+           value="New instances should be created via var keyword"/>
     </module>
   </module>
 </module>
@@ -17,7 +16,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.matchxpath;
 // xdoc section -- start
 public class Example4 {
   public void foo() {
-    Object a = new Object(); // violation
+    // violation below 'New instances should be created via var keyword'
+    Object a = new Object();
     var b = new Object();
   }
 }

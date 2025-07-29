@@ -9,21 +9,10 @@
     <section name="ConstructorsDeclarationGrouping">
       <p>Since Checkstyle 10.17.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that all constructors are grouped together.
-          If there is any non-constructor code separating constructors,
-          this check identifies and logs a violation for those ungrouped constructors.
-          The violation message will specify the line number
-          of the last grouped constructor.
-          Comments between constructors are allowed.
-        </div>
-
-        <p>
-        Rationale: Grouping constructors together in a class improves code readability
-        and maintainability. It allows developers to easily understand
-        the different ways an object can be instantiated
-        and the tasks performed by each constructor.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

@@ -11,16 +11,15 @@
       <subsection name="Description" id="Description">
         <div>
           Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
-          nearby audit events. The filter can suppress all checks which have Checker
-          as a parent module.
+          nearby audit events. The filter can suppress all checks which have Checker as a parent module.
         </div>
       </subsection>
       <subsection name="Notes" id="Notes">
         <p>
-          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see
-          <b>any</b> text as a suppression and will likely suppress all audit events in the file.
-          It is best to set this to a key phrase not commonly used in the file to help denote
-          it out of the rest of the file as a suppression. See the default value as an example.
+          Setting <code>.*</code> value to <code>nearbyTextPattern</code> property will see <b>any</b>
+          text as a suppression and will likely suppress all audit events in the file. It is
+          best to set this to a key phrase not commonly used in the file to help denote it
+          out of the rest of the file as a suppression. See the default value as an example.
         </p>
       </subsection>
       <subsection name="Properties" id="Properties">
@@ -88,6 +87,7 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
+  // filtered violation below ''24' is a magic number'
   int hoursInDay = 24; // SUPPRESS CHECKSTYLE because it is too obvious
   int daysInWeek = 7; // violation, "'7' is a magic number."
 }
@@ -111,6 +111,7 @@ public class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // DO NOT CHECK THIS LINE
   int b = 43; // violation, "'43' is a magic number."
 }
@@ -127,7 +128,7 @@ public class Example2 {
     &lt;property name="nearbyTextPattern" value=".*"/&gt;
   &lt;/module&gt;
   &lt;module name="LineLength"&gt;
-    &lt;property name="max" value="10"/&gt;
+    &lt;property name="max" value="70"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -137,7 +138,8 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example3 {
   // ok, because violation message is matching suppress pattern
-  int a_really_long_variable_name = 10;
+  String a_really_long_variable_name = "A sentence greater than 70 chars";
+  // filtered violation above 'Line is longer ...'
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -164,6 +166,7 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // SUPPRESS CHECKSTYLE because I want to
   static final int LONG_VAR_NAME_TO_TAKE_MORE_THAN_55_CHARS = 22;
   // violation above 'Line is longer ...'
@@ -185,6 +188,7 @@ public class Example4 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 key.one=41 # // SUPPRESS CHECKSTYLE because I want to
+# // filtered violation above 'Duplicated property 'key.one' (3 occurrence(s)).'
 key.one=42 # ok as within line range
 key.one=43 # ok as within line range
 key.two=44 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
@@ -205,6 +209,7 @@ key.two=45
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+# // filtered violation below 'Duplicated property 'key.one' (2 occurrence(s)).'
 key.one=41 # ok as within line range
 key.one=42 # SUPPRESS CHECKSTYLE because I want to
 key.two=43 # // violation 'Duplicated property 'key.two' (2 occurrence(s)).'
@@ -231,6 +236,7 @@ key.two=44
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example7 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // -@cs[MagicNumber] We do not consider this number as magic.
   int b = 43; // violation "'43' is a magic number."
 }
@@ -257,10 +263,11 @@ public class Example7 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example8 {
+  // filtered violation below ''42' is a magic number'
   int a = 42; // @cs-: MagicNumber for +3 lines
-  int b = 43;
-  int c = 44;
-  int d = 45;
+  int b = 43; // filtered violation ''43' is a magic number'
+  int c = 44; // filtered violation ''44' is a magic number'
+  int d = 45; // filtered violation ''45' is a magic number'
   int e = 46; // violation "'46' is a magic number."
 }
 </code></pre></div><hr class="example-separator"/>
@@ -288,6 +295,7 @@ public class Example9 {
   /**
    * Flag description.
    * Disabled until &lt;a href="www.github.com/owner/repo/issue/9#comment"&gt;
+   * // filtered violation above 'Line is longer ...'
    */
   public static final boolean SOME_FLAG = false;
 }

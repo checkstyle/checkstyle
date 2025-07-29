@@ -9,30 +9,10 @@
     <section name="ClassFanOutComplexity">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the number of other types a given class/record/interface/enum/annotation
-          relies on. Also, the square of this has been shown to indicate the amount of
-          maintenance required in functional programs (on a file basis) at least.
-        </div>
-        <p>
-          This check processes files in the following way:
-        </p>
-        <ol>
-          <li>
-            Iterates over all tokens that might contain type reference.
-          </li>
-          <li>
-            If a class was imported with direct import (i.e.
-            <code>import java.math.BigDecimal</code>), or the class was referenced with the
-            package name (i.e. <code>java.math.BigDecimal value</code>) and the package was
-            added to the <code>excludedPackages</code> parameter, the class does not increase
-            complexity.
-          </li>
-          <li>
-            If a class name was added to the <code>excludedClasses</code> parameter,
-            the class does not increase complexity.
-          </li>
-        </ol>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

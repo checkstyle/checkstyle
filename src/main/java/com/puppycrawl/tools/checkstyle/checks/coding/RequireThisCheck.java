@@ -60,7 +60,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   </li>
  * </ol>
  *
- * <p>Limitations: Nothing is currently done about static variables
+ * <p>
+ * Notes:
+ * Limitations: Nothing is currently done about static variables
  * or catch-blocks.  Static methods invoked on a class name seem to be OK;
  * both the class name and the method name have a DOT parent.
  * Non-static methods invoked on either this or a variable name seem to be

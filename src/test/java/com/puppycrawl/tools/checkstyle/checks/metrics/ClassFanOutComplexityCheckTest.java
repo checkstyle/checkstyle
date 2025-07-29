@@ -248,7 +248,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             "53:1: " + getCheckMessage(MSG_KEY, 4, 2),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassFanOutComplexityRecords.java"), expected);
+                getPath("InputClassFanOutComplexityRecords.java"), expected);
     }
 
     @Test
@@ -262,7 +262,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     public void testClassFanOutComplexityRemoveIncorrectAnnotationToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
+                getNonCompilablePath(
+                  "InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
     }
 
     @Test
@@ -379,7 +380,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
                         packageDef.orElseThrow(), "packageName",
-                        packageName -> ((String) packageName).isEmpty()))
+                        packageName -> ((CharSequence) packageName).isEmpty()))
                 .isTrue();
     }
 

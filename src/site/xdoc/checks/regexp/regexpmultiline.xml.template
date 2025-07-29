@@ -9,15 +9,10 @@
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that a specified pattern matches across multiple lines in
-          any file type.
-        </div>
-
-        <p>
-          Rationale: This check can be used to when the regular
-          expression can be span multiple lines.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -137,9 +132,9 @@
           <param name="type" value="code"/>
         </macro>
         <p>Result:</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 /var/tmp/Test.java // violation, a file must not be empty.
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

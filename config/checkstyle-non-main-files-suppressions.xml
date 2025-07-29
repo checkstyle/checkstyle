@@ -9,6 +9,10 @@
   <!-- don't validate generated files -->
   <suppress id="lineLength" files="releasenotes.xml"/>
 
+  <!-- full path is required for logic of script google-java-format.sh -->
+  <suppress id="lineLength" files="compilable-input-paths.txt"/>
+  <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
+
   <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
   <suppress checks="NewlineAtEndOfFile"
              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
@@ -185,14 +189,6 @@
   <!-- We use negative suppression to check workflow files only. -->
   <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
 
-  <!-- Examples macro suppressions -->
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]importcontrol.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionfilter.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
-
   <!-- there is no messages in module by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
@@ -222,6 +218,8 @@
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarynullcheckwithinstanceof.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]avoiddoublebraceinitialization.xml.template"/>
   <suppress id="propertiesMacroMustExist"
@@ -308,5 +306,7 @@
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswarningsfilter.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
 
 </suppressions>

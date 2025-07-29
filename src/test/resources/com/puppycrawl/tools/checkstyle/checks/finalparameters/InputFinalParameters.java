@@ -1,6 +1,7 @@
 /*
 FinalParameters
 ignorePrimitiveTypes = (default)false
+ignoreUnnamedParameters = (default)true
 tokens = (default)METHOD_DEF, CTOR_DEF
 
 

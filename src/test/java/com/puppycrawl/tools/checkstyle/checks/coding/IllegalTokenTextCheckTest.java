@@ -95,7 +95,7 @@ public class IllegalTokenTextCheckTest
             "42:54: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
+                getPath("InputIllegalTokenTextTextBlocks.java"), expected);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class IllegalTokenTextCheckTest
             "42:42: " + getCheckMessage(MSG_KEY, "\""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
+                getPath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
     }
 
     @Test

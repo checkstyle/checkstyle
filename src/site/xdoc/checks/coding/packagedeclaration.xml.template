@@ -9,20 +9,10 @@
     <section name="PackageDeclaration">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Ensures that a class has a package declaration, and (optionally) whether
-          the package name matches the directory name for the source file.
-        </div>
-        <p>
-          Rationale: Classes that live in the null package cannot be
-          imported. Many novice developers are not aware of this.
-        </p>
-        <p>
-          Packages provide logical namespace to classes and should be stored in
-          the form of directory levels to provide physical grouping to your classes.
-          These directories are added to the classpath so that your classes
-          are visible to JVM when it runs the code.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PackageDeclarationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

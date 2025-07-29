@@ -25,7 +25,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * <div>Note: it simply wraps the existing JDK methods to provide a workaround
@@ -66,7 +65,7 @@ public final class UnmodifiableCollectionUtil {
     public static <S, T> List<T> unmodifiableList(Collection<S> items, Class<T> elementType) {
         return items.stream()
                 .map(elementType::cast)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     /**

@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </div>
  *
  * <p>
+ * Notes:
  * There are two options to make validation more precise: <b>exceptionVariableName</b> and
  * <b>commentFormat</b>.
  * If both options are specified - they are applied by <b>any of them is matching</b>.

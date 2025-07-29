@@ -57,7 +57,5 @@ jobs:
           ./.ci/release-create-maven-settings-xml.sh
 
       - name: Run Shell Script
-        env:
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
         run: |
           ./.ci/release-maven-perform.sh ${{ inputs.version }}

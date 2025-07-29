@@ -51,13 +51,13 @@
  &lt;/ul&gt;
  &lt;/li&gt;
  &lt;li&gt;
- If a class was imported with direct import (i.e. {@code import java.math.BigDecimal}),
- or the class was referenced with the package name (i.e. {@code java.math.BigDecimal value})
- and the package was added to the {@code excludedPackages} parameter, the class
+ If a class was imported with direct import (i.e. &lt;code&gt;import java.math.BigDecimal&lt;/code&gt;),
+ or the class was referenced with the package name (i.e. &lt;code&gt;java.math.BigDecimal value&lt;/code&gt;)
+ and the package was added to the &lt;code&gt;excludedPackages&lt;/code&gt; parameter, the class
  does not increase complexity.
  &lt;/li&gt;
  &lt;li&gt;
- If a class name was added to the {@code excludedClasses} parameter,
+ If a class name was added to the &lt;code&gt;excludedClasses&lt;/code&gt; parameter,
  the class does not increase complexity.
  &lt;/li&gt;
  &lt;/ol&gt;</description>

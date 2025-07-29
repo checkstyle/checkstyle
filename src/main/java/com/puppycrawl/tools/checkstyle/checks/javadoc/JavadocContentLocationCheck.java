@@ -41,26 +41,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * {@code first_line} - Javadoc content starts from the first line:
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;** Summary text.
  *   * More details.
  *   *&#47;
  * public void method();
- * </pre>
+ * </code></pre></div>
  * </li>
  * <li>
  * {@code second_line} - Javadoc content starts from the second line:
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;**
  *   * Summary text.
  *   * More details.
  *   *&#47;
  * public void method();
- * </pre>
+ * </code></pre></div>
  * </li>
  * </ul>
  *
  * <p>
+ * Notes:
  * This check does not validate the Javadoc summary itself nor its presence.
  * The check will not report any violations for missing or malformed javadoc summary.
  * To validate the Javadoc summary use
@@ -69,11 +70,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  *
  * <p>
- * The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+ * The <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html">
  * Documentation Comment Specification</a> permits leading asterisks on the first line.
  * For these Javadoc comments:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;***
  *   * Some text.
  *   *&#47;
@@ -83,7 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#47;**           **
  *   * Some text.
  *   *&#47;
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * The documentation generated will be just "Some text." without any asterisks.

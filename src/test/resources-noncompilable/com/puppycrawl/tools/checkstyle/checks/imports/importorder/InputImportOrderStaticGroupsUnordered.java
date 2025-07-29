@@ -14,7 +14,7 @@ tokens = (default)STATIC_IMPORT
 
 */
 
-//non-compiled with javac: contains specially crafted set of imports for testing
+// non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 import static org.infinispan.test.TestingUtil.extractComponent;
 import static java.lang.String.format;

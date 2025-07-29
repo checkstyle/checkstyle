@@ -14,7 +14,7 @@
             </property>
             <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
                <description>Ignore number of parameters for
- methods with {@code @Override} annotation.</description>
+ methods with &lt;code&gt;@Override&lt;/code&gt; annotation.</description>
             </property>
             <property default-value="7" name="max" type="int">
                <description>Specify the maximum number of parameters allowed.</description>

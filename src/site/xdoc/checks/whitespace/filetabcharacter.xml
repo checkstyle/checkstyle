@@ -16,18 +16,16 @@
         <p>
           Rationale:
         </p>
-
         <ul>
-          <li>
-            Developers should not need to configure the tab width of their
-            text editors in order to be able to read source code.
-          </li>
-          <li>
-            From the Apache jakarta coding standards: In a distributed
-            development environment, when the commit messages get sent
-            to a mailing list, they are almost impossible to read if you
-            use tabs.
-          </li>
+        <li>
+          Developers should not need to configure the tab width of their text editors in order
+          to be able to read source code.
+        </li>
+        <li>
+          From the Apache jakarta coding standards: In a distributed development environment,
+          when the commit messages get sent to a mailing list, they are almost impossible to
+          read if you use tabs.
+        </li>
         </ul>
       </subsection>
 

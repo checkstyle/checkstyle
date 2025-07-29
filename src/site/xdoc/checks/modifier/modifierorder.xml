@@ -10,68 +10,44 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks that the order of modifiers conforms to the suggestions in
-          the <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">Java
-          Language specification, &#xa7; 8.1.1, 8.3.1, 8.4.3</a> and
-          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">
-          9.4</a>. The correct order is:
+          Checks that the order of modifiers conforms to the suggestions in the
+          <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
+          Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
+          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
+          The correct order is:
         </div>
 
         <ol>
-          <li>
-            <code>public</code>
-          </li>
-          <li>
-            <code>protected</code>
-          </li>
-          <li>
-            <code>private</code>
-          </li>
-          <li>
-            <code>abstract</code>
-          </li>
-          <li>
-            <code>default</code>
-          </li>
-          <li>
-            <code>static</code>
-          </li>
-          <li>
-            <code>sealed</code>
-          </li>
-          <li>
-            <code>non-sealed</code>
-          </li>
-          <li>
-            <code>final</code>
-          </li>
-          <li>
-            <code>transient</code>
-          </li>
-          <li>
-            <code>volatile</code>
-          </li>
-          <li>
-            <code>synchronized</code>
-          </li>
-          <li>
-            <code>native</code>
-          </li>
-          <li>
-            <code>strictfp</code>
-          </li>
+        <li> <code>public</code> </li>
+        <li> <code>protected</code> </li>
+        <li> <code>private</code> </li>
+        <li> <code>abstract</code> </li>
+        <li> <code>default</code> </li>
+        <li> <code>static</code> </li>
+        <li> <code>sealed</code> </li>
+        <li> <code>non-sealed</code> </li>
+        <li> <code>final</code> </li>
+        <li> <code>transient</code> </li>
+        <li> <code>volatile</code> </li>
+        <li> <code>synchronized</code> </li>
+        <li> <code>native</code> </li>
+        <li> <code>strictfp</code> </li>
         </ol>
+
         <p>
-          In additional, modifiers are checked to ensure all annotations are
-          declared before all other modifiers.
+          In additional, modifiers are checked to ensure all annotations
+          are declared before all other modifiers.
         </p>
+
         <p>
-          Rationale: Code is easier to read if everybody follows a standard.
+          Rationale: Code is easier to read if everybody follows
+          a standard.
         </p>
+
         <p>
           ATTENTION: We skip
           <a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html">
-            type annotations</a> from validation.
+          type annotations</a> from validation.
         </p>
       </subsection>
 

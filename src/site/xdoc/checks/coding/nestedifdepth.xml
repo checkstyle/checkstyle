@@ -9,7 +9,9 @@
     <section name="NestedIfDepth">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>Restricts nested if-else blocks to a specified depth.</div>
+        <div>
+          Restricts nested if-else blocks to a specified depth.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

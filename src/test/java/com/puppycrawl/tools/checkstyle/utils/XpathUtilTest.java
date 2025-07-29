@@ -103,7 +103,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -124,7 +124,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { /* comment */ }";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -142,7 +142,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String expected = addEndOfLine(
             "COMPILATION_UNIT -> COMPILATION_UNIT [1:0]",
             "`--CLASS_DEF -> CLASS_DEF [1:0]",
@@ -171,7 +171,7 @@ public class XpathUtilTest {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
-        Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
+        Files.writeString(file.toPath(), fileContent, StandardCharsets.UTF_8);
         final String invalidXpath = "\\//CLASS_DEF"
                 + "//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {

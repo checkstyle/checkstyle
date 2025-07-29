@@ -6,7 +6,7 @@ tokens = LITERAL_DEFAULT, LITERAL_CASE
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 public class InputEmptyBlockCaseAndDefaultWithTextOption {

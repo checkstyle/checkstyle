@@ -9,11 +9,10 @@
     <section name="NoLineWrap">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that chosen statements are not line-wrapped. By default, this
-          Check restricts wrapping import and package statements, but it's possible to check
-          any statement.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -94,10 +93,10 @@
         <p>
           Examples of not line-wrapped statements (good case):
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import static java.math.BigInteger.ZERO;
-        </source>
+        </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="Example_of_Usage">

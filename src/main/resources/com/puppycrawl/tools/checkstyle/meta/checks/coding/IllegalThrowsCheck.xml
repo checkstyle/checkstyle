@@ -6,13 +6,13 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that specified types are not declared to be thrown.
- Declaring that a method throws {@code java.lang.Error} or
- {@code java.lang.RuntimeException} is almost never acceptable.
+ Declaring that a method throws &lt;code&gt;java.lang.Error&lt;/code&gt; or
+ &lt;code&gt;java.lang.RuntimeException&lt;/code&gt; is almost never acceptable.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
                <description>Allow to ignore checking overridden methods
- (marked with {@code Override} or {@code java.lang.Override} annotation).</description>
+ (marked with &lt;code&gt;Override&lt;/code&gt; or &lt;code&gt;java.lang.Override&lt;/code&gt; annotation).</description>
             </property>
             <property default-value="finalize"
                       name="ignoredMethodNames"

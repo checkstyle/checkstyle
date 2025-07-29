@@ -101,7 +101,7 @@ public class CyclomaticComplexityCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCyclomaticComplexityRecords.java"), expected);
+                getPath("InputCyclomaticComplexityRecords.java"), expected);
     }
 
     @Test

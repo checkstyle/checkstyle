@@ -289,7 +289,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedImportsRecordsAndCompactCtors.java"),
+                getPath("InputUnusedImportsRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -317,7 +317,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testStateIsClearedOnBeginTreeCollect() throws Exception {
-        final String file1 = getNonCompilablePath(
+        final String file1 = getPath(
                 "InputUnusedImportsRecordsAndCompactCtors.java");
         final String file2 = getNonCompilablePath(
                 "InputUnusedImportsSingleWordPackage.java");

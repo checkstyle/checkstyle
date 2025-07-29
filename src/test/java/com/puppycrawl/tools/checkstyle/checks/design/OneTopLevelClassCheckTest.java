@@ -209,7 +209,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
+                getPath("InputOneTopLevelClassRecords.java"), expected);
     }
 
     @Test

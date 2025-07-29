@@ -10,6 +10,7 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Notes:
  When configured to check parameters, the check ignores parameters of interface
  methods and abstract methods.
  &lt;/p&gt;</description>

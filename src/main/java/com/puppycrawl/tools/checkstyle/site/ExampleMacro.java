@@ -54,12 +54,6 @@ public class ExampleMacro extends AbstractMacro {
     /** Ending delimiter for code snippets. */
     private static final String CODE_SNIPPET_END = "// xdoc section -- end";
 
-    /** Newline character. */
-    private static final String NEWLINE = System.lineSeparator();
-
-    /** Eight whitespace characters. All example source tags are indented 8 spaces. */
-    private static final String INDENTATION = "        ";
-
     /** The pattern of xml code blocks. */
     private static final Pattern XML_PATTERN = Pattern.compile(
             "^\\s*(<!DOCTYPE\\s+.*?>|<\\?xml\\s+.*?>|<module\\s+.*?>)\\s*",
@@ -115,7 +109,7 @@ public class ExampleMacro extends AbstractMacro {
             writeSnippet(sink, code);
         }
         else if ("raw".equals(type)) {
-            final String content = String.join(NEWLINE, lines);
+            final String content = String.join(ModuleJavadocParsingUtil.NEWLINE, lines);
             writeSnippet(sink, content);
         }
         else {
@@ -155,7 +149,7 @@ public class ExampleMacro extends AbstractMacro {
                 .dropWhile(line -> !XML_CONFIG_START.equals(line))
                 .skip(1)
                 .takeWhile(line -> !XML_CONFIG_END.equals(line))
-                .collect(Collectors.joining(NEWLINE));
+                .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
     }
 
     /**
@@ -170,7 +164,7 @@ public class ExampleMacro extends AbstractMacro {
                 .dropWhile(line -> !line.contains(CODE_SNIPPET_START))
                 .skip(1)
                 .takeWhile(line -> !line.contains(CODE_SNIPPET_END))
-                .collect(Collectors.joining(NEWLINE));
+                .collect(Collectors.joining(ModuleJavadocParsingUtil.NEWLINE));
     }
 
     /**
@@ -190,8 +184,9 @@ public class ExampleMacro extends AbstractMacro {
         else {
             languageClass = "language-java";
         }
-        sink.rawText("<pre class=\"prettyprint\"><code class=\"" + languageClass + "\">" + NEWLINE);
-        sink.rawText(escapeHtml(snippet).trim() + NEWLINE);
+        sink.rawText("<pre class=\"prettyprint\"><code class=\"" + languageClass + "\">"
+            + ModuleJavadocParsingUtil.NEWLINE);
+        sink.rawText(escapeHtml(snippet).trim() + ModuleJavadocParsingUtil.NEWLINE);
         sink.rawText("</code></pre>");
         sink.rawText("</div>");
     }

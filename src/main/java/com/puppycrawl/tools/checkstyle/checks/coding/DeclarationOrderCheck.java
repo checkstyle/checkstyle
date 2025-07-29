@@ -67,13 +67,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * forward references </a> from validation due to the fact that we have Checkstyle's limitations
  * to clearly detect user intention of fields location and grouping. For example:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class A {
  *   private double x = 1.0;
  *   private double y = 2.0;
  *   public double slope = x / y; // will be skipped from validation due to forward reference
  * }
- * </pre>
+ * </code></pre></div>
  * <ul>
  * <li>
  * Property {@code ignoreConstructors} - Control whether to ignore constructors.

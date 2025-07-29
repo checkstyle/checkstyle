@@ -63,9 +63,9 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Programmers sometimes mistakenly use the type of their class {@code Foo}
  * as the type of the parameter to {@code equals()}:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public boolean equals(Foo obj) {...}
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * This covariant version of {@code equals()} does not override the version in

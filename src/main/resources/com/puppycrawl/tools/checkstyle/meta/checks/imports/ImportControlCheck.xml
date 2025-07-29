@@ -74,11 +74,11 @@
  The check validates a XML document when it loads the document. To validate against
  the above DTD, include the following document type declaration in your XML document:
  &lt;/p&gt;
- &lt;pre&gt;
+ &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-xml"&gt;
  &amp;lt;!DOCTYPE import-control PUBLIC
      "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
      "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
- &lt;/pre&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property name="file" type="java.net.URI">
                <description>Specify the location of the file containing the

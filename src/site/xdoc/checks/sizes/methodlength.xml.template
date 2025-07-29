@@ -9,15 +9,10 @@
     <section name="MethodLength">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for long methods and constructors.
-        </div>
-
-        <p>
-          Rationale: If a method becomes very long it is hard to
-          understand. Therefore, long methods should usually be refactored into
-          several individual methods that focus on a specific task.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -36,13 +31,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example1.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example1-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example1.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example1.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example2-config">
@@ -51,13 +46,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example2.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example2-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-config">
@@ -66,13 +61,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/methodlength/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

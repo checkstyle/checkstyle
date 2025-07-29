@@ -8,7 +8,7 @@ tokens = (default)CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CAL
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.whitespace.methodparampad;
 
 public class InputMethodParamPadCheckRecordPattern2 {

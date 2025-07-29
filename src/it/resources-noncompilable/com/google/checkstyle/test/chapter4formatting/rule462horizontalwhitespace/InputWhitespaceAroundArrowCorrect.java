@@ -1,0 +1,115 @@
+// non-compiled with javac: Compilable with Java21
+
+package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
+
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.JCheckBox;
+
+/** some javadoc. */
+public class InputWhitespaceAroundArrowCorrect {
+  static {
+    new JCheckBox()
+        .addActionListener(
+            (final ActionEvent e) -> {
+              test3();
+            });
+  }
+
+  /** some javadoc. */
+  void foo1(Object o) {
+    switch (o) {
+      case String s when (s.equals("a")) -> {}
+      case String s2 -> {}
+      default -> {}
+    }
+  }
+
+  /** method. */
+  void test(Object o, Object o2, int y) {
+    switch (o) {
+      case String s when (s.equals("a")) -> {}
+      case Point(int x, int xy) when !(x >= 0 && xy >= 0) -> {}
+      default -> {}
+    }
+
+    int x =
+        switch (o) {
+          case String s -> {
+            switch (o2) {
+              case Integer newInt when newInt == 0 -> {
+                if (y == 0) {
+                  System.out.println(0);
+                }
+              }
+              default -> {}
+            }
+            yield 3;
+          }
+          default -> 3;
+        };
+  }
+
+  /** some javadoc. */
+  int test2(int k, Object o1) {
+    Predicate predicate = value -> (value != null);
+
+    Object b = ((VoidPredicate) () -> o1 instanceof String s).get();
+
+    List<Integer> ints = new LinkedList<Integer>();
+
+    ints.stream()
+        .map(
+            t -> {
+              return t * 2;
+            })
+        .filter(
+            t -> {
+              return false;
+            });
+    return k * 2;
+  }
+
+  /** some javadoc. */
+  static void test3() {
+    ArrayList<Boolean> boolList = new ArrayList<Boolean>(Arrays.asList(false, true, false, false));
+
+    List<Boolean> filtered =
+        boolList.stream()
+            .filter(
+                statement -> {
+                  if (!statement) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                })
+            .collect(Collectors.toList());
+
+    Object result =
+        boolList.stream()
+            .filter(statement -> false)
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException("big problem"));
+  }
+
+  /** some javadoc. */
+  record Point(int x, int y) {}
+
+  /** some javadoc. */
+  public interface Predicate {
+
+    /** some javadoc. */
+    boolean test(Object value);
+  }
+
+  /** some javadoc. */
+  public interface VoidPredicate {
+    /** some javadoc. */
+    public boolean get();
+  }
+}

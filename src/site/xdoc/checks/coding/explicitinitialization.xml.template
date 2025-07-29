@@ -9,19 +9,10 @@
     <section name="ExplicitInitialization">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks if any class or object member is explicitly initialized to
-          default for its type value (<code>null</code> for
-          object references, zero for numeric types and <code>char</code> and <code>false</code> for
-          <code>boolean</code>.
-        </div>
-
-        <p>
-          Rationale: Each instance variable gets initialized twice, to the
-          same value. Java initializes each instance variable to its default value
-          (<code>0</code> or <code>null</code>) before performing any initialization specified in
-          the code. So there is a minor inefficiency.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

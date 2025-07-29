@@ -117,7 +117,7 @@ public class TypeNameCheckTest
             "35:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputTypeNameRecords.java"), expected);
+                getPath("InputTypeNameRecords.java"), expected);
     }
 
 }

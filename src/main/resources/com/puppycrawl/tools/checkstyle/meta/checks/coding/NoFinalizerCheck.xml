@@ -5,12 +5,12 @@
              name="NoFinalizer"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks that there is no method {@code finalize} with zero parameters.
+ Checks that there is no method &lt;code&gt;finalize&lt;/code&gt; with zero parameters.
  &lt;/div&gt;
 
  &lt;p&gt;
  See
- &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()"&gt;
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()"&gt;
  Object.finalize()&lt;/a&gt;
  &lt;/p&gt;
 

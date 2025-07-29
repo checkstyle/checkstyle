@@ -2,7 +2,7 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
-/**some javadoc.*/
+/** some javadoc. */
 public class InputSwitchOnStartOfTheLineCorrect {
   String testMethod1(int i) {
     String s =

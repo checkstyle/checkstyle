@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * Language code for the property {@code requiredTranslations} is composed of
  * the lowercase, two-letter codes as defined by
  * <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a>.
@@ -91,7 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code baseName} - Specify
- * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+ * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
  * Base name</a> of resource bundles which contain message resources.
  * It helps the check to distinguish config and localization resources.
  * Type is {@code java.util.regex.Pattern}.
@@ -198,7 +199,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     /**
      * Specify
-     * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+     * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
      * Base name</a> of resource bundles which contain message resources.
      * It helps the check to distinguish config and localization resources.
      */
@@ -220,7 +221,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     /**
      * Setter to specify
-     * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
+     * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
      * Base name</a> of resource bundles which contain message resources.
      * It helps the check to distinguish config and localization resources.
      *

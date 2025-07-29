@@ -9,11 +9,10 @@
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks the distance between declaration of variable and its first usage.
-          Note: Any additional variables declared or initialized between the declaration and
-           the first usage of the said variable are not counted when calculating the distance.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

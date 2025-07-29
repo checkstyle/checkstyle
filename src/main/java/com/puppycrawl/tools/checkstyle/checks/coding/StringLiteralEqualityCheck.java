@@ -37,16 +37,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: Novice Java programmers often use code like:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * if (x == "something")
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * when they mean
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * if ("something".equals(x))
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

@@ -12,56 +12,51 @@
         <div>
           Validates Javadoc comments to help ensure they are well formed.
         </div>
+
         <p>
           The following checks are performed:
         </p>
         <ul>
-          <li>
-            Ensures the first sentence ends with proper punctuation
-            (That is a period, question mark, or exclamation mark, by default).
-            Note that this check is not applied to inline <code>@return</code> tags,
-            because the Javadoc tools automatically appends a period to the end of the tag
-            content.
-            Javadoc automatically places the first sentence in the
-            method summary table and index. Without proper punctuation
-            the Javadoc may be malformed. All items eligible for the
-            <code>{@inheritDoc}</code> tag are exempt from this
-            requirement.
-          </li>
-
-          <li>
-            Check text for Javadoc statements that do not have any
-            description. This includes both completely empty Javadoc,
-            and Javadoc with only tags such as <code>@param</code> and <code>@return</code>.
-          </li>
-
-          <li>
-            Check text for incomplete HTML tags. Verifies that HTML
-            tags have corresponding end tags and issues an &quot;Unclosed
-            HTML tag found:&quot; error if not. An &quot;Extra HTML tag found:&quot;
-            error is issued if an end tag is found without a previous
-            open tag.
-          </li>
-          <li>
-           Check that a package Javadoc comment is well-formed (as
-           described above).
-          </li>
-          <li>
-            Check for allowed HTML tags. The list of allowed HTML tags
-            is &quot;a&quot;, &quot;abbr&quot;, &quot;acronym&quot;, &quot;address&quot;, &quot;area&quot;, &quot;b&quot;, &quot;bdo&quot;, &quot;big&quot;,
-            &quot;blockquote&quot;, &quot;br&quot;, &quot;caption&quot;, &quot;cite&quot;, &quot;code&quot;, &quot;colgroup&quot;, &quot;dd&quot;,
-            &quot;del&quot;, &quot;dfn&quot;, &quot;div&quot;, &quot;dl&quot;, &quot;dt&quot;, &quot;em&quot;, &quot;fieldset&quot;, &quot;font&quot;, &quot;h1&quot;,
-            &quot;h2&quot;, &quot;h3&quot;, &quot;h4&quot;, &quot;h5&quot;, &quot;h6&quot;, &quot;hr&quot;, &quot;i&quot;, &quot;img&quot;, &quot;ins&quot;, &quot;kbd&quot;, &quot;li&quot;,
-            &quot;ol&quot;, &quot;p&quot;, &quot;pre&quot;, &quot;q&quot;, &quot;samp&quot;, &quot;small&quot;, &quot;span&quot;, &quot;strong&quot;, &quot;sub&quot;,
-            &quot;sup&quot;, &quot;table&quot;, &quot;tbody&quot;, &quot;td&quot;, &quot;tfoot&quot;, &quot;th&quot;, &quot;thead&quot;, &quot;tr&quot;, &quot;tt&quot;,
-            &quot;u&quot;, &quot;ul&quot;, &quot;var&quot;.
-          </li>
+        <li>
+          Ensures the first sentence ends with proper punctuation
+          (That is a period, question mark, or exclamation mark, by default).
+          Note that this check is not applied to inline <code>@return</code> tags,
+          because the Javadoc tools automatically appends a period to the end of the tag
+          content.
+          Javadoc automatically places the first sentence in the method summary
+          table and index. Without proper punctuation the Javadoc may be malformed.
+          All items eligible for the <code>{@inheritDoc}</code> tag are exempt from this
+          requirement.
+        </li>
+        <li>
+          Check text for Javadoc statements that do not have any description.
+          This includes both completely empty Javadoc, and Javadoc with only tags
+          such as <code>@param</code> and <code>@return</code>.
+        </li>
+        <li>
+          Check text for incomplete HTML tags. Verifies that HTML tags have
+          corresponding end tags and issues an "Unclosed HTML tag found:" error if not.
+          An "Extra HTML tag found:" error is issued if an end tag is found without
+          a previous open tag.
+        </li>
+        <li>
+          Check that a package Javadoc comment is well-formed (as described above).
+        </li>
+        <li>
+          Check for allowed HTML tags. The list of allowed HTML tags is
+          "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
+          "br", "caption", "cite", "code", "colgroup", "dd", "del", "dfn", "div", "dl",
+          "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
+          "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
+          "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
+          "thead", "tr", "tt", "u", "ul", "var".
+        </li>
         </ul>
 
         <p>
           These checks were patterned after the checks made by the
-          <a href="https://maven-doccheck.sourceforge.net">DocCheck</a>
-          doclet available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
+          <a href="https://maven-doccheck.sourceforge.net">DocCheck</a> doclet
+          available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
         </p>
       </subsection>
 

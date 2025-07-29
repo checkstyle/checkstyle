@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
+import java.io.Serial;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class CheckstyleAntTaskStub extends CheckstyleAntTask {
     private static final class MockFile extends File {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = -2903929010510199407L;
 
         private MockFile() {

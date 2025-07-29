@@ -21,31 +21,33 @@
         <p>
           For example, this check finds the obsolete braces in
         </p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public void guessTheOutput()
 {
   int whichIsWhich = 0;
   {
     whichIsWhich = 2;
   }
-  System.out.println(&quot;value = &quot; + whichIsWhich);
+  System.out.println("value = " + whichIsWhich);
 }
-        </source>
+        </code></pre></div>
 
-        <p> and debugging / refactoring leftovers such as </p>
-        <source>
+        <p>
+          and debugging / refactoring leftovers such as
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 // if (conditionThatIsNotUsedAnyLonger)
 {
-  System.out.println(&quot;unconditional&quot;);
+  System.out.println("unconditional");
 }
-        </source>
+        </code></pre></div>
 
         <p>
           A case in a switch statement does not implicitly form a block.
-          Thus, to be able to introduce local variables that have case
-          scope it is necessary to open a nested block. This is
-          supported, set the allowInSwitchCase property to true and
-          include all statements of the case in the block.
+          Thus, to be able to introduce local variables that have case scope
+          it is necessary to open a nested block. This is supported, set
+          the allowInSwitchCase property to true and include all statements
+          of the case in the block.
         </p>
       </subsection>
 
@@ -89,7 +91,7 @@ public class Example1 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {                    // violation 'Avoid nested blocks'
         System.out.println("Case 1");
         break;
@@ -121,7 +123,7 @@ public class Example2 {
     }
     System.out.println("myInteger = " + myInteger);
 
-    switch (a) {
+    switch (INTEGER_ONE) {
       case 1: {
         System.out.println("Case 1");
         break;

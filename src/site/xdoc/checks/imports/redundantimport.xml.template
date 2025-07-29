@@ -9,24 +9,10 @@
     <section name="RedundantImport">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for redundant import statements. An import statement is
-          considered redundant if:
-        </div>
-
-        <ul>
-          <li>
-            It is a duplicate of another import. This is, when a class is
-            imported more than once.
-          </li>
-          <li>
-            The class non-statically imported is from the <code>java.lang</code>
-            package, e.g. importing <code>java.lang.String</code>.
-          </li>
-          <li>
-            The class non-statically imported is from the same package as the current package.
-          </li>
-        </ul>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

@@ -12,7 +12,7 @@
 
  &lt;p&gt;
  The check does not require asterisks on the first line, nor on the last line if it is blank.
- All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.
+ All other lines in a Javadoc should start with &lt;code&gt;*&lt;/code&gt;, including blank lines and code blocks.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"

@@ -15,16 +15,17 @@
         </div>
 
         <p>
-          <b>max</b> property will only check returns in methods and lambdas that return a specific
-          value (Ex: 'return 1;').
+          <b>max</b> property will only check returns in methods and lambdas that
+          return a specific value (Ex: 'return 1;').
         </p>
 
         <p>
-          <b>maxForVoid</b> property will only check returns in methods, constructors, and lambdas
-          that have no return type (IE 'return;').
-          It will only count visible return statements. Return statements not normally written, but
-          implied, at the end of the method/constructor definition will not be taken into account.
-          To disallow &quot;return;&quot; in void return type methods, use a value of 0.
+          <b>maxForVoid</b> property will only check returns in methods, constructors,
+          and lambdas that have no return type (IE 'return;'). It will only count
+          visible return statements. Return statements not normally written, but
+          implied, at the end of the method/constructor definition will not be taken
+          into account. To disallow "return;" in void return type methods, use a value
+          of 0.
         </p>
 
         <p>

@@ -1202,7 +1202,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     public void testTextBlockByItsValue() throws Exception {
         final String xpath = "//TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
                 + "[@text='\\n        &1line\\n        >2line\\n        <3line\\n        ']]";
-        final RootNode rootNode = getRootNodeForNonCompilable("InputXpathMapperTextBlock.java");
+        final RootNode rootNode = getRootNode("InputXpathMapperTextBlock.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.COMPILATION_UNIT)
@@ -1253,12 +1253,6 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     private RootNode getRootNodeWithComments(String fileName) throws Exception {
         final File file = new File(getPath(fileName));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
-        return new RootNode(rootAst);
-    }
-
-    private RootNode getRootNodeForNonCompilable(String fileName) throws Exception {
-        final File file = new File(getNonCompilablePath(fileName));
-        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
         return new RootNode(rootAst);
     }
 

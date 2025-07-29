@@ -10,23 +10,10 @@
       <p>Since Checkstyle 8.33</p>
 
       <subsection name="Description" id="Description">
-        <div>
-          Checks whether file contains code.
-          Java compiler is not raising errors on files with no code or all commented out.
-          Files which are considered to have no code:
-        </div>
-
-        <ul>
-          <li>
-            File with no text
-          </li>
-          <li>
-            File with single-line comment(s)
-          </li>
-          <li>
-            File with a multi line comment(s).
-          </li>
-        </ul>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NoCodeInFileCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

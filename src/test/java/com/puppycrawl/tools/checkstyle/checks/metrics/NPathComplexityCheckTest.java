@@ -203,7 +203,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNPathComplexityRecords.java"), expected);
+                getPath("InputNPathComplexityRecords.java"), expected);
     }
 
     @Test
@@ -219,7 +219,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNPathComplexityCheckSwitchExpression.java"),
+                getPath("InputNPathComplexityCheckSwitchExpression.java"),
             expected);
     }
 

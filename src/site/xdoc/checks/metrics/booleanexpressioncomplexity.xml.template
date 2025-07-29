@@ -9,29 +9,10 @@
     <section name="BooleanExpressionComplexity">
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="Description">
-        <div>
-          Restricts the number of boolean operators (<code>&amp;&amp;</code>, <code>||</code>,
-          <code>&amp;</code>, <code>|</code> and <code>^</code>) in an expression.
-        </div>
-
-        <p>
-          Rationale: Too many conditions leads to code that is difficult
-          to read and hence debug and maintain.
-        </p>
-
-        <p>
-          Note that the operators <code>&amp;</code> and
-          <code>|</code> are not only integer bitwise operators, they are also the
-          <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
-          non-shortcut versions</a> of the boolean operators
-          <code>&amp;&amp;</code> and <code>||</code>.
-        </p>
-        <p>
-          Note that <code>&amp;</code>, <code>|</code> and <code>^</code> are not checked
-          if they are part of constructor or method call
-          because they can be applied to non-boolean variables and
-          Checkstyle does not know types of methods from different classes.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/BooleanExpressionComplexityCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

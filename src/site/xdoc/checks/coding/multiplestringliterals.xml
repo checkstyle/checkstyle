@@ -10,13 +10,12 @@
       <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for multiple occurrences of the same string literal within a
-          single file.
+          Checks for multiple occurrences of the same string literal within a single file.
         </div>
 
         <p>
-          Rationale: Code duplication makes maintenance more difficult, so it
-          can be better to replace the multiple occurrences with a constant.
+          Rationale: Code duplication makes maintenance more difficult, so it can be better
+          to replace the multiple occurrences with a constant.
         </p>
       </subsection>
 

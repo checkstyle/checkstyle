@@ -126,7 +126,7 @@ public class InnerAssignmentCheckTest
             "98:27: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
+                getPath("InputInnerAssignmentSwitchAndSwitchExpression.java"),
                 expected);
     }
 }

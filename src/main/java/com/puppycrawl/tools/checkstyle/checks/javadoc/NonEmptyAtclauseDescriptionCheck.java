@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
  * Default value is
+ * Since version 7.3
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
  * PARAM_LITERAL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">

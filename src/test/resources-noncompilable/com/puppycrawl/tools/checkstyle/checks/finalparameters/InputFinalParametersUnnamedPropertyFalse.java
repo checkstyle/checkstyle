@@ -6,7 +6,7 @@ tokens = METHOD_DEF, CTOR_DEF, LITERAL_CATCH, FOR_EACH_CLAUSE
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 import java.util.PriorityQueue;

@@ -12,26 +12,27 @@
         <div>
           Ensures that catch parameters that are not used are declared as an unnamed variable.
         </div>
+
         <p>
           Rationale:
         </p>
         <ul>
-          <li>
-            Improves code readability by clearly indicating which parameters are unused.
-          </li>
-          <li>
-            Follows Java conventions for denoting unused parameters with an
-            underscore (<code>_</code>).
-          </li>
+        <li>
+          Improves code readability by clearly indicating which parameters are unused.
+        </li>
+        <li>
+          Follows Java conventions for denoting unused parameters with an underscore (<code>_</code>).
+        </li>
         </ul>
+
         <p>
           See the <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
-          Java Language Specification</a>
-          for more information about unnamed variables.
+          Java Language Specification</a> for more information about unnamed variables.
         </p>
+
         <p>
-          <b>Attention</b>: This check should be activated only on source code that is
-          compiled by jdk21 or higher;
+          <b>Attention</b>: This check should be activated only on source code
+          that is compiled by jdk21 or higher;
           unnamed catch parameters came out as the first preview in Java 21.
         </p>
       </subsection>

@@ -243,7 +243,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
             "19:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThrough3.java"),
+                getPath("InputFallThrough9.java"),
                 expected);
     }
 
@@ -288,7 +288,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     public void testFallThroughNonCompilable4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThrough4.java"),
+                getPath("InputFallThrough10.java"),
                 expected);
     }
 
@@ -376,7 +376,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {};
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThroughSwitchRules.java"),
+                getPath("InputFallThroughSwitchRules.java"),
                 expected);
     }
 

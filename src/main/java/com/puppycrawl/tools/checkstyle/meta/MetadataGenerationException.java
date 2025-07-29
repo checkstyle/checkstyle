@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
+import java.io.Serial;
+
 /**
  * Exception for metadata generation errors.
  */
 public class MetadataGenerationException extends RuntimeException {
 
     /** For serialization that will never happen. */
+    @Serial
     private static final long serialVersionUID = -254525356420746283L;
 
     /**

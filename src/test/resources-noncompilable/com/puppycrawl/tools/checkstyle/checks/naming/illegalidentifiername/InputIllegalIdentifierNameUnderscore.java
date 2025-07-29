@@ -8,7 +8,7 @@ tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION
 
 */
 
-//non-compiled with javac: compiling on jdk before 9
+// non-compiled with javac: compiling on jdk before 9
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 public class InputIllegalIdentifierNameUnderscore {

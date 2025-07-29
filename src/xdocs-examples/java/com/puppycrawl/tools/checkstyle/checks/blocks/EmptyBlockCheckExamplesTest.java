@@ -62,6 +62,6 @@ public class EmptyBlockCheckExamplesTest extends AbstractExamplesModuleTestSuppo
             "45:18: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }

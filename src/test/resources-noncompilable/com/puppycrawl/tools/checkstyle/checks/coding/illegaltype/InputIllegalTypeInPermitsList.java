@@ -13,7 +13,7 @@ tokens = (default)ANNOTATION_FIELD_DEF, CLASS_DEF, INTERFACE_DEF, METHOD_CALL, M
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 class D { }

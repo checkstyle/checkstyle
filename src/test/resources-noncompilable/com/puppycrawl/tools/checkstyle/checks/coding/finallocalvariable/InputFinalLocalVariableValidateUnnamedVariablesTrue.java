@@ -6,7 +6,7 @@ tokens = (default)VARIABLE_DEF
 
 */
 
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 import java.util.PriorityQueue;

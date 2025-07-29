@@ -49,6 +49,9 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -133,6 +136,10 @@ public final class InlineConfigParser {
     /** A pattern to find the string: "// filtered violation X lines above". */
     private static final Pattern FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
             .compile(".*//\\s*filtered violation (\\d+) lines above\\s*(?:['\"](.*)['\"])?$");
+
+    /** A pattern to find the string: "// filtered violation X lines below". */
+    private static final Pattern FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN = Pattern
+            .compile(".*//\\s*filtered violation (\\d+) lines below\\s*(?:['\"](.*)['\"])?$");
 
     /** A pattern to find the string: "// violation X lines above". */
     private static final Pattern VIOLATION_SOME_LINES_ABOVE_PATTERN = Pattern
@@ -313,8 +320,74 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
     );
 
+    /**
+     *  Modules missing default property mentions in input files.
+     *  Until <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>.
+     */
+    private static final Set<String> SUPPRESSED_MODULES = Set.of(
+            "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
+            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
+            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck",
+            "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck",
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck",
+            "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck",
+            "com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
+            "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
+            "com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck",
+            "com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck",
+            "com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter",
+            "com.puppycrawl.tools.checkstyle.filters.SuppressionXpathSingleFilter"
+    );
+
     // This is a hack until https://github.com/checkstyle/checkstyle/issues/13845
     private static final Map<String, String> MODULE_MAPPINGS = new HashMap<>();
+
+    private static final Map<String, ModuleDetails> PUBLIC_MODULE_DETAILS_MAP = new HashMap<>();
 
     // -@cs[ExecutableStatementCount] Suppressing due to large module mappings
     static {
@@ -380,6 +453,14 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck");
         MODULE_MAPPINGS.put("JavadocStyle",
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck");
+        MODULE_MAPPINGS.put("CyclomaticComplexity",
+                "com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck");
+        MODULE_MAPPINGS.put("EmptyLineSeparator",
+                "com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck");
+        MODULE_MAPPINGS.put("LocalVariableName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.LocalVariableNameCheck");
+        MODULE_MAPPINGS.put("ModifierOrder",
+                "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck");
     }
 
     /** Stop instances being created. **/
@@ -436,6 +517,25 @@ public final class InlineConfigParser {
         }
 
         return testInputConfigBuilder.build().getViolations();
+    }
+
+    public static List<TestInputViolation> getFilteredViolationsFromInputFile(String inputFilePath)
+            throws Exception {
+        final TestInputConfiguration.Builder testInputConfigBuilder =
+                new TestInputConfiguration.Builder();
+        final Path filePath = Path.of(inputFilePath);
+        final List<String> lines = readFile(filePath);
+
+        try {
+            for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+                setViolations(testInputConfigBuilder, lines, true, lineNo, true);
+            }
+        }
+        catch (CheckstyleException exc) {
+            throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
+        }
+
+        return testInputConfigBuilder.build().getFilteredViolations();
     }
 
     public static TestInputConfiguration parseWithFilteredViolations(String inputFilePath)
@@ -526,7 +626,7 @@ public final class InlineConfigParser {
         return lines.stream()
                 .skip(1)
                 .takeWhile(line -> !line.startsWith("*/"))
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
     }
 
     private static void handleXmlConfig(TestInputConfiguration.Builder testInputConfigBuilder,
@@ -568,6 +668,33 @@ public final class InlineConfigParser {
         }
     }
 
+    private static Map<String, String> getDefaultProperties(String fullyQualifiedClassName) {
+
+        final Map<String, String> defaultProperties = new HashMap<>();
+        final boolean isSuppressedModule = SUPPRESSED_MODULES.contains(fullyQualifiedClassName);
+
+        if (PUBLIC_MODULE_DETAILS_MAP.isEmpty()) {
+            XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach(module -> {
+                PUBLIC_MODULE_DETAILS_MAP.put(module.getFullQualifiedName(), module);
+            });
+        }
+
+        final ModuleDetails moduleDetails = PUBLIC_MODULE_DETAILS_MAP.get(fullyQualifiedClassName);
+
+        if (!isSuppressedModule && moduleDetails != null) {
+            defaultProperties.putAll(moduleDetails.getProperties().stream()
+                    .filter(prop -> {
+                        return prop.getName() != null && prop.getDefaultValue() != null;
+                    })
+                    .collect(Collectors.toUnmodifiableMap(
+                            ModulePropertyDetails::getName,
+                            ModulePropertyDetails::getDefaultValue
+                    )));
+        }
+
+        return defaultProperties;
+    }
+
     private static String getFullyQualifiedClassName(String filePath, String moduleName)
             throws CheckstyleException {
         String fullyQualifiedClassName;
@@ -582,7 +709,7 @@ public final class InlineConfigParser {
             final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
-                + ". Please check for spelling errors or specify fully qualified class name.");
+                    + ". Please check for spelling errors or specify fully qualified class name.");
             }
             final int beginIndex = path.indexOf("com.puppycrawl");
             fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
@@ -614,6 +741,7 @@ public final class InlineConfigParser {
 
     private static String getResolvedPath(String fileValue, String inputFilePath) {
         final String resolvedFilePath;
+
         if (fileValue.startsWith("(resource)")) {
             resolvedFilePath =
                     getResourcePath(fileValue.substring(fileValue.indexOf(')') + 1),
@@ -623,9 +751,13 @@ public final class InlineConfigParser {
             resolvedFilePath =
                     getUriPath(fileValue.substring(fileValue.indexOf(')') + 1), inputFilePath);
         }
+        else if (fileValue.contains("/") || fileValue.contains("\\")) {
+            resolvedFilePath = fileValue;
+        }
         else {
             resolvedFilePath = getFilePath(fileValue, inputFilePath);
         }
+
         return resolvedFilePath;
     }
 
@@ -648,8 +780,7 @@ public final class InlineConfigParser {
     private static String toStringConvertForArrayValue(Object value) {
         String result = NULL_STRING;
 
-        if (value instanceof double[]) {
-            final double[] arr = (double[]) value;
+        if (value instanceof double[] arr) {
             result = Arrays.stream(arr)
                            .boxed()
                            .map(number -> {
@@ -831,6 +962,51 @@ public final class InlineConfigParser {
         return stringBuilder.toString();
     }
 
+    private static void validateProperties(Map<String, String> propertiesWithMissingDefaultTag,
+            List<String> unusedProperties) throws CheckstyleException {
+
+        if (!propertiesWithMissingDefaultTag.isEmpty()) {
+
+            final String propertiesList = propertiesWithMissingDefaultTag.entrySet().stream()
+                    .map(entry -> {
+                        return String.format(Locale.ROOT, "%s = (default)%s",
+                                entry.getKey(), entry.getValue());
+                    })
+                    .collect(Collectors.joining(", "));
+
+            final String message = String.format(Locale.ROOT,
+                    "Default properties must use the '(default)' tag."
+                    + " Properties missing the '(default)' tag: %s", propertiesList);
+            throw new CheckstyleException(message);
+        }
+        if (!unusedProperties.isEmpty()) {
+            final String message = String.format(Locale.ROOT,
+                    "All properties must be explicitly specified."
+                    + " Found unused properties: %s", unusedProperties);
+            throw new CheckstyleException(message);
+        }
+    }
+
+    private static void validateDefaultProperties(
+        Map<Object, Object> actualProperties,
+        Map<String, String> defaultProperties) throws CheckstyleException {
+
+        final Map<String, String> matchedProperties = actualProperties.entrySet().stream()
+                .filter(entry -> {
+                    return entry.getValue()
+                        .equals(defaultProperties.get(entry.getKey().toString()));
+                })
+                .collect(HashMap::new,
+                        (map, entry) -> {
+                        map.put(entry.getKey().toString(), entry.getValue().toString());
+                    }, HashMap::putAll);
+        final List<String> missingProperties = defaultProperties.keySet().stream()
+                .filter(propertyName -> !actualProperties.containsKey(propertyName))
+                .toList();
+
+        validateProperties(matchedProperties, missingProperties);
+    }
+
     private static void setProperties(ModuleInputConfiguration.Builder inputConfigBuilder,
                             String inputFilePath,
                             List<String> lines,
@@ -839,6 +1015,10 @@ public final class InlineConfigParser {
 
         final String propertyContent = readPropertiesContent(beginLineNo, lines);
         final Map<Object, Object> properties = loadProperties(propertyContent);
+        final String fullyQualifiedClassName =
+                getFullyQualifiedClassName(inputFilePath, moduleName);
+
+        validateDefaultProperties(properties, getDefaultProperties(fullyQualifiedClassName));
 
         for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
             final String key = entry.getKey().toString();
@@ -857,10 +1037,7 @@ public final class InlineConfigParser {
             }
             else if (value.startsWith("(default)")) {
                 final String defaultValue = value.substring(value.indexOf(')') + 1);
-                final String fullyQualifiedModuleName =
-                        getFullyQualifiedClassName(inputFilePath, moduleName);
-
-                validateDefault(key, defaultValue, fullyQualifiedModuleName);
+                validateDefault(key, defaultValue, fullyQualifiedClassName);
 
                 if (NULL_STRING.equals(defaultValue)) {
                     inputConfigBuilder.addDefaultProperty(key, null);
@@ -1123,6 +1300,8 @@ public final class InlineConfigParser {
                 FILTERED_VIOLATION_BELOW_PATTERN.matcher(line);
         final Matcher violationSomeLinesAboveMatcher =
                 FILTERED_VIOLATION_SOME_LINES_ABOVE_PATTERN.matcher(line);
+        final Matcher violationSomeLinesBelowMatcher =
+                FILTERED_VIOLATION_SOME_LINES_BELOW_PATTERN.matcher(line);
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage, lineNo);
@@ -1146,6 +1325,14 @@ public final class InlineConfigParser {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
             final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
             final int violationLineNum = lineNo - linesAbove;
+            checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
+                    violationLineNum);
+            inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
+        }
+        else if (violationSomeLinesBelowMatcher.matches()) {
+            final String violationMessage = violationSomeLinesBelowMatcher.group(2);
+            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1));
+            final int violationLineNum = lineNo + linesBelow;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
@@ -1207,4 +1394,5 @@ public final class InlineConfigParser {
                 || "null".equals(propertyDefaultValue)
                 || "\"\"".equals(propertyDefaultValue);
     }
+
 }

@@ -13,28 +13,29 @@ excludedClasses = (default)ArrayIndexOutOfBoundsException, ArrayList, Boolean, B
                   UnsupportedOperationException, Void, boolean, byte, char, double, float, \
                   int, long, short, var, void
 excludeClassesRegexps = (default)^$
-excludedPackages = org.apache.hc.core5.http.support
+excludedPackages = org.apache.commons.lang3.builder
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.metrics.classdataabstractioncoupling;
 
-import org.apache.hc.core5.http.ssl.TlsCiphers;
-import org.apache.hc.core5.http.protocol.BasicHttpContext;
-import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
-import org.apache.hc.core5.http.nio.command.CommandSupport;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.text.StrTokenizer;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
 public class InputClassDataAbstractionCouplingExcludedPackagesCommonPackage { // violation
-    public TlsCiphers aa = new TlsCiphers();
-    public BasicHttpContext ab = new BasicHttpContext();
+    public ImmutablePair<String, Integer> aa = new ImmutablePair<>("test", 1);
+    public StrTokenizer ab = new StrTokenizer();
 
     class Inner { // violation
-        public BasicClientTlsStrategy b = new BasicClientTlsStrategy();
-        public CommandSupport c = new CommandSupport();
+        public MutablePair<String, String> b = new MutablePair<>("key", "value");
+        public BasicThreadFactory c = new BasicThreadFactory.Builder().build();
     }
 }
 
 class InputClassDataAbstractionCouplingExcludedPackagesCommonPackageHidden { // violation
-    public CommandSupport c = new CommandSupport();
+    public BasicThreadFactory c = new BasicThreadFactory.Builder().build();
 }
+

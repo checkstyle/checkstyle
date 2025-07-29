@@ -9,17 +9,10 @@
     <section name="AnonInnerLength">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for long anonymous inner classes.
-        </div>
-
-        <p>
-          Rationale: If an anonymous inner class becomes very long it is hard
-          to understand and to see the flow of the method where the class is
-          defined. Therefore, long anonymous inner classes should usually be
-          refactored into a named inner class. See also Bloch, Effective
-          Java, p. 93.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/AnonInnerLengthCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

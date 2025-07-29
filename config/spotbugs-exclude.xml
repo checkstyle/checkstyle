@@ -244,7 +244,7 @@
     <Bug pattern="ITC_INHERITANCE_TYPE_CHECKING"/>
   </Match>
   <Match>
-    <!-- Till https://github.com/mebigfatguy/fb-contrib/issues/405 -->
+    <!-- Till https://github.com/checkstyle/checkstyle/issues/17293 -->
     <Bug pattern="CNC_COLLECTION_NAMING_CONFUSION"/>
   </Match>
   <Match>
@@ -403,5 +403,18 @@
     <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
     <Method name="getTargetFiles" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+  </Match>
+
+  <!-- until https://github.com/mebigfatguy/fb-contrib/issues/491 -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.ConfigurationLoader" />
+    <Field name="ID_TO_RESOURCE_NAME_MAP" />
+    <Bug pattern="DMC_DUBIOUS_MAP_COLLECTION" />
+  </Match>
+  <!-- not documented rule -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.DefaultContext" />
+    <Method name="getAttributeNames" />
+    <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
   </Match>
 </FindBugsFilter>

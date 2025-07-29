@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -36,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -53,7 +55,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -797,6 +798,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -851,8 +853,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             /**
              * Test is checking catch clause when exception is thrown.
              *
@@ -1147,8 +1149,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             @Override
             public String getAbsolutePath() {
                 return "testFile";
@@ -1225,6 +1227,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1289,6 +1292,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1343,6 +1347,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1589,7 +1594,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
 
-        final String path = createTempFile("file", ".java").getPath();
+        final File tempFile = createTempFile("file", ".java");
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(tempFile.toPath())) {
+            bufferedWriter.write(';');
+        }
+        final String path = tempFile.getPath();
         final String violationMessage =
                 getCheckMessage(NewlineAtEndOfFileCheck.class, MSG_KEY_NO_NEWLINE_EOF);
         final String[] expected = {
@@ -1610,7 +1619,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
                     .limit(expected.length)
                     .sorted()
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {
@@ -1726,6 +1735,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
 
         final File tempFile = createTempFile("InputCheckerTestExcludeRelativizedFile", ".java");
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(tempFile.toPath())) {
+            bufferedWriter.write(';');
+        }
 
         final File[] processedFiles = {tempFile};
 

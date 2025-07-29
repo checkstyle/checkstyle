@@ -1,5 +1,5 @@
 #!/bin/bash
-# Attention, there is no "-x" to avoid problems on Travis
+
 set -e
 
 if [[ ! $PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi

@@ -43,10 +43,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * comments are a bad practice. An end line comment would be one that is on
  * the same line as actual code. For example:
  * </p>
- * <pre>
+ * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * a = b + c;      // Some insightful comment
  * d = e / f;        // Another comment for this line
- * </pre>
+ * </code></pre></div>
  *
  * <p>
  * Quoting <cite>Code Complete</cite> for the justification:

@@ -53,9 +53,17 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         IndentLevel childIndent = getIndent();
         if (isLambdaCorrectlyIndented) {
-            if (child instanceof SlistHandler) {
-                // // Lambda with block body (enclosed in {})
-                childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()),
+            // If the lambda is correctly indented, include its line start as acceptable to
+            // avoid false positives. When "forceStrictCondition" is off, we allow indents
+            // larger than expected (e.g., 12 instead of 6 or 8). These larger indents are
+            // accepted but not recorded, so child indent suggestions may be inaccurate.
+            // Adding the actual line start ensures the tool recognizes the lambda’s real indent
+            // context.
+            childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()));
+
+            if (isSameLineAsSwitch(child.getMainAst()) || child instanceof SlistHandler) {
+                // Lambda with block body (enclosed in {})
+                childIndent = IndentLevel.addAcceptable(childIndent,
                     getLineStart(getMainAst().getFirstChild()));
             }
             else {
@@ -213,5 +221,18 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST nextSibling = mainAst.getNextSibling();
         final boolean firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
         checkExpressionSubtree(nextSibling, level, firstLineMatches, false);
+    }
+
+    /**
+     * Checks if the current LAMBDA node is placed on the same line
+     * as the given SWITCH_LITERAL node.
+     *
+     * @param node the SWITCH_LITERAL node to compare with
+     * @return true if the current LAMBDA node is on the same line
+     *     as the given SWITCH_LITERAL node
+     */
+    private boolean isSameLineAsSwitch(DetailAST node) {
+        return node.getType() == TokenTypes.LITERAL_SWITCH
+            && TokenUtil.areOnSameLine(getMainAst(), node);
     }
 }

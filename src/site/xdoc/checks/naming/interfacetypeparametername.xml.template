@@ -9,9 +9,10 @@
     <section name="InterfaceTypeParameterName">
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that interface type parameter names conform to a specified pattern.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/InterfaceTypeParameterNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

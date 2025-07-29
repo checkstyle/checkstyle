@@ -670,7 +670,7 @@ public class MagicNumberCheckTest
             "35:20: " + getCheckMessage(MSG_KEY, "10"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMagicNumberRecordsDefault.java"), expected);
+                getPath("InputMagicNumberRecordsDefault.java"), expected);
     }
 
     @Test
@@ -683,7 +683,7 @@ public class MagicNumberCheckTest
             "35:20: " + getCheckMessage(MSG_KEY, "10"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMagicNumberIgnoreFieldDeclarationRecords.java"),
+                getPath("InputMagicNumberIgnoreFieldDeclarationRecords.java"),
                 expected);
     }
 

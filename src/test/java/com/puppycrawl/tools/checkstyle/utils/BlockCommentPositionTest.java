@@ -94,7 +94,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
 
         for (BlockCommentPositionTestMetadata metadata : metadataList) {
             final DetailAST ast = JavaParser.parseFile(
-                new File(getNonCompilablePath(metadata.getFileName())),
+                new File(getPath(metadata.getFileName())),
                     JavaParser.Options.WITH_COMMENTS);
             final int matches = getJavadocsCount(ast, metadata.getAssertion());
             assertWithMessage("Invalid javadoc count")

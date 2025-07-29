@@ -142,7 +142,7 @@
   <suppress checks="LineLength"
     files="annotation[\\/]suppresswarningsholder[\\/]Example2.java"/>
 
-  <!-- Example must show line length violations and suppressed violations -->
+  <!-- Example must show line length violations and filtered violations -->
   <suppress checks="LineLength"
     files="suppresswithplaintextcommentfilter[\\/]Example9.java"/>
   <suppress checks="LineLength"

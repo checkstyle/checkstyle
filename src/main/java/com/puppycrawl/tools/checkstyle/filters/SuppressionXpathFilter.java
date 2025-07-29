@@ -163,6 +163,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * The suppression file location is checked in following order:
  * </p>
  * <ol>
@@ -181,6 +182,58 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <p>
  * SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
  * </p>
+ *
+ * <p>
+ * A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
+ * document</em></a> contains a set
+ * of {@code suppress} and {@code suppress-xpath} elements, where
+ * each {@code suppress-xpath} element can have the
+ * following attributes:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code files} -
+ * a <a href="../property_types.html#Pattern">Pattern</a>
+ * matched against the file name associated with an audit
+ * event. It is optional.
+ * </li>
+ * <li>
+ * {@code checks} -
+ * a <a href="../property_types.html#Pattern">Pattern</a>
+ * matched against the name of the check associated with an audit
+ * event. Optional as long as {@code id} or {@code message} is specified.
+ * </li>
+ * <li>
+ * {@code message} -
+ * a <a href="../property_types.html#Pattern">Pattern</a>
+ * matched against the message of the check associated with an audit
+ * event. Optional as long as {@code checks} or {@code id} is specified.
+ * </li>
+ * <li>
+ * {@code id} -
+ * a <a href="../property_types.html#String">String</a>
+ * matched against the ID of the check associated with an audit
+ * event. Optional as long as {@code checks} or {@code message} is specified.
+ * </li>
+ * <li>
+ * {@code query} -
+ * a <a href="../property_types.html#String">String</a>
+ * xpath query. It is optional.
+ * </li>
+ * </ul>
+ *
+ * <p>
+ * Each audit event is checked against
+ * each {@code suppress} and {@code suppress-xpath} element. It is
+ * suppressed if all specified attributes match against the audit
+ * event.
+ * </p>
+ *
+ * <p>
+ * ATTENTION: filtering by message is dependent on runtime locale. If project is running
+ * in different languages it is better to avoid filtering by message.
+ * </p>
+ *
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.

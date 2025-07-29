@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * </p>
  *
  * <p>
+ * Notes:
  * {@code SuppressionSingleFilter} can suppress Checks that have {@code Treewalker} or
  * {@code Checker} as parent module.
  * </p>

@@ -8,5 +8,5 @@
 </module>
 */
 
-//non-compiled syntax: bad file for testing
+// non-compiled syntax: bad file for testing
 public clazz InputTreeWalkerSkipParsingExceptionConfig {}

@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = EMPTY_STAT
-minimumDepth = (default)0
 maximumDepth = 0
-minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
-minimumMessage = (default)null
 maximumMessage = Empty statement.
+maximumNumber = 0
+minimumDepth = (default)0
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = EMPTY_STAT
 
 

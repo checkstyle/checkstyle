@@ -9,7 +9,10 @@
     <section name="NestedForDepth">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="Description">
-        <div>Restricts nested <code>for</code> blocks to a specified depth.</div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedForDepthCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

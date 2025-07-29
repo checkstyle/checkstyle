@@ -1,25 +1,21 @@
 #!/bin/bash
 set -e
 
+DEFAULT_JAVA_RELEASE=17
 if [ -z "$1" ]; then
     echo "No parameters supplied!"
     echo "Usage %0 <CLASSPATH> [RELEASE]"
     echo "    CLASSPATH:  The classpath of the project and it's libraries to compile (required)."
-    echo "    RELEASE:    The optional Java release. Default is 11."
+    echo "    RELEASE:    The optional Java release. Default is ${DEFAULT_JAVA_RELEASE}."
     exit 1
 fi
-
-JAVA_RELEASE=${2:-11}
+JAVA_RELEASE=${2:-$DEFAULT_JAVA_RELEASE}
 
 ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
+ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
-# ECJ is not available in maven central, so we have to download it from eclipse.org.
-# Since ECJ has migrated to Java 17, we need to pin version until checkstyle does the same.
-# Until https://github.com/checkstyle/checkstyle/issues/13209
-# ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
-# echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
-
-ECJ_MAVEN_VERSION="R-4.27-202303020300"
+ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
@@ -73,13 +69,15 @@ if [[ $EXIT_CODE != 0 ]]; then
   cat $RESULT_FILE
   false
 else
-    # check compilation of resources, all WARN and INFO are ignored
+    echo "Executing eclipse compiler on generated resources with all warnings suppressed..."
     set +e
+    # Compile test resources with all warnings suppressed
     java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -cp "$1" \
             -d target/eclipse-compile \
             -nowarn \
             src/main/java \
             src/test/java \
+            src/it/java \
             target/generated-sources/antlr \
             src/test/resources \
             src/it/resources \

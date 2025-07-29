@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java21
+// non-compiled with javac: Compilable with Java21
 package org.checkstyle.suppressionxpathfilter.unusedcatchparametershouldbeunnamed;
 
 public class InputXpathUnusedCatchParameterShouldBeUnnamedSimple {

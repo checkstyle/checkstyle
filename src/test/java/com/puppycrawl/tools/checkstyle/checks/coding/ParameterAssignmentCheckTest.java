@@ -79,7 +79,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
             "21:16: " + getCheckMessage(MSG_KEY, "result"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputParameterAssignmentWithEnhancedSwitch.java"),
+                getPath("InputParameterAssignmentWithEnhancedSwitch.java"),
                 expected);
     }
 

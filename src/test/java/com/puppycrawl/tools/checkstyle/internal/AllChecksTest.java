@@ -173,7 +173,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "LITERAL_DEFAULT", "LITERAL_CASE").collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("FinalParameters", Stream.of(
                 // we prefer these to be effectively final as to not damage readability
-                "FOR_EACH_CLAUSE", "LITERAL_CATCH").collect(Collectors.toUnmodifiableSet()));
+                "FOR_EACH_CLAUSE", "LITERAL_CATCH", "PATTERN_VARIABLE_DEF")
+            .collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAround", Stream.of(
                 // we prefer no spaces on one side or both for these tokens
                 "ARRAY_INIT",
@@ -239,9 +240,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // identifiers are covered by other checks
                 "IDENT",
                 // comments should be skipped as nobody write in octal or unicode code style
-                "COMMENT_CONTENT",
-                // until #14291
-                "TEXT_BLOCK_CONTENT"
+                "COMMENT_CONTENT"
                 )
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(

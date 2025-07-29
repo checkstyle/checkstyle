@@ -1,6 +1,7 @@
 /*
 FinalParameters
 ignorePrimitiveTypes = (default)false
+ignoreUnnamedParameters = (default)true
 tokens = LITERAL_CATCH
 
 

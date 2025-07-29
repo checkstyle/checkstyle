@@ -161,6 +161,8 @@
                 href="checks/coding/overloadmethodsdeclarationorder.html"/>
           <item name="PackageDeclaration" href="checks/coding/packagedeclaration.html"/>
           <item name="ParameterAssignment" href="checks/coding/parameterassignment.html"/>
+          <item name="PatternVariableAssignment"
+                href="checks/coding/patternvariableassignment.html"/>
           <item name="RequireThis" href="checks/coding/requirethis.html"/>
           <item name="ReturnCount" href="checks/coding/returncount.html"/>
           <item name="SimplifyBooleanExpression"
@@ -169,6 +171,8 @@
           <item name="StringLiteralEquality" href="checks/coding/stringliteralequality.html"/>
           <item name="SuperClone" href="checks/coding/superclone.html"/>
           <item name="SuperFinalize" href="checks/coding/superfinalize.html"/>
+          <item name="UnnecessaryNullCheckWithInstanceOf"
+                href="checks/coding/unnecessarynullcheckwithinstanceof.html"/>
           <item name="UnnecessaryParentheses" href="checks/coding/unnecessaryparentheses.html"/>
           <item name="UnnecessarySemicolonAfterOuterTypeDeclaration"
                 href="checks/coding/unnecessarysemicolonafteroutertypedeclaration.html"/>
@@ -190,6 +194,7 @@
         </item>
         <item name="Headers" href="checks/header/index.html" collapse="true">
           <item name="Header" href="checks/header/header.html"/>
+          <item name="MultiFileRegexpHeader" href="checks/header/multifileregexpheader.html"/>
           <item name="RegexpHeader" href="checks/header/regexpheader.html"/>
         </item>
         <item name="Imports" href="checks/imports/index.html" collapse="true">

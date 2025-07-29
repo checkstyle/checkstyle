@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java17
+// non-compiled with eclipse: Type arguments are not allowed
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 import java.io.Serializable;

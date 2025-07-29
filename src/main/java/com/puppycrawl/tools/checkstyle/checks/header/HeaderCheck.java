@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </div>
  *
  * <p>
+ * Notes:
  * In default configuration, if header is not specified, the default value
  * of header is set to {@code null} and the check does not rise any violations.
  * </p>
@@ -86,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  *
- * @since 6.9
+ * @since 3.2
  */
 @StatelessCheck
 public class HeaderCheck extends AbstractHeaderCheck {

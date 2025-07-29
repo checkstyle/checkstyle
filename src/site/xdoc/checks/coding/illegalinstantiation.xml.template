@@ -9,37 +9,17 @@
     <section name="IllegalInstantiation">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks for illegal instantiations where a factory method is
-          preferred.
-        </div>
-
-        <p>
-          Rationale: Depending on the project, for some classes it might be
-          preferable to create instances through factory methods rather than
-          calling the constructor.
-        </p>
-
-        <p>
-          A simple example is the <code>java.lang.Boolean</code>
-          class. For performance reasons, it is preferable to
-          use the predefined constants <code> TRUE</code> and
-          <code>FALSE</code>. Constructor invocations should be
-          replaced by calls to <code>Boolean.valueOf()</code>.
-        </p>
-
-        <p>
-          Some extremely performance sensitive projects may require the use of
-          factory methods for other classes as well, to enforce the usage of
-          number caches or object pools.
-        </p>
+        <macro name="description">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Notes" id="Notes">
-        <p>
-          There is a limitation that it is currently not possible to specify
-          array classes.
-        </p>
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

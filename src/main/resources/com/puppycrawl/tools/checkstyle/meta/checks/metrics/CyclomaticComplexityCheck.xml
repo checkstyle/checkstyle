@@ -14,19 +14,19 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- The complexity is equal to the number of decision points {@code + 1}.
+ The complexity is equal to the number of decision points &lt;code&gt;+ 1&lt;/code&gt;.
  Decision points:
  &lt;/p&gt;
  &lt;ul&gt;
  &lt;li&gt;
- {@code if}, {@code while}, {@code do}, {@code for},
- {@code ?:}, {@code catch}, {@code switch}, {@code case} statements.
+ &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;while&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt;,
+ &lt;code&gt;?:&lt;/code&gt;, &lt;code&gt;catch&lt;/code&gt;, &lt;code&gt;switch&lt;/code&gt;, &lt;code&gt;case&lt;/code&gt; statements.
  &lt;/li&gt;
  &lt;li&gt;
-  Operators {@code &amp;amp;&amp;amp;} and {@code ||} in the body of target.
+  Operators &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; and &lt;code&gt;||&lt;/code&gt; in the body of target.
  &lt;/li&gt;
  &lt;li&gt;
-  {@code when} expression in case labels, also known as guards.
+  &lt;code&gt;when&lt;/code&gt; expression in case labels, also known as guards.
  &lt;/li&gt;
  &lt;/ul&gt;
 

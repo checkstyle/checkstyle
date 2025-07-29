@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  *
  * <p>
+ * Notes:
  * If you exclude a starred import on a class this automatically excludes
  * each member individually.
  * </p>

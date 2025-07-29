@@ -326,7 +326,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions.java";
-        verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
+        verifyWithInlineConfigParser(getPath(filename), expected);
     }
 
     @Test
@@ -337,7 +337,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions2.java";
-        verifyWithInlineConfigParser(getNonCompilablePath(filename), expected);
+        verifyWithInlineConfigParser(getPath(filename), expected);
     }
 
     @Test

@@ -825,6 +825,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/header/multifileregexpheader.html#MultiFileRegexpHeader">
+                MultiFileRegexpHeader
+              </a>
+            </td>
+            <td>
+              Checks the header of a source file against multiple header files that contain
+              a pattern for each line of the source header.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/multiplestringliterals.html#MultipleStringLiterals">
                 MultipleStringLiterals
               </a>
@@ -1064,6 +1075,16 @@
               Checks the policy on the padding of parentheses; that is whether a
               space is required after a left parenthesis and before a right
               parenthesis, or such spaces are forbidden.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/patternvariableassignment.html#PatternVariableAssignment">
+                PatternVariableAssignment
+              </a>
+            </td>
+            <td>
+              Checks for assignment of pattern variables.
             </td>
           </tr>
           <tr>
@@ -1334,6 +1355,16 @@
               </a>
             </td>
             <td>Detects duplicated keys in properties files.</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/coding/unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
+                UnnecessaryNullCheckWithInstanceOf
+              </a>
+            </td>
+            <td>
+              Checks for redundant null checks with the instanceof operator.
+            </td>
           </tr>
           <tr>
             <td>

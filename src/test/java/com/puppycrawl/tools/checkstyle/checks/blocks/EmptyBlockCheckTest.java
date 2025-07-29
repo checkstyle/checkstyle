@@ -231,7 +231,7 @@ public class EmptyBlockCheckTest
             "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyBlockSwitchExpressionsOne.java"), expected);
+                getPath("InputEmptyBlockSwitchExpressionsOne.java"), expected);
     }
 
     @Test
@@ -241,7 +241,7 @@ public class EmptyBlockCheckTest
             "27:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyBlockSwitchExpressionsTwo.java"), expected);
+                getPath("InputEmptyBlockSwitchExpressionsTwo.java"), expected);
     }
 
     @Test

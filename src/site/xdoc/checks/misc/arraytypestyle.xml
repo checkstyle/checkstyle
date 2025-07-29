@@ -10,9 +10,9 @@
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks the style of array type definitions. Some like Java style:
-          <code>public static void main(String[] args)</code> and some like
-          C style: <code>public static void main(String args[])</code>.
+          Checks the style of array type definitions.
+          Some like Java style: <code>public static void main(String[] args)</code>
+          and some like C style: <code>public static void main(String args[])</code>.
         </div>
 
         <p>
@@ -20,8 +20,8 @@
         </p>
 
         <p>
-          This check strictly enforces only Java style for method return types
-          regardless of the value for 'javaStyle'. For example, <code>byte[] getData()</code>.
+          This check strictly enforces only Java style for method return types regardless
+          of the value for 'javaStyle'. For example, <code>byte[] getData()</code>.
           This is because C doesn't compile methods with array declarations on the name.
         </p>
       </subsection>

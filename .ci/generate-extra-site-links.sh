@@ -14,14 +14,14 @@ if [[ -z $PR_NUMBER || -z $AWS_FOLDER_LINK ]]; then
 fi
 
 checkForVariable "GITHUB_TOKEN"
-checkForVariable "REPOSITORY_OWNER"
+checkForVariable "GITHUB_REPOSITORY_OWNER"
 echo "PR_NUMBER=$PR_NUMBER"
 echo "AWS_FOLDER_LINK=$AWS_FOLDER_LINK"
 
 GITHUB_API_RESPONSE=$(curl --fail-with-body -Ls \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $GITHUB_TOKEN" \
-  "https://api.github.com/repos/$REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100")
+  "https://api.github.com/repos/$GITHUB_REPOSITORY_OWNER/checkstyle/pulls/$PR_NUMBER/files?per_page=100")
 echo "GITHUB_API_RESPONSE=$GITHUB_API_RESPONSE"
 
 # Extract a list of the changed xdocs in the pull request. For example 'xdoc/config_misc.xml'.
@@ -40,7 +40,7 @@ fi
 
 # Fetch the diff of the pull request.
 PR_DIFF=$(curl --fail-with-body -s \
-  "https://patch-diff.githubusercontent.com/raw/$REPOSITORY_OWNER/checkstyle/pull/$PR_NUMBER.diff")
+  "https://patch-diff.githubusercontent.com/raw/$GITHUB_REPOSITORY_OWNER/checkstyle/pull/$PR_NUMBER.diff")
 
 # Iterate through all changed xdocs files.
 while IFS= read -r CURRENT_XDOC_PATH; do

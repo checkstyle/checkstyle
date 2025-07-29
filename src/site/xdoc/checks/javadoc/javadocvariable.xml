@@ -10,8 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code>
-          fields.
+          Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code> fields.
         </div>
       </subsection>
 
@@ -27,7 +26,7 @@
             </tr>
             <tr>
               <td>accessModifiers</td>
-              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants. Only fields matching the specified modifiers will be analyzed.</td>
+              <td>Specify the set of access modifiers used to determine which fields should be checked. This includes both explicitly declared modifiers and implicit ones, such as package-private for fields without an explicit modifier. It also accounts for special cases where fields have implicit modifiers, such as <code>public static final</code> for interface fields and <code>public static</code> for enum constants, or where the nesting types accessibility is more restrictive and hides the nested field. Only fields matching the specified modifiers will be analyzed.</td>
               <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>10.22.0</td>
@@ -85,6 +84,13 @@ public class Example1 {
   public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e; // violation, 'Missing a Javadoc comment'
 
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -116,6 +122,14 @@ public class Example2 {
   protected int c;
   public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e;
+
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -147,6 +161,14 @@ public class Example3 {
   protected int c;
   public int d;
   /*package*/ int e; // violation, 'Missing a Javadoc comment'
+
+  public enum PublicEnum {
+    CONSTANT
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -179,8 +201,16 @@ public class Example4 {
   protected int c; // violation, 'Missing a Javadoc comment'
   public int d; // violation, 'Missing a Javadoc comment'
   /*package*/ int e; // violation, 'Missing a Javadoc comment'
+
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
 
         <p id="Example5-code">
           This check will not report a violation for local and
@@ -192,6 +222,14 @@ public class Example5 {
   protected int variableProtected; // violation, 'Missing a Javadoc comment'
   int variablePackage; // violation, 'Missing a Javadoc comment'
   private int variablePrivate; // violation, 'Missing a Javadoc comment'
+
+  public enum PublicEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
+
+  private enum PrivateEnum {
+    CONSTANT // violation, 'Missing a Javadoc comment'
+  }
 
   public void testMethodInnerClass() {
 

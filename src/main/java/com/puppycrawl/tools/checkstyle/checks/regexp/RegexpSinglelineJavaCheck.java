@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  *
- * @since 6.0
+ * @since 5.0
  */
 @StatelessCheck
 public class RegexpSinglelineJavaCheck extends AbstractCheck {

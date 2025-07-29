@@ -8,9 +8,9 @@
  Checks that
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence"&gt;
  Javadoc summary sentence&lt;/a&gt; does not contain phrases that are not recommended to use.
- Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
- Summaries that contain a non-empty {@code {@return}} are allowed.
- Check also violate Javadoc that does not contain first sentence, though with {@code {@return}} a
+ Summaries that contain only the &lt;code&gt;{@inheritDoc}&lt;/code&gt; tag are skipped.
+ Summaries that contain a non-empty &lt;code&gt;{@return}&lt;/code&gt; are allowed.
+ Check also violate Javadoc that does not contain first sentence, though with &lt;code&gt;{@return}&lt;/code&gt; a
  period is not required as the Javadoc tool adds it.
  &lt;/div&gt;
 

@@ -1,3 +1,5 @@
+// non-compiled with javac: Compilable with Java17
+
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
 import java.util.List;

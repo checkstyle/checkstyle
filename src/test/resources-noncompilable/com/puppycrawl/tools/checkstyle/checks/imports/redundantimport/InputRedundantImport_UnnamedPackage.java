@@ -4,7 +4,7 @@ RedundantImport
 
 */
 
-//non-compiled with javac: no package by design of test
+// non-compiled with javac: no package by design of test
 
 import java.util.List;
 import java.util.List; // violation 'Duplicate import to line 9'

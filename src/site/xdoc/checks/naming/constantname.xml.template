@@ -9,12 +9,10 @@
     <section name="ConstantName">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that constant names conform to a specified pattern.
-          A <em>constant</em> is a <strong>static</strong> and <strong>final</strong> field or an
-          interface/annotation field, except <strong>serialVersionUID</strong> and
-          <strong>serialPersistentFields</strong>.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ConstantNameCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

@@ -9,9 +9,10 @@
     <section name="RequireEmptyLineBeforeBlockTagGroup">
       <p>Since Checkstyle 8.36</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks that one blank line before the block tag if it is present in Javadoc.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/RequireEmptyLineBeforeBlockTagGroupCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

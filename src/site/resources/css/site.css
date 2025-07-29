@@ -334,6 +334,34 @@ span.wrapper.inline {
   );
 }
 
+section#Properties .wrapper {
+  overflow-x: auto;
+}
+
+section#Properties .wrapper table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+section#Properties .wrapper table th:nth-child(-n+4),
+section#Properties .wrapper table td:nth-child(-n+4) {
+  width: 22.5%;
+}
+
+section#Properties .wrapper table th:nth-child(5),
+section#Properties .wrapper table td:nth-child(5) {
+  width: 10%;
+}
+
+section#Properties .wrapper table td,
+section#Properties .wrapper table td pre,
+section#Properties .wrapper table td code,
+section#Properties .wrapper table td a {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 @media screen and (max-width: 823px) {
   body {
     padding-left: 0;
@@ -397,7 +425,22 @@ span.wrapper.inline {
     text-align: left;
   }
 
+  section#Properties .wrapper {
+    overflow-x: hidden;
+  }
+
+  section#Properties .wrapper table {
+    table-layout: auto;
+    width: 100%;
+  }
+
   section[id="Properties"] .wrapper table tr td:first-child {
     font-style: italic;
   }
+
+  section#Properties .wrapper table th,
+  section#Properties .wrapper table td {
+    width: auto !important;
+  }
 }
+

@@ -111,6 +111,16 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testNoWhitespaceBeforeEllipsis() throws Exception {
+        verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEllipsis.java"));
+    }
+
+    @Test
+    public void testNoWhitespaceBeforeEllipsisFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeEllipsis.java"));
+    }
+
+    @Test
     public void testNoWhitespaceBeforeCaseDefaultColon() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"));
     }
@@ -122,12 +132,12 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testMethodParamPad() throws Exception {
-        verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
+        verifyWithWholeConfig(getPath("InputMethodParamPad2.java"));
     }
 
     @Test
     public void testMethodParamPadFormatted() throws Exception {
-        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad.java"));
+        verifyWithWholeConfig(getPath("InputFormattedMethodParamPad2.java"));
     }
 
     @Test
@@ -166,7 +176,47 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testWhitespaceInsideArrayInitializer() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceInsideArrayInitializer.java"));
+    }
+
+    @Test
+    public void testWhitespaceInsideArrayInitializerFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceInsideArrayInitializer.java"));
+    }
+
+    @Test
     public void testWhitespaceAroundWhenFormatted() throws Exception {
         verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundWhen.java"));
+    }
+
+    @Test
+    public void testWhitespaceAroundArrow() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputWhitespaceAroundArrow.java"));
+    }
+
+    @Test
+    public void testFormattedWhitespaceAroundArrow() throws Exception {
+        verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundArrow.java"));
+    }
+
+    @Test
+    public void testWhitespaceAfterDoubleSlashes() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceAfterDoubleSlashes.java"));
+    }
+
+    @Test
+    public void testWhitespaceAfterDoubleSlashesFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterDoubleSlashes.java"));
+    }
+
+    @Test
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
+        verifyWithWholeConfig(getPath("InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
+    }
+
+    @Test
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocksFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
 }

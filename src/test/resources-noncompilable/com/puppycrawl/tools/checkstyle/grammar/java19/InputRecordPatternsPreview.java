@@ -1,4 +1,4 @@
-//non-compiled with javac: Compilable with Java19
+// non-compiled with javac: Compilable with Java19
 package com.puppycrawl.tools.checkstyle.grammar.java19;
 
 public class InputRecordPatternsPreview {

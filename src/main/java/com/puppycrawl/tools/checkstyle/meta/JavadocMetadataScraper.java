@@ -378,7 +378,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param childRightLimit the right index of root children till where to scan
      * @return constructed text of subtree
      */
-    private static String constructSubTreeText(DetailNode node, int childLeftLimit,
+    public static String constructSubTreeText(DetailNode node, int childLeftLimit,
                                                int childRightLimit) {
         DetailNode detailNode = node;
 
@@ -389,12 +389,14 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         while (!stack.isEmpty()) {
             detailNode = stack.removeFirst();
 
-            if (visited.add(detailNode)) {
-                final String childText = detailNode.getText();
-                if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                        && !TOKEN_TEXT_PATTERN.matcher(childText).matches()) {
-                    result.insert(0, childText);
+            if (visited.add(detailNode) && isContentToWrite(detailNode)) {
+                String childText = detailNode.getText();
+
+                if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                    childText = adjustCodeInlineTagChildToHtml(detailNode);
                 }
+
+                result.insert(0, childText);
             }
 
             for (DetailNode child : detailNode.getChildren()) {
@@ -409,6 +411,48 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             }
         }
         return result.toString().trim();
+    }
+
+    /**
+     * Checks whether selected Javadoc node is considered as something to write.
+     *
+     * @param detailNode javadoc node to check.
+     * @return whether javadoc node is something to write.
+     */
+    private static boolean isContentToWrite(DetailNode detailNode) {
+
+        return detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+            && (detailNode.getType() == JavadocTokenTypes.TEXT
+            || !TOKEN_TEXT_PATTERN.matcher(detailNode.getText()).matches());
+    }
+
+    /**
+     * Adjusts child of {@code @code} Javadoc inline tag to html format.
+     *
+     * @param codeChild {@code @code} child to convert.
+     * @return converted {@code @code} child element, otherwise just the original text.
+     */
+    private static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
+        String result = codeChild.getText();
+
+        switch (codeChild.getType()) {
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_END:
+                result = "</code>";
+                break;
+            case JavadocTokenTypes.WS:
+                result = "";
+                break;
+            case JavadocTokenTypes.CODE_LITERAL:
+                result = result.replace("@", "") + ">";
+                break;
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_START:
+                result = "<";
+                break;
+            default:
+                break;
+        }
+
+        return result;
     }
 
     /**
@@ -544,7 +588,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param node subtree child node
      * @return root node child index
      */
-    private static int getParentIndexOf(DetailNode node) {
+    public static int getParentIndexOf(DetailNode node) {
         DetailNode currNode = node;
         while (currNode.getParent().getIndex() != -1) {
             currNode = currNode.getParent();
@@ -685,7 +729,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param nodeParagraph paragraph javadoc node
      * @return true if paragraph node contains the parent text
      */
-    private static boolean isParentText(DetailNode nodeParagraph) {
+    public static boolean isParentText(DetailNode nodeParagraph) {
         return isChildNodeTextMatches(nodeParagraph, PARENT_TAG);
     }
 
@@ -696,7 +740,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param pattern pattern to match
      * @return true if one of child text nodes matches pattern
      */
-    private static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
+    public static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
         return getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0)
                 .map(DetailNode::getText)
                 .map(pattern::matcher)

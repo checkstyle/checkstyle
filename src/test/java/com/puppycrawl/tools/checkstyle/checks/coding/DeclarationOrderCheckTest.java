@@ -204,7 +204,7 @@ public class DeclarationOrderCheckTest
             "43:9: " + getCheckMessage(MSG_STATIC),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputDeclarationOrderRecordsAndCompactCtors.java"),
+                getPath("InputDeclarationOrderRecordsAndCompactCtors.java"),
             expected);
     }
 

@@ -40,7 +40,7 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
             "21:10: " + getCheckMessage(MSG_INVALID_PATTERN, "test$stuff", format),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -60,6 +60,6 @@ public class IllegalIdentifierNameCheckExamplesTest extends AbstractExamplesModu
             "34:10: " + getCheckMessage(MSG_INVALID_PATTERN, "transitive", format),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 }

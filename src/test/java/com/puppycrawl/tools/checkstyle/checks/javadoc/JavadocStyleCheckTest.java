@@ -709,7 +709,7 @@ public class JavadocStyleCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputJavadocStyleRecordsAndCompactCtors.java"),
+                getPath("InputJavadocStyleRecordsAndCompactCtors.java"),
             expected);
     }
 

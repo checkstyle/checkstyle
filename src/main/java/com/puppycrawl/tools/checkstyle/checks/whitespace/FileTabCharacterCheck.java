@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </ul>
  *
  * <p>
+ * Notes:
  * When the {@code FileTabCharacter} check is used with the default configuration,
  * only the first instance of a tab character is reported.
  * </p>

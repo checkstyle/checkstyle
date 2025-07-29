@@ -10,13 +10,11 @@
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for the number of types declared at the <i>outer</i>
-          (or <i>root</i>) level in a file.
+          Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
         </div>
 
         <p>
-          Rationale: It is considered good practice to only define one outer
-          type per file.
+          Rationale: It is considered good practice to only define one outer type per file.
         </p>
       </subsection>
 

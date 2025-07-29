@@ -35,10 +35,17 @@ public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestS
     public void testExample1() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
-        final String[] expected = {
-            "21:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
+        final String[] expectedWithoutFilter = {
+            "20:27: Name 'V1' must match pattern '^[a-z][a-zA-Z0-9]*$'.",
+            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
         };
 
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+        final String[] expectedWithFilter = {
+            "22:15: " + getCheckMessage(MSG_INVALID_PATTERN, "Method2", pattern),
+        };
+
+        verifyFilterWithInlineConfigParser(getPath("Example1.java"),
+                expectedWithoutFilter,
+                expectedWithFilter);
     }
 }

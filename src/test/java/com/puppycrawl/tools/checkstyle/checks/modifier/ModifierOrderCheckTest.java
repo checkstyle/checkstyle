@@ -158,21 +158,21 @@ public class ModifierOrderCheckTest
     public void testModifierOrderSealedAndNonSealed() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "26:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
-            "44:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
-            "50:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
-            "53:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
-            "58:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
+            "27:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "45:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
+            "51:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "54:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "static"),
+            "59:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
+                getPath("InputModifierOrderSealedAndNonSealed.java"), expected);
     }
 
     @Test
     public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"),
+                getPath("InputModifierOrderSealedAndNonSealedNoViolation.java"),
                 expected);
     }
 

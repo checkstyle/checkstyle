@@ -10,7 +10,7 @@ sortImportsInGroupAlphabetically = (default)false
 
 */
 
-//non-compiled with javac: special package and requires imports from the same package
+// non-compiled with javac: special package and requires imports from the same package
 package java.util.concurrent.locks;
 // SAME_PACKAGE(2) should include #1-8
 // SAME_PACKAGE(3) should include #4-6

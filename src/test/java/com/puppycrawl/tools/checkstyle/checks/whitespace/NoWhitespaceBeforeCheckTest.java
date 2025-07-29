@@ -124,7 +124,7 @@ public class NoWhitespaceBeforeCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNoWhitespaceBeforeTextBlocksTabIndent.java"), expected);
+                getPath("InputNoWhitespaceBeforeTextBlocksTabIndent.java"), expected);
     }
 
     @Test

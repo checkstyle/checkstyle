@@ -66,7 +66,7 @@ public class CovariantEqualsCheckTest
             "29:28: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCovariantEqualsRecords.java"), expected);
+                getPath("InputCovariantEqualsRecords.java"), expected);
     }
 
     @Test

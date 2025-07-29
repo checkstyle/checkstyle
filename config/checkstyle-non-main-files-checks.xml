@@ -57,16 +57,16 @@
     <property name="id" value="lineLength"/>
     <!-- catch lines above 100 symbols -->
     <property name="format"
-             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*file:|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
+             value="^(?!(.*value=.*|.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*file:|\[ERROR].*|.*\.dtd| \* \{@code| \* com\.)).{101,}$"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
 
   <module name="RegexpSingleline">
     <property name="id" value="properMavenCommand"/>
-    <property name="format" value="^[^#]*mvn (?!(-e --no-transfer-progress|--version))"/>
+    <property name="format" value="^[^#]*(\.\/)?(mvn|mvnw|mvnw\.cmd)\s+?(?!(-e --no-transfer-progress|--version))"/>
     <property name="fileExtensions" value="sh, yml"/>
     <property name="message"
-      value="mvn command should be '--version' or start with '-e --no-transfer-progress' options"/>
+      value="mvn or mvnw command should be --version or start with -e --no-transfer-progress"/>
   </module>
 
   <module name="RegexpSingleline">
@@ -134,7 +134,7 @@
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
     <property name="maximum" value="9999"/>
-    <property name="message" value="Example macro usage is required in template files."/>
+    <property name="message" value="Example macro usage is required in template files. If module does not have examples, please add this to suppressions."/>
   </module>
 
   <module name="RegexpSingleline">
@@ -142,7 +142,7 @@
     <property name="format" value="&lt;macro name=&quot;parent-module&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
+    <property name="maximum" value="1"/>
     <property name="message" value="Parent module macro usage is required in template files."/>
   </module>
 
@@ -151,8 +151,8 @@
     <property name="format" value="&lt;macro name=&quot;violation-messages&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Violation messages macro usage is required in template files."/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Violation messages macro usage is required in template files. If module does not have violation messages, please add this to suppressions."/>
   </module>
 
   <module name="RegexpSingleline">
@@ -160,7 +160,16 @@
     <property name="format" value="&lt;macro name=&quot;properties&quot;&gt;"/>
     <property name="fileExtensions" value="xml.template"/>
     <property name="minimum" value="1"/>
-    <property name="maximum" value="9999"/>
-    <property name="message" value="Properties macro usage is required in template files."/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Properties macro usage is required in template files. If module doesn not have properties, please add this to suppressions."/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="descriptionMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;description&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Description macro usage is required in template files."/>
+  </module>
+
 </module>

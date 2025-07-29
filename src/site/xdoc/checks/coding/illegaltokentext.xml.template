@@ -9,10 +9,10 @@
     <section name="IllegalTokenText">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>
-          Checks specified tokens text for matching an illegal pattern.
-          By default, no tokens are specified.
-        </div>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenTextCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -61,13 +61,13 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example3.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example3.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">

@@ -56,7 +56,7 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
             "17:29: " + getCheckMessage(MSG_KEY, '"'),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test

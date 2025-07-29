@@ -11,16 +11,13 @@
       <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="Description">
         <div>
-          Maintains a set of check suppressions from
-          <code>@SuppressWarnings</code> annotations. It allows to
-          prevent Checkstyle from reporting violations from parts of code
-          that were annotated with <code>@SuppressWarnings</code> and
-          using name of the check to be excluded. It is possible to suppress
-          all the checkstyle warnings with the argument
-          <code>&quot;all&quot;</code>.
-          You can also use a <code>checkstyle:</code> prefix to prevent compiler from
-          processing these annotations. You can also define
-          aliases for check names that need to be suppressed.
+          Maintains a set of check suppressions from <code>@SuppressWarnings</code> annotations.
+          It allows to prevent Checkstyle from reporting violations from parts of code that were
+          annotated with <code>@SuppressWarnings</code> and using name of the check to be excluded.
+          It is possible to suppress all the checkstyle warnings with the argument <code>"all"</code>.
+          You can also use a <code>checkstyle:</code> prefix to prevent compiler
+          from processing these annotations.
+          You can also define aliases for check names that need to be suppressed.
         </div>
       </subsection>
 
@@ -122,7 +119,7 @@ class Example2 {
   }
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
           You can also use simple check name like <code>ParameterNumberCheck=paramnum</code>
           instead to use fully qualified name of check in the <code>aliasList</code>:
@@ -154,7 +151,7 @@ public class Example3 {
   }
 
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
           The check can also be used without suffix of &quot;Check&quot; like
           <code>ParameterNumber=paramnum</code> in the <code>aliasList</code>:

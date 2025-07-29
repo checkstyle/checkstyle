@@ -27,6 +27,7 @@ public class Example3 {
 
   /** some doc */
   public void testMethod2() {}
+  // violation 1 lines above 'Type Javadoc comment is missing @since tag.'
 
 }
 // xdoc section -- end

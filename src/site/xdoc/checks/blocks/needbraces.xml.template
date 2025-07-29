@@ -9,8 +9,10 @@
     <section name="NeedBraces">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
-        <div> Checks for braces around code blocks. </div>
-        <p> Attention: The break in case blocks is not counted to allow compact view. </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">

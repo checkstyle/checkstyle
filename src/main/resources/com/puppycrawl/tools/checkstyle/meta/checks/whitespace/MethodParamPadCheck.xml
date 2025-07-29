@@ -13,7 +13,7 @@
  such a space is forbidden.
  If they are not on the same line, reports a violation, unless configured to
  allow line breaks. To allow linebreaks after the identifier, set property
- {@code allowLineBreaks} to {@code true}.
+ &lt;code&gt;allowLineBreaks&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;.
  &lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="allowLineBreaks" type="boolean">

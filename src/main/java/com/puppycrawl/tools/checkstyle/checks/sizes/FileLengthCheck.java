@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  *
- * @since 5.0
+ * @since 3.2
  */
 @StatelessCheck
 public class FileLengthCheck extends AbstractFileSetCheck {

@@ -6,20 +6,20 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks that any combination of String literals
- is on the left side of an {@code equals()} comparison.
+ is on the left side of an &lt;code&gt;equals()&lt;/code&gt; comparison.
  Also checks for String literals assigned to some field
- (such as {@code someString.equals(anotherString = "text")}).
+ (such as &lt;code&gt;someString.equals(anotherString = "text")&lt;/code&gt;).
  &lt;/div&gt;
 
- &lt;p&gt;Rationale: Calling the {@code equals()} method on String literals
- will avoid a potential {@code NullPointerException}. Also, it is
+ &lt;p&gt;Rationale: Calling the &lt;code&gt;equals()&lt;/code&gt; method on String literals
+ will avoid a potential &lt;code&gt;NullPointerException&lt;/code&gt;. Also, it is
  pretty common to see null checks right before equals comparisons
  but following this rule such checks are not required.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="ignoreEqualsIgnoreCase" type="boolean">
                <description>Control whether to ignore
- {@code String.equalsIgnoreCase(String)} invocations.</description>
+ &lt;code&gt;String.equalsIgnoreCase(String)&lt;/code&gt; invocations.</description>
             </property>
          </properties>
          <message-keys>

@@ -16,7 +16,7 @@
          Improves code readability by clearly indicating which parameters are unused.
      &lt;/li&gt;
      &lt;li&gt;
-         Follows Java conventions for denoting unused parameters with an underscore ({@code _}).
+         Follows Java conventions for denoting unused parameters with an underscore (&lt;code&gt;_&lt;/code&gt;).
      &lt;/li&gt;
  &lt;/ul&gt;
 

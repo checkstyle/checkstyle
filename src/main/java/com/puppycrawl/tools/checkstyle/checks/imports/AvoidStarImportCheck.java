@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  *
  * <p>
+ * Notes:
  * Note that property {@code excludes} is not recursive, subpackages of excluded
  * packages are not automatically excluded.
  * </p>

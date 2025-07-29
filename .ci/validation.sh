@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 source ./.ci/util.sh
@@ -88,7 +89,7 @@ check-missing-pitests)
   ;;
 
 eclipse-static-analysis)
-  mvn -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler
+  ./mvnw -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler
   ;;
 
 nondex)
@@ -96,7 +97,7 @@ nondex)
   SKIPPED_TESTS='!JavadocPropertiesGeneratorTest#testNonExistentArgument,'
   # Exclude test that fails due to stackoverflow error
   SKIPPED_TESTS+='!SingleSpaceSeparatorCheckTest#testNoStackoverflowError'
-  mvn -e --no-transfer-progress \
+  ./mvnw -e --no-transfer-progress \
     --fail-never clean nondex:nondex -DargLine='-Xms1g -Xmx2g' \
     -Dtest="$SKIPPED_TESTS"
 
@@ -110,7 +111,6 @@ nondex)
   ;;
 
 pr-age)
-  # Travis merges the PR commit into origin/master
   # This command undoes that to work with the original branch
   # if it notices a merge commit
   if git show --summary HEAD | grep ^Merge: ;
@@ -133,63 +133,62 @@ pr-age)
   ;;
 
 test)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
 test-de)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1g -Xmx2g'
   ;;
 
 test-es)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1g -Xmx2g'
   ;;
 
 test-fi)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1g -Xmx2g'
   ;;
 
 test-fr)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1g -Xmx2g'
   ;;
 
 test-zh)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1g -Xmx2g'
   ;;
 
 test-ja)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1g -Xmx2g'
   ;;
 
 test-pt)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1g -Xmx2g'
   ;;
 
 test-tr)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1g -Xmx2g'
   ;;
 
 test-ru)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1g -Xmx2g'
   ;;
 
 test-al)
-  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1g -Xmx2g'
   ;;
 
 versions)
-  if [ -v TRAVIS_EVENT_TYPE ] && [ "$TRAVIS_EVENT_TYPE" != "cron" ] ; then exit 0; fi
-  mvn -e --no-transfer-progress clean versions:dependency-updates-report \
+  ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
   if [ "$(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l)" -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
@@ -214,7 +213,7 @@ markdownlint)
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
@@ -222,7 +221,7 @@ no-error-pmd)
   cd ..
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  ./mvnw verify --show-version --errors --batch-mode --no-transfer-progress \
+  mvn -e --no-transfer-progress verify --show-version --errors --batch-mode \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
@@ -234,10 +233,23 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-hazelcast)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout Hazelcast sources..."
+  checkout_from "https://github.com/hazelcast/hazelcast.git"
+  cd .ci-temp/hazelcast
+  mvn -e --no-transfer-progress checkstyle:check \
+    -Dcheckstyle.version="${CS_POM_VERSION}"
+  cd ..
+  removeFolderWithProtectedFiles hazelcast
+  ;;
+
 no-violation-test-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
@@ -248,36 +260,11 @@ no-violation-test-configurate)
   removeFolderWithProtectedFiles Configurate
   ;;
 
-no-violation-test-josm)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  mkdir -p .ci-temp
-  cd .ci-temp
-  TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
-  echo "JOSM revision: ${TESTED}"
-  svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
-  cd josm
-  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
-   tools/ivy.xml
-  addCheckstyleBundleToAntResolvers
-  ant -v checkstyle
-  grep "<error" checkstyle-josm.xml | cat > errors.log
-  echo "Checkstyle Errors:"
-  RESULT=$(wc -l < errors.log)
-  cat errors.log
-  echo "Size of output: ${RESULT}"
-  cd ..
-  removeFolderWithProtectedFiles josm
-  if [[ ${RESULT} != 0 ]]; then false; fi
-  ;;
-
 no-error-xwiki)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   ANTLR4_VERSION="$(getMavenProperty 'antlr4.version')"
   echo "version:${CS_POM_VERSION} antlr4:${ANTLR4_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
@@ -298,6 +285,9 @@ no-error-xwiki)
   mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-pom/pom.xml \
     -DpomFile=xwiki-commons-pom/pom.xml
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
+  mvn -e --no-transfer-progress \
+    -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
@@ -322,7 +312,7 @@ no-error-xwiki)
 no-error-test-sbe)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:"$CS_POM_VERSION"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/real-logic/simple-binary-encoding.git
   cd .ci-temp/simple-binary-encoding
@@ -417,7 +407,7 @@ verify-regexp-id)
 
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2g'
-  mvn -e --no-transfer-progress clean verify -DskipTests -DskipITs \
+  ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
@@ -425,7 +415,7 @@ spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  mvn -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
+  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
@@ -439,22 +429,22 @@ spotbugs-and-pmd)
 ;;
 
 site)
-  mvn -e --no-transfer-progress clean site -Pno-validations
+  ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
 
 release-dry-run)
   if [ "$(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l)" -lt 1 ]
   then
-    mvn -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
+    ./mvnw -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
     -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
       -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
       -Dcheckstyle.skip=true -Dgpg.skip=true --no-transfer-progress'
-    mvn -e --no-transfer-progress release:clean
+    ./mvnw -e --no-transfer-progress release:clean
   fi
   ;;
 
 assembly-run-all-jar)
-  mvn -e --no-transfer-progress clean package -Passembly,no-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:"$CS_POM_VERSION"
   mkdir -p .ci-temp
@@ -474,7 +464,6 @@ assembly-run-all-jar)
   ;;
 
 check-since-version)
-  # Travis merges the PR commit into origin/master
   # This identifies the PR's original commit
   # if it notices a merge commit
   HEAD=$(git rev-parse HEAD)
@@ -518,7 +507,13 @@ check-since-version)
   fi
   ;;
 
-javac11)
+compile-test-resources)
+  # this task is useful during migration to new JDK to let compile resources on new jdk only
+  ./mvnw -e --no-transfer-progress clean test-compile \
+  -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=17
+  ;;
+
+javac17_standard)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
@@ -526,12 +521,14 @@ javac11)
         --exclude='InputCustomImportOrderNoPackage2.java' \
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
-        '//non-compiled (syntax|with javac)?\:' \
+        '// non-compiled (syntax|with javac|with eclipse)?\:' \
         src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable))
   mkdir -p target
   for file in "${files[@]}"
   do
+    echo "Compiling ${file} with standard JDK17"
     javac -d target "${file}"
   done
   ;;
@@ -539,7 +536,9 @@ javac11)
 javac17)
   files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
         src/test/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
+        src/it/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable \
+        | grep -v 'importorder/' || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java17 files to process"
   else
@@ -554,6 +553,7 @@ javac17)
 javac19)
   files=($(grep -Rl --include='*.java' ': Compilable with Java19' \
         src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java19 files to process"
@@ -569,6 +569,7 @@ javac19)
 javac20)
   files=($(grep -Rl --include='*.java' ': Compilable with Java20' \
         src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java20 files to process"
@@ -584,6 +585,7 @@ javac20)
 javac21)
   files=($(grep -Rl --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java21 files to process"
@@ -597,8 +599,8 @@ javac21)
   ;;
 
 package-site)
-  mvn -e --no-transfer-progress package -Passembly,no-validations
-  mvn -e --no-transfer-progress site -Dlinkcheck.skip=true
+  ./mvnw -e --no-transfer-progress package -Passembly,no-validations
+  ./mvnw -e --no-transfer-progress site -Dlinkcheck.skip=true
   ;;
 
 sonarqube)
@@ -619,7 +621,7 @@ sonarqube)
   export MAVEN_OPTS='-Xmx2g'
   # until https://github.com/checkstyle/checkstyle/issues/11637
   # shellcheck disable=SC2086
-  mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
+  ./mvnw -e --no-transfer-progress -Pno-validations clean package sonar:sonar \
        $SONAR_PR_VARIABLES \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login="$SONAR_TOKEN" \
@@ -635,7 +637,7 @@ sonarqube)
 no-error-pgjdbc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
@@ -648,12 +650,12 @@ no-error-pgjdbc)
 no-error-orekit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
-  SHA_HIPPARCHUS="815ad2bf9ce764e4498911d2145c49165f5f3333"
+  SHA_HIPPARCHUS="1492f06848f57e46bef911a""ad16203a242080028"
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
@@ -662,7 +664,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "a32b4629b2890fc198b19a95a714d67b87d7943d"
+  git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   mvn -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version="${CS_POM_VERSION}"
   cd ..
@@ -673,7 +675,7 @@ no-error-orekit)
 no-error-hibernate-search)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
@@ -691,8 +693,8 @@ no-error-checkstyles-sevntu)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
-  mvn -e --no-transfer-progress compile verify -Psevntu \
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress compile verify -Psevntu \
     -Dmaven.sevntu-checkstyle-check.checkstyle.version="${CS_POM_VERSION}" \
     -Dmaven.test.skip=true -Dpmd.skip=true -Dspotbugs.skip=true \
     -Djacoco.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
@@ -702,7 +704,7 @@ no-error-sevntu-checks)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
@@ -719,7 +721,7 @@ no-error-contribution)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution
@@ -738,7 +740,7 @@ no-error-methods-distance)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
   cd .ci-temp/methods-distance
@@ -751,7 +753,7 @@ no-error-methods-distance)
 no-error-equalsverifier)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
@@ -765,7 +767,7 @@ no-error-strata)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
@@ -784,7 +786,7 @@ no-error-spring-integration)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
@@ -799,7 +801,7 @@ no-error-spring-integration)
 no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
@@ -811,7 +813,7 @@ no-error-htmlunit)
 no-error-spotbugs)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/spotbugs/spotbugs
   cd .ci-temp/spotbugs
@@ -820,6 +822,22 @@ no-error-spotbugs)
   ./gradlew :eclipsePlugin-junit:checkstyleTest -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles spotbugs
+  ;;
+
+no-error-trino)
+  echo "Building checkstyle..."
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations -DskipTests
+  echo "Resolving Checkstyle version from pom.xml..."
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  echo "Cloning Trino sources..."
+  checkout_from https://github.com/trinodb/trino.git
+  cd .ci-temp/trino
+  echo "Running Checkstyle ${CS_POM_VERSION} on Trino..."
+  ./mvnw -e --no-transfer-progress checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+  cd ../
+  echo "Cleaning up cloned Trino repo..."
+  removeFolderWithProtectedFiles trino
   ;;
 
 no-exception-struts)
@@ -1087,14 +1105,18 @@ git-no-merge-commits)
   ;;
 
 git-check-pull-number)
+  PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+  echo "PR_NUMBER=${PR_NUMBER}"
   COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
 
   echo "$COMMITS" | while read -r COMMIT ; do
     if [[ $COMMIT =~ 'Pull #' ]]; then
+      echo "COMMIT=${COMMIT}"
       PULL_MESSAGE_NUMBER=$(echo "$COMMIT" | cut -d'#' -f 2 | cut -d':' -f 1)
+      echo "PULL_MESSAGE_NUMBER=${PULL_MESSAGE_NUMBER}"
       if [[ $PULL_MESSAGE_NUMBER != "$PR_NUMBER" ]]; then
         echo "Referenced PR and this PR number do not match."
-        echo "Commit message should reference $PR_NUMBER"
+        echo "Commit message should reference '$PR_NUMBER'"
         exit 1
       fi
     fi
@@ -1103,7 +1125,7 @@ git-check-pull-number)
 
 jacoco)
   export MAVEN_OPTS='-Xmx2g'
-  mvn -e --no-transfer-progress clean test \
+  ./mvnw -e --no-transfer-progress clean test \
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
     jacoco:check@default-check
@@ -1168,46 +1190,47 @@ check-wildcards-on-pitest-target-classes)
   ;;
 
 verify)
-  mvn -e --no-transfer-progress clean verify
+  ./mvnw -e --no-transfer-progress clean verify
   ;;
 
 package-all-jar)
-  mvn -e --no-transfer-progress clean package -Passembly
+  ./mvnw -e --no-transfer-progress clean package -Passembly
   ;;
 
 website-only)
-  mvn -e --no-transfer-progress clean site -Pno-validations
+  ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
 
 pmd)
-  mvn -e --no-transfer-progress clean test-compile pmd:check
+  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
 spotbugs)
-  mvn -e --no-transfer-progress clean test-compile spotbugs:check
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
 
 checkstyle)
-  mvn -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   ;;
 
 forbiddenapis)
-  mvn -e --no-transfer-progress \
+  ./mvnw -e --no-transfer-progress \
     clean compile test-compile forbiddenapis:testCheck@forbiddenapis-test
   ;;
 
 run-test)
   if [[ -z "$2" ]] ; then
     echo "Error: test class is not defined."
-    echo "Example: mvn -e --no-transfer-progress clean test -Dtest=XdocsPagesTest,XdocsJavaDocsTest"
-    echo "Example: mvn -e --no-transfer-progress clean test -Dtest=CheckerTest#testDestroy"
+    echo "Example: ./mvnw -e --no-transfer-progress clean test" \
+     "-Dtest=XdocsPagesTest,XdocsJavaDocsTest"
+    echo "Example: ./mvnw -e --no-transfer-progress clean test -Dtest=CheckerTest#testDestroy"
     exit 1
   fi
-  mvn -e --no-transfer-progress clean test -Dtest="$2"
+  ./mvnw -e --no-transfer-progress clean test -Dtest="$2"
   ;;
 
 sevntu)
-  mvn -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
+  ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
 *)

@@ -89,7 +89,7 @@ public abstract class InputDesignForExtension
 
     public class nonFinalClass
     {
-    //private ctor
+    // private ctor
     private nonFinalClass(){}
         public void someMethod()
         {
@@ -99,7 +99,7 @@ public abstract class InputDesignForExtension
 
     public class anotherNonFinalClass
     {
-    //nonPrivate ctor
+    // nonPrivate ctor
     public anotherNonFinalClass(){}
         public void someMethod() // violation
         {

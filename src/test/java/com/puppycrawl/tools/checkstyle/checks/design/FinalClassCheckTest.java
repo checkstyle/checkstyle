@@ -119,7 +119,7 @@ public class FinalClassCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
+                getPath("InputFinalClassConstructorInRecord.java"),
             expected);
     }
 
@@ -183,7 +183,7 @@ public class FinalClassCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
+                getPath("InputFinalClassNestedStaticClassInsideInnerClass.java"),
                 expected);
     }
 
@@ -254,7 +254,7 @@ public class FinalClassCheckTest
             "31:13: " + getCheckMessage(MSG_KEY, "j"),
             "49:5: " + getCheckMessage(MSG_KEY, "Nothing"),
         };
-        verifyWithInlineConfigParser(getNonCompilablePath("InputFinalClassNestedInRecord.java"),
+        verifyWithInlineConfigParser(getPath("InputFinalClassNestedInRecord.java"),
                                      expected);
     }
 
@@ -279,7 +279,7 @@ public class FinalClassCheckTest
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
                         packageDef.orElseThrow(), "packageName",
-                        packageName -> ((String) packageName).isEmpty()))
+                        packageName -> ((CharSequence) packageName).isEmpty()))
                 .isTrue();
     }
 

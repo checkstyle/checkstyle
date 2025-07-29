@@ -149,8 +149,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         try {
             module = moduleFactory.createModule(name);
-            if (module instanceof AbstractAutomaticBean) {
-                final AbstractAutomaticBean bean = (AbstractAutomaticBean) module;
+            if (module instanceof AbstractAutomaticBean bean) {
                 bean.contextualize(childContext);
                 bean.configure(childConf);
             }
@@ -159,13 +158,11 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             throw new CheckstyleException("cannot initialize module " + name
                     + " - " + exc.getMessage(), exc);
         }
-        if (module instanceof AbstractCheck) {
-            final AbstractCheck check = (AbstractCheck) module;
+        if (module instanceof AbstractCheck check) {
             check.init();
             registerCheck(check);
         }
-        else if (module instanceof TreeWalkerFilter) {
-            final TreeWalkerFilter filter = (TreeWalkerFilter) module;
+        else if (module instanceof TreeWalkerFilter filter) {
             filters.add(filter);
         }
         else {

@@ -1,13 +1,13 @@
 /*
 DescendantToken
 limitedTokens = STRING_LITERAL
-minimumDepth = (default)0
 maximumDepth = 1
-minimumNumber = (default)0
-maximumNumber = 0
-sumTokenCounts = (default)false
-minimumMessage = (default)null
 maximumMessage = Literal Strings should be compared using equals(), not ''==''.
+maximumNumber = 0
+minimumDepth = (default)0
+minimumMessage = (default)null
+minimumNumber = (default)0
+sumTokenCounts = (default)false
 tokens = EQUAL, NOT_EQUAL
 
 

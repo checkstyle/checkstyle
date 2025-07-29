@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>10.23.2-SNAPSHOT</version>
+  <version>11.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -196,10 +196,6 @@
     <system>GitHub Issues</system>
     <url>https://github.com/checkstyle/checkstyle/issues</url>
   </issueManagement>
-  <ciManagement>
-    <system>travis</system>
-    <url>https://travis-ci.org/checkstyle/checkstyle</url>
-  </ciManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -208,39 +204,39 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.3.0</maven.spotbugs.plugin.version>
-    <maven.pmd.plugin.version>3.26.0</maven.pmd.plugin.version>
-    <pmd.version>7.13.0</pmd.version>
+    <maven.spotbugs.plugin.version>4.9.3.2</maven.spotbugs.plugin.version>
+    <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
+    <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <saxon.version>12.5</saxon.version>
+    <saxon.version>12.8</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
-    <maven.versions.plugin.version>2.17.1</maven.versions.plugin.version>
+    <maven.versions.plugin.version>2.18.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
-    <java.version>11</java.version>
+    <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
+    <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.19.1</pitest.plugin.version>
+    <pitest.plugin.version>1.20.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
     <pitest.plugin.threads>4</pitest.plugin.threads>
-    <pitest.junit5.plugin.version>1.2.2</pitest.junit5.plugin.version>
+    <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.12.2</junit.version>
+    <junit.version>5.13.4</junit.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.49.3</checkerframework.version>
-    <error-prone.version>2.31.0</error-prone.version>
-    <error-prone-support.version>0.15.0</error-prone-support.version>
+    <checkerframework.version>3.49.5</checkerframework.version>
+    <error-prone.version>2.41.0</error-prone.version>
+    <error-prone-support.version>0.24.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
-      -Xep:AssertJIsNull:ERROR
       -Xep:AutowiredConstructor:ERROR
       -Xep:CanonicalAnnotationSyntax:ERROR
       -Xep:CollectorMutability:ERROR
@@ -297,7 +293,7 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.10.1</version>
+      <version>1.11.0</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -354,7 +350,7 @@
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit-junit5</artifactId>
-      <version>1.4.0</version>
+      <version>1.4.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -386,7 +382,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.19.4</version>
+      <version>4.0.6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -398,13 +394,13 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.19.0</version>
+      <version>2.20.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>6.10.0.202406032230-r</version>
+      <version>7.3.0.202506031305-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -518,7 +514,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -636,7 +632,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.9</version>
+                <version>7.6.12</version>
               </plugin>
             </plugins>
           </configuration>
@@ -771,7 +767,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.4.1</version>
+        <version>3.5.0</version>
       </plugin>
 
       <plugin>
@@ -920,6 +916,8 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <!-- until https://github.com/checkstyle/checkstyle/issues/17291 -->
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.**</exclude>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
@@ -974,174 +972,6 @@
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>1.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.76</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.75</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.CodeSelector</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.91</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.50</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.74</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.35</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.91</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.83</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTable</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.89</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.54</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.06</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.46</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.20</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter</include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.86</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>1.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.45</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
@@ -1381,7 +1211,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.1</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -1455,7 +1285,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.6.0</version>
+        <version>3.6.1</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -1476,6 +1306,7 @@
               <goal>add-test-source</goal>
             </goals>
             <configuration>
+              <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
                 <source>src/test/resources</source>
               </sources>
@@ -1500,6 +1331,7 @@
               <goal>add-test-source</goal>
             </goals>
             <configuration>
+              <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
                 <source>src/it/resources</source>
               </sources>
@@ -1524,6 +1356,7 @@
               <goal>add-test-source</goal>
             </goals>
             <configuration>
+              <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
                 <source>src/xdocs-examples/resources</source>
               </sources>
@@ -1895,6 +1728,8 @@
                 <exclude>**/HeaderCheckTest.class</exclude>
                 <!-- content header is conflicting with Input inline header -->
                 <exclude>**/RegexpHeaderCheckTest.class</exclude>
+                <!-- content header is conflicting with Input inline header -->
+                <exclude>**/MultiFileRegexpHeaderCheckTest.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -2092,8 +1927,6 @@
             <excludedLink>http://www.mojohaus.org/versions-maven-plugin</excludedLink>
             <excludedLink>http://www.mojohaus.org/xml-maven-plugin</excludedLink>
             <!-- SSL -->
-            <excludedLink>https://travis-ci.org/</excludedLink>
-            <excludedLink>https://travis-ci.org/checkstyle/checkstyle</excludedLink>
             <excludedLink>https://coveralls.io/r/checkstyle/checkstyle</excludedLink>
 
             <!-- we did too many requests to GitHub,
@@ -2188,7 +2021,6 @@
             <excludedLink>https://www.eclipse.org/legal/epl-v20.html</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://www.ej-technologies.com/*</excludedLink>
-            <excludedLink>https://travis-ci.com/</excludedLink>
             <excludedLink>https://stackoverflow.com/questions/*</excludedLink>
             <!-- permanent 403 -->
             <excludedLink>https://docs.github.com/en/rest/checks</excludedLink>
@@ -2200,8 +2032,12 @@
             <excludedLink>https://codeclimate.com</excludedLink>
             <excludedLink>https://saxon.sourceforge.net/saxon7.1/expressions.html</excludedLink>
             <excludedLink>https://www.baeldung.com/*</excludedLink>
+            <excludedLink>https://medium.com/*</excludedLink>
             <!-- until https://github.com/checkstyle/checkstyle/issues/11754 -->
             <excludedLink>https://checkstyle.sourceforge.io/version/6.18</excludedLink>
+            <!-- 404 Not Found,
+             from broken link check to avoid false positives due to old certificate issues -->
+            <excludedLink>https://bugs.eclipse.org/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
@@ -2438,6 +2274,7 @@
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
+                    <arg>--should-stop=ifError=FLOW</arg>
                     <arg>
                       -Xplugin:ErrorProne ${error-prone.configuration-args}
                     </arg>
@@ -2491,6 +2328,7 @@
                 <configuration>
                   <failOnError>false</failOnError>
                   <compilerArgs>
+                    <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>
@@ -2527,7 +2365,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>3.2.7</version>
+            <version>3.2.8</version>
             <configuration>
               <gpgArguments>
                 <arg>--pinentry-mode</arg>
@@ -3298,6 +3136,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheck*</param>
@@ -3308,6 +3147,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest</param>
@@ -3327,6 +3167,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryNullCheckWithInstanceOfCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SuperFinalizeCheckTest</param>
@@ -3337,6 +3178,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheckTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
@@ -4406,6 +4248,7 @@
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerFilter*</param>
                 <param>com.puppycrawl.tools.checkstyle.GlobalStatefulCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CommentListener*</param>
+                <param>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.AbstractAutomaticBeanTest</param>
@@ -4439,6 +4282,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
                 <!-- kills mutation in ConfigurationLoader -->
                 <param>com.sun.checkstyle.test.chapter5comments.rule52documentationcomments.InvalidJavadocPositionTest</param>
+                <param>com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListenerTest</param>
+                <!-- kills mutation in ChecksAndFilesSuppressionFileGeneratorAuditListener -->
+                <param>com.puppycrawl.tools.checkstyle.MainTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
@@ -5023,6 +4869,9 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest
+                </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest

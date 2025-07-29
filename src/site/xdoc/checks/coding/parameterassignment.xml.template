@@ -9,13 +9,10 @@
     <section name="ParameterAssignment">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div> Disallows assignment of parameters.</div>
-        <p>
-          Rationale: Parameter assignment is often considered poor programming
-          practice. Forcing developers to declare parameters as final is often
-          onerous. Having a check ensure that parameters are never assigned
-          would give the best of both worlds.
-        </p>
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Examples" id="Examples">

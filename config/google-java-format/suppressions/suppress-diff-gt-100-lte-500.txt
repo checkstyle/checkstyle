@@ -1,0 +1,11 @@
+InputNoLineWrapping.java
+InputOrderingAndSpacing1.java
+InputClassWithChainedMethods3.java
+InputClassWithChainedMethods2.java
+InputParenPad.java
+InputNewKeywordChildren.java
+InputClassAnnotations.java
+InputMethodsAndConstructorsAnnotations.java
+InputModifierOrder.java
+InputJavaDocTagContinuationIndentation.java
+InputOneStatementPerLine2.java

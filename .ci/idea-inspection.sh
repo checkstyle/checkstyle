@@ -30,7 +30,7 @@ fi
 
 # Execute compilation of Checkstyle to generate all source files
 # YOU MUST BUILD PROJECT BEFORE INSPECTION EXECUTION!!!
-mvn -e --no-transfer-progress clean compile
+./mvnw -e --no-transfer-progress clean compile
 
 echo ""
 for i in {1..100}; do echo -n "#"; done

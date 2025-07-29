@@ -2648,6 +2648,9 @@
                    enabled_by_default="true"/>
   <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true"
                    level="WARNING" enabled_by_default="true"/>
+  <!-- disabled until https://github.com/checkstyle/checkstyle/issues/17298 -->
+  <inspection_tool class="JavadocBlankLines" enabled="false" level="WARNING"
+                   enabled_by_default="false"/>
   <inspection_tool class="JBoss" enabled="false" level="ERROR" enabled_by_default="false"/>
   <inspection_tool class="JDBCExecuteWithNonConstantString" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
@@ -5269,4 +5272,14 @@
     <option name="ADD_SERVLET_TO_ENTRIES" value="true"/>
     <option name="ADD_NONJAVA_TO_ENTRIES" value="true"/>
   </inspection_tool>
+  <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17299 -->
+  <inspection_tool class="ClassCanBeRecord" enabled="false"
+                   level="WEAK WARNING" enabled_by_default="true" />
+  <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17300 -->
+  <inspection_tool class="EnhancedSwitchMigration" enabled="false"
+                   level="WARNING" enabled_by_default="true" />
+  <!-- https://github.com/checkstyle/checkstyle/issues/17304 -->
+  <inspection_tool class="TextBlockMigration" enabled="false"
+                   level="WARNING" enabled_by_default="true"/>
+
 </profile>

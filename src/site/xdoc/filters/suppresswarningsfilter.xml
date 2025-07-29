@@ -13,25 +13,23 @@
           Filter <code>SuppressWarningsFilter</code> uses annotation
           <code>@SuppressWarnings</code> to suppress audit events.
         </div>
+
         <p>
-          Rationale: Same as for
-          <code>SuppressionCommentFilter</code>. In the contrary to it
-          here, comments are not used comments but the builtin syntax of
-          <code>@SuppressWarnings</code>. This can be perceived as a
-          more elegant solution than using comments. Also, this approach
-          maybe supported by various IDE.
+          Rationale: Same as for <code>SuppressionCommentFilter</code>. In the contrary to it here,
+          comments are not used comments but the builtin syntax of <code>@SuppressWarnings</code>.
+          This can be perceived as a more elegant solution than using comments.
+          Also, this approach maybe supported by various IDE.
         </p>
+
         <p>
           Usage: This filter only works in conjunction with a
-          <a href="../checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
+          <a href="https://checkstyle.org/checks/annotation/suppresswarningsholder.html#SuppressWarningsHolder">
           SuppressWarningsHolder</a>,
-          since that check finds
-          the annotations in the Java files and makes them available for
-          the filter. Because of that, a configuration that includes
-          this filter must also include
-          <code>SuppressWarningsHolder</code> as a child module of the
-          <code>TreeWalker</code>. Name of check in annotation is case-insensitive
-          and should be written with any dotted prefix or &quot;Check&quot; suffix removed.
+          since that check finds the annotations in the Java files and makes them available for the filter.
+          Because of that, a configuration that includes this filter must also include
+          <code>SuppressWarningsHolder</code> as a child module of the <code>TreeWalker</code>.
+          Name of check in annotation is case-insensitive and should be written with
+          any dotted prefix or "Check" suffix removed.
         </p>
       </subsection>
       <subsection name="Notes" id="Notes">
@@ -56,15 +54,15 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
   @SuppressWarnings("memberName")
-  int J; // ok only because there is annotation
+  int J; // filtered violation 'must match pattern'
   int JJ; // violation 'must match pattern'
 
   @SuppressWarnings({"MemberName", "NoWhitespaceAfter"})
-  int [] ARRAY; // ok only because there is annotation for both Checks
-  int [] ARRAY2;
-  // 2 violations above:
-  //   ''int' is followed by whitespace'
-  //   'must match pattern'
+  int [] ARRAY; // filtered violation
+  // filtered violation above
+
+  int [] ARRAY2; // violation
+  // violation above
 }
 </code></pre></div>
         <p>
@@ -96,7 +94,7 @@ package com.puppycrawl.tools.checkstyle.filters.suppresswarningsfilter;
 public class Example2 {
   @SuppressWarnings("checkstyle:systemout")
   public static void foo() {
-    System.out.println("Debug info."); // ok, because there is annotation
+    System.out.println("Debug info."); // filtered violation 'use SLF4J instead.'
   }
   public static void boo() {
     System.out.println("Some info."); // violation 'use SLF4J instead.'

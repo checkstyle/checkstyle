@@ -259,7 +259,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "36:16: " + getCheckMessage(MSG_VARIABLE, "_a", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisValidateOnlyOverlappingFalseLeaves.java"),
+                getPath("InputRequireThisValidateOnlyOverlappingFalseLeaves.java"),
                 expected);
     }
 
@@ -444,7 +444,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "68:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordsAndCompactCtors.java"),
+                getPath("InputRequireThisRecordsAndCompactCtors.java"),
                 expected);
     }
 
@@ -452,7 +452,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testRecordCompactCtors() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordCompactCtors.java"),
+                getPath("InputRequireThisRecordCompactCtors.java"),
                 expected);
     }
 
@@ -468,7 +468,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "45:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordAsTopLevel.java"),
+                getPath("InputRequireThisRecordAsTopLevel.java"),
                 expected);
     }
 
@@ -478,7 +478,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "26:9: " + getCheckMessage(MSG_VARIABLE, "x", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordDefault.java"),
+                getPath("InputRequireThisRecordDefault.java"),
                 expected);
     }
 
@@ -486,7 +486,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     public void testRecordsWithCheckFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordsWithCheckFields.java"),
+                getPath("InputRequireThisRecordsWithCheckFields.java"),
                 expected);
     }
 
@@ -498,7 +498,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "46:16: " + getCheckMessage(MSG_VARIABLE, "a", ""),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRequireThisRecordsWithCheckFieldsOverlap.java"),
+                getPath("InputRequireThisRecordsWithCheckFieldsOverlap.java"),
                 expected);
     }
 

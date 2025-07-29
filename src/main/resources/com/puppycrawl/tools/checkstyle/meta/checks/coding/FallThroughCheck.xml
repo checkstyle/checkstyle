@@ -5,9 +5,9 @@
              name="FallThrough"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks for fall-through in {@code switch} statements.
- Finds locations where a {@code case} &lt;b&gt;contains&lt;/b&gt; Java code but lacks a
- {@code break}, {@code return}, {@code yield}, {@code throw} or {@code continue} statement.
+ Checks for fall-through in &lt;code&gt;switch&lt;/code&gt; statements.
+ Finds locations where a &lt;code&gt;case&lt;/code&gt; &lt;b&gt;contains&lt;/b&gt; Java code but lacks a
+ &lt;code&gt;break&lt;/code&gt;, &lt;code&gt;return&lt;/code&gt;, &lt;code&gt;yield&lt;/code&gt;, &lt;code&gt;throw&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt; statement.
  &lt;/div&gt;
 
  &lt;p&gt;
@@ -17,13 +17,13 @@
  "fallthrough", "fall through", "fall-through"
  "fallsthrough", "falls through", "falls-through" (case-sensitive).
  The comment containing these words must be all on one line,
- and must be on the last non-empty line before the {@code case} triggering
- the warning or on the same line before the {@code case}(ugly, but possible).
+ and must be on the last non-empty line before the &lt;code&gt;case&lt;/code&gt; triggering
+ the warning or on the same line before the &lt;code&gt;case&lt;/code&gt;(ugly, but possible).
  Any other comment may follow on the same line.
  &lt;/p&gt;
 
  &lt;p&gt;
- Note: The check assumes that there is no unreachable code in the {@code case}.
+ Note: The check assumes that there is no unreachable code in the &lt;code&gt;case&lt;/code&gt;.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="checkLastCaseGroup" type="boolean">

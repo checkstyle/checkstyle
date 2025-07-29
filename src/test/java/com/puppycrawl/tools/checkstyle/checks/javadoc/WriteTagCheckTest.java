@@ -107,7 +107,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyTag() throws Exception {
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagEmptyTag.java"), expected);
@@ -120,6 +120,24 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagMissingTag.java"), expected);
+    }
+
+    @Test
+    public void testInterface() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+        };
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagInterface.java"), expected
+        );
+    }
+
+    @Test
+    public void testBlockComment() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParserTwice(
+                getPath("InputWriteTagBlockComment.java"), expected
+        );
     }
 
     @Test
@@ -227,7 +245,10 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRegularEx() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+        };
+
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagRegularExpression.java"), expected);
     }
@@ -278,7 +299,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
                     "Failed to recognize 'record' introduced in Java 14."),
         };
         verifyWithInlineConfigParserTwice(
-            getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+            getPath("InputWriteTagRecordsAndCompactCtors.java"), expected);
     }
 
     @Override

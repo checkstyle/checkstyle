@@ -9,30 +9,10 @@
     <section name="MatchXpath">
       <p>Since Checkstyle 8.39</p>
       <subsection name="Description" id="Description">
-        <div>
-          Evaluates Xpath query and report violation on all matching AST nodes. This check allows
-          user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
-          then the check does nothing.
-        </div>
-        <p>
-          It is recommended to define custom message for violation to explain what is not allowed
-          and what to use instead, default message might be too abstract. To customize a message
-          you need to add <code>message</code> element with <b>matchxpath.match</b> as
-          <code>key</code> attribute and desired message as <code>value</code> attribute.
-        </p>
-        <p>
-          Please read more about Xpath syntax at
-          <a href="https://www.saxonica.com/html/documentation10/expressions/index.html">
-            Xpath Syntax</a>.
-          Information regarding Xpath functions can be found at
-          <a href="https://www.saxonica.com/html/documentation10/functions/fn/index.html">
-            XSLT/XPath Reference</a>.
-            Note, that <b>@text</b> attribute can be used only with token types that
-          are listed in
-          <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
-            XpathUtil</a>.
-        </p>
-
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java"/>
+        </macro>
       </subsection>
 
       <subsection name="Properties" id="Properties">
@@ -51,7 +31,7 @@
           application</a> with options to show AST and to ease usage of Xpath queries.
         </p>
         <p><b>-T</b> option prints AST tree of the checked file.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar -T Main.java
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 |--MODIFIERS -&gt; MODIFIERS [1:0]
@@ -83,15 +63,15 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       |   `--SEMI -&gt; ; [3:31]
 |       `--RCURLY -&gt; } [4:4]
 `--RCURLY -&gt; } [5:0]
-        </source>
+        </code></pre></div>
         <p><b>-b</b> option shows AST nodes that match given Xpath query. This command can be
           used to validate accuracy of Xpath query against given file.</p>
-        <source>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 $ java -jar checkstyle-X.XX-all.jar Main.java -b "//METHOD_DEF[./IDENT[@text='sayHello']]"
 CLASS_DEF -&gt; CLASS_DEF [1:0]
 `--OBJBLOCK -&gt; OBJBLOCK [1:18]
 |--METHOD_DEF -&gt; METHOD_DEF [2:4]
-        </source>
+        </code></pre></div><hr class="example-separator"/>
         <p id="Example1-config">
           The following example demonstrates validation of methods order, so that public methods
           should come before the private ones:</p>
@@ -131,7 +111,8 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example4-config">
-          To violate if new instance creation was done without <b>var</b> type
+          To violate if new instance creation was done without <b>var</b> type to avoid duplication
+          of reference in statement
         </p>
         <macro name="example">
           <param name="path"
@@ -143,6 +124,20 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example4.java"/>
           <param name="type" value="code"/>
+                  </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To violate if class has more than <b>1</b> constructor
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/matchxpath/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
@@ -151,6 +146,10 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
               Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
+            Google Style</a>
           </li>
         </ul>
       </subsection>

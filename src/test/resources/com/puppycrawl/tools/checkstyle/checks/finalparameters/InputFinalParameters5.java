@@ -1,6 +1,7 @@
 /*
 FinalParameters
 ignorePrimitiveTypes = (default)false
+ignoreUnnamedParameters = (default)true
 tokens = FOR_EACH_CLAUSE
 
 

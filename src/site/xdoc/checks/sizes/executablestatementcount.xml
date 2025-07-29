@@ -9,7 +9,9 @@
     <section name="ExecutableStatementCount">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="Description">
-        <div>Restricts the number of executable statements to a specified limit.</div>
+        <div>
+          Restricts the number of executable statements to a specified limit.
+        </div>
       </subsection>
 
       <subsection name="Properties" id="Properties">

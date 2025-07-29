@@ -10,8 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks for the placement of left curly braces
-          (<code>'{'</code>) for code blocks.
+          Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
         </div>
       </subsection>
 

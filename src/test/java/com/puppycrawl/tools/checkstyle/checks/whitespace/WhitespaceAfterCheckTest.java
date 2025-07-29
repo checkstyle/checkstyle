@@ -168,7 +168,7 @@ public class WhitespaceAfterCheckTest
             "17:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "yield"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAfterLiteralYield.java"),
+                getPath("InputWhitespaceAfterLiteralYield.java"),
                 expected);
     }
 

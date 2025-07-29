@@ -107,7 +107,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOuterTypeNumberRecords.java"), expected);
+                getPath("InputOuterTypeNumberRecords.java"), expected);
     }
 
     /**

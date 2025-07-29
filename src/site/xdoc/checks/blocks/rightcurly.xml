@@ -10,9 +10,9 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Description">
         <div>
-          Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
-          This check supports if-else, try-catch-finally blocks, switch statements, switch cases,
-          while-loops, for-loops, method definitions, class definitions, constructor definitions,
+          Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
+          supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
+          for-loops, method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks of arrays, lambdas and class instances
           please follow issue

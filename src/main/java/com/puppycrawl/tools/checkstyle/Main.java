@@ -412,6 +412,11 @@ public final class Main {
                 listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),
                         getOutputStreamOptions(options.outputPath));
             }
+            else if (options.generateCheckAndFileSuppressionsFile) {
+                listener = new ChecksAndFilesSuppressionFileGeneratorAuditListener(
+                        getOutputStream(options.outputPath),
+                        getOutputStreamOptions(options.outputPath));
+            }
             else {
                 listener = createListener(options.format, options.outputPath);
             }
@@ -709,14 +714,24 @@ public final class Main {
                 + "Used only with -s option. Default value is ${DEFAULT-VALUE}.")
         private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
-        /** Switch whether to generate suppressions file or not. */
+        /** Switch whether to generate xpath suppressions file or not. */
         @Option(names = {"-g", "--generate-xpath-suppression"},
-                description = "Generates to output a suppression xml to use to suppress all "
+                description = "Generates to output a xpath suppression xml to use to suppress all "
                         + "violations from user's config. Instead of printing every violation, "
                         + "all violations will be catched and single suppressions xml file will "
                         + "be printed out. Used only with -c option. Output "
                         + "location can be specified with -o option.")
         private boolean generateXpathSuppressionsFile;
+
+        /** Switch whether to generate check and file suppressions file or not. */
+        @Option(names = {"-G", "--generate-checks-and-files-suppression"},
+                description = "Generates to output a suppression xml that will have suppress "
+                        + "elements with \"checks\" and \"files\" attributes only to use to "
+                        + "suppress all violations from user's config. Instead of printing every "
+                        + "violation, all violations will be catched and single suppressions xml "
+                        + "file will be printed out. Used only with -c option. Output "
+                        + "location can be specified with -o option.")
+        private boolean generateCheckAndFileSuppressionsFile;
 
         /**
          * Output format.
