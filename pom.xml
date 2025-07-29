@@ -585,8 +585,11 @@
             <activeRecipes>
               <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
               <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+              <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
+              <recipe>org.openrewrite.java.recipes.RecipeTestingBestPractices</recipe>
               <recipe>org.openrewrite.maven.cleanup.PrefixlessExpressions</recipe>
               <recipe>org.openrewrite.staticanalysis.FinalizeLocalVariables</recipe>
+              <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
               <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
               <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
               <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
@@ -594,45 +597,54 @@
               <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
               <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.EqualityRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.OptionalRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
               <!-- TBD
               <recipe>org.openrewrite.java.migrate.UpgradeToJava25</recipe>
+              <recipe>org.openrewrite.java.recipes.RecipeNullabilityBestPractices</recipe>
               <recipe>org.openrewrite.maven.OrderPomElements</recipe>
+              <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe>
               <recipe>org.openrewrite.staticanalysis.CommonStaticAnalysis</recipe>
               <recipe>org.openrewrite.staticanalysis.UnnecessaryThrows</recipe>
-              java.util.Objects.requireNonNullElseGet. [AvoidStaticImport]
+              https://github.com/openrewrite/rewrite/issues/5819
+              <recipe>tech.picnic.errorprone.refasterrules.JUnitRulesRecipes</recipe>
+              java.util.Objects.requireNonNullElseGet [AvoidStaticImport]
               <recipe>tech.picnic.errorprone.refasterrules.NullRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.StringRulesRecipes</recipe>
               -->
             </activeRecipes>
+            <checkstyleConfigFile>config/checkstyle-checks.xml</checkstyleConfigFile>
             <exclusions>
               <exclusion>**resources-noncompilable**</exclusion>
               <exclusion>**src/it/resources</exclusion>
               <exclusion>**src/test/resources</exclusion>
               <exclusion>**src/xdocs-examples</exclusion>
               <!-- rewrite/cs issues (turn into suppression)
-              noTrailingWhitespace on """ https://github.com/checkstyle/checkstyle/issues/16984
+              https://github.com/checkstyle/checkstyle/issues/16984
+              noTrailingWhitespace on """
               -->
               <exclusion>**BeforeExecutionExclusionFileFilterExamplesTest.java</exclusion>
               <exclusion>**GeneratedJavaTokenTypesTest.java</exclusion>
               <exclusion>**HeaderCheckTest.java</exclusion>
               <exclusion>**JavaAstVisitor.java</exclusion>
               <exclusion>**MainTest.java</exclusion>
+              <exclusion>**PropertiesMacro.java.java</exclusion>
               <exclusion>**RegexpOnFilenameCheckExamplesTest.java</exclusion>
               <exclusion>**RegexpSinglelineJavaCheck.java</exclusion>
               <exclusion>**SuppressionXpathSingleFilterExamplesTest.java</exclusion>
-              <exclusion>**PropertiesMacro.java.java</exclusion>
               <exclusion>**TreeWalkerTest.java</exclusion>
             </exclusions>
             <exportDatatables>true</exportDatatables>
@@ -640,6 +652,11 @@
             <rewriteSkip>${rewrite.skip}</rewriteSkip>
           </configuration>
           <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.10.1</version>
+            </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
