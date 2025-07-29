@@ -1599,6 +1599,26 @@
                 <td/>
               </tr>
               <tr>
+                <td><a name="4.8.6.2"/>
+                  <a href="#4.8.6.2">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="https://google.github.io/styleguide/javaguide.html#s4.8.6.2-todo-comments">
+                    4.8.6.2 TODO comments</a>
+                </td>
+                <td>
+                  Support for Uppercase <code>TODO:</code> will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17501">
+                    #17501
+                  </a>
+                </td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="4.8.7"/>
                   <a href="#4.8.7">
                     <span class="wrapper inline">
