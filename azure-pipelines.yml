@@ -92,7 +92,7 @@ strategy:
 
     # MacOS JDK17 verify
     'MacOS JDK17 verify':
-      image: 'macOS-14'
+      image: 'ubuntu-24.04'
       cmd: "JAVA_HOME=$JAVA_HOME_17_X64 ./mvnw -e --no-transfer-progress verify"
 
     # versions to update
@@ -103,10 +103,14 @@ strategy:
 
     # lint for .md files, OSX is used because there is problem to install gem on linux
     'markdownlint':
-      image: 'macOS-14'
+      image: 'ubuntu-24.04'
       cmd: "./.ci/validation.sh markdownlint"
       skipCache: true
       needMdl: true
+
+    'rewrite-check':
+      image: 'ubuntu-24.04'
+      cmd: "./.ci/validation.sh rewrite-check"
 
 pool:
   vmImage: $(image)
