@@ -201,14 +201,15 @@ public class PropertiesMacro extends AbstractMacro {
 
         final Set<String> properties = SiteUtil.getPropertiesForDocumentation(clss, instance);
         final Map<String, DetailNode> propertiesJavadocs = SiteUtil
-                .getModuleAndPropertiesJavadocs(properties, currentModuleName, currentModulePath);
+                .getPropertiesJavadocs(properties, currentModuleName, currentModulePath);
 
         final List<String> orderedProperties = orderProperties(properties);
 
         for (String property : orderedProperties) {
             try {
                 final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
-                final DetailNode currentModuleJavadoc = propertiesJavadocs.get(currentModuleName);
+                final DetailNode currentModuleJavadoc =
+                    SiteUtil.getModuleJavadoc(currentModuleName, currentModulePath);
                 writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
             }
             // -@cs[IllegalCatch] we need to get details in wrapping exception
