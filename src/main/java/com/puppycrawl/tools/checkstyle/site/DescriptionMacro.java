@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
@@ -47,10 +46,12 @@ public class DescriptionMacro extends AbstractMacro {
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
         final Set<String> propertyNames = ModuleJavadocParsingUtil.getPropertyNames(moduleName);
-        final Map<String, DetailNode> moduleAndPropertiesJavadocs =
-            SiteUtil.getModuleAndPropertiesJavadocs(propertyNames, moduleName, modulePath);
 
-        final DetailNode moduleJavadoc = moduleAndPropertiesJavadocs.get(moduleName);
+        final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(moduleName, modulePath);
+        if (moduleJavadoc == null) {
+            throw new MacroExecutionException(
+                "Javadoc of module " + moduleName + " is not found.");
+        }
 
         final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);
         final String moduleDescription = JavadocMetadataScraper.constructSubTreeText(
