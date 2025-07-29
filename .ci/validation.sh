@@ -428,6 +428,12 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
+rewrite)
+  echo "Run 'rewrite:dryRun' to check for recipes changes."
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
+  echo "Run 'rewrite:run' to apply recipes."
+  ;;
+
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
