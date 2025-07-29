@@ -119,25 +119,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public abstract class Plant {
  *   private String roots;
- *   private String trunk;
- *
+ *   private String trunk; <br>
  *   protected void validate() {
  *     if (roots == null) throw new IllegalArgumentException("No roots!");
  *     if (trunk == null) throw new IllegalArgumentException("No trunk!");
- *   }
- *
+ *   } <br/>
  *   public abstract void grow();
- * }
- *
+ * } <br>
  * public class Tree extends Plant {
- *   private List leaves;
- *
+ *   private List leaves; <br>
  *   &#64;Overrides
  *   protected void validate() {
  *     super.validate();
  *     if (leaves == null) throw new IllegalArgumentException("No leaves!");
- *   }
- *
+ *   } <br>
  *   public void grow() {
  *     validate();
  *   }
@@ -150,16 +145,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public abstract class Plant {
  *   private String roots;
- *   private String trunk;
- *
+ *   private String trunk; <br>
  *   private void validate() {
  *     if (roots == null) throw new IllegalArgumentException("No roots!");
  *     if (trunk == null) throw new IllegalArgumentException("No trunk!");
  *     validateEx();
- *   }
- *
- *   protected void validateEx() { }
- *
+ *   } <br>
+ *   protected void validateEx() { } <br>   
  *   public abstract void grow();
  * }
  * </code></pre></div>
