@@ -50,8 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *   protected StringUtils() {
  *     // prevents calls from subclass
  *     throw new UnsupportedOperationException();
- *   }
- *
+ *   } <br/>
  *   public static int count(char c, String s) {
  *     // ...
  *   }

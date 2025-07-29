@@ -108,8 +108,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   FIELD_2 {
  *     &#64;Override
  *     public final void method1() {} // violation expected
- *   };
- *
+ *   }; <br/>
  *   public void method1() {}
  *   public final void method2() {} // no violation expected
  * }
@@ -132,8 +131,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public class PublicClass {
  *   public PublicClass() {} // OK
- * }
- *
+ * } <br/>
  * class PackagePrivateClass {
  *   public PackagePrivateClass() {} // violation expected
  * }
@@ -149,8 +147,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   protected class ProtectedInnerClass {
  *     public ProtectedInnerClass () {}
  *   }
- * }
- *
+ * } <br/>
  * package b;
  * import a.ClassExample;
  * public class ClassExtending extends ClassExample {
