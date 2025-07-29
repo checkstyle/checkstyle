@@ -104,7 +104,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
 
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(),
                 "first line \r\n second line \n\r third line", StandardCharsets.UTF_8);
 
@@ -120,7 +120,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "3: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "\\r"),
         };
 
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(),
                 "first line \r\n second line \n\r third line", StandardCharsets.UTF_8);
 
@@ -143,7 +143,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
         final MultilineDetector detector =
                 new MultilineDetector(detectorOptions);
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(),
                 "first line \r\n second line \n\r third line", StandardCharsets.UTF_8);
 
@@ -189,7 +189,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "1: " + getCheckMessage(MSG_STACKOVERFLOW, "(x|y)*"),
         };
 
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(), makeLargeXyString().toString(), StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
@@ -204,7 +204,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, "5", "\\r"),
         };
 
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(), "", StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);
@@ -220,7 +220,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
             "1: some message",
         };
 
-        final File file = Files.createTempFile(temporaryFolder.toPath(), "junit", null).toFile();
+        final File file = File.createTempFile("junit", null, temporaryFolder);
         Files.writeString(file.toPath(), "", StandardCharsets.UTF_8);
 
         verify(checkConfig, file.getPath(), expected);

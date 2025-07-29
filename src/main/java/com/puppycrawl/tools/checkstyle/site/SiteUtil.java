@@ -706,7 +706,7 @@ public final class SiteUtil {
             getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
 
         if (specifiedPropertyVersion.isPresent()) {
-            sinceVersion = specifiedPropertyVersion.orElseThrow();
+            sinceVersion = specifiedPropertyVersion.get();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -750,7 +750,7 @@ public final class SiteUtil {
 
         if (propertyModuleJavadoc.isPresent()) {
             final DetailNode primaryJavadocInlineTag = JavadocUtil.findFirstToken(
-                    propertyModuleJavadoc.orElseThrow(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
+                propertyModuleJavadoc.get(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
 
             for (DetailNode textNode = JavadocUtil
                 .getNextSibling(primaryJavadocInlineTag, JavadocTokenTypes.TEXT);
