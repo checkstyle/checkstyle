@@ -187,6 +187,11 @@ test-al)
     -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1g -Xmx2g'
   ;;
 
+rewrite-check)
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun \
+  -DargLine='-Xms1g -Xmx2g'
+  ;;
+
 versions)
   ./mvnw -e --no-transfer-progress clean versions:dependency-updates-report \
     versions:plugin-updates-report
