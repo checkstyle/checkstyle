@@ -1952,7 +1952,7 @@ public class XdocsPagesTest {
 
             if (position == 1) {
                 actualUrl = XmlUtil.getNameAttributeOfNode(anchor);
-                expectedUrl = ruleNumber;
+                expectedUrl = "a" + ruleNumber;
             }
             else {
                 actualUrl = anchor.getAttributes().getNamedItem("href").getTextContent();
