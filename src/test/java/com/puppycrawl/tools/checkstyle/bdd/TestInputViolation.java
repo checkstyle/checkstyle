@@ -76,7 +76,13 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
         if (message != null) {
-            String rawMessage = message;
+            String rawMessage;
+            if (message.matches("^\\d+:\\s.*")) {
+                rawMessage = message.replaceFirst("^\\d+:\\s*", "");
+            }
+            else {
+                rawMessage = message;
+            }
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
@@ -89,7 +95,7 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     public int compareTo(TestInputViolation testInputViolation) {
         final int result;
         if (message != null && lineNo == testInputViolation.lineNo) {
-            result = testInputViolation.message.compareTo(message);
+            result = message.compareTo(testInputViolation.message);
         }
         else {
             result = Integer.compare(lineNo, testInputViolation.lineNo);

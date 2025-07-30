@@ -33,8 +33,8 @@ public class InputSuppressWithPlainTextCommentFilterSuppressById4 { // violation
     private int A1; // violation 'illegal pattern'
 
     // @cs-: ignore (reason)
-	private static final int a1 = 5; // violation 'illegal pattern'
-    // violation above 'contains a tab'
+	private static final int a1 = 5; // violation '1: illegal pattern'
+    // violation above '2: contains a tab'
     int a2 = 100; // violation 'illegal pattern'
     //CSON ignore
 
