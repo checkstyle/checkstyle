@@ -556,6 +556,8 @@ public class JavadocDetailNodeParser {
     }
 
     public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
+        blockCommentLineNumber = javadocCommentAst.getLineNo();
+
         final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
         final ParseStatus result = new ParseStatus();
 
@@ -579,13 +581,12 @@ public class JavadocDetailNodeParser {
 
         try {
             final JavadocCommentsParser.JavadocContext javadoc = parser.javadoc();
+            int javadocColumnNumber = javadocCommentAst.getColumnNo()
+                            + JAVADOC_START.length();
 
-            final DetailNode tree = new JavadocCommentsAstVisitor(tokens).visit(javadoc);
+            final DetailNode tree = new JavadocCommentsAstVisitor(
+                    tokens, blockCommentLineNumber, javadocColumnNumber).visit(javadoc);
 
-            // adjust first line to indent of /**
-            adjustFirstLineToJavadocIndent(tree,
-                        javadocCommentAst.getColumnNo()
-                                + JAVADOC_START.length());
             result.setTree(tree);
         }
         catch (ParseCancellationException | IllegalArgumentException exc) {

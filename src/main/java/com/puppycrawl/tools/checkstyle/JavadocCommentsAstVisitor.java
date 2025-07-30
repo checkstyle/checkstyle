@@ -19,6 +19,16 @@ import java.util.Set;
 public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<JavadocNodeImpl> {
 
     /**
+     * Line number of the Block comment AST that is being parsed.
+     */
+    private final int blockCommentLineNumber;
+
+    /**
+     * Javadoc Ident.
+     */
+    private final int javadocColumnNumber;
+
+    /**
      * Token stream to check for hidden tokens.
      */
     private final BufferedTokenStream tokens;
@@ -30,8 +40,10 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     private final Set<Integer> processedTokenIndices = new HashSet<>();
 
 
-    public JavadocCommentsAstVisitor(CommonTokenStream tokens) {
+    public JavadocCommentsAstVisitor(CommonTokenStream tokens, int blockCommentLineNumber, int javadocColumnNumber) {
         this.tokens = tokens;
+        this.blockCommentLineNumber = blockCommentLineNumber;
+        this.javadocColumnNumber = javadocColumnNumber;
     }
 
     @Override
@@ -326,9 +338,17 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @return a new JavadocNodeImpl initialized with the token
      */
     private JavadocNodeImpl create(Token token) {
-        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
-        javadocNode.initialize(token);
-        return javadocNode;
+        final JavadocNodeImpl node = new JavadocNodeImpl();
+        node.initialize(token);
+
+        // adjust line number to the position of the block comment
+        node.setLineNumber(node.getLineNumber() + blockCommentLineNumber);
+
+        // adjust first line to indent of /**
+        if (node.getLineNumber() == blockCommentLineNumber) {
+            node.setColumnNumber(node.getColumnNumber() + javadocColumnNumber);
+        }
+        return node;
     }
 
 
@@ -344,6 +364,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         final JavadocNodeImpl node = new JavadocNodeImpl();
         node.setType(tokenType);
         node.setText(JavadocUtil.getJavadocTokenName(tokenType));
+
+        if (tokenType == JavadocCommentsTokenTypes.JAVADOC) {
+            node.setLineNumber(blockCommentLineNumber);
+            node.setColumnNumber(javadocColumnNumber);
+        }
+
         return node;
     }
 }
