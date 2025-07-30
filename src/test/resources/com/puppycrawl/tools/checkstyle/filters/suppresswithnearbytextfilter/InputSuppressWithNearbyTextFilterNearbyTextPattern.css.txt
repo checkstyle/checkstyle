@@ -29,7 +29,7 @@ maximum = (default)0
 }
 
 .div-1 main>h1 {
-  // filtered violation below 'Line is longer than 90 characters (found 93).'
+  // filtered violation below 'longer than 90 characters (found 93).'
   margiin: "this should not appear"; /* -cs: Long comment explainingasdasdasdasdasdasdasda */
   // filtered violation above 'Line matches the illegal pattern .*'
 }

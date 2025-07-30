@@ -31,7 +31,7 @@ public class InputSuppressWithPlainTextCommentFilterCustomMessageFormat {
     // CHECKSTYLE:OFF
     private int A1; // violation 'illegal pattern'
 
-	private static final int a1 = 5; // filtered violation 'contains a tab'
+	private static final int a1 = 5; // filtered violation 'tab character'
     // violation above 'illegal pattern'
     int a2 = 100; // violation 'illegal pattern'
 
