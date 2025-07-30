@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule4862todocomments;
 
 /** some javadoc. */
-public class InputTodoCommentAllVarients {
+public class InputTodoCommentAllVariants {
 
   void myFunc1(int i) {
     // todo: implementing
@@ -77,6 +77,7 @@ public class InputTodoCommentAllVarients {
     // tODo: implementing
     // ok above until #17501
   }
+
   void myFunc16(int i) {
     // TODO: implementing
   }

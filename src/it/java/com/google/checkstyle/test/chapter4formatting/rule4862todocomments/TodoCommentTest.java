@@ -19,8 +19,9 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4862todocomments;
 
-import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import org.junit.jupiter.api.Test;
+
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 
 public class TodoCommentTest extends AbstractGoogleModuleTestSupport {
 
@@ -30,7 +31,7 @@ public class TodoCommentTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testTodoCommentAllVarients() throws Exception {
-        verifyWithWholeConfig(getPath("InputTodoCommentAllVarients.java"));
+    public void testTodoCommentAllVariants() throws Exception {
+        verifyWithWholeConfig(getPath("InputTodoCommentAllVariants.java"));
     }
 }
