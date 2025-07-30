@@ -2043,9 +2043,14 @@
                   config</a>)
                   <br />
                   <br />
-                  Non covered: Some words are ambiguously hyphenated in the
+                  Non covered:
+                  <br />
+                  1. Some words are ambiguously hyphenated in the
                   English language. No way to distinguish "YouTubeImporter" or
                   "YoutubeImporter".
+                  <br />
+                  2. Multipart versioning Naming convention using underscores.
+                  For example: "guava33_4_6".
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase">
