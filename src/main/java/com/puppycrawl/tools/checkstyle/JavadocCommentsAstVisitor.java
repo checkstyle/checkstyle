@@ -36,9 +36,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitJavadoc(JavadocCommentsParser.JavadocContext ctx) {
-        final JavadocNodeImpl javadocNode = createImaginary(JavadocCommentsTokenTypes.JAVADOC);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.JAVADOC, ctx);
     }
 
     @Override
@@ -48,10 +46,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitInlineTag(JavadocCommentsParser.InlineTagContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG, ctx);
     }
 
     @Override
@@ -135,10 +130,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitReference(JavadocCommentsParser.ReferenceContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.REFERENCE);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.REFERENCE, ctx);
     }
 
 
@@ -157,74 +149,47 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitTypeArguments(JavadocCommentsParser.TypeArgumentsContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.TYPE_ARGUMENTS);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.TYPE_ARGUMENTS, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitTypeArgument(JavadocCommentsParser.TypeArgumentContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.TYPE_ARGUMENT);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.TYPE_ARGUMENT, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitMemberReference(JavadocCommentsParser.MemberReferenceContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.MEMBER_REFERENCE);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.MEMBER_REFERENCE, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitParameterTypeList(JavadocCommentsParser.ParameterTypeListContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.PARAMETER_TYPE_LIST);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.PARAMETER_TYPE_LIST, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitDescription(JavadocCommentsParser.DescriptionContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.DESCRIPTION);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.DESCRIPTION, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitSnippetAttribute(JavadocCommentsParser.SnippetAttributeContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTE);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+       return buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTE, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitSnippetBody(JavadocCommentsParser.SnippetBodyContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.SNIPPET_BODY);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_BODY, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitHtmlElement(JavadocCommentsParser.HtmlElementContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.HTML_ELEMENT);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+       return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_ELEMENT, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitVoidElement(JavadocCommentsParser.VoidElementContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.VOID_ELEMENT);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.VOID_ELEMENT, ctx);
     }
 
     @Override
@@ -279,32 +244,26 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitHtmlTagEnd(JavadocCommentsParser.HtmlTagEndContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.HTML_TAG_END);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_TAG_END, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitHtmlAttribute(JavadocCommentsParser.HtmlAttributeContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTE);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_ATTRIBUTE, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitHtmlContent(JavadocCommentsParser.HtmlContentContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.HTML_CONTENT);
-        processChildren(javadocNode, ctx.children);
-        return javadocNode;
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_CONTENT, ctx);
     }
 
     @Override
     public JavadocNodeImpl visitNonTightHtmlContent(JavadocCommentsParser.NonTightHtmlContentContext ctx) {
-        final JavadocNodeImpl javadocNode =
-                createImaginary(JavadocCommentsTokenTypes.HTML_CONTENT);
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_CONTENT, ctx);
+    }
+
+    private JavadocNodeImpl buildImaginaryNode(int tokenType, ParserRuleContext ctx) {
+        final JavadocNodeImpl javadocNode = createImaginary(tokenType);
         processChildren(javadocNode, ctx.children);
         return javadocNode;
     }
