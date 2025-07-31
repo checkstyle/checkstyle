@@ -453,6 +453,37 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Verifies logger output using the inline configuration parser for default logger.
+     * Expects an input file with configuration and violations, and expected output file.
+     * Uses full Checker configuration.
+     *
+     * @param inputFile path to the file with configuration and violations
+     * @param expectedOutputFile path to the expected info stream output file
+     * @param logger logger to test
+     * @param outputStream where the logger writes its actual info stream output
+     * @throws Exception if an exception occurs during verification
+     */
+    protected final void verifyWithInlineConfigParserAndDefaultLogger(String inputFile,
+                                                              String expectedOutputFile,
+                                                              AuditListener logger,
+                                                              ByteArrayOutputStream outputStream)
+            throws Exception {
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parseWithXmlHeader(inputFile);
+        final Configuration parsedConfig =
+                testInputConfiguration.getXmlConfiguration();
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
+        final String basePath = Path.of("").toAbsolutePath().toString();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+        checker.addListener(logger);
+        checker.process(filesToCheck);
+
+        verifyCleanedMessageContent(expectedOutputFile, outputStream, basePath);
+    }
+
+    /**
+     * Verifies logger output using the inline configuration parser for default logger.
      * Expects an input file with configuration and violations, and separate expected output files
      * for info and error streams.
      * Uses full Checker configuration.
@@ -730,7 +761,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
     /**
      * Verifies that the logger output matches the expected report file content,
-     * keeping only severity-tagged lines (e.g. [ERROR], [WARN], [INFO]).
+     * keeping only severity-tagged lines (e.g. [ERROR], [WARN], [INFO]) or lines containing
+     * "Starting audit..." or "Audit done".
      *
      * <p>
      * This method strips:
@@ -755,7 +787,11 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
 
         final String cleanedActualContent = rawActualContent.lines()
-                .filter(line -> line.startsWith("["))
+                .filter(line -> {
+                    return line.startsWith("[")
+                            || line.contains("Starting audit...")
+                            || line.contains("Audit done.");
+                })
                 .map(line -> line.replace(basePath, ""))
                 .map(line -> line.replace('\\', '/'))
                 .collect(Collectors.joining("\n", "", "\n"));

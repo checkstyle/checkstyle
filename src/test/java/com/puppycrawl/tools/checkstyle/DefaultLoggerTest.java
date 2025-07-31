@@ -110,26 +110,41 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
                 dl, infoStream, errorStream);
     }
 
-    /**
-     * We keep this test for 100% coverage. Until #12873.
-     */
     @Test
-    public void testCtorWithTwoParameters() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
-        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
-        dl.auditFinished(new AuditEvent(6000, "myfile"));
-        final String output = infoStream.toString();
-        assertWithMessage("Message should contain exception info")
-                .that(output)
-                .contains("java.lang.IllegalStateException: upsss");
+    public void testCtorWithTwoParametersCloseStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
+
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedOutputFile),
+                dl, outputStream);
+    }
+
+    @Test
+    public void testCtorWithTwoParametersNoneStreamOptions() throws Exception {
+        final String inputFile = "InputDefaultLoggerTestSingleError.java";
+        final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
+
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(outputStream, OutputStreamOptions.NONE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getPath(inputFile),
+                getPath(expectedOutputFile),
+                dl, outputStream);
     }
 
     /**
      * We keep this test for 100% coverage. Until #12873.
+     * Test not updated because relies on deprecated AutomaticBean and verifies only correct field
+     * mapping.
      */
     @Test
-    public void testCtorWithTwoParametersCloseStreamOptions() {
+    public void testOldCtorWithTwoParametersCloseStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
@@ -142,9 +157,11 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
 
     /**
      * We keep this test for 100% coverage. Until #12873.
+     * Test not updated because relies on deprecated AutomaticBean and verifies only correct field
+     * mapping.
      */
     @Test
-    public void testCtorWithTwoParametersNoneStreamOptions() {
+    public void testOldCtorWithTwoParametersNoneStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
@@ -164,17 +181,6 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final String output = infoStream.toString();
         assertWithMessage("Message should contain exception info")
                 .that(output)
-                .contains("java.lang.IllegalStateException: upsss");
-    }
-
-    @Test
-    public void testNewCtorWithTwoParameters() {
-        final OutputStream infoStream = new ByteArrayOutputStream();
-        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.NONE);
-        dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
-        dl.auditFinished(new AuditEvent(6000, "myfile"));
-        assertWithMessage("Message should contain exception info")
-                .that(infoStream.toString())
                 .contains("java.lang.IllegalStateException: upsss");
     }
 
