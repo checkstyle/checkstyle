@@ -57,6 +57,93 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
+    public JavadocNodeImpl visitBlockTag(JavadocCommentsParser.BlockTagContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG, ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitAuthorTag(JavadocCommentsParser.AuthorTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitDeprecatedTag(JavadocCommentsParser.DeprecatedTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitReturnTag(JavadocCommentsParser.ReturnTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitParameterTag(JavadocCommentsParser.ParameterTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+
+    @Override
+    public JavadocNodeImpl visitThrowsTag(JavadocCommentsParser.ThrowsTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitExceptionTag(JavadocCommentsParser.ExceptionTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSinceTag(JavadocCommentsParser.SinceTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitVersionTag(JavadocCommentsParser.VersionTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSeeTag(JavadocCommentsParser.SeeTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+
+    @Override
+    public JavadocNodeImpl visitHiddenTag(JavadocCommentsParser.HiddenTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitUsesTag(JavadocCommentsParser.UsesTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitProvidesTag(JavadocCommentsParser.ProvidesTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSerialTag(JavadocCommentsParser.SerialTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSerialDataTag(JavadocCommentsParser.SerialDataTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitSerialFieldTag(JavadocCommentsParser.SerialFieldTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitCustomBlockTag(JavadocCommentsParser.CustomBlockTagContext ctx) {
+        return flattenedTree(ctx);
+    }
+
+    @Override
     public JavadocNodeImpl visitInlineTag(JavadocCommentsParser.InlineTagContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG, ctx);
     }

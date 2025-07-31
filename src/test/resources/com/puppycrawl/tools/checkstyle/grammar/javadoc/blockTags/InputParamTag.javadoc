@@ -1,0 +1,13 @@
+* @param name the user's name
+* @param age the user's age in years
+* @param    email,   the user's email address
+* @param    address
+*       the user's physical address
+*@param mode one of {@code "asc"}, {@code "desc"}, or {@code "none"}
+* @param  c
+*         int specifying a character to be written
+* @param <E> Type of component elements
+* @param <T>
+*           the type of the element being magnified
+* @param <R>
+* @param x

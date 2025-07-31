@@ -40,6 +40,27 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int WS = JavadocCommentsLexer.WS;
 
+    // Block tags
+    public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
+    public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
+    public static final int AUTHOR = JavadocCommentsLexer.AUTHOR;
+    public static final int DEPRECATED = JavadocCommentsLexer.DEPRECATED;
+    public static final int PARAM = JavadocCommentsLexer.PARAM;
+    public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
+    public static final int THROWS = JavadocCommentsLexer.THROWS;
+    public static final int EXCEPTION = JavadocCommentsLexer.EXCEPTION;
+    public static final int SINCE = JavadocCommentsLexer.SINCE;
+    public static final int VERSION = JavadocCommentsLexer.VERSION;
+    public static final int SEE = JavadocCommentsLexer.SEE;
+    public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
+    public static final int HIDDEN = JavadocCommentsLexer.LITERAL_HIDDEN;
+    public static final int USES = JavadocCommentsLexer.USES;
+    public static final int PROVIDES = JavadocCommentsLexer.PROVIDES;
+    public static final int SERIAL = JavadocCommentsLexer.SERIAL;
+    public static final int SERIAL_DATA = JavadocCommentsLexer.SERIAL_DATA;
+    public static final int SERIAL_FIELD = JavadocCommentsLexer.SERIAL_FIELD;
+    public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
+
 
     // inline tags
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
@@ -59,7 +80,6 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
     public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
-
     public static final int CUSTOM_NAME = JavadocCommentsLexer.CUSTOM_NAME;
 
     // components
@@ -89,6 +109,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int COLON = JavadocCommentsLexer.COLON;
 
 
+    // HTML
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
     public static final int HTML_CONTENT = JavadocCommentsLexer.HTML_CONTENT;
@@ -102,6 +123,4 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
     public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
     public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
-
-
 }

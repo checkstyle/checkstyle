@@ -24,6 +24,10 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         return getPath("htmltags" + File.separator + filename);
     }
 
+    private String getBlockTagsPath(String filename) throws IOException {
+        return getPath("blockTags" + File.separator + filename);
+    }
+
     @Test
     public void testEmptyJavadoc() throws Exception {
         verifyJavadocTree(geSimplePath("ExpectedEmptyJavadoc.txt"),
@@ -52,6 +56,66 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     public void testSimpleJavadocWithText2() throws Exception {
         verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText2.txt"),
                 geSimplePath("InputSimpleJavadocWithText2.javadoc"));
+    }
+
+    @Test
+    public void testAuthorTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTag.txt"),
+                getBlockTagsPath("InputAuthorTags.javadoc"));
+    }
+
+    @Test
+    public void testDeprecatedTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedDeprecatedTag.txt"),
+                getBlockTagsPath("InputDeprecatedTag.javadoc"));
+    }
+
+    @Test
+    public void testReturnTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedReturnTag.txt"),
+                getBlockTagsPath("InputReturnTag.javadoc"));
+    }
+
+    @Test
+    public void testParamTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedParamTag.txt"),
+                getBlockTagsPath("InputParamTag.javadoc"));
+    }
+
+    @Test
+    public void testThrowsAndExceptionTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedThrowsAndExceptionTag.txt"),
+                getBlockTagsPath("InputThrowsAndExceptionTag.javadoc"));
+    }
+
+    @Test
+    public void testSinceAndVersionTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedSinceAndVersionTag.txt"),
+                getBlockTagsPath("InputSinceAndVersionTag.javadoc"));
+    }
+
+    @Test
+    public void testSeeTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedSeeTag.txt"),
+                getBlockTagsPath("InputSeeTag.javadoc"));
+    }
+
+    @Test
+    public void testHiddenAndUsesAndProvidesTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedHiddenAndUsesAndProvidesTag.txt"),
+                getBlockTagsPath("InputHiddenAndUsesAndProvidesTag.javadoc"));
+    }
+
+    @Test
+    public void testSerialTags() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedSerialTags.txt"),
+                getBlockTagsPath("InputSerialTags.javadoc"));
+    }
+
+    @Test
+    public void testCustomBlockTag() throws Exception {
+        verifyJavadocTree(getBlockTagsPath("ExpectedCustomBlockTag.txt"),
+                getBlockTagsPath("InputCustomBlockTag.javadoc"));
     }
 
     @Test

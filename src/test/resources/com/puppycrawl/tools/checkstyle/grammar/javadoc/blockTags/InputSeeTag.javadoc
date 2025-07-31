@@ -1,0 +1,14 @@
+* This method does something.
+*
+* @see java.lang.String
+* @see java.util.List#add(Object) adds to list
+* @see java.util.Map#put(Object, Object)
+* @see String
+* @see "GoF Design Patterns"
+* @see <a href="https://example.com">External Resource</a>
+* @see <a href="https://example.com">External Resource</a>this is html
+* @see #setObject
+* @see Field#type() Field.type() - for usage examples
+* @see     java.lang.System#getProperty(java.lang.String, java.lang.String)
+* @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
+* @see <a href="https://example.com">External Resource</a> This is <code>code</code> in the link
