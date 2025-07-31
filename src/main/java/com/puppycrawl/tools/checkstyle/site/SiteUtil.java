@@ -43,6 +43,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -697,16 +698,16 @@ public final class SiteUtil {
      * @return the since version of the property.
      * @throws MacroExecutionException if the module since version could not be extracted.
      */
-    public static String getSinceVersion(String moduleName, DetailNode moduleJavadoc,
+    public static String getPropertySinceVersion(String moduleName, DetailNode moduleJavadoc,
                                          String propertyName, DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
 
-        final Optional<String> specifiedPropertyVersion =
-            getSpecifiedPropertyVersion(propertyName, moduleJavadoc);
+        final Optional<String> specifiedPropertyVersionInModule =
+            getSpecifiedPropertyVersionInModule(propertyName, moduleJavadoc);
 
-        if (specifiedPropertyVersion.isPresent()) {
-            sinceVersion = specifiedPropertyVersion.get();
+        if (specifiedPropertyVersionInModule.isPresent()) {
+            sinceVersion = specifiedPropertyVersionInModule.get();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -740,39 +741,39 @@ public final class SiteUtil {
      * @return the specific since version of module's property.
      * @throws MacroExecutionException if the module since version could not be extracted.
      */
-    private static Optional<String> getSpecifiedPropertyVersion(String propertyName,
-                                                      DetailNode moduleJavadoc)
+    private static Optional<String> getSpecifiedPropertyVersionInModule(String propertyName,
+                                                                        DetailNode moduleJavadoc)
             throws MacroExecutionException {
         Optional<String> specifiedVersion = Optional.empty();
 
-        final Optional<DetailNode> propertyModuleJavadoc =
+        final Optional<DetailNode> propertyNodeFromModuleJavadoc =
             getPropertyJavadocNodeInModule(propertyName, moduleJavadoc);
 
-        if (propertyModuleJavadoc.isPresent()) {
-            final DetailNode primaryJavadocInlineTag = JavadocUtil.findFirstToken(
-                propertyModuleJavadoc.get(), JavadocTokenTypes.JAVADOC_INLINE_TAG);
+        if (propertyNodeFromModuleJavadoc.isPresent()) {
+            final List<DetailNode> propertyModuleTextNodes = getNodesOfSpecificType(
+                propertyNodeFromModuleJavadoc.get().getChildren(), JavadocTokenTypes.TEXT);
 
-            for (DetailNode textNode = JavadocUtil
-                .getNextSibling(primaryJavadocInlineTag, JavadocTokenTypes.TEXT);
-                 textNode != null && specifiedVersion.isEmpty();
-                 textNode = JavadocUtil.getNextSibling(
-                     textNode, JavadocTokenTypes.TEXT)) {
+            final Optional<String> sinceVersionLine = propertyModuleTextNodes.stream()
+                .map(DetailNode::getText)
+                .filter(text -> text.startsWith(WHITESPACE + SINCE_VERSION))
+                .findFirst();
 
-                final String textNodeText = textNode.getText();
+            if (sinceVersionLine.isPresent()) {
+                final String sinceVersionText = sinceVersionLine.get();
+                final int sinceVersionIndex = sinceVersionText.indexOf('.') - 1;
 
-                if (textNodeText.startsWith(WHITESPACE + SINCE_VERSION)) {
-                    final int sinceVersionIndex = textNodeText.indexOf('.') - 1;
-
-                    if (sinceVersionIndex > 0) {
-                        specifiedVersion = Optional.of(textNodeText.substring(sinceVersionIndex));
-                    }
-                    else {
-                        throw new MacroExecutionException(textNodeText
-                            + " has no valid version, at least one '.' is expected.");
-                    }
-
+                if (sinceVersionIndex > 0) {
+                    specifiedVersion = Optional.of(sinceVersionText.substring(sinceVersionIndex));
+                }
+                else {
+                    throw new MacroExecutionException(sinceVersionText
+                        + " has no valid version, at least one '.' is expected.");
                 }
             }
+        }
+        else {
+            throw new MacroExecutionException("Property '" + propertyName
+                + "' is not found in module's javadoc.");
         }
 
         return specifiedVersion;
@@ -787,57 +788,54 @@ public final class SiteUtil {
      */
     public static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
                                                              DetailNode moduleJavadoc) {
-        Optional<DetailNode> propertyJavadocNode = Optional.empty();
+        final List<DetailNode> htmlElementNodes = getNodesOfSpecificType(
+            moduleJavadoc.getChildren(), JavadocTokenTypes.HTML_ELEMENT);
 
-        for (DetailNode htmlElement = JavadocUtil.getNextSibling(
-                JavadocUtil.getFirstChild(moduleJavadoc), JavadocTokenTypes.HTML_ELEMENT);
-            htmlElement != null && propertyJavadocNode.isEmpty();
-            htmlElement = JavadocUtil.getNextSibling(
-                htmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+        final List<DetailNode> ulTags = htmlElementNodes.stream()
+            .map(JavadocUtil::getFirstChild)
+            .filter(child -> {
+                final boolean isHtmlTag = child.getType() == JavadocTokenTypes.HTML_TAG;
+                final DetailNode htmlTagNameNode = JavadocUtil.findFirstToken(
+                    JavadocUtil.getFirstChild(child), JavadocTokenTypes.HTML_TAG_NAME);
 
-            final DetailNode htmlTag = JavadocUtil.findFirstToken(
-                htmlElement, JavadocTokenTypes.HTML_TAG);
-            final Optional<String> htmlTagName = Optional.ofNullable(htmlTag)
-                .map(JavadocUtil::getFirstChild)
-                .map(htmlStart -> {
-                    return JavadocUtil.findFirstToken(htmlStart, JavadocTokenTypes.HTML_TAG_NAME);
-                })
-                .map(DetailNode::getText);
+                return isHtmlTag && "ul".equals(htmlTagNameNode.getText());
+            })
+            .toList();
+        final DetailNode[] childrenOfUlTags = ulTags.stream()
+            .flatMap(ulTag -> Arrays.stream(ulTag.getChildren()))
+            .toArray(DetailNode[]::new);
+        final List<DetailNode> innerHtmlElementsOfUlTags =
+            getNodesOfSpecificType(childrenOfUlTags, JavadocTokenTypes.HTML_ELEMENT);
 
-            if (htmlTag != null && "ul".equals(htmlTagName.orElse(null))) {
+        final List<DetailNode> liTags = innerHtmlElementsOfUlTags.stream()
+            .map(JavadocUtil::getFirstChild)
+            .filter(tag -> tag.getType() == JavadocTokenTypes.LI)
+            .toList();
 
-                boolean foundProperty = false;
+        final List<DetailNode> liTagsInlineTexts = liTags.stream()
+            .map(liTag -> JavadocUtil.findFirstToken(liTag, JavadocTokenTypes.JAVADOC_INLINE_TAG))
+            .filter(Objects::nonNull)
+            .map(inlineTag -> JavadocUtil.findFirstToken(inlineTag, JavadocTokenTypes.TEXT))
+            .toList();
 
-                for (DetailNode innerHtmlElement = JavadocUtil.getNextSibling(
-                        JavadocUtil.getFirstChild(htmlTag), JavadocTokenTypes.HTML_ELEMENT);
-                    innerHtmlElement != null && !foundProperty;
-                    innerHtmlElement = JavadocUtil.getNextSibling(
-                        innerHtmlElement, JavadocTokenTypes.HTML_ELEMENT)) {
+        return liTagsInlineTexts.stream()
+            .filter(text -> text.getText().equals(propertyName))
+            .map(textNode -> textNode.getParent().getParent())
+            .findFirst();
 
-                    final DetailNode liTag = JavadocUtil.getFirstChild(innerHtmlElement);
+    }
 
-                    if (liTag.getType() == JavadocTokenTypes.LI) {
-
-                        final DetailNode primeJavadocInlineTag = JavadocUtil.findFirstToken(liTag,
-                            JavadocTokenTypes.JAVADOC_INLINE_TAG);
-
-                        if (primeJavadocInlineTag == null) {
-                            break;
-                        }
-
-                        final String examinedPropertyName = JavadocUtil.findFirstToken(
-                            primeJavadocInlineTag, JavadocTokenTypes.TEXT).getText();
-
-                        if (examinedPropertyName.equals(propertyName)) {
-                            propertyJavadocNode = Optional.of(liTag);
-                            foundProperty = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        return propertyJavadocNode;
+    /**
+     * Gets all javadoc nodes of selected type.
+     *
+     * @param allNodes Nodes to choose from.
+     * @param neededType the Javadoc token type to select.
+     * @return the List of DetailNodes of selected type.
+     */
+    public static List<DetailNode> getNodesOfSpecificType(DetailNode[] allNodes, int neededType) {
+        return Arrays.stream(allNodes)
+            .filter(child -> child.getType() == neededType)
+            .toList();
     }
 
     /**
