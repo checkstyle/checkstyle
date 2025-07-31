@@ -14,9 +14,9 @@
 
  &lt;p&gt;
  For additional restriction of type usage see also:
- &lt;a href="https://checkstyle.org/checks/coding/illegalinstantiation.html#IllegalInstantiation"&gt;
+ &lt;a href="https://checkstyle.org/checks/coding/illegalinstantiation.html"&gt;
  IllegalInstantiation&lt;/a&gt;,
- &lt;a href="https://checkstyle.org/checks/imports/illegalimport.html#IllegalImport"&gt;
+ &lt;a href="https://checkstyle.org/checks/imports/illegalimport.html"&gt;
  IllegalImport&lt;/a&gt;
  &lt;/p&gt;
 

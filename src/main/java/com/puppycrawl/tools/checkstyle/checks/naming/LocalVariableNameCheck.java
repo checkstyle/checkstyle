@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * <p>
  * This check does not support pattern variables. Instead, use
- * <a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName">
+ * <a href="https://checkstyle.org/checks/naming/patternvariablename.html">
  * PatternVariableName</a>.
  * </p>
  * <ul>
