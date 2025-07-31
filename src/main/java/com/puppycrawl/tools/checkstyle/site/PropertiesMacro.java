@@ -572,7 +572,7 @@ public class PropertiesMacro extends AbstractMacro {
             throws MacroExecutionException {
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
-        final String sinceVersion = SiteUtil.getSinceVersion(
+        final String sinceVersion = SiteUtil.getPropertySinceVersion(
                 currentModuleName, moduleJavadoc, propertyName, propertyJavadoc);
         sink.text(sinceVersion);
         sink.tableCell_();
