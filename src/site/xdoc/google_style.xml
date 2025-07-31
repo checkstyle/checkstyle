@@ -1687,6 +1687,31 @@
                 </td>
               </tr>
               <tr>
+                <td><a name="a4.8.9"/>
+                  <a href="#4.8.9">
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
+                  </a>
+                </td>
+                <td>
+                  <a href="styleguides/google-java-style-20250426/javaguide.html#s4.8.9-text-blocks">
+                    4.8.9 Text Blocks</a>
+                </td>
+                <td>
+                  Opening and closing quotes of text blocks are always on new line and
+                  No column limit on text block content are not covered.
+                  They will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17159">
+                    #17159
+                  </a> and
+                  <a href="https://github.com/checkstyle/checkstyle/issues/11867">
+                    #11867
+                  </a> respectively.
+                </td>
+                <td/>
+              </tr>
+              <tr>
                 <td><a name="a5"/>
                   <a href="#5">
                     <span class="wrapper inline">
