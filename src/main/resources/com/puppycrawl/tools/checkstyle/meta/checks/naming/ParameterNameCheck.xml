@@ -12,13 +12,13 @@
 
  &lt;p&gt;
  To validate &lt;code&gt;catch&lt;/code&gt; parameters please use
- &lt;a href="https://checkstyle.org/checks/naming/catchparametername.html#CatchParameterName"&gt;
+ &lt;a href="https://checkstyle.org/checks/naming/catchparametername.html"&gt;
  CatchParameterName&lt;/a&gt;.
  &lt;/p&gt;
 
  &lt;p&gt;
  To validate lambda parameters please use
- &lt;a href="https://checkstyle.org/checks/naming/lambdaparametername.html#LambdaParameterName"&gt;
+ &lt;a href="https://checkstyle.org/checks/naming/lambdaparametername.html"&gt;
  LambdaParameterName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>

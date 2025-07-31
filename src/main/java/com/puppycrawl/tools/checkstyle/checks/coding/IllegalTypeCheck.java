@@ -46,9 +46,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * For additional restriction of type usage see also:
- * <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html#IllegalInstantiation">
+ * <a href="https://checkstyle.org/checks/coding/illegalinstantiation.html">
  * IllegalInstantiation</a>,
- * <a href="https://checkstyle.org/checks/imports/illegalimport.html#IllegalImport">
+ * <a href="https://checkstyle.org/checks/imports/illegalimport.html">
  * IllegalImport</a>
  * </p>
  *

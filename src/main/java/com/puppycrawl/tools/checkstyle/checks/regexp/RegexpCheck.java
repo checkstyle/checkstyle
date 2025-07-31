@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * This check combines all the functionality provided by
- * <a href="https://checkstyle.org/checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>
+ * <a href="https://checkstyle.org/checks/header/regexpheader.html">RegexpHeader</a>
  * except supplying the regular expression from a file.
  * </p>
  *
