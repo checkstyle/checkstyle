@@ -6,7 +6,7 @@
               parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Filter &lt;code&gt;SuppressionXpathFilter&lt;/code&gt; works as
- &lt;a href="https://checkstyle.org/filters/suppressionfilter.html#SuppressionFilter"&gt;
+ &lt;a href="https://checkstyle.org/filters/suppressionfilter.html"&gt;
  SuppressionFilter&lt;/a&gt;.
  Additionally, filter processes &lt;code&gt;suppress-xpath&lt;/code&gt; elements,
  which contains xpath-expressions. Xpath-expressions are queries for

@@ -11,7 +11,7 @@
 
  &lt;p&gt;
  This check does not support pattern variables. Instead, use
- &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html#PatternVariableName"&gt;
+ &lt;a href="https://checkstyle.org/checks/naming/patternvariablename.html"&gt;
  PatternVariableName&lt;/a&gt;.
  &lt;/p&gt;</description>
          <properties>
