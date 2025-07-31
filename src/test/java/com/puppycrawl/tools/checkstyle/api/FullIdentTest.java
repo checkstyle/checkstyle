@@ -214,7 +214,8 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     @Test
     public void testReturnNoAnnotation() throws Exception {
         final FileText testFileText = new FileText(
-                new File(getPath("InputFullIdentReturnNoAnnotation.java")).getAbsoluteFile(),
+                new File(getNonCompilablePath("InputFullIdentReturnNoAnnotation.java"))
+                        .getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final DetailAST packageDefinitionNode =
                 JavaParser.parse(new FileContents(testFileText)).getFirstChild();

@@ -173,4 +173,39 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
     }
+
+    @Test
+    public void testMethodTokenInInterface() throws Exception {
+        final String[] expected = {
+            "16:26: " + getCheckMessage(MSG_KEY, "param1"),
+            "22:27: " + getCheckMessage(MSG_KEY, "param1"),
+            "28:27: " + getCheckMessage(MSG_KEY, "param1"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalParametersInterfaceMethod.java"), expected);
+
+    }
+
+    @Test
+    public void testPatternVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "17:47: " + getCheckMessage(MSG_KEY, "s"),
+            "19:26: " + getCheckMessage(MSG_KEY, "i"),
+            "24:34: " + getCheckMessage(MSG_KEY, "name"),
+            "30:18: " + getCheckMessage(MSG_KEY, "s"),
+            "32:26: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputFinalParametersPatternVariables.java"), expected);
+    }
+
+    @Test
+    public void testRecordForLoopPatternVariableDefinitions() throws Exception {
+        final String[] expected = {
+            "17:22: " + getCheckMessage(MSG_KEY, "name"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputFinalParametersRecordForLoopPatternVariables.java"),
+            expected
+        );
+    }
 }

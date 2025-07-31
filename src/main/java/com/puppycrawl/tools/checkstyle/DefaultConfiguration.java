@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public final class DefaultConfiguration implements Configuration {
 
     /** A unique serial version identifier. */
+    @Serial
     private static final long serialVersionUID = 1157875385356127169L;
 
     /** Constant for optimization. */

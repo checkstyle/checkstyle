@@ -261,7 +261,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
     @Test
     public void testNoFreezeOnDeeplyNestedLambdas() throws Exception {
         final File file =
-                new File(getPath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
+                new File(getNonCompilablePath("InputJavaParserNoFreezeOnDeeplyNestedLambdas.java"));
         assertWithMessage("File parsing should complete successfully.")
                 .that(JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS))
                 .isNotNull();

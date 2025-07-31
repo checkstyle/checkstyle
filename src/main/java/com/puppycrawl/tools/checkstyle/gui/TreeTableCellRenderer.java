@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.io.Serial;
 
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -39,6 +40,7 @@ class TreeTableCellRenderer extends JTree implements
     /**
      * Serial ID.
      */
+    @Serial
     private static final long serialVersionUID = 4324031590789321581L;
 
     /** The text color for selected cells. */
@@ -77,8 +79,7 @@ class TreeTableCellRenderer extends JTree implements
         // Make the tree's cell renderer use the table's cell selection
         // colors.
         final TreeCellRenderer tcr = getCellRenderer();
-        if (tcr instanceof DefaultTreeCellRenderer) {
-            final DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tcr;
+        if (tcr instanceof DefaultTreeCellRenderer renderer) {
             renderer.setBorderSelectionColor(null);
             renderer.setTextSelectionColor(
                     UIManager.getColor(COLOR_KEY_TABLE_SELECTION_FOREGROUND));

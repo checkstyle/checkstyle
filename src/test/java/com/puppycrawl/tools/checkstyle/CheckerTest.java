@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
+import java.io.Serial;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -54,7 +55,6 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -798,6 +798,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -852,8 +853,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             /**
              * Test is checking catch clause when exception is thrown.
              *
@@ -1148,8 +1149,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
-
             @Override
             public String getAbsolutePath() {
                 return "testFile";
@@ -1226,6 +1227,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Error expectedError = new IOError(new InternalError(errorMessage));
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1290,6 +1292,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1344,6 +1347,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final RuntimeException expectedError = new SecurityException(errorMessage);
 
         final File mock = new File("testFile") {
+            @Serial
             private static final long serialVersionUID = 1L;
 
             /**
@@ -1615,7 +1619,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .filter(line -> !getCheckMessage(AUDIT_FINISHED_MESSAGE).equals(line))
                     .limit(expected.length)
                     .sorted()
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
             Arrays.sort(expected);
 
             for (int i = 0; i < expected.length; i++) {

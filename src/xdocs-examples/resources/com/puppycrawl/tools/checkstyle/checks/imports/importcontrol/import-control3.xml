@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol">
+  <disallow pkg="sun"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
+  <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
+  <allow class="com.google.common.io.Files"/>
+  <allow class="com.google.common.reflect.ClassPath"/>
+  <subpackage name="filters">
+    <allow class="java\.lang\.ref\.(Weak|Soft)Reference"
+      regex="true"/>
+    <disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
+      regex="true"/>
+    <disallow pkg="com.puppycrawl.tools.checkstyle.ant"/>
+    <disallow pkg="com.puppycrawl.tools.checkstyle.gui"/>
+  </subpackage>
+  <subpackage name="dao">
+    <disallow pkg="javax.swing" exact-match="true"/>
+  </subpackage>
+</import-control>

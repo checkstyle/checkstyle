@@ -159,6 +159,57 @@
         <p>
           SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
         </p>
+
+        <p>
+          A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
+          document</em></a> contains a set
+          of <code>suppress</code> and <code>suppress-xpath</code> elements, where
+          each <code>suppress-xpath</code> element can have the
+          following attributes:
+        </p>
+        <ul>
+        <li>
+          <code>files</code> -
+          a <a href="../property_types.html#Pattern">Pattern</a>
+          matched against the file name associated with an audit
+          event. It is optional.
+        </li>
+        <li>
+          <code>checks</code> -
+          a <a href="../property_types.html#Pattern">Pattern</a>
+          matched against the name of the check associated with an audit
+          event. Optional as long as <code>id</code> or <code>message</code> is specified.
+        </li>
+        <li>
+          <code>message</code> -
+          a <a href="../property_types.html#Pattern">Pattern</a>
+          matched against the message of the check associated with an audit
+          event. Optional as long as <code>checks</code> or <code>id</code> is specified.
+        </li>
+        <li>
+          <code>id</code> -
+          a <a href="../property_types.html#String">String</a>
+          matched against the ID of the check associated with an audit
+          event. Optional as long as <code>checks</code> or <code>message</code> is specified.
+        </li>
+        <li>
+          <code>query</code> -
+          a <a href="../property_types.html#String">String</a>
+          xpath query. It is optional.
+        </li>
+        </ul>
+
+        <p>
+          Each audit event is checked against
+          each <code>suppress</code> and <code>suppress-xpath</code> element. It is
+          suppressed if all specified attributes match against the audit
+          event.
+        </p>
+
+        <p>
+          ATTENTION: filtering by message is dependent on runtime locale. If project is running
+          in different languages it is better to avoid filtering by message.
+        </p>
       </subsection>
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
@@ -188,74 +239,34 @@
         </div>
       </subsection>
       <subsection name="Examples" id="Examples">
-        <p>
-          For example, the following configuration fragment directs the
+
+        <p id="Example1-config">
+          For example #1, the following configuration example directs the
           Checker to use a <code>SuppressionXpathFilter</code>
           with suppressions
-          file <code>config/suppressions.xml</code>:
+          file <code>config/suppressions1.xml</code>:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name=&quot;SuppressionXpathFilter&quot;&gt;
-  &lt;property name=&quot;file&quot; value=&quot;config/suppressions.xml&quot;/&gt;
-  &lt;property name=&quot;optional&quot; value=&quot;false&quot;/&gt;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions1.xml"/&gt;
+      &lt;property name="optional" value="false"/&gt;
+    &lt;/module&gt;
+    &lt;module name="CyclomaticComplexity"&gt;
+      &lt;property name="max" value="3"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
 &lt;/module&gt;
-        </code></pre></div>
-        <p>
-          A <a href="/dtds/suppressions_1_2_xpath_experimental.dtd"><em>suppressions XML
-          document</em></a> contains a set
-          of <code>suppress</code> and <code>suppress-xpath</code> elements, where
-          each <code>suppress-xpath</code> element can have the
-          following attributes:
-        </p>
-        <ul>
-          <li>
-            <code>files</code> -
-            a <a href="../property_types.html#Pattern">Pattern</a>
-            matched against the file name associated with an audit
-            event. It is optional.
-          </li>
-          <li>
-            <code>checks</code> -
-            a <a href="../property_types.html#Pattern">Pattern</a>
-            matched against the name of the check associated with an audit
-            event. Optional as long as <code>id</code> or <code>message</code> is specified.
-          </li>
-          <li>
-            <code>message</code> -
-            a <a href="../property_types.html#Pattern">Pattern</a>
-            matched against the message of the check associated with an audit
-            event. Optional as long as <code>checks</code> or <code>id</code> is specified.
-          </li>
-          <li>
-            <code>id</code> -
-            a <a href="../property_types.html#String">String</a>
-            matched against the ID of the check associated with an audit
-            event. Optional as long as <code>checks</code> or <code>message</code> is specified.
-          </li>
-          <li>
-            <code>query</code> -
-            a <a href="../property_types.html#String">String</a>
-            xpath query. It is optional.
-          </li>
-        </ul>
-        <p>
-          Each audit event is checked against
-          each <code>suppress</code> and <code>suppress-xpath</code> element. It is
-          suppressed if all specified attributes match against the audit
-          event.
-        </p>
-        <p>
-          ATTENTION: filtering by message is dependent on runtime locale. If project is running
-          in different languages it is better to avoid filtering by message.
-        </p>
+</code></pre></div>
         <p>
           The following suppressions XML document directs
           a <code>SuppressionXpathFilter</code> to
           reject <code>CyclomaticComplexity</code> violations for
-          all methods with name <i>sayHelloWorld</i> inside <i>FileOne</i>
-          and <i>FileTwo</i> files:
+          all methods with name <i>sayHelloWorld</i> inside <i>Example1</i>
+          and <i>Test</i> files:
         </p>
-        <p>
+        <p id="suppressions1-raw">
           Currently, xpath queries support one type of attribute <code>@text</code>.
           <code>@text</code> - addresses to the text value of the node. For example: variable name,
           annotation name, text content, etc.
@@ -269,113 +280,438 @@
           more accurate results.
           Other token types always have constant values.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;?xml version=&quot;1.0&quot;?&gt;
-
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE suppressions PUBLIC
-&quot;-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN&quot;
-&quot;https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd&quot;&gt;
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
 
 &lt;suppressions&gt;
-  &lt;suppress-xpath checks=&quot;CyclomaticComplexity&quot;
-  files=&quot;FileOne.java,FileTwo.java&quot;
-  query=&quot;//METHOD_DEF[./IDENT[@text='sayHelloWorld']]&quot;/&gt;
+  &lt;suppress-xpath checks="CyclomaticComplexity"
+  files="Example1.java|Test.java"
+  query="//METHOD_DEF[./IDENT[@text='sayHelloWorld']]"/&gt;
 &lt;/suppressions&gt;
-        </code></pre></div>
-        <p>
-          Suppress checks for package definitions:
+</code></pre></div>
+        <p id="Example1-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;/PACKAGE_DEF&quot;/&gt;
-        </code></pre></div>
-        <p>
-          Suppress checks for parent element of the first variable definition:
+public class Example1 {
+  int a, b, c, d, e, n;
+
+  public void sayHelloWorld() { // filtered violation 'Cyclomatic Complexity is 4'
+    if (a == b) {
+      System.out.println("Hello World");
+    }
+    else if (a == 0 &amp;&amp; b == c) {
+      System.out.println("*Silence*");
+    }
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          For example #2, To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions2.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions2-raw">
+          In order to suppress checks for package definitions:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="/COMPILATION_UNIT/PACKAGE_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;(//VARIABLE_DEF)[1]/..&quot;/&gt;
-        </code></pre></div>
-        <p>
-          Suppress checks for elements which are either class definitions,
-          either method definitions.
+// filtered violation below "'package' should be separated from previous line"
+package com.puppycrawl.tools.checkstyle.filters.suppressionxpathfilter;
+public class Example2 { }
+// violation above, "'CLASS_DEF' should be separated from previous line"
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          For example #3, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions3.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LeftCurly"&gt;
+      &lt;property name="option" value="nl"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions3-raw">
+          In order to suppress checks for parent element of the first-ever variable definition:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="descendant::VARIABLE_DEF[1]/.."/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF | //METHOD_DEF&quot;/&gt;
-        </code></pre></div>
-        <p>
-          Suppress checks for certain methods:
+public class Example3
+{
+
+  // filtered violation below "'{' at column 31 should be on a new line."
+  public void testMethodOne() {
+    int x = 5;
+  }
+
+  // violation below, "'{' at column 31 should be on a new line."
+  public void testMethodTwo() {
+    int z = 17;
+    int y;
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          For example #4, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions4.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="EmptyLineSeparator"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions4-raw">
+          In order to suppress checks for elements which are either class definitions,
+          or method definitions.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF | //METHOD_DEF"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='getSomeVar'
-          or @text='setSomeVar']]&quot;/&gt;
-        </code></pre></div>
-        <p>
-          Suppress checks for variable <i>testVariable</i> inside <i>testMethod</i> method
-          inside <i>TestClass</i> class.
+public class Example4 {
+  int y = 3;
+  int x = 5; // violation, "'VARIABLE_DEF' should be separated from previous line."
+  public void testMethod() {}
+  // filtered violation above "'METHOD_DEF' should be separated from previous line."
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          For example #5, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions5.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions5-raw">
+          In order to suppress checks for certain methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//METHOD_DEF/IDENT[@text='GetSomeVar' or @text='SetSomeVar']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//CLASS_DEF[@text='TestClass']
+public class Example5 {
+  // filtered violation below "Name 'SetSomeVar' must match pattern"
+  public void SetSomeVar() {}
+
+  public void TestMethod() {} // violation, "Name 'TestMethod' must match pattern"
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example6-config">
+          For example #6, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions6.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="LocalVariableName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions6-raw">
+          In order to suppress checks for variable <i>TestVariable</i> inside <i>testMethod</i>
+          method inside <i>Example6</i> class.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks=".*" query="//CLASS_DEF[./IDENT[@text='Example6']]
           //METHOD_DEF[./IDENT[@text='testMethod']]
-          //VARIABLE_DEF[./IDENT[@text='testVariable']]&quot;/&gt;
-        </code></pre></div>
-        <p>
-          In the following sample, violations for <code>LeftCurly</code> check will be suppressed
-          for classes with name <i>Main</i> or for methods with name <i>calculate</i>.
+          //VARIABLE_DEF/IDENT[@text='TestVariable']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;LeftCurly&quot; query=&quot;//CLASS_DEF[./IDENT[@text='Main']]//*
-          | //METHOD_DEF[./IDENT[@text='calculate']]/*&quot;/&gt;
-        </code></pre></div>
-        <p>
-          The following example demonstrates how to suppress <code>RequireThis</code> violations for
+public class Example6 {
+
+  public void testMethod() {
+
+    int TestVariable; // filtered violation 'Name 'TestVariable' must match pattern'
+
+    int WeirdName; // violation, "Name 'WeirdName' must match pattern"
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example7-config">
+          For example #7, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions7.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions7-raw">
+          In the following sample, violations for <code>MethodName</code> check will be suppressed
+          for classes with name <i>Main</i> or for methods with name <i>DoMATH</i>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="MethodName" query="//CLASS_DEF[./IDENT[@text='Main']]//*
+          | //METHOD_DEF[./IDENT[@text='DoMATH']]/*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example7-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+  public void DoMATH() {} // filtered violation "Name 'DoMATH' must match pattern"
+  public void DoEng() {} // violation, "Name 'DoEng' must match pattern"
+}
+
+class Main {
+  int someField = 11; // violation, "'11' is a magic number."
+  void FOO() {} // filtered violation "Name 'FOO' must match pattern"
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example8-config">
+          For example #8, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions8.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="RequireThis"&gt;
+      &lt;property name="validateOnlyOverlapping" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions8-raw">
+          In order to suppress <code>RequireThis</code> violations for
           variable <i>age</i> inside <i>changeAge</i> method.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;RequireThis&quot;
-     query=&quot;//CLASS_DEF[./IDENT[@text='InputTest']]
-          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']&quot;/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  private int age = 23;
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
 
-  public void changeAge() {
-    age = 24; // violation will be suppressed
-  }
-}
-        </code></pre></div>
-        <p>
-          Suppress <code>IllegalThrows</code> violations only for methods with name
-          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
-          Double colon is used for axis iterations. In the following example <code>ancestor</code>
-          axis is used to iterate all ancestor nodes of the current node with type
-          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
-          <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
+&lt;suppressions&gt;
+  &lt;suppress-xpath checks="RequireThis"
+     query="//CLASS_DEF[./IDENT[@text='Example8']]
+          //METHOD_DEF[./IDENT[@text='changeAge']]//ASSIGN/IDENT[@text='age']"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example8-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;IllegalThrows&quot; query=&quot;//LITERAL_THROWS
-          /IDENT[@text='RuntimeException' and
-          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]&quot;/&gt;
-        </code></pre></div>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class InputTest {
-  public void throwsMethod() throws RuntimeException { // violation will be suppressed
+public class Example8 {
+
+  int age = 23;
+
+  public void changeAge() {
+    age = 24; // filtered violation 'Reference to instance variable'
   }
 
-  public void sampleMethod() throws RuntimeException { // will throw violation here
+  public int getAge() {
+    return age; // violation, 'Reference to instance variable'
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example9-config">
+          For example 9, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions9.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="IllegalThrows"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          In order to suppress <code>IllegalThrows</code> violations only for methods with name
+          <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions:
+        </p>
+        <p id="suppressions9-raw">
+          (Double colon is used for axis iterations. In the following example <code>ancestor</code>
+          axis is used to iterate all ancestor nodes of the current node with type
+          <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes
+          at <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.)
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="IllegalThrows" query="//LITERAL_THROWS
+          /IDENT[@text='RuntimeException' and
+          ./ancestor::METHOD_DEF[./IDENT[@text='throwsMethod']]]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example9-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example9 {
+  // filtered violation below "Throwing 'RuntimeException' is not allowed."
+  public void throwsMethod() throws RuntimeException {
+  }
+
+  // violation below, "Throwing 'RuntimeException' is not allowed."
+  public void sampleMethod() throws RuntimeException {
   }
 }
-        </code></pre></div>
-        <p>
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example10-config">
+          For example #10, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions10.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="ModifierOrder"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions10-raw">
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
           all children nodes at any level. Keyword <code>node()</code> selects node elements.
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress-xpath checks=".*" query="//METHOD_DEF[./IDENT[@text='legacyMethod']]
+          /descendant-or-self::node()"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example10-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.*&quot; query=&quot;//METHOD_DEF[./IDENT[@text='legacyMethod']]
-          /descendant-or-self::node()&quot;/&gt;
-        </code></pre></div>
+public class Example10 {
+
+  final public void legacyMethod() { // filtered violation 'modifier out of order'
+    strictfp abstract class legacyClass {}
+    // filtered violation above 'modifier out of order'
+  }
+
+  public void otherMethod() {
+    strictfp abstract class strangeClass {} // violation, 'modifier out of order'
+  }
+
+}
+</code></pre></div><hr class="example-separator"/>
 
         <p>Some elements can be suppressed in different ways.
           For example, to suppress violation on variable <code>wordCount</code> in following code:
@@ -407,35 +743,100 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |   `--SEMI -&gt; ; [2:30]
 `--RCURLY -&gt; } [3:0]
         </code></pre></div>
+        <p id="Example11-config">
+          For example #11, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions11.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
         <p>
           The easiest way is to suppress by variable name. As you can see <code>VARIABLE_DEF</code>
           node refers to variable declaration statement and has child node with token type
           <code>IDENT</code> which is used for storing class, method, variable names.
         </p>
-        <p>The following example demonstrates how variable can be queried by its name:</p>
+        <p id="suppressions11-raw">
+          The following example demonstrates how variable can be queried by its name:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//VARIABLE_DEF[
+            ./IDENT[@text='wordCount']]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example11-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[
-            ./IDENT[@text='wordCount']]&quot;/&gt;
-        </code></pre></div>
-        <p>Another way is to suppress by variable value. Again, if you look at the printed AST tree
-        above, you will notice that one of the grandchildren of <code>VARIABLE_DEF</code> node is
-        responsible for storing variable value - <code>NUM_INT</code> with value <b>11</b>.</p>
-        <p>The following example demonstrates how variable can be queried by its value, same
-        approach applies to <code>String, char, float, double, int, long</code> data types:</p>
+public class Example11 {
+  private int wordCount = 11; // filtered violation "'11' is a magic number."
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p>
+          Another way is to suppress by variable value.
+        </p>
+        <p id="Example12-config">
+          For example #12, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions12.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MagicNumber"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          Again, if you look at the printed AST tree above, you will notice that one of the
+          grandchildren of <code>VARIABLE_DEF</code> node is responsible for storing variable value
+          - <code>NUM_INT</code> with value <b>11</b>.
+        </p>
+        <p id="suppressions12-raw">
+          The following example demonstrates how variable can be queried by its value, same
+          approach applies to <code>String, char, float, double, int, long</code> data types:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+    &lt;suppress-xpath checks="." query="//VARIABLE_DEF//NUM_INT[@text=11]"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example12-code">
+          Results:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//VARIABLE_DEF[.//NUM_INT[@text=11]]&quot;/&gt;
-        </code></pre></div>
+public class Example12 {
+  private int wordCount = 11; // filtered violation "'11' is a magic number."
+}
+</code></pre></div><hr class="example-separator"/>
+
         <p>Next example is about suppressing method with certain annotation by its name and
         element value.</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class InputTest {
     @Generated(&quot;first&quot;) // should not be suppressed
-    public void test1() {
-    }
+    public void Test1() {}
 
     @Generated(&quot;second&quot;) // should be suppressed
-    public void test2() {
-    }
+    public void Test2() {}
 }
         </code></pre></div>
         <p>First of all we need to look at AST tree printed by our CLI tool: </p>
@@ -486,27 +887,102 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
 |       `--RCURLY -&gt; } [8:4]
 `--RCURLY -&gt; } [9:0]
         </code></pre></div>
-        <p>
+        <p id="Example13-config">
+          For example #13, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions13.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="suppressions13-raw">
           AST node <code>ANNOTATION -&gt; ANNOTATION [6:4]</code> has direct child
           <code>IDENT -&gt; Generated [6:5]</code>,
           therefore can be queried by <code>IDENT</code> value:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[
-            .//ANNOTATION/IDENT[@text='Generated']]//*&quot;/&gt;
-        </code></pre></div>
-        <p>
-          The problem with query above that it will suppress violations for all methods with
-          annotation <code>@Generated</code>. In order to suppress methods with
-          <code>@Generated(&quot;second&quot;)</code> annotations only, you need to look at AST tree again.
-          Value of the <code>ANNOTATION</code> node is stored inside sub-node with token type
-          <code>STRING_LITERAL</code>. Use the following query to suppress methods with
-          <code>@Generated(&quot;second&quot;)</code> annotation:
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//METHOD_DEF[
+            .//ANNOTATION/IDENT[@text='Generated']]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example13-code">
+          Results:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;suppress-xpath checks=&quot;.&quot; query=&quot;//METHOD_DEF[.//ANNOTATION[
-            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*&quot;/&gt;
-        </code></pre></div>
+public class Example13 {
+  // filtered violation 2 lines below "Name 'Test1' must match pattern"
+  @Generated("first")
+  public void Test1() {}
+
+  // filtered violation 2 lines below "Name 'Test2' must match pattern"
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p>
+          The problem with query above that it will suppress violations for all methods with
+          annotation <code>@Generated</code>.
+        </p>
+        <p id="Example14-config">
+          For next example #14, to configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="SuppressionXpathFilter"&gt;
+      &lt;property name="file" value="${config.folder}/suppressions14.xml"/&gt;
+    &lt;/module&gt;
+    &lt;module name="MethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p>
+          In order to suppress methods with <code>@Generated(&quot;second&quot;)</code> annotations only,
+          you need to look at AST tree again. Value of the <code>ANNOTATION</code> node is stored
+          inside sub-node with token type <code>STRING_LITERAL</code>.
+        </p>
+        <p id="suppressions14-raw">
+          Use the following query to suppress methods with <code>@Generated(&quot;second&quot;)</code>
+          annotation:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE suppressions PUBLIC
+"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd"&gt;
+
+&lt;suppressions&gt;
+   &lt;suppress-xpath checks="." query="//METHOD_DEF[.//ANNOTATION[
+            ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]//*"/&gt;
+&lt;/suppressions&gt;
+</code></pre></div>
+        <p id="Example14-code">
+          Results:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example14 {
+  // violation 2 lines below "Name 'Test1' must match pattern"
+  @Generated("first")
+  public void Test1() {}
+
+  // filtered violation 2 lines below "Name 'Test2' must match pattern"
+  @Generated("second")
+  public void Test2() {}
+}
+</code></pre></div><hr class="example-separator"/>
+
       </subsection>
       <subsection name="Example of Usage" id="Example_of_Usage">
         <ul>

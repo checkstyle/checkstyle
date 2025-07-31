@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.eclipse.jgit.api.Git;
@@ -160,8 +159,11 @@ public class CommitValidationTest {
     @Test
     public void testRevertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
-                .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""
-                    + "\nThis reverts commit ff873c3c22161656794c969bb28a8cb09595f.\n"))
+                .that(validateCommitMessage("""
+                        Revert "doc: release notes for 10.8.0"\
+
+                        This reverts commit ff873c3c22161656794c969bb28a8cb09595f.
+                        """))
                 .isEqualTo(0);
         assertWithMessage("should accept proper revert commit message")
                 .that(validateCommitMessage("Revert \"doc: release notes for 10.8.0\""))
@@ -319,7 +321,7 @@ public class CommitValidationTest {
         final Spliterator<RevCommit> spliterator =
             Spliterators.spliteratorUnknownSize(previousCommitsIterator, Spliterator.ORDERED);
         return StreamSupport.stream(spliterator, false).limit(PREVIOUS_COMMITS_TO_CHECK_COUNT)
-            .collect(Collectors.toUnmodifiableList());
+            .toList();
     }
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(

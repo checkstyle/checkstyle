@@ -121,24 +121,6 @@
     <sourceFile>XpathFilterElement.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/util/Optional::orElse</description>
-    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XpathFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Optional::orElse with argument</description>
-    <lineContent>Optional.ofNullable(checks).map(CommonUtil::createPattern).orElse(null),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>XpathFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable xpathExpression</description>
     <lineContent>xpathExpression = null;</lineContent>

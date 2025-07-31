@@ -28,7 +28,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.antlr.v4.runtime.VocabularyImpl;
 import org.junit.jupiter.api.Test;
@@ -79,11 +78,14 @@ public class GeneratedJavaTokenTypesTest {
      */
     @Test
     public void testTokenNumbering() {
-        final String message = "A token's number has changed. Please open"
-                + " 'GeneratedJavaTokenTypesTest' and confirm which token is at fault.\n"
-                + "Token numbers must not change or else they will create a conflict"
-                + " with users.\n\n"
-                + "See Issue: https://github.com/checkstyle/checkstyle/issues/505";
+        final String message = """
+                A token's number has changed. Please open\
+                 'GeneratedJavaTokenTypesTest' and confirm which token is at fault.
+                Token numbers must not change or else they will create a conflict\
+                 with users.
+
+                See Issue: https://github.com/checkstyle/checkstyle/issues/505
+                """;
 
         // Read JavaDoc before changing
         assertWithMessage(message)
@@ -772,7 +774,7 @@ public class GeneratedJavaTokenTypesTest {
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toUnmodifiableList());
+                .toList();
 
         // Get the starting index of the sublist of tokens, or -1 if sublist
         // is not present.

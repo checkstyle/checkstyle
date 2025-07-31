@@ -410,7 +410,7 @@ public class XdocsPagesTest {
                 final List<String> groupNames = getNames(current);
                 final List<String> groupNamesSorted = groupNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
 
                 assertWithMessage("Group" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(groupNames)
@@ -425,7 +425,7 @@ public class XdocsPagesTest {
                         final List<String> checkNames = getNames(groupNode);
                         final List<String> checkNamesSorted = checkNames.stream()
                                 .sorted()
-                                .collect(Collectors.toUnmodifiableList());
+                                .toList();
                         assertWithMessage("Check" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                                 .that(checkNames)
                                 .containsExactlyElementsIn(checkNamesSorted)
@@ -439,7 +439,7 @@ public class XdocsPagesTest {
                 final List<String> filterNames = getNames(current);
                 final List<String> filterNamesSorted = filterNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 assertWithMessage("Filter" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(filterNames)
                         .containsExactlyElementsIn(filterNamesSorted)
@@ -449,7 +449,7 @@ public class XdocsPagesTest {
                 final List<String> fileFilterNames = getNames(current);
                 final List<String> fileFilterNamesSorted = fileFilterNames.stream()
                         .sorted()
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 assertWithMessage("File Filter" + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH)
                         .that(fileFilterNames)
                         .containsExactlyElementsIn(fileFilterNamesSorted)
@@ -487,7 +487,7 @@ public class XdocsPagesTest {
             final List<String> names = getNamesFromIndexPage(current);
             final List<String> namesSorted = names.stream()
                     .sorted()
-                    .collect(Collectors.toUnmodifiableList());
+                    .toList();
 
             assertWithMessage(name + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH + path)
                     .that(names)
@@ -1426,8 +1426,7 @@ public class XdocsPagesTest {
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
         String result;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             final Pattern[] newArray = new Pattern[collection.size()];
             final Iterator<?> iterator = collection.iterator();
             int index = 0;
@@ -1474,8 +1473,7 @@ public class XdocsPagesTest {
         }
         else {
             final Stream<?> valuesStream;
-            if (value instanceof Collection) {
-                final Collection<?> collection = (Collection<?>) value;
+            if (value instanceof Collection<?> collection) {
                 valuesStream = collection.stream();
             }
             else {
@@ -1507,8 +1505,7 @@ public class XdocsPagesTest {
      */
     private static String getIntArrayPropertyValue(Object value) {
         final IntStream stream;
-        if (value instanceof Collection) {
-            final Collection<?> collection = (Collection<?>) value;
+        if (value instanceof Collection<?> collection) {
             stream = collection.stream()
                     .mapToInt(number -> (int) number);
         }
@@ -1675,8 +1672,12 @@ public class XdocsPagesTest {
     }
 
     private static void validateUsageExample(String fileName, String sectionName, Node subSection) {
-        final String text = subSection.getTextContent().replace("Checkstyle Style", "")
-                .replace("Google Style", "").replace("Sun Style", "").trim();
+        final String text = subSection.getTextContent()
+            .replace("Checkstyle Style", "")
+            .replace("Google Style", "")
+            .replace("Sun Style", "")
+            .replace("Checkstyle's Import Control Config", "")
+            .trim();
 
         assertWithMessage(fileName + " section '" + sectionName
                 + "' has unknown text in 'Example of Usage': " + text)
@@ -1721,6 +1722,10 @@ public class XdocsPagesTest {
                             + "' should be in sun_checks.xml or not reference 'Sun Style'")
                         .that(SUN_MODULES)
                         .contains(sectionName);
+            }
+            else if ("Checkstyle's Import Control Config".equals(linkText)) {
+                expectedUrl = "https://github.com/checkstyle/checkstyle/blob/master/config/"
+                    + "import-control.xml";
             }
 
             assertWithMessage(fileName + " section '" + sectionName
@@ -1947,7 +1952,7 @@ public class XdocsPagesTest {
 
             if (position == 1) {
                 actualUrl = XmlUtil.getNameAttributeOfNode(anchor);
-                expectedUrl = ruleNumber;
+                expectedUrl = "a" + ruleNumber;
             }
             else {
                 actualUrl = anchor.getAttributes().getNamedItem("href").getTextContent();

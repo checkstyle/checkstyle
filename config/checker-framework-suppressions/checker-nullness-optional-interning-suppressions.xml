@@ -441,7 +441,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference stack.peek()</message>
-    <lineContent>if (stack.peek().getText().equals(token.getText())) {</lineContent>
+    <lineContent>&amp;&amp; stack.peek().getText().equals(token.getText())) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1547,13 +1547,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
-    <specifier>cast.unsafe</specifier>
-    <message>cast from &quot;@KeyFor(&quot;super&quot;) Object&quot; to &quot;@KeyFor(&quot;[error for expression: super; error: Invalid &apos;super&apos; because the expression did not parse. Error message: Encountered unexpected token:&lt;EOF&gt;]&quot;) String&quot; cannot be statically verified</message>
-    <lineContent>final String keyString = (String) key;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
     <specifier>contracts.postcondition</specifier>
     <message>postcondition of put is not satisfied.</message>
     <lineContent>public synchronized Object put(Object key, Object value) {</lineContent>
@@ -1561,13 +1554,6 @@
       found   : key is @KeyFor(&quot;super&quot;)
       required: key is @KeyFor(&quot;this&quot;)
     </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java</fileName>
-    <specifier>expression.unparsable</specifier>
-    <message>Expression invalid in dependent type annotation: [error for expression: super; error: Invalid &apos;super&apos; because the expression did not parse. Error message: Encountered unexpected token:&lt;EOF&gt;]</message>
-    <lineContent>final String keyString = (String) key;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -5384,6 +5370,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
+    <lineContent>.toList();</lineContent>
+    <details>
+      found   : @Initialized @NonNull List&lt;@Initialized @PolyNull AbstractNode&gt;
+      required: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
+    <specifier>assignment</specifier>
+    <message>incompatible types in assignment.</message>
     <lineContent>xpathExpression = null;</lineContent>
     <details>
       found   : null (NullType)
@@ -5435,22 +5432,6 @@
     <details>
       type of expression: @Initialized @Nullable String
       method return type: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
-    <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for Stream.collect</message>
-    <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
-    <details>
-      unsatisfiable constraint: @Initialized @PolyNull AbstractNode &lt;: @Initialized @NonNull AbstractNode
-      use of T from Collectors.toUnmodifiableList() = @Initialized @NonNull AbstractNode
-      From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= @Initialized @NonNull AbstractNode
-      inference type: java.util.List&lt;T&gt; &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) &lt;: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From complementary bound.: use of R from getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList()) -&gt; @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-      From: Constraint between method call type and target type for method call:getItems(event).stream().map(AbstractNode.class::cast).collect(Collectors.toUnmodifiableList())
     </details>
   </checkerFrameworkError>
 
@@ -6525,6 +6506,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
+    <lineContent>.toList();</lineContent>
+    <details>
+      type of expression: @Initialized @NonNull List&lt;T extends @Initialized @PolyNull Object&gt;
+      method return type: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
     <lineContent>return Arrays.copyOf(array, length);</lineContent>
     <details>
       type of expression: T[ extends @Initialized @Nullable Object super @Initialized @Nullable Void] @Initialized @NonNull []
@@ -6558,16 +6550,12 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for Stream.collect</message>
-    <lineContent>.collect(Collectors.toUnmodifiableList());</lineContent>
+    <message>Could not infer type arguments for Stream.map</message>
+    <lineContent>.map(elementType::cast)</lineContent>
     <details>
-      unsatisfiable constraint: T extends @Initialized @PolyNull Object &lt;: T extends @Initialized @Nullable Object
-      use of T from Collectors.toUnmodifiableList() = T extends @Initialized @Nullable Object
-      From complementary bound.: use of T from Collectors.toUnmodifiableList() &lt;= T extends @Initialized @Nullable Object
-      inference type: java.util.List&lt;T&gt; &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) &lt;: @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      From complementary bound.: use of R from items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList()) -&gt; @Initialized @NonNull List&lt;T extends @Initialized @Nullable Object&gt;
-      From: Constraint between method call type and target type for method call:items.stream().map(elementType::cast).collect(Collectors.toUnmodifiableList())
+      unsatisfiable constraint: S extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
+      elementType::cast -&gt; inference type: java.util.function.Function&lt;? super S,? extends R&gt;
+      From: Argument constraint
     </details>
   </checkerFrameworkError>
 

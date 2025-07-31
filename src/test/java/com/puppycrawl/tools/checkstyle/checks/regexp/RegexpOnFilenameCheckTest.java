@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameChec
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
+import java.io.Serial;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
@@ -265,6 +266,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     private static final class MockFile extends File {
 
         /** A unique serial version identifier. */
+        @Serial
         private static final long serialVersionUID = 8361197804062781531L;
 
         private MockFile(String path) {

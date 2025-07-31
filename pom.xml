@@ -206,7 +206,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.3.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
-    <pmd.version>7.15.0</pmd.version>
+    <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.8</saxon.version>
@@ -220,7 +220,7 @@
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
-    <pitest.plugin.version>1.20.0</pitest.plugin.version>
+    <pitest.plugin.version>1.20.1</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
     <pitest.plugin.output.formats>HTML,XML</pitest.plugin.output.formats>
     <pitest.plugin.timeout.constant>50000</pitest.plugin.timeout.constant>
@@ -228,16 +228,15 @@
     <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.13.3</junit.version>
+    <junit.version>5.13.4</junit.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.49.5</checkerframework.version>
-    <error-prone.version>2.40.0</error-prone.version>
-    <error-prone-support.version>0.23.0</error-prone-support.version>
+    <error-prone.version>2.41.0</error-prone.version>
+    <error-prone-support.version>0.24.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
-      -Xep:AssertJIsNull:ERROR
       -Xep:AutowiredConstructor:ERROR
       -Xep:CanonicalAnnotationSyntax:ERROR
       -Xep:CollectorMutability:ERROR
@@ -383,7 +382,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.0.5</version>
+      <version>4.0.6</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -395,7 +394,7 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.19.0</version>
+      <version>2.20.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -633,7 +632,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.11</version>
+                <version>7.6.12</version>
               </plugin>
             </plugins>
           </configuration>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE import-control PUBLIC
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd">
+
+<import-control pkg="com.puppycrawl.tools.checkstyle.checks.imports.importcontrol">
+  <subpackage name="gui" strategyOnMismatch="allowed">
+    <file name=".*(Panel|View|Example).*" regex="true">
+      <disallow pkg="com.mycompany.dao"/>
+      <disallow pkg=".*\.sql" regex="true"/>
+    </file>
+    <file name="PresentationModel">
+      <disallow pkg="javax\.swing\.J.*" regex="true"/>
+    </file>
+  </subpackage>
+</import-control>

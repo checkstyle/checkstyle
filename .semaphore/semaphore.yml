@@ -50,13 +50,11 @@ blocks:
               values:
                 - .ci/validation.sh all-sevntu-checks
                 - .ci/validation.sh check-missing-pitests
-                # until https://github.com/checkstyle/checkstyle/issues/13209
-                # - .ci/validation.sh eclipse-static-analysis
+                - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
-                # until https://github.com/checkstyle/checkstyle/issues/14086
-                # - .ci/no-exception-test.sh no-exception-samples-ant
+                - .ci/no-exception-test.sh no-exception-samples-ant
                 # permanently disabled as it is very unstable in execution
                 # - .ci/validation.sh nondex
           commands:

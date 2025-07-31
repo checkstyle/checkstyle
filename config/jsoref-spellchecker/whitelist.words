@@ -293,6 +293,7 @@ Deconstruction
 defau
 defaultcomeslast
 defaultlabelpresence
+defaultlogger
 delims
 DENORMALIZER
 Depedency
@@ -496,6 +497,7 @@ func
 funmodifiablecollection
 Fwhitespace
 Fx
+Fxq
 gav
 Gdrox
 generalform
@@ -709,7 +711,6 @@ jhu
 jide
 jidesoft
 jira
-JIs
 jitpack
 jkl
 JLabel
@@ -800,6 +801,7 @@ lombok
 lookaround
 Loughran
 lparen
+lte
 lucene
 lui
 luiframework
@@ -949,6 +951,7 @@ nonconstantfieldnames
 nondex
 nonemptyatclausedescription
 nonemptyblocks
+NONFORMATTED
 NONGROUP
 NONJAVA
 nonjavadoc
@@ -1323,6 +1326,7 @@ superfinalize
 Superinterface
 supertype
 suppressioncommentfilter
+suppressionexample
 suppressionfilter
 suppressionsinglefilter
 suppressionsloader
@@ -1393,6 +1397,8 @@ treemap
 treeset
 treetable
 treewalker
+trino
+trinodb
 tschneeberger
 tstamp
 tt

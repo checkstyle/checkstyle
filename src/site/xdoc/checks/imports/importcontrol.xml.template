@@ -25,85 +25,133 @@
       </subsection>
 
       <subsection name="Examples" id="Examples">
-        <p>
+
+        <p id="Example1-config">
           To configure the check using an import control file called
-          "config/import-control.xml", then have the following:
+          "${config.folder}/import-control1.xml", then have the following:
         </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control1-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control1.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example1-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name="ImportControl"&gt;
-  &lt;property name="file" value="config/import-control.xml"/&gt;
-&lt;/module&gt;
-        </code></pre></div>
-
-        <p>
-          To configure the check to only check the "src/main" directory
-          using an import control file called "config/import-control.xml",
+        <p id="Example2-config">
+          To configure the check to only check the "${config.folder}/api" directory
+          using an import control file called "${config.folder}/import-control2.xml",
           then have the following:
         </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control2-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control2.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example2-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;module name="ImportControl"&gt;
-  &lt;property name="file" value="config/import-control.xml"/&gt;
-  &lt;property name="path" value="^.*[\\/]src[\\/]main[\\/].*$"/&gt;
-&lt;/module&gt;
-        </code></pre></div>
-
-        <p>
-          In the example below access to package
+        <p id="Example3-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control3-raw">
+          In the example below, access to package
           <code>com.puppycrawl.tools.checkstyle.checks</code> and its subpackages is
-          allowed from anywhere in <code>com.puppycrawl.tools.checkstyle</code> except
+          allowed from anywhere in
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol</code> except
           from the <code>filters</code> subpackage where access to all
           <code>check</code>'s subpackages is disallowed. Two <code>java.lang.ref</code>
           classes are allowed by virtue of one regular expression instead of listing
           them in two separate allow rules (as it is done with the <code>Files</code>
           and <code>ClassPath</code> classes).
         </p>
-
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;disallow pkg="sun"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.api"/&gt;
-  &lt;allow pkg="com.puppycrawl.tools.checkstyle.checks"/&gt;
-  &lt;allow class="com.google.common.io.Files"/&gt;
-  &lt;allow class="com.google.common.reflect.ClassPath"/&gt;
-  &lt;subpackage name="filters"&gt;
-    &lt;allow class="java\.lang\.ref\.(Weak|Soft)Reference"
-      regex="true"/&gt;
-    &lt;disallow pkg="com\.puppycrawl\.tools\.checkstyle\.checks\.[^.]+"
-      regex="true"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.ant"/&gt;
-    &lt;disallow pkg="com.puppycrawl.tools.checkstyle.gui"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage name="dao"&gt;
-    &lt;disallow pkg="javax.swing" exact-match="true"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-
-        <p>
-          In the next example regular expressions are used to enforce a layering rule: In all
-          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
-          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to directly
-          access <code>dao</code> and <code>service</code> layer from <code>ui</code> packages. The
-          root package is also a regular expression that is used to handle old and new domain name
-          with the same rules.
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control3.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example3-code">
+          Results:
         </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="(de.olddomain|de.newdomain)\..*" regex="true"&gt;
-  &lt;subpackage pkg="[^.]+\.dao" regex="true"&gt;
-    &lt;disallow pkg=".*\.ui" regex="true"/&gt;
-    &lt;disallow pkg=".*\.(awt|swing).\.*" regex="true"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage pkg="[^.]+\.ui" regex="true"&gt;
-    &lt;disallow pkg=".*\.(dao|service)" regex="true"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <p id="Example4-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/newdomain/dao/Example4.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control4-raw">
+          Regular expressions are used to enforce a layering rule: In all
+          <code>dao</code> packages it is not allowed to access UI layer code (<code>ui</code>,
+          <code>awt</code>, and <code>swing</code>). On the other hand it is not allowed to
+          directly access <code>dao</code> and <code>service</code> layer from <code>ui</code>
+          packages. The root package is also a regular expression that is used to handle old
+          and new domain name with the same rules.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control4.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example4-code">
+          Example results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/newdomain/dao/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
+        <p id="Example5-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
-          In the next examples usage of <code>strategyOnMismatch</code> property is shown.
+          For example below, usage of <code>strategyOnMismatch</code> property is shown.
           This property defines strategy in a case when no matching allow/disallow rule was found.
           Property <code>strategyOnMismatch</code> is attribute of <code>import-control</code> and
           <code>subpackage</code> tags.
@@ -128,158 +176,230 @@
           <li>disallowed - if there is no matching allow/disallow rule inside the current
               subpackage, then the import is disallowed.</li>
         </ul>
-
-        <p>
+        <p id="import-control5-raw">
           The following example demonstrates usage of <code>strategyOnMismatch</code> property for
           <code>import-control</code> tag. Here all imports are allowed except
           <code>java.awt.Image</code> and <code>java.io.File</code> classes.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
-  strategyOnMismatch="allowed"&gt;
-  &lt;disallow class="java.awt.Image"/&gt;
-  &lt;disallow class="java.io.File"/&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-
-        <p>
-          In the example below, any import is disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package except imports from
-          package <code>javax.swing</code> and class <code>java.io.File</code>.
-          However, any import is allowed in the classes outside of
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package.
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control5.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example5-code">
+          Results:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">e>
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"
-  strategyOnMismatch="allowed"&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="disallowed"&gt;
-    &lt;allow pkg="javax.swing"/&gt;
-    &lt;allow class="java.io.File"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <p>
+        <p id="Example6-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control6-raw">
+          In the example below, any import is disallowed inside
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package except imports from package <code>javax.swing</code> and class
+          <code>java.io.File</code>. However, any import is allowed in the classes outside of
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package.
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control6.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example6-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control7-raw">
           When <code>strategyOnMismatch</code> has <code>allowed</code> or <code>disallowed</code>
           value for <code>subpackage</code> tag, it makes <code>subpackage</code> isolated from
           parent rules.
           In the next example, if no matching rule was found inside
           <code>com.puppycrawl.tools.checkstyle.checks.filters</code> then it continues checking
           in the parent subpackage, while for
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> import will be allowed by
-          default.
+          <code>com.puppycrawl.tools.checkstyle.checks.someImports</code> import will be disallowed
+          by default.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow class="java\.awt\.Image" regex="true"/&gt;
-  &lt;allow class="java\..*\.File" local-only="true" regex="true"/&gt;
-  &lt;subpackage name="imports" strategyOnMismatch="allowed"&gt;
-    &lt;allow pkg="javax\.swing" regex="true"/&gt;
-    &lt;allow pkg="java\.io" exact-match="true"
-      local-only="true" regex="true"/&gt;
-  &lt;/subpackage&gt;
-  &lt;subpackage name="filters"&gt;
-    &lt;allow class="javax.util.Date"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-        <p>
-          In the example below, only file names that end with "Panel", "View", or "Dialog"
-          in the package <code>gui</code> are disallowed to have imports from
-          <code>com.mycompany.dao</code> and any <code>jdbc</code> package. In addition, only
-          the file name named "PresentationModel" in the package <code>gui</code> are
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control7.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example7-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example8-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/gui/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control8-raw">
+          In the example below, in the package <code>gui</code>, only the file names that include
+          "Panel", "View", or "Example" are disallowed to have imports from
+          <code>com.mycompany.dao</code> and any <code>sql</code> package. In addition, only
+          the file name named "PresentationModel" in the package <code>gui</code> is
           disallowed to have imports that match <code>javax.swing.J*</code>.
           All other imports in the package are allowed.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.mycompany.billing"&gt;
-  &lt;subpackage name="gui" strategyOnMismatch="allowed"&gt;
-    &lt;file name=".*(Panel|View|Dialog)" regex="true"&gt;
-      &lt;disallow pkg="com.mycompany.dao"/&gt;
-      &lt;disallow pkg=".*\.jdbc" regex="true"/&gt;
-    &lt;/file&gt;
-    &lt;file name="PresentationModel"&gt;
-      &lt;disallow pkg="javax\.swing\.J.*" regex="true"/&gt;
-    &lt;/file&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-
-        <p>
-          For a real-life import control file look at the file called <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
-          import-control.xml</a>
-          which is part of the Checkstyle distribution.
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control8.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example8-code">
+          Results:
         </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/gui/Example8.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <h4 id="blacklist-example">Example of blacklist mode</h4>
+        <p id="Example9-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
         <p>
           To have a <b>blacklist mode</b>, it is required to have disallows inside subpackage
           and to have allow rule inside parent of the current subpackage to catch classes and
           packages those are not in the blacklist.
         </p>
-        <p>
-          In the example below any import from <code>java.util</code>
-          (<code>java.util.List</code>, <code>java.util.Date</code>) package is allowed except
+        <p id="import-control9-raw">
+          In the example below any import from <code>java.util</code> package is allowed except
           <code>java.util.Map</code> inside subpackage
           <code>com.puppycrawl.tools.checkstyle.filters</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle"&gt;
-  &lt;allow pkg="java.util"/&gt;
-  &lt;subpackage name="filters" &gt;
-    &lt;disallow class="java.util.Map"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-        <p>
-          In the next example imports <code>java.util.stream.Stream</code> and
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control9.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example9-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/filters/Example9.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example10-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control10-raw">
+          imports <code>java.util.stream.Stream</code> and
           <code>java.util.stream.Collectors</code> are disallowed inside
-          <code>com.puppycrawl.tools.checkstyle.checks.imports</code> package,
-          but because of <code>&lt;allow pkg="java.util.stream"/&gt;</code> every import
+          <code>com.puppycrawl.tools.checkstyle.checks.imports.importcontrol.someImports</code>
+          package, but because of <code>&lt;allow pkg="java.util.stream"/&gt;</code> every import
           from <code>java.util.stream</code> is allowed except described ones.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg="java.util.stream"/&gt;
-  &lt;subpackage name="imports"&gt;
-    &lt;disallow class="java.util.stream.Stream"/&gt;
-    &lt;disallow class="java.util.stream.Collectors"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control10.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example10-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example10.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-package com.puppycrawl.tools.checkstyle.checks.imports;
-
-import java.util.stream.Stream;     // violation here
-import java.util.stream.Collectors; // violation here
-import java.util.stream.IntStream;
-        </code></pre></div>
-        <p>
+        <p id="Example11-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example11.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control11-raw">
           In the following example, all imports are allowed except the classes
           <code>java.util.Date</code>, <code>java.util.List</code> and package <code>sun</code>.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;allow pkg=".*" regex="true"/&gt;
-  &lt;subpackage name="imports"&gt;
-    &lt;disallow class="java.util.Date"/&gt;
-    &lt;disallow class="java.util.List"/&gt;
-    &lt;disallow pkg="sun"/&gt;
-  &lt;/subpackage&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
-        <p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control11.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example11-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/someImports/Example11.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example12-config">
+          To configure the check:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example12.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control12-raw">
           In the following example, all imports of the <code>java.util</code> package are allowed
           except the <code>java.util.Date</code> class.
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-&lt;import-control pkg="com.puppycrawl.tools.checkstyle.checks"&gt;
-  &lt;disallow class="java.util.Date"/&gt;
-
-  &lt;allow pkg="java.util"/&gt;
-&lt;/import-control&gt;
-        </code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control12.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example12-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example12.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
 
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
@@ -356,6 +476,10 @@ import java.util.stream.IntStream;
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ImportControl">
             Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
+            Checkstyle's Import Control Config</a>
           </li>
         </ul>
       </subsection>
