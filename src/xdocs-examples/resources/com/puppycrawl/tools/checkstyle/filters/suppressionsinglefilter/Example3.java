@@ -10,7 +10,7 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
-// filtered violation 10 lines above 'Line matches the illegal pattern'
+// filtered violation 9 lines above 'Line matches the illegal pattern'
 // xdoc section -- start
 public class Example3 {
 
