@@ -25,7 +25,9 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +35,7 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -136,7 +139,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "org/checkstyle/suppressionxpathfilter";
+        return "org/checkstyle/checks/suppressionxpathfilter";
     }
 
     @Override
@@ -166,7 +169,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public void validateIntegrationTestClassNames() throws Exception {
         final Set<String> compatibleChecks = new HashSet<>();
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
-        try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
+        try (Stream<Path> javaPathsStream = Files.walk(Paths.get(javaDir.toString()))) {
+            List<Path> javaPaths = javaPathsStream.filter(Files::isRegularFile).toList();
+
             for (Path path : javaPaths) {
                 assertWithMessage(path + " is not a regular file")
                         .that(Files.isRegularFile(path))
@@ -207,7 +212,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(INTERNAL_MODULES);
 
         assertWithMessage("XpathRegressionTest is missing for [" + String.join(", ", allChecks)
-                + "]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter")
+                + "]. Please add them to src/it/java/org/checkstyle")
                         .that(allChecks)
                         .isEmpty();
     }
