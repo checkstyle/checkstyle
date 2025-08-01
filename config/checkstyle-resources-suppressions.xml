@@ -79,6 +79,10 @@
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="uncommentedmain[\\/]InputUncommentedMainBeginTreePackage2\.java"/>
+  
+  <!-- intentional problem for testing -->
+  <suppress checks="RegexpSingleline"
+    files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>          
 
   <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
