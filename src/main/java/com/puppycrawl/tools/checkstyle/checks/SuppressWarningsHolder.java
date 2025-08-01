@@ -133,8 +133,7 @@ public class SuppressWarningsHolder
      *        name)
      * @return the alias of the simple check name for the given check
      */
-    @Nullable
-    private static String getSimpleNameAlias(String sourceName) {
+    private static @Nullable String getSimpleNameAlias(String sourceName) {
         final String checkName = CommonUtil.baseClassName(sourceName);
         final String checkNameSuffix = "Check";
         // check alias for the CheckNameCheck
