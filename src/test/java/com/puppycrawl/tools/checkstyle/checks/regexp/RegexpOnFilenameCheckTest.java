@@ -29,6 +29,7 @@ import java.io.Serial;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -275,7 +276,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
 
         /** This method is overridden to emulate a file without parent. */
         @Override
-        public String getParent() {
+        public @Nullable String getParent() {
             return null;
         }
 
