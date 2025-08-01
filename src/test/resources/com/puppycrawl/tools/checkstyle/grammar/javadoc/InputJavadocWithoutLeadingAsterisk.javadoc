@@ -1,0 +1,13 @@
+javadoc without leading asterisk
+{@code what
+is this}
+{@code what
+        is this}
+<a href="myUrl" abcd
+def>myText</a>
+<a href="myUrl" abcd
+    def>myText</a>
+@param a This is my
+parameter.
+@param a This is my
+        parameter.

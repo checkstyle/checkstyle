@@ -213,4 +213,10 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags4.txt"),
                 getHTMLTagsPath("InputNonTightTags4.javadoc"));
     }
+
+    @Test
+    public void testJavadocWithoutLeadingAsterisks() throws Exception {
+        verifyJavadocTree(getPath("ExpectedJavadocWithoutLeadingAsterisk.txt"),
+                getPath("InputJavadocWithoutLeadingAsterisk.javadoc"));
+    }
 }

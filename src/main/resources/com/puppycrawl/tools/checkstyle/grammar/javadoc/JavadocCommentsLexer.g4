@@ -105,8 +105,7 @@ AT_SIGN
     : {isJavadocBlockTag()}? '@' -> pushMode(BLOCK_TAG)
     ;
 
-DefaultMode_TAG_OPEN: '<' {_input.seek(_input.index() - 1);} -> skip, pushMode(TEXT_MODE);
-DefaultMode_JAVADOC_INLINE_TAG_START: '{@' {_input.seek(_input.index() - 2);} -> skip, pushMode(TEXT_MODE);
+SWITCH_TO_TEXT_MODE: . {_input.seek(_input.index() - 1);} -> skip, pushMode(TEXT_MODE);
 
 mode TEXT_MODE;
 Text_NEWLINE: '\r'? '\n' {setAfterNewline();} -> mode(DEFAULT_MODE), type(NEWLINE), channel(NEWLINES);
@@ -213,6 +212,7 @@ IndexTerm_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 mode START_OF_LINE;
 StartOfLine_LEADING_ASTERISK: [ \t]* '*' -> channel(LEADING_ASTERISKS), popMode, type(LEADING_ASTERISK);
+POP_MODE: . {_input.seek(_input.index() - 1);} -> skip, popMode;
 
 mode BLOCK_TAG;
 AUTHOR: 'author' -> pushMode(TEXT_MODE);
