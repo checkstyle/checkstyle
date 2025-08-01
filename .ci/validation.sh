@@ -428,6 +428,12 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
+spotlessCheck)
+  export MAVEN_OPTS='-Xmx4g'
+  ./mvnw -e --no-transfer-progress clean spotless:check
+  echo "Run 'spotless:check' to check for recipes changes."
+  ;;
+
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
