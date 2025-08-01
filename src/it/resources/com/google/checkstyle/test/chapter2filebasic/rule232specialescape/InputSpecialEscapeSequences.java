@@ -30,6 +30,7 @@ public class InputSpecialEscapeSequences {
     String r6 = "\"";
     String r7 = "\'";
     String r8 = "\\";
+    String r9 = "\s";
   }
 
   /** Some javadoc. */
@@ -77,6 +78,7 @@ public class InputSpecialEscapeSequences {
       String r6 = "\"";
       String r7 = "\'";
       String r8 = "\\";
+      String r9 = "\s";
     }
 
     public void specialCharsWithWarn() {
@@ -123,6 +125,7 @@ public class InputSpecialEscapeSequences {
             String r6 = "\"";
             String r7 = "\'";
             String r8 = "\\";
+            String r9 = "\s";
           }
 
           public void specialCharsWithWarn() {
