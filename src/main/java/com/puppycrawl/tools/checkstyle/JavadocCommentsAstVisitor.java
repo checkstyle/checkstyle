@@ -381,36 +381,64 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @param children the list of children to add
      */
     private void processChildren(JavadocNodeImpl parent, List<? extends ParseTree> children) {
+        TextAccumulator accumulator = new TextAccumulator();
+
         children.forEach(child -> {
             if (child instanceof TerminalNode terminalNode) {
                 Token token = (Token) terminalNode.getPayload();
-                addHiddenTokensToTheLeft(token, parent);
 
-                if (token.getType() != -1) {
+                // Flush accumulated text if a non-text token is encountered
+                if (!isTextToken(token)) {
+                    accumulator.flushTo(parent);
+                }
+
+                // Add hidden tokens before this token
+                addHiddenTokensToTheLeft(token, parent, accumulator);
+
+                if (isTextToken(token)) {
+                    accumulator.append(token);
+                }
+                else if (token.getType() != -1) {
                     parent.addChild(create(token));
                 }
             } else {
+                accumulator.flushTo(parent);
                 Token token = ((ParserRuleContext) child).getStart();
-                addHiddenTokensToTheLeft(token, parent);
+                addHiddenTokensToTheLeft(token, parent, accumulator);
                 parent.addChild(visit(child));
             }
         });
+
+        accumulator.flushTo(parent);
     }
 
     /**
-     * Adds hidden tokens that appear to the left of the given token to the specified parent node.
-     * Ensures that hidden tokens for a token are added only once by tracking processed tokens.
+     * Checks whether a token is a Javadoc text token.
      *
-     * @param token  the token whose hidden tokens should be added
-     * @param parent the parent node to which the hidden tokens should be added
+     * @param token the token to check
+     * @return true if the token is a text token, false otherwise
      */
-    private void addHiddenTokensToTheLeft(Token token, JavadocNodeImpl parent) {
+    private boolean isTextToken(Token token) {
+        return token.getType() == JavadocCommentsTokenTypes.TEXT;
+    }
+
+    /**
+     * Adds hidden tokens to the left of the given token to the parent node.
+     * Ensures text accumulation is flushed before adding hidden tokens.
+     * Hidden tokens are only added once per unique token index.
+     *
+     * @param token      the token whose hidden tokens should be added
+     * @param parent     the parent node to which hidden tokens are added
+     * @param accumulator the accumulator to flush before inserting hidden tokens
+     */
+    private void addHiddenTokensToTheLeft(Token token, JavadocNodeImpl parent, TextAccumulator accumulator) {
         boolean alreadyProcessed = !processedTokenIndices.add(token.getTokenIndex());
 
         if (!alreadyProcessed) {
             int tokenIndex = token.getTokenIndex();
             final List<Token> hiddenTokens = tokens.getHiddenTokensToLeft(tokenIndex);
             if (hiddenTokens != null) {
+                accumulator.flushTo(parent);
                 for (Token hiddenToken : hiddenTokens) {
                     parent.addChild(create(hiddenToken));
                 }
@@ -458,5 +486,41 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         }
 
         return node;
+    }
+
+    /**
+     * A small utility to accumulate consecutive TEXT tokens into one node,
+     * preserving the starting token for accurate location metadata.
+     */
+    private final class TextAccumulator {
+        private final StringBuilder buffer = new StringBuilder();
+        private Token startToken;
+
+        /**
+         * Appends a TEXT token's text to the buffer and tracks the first token.
+         *
+         * @param token the token to accumulate
+         */
+        public void append(Token token) {
+            if (buffer.isEmpty()) {
+                startToken = token;
+            }
+            buffer.append(token.getText());
+        }
+
+        /**
+         * Flushes the accumulated buffer into a single {@link JavadocNodeImpl} node
+         * and adds it to the given parent. Clears the buffer after flushing.
+         *
+         * @param parent the parent node to add the new node to
+         */
+        public void flushTo(JavadocNodeImpl parent) {
+            if (!buffer.isEmpty()) {
+                JavadocNodeImpl startNode = create(startToken);
+                startNode.setText(buffer.toString());
+                parent.addChild(startNode);
+                buffer.setLength(0);
+            }
+        }
     }
 }
