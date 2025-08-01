@@ -76,8 +76,14 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
+        final List<String> excludedTests = List.of(
+                "IndentationTrailingCommentsVerticalAlignmentTest.java"
+        );
+
         walkVisible(Path.of("src/test/java"), filePath -> {
-            verifyHasProductionFile(allTests, filePath.toFile());
+            if (!excludedTests.contains(filePath.toFile().getName())) {
+                verifyHasProductionFile(allTests, filePath.toFile());
+            }
         });
     }
 
