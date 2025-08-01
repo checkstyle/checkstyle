@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.regexp;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -244,8 +245,8 @@ public final class DetectorOptions {
          * @return DetectorOptions instance.
          */
         public DetectorOptions build() {
-            message = Optional.ofNullable(message).orElse("");
-            suppressor = Optional.ofNullable(suppressor).orElse(NeverSuppress.INSTANCE);
+            message = Objects.requireNonNullElse(message, "");
+            suppressor = Objects.requireNonNullElse(suppressor, NeverSuppress.INSTANCE);
             pattern = Optional.ofNullable(format).map(this::createPattern).orElse(null);
             return DetectorOptions.this;
         }
