@@ -33,6 +33,10 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
           """
           \\
           """;
+      String r9 =
+          """
+          \s
+          """;
     }
   }
 
@@ -81,6 +85,10 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
     String r8 =
         """
         \\
+        """;
+    String r9 =
+        """
+        \s
         """;
   }
 
@@ -188,6 +196,10 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
           String r8 =
               """
               \\
+              """;
+          String r9 =
+              """
+              \s
               """;
         }
 
