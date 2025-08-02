@@ -25,7 +25,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method2() {
-        Integer a = 5;
+        Integer a = 5; // violation 'Distance .* is 2.'
         class AClass extends Parent {
             int i;
 
@@ -101,7 +101,7 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method8() {
-        Integer m = 10;
+        Integer m = 10; // violation 'Distance .* is 2.'
         class BClass extends Parent{
             public BClass getNewInstance(){
                 return new BClass(){
