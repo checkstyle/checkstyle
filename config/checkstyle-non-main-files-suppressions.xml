@@ -185,14 +185,6 @@
   <!-- We use negative suppression to check workflow files only. -->
   <suppress id="workflowJobStepSpacing" files="^.((?!github[\\/]workflows[\\/]).)*$" />
 
-  <!-- Examples macro suppressions -->
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]imports[\\/]importcontrol.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionfilter.xml.template"/>
-  <suppress id="exampleMacroMustExist"
-         files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppressionxpathfilter.xml.template"/>
-
   <!-- there is no messages in module by design -->
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]suppresswarningsholder.xml.template"/>
