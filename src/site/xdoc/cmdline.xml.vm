@@ -29,9 +29,8 @@
       <p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-java -D&lt;property&gt;=&lt;value&gt;  \
-     com.puppycrawl.tools.checkstyle.Main \
-     -c &lt;configurationFile&gt; \
+java -jar checkstyle-${projectVersion}-all.jar -D&lt;property&gt;=&lt;value&gt; \
+     [-c &lt;configurationFile&gt;] \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-s &lt;line:column&gt;] [-w | --tabWidth &lt;length&gt;] \
      [-g | --generate-xpath-suppression] [-G | --generate-checks-and-files-suppression] \
