@@ -12,6 +12,15 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "maxLineLen",
+              "shortDescription": {
+                "text": "LineLength"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for long lines.\n <\/div>\n\n <p>\n Rationale: Long lines are hard to read in printouts or if developers\n have limited screen space for the source code, e.g. if the IDE displays\n additional information like project tree, class hierarchy, etc.\n <\/p>\n <ul>\n <li>\n The calculation of the length of a line takes into account the number of\n expanded spaces for a tab character ({@code '\\t'}). The default number of spaces is {@code 8}.\n To specify a different number of spaces, the user can set\n <a href=\"https:\/\/checkstyle.org\/config.html#Checker\">{@code Checker}<\/a>\n property {@code tabWidth} which applies to all Checks, including {@code LineLength};\n or can set property {@code tabWidth} for {@code LineLength} alone.\n <\/li>\n <li>\n By default, package and import statements (lines matching pattern {@code ^(package|import) .*})\n are not verified by this check.\n <\/li>\n <li>\n Trailing comments are taken into consideration while calculating the line length.\n <pre>\n import java.util.regex.Pattern; \/\/ The length of this comment will be taken into consideration\n <\/pre>\n In the example above the length of the import statement is just 31 characters but total length\n will be 94 characters.\n <\/li>\n <\/ul>"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
