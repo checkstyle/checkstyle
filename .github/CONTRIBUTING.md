@@ -71,6 +71,31 @@ This project and everyone participating in it is governed by the
   smaller PRs that can be reviewed and merged independently. This makes it easier for
   reviewers to understand the changes and for maintainers to merge the PR.
 
+#### Checkstyle
+Checkstyle enforces a consistent coding style in Kafka.
+You can run checkstyle using:
+
+Check: `mvn checkstyle:check`
+
+#### Spotless
+The build system incorporates [Moderne](https://moderne.io/) rewrite capabilities
+for automated code transformations.
+
+- **Convention** (e.g., JUnit's naming rules)
+- **Refactor** safely (e.g., rename methods, migrate APIs)
+- **Modernize** (e.g., Java 8 → Java 17 features)
+- **Patterns** (e.g., replace `Vector` with `ArrayList`)
+
+Check: `mvn spotless:check`
+
+Apply: `mvn spotless:apply`
+
+#### Spotbugs
+Spotbugs uses static analysis to look for bugs in the code.
+You can run spotbugs using:
+
+Check: `mvn spotbugs:spotbugs`
+
 ## Code Review
 
 All submissions, including submissions by project members, require review. We use GitHub pull
