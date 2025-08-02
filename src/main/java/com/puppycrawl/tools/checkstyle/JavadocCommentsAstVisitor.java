@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParserBaseVisitor;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -398,7 +399,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 if (isTextToken(token)) {
                     accumulator.append(token);
                 }
-                else if (token.getType() != -1) {
+                else if (token.getType() != JavadocCommentsLexer.EOF) {
                     parent.addChild(create(token));
                 }
             } else {
