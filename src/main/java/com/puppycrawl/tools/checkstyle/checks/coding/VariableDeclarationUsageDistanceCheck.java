@@ -332,9 +332,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
+        DetailAST examineNode = childNode;
+        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
+            examineNode = examineNode.getFirstChild().getNextSibling();
+        }
+
         int resultDist = currentDistToVarUsage;
 
-        switch (childNode.getType()) {
+        switch (examineNode.getType()) {
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -342,6 +347,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
+            case TokenTypes.LITERAL_SWITCH:
                 // variable usage is in inner scope, treated as 1 block
                 // or in operator expression, then distance + 1
                 resultDist++;
@@ -373,7 +379,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         int dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
+
         while (currentScopeAst != null) {
+
             final Entry<List<DetailAST>, Integer> searchResult =
                     searchVariableUsageExpressions(variable, currentScopeAst);
 
@@ -411,6 +419,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                         exprWithVariableUsage =
                             getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage,
                                 variable);
+                        break;
+                    case TokenTypes.METHOD_DEF:
+                        exprWithVariableUsage =
+                                blockWithVariableUsage.findFirstToken(TokenTypes.SLIST);
                         break;
                     default:
                         exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
@@ -451,6 +463,13 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
+
+                // Skip type definitions inside method (record, class, etc.)
+                else if (isTypeDefInMethod(currentStatementAst)) {
+                    currentStatementAst = currentStatementAst.getNextSibling();
+                    continue;
+                }
+
                 // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
                         && !isZeroDistanceToken(currentStatementAst.getType())) {
@@ -779,9 +798,19 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         return type == TokenTypes.VARIABLE_DEF
                 || type == TokenTypes.TYPE
                 || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+                || type == TokenTypes.RESOURCE;
     }
 
+    /**
+     * Checks if the given AST is a type definition declared inside a method.
+     *
+     * @param ast the AST to check
+     * @return true if the AST is a type defined in a method
+     */
+    private static boolean isTypeDefInMethod(DetailAST ast) {
+        return ast.getType() == TokenTypes.CLASS_DEF
+                || ast.getType() == TokenTypes.ENUM_DEF
+                || ast.getType() == TokenTypes.INTERFACE_DEF
+                || ast.getType() == TokenTypes.RECORD_DEF;
+    }
 }
