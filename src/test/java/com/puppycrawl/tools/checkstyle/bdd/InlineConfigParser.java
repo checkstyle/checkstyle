@@ -1323,7 +1323,7 @@ public final class InlineConfigParser {
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
-            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
+            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1));
             final int violationLineNum = lineNo - linesAbove;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);

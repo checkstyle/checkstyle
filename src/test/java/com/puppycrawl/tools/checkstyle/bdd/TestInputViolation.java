@@ -89,7 +89,7 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     public int compareTo(TestInputViolation testInputViolation) {
         final int result;
         if (message != null && lineNo == testInputViolation.lineNo) {
-            result = testInputViolation.message.compareTo(message);
+            result = message.compareTo(testInputViolation.message);
         }
         else {
             result = Integer.compare(lineNo, testInputViolation.lineNo);
