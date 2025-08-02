@@ -145,7 +145,8 @@
     <module name="ForbidWildcardAsReturnType"/>
     <module name="CustomDeclarationOrder">
       <property name="customDeclarationOrder"
-              value="InnerEnum(public .*)
+              value="Field((private) final Log ([\w]*L|l)og)
+                   ### InnerEnum(public .*)
                    ### Field(public static final)
                    ### Field(public static .*)
                    ### Field(protected static final)
