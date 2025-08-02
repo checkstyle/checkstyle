@@ -1,5 +1,5 @@
 * This method does something.
-*
+* case4 <ul type="a<b"> <li> end of sentence. <li> more </ul>
 * @see java.lang.String
 * @see java.util.List#add(Object) adds to list
 * @see java.util.Map#put(Object, Object)
@@ -12,3 +12,4 @@
 * @see     java.lang.System#getProperty(java.lang.String, java.lang.String)
 * @see #invoke(Remote,java.lang.reflect.Method,Object[],long)
 * @see <a href="https://example.com">External Resource</a> This is <code>code</code> in the link
+* @see <a href="http://www.w3.org/TR/xmlschema-1/#e-schema_default>XML Schema Part 1: Structures [schema default]</a>

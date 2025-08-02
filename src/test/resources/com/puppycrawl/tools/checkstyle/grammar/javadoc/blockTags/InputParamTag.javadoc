@@ -11,3 +11,9 @@
 *           the type of the element being magnified
 * @param <R>
 * @param x
+* @param
+* a
+* My text.
+* @param
+* <T>
+* My text.

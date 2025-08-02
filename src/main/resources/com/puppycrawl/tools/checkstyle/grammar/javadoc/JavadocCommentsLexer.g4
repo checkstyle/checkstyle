@@ -176,6 +176,7 @@ LinkDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), pop
 
 mode PARAMETER_LIST;
 ParameterList_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
+ParameterList_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 PARAMETER_TYPE: ([a-zA-Z0-9_$] | '.' | '[' | ']')+;
 COMMA: ',';
 RPAREN: ')' {
@@ -206,7 +207,7 @@ InlineDescription_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_
 InlineDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode;
 
 mode INDEX_TERM_MODE;
-INDEX_TERM: ( '"' (~["\r\n}])+ '"' | ~[ \t\r\n"}]+ ) -> popMode, pushMode(PLAIN_TEXT_TAG);
+INDEX_TERM: ( '"' (~["\r\n])+ '"' | ~[ \t\r\n"}]+ | '"' (~["\r\n}])+ ) -> popMode, pushMode(PLAIN_TEXT_TAG);
 IndexTerm_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 IndexTerm_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
@@ -275,6 +276,7 @@ ExceptionName_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 mode PARAMETER_NAME_MODE;
 PARAMETER_NAME: [a-zA-Z0-9<>_$]+ -> mode(TEXT_MODE);
+Param_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 Param_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 mode TAG;
@@ -292,11 +294,14 @@ fragment TagNameStartChar: [:a-zA-Z] | '\u2070'..'\u218F' | '\u2C00'..'\u2FEF' |
 fragment DIGIT: [0-9];
 
 mode ATTR_VALUE;
+AttrValue_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 ATTRIBUTE_VALUE: ' '* ATTRIBUTE -> popMode;
-ATTRIBUTE: DOUBLE_QUOTE_STRING | SINGLE_QUOTE_STRING | ATTCHARS | HEXCHARS | DECCHARS;
+ATTRIBUTE: DOUBLE_QUOTE_STRING | SINGLE_QUOTE_STRING | ATTCHARS | HEXCHARS | DECCHARS | UNQUOTED_STRING;
 fragment ATTCHARS: ATTCHAR+ ' '?;
 fragment ATTCHAR: '-' | '_' | '.' | '/' | '+' | ',' | '?' | '=' | ':' | ';' | '#' | [0-9a-zA-Z];
 fragment HEXCHARS: '#' [0-9a-fA-F]+;
 fragment DECCHARS: [0-9]+ '%'?;
 fragment DOUBLE_QUOTE_STRING: '"' ~[<"]* '"';
 fragment SINGLE_QUOTE_STRING: '\'' ~[<']* '\'';
+fragment UNQUOTED_STRING: ( ~[> }\t\r\n/] | SLASH_IN_ATTR )+;
+fragment SLASH_IN_ATTR: '/' {_input.LA(1) != '>'}?;

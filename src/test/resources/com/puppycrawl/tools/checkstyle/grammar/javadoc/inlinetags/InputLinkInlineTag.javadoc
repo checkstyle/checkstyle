@@ -12,3 +12,5 @@
 * {@link Class#localMethod(int , String ) a useful utility}
 * {@link com.example.util.MathUtils#calculateScore(int, int)
 * Computes the final score for a player in a tournament.}
+* {@link com.example.util.MathUtils#calculateScore(int,
+*                            int) Computes the final score for a player in a tournament.}
