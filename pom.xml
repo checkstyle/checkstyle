@@ -324,12 +324,6 @@
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
     </dependency>
-    <dependency>
-      <groupId>jakarta.annotation</groupId>
-      <artifactId>jakarta.annotation-api</artifactId>
-      <version>1.3.5</version>
-      <scope>provided</scope>
-    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
@@ -592,11 +586,21 @@
               <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
               <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
               <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.EqualityRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.OptionalRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
+              <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes</recipe>
               <!-- TBD
+              <recipe>tech.picnic.errorprone.refasterrules.EqualityRulesRecipes</recipe>
               <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
               <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
               <recipe>org.openrewrite.java.recipes.RecipeNullabilityBestPractices</recipe>
@@ -606,18 +610,8 @@
               <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe> immense
               <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
               <recipe>org.openrewrite.staticanalysis.UnnecessaryThrows</recipe> immense
-              <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe> bug
-              <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.NullRulesRecipes</recipe> incompatible (static import)
-              <recipe>tech.picnic.errorprone.refasterrules.OptionalRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
               <recipe>tech.picnic.errorprone.refasterrules.StringRulesRecipes</recipe> incompatible (static import)
               <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
               -->
@@ -956,7 +950,6 @@
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
-          <release>${java.version}</release>
         </configuration>
       </plugin>
 
@@ -2565,7 +2558,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2625,7 +2617,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2684,7 +2675,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2742,7 +2732,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2800,7 +2789,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2861,7 +2849,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2921,7 +2908,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2981,7 +2967,6 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
-              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>

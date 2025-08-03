@@ -32,11 +32,10 @@ jobs:
     description: "Runs a maven script using the job name as the argument."
     parameters: &script_parameters
       image-name:
+        type: string
         default: "cimg/openjdk:17.0.7"
         description: "docker image to use"
-        type: string
       command:
-        default: ""
         description: "command to run"
         type: string
       no_output_timeout:
@@ -317,10 +316,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
 
-  rewrite-validation:
+  rewrite:
     jobs:
       - validate-with-maven-script:
-          name: "rewrite-validation"
+          name: "rewrite"
           image-name: *cs_img
-          command: "./.ci/validation.sh rewrite-validation"
-          no_output_timeout: 3h
+          command: "./.ci/validation.sh rewrite"
+          no_output_timeout: 1.5h
