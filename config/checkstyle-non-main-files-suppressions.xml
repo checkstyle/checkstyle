@@ -8,7 +8,7 @@
 
   <!-- don't validate generated files -->
   <suppress id="lineLength" files="releasenotes.xml"/>
-
+  
   <!-- full path is required for logic of script google-java-format.sh -->
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
