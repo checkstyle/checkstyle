@@ -1523,8 +1523,6 @@
           </execution>
         </executions>
         <configuration>
-          <!-- until #16242 -->
-          <skip>true</skip>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
           <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
@@ -1537,9 +1535,10 @@
                 <include>**/*.xml.vm</include>
               </includes>
               <excludes>
-                <!-- The <b>{</b> tag requires more indentation than the enclosing <pre> tag,
-                     which results in too much indentation to the right -->
-                <exclude>src/site/xdoc/property_types.xml</exclude>
+                <!-- git -->
+                <exclude>.git/**</exclude>
+                <!-- hand crafted indentation  -->
+                <exclude>src/site/xdoc/**</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>
                 <exclude>.ci-temp/**</exclude>
@@ -1568,6 +1567,7 @@
                 <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
                 <exclude>linkcheck-suppressions.txt</exclude>
                 <exclude>archunit-store/**</exclude>
+                <exclude>google-java-format/**</exclude>
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>yamllint.yaml</exclude>
@@ -1583,7 +1583,7 @@
               <includes>
                 <include>site.xml</include>
               </includes>
-              <systemId>config/decoration-1.8.0.xsd</systemId>
+              <systemId>config/site-2.0.0.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
