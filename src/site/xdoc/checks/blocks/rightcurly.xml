@@ -8,7 +8,7 @@
   <body>
     <section name="RightCurly">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RightCurly_Description">
         <div>
           Checks the placement of right curly braces (<code>'}'</code>) for code blocks. This check
           supports if-else, try-catch-finally blocks, switch statements, switch cases, while-loops,
@@ -22,7 +22,7 @@
         </div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="RightCurly_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -104,7 +104,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RightCurly_Examples">
         <p id="Example1-config"> To configure the check: </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -369,7 +369,7 @@ class Example5 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RightCurly_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RightCurly">
@@ -386,7 +386,7 @@ class Example5 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="RightCurly_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fblocks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22line.alone%22">
@@ -411,11 +411,11 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RightCurly_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.blocks </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RightCurly_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
