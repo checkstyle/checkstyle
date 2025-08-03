@@ -317,10 +317,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
 
-  rewrite-validation:
+  rewrite:
     jobs:
       - validate-with-maven-script:
-          name: "rewrite-validation"
+          name: "rewrite"
           image-name: *cs_img
-          command: "./.ci/validation.sh rewrite-validation"
+          command: "./.ci/validation.sh rewrite"
           no_output_timeout: 3h
