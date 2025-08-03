@@ -428,7 +428,7 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
-rewrite-dry-run)
+rewrite-validation)
   ./mvnw -e --no-transfer-progress -U clean rewrite:dryRun
   ;;
 
