@@ -4641,9 +4641,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheckTest</param>
-                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
+                <param>org.checkstyle.checks.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
-                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
+                <param>org.checkstyle.checks.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>

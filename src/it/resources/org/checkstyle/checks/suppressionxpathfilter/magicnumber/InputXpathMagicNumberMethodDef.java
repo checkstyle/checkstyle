@@ -1,0 +1,7 @@
+package org.checkstyle.checks.suppressionxpathfilter.magicnumber;
+
+public class InputXpathMagicNumberMethodDef {
+    public void methodWithMagicNumber() {
+        int x = 20; // warn
+    }
+}

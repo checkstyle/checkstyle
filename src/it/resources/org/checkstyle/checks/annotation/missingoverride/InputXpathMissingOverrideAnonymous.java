@@ -1,0 +1,12 @@
+package org.checkstyle.checks.annotation.missingoverride;
+
+public class InputXpathMissingOverrideAnonymous {
+    Runnable r = new Runnable() {
+        /**
+         * {@inheritDoc}
+         */
+        public void run() { // warn
+
+        }
+    };
+}
