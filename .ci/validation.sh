@@ -428,8 +428,9 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
-rewrite-dry-run)
-  ./mvnw -e --no-transfer-progress -U clean rewrite:dryRun
+rewrite-validation)
+  export MAVEN_OPTS='-Xmx4g'
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
   ;;
 
 site)

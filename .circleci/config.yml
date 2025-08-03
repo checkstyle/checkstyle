@@ -212,10 +212,6 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh release-dry-run"
       - validate-with-maven-script:
-          name: "rewrite-dry-run"
-          image-name: *cs_img
-          command: "./.ci/validation.sh rewrite-dry-run"
-      - validate-with-maven-script:
           name: "assembly-run-all-jar"
           image-name: *cs_img
           command: "./.ci/validation.sh assembly-run-all-jar"
@@ -316,3 +312,11 @@ workflows:
           name: "jdk17-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  rewrite-validation:
+    jobs:
+      - validate-with-maven-script:
+          name: "rewrite-validation"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite-validation"
+          timeout: 45m
