@@ -9,6 +9,9 @@
   <!-- don't validate generated files -->
   <suppress id="lineLength" files="releasenotes.xml"/>
 
+  <!-- don't validate downloaded files from web -->
+  <suppress id="lineLength" files="site-2.0.0.xsd"/>
+  
   <!-- full path is required for logic of script google-java-format.sh -->
   <suppress id="lineLength" files="compilable-input-paths.txt"/>
   <suppress id="lineLength" files="noncompilable-input-paths.txt"/>
