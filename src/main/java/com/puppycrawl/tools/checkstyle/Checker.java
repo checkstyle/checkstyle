@@ -62,14 +62,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  */
 public class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
 
+    /** Logger for Checker. */
+    private final Log log;
+
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
 
     /** The extension separator. */
     private static final String EXTENSION_SEPARATOR = ".";
-
-    /** Logger for Checker. */
-    private final Log log;
 
     /** Maintains error count. */
     private final SeverityLevelCounter counter = new SeverityLevelCounter(
