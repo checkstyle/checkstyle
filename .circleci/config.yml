@@ -212,6 +212,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh release-dry-run"
       - validate-with-maven-script:
+          name: "rewrite-dry-run"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite-dry-run"
+      - validate-with-maven-script:
           name: "assembly-run-all-jar"
           image-name: *cs_img
           command: "./.ci/validation.sh assembly-run-all-jar"
