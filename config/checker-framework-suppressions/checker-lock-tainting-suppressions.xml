@@ -78,7 +78,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>methodref.receiver</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>.map(Entry::getKey)</lineContent>
+    <lineContent>.filter(entry -&gt; entry.getValue().equals(fullName)).findFirst().map(Entry::getKey)</lineContent>
     <details>
       found   : @GuardSatisfied Entry&lt;@GuardedBy String, @GuardedBy String&gt;
       required: @GuardedBy Entry&lt;@GuardedBy String, @GuardedBy String&gt;
