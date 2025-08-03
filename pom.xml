@@ -1605,6 +1605,14 @@
                 <include>sun_checks.xml</include>
               </includes>
             </validationSet>
+            <validationSet>
+              <validating>true</validating>
+              <dir>src/test/resources/com/puppycrawl/tools/checkstyle/xmllogger</dir>
+              <includes>
+                <include>*.xml</include>
+              </includes>
+              <systemId>config/checkstyle-report-1.0.0.xsd</systemId>
+            </validationSet>
           </validationSets>
           <catalogs>
             <catalog>config/catalog.xml</catalog>
