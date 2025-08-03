@@ -1604,6 +1604,7 @@
                 <include>google_checks.xml</include>
                 <include>sun_checks.xml</include>
               </includes>
+              <systemId>config/configuration-1-3.xsd</systemId>
             </validationSet>
             <validationSet>
               <validating>true</validating>
