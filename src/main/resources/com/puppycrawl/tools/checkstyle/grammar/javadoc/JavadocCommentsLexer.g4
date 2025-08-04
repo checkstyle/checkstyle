@@ -14,7 +14,11 @@ tokens {
     VERSION, SEE, STRING_LITERAL, LITERAL_HIDDEN, SERIAL, SERIAL_DATA, SERIAL_FIELD, FIELD_TYPE, AT_SIGN,
     TYPE_NAME, REFERENCE, MEMBER_REFERENCE, PARAMETER_TYPE_LIST, TYPE_ARGUMENTS, TYPE_ARGUMENT, DESCRIPTION,
     SNIPPET_ATTRIBUTES, SNIPPET_ATTRIBUTE, SNIPPET_BODY, HTML_ELEMENT, VOID_ELEMENT, HTML_CONTENT,
-    HTML_TAG_START, HTML_TAG_END, HTML_ATTRIBUTES, HTML_ATTRIBUTE, JAVADOC_BLOCK_TAG
+    HTML_TAG_START, HTML_TAG_END, HTML_ATTRIBUTES, HTML_ATTRIBUTE, JAVADOC_BLOCK_TAG,
+    CODE_INLINE_TAG, LINK_INLINE_TAG, LINKPLAIN_INLINE_TAG, VALUE_INLINE_TAG,
+    INHERIT_DOC_INLINE_TAG, SUMMARY_INLINE_TAG, SYSTEM_PROPERTY_INLINE_TAG,
+    INDEX_INLINE_TAG, RETURN_INLINE_TAG, LITERAL_INLINE_TAG, SNIPPET_INLINE_TAG,
+    CUSTOM_INLINE_TAG
 }
 
 @lexer::header {
@@ -88,14 +92,8 @@ import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
 }
 
 LEADING_ASTERISK
-    : [ \t]* '*' {isAfterNewline()}? {
-        if (!Character.isWhitespace(_input.LA(1))) {
-           pushMode(TEXT_MODE);
-        }
-    } -> channel(LEADING_ASTERISKS)
+    : [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS), pushMode(TEXT_MODE)
     ;
-
-WS :   (' '|'\t')+ -> channel(WHITESPACES),  pushMode(TEXT_MODE) ;
 
 NEWLINE
     : '\r'? '\n' {setAfterNewline();} -> channel(NEWLINES)
@@ -109,7 +107,7 @@ SWITCH_TO_TEXT_MODE: . {_input.seek(_input.index() - 1);} -> skip, pushMode(TEXT
 
 mode TEXT_MODE;
 Text_NEWLINE: '\r'? '\n' {setAfterNewline();} -> mode(DEFAULT_MODE), type(NEWLINE), channel(NEWLINES);
-TEXT: TEXT_CHAR+;
+TEXT: TEXT_CHAR+ { if (getText().trim().isEmpty()) { setType(WS); setChannel(WHITESPACES); }};
 AT_SIGN2: {isJavadocBlockTag()}? '@' -> type(AT_SIGN), pushMode(BLOCK_TAG);
 JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;} -> pushMode(JAVADOC_INLINE_TAG_MODE);
 TAG_OPEN: '<' -> pushMode(TAG);

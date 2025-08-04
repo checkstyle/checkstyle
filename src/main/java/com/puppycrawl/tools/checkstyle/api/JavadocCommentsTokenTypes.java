@@ -18,7 +18,7 @@ public final class JavadocCommentsTokenTypes {
      * `--NEWLINE -> \n
      * }</pre>
      */
-    public static final int JAVADOC = JavadocCommentsLexer.JAVADOC;
+    public static final int JAVADOC_CONTENT = JavadocCommentsLexer.JAVADOC;
 
     /**
      * Leading asterisk.
@@ -38,7 +38,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Whitespace or tab ('\t') symbol.
      */
-    public static final int WS = JavadocCommentsLexer.WS;
+    public static final int WHITESPACE = JavadocCommentsLexer.WS;
 
     // Block tags
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
@@ -46,6 +46,8 @@ public final class JavadocCommentsTokenTypes {
     public static final int AUTHOR = JavadocCommentsLexer.AUTHOR;
     public static final int DEPRECATED = JavadocCommentsLexer.DEPRECATED;
     public static final int PARAM = JavadocCommentsLexer.PARAM;
+    public static final int RETURN = JavadocCommentsLexer.RETURN;
+    public static final int CUSTOM_NAME = JavadocCommentsLexer.CUSTOM_NAME;
     public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
     public static final int THROWS = JavadocCommentsLexer.THROWS;
     public static final int EXCEPTION = JavadocCommentsLexer.EXCEPTION;
@@ -66,21 +68,18 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
     public static final int JAVADOC_INLINE_TAG_START = JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
-    public static final int CODE = JavadocCommentsLexer.CODE;
-    public static final int LINK = JavadocCommentsLexer.LINK;
-    public static final int LINKPLAIN = JavadocCommentsLexer.LINKPLAIN;
-    public static final int VALUE = JavadocCommentsLexer.VALUE;
-    public static final int INHERIT_DOC = JavadocCommentsLexer.INHERIT_DOC;
-    public static final int SYSTEM_PROPERTY = JavadocCommentsLexer.SYSTEM_PROPERTY;
-    public static final int LITERAL = JavadocCommentsLexer.LITERAL;
-    public static final int RETURN = JavadocCommentsLexer.RETURN;
-    public static final int INDEX = JavadocCommentsLexer.INDEX;
-    public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
-    public static final int SNIPPET = JavadocCommentsLexer.SNIPPET;
-    public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
-    public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
-    public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
-    public static final int CUSTOM_NAME = JavadocCommentsLexer.CUSTOM_NAME;
+    public static final int CODE_INLINE_TAG= JavadocCommentsLexer.CODE_INLINE_TAG;
+    public static final int LINK_INLINE_TAG= JavadocCommentsLexer.LINK_INLINE_TAG;
+    public static final int LINKPLAIN_INLINE_TAG = JavadocCommentsLexer.LINKPLAIN_INLINE_TAG;
+    public static final int VALUE_INLINE_TAG= JavadocCommentsLexer.VALUE_INLINE_TAG;
+    public static final int SUMMARY_INLINE_TAG = JavadocCommentsLexer.SUMMARY_INLINE_TAG;
+    public static final int INHERIT_DOC_INLINE_TAG = JavadocCommentsLexer.INHERIT_DOC_INLINE_TAG;
+    public static final int SYSTEM_PROPERTY_INLINE_TAG = JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG;
+    public static final int LITERAL_INLINE_TAG= JavadocCommentsLexer.LITERAL_INLINE_TAG;
+    public static final int RETURN_INLINE_TAG = JavadocCommentsLexer.RETURN_INLINE_TAG;
+    public static final int INDEX_INLINE_TAG = JavadocCommentsLexer.INDEX_INLINE_TAG;
+    public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
+    public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 
     // components
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
@@ -107,7 +106,10 @@ public final class JavadocCommentsTokenTypes {
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
     public static final int COLON = JavadocCommentsLexer.COLON;
-
+    public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
+    public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
+    public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
+    public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     // HTML
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;

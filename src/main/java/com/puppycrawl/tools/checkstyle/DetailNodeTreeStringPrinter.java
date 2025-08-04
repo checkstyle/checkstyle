@@ -109,7 +109,7 @@ public final class DetailNodeTreeStringPrinter {
         final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailNode node = ast;
         while (node != null) {
-            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
                 messageBuilder.append(rootPrefix);
             }
             else {

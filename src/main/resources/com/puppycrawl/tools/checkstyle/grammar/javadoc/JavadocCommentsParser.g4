@@ -123,6 +123,12 @@ customBlockTag
 // Inline tags
 inlineTag
     : JAVADOC_INLINE_TAG_START
+      inlineTagContent
+      JAVADOC_INLINE_TAG_END
+    ;
+
+inlineTagContent
+      :
       ( codeInlineTag
       | linkInlineTag
       | linkPlainInlineTag
@@ -136,8 +142,7 @@ inlineTag
       | snippetInlineTag
       | customInlineTag
       )
-      JAVADOC_INLINE_TAG_END
-    ;
+      ;
 
 codeInlineTag
     : tagName=CODE TEXT*
