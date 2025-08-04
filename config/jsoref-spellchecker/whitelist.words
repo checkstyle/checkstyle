@@ -277,6 +277,7 @@ Dantlr
 Darguments
 DArray
 Datasource
+Datatables
 DATETIME
 daveho
 davidwalsh
@@ -983,6 +984,7 @@ npm
 nrmancuso
 ntokens
 NTU
+Nullability
 nullcase
 nullcheck
 nullness
@@ -1011,6 +1013,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openrewrite
 operatorwrap
 opsummary
 optgroup
@@ -1102,6 +1105,7 @@ Popup
 Postgresql
 powershell
 prebuilts
+Prefixless
 prefs
 PRESIZE
 prettyprint
@@ -1158,6 +1162,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refasterrules
 refid
 regex
 regexp
@@ -1295,6 +1300,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib
