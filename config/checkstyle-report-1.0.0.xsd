@@ -2,7 +2,7 @@
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="checkstyle" type="checkstyleType"/>
-  
+
   <xs:complexType name="checkstyleType">
     <xs:sequence>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -13,7 +13,7 @@
     </xs:sequence>
     <xs:attribute name="version" type="xs:string"/>
   </xs:complexType>
-  
+
   <xs:complexType name="fileType">
     <xs:sequence minOccurs="0" maxOccurs="unbounded">
       <xs:element minOccurs="0" maxOccurs="unbounded" name="error" type="errorType"/>
