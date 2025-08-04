@@ -7,5 +7,6 @@ src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rul
 src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLambdaAndChildOnTheSameLine.java
 src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSingleSwitchStatementWithoutCurly.java
 src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchWrappingIndentation.java
+src/it/resources-noncompilable/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/example.java
 src/it/resources-noncompilable/com/google/checkstyle/test/chapter5naming/rule526parameternames/InputRecordComponentName.java
 src/it/resources-noncompilable/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/InputPatternVariableNameEnhancedInstanceofTestDefault.java
