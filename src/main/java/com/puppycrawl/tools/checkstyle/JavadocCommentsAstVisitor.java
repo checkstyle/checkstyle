@@ -64,7 +64,34 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitBlockTag(JavadocCommentsParser.BlockTagContext ctx) {
-        return buildImaginaryNode(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG, ctx);
+        ParseTree tag = ctx.getChild(0);
+        JavadocNodeImpl javadocNode = null;
+
+        if (tag instanceof ParserRuleContext prc) {
+            Token tagName = (Token) prc.getChild(1).getPayload();
+            int tokenType = tagName.getType();
+
+            javadocNode = switch (tokenType) {
+                case JavadocCommentsLexer.AUTHOR -> buildImaginaryNode(JavadocCommentsTokenTypes.AUTHOR_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.DEPRECATED -> buildImaginaryNode(JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.RETURN -> buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.PARAM -> buildImaginaryNode(JavadocCommentsTokenTypes.PARAM_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.THROWS -> buildImaginaryNode(JavadocCommentsTokenTypes.THROWS_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.EXCEPTION -> buildImaginaryNode(JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SINCE -> buildImaginaryNode(JavadocCommentsTokenTypes.SINCE_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.VERSION -> buildImaginaryNode(JavadocCommentsTokenTypes.VERSION_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SEE -> buildImaginaryNode(JavadocCommentsTokenTypes.SEE_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.HIDDEN -> buildImaginaryNode(JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.USES -> buildImaginaryNode(JavadocCommentsTokenTypes.USES_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.PROVIDES -> buildImaginaryNode(JavadocCommentsTokenTypes.PROVIDES_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL_DATA -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_DATA_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL_FIELD -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_FIELD_BLOCK_TAG, ctx);
+                default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG, ctx);
+            };
+        }
+
+        return javadocNode;
     }
 
     @Override
@@ -507,7 +534,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 || type == JavadocCommentsLexer.PARAM  || type == JavadocCommentsLexer.THROWS
                 || type == JavadocCommentsLexer.EXCEPTION || type == JavadocCommentsLexer.SINCE
                 || type == JavadocCommentsLexer.VERSION || type == JavadocCommentsLexer.SEE
-                || type == JavadocCommentsLexer.HIDDEN || type == JavadocCommentsLexer.USES
+                || type == JavadocCommentsLexer.LITERAL_HIDDEN || type == JavadocCommentsLexer.USES
                 || type == JavadocCommentsLexer.PROVIDES || type == JavadocCommentsLexer.SERIAL
                 || type == JavadocCommentsLexer.SERIAL_DATA || type == JavadocCommentsLexer.SERIAL_FIELD;
     }

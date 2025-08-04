@@ -3,6 +3,8 @@ package com.puppycrawl.tools.checkstyle.grammar;
 import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.Token;
 
+import java.util.Objects;
+
 
 /**
  * A simple wrapper for ANTLR {@link Token} that provides a proper {@link #equals(Object)}
@@ -10,7 +12,6 @@ import org.antlr.v4.runtime.Token;
  *
  * <p>This is useful because ANTLR's default {@code CommonToken} does not override
  * {@code equals}, It compares references.
- *
  */
 public class SimpleToken extends CommonToken {
 
@@ -27,6 +28,7 @@ public class SimpleToken extends CommonToken {
 
     /**
      * Creates a new instance of {@link SimpleToken} from an existing ANTLR {@link Token}.
+     *
      * @param token the ANTLR token to wrap
      * @return a new instance of {@link SimpleToken} wrapping the provided token
      */
@@ -51,13 +53,14 @@ public class SimpleToken extends CommonToken {
 
     @Override
     public int hashCode() {
-        int result = Integer.hashCode(getType());
-        result = 31 * result + getText().hashCode();
-        result = 31 * result + Integer.hashCode(getLine());
-        result = 31 * result + Integer.hashCode(getTokenIndex());
-        result = 31 * result + Integer.hashCode(getCharPositionInLine());
-        result = 31 * result + Integer.hashCode(start);
-        result = 31 * result + Integer.hashCode(stop);
-        return result;
+        return Objects.hash(
+                getType(),
+                getText(),
+                getLine(),
+                getTokenIndex(),
+                getCharPositionInLine(),
+                start,
+                stop
+        );
     }
 }
