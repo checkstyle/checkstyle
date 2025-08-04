@@ -318,6 +318,13 @@
                   config</a>)
                   <br />
                   <br />
+                  Rule is not enforced in <code>package-info.java</code> file.
+                  It will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17541">
+                    #17541
+                  </a>
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img src="images/ban_red.png" alt="" />
                   </span>
