@@ -324,6 +324,12 @@
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
     </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>1.3.5</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
@@ -578,43 +584,6 @@
           <configuration>
             <activeRecipes>
               <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
-              <!-- TBD
-              <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-              <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-              <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
-              <recipe>org.openrewrite.java.recipes.RecipeNullabilityBestPractices</recipe>
-              <recipe>org.openrewrite.java.recipes.RecipeTestingBestPractices</recipe>
-              <recipe>org.openrewrite.maven.OrderPomElements</recipe>
-              <recipe>org.openrewrite.maven.cleanup.PrefixlessExpressions</recipe>
-              <recipe>org.openrewrite.staticanalysis.CodeCleanup</recipe> immense
-              <recipe>org.openrewrite.staticanalysis.CommonStaticAnalysis</recipe> immense
-              <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe> immense
-              <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
-              <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
-              <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
-              <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
-              <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
-              <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
-              <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
-              <recipe>org.openrewrite.staticanalysis.UnnecessaryThrows</recipe> immense
-              <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe> bug
-              <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.EqualityRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.NullRulesRecipes</recipe> incompatible (static import)
-              <recipe>tech.picnic.errorprone.refasterrules.OptionalRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.StringRulesRecipes</recipe> incompatible (static import)
-              <recipe>tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes</recipe>
-              <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
-              -->
             </activeRecipes>
             <exclusions>
               <exclusion>**.groovy</exclusion>
@@ -675,21 +644,6 @@
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-third-party</artifactId>
               <version>0.24.3</version>
-            </dependency>
-            <dependency>
-              <groupId>org.openrewrite.recipe</groupId>
-              <artifactId>rewrite-rewrite</artifactId>
-              <version>0.10.1</version>
-            </dependency>
-            <dependency>
-              <groupId>org.openrewrite.recipe</groupId>
-              <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.14.0</version>
-            </dependency>
-            <dependency>
-              <groupId>org.openrewrite.recipe</groupId>
-              <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.13.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -950,6 +904,7 @@
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
+          <release>${java.version}</release>
         </configuration>
       </plugin>
 
@@ -1071,17 +1026,17 @@
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
+                      com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
+                      com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter</exclude>
                     <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
+                      com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
                     </exclude>
                     <!-- Metadata Generator related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
@@ -2558,6 +2513,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2617,6 +2573,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2675,6 +2632,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2732,6 +2690,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2789,6 +2748,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2849,6 +2809,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2908,6 +2869,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
@@ -2967,6 +2929,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
               </compilerArgs>
+              <release>${java.version}</release>
             </configuration>
           </plugin>
         </plugins>
