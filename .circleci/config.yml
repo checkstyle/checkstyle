@@ -322,7 +322,5 @@ workflows:
       - validate-with-maven-script:
           name: "rewrite"
           image-name: *cs_img
-          commands:
-            - ./.ci/validation.sh rewrite
-            - ./.ci/validation.sh git-diff
-          no_output_timeout: 0.5h # 31:17 min
+          command: "./.ci/validation.sh rewrite git-diff"
+          no_output_timeout: 1h
