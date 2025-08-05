@@ -1,0 +1,16 @@
+* {@link MyClass}
+* {@link com.example.MyClass}
+* {@link MyClass#myMethod}
+* {@link com.example.MyClass#myMethod}
+* {@linkplain com.example.MyClass#myMethod()}
+* {@link MyClass#myMethod()}
+* {@link MyClass#myMethod(int)}
+* {@link example.MyClass#myMethod(String, int, MyType)}
+* {@linkplain com.example.MyClass#myMethod(String, int) the main entry method}
+* {@linkplain #localMethod local method}
+* {@linkplain #localMethod(int, String) a useful utility}
+* {@link Class#localMethod(int , String ) a useful utility}
+* {@link com.example.util.MathUtils#calculateScore(int, int)
+* Computes the final score for a player in a tournament.}
+* {@link com.example.util.MathUtils#calculateScore(int,
+*                            int) Computes the final score for a player in a tournament.}

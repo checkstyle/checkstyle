@@ -19,18 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Arrays;
-import java.util.Optional;
-
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
+import org.antlr.v4.runtime.Token;
+
+import java.util.Optional;
 
 /**
  * Implementation of DetailNode interface that is mutable.
- *
  */
 public class JavadocNodeImpl implements DetailNode {
+
+    /**
+     * Constant to indicate if not calculated the child count.
+     */
+    private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
     /**
      * Empty array of {@link DetailNode} type.
@@ -55,12 +58,12 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Line number.
      */
-    private int lineNumber;
+    private int lineNumber = NOT_INITIALIZED;
 
     /**
      * Column number.
      */
-    private int columnNumber;
+    private int columnNumber = NOT_INITIALIZED;
 
     /**
      * Array of child nodes.
@@ -70,7 +73,30 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Parent node.
      */
-    private DetailNode parent;
+    private JavadocNodeImpl parent;
+
+    /**
+     * Next sibling node.
+     */
+    private JavadocNodeImpl nextSibling;
+
+    /**
+     * Previous sibling.
+     */
+    private JavadocNodeImpl previousSibling;
+
+    /**
+     * First child of this DetailAST.
+     */
+    private JavadocNodeImpl firstChild;
+
+
+    public void initialize(Token token) {
+        this.type = token.getType();
+        this.text = token.getText();
+        this.lineNumber = token.getLine() - 1;
+        this.columnNumber = token.getCharPositionInLine();
+    }
 
     @Override
     public int getType() {
@@ -84,12 +110,30 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public int getLineNumber() {
-        return lineNumber;
+        if (lineNumber == NOT_INITIALIZED) {
+            JavadocNodeImpl node = this.firstChild;
+            while (node != null && node.getLineNumber() == NOT_INITIALIZED) {
+                node = (JavadocNodeImpl) node.getNextSibling();
+            }
+            if (node != null) {
+                lineNumber = node.getLineNumber();
+            }
+        }
+        return this.lineNumber;
     }
 
     @Override
     public int getColumnNumber() {
-        return columnNumber;
+        if (columnNumber == NOT_INITIALIZED) {
+            JavadocNodeImpl node = this.firstChild;
+            while (node != null && node.getColumnNumber() == NOT_INITIALIZED) {
+                node = (JavadocNodeImpl) node.getNextSibling();
+            }
+            if (node != null) {
+                columnNumber = node.getColumnNumber();
+            }
+        }
+        return this.columnNumber;
     }
 
     @Override
@@ -107,6 +151,16 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public int getIndex() {
         return index;
+    }
+
+    @Override
+    public DetailNode getNextSibling() {
+        return nextSibling;
+    }
+
+    @Override
+    public JavadocNodeImpl getFirstChild() {
+        return firstChild;
     }
 
     /**
@@ -159,8 +213,12 @@ public class JavadocNodeImpl implements DetailNode {
      *
      * @param parent Parent node.
      */
-    public void setParent(DetailNode parent) {
-        this.parent = parent;
+    public void setParent(JavadocNodeImpl parent) {
+        JavadocNodeImpl instance = this;
+        do {
+            instance.parent = parent;
+            instance = instance.nextSibling;
+        } while (instance != null);
     }
 
     /**
@@ -172,16 +230,46 @@ public class JavadocNodeImpl implements DetailNode {
         this.index = index;
     }
 
+    /**
+     * Sets next sibling node.
+     *
+     * @param nextSibling Next sibling node.
+     */
+    public void setNextSibling(DetailNode nextSibling) {
+        this.nextSibling = (JavadocNodeImpl) nextSibling;
+        if (nextSibling != null && parent != null) {
+            ((JavadocNodeImpl) nextSibling).setParent(parent);
+        }
+        if (nextSibling != null) {
+            ((JavadocNodeImpl) nextSibling).previousSibling = this;
+        }
+    }
+
+    /**
+     * Adds a child node to this node.
+     *
+     * @param newChild Child node to be added.
+     */
+    public void addChild(DetailNode newChild) {
+        if (newChild != null) {
+            final JavadocNodeImpl astImpl = (JavadocNodeImpl) newChild;
+            astImpl.setParent(this);
+        }
+        DetailNode temp = firstChild;
+        if (temp == null) {
+            firstChild = (JavadocNodeImpl) newChild;
+        } else {
+            while (temp.getNextSibling() != null) {
+                temp = temp.getNextSibling();
+            }
+
+            ((JavadocNodeImpl) temp).setNextSibling(newChild);
+        }
+    }
+
     @Override
     public String toString() {
-        return "JavadocNodeImpl["
-                + "index=" + index
-                + ", type=" + JavadocUtil.getTokenName(type)
-                + ", text='" + text + '\''
-                + ", lineNumber=" + lineNumber
-                + ", columnNumber=" + columnNumber
-                + ", children=" + Arrays.hashCode(children)
-                + ", parent=" + parent + ']';
+        return text + "[" + lineNumber + "x" + columnNumber + "]";
     }
 
 }
