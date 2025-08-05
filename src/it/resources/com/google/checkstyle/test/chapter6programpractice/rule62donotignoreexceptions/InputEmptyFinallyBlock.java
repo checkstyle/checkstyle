@@ -98,6 +98,7 @@ class InputEmptyFinallyBlock {
         doSm();
       }
     } catch (Exception expected) {
+      // ignore
     }
   }
 
@@ -107,6 +108,7 @@ class InputEmptyFinallyBlock {
         doSm();
       }
     } catch (Exception expected) {
+      // ignore
     }
   }
 }
