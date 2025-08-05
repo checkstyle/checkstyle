@@ -569,11 +569,23 @@ public class JavadocDetailNodeParser {
         final Set<SimpleToken> unclosed = lexer.getUnclosedTagNameTokens();
         final JavadocCommentsParser parser = new JavadocCommentsParser(tokens, unclosed);
 
+        // Use a new error listener each time to be able to use
+        // one check instance for multiple files to be checked
+        // without getting side effects.
+        final DescriptiveErrorListener errorListener = new DescriptiveErrorListener();
+
+        // Log messages should have line number in scope of file,
+        // not in scope of Javadoc comment.
+        // Offset is line number of beginning of Javadoc comment.
+        errorListener.setOffset(javadocCommentAst.getLineNo() - 1);
+
         // set prediction mode to SLL to speed up parsing
         parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 
         // remove default error listeners
         parser.removeErrorListeners();
+
+        parser.addErrorListener(errorListener);
 
         // JavadocParserErrorStrategy stops parsing on first parse error encountered unlike the
         // DefaultErrorStrategy used by ANTLR which rather attempts error recovery.
@@ -590,8 +602,8 @@ public class JavadocDetailNodeParser {
             result.setTree(tree);
         }
         catch (ParseCancellationException | IllegalArgumentException exc) {
-           // until https://github.com/checkstyle-GSoC25/checkstyle/issues/11
-            result.setTree(new JavadocNodeImpl());
+            // until https://github.com/checkstyle-GSoC25/checkstyle/issues/11
+            result.setParseErrorMessage(errorListener.getErrorMessage());
         }
 
         return result;
