@@ -18,6 +18,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptybl
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputTryCatchIfElse.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks/InputTryCatchIfElse2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/InputEmptyBlocksAndCatchBlocks.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks/InputEmptyCatchEmptyComment.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation/InputClassWithChainedMethods3.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation/InputIndentationCodeBlocks.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement/InputOneStatementPerLine.java
