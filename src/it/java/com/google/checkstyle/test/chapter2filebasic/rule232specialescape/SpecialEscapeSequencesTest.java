@@ -46,4 +46,9 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
         verifyWithWholeConfig(
             getPath("InputSpecialEscapeSequencesInTextBlockForUnicodeValues.java"));
     }
+
+    @Test
+    public void testIllegalTokensEscapedForEscapedS() throws Exception {
+        verifyWithWholeConfig(getPath("InputSpecialEscapeSequencesForEscapedS.java"));
+    }
 }
