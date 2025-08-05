@@ -38,6 +38,8 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.BlockTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.InlineTagUtil;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.utils.TagInfo;
 
+import static com.puppycrawl.tools.checkstyle.utils.TokenUtil.isOfType;
+
 /**
  * Contains utility methods for working with Javadoc.
  */
@@ -74,6 +76,40 @@ public final class JavadocUtil {
 
     /** Tab pattern. */
     private static final Pattern TAB = Pattern.compile("\t");
+
+    public static final int[] JAVADOC_BLOCK_TAGS = {
+            JavadocCommentsTokenTypes.AUTHOR_BLOCK_TAG,
+            JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG,
+            JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
+            JavadocCommentsTokenTypes.PARAM_BLOCK_TAG,
+            JavadocCommentsTokenTypes.THROWS_BLOCK_TAG,
+            JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SINCE_BLOCK_TAG,
+            JavadocCommentsTokenTypes.VERSION_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SEE_BLOCK_TAG,
+            JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG,
+            JavadocCommentsTokenTypes.USES_BLOCK_TAG,
+            JavadocCommentsTokenTypes.PROVIDES_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SERIAL_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SERIAL_DATA_BLOCK_TAG,
+            JavadocCommentsTokenTypes.SERIAL_FIELD_BLOCK_TAG,
+            JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG,
+    };
+
+    public static final int[] JAVADOC_INLINE_TAGS = {
+            JavadocCommentsTokenTypes.CODE_INLINE_TAG,
+            JavadocCommentsTokenTypes.LINK_INLINE_TAG,
+            JavadocCommentsTokenTypes.LINKPLAIN_INLINE_TAG,
+            JavadocCommentsTokenTypes.VALUE_INLINE_TAG,
+            JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG,
+            JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG,
+            JavadocCommentsTokenTypes.SYSTEM_PROPERTY_INLINE_TAG,
+            JavadocCommentsTokenTypes.INDEX_INLINE_TAG,
+            JavadocCommentsTokenTypes.RETURN_INLINE_TAG,
+            JavadocCommentsTokenTypes.LITERAL_INLINE_TAG,
+            JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG,
+            JavadocCommentsTokenTypes.CUSTOM_INLINE_TAG,
+    };
 
     // initialise the constants
     static {
@@ -209,6 +245,25 @@ public final class JavadocUtil {
         return returnValue;
     }
 
+
+    public static DetailNode findFirstToken(DetailNode detailNode, int... types) {
+        DetailNode returnValue = null;
+        for (DetailNode ast = detailNode.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (isOfType(ast.getType(), types)) {
+                returnValue = ast;
+            }
+        }
+        return returnValue;
+    }
+
+    public static DetailNode findFirstJavadocBlockTag(DetailNode detailNode) {
+        return findFirstToken(detailNode, JAVADOC_BLOCK_TAGS);
+    }
+
+    public static DetailNode findFirstJavadocInlineTag(DetailNode detailNode) {
+        return findFirstToken(detailNode, JAVADOC_BLOCK_TAGS);
+    }
+
     /**
      * Gets first child node of specified node.
      *
@@ -244,16 +299,16 @@ public final class JavadocUtil {
     }
 
     /**
-     * Gets next sibling of specified node with the specified type.
+     * Gets next sibling of specified node with the specified types.
      *
      * @param node DetailNode
-     * @param tokenType javadoc token type
+     * @param tokenTypes javadoc token types
      * @return next sibling.
      */
-    public static DetailNode getNextSibling(DetailNode node, int tokenType) {
-        DetailNode nextSibling = getNextSibling(node);
-        while (nextSibling != null && nextSibling.getType() != tokenType) {
-            nextSibling = getNextSibling(nextSibling);
+    public static DetailNode getNextSibling(DetailNode node, int... tokenTypes) {
+        DetailNode nextSibling = node.getNextSibling();
+        while (nextSibling != null && !isOfType(nextSibling.getType(), tokenTypes)) {
+            nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
     }
@@ -327,15 +382,7 @@ public final class JavadocUtil {
      * @return name, of the javadocTagSection's tag.
      */
     public static String getTagName(DetailNode javadocTagSection) {
-        final String javadocTagName;
-        if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-            javadocTagName = getNextSibling(
-                    getFirstChild(javadocTagSection)).getText();
-        }
-        else {
-            javadocTagName = getFirstChild(javadocTagSection).getText();
-        }
-        return javadocTagName;
+        return findFirstToken(javadocTagSection, JavadocCommentsTokenTypes.TAG_NAME).getText();
     }
 
     /**
