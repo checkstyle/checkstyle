@@ -65,6 +65,8 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcomm
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationInSwitchBlock.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationSurroundingCode.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/InputModifierOrder.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/InputModifierOrderSealed.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers/InputModifierOrderNonSealed.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksGeneralForm.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksIndentation.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames/InputClassNames.java
