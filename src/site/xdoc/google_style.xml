@@ -256,13 +256,20 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/coding/illegaltokentext.html#IllegalTokenText">
                     IllegalTokenText
                   </a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalTokenText">
                   config</a>)
+                  <br/>
+                  <br/>
+                  Coverage is missing for Unicode and Octal values of <code>\s</code>.
+                  It will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17551">
+                    #17551
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule232specialescape">
