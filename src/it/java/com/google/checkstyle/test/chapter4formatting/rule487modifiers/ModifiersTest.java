@@ -40,4 +40,23 @@ public class ModifiersTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedModifierOrder.java"));
     }
 
+    @Test
+    public void testModifierOrderSealed() throws Exception {
+        verifyWithWholeConfig(getPath("InputModifierOrderSealed.java"));
+    }
+
+    @Test
+    public void testModifierOrderSealedFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedModifierOrderSealed.java"));
+    }
+
+    @Test
+    public void testModifierOrderNonSealed() throws Exception {
+        verifyWithWholeConfig(getPath("InputModifierOrderNonSealed.java"));
+    }
+
+    @Test
+    public void testModifierOrderNonSealedFormatted() throws Exception {
+        verifyWithWholeConfig(getPath("InputFormattedModifierOrderNonSealed.java"));
+    }
 }
