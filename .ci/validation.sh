@@ -428,6 +428,14 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
+rewrite)
+  echo "Executing './mvnw rewrite:dryRun'."
+  echo "Fix potential issues with './mvnw rewrite:run'."
+  export MAVEN_OPTS='-Xmx8g'
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
+#  ./mvnw -e --no-transfer-progress clean rewrite:dryRun > /dev/null 2>&1
+  ;;
+
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
