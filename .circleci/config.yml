@@ -39,6 +39,9 @@ jobs:
         description: "command to run"
         type: string
         default: ""
+      no_output_timeout:
+        default: 10m
+        type: string
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -49,6 +52,7 @@ jobs:
             - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
+          no_output_timeout: << parameters.no_output_timeout >>
       - run:
           command: |
             ./.ci/validation.sh git-diff
@@ -78,7 +82,7 @@ jobs:
             << parameters.command >>
   sonarqube:
     docker:
-      - image: amitkumardeoghoria/jdk-17-groovy-git-mvn:v1.0
+      - image: amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest
 
     steps:
       - checkout
@@ -117,7 +121,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &cs_img "amitkumardeoghoria/jdk-17-groovy-git-mvn:v1.0"
+          image-name: &cs_img "amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
@@ -312,3 +316,11 @@ workflows:
           name: "jdk17-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  rewrite-validation:
+    jobs:
+      - validate-with-maven-script:
+          name: "rewrite-validation"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite-validation"
+          no_output_timeout: 55m # 35m 37s
