@@ -97,8 +97,9 @@ class InputEmptyFinallyBlock {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
   }
 
   void bar2() {
@@ -106,7 +107,8 @@ class InputEmptyFinallyBlock {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
   }
 }

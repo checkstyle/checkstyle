@@ -7,9 +7,10 @@ public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo() {
     try {
       throw new RuntimeException();
+      // violation below 'Empty catch block.'
     } catch (Exception expected) {
 
-    }
+    } // ok 2 lines above until #17563
   }
 
   private void foo1() {
@@ -22,8 +23,9 @@ public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo2() {
     try {
       throw new IOException();
+      // ok below until #17563
     } catch (IOException | NullPointerException | ArithmeticException expected) {
-    }
+    } // violation above 'Empty catch block.'
   }
 
   private void foo3() { // comment
@@ -36,8 +38,9 @@ public class InputEmptyCatchBlockViolationsByVariableName {
   private void foo4() {
     try {
       throw new IOException();
+      // ok below until #17563
     } catch (IOException | NullPointerException | ArithmeticException expected) {
-    }
+    } // violation above 'Empty catch block.'
   }
 
   private void foo5() {

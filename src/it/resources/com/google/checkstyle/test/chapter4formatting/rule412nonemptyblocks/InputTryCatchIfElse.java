@@ -33,25 +33,31 @@ public class InputTryCatchIfElse {
 
     try (MyResource r = new MyResource()) {}
 
+    // ok 'Empty catch block' below until #17563
     try (MyResource r = new MyResource()) {} catch (Exception expected) {}
-    // 2 violations above:
+    // 3 violations above:
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    'Empty catch block'
     //                    ''}' at column 74 should be alone on a line.'
 
+    // ok 'Empty catch block' below until #17563
     try (MyResource r = new MyResource()) {} catch (Exception expected) { }
-    // 3 violations above:
+    // 4 violations above:
     //                    'Empty blocks should have no spaces.'
     //                    'WhitespaceAround: '{' is not followed by whitespace.'
+    //                    'Empty catch block'
     //                    ''}' at column 75 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {
-    } catch (Exception expected) {}
-    // violation above ''}' at column 35 should be alone on a line.'
+    } catch (Exception expected) {} // ok 'Empty catch block' until #17563
+    // violation above 'Empty catch block'
+    // violation 2 lines above ''}' at column 35 should be alone on a line.'
 
     try (MyResource r = new MyResource()) {
-    } catch (Exception expected) { }
-    // 2 violations above:
+    } catch (Exception expected) { } // ok 'Empty catch block' until #17563
+    // 3 violations above:
     //                    'Empty blocks should have no spaces.'
+    //                    'Empty catch block'
     //                    ''}' at column 36 should be alone on a line.'
 
     try (MyResource r = new MyResource()) { ; }
@@ -59,8 +65,11 @@ public class InputTryCatchIfElse {
 
     try {
       /* foo */
-      // violation below ''}' at column 35 should be alone on a line.'
-    } catch (Exception expected) {}
+
+    } catch (Exception expected) {} // ok 'Empty catch block' until #17563
+    // 2 violations above:
+    //   'Empty catch block'
+    //   ''}' at column 35 should be alone on a line.'
 
     try {
       /* foo */
