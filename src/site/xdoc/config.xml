@@ -477,7 +477,7 @@
   ...
 &lt;/module&gt;
         </code></pre></div>
-        <p>OR</p>
+        <p id="Example-config6">OR</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
@@ -558,7 +558,7 @@
       </subsection>
 
       <subsection name="Examples" id="TreeWalker_Examples">
-        <p>
+        <p id="Example-config7">
           For example, the following configuration fragment specifies
           <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
         </p>
@@ -572,7 +572,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config8">
           <!--
             thanks to Paul King for this example, see
             https://sourceforge.net/tracker/?func=detail&aid=865610&group_id=29721&atid=397078
@@ -589,7 +589,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config9">
           To configure <code>TreeWalker</code> so that it
           handles files with the <code>java</code> extension:
         </p>
@@ -601,7 +601,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p>
+        <p id="Example-config10">
           To configure <code>TreeWalker</code> so that it
           handles files with any extension:
         </p>
@@ -612,7 +612,7 @@
   ...
 &lt;/module&gt;
         </code></pre></div>
-        <p>OR</p>
+        <p id="Example-config11">OR</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
@@ -625,7 +625,7 @@
           Checkstyle will fail to parse them, log parsing exceptions, and may halt processing,
           failing to analyze other files.
         </p>
-        <p>
+        <p id="Example-config12">
           To configure <code>TreeWalker</code> so that it skips files with java parsing exceptions,
           preventing execution from stopping on an exception and instead
           printing it as a violation:
@@ -636,7 +636,7 @@
    ...
 &lt;/module&gt;
         </code></pre></div>
-        <p>
+        <p id="Example-config13">
           To configure <code>TreeWalker</code> so that it
           skips files with java parsing exceptions,
           preventing execution from stopping on an exception and does not
