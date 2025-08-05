@@ -211,10 +211,11 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Sets parent node.
      *
-     * @param parent Parent node.
+     * @param node Parent node.
      */
-    public void setParent(JavadocNodeImpl parent) {
+    public void setParent(DetailNode node) {
         JavadocNodeImpl instance = this;
+        JavadocNodeImpl parent = (JavadocNodeImpl) node;
         do {
             instance.parent = parent;
             instance = instance.nextSibling;
@@ -251,10 +252,9 @@ public class JavadocNodeImpl implements DetailNode {
      * @param newChild Child node to be added.
      */
     public void addChild(DetailNode newChild) {
-        if (newChild != null) {
-            final JavadocNodeImpl astImpl = (JavadocNodeImpl) newChild;
-            astImpl.setParent(this);
-        }
+        final JavadocNodeImpl astImpl = (JavadocNodeImpl) newChild;
+        astImpl.setParent(this);
+
         DetailNode temp = firstChild;
         if (temp == null) {
             firstChild = (JavadocNodeImpl) newChild;
