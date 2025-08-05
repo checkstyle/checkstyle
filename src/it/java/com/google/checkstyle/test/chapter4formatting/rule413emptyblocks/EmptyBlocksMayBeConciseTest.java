@@ -59,4 +59,9 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
     }
+
+    @Test
+    public void testEmptyCatchEmptyComment() throws Exception {
+        verifyWithWholeConfig(getPath("InputEmptyCatchEmptyComment.java"));
+    }
 }
