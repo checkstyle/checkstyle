@@ -138,6 +138,13 @@ Checkstyle uses libraries:
 - [Google Guava](https://github.com/google/guava/)
 - [Picocli](https://github.com/remkop/picocli/)
 
+## Powered by
+
+[![JetBrains logo.](jetbrains img)](jetbrains)
+
+[jetbrains]:https://jb.gg/OpenSource
+[jetbrains img]:https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
+
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
