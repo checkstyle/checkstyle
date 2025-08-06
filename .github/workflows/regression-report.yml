@@ -156,8 +156,6 @@ jobs:
         env:
           COMMENT_BODY: ${{ github.event.comment.body }}
         run: |
-          COMMENT_BODY="$(echo "$COMMENT_BODY" | tr -d '[:space:]')"
-
           NAME='^Git[Hh]ub,'
           PATTERN_FOR_DESCRIPTION=$NAME' generate report for configs in PR description[[:space:]]*$'
           PATTERN_FOR=$NAME' generate report for'
