@@ -138,12 +138,17 @@ Checkstyle uses libraries:
 - [Google Guava](https://github.com/google/guava/)
 - [Picocli](https://github.com/remkop/picocli/)
 
-## Powered by
+## Development Tools Powered by
 
 [![JetBrains logo.][jetbrains img]][jetbrains]
 
+[![JProfiler logo.][jprofiler img]][jprofiler]
+
 [jetbrains]:https://jb.gg/OpenSource
 [jetbrains img]:https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
+
+[jprofiler]:https://www.ej-technologies.com/jprofiler
+[jprofiler img]:https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
