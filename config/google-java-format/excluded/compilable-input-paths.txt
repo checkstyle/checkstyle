@@ -76,3 +76,4 @@ src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/In
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectJavadocParagraph.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/InputJavaDocTagContinuationIndentation.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java
+src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPositionRecord.java

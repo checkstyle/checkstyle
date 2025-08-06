@@ -1,0 +1,58 @@
+package com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
+
+// violation below 'Javadoc comment is placed in the wrong location.'
+/** odd javadoc */
+/** valid javadoc.
+ *
+ * @param containerPath options
+ * @param containerPath path
+ *
+ */
+public record InputInvalidJavadocPositionRecord(String containerPath, String... options) {
+  /** odd javadoc */ // violation 'Javadoc comment is placed in the wrong location.'
+
+  /**
+   * Creates a mount.
+   *
+   * @param containerPath a path on the container
+   * @param options       mounting options
+   * @throws NullPointerException     if any of the arguments are null
+   */
+  InputInvalidJavadocPositionRecord {
+    /** some javadoc. */ // violation 'Javadoc comment is placed in the wrong location'
+  }
+}
+
+// violation below 'Javadoc comment is placed in the wrong location.'
+/** invalid comment. */
+/**
+* The configuration.
+*
+* @param text the text
+*/
+public record MyRecord(String text) {
+
+  /** some javadoc.*/
+  public MyRecord {}
+  /** invalid comment. */ // violation 'Javadoc comment is placed in the wrong location.'
+}
+
+/** some javadoc. */ // violation 'Javadoc comment is placed in the wrong location.'
+/**
+ * some javadoc.
+ *
+ * @param from the from
+ */
+record Mapping(String from) { // violation 'Top-level class Mapping has to reside in its own'
+
+  /**
+   * The constructor for Mapping.
+   *
+   * @param from The source
+   */
+  Mapping(String from) {
+    this.from = from;
+    /** some javadoc. */
+    // violation above 'Javadoc comment is placed in the wrong location.'
+  }
+}
