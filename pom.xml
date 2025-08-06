@@ -4640,7 +4640,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheckTest</param>
                 <param>org.checkstyle.suppressionxpathfilter.XpathRegressionUnusedLocalVariableTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheckTest</param>
-                <param>org.checkstyle.suppressionxpathfilter.XpathRegressionJavadocMethodTest</param>
+                <param>org.checkstyle.suppressionxpathfilter.javadoc.XpathRegressionJavadocMethodTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheckTest</param>
