@@ -62,6 +62,7 @@ public final class JavadocCommentsTokenTypes {
 
 
     // inline tags
+    public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
     public static final int JAVADOC_INLINE_TAG_START = JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
     public static final int CODE_INLINE_TAG= JavadocCommentsLexer.CODE_INLINE_TAG;
