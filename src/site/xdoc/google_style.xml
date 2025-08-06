@@ -1327,11 +1327,18 @@
                 </td>
                 <td>
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/misc/indentation.html#Indentation">Indentation</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Indentation">
                   config</a>)
+                  <br/>
+                  <br/>
+                  Line break after <code>{</code> of non-empty block in switch-rule is
+                  not covered. It will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17565">
+                    #17565
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation">
