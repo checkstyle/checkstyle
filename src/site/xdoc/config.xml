@@ -67,7 +67,7 @@
         <code>name</code> attribute.
       </p>
 
-      <p>
+      <p id="Example-config1">
         Here is a fragment of a typical configuration document:
       </p>
 
@@ -158,7 +158,7 @@
     </section>
 
     <section name="Properties">
-      <p>
+      <p id="Example-config2">
         Properties of a module control how the module performs its task.
         Each module property has a default value, and you are not
         required to define a property in the configuration document if
@@ -182,7 +182,7 @@
 &lt;/module&gt;
       </code></pre></div>
 
-      <p>
+      <p id="Example-config3">
         <a href="cmdline.html">Command line</a> properties and ant <a
         href="anttask.html">Checkstyle task</a> properties apply to the
         root <code>Checker</code> module. Also, properties
@@ -205,7 +205,7 @@
 &lt;/module&gt;
       </code></pre></div>
 
-      <p>
+      <p id="Example-config4">
         The value of a module property can be specified through
         <em>property expansion</em> with the <code>${<em>property_name</em>}</code> notation, where
         <code><em>property_name</em></code> is a <a
@@ -227,7 +227,7 @@
         value without changing the configuration document.
       </p>
 
-      <p>
+      <p id="Example-config5">
         The property element provides an optional <code>default</code> attribute which is
         used when a property in the value cannot be resolved. For example this
         configuration snippet from a central configuration file checks
@@ -387,7 +387,7 @@
           to store plug-in specific information or any other information in the config
           file.
         </p>
-        <p>
+        <p id="Example-config6">
           To avoid name clashes between different tools/plug-ins you are <b>strongly</b>
           encouraged to prefix all names with your domain name. For example, use the
           name "com.mycompany.parameter" instead of "parameter".
@@ -411,7 +411,7 @@
       </subsection>
 
       <subsection name="Examples" id="Checker_Examples">
-        <p id="Example-config1">
+        <p id="Example-config7">
           For example, the following configuration fragment specifies base
           directory <code>src/checkstyle</code>, cache file <code>target/cachefile</code> and German
           locale for all modules:
@@ -430,7 +430,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config2">
+        <p id="Example-config8">
           To configure a <code>Checker</code> so that it
           handles files with the <code>ISO-8859-5</code> charset:
         </p>
@@ -442,7 +442,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config3">
+        <p id="Example-config9">
           To configure a <code>Checker</code> so that it
           handles files with the <code>java, xml, properties</code> extensions:
         </p>
@@ -454,7 +454,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config4">
+        <p id="Example-config10">
           To configure a <code>Checker</code> so that it doesn't stop execution on an
           <code>Exception</code> and instead prints it as a violation:
         </p>
@@ -466,7 +466,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config5">
+        <p id="Example-config11">
           To configure a <code>Checker</code> so that it
           handles files with any extension:
         </p>
@@ -477,7 +477,7 @@
   ...
 &lt;/module&gt;
         </code></pre></div>
-        <p id="Example-config6">OR</p>
+        <p id="Example-config12">OR</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
@@ -558,7 +558,7 @@
       </subsection>
 
       <subsection name="Examples" id="TreeWalker_Examples">
-        <p id="Example-config7">
+        <p id="Example-config13">
           For example, the following configuration fragment specifies
           <code>TreeWalker</code> a <code>tabWidth</code> of <code>4</code>:
         </p>
@@ -572,7 +572,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config8">
+        <p id="Example-config14">
           <!--
             thanks to Paul King for this example, see
             https://sourceforge.net/tracker/?func=detail&aid=865610&group_id=29721&atid=397078
@@ -589,7 +589,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config9">
+        <p id="Example-config15">
           To configure <code>TreeWalker</code> so that it
           handles files with the <code>java</code> extension:
         </p>
@@ -601,7 +601,7 @@
 &lt;/module&gt;
         </code></pre></div>
 
-        <p id="Example-config10">
+        <p id="Example-config16">
           To configure <code>TreeWalker</code> so that it
           handles files with any extension:
         </p>
@@ -612,7 +612,7 @@
   ...
 &lt;/module&gt;
         </code></pre></div>
-        <p id="Example-config11">OR</p>
+        <p id="Example-config17">OR</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
@@ -625,7 +625,7 @@
           Checkstyle will fail to parse them, log parsing exceptions, and may halt processing,
           failing to analyze other files.
         </p>
-        <p id="Example-config12">
+        <p id="Example-config18">
           To configure <code>TreeWalker</code> so that it skips files with java parsing exceptions,
           preventing execution from stopping on an exception and instead
           printing it as a violation:
@@ -636,7 +636,7 @@
    ...
 &lt;/module&gt;
         </code></pre></div>
-        <p id="Example-config13">
+        <p id="Example-config19">
           To configure <code>TreeWalker</code> so that it
           skips files with java parsing exceptions,
           preventing execution from stopping on an exception and does not
@@ -693,7 +693,7 @@
         number of lines of the node's code block.
       </p>
 
-      <p>
+      <p id="Example-config20">
         Some Checks, such as <code>FileLength</code> and
         <code>LineLength</code>, apply directly to the
         source file and do not involve tokens of the syntax tree.  Other
@@ -714,7 +714,7 @@
         or a <code>CTOR_DEF</code> token.
       </p>
 
-      <p>
+      <p id="Example-config21">
         You specify the trigger tokens for a Check with property <code>tokens</code>.  The value
         of <code>tokens</code> is a list that denotes a subset of the Check's tokens, as in the
         following element that configures Check <code>MethodLength</code> to check the number
@@ -727,7 +727,7 @@
 &lt;/module&gt;
       </code></pre></div>
 
-      <p>
+      <p id="Example-config22">
         To apply particular properties to different subsets of tokens
         for a Check, repeat the Check.  For example, to check that the
         length of each method is at most 150 lines (the default value of
@@ -760,7 +760,7 @@
         default severity level of a check is <code>error</code>.
       </p>
 
-      <p>
+      <p id="Example-config23">
         You can use the severity property to control the output of the
         all formatters for the <a href="cmdline.html#f">command line
         tool</a> and the <a href="anttask.html">ANT task</a>.
@@ -784,7 +784,7 @@
     </section>
 
     <section name="tabWidth">
-      <p>
+      <p id="Example-config24">
         Each module has a <code>tabWidth</code> property that can specify how many spaces
         a tab character uses. The default width by all modules is 8 spaces. Overriding the
         width for a parent module, will apply those changes automatically to the children.
@@ -799,7 +799,7 @@
     </section>
 
     <section name="Id">
-      <p>
+      <p id="Example-config25">
         Each module has a <code>id</code> property that can rename the module name
         to be a name defined by the user. This is used to differentiate
         two instances of the same Check. This custom module name should be unique
@@ -840,7 +840,7 @@
         developers to understand.
       </p>
 
-      <p>An example usage is:</p>
+      <p id="Example-config26">An example usage is:</p>
 
       <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name=&quot;MemberName&quot;&gt;
@@ -911,7 +911,7 @@
 
     <section name="Audit Listeners">
 
-      <p>
+      <p id="Example-config27">
         In addition to an audit reporter for text or XML output, a
         Checker can have <a href="writinglisteners.html">custom
         AuditListeners</a> that handle audit events. In order to use a
@@ -959,7 +959,7 @@
         with Checkstyle 5.0.
       </p>
 
-      <p>
+      <p id="Example-config28">
         A <em>package names XML document</em> specifies a list of
         package names. Here is a sample package names XML document for
         packages <code>
@@ -986,7 +986,7 @@
         the document. DTD is available at <a href="/dtds/packages_1_0.dtd">packages_1_0.dtd</a>
       </p>
 
-      <p>
+      <p id="Example-config29">
         For example, to incorporate modules from package <code>com.mycompany.checks</code>
         with Checkstyle modules, create the XML file below and put this file into the
         <b>root of the jar</b> file which contains your custom check modules.
@@ -1005,7 +1005,7 @@
 &lt;/checkstyle-packages&gt;
       </code></pre></div>
 
-      <p>
+      <p id="Example-config30">
         Now you can configure a module of package <code>com.mycompany.checks</code>, say
         <code>com.mycompany.checks.MethodLimitCheck</code>, with a shortened <code>module</code>
         element in the configuration document:
@@ -1034,7 +1034,7 @@
         hierarchy of modules and their properties.
       </p>
 
-      <p>
+      <p id="Example-config31">
         Checkstyle validates the configuration XML document structure when it loads
         the document. To validate against the
         <a href="/dtds/configuration_1_3.dtd">latest DTD</a>,
