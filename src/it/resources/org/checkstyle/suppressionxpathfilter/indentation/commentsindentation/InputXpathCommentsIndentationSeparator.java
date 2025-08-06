@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.commentsindentation;
+package org.checkstyle.suppressionxpathfilter.indentation.commentsindentation;
 
 public class InputXpathCommentsIndentationSeparator {
     public void main(String[] args) {
