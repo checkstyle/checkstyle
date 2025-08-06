@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.npathcomplexity;
+package org.checkstyle.suppressionxpathfilter.metrics.npathcomplexity;
 
 public class InputXpathNPathComplexityStaticBlock {
     static { //warn

@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.javancss; // warn
+package org.checkstyle.suppressionxpathfilter.metrics.javancss; // warn
 
 public class InputXpathJavaNCSSThree {
     int a1 = 1;

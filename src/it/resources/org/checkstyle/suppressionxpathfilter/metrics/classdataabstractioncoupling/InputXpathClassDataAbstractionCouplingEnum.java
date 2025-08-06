@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.classdataabstractioncoupling;
+package org.checkstyle.suppressionxpathfilter.metrics.classdataabstractioncoupling;
 
 import java.io.CharArrayWriter;
 import java.io.File;

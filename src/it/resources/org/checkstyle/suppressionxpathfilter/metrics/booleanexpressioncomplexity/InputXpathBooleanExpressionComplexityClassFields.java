@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.booleanexpressioncomplexity;
+package org.checkstyle.suppressionxpathfilter.metrics.booleanexpressioncomplexity;
 
 public class InputXpathBooleanExpressionComplexityClassFields {
     public void methodTwo() {

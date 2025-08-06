@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.classfanoutcomplexity;
+package org.checkstyle.suppressionxpathfilter.metrics.classfanoutcomplexity;
 
 public class InputXpathClassFanOutComplexityInterface {
 

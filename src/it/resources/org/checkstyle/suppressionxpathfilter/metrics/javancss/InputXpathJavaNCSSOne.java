@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.javancss;
+package org.checkstyle.suppressionxpathfilter.metrics.javancss;
 
 public class InputXpathJavaNCSSOne {
 
