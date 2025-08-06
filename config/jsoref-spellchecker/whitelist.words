@@ -1033,6 +1033,7 @@ ove
 overloadmethodsdeclarationorder
 overloadsplit
 overridable
+overridealwaysused
 OVERRIDERS
 packageannotation
 packagecomment
