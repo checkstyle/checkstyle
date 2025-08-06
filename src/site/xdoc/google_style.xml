@@ -2204,12 +2204,15 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
-                  </span>
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                   config</a>)
+                  <br />
+                  <br />
+                  Proper way of ignoring the exception will be discussed and addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17563">
+                    #17563
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
