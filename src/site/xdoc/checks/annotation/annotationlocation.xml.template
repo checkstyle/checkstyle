@@ -16,6 +16,13 @@
         </macro>
       </subsection>
 
+      <subsection name="Notes" id="Notes">
+        <macro name="notes">
+          <param name="modulePath"
+                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java"/>
+        </macro>
+      </subsection>
+
       <subsection name="Properties" id="Properties">
         <div class="wrapper">
           <macro name="properties">
