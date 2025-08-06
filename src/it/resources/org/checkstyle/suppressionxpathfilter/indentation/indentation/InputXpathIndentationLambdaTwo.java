@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.indentation;
+package org.checkstyle.suppressionxpathfilter.indentation.indentation;
 
 interface MyLambdaInterface {
     int foo(int a, int b);
