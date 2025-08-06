@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.commentsindentation;
+package org.checkstyle.suppressionxpathfilter.indentation.commentsindentation;
 
 import java.util.Arrays;
 

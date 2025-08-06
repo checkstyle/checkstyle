@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.commentsindentation;
+package org.checkstyle.suppressionxpathfilter.indentation.commentsindentation;
 
 public class InputXpathCommentsIndentationEmptyCase {
     int n;
