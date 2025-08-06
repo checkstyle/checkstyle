@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.cyclomaticcomplexity;
+package org.checkstyle.suppressionxpathfilter.metrics.cyclomaticcomplexity;
 
 public class InputXpathCyclomaticComplexitySwitchBlock {
 
