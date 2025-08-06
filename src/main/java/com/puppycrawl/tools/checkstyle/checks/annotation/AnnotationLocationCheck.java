@@ -29,10 +29,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <div>
  * Checks location of annotation on language elements.
- * By default, Check enforce to locate annotations immediately after
- * documentation block and before target element, annotation should be located
+ * By default, Check enforce to locate annotations before target element, annotation should be located
  * on separate line from target element. This check also verifies that the annotations
  * are on the same indenting level as the annotated element if they are not on the same line.
+ * Note that this check does <strong>not</strong> enforce annotations to be placed
+ * immediately after Javadoc comments.
+ * If that behavior is desired, consider also using {@code InvalidJavadocPosition}.
  * </div>
  *
  * <p>
