@@ -188,4 +188,15 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     public void testFormattedAnnotationArrayInitMultiline2() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedAnnotationArrayInitMultiline2.java"));
     }
+
+    @Test
+    public void testLineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
+        verifyWithWholeConfig(getPath("InputLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
+    }
+
+    @Test
+    public void testFormattedLineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
+        verifyWithWholeConfig(
+            getPath("InputFormattedLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
+    }
 }
