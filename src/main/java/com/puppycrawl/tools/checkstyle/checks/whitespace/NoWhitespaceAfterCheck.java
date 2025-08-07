@@ -202,20 +202,12 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return node before ast.
      */
     private static DetailAST getWhitespaceFollowedNode(DetailAST ast) {
-        final DetailAST whitespaceFollowedAst;
-        switch (ast.getType()) {
-            case TokenTypes.TYPECAST:
-                whitespaceFollowedAst = ast.findFirstToken(TokenTypes.RPAREN);
-                break;
-            case TokenTypes.ARRAY_DECLARATOR:
-                whitespaceFollowedAst = getArrayDeclaratorPreviousElement(ast);
-                break;
-            case TokenTypes.INDEX_OP:
-                whitespaceFollowedAst = getIndexOpPreviousElement(ast);
-                break;
-            default:
-                whitespaceFollowedAst = ast;
-        }
+        final DetailAST whitespaceFollowedAst = switch (ast.getType()) {
+            case TokenTypes.TYPECAST -> ast.findFirstToken(TokenTypes.RPAREN);
+            case TokenTypes.ARRAY_DECLARATOR -> getArrayDeclaratorPreviousElement(ast);
+            case TokenTypes.INDEX_OP -> getIndexOpPreviousElement(ast);
+            default -> ast;
+        };
         return whitespaceFollowedAst;
     }
 

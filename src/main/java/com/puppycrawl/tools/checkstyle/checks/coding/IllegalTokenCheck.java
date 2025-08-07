@@ -111,19 +111,12 @@ public class IllegalTokenCheck
      * @return string representation of AST node
      */
     private static String convertToString(DetailAST ast) {
-        final String tokenText;
-        switch (ast.getType()) {
-            case TokenTypes.LABELED_STAT:
-                tokenText = ast.getFirstChild().getText() + ast.getText();
-                break;
+        final String tokenText = switch (ast.getType()) {
+            case TokenTypes.LABELED_STAT -> ast.getFirstChild().getText() + ast.getText();
             // multiline tokens need to become singlelined
-            case TokenTypes.COMMENT_CONTENT:
-                tokenText = JavadocUtil.escapeAllControlChars(ast.getText());
-                break;
-            default:
-                tokenText = ast.getText();
-                break;
-        }
+            case TokenTypes.COMMENT_CONTENT -> JavadocUtil.escapeAllControlChars(ast.getText());
+            default -> ast.getText();
+        };
         return tokenText;
     }
 

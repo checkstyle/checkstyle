@@ -531,30 +531,16 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isNotRelevantSituation(DetailAST ast, int currentType) {
         final int parentType = ast.getParent().getType();
-        final boolean result;
-        switch (parentType) {
-            case TokenTypes.DOT:
-                result = currentType == TokenTypes.STAR;
-                break;
-            case TokenTypes.LITERAL_DEFAULT:
-            case TokenTypes.LITERAL_CASE:
-            case TokenTypes.CASE_GROUP:
-                result = true;
-                break;
-            case TokenTypes.FOR_EACH_CLAUSE:
-                result = ignoreEnhancedForColon;
-                break;
-            case TokenTypes.EXPR:
-                result = currentType == TokenTypes.LITERAL_SWITCH;
-                break;
-            case TokenTypes.ARRAY_INIT:
-            case TokenTypes.ANNOTATION_ARRAY_INIT:
-                result = currentType == TokenTypes.RCURLY;
-                break;
-            default:
-                result = isEmptyBlock(ast, parentType)
+        final boolean result = switch (parentType) {
+            case TokenTypes.DOT -> currentType == TokenTypes.STAR;
+            case TokenTypes.LITERAL_DEFAULT, TokenTypes.LITERAL_CASE, TokenTypes.CASE_GROUP -> true;
+            case TokenTypes.FOR_EACH_CLAUSE -> ignoreEnhancedForColon;
+            case TokenTypes.EXPR -> currentType == TokenTypes.LITERAL_SWITCH;
+            case TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT ->
+                currentType == TokenTypes.RCURLY;
+            default -> isEmptyBlock(ast, parentType)
                     || allowEmptyTypes && isEmptyType(ast);
-        }
+        };
         return result;
     }
 
