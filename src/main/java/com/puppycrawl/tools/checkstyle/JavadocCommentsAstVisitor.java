@@ -526,6 +526,10 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             node.setType(JavadocCommentsTokenTypes.TAG_NAME);
         }
 
+        if (token.getType() == JavadocCommentsLexer.WS) {
+            node.setType(JavadocCommentsTokenTypes.TEXT);
+        }
+
         return node;
     }
 
