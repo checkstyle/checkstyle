@@ -137,21 +137,12 @@ public class MethodDefHandler extends BlockParentHandler {
      * @return handler name for this class.
      */
     private static String getHandlerName(DetailAST ast) {
-        final String name;
-
-        switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-                name = "ctor def";
-                break;
-            case TokenTypes.ANNOTATION_FIELD_DEF:
-                name = "annotation field def";
-                break;
-            case TokenTypes.COMPACT_CTOR_DEF:
-                name = "compact ctor def";
-                break;
-            default:
-                name = "method def";
-        }
+        final String name = switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF -> "ctor def";
+            case TokenTypes.ANNOTATION_FIELD_DEF -> "annotation field def";
+            case TokenTypes.COMPACT_CTOR_DEF -> "compact ctor def";
+            default -> "method def";
+        };
 
         return name;
     }
