@@ -422,29 +422,14 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return object containing all details to make a validation
          */
         private static Details getDetails(DetailAST ast) {
-            final Details details;
-            switch (ast.getType()) {
-                case TokenTypes.LITERAL_TRY:
-                case TokenTypes.LITERAL_CATCH:
-                    details = getDetailsForTryCatch(ast);
-                    break;
-                case TokenTypes.LITERAL_IF:
-                    details = getDetailsForIf(ast);
-                    break;
-                case TokenTypes.LITERAL_DO:
-                    details = getDetailsForDoLoops(ast);
-                    break;
-                case TokenTypes.LITERAL_SWITCH:
-                    details = getDetailsForSwitch(ast);
-                    break;
-                case TokenTypes.LITERAL_CASE:
-                    details = getDetailsForCase(ast);
-                    break;
-                default:
-                    details = getDetailsForOthers(ast);
-                    break;
-            }
-            return details;
+            return switch (ast.getType()) {
+                case TokenTypes.LITERAL_TRY, TokenTypes.LITERAL_CATCH -> getDetailsForTryCatch(ast);
+                case TokenTypes.LITERAL_IF -> getDetailsForIf(ast);
+                case TokenTypes.LITERAL_DO -> getDetailsForDoLoops(ast);
+                case TokenTypes.LITERAL_SWITCH -> getDetailsForSwitch(ast);
+                case TokenTypes.LITERAL_CASE -> getDetailsForCase(ast);
+                default -> getDetailsForOthers(ast);
+            };
         }
 
         /**

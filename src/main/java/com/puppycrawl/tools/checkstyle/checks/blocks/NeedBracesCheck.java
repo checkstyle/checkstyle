@@ -175,27 +175,13 @@ public class NeedBracesCheck extends AbstractCheck {
      *     {@code true} if there is no additional checks for token
      */
     private boolean isBracesNeeded(DetailAST ast) {
-        final boolean result;
-        switch (ast.getType()) {
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_WHILE:
-                result = !isEmptyLoopBodyAllowed(ast);
-                break;
-            case TokenTypes.LITERAL_CASE:
-            case TokenTypes.LITERAL_DEFAULT:
-                result = hasUnbracedStatements(ast);
-                break;
-            case TokenTypes.LITERAL_ELSE:
-                result = ast.findFirstToken(TokenTypes.LITERAL_IF) == null;
-                break;
-            case TokenTypes.LAMBDA:
-                result = !isInSwitchRule(ast);
-                break;
-            default:
-                result = true;
-                break;
-        }
-        return result;
+        return switch (ast.getType()) {
+            case TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE -> !isEmptyLoopBodyAllowed(ast);
+            case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT -> hasUnbracedStatements(ast);
+            case TokenTypes.LITERAL_ELSE -> ast.findFirstToken(TokenTypes.LITERAL_IF) == null;
+            case TokenTypes.LAMBDA -> !isInSwitchRule(ast);
+            default -> true;
+        };
     }
 
     /**
@@ -259,35 +245,18 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current statement is single-line statement.
      */
     private static boolean isSingleLineStatement(DetailAST statement) {
-        final boolean result;
 
-        switch (statement.getType()) {
-            case TokenTypes.LITERAL_IF:
-                result = isSingleLineIf(statement);
-                break;
-            case TokenTypes.LITERAL_FOR:
-                result = isSingleLineFor(statement);
-                break;
-            case TokenTypes.LITERAL_DO:
-                result = isSingleLineDoWhile(statement);
-                break;
-            case TokenTypes.LITERAL_WHILE:
-                result = isSingleLineWhile(statement);
-                break;
-            case TokenTypes.LAMBDA:
-                result = !isInSwitchRule(statement)
+        return switch (statement.getType()) {
+            case TokenTypes.LITERAL_IF -> isSingleLineIf(statement);
+            case TokenTypes.LITERAL_FOR -> isSingleLineFor(statement);
+            case TokenTypes.LITERAL_DO -> isSingleLineDoWhile(statement);
+            case TokenTypes.LITERAL_WHILE -> isSingleLineWhile(statement);
+            case TokenTypes.LAMBDA -> !isInSwitchRule(statement)
                     && isSingleLineLambda(statement);
-                break;
-            case TokenTypes.LITERAL_CASE:
-            case TokenTypes.LITERAL_DEFAULT:
-                result = isSingleLineSwitchMember(statement);
-                break;
-            default:
-                result = isSingleLineElse(statement);
-                break;
-        }
-
-        return result;
+            case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT ->
+                isSingleLineSwitchMember(statement);
+            default -> isSingleLineElse(statement);
+        };
     }
 
     /**
