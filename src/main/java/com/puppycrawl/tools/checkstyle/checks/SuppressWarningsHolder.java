@@ -397,26 +397,16 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if there is an unexpected container type.
      */
     private static Optional<DetailAST> getAnnotationTarget(DetailAST ast) {
-        final Optional<DetailAST> result;
         final DetailAST parentAST = ast.getParent();
-        switch (parentAST.getType()) {
-            case TokenTypes.MODIFIERS:
-            case TokenTypes.ANNOTATIONS:
-            case TokenTypes.ANNOTATION:
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                result = Optional.of(parentAST.getParent());
-                break;
-            case TokenTypes.LITERAL_DEFAULT:
-                result = Optional.empty();
-                break;
-            case TokenTypes.ANNOTATION_ARRAY_INIT:
-                result = getAnnotationTarget(parentAST);
-                break;
-            default:
+        return switch (parentAST.getType()) {
+            case TokenTypes.MODIFIERS, TokenTypes.ANNOTATIONS, TokenTypes.ANNOTATION,
+                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR -> Optional.of(parentAST.getParent());
+            case TokenTypes.LITERAL_DEFAULT -> Optional.empty();
+            case TokenTypes.ANNOTATION_ARRAY_INIT -> getAnnotationTarget(parentAST);
+            default ->
                 // unexpected container type
-                throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
-        }
-        return result;
+                    throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
+        };
     }
 
     /**
@@ -499,19 +489,12 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static List<String> getAnnotationValues(DetailAST ast) {
-        final List<String> annotationValues;
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                annotationValues = Collections.singletonList(getStringExpr(ast));
-                break;
-            case TokenTypes.ANNOTATION_ARRAY_INIT:
-                annotationValues = findAllExpressionsInChildren(ast);
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Expression or annotation array initializer AST expected: " + ast);
-        }
-        return annotationValues;
+        return switch (ast.getType()) {
+            case TokenTypes.EXPR -> Collections.singletonList(getStringExpr(ast));
+            case TokenTypes.ANNOTATION_ARRAY_INIT -> findAllExpressionsInChildren(ast);
+            default -> throw new IllegalArgumentException(
+                    "Expression or annotation array initializer AST expected: " + ast);
+        };
     }
 
     /**

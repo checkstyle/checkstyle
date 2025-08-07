@@ -185,57 +185,34 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private boolean isTerminated(final DetailAST ast, boolean useBreak,
                                  boolean useContinue, Set<String> labelsForCurrentSwitchScope) {
-        final boolean terminated;
 
-        switch (ast.getType()) {
-            case TokenTypes.LITERAL_RETURN:
-            case TokenTypes.LITERAL_YIELD:
-            case TokenTypes.LITERAL_THROW:
-                terminated = true;
-                break;
-            case TokenTypes.LITERAL_BREAK:
-                terminated =
-                        useBreak || hasLabel(ast, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_CONTINUE:
-                terminated =
-                        useContinue || hasLabel(ast, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.SLIST:
-                terminated =
-                        checkSlist(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_IF:
-                terminated =
-                        checkIf(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_DO:
-                terminated = checkLoop(ast, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_TRY:
-                terminated =
-                        checkTry(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_SWITCH:
-                terminated =
-                        checkSwitch(ast, useContinue, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LITERAL_SYNCHRONIZED:
-                terminated =
-                        checkSynchronized(ast, useBreak, useContinue, labelsForCurrentSwitchScope);
-                break;
-            case TokenTypes.LABELED_STAT:
+        return switch (ast.getType()) {
+            case TokenTypes.LITERAL_RETURN, TokenTypes.LITERAL_YIELD,
+                    TokenTypes.LITERAL_THROW -> true;
+            case TokenTypes.LITERAL_BREAK -> useBreak
+                    || hasLabel(ast, labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_CONTINUE -> useContinue
+                    || hasLabel(ast, labelsForCurrentSwitchScope);
+            case TokenTypes.SLIST -> checkSlist(ast, useBreak, useContinue,
+                    labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_IF -> checkIf(ast, useBreak, useContinue,
+                    labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO ->
+                checkLoop(ast, labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_TRY -> checkTry(ast, useBreak, useContinue,
+                    labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_SWITCH -> checkSwitch(ast, useContinue,
+                    labelsForCurrentSwitchScope);
+            case TokenTypes.LITERAL_SYNCHRONIZED ->
+                checkSynchronized(ast, useBreak, useContinue,
+                    labelsForCurrentSwitchScope);
+            case TokenTypes.LABELED_STAT -> {
                 labelsForCurrentSwitchScope.add(ast.getFirstChild().getText());
-                terminated =
-                        isTerminated(ast.getLastChild(), useBreak, useContinue,
-                                labelsForCurrentSwitchScope);
-                break;
-            default:
-                terminated = false;
-        }
-        return terminated;
+                yield isTerminated(ast.getLastChild(), useBreak, useContinue,
+                        labelsForCurrentSwitchScope);
+            }
+            default -> false;
+        };
     }
 
     /**
