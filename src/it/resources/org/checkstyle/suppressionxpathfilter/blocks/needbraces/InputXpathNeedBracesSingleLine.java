@@ -1,7 +1,5 @@
 package org.checkstyle.suppressionxpathfilter.blocks.needbraces;
 
-import com.puppycrawl.tools.checkstyle.checks.blocks.needbraces.InputNeedBracesSingleLineStatements;
-
 public class InputXpathNeedBracesSingleLine {
     private static class SomeClass {
         boolean flag = true;
