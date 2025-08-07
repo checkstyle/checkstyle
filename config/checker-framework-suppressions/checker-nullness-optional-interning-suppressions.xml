@@ -5559,7 +5559,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return value;</lineContent>
+    <lineContent>return switch (column) {</lineContent>
     <details>
       type of expression: @Initialized @Nullable Object
       method return type: @Initialized @NonNull Object
@@ -5570,7 +5570,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return value;</lineContent>
+    <lineContent>return switch (column) {</lineContent>
     <details>
       type of expression: @Initialized @Nullable Object
       method return type: @Initialized @NonNull Object
