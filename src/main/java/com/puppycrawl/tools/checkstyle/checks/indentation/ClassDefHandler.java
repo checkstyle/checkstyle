@@ -115,22 +115,13 @@ public class ClassDefHandler extends BlockParentHandler {
         final String name;
         final int tokenType = ast.getType();
 
-        switch (tokenType) {
-            case TokenTypes.CLASS_DEF:
-                name = "class def";
-                break;
-            case TokenTypes.ENUM_DEF:
-                name = "enum def";
-                break;
-            case TokenTypes.ANNOTATION_DEF:
-                name = "annotation def";
-                break;
-            case TokenTypes.RECORD_DEF:
-                name = "record def";
-                break;
-            default:
-                name = "interface def";
-        }
+        name = switch (tokenType) {
+            case TokenTypes.CLASS_DEF -> "class def";
+            case TokenTypes.ENUM_DEF -> "enum def";
+            case TokenTypes.ANNOTATION_DEF -> "annotation def";
+            case TokenTypes.RECORD_DEF -> "record def";
+            default -> "interface def";
+        };
 
         return name;
     }
