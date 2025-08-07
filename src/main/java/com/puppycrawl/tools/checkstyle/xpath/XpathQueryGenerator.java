@@ -373,27 +373,14 @@ public class XpathQueryGenerator {
      * @return String, Encoded string.
      */
     private static String encodeCharacter(char chr) {
-        final String encode;
-        switch (chr) {
-            case '<':
-                encode = "&lt;";
-                break;
-            case '>':
-                encode = "&gt;";
-                break;
-            case '\'':
-                encode = "&apos;&apos;";
-                break;
-            case '\"':
-                encode = "&quot;";
-                break;
-            case '&':
-                encode = "&amp;";
-                break;
-            default:
-                encode = String.valueOf(chr);
-                break;
-        }
+        final String encode = switch (chr) {
+            case '<' -> "&lt;";
+            case '>' -> "&gt;";
+            case '\'' -> "&apos;&apos;";
+            case '\"' -> "&quot;";
+            case '&' -> "&amp;";
+            default -> String.valueOf(chr);
+        };
         return encode;
     }
 }
