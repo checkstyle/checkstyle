@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -332,9 +333,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
+        DetailAST examineNode = childNode;
+        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
+            examineNode = examineNode.getFirstChild().getNextSibling();
+        }
+
         int resultDist = currentDistToVarUsage;
 
-        switch (childNode.getType()) {
+        switch (examineNode.getType()) {
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -342,6 +348,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
+            case TokenTypes.LITERAL_SWITCH:
                 // variable usage is in inner scope, treated as 1 block
                 // or in operator expression, then distance + 1
                 resultDist++;
@@ -373,7 +380,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         int dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
+
         while (currentScopeAst != null) {
+
             final Entry<List<DetailAST>, Integer> searchResult =
                     searchVariableUsageExpressions(variable, currentScopeAst);
 
@@ -448,13 +457,49 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentStatementAst = statementAst;
         while (currentStatementAst != null) {
             if (currentStatementAst.getFirstChild() != null) {
+
+                if (isSkippableScope(currentStatementAst)
+                        && currentStatementAst.getType() != TokenTypes.CLASS_DEF
+                        && currentStatementAst.getType() != TokenTypes.METHOD_DEF) {
+                    currentStatementAst = currentStatementAst.getNextSibling();
+                    continue;
+                }
+
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression hasn't been met yet, then distance + 1.
+
                 else if (variableUsageExpressions.isEmpty()
                         && !isZeroDistanceToken(currentStatementAst.getType())) {
-                    distance++;
+
+                    if (currentStatementAst.getType() == TokenTypes.SLIST) {
+                        distance++;
+                    }
+
+                    else if (!isSkippableScope(currentStatementAst)) {
+                        distance++;
+                    }
+                }
+
+                if (currentStatementAst.getType() == TokenTypes.CLASS_DEF
+                        || currentStatementAst.getType() == TokenTypes.ENUM_DEF
+                        || currentStatementAst.getType() == TokenTypes.INTERFACE_DEF) {
+                    final DetailAST objBlock = currentStatementAst.findFirstToken(TokenTypes.OBJBLOCK);
+                    DetailAST member = objBlock.getFirstChild();
+                    while (member != null) {
+                        final Entry<List<DetailAST>, Integer> result =
+                                searchVariableUsageExpressions(variableAst, member);
+                        variableUsageExpressions.addAll(result.getKey());
+                        member = member.getNextSibling();
+                    }
+                }
+                else if (currentStatementAst.getType() == TokenTypes.METHOD_DEF) {
+                    final DetailAST slist = currentStatementAst.findFirstToken(TokenTypes.SLIST);
+                    if (slist != null) {
+                        final Entry<List<DetailAST>, Integer> result =
+                                searchVariableUsageExpressions(variableAst, slist.getFirstChild());
+                        variableUsageExpressions.addAll(result.getKey());
+                    }
                 }
             }
             currentStatementAst = currentStatementAst.getNextSibling();
@@ -779,9 +824,18 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         return type == TokenTypes.VARIABLE_DEF
                 || type == TokenTypes.TYPE
                 || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+                || type == TokenTypes.RESOURCE;
     }
 
+    /**
+     * Determines if the given AST node represents a scope that should not be counted
+     * towards variable usage distance (e.g., class, method, control flow headers).
+     */
+    private static boolean isSkippableScope(DetailAST scopeAst) {
+        final int type = scopeAst.getType();
+        return type == TokenTypes.METHOD_DEF
+                || type == TokenTypes.CTOR_DEF
+                || type == TokenTypes.LAMBDA
+                || type == TokenTypes.CLASS_DEF;
+    }
 }
