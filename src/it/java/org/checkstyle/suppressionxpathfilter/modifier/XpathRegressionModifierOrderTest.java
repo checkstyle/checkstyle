@@ -17,13 +17,14 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-package org.checkstyle.suppressionxpathfilter;
+package org.checkstyle.suppressionxpathfilter.modifier;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -36,6 +37,11 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     @Override
     protected String getCheckName() {
         return CLAZZ.getSimpleName();
+    }
+
+    @Override
+    protected String getPackageLocation() {
+        return "org/checkstyle/suppressionxpathfilter/modifier/modifierorder";
     }
 
     @Test

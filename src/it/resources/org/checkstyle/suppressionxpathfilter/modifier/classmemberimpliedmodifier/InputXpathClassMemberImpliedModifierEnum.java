@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.classmemberimpliedmodifier;
+package org.checkstyle.suppressionxpathfilter.modifier.classmemberimpliedmodifier;
 
 public class InputXpathClassMemberImpliedModifierEnum {
     public enum Count { //warn
