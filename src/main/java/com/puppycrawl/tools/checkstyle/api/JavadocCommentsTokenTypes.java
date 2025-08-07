@@ -35,11 +35,6 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int TEXT = JavadocCommentsLexer.TEXT;
 
-    /**
-     * Whitespace or tab ('\t') symbol.
-     */
-    public static final int WHITESPACE = JavadocCommentsLexer.WS;
-
     // Block tags
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
