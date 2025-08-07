@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.redundantmodifier;
+package org.checkstyle.suppressionxpathfilter.modifier.redundantmodifier;
 
 public abstract interface InputXpathRedundantModifierInterface {
 

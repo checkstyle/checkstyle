@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.redundantmodifier;
+package org.checkstyle.suppressionxpathfilter.modifier.redundantmodifier;
 
 public class InputXpathRedundantModifierWithEnum {
     interface I {
