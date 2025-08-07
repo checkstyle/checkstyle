@@ -380,10 +380,10 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFieldAndMethodAccess() throws Exception {
         final String[] expected = {
-            "26:15: " + getCheckMessage(MSG_EXPR),
-            "28:15: " + getCheckMessage(MSG_EXPR),
             "30:15: " + getCheckMessage(MSG_EXPR),
             "32:15: " + getCheckMessage(MSG_EXPR),
+            "34:15: " + getCheckMessage(MSG_EXPR),
+            "36:15: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(
             getPath("InputUnnecessaryParenthesesFieldMethodAccess.java"), expected);

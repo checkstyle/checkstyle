@@ -405,7 +405,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.POST_DEC,
             TokenTypes.INDEX_OP,
             TokenTypes.DOT,
-            TokenTypes.LITERAL_NEW,
         };
     }
 
@@ -621,13 +620,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             hasUnnecessaryParentheses = checkBitwiseBinaryOperator(ast);
         }
         else if (TokenUtil.isOfType(type, ARRAY_AND_FIELD_ACCESS)) {
-            hasUnnecessaryParentheses = true;
+            hasUnnecessaryParentheses = isNotFirstArgOfTernary(ast);
         }
         else {
             hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
                     && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
         }
         return hasUnnecessaryParentheses;
+    }
+
+    private static boolean isNotFirstArgOfTernary(DetailAST ast) {
+        DetailAST parent = ast.getParent();
+        return parent.getParent().getType() != TokenTypes.QUESTION
+                || parent.getParent().getFirstChild().getNextSibling() != parent;
     }
 
     /**
