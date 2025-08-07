@@ -56,6 +56,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentati
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputNewKeywordChildren.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputLineBreakAfterLeftCurlyOfBlockInSwitch.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputClassAnnotations.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations/InputClassAnnotation2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4853methodsandconstructorsannotations/InputMethodsAndConstructorsAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations/InputFieldAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle/InputCommentsIndentationCommentIsAtTheEndOfBlock.java
