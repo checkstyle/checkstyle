@@ -269,23 +269,12 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      * @return the rendered severity level in string.
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
-        final String renderedSeverityLevel;
-        switch (severityLevel) {
-            case IGNORE:
-                renderedSeverityLevel = "none";
-                break;
-            case INFO:
-                renderedSeverityLevel = "note";
-                break;
-            case WARNING:
-                renderedSeverityLevel = "warning";
-                break;
-            case ERROR:
-            default:
-                renderedSeverityLevel = "error";
-                break;
-        }
-        return renderedSeverityLevel;
+        return switch (severityLevel) {
+            case IGNORE -> "none";
+            case INFO -> "note";
+            case WARNING -> "warning";
+            case ERROR -> "error";
+        };
     }
 
     /**
