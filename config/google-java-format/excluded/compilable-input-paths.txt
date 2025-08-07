@@ -76,4 +76,6 @@ src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/I
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/InputIncorrectJavadocParagraph.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses/InputJavaDocTagContinuationIndentation.java
+src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired/InputJavadocTypeOnRecord.java
+src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired/InputJavadocTypeOnRecord2.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc/InputInvalidJavadocPosition.java

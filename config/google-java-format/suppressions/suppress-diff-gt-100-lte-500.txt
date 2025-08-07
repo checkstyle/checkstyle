@@ -9,3 +9,5 @@ InputMethodsAndConstructorsAnnotations.java
 InputModifierOrder.java
 InputJavaDocTagContinuationIndentation.java
 InputOneStatementPerLine2.java
+InputJavadocTypeOnRecord.java
+InputJavadocTypeOnRecord2.java
