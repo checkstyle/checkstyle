@@ -5,3 +5,4 @@ InputTextBlocksGeneralForm.java
 InputCamelCaseDefined.java
 InputInvalidJavadocPosition.java
 InputSingleSwitchStatementWithoutCurly.java
+InputModifierOrderSealed.java
