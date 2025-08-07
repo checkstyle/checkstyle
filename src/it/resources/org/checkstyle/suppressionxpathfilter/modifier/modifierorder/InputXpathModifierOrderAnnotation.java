@@ -1,4 +1,4 @@
-package org.checkstyle.suppressionxpathfilter.modifierorder;
+package org.checkstyle.suppressionxpathfilter.modifier.modifierorder;
 
 public @InterfaceAnnotation @interface InputXpathModifierOrderAnnotation { //warn
     int foo();
