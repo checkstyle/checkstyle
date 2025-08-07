@@ -10,6 +10,327 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 11.0.0">
+      <div class="releaseDate">07.08.2025</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Migrate project to JDK 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/13209">#13209</a>
+          </li>
+          <li>
+            Use jdk17 as minimial required.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17321">#17321</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            FinalParameters - missing several tokens to check.
+            Author: Jake Potrebic
+            <a href="https://github.com/checkstyle/checkstyle/issues/17366">#17366</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False positive from JavadocType: Unused @param tag.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17332">#17332</a>
+          </li>
+          <li>
+            fix all false-negatives about there is no single space between a type annotation and []
+            or .... for Google Style.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/8205">#8205</a>
+          </li>
+          <li>
+            InvalidJavadocPosition false-positive for record compact constructor with
+            package-private accessibility.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17158">#17158</a>
+          </li>
+          <li>
+            Escape sequences in TextBlock, IllegalTokenText module should violate them for Google
+            style.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/14291">#14291</a>
+          </li>
+          <li>
+            Google-style: Improper enforcement of horizontal whitespace for double slash `//`.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17193">#17193</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Upgrade all scripts to groovy 3.0.17 or 4.x.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17269">#17269</a>
+          </li>
+          <li>
+            IT regression area Folder structure for suppressionxpathfilter.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/14769">#14769</a>
+          </li>
+          <li>
+            release is failing with &quot;deploy failed: 403 - Forbidden&quot;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17559">#17559</a>
+          </li>
+          <li>
+            config.html page does not allow linking to Examples.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/14879">#14879</a>
+          </li>
+          <li>
+            doc: add jetbrains logo by their request.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Fix compareTo method for testInputViolations.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/17031">#17031</a>
+          </li>
+          <li>
+            xsd for the checkstyle configuration xml file.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7517">#7517</a>
+          </li>
+          <li>
+            create XSD definition for XML report.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5166">#5166</a>
+          </li>
+          <li>
+            Resolve invisiable problems after bump of maven site plugin 3.21.0.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/16242">#16242</a>
+          </li>
+          <li>
+            website: in CLI help ouput, mark config parameter as optional.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17506">#17506</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: voidCounter
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: ElinaZoldnere
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            SiteUtil.getPropertiesJavadocs does not reflect all the constituents of what it does.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17378">#17378</a>
+          </li>
+          <li>
+            refactor methods in SiteUtil.java.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17256">#17256</a>
+          </li>
+          <li>
+            Links to modules should be without anchor.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13386">#13386</a>
+          </li>
+          <li>
+            Javadoc website mistakenly showing HTML entities meant for other characters..
+            Author: MD. Zaid
+            <a href="https://github.com/checkstyle/checkstyle/issues/17362">#17362</a>
+          </li>
+          <li>
+            regression-report.yml does not post error message if failing at handle_xxx phase .
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/15776">#15776</a>
+          </li>
+          <li>
+            Convert concatenated strings to text blocks.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17304">#17304</a>
+          </li>
+          <li>
+            website: fix links in google_style.html.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17488">#17488</a>
+          </li>
+          <li>
+            suppressionxpathfilter.xml.template should use example macros.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17402">#17402</a>
+          </li>
+          <li>
+            Inconsistent or Missing Whitespaces in &#39;Beginning Development&#39; Page Code Blocks.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17439">#17439</a>
+          </li>
+          <li>
+            Google-style: add &#39;4.8.4.4 Switch expressions&#39; to coverage table.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17171">#17171</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: KishorMore
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Replace collect(toUnmodifiableList()) with toList().
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17303">#17303</a>
+          </li>
+          <li>
+            Refactor instanceof checks to pattern variables.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17302">#17302</a>
+          </li>
+          <li>
+            doc: Finished implementation of example separators in SuppressionXpathFilter website
+            page.
+            Author: SteLeo1602
+          </li>
+          <li>
+            doc: Implemented example separators on SuppressionXpathFilter website page.
+            Author: SteLeo1602
+          </li>
+          <li>
+            Validate that all properties are used in examples.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17175">#17175</a>
+          </li>
+          <li>
+            update google-java-format.sh to validate that all Input that are excluded have file
+            InputFormatted.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17258">#17258</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            add trino to no-error testing in CI.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17240">#17240</a>
+          </li>
+          <li>
+            importcontrol.xml.template should use example macroses.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17400">#17400</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: ahmedyoussefg
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            suppressionfilter.xml.template should use example macroses.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/17401">#17401</a>
+          </li>
+          <li>
+            Add @Serial annotation to serialVersionUID fields.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17301">#17301</a>
+          </li>
+          <li>
+            Move the same class members from macroses to new common utility class.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17371">#17371</a>
+          </li>
+          <li>
+            semaphore CI is failing with FAILED DOWNLOADS for junit-platform-commons-1.10.1.jar .
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/14086">#14086</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Anuj Anthwal
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Make all notes sections be displayed under the Description section.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17386">#17386</a>
+          </li>
+          <li>
+            Update Filters Exampes to use verifyFilterWithInlineConfigParser.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/16738">#16738</a>
+          </li>
+          <li>
+            Set up RegexpSingleline to check for presence of newly added Description macro in every
+            module xdoc.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17390">#17390</a>
+          </li>
+          <li>
+            Add new Description Macro.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17281">#17281</a>
+          </li>
+          <li>
+            Add new Notes Macro.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17310">#17310</a>
+          </li>
+          <li>
+            &lt;table&gt; tags miss &lt;div class&quot;wrapper&quot;&gt; wrapping in module
+            javadocs.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17355">#17355</a>
+          </li>
+          <li>
+            XdocsJavaDocsTest expected vs actual inconsistency when dealing with new javadoc module
+            data marking.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17251">#17251</a>
+          </li>
+          <li>
+            Preparation for Migration of  Checkstyle Codebase to Java 17.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17168">#17168</a>
+          </li>
+          <li>
+            wesite: not wrappable property now it is causing horizontal scrolling.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17276">#17276</a>
+          </li>
+          <li>
+            Remove from Travis CI snapshot deploy and stop using of Travis CI.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17320">#17320</a>
+          </li>
+          <li>
+            Google-style: Add resources-noncompilable inputs to the google-java-format.sh.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17285">#17285</a>
+          </li>
+          <li>
+            Google-style: Add resources-noncompilable inputs to the compilation by latest jdk.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17309">#17309</a>
+          </li>
+          <li>
+            Replace &lt;source&gt;&lt;/source&gt; tag in Checkstyle javadoc content .
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17295">#17295</a>
+          </li>
+          <li>
+            JavadocMetadataScraper doesn&#39;t scrap text from javadoc inline tag for description
+            section in meta data.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17283">#17283</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 10.26.1">
       <div class="releaseDate">29.06.2025</div>
       <p>Bug fixes:</p>
