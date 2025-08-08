@@ -23,7 +23,6 @@ public class InputFinalLocalVariableValidateUnnamedVariablesFalse {
             var __ = q.poll(); // violation,'Variable '__' should be declared final'
         }
         final int _ = sideEffect();
-        int _ = sideEffect();
         int _result = sideEffect(); // violation,'Variable '_result' should be declared final'
     }
 
