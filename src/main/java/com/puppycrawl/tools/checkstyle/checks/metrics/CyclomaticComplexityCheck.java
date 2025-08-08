@@ -236,30 +236,28 @@ public class CyclomaticComplexityCheck
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                visitMethodDef();
-                break;
-            default:
-                visitTokenHook(ast);
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.INSTANCE_INIT,
+                 TokenTypes.STATIC_INIT,
+                 TokenTypes.COMPACT_CTOR_DEF -> visitMethodDef();
+
+            default -> visitTokenHook(ast);
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                leaveMethodDef(ast);
-                break;
-            default:
-                break;
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.INSTANCE_INIT,
+                 TokenTypes.STATIC_INIT,
+                 TokenTypes.COMPACT_CTOR_DEF -> leaveMethodDef(ast);
+
+            default -> {
+                // Do nothing
+            }
         }
     }
 
