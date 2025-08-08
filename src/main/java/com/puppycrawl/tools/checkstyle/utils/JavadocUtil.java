@@ -198,13 +198,13 @@ public final class JavadocUtil {
      */
     public static DetailNode findFirstToken(DetailNode detailNode, int type) {
         DetailNode returnValue = null;
-        DetailNode node = getFirstChild(detailNode);
+        DetailNode node = detailNode.getFirstChild();
         while (node != null) {
             if (node.getType() == type) {
                 returnValue = node;
                 break;
             }
-            node = getNextSibling(node);
+            node = node.getNextSibling();
         }
         return returnValue;
     }
@@ -251,9 +251,9 @@ public final class JavadocUtil {
      * @return next sibling.
      */
     public static DetailNode getNextSibling(DetailNode node, int tokenType) {
-        DetailNode nextSibling = getNextSibling(node);
+        DetailNode nextSibling = node.getNextSibling();
         while (nextSibling != null && nextSibling.getType() != tokenType) {
-            nextSibling = getNextSibling(nextSibling);
+            nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
     }
@@ -321,21 +321,16 @@ public final class JavadocUtil {
     }
 
     /**
-     * Gets tag name from javadocTagSection.
+     * Extracts the tag name from the given Javadoc tag section.
      *
-     * @param javadocTagSection to get tag name from.
-     * @return name, of the javadocTagSection's tag.
+     * @param javadocTagSection the node representing a Javadoc tag section.
+     *       This node must be of type {@link JavadocCommentsTokenTypes#JAVADOC_BLOCK_TAG}
+     *       or {@link JavadocCommentsTokenTypes#JAVADOC_INLINE_TAG}.
+     *  @return the tag name (e.g., "param", "return", "link")
      */
     public static String getTagName(DetailNode javadocTagSection) {
-        final String javadocTagName;
-        if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-            javadocTagName = getNextSibling(
-                    getFirstChild(javadocTagSection)).getText();
-        }
-        else {
-            javadocTagName = getFirstChild(javadocTagSection).getText();
-        }
-        return javadocTagName;
+        return findFirstToken(javadocTagSection.getFirstChild(),
+                    JavadocCommentsTokenTypes.TAG_NAME).getText();
     }
 
     /**

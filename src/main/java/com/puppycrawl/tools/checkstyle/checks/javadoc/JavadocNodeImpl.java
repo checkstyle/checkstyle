@@ -269,7 +269,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public String toString() {
-        return text + "[" + lineNumber + "x" + columnNumber + "]";
+        return text + "[" + getLineNumber() + "x" + getColumnNumber() + "]";
     }
 
 }
