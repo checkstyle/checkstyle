@@ -66,4 +66,14 @@
                         //MethodDeclaration[@Name='processFiltered']"/>
     </properties>
   </rule>
+  <!-- Suppress 'UnusedAssignment' warnings in LeftCurlyCheck.visitToken -->
+  <rule ref="category/java/bestpractices.xml/UnusedAssignment">
+    <properties>
+      <property name="checkUnusedPrefixIncrement" value="false" />
+      <property name="reportUnusedVariables" value="false" />
+      <property name="violationSuppressXPath"
+            value="//ClassDeclaration[@SimpleName='LeftCurlyCheck']
+                   //MethodDeclaration[@Name='visitToken']"/>
+    </properties>
+  </rule>
 </ruleset>
