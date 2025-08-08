@@ -113,24 +113,13 @@ public class ParseTreeTablePresentation {
     // -@cs[ForbidWildcardAsReturnType] We need to satisfy javax.swing.table.AbstractTableModel
     // public Class<?> getColumnClass(int columnIndex) {...}
     public Class<?> getColumnClass(int column) {
-        final Class<?> columnClass;
 
-        switch (column) {
-            case 0:
-                columnClass = ParseTreeTableModel.class;
-                break;
-            case 1:
-            case 4:
-                columnClass = String.class;
-                break;
-            case 2:
-            case 3:
-                columnClass = Integer.class;
-                break;
-            default:
-                throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
-        }
-        return columnClass;
+        return switch (column) {
+            case 0 -> ParseTreeTableModel.class;
+            case 1, 4 -> String.class;
+            case 2, 3 -> Integer.class;
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+        };
     }
 
     /**
@@ -291,29 +280,17 @@ public class ParseTreeTablePresentation {
      * @throws IllegalStateException if an unknown column index was specified.
      */
     private static Object getValueAtDetailNode(DetailNode node, int column) {
-        final Object value;
 
-        switch (column) {
-            case 0:
+        return switch (column) {
+            case 0 ->
                 // first column is tree model. no value needed
-                value = null;
-                break;
-            case 1:
-                value = JavadocUtil.getTokenName(node.getType());
-                break;
-            case 2:
-                value = node.getLineNumber();
-                break;
-            case 3:
-                value = node.getColumnNumber();
-                break;
-            case 4:
-                value = node.getText();
-                break;
-            default:
-                throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
-        }
-        return value;
+                null;
+            case 1 -> JavadocUtil.getTokenName(node.getType());
+            case 2 -> node.getLineNumber();
+            case 3 -> node.getColumnNumber();
+            case 4 -> node.getText();
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+        };
     }
 
     /**
@@ -325,29 +302,17 @@ public class ParseTreeTablePresentation {
      * @throws IllegalStateException if an unknown column index was specified.
      */
     private static Object getValueAtDetailAST(DetailAST ast, int column) {
-        final Object value;
 
-        switch (column) {
-            case 0:
+        return switch (column) {
+            case 0 ->
                 // first column is tree model. no value needed
-                value = null;
-                break;
-            case 1:
-                value = TokenUtil.getTokenName(ast.getType());
-                break;
-            case 2:
-                value = ast.getLineNo();
-                break;
-            case 3:
-                value = ast.getColumnNo();
-                break;
-            case 4:
-                value = ast.getText();
-                break;
-            default:
-                throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
-        }
-        return value;
+                null;
+            case 1 -> TokenUtil.getTokenName(ast.getType());
+            case 2 -> ast.getLineNo();
+            case 3 -> ast.getColumnNo();
+            case 4 -> ast.getText();
+            default -> throw new IllegalStateException(UNKNOWN_COLUMN_MSG);
+        };
     }
 
     /**
