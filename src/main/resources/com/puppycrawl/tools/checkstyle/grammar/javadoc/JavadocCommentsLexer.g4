@@ -106,8 +106,10 @@ AT_SIGN
     : {isJavadocBlockTag()}? '@' -> pushMode(BLOCK_TAG)
     ;
 
-SWITCH_TO_TEXT_MODE: . {_input.seek(_input.index() - 1);} -> skip, pushMode(TEXT_MODE);
-
+SWITCH_TO_TEXT_MODE
+    : . { _input.seek(_tokenStartCharIndex); setCharPositionInLine(getCharPositionInLine() - 1); }
+    -> skip, pushMode(TEXT_MODE)
+    ;
 
 // --- TEXT_MODE ---
 // Purpose: Handles plain text in Javadoc comments, excluding block and inline tags.
