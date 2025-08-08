@@ -358,19 +358,19 @@ public class LineWrappingHandler {
     private static boolean isEndOfScope(final DetailAST lastAnnotationNode, final DetailAST node) {
         DetailAST checkNode = node;
         boolean endOfScope = true;
+
         while (endOfScope && !checkNode.equals(lastAnnotationNode)) {
             switch (checkNode.getType()) {
-                case TokenTypes.RCURLY:
-                case TokenTypes.RBRACK:
+                case TokenTypes.RCURLY, TokenTypes.RBRACK -> {
                     while (checkNode.getNextSibling() == null) {
                         checkNode = checkNode.getParent();
                     }
                     checkNode = checkNode.getNextSibling();
-                    break;
-                default:
-                    endOfScope = false;
+                }
+                default -> endOfScope = false;
             }
         }
+
         return endOfScope;
     }
 

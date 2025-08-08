@@ -201,11 +201,9 @@ public class SuppressWarningsCheck extends AbstractCheck {
         final DetailAST annotation = getSuppressWarnings(ast);
 
         if (annotation != null) {
-            final DetailAST warningHolder =
-                findWarningsHolder(annotation);
-
-            final DetailAST token =
-                    warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+            final DetailAST warningHolder = findWarningsHolder(annotation);
+            final DetailAST token = warningHolder.findFirstToken(
+                    TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
             // case like '@SuppressWarnings(value = UNUSED)'
             final DetailAST parent = Objects.requireNonNullElse(token, warningHolder);
@@ -220,20 +218,17 @@ public class SuppressWarningsCheck extends AbstractCheck {
                 while (warning != null) {
                     if (warning.getType() == TokenTypes.EXPR) {
                         final DetailAST fChild = warning.getFirstChild();
+
                         switch (fChild.getType()) {
-                            // typical case
-                            case TokenTypes.STRING_LITERAL:
+                            case TokenTypes.STRING_LITERAL -> {
                                 final String warningText =
-                                    removeQuotes(warning.getFirstChild().getText());
+                                        removeQuotes(warning.getFirstChild().getText());
                                 logMatch(warning, warningText);
-                                break;
-                            // conditional case
-                            // ex:
-                            // @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                            case TokenTypes.QUESTION:
-                                walkConditional(fChild);
-                                break;
-                            default:
+                            }
+
+                            case TokenTypes.QUESTION -> walkConditional(fChild);
+
+                            default -> {
                                 // Known limitation: cases like @SuppressWarnings("un" + "used") or
                                 // @SuppressWarnings((String) "unused") are not properly supported,
                                 // but they should not cause exceptions.
@@ -242,6 +237,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                                 // @SuppressWarnings(UNCHECKED)
                                 // or
                                 // @SuppressWarnings(SomeClass.UNCHECKED)
+                            }
                         }
                     }
                     warning = warning.getNextSibling();
