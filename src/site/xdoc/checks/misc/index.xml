@@ -61,6 +61,17 @@
           </tr>
           <tr>
             <td>
+              <a href="hexliteralcase.html#HexLiteralCase">
+                HexLiteralCase
+              </a>
+            </td>
+            <td>
+              Checks that hexadecimal literals are defined using uppercase letters (A-F)
+              rather than lowercase (a-f).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="indentation.html#Indentation">
                 Indentation
               </a>
