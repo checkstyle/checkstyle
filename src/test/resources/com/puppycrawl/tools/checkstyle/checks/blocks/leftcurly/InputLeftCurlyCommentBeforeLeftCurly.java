@@ -1,6 +1,6 @@
 /*
 LeftCurly
-option = eol
+option = (default)eol
 ignoreEnums = (default)true
 tokens = (default)ANNOTATION_DEF, CLASS_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, \
          ENUM_DEF, INTERFACE_DEF, LAMBDA, LITERAL_CASE, LITERAL_CATCH, \
