@@ -234,7 +234,7 @@
     <checkerframework.version>3.49.5</checkerframework.version>
     <error-prone.version>2.41.0</error-prone.version>
     <error-prone-support.version>0.24.0</error-prone-support.version>
-    <doxia.version>1.12.0</doxia.version>
+    <doxia.version>2.0.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
       -Xep:AutowiredConstructor:ERROR
@@ -322,8 +322,24 @@
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
+      <exclusions>
+        <!-- conflict with doxia -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
-
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-container-default</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.sisu</groupId>
+      <artifactId>org.eclipse.sisu.plexus</artifactId>
+      <version>0.3.5</version>
+    </dependency>
     <!-- test scope stuff -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -473,6 +489,16 @@
           <artifactId>google-collections</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.3.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-component-annotations</artifactId>
+      <version>${doxia.version}</version>
     </dependency>
   </dependencies>
 
