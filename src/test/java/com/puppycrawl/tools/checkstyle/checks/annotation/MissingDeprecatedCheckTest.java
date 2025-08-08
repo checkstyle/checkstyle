@@ -23,14 +23,12 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_ANNOTATION_MISSING_DEPRECATED;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck.MSG_KEY_JAVADOC_DUPLICATE_TAG;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled
 public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -43,7 +41,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final MissingDeprecatedCheck missingDeprecatedCheck =
                 new MissingDeprecatedCheck();
         final int[] expected = {
-            JavadocTokenTypes.JAVADOC,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
         };
 
         assertWithMessage("Default javadoc tokens are invalid")
@@ -55,7 +53,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredJavadocTokens() {
         final MissingDeprecatedCheck checkObj = new MissingDeprecatedCheck();
         final int[] expected = {
-            JavadocTokenTypes.JAVADOC,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
         };
         assertWithMessage("Default required javadoc tokens are invalid")
                 .that(checkObj.getRequiredJavadocTokens())

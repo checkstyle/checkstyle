@@ -222,7 +222,7 @@ memberReference
     ;
 
 parameterTypeList
-    : PARAMETER_TYPE (COMMA PARAMETER_TYPE)*
+    : PARAMETER_TYPE (COMMA? PARAMETER_TYPE)*
     ;
 
 snippetAttribute
