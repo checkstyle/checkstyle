@@ -168,31 +168,29 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                visitMethodDef(ast);
-                break;
-            case TokenTypes.EXPR:
-                visitExpr();
-                break;
-            case TokenTypes.BOR:
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.COMPACT_CTOR_DEF -> visitMethodDef(ast);
+
+            case TokenTypes.EXPR -> visitExpr();
+
+            case TokenTypes.BOR -> {
                 if (!isPipeOperator(ast) && !isPassedInParameter(ast)) {
                     context.visitBooleanOperator();
                 }
-                break;
-            case TokenTypes.BAND:
-            case TokenTypes.BXOR:
+            }
+
+            case TokenTypes.BAND,
+                 TokenTypes.BXOR -> {
                 if (!isPassedInParameter(ast)) {
                     context.visitBooleanOperator();
                 }
-                break;
-            case TokenTypes.LAND:
-            case TokenTypes.LOR:
-                context.visitBooleanOperator();
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown type: " + ast);
+            }
+
+            case TokenTypes.LAND,
+                 TokenTypes.LOR -> context.visitBooleanOperator();
+
+            default -> throw new IllegalArgumentException("Unknown type: " + ast);
         }
     }
 
@@ -222,16 +220,15 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                leaveMethodDef();
-                break;
-            case TokenTypes.EXPR:
-                leaveExpr(ast);
-                break;
-            default:
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.COMPACT_CTOR_DEF -> leaveMethodDef();
+
+            case TokenTypes.EXPR -> leaveExpr(ast);
+
+            default -> {
                 // Do nothing
+            }
         }
     }
 
