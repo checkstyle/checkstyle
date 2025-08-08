@@ -10,7 +10,7 @@ public class InputFormattedCatchParametersOnNewLine {
     try {
       System.out.println("try0");
     } catch (NullPointerException | IllegalArgumentException expected) {
-    }
+    } // violation above 'Empty catch block.'
   }
 
   void test2() {
@@ -45,7 +45,7 @@ public class InputFormattedCatchParametersOnNewLine {
     try {
       System.out.println("try");
     } catch (NullPointerException | IllegalArgumentException expected) {
-    }
+    } // violation above 'Empty catch block.'
   }
 
   private static String test5() {

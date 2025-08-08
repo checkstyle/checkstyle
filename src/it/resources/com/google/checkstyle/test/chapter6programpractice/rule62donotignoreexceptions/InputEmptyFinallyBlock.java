@@ -97,6 +97,7 @@ class InputEmptyFinallyBlock {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
     }
   }
@@ -106,6 +107,7 @@ class InputEmptyFinallyBlock {
       if (!flag) {
         doSm();
       }
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
     }
   }
