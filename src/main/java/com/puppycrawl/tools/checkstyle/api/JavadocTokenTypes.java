@@ -1049,6 +1049,23 @@ public final class JavadocTokenTypes {
 
     /**
      * Equals html tag component: {@code '='}.
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC -> JAVADOC
+     *  |--NEWLINE -> \r\n
+     *  |--LEADING_ASTERISK ->  *
+     *  |--TEXT ->  Equals html tag component:
+     *  |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *  |--JAVADOC_INLINE_TAG_START -> {
+     *  |--CODE_LITERAL -> @code
+     *  |   |--WS ->
+     *  |   |--TEXT -> '='
+     *  |   `--JAVADOC_INLINE_TAG_END -> }
+     *  |--TEXT -> .
+     *  |--NEWLINE -> \r\n
+     *  |--TEXT ->
+     * }</pre>
      */
     public static final int EQUALS = JavadocParser.EQUALS;
 
