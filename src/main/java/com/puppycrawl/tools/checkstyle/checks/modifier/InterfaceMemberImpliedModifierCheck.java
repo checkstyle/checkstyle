@@ -331,19 +331,15 @@ public class InterfaceMemberImpliedModifierCheck
     public void visitToken(DetailAST ast) {
         if (ScopeUtil.isInInterfaceBlock(ast) && !ScopeUtil.isInCodeBlock(ast)) {
             switch (ast.getType()) {
-                case TokenTypes.METHOD_DEF:
-                    processMethod(ast);
-                    break;
-                case TokenTypes.VARIABLE_DEF:
-                    processField(ast);
-                    break;
-                case TokenTypes.CLASS_DEF:
-                case TokenTypes.INTERFACE_DEF:
-                case TokenTypes.ENUM_DEF:
-                    processNestedType(ast);
-                    break;
-                default:
-                    throw new IllegalStateException(ast.toString());
+                case TokenTypes.METHOD_DEF -> processMethod(ast);
+
+                case TokenTypes.VARIABLE_DEF -> processField(ast);
+
+                case TokenTypes.CLASS_DEF,
+                     TokenTypes.INTERFACE_DEF,
+                     TokenTypes.ENUM_DEF -> processNestedType(ast);
+
+                default -> throw new IllegalStateException(ast.toString());
             }
         }
     }

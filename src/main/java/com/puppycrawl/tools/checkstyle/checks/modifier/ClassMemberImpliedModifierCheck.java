@@ -184,26 +184,28 @@ public class ClassMemberImpliedModifierCheck
         if (isInTypeBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             switch (ast.getType()) {
-                case TokenTypes.ENUM_DEF:
+                case TokenTypes.ENUM_DEF -> {
                     if (violateImpliedStaticOnNestedEnum
                             && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
-                    break;
-                case TokenTypes.INTERFACE_DEF:
+                }
+
+                case TokenTypes.INTERFACE_DEF -> {
                     if (violateImpliedStaticOnNestedInterface
                             && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
-                    break;
-                case TokenTypes.RECORD_DEF:
+                }
+
+                case TokenTypes.RECORD_DEF -> {
                     if (violateImpliedStaticOnNestedRecord
                             && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
-                    break;
-                default:
-                    throw new IllegalStateException(ast.toString());
+                }
+
+                default -> throw new IllegalStateException(ast.toString());
             }
         }
     }
