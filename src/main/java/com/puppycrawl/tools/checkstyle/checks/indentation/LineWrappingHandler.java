@@ -360,17 +360,16 @@ public class LineWrappingHandler {
         boolean endOfScope = true;
         while (endOfScope && !checkNode.equals(lastAnnotationNode)) {
             switch (checkNode.getType()) {
-                case TokenTypes.RCURLY:
-                case TokenTypes.RBRACK:
+                case TokenTypes.RCURLY, TokenTypes.RBRACK -> {
                     while (checkNode.getNextSibling() == null) {
                         checkNode = checkNode.getParent();
                     }
                     checkNode = checkNode.getNextSibling();
-                    break;
-                default:
-                    endOfScope = false;
+                }
+                default -> endOfScope = false;
             }
         }
+
         return endOfScope;
     }
 

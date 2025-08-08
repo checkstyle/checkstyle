@@ -292,38 +292,34 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             previousElement = getPreviousElementOfMultiDimArray(ast);
         }
         else {
-            // first array index, is preceded with identifier or type
+            // First array index, is preceded with identifier or type
             final DetailAST parent = ast.getParent();
-            switch (parent.getType()) {
-                // generics
-                case TokenTypes.TYPE_UPPER_BOUNDS:
-                case TokenTypes.TYPE_LOWER_BOUNDS:
-                    previousElement = ast.getPreviousSibling();
-                    break;
-                case TokenTypes.LITERAL_NEW:
-                case TokenTypes.TYPE_ARGUMENT:
-                case TokenTypes.DOT:
-                    previousElement = getTypeLastNode(ast);
-                    break;
-                // mundane array declaration, can be either java style or C style
-                case TokenTypes.TYPE:
-                    previousElement = getPreviousNodeWithParentOfTypeAst(ast, parent);
-                    break;
-                // java 8 method reference
-                case TokenTypes.METHOD_REF:
+
+            previousElement = switch (parent.getType()) {
+                // Generics
+                case TokenTypes.TYPE_UPPER_BOUNDS, TokenTypes.TYPE_LOWER_BOUNDS ->
+                    ast.getPreviousSibling();
+
+                case TokenTypes.LITERAL_NEW, TokenTypes.TYPE_ARGUMENT, TokenTypes.DOT ->
+                    getTypeLastNode(ast);
+
+                // Mundane array declaration, can be either Java style or C style
+                case TokenTypes.TYPE -> getPreviousNodeWithParentOfTypeAst(ast, parent);
+
+                // Java 8 method reference
+                case TokenTypes.METHOD_REF -> {
                     final DetailAST ident = getIdentLastToken(ast);
                     if (ident == null) {
                         // i.e. int[]::new
-                        previousElement = ast.getParent().getFirstChild();
+                        yield ast.getParent().getFirstChild();
                     }
-                    else {
-                        previousElement = ident;
-                    }
-                    break;
-                default:
-                    throw new IllegalStateException("unexpected ast syntax " + parent);
-            }
+                    yield ident;
+                }
+
+                default -> throw new IllegalStateException("unexpected ast syntax " + parent);
+            };
         }
+
         return previousElement;
     }
 
