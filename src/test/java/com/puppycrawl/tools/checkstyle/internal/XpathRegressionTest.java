@@ -231,16 +231,16 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String dirName = dir.toFile().getName();
                 assertWithMessage("Invalid directory name: " + dirName)
                         .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName)
-                            || isDirNameModuleCategoryName(dirName, testDirs))
+                                || isDirNameModuleCategoryName(dirName, testDirs))
                         .isTrue();
 
                 // input directory must be connected to an existing test
                 final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
                 final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
                 assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
+                        + "' is not connected to Java test case: " + javaPath)
                         .that(Files.exists(javaPath)
-                            || isDirNameModuleCategoryName(dirName, testDirs))
+                                || isDirNameModuleCategoryName(dirName, testDirs))
                         .isTrue();
 
                 // input files should be named correctly

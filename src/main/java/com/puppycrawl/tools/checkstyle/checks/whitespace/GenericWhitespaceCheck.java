@@ -141,16 +141,15 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.GENERIC_START:
+            case TokenTypes.GENERIC_START -> {
                 processStart(ast);
                 depth++;
-                break;
-            case TokenTypes.GENERIC_END:
+            }
+            case TokenTypes.GENERIC_END -> {
                 processEnd(ast);
                 depth--;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown type " + ast);
+            }
+            default -> throw new IllegalArgumentException("Unknown type " + ast);
         }
     }
 

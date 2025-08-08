@@ -159,31 +159,27 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.METHOD_CALL:
+            case TokenTypes.METHOD_CALL -> {
                 processLeft(ast);
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
-                break;
-            case TokenTypes.DOT:
-            case TokenTypes.EXPR:
-            case TokenTypes.QUESTION:
-                processExpression(ast);
-                break;
-            case TokenTypes.LITERAL_FOR:
-                visitLiteralFor(ast);
-                break;
-            case TokenTypes.ANNOTATION:
-            case TokenTypes.ENUM_CONSTANT_DEF:
-            case TokenTypes.LITERAL_NEW:
-            case TokenTypes.LITERAL_SYNCHRONIZED:
-            case TokenTypes.LAMBDA:
-                visitTokenWithOptionalParentheses(ast);
-                break;
-            case TokenTypes.RESOURCE_SPECIFICATION:
-                visitResourceSpecification(ast);
-                break;
-            default:
+            }
+
+            case TokenTypes.DOT, TokenTypes.EXPR, TokenTypes.QUESTION -> processExpression(ast);
+
+            case TokenTypes.LITERAL_FOR -> visitLiteralFor(ast);
+
+            case TokenTypes.ANNOTATION,
+                 TokenTypes.ENUM_CONSTANT_DEF,
+                 TokenTypes.LITERAL_NEW,
+                 TokenTypes.LITERAL_SYNCHRONIZED,
+                 TokenTypes.LAMBDA -> visitTokenWithOptionalParentheses(ast);
+
+            case TokenTypes.RESOURCE_SPECIFICATION -> visitResourceSpecification(ast);
+
+            default -> {
                 processLeft(ast.findFirstToken(TokenTypes.LPAREN));
                 processRight(ast.findFirstToken(TokenTypes.RPAREN));
+            }
         }
     }
 
