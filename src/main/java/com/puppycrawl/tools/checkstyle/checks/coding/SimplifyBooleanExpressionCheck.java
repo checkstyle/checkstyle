@@ -81,14 +81,13 @@ public class SimplifyBooleanExpressionCheck
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         switch (parent.getType()) {
-            case TokenTypes.NOT_EQUAL:
-            case TokenTypes.EQUAL:
-            case TokenTypes.LNOT:
-            case TokenTypes.LOR:
-            case TokenTypes.LAND:
-                log(parent, MSG_KEY);
-                break;
-            case TokenTypes.QUESTION:
+            case TokenTypes.NOT_EQUAL,
+                 TokenTypes.EQUAL,
+                 TokenTypes.LNOT,
+                 TokenTypes.LOR,
+                 TokenTypes.LAND -> log(parent, MSG_KEY);
+
+            case TokenTypes.QUESTION -> {
                 final DetailAST nextSibling = ast.getNextSibling();
                 if (TokenUtil.isBooleanLiteralType(parent.getFirstChild().getType())
                         || nextSibling != null && nextSibling.getNextSibling() != null
@@ -96,9 +95,11 @@ public class SimplifyBooleanExpressionCheck
                         nextSibling.getNextSibling().getType())) {
                     log(parent, MSG_KEY);
                 }
-                break;
-            default:
-                break;
+            }
+
+            default -> {
+                // do nothing
+            }
         }
     }
 
