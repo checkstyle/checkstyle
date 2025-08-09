@@ -20,3 +20,4 @@
 *      deprecated, for forward compatibility only
 * @serialField bits long[]
 * @serialField perms java.util.Hashtable
+* @serialField
