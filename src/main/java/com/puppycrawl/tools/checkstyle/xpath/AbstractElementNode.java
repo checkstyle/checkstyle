@@ -205,60 +205,33 @@ public abstract class AbstractElementNode extends AbstractNode {
      */
     @Override
     public AxisIterator iterateAxis(int axisNumber) {
-        final AxisIterator result;
-        switch (axisNumber) {
-            case AxisInfo.ANCESTOR:
-                result = new Navigator.AncestorEnumeration(this, false);
-                break;
-            case AxisInfo.ANCESTOR_OR_SELF:
-                result = new Navigator.AncestorEnumeration(this, true);
-                break;
-            case AxisInfo.ATTRIBUTE:
-                result = SingleNodeIterator.makeIterator(getAttributeNode());
-                break;
-            case AxisInfo.CHILD:
+        return switch (axisNumber) {
+            case AxisInfo.ANCESTOR -> new Navigator.AncestorEnumeration(this, false);
+            case AxisInfo.ANCESTOR_OR_SELF -> new Navigator.AncestorEnumeration(this, true);
+            case AxisInfo.ATTRIBUTE -> SingleNodeIterator.makeIterator(getAttributeNode());
+            case AxisInfo.CHILD -> {
                 if (hasChildNodes()) {
-                    result = new ArrayIterator.OfNodes<>(
+                    yield new ArrayIterator.OfNodes<>(
                             getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
-                else {
-                    result = EmptyIterator.ofNodes();
-                }
-                break;
-            case AxisInfo.DESCENDANT:
+                yield EmptyIterator.ofNodes();
+            }
+            case AxisInfo.DESCENDANT -> {
                 if (hasChildNodes()) {
-                    result = new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
+                    yield new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
                 }
-                else {
-                    result = EmptyIterator.ofNodes();
-                }
-                break;
-            case AxisInfo.DESCENDANT_OR_SELF:
-                result = new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
-                break;
-            case AxisInfo.PARENT:
-                result = SingleNodeIterator.makeIterator(parent);
-                break;
-            case AxisInfo.SELF:
-                result = SingleNodeIterator.makeIterator(this);
-                break;
-            case AxisInfo.FOLLOWING_SIBLING:
-                result = getFollowingSiblingsIterator();
-                break;
-            case AxisInfo.PRECEDING_SIBLING:
-                result = getPrecedingSiblingsIterator();
-                break;
-            case AxisInfo.FOLLOWING:
-                result = new FollowingIterator(this);
-                break;
-            case AxisInfo.PRECEDING:
-                result = new PrecedingIterator(this);
-                break;
-            default:
-                throw throwUnsupportedOperationException();
-        }
-
-        return result;
+                yield EmptyIterator.ofNodes();
+            }
+            case AxisInfo.DESCENDANT_OR_SELF ->
+                new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
+            case AxisInfo.PARENT -> SingleNodeIterator.makeIterator(parent);
+            case AxisInfo.SELF -> SingleNodeIterator.makeIterator(this);
+            case AxisInfo.FOLLOWING_SIBLING -> getFollowingSiblingsIterator();
+            case AxisInfo.PRECEDING_SIBLING -> getPrecedingSiblingsIterator();
+            case AxisInfo.FOLLOWING -> new FollowingIterator(this);
+            case AxisInfo.PRECEDING -> new PrecedingIterator(this);
+            default -> throw throwUnsupportedOperationException();
+        };
     }
 
     /**
