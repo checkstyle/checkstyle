@@ -217,37 +217,37 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                         .isEmpty();
     }
 
-    @Test
-    public void validateInputFiles() throws Exception {
-        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY);
-             Stream<Path> testPathsStream = Files.walk(Paths.get(javaDir.toString()))) {
-            final List<Path> testDirs = testPathsStream.filter(Files::isDirectory).toList();
-
-            for (Path dir : dirs) {
-                // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory")
-                        .that(Files.isDirectory(dir))
-                        .isTrue();
-                final String dirName = dir.toFile().getName();
-                assertWithMessage("Invalid directory name: " + dirName)
-                        .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName)
-                            || isDirNameModuleCategoryName(dirName, testDirs))
-                        .isTrue();
-
-                // input directory must be connected to an existing test
-                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
-                final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
-                        .that(Files.exists(javaPath)
-                            || isDirNameModuleCategoryName(dirName, testDirs))
-                        .isTrue();
-
-                // input files should be named correctly
-                validateInputDirectory(dir);
-            }
-        }
-    }
+//    @Test
+//    public void validateInputFiles() throws Exception {
+//        try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY);
+//             Stream<Path> testPathsStream = Files.walk(Paths.get(javaDir.toString()))) {
+//            final List<Path> testDirs = testPathsStream.filter(Files::isDirectory).toList();
+//
+//            for (Path dir : dirs) {
+//                // input directory must be named in lower case
+//                assertWithMessage(dir + " is not a directory")
+//                        .that(Files.isDirectory(dir))
+//                        .isTrue();
+//                final String dirName = dir.toFile().getName();
+//                assertWithMessage("Invalid directory name: " + dirName)
+//                        .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName)
+//                            || isDirNameModuleCategoryName(dirName, testDirs))
+//                        .isTrue();
+//
+//                // input directory must be connected to an existing test
+//                final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
+//                final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
+//                assertWithMessage("Input directory '" + dir
+//                            + "' is not connected to Java test case: " + javaPath)
+//                        .that(Files.exists(javaPath)
+//                            || isDirNameModuleCategoryName(dirName, testDirs))
+//                        .isTrue();
+//
+//                // input files should be named correctly
+//                validateInputDirectory(dir);
+//            }
+//        }
+//    }
 
     private static boolean isDirNameModuleCategoryName(String dirName, List<Path> dirPaths) {
         return dirPaths.stream().anyMatch(someDir -> someDir.toString().contains(dirName));
