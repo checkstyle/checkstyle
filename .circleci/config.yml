@@ -290,8 +290,8 @@ workflows:
           image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
       - validate-with-script:
-          name: "java 17 test resources compile"
-          image-name: "cimg/openjdk:17.0.7"
+          name: "java 21 test resources compile"
+          image-name: "cimg/openjdk:21.0.8"
           command: "./.ci/validation.sh compile-test-resources"
       - validate-with-script:
           name: "javac19"
