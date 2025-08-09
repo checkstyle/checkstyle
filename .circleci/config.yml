@@ -270,7 +270,6 @@ workflows:
       - validate-with-script:
           name: "check-github-workflows-concurrency"
           command: "./.ci/validation.sh check-github-workflows-concurrency"
-      - yamllint
       - validate-with-script:
           name: "check-wildcards-on-pitest-target-classes"
           image-name: "cimg/base:2022.11"
