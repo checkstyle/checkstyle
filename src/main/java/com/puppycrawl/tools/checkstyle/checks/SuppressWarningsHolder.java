@@ -397,26 +397,16 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if there is an unexpected container type.
      */
     private static Optional<DetailAST> getAnnotationTarget(DetailAST ast) {
-        final Optional<DetailAST> result;
-        final DetailAST parentAST = ast.getParent();
-        switch (parentAST.getType()) {
-            case TokenTypes.MODIFIERS:
-            case TokenTypes.ANNOTATIONS:
-            case TokenTypes.ANNOTATION:
-            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                result = Optional.of(parentAST.getParent());
-                break;
-            case TokenTypes.LITERAL_DEFAULT:
-                result = Optional.empty();
-                break;
-            case TokenTypes.ANNOTATION_ARRAY_INIT:
-                result = getAnnotationTarget(parentAST);
-                break;
-            default:
-                // unexpected container type
-                throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
+        DetailAST current = ast.getParent();
+        while (current.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
+            current = current.getParent();
         }
-        return result;
+        return switch (current.getType()) {
+            case TokenTypes.MODIFIERS, TokenTypes.ANNOTATIONS, TokenTypes.ANNOTATION,
+                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR -> Optional.of(current.getParent());
+            case TokenTypes.LITERAL_DEFAULT -> Optional.empty();
+            default -> throw new IllegalArgumentException("Unexpected container AST: " + current);
+        };
     }
 
     /**
@@ -466,28 +456,22 @@ public class SuppressWarningsHolder
      */
     private static String getStringExpr(DetailAST ast) {
         final DetailAST firstChild = ast.getFirstChild();
-        String expr = "";
 
-        switch (firstChild.getType()) {
-            case TokenTypes.STRING_LITERAL:
+        return switch (firstChild.getType()) {
+            case TokenTypes.STRING_LITERAL -> {
                 // NOTE: escaped characters are not unescaped
                 final String quotedText = firstChild.getText();
-                expr = quotedText.substring(1, quotedText.length() - 1);
-                break;
-            case TokenTypes.IDENT:
-                expr = firstChild.getText();
-                break;
-            case TokenTypes.DOT:
-                expr = firstChild.getLastChild().getText();
-                break;
-            case TokenTypes.TEXT_BLOCK_LITERAL_BEGIN:
+                yield quotedText.substring(1, quotedText.length() - 1);
+            }
+            case TokenTypes.IDENT -> firstChild.getText();
+            case TokenTypes.DOT -> firstChild.getLastChild().getText();
+            case TokenTypes.TEXT_BLOCK_LITERAL_BEGIN -> {
                 final String textBlockContent = firstChild.getFirstChild().getText();
-                expr = getContentWithoutPrecedingWhitespace(textBlockContent);
-                break;
-            default:
-                // annotations with complex expressions cannot suppress warnings
-        }
-        return expr;
+                yield getContentWithoutPrecedingWhitespace(textBlockContent);
+            }
+            default -> // annotations with complex expressions cannot suppress warnings
+                    "";
+        };
     }
 
     /**
@@ -499,19 +483,12 @@ public class SuppressWarningsHolder
      * @throws IllegalArgumentException if the AST is invalid
      */
     private static List<String> getAnnotationValues(DetailAST ast) {
-        final List<String> annotationValues;
-        switch (ast.getType()) {
-            case TokenTypes.EXPR:
-                annotationValues = Collections.singletonList(getStringExpr(ast));
-                break;
-            case TokenTypes.ANNOTATION_ARRAY_INIT:
-                annotationValues = findAllExpressionsInChildren(ast);
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Expression or annotation array initializer AST expected: " + ast);
-        }
-        return annotationValues;
+        return switch (ast.getType()) {
+            case TokenTypes.EXPR -> Collections.singletonList(getStringExpr(ast));
+            case TokenTypes.ANNOTATION_ARRAY_INIT -> findAllExpressionsInChildren(ast);
+            default -> throw new IllegalArgumentException(
+                    "Expression or annotation array initializer AST expected: " + ast);
+        };
     }
 
     /**
