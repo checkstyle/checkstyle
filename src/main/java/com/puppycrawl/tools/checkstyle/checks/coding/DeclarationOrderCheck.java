@@ -197,36 +197,39 @@ public class DeclarationOrderCheck extends AbstractCheck {
         final int parentType = ast.getParent().getType();
 
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK:
-                scopeStates.push(new ScopeState());
-                break;
-            case TokenTypes.MODIFIERS:
+            case TokenTypes.OBJBLOCK -> scopeStates.push(new ScopeState());
+
+            case TokenTypes.MODIFIERS -> {
                 if (parentType == TokenTypes.VARIABLE_DEF
                     && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
                     processModifiers(ast);
                 }
-                break;
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.COMPACT_CTOR_DEF:
+            }
+
+            case TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF -> {
                 if (parentType == TokenTypes.OBJBLOCK) {
                     processConstructor(ast);
                 }
-                break;
-            case TokenTypes.METHOD_DEF:
+            }
+
+            case TokenTypes.METHOD_DEF -> {
                 if (parentType == TokenTypes.OBJBLOCK) {
                     final ScopeState state = scopeStates.peek();
                     // nothing can be bigger than method's state
                     state.currentScopeState = STATE_METHOD_DEF;
                 }
-                break;
-            case TokenTypes.VARIABLE_DEF:
+            }
+
+            case TokenTypes.VARIABLE_DEF -> {
                 if (ScopeUtil.isClassFieldDef(ast)) {
                     final DetailAST fieldDef = ast.findFirstToken(TokenTypes.IDENT);
                     classFieldNames.add(fieldDef.getText());
                 }
-                break;
-            default:
-                break;
+            }
+
+            default -> {
+                // do nothing
+            }
         }
     }
 
