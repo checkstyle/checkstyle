@@ -275,7 +275,8 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "76:17: " + getCheckMessage(MSG_EXPR),
             "77:25: " + getCheckMessage(MSG_EXPR),
             "82:48: " + getCheckMessage(MSG_IDENT, "get"),
-            "100:34: " + getCheckMessage(MSG_IDENT, "isComment"),
+            "98:33: " + getCheckMessage(MSG_EXPR),
+            "101:34: " + getCheckMessage(MSG_IDENT, "isComment"),
 
         };
         verifyWithInlineConfigParser(
@@ -374,5 +375,25 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesConditionalExpression.java"), expected);
 
+    }
+
+    @Test
+    public void testFieldAndMethodAccess() throws Exception {
+        final String[] expected = {
+            "30:15: " + getCheckMessage(MSG_EXPR),
+            "32:15: " + getCheckMessage(MSG_EXPR),
+            "34:15: " + getCheckMessage(MSG_EXPR),
+            "36:15: " + getCheckMessage(MSG_EXPR),
+            "38:40: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputUnnecessaryParenthesesFieldMethodAccess.java"), expected);
+    }
+
+    @Test
+    public void testConstructor() throws Exception {
+        final String[] expected = new String[0];
+        verifyWithInlineConfigParser(
+            getPath("InputUnnecessaryParenthesesConstructor.java"), expected);
     }
 }
