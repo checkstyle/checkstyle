@@ -31,6 +31,7 @@ import java.util.Set;
 import org.antlr.v4.runtime.Token;
 import com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtility;
 import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
+import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
 @lexer::members {
@@ -92,6 +93,19 @@ import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
     public Set<SimpleToken> getUnclosedTagNameTokens() {
         return JavadocCommentsLexerUtility.getUnclosedTagNameTokens(openTagNameTokens, closeTagNameTokens);
     }
+
+    /**
+     * We need to create a different constructor in order to use our
+     * own implementation of the LexerATNSimulator. This is the
+     * reason for the unused 'crAwareConstructor' argument.
+     *
+     * @param input the character stream to tokenize
+     * @param crAwareConstructor dummy parameter
+     */
+    public JavadocCommentsLexer(CharStream input, boolean crAwareConstructor) {
+      super(input);
+      _interp = new CrAwareLexerSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
+    }
 }
 
 LEADING_ASTERISK
@@ -99,7 +113,7 @@ LEADING_ASTERISK
     ;
 
 NEWLINE
-    : '\r'? '\n' {setAfterNewline();} -> channel(NEWLINES)
+    : ('\r\n' | '\r' | '\n') {setAfterNewline();} -> channel(NEWLINES)
     ;
 
 AT_SIGN
@@ -116,7 +130,7 @@ SWITCH_TO_TEXT_MODE
 // This mode represents the outermost context and switches to other modes when tags are encountered.
 // Example: "* This is a Javadoc comment line."
 mode TEXT_MODE;
-Text_NEWLINE: '\r'? '\n' {setAfterNewline();} -> mode(DEFAULT_MODE), type(NEWLINE), channel(NEWLINES);
+Text_NEWLINE: NEWLINE {setAfterNewline();} -> mode(DEFAULT_MODE), type(NEWLINE), channel(NEWLINES);
 TEXT: TEXT_CHAR+ { if (getText().trim().isEmpty()) { setType(WS); setChannel(WHITESPACES); }};
 AT_SIGN2: {isJavadocBlockTag()}? '@' -> type(AT_SIGN), pushMode(BLOCK_TAG);
 JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;} -> pushMode(JAVADOC_INLINE_TAG_MODE);
@@ -158,7 +172,7 @@ mode FIELD_NAME;
 FieldName_IDENTIFIER: Letter LetterOrDigit* -> type(IDENTIFIER), pushMode(FIELD_TYPE_MODE);
 FieldName_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 FieldName_NEWLINE
-    : '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
+    : NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
     ;
 
 // --- FIELD_TYPE_MODE ---
@@ -187,7 +201,7 @@ See_IDENTIFIER: ([a-zA-Z0-9_$] | '.')+
 See_HASH: '#' -> type(HASH);
 See_LPAREN: '(' -> type(LPAREN), pushMode(PARAMETER_LIST);
 See_NEWLINE
-    : '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
+    : NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
     ;
 See_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
@@ -197,7 +211,7 @@ See_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 mode QUALIFIED_IDENTIFIER;
 DOTTED_IDENTIFIER: ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(TEXT_MODE);
 DottedIdentifier_NEWLINE
-    : '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
+    : NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES)
     ;
 DottedIdentifier_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
@@ -206,7 +220,7 @@ DottedIdentifier_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 // Example: "java.io.IOException"
 mode EXCEPTION_NAME_MODE;
 EXCEPTION_NAME: ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(TEXT_MODE);
-ExceptionName_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+ExceptionName_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 ExceptionName_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 // --- PARAMETER_NAME_MODE ---
@@ -215,7 +229,7 @@ ExceptionName_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 // Example: "@param <T> Description
 mode PARAMETER_NAME_MODE;
 PARAMETER_NAME: [a-zA-Z0-9<>_$]+ -> mode(TEXT_MODE);
-Param_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+Param_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 Param_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 
@@ -240,7 +254,7 @@ CUSTOM_NAME: [a-zA-Z0-9:._-]+ -> pushMode(INLINE_TAG_DESCRIPTION);
 // Purpose: Parses the inner content of inline tags that contain plain text like {@code}, {@literal}.
 // Example: "{@code  {int x = 5;} }"
 mode PLAIN_TEXT_TAG;
-Code_NEWLINE: '\r'? '\n' {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES), pushMode(START_OF_LINE);
+Code_NEWLINE: NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES), pushMode(START_OF_LINE);
 Code_LBRACE: '{' { braceCounter++; } -> type(TEXT);
 Code_RBRACE: '}' { braceCounter > 1 }? { braceCounter--; } -> type(TEXT);
 JAVADOC_INLINE_TAG_END: '}' { braceCounter == 1 }? { braceCounter--; } -> popMode, popMode;
@@ -253,7 +267,7 @@ mode SNIPPET_ATTRIBUTE_MODE;
 SNIPPET_ATTR_NAME: Letter LetterOrDigit*;
 SNIPPET_EQUALS: '=' -> type(EQUALS), pushMode(ATTR_VALUE);
 COLON: ':' -> popMode, pushMode(PLAIN_TEXT_TAG);
-SnippetAttribute_NEWLINE: '\r'? '\n' {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES), pushMode(START_OF_LINE);
+SnippetAttribute_NEWLINE: NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES), pushMode(START_OF_LINE);
 SnippetArrtibute_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 SnippetAttribute_JAVADOC_INLINE_TAG_END: '}' { braceCounter--; } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode;
 
@@ -280,7 +294,7 @@ Link_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMo
 LT: '<';
 GT: '>' { if (Character.isWhitespace(_input.LA(1))) pushMode(LINK_TAG_DESCRIPTION); };
 Link_COMMA: ',' -> type(COMMA);
-Link_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+Link_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 
 fragment LetterOrDigit: Letter | [0-9];
 fragment Letter: [a-zA-Z$_];
@@ -291,7 +305,7 @@ fragment Letter: [a-zA-Z$_];
 mode LINK_TAG_DESCRIPTION;
 LinkDescription_TEXT: ~[{}\r\n]+ -> type(TEXT);
 LinkDescription_JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;} -> pushMode(JAVADOC_INLINE_TAG_MODE), type(JAVADOC_INLINE_TAG_START);
-LinkDescription_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+LinkDescription_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 LinkDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode;
 
 // --- PARAMETER_LIST ---
@@ -299,7 +313,7 @@ LinkDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), pop
 // Example: "{@link java.util.Map#put(Object, Object)}"
 mode PARAMETER_LIST;
 ParameterList_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
-ParameterList_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+ParameterList_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 PARAMETER_TYPE: ([a-zA-Z0-9_$] | '.' | '[' | ']')+;
 COMMA: ',';
 RPAREN: ')' {
@@ -320,7 +334,7 @@ Value_IDENTIFIER: ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER);
 FORMAT_SPECIFIER: '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z];
 Value_HASH: '#' -> type(HASH);
 Value_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
-Value_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+Value_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 Value_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode;
 
 // --- INLINE_TAG_DESCRIPTION ---
@@ -332,7 +346,7 @@ fragment InlineDescription_TEXT_CHAR: {isNormalText()}? ~[}\r\n];
 InlineDescription_JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;}
     -> pushMode(JAVADOC_INLINE_TAG_MODE), type(JAVADOC_INLINE_TAG_START);
 InlineDescription_TAG_OPEN: '<' -> pushMode(TAG), type(TAG_OPEN);
-InlineDescription_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+InlineDescription_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 InlineDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode;
 
 // --- INDEX_TERM_MODE ---
@@ -340,7 +354,7 @@ InlineDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), p
 // Example: "{@index "term name"}"
 mode INDEX_TERM_MODE;
 INDEX_TERM: ( '"' (~["\r\n])+ '"' | ~[ \t\r\n"}]+ | '"' (~["\r\n}])+ ) -> popMode, pushMode(PLAIN_TEXT_TAG);
-IndexTerm_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+IndexTerm_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 IndexTerm_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 // --- TAG ---
@@ -353,7 +367,7 @@ TAG_SLASH: '/';
 EQUALS: '=' -> pushMode(ATTR_VALUE);
 TAG_NAME: {hasSeenTagName == false}? TagNameStartChar TagNameChar* {hasSeenTagName = true;};
 TAG_ATTR_NAME: {hasSeenTagName == true}? TagNameStartChar TagNameChar*;
-Tag_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+Tag_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 TAG_WHITESPACE: [ \t]+ -> type(WS), channel(WHITESPACES);
 
 fragment TagNameChar: TagNameStartChar | '-' | '_' | '.' | DIGIT | '\u00B7' | '\u0300'..'\u036F' | '\u203F'..'\u2040';
@@ -364,7 +378,7 @@ fragment DIGIT: [0-9];
 // Purpose: Parses attribute values within HTML tags, such as href="..." or class='...'.
 // Example: "<a href="https://example.com">"
 mode ATTR_VALUE;
-AttrValue_NEWLINE: '\r'? '\n' {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+AttrValue_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
 ATTRIBUTE_VALUE: ' '* ATTRIBUTE -> popMode;
 ATTRIBUTE: DOUBLE_QUOTE_STRING | SINGLE_QUOTE_STRING | ATTCHARS | HEXCHARS | DECCHARS | UNQUOTED_STRING;
 fragment ATTCHARS: ATTCHAR+ ' '?;

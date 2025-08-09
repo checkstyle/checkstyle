@@ -225,4 +225,11 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         verifyJavadocTree(getHTMLTagsPath("ExpectedNewlinesInHtmlAttributes.txt"),
                 getHTMLTagsPath("InputNewlinesInHtmlAttributes.javadoc"));
     }
+
+    @Test
+    public void testCrAsNewLine() throws Exception {
+        verifyJavadocTree(geSimplePath("ExpectedCrAsNewline.txt"),
+                geSimplePath("InputCrAsNewline.javadoc"));
+    }
+
 }
