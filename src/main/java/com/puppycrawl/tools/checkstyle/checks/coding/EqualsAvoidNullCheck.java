@@ -156,56 +156,51 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.PARAMETER_DEF:
-            case TokenTypes.PATTERN_VARIABLE_DEF:
-            case TokenTypes.RECORD_COMPONENT_DEF:
-                currentFrame.addField(ast);
-                break;
-            case TokenTypes.METHOD_CALL:
-                processMethodCall(ast);
-                break;
-            case TokenTypes.SLIST:
-                processSlist(ast);
-                break;
-            case TokenTypes.LITERAL_NEW:
-                processLiteralNew(ast);
-                break;
-            case TokenTypes.OBJBLOCK:
+            case TokenTypes.VARIABLE_DEF,
+                 TokenTypes.PARAMETER_DEF,
+                 TokenTypes.PATTERN_VARIABLE_DEF,
+                 TokenTypes.RECORD_COMPONENT_DEF -> currentFrame.addField(ast);
+
+            case TokenTypes.METHOD_CALL -> processMethodCall(ast);
+
+            case TokenTypes.SLIST -> processSlist(ast);
+
+            case TokenTypes.LITERAL_NEW -> processLiteralNew(ast);
+
+            case TokenTypes.OBJBLOCK -> {
                 final int parentType = ast.getParent().getType();
                 if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
                     processFrame(ast);
                 }
-                break;
-            default:
-                processFrame(ast);
+            }
+
+            default -> processFrame(ast);
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SLIST:
-                leaveSlist(ast);
-                break;
-            case TokenTypes.LITERAL_NEW:
-                leaveLiteralNew(ast);
-                break;
-            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST -> leaveSlist(ast);
+
+            case TokenTypes.LITERAL_NEW -> leaveLiteralNew(ast);
+
+            case TokenTypes.OBJBLOCK -> {
                 final int parentType = ast.getParent().getType();
                 if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
                     currentFrame = currentFrame.getParent();
                 }
-                break;
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.PARAMETER_DEF:
-            case TokenTypes.RECORD_COMPONENT_DEF:
-            case TokenTypes.METHOD_CALL:
-            case TokenTypes.PATTERN_VARIABLE_DEF:
-                break;
-            default:
-                currentFrame = currentFrame.getParent();
-                break;
+            }
+
+            case TokenTypes.VARIABLE_DEF,
+                 TokenTypes.PARAMETER_DEF,
+                 TokenTypes.RECORD_COMPONENT_DEF,
+                 TokenTypes.METHOD_CALL,
+                 TokenTypes.PATTERN_VARIABLE_DEF -> {
+                // intentionally do nothing
+            }
+
+            default -> currentFrame = currentFrame.getParent();
         }
     }
 
