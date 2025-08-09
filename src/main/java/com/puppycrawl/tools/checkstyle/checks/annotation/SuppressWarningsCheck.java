@@ -198,54 +198,59 @@ public class SuppressWarningsCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
+        boolean shouldProcess = true;
+
         final DetailAST annotation = getSuppressWarnings(ast);
+        if (annotation == null) {
+            shouldProcess = false;
+        }
 
-        if (annotation != null) {
-            final DetailAST warningHolder =
-                findWarningsHolder(annotation);
-
+        DetailAST warning = null;
+        if (shouldProcess) {
+            DetailAST warningHolder = findWarningsHolder(annotation);
             final DetailAST token =
                     warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
             // case like '@SuppressWarnings(value = UNUSED)'
             final DetailAST parent = Objects.requireNonNullElse(token, warningHolder);
-            DetailAST warning = parent.findFirstToken(TokenTypes.EXPR);
+            warning = parent.findFirstToken(TokenTypes.EXPR);
 
             // rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
                 // check to see if empty warnings are forbidden -- are by default
                 logMatch(warningHolder, "");
+                shouldProcess = false;
             }
-            else {
-                while (warning != null) {
-                    if (warning.getType() == TokenTypes.EXPR) {
-                        final DetailAST fChild = warning.getFirstChild();
-                        switch (fChild.getType()) {
-                            // typical case
-                            case TokenTypes.STRING_LITERAL:
-                                final String warningText =
+        }
+
+        if (shouldProcess) {
+            while (warning != null) {
+                if (warning.getType() == TokenTypes.EXPR) {
+                    final DetailAST fChild = warning.getFirstChild();
+                    switch (fChild.getType()) {
+                        // typical case
+                        case TokenTypes.STRING_LITERAL -> {
+                            final String warningText =
                                     removeQuotes(warning.getFirstChild().getText());
-                                logMatch(warning, warningText);
-                                break;
-                            // conditional case
-                            // ex:
-                            // @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                            case TokenTypes.QUESTION:
-                                walkConditional(fChild);
-                                break;
-                            default:
-                                // Known limitation: cases like @SuppressWarnings("un" + "used") or
-                                // @SuppressWarnings((String) "unused") are not properly supported,
-                                // but they should not cause exceptions.
-                                // Also constant as param
-                                // ex: public static final String UNCHECKED = "unchecked";
-                                // @SuppressWarnings(UNCHECKED)
-                                // or
-                                // @SuppressWarnings(SomeClass.UNCHECKED)
+                            logMatch(warning, warningText);
+                        }
+                        // conditional case
+                        // ex:
+                        // @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+                        case TokenTypes.QUESTION -> walkConditional(fChild);
+                        default -> {
+                            // Known limitation: cases like @SuppressWarnings("un" + "used") or
+                            // @SuppressWarnings((String) "unused") are not properly supported,
+                            // but they should not cause exceptions.
+                            // Also constant as param
+                            // ex: public static final String UNCHECKED = "unchecked";
+                            // @SuppressWarnings(UNCHECKED)
+                            // or
+                            // @SuppressWarnings(SomeClass.UNCHECKED)
                         }
                     }
-                    warning = warning.getNextSibling();
                 }
+                warning = warning.getNextSibling();
             }
         }
     }
