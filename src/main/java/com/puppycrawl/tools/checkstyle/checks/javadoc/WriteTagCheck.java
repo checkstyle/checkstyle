@@ -220,7 +220,8 @@ public class WriteTagCheck
      * @return the {@code DetailAST} representing the Javadoc comment if found and
      *          valid; {@code null} otherwise.
      */
-    private static @Nullable DetailAST getJavadoc(DetailAST ast) {
+    @Nullable
+    private static DetailAST getJavadoc(DetailAST ast) {
         // Prefer Javadoc directly above the node
         DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
         if (cmt == null) {

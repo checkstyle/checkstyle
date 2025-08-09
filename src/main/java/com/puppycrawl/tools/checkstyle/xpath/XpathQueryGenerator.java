@@ -153,7 +153,8 @@ public class XpathQueryGenerator {
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
-    private static @Nullable DetailAST findChildWithTextAttribute(DetailAST root) {
+    @Nullable
+    private static DetailAST findChildWithTextAttribute(DetailAST root) {
         return TokenUtil.findFirstTokenByPredicate(root,
                 XpathUtil::supportsTextAttribute).orElse(null);
     }
@@ -165,7 +166,8 @@ public class XpathQueryGenerator {
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
-    private static @Nullable DetailAST findChildWithTextAttributeRecursively(DetailAST root) {
+    @Nullable
+    private static DetailAST findChildWithTextAttributeRecursively(DetailAST root) {
         DetailAST res = findChildWithTextAttribute(root);
         for (DetailAST ast = root.getFirstChild(); ast != null && res == null;
              ast = ast.getNextSibling()) {

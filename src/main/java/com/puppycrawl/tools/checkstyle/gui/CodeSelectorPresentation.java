@@ -89,8 +89,8 @@ public class CodeSelectorPresentation {
      * Find start and end selection positions from AST line and Column.
      */
     public void findSelectionPositions() {
-        if (node instanceof DetailAST sT) {
-            findSelectionPositions(sT);
+        if (node instanceof DetailAST) {
+            findSelectionPositions((DetailAST) node);
         }
         else {
             findSelectionPositions((DetailNode) node);
