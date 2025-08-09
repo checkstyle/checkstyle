@@ -216,17 +216,12 @@ public class HiddenFieldCheck
     public void visitToken(DetailAST ast) {
         final int type = ast.getType();
         switch (type) {
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.PARAMETER_DEF:
-            case TokenTypes.PATTERN_VARIABLE_DEF:
-            case TokenTypes.RECORD_COMPONENT_DEF:
-                processVariable(ast);
-                break;
-            case TokenTypes.LAMBDA:
-                processLambda(ast);
-                break;
-            default:
-                visitOtherTokens(ast, type);
+            case TokenTypes.VARIABLE_DEF,
+                 TokenTypes.PARAMETER_DEF,
+                 TokenTypes.PATTERN_VARIABLE_DEF,
+                 TokenTypes.RECORD_COMPONENT_DEF -> processVariable(ast);
+            case TokenTypes.LAMBDA -> processLambda(ast);
+            default -> visitOtherTokens(ast, type);
         }
     }
 

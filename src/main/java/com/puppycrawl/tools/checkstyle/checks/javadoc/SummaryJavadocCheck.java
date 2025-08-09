@@ -283,16 +283,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         boolean isDefinedFirst = true;
         DetailNode currentAst = inlineSummaryTag;
         while (currentAst != null && isDefinedFirst) {
-            switch (currentAst.getType()) {
-                case JavadocTokenTypes.TEXT:
-                    isDefinedFirst = currentAst.getText().isBlank();
-                    break;
-                case JavadocTokenTypes.HTML_ELEMENT:
-                    isDefinedFirst = !isTextPresentInsideHtmlTag(currentAst);
-                    break;
-                default:
-                    break;
-            }
+            isDefinedFirst = switch (currentAst.getType()) {
+                case JavadocTokenTypes.TEXT -> currentAst.getText().isBlank();
+                case JavadocTokenTypes.HTML_ELEMENT -> !isTextPresentInsideHtmlTag(currentAst);
+                default -> isDefinedFirst;
+            };
             currentAst = JavadocUtil.getPreviousSibling(currentAst);
         }
         return isDefinedFirst;
@@ -312,17 +307,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
         boolean isTextPresentInsideHtmlTag = false;
         while (nestedChild != null && !isTextPresentInsideHtmlTag) {
-            switch (nestedChild.getType()) {
-                case JavadocTokenTypes.TEXT:
-                    isTextPresentInsideHtmlTag = !nestedChild.getText().isBlank();
-                    break;
-                case JavadocTokenTypes.HTML_TAG:
-                case JavadocTokenTypes.HTML_ELEMENT:
-                    isTextPresentInsideHtmlTag = isTextPresentInsideHtmlTag(nestedChild);
-                    break;
-                default:
-                    break;
-            }
+            isTextPresentInsideHtmlTag = switch (nestedChild.getType()) {
+                case JavadocTokenTypes.TEXT -> !nestedChild.getText().isBlank();
+                case JavadocTokenTypes.HTML_TAG, JavadocTokenTypes.HTML_ELEMENT ->
+                    isTextPresentInsideHtmlTag(nestedChild);
+                default -> isTextPresentInsideHtmlTag;
+            };
             nestedChild = JavadocUtil.getNextSibling(nestedChild);
         }
         return isTextPresentInsideHtmlTag;
