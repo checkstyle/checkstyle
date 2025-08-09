@@ -362,8 +362,7 @@ public abstract class AbstractAutomaticBean
 
         @SuppressWarnings("unchecked")
         @Override
-        @Nullable
-        public Object convert(Class type, Object value) {
+        public @Nullable Object convert(Class type, Object value) {
             final String url = value.toString();
             URI result = null;
 
