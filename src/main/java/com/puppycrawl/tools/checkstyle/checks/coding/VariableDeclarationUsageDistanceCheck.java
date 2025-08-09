@@ -332,9 +332,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
+        DetailAST examineNode = childNode;
+        if (examineNode.getType() == TokenTypes.LABELED_STAT) {
+            examineNode = examineNode.getFirstChild().getNextSibling();
+        }
+
         int resultDist = currentDistToVarUsage;
 
-        switch (childNode.getType()) {
+        switch (examineNode.getType()) {
             case TokenTypes.SLIST:
                 resultDist = 0;
                 break;
@@ -342,6 +347,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE:
             case TokenTypes.LITERAL_DO:
             case TokenTypes.LITERAL_IF:
+            case TokenTypes.LITERAL_SWITCH:
                 // variable usage is in inner scope, treated as 1 block
                 // or in operator expression, then distance + 1
                 resultDist++;
@@ -373,7 +379,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         int dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
+
         while (currentScopeAst != null) {
+
             final Entry<List<DetailAST>, Integer> searchResult =
                     searchVariableUsageExpressions(variable, currentScopeAst);
 
@@ -441,6 +449,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return entry which contains list with found expressions that use the variable
      *     and distance from specified statement to first found expression.
      */
+    /**
+     * Searches for expressions that use a given variable within a statement AST.
+     * Also computes the "distance" metric based on scope nesting.
+     *
+     * @param variableAst the AST node representing the variable to search for
+     * @param statementAst the root AST node of the statement block to search within
+     * @return a pair containing the list of usage expressions and the computed distance
+     */
     private static Entry<List<DetailAST>, Integer>
         searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {
         final List<DetailAST> variableUsageExpressions = new ArrayList<>();
@@ -451,15 +467,54 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
                 }
-                // If expression hasn't been met yet, then distance + 1.
                 else if (variableUsageExpressions.isEmpty()
                         && !isZeroDistanceToken(currentStatementAst.getType())) {
-                    distance++;
+                    if (currentStatementAst.getType() == TokenTypes.SLIST
+                            || !isSkippableScope(currentStatementAst)) {
+                        distance++;
+                    }
                 }
+
+                collectFromClassOrMethod(variableAst, currentStatementAst, variableUsageExpressions);
             }
+
             currentStatementAst = currentStatementAst.getNextSibling();
         }
+
         return new SimpleEntry<>(variableUsageExpressions, distance);
+    }
+
+    /**
+     * Checks if the AST type represents a class-like definition.
+     *
+     * @param type the token type to check
+     * @return true if it's a class, enum, or interface definition
+     */
+    private static boolean isClassLikeDef(int type) {
+        return type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.INTERFACE_DEF;
+    }
+
+    /**
+     * Recursively collects variable usage expressions from class or method bodies.
+     *
+     * @param variableAst the variable to search for
+     * @param currentStatementAst the current AST node being inspected
+     * @param variableUsageExpressions the list to accumulate usage expressions
+     */
+    private static void collectFromClassOrMethod(
+            DetailAST variableAst, DetailAST currentStatementAst, List<DetailAST> variableUsageExpressions) {
+
+        if (isClassLikeDef(currentStatementAst.getType())) {
+            DetailAST objBlock = currentStatementAst.findFirstToken(TokenTypes.OBJBLOCK);
+            for (DetailAST member = objBlock.getFirstChild(); member != null; member = member.getNextSibling()) {
+                Entry<List<DetailAST>, Integer> result = searchVariableUsageExpressions(variableAst, member);
+                variableUsageExpressions.addAll(result.getKey());
+            }
+        } else if (currentStatementAst.getType() == TokenTypes.METHOD_DEF) {
+            DetailAST slist = currentStatementAst.findFirstToken(TokenTypes.SLIST);
+        }
     }
 
     /**
@@ -779,9 +834,18 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         return type == TokenTypes.VARIABLE_DEF
                 || type == TokenTypes.TYPE
                 || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+                || type == TokenTypes.RESOURCE;
     }
 
+    /**
+     * Checks whether the given AST node represents a scope that should be skipped
+     * when calculating the distance between a variable declaration and its usage.
+     *
+     * @param scopeAst the AST node to check
+     * @return {@code true} if the node represents a skippable scope (such as
+     */
+    private static boolean isSkippableScope(DetailAST scopeAst) {
+        final int type = scopeAst.getType();
+        return type == TokenTypes.CLASS_DEF;
+    }
 }
