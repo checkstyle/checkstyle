@@ -56,8 +56,8 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
         if (name.equals(root.getName())) {
             result = root;
         }
-        else if (root instanceof Container) {
-            final Component[] children = ((Container) root).getComponents();
+        else if (root instanceof Container container) {
+            final Component[] children = container.getComponents();
             for (Component component : children) {
                 result = findComponentByName(component, name);
                 if (result != null) {

@@ -354,8 +354,8 @@ public class JavadocDetailNodeParser {
      */
     private static int getLine(ParseTree tree) {
         final int line;
-        if (tree instanceof TerminalNode) {
-            line = ((TerminalNode) tree).getSymbol().getLine() - 1;
+        if (tree instanceof TerminalNode node) {
+            line = node.getSymbol().getLine() - 1;
         }
         else {
             final ParserRuleContext rule = (ParserRuleContext) tree;
@@ -373,8 +373,8 @@ public class JavadocDetailNodeParser {
      */
     private static int getColumn(ParseTree tree) {
         final int column;
-        if (tree instanceof TerminalNode) {
-            column = ((TerminalNode) tree).getSymbol().getCharPositionInLine();
+        if (tree instanceof TerminalNode node) {
+            column = node.getSymbol().getCharPositionInLine();
         }
         else {
             final ParserRuleContext rule = (ParserRuleContext) tree;
