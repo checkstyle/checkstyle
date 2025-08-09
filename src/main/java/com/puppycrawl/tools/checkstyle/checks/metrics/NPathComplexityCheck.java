@@ -246,95 +246,87 @@ public final class NPathComplexityCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.LITERAL_IF:
-            case TokenTypes.LITERAL_SWITCH:
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_DO:
-            case TokenTypes.LITERAL_FOR:
-                visitConditional(ast, 1);
-                break;
-            case TokenTypes.QUESTION:
-                visitUnitaryOperator(ast, 2);
-                break;
-            case TokenTypes.LITERAL_RETURN:
-                visitUnitaryOperator(ast, 0);
-                break;
-            case TokenTypes.LITERAL_WHEN:
-                visitWhenExpression(ast, 1);
-                break;
-            case TokenTypes.CASE_GROUP:
+            case TokenTypes.LITERAL_IF, TokenTypes.LITERAL_SWITCH,
+                 TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO,
+                 TokenTypes.LITERAL_FOR -> visitConditional(ast, 1);
+
+            case TokenTypes.QUESTION -> visitUnitaryOperator(ast, 2);
+
+            case TokenTypes.LITERAL_RETURN -> visitUnitaryOperator(ast, 0);
+
+            case TokenTypes.LITERAL_WHEN -> visitWhenExpression(ast, 1);
+
+            case TokenTypes.CASE_GROUP -> {
                 final int caseNumber = countCaseTokens(ast);
                 branchVisited = true;
                 pushValue(caseNumber);
-                break;
-            case TokenTypes.SWITCH_RULE:
+            }
+
+            case TokenTypes.SWITCH_RULE -> {
                 final int caseConstantNumber = countCaseConstants(ast);
                 branchVisited = true;
                 pushValue(caseConstantNumber);
-                break;
-            case TokenTypes.LITERAL_ELSE:
+            }
+
+            case TokenTypes.LITERAL_ELSE -> {
                 branchVisited = true;
                 if (currentRangeValue.equals(BigInteger.ZERO)) {
                     currentRangeValue = BigInteger.ONE;
                 }
                 pushValue(0);
-                break;
-            case TokenTypes.LITERAL_TRY:
-            case TokenTypes.LITERAL_CATCH:
-            case TokenTypes.LITERAL_DEFAULT:
-                pushValue(1);
-                break;
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                pushValue(0);
-                break;
-            default:
-                break;
+            }
+
+            case TokenTypes.LITERAL_TRY,
+                 TokenTypes.LITERAL_CATCH,
+                 TokenTypes.LITERAL_DEFAULT -> pushValue(1);
+
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.INSTANCE_INIT,
+                 TokenTypes.STATIC_INIT,
+                 TokenTypes.COMPACT_CTOR_DEF -> pushValue(0);
+
+            default -> {
+                // do nothing
+            }
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_DO:
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_IF:
-            case TokenTypes.LITERAL_SWITCH:
-            case TokenTypes.LITERAL_WHEN:
-                leaveConditional();
-                break;
-            case TokenTypes.LITERAL_TRY:
-                leaveMultiplyingConditional();
-                break;
-            case TokenTypes.LITERAL_RETURN:
-            case TokenTypes.QUESTION:
-                leaveUnitaryOperator();
-                break;
-            case TokenTypes.LITERAL_CATCH:
-                leaveAddingConditional();
-                break;
-            case TokenTypes.LITERAL_DEFAULT:
-                leaveBranch();
-                break;
-            case TokenTypes.LITERAL_ELSE:
-            case TokenTypes.CASE_GROUP:
-            case TokenTypes.SWITCH_RULE:
+            case TokenTypes.LITERAL_WHILE,
+                 TokenTypes.LITERAL_DO,
+                 TokenTypes.LITERAL_FOR,
+                 TokenTypes.LITERAL_IF,
+                 TokenTypes.LITERAL_SWITCH,
+                 TokenTypes.LITERAL_WHEN -> leaveConditional();
+
+            case TokenTypes.LITERAL_TRY -> leaveMultiplyingConditional();
+
+            case TokenTypes.LITERAL_RETURN,
+                 TokenTypes.QUESTION -> leaveUnitaryOperator();
+
+            case TokenTypes.LITERAL_CATCH -> leaveAddingConditional();
+
+            case TokenTypes.LITERAL_DEFAULT -> leaveBranch();
+
+            case TokenTypes.LITERAL_ELSE,
+                 TokenTypes.CASE_GROUP,
+                 TokenTypes.SWITCH_RULE -> {
                 leaveBranch();
                 branchVisited = false;
-                break;
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.INSTANCE_INIT:
-            case TokenTypes.STATIC_INIT:
-            case TokenTypes.COMPACT_CTOR_DEF:
-                leaveMethodDef(ast);
-                break;
-            default:
-                break;
+            }
+
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.INSTANCE_INIT,
+                 TokenTypes.STATIC_INIT,
+                 TokenTypes.COMPACT_CTOR_DEF -> leaveMethodDef(ast);
+
+            default -> {
+                // do nothing
+            }
         }
     }
 
