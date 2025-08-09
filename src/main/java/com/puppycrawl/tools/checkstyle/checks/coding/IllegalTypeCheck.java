@@ -293,35 +293,27 @@ public final class IllegalTypeCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.RECORD_DEF:
-                visitTypeDef(ast);
-                break;
-            case TokenTypes.METHOD_CALL:
-            case TokenTypes.METHOD_REF:
-                visitMethodCallOrRef(ast);
-                break;
-            case TokenTypes.METHOD_DEF:
-                visitMethodDef(ast);
-                break;
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.ANNOTATION_FIELD_DEF:
-            case TokenTypes.PATTERN_VARIABLE_DEF:
-                visitVariableDef(ast);
-                break;
-            case TokenTypes.RECORD_COMPONENT_DEF:
-            case TokenTypes.RECORD_PATTERN_DEF:
-                checkClassName(ast);
-                break;
-            case TokenTypes.PARAMETER_DEF:
-                visitParameterDef(ast);
-                break;
-            case TokenTypes.IMPORT:
-                visitImport(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+            case TokenTypes.CLASS_DEF,
+                 TokenTypes.INTERFACE_DEF,
+                 TokenTypes.RECORD_DEF -> visitTypeDef(ast);
+
+            case TokenTypes.METHOD_CALL,
+                 TokenTypes.METHOD_REF -> visitMethodCallOrRef(ast);
+
+            case TokenTypes.METHOD_DEF -> visitMethodDef(ast);
+
+            case TokenTypes.VARIABLE_DEF,
+                 TokenTypes.ANNOTATION_FIELD_DEF,
+                 TokenTypes.PATTERN_VARIABLE_DEF -> visitVariableDef(ast);
+
+            case TokenTypes.RECORD_COMPONENT_DEF,
+                 TokenTypes.RECORD_PATTERN_DEF -> checkClassName(ast);
+
+            case TokenTypes.PARAMETER_DEF -> visitParameterDef(ast);
+
+            case TokenTypes.IMPORT -> visitImport(ast);
+
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 

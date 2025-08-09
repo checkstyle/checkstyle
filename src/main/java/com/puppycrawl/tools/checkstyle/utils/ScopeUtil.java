@@ -46,19 +46,12 @@ public final class ScopeUtil {
         Scope result = null;
         for (DetailAST token = aMods.getFirstChild(); token != null;
              token = token.getNextSibling()) {
-            switch (token.getType()) {
-                case TokenTypes.LITERAL_PUBLIC:
-                    result = Scope.PUBLIC;
-                    break;
-                case TokenTypes.LITERAL_PROTECTED:
-                    result = Scope.PROTECTED;
-                    break;
-                case TokenTypes.LITERAL_PRIVATE:
-                    result = Scope.PRIVATE;
-                    break;
-                default:
-                    break;
-            }
+            result = switch (token.getType()) {
+                case TokenTypes.LITERAL_PUBLIC -> Scope.PUBLIC;
+                case TokenTypes.LITERAL_PROTECTED -> Scope.PROTECTED;
+                case TokenTypes.LITERAL_PRIVATE -> Scope.PRIVATE;
+                default -> result;
+            };
         }
         return result;
     }
