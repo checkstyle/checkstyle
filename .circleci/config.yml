@@ -323,4 +323,4 @@ workflows:
           name: "rewrite-validation"
           image-name: *cs_img
           command: "./.ci/validation.sh rewrite-validation"
-          no_output_timeout: 1h # 03:29 min,
+          no_output_timeout: 55m # 35m 37s
