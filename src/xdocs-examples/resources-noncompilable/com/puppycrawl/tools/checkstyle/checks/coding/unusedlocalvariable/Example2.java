@@ -12,14 +12,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 import java.io.*;
 import java.util.function.Predicate;
 // xdoc section -- start
-class Example1 {
+public class Example2 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;
   }
 
   int a;
-  Example1(int a) { // ok, as 'a' is a constructor parameter not a local variable
+  Example2(int a) { // ok, as 'a' is a constructor parameter not a local variable
     this.a = 12;
   }
 
