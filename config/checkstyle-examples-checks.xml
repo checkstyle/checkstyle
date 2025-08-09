@@ -114,6 +114,13 @@
 
   <module name="TreeWalker">
 
+    <module name="SuppressionXpathSingleFilter">
+      <property name="files" value="Example\d+.java"/>
+      <property name="id" value="exampleClassName"/>
+      <property name="query" value="//CLASS_DEF//CLASS_DEF/IDENT
+                                    | COMPILATION_UNIT/CLASS_DEF[position() > 1]/IDENT"/>
+    </module>
+
     <module name="PackageDeclaration"/>
 
     <!-- Miscellaneous -->
@@ -127,15 +134,14 @@
     </module>
 
     <!-- Regexp -->
-    <module name="RegexpSinglelineJava">
+    <module name="TypeName">
       <property name="id" value="exampleClassName"/>
-      <property name="format" value="(class|interface|record|enum) Example\d+"/>
-      <property name="minimum" value="1"/>
-      <property name="maximum" value="1"/>
-      <message key="regexp.minimum"
-               value="Example test input must declare exactly one class matching ''Example\d+''"/>
-      <message key="regexp.maximum"
-               value="Example test input must declare exactly one class matching ''Example\d+''"/>
+      <property name="format" value="Example\d+"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <property name="applyToPrivate" value="false"/>
+      <property name="applyToPublic" value="true"/>
+      <property name="applyToProtected" value="false"/>
+      <property name="applyToPackage" value="false"/>
     </module>
 
   </module>
