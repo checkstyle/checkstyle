@@ -22,6 +22,11 @@
                   query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
                         //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 
+  <!-- Avoid exampleClassName check to parse the inner classes -->
+  <suppress-xpath id="exampleClassName"
+                  query="//CLASS_DEF//CLASS_DEF/IDENT
+                        | COMPILATION_UNIT/CLASS_DEF[position() > 1]/IDENT"/>
+
   <!-- until https://github.com/checkstyle/checkstyle/issues/11522 -->
   <suppress-xpath
           files="AbstractFileSetCheck.java"
