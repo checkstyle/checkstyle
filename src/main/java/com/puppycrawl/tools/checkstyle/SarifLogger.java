@@ -289,41 +289,25 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         final StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             final char chr = value.charAt(i);
-            switch (chr) {
-                case '"':
-                    sb.append("\\\"");
-                    break;
-                case '\\':
-                    sb.append(TWO_BACKSLASHES);
-                    break;
-                case '\b':
-                    sb.append("\\b");
-                    break;
-                case '\f':
-                    sb.append("\\f");
-                    break;
-                case '\n':
-                    sb.append("\\n");
-                    break;
-                case '\r':
-                    sb.append("\\r");
-                    break;
-                case '\t':
-                    sb.append("\\t");
-                    break;
-                case '/':
-                    sb.append("\\/");
-                    break;
-                default:
+            final String replacement = switch (chr) {
+                case '"' -> "\\\"";
+                case '\\' -> TWO_BACKSLASHES;
+                case '\b' -> "\\b";
+                case '\f' -> "\\f";
+                case '\n' -> "\\n";
+                case '\r' -> "\\r";
+                case '\t' -> "\\t";
+                case '/' -> "\\/";
+                default -> {
                     if (chr <= UNICODE_ESCAPE_UPPER_LIMIT) {
-                        sb.append(escapeUnicode1F(chr));
+                        yield escapeUnicode1F(chr);
                     }
-                    else {
-                        sb.append(chr);
-                    }
-                    break;
-            }
+                    yield String.valueOf(chr);
+                }
+            };
+            sb.append(replacement);
         }
+
         return sb.toString();
     }
 
