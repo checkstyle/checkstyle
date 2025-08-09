@@ -543,7 +543,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter beginIndex of String.substring.</message>
-    <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
+    <lineContent>yield quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
       found   : @UpperBoundLiteral(1) int
       required: @LTEqLengthOf(&quot;quotedText&quot;) int
@@ -554,7 +554,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter endIndex of String.substring.</message>
-    <lineContent>expr = quotedText.substring(1, quotedText.length() - 1);</lineContent>
+    <lineContent>yield quotedText.substring(1, quotedText.length() - 1);</lineContent>
     <details>
       found   : @GTENegativeOne int
       required: @NonNegative int
