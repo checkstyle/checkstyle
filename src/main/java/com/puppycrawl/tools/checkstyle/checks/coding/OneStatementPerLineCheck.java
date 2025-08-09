@@ -173,23 +173,22 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI:
+            case TokenTypes.SEMI -> {
                 lastStatementEnd = ast.getLineNo();
                 forStatementEnd = 0;
                 lambdaStatementEnd = 0;
-                break;
-            case TokenTypes.FOR_ITERATOR:
-                inForHeader = false;
-                break;
-            case TokenTypes.LAMBDA:
+            }
+            case TokenTypes.FOR_ITERATOR -> inForHeader = false;
+            case TokenTypes.LAMBDA -> {
                 countOfSemiInLambda.pop();
                 if (countOfSemiInLambda.isEmpty()) {
                     isInLambda = false;
                 }
                 lambdaStatementEnd = ast.getLineNo();
-                break;
-            default:
-                break;
+            }
+            default -> {
+                // do nothing
+            }
         }
     }
 
