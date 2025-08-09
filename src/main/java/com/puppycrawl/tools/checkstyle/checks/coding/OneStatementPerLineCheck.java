@@ -160,19 +160,13 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI:
-                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
-                break;
-            case TokenTypes.FOR_ITERATOR:
-                forStatementEnd = ast.getLineNo();
-                break;
-            case TokenTypes.LAMBDA:
+            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
+            case TokenTypes.LAMBDA -> {
                 isInLambda = true;
                 countOfSemiInLambda.push(0);
-                break;
-            default:
-                inForHeader = true;
-                break;
+            }
+            default -> inForHeader = true;
         }
     }
 
