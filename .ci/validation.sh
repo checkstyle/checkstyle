@@ -429,7 +429,7 @@ spotbugs-and-pmd)
 ;;
 
 rewrite-validation)
-  export MAVEN_OPTS='-Xmx2g' # https://docs.openrewrite.org/reference/faq#im-getting-javalangoutofmemoryerror-java-heap-space-when-running-openrewrite
+  export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean rewrite:dryRun
   ;;
 
