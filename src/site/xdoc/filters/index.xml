@@ -51,8 +51,7 @@
             </td>
             <td>
               Filter <code>SuppressWithNearbyTextFilter</code> uses plain text to suppress
-              nearby audit events. The filter can suppress all checks which have Checker
-              as a parent module.
+              nearby audit events.
             </td>
           </tr>
           <tr>
@@ -87,9 +86,7 @@
               Filter <code>SuppressionFilter</code> rejects
               audit events for Check violations according to
               a <a href="/dtds/suppressions_1_2.dtd">suppressions XML
-              document</a> in a file. If there is no configured
-              suppressions file or the optional is set to true and
-              suppressions file was not found the Filter accepts all audit events.
+              document</a> in a file.
             </td>
           </tr>
           <tr>
@@ -113,10 +110,8 @@
             <td>
               Filter <code>SuppressionXpathFilter</code> works as
               <a href="suppressionfilter.html#SuppressionFilter">
-              SuppressionFilter</a>.
-              Additionally, filter processes <code>suppress-xpath</code> elements,
-              which contains xpath-expressions. Xpath-expressions
-              are queries for suppressed nodes inside the AST tree.
+              SuppressionFilter</a>, but also processes <code>suppress-xpath</code> elements,
+              which contain xpath-expressions.
             </td>
           </tr>
           <tr>
