@@ -195,18 +195,11 @@ public final class ReturnCountCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-                visitMethodDef(ast);
-                break;
-            case TokenTypes.LAMBDA:
-                visitLambda();
-                break;
-            case TokenTypes.LITERAL_RETURN:
-                visitReturn(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF -> visitMethodDef(ast);
+            case TokenTypes.LAMBDA -> visitLambda();
+            case TokenTypes.LITERAL_RETURN -> visitReturn(ast);
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 

@@ -227,27 +227,20 @@ public class UnusedImportsCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.IDENT:
+            case TokenTypes.IDENT -> {
                 if (collect) {
                     processIdent(ast);
                 }
-                break;
-            case TokenTypes.IMPORT:
-                processImport(ast);
-                break;
-            case TokenTypes.STATIC_IMPORT:
-                processStaticImport(ast);
-                break;
-            case TokenTypes.OBJBLOCK:
-            case TokenTypes.SLIST:
-                currentFrame = currentFrame.push();
-                break;
-            default:
+            }
+            case TokenTypes.IMPORT -> processImport(ast);
+            case TokenTypes.STATIC_IMPORT -> processStaticImport(ast);
+            case TokenTypes.OBJBLOCK, TokenTypes.SLIST -> currentFrame = currentFrame.push();
+            default -> {
                 collect = true;
                 if (processJavadoc) {
                     collectReferencesFromJavadoc(ast);
                 }
-                break;
+            }
         }
     }
 
