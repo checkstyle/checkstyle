@@ -266,8 +266,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param tag html tag.
      * @return block tag if the paragraph tag is followed by block tag or null if not found.
      */
-    @Nullable
-    private static String findFollowedBlockTagName(DetailNode tag) {
+    private static @Nullable String findFollowedBlockTagName(DetailNode tag) {
         final DetailNode htmlElement = findFirstHtmlElementAfter(tag);
         String blockTagName = null;
 
@@ -284,8 +283,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param tag html tag.
      * @return first html element after the paragraph tag or null if not found.
      */
-    @Nullable
-    private static DetailNode findFirstHtmlElementAfter(DetailNode tag) {
+    private static @Nullable DetailNode findFirstHtmlElementAfter(DetailNode tag) {
         DetailNode htmlElement = getNextSibling(tag);
 
         while (htmlElement != null
@@ -309,8 +307,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @param htmlElement block-level html tag.
      * @return block-level html element name or null if not found.
      */
-    @Nullable
-    private static String getHtmlElementName(DetailNode htmlElement) {
+    private static @Nullable String getHtmlElementName(DetailNode htmlElement) {
         final DetailNode htmlTag;
         if (htmlElement.getType() == JavadocTokenTypes.HTML_TAG) {
             htmlTag = htmlElement;
