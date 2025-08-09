@@ -562,7 +562,7 @@ public class JavadocDetailNodeParser {
         final ParseStatus result = new ParseStatus();
 
         final JavadocCommentsLexer lexer =
-                        new JavadocCommentsLexer(CharStreams.fromString(javadocComment));
+                        new JavadocCommentsLexer(CharStreams.fromString(javadocComment), true);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         tokens.fill();
 
