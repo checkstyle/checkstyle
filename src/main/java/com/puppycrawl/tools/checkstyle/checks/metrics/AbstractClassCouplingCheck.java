@@ -188,35 +188,20 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.PACKAGE_DEF:
-                visitPackageDef(ast);
-                break;
-            case TokenTypes.IMPORT:
-                registerImport(ast);
-                break;
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.ANNOTATION_DEF:
-            case TokenTypes.ENUM_DEF:
-            case TokenTypes.RECORD_DEF:
-                visitClassDef(ast);
-                break;
-            case TokenTypes.EXTENDS_CLAUSE:
-            case TokenTypes.IMPLEMENTS_CLAUSE:
-            case TokenTypes.TYPE:
-                visitType(ast);
-                break;
-            case TokenTypes.LITERAL_NEW:
-                visitLiteralNew(ast);
-                break;
-            case TokenTypes.LITERAL_THROWS:
-                visitLiteralThrows(ast);
-                break;
-            case TokenTypes.ANNOTATION:
-                visitAnnotationType(ast);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown type: " + ast);
+            case TokenTypes.PACKAGE_DEF -> visitPackageDef(ast);
+            case TokenTypes.IMPORT -> registerImport(ast);
+            case TokenTypes.CLASS_DEF,
+                 TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ANNOTATION_DEF,
+                 TokenTypes.ENUM_DEF,
+                 TokenTypes.RECORD_DEF -> visitClassDef(ast);
+            case TokenTypes.EXTENDS_CLAUSE,
+                 TokenTypes.IMPLEMENTS_CLAUSE,
+                 TokenTypes.TYPE -> visitType(ast);
+            case TokenTypes.LITERAL_NEW -> visitLiteralNew(ast);
+            case TokenTypes.LITERAL_THROWS -> visitLiteralThrows(ast);
+            case TokenTypes.ANNOTATION -> visitAnnotationType(ast);
+            default -> throw new IllegalArgumentException("Unknown type: " + ast);
         }
     }
 

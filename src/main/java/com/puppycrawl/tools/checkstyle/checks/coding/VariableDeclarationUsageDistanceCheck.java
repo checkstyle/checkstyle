@@ -332,29 +332,19 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static int getDistToVariableUsageInChildNode(DetailAST childNode,
                                                          int currentDistToVarUsage) {
-        int resultDist = currentDistToVarUsage;
-
-        switch (childNode.getType()) {
-            case TokenTypes.SLIST:
-                resultDist = 0;
-                break;
-            case TokenTypes.LITERAL_FOR:
-            case TokenTypes.LITERAL_WHILE:
-            case TokenTypes.LITERAL_DO:
-            case TokenTypes.LITERAL_IF:
-                // variable usage is in inner scope, treated as 1 block
-                // or in operator expression, then distance + 1
-                resultDist++;
-                break;
-            default:
+        return switch (childNode.getType()) {
+            case TokenTypes.SLIST -> 0;
+            case TokenTypes.LITERAL_FOR,
+                 TokenTypes.LITERAL_WHILE,
+                 TokenTypes.LITERAL_DO,
+                 TokenTypes.LITERAL_IF -> currentDistToVarUsage + 1;
+            default -> {
                 if (childNode.findFirstToken(TokenTypes.SLIST) == null) {
-                    resultDist++;
+                    yield currentDistToVarUsage + 1;
                 }
-                else {
-                    resultDist = 0;
-                }
-        }
-        return resultDist;
+                yield 0;
+            }
+        };
     }
 
     /**
@@ -385,37 +375,22 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
             // If variable usage exists in a single scope, then look into
             // this scope and count distance until variable usage.
             if (variableUsageExpressions.size() == 1) {
-                final DetailAST blockWithVariableUsage = variableUsageExpressions
-                        .get(0);
-                DetailAST exprWithVariableUsage = null;
-                switch (blockWithVariableUsage.getType()) {
-                    case TokenTypes.VARIABLE_DEF:
-                    case TokenTypes.EXPR:
+                final DetailAST blockWithVariableUsage = variableUsageExpressions.get(0);
+                currentScopeAst = switch (blockWithVariableUsage.getType()) {
+                    case TokenTypes.VARIABLE_DEF, TokenTypes.EXPR -> {
                         dist++;
-                        break;
-                    case TokenTypes.LITERAL_FOR:
-                    case TokenTypes.LITERAL_WHILE:
-                    case TokenTypes.LITERAL_DO:
-                        exprWithVariableUsage = getFirstNodeInsideForWhileDoWhileBlocks(
-                            blockWithVariableUsage, variable);
-                        break;
-                    case TokenTypes.LITERAL_IF:
-                        exprWithVariableUsage = getFirstNodeInsideIfBlock(
-                            blockWithVariableUsage, variable);
-                        break;
-                    case TokenTypes.LITERAL_SWITCH:
-                        exprWithVariableUsage = getFirstNodeInsideSwitchBlock(
-                            blockWithVariableUsage, variable);
-                        break;
-                    case TokenTypes.LITERAL_TRY:
-                        exprWithVariableUsage =
-                            getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage,
-                                variable);
-                        break;
-                    default:
-                        exprWithVariableUsage = blockWithVariableUsage.getFirstChild();
-                }
-                currentScopeAst = exprWithVariableUsage;
+                        yield null;
+                    }
+                    case TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO ->
+                        getFirstNodeInsideForWhileDoWhileBlocks(blockWithVariableUsage, variable);
+                    case TokenTypes.LITERAL_IF ->
+                        getFirstNodeInsideIfBlock(blockWithVariableUsage, variable);
+                    case TokenTypes.LITERAL_SWITCH ->
+                        getFirstNodeInsideSwitchBlock(blockWithVariableUsage, variable);
+                    case TokenTypes.LITERAL_TRY ->
+                        getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage, variable);
+                    default -> blockWithVariableUsage.getFirstChild();
+                };
                 variableUsageAst = blockWithVariableUsage;
             }
 

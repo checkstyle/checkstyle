@@ -144,37 +144,31 @@ public class FinalClassCheck
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.PACKAGE_DEF:
+            case TokenTypes.PACKAGE_DEF ->
                 packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
-                break;
 
-            case TokenTypes.ANNOTATION_DEF:
-            case TokenTypes.ENUM_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.RECORD_DEF:
+            case TokenTypes.ANNOTATION_DEF,
+                 TokenTypes.ENUM_DEF,
+                 TokenTypes.INTERFACE_DEF,
+                 TokenTypes.RECORD_DEF -> {
                 final TypeDeclarationDescription description = new TypeDeclarationDescription(
                     extractQualifiedTypeName(ast), 0, ast);
                 typeDeclarations.push(description);
-                break;
+            }
 
-            case TokenTypes.CLASS_DEF:
-                visitClass(ast);
-                break;
+            case TokenTypes.CLASS_DEF -> visitClass(ast);
 
-            case TokenTypes.CTOR_DEF:
-                visitCtor(ast);
-                break;
+            case TokenTypes.CTOR_DEF -> visitCtor(ast);
 
-            case TokenTypes.LITERAL_NEW:
+            case TokenTypes.LITERAL_NEW -> {
                 if (ast.getFirstChild() != null
                         && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
                     anonInnerClassToOuterTypeDecl
                         .put(ast, typeDeclarations.peek().getQualifiedName());
                 }
-                break;
+            }
 
-            default:
-                throw new IllegalStateException(ast.toString());
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 

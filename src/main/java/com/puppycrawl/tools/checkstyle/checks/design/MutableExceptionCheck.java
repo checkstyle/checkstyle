@@ -136,14 +136,9 @@ public final class MutableExceptionCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CLASS_DEF:
-                visitClassDef(ast);
-                break;
-            case TokenTypes.VARIABLE_DEF:
-                visitVariableDef(ast);
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+            case TokenTypes.CLASS_DEF -> visitClassDef(ast);
+            case TokenTypes.VARIABLE_DEF -> visitVariableDef(ast);
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 
