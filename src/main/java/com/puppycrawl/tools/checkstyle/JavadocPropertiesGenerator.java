@@ -298,18 +298,17 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatHtmlElement(StringBuilder builder, DetailNode node) {
         switch (node.getType()) {
-            case JavadocTokenTypes.START:
-            case JavadocTokenTypes.HTML_TAG_NAME:
-            case JavadocTokenTypes.END:
-            case JavadocTokenTypes.TEXT:
-            case JavadocTokenTypes.SLASH:
-                builder.append(node.getText());
-                break;
-            default:
+            case JavadocTokenTypes.START,
+                 JavadocTokenTypes.HTML_TAG_NAME,
+                 JavadocTokenTypes.END,
+                 JavadocTokenTypes.TEXT,
+                 JavadocTokenTypes.SLASH -> builder.append(node.getText());
+
+            default -> {
                 for (DetailNode child : node.getChildren()) {
                     formatHtmlElement(builder, child);
                 }
-                break;
+            }
         }
     }
 
