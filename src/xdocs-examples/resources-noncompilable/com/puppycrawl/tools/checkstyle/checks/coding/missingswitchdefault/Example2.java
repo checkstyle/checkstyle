@@ -9,7 +9,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
 // xdoc section -- start
-class Example2 {
+public class Example2 {
   Example2(int i){
     switch (i) {
       case 1:
