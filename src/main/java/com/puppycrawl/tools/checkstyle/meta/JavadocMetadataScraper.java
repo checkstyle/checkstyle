@@ -731,8 +731,6 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     public static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
         return getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0)
                 .map(DetailNode::getText)
-                .map(pattern::matcher)
-                .map(Matcher::matches)
-                .orElse(Boolean.FALSE);
+                .map(pattern::matcher).filter(Matcher::matches).isPresent();
     }
 }
