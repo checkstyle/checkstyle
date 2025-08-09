@@ -153,29 +153,19 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
     private static boolean isCommentConsistent(String comment) {
         final int indentInComment = getIndentFromComment(comment);
         final boolean isWarnComment = isWarnComment(comment);
-
-        final boolean result;
         final CommentType type = getCommentType(comment);
-        switch (type) {
-            case MULTILEVEL:
-                result = isMultiLevelCommentConsistent(comment, indentInComment, isWarnComment);
-                break;
-
-            case SINGLE_LEVEL:
-                result = isSingleLevelCommentConsistent(comment, indentInComment, isWarnComment);
-                break;
-
-            case NON_STRICT_LEVEL:
-                result = isNonStrictCommentConsistent(comment, indentInComment, isWarnComment);
-                break;
-
-            case UNKNOWN:
-                throw new IllegalArgumentException("Cannot determine comment consistent");
-
-            default:
-                throw new IllegalStateException("Cannot determine comment is consistent");
-        }
-        return result;
+        return switch (type) {
+            case MULTILEVEL ->
+                isMultiLevelCommentConsistent(comment, indentInComment, isWarnComment);
+            case SINGLE_LEVEL ->
+                isSingleLevelCommentConsistent(comment, indentInComment, isWarnComment);
+            case NON_STRICT_LEVEL ->
+                isNonStrictCommentConsistent(comment, indentInComment, isWarnComment);
+            case UNKNOWN ->
+                    throw new IllegalArgumentException("Cannot determine comment consistent");
+            default ->
+                    throw new IllegalStateException("Cannot determine comment is consistent");
+        };
     }
 
     /**
