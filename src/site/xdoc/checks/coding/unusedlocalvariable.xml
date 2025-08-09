@@ -60,7 +60,7 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
+public class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;
@@ -123,7 +123,7 @@ class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
+public class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;
