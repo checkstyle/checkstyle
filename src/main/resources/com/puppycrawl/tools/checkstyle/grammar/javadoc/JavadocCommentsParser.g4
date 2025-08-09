@@ -114,7 +114,7 @@ serialTag: AT_SIGN tagName=SERIAL description?;
 
 serialDataTag: AT_SIGN tagName=SERIAL_DATA description?;
 
-serialFieldTag: AT_SIGN tagName=SERIAL_FIELD fieldName=IDENTIFIER FIELD_TYPE  description?;
+serialFieldTag: AT_SIGN tagName=SERIAL_FIELD fieldName=IDENTIFIER? FIELD_TYPE?  description?;
 
 customBlockTag
     : AT_SIGN tagName=CUSTOM_NAME description?
