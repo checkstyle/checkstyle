@@ -268,7 +268,7 @@ public class GenericWhitespaceCheckTest
             "108:63: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputGenericWhitespaceBeforeRecordHeader.java"),
+                getPath("InputGenericWhitespaceBeforeRecordHeader.java"),
                 expected);
     }
 
