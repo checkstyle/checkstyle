@@ -206,6 +206,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.3.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
+    <maven.rewrite.plugin.version>6.15.0</maven.rewrite.plugin.version>
     <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
@@ -494,22 +495,19 @@
         <!-- we need to override just make "mvn versions:plugin-updates-report"
              see no old versions -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>3.7.1</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.8.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <!-- version is same as in supper-pom as it is better to use same version
-               as in sonatype-nexus-staging -->
-          <version>2.1</version>
         </plugin>
         <!-- from super-pom END -->
         <plugin>
@@ -570,6 +568,81 @@
               </tag>
             </tags>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>${maven.rewrite.plugin.version}</version>
+          <configuration>
+            <activeRecipes>
+              <recipe>org.openrewrite.maven.BestPractices</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.groovy</exclusion>
+              <exclusion>**AbstractItModuleTestSupport.java</exclusion>
+              <exclusion>**AbstractRootNode.java</exclusion>
+              <exclusion>**BaseCellEditor.java</exclusion>
+              <exclusion>**BeforeExecutionExclusionFileFilterExamplesTest.java</exclusion>
+              <exclusion>**CheckstyleAntTask.java</exclusion>
+              <exclusion>**CsvFilterElement.java</exclusion>
+              <exclusion>**DefaultConfiguration.java</exclusion>
+              <exclusion>**DefaultContext.java</exclusion>
+              <exclusion>**DetailAstSet.java</exclusion>
+              <exclusion>**EqualsAvoidNullCheck.java</exclusion>
+              <exclusion>**FileContents.java</exclusion>
+              <exclusion>**FileNameTest.java</exclusion>
+              <exclusion>**FinalClassCheck.java</exclusion>
+              <exclusion>**GeneratedJavaTokenTypesTest.java</exclusion>
+              <exclusion>**HeaderCheckTest.java</exclusion>
+              <exclusion>**JavaAstVisitor.java</exclusion>
+              <exclusion>**Main.java</exclusion>
+              <exclusion>**MainTest.java</exclusion>
+              <exclusion>**ModuleInputConfiguration.java</exclusion>
+              <exclusion>**MultilineDetector.java</exclusion>
+              <exclusion>**NonAsciiCharactersTest.java</exclusion>
+              <exclusion>**OrderedPropertiesCheck.java</exclusion>
+              <exclusion>**PackageStatementTest.java</exclusion>
+              <exclusion>**PatternVariableAssignmentCheck.java</exclusion>
+              <exclusion>**PropertiesExpander.java</exclusion>
+              <exclusion>**PropertiesMacro.java.java</exclusion>
+              <exclusion>**RegexpCheck.java</exclusion>
+              <exclusion>**RegexpOnFilenameCheckExamplesTest.java</exclusion>
+              <exclusion>**RegexpSinglelineJavaCheck.java</exclusion>
+              <exclusion>**ReverseListIteratorTest.java</exclusion>
+              <exclusion>**ScopeUtil.java</exclusion>
+              <exclusion>**SiteUtil.java</exclusion>
+              <exclusion>**SpecialEscapeSequencesTest.java</exclusion>
+              <exclusion>**SuppressWithNearbyCommentFilterTest.java</exclusion>
+              <exclusion>**SuppressWithNearbyTextFilter.java</exclusion>
+              <exclusion>**SuppressWithPlainTextCommentFilter.java</exclusion>
+              <exclusion>**SuppressionXpathSingleFilterExamplesTest.java</exclusion>
+              <exclusion>**TreeWalkerTest.java</exclusion>
+              <exclusion>**WhitespaceCharactersTest.java</exclusion>
+              <exclusion>**XdocsTemplateParser.java</exclusion>
+              <exclusion>**XpathFileGeneratorAstFilter.java</exclusion>
+              <exclusion>**XpathIteratorUtil.java</exclusion>
+              <exclusion>**release.yml</exclusion>
+              <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**src/xdocs-examples**</exclusion>
+            </exclusions>
+            <exportDatatables>true</exportDatatables>
+            <failOnDryRunResults>true</failOnDryRunResults>
+            <rewriteSkip>${rewrite.skip}</rewriteSkip>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-third-party</artifactId>
+              <version>0.24.3</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.14.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -798,7 +871,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/site/dtds</outputDirectory>
+              <outputDirectory>${project.basedir}/target/site/dtds</outputDirectory>
               <resources>
                 <resource>
                   <directory>src/main/resources/com/puppycrawl/tools/checkstyle</directory>
@@ -874,7 +947,7 @@
         <version>${maven.versions.plugin.version}</version>
         <configuration>
           <generateBackupPoms>false</generateBackupPoms>
-          <rulesUri>file://${basedir}/config/version-number-rules.xml</rulesUri>
+          <rulesUri>file://${project.basedir}/config/version-number-rules.xml</rulesUri>
           <formats>
             <format>xml</format>
             <format>html</format>
@@ -1263,7 +1336,7 @@
         <configuration>
           <visitor>true</visitor>
           <listener>false</listener>
-          <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
+          <sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
           <includes>
             <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
@@ -1483,6 +1556,11 @@
       </plugin>
 
       <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <executions>
@@ -1641,7 +1719,7 @@
             </goals>
             <configuration>
               <signaturesFiles>
-                <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
+                <signaturesFile>${project.basedir}/config/signatures.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
                 <!-- system-out is ok there, that is CLI -->
@@ -1684,7 +1762,7 @@
             </goals>
             <configuration>
               <signaturesFiles>
-                <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
+                <signaturesFile>${project.basedir}/config/signatures-test.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
                 <exclude>**/Example*</exclude>
@@ -1762,7 +1840,7 @@
         <configuration>
           <validations>
             <validation>
-              <directory>${basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
+              <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
               <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
@@ -1777,11 +1855,13 @@
   <reporting>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>3.9.0</version>
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <reportSets>
           <reportSet>
@@ -2062,6 +2142,7 @@
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
+        <rewrite.skip>true</rewrite.skip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <jacoco.skip>true</jacoco.skip>
@@ -2202,6 +2283,7 @@
 
           <!-- Creates the binary and source distributions -->
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <configuration>
               <descriptors>
@@ -2389,6 +2471,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2448,6 +2531,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2507,6 +2591,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2565,6 +2650,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2622,6 +2708,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2679,6 +2766,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2739,6 +2827,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2798,6 +2887,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
