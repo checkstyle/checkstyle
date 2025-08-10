@@ -41,7 +41,7 @@ javadoc
     ;
 
 mainDescription
-    : (TEXT | inlineTag | htmlElement)+
+    : (TEXT | inlineTag | htmlElement | htmlComment)+
     ;
 
 // Block tags
@@ -234,7 +234,7 @@ snippetBody
     ;
 
 description
-    : (TEXT | inlineTag | htmlElement)+
+    : (TEXT | inlineTag | htmlElement | htmlComment)+
     ;
 
 // HTML Elements
@@ -275,9 +275,16 @@ htmlAttribute
     ;
 
 htmlContent
-    : (TEXT | htmlElement | inlineTag)+
+    : (TEXT | htmlElement | inlineTag | htmlComment)+
     ;
 
 nonTightHtmlContent
     : (TEXT | inlineTag)+
+    ;
+
+htmlComment
+    : HTML_COMMENT_START htmlCommentContent HTML_COMMENT_END;
+
+htmlCommentContent
+    : TEXT*
     ;

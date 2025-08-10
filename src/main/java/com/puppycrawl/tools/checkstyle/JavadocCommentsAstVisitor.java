@@ -425,6 +425,16 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_CONTENT, ctx);
     }
 
+    @Override
+    public JavadocNodeImpl visitHtmlComment(JavadocCommentsParser.HtmlCommentContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_COMMENT, ctx);
+    }
+
+    @Override
+    public JavadocNodeImpl visitHtmlCommentContent(JavadocCommentsParser.HtmlCommentContentContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT, ctx);
+    }
+
     private JavadocNodeImpl buildImaginaryNode(int tokenType, ParserRuleContext ctx) {
         final JavadocNodeImpl javadocNode = createImaginary(tokenType);
         processChildren(javadocNode, ctx.children);

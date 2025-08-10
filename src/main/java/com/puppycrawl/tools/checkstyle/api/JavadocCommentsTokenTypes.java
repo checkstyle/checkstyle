@@ -120,4 +120,8 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
     public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
     public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
+    public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
+    public static final int HTML_COMMENT_START = JavadocCommentsLexer.HTML_COMMENT_START;
+    public static final int HTML_COMMENT_END = JavadocCommentsLexer.HTML_COMMENT_END;
+    public static final int HTML_COMMENT_CONTENT = JavadocCommentsLexer.HTML_COMMENT_CONTENT;
 }
