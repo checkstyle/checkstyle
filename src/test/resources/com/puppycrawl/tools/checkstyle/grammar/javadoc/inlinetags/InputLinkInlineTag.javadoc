@@ -14,3 +14,6 @@
 * Computes the final score for a player in a tournament.}
 * {@link com.example.util.MathUtils#calculateScore(int,
 *                            int) Computes the final score for a player in a tournament.}
+* @see org.hibernate.tool.hbm2ddl.SchemaUpdate
+*
+* @deprecated Use {@link #generateSchemaUpdateScriptList(Dialect, DatabaseMetadata)} instead
