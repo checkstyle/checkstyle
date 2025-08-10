@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unusedlocalvariable;
 import java.io.*;
 import java.util.function.Predicate;
 // xdoc section -- start
-class Example1 {
+public class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;

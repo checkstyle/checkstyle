@@ -39,6 +39,9 @@ jobs:
         description: "command to run"
         type: string
         default: ""
+      no_output_timeout:
+        default: 10m
+        type: string
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -49,6 +52,7 @@ jobs:
             - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
+          no_output_timeout: << parameters.no_output_timeout >>
       - run:
           command: |
             ./.ci/validation.sh git-diff
@@ -290,8 +294,8 @@ workflows:
           image-name: "cimg/openjdk:17.0.7"
           command: "./.ci/validation.sh javac17"
       - validate-with-script:
-          name: "java 17 test resources compile"
-          image-name: "cimg/openjdk:17.0.7"
+          name: "java 21 test resources compile"
+          image-name: "cimg/openjdk:21.0.8"
           command: "./.ci/validation.sh compile-test-resources"
       - validate-with-script:
           name: "javac19"
@@ -312,3 +316,11 @@ workflows:
           name: "jdk17-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  rewrite-validation:
+    jobs:
+      - validate-with-maven-script:
+          name: "rewrite-validation"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite-validation"
+          no_output_timeout: 55m # 35m 37s

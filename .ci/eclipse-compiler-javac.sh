@@ -53,6 +53,7 @@ echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1
 set +e
 java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -encoding UTF-8 -cp "$1" \
         -d target/eclipse-compile \
+        -nowarn \
         -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
         -nowarn:[target/generated-sources/antlr] \

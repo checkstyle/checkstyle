@@ -428,6 +428,10 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
+rewrite-validation)
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
+  ;;
+
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
@@ -510,7 +514,7 @@ check-since-version)
 compile-test-resources)
   # this task is useful during migration to new JDK to let compile resources on new jdk only
   ./mvnw -e --no-transfer-progress clean test-compile \
-  -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=17
+  -Dcheckstyle.skipCompileInputResources=false -Dmaven.compiler.release=21
   ;;
 
 javac17_standard)

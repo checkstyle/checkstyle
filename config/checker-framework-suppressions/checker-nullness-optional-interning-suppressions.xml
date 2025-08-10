@@ -1805,6 +1805,13 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference scopeStack.peek()</message>
+    <lineContent>case TokenTypes.LITERAL_BREAK -&gt; scopeStack.peek().containsBreak = true;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference scopeStack.peek()</message>
     <lineContent>containsBreak = scopeStack.peek().containsBreak;</lineContent>
   </checkerFrameworkError>
 
@@ -1826,13 +1833,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference scopeStack.peek()</message>
-    <lineContent>scopeStack.peek().containsBreak = true;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference scopeStack.peek()</message>
     <lineContent>scopeStack.peek().uninitializedVariables.add(astNode);</lineContent>
   </checkerFrameworkError>
 
@@ -1840,7 +1840,21 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>== ast.getParent()) {</lineContent>
+    <lineContent>.findFirstToken(TokenTypes.CASE_GROUP) == ast.getParent()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>.findFirstToken(TokenTypes.CASE_GROUP) == ast.getParent()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>== parentAst) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1889,21 +1903,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>|| ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>|| findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>|| findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {</lineContent>
+    <lineContent>|| findLastCaseGroupWhichContainsSlist(parentAst.getParent())</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2167,7 +2167,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.collectMethodDeclarations.</message>
-    <lineContent>collectMethodDeclarations(frameStack, ast, frame);</lineContent>
+    <lineContent>case TokenTypes.METHOD_DEF -&gt; collectMethodDeclarations(frameStack, ast, frame);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -2178,7 +2178,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.collectVariableDeclarations.</message>
-    <lineContent>collectVariableDeclarations(ast, frame);</lineContent>
+    <lineContent>case TokenTypes.VARIABLE_DEF -&gt; collectVariableDeclarations(ast, frame);</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -2222,7 +2222,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of AnonymousClassFrame constructor.</message>
-    <lineContent>frameStack.addFirst(new AnonymousClassFrame(frame,</lineContent>
+    <lineContent>frameStack.addFirst(new AnonymousClassFrame(frame, ast.toString()));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame
@@ -2233,7 +2233,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter parent of BlockFrame constructor.</message>
-    <lineContent>frameStack.addFirst(new BlockFrame(frame, ast));</lineContent>
+    <lineContent>case TokenTypes.SLIST -&gt; frameStack.addFirst(new BlockFrame(frame, ast));</lineContent>
     <details>
       found   : @Initialized @Nullable AbstractFrame
       required: @Initialized @NonNull AbstractFrame

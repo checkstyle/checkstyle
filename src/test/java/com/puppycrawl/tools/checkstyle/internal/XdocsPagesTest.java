@@ -849,27 +849,15 @@ public class XdocsPagesTest {
                 .isEqualTo(getSubSectionName(subSectionPos));
 
             switch (subSectionPos) {
-                case 0:
-                    validateDescriptionSection(fileName, sectionName, subSection);
-                    break;
-                case 1:
-                    validatePropertySection(fileName, sectionName, subSection, instance);
-                    break;
-                case 3:
-                    validateUsageExample(fileName, sectionName, subSection);
-                    break;
-                case 4:
-                    validateViolationSection(fileName, sectionName, subSection, instance);
-                    break;
-                case 5:
-                    validatePackageSection(fileName, sectionName, subSection, instance);
-                    break;
-                case 6:
-                    validateParentSection(fileName, sectionName, subSection);
-                    break;
-                case 2:
-                default:
-                    break;
+                case 0 -> validateDescriptionSection(fileName, sectionName, subSection);
+                case 1 -> validatePropertySection(fileName, sectionName, subSection, instance);
+                case 3 -> validateUsageExample(fileName, sectionName, subSection);
+                case 4 -> validateViolationSection(fileName, sectionName, subSection, instance);
+                case 5 -> validatePackageSection(fileName, sectionName, subSection, instance);
+                case 6 -> validateParentSection(fileName, sectionName, subSection);
+                default -> {
+                    // no code by design
+                }
             }
 
             subSectionPos++;
@@ -899,36 +887,16 @@ public class XdocsPagesTest {
     }
 
     private static Object getSubSectionName(int subSectionPos) {
-        final String result;
-
-        switch (subSectionPos) {
-            case 0:
-                result = "Description";
-                break;
-            case 1:
-                result = "Properties";
-                break;
-            case 2:
-                result = "Examples";
-                break;
-            case 3:
-                result = "Example of Usage";
-                break;
-            case 4:
-                result = "Violation Messages";
-                break;
-            case 5:
-                result = "Package";
-                break;
-            case 6:
-                result = "Parent Module";
-                break;
-            default:
-                result = null;
-                break;
-        }
-
-        return result;
+        return switch (subSectionPos) {
+            case 0 -> "Description";
+            case 1 -> "Properties";
+            case 2 -> "Examples";
+            case 3 -> "Example of Usage";
+            case 4 -> "Violation Messages";
+            case 5 -> "Package";
+            case 6 -> "Parent Module";
+            default -> null;
+        };
     }
 
     private static void validateDescriptionSection(String fileName, String sectionName,
@@ -1808,22 +1776,19 @@ public class XdocsPagesTest {
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("tr");
 
-            final Set<String> styleChecks;
-            switch (styleName) {
-                case "google":
-                    styleChecks = new HashSet<>(GOOGLE_MODULES);
-                    break;
-
-                case "sun":
-                    styleChecks = new HashSet<>(SUN_MODULES);
-                    styleChecks.removeAll(IGNORED_SUN_MODULES);
-                    break;
-
-                default:
+            final Set<String> styleChecks = switch (styleName) {
+                case "google" -> new HashSet<>(GOOGLE_MODULES);
+                case "sun" -> {
+                    final Set<String> checks = new HashSet<>(SUN_MODULES);
+                    checks.removeAll(IGNORED_SUN_MODULES);
+                    yield checks;
+                }
+                default -> {
                     assertWithMessage("Missing modules list for style file '" + fileName + "'")
                             .fail();
-                    styleChecks = null;
-            }
+                    yield null;
+                }
+            };
 
             String lastRuleName = null;
             String[] lastRuleNumberParts = null;

@@ -60,7 +60,7 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
+public class Example1 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;
@@ -123,14 +123,14 @@ class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
+public class Example2 {
   {
     int k = 12; // violation, assign and update but never use 'k'
     k++;
   }
 
   int a;
-  Example1(int a) { // ok, as 'a' is a constructor parameter not a local variable
+  Example2(int a) { // ok, as 'a' is a constructor parameter not a local variable
     this.a = 12;
   }
 

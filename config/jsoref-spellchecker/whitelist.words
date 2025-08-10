@@ -277,6 +277,7 @@ Dantlr
 Darguments
 DArray
 Datasource
+Datatables
 DATETIME
 daveho
 davidwalsh
@@ -1011,6 +1012,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openrewrite
 operatorwrap
 opsummary
 optgroup
@@ -1159,6 +1161,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refasterrules
 refid
 regex
 regexp
@@ -1296,6 +1299,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib
