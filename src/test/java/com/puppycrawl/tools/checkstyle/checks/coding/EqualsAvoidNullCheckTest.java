@@ -282,7 +282,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEqualsAvoidNullRecordPattern.java"),
+                getPath("InputEqualsAvoidNullRecordPattern.java"),
                 expected);
     }
 }

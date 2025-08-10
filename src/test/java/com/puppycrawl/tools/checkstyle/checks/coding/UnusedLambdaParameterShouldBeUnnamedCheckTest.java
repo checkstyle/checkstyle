@@ -74,7 +74,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
             "54:32: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "C"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedLambdaParameterShouldBeUnnamedSingleLambdaParameter.java"),
                 expected);
     }
@@ -96,7 +96,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
             "90:24: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "y"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedLambdaParameterShouldBeUnnamedMultipleParameters.java"),
                 expected);
     }
@@ -119,7 +119,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
             "94:28: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "x"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedLambdaParameterShouldBeUnnamedNested.java"),
                 expected);
     }
@@ -130,7 +130,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
                 new UnusedLambdaParameterShouldBeUnnamedCheck();
 
         final DetailAST root = JavaParser.parseFile(
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputUnusedLambdaParameterShouldBeUnnamedSingleLambdaParameter.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
 
