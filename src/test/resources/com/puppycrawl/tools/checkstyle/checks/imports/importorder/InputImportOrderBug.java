@@ -1,7 +1,12 @@
 /*
-No config
-
-
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="ImportOrder">
+      <property name="option" value="top"/>
+      <property name="groups" value="java, javax, org, com"/>
+    </module>
+  </module>
+</module>
 */
 
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
