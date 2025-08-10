@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
@@ -133,7 +134,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.TEXT,
+                JavadocCommentsTokenTypes.TEXT,
         };
     }
 
@@ -167,8 +168,19 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @return {@code true} if node is {@code @code}, {@code @literal} or HTML comment.
      */
     private static boolean isCommentOrInlineTag(DetailNode node) {
-        return node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                || node.getType() == JavadocTokenTypes.HTML_COMMENT;
+        boolean isInsideInlineTagOrHtmlComment = false;
+        DetailNode current = node;
+
+        while (current != null) {
+            if (current.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG
+                    || current.getType() == JavadocCommentsTokenTypes.HTML_COMMENT) {
+                isInsideInlineTagOrHtmlComment = true;
+                break;
+            }
+            current = current.getParent();
+        }
+
+        return isInsideInlineTagOrHtmlComment;
     }
 
 }
