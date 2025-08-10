@@ -89,7 +89,7 @@ class Example1 {
           Example of correct code:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example2 {
+class Example2 {
   Example2(int i){
     switch (i) {
       case 1:
@@ -122,7 +122,7 @@ sealed interface S permits A, B, C {}
 final class A implements S {}
 final class B implements S {}
 record C(int i) implements S {}  // Implicitly final
-public class Example3 {
+class Example3 {
   static void showSealedCompleteness(S s) {
     switch (s) {
       case A a:

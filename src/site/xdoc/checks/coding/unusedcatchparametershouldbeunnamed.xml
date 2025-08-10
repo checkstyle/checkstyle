@@ -52,7 +52,7 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example1 {
+class Example1 {
 
   void test() {
 

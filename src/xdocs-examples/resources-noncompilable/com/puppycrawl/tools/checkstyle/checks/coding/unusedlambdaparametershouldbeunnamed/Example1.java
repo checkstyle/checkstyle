@@ -13,7 +13,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 // xdoc section -- start
-public class Example1 {
+class Example1 {
 
   int x;
 

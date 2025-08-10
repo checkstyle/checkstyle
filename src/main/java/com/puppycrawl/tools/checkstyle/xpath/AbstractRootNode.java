@@ -123,37 +123,44 @@ public abstract class AbstractRootNode extends AbstractNode {
      */
     @Override
     public AxisIterator iterateAxis(int axisNumber) {
-        return switch (axisNumber) {
-            case AxisInfo.ANCESTOR,
-                 AxisInfo.PARENT,
-                 AxisInfo.FOLLOWING,
-                 AxisInfo.FOLLOWING_SIBLING,
-                 AxisInfo.PRECEDING,
-                 AxisInfo.PRECEDING_SIBLING -> EmptyIterator.ofNodes();
-
-            case AxisInfo.ANCESTOR_OR_SELF,
-                 AxisInfo.SELF -> SingleNodeIterator.makeIterator(this);
-
-            case AxisInfo.CHILD -> {
+        final AxisIterator result;
+        switch (axisNumber) {
+            case AxisInfo.ANCESTOR:
+            case AxisInfo.PARENT:
+            case AxisInfo.FOLLOWING:
+            case AxisInfo.FOLLOWING_SIBLING:
+            case AxisInfo.PRECEDING:
+            case AxisInfo.PRECEDING_SIBLING:
+                result = EmptyIterator.ofNodes();
+                break;
+            case AxisInfo.ANCESTOR_OR_SELF:
+            case AxisInfo.SELF:
+                result = SingleNodeIterator.makeIterator(this);
+                break;
+            case AxisInfo.CHILD:
                 if (hasChildNodes()) {
-                    yield new ArrayIterator.OfNodes<>(
+                    result = new ArrayIterator.OfNodes<>(
                             getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
-                yield EmptyIterator.ofNodes();
-            }
-
-            case AxisInfo.DESCENDANT -> {
-                if (hasChildNodes()) {
-                    yield new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
+                else {
+                    result = EmptyIterator.ofNodes();
                 }
-                yield EmptyIterator.ofNodes();
-            }
-
-            case AxisInfo.DESCENDANT_OR_SELF ->
-                new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
-
-            default -> throw throwUnsupportedOperationException();
-        };
+                break;
+            case AxisInfo.DESCENDANT:
+                if (hasChildNodes()) {
+                    result = new DescendantIterator(this, DescendantIterator.StartWith.CHILDREN);
+                }
+                else {
+                    result = EmptyIterator.ofNodes();
+                }
+                break;
+            case AxisInfo.DESCENDANT_OR_SELF:
+                result = new DescendantIterator(this, DescendantIterator.StartWith.CURRENT_NODE);
+                break;
+            default:
+                throw throwUnsupportedOperationException();
+        }
+        return result;
     }
 
     /**

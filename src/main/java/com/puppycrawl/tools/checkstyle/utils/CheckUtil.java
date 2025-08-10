@@ -108,11 +108,14 @@ public final class CheckUtil {
      */
     public static double parseDouble(String text, int type) {
         String txt = UNDERSCORE_PATTERN.matcher(text).replaceAll("");
-
-        return switch (type) {
-            case TokenTypes.NUM_FLOAT, TokenTypes.NUM_DOUBLE -> Double.parseDouble(txt);
-
-            case TokenTypes.NUM_INT, TokenTypes.NUM_LONG -> {
+        final double result;
+        switch (type) {
+            case TokenTypes.NUM_FLOAT:
+            case TokenTypes.NUM_DOUBLE:
+                result = Double.parseDouble(txt);
+                break;
+            case TokenTypes.NUM_INT:
+            case TokenTypes.NUM_LONG:
                 int radix = BASE_10;
                 if (txt.startsWith("0x") || txt.startsWith("0X")) {
                     radix = BASE_16;
@@ -125,11 +128,13 @@ public final class CheckUtil {
                 else if (txt.startsWith("0")) {
                     radix = BASE_8;
                 }
-                yield parseNumber(txt, radix, type);
-            }
-
-            default -> Double.NaN;
-        };
+                result = parseNumber(txt, radix, type);
+                break;
+            default:
+                result = Double.NaN;
+                break;
+        }
+        return result;
     }
 
     /**

@@ -12,7 +12,7 @@ sealed interface S permits A, B, C {}
 final class A implements S {}
 final class B implements S {}
 record C(int i) implements S {}  // Implicitly final
-public class Example3 {
+class Example3 {
   static void showSealedCompleteness(S s) {
     switch (s) {
       case A a:

@@ -220,22 +220,24 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     // expressions to separate methods, but that will not increase readability.
     @Override
     public void visitToken(DetailAST ast) {
-        switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR ->
-                scopeStack.push(new ScopeData());
 
-            case TokenTypes.SLIST -> {
+        switch (ast.getType()) {
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.LITERAL_FOR:
+                scopeStack.push(new ScopeData());
+                break;
+            case TokenTypes.SLIST:
                 currentScopeAssignedVariables.push(new ArrayDeque<>());
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || ast.getParent().getParent()
-                    .findFirstToken(TokenTypes.CASE_GROUP) == ast.getParent()) {
+                    || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
+                    == ast.getParent()) {
                     storePrevScopeUninitializedVariableData();
                     scopeStack.push(new ScopeData());
                 }
-            }
-
-            case TokenTypes.PARAMETER_DEF -> {
+                break;
+            case TokenTypes.PARAMETER_DEF:
                 if (!isInLambda(ast)
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
@@ -244,9 +246,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && !CheckUtil.isReceiverParameter(ast)) {
                     insertParameter(ast);
                 }
-            }
-
-            case TokenTypes.VARIABLE_DEF -> {
+                break;
+            case TokenTypes.VARIABLE_DEF:
                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
@@ -255,9 +256,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                         && shouldCheckUnnamedVariable(ast)) {
                     insertVariable(ast);
                 }
-            }
-
-            case TokenTypes.IDENT -> {
+                break;
+            case TokenTypes.IDENT:
                 final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
@@ -267,18 +267,18 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                     }
                     removeFinalVariableCandidateFromStack(ast);
                 }
-            }
-
-            case TokenTypes.LITERAL_BREAK -> scopeStack.peek().containsBreak = true;
-
-            case TokenTypes.EXPR -> {
+                break;
+            case TokenTypes.LITERAL_BREAK:
+                scopeStack.peek().containsBreak = true;
+                break;
+            case TokenTypes.EXPR:
                 // Switch labeled expression has no slist
                 if (ast.getParent().getType() == TokenTypes.SWITCH_RULE) {
                     storePrevScopeUninitializedVariableData();
                 }
-            }
-
-            default -> throw new IllegalStateException("Incorrect token type");
+                break;
+            default:
+                throw new IllegalStateException("Incorrect token type");
         }
     }
 
@@ -287,23 +287,23 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         Map<String, FinalVariableCandidate> scope = null;
         final DetailAST parentAst = ast.getParent();
         switch (ast.getType()) {
-            case TokenTypes.OBJBLOCK, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF,
-                 TokenTypes.LITERAL_FOR ->
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.CTOR_DEF:
+            case TokenTypes.METHOD_DEF:
+            case TokenTypes.LITERAL_FOR:
                 scope = scopeStack.pop().scope;
-
-            case TokenTypes.EXPR -> {
+                break;
+            case TokenTypes.EXPR:
                 // Switch labeled expression has no slist
                 if (parentAst.getType() == TokenTypes.SWITCH_RULE
                     && shouldUpdateUninitializedVariables(parentAst)) {
                     updateAllUninitializedVariables();
                 }
-            }
-
-            case TokenTypes.SLIST -> {
+                break;
+            case TokenTypes.SLIST:
                 boolean containsBreak = false;
                 if (parentAst.getType() != TokenTypes.CASE_GROUP
-                    || findLastCaseGroupWhichContainsSlist(parentAst.getParent())
-                    == parentAst) {
+                    || findLastCaseGroupWhichContainsSlist(parentAst.getParent()) == parentAst) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;
                 }
@@ -311,13 +311,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                     updateAllUninitializedVariables();
                 }
                 updateCurrentScopeAssignedVariables();
-            }
-
-            default -> {
+                break;
+            default:
                 // do nothing
-            }
         }
-
         if (scope != null) {
             for (FinalVariableCandidate candidate : scope.values()) {
                 final DetailAST ident = candidate.variableIdent;

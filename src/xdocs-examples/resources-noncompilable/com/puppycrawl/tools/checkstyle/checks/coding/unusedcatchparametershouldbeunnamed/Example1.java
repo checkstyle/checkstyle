@@ -10,7 +10,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
 // xdoc section -- start
-public class Example1 {
+class Example1 {
 
   void test() {
 

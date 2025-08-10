@@ -300,7 +300,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "104:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputNeedBracesPatternMatchingForSwitch.java"),
+                getNonCompilablePath("InputNeedBracesPatternMatchingForSwitch.java"),
             expected);
     }
 
@@ -320,7 +320,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "94:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputNeedBracesPatternMatchingForSwitchAllowSingleLine.java"),
             expected);
     }
@@ -341,7 +341,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "68:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputNeedBracesSwitchExpressionAndLambda.java"),
+                getNonCompilablePath("InputNeedBracesSwitchExpressionAndLambda.java"),
             expected);
     }
 
@@ -353,7 +353,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
             "54:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
         };
         verifyWithInlineConfigParser(
-                getPath(
+                getNonCompilablePath(
                         "InputNeedBracesSwitchExpressionAndLambdaAllowSingleLine.java"),
             expected);
     }

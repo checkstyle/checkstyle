@@ -433,14 +433,26 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return converted {@code @code} child element, otherwise just the original text.
      */
     private static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
+        String result = codeChild.getText();
 
-        return switch (codeChild.getType()) {
-            case JavadocTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
-            case JavadocTokenTypes.WS -> "";
-            case JavadocTokenTypes.CODE_LITERAL -> codeChild.getText().replace("@", "") + ">";
-            case JavadocTokenTypes.JAVADOC_INLINE_TAG_START -> "<";
-            default -> codeChild.getText();
-        };
+        switch (codeChild.getType()) {
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_END:
+                result = "</code>";
+                break;
+            case JavadocTokenTypes.WS:
+                result = "";
+                break;
+            case JavadocTokenTypes.CODE_LITERAL:
+                result = result.replace("@", "") + ">";
+                break;
+            case JavadocTokenTypes.JAVADOC_INLINE_TAG_START:
+                result = "<";
+                break;
+            default:
+                break;
+        }
+
+        return result;
     }
 
     /**

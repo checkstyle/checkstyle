@@ -13,5 +13,5 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation;
 // violation above, 'Package annotations must be in the package-info.java info.'
 
-public class Example1 {}
+class Example1 {}
 // xdoc section -- end

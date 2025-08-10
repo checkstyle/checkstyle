@@ -142,10 +142,18 @@ public class UncommentedMainCheck
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.PACKAGE_DEF -> visitPackageDef(ast);
-            case TokenTypes.RECORD_DEF, TokenTypes.CLASS_DEF -> visitClassOrRecordDef(ast);
-            case TokenTypes.METHOD_DEF -> visitMethodDef(ast);
-            default -> throw new IllegalStateException(ast.toString());
+            case TokenTypes.PACKAGE_DEF:
+                visitPackageDef(ast);
+                break;
+            case TokenTypes.RECORD_DEF:
+            case TokenTypes.CLASS_DEF:
+                visitClassOrRecordDef(ast);
+                break;
+            case TokenTypes.METHOD_DEF:
+                visitMethodDef(ast);
+                break;
+            default:
+                throw new IllegalStateException(ast.toString());
         }
     }
 

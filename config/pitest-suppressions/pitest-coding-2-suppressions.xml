@@ -6,7 +6,7 @@
     <mutatedMethod>visitToken</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>default -&gt; throw new IllegalArgumentException(&quot;Unknown type &quot; + ast);</lineContent>
+    <lineContent>throw new IllegalArgumentException(&quot;Unknown type &quot; + ast);</lineContent>
   </mutation>
 
   <mutation unstable="false">
