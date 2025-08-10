@@ -73,7 +73,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "103:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputUnusedCatchParameterShouldBeUnnamed.java"),
+                getPath("InputUnusedCatchParameterShouldBeUnnamed.java"),
                 expected);
     }
 
@@ -86,7 +86,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "69:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally.java"),
                 expected);
     }
@@ -101,7 +101,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "87:22: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "ex"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedCatchParameterShouldBeUnnamedNested.java"),
                 expected);
     }
@@ -117,7 +117,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "103:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass.java"),
                 expected);
     }
@@ -128,7 +128,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
                 new UnusedCatchParameterShouldBeUnnamedCheck();
 
         final DetailAST root = JavaParser.parseFile(
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputUnusedCatchParameterShouldBeUnnamed.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
 
