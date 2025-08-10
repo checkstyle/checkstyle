@@ -82,7 +82,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 case JavadocCommentsLexer.SINCE -> buildImaginaryNode(JavadocCommentsTokenTypes.SINCE_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.VERSION -> buildImaginaryNode(JavadocCommentsTokenTypes.VERSION_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.SEE -> buildImaginaryNode(JavadocCommentsTokenTypes.SEE_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.HIDDEN -> buildImaginaryNode(JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.LITERAL_HIDDEN -> buildImaginaryNode(JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.USES -> buildImaginaryNode(JavadocCommentsTokenTypes.USES_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.PROVIDES -> buildImaginaryNode(JavadocCommentsTokenTypes.PROVIDES_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.SERIAL -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_BLOCK_TAG, ctx);
