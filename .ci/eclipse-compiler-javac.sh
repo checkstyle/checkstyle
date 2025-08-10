@@ -53,10 +53,13 @@ echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1
 set +e
 java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -encoding UTF-8 -cp "$1" \
         -d target/eclipse-compile \
-        -nowarn \
         -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
         -nowarn:[target/generated-sources/antlr] \
+        -nowarn:[src/test/resources/] \
+        -nowarn:[src/test/resources-noncompilable/] \
+        -nowarn:[src/it/resources/] \
+        -nowarn:[src/it/resources-noncompilable/] \
         src/main/java \
         target/generated-sources/antlr \
         src/test/java \
@@ -70,11 +73,15 @@ if [[ $EXIT_CODE != 0 ]]; then
   cat $RESULT_FILE
   false
 else
+    JAVA_RELEASE=24
+    echo "In eclipse, Preview of features is supported only at the latest source level"
+    echo "JAVA_RELEASE isset to ${JAVA_RELEASE}"
     echo "Executing eclipse compiler on generated resources with all warnings suppressed..."
     set +e
     # Compile test resources with all warnings suppressed
     java -jar "$ECJ_PATH" -target "${JAVA_RELEASE}" -source "${JAVA_RELEASE}" -cp "$1" \
             -d target/eclipse-compile \
+            --enable-preview \
             -nowarn \
             src/main/java \
             src/test/java \

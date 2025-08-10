@@ -3,11 +3,11 @@ UnusedCatchParameterShouldBeUnnamed
 
 */
 
-// non-compiled with javac: Compilable with Java21
+// Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
 public class InputUnusedCatchParameterShouldBeUnnamed {
-    private E e;
+    private ETwo e;
     Exception exception;
 
     void test(Object o) {
@@ -63,14 +63,14 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
             int x = 1/ 0;
         }
         catch (Exception A) {  // violation
-           A a;
+           ATwo a;
         }
 
         try {
             int x = 1/ 0;
         }
         catch (Exception A) {  // violation
-           Object a = new A();
+           Object a = new ATwo();
         }
 
         try {
@@ -114,5 +114,5 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
     void e() { }
 }
 
-class E { void printStackTrace() {}}
-class A {}
+class ETwo { void printStackTrace() {}}
+class ATwo {}
