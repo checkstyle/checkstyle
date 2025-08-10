@@ -75,7 +75,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "97:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),
+                getPath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),
                 expected);
     }
 
@@ -99,7 +99,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "25:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputNoWhitespaceBeforeCaseDefaultColonPatternMatchingForSwitch.java"),
                 expected);
     }

@@ -4,7 +4,7 @@ NoWhitespaceBeforeCaseDefaultColon
 
 */
 
-// non-compiled with javac: compilable with java21
+// java21
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespacebeforecasedefaultcolon;
 
 class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
@@ -83,7 +83,7 @@ class InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings {
     }
 
     static {
-        int x;
+        int x = 1;
         T e = T.B;
 
         boolean t8 = (switch (e) {
