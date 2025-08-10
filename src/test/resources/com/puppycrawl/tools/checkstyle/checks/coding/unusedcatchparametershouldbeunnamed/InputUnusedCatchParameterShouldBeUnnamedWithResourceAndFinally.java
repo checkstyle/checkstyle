@@ -3,13 +3,13 @@ UnusedCatchParameterShouldBeUnnamed
 
 */
 
-// non-compiled with javac: Compilable with Java21
+// Java21
 package com.puppycrawl.tools.checkstyle.checks.coding.unusedcatchparametershouldbeunnamed;
 
 import java.io.File;
 
 public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
-    private E e;
+    private EOne e;
     Exception exception;
 
     void testMultiCatch() {
@@ -89,10 +89,10 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
     }
 }
 
-class E {
+class EOne {
     void printStackTrace() {
     }
 }
 
-class A {
+class AOne {
 }
