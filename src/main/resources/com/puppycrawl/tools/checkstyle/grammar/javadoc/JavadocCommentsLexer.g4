@@ -21,7 +21,8 @@ tokens {
     CUSTOM_INLINE_TAG, AUTHOR_BLOCK_TAG, DEPRECATED_BLOCK_TAG, RETURN_BLOCK_TAG,
     PARAM_BLOCK_TAG, EXCEPTION_BLOCK_TAG, THROWS_BLOCK_TAG, SINCE_BLOCK_TAG, VERSION_BLOCK_TAG,
     SEE_BLOCK_TAG, HIDDEN_BLOCK_TAG, USES_BLOCK_TAG, PROVIDES_BLOCK_TAG, SERIAL_BLOCK_TAG,
-    SERIAL_DATA_BLOCK_TAG, SERIAL_FIELD_BLOCK_TAG, CUSTOM_BLOCK_TAG, JAVADOC_INLINE_TAG
+    SERIAL_DATA_BLOCK_TAG, SERIAL_FIELD_BLOCK_TAG, CUSTOM_BLOCK_TAG, JAVADOC_INLINE_TAG, HTML_COMMENT_START,
+    HTML_COMMENT_END, HTML_COMMENT, HTML_COMMENT_CONTENT
 }
 
 @lexer::header {
@@ -60,9 +61,10 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
         boolean isJavadocBlockTag = isJavadocBlockTag();
         boolean isHtmlTag = nextChar == '<'
                     && (Character.isLetter(afterNextChar) || afterNextChar == '/');
+        boolean isHtmlComment = nextChar == '<' && afterNextChar == '!';
 
         boolean isInlineTag = nextChar == '{' && afterNextChar == '@';
-        return !isJavadocBlockTag && !isHtmlTag && !isInlineTag;
+        return !isJavadocBlockTag && !isHtmlTag && !isInlineTag && !isHtmlComment;
     }
 
     public boolean isJavadocBlockTag() {
@@ -131,11 +133,26 @@ SWITCH_TO_TEXT_MODE
 // Example: "* This is a Javadoc comment line."
 mode TEXT_MODE;
 Text_NEWLINE: NEWLINE {setAfterNewline();} -> mode(DEFAULT_MODE), type(NEWLINE), channel(NEWLINES);
+HTML_COMMENT_START : '<!--' -> pushMode(HTML_COMMENT_MODE);
 TEXT: TEXT_CHAR+ { if (getText().trim().isEmpty()) { setType(WS); setChannel(WHITESPACES); }};
 AT_SIGN2: {isJavadocBlockTag()}? '@' -> type(AT_SIGN), pushMode(BLOCK_TAG);
 JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;} -> pushMode(JAVADOC_INLINE_TAG_MODE);
 TAG_OPEN: '<' -> pushMode(TAG);
 fragment TEXT_CHAR: {isNormalText()}? ~[\r\n];
+
+// --- HTML_COMMENT ---
+// Purpose: Handles HTML comments within Javadoc comments.
+mode HTML_COMMENT_MODE;
+HTML_COMMENT_END: '-->' -> popMode;
+HtmlComment_NEWLINE
+    : '\r'? '\n' -> type(NEWLINE), channel(NEWLINES)
+    ;
+HtmlComment_TEXT
+    : (   ~[\r\n-]
+        | '-' ~[\r\n-]
+        | '-' '-' ~[\r\n>]
+      )+ -> type(TEXT)
+    ;
 
 // --- START_OF_LINE ---
 // Purpose: Used to identify leading asterisks at the beginning of each Javadoc line.
