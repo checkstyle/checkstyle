@@ -347,7 +347,7 @@ RPAREN: ')' {
 // Purpose: Parses the contents of {@value} or {@systemProperty} tags, which often include constants or variables.
 // Example: "{@value java.lang.Integer#MAX_VALUE}"
 mode VALUE_MODE;
-Value_IDENTIFIER: ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER);
+Value_IDENTIFIER: ([a-zA-Z0-9_$] | '.' | '-')+ -> type(IDENTIFIER);
 FORMAT_SPECIFIER: '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z];
 Value_HASH: '#' -> type(HASH);
 Value_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
