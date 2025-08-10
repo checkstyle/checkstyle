@@ -385,13 +385,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             if (waitsForProcessing) {
                 visitJavadocToken(curNode);
             }
-            DetailNode toVisit = JavadocUtil.getFirstChild(curNode);
+            DetailNode toVisit = curNode.getFirstChild();
             while (curNode != null && toVisit == null) {
                 if (waitsForProcessing) {
                     leaveJavadocToken(curNode);
                 }
 
-                toVisit = JavadocUtil.getNextSibling(curNode);
+                toVisit = curNode.getNextSibling();
                 curNode = curNode.getParent();
                 if (curNode != null) {
                     waitsForProcessing = shouldBeProcessed(curNode);
