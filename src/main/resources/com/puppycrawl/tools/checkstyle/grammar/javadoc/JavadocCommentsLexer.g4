@@ -205,12 +205,13 @@ FIELD_TYPE: ([a-zA-Z0-9_$] | '.' | '[' | ']')+ -> mode(TEXT_MODE);
 // Example: "@see "some string""
 // Example: "@see <a href='...'>link</a>"
 mode SEE_MODE;
-STRING_LITERAL: '"' .*? '"' -> mode(TEXT_MODE);
-See_TAG_OPEN: '<' {_input.seek(_input.index() - 1);} -> skip, mode(TEXT_MODE);
+STRING_LITERAL: '"' .*? '"' {inSeeReferencePart = false;} -> mode(TEXT_MODE);
+See_TAG_OPEN: '<' {_input.seek(_input.index() - 1); inSeeReferencePart = false;} -> skip, mode(TEXT_MODE);
 See_IDENTIFIER: ([a-zA-Z0-9_$] | '.')+
     {
         int la = _input.LA(1);
         if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
+            inSeeReferencePart = false;
             mode(TEXT_MODE);
         }
     } -> type(IDENTIFIER);
@@ -282,11 +283,27 @@ Code_TEXT: ~[{}\r\n]+ -> type(TEXT);
 // Example: "{@snippet region=example}" or "{@snippet file=MyFile.java :region}"
 mode SNIPPET_ATTRIBUTE_MODE;
 SNIPPET_ATTR_NAME: Letter LetterOrDigit*;
-SNIPPET_EQUALS: '=' -> type(EQUALS), pushMode(ATTR_VALUE);
+SNIPPET_EQUALS: '=' -> type(EQUALS), pushMode(SNIPPET_ATTR_VALUE);
 COLON: ':' -> popMode, pushMode(PLAIN_TEXT_TAG);
 SnippetAttribute_NEWLINE: NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES), pushMode(START_OF_LINE);
 SnippetArrtibute_WS: [ \t]+ -> type(WS), channel(WHITESPACES);
 SnippetAttribute_JAVADOC_INLINE_TAG_END: '}' { braceCounter--; } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode;
+
+// --- SNIPPET_ATTR_VALUE ---
+// Purpose: Parses attribute values within {@snippet} Javadoc inline tags,
+// ensuring that colons (:) act as delimiter instead of
+// being included in the value. This prevents cases like
+// {@snippet lang="java": code} from treating ":" as part of the "lang"
+mode SNIPPET_ATTR_VALUE;
+Snippet_NEWLINE: NEWLINE {setAfterNewline();} -> pushMode(START_OF_LINE), type(NEWLINE), channel(NEWLINES);
+Snippet_ATTRIBUTE_VALUE: ' '* Snippet_ATTRIBUTE -> type(ATTRIBUTE_VALUE), popMode;
+Snippet_ATTRIBUTE: Snippet_DOUBLE_QUOTE_STRING | Snippet_SINGLE_QUOTE_STRING | Snippet_ATTCHARS | Snippet_HEXCHARS | Snippet_DECCHARS;
+fragment Snippet_ATTCHARS: ATTCHAR+ ' '?;
+fragment Snippet_ATTCHAR: '-' | '_' | '.' | '/' | '+' | ',' | '?' | '=' | ';' | '#' | [0-9a-zA-Z];
+fragment Snippet_HEXCHARS: '#' [0-9a-fA-F]+;
+fragment Snippet_DECCHARS: [0-9]+ '%'?;
+fragment Snippet_DOUBLE_QUOTE_STRING: '"' ~[:"]* '"';
+fragment Snippet_SINGLE_QUOTE_STRING: '\'' ~[:']* '\'';
 
 // --- LINK_MODE ---
 // Purpose: Parses the reference inside {@link}, {@linkplain}, {@inheritDoc} inline tags.

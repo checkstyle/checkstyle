@@ -63,3 +63,4 @@
 *    * {@code int x = 5;}
 *    *\/
 * }
+* {@snippet lang="java": code}
