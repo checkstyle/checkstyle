@@ -110,7 +110,7 @@ public class LocalVariableNameCheckTest
             "33:22: " + getCheckMessage(MSG_INVALID_PATTERN, "__", pattern),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLocalVariableNameUnnamedVariables.java"), expected);
+                getPath("InputLocalVariableNameUnnamedVariables.java"), expected);
 
     }
 

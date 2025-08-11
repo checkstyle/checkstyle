@@ -471,7 +471,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputAbbreviationAsWordInNameCheckRecordPatterns.java"),
                 expected);
     }
