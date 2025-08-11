@@ -403,7 +403,7 @@ public class InterfaceMemberImpliedModifierCheckTest
             "40:5: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputInterfaceMemberImpliedModifierSealedClasses.java"),
+                getPath("InputInterfaceMemberImpliedModifierSealedClasses.java"),
             expected);
     }
 }
