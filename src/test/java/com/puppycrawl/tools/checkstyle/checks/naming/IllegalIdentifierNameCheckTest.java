@@ -151,7 +151,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierNameUnnamedVariables.java"), expected);
+                getPath("InputIllegalIdentifierNameUnnamedVariables.java"), expected);
     }
 
     @Test
@@ -163,6 +163,6 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             "23:39: " + getCheckMessage(MSG_INVALID_PATTERN, "permit$", format),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputIllegalIdentifierNameRecordPattern.java"), expected);
+                getPath("InputIllegalIdentifierNameRecordPattern.java"), expected);
     }
 }
