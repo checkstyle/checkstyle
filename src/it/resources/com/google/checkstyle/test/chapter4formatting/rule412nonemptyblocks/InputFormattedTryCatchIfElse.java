@@ -34,20 +34,24 @@ public class InputFormattedTryCatchIfElse {
     try (MyResource r = new MyResource()) {}
 
     try (MyResource r = new MyResource()) {
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
 
     try (MyResource r = new MyResource()) {
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
 
     try (MyResource r = new MyResource()) {
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
 
     try (MyResource r = new MyResource()) {
+      // violation below 'Empty catch block'
     } catch (Exception expected) {
-    }
+    } // ok above until #17563
 
     try (MyResource r = new MyResource()) {
       ;
