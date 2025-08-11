@@ -92,7 +92,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMultipleVariableDeclarationsUnnamedVariables.java"),
+                getPath("InputMultipleVariableDeclarationsUnnamedVariables.java"),
                expected);
     }
 
