@@ -98,11 +98,11 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCalculation3() throws Exception {
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_KEY, 64, 0),
+            "12:5: " + getCheckMessage(MSG_KEY, 64, 0),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNPathComplexityDefault2.java"), expected);
+                getPath("InputNPathComplexityDefault3.java"), expected);
     }
 
     @Test
@@ -266,7 +266,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNPathComplexityPatternMatchingForSwitch.java"),
+                getPath("InputNPathComplexityPatternMatchingForSwitch.java"),
             expected);
 
     }
@@ -288,7 +288,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNPathComplexityWhenExpression.java"),
+                getPath("InputNPathComplexityWhenExpression.java"),
             expected);
 
     }
