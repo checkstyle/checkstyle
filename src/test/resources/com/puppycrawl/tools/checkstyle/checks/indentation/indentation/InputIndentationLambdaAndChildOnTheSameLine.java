@@ -1,4 +1,4 @@
-// non-compiled with javac: Compilable with Java17                           //indent:0 exp:0
+// Java17                                                                   //indent:0 exp:0
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;     //indent:0 exp:0
 
@@ -68,7 +68,8 @@ public class InputIndentationLambdaAndChildOnTheSameLine {                  //in
               case "hashCode" -> 123456789;                                 //indent:14 exp:14
               case "equals" -> methodArgs[0] == proxy;                      //indent:14 exp:14
               case "toString" -> "FakeInstanceServiceA";                    //indent:14 exp:14
-              default -> throw new IllegalArgumentException(method.getName());//indent:14 exp:14
+              default ->                                                    //indent:14 exp:14
+                throw new IllegalArgumentException(method.getName());       //indent:16 exp:16
             }                                                               //indent:12 exp:12
     );                                                                      //indent:4 exp:4
   }                                                                         //indent:2 exp:2
