@@ -175,7 +175,7 @@ public class CyclomaticComplexityCheckTest
             "28:4: " + getCheckMessage(MSG_KEY, 7, 0),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCyclomaticComplexityWhenExpression.java"), expected);
+                getPath("InputCyclomaticComplexityWhenExpression.java"), expected);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class CyclomaticComplexityCheckTest
             "39:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputCyclomaticComplexityWhenSwitchAsSinglePoint.java"), expected);
     }
 
@@ -199,7 +199,7 @@ public class CyclomaticComplexityCheckTest
             "41:5: " + getCheckMessage(MSG_KEY, 2, 0),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputCyclomaticComplexitySwitchBlocks6.java"), expected);
     }
 
