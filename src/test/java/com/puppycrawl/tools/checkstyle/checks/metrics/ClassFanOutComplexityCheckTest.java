@@ -301,7 +301,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassFanOutComplexitySealedClasses.java"),
+                getPath("InputClassFanOutComplexitySealedClasses.java"),
                 expected);
     }
 
