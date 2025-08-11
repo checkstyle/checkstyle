@@ -426,7 +426,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThroughWithPatternMatching.java"),
+                getPath("InputFallThroughWithPatternMatching.java"),
                 expected);
     }
 
@@ -444,7 +444,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
+                getPath("InputFallThroughWithPatternMatchingCheckLastCase.java"),
                 expected);
     }
 }

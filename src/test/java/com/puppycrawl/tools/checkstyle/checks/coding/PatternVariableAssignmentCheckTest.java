@@ -61,7 +61,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "67:14: " + getCheckMessage(MSG_KEY, "f"),
         };
 
-        verifyWithInlineXmlConfig(getNonCompilablePath(
+        verifyWithInlineXmlConfig(getPath(
             "InputPatternVariableAssignmentCheck1.java"), expected);
     }
 
@@ -72,7 +72,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
         };
 
-        verifyWithInlineXmlConfig(getNonCompilablePath(
+        verifyWithInlineXmlConfig(getPath(
             "InputPatternVariableAssignmentCheck2.java"), expected);
     }
 

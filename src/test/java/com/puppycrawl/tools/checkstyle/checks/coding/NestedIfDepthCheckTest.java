@@ -66,7 +66,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputNestedIfDepthInsideCaseBody.java"), expected);
+                getPath("InputNestedIfDepthInsideCaseBody.java"), expected);
     }
 
     @Test

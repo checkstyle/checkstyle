@@ -174,7 +174,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
             "15:56: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                 "InputUnnecessaryNullCheckWithInstanceOfPair.java"),
             expected);
     }

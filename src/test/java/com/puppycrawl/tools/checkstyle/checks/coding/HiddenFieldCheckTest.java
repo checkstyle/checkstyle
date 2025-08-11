@@ -509,7 +509,7 @@ public class HiddenFieldCheckTest
             "43:44: " + getCheckMessage(MSG_KEY, "x"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputHiddenFieldRecordPattern.java"), expected);
+                getPath("InputHiddenFieldRecordPattern.java"), expected);
     }
 
     /**
