@@ -5,77 +5,77 @@ public class InputTodoCommentAllVariants {
 
   void myFunc1(int i) {
     // todo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc2(int i) {
     // TodO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc3(int i) {
     // toDo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc4(int i) {
     // toDO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc5(int i) {
     // TOdo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc6(int i) {
     // tOdO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc7(int i) {
     // tODO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc8(int i) {
     // tODO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc9(int i) {
     // Todo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc10(int i) {
     // TodO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc11(int i) {
     // ToDo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc12(int i) {
     // TODo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc13(int i) {
     // TOdO: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc14(int i) {
     // TODo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc15(int i) {
     // tODo: implementing
-    // ok above until #17501
+    // violation above 'Comments must use 'TODO' in all caps'
   }
 
   void myFunc16(int i) {
