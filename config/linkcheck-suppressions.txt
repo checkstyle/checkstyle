@@ -42,6 +42,7 @@
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.SeverityLevelConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.UriConverter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
+<a href="checks/misc/todocomment.html#todocomment">checks/misc/todocomment.html#todocomment</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AstTreeStringPrinter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/AuditEventDefaultFormatter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
 <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
