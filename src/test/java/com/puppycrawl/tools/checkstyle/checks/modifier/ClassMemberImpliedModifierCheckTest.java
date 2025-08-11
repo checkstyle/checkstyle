@@ -125,7 +125,7 @@ public class ClassMemberImpliedModifierCheckTest
             "42:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputClassMemberImpliedModifierRecords.java"),
+                getPath("InputClassMemberImpliedModifierRecords.java"),
                 expected);
     }
 
@@ -138,7 +138,7 @@ public class ClassMemberImpliedModifierCheckTest
             "37:9: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputClassMemberImpliedModifierNoViolationRecords.java"),
                 expected);
     }
