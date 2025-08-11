@@ -106,7 +106,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputLambdaParameterNameUnnamed.java"),
+                getPath("InputLambdaParameterNameUnnamed.java"),
             expected);
     }
 
