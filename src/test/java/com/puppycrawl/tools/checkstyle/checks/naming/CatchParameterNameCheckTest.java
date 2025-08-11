@@ -115,6 +115,6 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputCatchParameterNameUnnamed.java"), expected);
+                getPath("InputCatchParameterNameUnnamed.java"), expected);
     }
 }
