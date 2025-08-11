@@ -53,7 +53,7 @@ public class SimplifyBooleanReturnCheckTest
             "54:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSimplifyBooleanReturnWithYield.java"), expected);
+                getPath("InputSimplifyBooleanReturnWithYield.java"), expected);
     }
 
     @Test

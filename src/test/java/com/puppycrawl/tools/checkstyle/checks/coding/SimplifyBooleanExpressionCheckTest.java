@@ -65,7 +65,7 @@ public class SimplifyBooleanExpressionCheckTest
             "23:44: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputSimplifyBooleanExpressionWithWhen.java"), expected);
+                getPath("InputSimplifyBooleanExpressionWithWhen.java"), expected);
     }
 
     @Test
