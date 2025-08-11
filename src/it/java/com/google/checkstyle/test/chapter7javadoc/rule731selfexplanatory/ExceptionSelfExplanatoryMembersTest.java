@@ -35,4 +35,13 @@ public class ExceptionSelfExplanatoryMembersTest extends AbstractGoogleModuleTes
         verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 
+    @Test
+    public void testDefaultRecord() throws Exception {
+        verifyWithWholeConfig(getPath("InputSelfExplanatoryMembersRecord.java"));
+    }
+
+    @Test
+    public void testDefaultRecord2() throws Exception {
+        verifyWithWholeConfig(getPath("InputSelfExplanatoryMembersRecord2.java"));
+    }
 }
