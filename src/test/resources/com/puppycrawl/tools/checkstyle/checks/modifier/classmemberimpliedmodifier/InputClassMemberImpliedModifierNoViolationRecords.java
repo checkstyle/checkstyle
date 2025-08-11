@@ -2,15 +2,15 @@
 ClassMemberImpliedModifier
 violateImpliedStaticOnNestedEnum = (default)true
 violateImpliedStaticOnNestedInterface = (default)true
-violateImpliedStaticOnNestedRecord = (default)true
+violateImpliedStaticOnNestedRecord = false
 
 
 */
 
-// non-compiled with javac: Compilable with Java19
+// Java19
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
-public class InputClassMemberImpliedModifierRecords {
+public class InputClassMemberImpliedModifierNoViolationRecords {
     public static interface GoodInterface {}
     // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
     public interface BadInterface {} // violation
@@ -20,13 +20,13 @@ public class InputClassMemberImpliedModifierRecords {
     public enum BadEnum {} // violation
 
     public static record GoodRecord() {}
-    // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-    public record BadRecord() {} // violation
+
+    public record BadRecord() {}
 
     public static record OuterRecord() {
         public static record InnerRecord1(){}
-        // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-        public record InnerRecord2(){} // violation
+
+        public record InnerRecord2(){}
 
         public static interface InnerInterface1 {}
         // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
@@ -38,8 +38,7 @@ public class InputClassMemberImpliedModifierRecords {
     }
 
     Object obj = new Object() {
-        // Implied modifier 'static' should be explicit. [ClassMemberImpliedModifier]
-        public record BadRecord() {} // violation
+        public record BadRecord() {}
         public static record OkRecord() {}
     };
 }
