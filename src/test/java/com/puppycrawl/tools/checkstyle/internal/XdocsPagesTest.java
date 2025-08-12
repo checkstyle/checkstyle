@@ -98,6 +98,9 @@ public class XdocsPagesTest {
     private static final Path SITE_PATH = Path.of("src/site/site.xml");
 
     private static final Path AVAILABLE_CHECKS_PATH = Path.of("src/site/xdoc/checks.xml");
+    private static final Path AVAILABLE_FILE_FILTERS_PATH = Path.of(
+        "src/site/xdoc/filefilters/index.xml");
+    private static final Path AVAILABLE_FILTERS_PATH = Path.of("src/site/xdoc/filters/index.xml");
     private static final String LINK_TEMPLATE =
             "(?s).*<a href=\"[^\"]+#%1$s\">([\\r\\n\\s])*%1$s([\\r\\n\\s])*</a>.*";
 
@@ -328,7 +331,7 @@ public class XdocsPagesTest {
     @Test
     public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
         final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
-        final Map<String, String> summaries = readSummaries();
+        final Map<String, String> summaries = readSummaries(AVAILABLE_CHECKS_PATH);
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
@@ -369,10 +372,12 @@ public class XdocsPagesTest {
 
     @Test
     public void testCategoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
-        final Map<String, String> summaries = readSummaries();
+        final Map<String, String> summaries = readSummaries(AVAILABLE_CHECKS_PATH);
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             if (!"index.xml".equals(fileName)
+                    // Filters are excluded because they are not included in the main checks.xml
+                    // file and have their own separate validation in testFiltersIndexPageTable()
                     || path.getParent().toString().contains("filters")) {
                 continue;
             }
@@ -394,6 +399,142 @@ public class XdocsPagesTest {
                     .that(description)
                     .isEqualTo(summaries.get(checkName));
             }
+        }
+    }
+
+    @Test
+    public void testFiltersIndexPageTable() throws Exception {
+        final String input = Files.readString(AVAILABLE_FILTERS_PATH);
+        final Document document = XmlUtil.getRawXml(
+            AVAILABLE_FILTERS_PATH.toString(), input, input);
+        final NodeList sources = document.getElementsByTagName("tr");
+
+        for (int position = 0; position < sources.getLength(); position++) {
+            final Node tableRow = sources.item(position);
+            final Iterator<Node> cells = XmlUtil
+                .findChildElementsByTag(tableRow, "td").iterator();
+
+            assertWithMessage("Filter name cell at row " + position + 1
+                + " in filters/index.xml should exist")
+                .that(cells.hasNext())
+                .isTrue();
+            final Node nameCell = cells.next();
+            final String filterName = XmlUtil.sanitizeXml(nameCell.getTextContent().trim());
+
+            assertWithMessage("Description cell for " + filterName
+                    + " in index.xml should exist")
+                .that(cells.hasNext())
+                .isTrue();
+            final Node descriptionCell = cells.next();
+            final String description = XmlUtil.sanitizeXml(descriptionCell.getTextContent().trim());
+
+            assertWithMessage("Filter name in filters/index.xml should not be empty")
+                .that(filterName)
+                .isNotEmpty();
+
+            assertWithMessage("Filter description for " + filterName
+                + " in filters/index.xml should not be empty")
+                .that(description)
+                .isNotEmpty();
+
+            assertWithMessage("Filter description for " + filterName
+                + " in filters/index.xml should end with a period")
+                .that(description.charAt(description.length() - 1))
+                .isEqualTo('.');
+        }
+    }
+
+    @Test
+    public void testAllFiltersPageInSyncWithFiltersSummaries() throws Exception {
+        final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
+
+        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
+            final String fileName = path.getFileName().toString();
+
+            if (isNonModulePage(fileName) || path.toString().contains("checks")) {
+                continue;
+            }
+
+            final Path allFiltersPagePath;
+
+            if (path.toString().contains("filefilters")) {
+                allFiltersPagePath = AVAILABLE_FILE_FILTERS_PATH;
+            }
+            else {
+                allFiltersPagePath = AVAILABLE_FILTERS_PATH;
+            }
+            final Map<String, String> summaries = readSummaries(allFiltersPagePath);
+
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("subsection");
+
+            for (int position = 0; position < sources.getLength(); position++) {
+                final Node section = sources.item(position);
+                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
+                if (!"Description".equals(sectionName)) {
+                    continue;
+                }
+
+                final String filterName = XmlUtil.getNameAttributeOfNode(section.getParentNode());
+                final Matcher matcher = endOfSentence.matcher(section.getTextContent());
+                assertWithMessage(
+                    "The first sentence of the \"Description\" subsection for the filter "
+                        + filterName + " in the file \"" + fileName + "\" should end with a period")
+                    .that(matcher.find())
+                    .isTrue();
+
+                final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
+
+                assertWithMessage("The summary for filter " + filterName
+                        + " in the file \"" + allFiltersPagePath + "\""
+                        + " should match the first sentence of the \"Description\" subsection"
+                        + " for this filter in the file \"" + fileName + "\"")
+                    .that(summaries.get(filterName))
+                    .isEqualTo(firstSentence);
+            }
+        }
+    }
+
+    @Test
+    public void testFileFiltersIndexPageTable() throws Exception {
+        final String input = Files.readString(AVAILABLE_FILE_FILTERS_PATH);
+        final Document document = XmlUtil.getRawXml(
+            AVAILABLE_FILE_FILTERS_PATH.toString(), input, input);
+        final NodeList sources = document.getElementsByTagName("tr");
+
+        for (int position = 0; position < sources.getLength(); position++) {
+            final Node tableRow = sources.item(position);
+            final Iterator<Node> cells = XmlUtil
+                .findChildElementsByTag(tableRow, "td").iterator();
+
+            assertWithMessage("File Filter name cell at row " + position + 1
+                + " in filefilters/index.xml should exist")
+                .that(cells.hasNext())
+                .isTrue();
+            final Node nameCell = cells.next();
+            final String fileFilterName = XmlUtil.sanitizeXml(nameCell.getTextContent().trim());
+
+            assertWithMessage("Description cell for " + fileFilterName
+                    + " in filefilters/index.xml should exist")
+                .that(cells.hasNext())
+                .isTrue();
+            final Node descriptionCell = cells.next();
+            final String description = XmlUtil.sanitizeXml(descriptionCell.getTextContent().trim());
+
+            assertWithMessage("File Filter name in filefilters/index.xml should not be empty")
+                .that(fileFilterName)
+                .isNotEmpty();
+
+            assertWithMessage("File Filter description for " + fileFilterName
+                + " in filefilters/index.xml should not be empty")
+                .that(description)
+                .isNotEmpty();
+
+            assertWithMessage("File Filter description for " + fileFilterName
+                + " in filefilters/index.xml should end with a period")
+                .that(description.charAt(description.length() - 1))
+                .isEqualTo('.');
         }
     }
 
@@ -470,8 +611,7 @@ public class XdocsPagesTest {
             final Path checks = Paths.get("src/site/xdoc/checks/" + name + "/index.xml");
             validateOrder(checks, "Check");
         }
-        final Path filters = Paths.get("src/site/xdoc/filters/index.xml");
-        validateOrder(filters, "Filter");
+        validateOrder(AVAILABLE_FILTERS_PATH, "Filter");
 
         final Path fileFilters = Paths.get("src/site/xdoc/filefilters/index.xml");
         validateOrder(fileFilters, "File Filter");
@@ -544,9 +684,9 @@ public class XdocsPagesTest {
         return result;
     }
 
-    private static Map<String, String> readSummaries() throws Exception {
-        final String fileName = AVAILABLE_CHECKS_PATH.getFileName().toString();
-        final String input = Files.readString(AVAILABLE_CHECKS_PATH);
+    private static Map<String, String> readSummaries(Path availablePath) throws Exception {
+        final String fileName = availablePath.getFileName().toString();
+        final String input = Files.readString(availablePath);
         final Document document = XmlUtil.getRawXml(fileName, input, input);
         final NodeList rows = document.getElementsByTagName("tr");
         final Map<String, String> result = new HashMap<>();
