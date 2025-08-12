@@ -363,7 +363,7 @@ public class RedundantModifierCheckTest
             "33:11: " + getCheckMessage(MSG_KEY, "static"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierSealedClasses.java"), expected);
+                getPath("InputRedundantModifierSealedClasses.java"), expected);
     }
 
     @Test
@@ -448,7 +448,7 @@ public class RedundantModifierCheckTest
             "69:70: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputRedundantModifierFinalUnnamedVariables.java"),
+                getPath("InputRedundantModifierFinalUnnamedVariables.java"),
                 expected);
     }
 
@@ -459,7 +459,7 @@ public class RedundantModifierCheckTest
             "47:14: " + getCheckMessage(MSG_KEY, "final"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath(
+                getPath(
                         "InputRedundantModifierFinalUnnamedVariablesWithOldVersion.java"),
                 expected);
     }
