@@ -586,34 +586,33 @@ public class XdocsPagesTest {
                     .that(id)
                     .isNotNull();
 
-                final String sectionName;
+                // Checks and filters have their own xdocs files, so the section name
+                // is the same as the section id by default.
+                String sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
                 final String nameString = name.getNodeValue();
-                final String idString = id.getNodeValue();
+                final String subsectionId = id.getNodeValue();
                 final String expectedId;
 
                 if ("google_style.xml".equals(fileName)) {
                     sectionName = "Google";
-                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
                 else if ("sun_style.xml".equals(fileName)) {
                     sectionName = "Sun";
-                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
-                else if (path.toString().contains("filters")
-                        || path.toString().contains("checks")) {
-                    // Checks and filters have their own xdocs files, so the section name
-                    // is the same as the section id.
-                    sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
+                else if ((path.toString().contains("filters")
+                        || path.toString().contains("checks"))
+                        && !subsectionId.startsWith(sectionName)) {
                     expectedId = nameString.replace(' ', '_');
                 }
                 else {
-                    sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
-                    expectedId = (sectionName + " " + nameString).replace(' ', '_');
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
 
                 assertWithMessage(fileName + " sub-section " + nameString + " for section "
                         + sectionName + " must match")
-                    .that(idString)
+                    .that(subsectionId)
                     .isEqualTo(expectedId);
             }
         }

@@ -9,14 +9,14 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationOnSameLine">
       <p>Since Checkstyle 8.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AnnotationOnSameLine_Description">
         <div>
           Checks that annotations are located on the same line with their targets.
           Verifying with this check is not good practice, but it is using by some style guides.
         </div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="AnnotationOnSameLine_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -91,7 +91,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AnnotationOnSameLine_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -180,7 +180,7 @@ class Example2 implements Foo {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
@@ -189,7 +189,7 @@ class Example2 implements Foo {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AnnotationOnSameLine_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.same.line%22">
@@ -204,11 +204,11 @@ class Example2 implements Foo {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AnnotationOnSameLine_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
