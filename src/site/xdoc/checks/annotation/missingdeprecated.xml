@@ -9,7 +9,7 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MissingDeprecated_Description">
         <div>
           Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
           <code>@deprecated</code> are both present when either of them is present.
@@ -48,7 +48,7 @@
 &lt;/module&gt;
         </code></pre></div>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MissingDeprecated_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -69,7 +69,7 @@
           </table>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MissingDeprecated_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -147,7 +147,7 @@ class Example2 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MissingDeprecated_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
@@ -156,7 +156,7 @@ class Example2 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MissingDeprecated_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.deprecated%22">
@@ -196,11 +196,11 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MissingDeprecated_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MissingDeprecated_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
