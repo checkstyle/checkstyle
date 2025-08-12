@@ -21,7 +21,7 @@ class InputSpecialEscapeSequencesForEscapedS {
   }
 
   void octal() {
-    final String r1 = "\040"; // false-negative ok until #17551
+    final String r1 = "\040"; // violation 'Consider using special escape sequence'
     final String r2 = "\011"; // violation 'Consider using special escape sequence'
     final String r3 = "\012"; // violation 'Consider using special escape sequence'
   }
