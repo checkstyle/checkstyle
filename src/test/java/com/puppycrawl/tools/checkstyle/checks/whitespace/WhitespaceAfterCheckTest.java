@@ -300,7 +300,7 @@ public class WhitespaceAfterCheckTest
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputWhitespaceAfterSwitchStatements.java"),
+                getPath("InputWhitespaceAfterSwitchStatements.java"),
                 expected);
     }
 
@@ -341,7 +341,7 @@ public class WhitespaceAfterCheckTest
             "45:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "when"),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputWhitespaceAfterLiteralWhen.java"),
+            getPath("InputWhitespaceAfterLiteralWhen.java"),
             expected);
     }
 
@@ -349,7 +349,7 @@ public class WhitespaceAfterCheckTest
     public void testUnnamedPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputWhitespaceAfterUnnamedPattern.java"),
+            getPath("InputWhitespaceAfterUnnamedPattern.java"),
             expected);
 
     }
