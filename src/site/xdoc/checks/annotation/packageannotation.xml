@@ -9,7 +9,7 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PackageAnnotation">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="PackageAnnotation_Description">
         <div>
           Checks that all package annotations are in the package-info.java file.
         </div>
@@ -31,7 +31,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="PackageAnnotation_Examples">
         <p id="Example1-config"> To configure the check:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -61,7 +61,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.exam
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="PackageAnnotation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+PackageAnnotation">
@@ -70,7 +70,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.exam
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="PackageAnnotation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.package.location%22">
@@ -85,11 +85,11 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.packageannotation.exam
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="PackageAnnotation_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="PackageAnnotation_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -9,21 +9,21 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationLocation">
       <p>Since Checkstyle 6.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AnnotationLocation_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="AnnotationLocation_Notes">
         <macro name="notes">
           <param name="modulePath"
                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="AnnotationLocation_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -32,7 +32,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AnnotationLocation_Examples">
         <p id="Example1-config">
           To configure the default check to allow one single parameterless annotation on the same
             line:
@@ -94,7 +94,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AnnotationLocation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationLocation">
@@ -107,7 +107,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AnnotationLocation_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="AnnotationLocation"/>
         </macro>
@@ -118,11 +118,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AnnotationLocation_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AnnotationLocation_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="AnnotationLocation"/>
         </macro>

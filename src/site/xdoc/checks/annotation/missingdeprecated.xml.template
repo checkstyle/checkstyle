@@ -9,13 +9,13 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MissingDeprecated_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MissingDeprecated_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -23,7 +23,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MissingDeprecated_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -55,7 +55,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MissingDeprecated_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingDeprecated">
@@ -64,7 +64,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MissingDeprecated_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="MissingDeprecated"/>
         </macro>
@@ -75,11 +75,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MissingDeprecated_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MissingDeprecated_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MissingDeprecated"/>
         </macro>
