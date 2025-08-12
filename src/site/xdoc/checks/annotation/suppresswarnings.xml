@@ -9,7 +9,7 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarnings">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressWarnings_Description">
         <div>
           Allows to specify what warnings that
           <code>@SuppressWarnings</code> is not allowed to suppress.
@@ -52,7 +52,7 @@
           See below of an example.
         </p>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressWarnings_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -135,7 +135,7 @@
           </table>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressWarnings_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -230,7 +230,7 @@ class Test2 {}
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressWarnings_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarnings">
@@ -239,7 +239,7 @@ class Test2 {}
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="SuppressWarnings_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppressed.warning.not.allowed%22">
@@ -254,11 +254,11 @@ class Test2 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressWarnings_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressWarnings_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

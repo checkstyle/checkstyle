@@ -586,7 +586,7 @@ public class XdocsPagesTest {
                     .that(id)
                     .isNotNull();
 
-                final String sectionName;
+                String sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
                 final String nameString = name.getNodeValue();
                 final String idString = id.getNodeValue();
                 final String expectedId;
@@ -599,15 +599,14 @@ public class XdocsPagesTest {
                     sectionName = "Sun";
                     expectedId = (sectionName + " " + nameString).replace(' ', '_');
                 }
-                else if (path.toString().contains("filters")
-                        || path.toString().contains("checks")) {
+                else if ((path.toString().contains("filters")
+                        || path.toString().contains("checks"))
+                        && !idString.startsWith(sectionName)) {
                     // Checks and filters have their own xdocs files, so the section name
                     // is the same as the section id.
-                    sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
                     expectedId = nameString.replace(' ', '_');
                 }
                 else {
-                    sectionName = XmlUtil.getNameAttributeOfNode(subSection.getParentNode());
                     expectedId = (sectionName + " " + nameString).replace(' ', '_');
                 }
 

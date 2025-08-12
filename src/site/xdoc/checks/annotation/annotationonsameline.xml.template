@@ -9,14 +9,14 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationOnSameLine">
       <p>Since Checkstyle 8.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AnnotationOnSameLine_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="AnnotationOnSameLine_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -25,7 +25,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AnnotationOnSameLine_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -57,7 +57,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AnnotationOnSameLine_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationOnSameLine">
@@ -66,7 +66,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AnnotationOnSameLine_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="AnnotationOnSameLine"/>
         </macro>
@@ -77,11 +77,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AnnotationOnSameLine_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AnnotationOnSameLine_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="AnnotationOnSameLine"/>
         </macro>
