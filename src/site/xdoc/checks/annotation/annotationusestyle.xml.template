@@ -9,13 +9,13 @@
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="AnnotationUseStyle">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AnnotationUseStyle_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="AnnotationUseStyle_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -23,7 +23,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AnnotationUseStyle_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -85,7 +85,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AnnotationUseStyle_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AnnotationUseStyle">
@@ -94,7 +94,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AnnotationUseStyle_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="AnnotationUseStyle"/>
         </macro>
@@ -105,11 +105,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AnnotationUseStyle_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AnnotationUseStyle_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="AnnotationUseStyle"/>
         </macro>
