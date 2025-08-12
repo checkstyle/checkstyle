@@ -52,9 +52,10 @@ public class InputSpecialEscapeSequences {
     String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
     String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
     String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-    String r6 = "\\042"; // violation 'Consider using special escape sequence .*'
-    String r7 = "\\047"; // violation 'Consider using special escape sequence .*'
-    String r8 = "\\134"; // violation 'Consider using special escape sequence .*'
+    String r6 = "\\040"; // violation 'Consider using special escape sequence'
+    String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
+    String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
+    String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
   }
 
   class Inner {
@@ -98,9 +99,10 @@ public class InputSpecialEscapeSequences {
       String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
       String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
       String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-      String r6 = "\\042"; // violation 'Consider using special escape sequence .*'
-      String r7 = "\\047"; // violation 'Consider using special escape sequence .*'
-      String r8 = "\\134"; // violation 'Consider using special escape sequence .*'
+      String r6 = "\\040"; // violation 'Consider using special escape sequence'
+      String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
+      String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
+      String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
     }
 
     Inner anoInner =
@@ -145,9 +147,10 @@ public class InputSpecialEscapeSequences {
             String r3 = "\\012"; // violation 'Consider using special escape sequence .*'
             String r4 = "\\014"; // violation 'Consider using special escape sequence .*'
             String r5 = "\\015"; // violation 'Consider using special escape sequence .*'
-            String r6 = "\\042"; // violation 'Consider using special escape sequence .*'
-            String r7 = "\\047"; // violation 'Consider using special escape sequence .*'
-            String r8 = "\\134"; // violation 'Consider using special escape sequence .*'
+            String r6 = "\\040"; // violation 'Consider using special escape sequence'
+            String r7 = "\\042"; // violation 'Consider using special escape sequence .*'
+            String r8 = "\\047"; // violation 'Consider using special escape sequence .*'
+            String r9 = "\\134"; // violation 'Consider using special escape sequence .*'
           }
         };
   }
