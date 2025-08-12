@@ -66,6 +66,12 @@
     <property name="lineRange" value="-1"/>
     <property name="checkPattern" value="RegexpSingleline"/>
   </module>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+        value="Consider using special escape sequence instead of octal value or Unicode escaped value."/>
+    <property name="lineRange" value="-2"/>
+    <property name="idPattern" value="lineLengthXml"/>
+  </module>
   <!-- Headers -->
   <module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>
