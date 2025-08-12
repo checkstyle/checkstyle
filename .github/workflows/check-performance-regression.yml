@@ -46,10 +46,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Checkout Pull Request Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Clone JDK 21 Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: openjdk/jdk21
           path: ./.ci-temp/jdk21
