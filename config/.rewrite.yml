@@ -1,0 +1,15 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.openrewrite.DefinitionOfDone
+displayName: Definition of Done
+description: Automatically cleanup code to comply checkstyle convention.
+recipeList:
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.staticanalysis.LowercasePackage
+  - org.openrewrite.staticanalysis.MissingOverrideAnnotation
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+---
