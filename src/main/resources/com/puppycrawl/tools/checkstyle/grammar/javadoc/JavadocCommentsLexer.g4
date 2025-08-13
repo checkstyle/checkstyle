@@ -55,6 +55,10 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
         afterNewline = true;
     }
 
+    public Token getPreviousToken() {
+      return this.previousToken;
+    }
+
     public boolean isNormalText() {
         int nextChar = _input.LA(1);
         int afterNextChar = _input.LA(2);
