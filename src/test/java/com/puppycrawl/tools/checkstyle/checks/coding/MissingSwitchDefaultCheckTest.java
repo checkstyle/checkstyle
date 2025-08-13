@@ -76,7 +76,7 @@ public class MissingSwitchDefaultCheckTest
     public void testNullCaseLabel() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultCheckNullCaseLabel.java"),
+                getPath("InputMissingSwitchDefaultCheckNullCaseLabel.java"),
             expected);
     }
 
@@ -111,7 +111,7 @@ public class MissingSwitchDefaultCheckTest
     public void testMissingSwitchDefaultRecordPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultRecordPattern.java"),
+                getPath("InputMissingSwitchDefaultRecordPattern.java"),
                 expected);
     }
 
