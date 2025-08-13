@@ -431,9 +431,7 @@
       <property name="message" value="'[a-z][a-z0-9][a-zA-Z0-9]*(?:_[a-z][a-z0-9][a-zA-Z0-9]*)*'"/>
     </module>
     <module name="SingleLineJavadoc"/>
-    <module name="EmptyCatchBlock">
-      <property name="exceptionVariableName" value="expected"/>
-    </module>
+    <module name="EmptyCatchBlock"/>
     <module name="CommentsIndentation">
       <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
     </module>
