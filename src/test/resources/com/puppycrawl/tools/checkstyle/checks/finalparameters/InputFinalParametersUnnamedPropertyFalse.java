@@ -1,23 +1,23 @@
 /*
 FinalParameters
 ignorePrimitiveTypes = (default)false
-ignoreUnnamedParameters = (default)true
+ignoreUnnamedParameters = false
 tokens = METHOD_DEF, CTOR_DEF, LITERAL_CATCH, FOR_EACH_CLAUSE
 
 */
 
-// non-compiled with javac: Compilable with Java21
+// Java21
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class InputFinalParametersUnnamedPropertyTrue {
+public class InputFinalParametersUnnamedPropertyFalse {
 
     void testUnnamedCatchParameter() {
         try {
             throw new Exception();
-        } catch (Exception _) {
+        } catch (Exception _) {  // violation,'Parameter _ should be final.'
 
         }
         try {
@@ -40,7 +40,7 @@ public class InputFinalParametersUnnamedPropertyTrue {
         Queue<Integer> q = new PriorityQueue<>();
         q.add(1);
         q.add(2);
-        for (Integer _ : q) {
+        for (Integer _ : q) {  // violation,'Parameter _ should be final.'
             var _ = q.poll();
         }
         for (Integer __ : q) { // violation,'Parameter __ should be final.'
