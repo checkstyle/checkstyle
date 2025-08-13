@@ -7,7 +7,7 @@ violateImpliedStaticOnNestedRecord = false
 
 */
 
-// non-compiled with javac: Compilable with Java19
+// non-compiled with eclipse: syntax error but works fine in jdk
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
 public class InputClassMemberImpliedModifierNoViolationRecords {
