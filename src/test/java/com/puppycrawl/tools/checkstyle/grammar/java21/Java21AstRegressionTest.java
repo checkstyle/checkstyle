@@ -40,27 +40,27 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testUnnamedVariableBasic() throws Exception {
         verifyAst(
-                getNonCompilablePath(
+                getPath(
                         "ExpectedUnnamedVariableBasic.txt"),
-                getNonCompilablePath(
+                getPath(
                         "InputUnnamedVariableBasic.java"));
     }
 
     @Test
     public void testUnnamedVariableSwitch() throws Exception {
         verifyAst(
-                getNonCompilablePath(
+                getPath(
                         "ExpectedUnnamedVariableSwitch.txt"),
-                getNonCompilablePath(
+                getPath(
                         "InputUnnamedVariableSwitch.java"));
     }
 
     @Test
     public void testTextBlockConsecutiveEscapes() throws Exception {
         verifyAst(
-                getNonCompilablePath(
+                getPath(
                         "ExpectedTextBlockConsecutiveEscapes.txt"),
-                getNonCompilablePath(
+                getPath(
                         "InputTextBlockConsecutiveEscapes.java"));
     }
 
@@ -75,7 +75,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     @Test
     public void testTextBlockParsingFail() throws Exception {
         final File file =
-                new File(getNonCompilablePath("InputTextBlockParsingFail.java.fail"));
+                new File(getPath("InputTextBlockParsingFail.java.fail"));
 
         final Throwable throwable =
                 assertThrows("Exception should be thrown due to parsing failure.",
