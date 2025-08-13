@@ -222,7 +222,7 @@ public class FinalParametersCheck extends AbstractCheck {
      */
     private void visitForEachClause(final DetailAST forEachClause) {
         final DetailAST variableDef = forEachClause.findFirstToken(TokenTypes.VARIABLE_DEF);
-        if (variableDef != null) {
+        if (true) {
             // can be missing for record pattern def
             // (only available as a preview feature in Java 20, never released)
             checkParam(variableDef);
