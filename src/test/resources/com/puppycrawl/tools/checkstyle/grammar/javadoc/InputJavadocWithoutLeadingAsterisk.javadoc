@@ -11,3 +11,7 @@ def>myText</a>
 parameter.
 @param a This is my
         parameter.
+* <p>For example, you could use {@code -Djava.lang.ScopedValue.cacheSize=8}.
+
+* @param <T> the type of the value
+* @since 21
