@@ -263,7 +263,7 @@ public class EmptyBlockCheckTest
             "37:24: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputEmptyBlockCaseAndDefaultWithTextOption.java"),
+                getPath("InputEmptyBlockCaseAndDefaultWithTextOption.java"),
                 expected);
     }
 }

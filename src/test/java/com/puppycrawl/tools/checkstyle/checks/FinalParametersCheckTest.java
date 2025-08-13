@@ -201,10 +201,11 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordForLoopPatternVariableDefinitions() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "name"),
+            "17:14: " + getCheckMessage(MSG_KEY, "rec"),
+            "21:14: " + getCheckMessage(MSG_KEY, "rec"),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputFinalParametersRecordForLoopPatternVariables.java"),
+            getPath("InputFinalParametersRecordForLoopPatternVariables.java"),
             expected
         );
     }
