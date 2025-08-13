@@ -7,16 +7,20 @@ tokens = PATTERN_VARIABLE_DEF,FOR_EACH_CLAUSE
 
 */
 
-// non-compiled with javac: Compilable with Java20
+// Java20
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 public class InputFinalParametersRecordForLoopPatternVariables {
     record ARecord(String name, int age) {
     }
     static void method(final ARecord[] records) {
-        for (ARecord(String name, final int age) : records) { // violation, 'name' should be final
+        for (ARecord rec : records) { // violation, 'name' should be final
+            String name = rec.name();
+            final int age = rec.age();
         }
-        for (ARecord(final String name, final int age) : records) {
+        for (ARecord rec : records) { // violation, 'name' should be final
+            final String name = rec.name();
+            final int age = rec.age();
         }
     }
 }
