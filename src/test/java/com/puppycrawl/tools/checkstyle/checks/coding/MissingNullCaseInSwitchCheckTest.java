@@ -62,7 +62,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "88:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingNullCaseInSwitchWithPattern.java"),
+                getPath("InputMissingNullCaseInSwitchWithPattern.java"),
             expected);
     }
 
@@ -73,7 +73,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "40:9: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingNullCaseInSwitchWithPattern2.java"),
+                getPath("InputMissingNullCaseInSwitchWithPattern2.java"),
             expected);
     }
 
@@ -87,7 +87,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "90:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
+                getPath("InputMissingNullCaseInSwitchWithRecordPattern.java"),
             expected);
     }
 
@@ -105,7 +105,7 @@ public class MissingNullCaseInSwitchCheckTest extends
             "108:17: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingNullCaseInSwitchWithStringLiterals.java"),
+                getPath("InputMissingNullCaseInSwitchWithStringLiterals.java"),
             expected);
     }
 
@@ -113,7 +113,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     public void testMissingNullCaseInSwitchWithPrimitives() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingNullCaseInSwitchWithPrimitives.java"),
+                getPath("InputMissingNullCaseInSwitchWithPrimitives.java"),
             expected);
     }
 }
