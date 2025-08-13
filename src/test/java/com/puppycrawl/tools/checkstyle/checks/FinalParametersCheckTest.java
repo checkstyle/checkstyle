@@ -155,7 +155,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "52:14: " + getCheckMessage(MSG_KEY, "i_"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalParametersUnnamedPropertyTrue.java"), expected);
+                getPath("InputFinalParametersUnnamedPropertyTrue.java"), expected);
     }
 
     @Test
@@ -171,7 +171,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "52:14: " + getCheckMessage(MSG_KEY, "i_"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
+                getPath("InputFinalParametersUnnamedPropertyFalse.java"), expected);
     }
 
     @Test
@@ -195,16 +195,17 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
             "32:26: " + getCheckMessage(MSG_KEY, "name"),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputFinalParametersPatternVariables.java"), expected);
+            getPath("InputFinalParametersPatternVariables.java"), expected);
     }
 
     @Test
     public void testRecordForLoopPatternVariableDefinitions() throws Exception {
         final String[] expected = {
-            "17:22: " + getCheckMessage(MSG_KEY, "name"),
+            "17:14: " + getCheckMessage(MSG_KEY, "rec"),
+            "21:14: " + getCheckMessage(MSG_KEY, "rec"),
         };
         verifyWithInlineConfigParser(
-            getNonCompilablePath("InputFinalParametersRecordForLoopPatternVariables.java"),
+            getPath("InputFinalParametersRecordForLoopPatternVariables.java"),
             expected
         );
     }
