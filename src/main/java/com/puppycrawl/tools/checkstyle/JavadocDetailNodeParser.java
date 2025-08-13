@@ -561,14 +561,6 @@ public class JavadocDetailNodeParser {
         final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
         final ParseStatus result = new ParseStatus();
 
-        final JavadocCommentsLexer lexer =
-                        new JavadocCommentsLexer(CharStreams.fromString(javadocComment), true);
-        final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        tokens.fill();
-
-        final Set<SimpleToken> unclosed = lexer.getUnclosedTagNameTokens();
-        final JavadocCommentsParser parser = new JavadocCommentsParser(tokens, unclosed);
-
         // Use a new error listener each time to be able to use
         // one check instance for multiple files to be checked
         // without getting side effects.
@@ -578,6 +570,18 @@ public class JavadocDetailNodeParser {
         // not in scope of Javadoc comment.
         // Offset is line number of beginning of Javadoc comment.
         errorListener.setOffset(javadocCommentAst.getLineNo() - 1);
+
+        final JavadocCommentsLexer lexer =
+                        new JavadocCommentsLexer(CharStreams.fromString(javadocComment), true);
+
+       lexer.removeErrorListeners();
+       lexer.addErrorListener(errorListener);
+
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+        tokens.fill();
+
+        final Set<SimpleToken> unclosed = lexer.getUnclosedTagNameTokens();
+        final JavadocCommentsParser parser = new JavadocCommentsParser(tokens, unclosed);
 
         // set prediction mode to SLL to speed up parsing
         parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
@@ -600,6 +604,10 @@ public class JavadocDetailNodeParser {
                     tokens, blockCommentLineNumber, javadocColumnNumber).visit(javadoc);
 
             result.setTree(tree);
+
+            if (errorListener.getErrorMessage() != null) {
+                result.setParseErrorMessage(errorListener.getErrorMessage());
+            }
         }
         catch (ParseCancellationException | IllegalArgumentException exc) {
             // until https://github.com/checkstyle-GSoC25/checkstyle/issues/11
@@ -672,12 +680,17 @@ public class JavadocDetailNodeParser {
                 throw new IllegalArgumentException(msg);
             }
 
-            final int ruleIndex = ex.getCtx().getRuleIndex();
-            final String ruleName = recognizer.getRuleNames()[ruleIndex];
-            final String upperCaseRuleName = convertUpperCamelToUpperUnderscore(ruleName);
+            final String target;
+            if (recognizer instanceof JavadocCommentsLexer lexer) {
+                target = lexer.getPreviousToken().getText();
+            } else {
+                final int ruleIndex = ex.getCtx().getRuleIndex();
+                final String ruleName = recognizer.getRuleNames()[ruleIndex];
+                target = convertUpperCamelToUpperUnderscore(ruleName);
+            }
 
             errorMessage = new ParseErrorMessage(lineNumber,
-                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, upperCaseRuleName);
+                    MSG_JAVADOC_PARSE_RULE_ERROR, charPositionInLine, msg, target);
 
         }
 
