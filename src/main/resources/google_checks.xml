@@ -431,6 +431,10 @@
       <property name="message" value="'[a-z][a-z0-9][a-zA-Z0-9]*(?:_[a-z][a-z0-9][a-zA-Z0-9]*)*'"/>
     </module>
     <module name="SingleLineJavadoc"/>
+    <module name="TodoComment">
+      <property name="format" value="^[ \t]*(?!TODO:)(?i:TODO)\b:?"/>
+      <message key="todo.match" value="Todo comments must use ''TODO:'' in all caps."/>
+    </module>
     <module name="EmptyCatchBlock">
       <property name="exceptionVariableName" value="expected"/>
     </module>
