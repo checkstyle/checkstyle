@@ -8,7 +8,7 @@
   <body>
     <section name="MatchXpath">
       <p>Since Checkstyle 8.39</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MatchXpath_Description">
         <div>
           Evaluates Xpath query and report violation on all matching AST nodes. This check allows
           user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
@@ -34,7 +34,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MatchXpath_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -55,7 +55,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MatchXpath_Examples">
         <p>
           Checkstyle provides <a href="https://checkstyle.org/cmdline.html">command line tool</a>
           and <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">GUI
@@ -234,7 +234,7 @@ public class Example5 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
@@ -247,7 +247,7 @@ public class Example5 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MatchXpath_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22matchxpath.match%22">
@@ -262,13 +262,13 @@ public class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MatchXpath_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MatchXpath_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

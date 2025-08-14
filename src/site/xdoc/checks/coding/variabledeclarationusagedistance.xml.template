@@ -8,14 +8,14 @@
   <body>
     <section name="VariableDeclarationUsageDistance">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="VariableDeclarationUsageDistance_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="VariableDeclarationUsageDistance_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">
         <p id="Example1-config">
             To configure the check with default config:
         </p>
@@ -128,7 +128,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="VariableDeclarationUsageDistance_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+VariableDeclarationUsageDistance">
@@ -141,7 +141,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="VariableDeclarationUsageDistance_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="VariableDeclarationUsageDistance"/>
         </macro>
@@ -152,13 +152,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="VariableDeclarationUsageDistance_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="VariableDeclarationUsageDistance_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="VariableDeclarationUsageDistance"/>
         </macro>

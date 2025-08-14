@@ -8,7 +8,7 @@
   <body>
     <section name="AvoidInlineConditionals">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AvoidInlineConditionals_Description">
         <div>
           Detects inline conditionals. Here is one example of an inline conditional:
         </div>
@@ -23,7 +23,7 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </p>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AvoidInlineConditionals_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -56,7 +56,7 @@ public class Example1 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AvoidInlineConditionals_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidInlineConditionals">
@@ -65,7 +65,7 @@ public class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AvoidInlineConditionals_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22inline.conditional.avoid%22">
@@ -80,13 +80,13 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AvoidInlineConditionals_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AvoidInlineConditionals_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
