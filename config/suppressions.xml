@@ -17,6 +17,9 @@
              files="TokenTypes.java|IndentationCheckTest.java|XdocsPagesTest|CheckerTest.java"
              lines="1"/>
 
+  <!-- 'format' property of 'IllegalTokenText' exceeds column limit -->
+  <suppress id="lineLengthXml" files="src[\\/]main[\\/]resources[\\/]google_checks.xml"/>
+
   <!-- illegal words are part of Javadoc -->
   <suppress checks="TodoComment" files=".*TodoCommentCheck\.java"/>
 
