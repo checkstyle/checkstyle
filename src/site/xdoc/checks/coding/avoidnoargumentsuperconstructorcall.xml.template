@@ -8,14 +8,14 @@
   <body>
     <section name="AvoidNoArgumentSuperConstructorCall">
       <p>Since Checkstyle 8.29</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AvoidNoArgumentSuperConstructorCall_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AvoidNoArgumentSuperConstructorCall_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -34,7 +34,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AvoidNoArgumentSuperConstructorCall_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
@@ -43,7 +43,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AvoidNoArgumentSuperConstructorCall_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="AvoidNoArgumentSuperConstructorCall"/>
         </macro>
@@ -54,13 +54,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AvoidNoArgumentSuperConstructorCall_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AvoidNoArgumentSuperConstructorCall_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="AvoidNoArgumentSuperConstructorCall"/>
         </macro>
