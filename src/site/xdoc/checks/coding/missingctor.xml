@@ -8,14 +8,14 @@
   <body>
     <section name="MissingCtor">
       <p>Since Checkstyle 3.4</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MissingCtor_Description">
         <div>
           Checks that classes (except abstract ones) define a constructor and don't rely
           on the default one.
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MissingCtor_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -49,7 +49,7 @@ abstract class AbstractExample {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingCtor">
@@ -58,7 +58,7 @@ abstract class AbstractExample {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MissingCtor_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22missing.ctor%22">
@@ -73,13 +73,13 @@ abstract class AbstractExample {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MissingCtor_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MissingCtor_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

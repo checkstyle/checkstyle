@@ -8,7 +8,7 @@
   <body>
     <section name="UnusedLambdaParameterShouldBeUnnamed">
       <p>Since Checkstyle 10.18.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="UnusedLambdaParameterShouldBeUnnamed_Description">
         <div>
           Ensures that lambda parameters that are not used are declared as an unnamed variable.
         </div>
@@ -37,7 +37,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="UnusedLambdaParameterShouldBeUnnamed_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -70,7 +70,8 @@ public class Example1 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage"
+            id="UnusedLambdaParameterShouldBeUnnamed_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnusedLambdaParameterShouldBeUnnamed">
@@ -79,7 +80,8 @@ public class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages"
+            id="UnusedLambdaParameterShouldBeUnnamed_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unused.lambda.parameter%22">
@@ -94,13 +96,13 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="UnusedLambdaParameterShouldBeUnnamed_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="UnusedLambdaParameterShouldBeUnnamed_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

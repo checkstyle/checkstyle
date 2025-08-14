@@ -8,7 +8,7 @@
   <body>
     <section name="EqualsHashCode">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="EqualsHashCode_Description">
         <div>
           Checks that classes that either override <code>equals()</code> or <code>hashCode()</code> also
           overrides the other.
@@ -25,7 +25,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="EqualsHashCode_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -83,7 +83,7 @@ class ExampleNoValidEquals {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="EqualsHashCode_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EqualsHashCode">
@@ -96,7 +96,7 @@ class ExampleNoValidEquals {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="EqualsHashCode_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22equals.noEquals%22">
@@ -116,13 +116,13 @@ class ExampleNoValidEquals {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="EqualsHashCode_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="EqualsHashCode_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

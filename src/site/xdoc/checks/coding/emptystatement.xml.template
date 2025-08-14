@@ -8,14 +8,14 @@
   <body>
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="EmptyStatement_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EmptyStatementCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="EmptyStatement_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -34,7 +34,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="EmptyStatement_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
@@ -47,7 +47,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="EmptyStatement_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="EmptyStatement"/>
         </macro>
@@ -58,13 +58,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="EmptyStatement_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="EmptyStatement_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="EmptyStatement"/>
         </macro>

@@ -8,14 +8,14 @@
   <body>
     <section name="CovariantEquals">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="CovariantEquals_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="CovariantEquals_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -43,7 +43,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="CovariantEquals_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+CovariantEquals">
@@ -52,7 +52,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="CovariantEquals_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="CovariantEquals"/>
         </macro>
@@ -63,13 +63,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="CovariantEquals_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="CovariantEquals_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="CovariantEquals"/>
         </macro>
