@@ -8,7 +8,7 @@
   <body>
     <section name="IllegalType">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="IllegalType_Description">
         <div>
           Checks that particular classes or interfaces are never used.
         </div>
@@ -26,7 +26,7 @@
         </p>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="IllegalType_Notes">
         <p>
           It is possible to set illegal class names via short or
           <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-6.html#jls-6.7">canonical</a>
@@ -62,7 +62,7 @@ List list; //No violation here
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="IllegalType_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -177,7 +177,7 @@ List list; //No violation here
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="IllegalType_Examples">
         <p id="Example1-config">
             To configure the default check:
         </p>
@@ -771,7 +771,7 @@ public class Example8 extends TreeSet {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="IllegalType_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalType">
@@ -780,7 +780,7 @@ public class Example8 extends TreeSet {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="IllegalType_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.type%22">
@@ -795,13 +795,13 @@ public class Example8 extends TreeSet {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="IllegalType_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="IllegalType_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

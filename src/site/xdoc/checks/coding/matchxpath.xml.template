@@ -8,14 +8,14 @@
   <body>
     <section name="MatchXpath">
       <p>Since Checkstyle 8.39</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MatchXpath_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MatchXpath_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MatchXpath_Examples">
         <p>
           Checkstyle provides <a href="https://checkstyle.org/cmdline.html">command line tool</a>
           and <a href="https://checkstyle.org/writingchecks.html#The_Checkstyle_SDK_Gui">GUI
@@ -141,7 +141,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MatchXpath_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
@@ -154,7 +154,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MatchXpath_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="MatchXpath"/>
         </macro>
@@ -165,13 +165,13 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MatchXpath_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MatchXpath_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MatchXpath"/>
         </macro>
