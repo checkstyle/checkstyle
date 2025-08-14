@@ -1880,6 +1880,15 @@
                   <a href="checks/naming/typename.html#TypeName">TypeName</a>
                   ()<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
                   config</a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool and cannot determine whether a
+                  name is a noun, an adjective, or any other grammatical category.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames">
@@ -1907,6 +1916,15 @@
                   <a href="checks/naming/methodname.html#MethodName">MethodName</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
                   config</a>)
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  Checkstyle is a Static analysis tool and cannot determine whether a
+                  name is a noun, an adjective, or any other grammatical category.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule523methodnames">
