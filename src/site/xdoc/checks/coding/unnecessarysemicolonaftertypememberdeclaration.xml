@@ -8,12 +8,13 @@
   <body>
     <section name="UnnecessarySemicolonAfterTypeMemberDeclaration">
       <p>Since Checkstyle 8.24</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description"
+            id="UnnecessarySemicolonAfterTypeMemberDeclaration_Description">
         <div>
           Checks if unnecessary semicolon is used after type member declaration.
         </div>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Notes">
         <p>
           This check is not applicable to empty statements (unnecessary semicolons inside methods or
           init blocks),
@@ -21,7 +22,7 @@
           is responsible for it.
         </p>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -98,7 +99,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -138,7 +139,7 @@ class Example1 {
       </subsection>
 
       <subsection name="Example of Usage"
-        id="Example_of_Usage">
+        id="UnnecessarySemicolonAfterTypeMemberDeclaration_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterTypeMemberDeclaration">
@@ -147,7 +148,8 @@ class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages"
+            id="UnnecessarySemicolonAfterTypeMemberDeclaration_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
@@ -162,13 +164,14 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module"
+            id="UnnecessarySemicolonAfterTypeMemberDeclaration_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

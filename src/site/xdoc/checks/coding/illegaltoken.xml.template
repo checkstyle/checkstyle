@@ -8,14 +8,14 @@
   <body>
     <section name="IllegalToken">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="IllegalToken_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="IllegalToken_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="IllegalToken_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -55,7 +55,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="IllegalToken_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalToken">
@@ -64,7 +64,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="IllegalToken_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="IllegalToken"/>
         </macro>
@@ -75,13 +75,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="IllegalToken_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="IllegalToken_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="IllegalToken"/>
         </macro>

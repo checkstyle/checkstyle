@@ -8,14 +8,14 @@
   <body>
     <section name="EmptyStatement">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="EmptyStatement_Description">
         <div>
           Detects empty statements (standalone <code>";"</code> semicolon).
           Empty statements often introduce bugs that are hard to spot
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="EmptyStatement_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -44,7 +44,7 @@ public class Example1 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="EmptyStatement_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyStatement">
@@ -57,7 +57,7 @@ public class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="EmptyStatement_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.statement%22">
@@ -72,13 +72,13 @@ public class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="EmptyStatement_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="EmptyStatement_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

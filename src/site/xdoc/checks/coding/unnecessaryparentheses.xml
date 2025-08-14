@@ -8,7 +8,7 @@
   <body>
     <section name="UnnecessaryParentheses">
       <p>Since Checkstyle 3.4</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="UnnecessaryParentheses_Description">
         <div>
           Checks if unnecessary parentheses are used in a statement or expression.
           The check will flag the following with warnings:
@@ -26,7 +26,7 @@ boolean b = (~a) &gt; -27            // parens around ~a
         </code></pre></div>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="UnnecessaryParentheses_Notes">
         <p>
           The check is not "type aware", that is to say, it can't tell if parentheses
           are unnecessary based on the types in an expression. The check is partially aware about
@@ -77,7 +77,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </code></pre></div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="UnnecessaryParentheses_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -274,7 +274,7 @@ if ((++f) &gt; g &amp;&amp; a) { // violation, unnecessary paren
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="UnnecessaryParentheses_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -409,7 +409,7 @@ class Example3 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="UnnecessaryParentheses_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessaryParentheses">
@@ -418,7 +418,7 @@ class Example3 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="UnnecessaryParentheses_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.paren.assign%22">
@@ -463,13 +463,13 @@ class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="UnnecessaryParentheses_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.coding
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="UnnecessaryParentheses_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
