@@ -39,7 +39,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckExamplesTest
             "28:53: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "y"),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example1.java"),
+                getPath("Example1.java"),
                 expected);
     }
 }
