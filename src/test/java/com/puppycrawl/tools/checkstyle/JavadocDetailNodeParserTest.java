@@ -25,12 +25,10 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
-@Disabled
 public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
 
     @Override
@@ -45,7 +43,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
             JavaParser.Options.WITH_COMMENTS)
                 .getFirstChild().getNextSibling().getFirstChild().getFirstChild();
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
-        final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocAsDetailNode(ast);
+        final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocComment(ast);
         final String actual = toLfLineEnding(DetailNodeTreeStringPrinter.printTree(status.getTree(),
                 "", ""));
         final String expected = toLfLineEnding(Files.readString(Path.of(
