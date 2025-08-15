@@ -97,45 +97,45 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testSwitchOnTheStartOfTheLine() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputSwitchOnStartOfTheLine.java"));
+        verifyWithWholeConfig(getPath("InputSwitchOnStartOfTheLine.java"));
     }
 
     @Test
     public void testFormattedSwitchOnTheStartOfTheLine() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedSwitchOnStartOfTheLine.java"));
+        verifyWithWholeConfig(getPath("InputFormattedSwitchOnStartOfTheLine.java"));
     }
 
     @Test
     public void testSingleSwitchStatementWithoutCurly() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputSingleSwitchStatementWithoutCurly.java"));
+        verifyWithWholeConfig(getPath("InputSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
     public void testFormattedSingleSwitchStatementWithoutCurly() throws Exception {
         verifyWithWholeConfig(
-            getNonCompilablePath("InputFormattedSingleSwitchStatementWithoutCurly.java"));
+            getPath("InputFormattedSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
     public void testSwitchWrappingIndentation() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputSwitchWrappingIndentation.java"));
+        verifyWithWholeConfig(getPath("InputSwitchWrappingIndentation.java"));
     }
 
     @Test
     public void testFormattedSwitchWrappingIndentation() throws Exception {
         verifyWithWholeConfig(
-            getNonCompilablePath("InputFormattedSwitchWrappingIndentation.java"));
+            getPath("InputFormattedSwitchWrappingIndentation.java"));
     }
 
     @Test
     public void testMultilineParameters() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputCatchParametersOnNewLine.java"));
+        verifyWithWholeConfig(getPath("InputCatchParametersOnNewLine.java"));
     }
 
     @Test
     public void testFormattedMultilineParameters() throws Exception {
         verifyWithWholeConfig(
-            getNonCompilablePath("InputFormattedCatchParametersOnNewLine.java"));
+            getPath("InputFormattedCatchParametersOnNewLine.java"));
     }
 
     @Test
@@ -150,23 +150,23 @@ public class IndentationTest extends AbstractIndentationTestSupport {
 
     @Test
     public void testLambdaChild() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputLambdaChild.java"));
+        verifyWithWholeConfig(getPath("InputLambdaChild.java"));
     }
 
     @Test
     public void testFormattedLambdaChild() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedLambdaChild.java"));
+        verifyWithWholeConfig(getPath("InputFormattedLambdaChild.java"));
     }
 
     @Test
     public void testLambdaAndChildOnTheSameLine() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputLambdaAndChildOnTheSameLine.java"));
+        verifyWithWholeConfig(getPath("InputLambdaAndChildOnTheSameLine.java"));
     }
 
     @Test
     public void testFormattedLambdaAndChildOnTheSameLine() throws Exception {
         verifyWithWholeConfig(
-            getNonCompilablePath("InputFormattedLambdaAndChildOnTheSameLine.java"));
+            getPath("InputFormattedLambdaAndChildOnTheSameLine.java"));
     }
 
     @Test
