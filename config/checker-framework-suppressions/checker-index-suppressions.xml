@@ -947,6 +947,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/TextBlockGoogleStyleFormattingCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter index of String.charAt.</message>
+    <lineContent>while (Character.isWhitespace(line.charAt(index))) {</lineContent>
+    <details>
+      found   : int
+      required: @LTLengthOf(&quot;line&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InnerTypeLastCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter bitIndex of BitSet.get.</message>
