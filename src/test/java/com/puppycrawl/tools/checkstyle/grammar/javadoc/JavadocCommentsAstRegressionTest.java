@@ -173,6 +173,12 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testSnippetAttributeInline2() throws Exception {
+        verifyJavadocTree(getInlineTagsPath("ExpectedSnippetAttributeInlineTag2.txt"),
+                getInlineTagsPath("InputSnippetAttributeInlineTag2.javadoc"));
+    }
+
+    @Test
     public void testHtmlElements() throws Exception {
         verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlElements.txt"),
                 getHTMLTagsPath("InputHtmlElements.javadoc"));
