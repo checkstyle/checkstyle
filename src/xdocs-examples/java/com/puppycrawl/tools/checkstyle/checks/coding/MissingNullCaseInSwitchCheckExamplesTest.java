@@ -38,6 +38,6 @@ public class MissingNullCaseInSwitchCheckExamplesTest extends
             "18:5: " + getCheckMessage(MSG_KEY),
             "30:5: " + getCheckMessage(MSG_KEY),
         };
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 }

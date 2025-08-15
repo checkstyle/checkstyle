@@ -83,7 +83,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
           <param name="type" value="config"/>
         </macro>
         <p id="Example4-code">
@@ -91,7 +91,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/finalparameters/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>

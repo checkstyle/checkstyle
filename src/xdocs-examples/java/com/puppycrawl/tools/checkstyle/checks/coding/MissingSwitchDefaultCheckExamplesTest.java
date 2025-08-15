@@ -44,13 +44,13 @@ public class MissingSwitchDefaultCheckExamplesTest extends AbstractExamplesModul
     public void testExample2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example2.java"), expected);
+                getPath("Example2.java"), expected);
     }
 
     @Test
     public void testExample3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getNonCompilablePath("Example3.java"), expected);
+                getPath("Example3.java"), expected);
     }
 }
