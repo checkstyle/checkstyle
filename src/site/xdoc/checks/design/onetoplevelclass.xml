@@ -8,7 +8,7 @@
   <body>
     <section name="OneTopLevelClass">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="OneTopLevelClass_Description">
         <div>
           Checks that each top-level class, interface, enum
           or annotation resides in a source file of its own.
@@ -19,7 +19,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="OneTopLevelClass_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -68,7 +68,7 @@ public class Example3 { // OK, only one top-level class
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="OneTopLevelClass_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneTopLevelClass">
@@ -81,7 +81,7 @@ public class Example3 { // OK, only one top-level class
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="OneTopLevelClass_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22one.top.level.class%22">
@@ -96,13 +96,13 @@ public class Example3 { // OK, only one top-level class
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="OneTopLevelClass_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="OneTopLevelClass_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

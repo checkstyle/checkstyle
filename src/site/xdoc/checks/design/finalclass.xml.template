@@ -8,14 +8,14 @@
   <body>
     <section name="FinalClass">
       <p>Since Checkstyle 3.1</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="FinalClass_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="FinalClass_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -32,7 +32,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FinalClass">
@@ -45,7 +45,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="FinalClass"/>
         </macro>
@@ -56,13 +56,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="FinalClass_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="FinalClass_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="FinalClass"/>
         </macro>

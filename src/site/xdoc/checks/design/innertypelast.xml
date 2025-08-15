@@ -8,7 +8,7 @@
   <body>
     <section name="InnerTypeLast">
       <p>Since Checkstyle 5.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="InnerTypeLast_Description">
         <div>
           Checks nested (internal) classes/interfaces are declared at the bottom of the
           primary (top-level) class after all init and static init blocks,
@@ -16,7 +16,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="InnerTypeLast_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -49,7 +49,7 @@ class Example1 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="InnerTypeLast_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InnerTypeLast">
@@ -58,7 +58,7 @@ class Example1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="InnerTypeLast_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22arrangement.members.before.inner%22">
@@ -73,13 +73,13 @@ class Example1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="InnerTypeLast_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="InnerTypeLast_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

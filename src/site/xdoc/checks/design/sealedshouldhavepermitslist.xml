@@ -8,7 +8,7 @@
   <body>
     <section name="SealedShouldHavePermitsList">
       <p>Since Checkstyle 10.18.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SealedShouldHavePermitsList_Description">
         <div>
           Checks that sealed classes and interfaces have a permits list.
         </div>
@@ -29,7 +29,7 @@
         </p>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SealedShouldHavePermitsList_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -65,7 +65,7 @@ class CorrectedExample1 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SealedShouldHavePermitsList_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SealedShouldHavePermitsList">
@@ -74,7 +74,7 @@ class CorrectedExample1 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="SealedShouldHavePermitsList_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fdesign%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22sealed.should.have.permits%22">
@@ -89,13 +89,13 @@ class CorrectedExample1 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SealedShouldHavePermitsList_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.design
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SealedShouldHavePermitsList_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
