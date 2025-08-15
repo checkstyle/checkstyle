@@ -318,7 +318,6 @@ Link_NEWLINE: NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES);
 Link_LEADING_ASTERISK: [ \t]* '*' -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK);
 STRING_LITERAL: '"' .*? '"' {inSeeReferencePart = false;} -> mode(DEFAULT_MODE);
 See_TAG_OPEN:'<' {_input.seek(_input.index() - 1); inSeeReferencePart = false;} -> skip, mode(DEFAULT_MODE);
-
 fragment LetterOrDigit: Letter | [0-9];
 fragment Letter: [a-zA-Z$_];
 

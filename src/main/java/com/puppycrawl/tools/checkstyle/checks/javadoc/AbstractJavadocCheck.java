@@ -52,22 +52,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public abstract class AbstractJavadocCheck extends AbstractCheck {
 
     /**
-     * Message key of error message. Missed close HTML tag breaks structure
-     * of parse tree, so parser stops parsing and generates such error
-     * message. This case is special because parser prints error like
-     * {@code "no viable alternative at input 'b \n *\n'"} and it is not
-     * clear that error is about missed close HTML tag.
-     */
-    public static final String MSG_JAVADOC_MISSED_HTML_CLOSE =
-            JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
-
-    /**
-     * Message key of error message.
-     */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
-            JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-
-    /**
      * Parse error while rule recognition.
      */
     public static final String MSG_JAVADOC_PARSE_RULE_ERROR =

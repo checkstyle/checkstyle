@@ -333,7 +333,7 @@ public class ParseTreeTablePresentation {
      * @return root of DetailNode tree
      */
     private static DetailNode parseJavadocTree(DetailAST blockComment) {
-        return new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment).getTree();
+        return new JavadocDetailNodeParser().parseJavadocComment(blockComment).getTree();
     }
 
 }
