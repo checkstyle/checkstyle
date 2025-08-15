@@ -47,6 +47,6 @@ public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testRecordDefault() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputRecordTypeParameterName.java"));
+        verifyWithWholeConfig(getPath("InputRecordTypeParameterNameOne.java"));
     }
 }

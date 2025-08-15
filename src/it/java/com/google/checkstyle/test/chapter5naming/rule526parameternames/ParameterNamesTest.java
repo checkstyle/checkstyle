@@ -42,12 +42,12 @@ public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testRecordParameterName() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputRecordComponentName.java"));
+        verifyWithWholeConfig(getPath("InputRecordComponentNameTwo.java"));
     }
 
     @Test
     public void testFormattedRecordParameterName() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedRecordComponentName.java"));
+        verifyWithWholeConfig(getPath("InputFormattedRecordComponentNameTwo.java"));
     }
 
     @Test
