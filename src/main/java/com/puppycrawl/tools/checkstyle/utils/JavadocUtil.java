@@ -77,7 +77,7 @@ public final class JavadocUtil {
 
     // initialise the constants
     static {
-        TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
+        TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
         TOKEN_VALUE_TO_NAME = TokenUtil.invertMap(TOKEN_NAME_TO_VALUE);
     }
 
@@ -305,19 +305,6 @@ public final class JavadocUtil {
             throw new IllegalArgumentException("Unknown javadoc token name. Given name " + name);
         }
         return id;
-    }
-
-    public static String getJavadocTokenName(int tokenType) {
-        final Map<String, Integer> tokenNameToValue;
-        final Map<Integer, String> tokenValueToName;
-        tokenNameToValue = TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
-        tokenValueToName = TokenUtil.invertMap(tokenNameToValue);
-
-        final String name = tokenValueToName.get(tokenType);
-        if (name == null) {
-            throw new IllegalArgumentException("Unknown javadoc token id. Given id: " + tokenType);
-        }
-        return name;
     }
 
     /**

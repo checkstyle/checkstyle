@@ -571,7 +571,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     private JavadocNodeImpl createImaginary(int tokenType) {
         final JavadocNodeImpl node = new JavadocNodeImpl();
         node.setType(tokenType);
-        node.setText(JavadocUtil.getJavadocTokenName(tokenType));
+        node.setText(JavadocUtil.getTokenName(tokenType));
 
         if (tokenType == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
             node.setLineNumber(blockCommentLineNumber);
