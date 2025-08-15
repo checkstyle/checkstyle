@@ -680,4 +680,22 @@ public class WhitespaceAroundCheckTest
                 getPath(fileName),
                 expected);
     }
+
+    @Test
+    public void testWhitespaceAroundLeftCurlyOfEmptyMethodBlock() throws Exception {
+        final String fileName = "InputWhitespaceAroundLeftCurlyOfEmptyMethodBlock.java";
+
+        final String[] expected = {
+            "31:55: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "34:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "34:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "43:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "43:10: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "48:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "51:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "54:49: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "57:77: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(getPath(fileName), expected);
+    }
 }
