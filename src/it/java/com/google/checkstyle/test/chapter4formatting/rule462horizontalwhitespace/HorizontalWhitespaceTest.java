@@ -172,7 +172,7 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundWhen() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputWhitespaceAroundWhen.java"));
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundWhen.java"));
     }
 
     @Test
@@ -187,17 +187,17 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testWhitespaceAroundWhenFormatted() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundWhen.java"));
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundWhen.java"));
     }
 
     @Test
     public void testWhitespaceAroundArrow() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputWhitespaceAroundArrow.java"));
+        verifyWithWholeConfig(getPath("InputWhitespaceAroundArrow.java"));
     }
 
     @Test
     public void testFormattedWhitespaceAroundArrow() throws Exception {
-        verifyWithWholeConfig(getNonCompilablePath("InputFormattedWhitespaceAroundArrow.java"));
+        verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundArrow.java"));
     }
 
     @Test
