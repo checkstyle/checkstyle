@@ -10,6 +10,7 @@ public class InputFormattedCatchParametersOnNewLine {
     try {
       System.out.println("try0");
     } catch (NullPointerException | IllegalArgumentException expected) {
+      // ignore
     }
   }
 
@@ -45,6 +46,7 @@ public class InputFormattedCatchParametersOnNewLine {
     try {
       System.out.println("try");
     } catch (NullPointerException | IllegalArgumentException expected) {
+      // ignore
     }
   }
 

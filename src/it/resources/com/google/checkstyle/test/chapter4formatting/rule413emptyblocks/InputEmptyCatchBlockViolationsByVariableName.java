@@ -8,7 +8,7 @@ public class InputEmptyCatchBlockViolationsByVariableName {
     try {
       throw new RuntimeException();
     } catch (Exception expected) {
-
+      // ignore
     }
   }
 
@@ -23,7 +23,7 @@ public class InputEmptyCatchBlockViolationsByVariableName {
     try {
       throw new IOException();
     } catch (IOException | NullPointerException | ArithmeticException expected) {
-    }
+    } // violation above 'Empty catch block.'
   }
 
   private void foo3() { // comment
@@ -37,6 +37,7 @@ public class InputEmptyCatchBlockViolationsByVariableName {
     try {
       throw new IOException();
     } catch (IOException | NullPointerException | ArithmeticException expected) {
+      // ignore
     }
   }
 

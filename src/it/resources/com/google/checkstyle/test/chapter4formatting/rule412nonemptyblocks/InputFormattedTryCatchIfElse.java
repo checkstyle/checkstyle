@@ -35,18 +35,22 @@ public class InputFormattedTryCatchIfElse {
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
+      // ignore
     }
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
+      // ignore
     }
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
+      // ignore
     }
 
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
+      // ignore
     }
 
     try (MyResource r = new MyResource()) {

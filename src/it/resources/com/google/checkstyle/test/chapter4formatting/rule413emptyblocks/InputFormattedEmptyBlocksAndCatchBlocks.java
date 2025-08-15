@@ -52,18 +52,16 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
     try (MyResource r = new MyResource()) {}
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
-    }
+    } // violation above 'Empty catch block.'
     try (MyResource r = new MyResource()) {
     } catch (Exception expected) {
-    }
+    } // violation above 'Empty catch block.'
     try (MyResource r = new MyResource()) {
-
     } catch (Exception expected) {
-    }
+    } // violation above 'Empty catch block.'
     try (MyResource r = new MyResource()) {
-
     } catch (Exception expected) {
-    }
+    } // violation above 'Empty catch block.'
     try (MyResource r = new MyResource()) {
       ;
     }
