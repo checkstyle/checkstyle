@@ -37,7 +37,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example2.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example2.java"/>
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
         <p id="Example3-code">
@@ -45,7 +45,7 @@
         </p>
         <macro name="example">
           <param name="path"
-                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example3.java"/>
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/missingswitchdefault/Example3.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
