@@ -77,15 +77,15 @@ returnTag
     ;
 
 parameterTag
-    : AT_SIGN tagName=PARAM paramName=PARAMETER_NAME description?
+    : AT_SIGN tagName=PARAM paramName=PARAMETER_NAME? description?
     ;
 
 throwsTag
-    : AT_SIGN tagName=THROWS exceptionName=qualifiedName description?
+    : AT_SIGN tagName=THROWS exceptionName=qualifiedName? description?
     ;
 
 exceptionTag
-    : AT_SIGN tagName=EXCEPTION exceptionName=qualifiedName description?
+    : AT_SIGN tagName=EXCEPTION exceptionName=qualifiedName? description?
     ;
 
 sinceTag
