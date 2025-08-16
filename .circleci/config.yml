@@ -33,7 +33,7 @@ jobs:
     parameters: &script_parameters
       image-name:
         type: string
-        default: "cimg/openjdk:17.0.7"
+        default: "cimg/openjdk:21.0.6"
         description: "docker image to use"
       command:
         description: "command to run"
@@ -78,7 +78,7 @@ jobs:
             << parameters.command >>
   sonarqube:
     docker:
-      - image: amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest
+      - image: amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
 
     steps:
       - checkout
@@ -117,7 +117,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &cs_img "amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest"
+          image-name: &cs_img "amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
@@ -217,7 +217,7 @@ workflows:
           command: "./.ci/validation.sh assembly-run-all-jar"
       - validate-with-maven-script:
           name: "no-error-test-sbe"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/validation.sh no-error-test-sbe"
       - validate-with-maven-script:
           name: "no-error-spotbugs"
@@ -229,15 +229,15 @@ workflows:
           command: "./.ci/validation.sh no-error-pgjdbc"
       - validate-with-maven-script:
           name: "linkcheck-plugin"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/no-exception-test.sh no-exception-samples-maven"
 
       - validate-with-maven-script:
@@ -313,6 +313,6 @@ workflows:
   site-validation:
     jobs:
       - validate-with-maven-script:
-          name: "jdk17-package-site"
+          name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
