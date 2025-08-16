@@ -3858,7 +3858,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "2");
         checkConfig.addProperty("lineWrappingIndentation", "4");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationLambdaAndChildOnTheSameLine.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, fileName, expected);
@@ -3875,7 +3875,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("throwsIndent", "8");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationPatternMatchingForSwitch.java");
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_CHILD_ERROR, "case", 12, 16),
@@ -3928,7 +3928,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("throwsIndent", "8");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationRecordPattern.java");
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_ERROR, "ColoredPoint", 16, 12),
@@ -4026,7 +4026,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("caseIndent", "4");
         checkConfig.addProperty("throwsIndent", "8");
 
-        final String fileName = getNonCompilablePath(
+        final String fileName = getPath(
                 "InputIndentationSealedClasses.java");
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_ERROR, "class def modifier", 0, 4),
