@@ -78,7 +78,7 @@ jobs:
             << parameters.command >>
   sonarqube:
     docker:
-      - image: amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest
+      - image: amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
 
     steps:
       - checkout
@@ -117,7 +117,7 @@ workflows:
       # no-exception-test script
       - validate-with-maven-script:
           name: "no-exception-lucene-and-others-javadoc"
-          image-name: &cs_img "amitkumardeoghoria/jdk-17-groovy-git-mvn-latest:latest"
+          image-name: &cs_img "amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1"
           command: "./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
       - validate-with-maven-script:
           name: "no-exception-cassandra-storm-tapestry-javadoc"
