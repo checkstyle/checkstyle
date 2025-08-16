@@ -159,6 +159,11 @@ public class JavadocNodeImpl implements DetailNode {
     }
 
     @Override
+    public DetailNode getPreviousSibling() {
+        return previousSibling;
+    }
+
+    @Override
     public JavadocNodeImpl getFirstChild() {
         return firstChild;
     }
