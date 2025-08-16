@@ -8,14 +8,14 @@
   <body>
     <section name="MissingJavadocMethod">
       <p>Since Checkstyle 8.21</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MissingJavadocMethod_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MissingJavadocMethod_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MissingJavadocMethod_Examples">
         <p id="Example1-config">
           To configure the default check:
         </p>
@@ -115,7 +115,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MissingJavadocMethod_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocMethod">
@@ -132,7 +132,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MissingJavadocMethod_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="MissingJavadocMethod"/>
         </macro>
@@ -143,13 +143,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MissingJavadocMethod_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MissingJavadocMethod_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MissingJavadocMethod"/>
         </macro>

@@ -8,14 +8,14 @@
   <body>
     <section name="RequireEmptyLineBeforeBlockTagGroup">
       <p>Since Checkstyle 8.36</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RequireEmptyLineBeforeBlockTagGroup_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/RequireEmptyLineBeforeBlockTagGroupCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="RequireEmptyLineBeforeBlockTagGroup_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RequireEmptyLineBeforeBlockTagGroup_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -44,7 +44,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RequireEmptyLineBeforeBlockTagGroup_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
@@ -57,7 +57,8 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages"
+            id="RequireEmptyLineBeforeBlockTagGroup_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="RequireEmptyLineBeforeBlockTagGroup"/>
         </macro>
@@ -68,13 +69,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RequireEmptyLineBeforeBlockTagGroup_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RequireEmptyLineBeforeBlockTagGroup_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="RequireEmptyLineBeforeBlockTagGroup"/>
         </macro>
