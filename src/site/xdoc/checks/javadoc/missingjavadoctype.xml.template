@@ -8,14 +8,14 @@
   <body>
     <section name="MissingJavadocType">
       <p>Since Checkstyle 8.20</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MissingJavadocType_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MissingJavadocType_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MissingJavadocType_Examples">
         <p id="Example1-config">
           To configure the default check to make sure all public class, enum, interface, and
           annotation interface, definitions have javadocs:
@@ -104,7 +104,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MissingJavadocType_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingJavadocType">
@@ -117,7 +117,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MissingJavadocType_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="MissingJavadocType"/>
         </macro>
@@ -128,13 +128,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MissingJavadocType_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MissingJavadocType_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="MissingJavadocType"/>
         </macro>

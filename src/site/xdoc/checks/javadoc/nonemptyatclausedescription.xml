@@ -8,13 +8,13 @@
   <body>
     <section name="NonEmptyAtclauseDescription">
       <p>Since Checkstyle 6.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
         <div>
           Checks that the block tag is followed by description.
         </div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="NonEmptyAtclauseDescription_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -67,7 +67,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p id="Example1-config">
           To configure the default check that will check <code>@param</code>,
           <code>@deprecated</code>,<code>@throws</code>,<code>@return</code>:
@@ -140,7 +140,7 @@ class Example2 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="NonEmptyAtclauseDescription_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NonEmptyAtclauseDescription">
@@ -153,7 +153,7 @@ class Example2 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="NonEmptyAtclauseDescription_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -188,13 +188,13 @@ class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="NonEmptyAtclauseDescription_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="NonEmptyAtclauseDescription_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
