@@ -25,13 +25,11 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.io.File;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-@Disabled
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
@@ -90,7 +88,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            9, "no viable alternative at input '<<'", "HTML_ELEMENT"));
+                            8, "no viable alternative at input 'see <'", "SEE_TAG"));
             assertWithMessage("Generated and expected parse error messages don't match")
                 .that(exc.getMessage())
                 .isEqualTo(expected);
@@ -109,7 +107,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                     "getParseErrorMessage",
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
-                            4, "no viable alternative at input '</tag'", "HTML_ELEMENT"));
+                            3, "no viable alternative at input '</'", "HTML_ELEMENT"));
             assertWithMessage("Generated and expected parse error messages don't match")
                 .that(exc.getMessage())
                 .isEqualTo(expected);
