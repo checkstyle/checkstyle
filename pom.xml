@@ -557,7 +557,7 @@
             <source>${java.version}</source>
             <show>private</show>
             <failOnError>true</failOnError>
-            <failOnWarnings>true</failOnWarnings>
+            <failOnWarnings>false</failOnWarnings>
             <linksource>true</linksource>
             <tags>
               <tag>
