@@ -8,7 +8,7 @@
   <body>
     <section name="JavadocParagraph">
       <p>Since Checkstyle 6.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="JavadocParagraph_Description">
         <div>
           Checks the Javadoc paragraph.
         </div>
@@ -39,7 +39,7 @@
           it will not give any kind of violation if the paragraph tag is nested.</p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="JavadocParagraph_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -68,7 +68,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="JavadocParagraph_Examples">
         <p id="Example1-config">
           To configure the default check:
         </p>
@@ -215,7 +215,7 @@ public class Example2 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="JavadocParagraph_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
@@ -228,7 +228,7 @@ public class Example2 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="JavadocParagraph_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -283,13 +283,13 @@ public class Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="JavadocParagraph_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="JavadocParagraph_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

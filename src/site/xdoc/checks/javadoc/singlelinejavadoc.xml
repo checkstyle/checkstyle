@@ -8,14 +8,14 @@
   <body>
     <section name="SingleLineJavadoc">
       <p>Since Checkstyle 6.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SingleLineJavadoc_Description">
         <div>
           Checks that a Javadoc block can fit in a single-line and doesn't contain block tags.
           Javadoc comment that contains at least one block tag should be formatted in a few lines.
         </div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SingleLineJavadoc_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -53,7 +53,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SingleLineJavadoc_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -250,7 +250,7 @@ public class Example4 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SingleLineJavadoc_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SingleLineJavadoc">
@@ -263,7 +263,7 @@ public class Example4 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="SingleLineJavadoc_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
@@ -298,13 +298,13 @@ public class Example4 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SingleLineJavadoc_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SingleLineJavadoc_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

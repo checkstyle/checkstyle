@@ -8,7 +8,7 @@
   <body>
     <section name="JavadocLeadingAsteriskAlign">
       <p>Since Checkstyle 10.18.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="JavadocLeadingAsteriskAlign_Description">
         <div>
           Checks the alignment of
           <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
@@ -27,7 +27,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="JavadocLeadingAsteriskAlign_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -49,7 +49,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="JavadocLeadingAsteriskAlign_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -196,7 +196,7 @@ public class Example3 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="JavadocLeadingAsteriskAlign_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
@@ -205,7 +205,7 @@ public class Example3 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="JavadocLeadingAsteriskAlign_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.asterisk.indentation%22">
@@ -240,13 +240,13 @@ public class Example3 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="JavadocLeadingAsteriskAlign_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.javadoc
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="JavadocLeadingAsteriskAlign_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
