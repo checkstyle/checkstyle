@@ -23,10 +23,10 @@ task:
       - .mvn/wrapper
   matrix:
     # add more JDK versions here
-    - name: Cirrus - JDK17
+    - name: Cirrus - JDK21
       env:
-        OPENJDK_VERSION: "17.0.0"
-        OPENJDK_PATH: "jdk-17"
+        OPENJDK_VERSION: "21.0.6"
+        OPENJDK_PATH: "jdk-21"
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
