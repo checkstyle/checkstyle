@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import javax.annotation.Nullable;
+
 /**
  * An interface of Checkstyle's AST nodes for traversing trees generated from the
  * Java code. The main purpose of this interface is to abstract away ANTLR
@@ -120,6 +122,7 @@ public interface DetailAST {
      * @param type the token type to match
      * @return the matching token, or null if no match
      */
+    @Nullable
     DetailAST findFirstToken(int type);
 
     /**
