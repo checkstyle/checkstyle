@@ -8,21 +8,21 @@
   <body>
     <section name="AvoidStaticImport">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="AvoidStaticImport_Description">
         <macro name="description">
           <param name="modulePath"
                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="AvoidStaticImport_Notes">
         <macro name="notes">
           <param name="modulePath"
                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="AvoidStaticImport_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -31,7 +31,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="AvoidStaticImport_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -67,7 +67,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="AvoidStaticImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidStaticImport">
@@ -76,7 +76,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="AvoidStaticImport_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="AvoidStaticImport"/>
         </macro>
@@ -87,11 +87,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="AvoidStaticImport_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.imports </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="AvoidStaticImport_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="AvoidStaticImport"/>
         </macro>

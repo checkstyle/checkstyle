@@ -8,7 +8,7 @@
   <body>
     <section name="RedundantImport">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RedundantImport_Description">
         <div>
           Checks for redundant import statements. An import statement is
           considered redundant if:
@@ -23,7 +23,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RedundantImport_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -51,7 +51,7 @@ public class Example1{ }
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RedundantImport">
@@ -64,7 +64,7 @@ public class Example1{ }
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="RedundantImport_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.duplicate%22">
@@ -89,13 +89,13 @@ public class Example1{ }
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RedundantImport_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.imports
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RedundantImport_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
