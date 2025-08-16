@@ -340,11 +340,12 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLastLine2() throws Exception {
         final String[] expected = {
-            "19:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
-            "22:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "24:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "31:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
+            "38:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputFallThrough5.java"),
+                getPath("InputFallThrough11.java"),
                 expected);
     }
 
