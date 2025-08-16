@@ -8,14 +8,14 @@
     <body>
         <section name="MultiFileRegexpHeader">
             <p>Since Checkstyle 10.24.0</p>
-            <subsection name="Description" id="Description">
+            <subsection name="Description" id="MultiFileRegexpHeader_Description">
                 <div>Checks the header of a source file against multiple header files that contain a
                     <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">pattern</a>
                     for each line of the source header.
                 </div>
             </subsection>
 
-            <subsection name="Properties" id="Properties">
+            <subsection name="Properties" id="MultiFileRegexpHeader_Properties">
                 <div class="wrapper">
                     <table>
                         <tr>
@@ -47,7 +47,7 @@ a preferred header for such reporting.</td>
                 </div>
             </subsection>
 
-            <subsection name="Examples" id="Examples">
+            <subsection name="Examples" id="MultiFileRegexpHeader_Examples">
                 <p id="Example1-config">
                     To configure the check such that no violations arise.
                     Default values of properties are used.
@@ -142,7 +142,7 @@ public class Example4 { }
 </code></pre></div>
             </subsection>
 
-            <subsection name="Example of Usage" id="Example_of_Usage">
+            <subsection name="Example of Usage" id="MultiFileRegexpHeader_Example_of_Usage">
                 <ul>
                     <li>
                         <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MultiFileRegexpHeader">
@@ -151,7 +151,7 @@ public class Example4 { }
                 </ul>
             </subsection>
 
-            <subsection name="Violation Messages" id="Violation_Messages">
+            <subsection name="Violation Messages" id="MultiFileRegexpHeader_Violation_Messages">
                 <ul>
                     <li>
                         <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fheader%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22multi.file.regexp.header.mismatch%22">
@@ -171,13 +171,13 @@ public class Example4 { }
                 </p>
             </subsection>
 
-            <subsection name="Package" id="Package">
+            <subsection name="Package" id="MultiFileRegexpHeader_Package">
                 <p>
                     com.puppycrawl.tools.checkstyle.checks.header
                 </p>
             </subsection>
 
-            <subsection name="Parent Module" id="Parent_Module">
+            <subsection name="Parent Module" id="MultiFileRegexpHeader_Parent_Module">
                 <p>
                     <a href="../../config.html#Checker">Checker</a>
                 </p>
