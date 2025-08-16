@@ -27,21 +27,21 @@ environment:
     # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
     MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
   matrix:
-    # sevntu (JDK17)
-    - JAVA_HOME: C:\Program Files\Java\JDK17
-      DESC: "sevntu (JDK17)"
+    # sevntu (JDK21)
+    - JAVA_HOME: C:\Program Files\Java\JDK21
+      DESC: "sevntu (JDK21)"
       CMD: "./.ci/validation.cmd sevntu"
-    # run checkstyle (JDK17)
-    - JAVA_HOME: C:\Program Files\Java\JDK17
-      DESC: "run checkstyle (JDK17)"
+    # run checkstyle (JDK21)
+    - JAVA_HOME: C:\Program Files\Java\JDK21
+      DESC: "run checkstyle (JDK21)"
       CMD: "./.ci/validation.cmd run_checkstyle"
-    # verify without checkstyle (JDK17)
-    - JAVA_HOME: C:\Program Files\Java\JDK17
-      DESC: "verify without checkstyle (JDK17)"
+    # verify without checkstyle (JDK21)
+    - JAVA_HOME: C:\Program Files\Java\JDK21
+      DESC: "verify without checkstyle (JDK21)"
       CMD: "./.ci/validation.cmd verify_without_checkstyle"
-    # site, without verify (JDK17)
-    - JAVA_HOME: C:\Program Files\Java\JDK17
-      DESC: "site, without verify (JDK17)"
+    # site, without verify (JDK21)
+    - JAVA_HOME: C:\Program Files\Java\JDK21
+      DESC: "site, without verify (JDK21)"
       CMD: "./.ci/validation.cmd site_without_verify"
 
 build_script:
