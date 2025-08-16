@@ -25,7 +25,8 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -52,9 +53,9 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * </pre>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_1 = Arrays.asList(
-            JavadocTokenTypes.WS,
-            JavadocTokenTypes.LEADING_ASTERISK,
-            JavadocTokenTypes.NEWLINE);
+            JavadocCommentsTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.NEWLINE);
 
     /**
      * Case when no space separates the tag and the asterisk like in the below example.
@@ -64,8 +65,8 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * </pre>
      */
     private static final List<Integer> ONLY_TAG_VARIATION_2 = Arrays.asList(
-            JavadocTokenTypes.LEADING_ASTERISK,
-            JavadocTokenTypes.NEWLINE);
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.NEWLINE);
 
     /**
      * Returns only javadoc tags so visitJavadocToken only receives javadoc tags.
@@ -75,7 +76,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.JAVADOC_TAG,
+            JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG,
         };
     }
 
@@ -92,13 +93,14 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
     @Override
     public void visitJavadocToken(DetailNode tagNode) {
         // No need to filter token because overridden getDefaultJavadocTokens ensures that we only
-        // receive JAVADOC_TAG DetailNode.
+        // receive JAVADOC_BLOCK_TAG DetailNode.
         if (!isAnotherTagBefore(tagNode)
                 && !isOnlyTagInWholeJavadoc(tagNode)
                 && hasInsufficientConsecutiveNewlines(tagNode)) {
+            final String tagName = JavadocUtil.getTagName(tagNode);
             log(tagNode.getLineNumber(),
                     MSG_JAVADOC_TAG_LINE_BEFORE,
-                    tagNode.getChildren()[0].getText());
+                    "@" + tagName);
         }
     }
 
@@ -110,13 +112,13 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      */
     private static boolean isAnotherTagBefore(DetailNode tagNode) {
         boolean found = false;
-        DetailNode currentNode = JavadocUtil.getPreviousSibling(tagNode);
+        DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null) {
-            if (currentNode.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+            if (currentNode.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
                 found = true;
                 break;
             }
-            currentNode = JavadocUtil.getPreviousSibling(currentNode);
+            currentNode = currentNode.getPreviousSibling();
         }
         return found;
     }
@@ -126,18 +128,18 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * When javadoc has only a javadoc tag like {@literal @} in it, the JAVADOC_TAG in a JAVADOC
      * detail node will always have 2 or 3 siblings before it. The parse tree looks like:
      * <pre>
-     * JAVADOC[3x0]
+     * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
-     * |--WS[4x2] : [ ]
-     * |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
+     * |--TEXT[4x2] : [ ]
+     * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
      * </pre>
      * Or it can also look like:
      * <pre>
-     * JAVADOC[3x0]
+     * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
-     * |--JAVADOC_TAG[4x3] : [@param T The bar.\n ]
+     * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
      * </pre>
      * We do not include the variation
      * <pre>
@@ -145,8 +147,8 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * </pre>
      * which results in the tree
      * <pre>
-     * JAVADOC[3x0]
-     * |--JAVADOC_TAG[4x3] : [@param noSpace there is no space here\n ]
+     * JAVADOC_CONTENT[3x0]
+     * |--JAVADOC_BLOCK_TAG[4x3] : [@param noSpace there is no space here\n ]
      * </pre>
      * because this one is invalid. We must recommend placing a blank line to separate &#64;param
      * from the first javadoc asterisks.
@@ -156,10 +158,11 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      */
     private static boolean isOnlyTagInWholeJavadoc(DetailNode tagNode) {
         final List<Integer> previousNodeTypes = new ArrayList<>();
-        DetailNode currentNode = JavadocUtil.getPreviousSibling(tagNode);
+        DetailNode currentNode = tagNode.getPreviousSibling();
+
         while (currentNode != null) {
             previousNodeTypes.add(currentNode.getType());
-            currentNode = JavadocUtil.getPreviousSibling(currentNode);
+            currentNode = currentNode.getPreviousSibling();
         }
         return ONLY_TAG_VARIATION_1.equals(previousNodeTypes)
                 || ONLY_TAG_VARIATION_2.equals(previousNodeTypes);
@@ -177,15 +180,16 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      */
     private static boolean hasInsufficientConsecutiveNewlines(DetailNode tagNode) {
         int count = 0;
-        DetailNode currentNode = JavadocUtil.getPreviousSibling(tagNode);
+        DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null
-                && (currentNode.getType() == JavadocTokenTypes.NEWLINE
-                || currentNode.getType() == JavadocTokenTypes.WS
-                || currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
-            if (currentNode.getType() == JavadocTokenTypes.NEWLINE) {
+                && (currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE
+                || (currentNode.getType() == JavadocCommentsTokenTypes.TEXT
+                        && CommonUtil.isBlank(currentNode.getText()))
+                || currentNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK)) {
+            if (currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE) {
                 count++;
             }
-            currentNode = JavadocUtil.getPreviousSibling(currentNode);
+            currentNode = currentNode.getPreviousSibling();
         }
 
         return count <= 1;

@@ -22,14 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck.MSG_JAVADOC_TAG_LINE_BEFORE;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled
 public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -66,6 +64,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
             "20: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
             "28: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
             "35: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@return"),
+            "47: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "63: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "74: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+            "87: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@serial"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupIncorrect.java"),
