@@ -369,6 +369,8 @@ public final class CommonUtil {
      * @param filename name of the file
      * @return resolved file URI or null if URL is malformed or non-existent
      */
+    // disabled until https://github.com/checkstyle/checkstyle/issues/17646
+    @SuppressWarnings("deprecation")
     public static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
