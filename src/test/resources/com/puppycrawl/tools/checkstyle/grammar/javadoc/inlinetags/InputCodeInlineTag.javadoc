@@ -10,3 +10,4 @@
 *      public void oldMethod() {}
 * }
 * {@code {int x;}}
+* {@code *}
