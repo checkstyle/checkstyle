@@ -269,17 +269,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return returnValue;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/DetailAstImpl.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
     <lineContent>return returnList;</lineContent>
     <details>
       type of expression: @Initialized @Nullable List&lt;@Initialized @NonNull Token&gt;
@@ -307,6 +296,41 @@
       found   : @Initialized @Nullable DetailAstImpl
       required: @Initialized @NonNull DetailAST
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>ident.addPreviousSibling(create(ctx.ELLIPSIS()));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>type.addChild(visit(ctx.annotations()));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -425,7 +449,7 @@
       method return type: @Initialized @NonNull DetailAstImpl
     </details>
   </checkerFrameworkError>
-
+  
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>argument</specifier>
@@ -494,6 +518,38 @@
     </details>
   </checkerFrameworkError>
 
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of JavadocPropertiesGenerator.getFirstJavadocSentence.</message>
+    <lineContent>final String firstJavadocSentence = getFirstJavadocSentence(modifiers);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>return ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>result = modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>final DetailAST arrayDeclarator = type.getFirstChild().getNextSibling();</lineContent>
+  </checkerFrameworkError>
+  
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocPropertiesGenerator.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
@@ -1362,6 +1418,49 @@
     <message>the default constructor does not initialize field minimumMessage</message>
     <lineContent>private String minimumMessage;</lineContent>
   </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter param of FinalParametersCheck.checkParam.</message>
+    <lineContent>checkParam(catchClause.findFirstToken(TokenTypes.PARAMETER_DEF));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter root of TokenUtil.forEachChild.</message>
+    <lineContent>TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, this::checkParam);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference param.findFirstToken(TokenTypes.MODIFIERS)</message>
+    <lineContent>if (param.findFirstToken(TokenTypes.MODIFIERS).findFirstToken(TokenTypes.FINAL) == null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramName</message>
+    <lineContent>MSG_KEY, paramName.getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>final DetailAST parameterType = type.getFirstChild();</lineContent>
+  </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java</fileName>
@@ -1420,6 +1519,20 @@
       type of expression: null (NullType)
       method return type: @Initialized @NonNull Object
     </details>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OuterTypeFilenameCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>final String outerTypeName = ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/OuterTypeFilenameCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>if (modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1511,6 +1624,48 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>currentClass = packageName.getText() + &quot;.&quot; + ident.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>return &quot;main&quot;.equals(ident.getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference method.findFirstToken(TokenTypes.TYPE)</message>
+    <lineContent>method.findFirstToken(TokenTypes.TYPE).getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameterType</message>
+    <lineContent>parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference params</message>
+    <lineContent>if (params.getChildCount() == 1) {</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter ast of FullIdent.createFullIdent.</message>
     <lineContent>packageName = FullIdent.createFullIdent(null);</lineContent>
@@ -1568,6 +1723,77 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter modifierNode of AnnotationLocationCheck.checkAnnotations.</message>
+    <lineContent>checkAnnotations(node, getExpectedAnnotationIndentation(node));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter node of AnnotationLocationCheck.getExpectedAnnotationIndentation.</message>
+    <lineContent>checkAnnotations(node, getExpectedAnnotationIndentation(node));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference annotation.findFirstToken(TokenTypes.DOT)</message>
+    <lineContent>identNode = annotation.findFirstToken(TokenTypes.DOT).findFirstToken(TokenTypes.IDENT);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference identNode</message>
+    <lineContent>return identNode.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference annotation.findFirstToken(TokenTypes.DOT)</message>
+    <lineContent>identNode = annotation.findFirstToken(TokenTypes.DOT).getLastChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference nodeWithAnnotations</message>
+    <lineContent>DetailAST modifiersNode = nodeWithAnnotations.findFirstToken(TokenTypes.MODIFIERS);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rCurly</message>
+    <lineContent>final DetailAST comma = rCurly.getPreviousSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference valuePair</message>
+    <lineContent>valuePair.getFirstChild().getText())) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference startNode</message>
+    <lineContent>Stream.iterate(startNode.getLastChild(), Objects::nonNull,</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
@@ -1575,10 +1801,129 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference colon</message>
+    <lineContent>return colon.getNextSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference colon</message>
+    <lineContent>return colon.getPreviousSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter value of Optional.of.</message>
+    <lineContent>leftCurly = Optional.of(ast.findFirstToken(TokenTypes.SLIST));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rcurlyAST</message>
+    <lineContent>final int rcurlyLineNo = rcurlyAST.getLineNo();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(catchAst.findFirstToken(TokenTypes.SLIST), MSG_KEY_CATCH_BLOCK_EMPTY);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameterDef</message>
+    <lineContent>final DetailAST variableName = parameterDef.findFirstToken(TokenTypes.IDENT);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference slistToken</message>
+    <lineContent>DetailAST catchBlockStmt = slistToken.getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference variableName</message>
+    <lineContent>return variableName.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return annotation;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable DetailAST
+      method return type: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast1 of TokenUtil.areOnSameLine.</message>
+    <lineContent>result = TokenUtil.areOnSameLine(ifCondition, block);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElse(Boolean.TRUE);</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter lcurly of Details constructor.</message>
+    <lineContent>return new Details(lcurly, rcurly, getNextToken(ast), true);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
+    <lineContent>return new Details(lcurly, lcurly, nextToken, false);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rcurly of Details constructor.</message>
+    <lineContent>return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1596,6 +1941,17 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter nextToken of Details constructor.</message>
+    <lineContent>return new Details(lcurly, rcurly, nextToken, false);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>    
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter nextToken of Details constructor.</message>
     <lineContent>return new Details(lcurly, rcurly, nextToken, true);</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -1609,11 +1965,11 @@
     <message>incompatible argument for parameter nextToken of Details constructor.</message>
     <lineContent>return new Details(lcurly.orElse(null), rcurly, nextToken.orElse(null), true);</lineContent>
     <details>
-      found   : @Initialized @Nullable DetailAST
+      found   : @Initialized @Nullable DetailAST 
       required: @Initialized @NonNull DetailAST
     </details>
   </checkerFrameworkError>
-
+  
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java</fileName>
     <specifier>argument</specifier>
@@ -1681,6 +2037,113 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(nameAST, MSG_KEY, nameAST.getText());</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiersAST</message>
+    <lineContent>&amp;&amp; modifiersAST.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference nameAST</message>
+    <lineContent>final String name = nameAST.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference nameAST</message>
+    <lineContent>log(nameAST, MSG_KEY, nameAST.getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AbstractSuperCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference params</message>
+    <lineContent>overridingMethod = !params.hasChildren();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ArrayTrailingCommaCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rcurly</message>
+    <lineContent>final DetailAST previousSibling = rcurly.getPreviousSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.ELIST)</message>
+    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.ELIST).getChildCount() == 0) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.OBJBLOCK)</message>
+    <lineContent>DetailAST child = ast.findFirstToken(TokenTypes.OBJBLOCK).getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(nameNode, MSG_KEY);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FullIdent.createFullIdentBelow.</message>
+    <lineContent>final FullIdent fullIdent = FullIdent.createFullIdentBelow(typeNode);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramNode</message>
+    <lineContent>final DetailAST typeNode = paramNode.findFirstToken(TokenTypes.TYPE);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramsNode</message>
+    <lineContent>paramsNode.findFirstToken(TokenTypes.PARAMETER_DEF);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of DeclarationOrderCheck.getAllTokensOfType.</message>
+    <lineContent>final Set&lt;DetailAST&gt; exprIdents = getAllTokensOfType(exprStartIdent, TokenTypes.IDENT);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter state of DeclarationOrderCheck.processModifiersState.</message>
@@ -1691,6 +2154,13 @@
     </details>
   </checkerFrameworkError>
 
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference fieldDef</message>
+    <lineContent>classFieldNames.add(fieldDef.getText());</lineContent>
+  </checkerFrameworkError>
+  
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
@@ -1728,6 +2198,41 @@
       found   : null (NullType)
       required: @Initialized @NonNull FieldFrame
     </details>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>frame.setFrameName(ast.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference elist</message>
+    <lineContent>return elist.getChildCount() == 1;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference field.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>return field.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference field.findFirstToken(TokenTypes.TYPE)</message>
+    <lineContent>final DetailAST identAst = field.findFirstToken(TokenTypes.TYPE)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference methodCall.findFirstToken(TokenTypes.ELIST)</message>
+    <lineContent>final DetailAST expr = methodCall.findFirstToken(TokenTypes.ELIST).getFirstChild();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1771,6 +2276,247 @@
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.isPresent();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference candidate</message>
+    <lineContent>shouldRemove = candidate.alreadyAssigned;</lineContent>
+    <message>dereference of possibly-null reference methodName</message>
+    <lineContent>return &quot;hashCode&quot;.equals(methodName.getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameters</message>
+    <lineContent>&amp;&amp; isObjectParam(parameters.getFirstChild())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameters</message>
+    <lineContent>&amp;&amp; parameters.getFirstChild() == null</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;0&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;\\0&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;false&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of AbstractCheck.log.</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;null&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference assign</message>
+    <lineContent>assign.getFirstChild().getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference assign</message>
+    <lineContent>assign.getFirstChild().getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;0&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;\\0&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;false&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>log(ident, MSG_KEY, ident.getText(), &quot;null&quot;);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>skipCase = modifiers.findFirstToken(TokenTypes.FINAL) != null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>final int primitiveType = type.getFirstChild().getType();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FallThroughCheck.getNextNonCommentAst.</message>
+    <lineContent>final DetailAST thenStmt = getNextNonCommentAst(ast.findFirstToken(TokenTypes.RPAREN));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FallThroughCheck.isTerminated.</message>
+    <lineContent>&amp;&amp; isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FallThroughCheck.isTerminated.</message>
+    <lineContent>isTerminated = isTerminated(catchBody, useBreak, useContinue, labels);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FallThroughCheck.isTerminated.</message>
+    <lineContent>synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue, labels);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference caseGroup</message>
+    <lineContent>while (isTerminated &amp;&amp; caseGroup.getType() != TokenTypes.RCURLY) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference lparen</message>
+    <lineContent>loopBody = lparen.getPreviousSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rparen</message>
+    <lineContent>loopBody = rparen.getNextSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.isPresent();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter variableIdent of FinalVariableCandidate constructor.</message>
+    <lineContent>final FinalVariableCandidate candidate = new FinalVariableCandidate(astNode);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>|| !&quot;_&quot;.equals(ast.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.MODIFIERS)</message>
+    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.MODIFIERS)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.MODIFIERS)</message>
+    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.MODIFIERS)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference astNode</message>
+    <lineContent>scope.put(astNode.getText(), candidate);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference astNode</message>
+    <lineContent>scope.put(astNode.getText(), new FinalVariableCandidate(astNode));</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1834,6 +2580,13 @@
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference scopeStack.peek()</message>
     <lineContent>scopeStack.peek().uninitializedVariables.add(astNode);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>return typeAst.findFirstToken(TokenTypes.BOR) != null;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1952,6 +2705,80 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter root of TokenUtil.forEachChild.</message>
+    <lineContent>TokenUtil.forEachChild(recordComponents,</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference aMethodAST.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>aMethodAST.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>frameName = ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference child.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>child.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mods</message>
+    <lineContent>if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mods</message>
+    <lineContent>inStatic = mods.findFirstToken(TokenTypes.LITERAL_STATIC) != null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mods</message>
+    <lineContent>result = mods.findFirstToken(TokenTypes.ABSTRACT) != null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference nameAST</message>
+    <lineContent>final String name = nameAST.getText();</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference node.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>final String name = node.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAST</message>
+    <lineContent>final String returnType = typeAST.getFirstChild().getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field frame</message>
     <lineContent>private FieldFrame frame;</lineContent>
@@ -1965,6 +2792,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalCatchCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference excTypeParent</message>
+    <lineContent>DetailAST currentNode = excTypeParent.getFirstChild();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalCatchCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameterDef</message>
+    <lineContent>parameterDef.findFirstToken(TokenTypes.TYPE);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
@@ -1973,6 +2814,13 @@
       found   : null (NullType)
       required: @Initialized @NonNull String
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference identToken</message>
+    <lineContent>final String className = identToken.getText();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2005,12 +2853,69 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalThrowsCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference methodDef.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>return shouldIgnoreMethod(methodDef.findFirstToken(TokenTypes.IDENT).getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter modifiers of IllegalTypeCheck.isContainVerifiableType.</message>
+    <lineContent>result = isContainVerifiableType(modifiersAst);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter type of IllegalTypeCheck.checkType.</message>
+    <lineContent>checkType(type);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference identAST</message>
+    <lineContent>if (&quot;hashCode&quot;.equals(identAST.getText())) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiersAST</message>
+    <lineContent>if (modifiersAST.findFirstToken(TokenTypes.FINAL) != null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramAST</message>
+    <lineContent>inHashCodeMethod = !paramAST.hasChildren();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>while (astNode != constantDefAST) {</lineContent>
   </checkerFrameworkError>
-
+  
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java</fileName>
     <specifier>not.interned</specifier>
@@ -2035,12 +2940,76 @@
     <message>the default constructor does not initialize field xpathExpression</message>
     <lineContent>private XPathExpression xpathExpression;</lineContent>
   </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingCtorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.OBJBLOCK)</message>
+    <lineContent>&amp;&amp; ast.findFirstToken(TokenTypes.OBJBLOCK)</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingCtorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference modifiers</message>
+    <lineContent>if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null</lineContent>
+  </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingNullCaseInSwitchCheck.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.isPresent();</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of ModifiedControlVariableCheck.findChildrenOfExpressionType.</message>
+    <lineContent>findChildrenOfExpressionType(forUpdateListAST).stream()</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter paramDef of ModifiedControlVariableCheck.leaveForEach.</message>
+    <lineContent>leaveForEach(paramDef);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference forInitAST</message>
+    <lineContent>for (DetailAST parameterDefAST = forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference forIteratorAST</message>
+    <lineContent>final DetailAST forUpdateListAST = forIteratorAST.findFirstToken(TokenTypes.ELIST);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference param</message>
+    <lineContent>initializedVariables.add(param.getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference paramName</message>
+    <lineContent>getCurrentVariables().push(paramName.getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2084,10 +3053,81 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoArrayTrailingCommaCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference rcurly</message>
+    <lineContent>final DetailAST previousSibling = rcurly.getPreviousSibling();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoCloneCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mid</message>
+    <lineContent>final String name = mid.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoCloneCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference params</message>
+    <lineContent>params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoEnumTrailingCommaCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter root of TokenUtil.findFirstTokenByPredicate.</message>
+    <lineContent>TokenUtil.findFirstTokenByPredicate(enumBlock,</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoFinalizerCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference mid</message>
+    <lineContent>final String name = mid.getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoFinalizerCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference params</message>
+    <lineContent>params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference currentToken.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>currentToken.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java</fileName>
     <specifier>unboxing.of.nullable</specifier>
     <message>unboxing a possibly-null reference methodLineNumberMap.get(methodName)</message>
     <lineContent>methodLineNumberMap.get(methodName);</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of ParameterAssignmentCheck.visitMethodParameters.</message>
+    <lineContent>visitMethodParameters(ast.findFirstToken(TokenTypes.PARAMETERS));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference param</message>
+    <lineContent>parameterNames.add(param.getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2095,6 +3135,28 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field parameterNames</message>
     <lineContent>private Set&lt;String&gt; parameterNames;</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of List.add.</message>
+    <lineContent>innerPatternVariable.findFirstToken(TokenTypes.IDENT));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of List.add.</message>
+    <lineContent>outermostPatternVariable.findFirstToken(TokenTypes.IDENT));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -2166,6 +3228,26 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter blockStartToken of RequireThisCheck.getBlockEndToken.</message>
+    <lineContent>final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter blockStartToken of RequireThisCheck.getBlockEndToken.</message>
+    <lineContent>final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <message>incompatible argument for parameter frame of RequireThisCheck.collectMethodDeclarations.</message>
     <lineContent>case TokenTypes.METHOD_DEF -&gt; collectMethodDeclarations(frameStack, ast, frame);</lineContent>
     <details>
@@ -2187,6 +3269,8 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter frame of RequireThisCheck.findFrame.</message>
     <lineContent>frame = findFrame(frame, name, lookForMethod);</lineContent>
