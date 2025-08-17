@@ -8,7 +8,7 @@
   <body>
     <section name="Translation">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="Translation_Description">
         <div>
           Ensures the correct translation of code by checking property files for consistency
           regarding their keys. Two property files describing one and the same context
@@ -19,7 +19,7 @@
 
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="Translation_Notes">
         <p>
           Language code for the property <code>requiredTranslations</code> is composed of
           the lowercase, two-letter codes as defined by
@@ -50,7 +50,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="Translation_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -86,7 +86,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="Translation_Examples">
         <p>
           Note, that files with the same path and base name but which have different
           extensions will be considered as files that belong to different resource bundles.
@@ -197,7 +197,7 @@ messages_home.translations // violation,
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="Translation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+Translation">
@@ -210,7 +210,7 @@ messages_home.translations // violation,
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="Translation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22translation.missingKey%22">
@@ -230,13 +230,13 @@ messages_home.translations // violation,
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="Translation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="Translation_Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>
