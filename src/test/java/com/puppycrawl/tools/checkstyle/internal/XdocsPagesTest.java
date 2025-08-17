@@ -331,39 +331,63 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
-        final Map<String, String> summaries = readSummaries(AVAILABLE_CHECKS_PATH);
+    public void testAllModulesPageInSyncWithModuleSummaries() throws Exception {
+        validateModulesSyncWithTheirSummaries(AVAILABLE_CHECKS_PATH,
+            (Path path) -> {
+                final String fileName = path.getFileName().toString();
+                return isNonModulePage(fileName) || !path.toString().contains("checks");
+            });
 
+        validateModulesSyncWithTheirSummaries(AVAILABLE_FILTERS_PATH,
+            (Path path) -> {
+                final String fileName = path.getFileName().toString();
+                return isNonModulePage(fileName)
+                    || path.toString().contains("checks")
+                    || path.toString().contains("filefilters");
+            });
+
+        validateModulesSyncWithTheirSummaries(AVAILABLE_FILE_FILTERS_PATH,
+            (Path path) -> {
+                final String fileName = path.getFileName().toString();
+                return isNonModulePage(fileName) || !path.toString().contains("filefilters");
+            });
+    }
+
+    private static void validateModulesSyncWithTheirSummaries(Path availablePagePath,
+                                                              PredicateProcess skipPredicate)
+            throws Exception {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
-            final String fileName = path.getFileName().toString();
-            if (isNonModulePage(fileName)
-                || path.toString().contains("filefilters")
-                || path.toString().contains("filters")) {
+            if (skipPredicate.hasFit(path)) {
                 continue;
             }
 
-            final NodeList sources = getTagSourcesNode(path, "subsection");
+            final String fileName = path.getFileName().toString();
+            final Map<String, String> summaries = readSummaries(availablePagePath);
+            final NodeList subsectionSources = getTagSourcesNode(path, "subsection");
 
-            for (int position = 0; position < sources.getLength(); position++) {
-                final Node section = sources.item(position);
-                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
-                if (!"Description".equals(sectionName)) {
+            for (int position = 0; position < subsectionSources.getLength(); position++) {
+                final Node subsection = subsectionSources.item(position);
+                final String subsectionName = XmlUtil.getNameAttributeOfNode(subsection);
+                if (!"Description".equals(subsectionName)) {
                     continue;
                 }
 
-                final String checkName = XmlUtil.getNameAttributeOfNode(section.getParentNode());
-                final Matcher matcher = END_OF_SENTENCE.matcher(section.getTextContent());
+                final String moduleName = XmlUtil.getNameAttributeOfNode(
+                    subsection.getParentNode());
+                final Matcher matcher = END_OF_SENTENCE.matcher(subsection.getTextContent());
                 assertWithMessage(
-                    "The first sentence of the \"Description\" subsection for the check "
-                        + checkName + " in the file \"" + fileName + "\" should end with a period")
+                    "The first sentence of the \"Description\" subsection for the module "
+                        + moduleName + " in the file \"" + fileName + "\" should end with a period")
                     .that(matcher.find())
                     .isTrue();
+
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
-                assertWithMessage("The summary for check " + checkName
-                        + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
+
+                assertWithMessage("The summary for module " + moduleName
+                        + " in the file \"" + availablePagePath + "\""
                         + " should match the first sentence of the \"Description\" subsection"
-                        + " for this check in the file \"" + fileName + "\"")
-                    .that(summaries.get(checkName))
+                        + " for this module in the file \"" + fileName + "\"")
+                    .that(summaries.get(moduleName))
                     .isEqualTo(firstSentence);
             }
         }
@@ -404,52 +428,6 @@ public class XdocsPagesTest {
     public void testAllFiltersIndexPageTable() throws Exception {
         validateFilterTypeIndexPage(AVAILABLE_FILTERS_PATH);
         validateFilterTypeIndexPage(AVAILABLE_FILE_FILTERS_PATH);
-    }
-
-    @Test
-    public void testAllFiltersPageInSyncWithFiltersSummaries() throws Exception {
-        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
-            final String fileName = path.getFileName().toString();
-            final Path allFiltersPagePath;
-
-            if (!isNonModulePage(fileName) && path.toString().contains("filefilters")) {
-                allFiltersPagePath = AVAILABLE_FILE_FILTERS_PATH;
-            }
-            else if (!isNonModulePage(fileName) && path.toString().contains("filters")) {
-                allFiltersPagePath = AVAILABLE_FILTERS_PATH;
-            }
-            else {
-                continue;
-            }
-
-            final Map<String, String> summaries = readSummaries(allFiltersPagePath);
-            final NodeList sources = getTagSourcesNode(path, "subsection");
-
-            for (int position = 0; position < sources.getLength(); position++) {
-                final Node section = sources.item(position);
-                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
-                if (!"Description".equals(sectionName)) {
-                    continue;
-                }
-
-                final String filterName = XmlUtil.getNameAttributeOfNode(section.getParentNode());
-                final Matcher matcher = END_OF_SENTENCE.matcher(section.getTextContent());
-                assertWithMessage(
-                    "The first sentence of the \"Description\" subsection for the filter "
-                        + filterName + " in the file \"" + fileName + "\" should end with a period")
-                    .that(matcher.find())
-                    .isTrue();
-
-                final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
-
-                assertWithMessage("The summary for filter " + filterName
-                        + " in the file \"" + allFiltersPagePath + "\""
-                        + " should match the first sentence of the \"Description\" subsection"
-                        + " for this filter in the file \"" + fileName + "\"")
-                    .that(summaries.get(filterName))
-                    .isEqualTo(firstSentence);
-            }
-        }
     }
 
     private static void validateFilterTypeIndexPage(Path availablePath)
@@ -2384,5 +2362,10 @@ public class XdocsPagesTest {
             result = id.substring(0, dash);
         }
         return result;
+    }
+
+    @FunctionalInterface
+    private interface PredicateProcess {
+        boolean hasFit(Path path);
     }
 }
