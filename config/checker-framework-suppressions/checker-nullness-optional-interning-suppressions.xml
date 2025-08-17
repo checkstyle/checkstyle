@@ -300,6 +300,41 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ident</message>
+    <lineContent>ident.addPreviousSibling(create(ctx.ELLIPSIS()));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference type</message>
+    <lineContent>type.addChild(visit(ctx.annotations()));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference typeAst</message>
+    <lineContent>ctx.cStyleArrDec.forEach(child -&gt; typeAst.addChild(visit(child)));</lineContent>
+  </checkerFrameworkError>
+  
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavaAstVisitor.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter child of DetailAstImpl.addChild.</message>
     <lineContent>bop.addChild(descendantList.poll());</lineContent>
@@ -425,6 +460,8 @@
       method return type: @Initialized @NonNull DetailAstImpl
     </details>
   </checkerFrameworkError>
+  
+  
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
