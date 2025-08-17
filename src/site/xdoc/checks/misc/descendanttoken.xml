@@ -8,7 +8,7 @@
   <body>
     <section name="DescendantToken">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="DescendantToken_Description">
         <div>
           Checks for restricted tokens beneath other tokens.
         </div>
@@ -23,7 +23,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="DescendantToken_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -103,7 +103,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="DescendantToken_Examples">
         <p id="Example1-config">
           To configure the check to produce a violation on a switch statement
           with no default case:
@@ -912,7 +912,7 @@ class Example16 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="DescendantToken_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+DescendantToken">
@@ -921,7 +921,7 @@ class Example16 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="DescendantToken_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22descendant.token.max%22">
@@ -951,13 +951,13 @@ class Example16 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="DescendantToken_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="DescendantToken_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

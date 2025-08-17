@@ -8,14 +8,14 @@
   <body>
     <section name="CommentsIndentation">
       <p>Since Checkstyle 6.10</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="CommentsIndentation_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="CommentsIndentation_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="CommentsIndentation_Examples">
         <p id="Example1-config">
           To configure the Check
           where both single-line and block comments are checked for indentation violations:
@@ -119,7 +119,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="CommentsIndentation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
@@ -132,7 +132,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="CommentsIndentation_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="CommentsIndentation"/>
         </macro>
@@ -143,13 +143,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="CommentsIndentation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="CommentsIndentation_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="CommentsIndentation"/>
         </macro>
