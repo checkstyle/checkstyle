@@ -7,15 +7,6 @@
   </head>
   <body>
     <section name="Naming Conventions Checks">
-      <subsection name="Overview" id="Overview">
-        <p>
-          Each of these naming modules validates identifiers for particular code
-          elements. Valid identifiers for a naming module are specified by its
-          <code> format</code> property. The value of <code>format</code> is a
-          <a href="https://docs.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html">
-            pattern</a> for valid identifiers.
-        </p>
-      </subsection>
       <div class="wrapper">
         <table>
           <tr>
