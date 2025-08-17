@@ -7,7 +7,7 @@
   </head>
   <body>
     <section name="Naming Conventions Checks">
-      <subsection name="Overview" id="Overview">
+      <subsection name="Overview" id="Naming_Overview">
         <p>
           Each of these naming modules validates identifiers for particular code
           elements. Valid identifiers for a naming module are specified by its

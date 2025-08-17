@@ -643,6 +643,7 @@ public class XdocsPagesTest {
     public void testAllSubSections() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String fileName = path.getFileName().toString();
+            final String parentFileName = path.getParent().getFileName().toString();
             final NodeList subSections = getTagSourcesNode(path, "subsection");
 
             for (int position = 0; position < subSections.getLength(); position++) {
@@ -666,6 +667,8 @@ public class XdocsPagesTest {
                 final String subsectionId = id.getNodeValue();
                 final String expectedId;
 
+                final int subsectionIdUnderscoreIndex = subsectionId.indexOf('_');
+
                 if ("google_style.xml".equals(fileName)) {
                     sectionName = "Google";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
@@ -673,6 +676,18 @@ public class XdocsPagesTest {
                 else if ("sun_style.xml".equals(fileName)) {
                     sectionName = "Sun";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
+                }
+                else if ("index.xml".equals(fileName)
+                    && subsectionIdUnderscoreIndex >= 0
+                    && subsectionId.substring(0, subsectionIdUnderscoreIndex)
+                        .equalsIgnoreCase(parentFileName)) {
+
+                    final String subsectionNameBeforeUnderscore =
+                        subsectionId.substring(0, subsectionIdUnderscoreIndex);
+
+                    expectedId = (subsectionNameBeforeUnderscore + '_' + nameString)
+                        .replace(' ', '_');
+
                 }
                 else if ((path.toString().contains("filters")
                         || path.toString().contains("checks"))

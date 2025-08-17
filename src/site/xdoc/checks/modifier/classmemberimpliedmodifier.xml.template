@@ -8,14 +8,14 @@
   <body>
     <section name="ClassMemberImpliedModifier">
       <p>Since Checkstyle 8.16</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="ClassMemberImpliedModifier_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ClassMemberImpliedModifierCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="ClassMemberImpliedModifier_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="ClassMemberImpliedModifier_Examples">
         <p>
           To configure the check so that it checks that all implicit modifiers on nested interfaces,
           enums, and records are explicitly specified in classes and records.
@@ -47,7 +47,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="ClassMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassMemberImpliedModifier">
@@ -56,7 +56,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="ClassMemberImpliedModifier_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="ClassMemberImpliedModifier"/>
         </macro>
@@ -67,11 +67,11 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="ClassMemberImpliedModifier_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="ClassMemberImpliedModifier_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="ClassMemberImpliedModifier"/>
         </macro>
