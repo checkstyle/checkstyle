@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DEFAULT_JAVA_RELEASE=17
+DEFAULT_JAVA_RELEASE=21
 if [ -z "$1" ]; then
     echo "No parameters supplied!"
     echo "Usage %0 <CLASSPATH> [RELEASE]"
