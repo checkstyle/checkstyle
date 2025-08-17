@@ -8,7 +8,7 @@
   <body>
     <section name="InterfaceMemberImpliedModifier">
       <p>Since Checkstyle 8.12</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="InterfaceMemberImpliedModifier_Description">
         <div>
           Checks for implicit modifiers on interface members and nested types.
         </div>
@@ -84,7 +84,7 @@ public interface AddressFactory {
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="InterfaceMemberImpliedModifier_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -147,7 +147,7 @@ public interface AddressFactory {
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="InterfaceMemberImpliedModifier_Examples">
         <p>
           To configure the check so that it checks that all implicit modifiers on methods,
           fields and nested types are explicitly specified in interfaces.
@@ -241,7 +241,7 @@ public interface Example2 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="InterfaceMemberImpliedModifier_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+InterfaceMemberImpliedModifier">
@@ -250,7 +250,7 @@ public interface Example2 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="InterfaceMemberImpliedModifier_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmodifier%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22interface.implied.modifier%22">
@@ -265,11 +265,11 @@ public interface Example2 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="InterfaceMemberImpliedModifier_Package">
         <p> com.puppycrawl.tools.checkstyle.checks.modifier </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="InterfaceMemberImpliedModifier_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
