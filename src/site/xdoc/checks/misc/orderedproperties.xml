@@ -8,7 +8,7 @@
   <body>
     <section name="OrderedProperties">
       <p>Since Checkstyle 8.22</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="OrderedProperties_Description">
         <div>
           Detects if keys in properties files are in correct order.
         </div>
@@ -31,7 +31,7 @@
           The string compare will work, but not the line number reporting.</p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="OrderedProperties_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -52,7 +52,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="OrderedProperties_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -90,7 +90,7 @@ key.png=value
 
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="OrderedProperties_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OrderedProperties">
@@ -99,7 +99,7 @@ key.png=value
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="OrderedProperties_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22properties.notSorted.property%22">
@@ -119,13 +119,13 @@ key.png=value
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="OrderedProperties_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="OrderedProperties_Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>

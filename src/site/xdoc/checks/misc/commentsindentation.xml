@@ -8,7 +8,7 @@
   <body>
     <section name="CommentsIndentation">
       <p>Since Checkstyle 6.10</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="CommentsIndentation_Description">
         <div>
           Controls the indentation between comments and surrounding code.
           Comments are indented at the same level as the surrounding code.
@@ -18,7 +18,7 @@
         </div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="CommentsIndentation_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -51,7 +51,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="CommentsIndentation_Examples">
         <p id="Example1-config">
           To configure the Check
           where both single-line and block comments are checked for indentation violations:
@@ -273,7 +273,7 @@ public class Example8 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="CommentsIndentation_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
@@ -286,7 +286,7 @@ public class Example8 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="CommentsIndentation_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Findentation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22comments.indentation.block%22">
@@ -306,13 +306,13 @@ public class Example8 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="CommentsIndentation_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.indentation
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="CommentsIndentation_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>

@@ -8,7 +8,7 @@
   <body>
     <section name="ClassFanOutComplexity">
       <p>Since Checkstyle 3.4</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="ClassFanOutComplexity_Description">
         <div>
           Checks the number of other types a given class/record/interface/enum/annotation
           relies on. Also, the square of this has been shown to indicate the amount
@@ -35,7 +35,7 @@
         </ol>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="ClassFanOutComplexity_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -77,7 +77,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="ClassFanOutComplexity_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -329,7 +329,7 @@ class Time6 {}
         </p>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="ClassFanOutComplexity_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ClassFanOutComplexity">
@@ -338,7 +338,7 @@ class Time6 {}
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="ClassFanOutComplexity_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22classFanOutComplexity%22">
@@ -353,13 +353,13 @@ class Time6 {}
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="ClassFanOutComplexity_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.metrics
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="ClassFanOutComplexity_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
