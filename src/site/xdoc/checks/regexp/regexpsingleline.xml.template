@@ -8,14 +8,14 @@
   <body>
     <section name="RegexpSingleline">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RegexpSingleline_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="RegexpSingleline_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RegexpSingleline_Examples">
         <p id="Example1-config">
         To configure the default check:
         </p>
@@ -112,7 +112,7 @@
           <param name="type" value="raw"/>
         </macro>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpSingleline">
@@ -125,7 +125,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="RegexpSingleline_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="RegexpSingleline"/>
         </macro>
@@ -136,13 +136,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RegexpSingleline_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RegexpSingleline_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="RegexpSingleline"/>
         </macro>

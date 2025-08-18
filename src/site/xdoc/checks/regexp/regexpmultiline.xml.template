@@ -8,14 +8,14 @@
   <body>
     <section name="RegexpMultiline">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RegexpMultiline_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="RegexpMultiline_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RegexpMultiline_Examples">
         <p id="Example1-config">
         To run the check with its default configuration (no matches will be):
         </p>
@@ -137,7 +137,7 @@
         </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RegexpMultiline_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpMultiline">
@@ -146,7 +146,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="RegexpMultiline_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="RegexpMultiline"/>
         </macro>
@@ -157,13 +157,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RegexpMultiline_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RegexpMultiline_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="RegexpMultiline"/>
         </macro>

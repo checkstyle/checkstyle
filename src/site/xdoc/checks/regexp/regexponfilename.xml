@@ -8,7 +8,7 @@
   <body>
     <section name="RegexpOnFilename">
       <p>Since Checkstyle 6.15</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="RegexpOnFilename_Description">
         <div>
           Checks that a specified pattern matches based on file and/or folder path.
           It can also be used to verify files
@@ -51,7 +51,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="RegexpOnFilename_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -100,7 +100,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="RegexpOnFilename_Examples">
         <p id="Example1-config">
           To configure the check to report file names that contain a space:
         </p>
@@ -206,7 +206,7 @@
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="RegexpOnFilename_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+RegexpOnFilename">
@@ -215,7 +215,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="RegexpOnFilename_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.filename.match%22">
@@ -235,13 +235,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="RegexpOnFilename_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.regexp
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="RegexpOnFilename_Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>

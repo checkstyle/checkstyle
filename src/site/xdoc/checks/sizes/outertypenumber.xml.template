@@ -8,14 +8,14 @@
   <body>
     <section name="OuterTypeNumber">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="OuterTypeNumber_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/OuterTypeNumberCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="OuterTypeNumber_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="OuterTypeNumber_Examples">
         <p id="Example1-config">
           To configure the check to accept 1 outer type per file:
         </p>
@@ -57,7 +57,7 @@
 
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="OuterTypeNumber_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+OuterTypeNumber">
@@ -66,7 +66,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="OuterTypeNumber_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="OuterTypeNumber"/>
         </macro>
@@ -77,13 +77,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="OuterTypeNumber_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="OuterTypeNumber_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="OuterTypeNumber"/>
         </macro>

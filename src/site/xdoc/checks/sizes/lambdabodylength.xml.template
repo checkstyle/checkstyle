@@ -8,14 +8,14 @@
   <body>
     <section name="LambdaBodyLength">
       <p>Since Checkstyle 8.37</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="LambdaBodyLength_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="LambdaBodyLength_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="LambdaBodyLength_Examples">
         <p id="Example1-config">
           To configure the check to accept lambda bodies with up to 10 lines:
         </p>
@@ -59,7 +59,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="LambdaBodyLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LambdaBodyLength">
@@ -68,7 +68,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="LambdaBodyLength_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="LambdaBodyLength"/>
         </macro>
@@ -79,13 +79,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="LambdaBodyLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="LambdaBodyLength_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="LambdaBodyLength"/>
         </macro>

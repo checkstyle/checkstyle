@@ -8,14 +8,14 @@
   <body>
     <section name="ParameterNumber">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="ParameterNumber_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/ParameterNumberCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="ParameterNumber_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -24,7 +24,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="ParameterNumber_Examples">
         <p id="Example1-config">
           To configure the check:
         </p>
@@ -94,7 +94,7 @@
         </p>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="ParameterNumber_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+ParameterNumber">
@@ -107,7 +107,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="ParameterNumber_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="ParameterNumber"/>
         </macro>
@@ -118,13 +118,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="ParameterNumber_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="ParameterNumber_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="ParameterNumber"/>
         </macro>
