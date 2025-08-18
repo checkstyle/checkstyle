@@ -8,21 +8,21 @@
   <body>
     <section name="FileTabCharacter">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="FileTabCharacter_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="FileTabCharacter_Notes">
         <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java"/>
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="FileTabCharacter_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -31,7 +31,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="FileTabCharacter_Examples">
         <p id="Example1-config">
           To configure the check to report only the first instance in each file:
         </p>
@@ -86,7 +86,7 @@
         </macro>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="FileTabCharacter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+FileTabCharacter">
@@ -103,7 +103,7 @@
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="FileTabCharacter_Violation_Messages">
         <macro name="violation-messages">
           <param name="checkName" value="FileTabCharacter"/>
         </macro>
@@ -114,13 +114,13 @@
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="FileTabCharacter_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="FileTabCharacter_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="FileTabCharacter"/>
         </macro>
