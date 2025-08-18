@@ -434,6 +434,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
+    // disabled until https://github.com/checkstyle/checkstyle/issues/17646
+    @SuppressWarnings("deprecation")
     protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
         LocalizedMessage.setLocale(locale);
