@@ -8,7 +8,7 @@
   <body>
     <section name="LineLength">
       <p>Since Checkstyle 3.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="LineLength_Description">
         <div>
           Checks for long lines.
         </div>
@@ -20,7 +20,7 @@
         </p>
       </subsection>
 
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="LineLength_Notes">
         <ul>
         <li>
           The calculation of the length of a line takes into account the number of
@@ -45,7 +45,7 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
         </ul>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="LineLength_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -80,7 +80,7 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="LineLength_Examples">
         <p id="Example1-config">
           To configure the check to accept lines up to 80 characters long:
         </p>
@@ -249,7 +249,7 @@ class Example5 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="LineLength_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
@@ -266,7 +266,7 @@ class Example5 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="LineLength_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22maxLineLen%22">
@@ -281,13 +281,13 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="LineLength_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="LineLength_Parent_Module">
         <p>
           <a href="../../config.html#Checker">Checker</a>
         </p>

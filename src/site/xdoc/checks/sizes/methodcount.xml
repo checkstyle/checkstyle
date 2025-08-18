@@ -8,7 +8,7 @@
   <body>
     <section name="MethodCount">
       <p>Since Checkstyle 5.3</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="MethodCount_Description">
         <div>
           Checks the number of methods declared in each type declaration by access modifier
           or total count.
@@ -53,7 +53,7 @@ public class ExampleClass {
         </code></pre></div>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="MethodCount_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -137,7 +137,7 @@ public class ExampleClass {
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="MethodCount_Examples">
         <p id="Example1-config">
           To configure the default check:
         </p>
@@ -245,7 +245,7 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodCount">
@@ -254,7 +254,7 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="MethodCount_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.methods%22">
@@ -289,13 +289,13 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="MethodCount_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.sizes
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="MethodCount_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
