@@ -8,7 +8,7 @@
   <body>
     <section name="EmptyLineSeparator">
       <p>Since Checkstyle 5.8</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="EmptyLineSeparator_Description">
         <div>
           Checks for empty line separators before package, all import declarations,
           fields, constructors, methods, nested classes,
@@ -29,7 +29,7 @@
         </p>
       </subsection>
 
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="EmptyLineSeparator_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -127,7 +127,7 @@
         </div>
       </subsection>
 
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="EmptyLineSeparator_Examples">
         <p id="Example1-config">
             To configure the default check:
         </p>
@@ -358,7 +358,7 @@ class Example5 {
 </code></pre></div>
       </subsection>
 
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="EmptyLineSeparator_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyLineSeparator">
@@ -371,7 +371,7 @@ class Example5 {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="Violation_Messages">
+      <subsection name="Violation Messages" id="EmptyLineSeparator_Violation_Messages">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22empty.line.separator%22">
@@ -401,13 +401,13 @@ class Example5 {
         </p>
       </subsection>
 
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="EmptyLineSeparator_Package">
         <p>
           com.puppycrawl.tools.checkstyle.checks.whitespace
         </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="EmptyLineSeparator_Parent_Module">
         <p>
           <a href="../../config.html#TreeWalker">TreeWalker</a>
         </p>
