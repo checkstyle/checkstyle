@@ -8,19 +8,19 @@
   <body>
     <section name="SuppressionFilter">
       <p>Since Checkstyle 3.2</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressionFilter_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressionFilter_Notes">
         <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressionFilter_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -28,7 +28,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressionFilter_Examples">
         <p id="Example1-config">
             Suppress certain checks by check name, file, and line number:
         </p>
@@ -178,7 +178,7 @@
 files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
         </code></pre></div>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressionFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
@@ -194,11 +194,11 @@ files="com[\\/]mycompany[\\/]app[\\/].*IT.java"/&gt;
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressionFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressionFilter_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="SuppressionFilter"/>
         </macro>

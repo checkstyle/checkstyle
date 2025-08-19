@@ -8,7 +8,7 @@
   <body>
     <section name="SuppressWarningsFilter">
       <p>Since Checkstyle 5.7</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressWarningsFilter_Description">
         <div>
           Filter <code>SuppressWarningsFilter</code> uses annotation
           <code>@SuppressWarnings</code> to suppress audit events.
@@ -32,13 +32,13 @@
           any dotted prefix or "Check" suffix removed.
         </p>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressWarningsFilter_Notes">
         <p>
           SuppressWarningsFilter can suppress Checks that have Treewalker or
           Checker as parent module.
         </p>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressWarningsFilter_Examples">
         <p id="Example1-config">Example of suppression by name of Check in annotation:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
@@ -102,7 +102,7 @@ public class Example2 {
 }
 </code></pre></div>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressWarningsFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWarningsFilter">
@@ -114,11 +114,11 @@ public class Example2 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressWarningsFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressWarningsFilter_Parent_Module">
         <p>
           <a href="../config.html#Checker">Checker</a>
         </p>

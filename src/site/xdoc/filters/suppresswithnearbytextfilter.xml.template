@@ -8,19 +8,19 @@
   <body>
     <section name="SuppressWithNearbyTextFilter">
       <p>Since Checkstyle 10.10.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressWithNearbyTextFilter_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressWithNearbyTextFilter_Notes">
         <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressWithNearbyTextFilter_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -28,7 +28,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressWithNearbyTextFilter_Examples">
         <p id="Example1-config">
           To configure the filter to suppress audit events on the same line:
         </p>
@@ -181,7 +181,7 @@
           <param name="type" value="code"/>
         </macro>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressWithNearbyTextFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyTextFilter">
@@ -193,11 +193,11 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressWithNearbyTextFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressWithNearbyTextFilter_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="SuppressWithNearbyTextFilter"/>
         </macro>
