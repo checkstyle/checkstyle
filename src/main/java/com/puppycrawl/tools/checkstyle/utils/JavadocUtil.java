@@ -21,12 +21,13 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -256,6 +257,26 @@ public final class JavadocUtil {
             nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
+    }
+
+    /**
+     * Finds the first {@link Optional} child token of {@link DetailNode} root node
+     * which matches the given predicate.
+     *
+     * @param root root node.
+     * @param predicate predicate.
+     * @return {@link Optional} of {@link DetailNode} node which matches the predicate.
+     */
+    public static Optional<DetailNode> findFirstTokenByPredicate(DetailNode root,
+                                                                Predicate<DetailNode> predicate) {
+        Optional<DetailNode> result = Optional.empty();
+        for (DetailNode ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
+            if (predicate.test(ast)) {
+                result = Optional.of(ast);
+                break;
+            }
+        }
+        return result;
     }
 
     /**

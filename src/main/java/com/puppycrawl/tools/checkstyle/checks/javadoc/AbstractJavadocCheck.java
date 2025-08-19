@@ -320,7 +320,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 }
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
-                    log(result.getFirstNonTightHtmlTag().getLine(),
+                    log(result.getFirstNonTightHtmlTag().getLineNumber(),
                             MSG_KEY_UNCLOSED_HTML_TAG,
                             result.getFirstNonTightHtmlTag().getText());
                 }
