@@ -46,7 +46,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathMissingNullCaseInSwitchSimple.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -67,7 +67,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     @Test
     public void testNestedExpression() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath("InputXpathMissingNullCaseInSwitchNested.java"));
+                new File(getPath("InputXpathMissingNullCaseInSwitchNested.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(MissingNullCaseInSwitchCheck.class);
