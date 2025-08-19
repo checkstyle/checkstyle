@@ -8,19 +8,19 @@
   <body>
     <section name="SuppressionCommentFilter">
       <p>Since Checkstyle 3.5</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressionCommentFilter_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressionCommentFilter_Notes">
         <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionCommentFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressionCommentFilter_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -28,7 +28,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressionCommentFilter_Examples">
         <p id="Example1-config">
           To configure a filter to suppress audit events (MemberNameCheck,
           ConstantNameCheck and IllegalCatchCheck have been taken here for reference)
@@ -160,7 +160,7 @@
           <param name="type" value="code"/>
         </macro>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressionCommentFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionCommentFilter">
@@ -172,11 +172,11 @@
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressionCommentFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressionCommentFilter_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="SuppressionCommentFilter"/>
         </macro>

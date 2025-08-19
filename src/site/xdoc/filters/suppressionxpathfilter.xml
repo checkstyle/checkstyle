@@ -8,7 +8,7 @@
   <body>
     <section name="SuppressionXpathFilter">
       <p>Since Checkstyle 8.6</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressionXpathFilter_Description">
         <div>
           Filter <code>SuppressionXpathFilter</code> works as
           <a href="https://checkstyle.org/filters/suppressionfilter.html">
@@ -138,7 +138,7 @@
           for more details.
         </p>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressionXpathFilter_Notes">
         <p>
           The suppression file location is checked in following order:
         </p>
@@ -210,7 +210,7 @@
           in different languages it is better to avoid filtering by message.
         </p>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -237,7 +237,7 @@
           </table>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressionXpathFilter_Examples">
 
         <p id="Example1-config">
           For example #1, the following configuration example directs the
@@ -983,7 +983,7 @@ public class Example14 {
 </code></pre></div><hr class="example-separator"/>
 
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
@@ -999,11 +999,11 @@ public class Example14 {
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressionXpathFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressionXpathFilter_Parent_Module">
         <p>
           <a href="../config.html#TreeWalker">TreeWalker</a>
         </p>

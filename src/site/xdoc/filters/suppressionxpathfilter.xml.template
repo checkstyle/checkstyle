@@ -8,19 +8,19 @@
   <body>
     <section name="SuppressionXpathFilter">
       <p>Since Checkstyle 8.6</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressionXpathFilter_Description">
         <macro name="description">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressionXpathFilter_Notes">
         <macro name="notes">
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java"/>
         </macro>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <div class="wrapper">
           <macro name="properties">
             <param name="modulePath"
@@ -28,7 +28,7 @@
           </macro>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressionXpathFilter_Examples">
 
         <p id="Example1-config">
           For example #1, the following configuration example directs the
@@ -532,7 +532,7 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
         </macro><hr class="example-separator"/>
 
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
@@ -548,11 +548,11 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressionXpathFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressionXpathFilter_Parent_Module">
         <macro name="parent-module">
           <param name="moduleName" value="SuppressionXpathFilter"/>
         </macro>

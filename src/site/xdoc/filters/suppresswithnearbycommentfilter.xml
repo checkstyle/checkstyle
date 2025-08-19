@@ -8,7 +8,7 @@
   <body>
     <section name="SuppressWithNearbyCommentFilter">
       <p>Since Checkstyle 5.0</p>
-      <subsection name="Description" id="Description">
+      <subsection name="Description" id="SuppressWithNearbyCommentFilter_Description">
         <div>
           Filter <code>SuppressWithNearbyCommentFilter</code> uses nearby comments to suppress audit events.
         </div>
@@ -29,13 +29,13 @@
           SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
         </p>
       </subsection>
-      <subsection name="Notes" id="Notes">
+      <subsection name="Notes" id="SuppressWithNearbyCommentFilter_Notes">
         <p>
           SuppressWithNearbyCommentFilter can suppress Checks that have
           Treewalker as parent module.
         </p>
       </subsection>
-      <subsection name="Properties" id="Properties">
+      <subsection name="Properties" id="SuppressWithNearbyCommentFilter_Properties">
         <div class="wrapper">
           <table>
             <tr>
@@ -97,7 +97,7 @@
           </table>
         </div>
       </subsection>
-      <subsection name="Examples" id="Examples">
+      <subsection name="Examples" id="SuppressWithNearbyCommentFilter_Examples">
         <p id="Example1-config">
           To configure a filter to suppress audit events for <i>check</i>
           on any line with a comment <code>SUPPRESS CHECKSTYLE <i>check</i></code>:
@@ -336,7 +336,7 @@ public class Example8 { // filtered violation 'Class Data Abstraction Coupling i
 }
 </code></pre></div>
       </subsection>
-      <subsection name="Example of Usage" id="Example_of_Usage">
+      <subsection name="Example of Usage" id="SuppressWithNearbyCommentFilter_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressWithNearbyCommentFilter">
@@ -348,11 +348,11 @@ public class Example8 { // filtered violation 'Class Data Abstraction Coupling i
           </li>
         </ul>
       </subsection>
-      <subsection name="Package" id="Package">
+      <subsection name="Package" id="SuppressWithNearbyCommentFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>
       </subsection>
 
-      <subsection name="Parent Module" id="Parent_Module">
+      <subsection name="Parent Module" id="SuppressWithNearbyCommentFilter_Parent_Module">
         <p>
           <a href="../config.html#TreeWalker">TreeWalker</a>
         </p>
