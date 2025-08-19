@@ -48,7 +48,7 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
     @Test
     public void testSimple() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathUnusedCatchParameterShouldBeUnnamedSimple.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -88,7 +88,7 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
     @Test
     public void testNested() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathUnusedCatchParameterShouldBeUnnamedNested.java"));
 
         final DefaultConfiguration moduleConfig =

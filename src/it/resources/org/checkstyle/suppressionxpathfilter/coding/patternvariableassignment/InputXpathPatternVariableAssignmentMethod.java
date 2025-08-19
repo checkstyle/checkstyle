@@ -1,4 +1,4 @@
-// non-compiled with javac: Compilable with Java16
+// Java16
 package org.checkstyle.suppressionxpathfilter.coding.patternvariableassignment;
 
 public class InputXpathPatternVariableAssignmentMethod {

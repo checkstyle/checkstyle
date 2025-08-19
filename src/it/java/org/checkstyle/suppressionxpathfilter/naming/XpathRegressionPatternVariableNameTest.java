@@ -47,7 +47,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testOne() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableNameOne.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -63,7 +63,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathPatternVariableNameOne']]"
-                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/PATTERN_VARIABLE_DEF/"
                 + "IDENT[@text='STRING1']"
         );
@@ -75,7 +75,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testTwo() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableNameTwo.java"));
 
         final String nonDefaultPattern = "^_[a-zA-Z0-9]*$";
@@ -92,7 +92,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathPatternVariableNameTwo']]"
-                + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                 + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                 + "PATTERN_VARIABLE_DEF/IDENT[@text='s']"
         );
@@ -104,7 +104,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testThree() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableNameThree.java"));
 
         final String nonDefaultPattern = "^[a-z](_?[a-zA-Z0-9]+)*$";
@@ -121,7 +121,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathPatternVariableNameThree']]"
-                    + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/"
                     + "EXPR/LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='STR']"
         );
@@ -133,7 +133,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     @Test
     public void testFour() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableNameFour.java"));
 
         final String nonDefaultPattern = "^[a-z][_a-zA-Z0-9]{2,}$";
@@ -150,7 +150,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathPatternVariableNameFour']]"
-                    + "/OBJBLOCK/CTOR_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
                     + "LITERAL_INSTANCEOF[./IDENT[@text='o1']]/"
                     + "PATTERN_VARIABLE_DEF/IDENT[@text='st']"
         );
