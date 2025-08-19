@@ -7,15 +7,15 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.createTempFile;
-import java.lang.Math.sqrt;
+import static java.lang.Math.sqrt;
 
 import javax.swing.JComponent; // violation 'Extra separation in import group'
-import static javax.windowConstants.*;
+import static javax.swing.JTree.*;
 // all static imports are processed like non static imports.
 // xdoc section -- end
 

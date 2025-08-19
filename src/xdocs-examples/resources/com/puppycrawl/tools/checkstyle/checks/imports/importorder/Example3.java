@@ -11,26 +11,25 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.io.File.createTempFile;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'i' < 'l'
-import java.lang.Math.sqrt; // ok, follows property 'Option' value 'above'
+
 import java.io.File; // violation, alphabetical case-sensitive ASCII order, 'i' < 'l'
 
 import java.io.IOException; // violation, extra separation in 'java' import group
 
-import org.albedo.*;
+import org.w3c.dom.Document;
 
-import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // violation, wrong order, 'javax' must come before 'org'
 import javax.swing.JComponent;
-import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
-import org.linux.apache.server.SoapServer;
+import org.w3c.dom.Element; // violation, must be separated from previous 'javax' import
 
-import com.neurologic.http.HttpClient;
-import com.neurologic.http.impl.ApacheHttpClient;
+import com.sun.security.auth.UserPrincipal;
+import com.sun.source.tree.Tree;
 // xdoc section -- end
 
 public class Example3 { }
