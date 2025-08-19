@@ -86,49 +86,49 @@ public int checkReturnTag(final int aTagIndex,
               <th>since</th>
             </tr>
             <tr>
-              <td>accessModifiers</td>
+              <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Specify the access modifiers where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.42</td>
             </tr>
             <tr>
-              <td>allowInlineReturn</td>
+              <td><a id="allowInlineReturn"/><a href="#allowInlineReturn">allowInlineReturn</a></td>
               <td>Control whether to allow inline return tags.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>10.23.0</td>
             </tr>
             <tr>
-              <td>allowMissingParamTags</td>
+              <td><a id="allowMissingParamTags"/><a href="#allowMissingParamTags">allowMissingParamTags</a></td>
               <td>Control whether to ignore violations when a method has parameters but does not have matching <code>param</code> tags in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
-              <td>allowMissingReturnTag</td>
+              <td><a id="allowMissingReturnTag"/><a href="#allowMissingReturnTag">allowMissingReturnTag</a></td>
               <td>Control whether to ignore violations when a method returns non-void type and does not have a <code>return</code> tag in the javadoc.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.1</td>
             </tr>
             <tr>
-              <td>allowedAnnotations</td>
+              <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Specify annotations that allow missed documentation.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
             </tr>
             <tr>
-              <td>validateThrows</td>
+              <td><a id="validateThrows"/><a href="#validateThrows">validateThrows</a></td>
               <td>Control whether to validate <code>throws</code> tags.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">

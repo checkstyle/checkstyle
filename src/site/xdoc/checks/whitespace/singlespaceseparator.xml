@@ -50,7 +50,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
               <th>since</th>
             </tr>
             <tr>
-              <td>validateComments</td>
+              <td><a id="validateComments"/><a href="#validateComments">validateComments</a></td>
               <td>Control whether to validate whitespaces surrounding comments.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

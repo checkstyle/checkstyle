@@ -77,56 +77,56 @@ try {
               <th>since</th>
             </tr>
             <tr>
-              <td>allowEmptyCatches</td>
+              <td><a id="allowEmptyCatches"/><a href="#allowEmptyCatches">allowEmptyCatches</a></td>
               <td>Allow empty catch bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.6</td>
             </tr>
             <tr>
-              <td>allowEmptyConstructors</td>
+              <td><a id="allowEmptyConstructors"/><a href="#allowEmptyConstructors">allowEmptyConstructors</a></td>
               <td>Allow empty constructor bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
-              <td>allowEmptyLambdas</td>
+              <td><a id="allowEmptyLambdas"/><a href="#allowEmptyLambdas">allowEmptyLambdas</a></td>
               <td>Allow empty lambda bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.14</td>
             </tr>
             <tr>
-              <td>allowEmptyLoops</td>
+              <td><a id="allowEmptyLoops"/><a href="#allowEmptyLoops">allowEmptyLoops</a></td>
               <td>Allow empty loop bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>allowEmptyMethods</td>
+              <td><a id="allowEmptyMethods"/><a href="#allowEmptyMethods">allowEmptyMethods</a></td>
               <td>Allow empty method bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
-              <td>allowEmptySwitchBlockStatements</td>
+              <td><a id="allowEmptySwitchBlockStatements"/><a href="#allowEmptySwitchBlockStatements">allowEmptySwitchBlockStatements</a></td>
               <td>Allow empty switch blocks and block statements.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>10.19.0</td>
             </tr>
             <tr>
-              <td>allowEmptyTypes</td>
+              <td><a id="allowEmptyTypes"/><a href="#allowEmptyTypes">allowEmptyTypes</a></td>
               <td>Allow empty class, interface and enum bodies.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>ignoreEnhancedForColon</td>
+              <td><a id="ignoreEnhancedForColon"/><a href="#ignoreEnhancedForColon">ignoreEnhancedForColon</a></td>
               <td>Ignore whitespace around colon in <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  enhanced for</a> loop.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -134,7 +134,7 @@ try {
               <td>5.5</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">

@@ -101,21 +101,21 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>closingParens</td>
+              <td><a id="closingParens"/><a href="#closingParens">closingParens</a></td>
               <td>Define the policy for ending parenthesis.</td>
               <td><a href="../../property_types.html#ClosingParensOption">ClosingParensOption</a></td>
               <td><code>never</code></td>
               <td>5.0</td>
             </tr>
             <tr>
-              <td>elementStyle</td>
+              <td><a id="elementStyle"/><a href="#elementStyle">elementStyle</a></td>
               <td>Define the annotation element styles.</td>
               <td><a href="../../property_types.html#ElementStyleOption">ElementStyleOption</a></td>
               <td><code>compact_no_array</code></td>
               <td>5.0</td>
             </tr>
             <tr>
-              <td>trailingArrayComma</td>
+              <td><a id="trailingArrayComma"/><a href="#trailingArrayComma">trailingArrayComma</a></td>
               <td>Define the policy for trailing comma in arrays.</td>
               <td><a href="../../property_types.html#TrailingArrayCommaOption">TrailingArrayCommaOption</a></td>
               <td><code>never</code></td>

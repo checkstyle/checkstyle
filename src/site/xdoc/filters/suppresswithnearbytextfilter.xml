@@ -33,35 +33,35 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>checkPattern</td>
+              <td><a id="checkPattern"/><a href="#checkPattern">checkPattern</a></td>
               <td>Specify check name pattern to suppress. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
-              <td>idPattern</td>
+              <td><a id="idPattern"/><a href="#idPattern">idPattern</a></td>
               <td>Specify check ID pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
-              <td>lineRange</td>
+              <td><a id="lineRange"/><a href="#lineRange">lineRange</a></td>
               <td>Specify negative/zero/positive value that defines the number of lines preceding/at/following the suppressing nearby text. Property can also be a RegExp group index at <code>nearbyTextPattern</code> in format of <code>$x</code> and be picked from line that matches <code>nearbyTextPattern</code>.</td>
               <td><a href="../property_types.html#String">String</a></td>
               <td><code>&quot;0&quot;</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
-              <td>messagePattern</td>
+              <td><a id="messagePattern"/><a href="#messagePattern">messagePattern</a></td>
               <td>Specify check violation message pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>10.10.0</td>
             </tr>
             <tr>
-              <td>nearbyTextPattern</td>
+              <td><a id="nearbyTextPattern"/><a href="#nearbyTextPattern">nearbyTextPattern</a></td>
               <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>

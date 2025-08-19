@@ -55,7 +55,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>javaFiveCompatibility</td>
+              <td><a id="javaFiveCompatibility"/><a href="#javaFiveCompatibility">javaFiveCompatibility</a></td>
               <td>Enable java 5 compatibility mode.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

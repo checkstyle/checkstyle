@@ -32,7 +32,7 @@ for (Iterator foo = very.long.line.iterator();
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
+              <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to pad an empty for iterator.</td>
               <td><a href="../../property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>

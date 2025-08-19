@@ -38,7 +38,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>matchDirectoryStructure</td>
+              <td><a id="matchDirectoryStructure"/><a href="#matchDirectoryStructure">matchDirectoryStructure</a></td>
               <td>Control whether to check for directory and package name match.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>

@@ -29,14 +29,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>offset</td>
+              <td><a id="offset"/><a href="#offset">offset</a></td>
               <td>Specify how many spaces to use for new indentation level.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>6.0</td>
             </tr>
             <tr>
-              <td>violateExecutionOnNonTightHtml</td>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
               <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
      Tight-HTML Rules</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>

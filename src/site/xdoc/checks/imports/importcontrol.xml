@@ -97,14 +97,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>file</td>
+              <td><a id="file"/><a href="#file">file</a></td>
               <td>Specify the location of the file containing the import control configuration. It can be a regular file, URL or resource path. It will try loading the path as a URL first, then as a file, and finally as a resource.</td>
               <td><a href="../../property_types.html#URI">URI</a></td>
               <td><code>null</code></td>
               <td>4.0</td>
             </tr>
             <tr>
-              <td>path</td>
+              <td><a id="path"/><a href="#path">path</a></td>
               <td>Specify the regular expression of file paths to which this check should apply. Files that don't match the pattern will not be checked. The pattern will be matched against the full absolute file path.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>

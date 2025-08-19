@@ -64,14 +64,14 @@ public class A {
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreConstructors</td>
+              <td><a id="ignoreConstructors"/><a href="#ignoreConstructors">ignoreConstructors</a></td>
               <td>Control whether to ignore constructors.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
             <tr>
-              <td>ignoreModifiers</td>
+              <td><a id="ignoreModifiers"/><a href="#ignoreModifiers">ignoreModifiers</a></td>
               <td>Control whether to ignore modifiers (fields, ...).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

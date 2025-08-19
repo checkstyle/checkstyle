@@ -50,7 +50,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>classes</td>
+              <td><a id="classes"/><a href="#classes">classes</a></td>
               <td>Specify fully qualified class names that should not be instantiated.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>

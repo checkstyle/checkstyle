@@ -34,14 +34,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
+              <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify the policy on block contents.</td>
               <td><a href="../../property_types.html#BlockOption">BlockOption</a></td>
               <td><code>statement</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">

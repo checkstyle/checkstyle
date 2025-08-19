@@ -32,7 +32,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowOneCharVarInForLoop</td>
+              <td><a id="allowOneCharVarInForLoop"/><a href="#allowOneCharVarInForLoop">allowOneCharVarInForLoop</a></td>
               <td>Allow one character variable name in <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  initialization expressions</a> in FOR loop if one char variable name is prohibited by <code>format</code> regexp.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -40,7 +40,7 @@
               <td>5.8</td>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;</code></td>
