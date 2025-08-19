@@ -21,6 +21,9 @@ public class InputTextBlockGoogleStyleFormatting {
             this is simple test;
             """;
 
+        // 2 violations 4 lines below:
+        //   'Opening quotes (""") of text-block must be on the new line'
+        //   'Text-block quotes are not vertically aligned'
         final String simpleScript2 = simpleScript +
                 simpleScript1 + """
                 this is simple script
@@ -32,6 +35,9 @@ public class InputTextBlockGoogleStyleFormatting {
             this is simple script
             """;
 
+        // 2 violations 4 lines below:
+        //   'Opening quotes (""") of text-block must be on the new line'
+        //   'Text-block quotes are not vertically aligned'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith("""
                 this is simple
@@ -67,6 +73,7 @@ public class InputTextBlockGoogleStyleFormatting {
             This is a multi-line message."""
         ); // violation above 'Closing quotes (""") of text-block must be on the new line.'
 
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         getData(
             1, """
                this is a multi-line message
@@ -80,9 +87,10 @@ public class InputTextBlockGoogleStyleFormatting {
             """
         );
 
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         getData(1,
             3, 5, 8, """
-                some String"""
+          some String""" // violation 'Closing quotes (""") of text-block must be on the new line'
         );
 
         getData(1,
@@ -92,6 +100,9 @@ public class InputTextBlockGoogleStyleFormatting {
                 """
         );
 
+        // 2 violations 3 lines below:
+        //   'Opening quotes (""") of text-block must be on the new line'
+        //   'Text-block quotes are not vertically aligned.'
         getData("""
             first string
             """ + """
@@ -100,19 +111,28 @@ public class InputTextBlockGoogleStyleFormatting {
             """
             second string
             """
+            // 2 violations 6 lines above:
+            //  'Opening quotes (""") of text-block must be on the new line'
+            //  'Text-block quotes are not vertically aligned'
         );
 
+        // 2 violations 6 lines below:
+        //   'Opening quotes (""") of text-block must be on the new line'
+        //   'Text-block quotes are not vertically aligned.'
         getData(
             """
             first string
             """ + """
             some String
-            """,
-            """
+            """, """
             second string
             """
+           // 2 violations 3 lines above:
+           //   'Opening quotes (""") of text-block must be on the new line'
+           //   'Text-block quotes are not vertically aligned'
         );
 
+        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         return
             """
            THE MULTI-LINE MESSAGE""";
@@ -131,6 +151,14 @@ public class InputTextBlockGoogleStyleFormatting {
             """
               hello there1
               """, 0);
+
+        // 2 violations 4 lines below:
+        //   'Opening quotes (""") of text-block must be on the new line'
+        //   'Text-block quotes are not vertically aligned'
+        String test1 = s
+            + """
+            very good
+            """.charAt(0) + getName();
 
         return s
             +

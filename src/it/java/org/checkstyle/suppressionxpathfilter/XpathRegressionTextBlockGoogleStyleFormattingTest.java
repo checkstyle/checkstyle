@@ -47,7 +47,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
 
         final String[] expectedViolation = {
             "7:14: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR),
+                TextBlockGoogleStyleFormattingCheck.MSG_INDENTATION_ERROR),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -73,7 +73,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
 
         final String[] expectedViolation = {
             "8:32: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR),
+                TextBlockGoogleStyleFormattingCheck.MSG_INDENTATION_ERROR),
         };
 
         final List<String> expectedXpathQueries = List.of(

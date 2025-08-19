@@ -3,8 +3,9 @@ package org.checkstyle.suppressionxpathfilter.textblockgooglestyleformatting;
 public class InputXpathTextBlockGoogleStyleFormatting {
     public String textFun() {
         final String simpleScript =
-            """
-            s"""; // warn
+               """
+            s
+            """;
 
         final String simpleScript1 =
             """
