@@ -41,7 +41,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$&quot;</code></td>

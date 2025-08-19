@@ -31,14 +31,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowLegacy</td>
+              <td><a id="allowLegacy"/><a href="#allowLegacy">allowLegacy</a></td>
               <td>Allow legacy <code>package.html</code> file to be used.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
-              <td>fileExtensions</td>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>.java</code></td>

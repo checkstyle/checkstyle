@@ -81,6 +81,9 @@ public class PropertiesMacro extends AbstractMacro {
     /** Represents the relative path to the property types XML. */
     private static final String PROPERTY_TYPES_XML = "property_types.xml";
 
+    /** The string '#'. */
+    private static final String HASHTAG = "#";
+
     /** Represents the format string for constructing URLs with two placeholders. */
     private static final String URL_F = "%s#%s";
 
@@ -283,7 +286,10 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writePropertyNameCell(Sink sink, String propertyName) {
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
+        sink.rawText("<a id=\"" + propertyName + "\"/>");
+        sink.link(HASHTAG + propertyName);
         sink.text(propertyName);
+        sink.link_();
         sink.tableCell_();
     }
 
@@ -457,7 +463,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writeLinkToToken(Sink sink, String document, String tokenName)
             throws MacroExecutionException {
         final String link = SiteUtil.getLinkToDocument(currentModuleName, document)
-                        + "#" + tokenName;
+                        + HASHTAG + tokenName;
         sink.link(link);
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_20);
         sink.text(tokenName);

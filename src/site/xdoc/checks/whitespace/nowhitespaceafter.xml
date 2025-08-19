@@ -57,14 +57,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowLineBreaks</td>
+              <td><a id="allowLineBreaks"/><a href="#allowLineBreaks">allowLineBreaks</a></td>
               <td>Control whether whitespace is allowed if the token is at a linebreak.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">

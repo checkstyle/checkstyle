@@ -64,21 +64,21 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum threshold allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>10</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>switchBlockAsSingleDecisionPoint</td>
+              <td><a id="switchBlockAsSingleDecisionPoint"/><a href="#switchBlockAsSingleDecisionPoint">switchBlockAsSingleDecisionPoint</a></td>
               <td>Control whether to treat the whole switch block as a single decision point.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.11</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">

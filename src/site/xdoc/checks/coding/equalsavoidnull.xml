@@ -34,7 +34,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreEqualsIgnoreCase</td>
+              <td><a id="ignoreEqualsIgnoreCase"/><a href="#ignoreEqualsIgnoreCase">ignoreEqualsIgnoreCase</a></td>
               <td>Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

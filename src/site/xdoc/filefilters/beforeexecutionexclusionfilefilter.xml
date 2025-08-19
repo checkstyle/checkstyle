@@ -41,7 +41,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>fileNamePattern</td>
+              <td><a id="fileNamePattern"/><a href="#fileNamePattern">fileNamePattern</a></td>
               <td>Define regular expression to match the file name against.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>

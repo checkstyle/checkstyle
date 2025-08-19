@@ -64,42 +64,42 @@ public class ExampleClass {
               <th>since</th>
             </tr>
             <tr>
-              <td>maxPackage</td>
+              <td><a id="maxPackage"/><a href="#maxPackage">maxPackage</a></td>
               <td>Specify the maximum number of <code>package</code> methods allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>maxPrivate</td>
+              <td><a id="maxPrivate"/><a href="#maxPrivate">maxPrivate</a></td>
               <td>Specify the maximum number of <code>private</code> methods allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>maxProtected</td>
+              <td><a id="maxProtected"/><a href="#maxProtected">maxProtected</a></td>
               <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>maxPublic</td>
+              <td><a id="maxPublic"/><a href="#maxPublic">maxPublic</a></td>
               <td>Specify the maximum number of <code>public</code> methods allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>maxTotal</td>
+              <td><a id="maxTotal"/><a href="#maxTotal">maxTotal</a></td>
               <td>Specify the maximum number of methods allowed at all scope levels.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">

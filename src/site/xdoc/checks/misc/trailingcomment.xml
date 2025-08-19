@@ -77,14 +77,14 @@ d = e / f;        // Another comment for this line
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern for strings allowed before the comment.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^[\s});]*$&quot;</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>legalComment</td>
+              <td><a id="legalComment"/><a href="#legalComment">legalComment</a></td>
               <td>Define pattern for text allowed in trailing comments. This pattern will not be applied to multiline comments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>

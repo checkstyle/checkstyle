@@ -32,14 +32,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
+              <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to wrap lines.</td>
               <td><a href="../../property_types.html#WrapOption">WrapOption</a></td>
               <td><code>nl</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">

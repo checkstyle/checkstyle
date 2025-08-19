@@ -27,28 +27,28 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowedDistance</td>
+              <td><a id="allowedDistance"/><a href="#allowedDistance">allowedDistance</a></td>
               <td>Specify the maximum distance between a variable's declaration and its first usage. Value should be greater than 0.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>ignoreFinal</td>
+              <td><a id="ignoreFinal"/><a href="#ignoreFinal">ignoreFinal</a></td>
               <td>Allow to ignore variables with a 'final' modifier.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>ignoreVariablePattern</td>
+              <td><a id="ignoreVariablePattern"/><a href="#ignoreVariablePattern">ignoreVariablePattern</a></td>
               <td>Define RegExp to ignore distance calculation for variables listed in this pattern.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;&quot;</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>validateBetweenScopes</td>
+              <td><a id="validateBetweenScopes"/><a href="#validateBetweenScopes">validateBetweenScopes</a></td>
               <td>Allow to calculate the distance between a variable's declaration and its first usage across different scopes.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

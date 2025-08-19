@@ -27,14 +27,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>accessModifiers</td>
+              <td><a id="accessModifiers"/><a href="#accessModifiers">accessModifiers</a></td>
               <td>Access modifiers of record definitions where the number of record components should be checked.</td>
               <td><a href="../../property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]</a></td>
               <td><code>public, protected, package, private</code></td>
               <td>8.36</td>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of components allowed in the header of a record definition.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>8</code></td>
