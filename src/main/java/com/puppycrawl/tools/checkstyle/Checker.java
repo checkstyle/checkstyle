@@ -433,6 +433,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         }
     }
 
+    // noinspection deprecation
+    // Disabled until https://github.com/checkstyle/checkstyle/issues/17646
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
