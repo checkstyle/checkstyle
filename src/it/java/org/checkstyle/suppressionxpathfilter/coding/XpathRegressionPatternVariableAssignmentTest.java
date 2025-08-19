@@ -44,7 +44,7 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
     @Test
     public void testMethod() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableAssignmentMethod.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -67,14 +67,14 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
     @Test
     public void testLambda() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableAssignmentLambda.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "10:9: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "12:17: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };
@@ -91,14 +91,14 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
     @Test
     public void testClass() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathPatternVariableAssignmentClass.java"));
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableAssignmentCheck.class);
 
         final String[] expectedViolation = {
-            "9:11: " + getCheckMessage(PatternVariableAssignmentCheck.class,
+            "10:21: " + getCheckMessage(PatternVariableAssignmentCheck.class,
                     PatternVariableAssignmentCheck.MSG_KEY,
                     "x"),
         };

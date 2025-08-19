@@ -1,4 +1,4 @@
-// non-compiled with javac: Compilable with Java14
+// Java14
 
 package org.checkstyle.suppressionxpathfilter.coding.constructorsdeclarationgrouping;
 
