@@ -33,7 +33,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>illegalClassNames</td>
+              <td><a id="illegalClassNames"/><a href="#illegalClassNames">illegalClassNames</a></td>
               <td>Specify exception class names to reject.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>

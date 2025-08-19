@@ -29,7 +29,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of outer types allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>1</code></td>

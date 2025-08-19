@@ -66,28 +66,28 @@ public String getNameIfPresent() { ... }
               <th>since</th>
             </tr>
             <tr>
-              <td>allowSamelineMultipleAnnotations</td>
+              <td><a id="allowSamelineMultipleAnnotations"/><a href="#allowSamelineMultipleAnnotations">allowSamelineMultipleAnnotations</a></td>
               <td>Allow annotation(s) to be located on the same line as target element.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
-              <td>allowSamelineParameterizedAnnotation</td>
+              <td><a id="allowSamelineParameterizedAnnotation"/><a href="#allowSamelineParameterizedAnnotation">allowSamelineParameterizedAnnotation</a></td>
               <td>Allow one and only parameterized annotation to be located on the same line as target element.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
             <tr>
-              <td>allowSamelineSingleParameterlessAnnotation</td>
+              <td><a id="allowSamelineSingleParameterlessAnnotation"/><a href="#allowSamelineSingleParameterlessAnnotation">allowSamelineSingleParameterlessAnnotation</a></td>
               <td>Allow single parameterless annotation to be located on the same line as target element.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.1</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">

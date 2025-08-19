@@ -45,7 +45,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>query</td>
+              <td><a id="query"/><a href="#query">query</a></td>
               <td>Specify Xpath query.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>&quot;&quot;</code></td>

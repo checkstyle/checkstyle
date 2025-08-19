@@ -25,28 +25,28 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreAnnotatedBy</td>
+              <td><a id="ignoreAnnotatedBy"/><a href="#ignoreAnnotatedBy">ignoreAnnotatedBy</a></td>
               <td>Ignore methods and constructors annotated with the specified annotation(s).</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>10.15.0</td>
             </tr>
             <tr>
-              <td>ignoreOverriddenMethods</td>
+              <td><a id="ignoreOverriddenMethods"/><a href="#ignoreOverriddenMethods">ignoreOverriddenMethods</a></td>
               <td>Ignore number of parameters for methods with <code>@Override</code> annotation.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum number of parameters allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>7</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">

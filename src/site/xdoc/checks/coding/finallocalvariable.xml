@@ -33,7 +33,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>validateEnhancedForLoopVariable</td>
+              <td><a id="validateEnhancedForLoopVariable"/><a href="#validateEnhancedForLoopVariable">validateEnhancedForLoopVariable</a></td>
               <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  enhanced for-loop</a> variable.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -41,7 +41,7 @@
               <td>6.5</td>
             </tr>
             <tr>
-              <td>validateUnnamedVariables</td>
+              <td><a id="validateUnnamedVariables"/><a href="#validateUnnamedVariables">validateUnnamedVariables</a></td>
               <td>Control whether to check <a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html">
  unnamed variables</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
@@ -49,7 +49,7 @@
               <td>10.18.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">

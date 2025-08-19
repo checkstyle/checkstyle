@@ -67,7 +67,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>processJavadoc</td>
+              <td><a id="processJavadoc"/><a href="#processJavadoc">processJavadoc</a></td>
               <td>Control whether to process Javadoc comments.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>

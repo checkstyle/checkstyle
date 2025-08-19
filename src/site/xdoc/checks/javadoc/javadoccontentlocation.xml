@@ -86,7 +86,7 @@ public void method();
               <th>since</th>
             </tr>
             <tr>
-              <td>location</td>
+              <td><a id="location"/><a href="#location">location</a></td>
               <td>Specify the policy on placement of the Javadoc content.</td>
               <td><a href="../../property_types.html#JavadocContentLocationOption">JavadocContentLocationOption</a></td>
               <td><code>second_line</code></td>

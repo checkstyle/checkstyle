@@ -52,21 +52,21 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>checkFields</td>
+              <td><a id="checkFields"/><a href="#checkFields">checkFields</a></td>
               <td>Control whether to check references to fields.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>checkMethods</td>
+              <td><a id="checkMethods"/><a href="#checkMethods">checkMethods</a></td>
               <td>Control whether to check references to methods.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>validateOnlyOverlapping</td>
+              <td><a id="validateOnlyOverlapping"/><a href="#validateOnlyOverlapping">validateOnlyOverlapping</a></td>
               <td>Control whether to check only overlapping by variables or arguments.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>

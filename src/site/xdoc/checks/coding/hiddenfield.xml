@@ -66,42 +66,42 @@ class PageBuilder {
               <th>since</th>
             </tr>
             <tr>
-              <td>ignoreAbstractMethods</td>
+              <td><a id="ignoreAbstractMethods"/><a href="#ignoreAbstractMethods">ignoreAbstractMethods</a></td>
               <td>Control whether to ignore parameters of abstract methods.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
-              <td>ignoreConstructorParameter</td>
+              <td><a id="ignoreConstructorParameter"/><a href="#ignoreConstructorParameter">ignoreConstructorParameter</a></td>
               <td>Control whether to ignore constructor parameters.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>ignoreFormat</td>
+              <td><a id="ignoreFormat"/><a href="#ignoreFormat">ignoreFormat</a></td>
               <td>Define the RegExp for names of variables and parameters to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>ignoreSetter</td>
+              <td><a id="ignoreSetter"/><a href="#ignoreSetter">ignoreSetter</a></td>
               <td>Allow to ignore the parameter of a property setter method.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>setterCanReturnItsClass</td>
+              <td><a id="setterCanReturnItsClass"/><a href="#setterCanReturnItsClass">setterCanReturnItsClass</a></td>
               <td>Allow to expand the definition of a setter method to include methods that return the class' instance.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">

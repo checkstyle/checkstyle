@@ -56,21 +56,21 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
               <th>since</th>
             </tr>
             <tr>
-              <td>fileExtensions</td>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>8.24</td>
             </tr>
             <tr>
-              <td>ignorePattern</td>
+              <td><a id="ignorePattern"/><a href="#ignorePattern">ignorePattern</a></td>
               <td>Specify pattern for lines to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^(package|import) .*&quot;</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify the maximum line length allowed.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>80</code></td>
