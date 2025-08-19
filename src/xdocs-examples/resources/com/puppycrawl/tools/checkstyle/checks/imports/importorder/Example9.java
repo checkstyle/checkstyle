@@ -11,15 +11,14 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
-import static io.netty.handler.codec.http.HttpConstants.COLON;
-import static io.netty.handler.codec.http.HttpHeaders.addHeader;
-import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE;
-// violation above 'Wrong order for...'
+import static java.lang.Math.sin;
+import static java.lang.Math.PI; // violation, 'Wrong order for...'
+import static java.lang.Math.abs; // violation, 'Wrong order for...'
+import static java.util.Collections.emptyList;
 // xdoc section -- end
 
 public class Example9 { }
