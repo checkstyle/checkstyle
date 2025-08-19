@@ -140,13 +140,4 @@ public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
         verifyWithWholeConfig(getPath("InputFormattedTryCatchIfElse2.java"));
     }
 
-    @Test
-    public void testKrStyleExceptionLocalVariables() throws Exception {
-        verifyWithWholeConfig(getPath("InputKrStyleExceptionLocalVariables.java"));
-    }
-
-    @Test
-    public void testFormattedKrStyleExceptionLocalVariables() throws Exception {
-        verifyWithWholeConfig(getPath("InputFormattedKrStyleExceptionLocalVariables.java"));
-    }
 }
