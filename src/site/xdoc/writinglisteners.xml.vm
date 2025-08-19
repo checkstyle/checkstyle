@@ -250,7 +250,6 @@ Audit finished. Total errors: 1
         excellent ANT book.
       </p>
 
-      <a name="CommonsLoggingListener"/>
       <h4>CommonsLoggingListener</h4>
 
       <p>
@@ -328,7 +327,6 @@ INFO  com.puppycrawl...Checker  - File "VerboseListener.java" finished.
 INFO  com.puppycrawl...Checker  - Audit finished.
       </code></pre></div>
 
-      <a name="MailLogger"/>
       <h4>MailLogger</h4>
       <p>
         <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/MailLogger.java">
