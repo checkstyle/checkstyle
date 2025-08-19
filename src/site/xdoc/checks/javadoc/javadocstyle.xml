@@ -71,49 +71,49 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>checkEmptyJavadoc</td>
+              <td><a id="checkEmptyJavadoc"/><a href="#checkEmptyJavadoc">checkEmptyJavadoc</a></td>
               <td>Control whether to check if the Javadoc is missing a describing text.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>checkFirstSentence</td>
+              <td><a id="checkFirstSentence"/><a href="#checkFirstSentence">checkFirstSentence</a></td>
               <td>Control whether to check the first sentence for proper end of sentence.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>checkHtml</td>
+              <td><a id="checkHtml"/><a href="#checkHtml">checkHtml</a></td>
               <td>Control whether to check for incomplete HTML tags.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>endOfSentenceFormat</td>
+              <td><a id="endOfSentenceFormat"/><a href="#endOfSentenceFormat">endOfSentenceFormat</a></td>
               <td>Specify the format for matching the end of a sentence.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;([.?!][ \t\n\r\f&lt;])|([.?!]$)&quot;</code></td>
               <td>5.0</td>
             </tr>
             <tr>
-              <td>excludeScope</td>
+              <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>scope</td>
+              <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">

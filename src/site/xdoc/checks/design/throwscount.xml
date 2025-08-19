@@ -50,14 +50,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>ignorePrivateMethods</td>
+              <td><a id="ignorePrivateMethods"/><a href="#ignorePrivateMethods">ignorePrivateMethods</a></td>
               <td>Allow private methods to be ignored.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.7</td>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify maximum allowed number of throws statements.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>4</code></td>

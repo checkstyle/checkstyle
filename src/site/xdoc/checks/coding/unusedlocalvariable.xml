@@ -33,7 +33,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowUnnamedVariables</td>
+              <td><a id="allowUnnamedVariables"/><a href="#allowUnnamedVariables">allowUnnamedVariables</a></td>
               <td>Allow variables named with a single underscore (known as <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
  unnamed variables</a> in Java 21+).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>

@@ -37,7 +37,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>onlyObjectReferences</td>
+              <td><a id="onlyObjectReferences"/><a href="#onlyObjectReferences">onlyObjectReferences</a></td>
               <td>Control whether only explicit initializations made to null for objects should be checked.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

@@ -56,49 +56,49 @@ public boolean isSomething()
               <th>since</th>
             </tr>
             <tr>
-              <td>allowMissingPropertyJavadoc</td>
+              <td><a id="allowMissingPropertyJavadoc"/><a href="#allowMissingPropertyJavadoc">allowMissingPropertyJavadoc</a></td>
               <td>Control whether to allow missing Javadoc on accessor methods for properties (setters and getters).</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>allowedAnnotations</td>
+              <td><a id="allowedAnnotations"/><a href="#allowedAnnotations">allowedAnnotations</a></td>
               <td>Configure annotations that allow missed documentation.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Override</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>excludeScope</td>
+              <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>ignoreMethodNamesRegex</td>
+              <td><a id="ignoreMethodNamesRegex"/><a href="#ignoreMethodNamesRegex">ignoreMethodNamesRegex</a></td>
               <td>Ignore method whose names are matching specified regex.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>minLineCount</td>
+              <td><a id="minLineCount"/><a href="#minLineCount">minLineCount</a></td>
               <td>Control the minimal amount of lines in method to allow no documentation.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>-1</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>scope</td>
+              <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.21</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">

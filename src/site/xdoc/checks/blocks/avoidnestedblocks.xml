@@ -62,7 +62,7 @@ public void guessTheOutput()
               <th>since</th>
             </tr>
             <tr>
-              <td>allowInSwitchCase</td>
+              <td><a id="allowInSwitchCase"/><a href="#allowInSwitchCase">allowInSwitchCase</a></td>
               <td>Allow nested blocks if they are the only child of a switch case.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

@@ -27,7 +27,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>option</td>
+              <td><a id="option"/><a href="#option">option</a></td>
               <td>Specify policy on how to pad parentheses.</td>
               <td><a href="../../property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>

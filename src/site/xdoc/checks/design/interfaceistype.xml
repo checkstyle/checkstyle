@@ -39,7 +39,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowMarkerInterfaces</td>
+              <td><a id="allowMarkerInterfaces"/><a href="#allowMarkerInterfaces">allowMarkerInterfaces</a></td>
               <td>Control whether marker interfaces like Serializable are allowed.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>

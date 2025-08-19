@@ -28,28 +28,28 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>tag</td>
+              <td><a id="tag"/><a href="#tag">tag</a></td>
               <td>Specify the name of tag.</td>
               <td><a href="../../property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
             <tr>
-              <td>tagFormat</td>
+              <td><a id="tagFormat"/><a href="#tagFormat">tagFormat</a></td>
               <td>Specify the regexp to match tag content.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
             <tr>
-              <td>tagSeverity</td>
+              <td><a id="tagSeverity"/><a href="#tagSeverity">tagSeverity</a></td>
               <td>Specify the severity level when tag is found and printed.</td>
               <td><a href="../../property_types.html#SeverityLevel">SeverityLevel</a></td>
               <td><code>info</code></td>
               <td>4.2</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">

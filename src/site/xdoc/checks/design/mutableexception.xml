@@ -43,14 +43,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>extendedClassNameFormat</td>
+              <td><a id="extendedClassNameFormat"/><a href="#extendedClassNameFormat">extendedClassNameFormat</a></td>
               <td>Specify pattern for extended class names.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^.*Exception$|^.*Error$|^.*Throwable$&quot;</code></td>
               <td>6.2</td>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern for exception class names.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^.*Exception$|^.*Error$|^.*Throwable$&quot;</code></td>

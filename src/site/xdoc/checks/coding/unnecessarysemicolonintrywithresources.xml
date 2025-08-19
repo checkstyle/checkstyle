@@ -25,7 +25,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>allowWhenNoBraceAfterSemicolon</td>
+              <td><a id="allowWhenNoBraceAfterSemicolon"/><a href="#allowWhenNoBraceAfterSemicolon">allowWhenNoBraceAfterSemicolon</a></td>
               <td>Allow unnecessary semicolon if closing parenthesis is not on the same line.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
