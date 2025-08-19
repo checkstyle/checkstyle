@@ -1,5 +1,5 @@
-// non-compiled with javac: Compilable with Java21
-package org.checkstyle.suppressionxpathfilter.coding.unusedcatchparametershouldbeunnamed;
+// Java21
+package org.checkstyle.suppressionxpathfilter.coding.unusedlambdaparametershouldbeunnamed;
 
 import java.util.function.Function;
 
