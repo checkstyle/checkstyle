@@ -1,5 +1,6 @@
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
@@ -45,6 +46,9 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * This is used to merge multiple TEXT tokens into a single node.
      */
     private final TextAccumulator accumulator = new TextAccumulator();
+
+
+    private DetailNode firstNonTightHtmlTag = null;
 
     public JavadocCommentsAstVisitor(CommonTokenStream tokens, int blockCommentLineNumber, int javadocColumnNumber) {
         this.tokens = tokens;
@@ -362,6 +366,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitNonTightElement(JavadocCommentsParser.NonTightElementContext ctx) {
+        if (firstNonTightHtmlTag == null) {
+            ParseTree htmlTagStart = ctx.getChild(0);
+            ParseTree tagNameToken = htmlTagStart.getChild(1);
+            firstNonTightHtmlTag = create((Token) tagNameToken.getPayload());
+        }
         return flattenedTree(ctx);
     }
 
@@ -579,6 +588,10 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         }
 
         return node;
+    }
+
+    public DetailNode getFirstNonTightHtmlTag() {
+        return firstNonTightHtmlTag;
     }
 
     /**

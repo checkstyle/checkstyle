@@ -40,7 +40,7 @@ import org.junit.jupiter.api.io.TempDir;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -72,13 +72,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testJavadocTagsWithoutArgs() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
-                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "29: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 10,
-                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "35: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 7,
-                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
-            "46: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 6,
-                    "no viable alternative at input '<EOF>'", "JAVADOC_TAG"),
+                    "no viable alternative at input 'see'", "SEE_TAG"),
+            "65: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 13,
+                    "no viable alternative at input '}'", "REFERENCE"),
+            "73: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 19,
+                    "no viable alternative at input '}'", "REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocJavadocTagsWithoutArgs.java"), expected);
@@ -88,7 +86,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNumberFormatException() throws Exception {
         final String[] expected = {
             "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52,
-                    "mismatched input ';' expecting MEMBER", "REFERENCE"),
+                    "mismatched input '}' expecting IDENTIFIER", "MEMBER_REFERENCE"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNumberFormatException.java"), expected);
@@ -117,7 +115,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 77,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verifyWithInlineConfigParser(
@@ -138,7 +136,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 "InputAbstractJavadocParsingErrors2.java"), expectedMessagesForFile1);
 
         final String[] expectedMessagesForFile2 = {
-            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
+            "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 77,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verifyWithInlineConfigParser(getPath(
@@ -153,7 +151,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
             throws Exception {
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 82,
+            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 81,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verifyWithInlineConfigParser(
@@ -259,7 +257,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTokens() {
-        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC};
+        final int[] defaultJavadocTokens = {JavadocCommentsTokenTypes.JAVADOC_CONTENT};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override
             public void visitJavadocToken(DetailNode ast) {
@@ -294,12 +292,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTokensFail() {
-        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC,
-            JavadocTokenTypes.AREA_HTML_TAG_NAME,
-            JavadocTokenTypes.PARAGRAPH,
-            JavadocTokenTypes.HR_TAG,
-            JavadocTokenTypes.RETURN_LITERAL,
-            JavadocTokenTypes.BR_TAG};
+        final int[] defaultJavadocTokens = {JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+            JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
+            JavadocCommentsTokenTypes.HTML_COMMENT,
+            JavadocCommentsTokenTypes.HTML_ELEMENT,
+            JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
+            JavadocCommentsTokenTypes.NEWLINE};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override
             public void visitJavadocToken(DetailNode ast) {
@@ -311,7 +309,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 return defaultJavadocTokens;
             }
         };
-        check.setJavadocTokens("RETURN_LITERAL");
+        check.setJavadocTokens("RETURN_BLOCK_TAG");
         assertDoesNotThrow(check::init);
     }
 
@@ -325,7 +323,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException exc) {
             final String expected = "Javadoc Token "
-                    + "\"RETURN_LITERAL\" was not found in "
+                    + "\"RETURN_BLOCK_TAG\" was not found in "
                     + "Acceptable javadoc tokens list in check "
                     + TokenIsNotInAcceptablesCheck.class.getName();
             assertWithMessage("Invalid exception, should start with: " + expected)
@@ -353,7 +351,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException exc) {
             final String expected = "Javadoc Token \""
-                    + JavadocTokenTypes.RETURN_LITERAL + "\" from required"
+                    + JavadocCommentsTokenTypes.RETURN_BLOCK_TAG + "\" from required"
                     + " javadoc tokens was not found in default javadoc tokens list in check "
                     + RequiredTokenIsNotInDefaultsJavadocCheck.class.getName();
             assertWithMessage("Invalid exception, should start with: " + expected)
@@ -404,28 +402,16 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoWsBeforeDescriptionInJavadocTags() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    23, "mismatched input 'd' expecting <EOF>", "JAVADOC"),
-            "29: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    30, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "37: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    39, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "51: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    34, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "61: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    31, "mismatched input '-' expecting <EOF>", "JAVADOC"),
+            "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    29, "token recognition error at: '-'", "Fieldname"),
+            "40: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    30, "token recognition error at: '-'", " "),
             "72: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    15, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "81: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    32, "mismatched input '-' expecting <EOF>", "JAVADOC"),
-            "92: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    17, "mismatched input '<' expecting <EOF>", "JAVADOC"),
-            "99: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    34, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
-            "106: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    39, "no viable alternative at input '-'", "JAVADOC_INLINE_TAG"),
-            "114: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    19, "no viable alternative at input '<'", "JAVADOC_INLINE_TAG"),
+                    32, "mismatched input 'description' expecting <EOF>", "JAVADOC"),
+            "88: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    34, "mismatched input 'description' expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
+            "95: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    39, "mismatched input 'description' expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags.java"),
@@ -478,13 +464,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "29: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "36: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "46:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "35: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "55: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "65: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "77:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountOne.java"),
@@ -495,14 +480,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNonTightHtmlTagIntolerantCheckVisitCountTwo() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "20: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "27: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "35:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "49: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "58:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "65:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "69:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "86: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "57:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "SEE_BLOCK_TAG"),
+            "82: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsVisitCountTwo.java"),
@@ -512,41 +492,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
         final String[] expected = {
-            "11:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "12:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
             "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "14:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "15:4: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "15:39: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "30: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "30:9: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "30:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "37: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "37:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "44:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "45: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "45:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "45:25: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "55:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "55:22: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "56: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
-            "65:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "66:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "67: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "67:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "67:23: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "78:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
-            "78:20: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "78:34: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "80: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
-            "80:16: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "80:21: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "96:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "98: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "98:22: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "107:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "108:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "111: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
+            "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 68,
+                    "no viable alternative at input '</'", "HTML_ELEMENT"),
+            "34: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "48: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
+            "66: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
+            "66:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
+            "78: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "tr"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags2.java"), expected);
@@ -555,11 +509,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml3() throws Exception {
         final String[] expected = {
-            "29:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
+            "15:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
+            "30:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
             "36: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
-            "36:9: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "P_TAG_START"),
-            "36:13: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "LI_TAG_START"),
-            "36:33: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "BODY_TAG_START"),
+            "38:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTags3.java"), expected);
@@ -579,7 +532,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.HTML_ELEMENT};
+            return new int[] {JavadocCommentsTokenTypes.HTML_ELEMENT};
         }
 
         @Override
@@ -623,15 +576,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.JAVADOC};
+            return new int[] {JavadocCommentsTokenTypes.JAVADOC_CONTENT};
         }
 
         @Override
         public void visitJavadocToken(DetailNode ast) {
             assertWithMessage(ast.toString())
                 .that(ast.getText())
-                .isEqualTo("JAVADOC");
-            final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocTokenTypes.TEXT);
+                .isEqualTo("JAVADOC_CONTENT");
+            final DetailNode text = JavadocUtil.findFirstToken(ast, JavadocCommentsTokenTypes.TEXT);
             assertWithMessage("Empty javadoc text at " + ast)
                 .that(text)
                 .isNotNull();
@@ -647,12 +600,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.RETURN_LITERAL};
+            return new int[] {JavadocCommentsTokenTypes.RETURN_BLOCK_TAG};
         }
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG};
         }
 
         @Override
@@ -671,17 +624,17 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG};
         }
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG};
         }
 
         @Override
         public int[] getAcceptableJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG};
         }
 
         @Override
@@ -703,7 +656,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.TEXT};
+            return new int[] {JavadocCommentsTokenTypes.TEXT};
         }
 
         @Override
@@ -742,9 +695,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         @Override
         public int[] getDefaultJavadocTokens() {
             return new int[] {
-                JavadocTokenTypes.P_TAG_START,
-                JavadocTokenTypes.LI_TAG_START,
-                JavadocTokenTypes.BODY_TAG_START,
+                JavadocCommentsTokenTypes.SEE_BLOCK_TAG,
             };
         }
 
@@ -777,9 +728,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         @Override
         public int[] getDefaultJavadocTokens() {
             return new int[] {
-                JavadocTokenTypes.P_TAG_START,
-                JavadocTokenTypes.LI_TAG_START,
-                JavadocTokenTypes.BODY_TAG_START,
+                JavadocCommentsTokenTypes.PARAM_BLOCK_TAG,
             };
         }
 

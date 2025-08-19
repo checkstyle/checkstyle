@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import java.util.Comparator;
 import java.util.Set;
 
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
@@ -106,8 +108,8 @@ public class JavadocDetailNodeParser {
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         tokens.fill();
 
-        final Set<SimpleToken> unclosed = lexer.getUnclosedTagNameTokens();
-        final JavadocCommentsParser parser = new JavadocCommentsParser(tokens, unclosed);
+        final Set<SimpleToken> unclosedTags = lexer.getUnclosedTagNameTokens();
+        final JavadocCommentsParser parser = new JavadocCommentsParser(tokens, unclosedTags);
 
         // set prediction mode to SLL to speed up parsing
         parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
@@ -126,10 +128,13 @@ public class JavadocDetailNodeParser {
             int javadocColumnNumber = javadocCommentAst.getColumnNo()
                             + JAVADOC_START.length();
 
-            final DetailNode tree = new JavadocCommentsAstVisitor(
-                    tokens, blockCommentLineNumber, javadocColumnNumber).visit(javadoc);
+            JavadocCommentsAstVisitor visitor = new JavadocCommentsAstVisitor(
+                    tokens, blockCommentLineNumber, javadocColumnNumber);
+            final DetailNode tree = visitor.visit(javadoc);
 
             result.setTree(tree);
+
+            result.firstNonTightHtmlTag = visitor.getFirstNonTightHtmlTag();
 
             if (errorListener.getErrorMessage() != null) {
                 result.setParseErrorMessage(errorListener.getErrorMessage());
@@ -237,7 +242,7 @@ public class JavadocDetailNodeParser {
          *     href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
-        private Token firstNonTightHtmlTag;
+        private DetailNode firstNonTightHtmlTag;
 
         /**
          * Getter for DetailNode tree.
@@ -295,7 +300,7 @@ public class JavadocDetailNodeParser {
          * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
          *     Tight HTML rules</a>
          */
-        public Token getFirstNonTightHtmlTag() {
+        public DetailNode getFirstNonTightHtmlTag() {
             return firstNonTightHtmlTag;
         }
 
