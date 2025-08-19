@@ -26,7 +26,7 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">

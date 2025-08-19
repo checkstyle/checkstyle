@@ -138,42 +138,42 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
               <th>since</th>
             </tr>
             <tr>
-              <td>customImportOrderRules</td>
+              <td><a id="customImportOrderRules"/><a href="#customImportOrderRules">customImportOrderRules</a></td>
               <td>Specify ordered list of import groups.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>separateLineBetweenGroups</td>
+              <td><a id="separateLineBetweenGroups"/><a href="#separateLineBetweenGroups">separateLineBetweenGroups</a></td>
               <td>Force empty line separator between import groups.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>sortImportsInGroupAlphabetically</td>
+              <td><a id="sortImportsInGroupAlphabetically"/><a href="#sortImportsInGroupAlphabetically">sortImportsInGroupAlphabetically</a></td>
               <td>Force grouping alphabetically, in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>specialImportsRegExp</td>
+              <td><a id="specialImportsRegExp"/><a href="#specialImportsRegExp">specialImportsRegExp</a></td>
               <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot;</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>standardPackageRegExp</td>
+              <td><a id="standardPackageRegExp"/><a href="#standardPackageRegExp">standardPackageRegExp</a></td>
               <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^(java|javax)\.&quot;</code></td>
               <td>5.8</td>
             </tr>
             <tr>
-              <td>thirdPartyPackageRegExp</td>
+              <td><a id="thirdPartyPackageRegExp"/><a href="#thirdPartyPackageRegExp">thirdPartyPackageRegExp</a></td>
               <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>

@@ -45,28 +45,28 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify method names to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^equals$&quot;</code></td>
               <td>3.4</td>
             </tr>
             <tr>
-              <td>max</td>
+              <td><a id="max"/><a href="#max">max</a></td>
               <td>Specify maximum allowed number of return statements in non-void methods/lambdas.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>2</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>maxForVoid</td>
+              <td><a id="maxForVoid"/><a href="#maxForVoid">maxForVoid</a></td>
               <td>Specify maximum allowed number of return statements in void methods/constructors/lambdas.</td>
               <td><a href="../../property_types.html#int">int</a></td>
               <td><code>1</code></td>
               <td>6.19</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">

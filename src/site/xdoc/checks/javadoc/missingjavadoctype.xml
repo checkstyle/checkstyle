@@ -28,28 +28,28 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>excludeScope</td>
+              <td><a id="excludeScope"/><a href="#excludeScope">excludeScope</a></td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.20</td>
             </tr>
             <tr>
-              <td>scope</td>
+              <td><a id="scope"/><a href="#scope">scope</a></td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="../../property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.20</td>
             </tr>
             <tr>
-              <td>skipAnnotations</td>
+              <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
               <td>Specify annotations that allow missed documentation. If annotation is present in target sources in multiple forms of qualified name, all forms should be listed in this property.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>Generated</code></td>
               <td>8.20</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">

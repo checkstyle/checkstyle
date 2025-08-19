@@ -32,21 +32,21 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^Abstract.+$&quot;</code></td>
               <td>3.2</td>
             </tr>
             <tr>
-              <td>ignoreModifier</td>
+              <td><a id="ignoreModifier"/><a href="#ignoreModifier">ignoreModifier</a></td>
               <td>Control whether to ignore checking for the <code>abstract</code> modifier on classes that match the name.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
             <tr>
-              <td>ignoreName</td>
+              <td><a id="ignoreName"/><a href="#ignoreName">ignoreName</a></td>
               <td>Control whether to ignore checking the name. Realistically only useful if using the check to identify that match name and do not have the <code>abstract</code> modifier.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>

@@ -62,35 +62,35 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>fileExtensions</td>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
               <td>Specify the file extensions of the files to process.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>6.15</td>
             </tr>
             <tr>
-              <td>fileNamePattern</td>
+              <td><a id="fileNamePattern"/><a href="#fileNamePattern">fileNamePattern</a></td>
               <td>Specify the regular expression to match the file name against.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>6.15</td>
             </tr>
             <tr>
-              <td>folderPattern</td>
+              <td><a id="folderPattern"/><a href="#folderPattern">folderPattern</a></td>
               <td>Specify the regular expression to match the folder path against.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>6.15</td>
             </tr>
             <tr>
-              <td>ignoreFileNameExtensions</td>
+              <td><a id="ignoreFileNameExtensions"/><a href="#ignoreFileNameExtensions">ignoreFileNameExtensions</a></td>
               <td>Control whether to ignore the file extension for the file name match.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.15</td>
             </tr>
             <tr>
-              <td>match</td>
+              <td><a id="match"/><a href="#match">match</a></td>
               <td>Control whether to look for a match or mismatch on the file name, if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>

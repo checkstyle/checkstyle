@@ -33,14 +33,14 @@
               <th>since</th>
             </tr>
             <tr>
-              <td>format</td>
+              <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^([a-z][a-zA-Z0-9]*|_)$&quot;</code></td>
               <td>3.0</td>
             </tr>
             <tr>
-              <td>tokens</td>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
