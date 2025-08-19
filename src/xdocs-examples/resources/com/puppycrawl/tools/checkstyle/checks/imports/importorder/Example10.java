@@ -9,14 +9,13 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.Math.PI;
 import static java.io.File.createTempFile;
-import static javax.swing.JComponent; // violation, should be separated from previous imports
-import static javax.WindowConstants.*;
+import static javax.swing.WindowConstants.*;// violation, should be separated from previous imports
 
 import java.net.URL;
 // xdoc section -- end
