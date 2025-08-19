@@ -21,10 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -52,7 +50,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.NEWLINE,
         };
     }
 
@@ -68,18 +66,26 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
-        DetailNode nextSibling = getNextNode(detailNode);
+        if (!isInsideHtmlComment(detailNode)) {
+            DetailNode nextSibling = getNextNode(detailNode);
 
-        // Till https://github.com/checkstyle/checkstyle/issues/9005
-        // Due to bug in the Javadoc parser there may be phantom description nodes.
-        while (TokenUtil.isOfType(nextSibling.getType(),
-                JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.WS)) {
-            nextSibling = getNextNode(nextSibling);
+            if (nextSibling != null && !isLeadingAsterisk(nextSibling) && !isLastLine(nextSibling)) {
+                log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
+            }
         }
+    }
 
-        if (!isLeadingAsterisk(nextSibling) && !isLastLine(nextSibling)) {
-            log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
-        }
+    /**
+     * Checks whether the given node is inside an HTML comment.
+     *
+     * @param detailNode the node to process
+     * @return {@code true} if the node is inside an HTML comment
+     */
+    private boolean isInsideHtmlComment(DetailNode detailNode) {
+        int parentType = detailNode.getParent().getType();
+        return parentType == JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT
+                || parentType == JavadocCommentsTokenTypes.HTML_COMMENT;
+
     }
 
     /**
@@ -89,17 +95,23 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * @return next node.
      */
     private static DetailNode getNextNode(DetailNode detailNode) {
-        DetailNode node = JavadocUtil.getFirstChild(detailNode);
-        if (node == null) {
-            node = JavadocUtil.getNextSibling(detailNode);
-            if (node == null) {
-                DetailNode parent = detailNode;
-                do {
-                    parent = parent.getParent();
-                    node = JavadocUtil.getNextSibling(parent);
-                } while (node == null);
+        DetailNode node = null;
+
+        if (detailNode.getFirstChild() != null) {
+            node = detailNode.getFirstChild();
+        }
+        else {
+            DetailNode current = detailNode;
+            while (node == null && current != null) {
+                if (current.getNextSibling() != null) {
+                    node = current.getNextSibling();
+                }
+                else {
+                    current = current.getParent();
+                }
             }
         }
+
         return node;
     }
 
@@ -107,10 +119,10 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * Checks whether the given node is a leading asterisk.
      *
      * @param detailNode the node to process
-     * @return {@code true} if the node is {@link JavadocTokenTypes#LEADING_ASTERISK}
+     * @return {@code true} if the node is {@link JavadocCommentsTokenTypes#LEADING_ASTERISK}
      */
     private static boolean isLeadingAsterisk(DetailNode detailNode) {
-        return detailNode.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+        return detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
 
     /**
@@ -118,7 +130,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * optionally preceded by blank text.
      *
      * @param detailNode the node to process
-     * @return {@code true} if the node is {@link JavadocTokenTypes#EOF}
+     * @return {@code true} if the node is {@code null}
      */
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
@@ -128,7 +140,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
         else {
             node = detailNode;
         }
-        return node.getType() == JavadocTokenTypes.EOF;
+        return node == null;
     }
 
 }

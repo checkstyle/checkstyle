@@ -330,6 +330,7 @@ LinkDescription_JAVADOC_INLINE_TAG_START: '{@' { braceCounter = 1;} -> pushMode(
 LinkDescription_NEWLINE: NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES);
 LinkDescription_LEADING_ASTERISK: [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS), type(LEADING_ASTERISK);
 LinkDescription_JAVADOC_INLINE_TAG_END: '}' -> type(JAVADOC_INLINE_TAG_END), popMode, popMode, popMode;
+LinkDescription_TAG: '<' -> pushMode(TAG), type(TAG_OPEN);
 fragment LinkDescription_TEXT_CHAR: {isNormalText()}? ~[{}\r\n];
 
 // --- PARAMETER_LIST ---

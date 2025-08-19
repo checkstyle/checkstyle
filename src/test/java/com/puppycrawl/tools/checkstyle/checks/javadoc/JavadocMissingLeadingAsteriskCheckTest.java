@@ -22,14 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck.MSG_MISSING_ASTERISK;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled
 public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -42,7 +40,7 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
         final JavadocMissingLeadingAsteriskCheck checkObj =
             new JavadocMissingLeadingAsteriskCheck();
         final int[] expected = {
-            JavadocTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.NEWLINE,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(checkObj.getAcceptableJavadocTokens())
