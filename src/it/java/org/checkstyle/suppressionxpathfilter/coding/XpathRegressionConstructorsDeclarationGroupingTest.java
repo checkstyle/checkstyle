@@ -112,7 +112,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     @Test
     public void testRecords() throws Exception {
         final File fileToProcess = new File(
-                getNonCompilablePath("InputXpathConstructorsDeclarationGroupingRecords.java"));
+                getPath("InputXpathConstructorsDeclarationGroupingRecords.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
 

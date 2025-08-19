@@ -99,7 +99,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     @Test
     public void testNoAccessModifier() throws Exception {
         final File fileToProcess =
-                new File(getNonCompilablePath(
+                new File(getPath(
                         "InputXpathStaticVariableNameNoAccessModifier.java"));
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
@@ -107,7 +107,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                 createModuleConfig(StaticVariableNameCheck.class);
 
         final String[] expectedViolation = {
-            "6:19: " + getCheckMessage(StaticVariableNameCheck.class,
+            "5:16: " + getCheckMessage(StaticVariableNameCheck.class,
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
@@ -115,7 +115,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathStaticVariableNameNoAccessModifier']]"
-                        + "/OBJBLOCK/INSTANCE_INIT/SLIST/VARIABLE_DEF/IDENT[@text='NUM3']"
+                        + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='NUM3']"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
