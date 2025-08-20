@@ -7,7 +7,7 @@ tokens = PATTERN_VARIABLE_DEF,FOR_EACH_CLAUSE
 
 */
 
-// non-compiled with javac: Compilable with Java20
+// non-compiled with javac: compiling on jdk before Java21 (java20)
 package com.puppycrawl.tools.checkstyle.checks.finalparameters;
 
 public class InputFinalParametersRecordForLoopPatternVariables {
