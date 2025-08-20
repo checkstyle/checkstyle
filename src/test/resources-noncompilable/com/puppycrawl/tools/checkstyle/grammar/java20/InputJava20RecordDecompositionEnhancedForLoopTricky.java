@@ -1,4 +1,4 @@
-// non-compiled with javac: Compilable with Java20
+// non-compiled with javac: compiling on jdk before Java21
 package com.puppycrawl.tools.checkstyle.grammar.java20;
 
 import java.util.List;
