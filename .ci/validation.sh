@@ -50,7 +50,7 @@ check-missing-pitests)
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
     -t -v "//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param"))
 
-  #  Temporary skip for Metadata generator related files for
+ #  Temporary skip for Metadata generator related files for
   #  https://github.com/checkstyle/checkstyle/issues/8761
   #  Coverage for site package is skipped
   #  until https://github.com/checkstyle/checkstyle/issues/13393
