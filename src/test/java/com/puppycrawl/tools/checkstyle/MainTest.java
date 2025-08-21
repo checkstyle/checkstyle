@@ -52,7 +52,6 @@ import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
 import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -1219,7 +1218,6 @@ public class MainTest {
      * @noinspectionreason RedundantThrows - false positive
      */
     @Test
-    @Disabled
     public void testPrintTreeJavadocOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = Files.readString(Path.of(
@@ -1689,7 +1687,6 @@ public class MainTest {
      * @noinspectionreason RedundantThrows - false positive
      */
     @Test
-    @Disabled
     public void testPrintFullTreeOption(@SysErr Capturable systemErr, @SysOut Capturable systemOut)
             throws IOException {
         final String expected = Files.readString(Path.of(
