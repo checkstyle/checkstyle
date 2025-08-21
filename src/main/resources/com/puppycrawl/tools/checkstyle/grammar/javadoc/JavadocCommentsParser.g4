@@ -181,7 +181,7 @@ returnInlineTag
     ;
 
 literalInlineTag
-    : tagName=LITERAL description?
+    : tagName=LITERAL TEXT+
     ;
 
 snippetInlineTag
