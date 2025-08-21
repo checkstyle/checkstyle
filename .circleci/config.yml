@@ -234,7 +234,7 @@ workflows:
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
@@ -283,29 +283,13 @@ workflows:
           name: "check-since-version"
           command: "./.ci/validation.sh check-since-version"
       - validate-with-script:
-          name: "javac17_standard"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh javac17_standard"
-      - validate-with-script:
-          name: "javac17"
-          image-name: "cimg/openjdk:17.0.7"
-          command: "./.ci/validation.sh javac17"
+          name: "javac21"
+          image-name: "cimg/openjdk:21.0.6"
+          command: "./.ci/validation.sh javac21"
       - validate-with-script:
           name: "java 21 test resources compile"
           image-name: "cimg/openjdk:21.0.8"
           command: "./.ci/validation.sh compile-test-resources"
-      - validate-with-script:
-          name: "javac19"
-          image-name: "cimg/openjdk:19.0.1"
-          command: "./.ci/validation.sh javac19"
-      - validate-with-script:
-          name: "javac20"
-          image-name: "cimg/openjdk:20.0.1"
-          command: "./.ci/validation.sh javac20"
-      - validate-with-script:
-          name: "javac21"
-          image-name: "cimg/openjdk:21.0.6"
-          command: "./.ci/validation.sh javac21"
       - validate-with-script:
           name: "javac22"
           image-name: "cimg/openjdk:22.0.2"

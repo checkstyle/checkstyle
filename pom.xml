@@ -219,8 +219,7 @@
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <java.version>17</java.version>
-    <next.java.version>21</next.java.version>
+    <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <pitest.plugin.version>1.22.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
@@ -5370,7 +5369,7 @@
               <classpathScope>test</classpathScope>
               <arguments>
                 <classpath />
-                <argument>${next.java.version}</argument>
+                <argument>${java.version}</argument>
               </arguments>
             </configuration>
           </plugin>
