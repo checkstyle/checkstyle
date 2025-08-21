@@ -22,7 +22,6 @@ aggregators
 allchecks
 allclasses
 allowlegacy
-allprojects
 alot
 alundblad
 amazonaws
@@ -335,7 +334,6 @@ Dpi
 Dpmd
 Dpom
 Dpush
-Drewrite
 dropbox
 dropdown
 Dskip
@@ -1174,7 +1172,6 @@ regexpsingleline
 regexpsinglelinejava
 relativized
 releasenotes
-RELi
 remkop
 reportyml
 REPOURL
@@ -1194,7 +1191,6 @@ rhysd
 rickgiles
 rightcurly
 Rl
-Rli
 rnveach
 robinraju
 romani
@@ -1310,7 +1306,6 @@ stemp
 stext
 sthref
 stmt
-stoyan
 streamapi
 strictfp
 stringliteralequality

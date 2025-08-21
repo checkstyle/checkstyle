@@ -54,12 +54,7 @@ check-missing-pitests)
   #  https://github.com/checkstyle/checkstyle/issues/8761
   #  Coverage for site package is skipped
   #  until https://github.com/checkstyle/checkstyle/issues/13393
-  #  JavadocCommentsLexerUtil, JavadocCommentsParserUtil, and SimpleToken
-  #  are excluded from Pitest (aligned with JaCoCo exclusion)
   list=("com.puppycrawl.tools.checkstyle.meta.*"
-    "com.puppycrawl.tools.checkstyle.site.*"
-    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil"
-    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil"
     "com.puppycrawl.tools.checkstyle.grammar.SimpleToken" "${list[@]}")
 
   CMD="find src/main/java -type f ! -name 'package-info.java'"
@@ -213,27 +208,6 @@ versions)
 
 markdownlint)
   mdl -g . && echo "All .md files verified"
-  ;;
-
-no-error-kafka)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from "https://github.com/apache/kafka.git"
-  cd .ci-temp/kafka/
-  cat >> customConfig.gradle<< EOF
-allprojects {
-    repositories {
-        mavenLocal()
-    }
-}
-EOF
-  ./gradlew checkstyleMain checkstyleTest \
-    -I customConfig.gradle \
-    -PcheckstyleVersion="${CS_POM_VERSION}"
-  cd ..
-  removeFolderWithProtectedFiles kafka
   ;;
 
 no-error-pmd)
