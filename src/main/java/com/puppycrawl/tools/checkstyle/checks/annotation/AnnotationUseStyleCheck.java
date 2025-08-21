@@ -388,6 +388,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * @param annotation the annotation token
      */
     private void checkStyleType(final DetailAST annotation) {
+        // noinspection EnhancedSwitchMigration
         switch (elementStyle) {
             case COMPACT_NO_ARRAY:
                 checkCompactNoArrayStyle(annotation);
