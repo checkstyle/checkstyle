@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -176,23 +177,24 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testPackagesWithIoException() throws Exception {
-        final URLConnection urlConnection = new URLConnection(null) {
-            @Override
-            public void connect() {
-                // no code
-            }
-
-            @Override
-            public InputStream getInputStream() {
-                return null;
-            }
-        };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URLStreamHandler handler = new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
-                return urlConnection;
+                return new URLConnection(u) {
+                    @Override
+                    public void connect() {
+                        // no-op
+                    }
+
+                    @Override
+                    public InputStream getInputStream() throws IOException {
+                        throw new IOException("Simulated IO failure");
+                    }
+                };
             }
-        });
+        };
+
+        final URL url = URL.of(URI.create("test://dummy"), handler);
 
         final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(url));
 
