@@ -247,10 +247,17 @@ no-exception-samples-gradle)
   checkout_from https://github.com/sevntu-checkstyle/checkstyle-samples
   cd .ci-temp/checkstyle-samples/gradle-project
 
-  sed -i "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
+  sed -i \
+    -e "s/\(project\.ext\.checkstyleVersion = \)'[0-9.]\+'/\\1'${CS_POM_VERSION}'/" \
+    -e "s/^.*sourceCompatibility.*$/sourceCompatibility = JavaVersion.VERSION_21/" \
+    -e "s/^.*targetCompatibility.*$/targetCompatibility = JavaVersion.VERSION_21/" \
+    -e "s/gradle [0-9.]\+/gradle 8.5/" \
     build.gradle
 
-   echo "Checking gradle properties..."
+  # Update Gradle wrapper to 8.5 for JDK 21 compatibility
+  ./gradlew wrapper --gradle-version=8.5 --distribution-type=bin
+
+  echo "Checking gradle properties..."
   ./gradlew properties
   ./gradlew check
 
