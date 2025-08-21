@@ -58,7 +58,11 @@
     <property name="ignorePattern"
              value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
   </module>
-
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="checkFormat" value="LineLength"/>
+    <property name="offCommentFormat" value='^.*"""$'/>
+    <property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/>
+  </module>
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
     <module name="MatchXpath">
