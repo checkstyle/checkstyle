@@ -196,6 +196,13 @@ public class SuppressWarningsCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    /**
+     * Visits a token to check for suppression warnings.
+     *
+     * @param ast the AST node
+     * @noinspection EnhancedSwitchMigration
+     * @noinspectionreason Until #17673
+     */
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST annotation = getSuppressWarnings(ast);
