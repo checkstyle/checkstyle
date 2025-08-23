@@ -25,7 +25,6 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Notes:
  SuppressWithNearbyCommentFilter can suppress Checks that have
  Treewalker as parent module.
  &lt;/p&gt;</description>
@@ -46,14 +45,16 @@
                       type="java.util.regex.Pattern">
                <description>Specify comment pattern to trigger filter to begin suppression.</description>
             </property>
-            <property name="idFormat" type="java.util.regex.Pattern">
+            <property default-value="null" name="idFormat" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
             </property>
             <property default-value="0" name="influenceFormat" type="java.lang.String">
-               <description>Specify negative/zero/positive value that
- defines the number of lines preceding/at/following the suppression comment.</description>
+               <description>Specify negative/zero/positive value that defines the number
+ of lines preceding/at/following the suppression comment.</description>
             </property>
-            <property name="messageFormat" type="java.util.regex.Pattern">
+            <property default-value="null"
+                      name="messageFormat"
+                      type="java.util.regex.Pattern">
                <description>Define message pattern to suppress.</description>
             </property>
          </properties>
