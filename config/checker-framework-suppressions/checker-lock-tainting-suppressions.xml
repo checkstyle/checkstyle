@@ -254,21 +254,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
-    <specifier>override.param</specifier>
-    <message>Incompatible parameter type for other.</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @GuardedBy Object
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy LineColumn
-      @GuardedBy boolean equals(@GuardedBy LineColumn this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int compareTo(LineColumn lineColumn) {</lineContent>
@@ -279,36 +264,6 @@
       @GuardedBy int compareTo(@GuardedBy LineColumn this, @GuardedBy LineColumn p0)
       cannot override method in @GuardedBy Comparable&lt;@GuardedBy LineColumn&gt;
       @GuardedBy int compareTo(@GuardSatisfied Comparable&lt;@GuardedBy LineColumn&gt; this, @GuardedBy LineColumn p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @GuardedBy LineColumn
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy LineColumn
-      @GuardedBy boolean equals(@GuardedBy LineColumn this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public int hashCode() {</lineContent>
-    <details>
-      found   : @GuardedBy LineColumn
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy LineColumn
-      @GuardedBy int hashCode(@GuardedBy LineColumn this)
-      cannot override method in @GuardedBy Object
-      @GuardedBy int hashCode(@GuardSatisfied Object this)
     </details>
   </checkerFrameworkError>
 
