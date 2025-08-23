@@ -416,7 +416,7 @@ public class SuppressionCommentFilterTest
             .that(filter.accept(auditEvent))
                 .isTrue();
         assertWithMessage("File name should not be null")
-            .that(auditEvent.getFileName())
+            .that(auditEvent.fileName())
             .isNull();
     }
 
