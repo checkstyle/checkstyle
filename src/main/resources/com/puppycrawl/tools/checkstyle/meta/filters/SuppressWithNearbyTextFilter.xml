@@ -10,37 +10,39 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Notes:
  Setting &lt;code&gt;.*&lt;/code&gt; value to &lt;code&gt;nearbyTextPattern&lt;/code&gt; property will see &lt;b&gt;any&lt;/b&gt;
  text as a suppression and will likely suppress all audit events in the file. It is
  best to set this to a key phrase not commonly used in the file to help denote it
  out of the rest of the file as a suppression. See the default value as an example.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value=".*"
+            <property default-value="&#34;.*&#34;"
                       name="checkPattern"
                       type="java.util.regex.Pattern">
-               <description>Specify check name pattern to suppress.
- Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
+               <description>Specify check name pattern to suppress. Property can also
+ be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
  format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
-            <property name="idPattern" type="java.util.regex.Pattern">
+            <property default-value="null"
+                      name="idPattern"
+                      type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
             </property>
-            <property default-value="0" name="lineRange" type="java.lang.String">
-               <description>Specify negative/zero/positive value that
- defines the number of lines preceding/at/following the suppressing nearby text.
- Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
+            <property default-value="&#34;0&#34;" name="lineRange" type="java.lang.String">
+               <description>Specify negative/zero/positive value that defines the number
+ of lines preceding/at/following the suppressing nearby text. Property can also
+ be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
  format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
-            <property name="messagePattern" type="java.util.regex.Pattern">
+            <property default-value="null"
+                      name="messagePattern"
+                      type="java.util.regex.Pattern">
                <description>Specify check violation message pattern to suppress.</description>
             </property>
             <property default-value="SUPPRESS CHECKSTYLE (\w+)"
                       name="nearbyTextPattern"
                       type="java.util.regex.Pattern">
-               <description>Specify nearby text
- pattern to trigger filter to begin suppression.</description>
+               <description>Specify nearby text pattern to trigger filter to begin suppression.</description>
             </property>
          </properties>
       </filter>

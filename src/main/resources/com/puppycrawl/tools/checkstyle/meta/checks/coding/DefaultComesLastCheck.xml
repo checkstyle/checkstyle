@@ -16,8 +16,8 @@
             <property default-value="false"
                       name="skipIfLastAndSharedWithCase"
                       type="boolean">
-               <description>Control whether to allow &lt;code&gt;default&lt;/code&gt;
- along with &lt;code&gt;case&lt;/code&gt; if they are not last.</description>
+               <description>Control whether to allow &lt;code&gt;default&lt;/code&gt; along with
+ &lt;code&gt;case&lt;/code&gt; if they are not last.</description>
             </property>
          </properties>
          <message-keys>
