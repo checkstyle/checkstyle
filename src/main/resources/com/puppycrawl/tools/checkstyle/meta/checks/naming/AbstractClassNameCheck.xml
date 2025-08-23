@@ -21,13 +21,12 @@
                <description>Specify valid identifiers.</description>
             </property>
             <property default-value="false" name="ignoreModifier" type="boolean">
-               <description>Control whether to ignore checking for the
- &lt;code&gt;abstract&lt;/code&gt; modifier on classes that match the name.</description>
+               <description>Control whether to ignore checking for the &lt;code&gt;abstract&lt;/code&gt; modifier on
+ classes that match the name.</description>
             </property>
             <property default-value="false" name="ignoreName" type="boolean">
-               <description>Control whether to ignore checking the name.
- Realistically only useful if using the check to identify that match name and
- do not have the &lt;code&gt;abstract&lt;/code&gt; modifier.</description>
+               <description>Control whether to ignore checking the name. Realistically only useful if
+ using the check to identify that match name and do not have the &lt;code&gt;abstract&lt;/code&gt; modifier.</description>
             </property>
          </properties>
          <message-keys>
