@@ -205,7 +205,7 @@
  in different languages it is better to avoid filtering by message.
  &lt;/p&gt;</description>
          <properties>
-            <property name="file" type="java.lang.String">
+            <property default-value="" name="file" type="java.lang.String">
                <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
             </property>
             <property default-value="false" name="optional" type="boolean">

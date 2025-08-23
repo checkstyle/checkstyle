@@ -28,7 +28,7 @@
             <property default-value="0" name="maximum" type="int">
                <description>Specify the maximum number of matches required in each file.</description>
             </property>
-            <property name="message" type="java.lang.String">
+            <property default-value="" name="message" type="java.lang.String">
                <description>Specify the message which is used to notify about
  violations, if empty then default (hard-coded) message is used.</description>
             </property>

@@ -80,7 +80,7 @@
      "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
-            <property name="file" type="java.net.URI">
+            <property default-value="" name="file" type="java.net.URI">
                <description>Specify the location of the file containing the
  import control configuration. It can be a regular file, URL or resource path.
  It will try loading the path as a URL first, then as a file, and finally as a resource.</description>

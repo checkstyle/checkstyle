@@ -96,7 +96,7 @@
             <property default-value="false" name="illegalPattern" type="boolean">
                <description>Control whether the pattern is required or illegal.</description>
             </property>
-            <property name="message" type="java.lang.String">
+            <property default-value="" name="message" type="java.lang.String">
                <description>Specify message which is used to notify about
  violations, if empty then the default (hard-coded) message is used.</description>
             </property>

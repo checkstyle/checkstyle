@@ -11,7 +11,9 @@
  &lt;code&gt;Scope&lt;/code&gt; constants.
  &lt;/div&gt;</description>
          <properties>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+            <property default-value=""
+                      name="excludeScope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are not
  checked.</description>
             </property>

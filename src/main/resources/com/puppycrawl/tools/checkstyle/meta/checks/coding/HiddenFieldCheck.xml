@@ -58,7 +58,7 @@
                       type="boolean">
                <description>Control whether to ignore constructor parameters.</description>
             </property>
-            <property name="ignoreFormat" type="java.util.regex.Pattern">
+            <property default-value="" name="ignoreFormat" type="java.util.regex.Pattern">
                <description>Define the RegExp for names of variables
  and parameters to ignore.</description>
             </property>

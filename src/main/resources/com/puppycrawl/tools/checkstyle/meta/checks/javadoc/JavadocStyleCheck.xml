@@ -71,7 +71,9 @@
                <description>Specify the format for matching
  the end of a sentence.</description>
             </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+            <property default-value=""
+                      name="excludeScope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where
  Javadoc comments are not checked.</description>
             </property>

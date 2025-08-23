@@ -11,10 +11,10 @@
  No violation reported in case there is no javadoc.
  &lt;/div&gt;</description>
          <properties>
-            <property name="tag" type="java.lang.String">
+            <property default-value="" name="tag" type="java.lang.String">
                <description>Specify the name of tag.</description>
             </property>
-            <property name="tagFormat" type="java.util.regex.Pattern">
+            <property default-value="" name="tagFormat" type="java.util.regex.Pattern">
                <description>Specify the regexp to match tag content.</description>
             </property>
             <property default-value="info"

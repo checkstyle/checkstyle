@@ -42,10 +42,12 @@
                <description>Specify annotations that allow
  skipping validation at all. Only short names are allowed, e.g. &lt;code&gt;Generated&lt;/code&gt;.</description>
             </property>
-            <property name="authorFormat" type="java.util.regex.Pattern">
+            <property default-value="" name="authorFormat" type="java.util.regex.Pattern">
                <description>Specify the pattern for &lt;code&gt;@author&lt;/code&gt; tag.</description>
             </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+            <property default-value=""
+                      name="excludeScope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc
  comments are not checked.</description>
             </property>
@@ -54,7 +56,9 @@
                       type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are checked.</description>
             </property>
-            <property name="versionFormat" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="versionFormat"
+                      type="java.util.regex.Pattern">
                <description>Specify the pattern for &lt;code&gt;@version&lt;/code&gt; tag.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
