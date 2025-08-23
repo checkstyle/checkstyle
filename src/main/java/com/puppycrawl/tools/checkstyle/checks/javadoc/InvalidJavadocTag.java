@@ -20,55 +20,26 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 /**
- * Value object for storing data about an invalid Javadoc validTags.
+ * Value object for storing data about an invalid Javadoc tag.
+ *
+ * @param line the line of the invalid tag
+ * @param col the column of the invalid tag
+ * @param name the name of the invalid tag
  */
-public final class InvalidJavadocTag {
+public record InvalidJavadocTag(int line, int col, String name) {
 
-    /** The line in which the invalid tag occurs. */
-    private final int line;
-    /** The column in which the invalid tag occurs. */
-    private final int col;
-    /** The name of the invalid tag. */
-    private final String name;
-
-    /**
-     * Creates an instance.
-     *
-     * @param line the line of the tag
-     * @param col the column of the tag
-     * @param name the name of the invalid tag
-     */
-    public InvalidJavadocTag(int line, int col, String name) {
-        this.line = line;
-        this.col = col;
-        this.name = name;
-    }
-
-    /**
-     *  Getter for line field.
-     *
-     *  @return line field
-     */
+    /** Legacy getter for line (backward compatibility). */
     public int getLine() {
         return line;
     }
 
-    /**
-     *  Getter for col field.
-     *
-     *  @return col field
-     */
+    /** Legacy getter for col (backward compatibility). */
     public int getCol() {
         return col;
     }
 
-    /**
-     *  Getter for name field.
-     *
-     *  @return name field
-     */
+    /** Legacy getter for name (backward compatibility). */
     public String getName() {
         return name;
     }
-
 }

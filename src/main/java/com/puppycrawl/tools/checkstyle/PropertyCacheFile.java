@@ -379,25 +379,12 @@ public final class PropertyCacheFile {
 
     /**
      * Class which represents external resource.
+     *
+     * @param location       resource location.
+     * @param contentHashSum content hash sum.
      */
-    private static final class ExternalResource {
-
-        /** Location of resource. */
-        private final String location;
-        /** Hash sum which is calculated based on resource content. */
-        private final String contentHashSum;
-
-        /**
-         * Creates an instance.
-         *
-         * @param location resource location.
-         * @param contentHashSum content hash sum.
-         */
-        private ExternalResource(String location, String contentHashSum) {
-            this.location = location;
-            this.contentHashSum = contentHashSum;
-        }
-
+    private record ExternalResource(String location,
+                                                 String contentHashSum) {
     }
 
 }

@@ -126,31 +126,37 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/utils/blockcommentposition";
     }
 
-    private static final class BlockCommentPositionTestMetadata {
+    /**
+     * Metadata for block comment position tests.
+     *
+     * @param fileName   the test file name
+     * @param assertion  the assertion function for DetailAST
+     * @param matchesNum number of expected matches
+     */
+    private record BlockCommentPositionTestMetadata(
+            String fileName,
+            Function<DetailAST, Boolean> assertion,
+            int matchesNum) {
 
-        private final String fileName;
-        private final Function<DetailAST, Boolean> assertion;
-        private final int matchesNum;
-
-        private BlockCommentPositionTestMetadata(String fileName, Function<DetailAST,
-                Boolean> assertion, int matchesNum) {
-            this.fileName = fileName;
-            this.assertion = assertion;
-            this.matchesNum = matchesNum;
-        }
-
+        /**
+         * Legacy getter for fileName, for backward compatibility.
+         */
         public String getFileName() {
             return fileName;
         }
 
+        /**
+         * Legacy getter for assertion, for backward compatibility.
+         */
         public Function<DetailAST, Boolean> getAssertion() {
             return assertion;
         }
 
+        /**
+         * Legacy getter for matchesNum, for backward compatibility.
+         */
         public int getMatchesNum() {
             return matchesNum;
         }
-
     }
-
 }
