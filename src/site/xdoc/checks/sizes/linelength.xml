@@ -66,7 +66,7 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
               <td><a id="ignorePattern"/><a href="#ignorePattern">ignorePattern</a></td>
               <td>Specify pattern for lines to ignore.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(package|import) .*&quot;</code></td>
+              <td><code>^(package|import) .*</code></td>
               <td>3.0</td>
             </tr>
             <tr>

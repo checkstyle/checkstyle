@@ -64,7 +64,7 @@
               <td><a id="nearbyTextPattern"/><a href="#nearbyTextPattern">nearbyTextPattern</a></td>
               <td>Specify nearby text pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;SUPPRESS CHECKSTYLE (\w+)&quot;</code></td>
+              <td><code>SUPPRESS CHECKSTYLE (\w+)</code></td>
               <td>10.10.0</td>
             </tr>
           </table>

@@ -40,7 +40,7 @@
               <td><a id="forbiddenSummaryFragments"/><a href="#forbiddenSummaryFragments">forbiddenSummaryFragments</a></td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>^$</code></td>
               <td>6.0</td>
             </tr>
             <tr>

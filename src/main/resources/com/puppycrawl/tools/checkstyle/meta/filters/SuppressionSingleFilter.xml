@@ -31,29 +31,29 @@
  &lt;code&gt;Checker&lt;/code&gt; as parent module.
  &lt;/p&gt;</description>
          <properties>
-            <property name="checks" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the name of the check
- associated with an audit event.</description>
+            <property default-value="null" name="checks" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the name of the check associated with an
+ audit event.</description>
             </property>
-            <property name="columns" type="java.lang.String">
-               <description>Specify a comma-separated list of values, where each value is an
- integer or a range of integers denoted by integer-integer.</description>
+            <property default-value="null" name="columns" type="java.lang.String">
+               <description>Specify a comma-separated list of values, where each value is an integer or a
+ range of integers denoted by integer-integer.</description>
             </property>
-            <property name="files" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the file name associated with
+            <property default-value="null" name="files" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the file name associated with an audit
+ event.</description>
+            </property>
+            <property default-value="null" name="id" type="java.lang.String">
+               <description>Specify a string matched against the ID of the check associated with an audit
+ event.</description>
+            </property>
+            <property default-value="null" name="lines" type="java.lang.String">
+               <description>Specify a comma-separated list of values, where each value is an integer or a
+ range of integers denoted by integer-integer.</description>
+            </property>
+            <property default-value="null" name="message" type="java.util.regex.Pattern">
+               <description>Define the RegExp for matching against the message of the check associated with
  an audit event.</description>
-            </property>
-            <property name="id" type="java.lang.String">
-               <description>Specify a string matched against the ID of the check associated with
- an audit event.</description>
-            </property>
-            <property name="lines" type="java.lang.String">
-               <description>Specify a comma-separated list of values, where each value is an
- integer or a range of integers denoted by integer-integer.</description>
-            </property>
-            <property name="message" type="java.util.regex.Pattern">
-               <description>Define the RegExp for matching against the message of the check
- associated with an audit event.</description>
             </property>
          </properties>
       </filter>

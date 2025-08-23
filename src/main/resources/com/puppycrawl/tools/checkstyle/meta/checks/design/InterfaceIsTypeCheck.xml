@@ -23,8 +23,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowMarkerInterfaces" type="boolean">
-               <description>Control whether marker interfaces
- like Serializable are allowed.</description>
+               <description>Control whether marker interfaces like Serializable are allowed.</description>
             </property>
          </properties>
          <message-keys>
