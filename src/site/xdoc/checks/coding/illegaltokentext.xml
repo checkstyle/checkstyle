@@ -29,7 +29,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Define the RegExp for illegal pattern.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>^$</code></td>
               <td>3.2</td>
             </tr>
             <tr>
