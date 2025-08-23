@@ -137,10 +137,10 @@ public class InlineTagUtilTest {
             .that(tag.getValue())
             .isEqualTo(value);
         assertWithMessage("Unexpected tags position")
-            .that(tag.getPosition().getLine())
+            .that(tag.getPosition().line())
             .isEqualTo(line);
         assertWithMessage("Unexpected tags position")
-            .that(tag.getPosition().getColumn())
+            .that(tag.getPosition().column())
             .isEqualTo(col);
     }
 
