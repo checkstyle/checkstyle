@@ -135,7 +135,7 @@ workflows:
       # validation script
       - validate-with-maven-script:
           name: "no-error-xwiki"
-          image-name: "cimg/openjdk:18.0.1"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/validation.sh no-error-xwiki"
       - validate-with-maven-script:
           name: "no-error-pmd"
@@ -233,7 +233,7 @@ workflows:
           command: "./.ci/run-link-check-plugin.sh --skip-external"
       - validate-with-maven-script:
           name: "no-exception-samples-gradle"
-          image-name: "cimg/openjdk:17.0.7"
+          image-name: "cimg/openjdk:21.0.6"
           command: "./.ci/no-exception-test.sh no-exception-samples-gradle"
       - validate-with-maven-script:
           name: "no-exception-samples-maven"
