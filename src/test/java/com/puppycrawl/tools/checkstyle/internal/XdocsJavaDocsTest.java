@@ -352,6 +352,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         break;
                     case TokenTypes.CTOR_DEF:
                     case TokenTypes.ENUM_DEF:
+                    case TokenTypes.RECORD_DEF:
+                    case TokenTypes.COMPACT_CTOR_DEF:
                     case TokenTypes.ENUM_CONSTANT_DEF:
                         // ignore
                         break;
