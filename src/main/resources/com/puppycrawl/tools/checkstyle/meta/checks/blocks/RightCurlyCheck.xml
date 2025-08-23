@@ -14,13 +14,14 @@
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/5945"&gt;#5945&lt;/a&gt;.
  For right curly brace of enum constant please follow issue
  &lt;a href="https://github.com/checkstyle/checkstyle/issues/7519"&gt;#7519&lt;/a&gt;.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="same"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption">
-               <description>Specify the policy on placement of a right curly brace
- (&lt;code&gt;'}'&lt;/code&gt;).</description>
+               <description>Specify the policy on placement of a right curly brace (&lt;code&gt;'}'&lt;/code&gt;).</description>
             </property>
             <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
                       name="tokens"

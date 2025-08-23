@@ -24,7 +24,9 @@
  assignment statements, expression statements, increment statements,
  object creation statements, 'for loop' statements, 'break' statements,
  'continue' statements, 'return' statements, resources statements (optional).
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false"
                       name="treatTryResourcesAsStatement"

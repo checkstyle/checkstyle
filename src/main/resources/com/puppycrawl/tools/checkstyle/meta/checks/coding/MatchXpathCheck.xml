@@ -26,9 +26,11 @@
  Note, that &lt;b&gt;@text&lt;/b&gt; attribute can be used only with token types that are listed in
  &lt;a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22"&gt;
      XpathUtil&lt;/a&gt;.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
-            <property default-value="" name="query" type="java.lang.String">
+            <property default-value="&#34;&#34;" name="query" type="java.lang.String">
                <description>Specify Xpath query.</description>
             </property>
          </properties>

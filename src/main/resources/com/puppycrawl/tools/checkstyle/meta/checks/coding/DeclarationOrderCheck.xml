@@ -45,7 +45,9 @@
    private double y = 2.0;
    public double slope = x / y; // will be skipped from validation due to forward reference
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="ignoreConstructors" type="boolean">
                <description>Control whether to ignore constructors.</description>

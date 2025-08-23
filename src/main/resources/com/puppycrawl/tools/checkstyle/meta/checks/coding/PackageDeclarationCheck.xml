@@ -19,11 +19,12 @@
  the form of directory levels to provide physical grouping to your classes.
  These directories are added to the classpath so that your classes
  are visible to JVM when it runs the code.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="true" name="matchDirectoryStructure" type="boolean">
-               <description>Control whether to check for
- directory and package name match.</description>
+               <description>Control whether to check for directory and package name match.</description>
             </property>
          </properties>
          <message-keys>

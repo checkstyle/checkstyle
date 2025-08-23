@@ -6,7 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Checks if unnecessary semicolon is used in last resource declaration.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="true"
                       name="allowWhenNoBraceAfterSemicolon"
