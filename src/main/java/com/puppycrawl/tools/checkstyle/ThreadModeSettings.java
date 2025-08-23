@@ -25,11 +25,14 @@ import java.io.Serializable;
 /**
  * Thread mode settings for the checkstyle modules.
  *
- * @noinspection SerializableHasSerializationMethods
+ * @param checkerThreadsNumber the Checker threads number
+ * @param treeWalkerThreadsNumber the TreeWalker threads number
+ *
  * @noinspectionreason SerializableHasSerializationMethods - we only need serialVersionUID
  *      to differentiate between threads
  */
-public class ThreadModeSettings implements Serializable {
+public record ThreadModeSettings(int checkerThreadsNumber,
+                                 int treeWalkerThreadsNumber) implements Serializable {
 
     /** A checker module name. */
     public static final String CHECKER_MODULE_NAME = Checker.class.getSimpleName();
@@ -53,40 +56,6 @@ public class ThreadModeSettings implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    /** The checker threads number. */
-    private final int checkerThreadsNumber;
-    /** The tree walker threads number. */
-    private final int treeWalkerThreadsNumber;
-
-    /**
-     * Initializes the thread mode configuration.
-     *
-     * @param checkerThreadsNumber the Checker threads number
-     * @param treeWalkerThreadsNumber the TreeWalker threads number
-     */
-    public ThreadModeSettings(int checkerThreadsNumber, int treeWalkerThreadsNumber) {
-        this.checkerThreadsNumber = checkerThreadsNumber;
-        this.treeWalkerThreadsNumber = treeWalkerThreadsNumber;
-    }
-
-    /**
-     * Gets the number of threads for the Checker module.
-     *
-     * @return the number of threads for the Checker module.
-     */
-    public int getCheckerThreadsNumber() {
-        return checkerThreadsNumber;
-    }
-
-    /**
-     * Gets the number of threads for the TreeWalker module.
-     *
-     * @return the number of threads for the TreeWalker module.
-     */
-    public int getTreeWalkerThreadsNumber() {
-        return treeWalkerThreadsNumber;
-    }
-
     /**
      * Resolves the module name according to the thread settings.
      *
@@ -94,7 +63,7 @@ public class ThreadModeSettings implements Serializable {
      * @return resolved module name.
      * @throws IllegalArgumentException when name is Checker or TreeWalker
      */
-    public final String resolveName(String name) {
+    public String resolveName(String name) {
         if (checkerThreadsNumber > 1) {
             if (CHECKER_MODULE_NAME.equals(name)) {
                 throw new IllegalArgumentException(
@@ -108,5 +77,4 @@ public class ThreadModeSettings implements Serializable {
 
         return name;
     }
-
 }
