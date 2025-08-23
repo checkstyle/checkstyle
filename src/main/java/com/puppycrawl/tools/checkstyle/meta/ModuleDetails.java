@@ -25,7 +25,6 @@ import java.util.List;
 
 /** Simple POJO class for module details. */
 public final class ModuleDetails {
-
     /** List of properties of the module. */
     private final List<ModulePropertyDetails> properties = new ArrayList<>();
 
@@ -46,6 +45,34 @@ public final class ModuleDetails {
 
     /** Type of the module(check/filter/filefilter). */
     private ModuleType moduleType;
+
+    /** No-argument constructor. */
+    public ModuleDetails() {
+        // empty constructor
+    }
+
+    /**
+     * All-argument constructor.
+     *
+     * @param name name.
+     * @param fullQualifiedName full qualified name.
+     * @param parent parent.
+     * @param description description.
+     * @param moduleType module type.
+     * @param properties properties.
+     * @param violationMessageKeys violation message keys.
+     */
+    public ModuleDetails(String name, String fullQualifiedName, String parent, String description,
+            ModuleType moduleType, List<ModulePropertyDetails> properties,
+            List<String> violationMessageKeys) {
+        this.name = name;
+        this.fullQualifiedName = fullQualifiedName;
+        this.parent = parent;
+        this.description = description;
+        this.moduleType = moduleType;
+        this.properties.addAll(properties);
+        this.violationMessageKeys.addAll(violationMessageKeys);
+    }
 
     /**
      * Get name of module.

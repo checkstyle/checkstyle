@@ -717,17 +717,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/NotesMacro.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Pattern.compile.</message>
-    <lineContent>+ ModuleJavadocParsingUtil.NOTES);</lineContent>
-    <details>
-      found   : String
-      required: @Regex String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.matches.</message>
