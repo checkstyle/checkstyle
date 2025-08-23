@@ -8726,6 +8726,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter message of CheckstyleException constructor.</message>
+    <lineContent>throw new CheckstyleException(macroException.getMessage(), macroException);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
     <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
     <details>
@@ -8735,73 +8746,39 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field description</message>
-    <lineContent>private String description;</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter propertyJavadoc of MetadataGeneratorUtil.getPropertyDescription.</message>
+    <lineContent>javadocs.get(property));</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailNode
+      required: @Initialized @NonNull DetailNode
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return validationType;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable String
+      method return type: @Initialized @NonNull String
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field fullQualifiedName</message>
-    <lineContent>private String fullQualifiedName;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field moduleType</message>
-    <lineContent>private ModuleType moduleType;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field name</message>
-    <lineContent>private String name;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field parent</message>
-    <lineContent>private String parent;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: name, fullQualifiedName, parent, description, moduleType</message>
+    <lineContent>public ModuleDetails() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field defaultValue</message>
-    <lineContent>private String defaultValue;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field description</message>
-    <lineContent>private String description;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field name</message>
-    <lineContent>private String name;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field type</message>
-    <lineContent>private String type;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field validationType</message>
-    <lineContent>private String validationType;</lineContent>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: name, type, defaultValue, validationType, description</message>
+    <lineContent>public ModulePropertyDetails() {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9004,6 +8981,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>annotations.on.use</specifier>
+    <message>invalid type: annotations [@Initialized, @Nullable] conflict with declaration of type java.util.Optional</message>
+    <lineContent>private static Optional&lt;String&gt; getPropertyVersionFromItsJavadoc(DetailNode propertyJavadoc) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter classLoader of PackageNamesLoader.getPackageNames.</message>
     <lineContent>final Set&lt;String&gt; packageNames = PackageNamesLoader.getPackageNames(cl);</lineContent>
@@ -9044,6 +9028,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference specifiedPropertyVersionInPropertyJavadoc</message>
+    <lineContent>if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElse(null);</lineContent>
@@ -9053,7 +9044,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>.orElseGet(fieldClass::getSimpleName);</lineContent>
+    <lineContent>.orElseGet(fieldClass::getTypeName);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9108,7 +9099,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return field.get(instance);</lineContent>
+    <lineContent>return fieldValue;</lineContent>
     <details>
       type of expression: @Initialized @Nullable Object
       method return type: @Initialized @NonNull Object
