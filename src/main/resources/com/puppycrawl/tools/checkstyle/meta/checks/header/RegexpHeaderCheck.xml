@@ -20,8 +20,8 @@
                <description>Define the required header specified inline.
  Individual header lines must be separated by the string &lt;code&gt;"\n"&lt;/code&gt;
  (even on platforms with a different line separator).
- For header lines containing &lt;code&gt;"\n\n"&lt;/code&gt; checkstyle will
- forcefully expect an empty line to exist. See examples below.
+ For header lines containing &lt;code&gt;"\n\n"&lt;/code&gt; checkstyle will forcefully
+ expect an empty line to exist. See examples below.
  Regular expressions must not span multiple lines.</description>
             </property>
             <property name="headerFile" type="java.net.URI">
