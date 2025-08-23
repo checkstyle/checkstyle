@@ -18,8 +18,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="ignoreEqualsIgnoreCase" type="boolean">
-               <description>Control whether to ignore
- &lt;code&gt;String.equalsIgnoreCase(String)&lt;/code&gt; invocations.</description>
+               <description>Control whether to ignore {@code String.equalsIgnoreCase(String)} invocations.</description>
             </property>
          </properties>
          <message-keys>

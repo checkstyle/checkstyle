@@ -95,7 +95,7 @@
               <td><a id="endOfSentenceFormat"/><a href="#endOfSentenceFormat">endOfSentenceFormat</a></td>
               <td>Specify the format for matching the end of a sentence.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;([.?!][ \t\n\r\f&lt;])|([.?!]$)&quot;</code></td>
+              <td><code>([.?!][ \t\n\r\f&lt;])|([.?!]$)</code></td>
               <td>5.0</td>
             </tr>
             <tr>

@@ -24,12 +24,11 @@
  static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
-            <property default-value="ARRAY_INIT,ASSIGN,BAND,BNOT,BOR,BSR,BXOR,COLON,DIV,ELIST,EQUAL,EXPR,GE,GT,LE,LITERAL_NEW,LT,METHOD_CALL,MINUS,MOD,NOT_EQUAL,PLUS,QUESTION,SL,SR,STAR,TYPECAST,UNARY_MINUS,UNARY_PLUS"
+            <property default-value="ARRAY_INIT, ASSIGN, BAND, BNOT, BOR, BSR, BXOR, COLON, DIV, ELIST, EQUAL, EXPR, GE, GT, LE, LITERAL_NEW, LT, METHOD_CALL, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, TYPECAST, UNARY_MINUS, UNARY_PLUS"
                       name="constantWaiverParentToken"
-                      type="java.lang.String[]"
-                      validation-type="tokenTypesSet">
-               <description>Specify tokens that are allowed in the AST path
- from the number literal to the enclosing constant definition.</description>
+                      type="int[]">
+               <description>Specify tokens that are allowed in the AST path from the
+ number literal to the enclosing constant definition.</description>
             </property>
             <property default-value="false" name="ignoreAnnotation" type="boolean">
                <description>Ignore magic numbers in annotation declarations.</description>

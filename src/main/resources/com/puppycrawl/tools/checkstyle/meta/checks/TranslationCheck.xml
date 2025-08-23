@@ -55,11 +55,10 @@
                       type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
             </property>
-            <property default-value=""
+            <property default-value="{}"
                       name="requiredTranslations"
                       type="java.lang.String[]">
-               <description>Specify language codes of required
- translations which must exist in project.</description>
+               <description>Specify language codes of required translations which must exist in project.</description>
             </property>
          </properties>
          <message-keys>
