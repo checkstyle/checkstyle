@@ -412,7 +412,7 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' or @SimpleName='SiteUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -428,14 +428,16 @@
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
            TranslationCheck uses a lot of imports for it's logic and custom violations.
-           SiteUtil uses a lot of imports to provide logic for generating documentation
+           SiteUtil uses a lot of imports to provide logic for generating documentation.
+           MetadataGeneratorUtil uses a lot of imports to provide logic for generating data.
             -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask'
         or @SimpleName='TranslationCheck'
         or @SimpleName='AbstractAutomaticBean'
-        or @SimpleName='SiteUtil']"/>
+        or @SimpleName='SiteUtil'
+        or @SimpleName='MetadataGeneratorUtil']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/CognitiveComplexity">
@@ -502,7 +504,9 @@
       <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
-                        //MethodDeclaration[@Name='getDescriptionNodes']"/>
+                        //MethodDeclaration[@Name='getDescriptionNodes']
+                | //ClassDeclaration[@SimpleName='SiteUtil']
+                        //MethodDeclaration[@Name='getFirstJavadocParagraphNodes"/>
     </properties>
   </rule>
 
@@ -517,7 +521,18 @@
     <properties>
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='DescriptionExtractor']
-                      //MethodDeclaration[@Name='getDescriptionFromJavadoc']"/>
+                      //MethodDeclaration[@Name='getDescriptionFromJavadoc']
+                      | //ClassDeclaration[@SimpleName='SiteUtil']
+                      //MethodDeclaration[@Name='getDescriptionFromJavadocForXdoc']"/>
+    </properties>
+  </rule>
+
+  <!-- Need to override method to display property's specific version. -->
+  <rule ref="category/java/design.xml/UselessOverridingMethod">
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='MissingDeprecatedCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
     </properties>
   </rule>
 </ruleset>

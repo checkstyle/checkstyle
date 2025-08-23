@@ -25,7 +25,7 @@ package com.puppycrawl.tools.checkstyle;
 public enum PropertyType {
 
     /** This property is a file. */
-    FILE("File"),
+    FILE("java.io.File"),
 
     /** This property is a string represents an ISO 3166 2-letter code. */
     LOCALE_COUNTRY("String (either the empty string or an uppercase ISO 3166 2-letter code)"),
@@ -34,10 +34,10 @@ public enum PropertyType {
     LOCALE_LANGUAGE("String (either the empty string or a lowercase ISO 639 code)"),
 
     /** This property is a regular expression pattern. */
-    PATTERN("Pattern"),
+    PATTERN("java.util.regex.Pattern"),
 
     /** This property is a string. */
-    STRING("String"),
+    STRING("java.lang.String"),
 
     /** This property is a set of tokens. */
     TOKEN_ARRAY("subset of tokens TokenTypes");
