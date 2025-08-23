@@ -26,12 +26,12 @@
  conclusions based on the state.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+            <property default-value="&#34;^.*Exception$|^.*Error$|^.*Throwable$&#34;"
                       name="extendedClassNameFormat"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for extended class names.</description>
             </property>
-            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+            <property default-value="&#34;^.*Exception$|^.*Error$|^.*Throwable$&#34;"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Specify pattern for exception class names.</description>

@@ -133,10 +133,9 @@
             <property default-value="After, AfterClass, Before, BeforeClass, Test"
                       name="ignoredAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations which allow the check to
- skip the method from validation.</description>
+               <description>Specify annotations which allow the check to skip the method from validation.</description>
             </property>
-            <property default-value=".*"
+            <property default-value="&#34;.*&#34;"
                       name="requiredJavadocPhrase"
                       type="java.util.regex.Pattern">
                <description>Specify the comment text pattern which qualifies a

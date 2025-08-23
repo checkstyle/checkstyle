@@ -46,8 +46,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowInSwitchCase" type="boolean">
-               <description>Allow nested blocks if they are the
- only child of a switch case.</description>
+               <description>Allow nested blocks if they are the only child of a switch case.</description>
             </property>
          </properties>
          <message-keys>
