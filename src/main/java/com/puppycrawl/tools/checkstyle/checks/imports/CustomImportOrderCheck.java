@@ -429,14 +429,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
         String previousImportFromCurrentGroup = null;
 
         for (ImportDetails importObject : importToGroupList) {
-            final String importGroup = importObject.getImportGroup();
-            final String fullImportIdent = importObject.getImportFullPath();
+            final String importGroup = importObject.importGroup();
+            final String fullImportIdent = importObject.importFullPath();
 
             if (importGroup.equals(currentGroup)) {
                 validateExtraEmptyLine(previousImportObjectFromCurrentGroup,
                         importObject, fullImportIdent);
                 if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {
-                    log(importObject.getImportAST(), MSG_LEX,
+                    log(importObject.importAST(), MSG_LEX,
                             fullImportIdent, previousImportFromCurrentGroup);
                 }
                 else {
@@ -456,13 +456,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
-                        logWrongImportGroupOrder(importObject.getImportAST(),
+                        logWrongImportGroupOrder(importObject.importAST(),
                                 importGroup, nextGroup, fullImportIdent);
                     }
                     previousImportObjectFromCurrentGroup = importObject;
                 }
                 else {
-                    logWrongImportGroupOrder(importObject.getImportAST(),
+                    logWrongImportGroupOrder(importObject.importAST(),
                             importGroup, currentGroup, fullImportIdent);
                 }
             }
@@ -479,7 +479,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private void validateMissedEmptyLine(ImportDetails previousImport,
                                          ImportDetails importObject, String fullImportIdent) {
         if (isEmptyLineMissed(previousImport, importObject)) {
-            log(importObject.getImportAST(), MSG_LINE_SEPARATOR, fullImportIdent);
+            log(importObject.importAST(), MSG_LINE_SEPARATOR, fullImportIdent);
         }
     }
 
@@ -493,7 +493,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private void validateExtraEmptyLine(ImportDetails previousImport,
                                         ImportDetails importObject, String fullImportIdent) {
         if (isSeparatedByExtraEmptyLine(previousImport, importObject)) {
-            log(importObject.getImportAST(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
+            log(importObject.importAST(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
         }
     }
 
@@ -505,8 +505,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private String getFirstGroup() {
         final ImportDetails firstImport = importToGroupList.get(0);
-        return getImportGroup(firstImport.isStaticImport(),
-                firstImport.getImportFullPath());
+        return getImportGroup(firstImport.staticImport(),
+                firstImport.importFullPath());
     }
 
     /**
@@ -618,7 +618,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private boolean hasAnyImportInCurrentGroup(String currentGroup) {
         boolean result = false;
         for (ImportDetails currentImport : importToGroupList) {
-            if (currentGroup.equals(currentImport.getImportGroup())) {
+            if (currentGroup.equals(currentImport.importGroup())) {
                 result = true;
                 break;
             }
@@ -838,39 +838,25 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /**
      * Contains import attributes as line number, import full path, import
      * group.
+     *
+     * @param importFullPath Import full path.
+     * @param importGroup    Import group.
+     * @param staticImport   Is static import.
+     * @param importAST      Import AST.
      */
-    private static final class ImportDetails {
-
-        /** Import full path. */
-        private final String importFullPath;
-
-        /** Import group. */
-        private final String importGroup;
-
-        /** Is static import. */
-        private final boolean staticImport;
-
-        /** Import AST. */
-        private final DetailAST importAST;
+    private record ImportDetails(String importFullPath,
+                                 String importGroup, boolean staticImport,
+                                 DetailAST importAST) {
 
         /**
          * Initialise importFullPath, importGroup, staticImport, importAST.
          *
-         * @param importFullPath
-         *        import full path.
-         * @param importGroup
-         *        import group.
-         * @param staticImport
-         *        if import is static.
-         * @param importAST
-         *        import ast
+         * @param importFullPath import full path.
+         * @param importGroup    import group.
+         * @param staticImport   if import is static.
+         * @param importAST      import ast
          */
-        private ImportDetails(String importFullPath, String importGroup, boolean staticImport,
-                                    DetailAST importAST) {
-            this.importFullPath = importFullPath;
-            this.importGroup = importGroup;
-            this.staticImport = staticImport;
-            this.importAST = importAST;
+        private ImportDetails {
         }
 
         /**
@@ -878,7 +864,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return import full path variable.
          */
-        public String getImportFullPath() {
+        @Override
+        public String importFullPath() {
             return importFullPath;
         }
 
@@ -910,7 +897,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return import group.
          */
-        public String getImportGroup() {
+        @Override
+        public String importGroup() {
             return importGroup;
         }
 
@@ -919,7 +907,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return true, if import is static.
          */
-        public boolean isStaticImport() {
+        @Override
+        public boolean staticImport() {
             return staticImport;
         }
 
@@ -928,7 +917,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return import ast.
          */
-        public DetailAST getImportAST() {
+        @Override
+        public DetailAST importAST() {
             return importAST;
         }
 
@@ -940,22 +930,25 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private static final class RuleMatchForImport {
 
-        /** Position of matching string for current best match. */
+        /**
+         * Position of matching string for current best match.
+         */
         private final int matchPosition;
-        /** Length of matching string for current best match. */
+        /**
+         * Length of matching string for current best match.
+         */
         private int matchLength;
-        /** Import group for current best match. */
+        /**
+         * Import group for current best match.
+         */
         private String group;
 
         /**
          * Constructor to initialize the fields.
          *
-         * @param group
-         *        Matched group.
-         * @param length
-         *        Matching length.
-         * @param position
-         *        Matching position.
+         * @param group    Matched group.
+         * @param length   Matching length.
+         * @param position Matching position.
          */
         private RuleMatchForImport(String group, int length, int position) {
             this.group = group;
