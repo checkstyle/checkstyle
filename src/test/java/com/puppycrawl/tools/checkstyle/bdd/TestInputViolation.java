@@ -22,7 +22,14 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public final class TestInputViolation implements Comparable<TestInputViolation> {
+/**
+ * Represents a test input violation with line number and message.
+ *
+ * @param lineNo parsed violation line number
+ * @param message parsed violation message
+ */
+public record TestInputViolation(int lineNo, String message)
+        implements Comparable<TestInputViolation> {
 
     /** Pattern to match the symbol: "{". */
     private static final Pattern OPEN_CURLY_PATTERN = Pattern.compile("\\{");
@@ -33,37 +40,12 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     /** Pattern to match the symbol: ")". */
     private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
-    /** Parsed violation line number. */
-    private final int lineNo;
-
-    /** Parsed violation message. */
-    private final String message;
-
-    /**
-     * Creates a new {@code TestInputViolation} instance.
-     *
-     * @param lineNo the violation line number.
-     * @param message the violation message.
-     */
-    public TestInputViolation(int lineNo, String message) {
-        this.lineNo = lineNo;
-        this.message = message;
-    }
-
-    /**
-     * Gets the violation line number.
-     *
-     * @return the violation line number.
-     */
+    /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
         return lineNo;
     }
 
-    /**
-     * Gets the violation message.
-     *
-     * @return the violation message.
-     */
+    /** Legacy getter for message (backward compatibility). */
     public String getMessage() {
         return message;
     }
@@ -71,7 +53,7 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     /**
      * Creates regex string to match the violation message format.
      *
-     * @return the regex string.
+     * @return the regex string
      */
     public String toRegex() {
         String regex = lineNo + ":(?:\\d+:)?\\s.*";
@@ -86,13 +68,13 @@ public final class TestInputViolation implements Comparable<TestInputViolation> 
     }
 
     @Override
-    public int compareTo(TestInputViolation testInputViolation) {
+    public int compareTo(TestInputViolation other) {
         final int result;
-        if (message != null && lineNo == testInputViolation.lineNo) {
-            result = message.compareTo(testInputViolation.message);
+        if (message != null && lineNo == other.lineNo) {
+            result = message.compareTo(other.message);
         }
         else {
-            result = Integer.compare(lineNo, testInputViolation.lineNo);
+            result = Integer.compare(lineNo, other.lineNo);
         }
         return result;
     }

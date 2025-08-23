@@ -402,6 +402,9 @@ public class CommitValidationTest {
 
     }
 
+    /**
+     * Iterator that skips merge commits.
+     */
     private static final class OmitMergeCommitsIterator implements Iterator<RevCommit> {
 
         private final Iterator<RevCommit> revCommitIterator;
@@ -424,11 +427,15 @@ public class CommitValidationTest {
             return currentCommit;
         }
 
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("remove");
+        /**
+         * Checks if the commit is a merge commit.
+         *
+         * @param commit the commit to check
+         * @return true if merge commit
+         */
+        private static boolean isMergeCommit(RevCommit commit) {
+            return commit.getParentCount() > 1;
         }
-
     }
 
 }

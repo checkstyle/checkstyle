@@ -380,8 +380,6 @@ public class CheckstyleAntTask extends Task {
         final RootModule rootModule;
         try {
             final Properties props = createOverridingProperties();
-            final ThreadModeSettings threadModeSettings =
-                    ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
             final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
             if (executeIgnoredModules) {
                 ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.EXECUTE;
@@ -390,6 +388,7 @@ public class CheckstyleAntTask extends Task {
                 ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
             }
 
+            final ThreadModeSettings threadModeSettings = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
             final Configuration configuration = ConfigurationLoader.loadConfiguration(config,
                     new PropertiesExpander(props), ignoredModulesOptions, threadModeSettings);
 
