@@ -39,20 +39,20 @@
             <property default-value="true"
                       name="violateImpliedStaticOnNestedEnum"
                       type="boolean">
-               <description>Control whether to enforce that
- &lt;code&gt;static&lt;/code&gt; is explicitly coded on nested enums in classes and records.</description>
+               <description>Control whether to enforce that {@code static} is explicitly coded
+ on nested enums in classes and records.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticOnNestedInterface"
                       type="boolean">
-               <description>Control whether to enforce that
- &lt;code&gt;static&lt;/code&gt; is explicitly coded on nested interfaces in classes and records.</description>
+               <description>Control whether to enforce that {@code static} is explicitly coded
+ on nested interfaces in classes and records.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticOnNestedRecord"
                       type="boolean">
-               <description>Control whether to enforce that
- &lt;code&gt;static&lt;/code&gt; is explicitly coded on nested records in classes and records.</description>
+               <description>Control whether to enforce that {@code static} is explicitly coded
+ on nested records in classes and records.</description>
             </property>
          </properties>
          <message-keys>
