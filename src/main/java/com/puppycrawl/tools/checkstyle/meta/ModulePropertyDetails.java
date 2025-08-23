@@ -40,6 +40,29 @@ public final class ModulePropertyDetails {
     /** Description of property. */
     private String description;
 
+    /** No-argument constructor. */
+    public ModulePropertyDetails() {
+        // empty constructor
+    }
+
+    /**
+     * All-argument constructor.
+     *
+     * @param name name.
+     * @param type type.
+     * @param defaultValue default value.
+     * @param validationType validation type.
+     * @param description description.
+     */
+    public ModulePropertyDetails(String name, String type, String defaultValue,
+            String validationType, String description) {
+        this.name = name;
+        this.type = type;
+        this.defaultValue = defaultValue;
+        this.validationType = validationType;
+        this.description = description;
+    }
+
     /**
      * Get name of property.
      *
