@@ -218,7 +218,7 @@
     <maven.versions.plugin.version>2.18.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
-    <java.version>17</java.version>
+    <java.version>21</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <pitest.plugin.version>1.20.2</pitest.plugin.version>
