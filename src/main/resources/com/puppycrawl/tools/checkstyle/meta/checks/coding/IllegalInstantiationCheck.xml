@@ -32,7 +32,7 @@
  There is a limitation that it is currently not possible to specify array classes.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="" name="classes" type="java.lang.String[]">
+            <property default-value="{}" name="classes" type="java.lang.String[]">
                <description>Specify fully qualified class names that should not be instantiated.</description>
             </property>
          </properties>

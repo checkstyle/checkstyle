@@ -26,9 +26,11 @@
  &lt;p&gt;
  Rationale: Too many return points can mean that code is
  attempting to do too much or may be difficult to understand.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
-            <property default-value="^equals$"
+            <property default-value="&#34;^equals$&#34;"
                       name="format"
                       type="java.util.regex.Pattern">
                <description>Specify method names to ignore.</description>

@@ -7,7 +7,9 @@
          <description>&lt;div&gt;
  Checks that annotations are located on the same line with their targets.
  Verifying with this check is not good practice, but it is using by some style guides.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"

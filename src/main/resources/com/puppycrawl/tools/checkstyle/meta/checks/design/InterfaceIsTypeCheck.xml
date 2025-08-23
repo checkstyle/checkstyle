@@ -20,11 +20,12 @@
  &lt;p&gt;
  The check can be configured to also disallow marker interfaces like &lt;code&gt;java.io.Serializable&lt;/code&gt;,
  that do not contain methods or constants at all.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="true" name="allowMarkerInterfaces" type="boolean">
-               <description>Control whether marker interfaces
- like Serializable are allowed.</description>
+               <description>Control whether marker interfaces like Serializable are allowed.</description>
             </property>
          </properties>
          <message-keys>

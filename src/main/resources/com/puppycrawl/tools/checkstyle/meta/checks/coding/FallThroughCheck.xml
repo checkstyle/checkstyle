@@ -24,12 +24,14 @@
 
  &lt;p&gt;
  Note: The check assumes that there is no unreachable code in the &lt;code&gt;case&lt;/code&gt;.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="checkLastCaseGroup" type="boolean">
                <description>Control whether the last case group must be checked.</description>
             </property>
-            <property default-value="falls?[ -]?thr(u|ough)"
+            <property default-value="&#34;falls?[ -]?thr(u|ough)&#34;"
                       name="reliefPattern"
                       type="java.util.regex.Pattern">
                <description>Define the RegExp to match the relief comment that suppresses
