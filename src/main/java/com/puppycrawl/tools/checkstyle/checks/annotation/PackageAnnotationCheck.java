@@ -47,19 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Java Language Specification, &#167;7.4.1</a> for more info.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.package.location}
- * </li>
- * </ul>
- *
  * @since 5.0
  */
 @StatelessCheck
