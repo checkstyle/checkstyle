@@ -14,10 +14,12 @@
  &lt;code&gt;System.out.println()&lt;/code&gt;, &lt;code&gt;System.exit()&lt;/code&gt;, etc.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+            <property default-value="all files"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
             </property>
-            <property default-value="$." name="format" type="java.util.regex.Pattern">
+            <property default-value="&#34;$.&#34;" name="format" type="java.lang.String">
                <description>Specify the format of the regular expression to match.</description>
             </property>
             <property default-value="false" name="ignoreCase" type="boolean">
@@ -26,9 +28,9 @@
             <property default-value="0" name="maximum" type="int">
                <description>Specify the maximum number of matches required in each file.</description>
             </property>
-            <property name="message" type="java.lang.String">
-               <description>Specify the message which is used to notify about
- violations, if empty then default (hard-coded) message is used.</description>
+            <property default-value="null" name="message" type="java.lang.String">
+               <description>Specify the message which is used to notify about violations,
+ if empty then default (hard-coded) message is used.</description>
             </property>
             <property default-value="0" name="minimum" type="int">
                <description>Specify the minimum number of matches required in each file.</description>
