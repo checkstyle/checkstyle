@@ -28,7 +28,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[A-Z]$&quot;</code></td>
+              <td><code>^[A-Z]$</code></td>
               <td>5.8</td>
             </tr>
           </table>
