@@ -220,6 +220,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                 while (warning != null) {
                     if (warning.getType() == TokenTypes.EXPR) {
                         final DetailAST fChild = warning.getFirstChild();
+                        // noinspection EnhancedSwitchMigration
                         switch (fChild.getType()) {
                             // typical case
                             case TokenTypes.STRING_LITERAL:
