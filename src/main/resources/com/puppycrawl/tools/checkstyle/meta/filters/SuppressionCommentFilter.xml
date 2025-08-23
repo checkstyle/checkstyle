@@ -43,27 +43,24 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="checkC" type="boolean">
-               <description>Control whether to check C style comments (&lt;code&gt;&amp;#47;* ... *&amp;#47;&lt;/code&gt;).</description>
+               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
             </property>
             <property default-value="true" name="checkCPP" type="boolean">
-               <description>Control whether to check C++ style comments (&lt;code&gt;//&lt;/code&gt;).</description>
+               <description>Control whether to check C++ style comments ({@code //}).</description>
             </property>
-            <property default-value=".*"
-                      name="checkFormat"
-                      type="java.util.regex.Pattern">
+            <property default-value="&#34;.*&#34;" name="checkFormat" type="java.lang.String">
                <description>Specify check pattern to suppress.</description>
             </property>
-            <property name="idFormat" type="java.util.regex.Pattern">
+            <property default-value="null" name="idFormat" type="java.lang.String">
                <description>Specify check ID pattern to suppress.</description>
             </property>
-            <property name="messageFormat" type="java.util.regex.Pattern">
+            <property default-value="null" name="messageFormat" type="java.lang.String">
                <description>Specify message pattern to suppress.</description>
             </property>
             <property default-value="CHECKSTYLE:OFF"
                       name="offCommentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify comment pattern to
- trigger filter to begin suppression.</description>
+               <description>Specify comment pattern to trigger filter to begin suppression.</description>
             </property>
             <property default-value="CHECKSTYLE:ON"
                       name="onCommentFormat"

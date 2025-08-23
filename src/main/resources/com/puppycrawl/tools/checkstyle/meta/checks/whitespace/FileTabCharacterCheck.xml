@@ -30,8 +30,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="eachLine" type="boolean">
-               <description>Control whether to report on each line containing a tab,
- or just the first instance.</description>
+               <description>Control whether to report on each line containing a tab, or just the first
+ instance.</description>
             </property>
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
