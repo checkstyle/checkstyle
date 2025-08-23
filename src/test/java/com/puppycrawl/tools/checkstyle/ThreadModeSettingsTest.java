@@ -33,10 +33,10 @@ public class ThreadModeSettingsTest {
     public void testProperties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
         assertWithMessage("Invalid checker threads number")
-                .that(config.getCheckerThreadsNumber())
+                .that(config.checkerThreadsNumber())
                 .isEqualTo(1);
         assertWithMessage("Invalid treewalker threads number")
-                .that(config.getTreeWalkerThreadsNumber())
+                .that(config.treeWalkerThreadsNumber())
                 .isEqualTo(2);
     }
 

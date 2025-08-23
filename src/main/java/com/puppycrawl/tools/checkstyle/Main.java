@@ -374,9 +374,6 @@ public final class Main {
         }
 
         // create a configuration
-        final ThreadModeSettings multiThreadModeSettings =
-                new ThreadModeSettings(CliOptions.CHECKER_THREADS_NUMBER,
-                        CliOptions.TREE_WALKER_THREADS_NUMBER);
 
         final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
         if (options.executeIgnoredModules) {
@@ -386,6 +383,9 @@ public final class Main {
             ignoredModulesOptions = ConfigurationLoader.IgnoredModulesOptions.OMIT;
         }
 
+        final ThreadModeSettings multiThreadModeSettings =
+                new ThreadModeSettings(CliOptions.CHECKER_THREADS_NUMBER,
+                CliOptions.TREE_WALKER_THREADS_NUMBER);
         final Configuration config = ConfigurationLoader.loadConfiguration(
                 options.configurationFile, new PropertiesExpander(props),
                 ignoredModulesOptions, multiThreadModeSettings);

@@ -19,20 +19,28 @@
 
 package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
-public final class MessageLevelPair {
+/**
+ * Immutable pair of a message and its level.
+ *
+ * @param msg the message
+ * @param level the level
+ */
+public record MessageLevelPair(String msg, int level) {
 
-    private final String msg;
-    private final int level;
-
-    public MessageLevelPair(String msg, int level) {
-        this.msg = msg;
-        this.level = level;
-    }
-
+    /**
+     * Legacy getter for message, keeps backward compatibility.
+     *
+     * @return the message
+     */
     public String getMsg() {
         return msg;
     }
 
+    /**
+     * Legacy getter for level, keeps backward compatibility.
+     *
+     * @return the level
+     */
     public int getLevel() {
         return level;
     }

@@ -24,63 +24,24 @@ import com.puppycrawl.tools.checkstyle.api.LineColumn;
 /**
  * Value object for storing data about a parsed tag.
  *
+ * @param name Name of the tag ("link", "see", etc)
+ * @param value Value of the tag
+ * @param position Position of the tag in the given comment
  */
-public final class TagInfo {
+public record TagInfo(String name, String value, LineColumn position) {
 
-    /**
-     * Name of the tag ("link", "see", etc).
-     */
-    private final String name;
-
-    /**
-     * Value of the tag.
-     */
-    private final String value;
-
-    /**
-     * Position of the tag in the given comment.
-     */
-    private final LineColumn position;
-
-    /**
-     * Constructor.
-     *
-     * @param name The name of the tag.
-     * @param value The value of the tag.
-     * @param position The position of the tag in the comment.
-     */
-    public TagInfo(String name, String value, LineColumn position) {
-        this.name = name;
-        this.value = value;
-        this.position = position;
-    }
-
-    /**
-     * Return name of tag.
-     *
-     * @return Name of the tag.
-     */
+    /** Legacy getter for tag name (backward compatibility). */
     public String getName() {
         return name;
     }
 
-    /**
-     * Return value of tag.
-     *
-     * @return Value of the tag.
-     */
+    /** Legacy getter for tag value (backward compatibility). */
     public String getValue() {
         return value;
     }
 
-    /**
-     * Return position of tag.
-     *
-     * @return Value of the tag.
-     */
+    /** Legacy getter for tag position (backward compatibility). */
     public LineColumn getPosition() {
         return position;
     }
-
 }
-
