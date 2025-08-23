@@ -15,19 +15,17 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+// Java17
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
-import com.neurologic.http.impl.ApacheHttpClient;
-import static java.awt.Button.A;
-import javax.swing.JComponent;
-// violation above 'Wrong order for 'javax.swing.JComponent' import'
-// caused by the above static import (all static imports should be at the bottom)
-import java.net.URL; // violation, extra separation in import group
+import com.sun.security.auth.UserPrincipal;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.swing.JComponent; // violation, wrong order, 'javax' should come after all '*' group imports
+import java.net.URL;
 import java.security.KeyManagementException;
-import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
-import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
+import javax.swing.JComponent; // violation, duplicate + wrong position
+import java.util.concurrent.CopyOnWriteArrayList;
 // xdoc section -- end
 
 public class Example4 { }
