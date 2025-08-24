@@ -40,17 +40,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/17291")
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioTest;
+
+@CacioTest
+@ExtendWith(CacioExtension.class)
 public class MainFrameTest extends AbstractGuiTestSupport {
 
     private static final String TEST_FILE_NAME = "InputMainFrame.java";
