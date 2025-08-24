@@ -8,17 +8,17 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
 import static java.lang.Math.PI;
 import static java.lang.Math.abs; // ok, alphabetical case-sensitive ASCII order, 'P' < 'a'
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // ok, alphabetical order
+import static java.util.Collections.emptyList; // ok, alphabetical after Math.*
 
 import java.util.Set; // violation, extra separation in import group
-import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
-import org.abego.*;
+import static java.lang.Math.sin; // violation, wrong order, all static imports must be at 'top'
+import org.w3c.dom.*;
 // xdoc section -- end
 
 public class Example6 { }

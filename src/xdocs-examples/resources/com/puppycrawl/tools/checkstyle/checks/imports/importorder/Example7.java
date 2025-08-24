@@ -9,14 +9,14 @@
   </module>
 </module>
 */
-// non-compiled with javac: Compilable with Java17
+
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 // xdoc section -- start
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // Group 1
+import static org.w3c.dom.Node.ELEMENT_NODE; // Group 1
 import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
-import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE; // Group "everything else"
 // xdoc section -- end
 
 public class Example7 { }
