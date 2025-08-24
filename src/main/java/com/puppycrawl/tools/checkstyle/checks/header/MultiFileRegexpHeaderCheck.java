@@ -422,17 +422,14 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Represents the result of a header match check, containing information about any mismatch.
+     *
+     * @param isMatching Whether the header matched the file.
+     * @param lineNumber Line number where the mismatch occurred (1-based).
+     * @param messageKey The message key for the violation.
+     * @param messageArg The argument for the message.
      */
-    private static final class MatchResult {
-        /** Whether the header matched the file. */
-        private final boolean isMatching;
-        /** Line number where the mismatch occurred (1-based). */
-        private final int lineNumber;
-        /** The message key for the violation. */
-        private final String messageKey;
-        /** The argument for the message. */
-        private final String messageArg;
-
+    private record MatchResult(boolean isMatching, int lineNumber,
+                               String messageKey, String messageArg) {
         /**
          * Private constructor.
          *
@@ -441,12 +438,7 @@ public class MultiFileRegexpHeaderCheck
          * @param messageKey message key for violation
          * @param messageArg message argument
          */
-        private MatchResult(boolean isMatching, int lineNumber, String messageKey,
-                            String messageArg) {
-            this.isMatching = isMatching;
-            this.lineNumber = lineNumber;
-            this.messageKey = messageKey;
-            this.messageArg = messageArg;
+        private MatchResult {
         }
 
         /**
