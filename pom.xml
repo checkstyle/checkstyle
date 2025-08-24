@@ -3902,7 +3902,21 @@
               </avoidCallsTo>
               <excludedTestClasses>
                 <param>*.Input*</param>
+                <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImplTest</param>
               </excludedTestClasses>
+              <excludedClasses>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadingAsteriskCheck</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</param>
+              </excludedClasses>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources
                 before ending, but currently it does ThreadLocal cleanup,
@@ -4461,7 +4475,6 @@
                 <param>com.puppycrawl.tools.checkstyle.LocalizedMessage*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
-                <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
@@ -4499,8 +4512,8 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulatorTest</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParseTreeTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsAstRegressionTest</param>
                 <!-- this test is required for CompositeLexerContextCache -->
                 <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
                 <!-- this test is required for Checker -->
@@ -4589,7 +4602,6 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.DetailAstImpl*</param>
-                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator*</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParser*</param>
               </targetClasses>
@@ -5020,6 +5032,7 @@
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
+                <param>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</param>
               </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>

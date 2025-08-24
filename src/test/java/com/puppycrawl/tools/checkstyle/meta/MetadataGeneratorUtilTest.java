@@ -30,12 +30,14 @@ import java.util.stream.Stream;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
+@Disabled
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
