@@ -196,13 +196,6 @@ public class SuppressWarningsCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
-    /**
-     * Visits a token to check for suppression warnings.
-     *
-     * @param ast the AST node
-     * @noinspection EnhancedSwitchMigration
-     * @noinspectionreason Until #17673
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST annotation = getSuppressWarnings(ast);
@@ -210,49 +203,62 @@ public class SuppressWarningsCheck extends AbstractCheck {
         if (annotation != null) {
             final DetailAST warningHolder =
                 findWarningsHolder(annotation);
-
             final DetailAST token =
                     warningHolder.findFirstToken(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
             // case like '@SuppressWarnings(value = UNUSED)'
             final DetailAST parent = Objects.requireNonNullElse(token, warningHolder);
-            DetailAST warning = parent.findFirstToken(TokenTypes.EXPR);
+            final DetailAST warning = parent.findFirstToken(TokenTypes.EXPR);
 
-            // rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
                 // check to see if empty warnings are forbidden -- are by default
                 logMatch(warningHolder, "");
             }
             else {
-                while (warning != null) {
-                    if (warning.getType() == TokenTypes.EXPR) {
-                        final DetailAST fChild = warning.getFirstChild();
-                        switch (fChild.getType()) {
-                            // typical case
-                            case TokenTypes.STRING_LITERAL:
-                                final String warningText =
-                                    removeQuotes(warning.getFirstChild().getText());
-                                logMatch(warning, warningText);
-                                break;
-                            // conditional case
-                            // ex:
-                            // @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
-                            case TokenTypes.QUESTION:
-                                walkConditional(fChild);
-                                break;
-                            default:
-                                // Known limitation: cases like @SuppressWarnings("un" + "used") or
-                                // @SuppressWarnings((String) "unused") are not properly supported,
-                                // but they should not cause exceptions.
-                                // Also constant as param
-                                // ex: public static final String UNCHECKED = "unchecked";
-                                // @SuppressWarnings(UNCHECKED)
-                                // or
-                                // @SuppressWarnings(SomeClass.UNCHECKED)
-                        }
-                    }
-                    warning = warning.getNextSibling();
-                }
+                processWarnings(warning);
+            }
+        }
+    }
+
+    /**
+     * Processes all warning expressions starting from the given AST node.
+     *
+     * @param warning the first warning expression node to process
+     */
+    private void processWarnings(final DetailAST warning) {
+        for (DetailAST current = warning; current != null; current = current.getNextSibling()) {
+            if (current.getType() == TokenTypes.EXPR) {
+                processWarningExpr(current.getFirstChild(), current);
+            }
+        }
+    }
+
+    /**
+     * Processes a single warning expression.
+     *
+     * @param fChild  the first child AST of the expression
+     * @param warning the parent warning AST node
+     */
+    private void processWarningExpr(final DetailAST fChild, final DetailAST warning) {
+        switch (fChild.getType()) {
+            case TokenTypes.STRING_LITERAL -> {
+                final String warningText =
+                        removeQuotes(warning.getFirstChild().getText());
+                logMatch(warning, warningText);
+            }
+            case TokenTypes.QUESTION -> {
+                // ex: @SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")
+                walkConditional(fChild);
+            }
+            default -> {
+                // Known limitation: cases like @SuppressWarnings("un" + "used") or
+                // @SuppressWarnings((String) "unused") are not properly supported,
+                // but they should not cause exceptions.
+                // Also constants as params:
+                // ex: public static final String UNCHECKED = "unchecked";
+                // @SuppressWarnings(UNCHECKED)
+                // or
+                // @SuppressWarnings(SomeClass.UNCHECKED)
             }
         }
     }
