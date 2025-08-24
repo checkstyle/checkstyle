@@ -26,13 +26,16 @@ import java.util.Arrays;
 
 import javax.swing.SwingUtilities;
 
-import org.junit.jupiter.api.Disabled;
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioExtension;
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioTest;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/17291")
+@CacioTest
+@ExtendWith(CacioExtension.class)
 public class MainTest extends AbstractGuiTestSupport {
 
     @Override

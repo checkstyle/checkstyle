@@ -28,14 +28,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioExtension;
+import com.github.caciocavallosilano.cacio.ctc.junit.CacioTest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
+@CacioTest
+@ExtendWith(CacioExtension.class)
 public class MainFrameModelTest extends AbstractModuleTestSupport {
 
     private static final String FILE_NAME_TEST_DATA = "InputMainFrameModel.java";
@@ -231,7 +235,6 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 .isFalse();
     }
 
-    @Disabled("until https://github.com/checkstyle/checkstyle/issues/17291")
     @Test
     public void testOpenFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
