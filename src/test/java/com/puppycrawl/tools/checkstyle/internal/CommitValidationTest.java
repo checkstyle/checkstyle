@@ -215,7 +215,7 @@ public class CommitValidationTest {
 
                 assertWithMessage(
                         getInvalidCommitMessageFormattingError(commitId, commitMessage) + error)
-                                .fail();
+                        .fail();
             }
         }
     }
@@ -402,13 +402,8 @@ public class CommitValidationTest {
 
     }
 
-    private static final class OmitMergeCommitsIterator implements Iterator<RevCommit> {
-
-        private final Iterator<RevCommit> revCommitIterator;
-
-        private OmitMergeCommitsIterator(Iterator<RevCommit> revCommitIterator) {
-            this.revCommitIterator = revCommitIterator;
-        }
+    private record OmitMergeCommitsIterator(Iterator<RevCommit>
+                                            revCommitIterator) implements Iterator<RevCommit> {
 
         @Override
         public boolean hasNext() {
@@ -422,11 +417,6 @@ public class CommitValidationTest {
                 currentCommit = revCommitIterator.next();
             }
             return currentCommit;
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("remove");
         }
 
     }
