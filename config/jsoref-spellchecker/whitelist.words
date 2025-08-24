@@ -3,7 +3,6 @@ Aapt
 aarch
 abbreviationaswordinname
 abcun
-abego
 abstractcheck
 abstractclassname
 abstractfileset
@@ -1401,7 +1400,6 @@ toolongpackagetotestcoveragegooglesjavastylerule
 TOSTRING
 Touchscreen
 trailingcomment
-treelayout
 treemap
 treeset
 treetable
