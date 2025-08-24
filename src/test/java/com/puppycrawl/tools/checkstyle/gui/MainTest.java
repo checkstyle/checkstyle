@@ -26,14 +26,12 @@ import java.util.Arrays;
 
 import javax.swing.SwingUtilities;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractGuiTestCase;
 
-@Disabled("until https://github.com/checkstyle/checkstyle/issues/17291")
-public class MainTest extends AbstractGuiTestSupport {
+public class MainTest extends AbstractGuiTestCase {
 
     @Override
     protected String getPackageLocation() {
