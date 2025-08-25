@@ -238,11 +238,14 @@
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
+      -Xep:AssertJNullnessAssertion:ERROR
       -Xep:AutowiredConstructor:ERROR
       -Xep:CanonicalAnnotationSyntax:ERROR
       -Xep:CollectorMutability:ERROR
+      -Xep:ConstantNaming:ERROR
       -Xep:DirectReturn:ERROR
       -Xep:EmptyMethod:ERROR
+      -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
@@ -253,6 +256,7 @@
       -Xep:NestedOptionals:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
+      -Xep:RedundantStringEscape:ERROR
       -Xep:Slf4jLogStatement:ERROR
       -Xep:StringJoin:ERROR
       -Xep:TimeZoneUsage:ERROR
