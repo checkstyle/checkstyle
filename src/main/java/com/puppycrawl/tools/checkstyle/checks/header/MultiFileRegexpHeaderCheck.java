@@ -161,14 +161,14 @@ public class MultiFileRegexpHeaderCheck
      */
     public String getConfiguredHeaderPaths() {
         return headerFilesMetadata.stream()
-                .map(HeaderFileMetadata::getHeaderFilePath)
+                .map(HeaderFileMetadata::headerFilePath)
                 .collect(Collectors.joining(", "));
     }
 
     @Override
     public Set<String> getExternalResourceLocations() {
         return headerFilesMetadata.stream()
-                .map(HeaderFileMetadata::getHeaderFileUri)
+                .map(HeaderFileMetadata::headerFileUri)
                 .map(URI::toASCIIString)
                 .collect(Collectors.toUnmodifiableSet());
     }
@@ -198,7 +198,7 @@ public class MultiFileRegexpHeaderCheck
      */
     private static MatchResult matchHeader(FileText fileText, HeaderFileMetadata headerFile) {
         final int fileSize = fileText.size();
-        final List<Pattern> headerPatterns = headerFile.getHeaderPatterns();
+        final List<Pattern> headerPatterns = headerFile.headerPatterns();
         final int headerPatternSize = headerPatterns.size();
 
         int mismatchLine = MISMATCH_CODE;
@@ -237,15 +237,15 @@ public class MultiFileRegexpHeaderCheck
         final int lineToLog;
         final String messageArg;
 
-        if (headerFile.getHeaderPatterns().size() > fileText.size()) {
+        if (headerFile.headerPatterns().size() > fileText.size()) {
             messageKey = MSG_HEADER_MISSING;
             lineToLog = 1;
-            messageArg = headerFile.getHeaderFilePath();
+            messageArg = headerFile.headerFilePath();
         }
         else {
             messageKey = MSG_HEADER_MISMATCH;
             lineToLog = mismatchLine + 1;
-            final String lineContent = headerFile.getLineContents().get(mismatchLine);
+            final String lineContent = headerFile.lineContents().get(mismatchLine);
             if (lineContent.isEmpty()) {
                 messageArg = EMPTY_LINE_PATTERN;
             }
@@ -291,148 +291,136 @@ public class MultiFileRegexpHeaderCheck
 
     /**
      * Metadata holder for a header file, storing its URI, compiled patterns, and line contents.
+     *
+     * @param headerFileUri  URI of the header file.
+     * @param headerFilePath Original path string of the header file.
+     * @param headerPatterns Compiled regex patterns for each line of the header.
+     * @param lineContents   Raw line contents of the header file.
      */
-    private static final class HeaderFileMetadata {
-        /** URI of the header file. */
-        private final URI headerFileUri;
-        /** Original path string of the header file. */
-        private final String headerFilePath;
-        /** Compiled regex patterns for each line of the header. */
-        private final List<Pattern> headerPatterns;
-        /** Raw line contents of the header file. */
-        private final List<String> lineContents;
-
+        private record HeaderFileMetadata(URI headerFileUri, String headerFilePath, List<Pattern> headerPatterns,
+                                          List<String> lineContents) {
         /**
          * Initializes the metadata holder.
          *
-         * @param headerFileUri URI of the header file
+         * @param headerFileUri  URI of the header file
          * @param headerFilePath original path string of the header file
          * @param headerPatterns compiled regex patterns for header lines
-         * @param lineContents raw lines from the header file
+         * @param lineContents   raw lines from the header file
          */
-        private HeaderFileMetadata(
-                URI headerFileUri, String headerFilePath,
-                List<Pattern> headerPatterns, List<String> lineContents
-        ) {
-            this.headerFileUri = headerFileUri;
-            this.headerFilePath = headerFilePath;
-            this.headerPatterns = headerPatterns;
-            this.lineContents = lineContents;
+        private HeaderFileMetadata {
         }
 
-        /**
-         * Creates a HeaderFileMetadata instance by reading and processing
-         * the specified header file.
-         *
-         * @param headerPath path to the header file
-         * @return HeaderFileMetadata instance
-         * @throws IllegalArgumentException if the header file is invalid or cannot be read
-         */
-        public static HeaderFileMetadata createFromFile(String headerPath) {
-            if (CommonUtil.isBlank(headerPath)) {
-                throw new IllegalArgumentException("Header file is not set");
+            /**
+             * Creates a HeaderFileMetadata instance by reading and processing
+             * the specified header file.
+             *
+             * @param headerPath path to the header file
+             * @return HeaderFileMetadata instance
+             * @throws IllegalArgumentException if the header file is invalid or cannot be read
+             */
+            public static HeaderFileMetadata createFromFile(String headerPath) {
+                if (CommonUtil.isBlank(headerPath)) {
+                    throw new IllegalArgumentException("Header file is not set");
+                }
+                try {
+                    final URI uri = CommonUtil.getUriByFilename(headerPath);
+                    final List<String> readerLines = getLines(headerPath, uri);
+                    final List<Pattern> patterns = readerLines.stream()
+                            .map(HeaderFileMetadata::createPatternFromLine)
+                            .toList();
+                    return new HeaderFileMetadata(uri, headerPath, patterns, readerLines);
+                } catch (CheckstyleException exc) {
+                    throw new IllegalArgumentException(
+                            "Error reading or corrupted header file: " + headerPath, exc);
+                }
             }
-            try {
-                final URI uri = CommonUtil.getUriByFilename(headerPath);
-                final List<String> readerLines = getLines(headerPath, uri);
-                final List<Pattern> patterns = readerLines.stream()
-                        .map(HeaderFileMetadata::createPatternFromLine)
-                        .toList();
-                return new HeaderFileMetadata(uri, headerPath, patterns, readerLines);
-            }
-            catch (CheckstyleException exc) {
-                throw new IllegalArgumentException(
-                        "Error reading or corrupted header file: " + headerPath, exc);
-            }
-        }
 
-        /**
-         * Creates a Pattern object from a line of text.
-         *
-         * @param line the line to create a pattern from
-         * @return the compiled Pattern
-         */
-        private static Pattern createPatternFromLine(String line) {
-            final Pattern result;
-            if (line.isEmpty()) {
-                result = BLANK_LINE;
+            /**
+             * Creates a Pattern object from a line of text.
+             *
+             * @param line the line to create a pattern from
+             * @return the compiled Pattern
+             */
+            private static Pattern createPatternFromLine(String line) {
+                final Pattern result;
+                if (line.isEmpty()) {
+                    result = BLANK_LINE;
+                } else {
+                    result = Pattern.compile(validateRegex(line));
+                }
+                return result;
             }
-            else {
-                result = Pattern.compile(validateRegex(line));
+
+            /**
+             * Returns the URI of the header file.
+             *
+             * @return header file URI
+             */
+            @Override
+            public URI headerFileUri() {
+                return headerFileUri;
             }
-            return result;
-        }
 
-        /**
-         * Returns the URI of the header file.
-         *
-         * @return header file URI
-         */
-        public URI getHeaderFileUri() {
-            return headerFileUri;
-        }
-
-        /**
-         * Returns the original path string of the header file.
-         *
-         * @return header file path string
-         */
-        public String getHeaderFilePath() {
-            return headerFilePath;
-        }
-
-        /**
-         * Returns an unmodifiable list of compiled header patterns.
-         *
-         * @return header patterns
-         */
-        public List<Pattern> getHeaderPatterns() {
-            return List.copyOf(headerPatterns);
-        }
-
-        /**
-         * Returns an unmodifiable list of raw header line contents.
-         *
-         * @return header lines
-         */
-        public List<String> getLineContents() {
-            return List.copyOf(lineContents);
-        }
-
-        /**
-         * Ensures that the given input string is a valid regular expression.
-         *
-         * <p>This method validates that the input is a correctly formatted regex string
-         * and will throw a PatternSyntaxException if it's invalid.
-         *
-         * @param input the string to be treated as a regex pattern
-         * @return the validated regex pattern string
-         * @throws IllegalArgumentException if the pattern is not a valid regex
-         */
-        private static String validateRegex(String input) {
-            try {
-                Pattern.compile(input);
-                return input;
+            /**
+             * Returns the original path string of the header file.
+             *
+             * @return header file path string
+             */
+            @Override
+            public String headerFilePath() {
+                return headerFilePath;
             }
-            catch (final PatternSyntaxException exc) {
-                throw new IllegalArgumentException("Invalid regex pattern: " + input, exc);
+
+            /**
+             * Returns an unmodifiable list of compiled header patterns.
+             *
+             * @return header patterns
+             */
+            @Override
+            public List<Pattern> headerPatterns() {
+                return List.copyOf(headerPatterns);
+            }
+
+            /**
+             * Returns an unmodifiable list of raw header line contents.
+             *
+             * @return header lines
+             */
+            @Override
+            public List<String> lineContents() {
+                return List.copyOf(lineContents);
+            }
+
+            /**
+             * Ensures that the given input string is a valid regular expression.
+             *
+             * <p>This method validates that the input is a correctly formatted regex string
+             * and will throw a PatternSyntaxException if it's invalid.
+             *
+             * @param input the string to be treated as a regex pattern
+             * @return the validated regex pattern string
+             * @throws IllegalArgumentException if the pattern is not a valid regex
+             */
+            private static String validateRegex(String input) {
+                try {
+                    Pattern.compile(input);
+                    return input;
+                } catch (final PatternSyntaxException exc) {
+                    throw new IllegalArgumentException("Invalid regex pattern: " + input, exc);
+                }
             }
         }
-    }
 
     /**
      * Represents the result of a header match check, containing information about any mismatch.
+     *
+     * @param isMatching Whether the header matched the file.
+     * @param lineNumber Line number where the mismatch occurred (1-based).
+     * @param messageKey The message key for the violation.
+     * @param messageArg The argument for the message.
      */
-    private static final class MatchResult {
-        /** Whether the header matched the file. */
-        private final boolean isMatching;
-        /** Line number where the mismatch occurred (1-based). */
-        private final int lineNumber;
-        /** The message key for the violation. */
-        private final String messageKey;
-        /** The argument for the message. */
-        private final String messageArg;
-
+    private record MatchResult(boolean isMatching, int lineNumber,
+                               String messageKey, String messageArg) {
         /**
          * Private constructor.
          *
@@ -441,12 +429,7 @@ public class MultiFileRegexpHeaderCheck
          * @param messageKey message key for violation
          * @param messageArg message argument
          */
-        private MatchResult(boolean isMatching, int lineNumber, String messageKey,
-                            String messageArg) {
-            this.isMatching = isMatching;
-            this.lineNumber = lineNumber;
-            this.messageKey = messageKey;
-            this.messageArg = messageArg;
+        private MatchResult {
         }
 
         /**
