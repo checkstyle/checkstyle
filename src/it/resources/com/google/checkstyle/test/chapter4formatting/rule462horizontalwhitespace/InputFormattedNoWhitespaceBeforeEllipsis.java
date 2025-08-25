@@ -33,7 +33,7 @@ public class InputFormattedNoWhitespaceBeforeEllipsis {
   void test3(String @NonNull ... param) {}
 
   /** some javadoc. */
-  void test4(String @NonNull ... param) {} // false-negative, ok until #17451
+  void test4(String @NonNull ... param) {}
 
   /** some javadoc. */
   void test5(String[]... param) {}
@@ -42,14 +42,14 @@ public class InputFormattedNoWhitespaceBeforeEllipsis {
   void test6(String[]... param) {}
 
   /** some javadoc. */
-  void test7(String @NonNull []... param) {} // false-negative, ok until #17451
+  void test7(String @NonNull []... param) {}
 
   /** some javadoc. */
   void test8(String @NonNull []... param) {}
 
   void test9(String @Size(max = 10) ... names) {}
 
-  void test10(String @Size(max = 10) ... names) {} // false-negative, ok until #17451
+  void test10(String @Size(max = 10) ... names) {}
 
   void test11(@NonNull String @C [] @B ... arg) {}
 
