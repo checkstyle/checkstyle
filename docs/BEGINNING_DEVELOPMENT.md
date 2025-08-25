@@ -14,7 +14,7 @@ the command line for your operating system.
 
 You must have the following installed on your local machine:
 
-- [Java 17](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html)
+- [Java 21](https://docs.oracle.com/en/java/javase/21/install/overview-jdk-installation.html)
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Forking the repository
