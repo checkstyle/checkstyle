@@ -71,4 +71,16 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
         final String filePath = getNonCompilablePath("example2/package-info.java");
         verifyWithWholeConfig(filePath);
     }
+
+    @Test
+    public void testPackageAnnotation4() throws Exception {
+        final String filePath = getNonCompilablePath("example3/package-info.java");
+        verifyWithWholeConfig(filePath);
+    }
+
+    @Test
+    public void testPackageAnnotation5() throws Exception {
+        final String filePath = getNonCompilablePath("example4/package-info.java");
+        verifyWithWholeConfig(filePath);
+    }
 }
