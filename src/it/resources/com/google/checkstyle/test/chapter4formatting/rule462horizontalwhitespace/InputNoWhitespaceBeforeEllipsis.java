@@ -33,7 +33,8 @@ public class InputNoWhitespaceBeforeEllipsis {
   void test3(String @NonNull ... param) {}
 
   /** some javadoc. */
-  void test4(String @NonNull... param) {} // false-negative, ok until #17451
+  void test4(String @NonNull... param) {}
+  // violation above ''NonNull' is not followed by whitespace'
 
   /** some javadoc. */
   void test5(String[]... param) {}
@@ -42,15 +43,19 @@ public class InputNoWhitespaceBeforeEllipsis {
   void test6(String[] ... param) {} // violation ''...' is preceded with whitespace.'
 
   /** some javadoc. */
-  void test7(String @NonNull[]... param) {} // false-negative, ok until #17451
+  void test7(String @NonNull[]... param) {}
+  // violation above ''NonNull' is not followed by whitespace'
 
   /** some javadoc. */
   void test8(String @NonNull[] ... param) {}
-  // violation above ''...' is preceded with whitespace.'
+  // 2 violations above:
+  //   ''NonNull' is not followed by whitespace'
+  //   ''...' is preceded with whitespace.'
 
   void test9(String @Size(max = 10) ... names) {}
 
-  void test10(String @Size(max = 10)... names) {} // false-negative, ok until #17451
+  void test10(String @Size(max = 10)... names) {}
+  // violation above '')' is not followed by whitespace'
 
   void test11(@NonNull String @C [] @B ... arg) {}
 
