@@ -353,4 +353,63 @@ public class WhitespaceAfterCheckTest
             expected);
 
     }
+
+    @Test
+    public void testWhitespaceAfterAnnotation() throws Exception {
+        final String[] expected = {
+            "23:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "23:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "29:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "34:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "39:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "44:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "44:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "55:35: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+            "62:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+            "66:49: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+            "70:33: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+            "76:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"), };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceAfterAnnotation2() throws Exception {
+        final String[] expected = {
+            "17:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "18:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "19:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "32:12: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "TA"),
+            "32:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "TA"),
+            "37:43: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "TA"),
+            "40:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "40:36: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "40:46: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "46:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "TA"),
+            "50:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "51:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "52:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "59:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterAnnotation2.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceAfterAnnotationInPackageFile() throws Exception {
+        final String[] expected = {
+            "9:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("example1/package-info.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceAfterAnnotationInPackageFile2() throws Exception {
+        final String[] expected = {
+            "10:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("example2/package-info.java"), expected);
+    }
 }
