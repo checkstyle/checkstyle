@@ -3909,7 +3909,6 @@
               <excludedClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper</param>
