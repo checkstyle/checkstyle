@@ -78,7 +78,7 @@ public class XpathFileGeneratorAstFilter extends AbstractAutomaticBean implement
             final List<String> xpathQueries = xpathQueryGenerator.generate();
             if (!xpathQueries.isEmpty()) {
                 final String query = String.join(DELIMITER, xpathQueries);
-                MESSAGE_QUERY_MAP.put(event.getViolation(), query);
+                MESSAGE_QUERY_MAP.put(event.violation(), query);
             }
         }
         return true;
