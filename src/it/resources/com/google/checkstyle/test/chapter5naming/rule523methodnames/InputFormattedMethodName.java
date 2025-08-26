@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  *
  * @author Travis Schneeberger
  */
-public class InputMethodName {
+public class InputFormattedMethodName {
   void foo() {}
 
   void Foo() {} // violation 'Method name 'Foo' must match pattern'
@@ -126,13 +126,15 @@ public class InputMethodName {
 
   @Test
   public void testing_123FOO() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'testing_123FOO' must contain no more than '1' consecutive capital letters'
   //   'Method name 'testing_123FOO' must match pattern'
 
   @Test
   public void TESTING_123Foo() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'TESTING_123Foo' must contain no more than '1' consecutive capital letters'
   //   'Method name 'TESTING_123Foo' must match pattern'
 
@@ -141,7 +143,8 @@ public class InputMethodName {
 
   @Test
   public void testing_FOO123() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'testing_FOO123' must contain no more than '1' consecutive capital letters'
   //   'Method name 'testing_FOO123' must match pattern'
 
@@ -208,14 +211,16 @@ public class InputMethodName {
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   void testing_124FOO() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'testing_124FOO' must contain no more than '1' consecutive capital letters'
   //   'Method name 'testing_124FOO' must match pattern'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   void TESTING_124Foo() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'TESTING_124Foo' must contain no more than '1' consecutive capital letters'
   //   'Method name 'TESTING_124Foo' must match pattern'
 
@@ -226,7 +231,8 @@ public class InputMethodName {
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   void testing_FOO124() {}
-  // 2 violations above:
+
+  // 2 violations 2 lines above:
   //   'testing_FOO124' must contain no more than '1' consecutive capital letters'
   //   'Method name 'testing_FOO124' must match pattern'
 
