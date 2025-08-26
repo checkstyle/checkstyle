@@ -15,13 +15,16 @@
  Rationale: Changing the value of parameters during the execution of the method's
  algorithm can be confusing and should be avoided. A great way to let the Java compiler
  prevent this coding style is to declare parameters final.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="ignorePrimitiveTypes" type="boolean">
                <description>Ignore primitive types as parameters.</description>
             </property>
             <property default-value="true" name="ignoreUnnamedParameters" type="boolean">
-               <description>Ignore &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+               <description>Ignore
+ &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
  unnamed parameters&lt;/a&gt;.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF"

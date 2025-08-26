@@ -71,13 +71,14 @@
  {100000000000000000000,
   100000000000000000001, // More work needed to duplicate
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="false"
                       name="alwaysDemandTrailingComma"
                       type="boolean">
-               <description>Control whether to always check for a trailing
- comma, even when an array is inline.</description>
+               <description>Control whether to always check for a trailing comma, even when an array is inline.</description>
             </property>
          </properties>
          <message-keys>

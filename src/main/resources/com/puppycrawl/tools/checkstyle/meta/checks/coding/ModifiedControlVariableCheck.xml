@@ -38,7 +38,9 @@
  for (int a[]={0};a[0] &amp;lt; 10;a[0]++) {
   a[0]++;   // it will skip this violation
  }
- &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+ &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="false"
                       name="skipEnhancedForLoopVariable"

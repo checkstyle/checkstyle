@@ -18,11 +18,13 @@
  value (&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;null&lt;/code&gt;) before performing any
  initialization specified in the code.
  So there is a minor inefficiency.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="onlyObjectReferences" type="boolean">
-               <description>Control whether only explicit
- initializations made to null for objects should be checked.</description>
+               <description>Control whether only explicit initializations made to null
+ for objects should be checked.</description>
             </property>
          </properties>
          <message-keys>

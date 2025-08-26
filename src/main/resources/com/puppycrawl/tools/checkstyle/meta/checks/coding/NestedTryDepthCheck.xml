@@ -6,7 +6,9 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
  Restricts nested try-catch-finally blocks to a specified depth.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="1" name="max" type="int">
                <description>Specify maximum allowed nesting depth.</description>
