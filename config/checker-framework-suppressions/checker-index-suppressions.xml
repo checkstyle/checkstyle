@@ -1809,10 +1809,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
-    <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
+    <lineContent>&amp;&amp; text[curr.lineNo()].charAt(curr.columnNo()) != character) {</lineContent>
     <details>
       found   : int
-      required: @LTLengthOf(&quot;text[curr.getLineNo()]&quot;) int
+      required: @LTLengthOf(&quot;text[curr.lineNo()]&quot;) int
     </details>
   </checkerFrameworkError>
 
@@ -1820,10 +1820,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
-    <lineContent>.charAt(endTag.getColumnNo() - 1) == &apos;/&apos;;</lineContent>
+    <lineContent>.charAt(endTag.columnNo() - 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
-      required: @LTLengthOf(&quot;text[endTag.getLineNo()]&quot;) int
+      required: @LTLengthOf(&quot;text[endTag.lineNo()]&quot;) int
     </details>
   </checkerFrameworkError>
 
@@ -1831,7 +1831,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
-    <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
+    <lineContent>&amp;&amp; text[curr.lineNo()].charAt(curr.columnNo()) != character) {</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -1842,7 +1842,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
-    <lineContent>.charAt(endTag.getColumnNo() - 1) == &apos;/&apos;;</lineContent>
+    <lineContent>.charAt(endTag.columnNo() - 1) == &apos;/&apos;;</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -1908,10 +1908,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of String.substring.</message>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
+    <lineContent>.substring(0, toPoint.columnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
     <details>
       found   : int
-      required: @LTEqLengthOf(&quot;text[toPoint.getLineNo()]&quot;) int
+      required: @LTEqLengthOf(&quot;text[toPoint.lineNo()]&quot;) int
     </details>
   </checkerFrameworkError>
 
@@ -1919,7 +1919,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of String.substring.</message>
-    <lineContent>.substring(0, toPoint.getColumnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
+    <lineContent>.substring(0, toPoint.columnNo() + 1).endsWith(&quot;--&gt;&quot;)) {</lineContent>
     <details>
       found   : int
       required: @NonNegative int
@@ -1930,7 +1930,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>String text = javadocText[tagStart.getLineNo()];</lineContent>
+    <lineContent>String text = javadocText[tagStart.lineNo()];</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;javadocText&quot;) or @LTLengthOf(&quot;javadocText&quot;) -- an integer less than javadocText&apos;s length
@@ -1941,7 +1941,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>final String text = javadocText[pos.getLineNo()];</lineContent>
+    <lineContent>final String text = javadocText[pos.lineNo()];</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;javadocText&quot;) or @LTLengthOf(&quot;javadocText&quot;) -- an integer less than javadocText&apos;s length
@@ -1952,7 +1952,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
+    <lineContent>&amp;&amp; text[curr.lineNo()].charAt(curr.columnNo()) != character) {</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
@@ -1963,7 +1963,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; text[endTag.getLineNo()]</lineContent>
+    <lineContent>&amp;&amp; text[endTag.lineNo()]</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
@@ -1974,7 +1974,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>return text[pos.getLineNo()].startsWith(&quot;&lt;!--&quot;, pos.getColumnNo());</lineContent>
+    <lineContent>return text[pos.lineNo()].startsWith(&quot;&lt;!--&quot;, pos.columnNo());</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
@@ -1985,7 +1985,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>text[position.getLineNo()]));</lineContent>
+    <lineContent>text[position.lineNo()]));</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
@@ -1996,7 +1996,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
+    <lineContent>while (toPoint.lineNo() &lt; text.length &amp;&amp; !text[toPoint.lineNo()]</lineContent>
     <details>
       found   : int
       required: @IndexFor(&quot;text&quot;) or @LTLengthOf(&quot;text&quot;) -- an integer less than text&apos;s length
@@ -2007,7 +2007,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>&amp;&amp; text[curr.getLineNo()].charAt(curr.getColumnNo()) != character) {</lineContent>
+    <lineContent>&amp;&amp; text[curr.lineNo()].charAt(curr.columnNo()) != character) {</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2018,7 +2018,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>&amp;&amp; text[endTag.getLineNo()]</lineContent>
+    <lineContent>&amp;&amp; text[endTag.lineNo()]</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2029,7 +2029,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>String text = javadocText[tagStart.getLineNo()];</lineContent>
+    <lineContent>String text = javadocText[tagStart.lineNo()];</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2040,7 +2040,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>final String text = javadocText[pos.getLineNo()];</lineContent>
+    <lineContent>final String text = javadocText[pos.lineNo()];</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2051,7 +2051,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>return text[pos.getLineNo()].startsWith(&quot;&lt;!--&quot;, pos.getColumnNo());</lineContent>
+    <lineContent>return text[pos.lineNo()].startsWith(&quot;&lt;!--&quot;, pos.columnNo());</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2062,7 +2062,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>text[position.getLineNo()]));</lineContent>
+    <lineContent>text[position.lineNo()]));</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -2084,7 +2084,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>while (toPoint.getLineNo() &lt; text.length &amp;&amp; !text[toPoint.getLineNo()]</lineContent>
+    <lineContent>while (toPoint.lineNo() &lt; text.length &amp;&amp; !text[toPoint.lineNo()]</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
