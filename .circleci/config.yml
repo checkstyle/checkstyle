@@ -4,7 +4,7 @@ jobs:
 
   run-inspections:
     docker:
-      - image: amitkumardeoghoria/idea-image:jdk21-idea2025.2-v1
+      - image: amitkumardeoghoria/idea-image:jdk21-idea2022.3.3-v1
 
     steps:
       - checkout
