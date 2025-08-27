@@ -21,7 +21,7 @@ import java.util.List; // violation, 'Illegal import'
 import java.util.Enumeration;
 import java.util.Arrays; // violation, 'Illegal import'
 import java.util.Date;
-import sun.applet.*; // violation, 'Illegal import'
+//import sun.applet.*; // violation, 'Illegal import'
 
 public class Example5 {}
 // xdoc section -- end
