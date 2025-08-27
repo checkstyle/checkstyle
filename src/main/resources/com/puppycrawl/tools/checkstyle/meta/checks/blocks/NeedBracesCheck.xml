@@ -10,7 +10,9 @@
 
  &lt;p&gt;
  Attention: The break in case blocks is not counted to allow compact view.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="allowEmptyLoopBody" type="boolean">
                <description>Allow loops with empty bodies.</description>

@@ -14,7 +14,9 @@
  array components&lt;/a&gt; as array
  components are classified as different kind of variables by
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se17/html/index.html"&gt;JLS&lt;/a&gt;.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="true" name="allowUnnamedVariables" type="boolean">
                <description>Allow variables named with a single underscore

@@ -14,7 +14,9 @@
  Also, this check can be configured to allow using escapes
  if trail comment is present. By the option it is possible to
  allow using escapes if literal contains only them.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ </description>
          <properties>
             <property default-value="false" name="allowByTailComment" type="boolean">
                <description>Allow use escapes if trail comment is present.</description>
@@ -22,8 +24,7 @@
             <property default-value="false"
                       name="allowEscapesForControlCharacters"
                       type="boolean">
-               <description>Allow use escapes for
- non-printable, control characters.</description>
+               <description>Allow use escapes for non-printable, control characters.</description>
             </property>
             <property default-value="false"
                       name="allowIfAllCharactersEscaped"
@@ -33,8 +34,7 @@
             <property default-value="false"
                       name="allowNonPrintableEscapes"
                       type="boolean">
-               <description>Allow use escapes for
- non-printable, whitespace characters.</description>
+               <description>Allow use escapes for non-printable, whitespace characters.</description>
             </property>
          </properties>
          <message-keys>

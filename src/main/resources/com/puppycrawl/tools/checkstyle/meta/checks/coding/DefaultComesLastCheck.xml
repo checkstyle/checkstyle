@@ -11,13 +11,15 @@
  &lt;p&gt;
  Rationale: Java allows &lt;code&gt;default&lt;/code&gt; anywhere within the
  &lt;code&gt;switch&lt;/code&gt; statement. But it is more readable if it comes after the last &lt;code&gt;case&lt;/code&gt;.
- &lt;/p&gt;</description>
+ &lt;/p&gt;
+
+ </description>
          <properties>
             <property default-value="false"
                       name="skipIfLastAndSharedWithCase"
                       type="boolean">
-               <description>Control whether to allow &lt;code&gt;default&lt;/code&gt;
- along with &lt;code&gt;case&lt;/code&gt; if they are not last.</description>
+               <description>Control whether to allow {@code default} along with
+ {@code case} if they are not last.</description>
             </property>
          </properties>
          <message-keys>
