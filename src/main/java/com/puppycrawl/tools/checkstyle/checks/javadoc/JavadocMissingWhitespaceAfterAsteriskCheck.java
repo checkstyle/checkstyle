@@ -56,33 +56,36 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
-        final DetailNode textNode = resolveTextNode(detailNode);
+        final DetailNode nextNode = resolveNextNode(detailNode);
 
-        if (textNode != null) {
-            final String text = textNode.getText();
+        if (nextNode != null) {
+            final String text = nextNode.getText();
             final int lastAsteriskPosition = getLastLeadingAsteriskPosition(text);
 
             if (!isLast(lastAsteriskPosition, text)
                     && !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {
-                log(textNode.getLineNumber(), textNode.getColumnNumber(), MSG_KEY);
+                log(nextNode.getLineNumber(), nextNode.getColumnNumber(), MSG_KEY);
             }
         }
     }
 
     /**
-     * Resolves the {@code TEXT} node related to the given Javadoc {@link DetailNode}.
+     * Resolves the first child node related to the given Javadoc {@link DetailNode}.
      * <p>
      * The resolution works in two steps:
      * <ul>
-     *   <li>If the current node is of type {@code JAVADOC_CONTENT}, use its first child,
+     *   <li>If the current node is of type {@code JAVADOC_CONTENT}, use its first child;
      *       otherwise use its next sibling.</li>
-     *   <li>If that node has a first child of type {@code TEXT}, use the child instead.</li>
+     *   <li>If that base node has a first child, return it regardless of its type.</li>
      * </ul>
+     * <p>
+     * The returned node may or may not be of type {@code TEXT}. If it is not,
+     * the violation logic will treat it as a violation later.
      *
      * @param detailNode the Javadoc node to resolve from
-     * @return the resolved {@code TEXT} node, or the {@code baseNode} if not available
+     * @return the first child node if available; otherwise {@code null}
      */
-    private DetailNode resolveTextNode(DetailNode detailNode) {
+    private DetailNode resolveNextNode(DetailNode detailNode) {
         final DetailNode baseNode;
         if (detailNode.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
             baseNode = detailNode.getFirstChild();
@@ -91,13 +94,12 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
             baseNode = detailNode.getNextSibling();
         }
 
-        DetailNode textNode = baseNode;
-        if (baseNode != null && baseNode.getFirstChild() != null
-            && baseNode.getFirstChild().getType() == JavadocCommentsTokenTypes.TEXT) {
-            textNode = baseNode.getFirstChild();
+        DetailNode nextNode = baseNode;
+        if (baseNode != null && baseNode.getFirstChild() != null) {
+            nextNode = baseNode.getFirstChild();
         }
 
-        return textNode;
+        return nextNode;
     }
 
     /**

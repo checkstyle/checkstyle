@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>JavadocBlockTagLocationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck</mutatedClass>
-    <mutatedMethod>visitJavadocToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
-    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailNode::getParent with receiver</description>
-    <lineContent>if (!isCommentOrInlineTag(ast.getParent())) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocMissingWhitespaceAfterAsteriskCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck</mutatedClass>
-    <mutatedMethod>resolveTextNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>&amp;&amp; baseNode.getFirstChild().getType() == JavadocCommentsTokenTypes.TEXT) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>JavadocMissingWhitespaceAfterAsteriskCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhitespaceAfterAsteriskCheck</mutatedClass>
-    <mutatedMethod>resolveTextNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailNode::getFirstChild</description>
-    <lineContent>textNode = baseNode.getFirstChild();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>JavadocTagInfo.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo$15</mutatedClass>
     <mutatedMethod>isValidOn</mutatedMethod>
@@ -43,14 +16,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>return astType == TokenTypes.VARIABLE_DEF</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>RequireEmptyLineBeforeBlockTagGroupCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.RequireEmptyLineBeforeBlockTagGroupCheck</mutatedClass>
-    <mutatedMethod>hasInsufficientConsecutiveNewlines</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
-    <description>removed conditional - replaced equality check with true</description>
-    <lineContent>|| (currentNode.getType() == JavadocCommentsTokenTypes.TEXT</lineContent>
   </mutation>
 </suppressedMutations>

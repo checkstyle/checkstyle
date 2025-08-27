@@ -182,9 +182,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
         int count = 0;
         DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null
-                && (currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE
-                || (currentNode.getType() == JavadocCommentsTokenTypes.TEXT
-                        && CommonUtil.isBlank(currentNode.getText()))
+                && (CommonUtil.isBlank(currentNode.getText())
                 || currentNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK)) {
             if (currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE) {
                 count++;

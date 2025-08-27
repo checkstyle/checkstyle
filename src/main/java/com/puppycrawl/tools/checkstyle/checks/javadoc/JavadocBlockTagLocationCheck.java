@@ -150,7 +150,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!isCommentOrInlineTag(ast.getParent())) {
+        if (!isCommentOrInlineTag(ast)) {
             final Matcher tagMatcher = JAVADOC_BLOCK_TAG_PATTERN.matcher(ast.getText());
             while (tagMatcher.find()) {
                 final String tagName = tagMatcher.group(1);
