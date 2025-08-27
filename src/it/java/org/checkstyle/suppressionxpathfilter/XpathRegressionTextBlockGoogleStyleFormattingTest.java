@@ -46,17 +46,17 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
             createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "7:14: " + getCheckMessage(CLASS,
+            "8:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_INDENTATION_ERROR),
         };
 
         final List<String> expectedXpathQueries = List.of(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                + "[./IDENT[@text='InputXpathTextBlockGoogleStyleFormatting']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='simpleScript']]"
-                + "/ASSIGN/EXPR/TEXT_BLOCK_LITERAL_BEGIN"
-                + "[./TEXT_BLOCK_CONTENT[@text='\\n            s']]/TEXT_BLOCK_LITERAL_END"
+               "/COMPILATION_UNIT/CLASS_DEF"
+                       + "[./IDENT[@text='InputXpathTextBlockGoogleStyleFormatting']]"
+                       + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun']]"
+                       + "/SLIST/VARIABLE_DEF[./IDENT[@text='simpleScript']]/ASSIGN/EXPR"
+                       + "/TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
+                       + "[@text='\\n            s\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -72,18 +72,18 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "8:32: " + getCheckMessage(CLASS,
+            "15:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_INDENTATION_ERROR),
         };
 
         final List<String> expectedXpathQueries = List.of(
-            "/COMPILATION_UNIT/CLASS_DEF"
-                 + "[./IDENT[@text='InputXpathTextBlockGoogleStyleFormatting2']]"
-                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun1']]"
-                 + "/SLIST/VARIABLE_DEF[./IDENT[@text='simpleScript2']]"
-                 + "/ASSIGN/EXPR/TEXT_BLOCK_LITERAL_BEGIN"
-                 + "[./TEXT_BLOCK_CONTENT[@text='\\n            this is sample text']]"
-                 + "/TEXT_BLOCK_LITERAL_END"
+            "/COMPILATION_UNIT/CLASS_DEF" +
+                    "[./IDENT[@text='InputXpathTextBlockGoogleStyleFormatting2']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun1']]/SLIST/EXPR"
+                    + "/METHOD_CALL[./IDENT[@text='getData']]/ELIST/EXPR/"
+                    + "TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
+                    + "[@text='\\n            Hello,\\n            This is a multi-line message"
+                    + ".\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -6,8 +6,7 @@ TextBlockGoogleStyleFormatting
 
 package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformatting;
 
-public class InputTextBlockGoogleStyleFormatting {
-
+public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
     public static String textFun() {
         final String simpleScript =
 """
@@ -18,47 +17,39 @@ public class InputTextBlockGoogleStyleFormatting {
             """
             this is simple test;
             """;
-
         final String simpleScript2 = simpleScript +
                 simpleScript1 +
                 """
                 this is simple script
                 """;
-
-        // violation 3 lines below 'Text-block quotes are not vertically aligned'
         final String simpleScript3 = simpleScript +
             simpleScript1 +
             """
             this is simple script
-                """;
-
-        // violation 3 lines below 'Text-block quotes are not vertically aligned'
+                """; // violation 'Text-block quotes are not vertically aligned'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith(
                     """
                 this is simple
-            """);
+            """); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         getData(
 """
             Hello,
             This is a multi-line message.
-            """);
+            """); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         return
             """
             this is sample text
-""";
+"""; // violation 'Text-block quotes are not vertically aligned'
     }
 
     public String textFun2() {
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         final String simpleScript2 =
                 """
             this is sample text
-            """;
+            """; // violation 'Text-block quotes are not vertically aligned'
 
         getData(
             """
@@ -72,12 +63,11 @@ public class InputTextBlockGoogleStyleFormatting {
          this is a multi-line message
             """);
 
-        // violation 3 lines below 'Text-block quotes are not vertically aligned'
         getData(
             1,
                 """
             this is a multi-line message
-            """);
+            """); // violation 'Text-block quotes are not vertically aligned'
 
         getData(1,
             3, 5, 8,
@@ -104,24 +94,22 @@ public class InputTextBlockGoogleStyleFormatting {
             second string
             """);
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         getData(
                 """
             first string
-            """ + // violation below 'Text-block quotes are not vertically aligned'
+            """ + // violation 'Text-block quotes are not vertically aligned'
             """
             some String
-                """,
+                """, // violation 'Text-block quotes are not vertically aligned'
 """
             second string
 """
         );
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         return
             """
            THE MULTI-LINE MESSAGE
-           """;
+           """; // violation 'Text-block quotes are not vertically aligned'
     }
 
     public String textFun3() {

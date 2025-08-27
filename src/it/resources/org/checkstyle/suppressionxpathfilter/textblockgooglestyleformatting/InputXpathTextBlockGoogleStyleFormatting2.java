@@ -5,17 +5,18 @@ public class InputXpathTextBlockGoogleStyleFormatting2 {
     public String textFun1() {
         final String simpleScript2 =
             """
-            this is sample text"""; // warn
+            this is sample text
+            """;
 
         getData(
-            """
+                """
             Hello,
             This is a multi-line message.
-            """
+            """ // warn
         );
 
         return
-            """
+           """
            THE MULTI-LINE MESSAGE
            """;
     }
@@ -29,8 +30,8 @@ public class InputXpathTextBlockGoogleStyleFormatting2 {
 
         getData(
             """
-              hello there1
-              """, 0);
+            hello there1
+            """, 0);
 
         return s
             +

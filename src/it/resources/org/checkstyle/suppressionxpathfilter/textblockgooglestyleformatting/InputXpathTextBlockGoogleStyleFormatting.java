@@ -5,7 +5,7 @@ public class InputXpathTextBlockGoogleStyleFormatting {
         final String simpleScript =
                """
             s
-            """;
+            """; // warn
 
         final String simpleScript1 =
             """
