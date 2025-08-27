@@ -121,6 +121,30 @@ public class InputMethodName {
   @Test
   void testing__Foo_() {} // violation 'Method name 'testing__Foo_' must match pattern'
 
+  @Test
+  public void testing_123Foo() {} // violation 'Method name 'testing_123Foo' must match pattern'
+
+  // violation 2 lines below 'testing_123FOO' must contain no more than '1' consecutive capital'
+  @Test
+  public void testing_123FOO() {} // violation 'Method name 'testing_123FOO' must match pattern'
+
+  // violation 2 lines below 'TESTING_123Foo' must contain no more than '1' consecutive capital'
+  @Test
+  public void TESTING_123Foo() {} // violation 'Method name 'TESTING_123Foo' must match pattern'
+
+  @Test
+  public void testing_Foo123() {} // violation 'Method name 'testing_Foo123' must match pattern'
+
+  // violation 2 lines below 'testing_FOO123' must contain no more than '1' consecutive capital'
+  @Test
+  public void testing_FOO123() {} // violation 'Method name 'testing_FOO123' must match pattern'
+
+  @Test
+  public void testing_Foo_123() {} // violation 'Method name 'testing_Foo_123' must match pattern'
+
+  @Test
+  public void testing_123_Foo() {} // violation 'Method name 'testing_123_Foo' must match pattern'
+
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   void testing_foo1(String str) {
@@ -173,10 +197,37 @@ public class InputMethodName {
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void TestingFooBad1(String str) {} // violation 'Method name 'TestingFooBad1' must match pattern'
+  void testing_124Foo() {} // violation 'Method name 'testing_124Foo' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  // violation below ''testing_124FOO' must contain no more than '1''
+  void testing_124FOO() {} // violation 'Method name 'testing_124FOO' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  // violation below 'TESTING_124Foo' must contain no more than '1' consecutive capital letters'
+  void TESTING_124Foo() {} // violation 'Method name 'TESTING_124Foo' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_Foo124() {} // violation 'Method name 'testing_Foo124' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  // violation below 'testing_FOO124' must contain no more than '1' consecutive capital letters'
+  void testing_FOO124() {} // violation 'Method name 'testing_FOO124' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_Foo_124() {} // violation 'Method name 'testing_Foo_124' must match pattern'
+
+  @ParameterizedTest
+  @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
+  void testing_124_Foo() {} // violation 'Method name 'testing_124_Foo' must match pattern'
 
   @RepeatedTest(2)
-  void testing_foo2() {}
+  void testing_foo4() {}
 
   @RepeatedTest(2)
   void testing_Foo2() {} // violation 'Method name 'testing_Foo2' must match pattern'
