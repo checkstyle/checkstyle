@@ -9,159 +9,169 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class InputTextBlockGoogleStyleFormatting2 {
 
     public static String textFun() {
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript = """
             s""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         final String simpleScript1 =
             """
             this is simple test""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
-
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
         //   'Text-block quotes are not vertically aligned'
+
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript2 = simpleScript +
                 simpleScript1 + """
                 this is simple script""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 3 lines below 'Text-block quotes are not vertically aligned'
         final String simpleScript3 = simpleScript +
             simpleScript1 +
             """
             this is simple script""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
-
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
         //   'Text-block quotes are not vertically aligned'
+
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith("""
                 this is simple""");
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
         getData("""
             Hello,
             This is a multi-line message.""");
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line.'
         return """
             this is sample text""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
     }
 
     public String textFun2() {
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         final String simpleScript2 =
             """
             this is sample text""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         getData(
             """
             Hello,
             This is a multi-line message."""
-        ); // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        );// 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 4 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         getData(
             1, """
             this is a multi-line message""");
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 3 lines below 'Text-block quotes are not vertically aligned.'
         getData(
             1,
             """
             this is a multi-line message"""
-        ); // violation above 'Closing quotes (""") of text-block must be on the new line'
+        ); // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 3 lines below 'Text-block quotes are not vertically aligned.'
         getData(1,
             3, 5, 8,
             """
-            some String"""); // violation 'Closing quotes (""") of text-block must be on the new line'
+            some String""");
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 7 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Text-block quotes are not vertically aligned'
 
-        // 2 violations 5 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 4 lines below 'Closing quotes (""") of text-block must be on the new line'
         getData("""
             first string
             """ + """
-            some String""", // violation 'Closing quotes (""") of text-block must be on the new line'
+            some String""", // violation 'Text-block quotes are not vertically aligned'
             """
             second string""");
-        // violation 2 lines above 'Text-block quotes are not vertically aligned'
-        // violation 2 lines above 'Closing quotes (""") of text-block must be on the new line'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 6 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation 6 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Closing quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text-block quotes are not vertically aligned'
         getData(
             """
             first string
             """ + """
             some String""", """
             second string""");
-            // 3 violations 2 lines above:
-            //   'Closing quotes (""") of text-block must be on the new line'
-            //   'Opening quotes (""") of text-block must be on the new line'
-            //   'Text-block quotes are not vertically aligned.'
-        // violation 5 lines above 'Closing quotes (""") of text-block must be on the new line'
+        // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
+        // 2 violations 3 lines above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
+
         return
             """
            THE MULTI-LINE MESSAGE""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
     }
 
     public String textFun3() {
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         String s =
             """
             Hello there""" + getName();
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         getData(
             """
               hello there1""", 0);
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned.'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         String test1 = s
             + """
             very good""".charAt(0) + getName();
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 3 lines below 'Text-block quotes are not vertically aligned.'
         return s
             +
             """
             very good""".charAt(0) + getName();
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
     }
 

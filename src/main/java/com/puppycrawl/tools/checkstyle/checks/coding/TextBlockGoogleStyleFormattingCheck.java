@@ -24,7 +24,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -116,7 +115,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         }
 
         if (!isVerticallyAligned(ast, closingQuotes)) {
-            log(ast, MSG_INDENTATION_ERROR);
+            log(closingQuotes, MSG_INDENTATION_ERROR);
         }
     }
 
@@ -139,24 +138,6 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     private static DetailAST getClosingQuotes(DetailAST ast) {
         return ast.getFirstChild().getNextSibling();
-    }
-
-    /**
-     * Determines if the given expression is at the start of a line.
-     *
-     * @param ast the ast to check
-     * @return true if it is, false otherwise
-     */
-    private boolean isStartOfLine(DetailAST ast) {
-        final int tabWidth = getTabWidth();
-        final String line = getLine(ast.getLineNo() - 1);
-
-        int index = 0;
-        while (Character.isWhitespace(line.charAt(index))) {
-            index++;
-        }
-        return CommonUtil.lengthExpandedTabs(line, index, tabWidth)
-            == CommonUtil.lengthExpandedTabs(line, ast.getColumnNo(), tabWidth);
     }
 
     /**
@@ -183,6 +164,16 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         if (parent.getType() == TokenTypes.METHOD_CALL) {
             result = checkMethodCall(openingQuotes, parent);
         }
+        else if (parent.getType() == TokenTypes.PLUS) {
+            final DetailAST grandParent = parent.getParent();
+            if (grandParent.getType() == TokenTypes.PLUS) {
+                final DetailAST assign = grandParent.getParent().getParent();
+                result = !TokenUtil.areOnSameLine(openingQuotes, assign);
+            }
+            else if (grandParent.getParent().getType() == TokenTypes.LITERAL_RETURN) {
+                result = !TokenUtil.areOnSameLine(openingQuotes, grandParent.getParent());
+            }
+        }
         return result;
     }
 
@@ -190,6 +181,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * Determines if {@code +} is present between two text blocks.
      *
      * @param ast opening quotes
+     * @param plus the plus Ast
      * @return true if {@code +} is present between two text blocks.
      */
     private static boolean plusIsBetweenTwoTextBlocks(DetailAST ast, DetailAST plus) {
@@ -198,21 +190,22 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
                 == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
     }
 
-    /** Checks the Method call expression.
+    /**
+     * Checks the Method call expression.
      *
      * @param openingQuotes the quotes
      * @param methodCall the methodCall
      * @return true
      */
     private static boolean checkMethodCall(DetailAST openingQuotes, DetailAST methodCall) {
-        DetailAST methodCallChild = methodCall.getFirstChild();
-        boolean result = !TokenUtil.areOnSameLine(openingQuotes,  methodCallChild);
+        final DetailAST methodCallChild = methodCall.getFirstChild();
+        boolean result = !TokenUtil.areOnSameLine(openingQuotes, methodCallChild);
 
         if (methodCallChild.getType() != TokenTypes.DOT
                 || methodCallChild.getFirstChild() == openingQuotes) {
 
-            DetailAST expressionList = methodCall.findFirstToken(TokenTypes.ELIST);
-            DetailAST node = expressionList.getFirstChild().getFirstChild();
+            final DetailAST expressionList = methodCall.findFirstToken(TokenTypes.ELIST);
+            final DetailAST node = expressionList.getFirstChild().getFirstChild();
 
             if (methodCall.getParent().getType() == TokenTypes.PLUS) {
                 result = !TokenUtil.areOnSameLine(openingQuotes, methodCall.getParent());
@@ -220,10 +213,13 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
             else if (node != openingQuotes
                     && openingQuotes.getParent().getType() == TokenTypes.EXPR) {
-                DetailAST comma = openingQuotes.getParent().getPreviousSibling();
-                if (comma.getType() == TokenTypes.COMMA) {
-                    result = !TokenUtil.areOnSameLine(openingQuotes, comma);
-                }
+                final DetailAST comma = openingQuotes.getParent().getPreviousSibling();
+                result = !TokenUtil.areOnSameLine(openingQuotes, comma);
+            }
+
+            else if (methodCall.getParent().getParent().getType() == TokenTypes.LITERAL_RETURN) {
+                result = !TokenUtil.areOnSameLine(openingQuotes,
+                        methodCall.getParent().getParent());
             }
         }
         return result;
@@ -236,14 +232,12 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @return true if the closing quotes are on the new line.
      */
     private static boolean areClosingQuotesOnCorrectPosition(DetailAST closingQuotes) {
-        boolean result = false;
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
         int index = text.length() - 1;
         while (text.charAt(index) == ' ') {
             index--;
         }
-        char test = text.charAt(index);
-        return text.charAt(index) == '\n';
+        return Character.isWhitespace(text.charAt(index));
     }
 }

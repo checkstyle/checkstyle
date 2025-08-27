@@ -9,25 +9,21 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class InputTextBlockGoogleStyleFormatting {
 
     public static String textFun() {
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript = """
             s
-        """;
+        """; // violation 'Text-block quotes are not vertically aligned'
 
         final String simpleScript1 =
             """
             this is simple test;
             """;
 
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript2 = simpleScript +
                 simpleScript1 + """
                 this is simple script
-                """;
+                """; // violation 'Text-block quotes are not vertically aligned'
 
         final String simpleScript3 = simpleScript +
             simpleScript1 +
@@ -35,43 +31,39 @@ public class InputTextBlockGoogleStyleFormatting {
             this is simple script
             """;
 
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith("""
                 this is simple
-                """);
+                """); // violation 'Text-block quotes are not vertically aligned'
 
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
         getData("""
             Hello,
             This is a multi-line message.
-            """);
+            """); // violation 'Text-block quotes are not vertically aligned'
 
-        // 2 violations 3 lines below:
-        //  'Opening quotes (""") of text-block must be on the new line.'
-        //  'Text-block quotes are not vertically aligned.'
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
         return """
             this is sample text
-            """;
+            """; // violation 'Text-block quotes are not vertically aligned'
     }
 
     public String textFun2() {
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         final String simpleScript2 =
             """
             this is sample text""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         getData(
             """
             Hello,
             This is a multi-line message."""
-        ); // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        ); // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
 
         // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         getData(
@@ -100,9 +92,8 @@ public class InputTextBlockGoogleStyleFormatting {
                 """
         );
 
-        // 2 violations 3 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned.'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Text-block quotes are not vertically aligned'
         getData("""
             first string
             """ + """
@@ -111,14 +102,12 @@ public class InputTextBlockGoogleStyleFormatting {
             """
             second string
             """
-            // 2 violations 6 lines above:
-            //  'Opening quotes (""") of text-block must be on the new line'
-            //  'Text-block quotes are not vertically aligned'
+            // violation 6 lines above'Opening quotes (""") of text-block must be on the new line'
+            // violation 5 lines above 'Text-block quotes are not vertically aligned'
         );
 
-        // 2 violations 6 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned.'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Text-block quotes are not vertically aligned'
         getData(
             """
             first string
@@ -127,16 +116,16 @@ public class InputTextBlockGoogleStyleFormatting {
             """, """
             second string
             """
-           // 2 violations 3 lines above:
-           //   'Opening quotes (""") of text-block must be on the new line'
-           //   'Text-block quotes are not vertically aligned'
+           // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
+           // violation 2 lines above 'Text-block quotes are not vertically aligned'
         );
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned'
         return
             """
            THE MULTI-LINE MESSAGE""";
-        // violation above 'Closing quotes (""") of text-block must be on the new line.'
+        // 2 violations above:
+        //   'Closing quotes (""") of text-block must be on the new line.'
+        //   'Text-block quotes are not vertically aligned'
     }
 
     public String textFun3() {
@@ -146,19 +135,16 @@ public class InputTextBlockGoogleStyleFormatting {
             Hello there
             """ + getName();
 
-        // violation 2 lines below 'Text-block quotes are not vertically aligned.'
         getData(
             """
               hello there1
-              """, 0);
+              """, 0); // violation 'Text-block quotes are not vertically aligned'
 
-        // 2 violations 4 lines below:
-        //   'Opening quotes (""") of text-block must be on the new line'
-        //   'Text-block quotes are not vertically aligned'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
         String test1 = s
             + """
             very good
-            """.charAt(0) + getName();
+            """.charAt(0) + getName(); // violation 'Text-block quotes are not vertically aligned'
 
         return s
             +

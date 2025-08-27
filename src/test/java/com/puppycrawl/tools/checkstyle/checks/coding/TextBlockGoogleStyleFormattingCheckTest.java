@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_INDENTATION_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck.MSG_OPEN_QUOTES_ERROR;
@@ -26,6 +28,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyle
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestSupport {
 
@@ -35,38 +38,49 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
+    public void testGetAcceptableTokens() {
+        final TextBlockGoogleStyleFormattingCheck check =
+            new TextBlockGoogleStyleFormattingCheck();
+
+        final int[] acceptableTokens = {TokenTypes.TEXT_BLOCK_LITERAL_BEGIN};
+        assertWithMessage("Expected empty array")
+                .that(check.getAcceptableTokens())
+                .isEqualTo(acceptableTokens);
+    }
+
+    @Test
     public void testdefaultTextBlockFormat() throws Exception {
         final String[] expected = {
-            "15:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "15:37: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "28:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "28:33: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "42:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "42:36: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "49:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "49:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "57:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "57:16: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "65:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "66:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "71:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "73:42: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "78:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "92:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "93:22: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "106:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "106:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "108:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "108:19: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "125:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "125:19: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "127:18: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "127:18: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "137:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "138:34: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "151:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "159:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "159:15: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "13:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "15:9: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "24:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "26:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "36:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "38:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "41:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "44:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "47:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "49:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "55:32: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "55:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "63:42: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "63:42: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "70:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "84:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "85:22: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "97:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "99:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "99:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "101:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "114:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "116:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "116:18: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "118:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "125:34: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "125:34: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "141:15: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "145:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "147:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
         };
 
         verifyWithInlineConfigParser(
@@ -76,77 +90,96 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     @Test
     public void testdefaultTextBlockFormat2() throws Exception {
         final String[] expected = {
-            "15:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "15:37: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "16:14: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "21:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "22:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "29:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "29:33: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "30:38: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "36:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "13:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "14:14: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "14:14: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "21:32: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "21:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "28:33: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "29:38: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "29:38: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "37:34: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "37:34: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "44:36: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "44:36: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "45:31: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "45:31: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "51:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "51:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "53:42: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "53:42: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "59:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "59:16: " + getCheckMessage(MSG_INDENTATION_ERROR),
             "60:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "67:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "68:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "73:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "75:42: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "82:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "82:16: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "83:41: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "89:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "90:41: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "96:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "97:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "106:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "106:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "108:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "108:19: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "109:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "110:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "111:26: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "121:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "121:19: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "122:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "122:29: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "122:29: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "123:26: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "132:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "133:34: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "141:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "142:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "147:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "148:27: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "155:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
-            "155:15: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "156:22: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
-            "162:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "60:32: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "69:32: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "69:32: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "77:42: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "77:42: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "84:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "85:41: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "85:41: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "93:41: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "93:41: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "101:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "101:24: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "111:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "113:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "113:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "114:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "114:24: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "116:26: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "116:26: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "127:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "128:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "128:24: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "128:29: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "129:26: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "129:26: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "138:34: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "138:34: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "148:24: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "148:24: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "155:27: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "155:27: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "162:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "163:22: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "163:22: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "171:22: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "171:22: " + getCheckMessage(MSG_INDENTATION_ERROR),
         };
         verifyWithInlineConfigParser(
             getPath("InputTextBlockGoogleStyleFormatting2.java"), expected);
     }
 
     @Test
+    public void testdefaultTextBlockFormat3() throws Exception {
+        final String[] expected = {
+            "24:41: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "33:29: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "34:36: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "34:36: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "34:51: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "36:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "41:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "44:44: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
+            "44:44: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "53:16: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "56:10: " + getCheckMessage(MSG_INDENTATION_ERROR),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputTextBlockGoogleStyleFormatting3.java"), expected);
+    }
+
+    @Test
     public void testTextBlockFormatNotVerticallyAligned() throws Exception {
         final String[] expected = {
-            "31:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "38:21: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "44:1: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "51:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "59:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "78:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "109:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "112:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
-            "122:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "29:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "34:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "40:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "45:1: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "52:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "70:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "100:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "103:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "112:12: " + getCheckMessage(MSG_INDENTATION_ERROR),
         };
 
         verifyWithInlineConfigParser(
