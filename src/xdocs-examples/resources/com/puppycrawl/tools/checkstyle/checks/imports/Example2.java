@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.applet.*;
+//import sun.applet.*;
 
 public class Example2 {}
 // xdoc section -- end
