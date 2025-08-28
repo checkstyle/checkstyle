@@ -234,7 +234,8 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             + " constrain e.g&#46;"
             + " <code>Comparable<T extends Serializable & CharSequence></code>!" + EOL
             + "LCURLY=A left curly brace (<code>{</code>)." + EOL
-            + "DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?" + EOL;
+            + "DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?" + EOL
+            + "HTML_SELF_CLOSING_BR=A line break tag <br/> in Javadoc comments." + EOL;
 
         JavadocPropertiesGenerator.main(getPath("InputJavadocPropertiesGeneratorCorrect.java"),
             "--destfile", DESTFILE_ABSOLUTE_PATH);
@@ -325,6 +326,24 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
                 .isEqualTo("Unsupported inline tag LINK_INLINE_TAG");
+        }
+        final long size = FileUtils.sizeOf(DESTFILE);
+        assertWithMessage("File '" + DESTFILE + "' must be empty")
+            .that(size)
+            .isEqualTo(0);
+    }
+    
+    @Test
+    public void testInvalidTokensInsideTag() throws Exception {
+        final String path = getPath("InputJavadocPropertiesGeneratorInvalidTokensInsideTag.java");
+        try {
+            JavadocPropertiesGenerator.main(path, "--destfile", DESTFILE_ABSOLUTE_PATH);
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (CheckstyleException exc) {
+            assertWithMessage("Invalid error message")
+                .that(exc.getMessage())
+                .isEqualTo("Unsupported child in the inline tag NEWLINE");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '" + DESTFILE + "' must be empty")

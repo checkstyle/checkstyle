@@ -4600,6 +4600,7 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.DetailAstImpl*</param>
+                <param>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator*</param>
                 <param>com.puppycrawl.tools.checkstyle.XmlLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaParser*</param>
               </targetClasses>

@@ -312,7 +312,7 @@ public final class JavadocPropertiesGenerator {
             case JavadocCommentsTokenTypes.TAG_SLASH_CLOSE:
             case JavadocCommentsTokenTypes.TAG_NAME:
             case JavadocCommentsTokenTypes.TEXT:
-                builder.append(node.getText().trim());
+                builder.append(node.getText());
                 break;
 
             default:
