@@ -71,33 +71,32 @@
             <property default-value="public, protected, package, private"
                       name="accessModifiers"
                       type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
-               <description>Specify the access modifiers where Javadoc comments are
- checked.</description>
+               <description>Specify the access modifiers where Javadoc comments are checked.</description>
             </property>
             <property default-value="false" name="allowInlineReturn" type="boolean">
                <description>Control whether to allow inline return tags.</description>
             </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
-               <description>Control whether to ignore violations
- when a method has parameters but does not have matching &lt;code&gt;param&lt;/code&gt; tags in the javadoc.</description>
+               <description>Control whether to ignore violations when a method has parameters
+ but does not have matching {@code param} tags in the javadoc.</description>
             </property>
             <property default-value="false" name="allowMissingReturnTag" type="boolean">
-               <description>Control whether to ignore violations
- when a method returns non-void type and does not have a &lt;code&gt;return&lt;/code&gt; tag in the javadoc.</description>
+               <description>Control whether to ignore violations when a method returns non-void type
+ and does not have a {@code return} tag in the javadoc.</description>
             </property>
             <property default-value="Override"
                       name="allowedAnnotations"
                       type="java.lang.String[]">
                <description>Specify annotations that allow missed documentation.</description>
             </property>
-            <property default-value="false" name="validateThrows" type="boolean">
-               <description>Control whether to validate &lt;code&gt;throws&lt;/code&gt; tags.</description>
-            </property>
             <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
                <description>tokens to check</description>
+            </property>
+            <property default-value="false" name="validateThrows" type="boolean">
+               <description>Control whether to validate {@code throws} tags.</description>
             </property>
          </properties>
          <message-keys>
