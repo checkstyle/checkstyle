@@ -133,6 +133,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/checker";
     }
 
+    private String getLocalizedMessage(String messageKey, Object... args) {
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    messageKey, args);
+
+        return localizedMessage.getMessage();
+    }
+
     @Test
     public void testDestroy() throws Exception {
         final Checker checker = new Checker();
@@ -597,6 +605,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Cause of exception differs from IOException")
                     .that(exc.getCause())
                     .isInstanceOf(IOException.class);
+
+            assertWithMessage("Exception message differ")
+                    .that(exc.getMessage())
+                    .isEqualTo(getLocalizedMessage(
+                            "Checker.cacheFilesException"));
         }
     }
 
@@ -835,6 +848,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .hasCauseThat()
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
+            assertWithMessage("Error message differs")
+                    .that(error.getMessage())
+                    .isEqualTo(getLocalizedMessage(
+                            "Checker.error", mock.getPath()));
+
         }
     }
 
