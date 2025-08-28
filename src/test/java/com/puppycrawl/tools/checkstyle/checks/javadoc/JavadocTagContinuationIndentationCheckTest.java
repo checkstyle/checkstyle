@@ -22,14 +22,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck.MSG_KEY;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled
 public class JavadocTagContinuationIndentationCheckTest
         extends AbstractModuleTestSupport {
 
@@ -99,6 +97,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "47: " + getCheckMessage(MSG_KEY, 4),
             "49: " + getCheckMessage(MSG_KEY, 4),
             "50: " + getCheckMessage(MSG_KEY, 4),
+            "70: " + getCheckMessage(MSG_KEY, 4), 
+            "71: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationDescription.java"),
