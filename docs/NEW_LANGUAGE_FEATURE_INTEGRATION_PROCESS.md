@@ -123,7 +123,7 @@ A list to a few of the popular ones:
 
 **Examples**:
 
-- **Check updates**: IntelliJ IDEA introduced an inspection rule for Java 17 or higher to detect
+- **Check updates**: IntelliJ IDEA introduced an inspection rule for Java 21 or higher to detect
   redundant `strictfp` modifiers. This resulted in the analysis of `RedundantModifierCheck`
   to verify if we needed to update it.
 
