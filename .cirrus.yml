@@ -8,7 +8,7 @@ task:
     - git clone --recursive
           https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
           %CIRRUS_WORKING_DIR%/ci
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - cmd /c "if defined CIRRUS_PR (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
@@ -25,8 +25,8 @@ task:
     # add more JDK versions here
     - name: Cirrus - JDK21
       env:
-        OPENJDK_VERSION: "21.0.6"
-        OPENJDK_PATH: "jdk-21"
+        TEMURIN_VERSION: "21.0.6.7"
+        TEMURIN_PATH: 'Eclipse Adoptium\jdk-21'
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
@@ -38,14 +38,15 @@ task:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
-    - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - choco install -y --no-progress temurin --version %TEMURIN_VERSION%
+    - refreshenv
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - java -version
     - javac -version
 
   version_script:
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - set
     - ant -version
@@ -53,17 +54,17 @@ task:
     # - xsltproc --version
     # - xml --version
   sevntu_script:
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd sevntu
   verify_without_checkstyle_script:
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd verify_without_checkstyle
   site_without_verify_script:
-    - set "JAVA_HOME=%ProgramFiles%\OpenJDK\%OPENJDK_PATH%"
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd site_without_verify
