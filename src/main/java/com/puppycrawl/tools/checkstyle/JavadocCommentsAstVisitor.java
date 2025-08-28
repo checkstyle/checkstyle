@@ -409,8 +409,10 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             });
             javadocNode.addChild(htmlAttributes);
         }
-
-        javadocNode.addChild(create((Token) ctx.TAG_CLOSE().getPayload()));
+        
+        Token tagClose = (Token) ctx.TAG_CLOSE().getPayload();
+        addHiddenTokensToTheLeft(tagClose, javadocNode, accumulator);
+        javadocNode.addChild(create(tagClose));
         return javadocNode;
     }
 
