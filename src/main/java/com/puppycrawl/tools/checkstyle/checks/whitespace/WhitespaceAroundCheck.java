@@ -531,16 +531,31 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isNotRelevantSituation(DetailAST ast, int currentType) {
         final int parentType = ast.getParent().getType();
-        return switch (parentType) {
-            case TokenTypes.DOT -> currentType == TokenTypes.STAR;
-            case TokenTypes.LITERAL_DEFAULT, TokenTypes.LITERAL_CASE, TokenTypes.CASE_GROUP -> true;
-            case TokenTypes.FOR_EACH_CLAUSE -> ignoreEnhancedForColon;
-            case TokenTypes.EXPR -> currentType == TokenTypes.LITERAL_SWITCH;
-            case TokenTypes.ARRAY_INIT, TokenTypes.ANNOTATION_ARRAY_INIT ->
-                currentType == TokenTypes.RCURLY;
-            default -> isEmptyBlock(ast, parentType)
+        final boolean result;
+        switch (parentType) {
+            case TokenTypes.DOT:
+                result = currentType == TokenTypes.STAR;
+                break;
+            case TokenTypes.LITERAL_DEFAULT:
+            case TokenTypes.LITERAL_CASE:
+            case TokenTypes.CASE_GROUP:
+                result = true;
+                break;
+            case TokenTypes.FOR_EACH_CLAUSE:
+                result = ignoreEnhancedForColon;
+                break;
+            case TokenTypes.EXPR:
+                result = currentType == TokenTypes.LITERAL_SWITCH;
+                break;
+            case TokenTypes.ARRAY_INIT:
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                result = currentType == TokenTypes.RCURLY;
+                break;
+            default:
+                result = isEmptyBlock(ast, parentType)
                     || allowEmptyTypes && isEmptyType(ast);
-        };
+        }
+        return result;
     }
 
     /**
@@ -576,6 +591,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !isEmptyCtorBlockCheckedFromSlist(ast)
+                && !isEmptyMethodBlock(ast, ast.getParent().getType())
                 && !(ast.getType() == TokenTypes.LITERAL_RETURN
                 && ast.getFirstChild().getType() == TokenTypes.SEMI)
                 && ast.getType() != TokenTypes.ARRAY_INIT
@@ -606,8 +622,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true is block is empty
      */
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
-        return isEmptyMethodBlock(ast, parentType)
-                || isEmptyCtorBlockCheckedFromRcurly(ast)
+        return isEmptyCtorBlockCheckedFromRcurly(ast)
+                || isEmptyMethodBlockCheckedFromRcurly(ast)
                 || isEmptyLoop(ast, parentType)
                 || isEmptyLambda(ast, parentType)
                 || isEmptyCatch(ast, parentType)
@@ -640,6 +656,24 @@ public class WhitespaceAroundCheck extends AbstractCheck {
             result = type == TokenTypes.SLIST
                 && parentType == match
                 && ast.getFirstChild().getType() == TokenTypes.RCURLY;
+        }
+        return result;
+    }
+
+    /**
+     * Check if the given DetailAST is part of an allowed empty constructor (ctor)
+     *   block checked from RCURLY.
+     *
+     * @param ast ast
+     * @return true if ast is the `}` is part of empty method block.
+     */
+    private boolean isEmptyMethodBlockCheckedFromRcurly(DetailAST ast) {
+        boolean result = false;
+        if (ast.getType() == TokenTypes.RCURLY) {
+            final DetailAST parent = ast.getParent();
+            final DetailAST grandParent = parent.getParent();
+            result = allowEmptyMethods && parent.getFirstChild() == ast
+                    && grandParent.getType() == TokenTypes.METHOD_DEF;
         }
         return result;
     }
