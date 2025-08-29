@@ -131,10 +131,10 @@ public class BlockTagUtilTest {
             .that(tag.getValue())
             .isEqualTo(value);
         assertWithMessage("Invalid tag line")
-            .that(tag.getPosition().getLine())
+            .that(tag.getPosition().line())
             .isEqualTo(line);
         assertWithMessage("Invalid tag column")
-            .that(tag.getPosition().getColumn())
+            .that(tag.getPosition().column())
             .isEqualTo(column);
     }
 
