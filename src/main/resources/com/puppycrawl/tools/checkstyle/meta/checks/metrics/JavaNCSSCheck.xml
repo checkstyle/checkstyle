@@ -34,20 +34,17 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="1500" name="classMaximum" type="int">
-               <description>Specify the maximum allowed number of
- non commenting lines in a class.</description>
+               <description>Specify the maximum allowed number of non commenting lines in a class.</description>
             </property>
             <property default-value="2000" name="fileMaximum" type="int">
-               <description>Specify the maximum allowed number of
- non commenting lines in a file including all top level and nested classes.</description>
+               <description>Specify the maximum allowed number of non commenting lines
+ in a file including all top level and nested classes.</description>
             </property>
             <property default-value="50" name="methodMaximum" type="int">
-               <description>Specify the maximum allowed number of
- non commenting lines in a method.</description>
+               <description>Specify the maximum allowed number of non commenting lines in a method.</description>
             </property>
             <property default-value="150" name="recordMaximum" type="int">
-               <description>Specify the maximum allowed number of
- non commenting lines in a record.</description>
+               <description>Specify the maximum allowed number of non commenting lines in a record.</description>
             </property>
          </properties>
          <message-keys>

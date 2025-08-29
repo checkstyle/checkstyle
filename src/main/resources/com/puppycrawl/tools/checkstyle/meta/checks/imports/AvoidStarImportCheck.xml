@@ -22,16 +22,16 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowClassImports" type="boolean">
-               <description>Control whether to allow starred class
- imports like &lt;code&gt;import java.util.*;&lt;/code&gt;.</description>
+               <description>Control whether to allow starred class imports like
+ {@code import java.util.*;}.</description>
             </property>
             <property default-value="false"
                       name="allowStaticMemberImports"
                       type="boolean">
-               <description>Control whether to allow starred
- static member imports like &lt;code&gt;import static org.junit.Assert.*;&lt;/code&gt;.</description>
+               <description>Control whether to allow starred static member imports like
+ {@code import static org.junit.Assert.*;}.</description>
             </property>
-            <property default-value="" name="excludes" type="java.lang.String[]">
+            <property default-value="{}" name="excludes" type="java.lang.String[]">
                <description>Specify packages where starred class imports are
  allowed and classes where starred static member imports are allowed.</description>
             </property>

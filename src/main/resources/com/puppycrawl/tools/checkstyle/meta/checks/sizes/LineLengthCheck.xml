@@ -13,6 +13,7 @@
  have limited screen space for the source code, e.g. if the IDE displays
  additional information like project tree, class hierarchy, etc.
  &lt;/p&gt;
+
  &lt;ul&gt;
  &lt;li&gt;
  Notes:
@@ -37,7 +38,9 @@
  &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
-            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+            <property default-value="all files"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
             </property>
             <property default-value="^(package|import) .*"

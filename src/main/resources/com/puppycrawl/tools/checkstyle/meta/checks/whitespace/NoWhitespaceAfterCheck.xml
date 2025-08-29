@@ -41,8 +41,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="allowLineBreaks" type="boolean">
-               <description>Control whether whitespace is allowed
- if the token is at a linebreak.</description>
+               <description>Control whether whitespace is allowed if the token is at a linebreak.</description>
             </property>
             <property default-value="ARRAY_INIT,AT,INC,DEC,UNARY_MINUS,UNARY_PLUS,BNOT,LNOT,DOT,ARRAY_DECLARATOR,INDEX_OP"
                       name="tokens"

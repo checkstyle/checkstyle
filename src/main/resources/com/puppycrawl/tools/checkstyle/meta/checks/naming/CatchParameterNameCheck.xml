@@ -27,7 +27,7 @@
             <property default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
+               <description>Attern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>

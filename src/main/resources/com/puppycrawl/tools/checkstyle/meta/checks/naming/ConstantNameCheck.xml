@@ -27,7 +27,7 @@
             <property default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
                       name="format"
                       type="java.util.regex.Pattern">
-               <description>Sets the pattern to match valid identifiers.</description>
+               <description>Attern to match valid identifiers.</description>
             </property>
          </properties>
          <message-keys>
