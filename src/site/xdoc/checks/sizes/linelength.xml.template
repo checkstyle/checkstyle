@@ -117,6 +117,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example5.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To prevent this check from flagging lines in text-blocks, with
+          <a href="https://github.com/checkstyle/checkstyle/issues/17707">side effects</a>:
+        </p>
+        <macro name="example">
+          <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/sizes/linelength/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
