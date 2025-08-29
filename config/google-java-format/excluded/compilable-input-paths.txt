@@ -23,6 +23,8 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindent
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation/InputIndentationCodeBlocks.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement/InputOneStatementPerLine.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule44columnlimit/InputColumnLimit.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule44columnlimit/InputTextBlockColumnLimit.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule44columnlimit/InputColumnLimitEdgeCase.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputOperatorWrap.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputMethodParamPad.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputSeparatorWrap.java
