@@ -245,7 +245,8 @@
              value="Type name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="MemberName">
-      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="format"
+        value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-zA-Z0-9]*(?:_[0-9]+)*$"/>
       <message key="name.invalidPattern"
              value="Member name ''{0}'' must match pattern ''{1}''."/>
     </module>
@@ -426,7 +427,8 @@
       <property name="excludeScope" value="nothing"/>
     </module>
     <module name="MethodName">
-      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="format"
+          value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-z0-9]*(?:[A-Z][a-z0-9]*)*(?:_[0-9]+)*$"/>
       <message key="name.invalidPattern"
              value="Method name ''{0}'' must match pattern ''{1}''."/>
     </module>
