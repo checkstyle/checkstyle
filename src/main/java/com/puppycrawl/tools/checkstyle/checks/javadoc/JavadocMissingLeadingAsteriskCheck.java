@@ -67,7 +67,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
         if (!isInsideHtmlComment(detailNode)) {
-            DetailNode nextSibling = getNextNode(detailNode);
+            DetailNode nextSibling = detailNode.getNextSibling();
 
             if (nextSibling != null && !isLeadingAsterisk(nextSibling) && !isLastLine(nextSibling)) {
                 log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
@@ -86,33 +86,6 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
         return parentType == JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT
                 || parentType == JavadocCommentsTokenTypes.HTML_COMMENT;
 
-    }
-
-    /**
-     * Gets next node in the ast (sibling or parent sibling for the last node).
-     *
-     * @param detailNode the node to process
-     * @return next node.
-     */
-    private static DetailNode getNextNode(DetailNode detailNode) {
-        DetailNode node = null;
-
-        if (detailNode.getFirstChild() != null) {
-            node = detailNode.getFirstChild();
-        }
-        else {
-            DetailNode current = detailNode;
-            while (node == null && current != null) {
-                if (current.getNextSibling() != null) {
-                    node = current.getNextSibling();
-                }
-                else {
-                    current = current.getParent();
-                }
-            }
-        }
-
-        return node;
     }
 
     /**
@@ -135,7 +108,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
         if (CommonUtil.isBlank(detailNode.getText())) {
-            node = getNextNode(detailNode);
+            node = detailNode.getNextSibling();
         }
         else {
             node = detailNode;
