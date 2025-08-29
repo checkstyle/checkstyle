@@ -597,6 +597,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
             assertWithMessage("Cause of exception differs from IOException")
                     .that(exc.getCause())
                     .isInstanceOf(IOException.class);
+
+            assertWithMessage("Exception message differ")
+                    .that(exc.getMessage())
+                    .isEqualTo(checker.getLocalizedMessage(
+                            "Checker.cacheFilesException"));
         }
     }
 
@@ -835,6 +840,11 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .hasCauseThat()
                     .hasMessageThat()
                     .isEqualTo(errorMessage);
+            assertWithMessage("Error message differs")
+                    .that(error.getMessage())
+                    .isEqualTo(checker.getLocalizedMessage(
+                            "Checker.error", mock.getPath()));
+
         }
     }
 
