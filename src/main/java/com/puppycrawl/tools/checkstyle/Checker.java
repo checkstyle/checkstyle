@@ -185,7 +185,8 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 cacheFile.persist();
             }
             catch (IOException exc) {
-                throw new IllegalStateException("Unable to persist cache file.", exc);
+                throw new IllegalStateException(
+                        getLocalizedMessage("Checker.cacheFilesException"), exc);
             }
         }
     }
@@ -317,7 +318,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                 }
 
                 // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + filePath, error);
+                throw new Error(getLocalizedMessage("Checker.error", filePath), error);
             }
         }
     }
@@ -655,7 +656,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param args the arguments of message in respective properties file.
      * @return a string containing extracted localized message
      */
-    private String getLocalizedMessage(String messageKey, Object... args) {
+    public String getLocalizedMessage(String messageKey, Object... args) {
         final LocalizedMessage localizedMessage = new LocalizedMessage(
             Definitions.CHECKSTYLE_BUNDLE, getClass(),
                     messageKey, args);
