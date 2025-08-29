@@ -72,6 +72,12 @@
     <property name="lineRange" value="-2"/>
     <property name="idPattern" value="lineLengthXml"/>
   </module>
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern"
+        value="MemberName"/>
+    <property name="lineRange" value="2"/>
+    <property name="idPattern" value="lineLengthXml"/>
+  </module>
   <!-- Headers -->
   <module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>
