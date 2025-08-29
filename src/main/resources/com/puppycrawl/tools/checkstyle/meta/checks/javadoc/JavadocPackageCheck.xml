@@ -15,7 +15,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowLegacy" type="boolean">
-               <description>Allow legacy &lt;code&gt;package.html&lt;/code&gt; file to be used.</description>
+               <description>Allow legacy {@code package.html} file to be used.</description>
             </property>
             <property default-value=".java"
                       name="fileExtensions"

@@ -15,6 +15,12 @@
  methods and abstract methods.
  &lt;/p&gt;</description>
          <properties>
+            <property default-value="VARIABLE_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
             <property default-value="false"
                       name="validateEnhancedForLoopVariable"
                       type="boolean">
@@ -28,12 +34,6 @@
                <description>Control whether to check
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se21/preview/specs/unnamed-jls.html"&gt;
  unnamed variables&lt;/a&gt;.</description>
-            </property>
-            <property default-value="VARIABLE_DEF"
-                      name="tokens"
-                      type="java.lang.String[]"
-                      validation-type="tokenSet">
-               <description>tokens to check</description>
             </property>
          </properties>
          <message-keys>
