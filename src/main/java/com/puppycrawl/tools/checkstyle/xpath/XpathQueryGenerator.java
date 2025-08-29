@@ -96,8 +96,8 @@ public class XpathQueryGenerator {
      * @param tabWidth distance between tab stop position
      */
     public XpathQueryGenerator(TreeWalkerAuditEvent event, int tabWidth) {
-        this(event.getRootAst(), event.getLine(), event.getColumn(), event.getTokenType(),
-                event.getFileContents().getText(), tabWidth);
+        this(event.rootAst(), event.getLine(), event.getColumn(), event.getTokenType(),
+                event.fileContents().getText(), tabWidth);
     }
 
     /**
