@@ -3909,7 +3909,6 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</param>
               </excludedClasses>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources

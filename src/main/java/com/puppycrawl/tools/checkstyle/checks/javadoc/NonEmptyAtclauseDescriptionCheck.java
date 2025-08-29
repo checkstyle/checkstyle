@@ -81,28 +81,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     private static boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
                 JavadocUtil.findFirstToken(tagNode, JavadocCommentsTokenTypes.DESCRIPTION);
-        return tagDescription == null
-            || hasOnlyEmptyText(tagDescription);
-    }
-
-    /**
-     * Tests if description node is empty (has only new lines and blank strings).
-     *
-     * @param description description node.
-     * @return true, if description node has only new lines and blank strings.
-     */
-    private static boolean hasOnlyEmptyText(DetailNode description) {
-        boolean result = true;
-        DetailNode node = description.getFirstChild();
-        while (node != null) {
-            if (node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK
-                    && !CommonUtil.isBlank(node.getText())) {
-                result = false;
-                break;
-            }
-            node = node.getNextSibling();
-        }
-        return result;
+        return tagDescription == null;
     }
 
 }

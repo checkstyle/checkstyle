@@ -49,7 +49,7 @@ class InputNonEmptyAtclauseDescriptionOne
          *
          * @param a
          * @param e
-         * @deprecated
+         * @deprecated       
          */ // violation 2 lines above
         // violation 2 lines above
         public InputNonEmptyAtclauseDescriptionOne(String a, boolean e)
@@ -94,10 +94,11 @@ class InputNonEmptyAtclauseDescriptionOne
          * @param c
          * @deprecated
          * @throws Exception
-         * @deprecated
-         */ // violation 3 lines above
-        // violation 3 lines above
-        // violation 3 lines above
+         * @deprecated              
+         * 
+         */ // violation 4 lines above
+        // violation 4 lines above
+        // violation 4 lines above
         public int foo3(String a, int b, double c) throws Exception
         {
                 return 1;
