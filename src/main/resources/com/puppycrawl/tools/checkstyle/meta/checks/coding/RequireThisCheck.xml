@@ -42,8 +42,7 @@
                <description>Control whether to check references to methods.</description>
             </property>
             <property default-value="true" name="validateOnlyOverlapping" type="boolean">
-               <description>Control whether to check only
- overlapping by variables or arguments.</description>
+               <description>Control whether to check only overlapping by variables or arguments.</description>
             </property>
          </properties>
          <message-keys>

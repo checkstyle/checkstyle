@@ -22,8 +22,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="true" name="matchDirectoryStructure" type="boolean">
-               <description>Control whether to check for
- directory and package name match.</description>
+               <description>Control whether to check for directory and package name match.</description>
             </property>
          </properties>
          <message-keys>

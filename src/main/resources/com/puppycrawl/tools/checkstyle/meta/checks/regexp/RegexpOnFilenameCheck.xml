@@ -48,21 +48,24 @@
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
             </property>
-            <property name="fileNamePattern" type="java.util.regex.Pattern">
+            <property default-value="null"
+                      name="fileNamePattern"
+                      type="java.util.regex.Pattern">
                <description>Specify the regular expression to match the file name against.</description>
             </property>
-            <property name="folderPattern" type="java.util.regex.Pattern">
+            <property default-value="null"
+                      name="folderPattern"
+                      type="java.util.regex.Pattern">
                <description>Specify the regular expression to match the folder path against.</description>
             </property>
             <property default-value="false"
                       name="ignoreFileNameExtensions"
                       type="boolean">
-               <description>Control whether to ignore the file extension for
- the file name match.</description>
+               <description>Control whether to ignore the file extension for the file name match.</description>
             </property>
             <property default-value="true" name="match" type="boolean">
-               <description>Control whether to look for a match or mismatch on the file name, if
- the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</description>
+               <description>Control whether to look for a match or mismatch on the file name,
+ if the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</description>
             </property>
          </properties>
          <message-keys>

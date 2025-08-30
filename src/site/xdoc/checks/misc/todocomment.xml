@@ -38,7 +38,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern to match comments against.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;TODO:&quot;</code></td>
+              <td><code>TODO:</code></td>
               <td>3.0</td>
             </tr>
           </table>

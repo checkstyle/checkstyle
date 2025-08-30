@@ -205,13 +205,14 @@
  in different languages it is better to avoid filtering by message.
  &lt;/p&gt;</description>
          <properties>
-            <property name="file" type="java.lang.String">
+            <property default-value="null" name="file" type="java.lang.String">
                <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
             </property>
             <property default-value="false" name="optional" type="boolean">
                <description>Control what to do when the file is not existing.
  If optional is set to false the file must exist, or else it ends with error.
- On the other hand if optional is true and file is not found, the filter accepts all audit events.</description>
+ On the other hand if optional is true and file is not found,
+ the filter accepts all audit events.</description>
             </property>
          </properties>
       </filter>

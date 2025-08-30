@@ -34,8 +34,7 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="validateComments" type="boolean">
-               <description>Control whether to validate whitespaces
- surrounding comments.</description>
+               <description>Control whether to validate whitespaces surrounding comments.</description>
             </property>
          </properties>
          <message-keys>
