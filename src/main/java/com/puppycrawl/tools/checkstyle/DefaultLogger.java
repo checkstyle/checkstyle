@@ -129,11 +129,13 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
                          OutputStreamOptions errorStreamOptions,
                          AuditEventFormatter messageFormatter) {
         if (infoStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter infoStreamOptions can not be null");
+            throw new IllegalArgumentException(
+                    getLocalizedMessage("DefaultLogger.infoStreamException"));
         }
         closeInfo = infoStreamOptions == OutputStreamOptions.CLOSE;
         if (errorStreamOptions == null) {
-            throw new IllegalArgumentException("Parameter errorStreamOptions can not be null");
+            throw new IllegalArgumentException(
+                    getLocalizedMessage("DefaultLogger.errorStreamException"));
         }
         closeError = errorStreamOptions == OutputStreamOptions.CLOSE;
         final Writer infoStreamWriter = new OutputStreamWriter(infoStream, StandardCharsets.UTF_8);
@@ -172,28 +174,23 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
 
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
-        final LocalizedMessage exceptionMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                ADD_EXCEPTION_MESSAGE, event.getFileName());
-        errorWriter.println(exceptionMessage.getMessage());
+        errorWriter.println(getLocalizedMessage(
+                ADD_EXCEPTION_MESSAGE,
+                event.getFileName()));
         throwable.printStackTrace(errorWriter);
     }
 
     @Override
     public void auditStarted(AuditEvent event) {
-        final LocalizedMessage auditStartMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                AUDIT_STARTED_MESSAGE);
-        infoWriter.println(auditStartMessage.getMessage());
+        infoWriter.println(getLocalizedMessage(
+                AUDIT_STARTED_MESSAGE));
         infoWriter.flush();
     }
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final LocalizedMessage auditFinishMessage = new LocalizedMessage(
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.class,
-                AUDIT_FINISHED_MESSAGE);
-        infoWriter.println(auditFinishMessage.getMessage());
+        infoWriter.println(getLocalizedMessage(
+                AUDIT_FINISHED_MESSAGE));
         closeStreams();
     }
 
@@ -220,5 +217,20 @@ public class DefaultLogger extends AbstractAutomaticBean implements AuditListene
         if (closeError) {
             errorWriter.close();
         }
+    }
+
+    /**
+     * Extracts localized messages from properties files.
+     *
+     * @param messageKey the key pointing to localized message in respective properties file.
+     * @param args the arguments of message in respective properties file.
+     * @return a string containing extracted localized message
+     */
+    private String getLocalizedMessage(String messageKey, Object... args) {
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, getClass(),
+                    messageKey, args);
+
+        return localizedMessage.getMessage();
     }
 }
