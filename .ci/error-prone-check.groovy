@@ -2,11 +2,11 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
 import groovy.xml.XmlUtil
+import groovy.xml.XmlParser
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-@Field static final Set<String> PROFILES = Set.of("compile", "test-compile")
 @Field static final String USAGE_STRING = "Usage groovy " +
         ".${File.separator}.ci${File.separator}error-prone-check.groovy" +
         " (compile | test-compile) [-g | --generate-suppression]\n"
@@ -33,7 +33,7 @@ System.exit(exitCode)
  */
 private int parseArgumentAndExecute(String argument, String flag) {
     final int exitCode
-    if (PROFILES.contains(argument)) {
+    if (argument in ["compile", "test-compile"]) {
         if (flag != null && flag != "-g" && flag != "--generate-suppression") {
             final String exceptionMessage = "Unexpected flag: '${flag}'\n" + USAGE_STRING
             throw new IllegalArgumentException(exceptionMessage)
