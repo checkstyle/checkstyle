@@ -66,7 +66,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify the RegExp to match against warnings. Any warning being suppressed matching this pattern will be flagged.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^\s*+$&quot;</code></td>
+              <td><code>^\s*+$</code></td>
               <td>5.0</td>
             </tr>
             <tr>

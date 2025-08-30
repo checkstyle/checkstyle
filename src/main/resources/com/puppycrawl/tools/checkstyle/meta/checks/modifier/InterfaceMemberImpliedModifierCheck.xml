@@ -81,42 +81,42 @@
             <property default-value="true"
                       name="violateImpliedAbstractMethod"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;abstract&lt;/code&gt;
- is explicitly coded on interface methods.</description>
+               <description>Control whether to enforce that {@code abstract} is explicitly coded
+ on interface methods.</description>
             </property>
             <property default-value="true" name="violateImpliedFinalField" type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;final&lt;/code&gt;
- is explicitly coded on interface fields.</description>
+               <description>Control whether to enforce that {@code final} is explicitly coded
+ on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicField"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
- is explicitly coded on interface fields.</description>
+               <description>Control whether to enforce that {@code public} is explicitly coded
+ on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicMethod"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
- is explicitly coded on interface methods.</description>
+               <description>Control whether to enforce that {@code public} is explicitly coded
+ on interface methods.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedPublicNested"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;public&lt;/code&gt;
- is explicitly coded on interface nested types.</description>
+               <description>Control whether to enforce that {@code public} is explicitly coded
+ on interface nested types.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticField"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;static&lt;/code&gt;
- is explicitly coded on interface fields.</description>
+               <description>Control whether to enforce that {@code static} is explicitly coded
+ on interface fields.</description>
             </property>
             <property default-value="true"
                       name="violateImpliedStaticNested"
                       type="boolean">
-               <description>Control whether to enforce that &lt;code&gt;static&lt;/code&gt;
- is explicitly coded on interface nested types.</description>
+               <description>Control whether to enforce that {@code static} is explicitly coded
+ on interface nested types.</description>
             </property>
          </properties>
          <message-keys>

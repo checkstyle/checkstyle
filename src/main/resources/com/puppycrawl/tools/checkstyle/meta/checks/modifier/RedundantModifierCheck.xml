@@ -131,7 +131,7 @@
  }
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
-            <property default-value="22" name="jdkVersion" type="java.lang.String">
+            <property default-value="&#34;22&#34;" name="jdkVersion" type="java.lang.String">
                <description>Set the JDK version that you are using.
  Old JDK version numbering is supported (e.g. 1.8 for Java 8)
  as well as just the major JDK version alone (e.g. 8) is supported.
