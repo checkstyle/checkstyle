@@ -115,16 +115,16 @@ public class FileTextTest extends AbstractPathTestSupport {
                 .isNull();
         final LineColumn lineColumn = copy.lineColumn(100);
         assertWithMessage("Invalid line")
-                .that(lineColumn.getLine())
+                .that(lineColumn.line())
                 .isEqualTo(3);
         if (CheckUtil.CRLF.equals(CheckUtil.getLineSeparatorForFile(filepath, charset))) {
             assertWithMessage("Invalid column")
-                    .that(lineColumn.getColumn())
+                    .that(lineColumn.column())
                     .isEqualTo(44);
         }
         else {
             assertWithMessage("Invalid column")
-                    .that(lineColumn.getColumn())
+                    .that(lineColumn.column())
                     .isEqualTo(46);
         }
     }
@@ -137,10 +137,10 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(0);
         assertWithMessage("Invalid line")
-                .that(lineColumn.getLine())
+                .that(lineColumn.line())
                 .isEqualTo(1);
         assertWithMessage("Invalid column")
-                .that(lineColumn.getColumn())
+                .that(lineColumn.column())
                 .isEqualTo(0);
     }
 
