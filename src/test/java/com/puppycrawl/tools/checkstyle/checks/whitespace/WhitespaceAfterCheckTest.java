@@ -353,4 +353,21 @@ public class WhitespaceAfterCheckTest
             expected);
 
     }
+
+    @Test
+    public void testWhitespaceAfterAnnotation() throws Exception {
+        final String[] expected = {
+            "22:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "22:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "28:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "33:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "38:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ")"),
+            "43:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "43:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "NonNull"),
+            "54:35: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+            "62:49: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "AnnotationAfterTest"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterAnnotation.java"), expected);
+    }
 }
