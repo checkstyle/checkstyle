@@ -28,14 +28,19 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
+import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
 
 /**
  * Simple SARIF logger.
@@ -77,6 +82,9 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     /** The placeholder for results. */
     private static final String RESULTS_PLACEHOLDER = "${results}";
 
+    /** The placeholder for rules. */
+    private static final String RULES_PLACEHOLDER = "${rules}";
+
     /** Two backslashes to not duplicate strings. */
     private static final String TWO_BACKSLASHES = "\\\\";
 
@@ -90,6 +98,9 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     private static final Pattern WINDOWS_DRIVE_LETTER_PATTERN =
             Pattern.compile("\\A[A-Z]:", Pattern.CASE_INSENSITIVE);
 
+    /** Comma and line separator to not duplicate strings. */
+    private static final String COMMA_LINE_SEPARATOR = ",\n";
+
     /** Helper writer that allows easy encoding and printing. */
     private final PrintWriter writer;
 
@@ -98,6 +109,12 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     /** The results. */
     private final List<String> results = new ArrayList<>();
+
+    /** Map to store rule metadata by rule ID. */
+    private final Map<String, ModuleDetails> ruleMetadata = new LinkedHashMap<>();
+
+    /** Map of all available module metadata by fully qualified name. */
+    private final Map<String, ModuleDetails> allModuleMetadata = new HashMap<>();
 
     /** Content for the entire report. */
     private final String report;
@@ -113,6 +130,9 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     /** Content for result representing an error without filename or location. */
     private final String resultErrorOnly;
+
+    /** Content for rule. */
+    private final String rule;
 
     /**
      * Creates a new {@code SarifLogger} instance.
@@ -147,6 +167,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
         }
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
+        loadModuleMetadata();
         report = readResource("/com/puppycrawl/tools/checkstyle/sarif/SarifReport.template");
         resultLineColumn =
             readResource("/com/puppycrawl/tools/checkstyle/sarif/ResultLineColumn.template");
@@ -156,6 +177,57 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
             readResource("/com/puppycrawl/tools/checkstyle/sarif/ResultFileOnly.template");
         resultErrorOnly =
             readResource("/com/puppycrawl/tools/checkstyle/sarif/ResultErrorOnly.template");
+        rule = readResource("/com/puppycrawl/tools/checkstyle/sarif/Rule.template");
+    }
+
+    /**
+     * Loads all available module metadata from XML files.
+     */
+    private void loadModuleMetadata() {
+        final List<ModuleDetails> allModules =
+                XmlMetaReader.readAllModulesIncludingThirdPartyIfAny();
+        for (ModuleDetails module : allModules) {
+            allModuleMetadata.put(module.getFullQualifiedName(), module);
+        }
+    }
+
+    /**
+     * Finds and caches module metadata for a given rule ID.
+     *
+     * @param ruleId the rule ID (violation key)
+     */
+    private void cacheRuleMetadata(String ruleId) {
+        if (!ruleMetadata.containsKey(ruleId)) {
+            for (ModuleDetails module : allModuleMetadata.values()) {
+                if (module.getViolationMessageKeys().contains(ruleId)) {
+                    ruleMetadata.put(ruleId, module);
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Generates the JSON representation of rules for the SARIF report.
+     *
+     * @return JSON string representing the rules array
+     */
+    private String generateRulesJson() {
+        String rulesJson = "";
+        if (!ruleMetadata.isEmpty()) {
+            final List<String> ruleJsonList = new ArrayList<>(ruleMetadata.size());
+            for (Map.Entry<String, ModuleDetails> entry : ruleMetadata.entrySet()) {
+                final String ruleId = entry.getKey();
+                final ModuleDetails module = entry.getValue();
+                final String ruleJson = rule
+                        .replace(RULE_ID_PLACEHOLDER, escape(ruleId))
+                        .replace("${shortDescription}", escape(module.getName()))
+                        .replace("${fullDescription}", escape(module.getDescription()));
+                ruleJsonList.add(ruleJson);
+            }
+            rulesJson = "\n" + String.join(COMMA_LINE_SEPARATOR, ruleJsonList);
+        }
+        return rulesJson;
     }
 
     @Override
@@ -171,7 +243,10 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
     @Override
     public void auditFinished(AuditEvent event) {
         String rendered = replaceVersionString(report);
-        rendered = rendered.replace(RESULTS_PLACEHOLDER, String.join(",\n", results));
+        rendered = rendered.replace(
+                RESULTS_PLACEHOLDER,
+                String.join(COMMA_LINE_SEPARATOR, results));
+        rendered = rendered.replace(RULES_PLACEHOLDER, generateRulesJson());
         writer.print(rendered);
         if (closeStream) {
             writer.close();
@@ -194,6 +269,8 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
 
     @Override
     public void addError(AuditEvent event) {
+        final String ruleId = event.getViolation().getKey();
+        cacheRuleMetadata(ruleId);
         if (event.getColumn() > 0) {
             results.add(resultLineColumn
                 .replace(SEVERITY_LEVEL_PLACEHOLDER, renderSeverityLevel(event.getSeverityLevel()))
@@ -201,7 +278,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
                 .replace(COLUMN_PLACEHOLDER, Integer.toString(event.getColumn()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
                 .replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))
-                .replace(RULE_ID_PLACEHOLDER, event.getViolation().getKey())
+                .replace(RULE_ID_PLACEHOLDER, ruleId)
             );
         }
         else {
@@ -210,7 +287,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
                 .replace(URI_PLACEHOLDER, renderFileNameUri(event.getFileName()))
                 .replace(LINE_PLACEHOLDER, Integer.toString(event.getLine()))
                 .replace(MESSAGE_PLACEHOLDER, escape(event.getMessage()))
-                .replace(RULE_ID_PLACEHOLDER, event.getViolation().getKey())
+                .replace(RULE_ID_PLACEHOLDER, ruleId)
             );
         }
     }
