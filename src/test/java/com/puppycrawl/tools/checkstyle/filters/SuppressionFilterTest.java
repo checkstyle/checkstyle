@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.UUID;
 
@@ -231,7 +232,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
-                try (InputStream stream = new URL(url).openStream()) {
+                try (InputStream stream = URI.create(url).toURL().openStream()) {
                     // Attempt to read a byte in order to check whether file content is available
                     available = stream.read() != -1;
                     break;
@@ -256,7 +257,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     private static boolean isUrlReachable(String url) {
         boolean result = true;
         try {
-            final URL verifiableUrl = new URL(url);
+            final URL verifiableUrl = URI.create(url).toURL();
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
