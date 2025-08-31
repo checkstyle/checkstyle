@@ -10,6 +10,117 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 11.0.1">
+      <div class="releaseDate">31.08.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            some messages are still hardcoded in english.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+          <li>
+            Google style: No proper way to check if the reason for swallowing the exception is
+            actually appropriate.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17563">#17563</a>
+          </li>
+          <li>
+            Missing violations on Unicode and Octal values of `\s`.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17551">#17551</a>
+          </li>
+          <li>
+            Google style: Word TODO of Todo comment must be in all caps.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17501">#17501</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            fix cirrus-ci failure to install jdk21.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17701">#17701</a>
+          </li>
+          <li>
+            Preparation for Migration of Checkstyle Codebase to Java 21.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17429">#17429</a>
+          </li>
+          <li>
+            Enable assorted Error Prone Support checks.
+            Author: mohamedsamehsalah
+            <a href="https://github.com/checkstyle/checkstyle/issues/17686">#17686</a>
+          </li>
+          <li>
+            Conversion to Enhance Switch for SuppressionWarningCheck Causing Deeply Nesting Issues.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17673">#17673</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            dependecies: update caciocavallo to latest.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17330">#17330</a>
+          </li>
+          <li>
+            Convert switch statements to enhanced switch expressions.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17300">#17300</a>
+          </li>
+          <li>
+            Add anchored links for each property.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17610">#17610</a>
+          </li>
+          <li>
+            site log has a lot of warnings &#39;Anchor name &quot;Description&quot; used more than
+            once&#39;.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17531">#17531</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Add filters table validation in xdoc folder.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17176">#17176</a>
+          </li>
+          <li>
+            Wiki page on how to make test methods from issue description.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17404">#17404</a>
+          </li>
+          <li>
+            improve position of tag `yamllint`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17592">#17592</a>
+          </li>
+          <li>
+            Use TypeName check to validate Examples classes .
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13290">#13290</a>
+          </li>
+          <li>
+            AnnotationLocation does not enforce annotation placement after Javadoc as documented.
+            Author: 铁诗杨
+            <a href="https://github.com/checkstyle/checkstyle/issues/17571">#17571</a>
+          </li>
+          <li>
+            IT regression area Folder structure for suppressionxpathfilter.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/14769">#14769</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 11.0.0">
       <div class="releaseDate">07.08.2025</div>
       <p>Breaking backward compatibility:</p>
