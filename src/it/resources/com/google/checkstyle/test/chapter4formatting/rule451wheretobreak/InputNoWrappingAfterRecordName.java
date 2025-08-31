@@ -26,7 +26,7 @@ public record InputNoWrappingAfterRecordName (String name) {
   }
 
   record Multi4 () { // violation ''(' is preceded with whitespace'
-    void foo (){} // violation ''(' is preceded with whitespace'
+    void foo () {} // violation ''(' is preceded with whitespace'
   }
 
   record Multi5() {

@@ -36,6 +36,7 @@ public class InputNoWrappingAfterRecordName2 {
 
     @InSize(limit = 2)
     void foo (){} // violation ''(' is preceded with whitespace'
+    // violation above 'WhitespaceAround: '{' is not preceded with whitespace'
   }
 
   record Multi5() {
