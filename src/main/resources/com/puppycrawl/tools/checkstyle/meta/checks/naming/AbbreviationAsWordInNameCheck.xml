@@ -34,9 +34,9 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="3" name="allowedAbbreviationLength" type="int">
-               <description>Indicate the number of consecutive capital
- letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables
- and methods names, ... ).</description>
+               <description>Indicate the number of consecutive capital letters allowed
+ in targeted identifiers (abbreviations in the classes, interfaces,
+ variables and methods names, ... ).</description>
             </property>
             <property default-value=""
                       name="allowedAbbreviations"
@@ -44,18 +44,17 @@
                <description>Specify abbreviations that must be skipped for checking.</description>
             </property>
             <property default-value="true" name="ignoreFinal" type="boolean">
-               <description>Allow to skip variables with &lt;code&gt;final&lt;/code&gt; modifier.</description>
+               <description>Allow to skip variables with {@code final} modifier.</description>
             </property>
             <property default-value="true" name="ignoreOverriddenMethods" type="boolean">
-               <description>Allow to ignore methods tagged with &lt;code&gt;@Override&lt;/code&gt;
+               <description>Allow to ignore methods tagged with {@code @Override}
  annotation (that usually mean inherited name).</description>
             </property>
             <property default-value="true" name="ignoreStatic" type="boolean">
-               <description>Allow to skip variables with &lt;code&gt;static&lt;/code&gt; modifier.</description>
+               <description>Allow to skip variables with {@code static} modifier.</description>
             </property>
             <property default-value="true" name="ignoreStaticFinal" type="boolean">
-               <description>Allow to skip variables with both &lt;code&gt;static&lt;/code&gt; and
- &lt;code&gt;final&lt;/code&gt; modifiers.</description>
+               <description>Allow to skip variables with both {@code static} and {@code final} modifiers.</description>
             </property>
             <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
                       name="tokens"

@@ -15,7 +15,7 @@
             <property default-value="false" name="ignoreCase" type="boolean">
                <description>Control whether to ignore case when matching.</description>
             </property>
-            <property default-value="" name="message" type="java.lang.String">
+            <property default-value="&#34;&#34;" name="message" type="java.lang.String">
                <description>Define the message which is used to notify about violations;
  if empty then the default message is used.</description>
             </property>

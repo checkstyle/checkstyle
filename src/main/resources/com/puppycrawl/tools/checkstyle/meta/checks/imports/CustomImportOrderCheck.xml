@@ -128,14 +128,13 @@
             <property default-value="true"
                       name="separateLineBetweenGroups"
                       type="boolean">
-               <description>Force empty line separator between
- import groups.</description>
+               <description>Force empty line separator between import groups.</description>
             </property>
             <property default-value="false"
                       name="sortImportsInGroupAlphabetically"
                       type="boolean">
-               <description>Force grouping alphabetically,
- in &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.</description>
+               <description>Force grouping alphabetically, in
+ &lt;a href="https://en.wikipedia.org/wiki/ASCII#Order"&gt;ASCII sort order&lt;/a&gt;.</description>
             </property>
             <property default-value="^$"
                       name="specialImportsRegExp"
