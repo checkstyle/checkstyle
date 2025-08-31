@@ -77,7 +77,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         "InputIndentationLambda.java",
         "InputIndentationLambda1.java",
         "InputIndentationLambda2.java",
-        "InputIndentationLineWrappedRecordDeclaration.java",
         "InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java",
         "InputIndentationNewChildren.java",
         "InputIndentationNewWithForceStrictCondition.java",
@@ -86,7 +85,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         "InputIndentationTryResourcesNotStrict1.java",
         "InputIndentationTryWithResourcesStrict.java",
         "InputIndentationTryWithResourcesStrict1.java",
-        "InputIndentationValidBlockIndent1.java",
         "InputIndentationValidClassDefIndent.java",
         "InputIndentationValidClassDefIndent1.java",
         "InputIndentationCorrectIfAndParameter1.java",
@@ -106,6 +104,9 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
         for (int idx = 0; idx < lines.size(); idx++) {
             final String line = lines.get(idx);
+            if (line.trim().startsWith("import ")) {
+                continue;
+            }
             final int commentStartIndex = line.indexOf("//indent:");
             if (commentStartIndex > 0) {
                 final String codePart = line.substring(0, commentStartIndex);
