@@ -17,8 +17,7 @@
  &lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="allowLineBreaks" type="boolean">
-               <description>Allow a line break between the identifier
- and left parenthesis.</description>
+               <description>Allow a line break between the identifier and left parenthesis.</description>
             </property>
             <property default-value="nospace"
                       name="option"

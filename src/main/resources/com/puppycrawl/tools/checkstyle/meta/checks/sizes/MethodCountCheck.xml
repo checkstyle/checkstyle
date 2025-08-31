@@ -48,16 +48,16 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property default-value="100" name="maxPackage" type="int">
-               <description>Specify the maximum number of &lt;code&gt;package&lt;/code&gt; methods allowed.</description>
+               <description>Specify the maximum number of {@code package} methods allowed.</description>
             </property>
             <property default-value="100" name="maxPrivate" type="int">
-               <description>Specify the maximum number of &lt;code&gt;private&lt;/code&gt; methods allowed.</description>
+               <description>Specify the maximum number of {@code private} methods allowed.</description>
             </property>
             <property default-value="100" name="maxProtected" type="int">
-               <description>Specify the maximum number of &lt;code&gt;protected&lt;/code&gt; methods allowed.</description>
+               <description>Specify the maximum number of {@code protected} methods allowed.</description>
             </property>
             <property default-value="100" name="maxPublic" type="int">
-               <description>Specify the maximum number of &lt;code&gt;public&lt;/code&gt; methods allowed.</description>
+               <description>Specify the maximum number of {@code public} methods allowed.</description>
             </property>
             <property default-value="100" name="maxTotal" type="int">
                <description>Specify the maximum number of methods allowed at all scope levels.</description>

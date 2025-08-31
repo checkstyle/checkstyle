@@ -175,7 +175,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @param shouldReportViolation value to which the field shall be set to
      * @since 8.3
      */
-    public final void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+    public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
         violateExecutionOnNonTightHtml = shouldReportViolation;
     }
 

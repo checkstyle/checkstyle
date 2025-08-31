@@ -14,8 +14,7 @@
  &lt;/div&gt;</description>
          <properties>
             <property default-value="false" name="allowLineBreaks" type="boolean">
-               <description>Control whether whitespace is allowed
- if the token is at a linebreak.</description>
+               <description>Control whether whitespace is allowed if the token is at a linebreak.</description>
             </property>
             <property default-value="COMMA,SEMI,POST_INC,POST_DEC,ELLIPSIS,LABELED_STAT"
                       name="tokens"

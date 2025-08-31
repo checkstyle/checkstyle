@@ -19,8 +19,8 @@
             <property default-value="^$"
                       name="excludedClasses"
                       type="java.util.regex.Pattern">
-               <description>Specify pattern for qualified names of
- classes which are allowed to have a &lt;code&gt;main&lt;/code&gt; method.</description>
+               <description>Specify pattern for qualified names of classes which are allowed
+ to have a {@code main} method.</description>
             </property>
          </properties>
          <message-keys>
