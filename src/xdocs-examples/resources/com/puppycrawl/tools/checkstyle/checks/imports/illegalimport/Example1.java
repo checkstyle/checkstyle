@@ -1,25 +1,23 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="IllegalImport">
-      <property name="illegalPkgs" value="java.io, java.sql"/>
-    </module>
+    <module name="IllegalImport"/>
   </module>
 </module>
 */
 
-// non-compiled with javac: Compilable with Java8
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 // xdoc section -- start
-import java.io.*; // violation, 'Illegal import'
+import java.io.*;
 import java.lang.ArithmeticException;
-import java.sql.Connection; // violation, 'Illegal import'
+import java.sql.Connection;
 import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.applet.*;
+import sun.misc.*; // violation, 'Illegal import'
 
-public class Example2 {}
+public class Example1 {}
 // xdoc section -- end
