@@ -137,7 +137,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(
-                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
                             "outerNum",
                             outerNum -> ((Number) outerNum).intValue() == 0))
                 .isTrue();
