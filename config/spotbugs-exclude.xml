@@ -417,7 +417,7 @@
     <Method name="getAttributeNames" />
     <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
   </Match>
-  <!-- until https://github.com/mebigfatguy/fb-contrib/issues/495 -->
+  <!-- until https://github.com/checkstyle/checkstyle/issues/17720 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
     <Field name="tabWidth" />
