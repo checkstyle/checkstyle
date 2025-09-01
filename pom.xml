@@ -511,7 +511,24 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.5.1</version>
+          <version>3.5.0</version>
+          <executions>
+            <execution>
+              <id>require-javadoc</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>java</goal>
+              </goals>
+              <configuration>
+                <mainClass>org.plumelib.javadoc.RequireJavadoc</mainClass>
+                <classpathScope>test</classpathScope>
+                <arguments>
+                  <argument>--dont-require-noarg-constructor</argument>
+                  <argument>src/main/java</argument>
+                </arguments>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -554,7 +571,7 @@
             <show>private</show>
             <failOnError>true</failOnError>
             <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17642 -->
-            <failOnWarnings>false</failOnWarnings>
+            <failOnWarnings>true</failOnWarnings>
             <linksource>true</linksource>
             <tags>
               <tag>
