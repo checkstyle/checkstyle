@@ -206,6 +206,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.4.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
+    <maven.rewrite.plugin.version>6.17.0</maven.rewrite.plugin.version>
     <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
@@ -567,6 +568,38 @@
               </tag>
             </tags>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>${maven.rewrite.plugin.version}</version>
+          <configuration>
+            <activeRecipes>
+              <recipe>DefinitionOfDone</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.groovy</exclusion>
+              <exclusion>**release.yml</exclusion>
+              <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**src/xdocs-examples**</exclusion>
+            </exclusions>
+            <exportDatatables>true</exportDatatables>
+            <failOnDryRunResults>true</failOnDryRunResults>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-third-party</artifactId>
+              <version>0.26.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.16.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1674,6 +1707,19 @@
       </plugin>
 
       <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>dryRun</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <executions>
@@ -2240,6 +2286,7 @@
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
+        <rewriteSkip>true</rewriteSkip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <jacoco.skip>true</jacoco.skip>
