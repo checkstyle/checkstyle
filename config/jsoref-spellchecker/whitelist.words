@@ -276,6 +276,7 @@ Dantlr
 Darguments
 DArray
 Datasource
+Datatables
 datatransfer
 DATETIME
 daveho
@@ -990,6 +991,7 @@ npm
 nrmancuso
 ntokens
 NTU
+Nullability
 nullcase
 nullcheck
 nullness
@@ -1018,6 +1020,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openrewrite
 operatorwrap
 opsummary
 optgroup
@@ -1166,6 +1169,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refasterrules
 refid
 refreshenv
 regex
@@ -1304,6 +1308,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib
