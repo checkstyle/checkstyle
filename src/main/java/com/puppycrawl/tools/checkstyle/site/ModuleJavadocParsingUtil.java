@@ -139,7 +139,7 @@ public final class ModuleJavadocParsingUtil {
         return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
             paragraphNode, NOTES_LINE)
             || liNode.isPresent() && JavadocMetadataScraper.isChildNodeTextMatches(
-                liNode.get(), NOTES_LINE);
+                liNode.orElseThrow(), NOTES_LINE);
     }
 
     /**
@@ -172,7 +172,7 @@ public final class ModuleJavadocParsingUtil {
 
         if (somePropertyModuleNode.isPresent()) {
             propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
-                somePropertyModuleNode.get());
+                    somePropertyModuleNode.orElseThrow());
         }
 
         return propertySectionStartIndex;
