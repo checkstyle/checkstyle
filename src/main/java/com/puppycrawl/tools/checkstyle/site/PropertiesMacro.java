@@ -59,16 +59,6 @@ public class PropertiesMacro extends AbstractMacro {
      */
     public static final String EMPTY = "empty";
 
-    /** Set of properties not inherited from the base token configuration. */
-    public static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
-            Arrays.stream(new String[] {
-                "AtclauseOrder - target",
-                "DescendantToken - limitedTokens",
-                "IllegalType - memberModifiers",
-                "MagicNumber - constantWaiverParentToken",
-                "MultipleStringLiterals - ignoreOccurrenceContext",
-            }).collect(Collectors.toSet()));
-
     /** The precompiled pattern for a comma followed by a space. */
     private static final Pattern COMMA_SPACE_PATTERN = Pattern.compile(", ");
 
@@ -208,11 +198,12 @@ public class PropertiesMacro extends AbstractMacro {
 
         final List<String> orderedProperties = orderProperties(properties);
 
+        final DetailNode currentModuleJavadoc = SiteUtil.getModuleJavadoc(
+            currentModuleName, currentModulePath);
+
         for (String property : orderedProperties) {
             try {
                 final DetailNode propertyJavadoc = propertiesJavadocs.get(property);
-                final DetailNode currentModuleJavadoc =
-                    SiteUtil.getModuleJavadoc(currentModuleName, currentModulePath);
                 writePropertyRow(sink, property, propertyJavadoc, instance, currentModuleJavadoc);
             }
             // -@cs[IllegalCatch] we need to get details in wrapping exception
@@ -360,7 +351,9 @@ public class PropertiesMacro extends AbstractMacro {
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {
-            final String type = SiteUtil.getType(field, propertyName, currentModuleName, instance);
+            final String fullTypeName = SiteUtil.getType(field, propertyName, currentModuleName, instance);
+
+            final String type = simplifyTypeName(fullTypeName);
             if (PropertyType.TOKEN_ARRAY.getDescription().equals(type)) {
                 processLinkForTokenTypes(sink);
             }
@@ -380,6 +373,19 @@ public class PropertiesMacro extends AbstractMacro {
             }
         }
         sink.tableCell_();
+    }
+
+    private static String simplifyTypeName(String fullTypeName) {
+        final int simplifiedStartIndex;
+
+        if (fullTypeName.contains("$")) {
+            simplifiedStartIndex = fullTypeName.lastIndexOf('$') + 1;
+        }
+        else {
+            simplifiedStartIndex = fullTypeName.lastIndexOf('.') + 1;
+        }
+
+        return fullTypeName.substring(simplifiedStartIndex);
     }
 
     /**
@@ -512,19 +518,36 @@ public class PropertiesMacro extends AbstractMacro {
             writeTokensList(sink, configurableTokens, SiteUtil.PATH_TO_JAVADOC_TOKEN_TYPES, true);
         }
         else {
-            final String defaultValue = getDefaultValue(propertyName, field, instance);
+            String defaultValue = getDefaultValue(propertyName, field, instance);
             final String checkName = CHECK_PATTERN
                     .matcher(instance.getClass().getSimpleName()).replaceAll("");
 
-            final boolean isSpecialTokenProp = NON_BASE_TOKEN_PROPERTIES.stream()
-                    .anyMatch(tokenProp -> tokenProp.equals(checkName + " - " + propertyName));
+            if (ModuleJavadocParsingUtil
+                .propertyIsSpecialTokenProp(propertyName, currentModuleName)
+                && !CURLY_BRACKET.equals(defaultValue)) {
 
-            if (isSpecialTokenProp && !CURLY_BRACKET.equals(defaultValue)) {
                 final List<String> defaultValuesList =
                         Arrays.asList(COMMA_SPACE_PATTERN.split(defaultValue));
                 writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES, false);
             }
             else {
+                final Class<?> fieldClass = SiteUtil.getFieldClass(field, propertyName, currentModuleName, instance);
+                if (fieldClass == Pattern.class && !"null".equals(defaultValue)) {
+                    defaultValue = '"' + defaultValue + '"';
+                }
+                else if (defaultValue.isEmpty()
+                    && (fieldClass == int[].class
+                        || fieldClass == double[].class
+                        || fieldClass == String[].class
+                        || fieldClass == Pattern[].class)) {
+
+                    defaultValue = CURLY_BRACKET;
+
+                    if (fieldClass == String[].class && SiteUtil.FILE_EXTENSIONS.equals(propertyName)) {
+                        defaultValue = "all files";
+                    }
+                }
+
                 sink.rawText(CODE_START);
                 sink.text(defaultValue);
                 sink.rawText(CODE_END);

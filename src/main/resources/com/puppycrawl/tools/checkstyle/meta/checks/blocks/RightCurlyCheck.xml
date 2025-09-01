@@ -19,8 +19,7 @@
             <property default-value="same"
                       name="option"
                       type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption">
-               <description>Specify the policy on placement of a right curly brace
- (&lt;code&gt;'}'&lt;/code&gt;).</description>
+               <description>Specify the policy on placement of a right curly brace (&lt;code&gt;'}'&lt;/code&gt;).</description>
             </property>
             <property default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"
                       name="tokens"
