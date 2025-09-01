@@ -316,3 +316,11 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  rewrite:
+    jobs:
+      - validate-with-maven-script:
+          name: "rewrite"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite"
+          no_output_timeout: 25m
