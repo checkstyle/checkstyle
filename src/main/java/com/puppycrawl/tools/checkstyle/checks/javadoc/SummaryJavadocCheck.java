@@ -216,7 +216,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final Optional<DetailNode> inlineTagNode = getInlineTagNode(ast);
         boolean shouldValidateUntaggedSummary = true;
         if (inlineTagNode.isPresent()) {
-            final DetailNode node = inlineTagNode.get();
+            final DetailNode node = inlineTagNode.orElseThrow();
             if (isSummaryTag(node) && isDefinedFirst(node)) {
                 shouldValidateUntaggedSummary = false;
                 validateSummaryTag(node);
@@ -246,7 +246,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 final Optional<String> firstSentence = getFirstSentence(ast, period);
 
                 if (firstSentence.isPresent()) {
-                    if (containsForbiddenFragment(firstSentence.get())) {
+                    if (containsForbiddenFragment(firstSentence.orElseThrow())) {
                         log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                     }
                 }
@@ -611,7 +611,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final Optional<String> sentenceEnding = findSentenceEnding(text, period);
 
             if (sentenceEnding.isPresent()) {
-                sentenceParts.add(sentenceEnding.get());
+                sentenceParts.add(sentenceEnding.orElseThrow());
                 result = Optional.of(String.join("", sentenceParts));
                 break;
             }
