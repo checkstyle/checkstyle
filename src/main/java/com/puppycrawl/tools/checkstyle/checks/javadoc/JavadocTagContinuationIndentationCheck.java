@@ -81,13 +81,34 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     public void visitJavadocToken(DetailNode ast) {
         if (isBlockDescription(ast) && !isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
+            boolean isTextPreTagChildren = false;
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
-                if (textNode.getType() != JavadocTokenTypes.NEWLINE && isViolation(textNode)) {
+                if (newlineNode.getType() == JavadocTokenTypes.HTML_ELEMENT_START
+                        || isHtmlTagChildOfPreTag(ast)) {
+                    isTextPreTagChildren = true;
+                }
+                else if (newlineNode.getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
+                    isTextPreTagChildren = false;
+                }
+                else if (!isTextPreTagChildren && textNode.getType() != JavadocTokenTypes.NEWLINE
+                    && isViolation(textNode)) {
                     log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }
         }
+    }
+
+    /**
+     * Checks if the given HTML_TAG is contained inside {@code <pre>} tag.
+     *
+     * @param htmlTag HTML_TAG
+     * @return {@code true} if {@code pre} tag is parent of the given tag, else {@code false}.
+     */
+    private static boolean isHtmlTagChildOfPreTag(DetailNode htmlTag) {
+        DetailNode node = htmlTag.getParent().getParent();
+        node = JavadocUtil.getFirstChild(node);
+        return containsPreTag(node);
     }
 
     /**
@@ -106,8 +127,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         if (text.length() <= offset) {
             if (CommonUtil.isBlank(text)) {
                 final DetailNode nextNode = JavadocUtil.getNextSibling(textNode);
-                if (nextNode != null && nextNode.getType() != JavadocTokenTypes.NEWLINE) {
-                    // text is blank but line hasn't ended yet
+                // text is blank but line hasn't ended yet
+                if (nextNode != null && nextNode.getType() != JavadocTokenTypes.NEWLINE
+                        && !containsPreTag(nextNode)) {
+                    // don't include if followed with <pre> tag
                     result = true;
                 }
             }
@@ -139,6 +162,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             }
             else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT_START
                 || node.getType() == JavadocTokenTypes.ATTRIBUTE) {
+                if (containsPreTag(node)) {
+                    textNodes.add(node);
+                }
                 textNodes.addAll(getAllNewlineNodes(node));
             }
             if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
@@ -146,7 +172,35 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             }
             node = JavadocUtil.getNextSibling(node);
         }
+
+        // Last node does not get checked in the loop
+        if (containsPreTag(node)) {
+            textNodes.add(node);
+        }
         return textNodes;
+    }
+
+    /**
+     * Checks if the given HTML related node contains {@code <pre>} tag.
+     *
+     * @param ast the node to check
+     * @return {@code true} if the {@code <pre>} tag is inside the node, {@code false} otherwise
+     */
+    private static boolean containsPreTag(DetailNode ast) {
+        DetailNode node = ast;
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT_END
+                || node.getType() == JavadocTokenTypes.HTML_ELEMENT_START) {
+            node = JavadocUtil.findFirstToken(node, JavadocTokenTypes.HTML_TAG_NAME);
+        }
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            final DetailNode htmlTag = JavadocUtil.getFirstChild(node);
+            if (htmlTag.getType() == JavadocTokenTypes.HTML_TAG) {
+                final DetailNode htmlElementStart = JavadocUtil.getFirstChild(htmlTag);
+                node = JavadocUtil.findFirstToken(htmlElementStart,
+                    JavadocTokenTypes.HTML_TAG_NAME);
+            }
+        }
+        return "pre".equalsIgnoreCase(node.getText());
     }
 
     /**
