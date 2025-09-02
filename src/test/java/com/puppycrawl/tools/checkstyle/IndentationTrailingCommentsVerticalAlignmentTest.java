@@ -55,14 +55,8 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         "InputIndentationInvalidArrayInitIndent1.java",
 
         // reason: checkstyle check: Line gets longer than 100 characters
-        "InputIndentationAnnotationClosingParenthesisEndsInSameIndentationAsOpening.java",
-        "InputIndentationAnnotationFieldDefinition.java",
-        "InputIndentationAnnotationScopeIndentationCheck.java",
         "InputIndentationAnonymousClassInMethodCurlyOnNewLine.java",
-        "InputIndentationAnonymousClasses.java",
-        "InputIndentationBraceAdjustment.java",
         "InputIndentationChainedMethodCalls.java",
-        "InputIndentationCtorCall.java",
         "InputIndentationCustomAnnotation.java",
         "InputIndentationFromGuava1.java",
         "InputIndentationIfAndParameter.java",

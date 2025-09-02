@@ -394,7 +394,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         verifyWarns(checkConfig,
             getPath("InputIndentation"
-                + "AnnotationClosingParenthesisEndsInSameIndentationAsOpening.java"),
+                + "AnnotationClosingParenthesisEndsInSameIndentationAsOpen.java"),
                 expected);
     }
 
@@ -610,26 +610,26 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("lineWrappingIndentation", "4");
         checkConfig.addProperty("tabWidth", "4");
         final String[] expected = {
-            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
             "30:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "34:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "35:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "39:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "31:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "35:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "36:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
             "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "45:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "50:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "51:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
-            "52:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
-            "56:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "57:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
-            "62:5: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
-            "63:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "68:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
-            "69:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "75:11: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 10, "12, 14"),
+            "42:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "47:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "51:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "52:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "53:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
+            "57:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "58:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "63:5: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
+            "64:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "69:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
+            "70:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "76:11: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 10, "12, 14"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
     }
@@ -2677,11 +2677,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
-            "24:9: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 8, 10),
-            "25:9: " + getCheckMessage(MSG_ERROR, "if", 8, 10),
-            "26:11: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 12),
-            "27:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "if", 12, "14, 16"),
-            "28:9: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 12),
+            "25:9: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 8, 10),
+            "26:9: " + getCheckMessage(MSG_ERROR, "if", 8, 10),
+            "27:11: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 12),
+            "28:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "if", 12, "14, 16"),
+            "29:9: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 12),
         };
         verifyWarns(checkConfig, getPath("InputIndentationBraceAdjustment.java"), expected);
     }
@@ -3638,7 +3638,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "26:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
         };
 
-        verifyWarns(checkConfig, getPath("InputIndentationAnnotationFieldDefinition.java"),
+        verifyWarns(checkConfig, getPath("InputIndentationAnnotationFieldDef.java"),
                 expected);
     }
 
