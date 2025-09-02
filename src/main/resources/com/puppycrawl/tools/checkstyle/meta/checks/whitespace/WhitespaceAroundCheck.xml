@@ -78,8 +78,7 @@
             <property default-value="false"
                       name="allowEmptySwitchBlockStatements"
                       type="boolean">
-               <description>Allow empty switch blocks
- and block statements.</description>
+               <description>Allow empty switch blocks and block statements.</description>
             </property>
             <property default-value="false" name="allowEmptyTypes" type="boolean">
                <description>Allow empty class, interface and enum bodies.</description>
