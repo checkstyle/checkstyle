@@ -9,12 +9,10 @@
  &lt;/div&gt;</description>
          <properties>
             <property default-value="" name="ignoreAnnotatedBy" type="java.lang.String[]">
-               <description>Ignore methods and constructors
- annotated with the specified annotation(s).</description>
+               <description>Ignore methods and constructors annotated with the specified annotation(s).</description>
             </property>
             <property default-value="false" name="ignoreOverriddenMethods" type="boolean">
-               <description>Ignore number of parameters for
- methods with &lt;code&gt;@Override&lt;/code&gt; annotation.</description>
+               <description>Ignore number of parameters for methods with &lt;code&gt;@Override&lt;/code&gt; annotation.</description>
             </property>
             <property default-value="7" name="max" type="int">
                <description>Specify the maximum number of parameters allowed.</description>
