@@ -10,7 +10,13 @@
  throws a violation. A continuation line is when the description starts/spans past the line with
  the tag. Default indentation required is at least 4, but this can be changed with the help of
  properties below.
- &lt;/div&gt;</description>
+ &lt;/div&gt;
+
+ &lt;ul&gt;
+ &lt;li&gt;
+ This check does not validate the indentation of lines inside &lt;code&gt;pre&lt;/code&gt; tags.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
          <properties>
             <property default-value="4" name="offset" type="int">
                <description>Specify how many spaces to use for new indentation level.</description>
