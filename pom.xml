@@ -579,9 +579,6 @@
                       <format>
                           <excludes>
                               <exclude>**.ci-temp**</exclude>
-                              <exclude>**.groovy</exclude>
-                              <exclude>**gradlew**</exclude>
-                              <exclude>**mvnw**</exclude>
                               <exclude>**release.yml</exclude>
                               <exclude>**resources-noncompilable**</exclude>
                               <exclude>**src/it/resources**</exclude>
@@ -597,7 +594,6 @@
                   <java>
                       <excludes>
                           <exclude>**.ci-temp**</exclude>
-                          <exclude>**.groovy</exclude>
                           <exclude>**release.yml</exclude>
                           <exclude>**resources-noncompilable**</exclude>
                           <exclude>**src/it/resources**</exclude>
