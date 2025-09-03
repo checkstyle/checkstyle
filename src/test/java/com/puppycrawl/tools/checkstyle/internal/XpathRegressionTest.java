@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -169,7 +168,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public void validateIntegrationTestClassNames() throws Exception {
         final Set<String> compatibleChecks = new HashSet<>();
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
-        try (Stream<Path> javaPathsStream = Files.walk(Paths.get(javaDir.toString()))) {
+        try (Stream<Path> javaPathsStream = Files.walk(Path.of(javaDir.toString()))) {
             final List<Path> javaPaths = javaPathsStream.filter(Files::isRegularFile).toList();
 
             for (Path path : javaPaths) {
@@ -220,7 +219,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     @Test
     public void validateInputFiles() throws Exception {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY);
-             Stream<Path> testPathsStream = Files.walk(Paths.get(javaDir.toString()))) {
+             Stream<Path> testPathsStream = Files.walk(Path.of(javaDir.toString()))) {
             final List<Path> testDirs = testPathsStream.filter(Files::isDirectory).toList();
 
             for (Path dir : dirs) {
