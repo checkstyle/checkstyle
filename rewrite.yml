@@ -2,6 +2,14 @@ type: specs.openrewrite.org/v1beta/recipe
 name: DefinitionOfDone
 displayName: Definition of Done
 description: Automatically cleanup code to comply checkstyle convention.
+exclusions:
+  - "**.ci-temp**"
+  - "**.groovy"
+  - "**release.yml"
+  - "**resources-noncompilable**"
+  - "**src/it/resources**"
+  - "**src/test/resources**"
+  - "**xdocs-examples**"
 recipeList:
    - org.openrewrite.java.RemoveUnusedImports
    - org.openrewrite.java.recipes.JavaRecipeBestPractices
