@@ -21,12 +21,12 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
   - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
-  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
-  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
-  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   # - org.openrewrite.java.migrate.UpgradeToJava17
   # - org.openrewrite.java.recipes.RecipeNullabilityBestPractices
   # - org.openrewrite.java.recipes.RecipeTestingBestPractices
