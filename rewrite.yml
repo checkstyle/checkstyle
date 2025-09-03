@@ -22,6 +22,11 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   # - org.openrewrite.java.migrate.UpgradeToJava17
   # - org.openrewrite.java.recipes.RecipeNullabilityBestPractices
   # - org.openrewrite.java.recipes.RecipeTestingBestPractices
@@ -30,9 +35,6 @@ recipeList:
   # - org.openrewrite.staticanalysis.CommonStaticAnalysis
   # - org.openrewrite.staticanalysis.EqualsAvoidsNull
   # - org.openrewrite.staticanalysis.UnnecessaryThrows
-  # - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
-  # - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
-  # - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   # - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
   # - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
@@ -45,5 +47,3 @@ recipeList:
   # - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
   # - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
   # - tech.picnic.errorprone.refasterrules.StringRulesRecipes
-  # - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
-  # - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
