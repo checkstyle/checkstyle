@@ -39,6 +39,9 @@ jobs:
         description: "command to run"
         type: string
         default: ""
+      no_output_timeout:
+        default: 10m
+        type: string
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -49,6 +52,7 @@ jobs:
             - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
+          no_output_timeout: << parameters.no_output_timeout >>
       - run:
           command: |
             ./.ci/validation.sh git-diff
@@ -316,3 +320,18 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  spotless:
+    jobs:
+      - validate-with-maven-script:
+          name: "spotless"
+          image-name: *cs_img
+          command: "./.ci/validation.sh spotless"
+
+  rewrite:
+    jobs:
+      - validate-with-maven-script:
+          name: "rewrite"
+          image-name: *cs_img
+          command: "./.ci/validation.sh rewrite"
+          no_output_timeout: 55m
