@@ -574,7 +574,6 @@
               <artifactId>spotless-maven-plugin</artifactId>
               <version>2.44.5</version>
               <configuration>
-                  <skip>${spot.skip}</skip>
                   <formats>
                       <format>
                           <excludes>
@@ -2327,6 +2326,7 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
+        <skip>true</skip>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
