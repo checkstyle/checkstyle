@@ -569,10 +569,65 @@
             </tags>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>org.openrewrite.maven</groupId>
-          <artifactId>rewrite-maven-plugin</artifactId>
-        </plugin>
+          <plugin>
+              <groupId>com.diffplug.spotless</groupId>
+              <artifactId>spotless-maven-plugin</artifactId>
+              <version>2.44.5</version>
+              <configuration>
+                  <skip>${spot.skip}</skip>
+                  <formats>
+                      <format>
+                          <excludes>
+                              <exclude>**.ci-temp**</exclude>
+                              <exclude>**.groovy</exclude>
+                              <exclude>**gradlew**</exclude>
+                              <exclude>**mvnw**</exclude>
+                              <exclude>**release.yml</exclude>
+                              <exclude>**resources-noncompilable**</exclude>
+                              <exclude>**src/it/resources**</exclude>
+                              <exclude>**src/test/resources**</exclude>
+                              <exclude>**xdocs-examples**</exclude>
+                          </excludes>
+                          <includes>
+                              <include>.gitignore</include>
+                          </includes>
+                          <trimTrailingWhitespace/>
+                      </format>
+                  </formats>
+                  <java>
+                      <excludes>
+                          <exclude>**.ci-temp**</exclude>
+                          <exclude>**.groovy</exclude>
+                          <exclude>**release.yml</exclude>
+                          <exclude>**resources-noncompilable**</exclude>
+                          <exclude>**src/it/resources**</exclude>
+                          <exclude>**src/test/resources**</exclude>
+                          <exclude>**xdocs-examples**</exclude>
+                      </excludes>
+                      <removeWildcardImports/>
+                      <endWithNewline/>
+                      <trimTrailingWhitespace/>
+                      <removeUnusedImports/>
+                      <!--<importOrder/>-->
+                  </java>
+              </configuration>
+              <executions>
+                  <execution>
+                      <id>spotless-apply</id>
+                      <phase>process-sources</phase>
+                      <goals>
+                          <goal>apply</goal>
+                      </goals>
+                  </execution>
+                  <execution>
+                      <id>spotless-check</id>
+                      <phase>verify</phase>
+                      <goals>
+                          <goal>check</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
@@ -581,15 +636,6 @@
             <activeRecipes>
               <recipe>DefinitionOfDone</recipe>
             </activeRecipes>
-            <exclusions>
-              <exclusion>**.ci-temp**</exclusion>
-              <exclusion>**.groovy</exclusion>
-              <exclusion>**release.yml</exclusion>
-              <exclusion>**resources-noncompilable**</exclusion>
-              <exclusion>**src/it/resources**</exclusion>
-              <exclusion>**src/test/resources**</exclusion>
-              <exclusion>**xdocs-examples**</exclusion>
-            </exclusions>
             <exportDatatables>true</exportDatatables>
             <failOnDryRunResults>true</failOnDryRunResults>
           </configuration>
