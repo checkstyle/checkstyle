@@ -572,6 +572,10 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
           <version>${maven.rewrite.plugin.version}</version>
           <configuration>
             <activeRecipes>
