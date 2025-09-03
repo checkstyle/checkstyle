@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -1130,8 +1130,8 @@ public final class SiteUtil {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
