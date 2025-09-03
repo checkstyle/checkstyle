@@ -590,6 +590,9 @@
                           <trimTrailingWhitespace/>
                       </format>
                   </formats>
+                  <pom>
+                    <sortPom/>
+                  </pom>
                   <java>
                       <excludes>
                           <exclude>**.ci-temp**</exclude>
