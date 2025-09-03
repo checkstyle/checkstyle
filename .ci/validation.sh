@@ -1228,7 +1228,7 @@ spotless)
   ;;
 
 rewrite)
-  export MAVEN_OPTS="-Xmx8g"
+  export MAVEN_OPTS='-Xmx8g'
   ./mvnw -e --no-transfer-progress clean rewrite:dryRun
   ;;
 
