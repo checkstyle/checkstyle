@@ -88,8 +88,8 @@ public class InputVariableDeclarationUsageDistanceGeneral3 {
     }
 
     public void method7() {
-        // until https://github.com/checkstyle/checkstyle/issues/13011, the below distance is 3
-        Integer t = 5;
+
+        Integer t = 5; // violation 'Distance .* is 3.'
         nothing();
         System.out.println();
         class BClass extends Parent {
