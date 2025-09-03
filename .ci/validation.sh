@@ -1223,6 +1223,10 @@ pmd)
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+  ;;
+
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
