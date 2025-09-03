@@ -33,7 +33,6 @@ import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
 import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -159,7 +158,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             getPath("InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference.java"), expected);
     }
 
-    @Disabled
     @Test
     public void testCache() throws Exception {
         final String[] expected = {
@@ -175,7 +173,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache3.java"), expected);
     }
 
-    @Disabled
     @Test
     public void testCacheWithTwoBlockCommentAtSameLine() throws Exception {
         final String[] expected = {
@@ -296,10 +293,10 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensFail() {
         final int[] defaultJavadocTokens = {JavadocCommentsTokenTypes.JAVADOC_CONTENT,
-            JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
+            JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
             JavadocCommentsTokenTypes.HTML_COMMENT,
             JavadocCommentsTokenTypes.HTML_ELEMENT,
-            JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
+            JavadocCommentsTokenTypes.RETURN_BLOCK_TAG,
             JavadocCommentsTokenTypes.NEWLINE};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override

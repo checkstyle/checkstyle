@@ -837,6 +837,8 @@
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
+          <source>22</source>
+          <target>22</target>
         </configuration>
       </plugin>
 
@@ -3903,13 +3905,10 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImplTest</param>
               </excludedTestClasses>
               <excludedClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck</param>
                 <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</param>
               </excludedClasses>
