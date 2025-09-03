@@ -179,7 +179,7 @@ public class XdocsUrlTest {
 
         @Override
         public void characters(char[] ch, int start, int length) {
-            if (singleCheckNameList != null && NODE_NAME.equals(currentTag)) {
+            if (currentTag != null && singleCheckNameList != null && currentTag.equals(NODE_NAME)) {
                 final String currentValue = new String(ch, start, length).trim();
                 if (!currentValue.isEmpty() && !"\n".equals(currentValue)) {
                     singleCheckNameList.add(currentValue);
@@ -190,7 +190,7 @@ public class XdocsUrlTest {
 
         @Override
         public void endElement(String uri, String localName, String qName) {
-            if (singleCheckNameList != null && NODE_NAME.equals(qName)) {
+            if (singleCheckNameList != null && qName.equals(NODE_NAME)) {
                 checkNamesList.add(singleCheckNameList);
                 singleCheckNameList = null;
             }

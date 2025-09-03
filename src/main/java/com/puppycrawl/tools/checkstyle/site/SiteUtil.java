@@ -723,7 +723,7 @@ public final class SiteUtil {
             getSpecifiedPropertyVersionInModule(propertyName, moduleJavadoc);
 
         if (specifiedPropertyVersionInModule.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInModule.orElseThrow();
+            sinceVersion = specifiedPropertyVersionInModule.get();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -767,7 +767,7 @@ public final class SiteUtil {
 
         if (propertyNodeFromModuleJavadoc.isPresent()) {
             final List<DetailNode> propertyModuleTextNodes = getNodesOfSpecificType(
-                propertyNodeFromModuleJavadoc.orElseThrow().getChildren(), JavadocTokenTypes.TEXT);
+                propertyNodeFromModuleJavadoc.get().getChildren(), JavadocTokenTypes.TEXT);
 
             final Optional<String> sinceVersionLine = propertyModuleTextNodes.stream()
                 .map(DetailNode::getText)
@@ -775,7 +775,7 @@ public final class SiteUtil {
                 .findFirst();
 
             if (sinceVersionLine.isPresent()) {
-                final String sinceVersionText = sinceVersionLine.orElseThrow();
+                final String sinceVersionText = sinceVersionLine.get();
                 final int sinceVersionIndex = sinceVersionText.indexOf('.') - 1;
 
                 if (sinceVersionIndex > 0) {
@@ -835,9 +835,9 @@ public final class SiteUtil {
             .toList();
 
         return liTagsInlineTexts.stream()
-                .filter(text -> text.getText().equals(propertyName))
-                .findFirst()
-                .map(textNode -> textNode.getParent().getParent());
+            .filter(text -> text.getText().equals(propertyName))
+            .map(textNode -> textNode.getParent().getParent())
+            .findFirst();
 
     }
 

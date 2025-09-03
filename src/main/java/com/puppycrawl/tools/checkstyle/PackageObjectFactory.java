@@ -328,8 +328,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 .entrySet()
                 .stream()
                 .filter(entry -> entry.getValue().equals(fullName))
-                .findFirst()
                 .map(Entry::getKey)
+                .findFirst()
                 .orElse(fullName);
     }
 
