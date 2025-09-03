@@ -541,6 +541,45 @@
           </dependencies>
         </plugin>
         <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>6.17.0</version>
+          <configuration>
+            <activeRecipes>
+              <recipe>CodeConvention</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**.groovy</exclusion>
+              <exclusion>**InputInvalidJavadocPosition.java</exclusion>
+              <exclusion>**release.yml</exclusion>
+              <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**xdocs-examples**</exclusion>
+            </exclusions>
+            <exportDatatables>true</exportDatatables>
+            <failOnDryRunResults>true</failOnDryRunResults>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-third-party</artifactId>
+              <version>0.26.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.16.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.12.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.11.3</version>
@@ -1658,6 +1697,11 @@
           <downloadSources>true</downloadSources>
           <downloadJavadocs>true</downloadJavadocs>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
       </plugin>
 
       <plugin>
