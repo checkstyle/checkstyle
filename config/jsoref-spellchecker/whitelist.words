@@ -318,6 +318,7 @@ Dforbiddenapis
 Dgpg
 Dhttp
 Diachenko
+diffplug
 DIFFTOOL
 dirname
 Djacoco
@@ -511,6 +512,7 @@ Ghj
 gitattributes
 github
 githubusercontent
+gitignore
 Gjs
 globbing
 GMetrics
