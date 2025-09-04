@@ -143,28 +143,14 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrors() throws IOException {
+     public void testDoubleError() throws Exception {
+        final String inputFile = "InputSarifLoggerDoubleError.java";
+        final String expectedReportFile = "ExpectedSarifLoggerDoubleError.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.INFO, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        final Violation violation2 =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId2", null, SeverityLevel.IGNORE, null,
-                        getClass(), "found another error");
-        final AuditEvent ev2 = new AuditEvent(this, "Test.java", violation2);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.fileStarted(ev2);
-        logger.addError(ev2);
-        logger.fileFinished(ev2);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerDoubleError.sarif"), outStream);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
