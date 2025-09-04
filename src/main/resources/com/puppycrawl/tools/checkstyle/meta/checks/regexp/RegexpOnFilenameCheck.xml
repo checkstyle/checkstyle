@@ -48,10 +48,14 @@
             <property default-value="" name="fileExtensions" type="java.lang.String[]">
                <description>Specify the file extensions of the files to process.</description>
             </property>
-            <property name="fileNamePattern" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="fileNamePattern"
+                      type="java.util.regex.Pattern">
                <description>Specify the regular expression to match the file name against.</description>
             </property>
-            <property name="folderPattern" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="folderPattern"
+                      type="java.util.regex.Pattern">
                <description>Specify the regular expression to match the folder path against.</description>
             </property>
             <property default-value="false"

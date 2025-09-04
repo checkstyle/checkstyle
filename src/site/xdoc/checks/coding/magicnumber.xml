@@ -43,7 +43,7 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <tr>
               <td><a id="constantWaiverParentToken"/><a href="#constantWaiverParentToken">constantWaiverParentToken</a></td>
               <td>Specify tokens that are allowed in the AST path from the number literal to the enclosing constant definition.</td>
-              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
                     ARRAY_INIT</a>

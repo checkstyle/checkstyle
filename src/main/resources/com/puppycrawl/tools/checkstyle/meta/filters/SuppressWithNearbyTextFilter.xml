@@ -24,7 +24,7 @@
  Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
  format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
-            <property name="idPattern" type="java.util.regex.Pattern">
+            <property default-value="" name="idPattern" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
             </property>
             <property default-value="0" name="lineRange" type="java.lang.String">
@@ -33,7 +33,9 @@
  Property can also be a RegExp group index at &lt;code&gt;nearbyTextPattern&lt;/code&gt; in
  format of &lt;code&gt;$x&lt;/code&gt; and be picked from line that matches &lt;code&gt;nearbyTextPattern&lt;/code&gt;.</description>
             </property>
-            <property name="messagePattern" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="messagePattern"
+                      type="java.util.regex.Pattern">
                <description>Specify check violation message pattern to suppress.</description>
             </property>
             <property default-value="SUPPRESS CHECKSTYLE (\w+)"

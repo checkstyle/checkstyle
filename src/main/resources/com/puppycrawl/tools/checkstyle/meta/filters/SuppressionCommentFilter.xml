@@ -53,10 +53,12 @@
                       type="java.util.regex.Pattern">
                <description>Specify check pattern to suppress.</description>
             </property>
-            <property name="idFormat" type="java.util.regex.Pattern">
+            <property default-value="" name="idFormat" type="java.util.regex.Pattern">
                <description>Specify check ID pattern to suppress.</description>
             </property>
-            <property name="messageFormat" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="messageFormat"
+                      type="java.util.regex.Pattern">
                <description>Specify message pattern to suppress.</description>
             </property>
             <property default-value="CHECKSTYLE:OFF"

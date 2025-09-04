@@ -36,8 +36,11 @@
             <tr>
               <td><a id="limitedTokens"/><a href="#limitedTokens">limitedTokens</a></td>
               <td>Specify set of tokens with limited occurrences as descendants.</td>
-              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
-              <td><code>{}</code></td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#">
+                    </a>
+              </td>
               <td>3.2</td>
             </tr>
             <tr>

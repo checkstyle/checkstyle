@@ -40,7 +40,7 @@
             <tr>
               <td><a id="target"/><a href="#target">target</a></td>
               <td>Specify block tags targeted.</td>
-              <td>subset of tokens <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a></td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
               <td>
                 <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>

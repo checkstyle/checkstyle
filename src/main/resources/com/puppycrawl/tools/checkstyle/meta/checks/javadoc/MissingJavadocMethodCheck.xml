@@ -51,11 +51,15 @@
                <description>Configure annotations that allow missed
  documentation.</description>
             </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+            <property default-value=""
+                      name="excludeScope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
                <description>Specify the visibility scope where Javadoc comments are
  not checked.</description>
             </property>
-            <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="ignoreMethodNamesRegex"
+                      type="java.util.regex.Pattern">
                <description>Ignore method whose names are matching specified
  regex.</description>
             </property>

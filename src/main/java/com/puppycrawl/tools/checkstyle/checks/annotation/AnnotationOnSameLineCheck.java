@@ -32,44 +32,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Verifying with this check is not good practice, but it is using by some style guides.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
- * CLASS_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
- * INTERFACE_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
- * ENUM_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
- * CTOR_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
- * VARIABLE_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.same.line}
- * </li>
- * </ul>
- *
  * @since 8.2
  */
 @StatelessCheck

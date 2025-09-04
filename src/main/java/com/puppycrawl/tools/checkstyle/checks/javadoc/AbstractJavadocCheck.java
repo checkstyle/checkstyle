@@ -31,6 +31,8 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -95,6 +97,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
     /** The javadoc tokens the check is interested in. */
+    @XdocsPropertyType(PropertyType.TOKEN_ARRAY)
     private final Set<Integer> javadocTokens = new HashSet<>();
 
     /**
@@ -175,7 +178,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @param shouldReportViolation value to which the field shall be set to
      * @since 8.3
      */
-    public final void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+    public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
         violateExecutionOnNonTightHtml = shouldReportViolation;
     }
 

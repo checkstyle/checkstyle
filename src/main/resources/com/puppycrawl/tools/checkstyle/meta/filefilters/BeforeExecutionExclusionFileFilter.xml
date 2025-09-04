@@ -25,7 +25,9 @@
  testing for violations will be performed on them.
  &lt;/p&gt;</description>
          <properties>
-            <property name="fileNamePattern" type="java.util.regex.Pattern">
+            <property default-value=""
+                      name="fileNamePattern"
+                      type="java.util.regex.Pattern">
                <description>Define regular expression to match the file name against.</description>
             </property>
          </properties>
