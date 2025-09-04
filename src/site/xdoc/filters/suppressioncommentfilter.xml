@@ -75,7 +75,7 @@
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
               <td>Specify check pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>.*</code></td>
               <td>3.5</td>
             </tr>
             <tr>

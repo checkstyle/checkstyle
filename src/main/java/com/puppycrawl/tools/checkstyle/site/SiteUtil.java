@@ -54,6 +54,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
@@ -79,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -95,7 +97,8 @@ public final class SiteUtil {
     /** The string '.'. */
     public static final String DOT = ".";
     /** The string ', '. */
-    public static final String COMMA_SPACE = ", ";
+    public static final String COMMA = ",";
+    public static final String COMMA_SPACE = COMMA + " ";
     /** The string 'TokenTypes'. */
     public static final String TOKEN_TYPES = "TokenTypes";
     /** The path to the TokenTypes.html file. */
@@ -106,14 +109,16 @@ public final class SiteUtil {
             "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
     /** The string of JavaDoc module marking 'Since version'. */
     public static final String SINCE_VERSION = "Since version";
+    /** The string 'Check'. */
+    public static final String CHECK = "Check";
+    /** The string 'fileExtensions'. */
+    public static final String FILE_EXTENSIONS = "fileExtensions";
     /** The url of the checkstyle website. */
     private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
     /** The string 'charset'. */
     private static final String CHARSET = "charset";
     /** The string '{}'. */
     private static final String CURLY_BRACKETS = "{}";
-    /** The string 'fileExtensions'. */
-    private static final String FILE_EXTENSIONS = "fileExtensions";
     /** The string 'checks'. */
     private static final String CHECKS = "checks";
     /** The string 'naming'. */
@@ -122,6 +127,8 @@ public final class SiteUtil {
     private static final String SRC = "src";
     /** The whitespace. */
     private static final String WHITESPACE = " ";
+    /** Template file extension. */
+    private static final String TEMPLATE_FILE_EXTENSION = ".xml.template";
 
     /** Precompiled regex pattern to remove the "Setter to " prefix from strings. */
     private static final Pattern SETTER_PATTERN = Pattern.compile("^Setter to ");
@@ -282,9 +289,15 @@ public final class SiteUtil {
     public static Object getFieldValue(Field field, Object instance)
             throws MacroExecutionException {
         try {
-            // required for package/private classes
-            field.trySetAccessible();
-            return field.get(instance);
+            Object fieldValue = null;
+
+            if (field != null) {
+                // required for package/private classes
+                field.trySetAccessible();
+                fieldValue = field.get(instance);
+            }
+
+            return fieldValue;
         }
         catch (IllegalAccessException exc) {
             throw new MacroExecutionException("Couldn't get field value", exc);
@@ -370,7 +383,7 @@ public final class SiteUtil {
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
-                            && path.toString().endsWith(".xml.template");
+                            && path.toString().endsWith(TEMPLATE_FILE_EXTENSION);
                 })) {
             return stream.collect(Collectors.toUnmodifiableSet());
         }
@@ -441,15 +454,15 @@ public final class SiteUtil {
     /**
      * Gets the javadoc of module class.
      *
-     * @param moduleName name of module.
+     * @param moduleClassName name of module class.
      * @param modulePath module's path.
      * @return javadoc of module.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    public static DetailNode getModuleJavadoc(String moduleName, Path modulePath)
+    public static DetailNode getModuleJavadoc(String moduleClassName, Path modulePath)
             throws MacroExecutionException {
 
-        processModule(moduleName, modulePath);
+        processModule(moduleClassName, modulePath);
         return JavadocScraperResultUtil.getModuleJavadocNode();
     }
 
@@ -694,7 +707,7 @@ public final class SiteUtil {
         }
         else {
             final String descriptionString = SETTER_PATTERN.matcher(
-                    DescriptionExtractor.getDescriptionFromJavadoc(javadoc, moduleName))
+                    getDescriptionFromJavadocForXdoc(javadoc, moduleName))
                     .replaceFirst("");
 
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
@@ -719,10 +732,16 @@ public final class SiteUtil {
             throws MacroExecutionException {
         final String sinceVersion;
 
+        final Optional<String> specifiedPropertyVersionInPropertyJavadoc =
+            getPropertyVersionFromItsJavadoc(propertyJavadoc);
+
         final Optional<String> specifiedPropertyVersionInModule =
             getSpecifiedPropertyVersionInModule(propertyName, moduleJavadoc);
 
-        if (specifiedPropertyVersionInModule.isPresent()) {
+        if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
+            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
+        }
+        else if (specifiedPropertyVersionInModule.isPresent()) {
             sinceVersion = specifiedPropertyVersionInModule.get();
         }
         else {
@@ -733,13 +752,14 @@ public final class SiteUtil {
                         "Missing @since on module " + moduleName);
             }
 
-            String propertySince = null;
+            String propertySetterSince = null;
             if (propertyJavadoc != null) {
-                propertySince = getSinceVersionFromJavadoc(propertyJavadoc);
+                propertySetterSince = getSinceVersionFromJavadoc(propertyJavadoc);
             }
 
-            if (propertySince != null && isVersionAtLeast(propertySince, moduleSince)) {
-                sinceVersion = propertySince;
+            if (propertySetterSince != null
+                    && isVersionAtLeast(propertySetterSince, moduleSince)) {
+                sinceVersion = propertySetterSince;
             }
             else {
                 sinceVersion = moduleSince;
@@ -747,6 +767,51 @@ public final class SiteUtil {
         }
 
         return sinceVersion;
+    }
+
+    /**
+     * Extract the property since version from its Javadoc.
+     *
+     * @param javadoc the Javadoc to extract the since version from.
+     * @return the Optional of property version specified in its javadoc.
+     */
+    @Nullable
+    private static Optional<String> getPropertyVersionFromItsJavadoc(DetailNode propertyJavadoc) {
+        final Optional<DetailNode> propertyJavadocTag =
+            getPropertySinceJavadocTag(propertyJavadoc);
+
+        return propertyJavadocTag
+            .map(tag -> JavadocUtil.findFirstToken(tag, JavadocTokenTypes.DESCRIPTION))
+            .map(description -> JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT))
+            .map(DetailNode::getText);
+    }
+
+    /**
+     * Find the propertySince Javadoc tag node in the given property Javadoc.
+     *
+     * @param javadoc the Javadoc to search.
+     * @return the Optional of propertySince Javadoc tag node or null if not found.
+     */
+    private static Optional<DetailNode> getPropertySinceJavadocTag(DetailNode javadoc) {
+        Optional<DetailNode> propertySinceJavadocTag = Optional.empty();
+
+        Optional<DetailNode[]> propertyJavadocNodes = Optional.ofNullable(javadoc)
+            .map(DetailNode::getChildren);
+
+        if (propertyJavadocNodes.isPresent()) {
+            for (final DetailNode child : propertyJavadocNodes.get()) {
+                if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                    final DetailNode customName = JavadocUtil.findFirstToken(
+                            child, JavadocTokenTypes.CUSTOM_NAME);
+                    if (customName != null && "@propertySince".equals(customName.getText())) {
+                        propertySinceJavadocTag = Optional.of(child);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return propertySinceJavadocTag;
     }
 
     /**
@@ -786,10 +851,6 @@ public final class SiteUtil {
                         + " has no valid version, at least one '.' is expected.");
                 }
             }
-        }
-        else {
-            throw new MacroExecutionException("Property '" + propertyName
-                + "' is not found in module's javadoc.");
         }
 
         return specifiedVersion;
@@ -924,8 +985,9 @@ public final class SiteUtil {
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, instance);
         return Optional.ofNullable(field)
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
+                .filter(propertyType -> propertyType.value() != PropertyType.TOKEN_ARRAY)
                 .map(propertyType -> propertyType.value().getDescription())
-                .orElseGet(fieldClass::getSimpleName);
+                .orElseGet(fieldClass::getTypeName);
     }
 
     /**
@@ -948,40 +1010,32 @@ public final class SiteUtil {
         final Object value = getFieldValue(field, classInstance);
         final Class<?> fieldClass = getFieldClass(field, propertyName, moduleName, classInstance);
         String result = null;
-        if (CHARSET.equals(propertyName)) {
-            result = "the charset property of the parent"
-                    + " <a href=\"https://checkstyle.org/config.html#Checker\">Checker</a> module";
-        }
-        else if (classInstance instanceof PropertyCacheFile) {
+
+        if (classInstance instanceof PropertyCacheFile) {
             result = "null (no cache file)";
         }
-        else if (fieldClass == boolean.class) {
-            result = value.toString();
+        else if (fieldClass == boolean.class
+                || fieldClass == int.class
+                || fieldClass == URI.class
+                || fieldClass == String.class) {
+            if (value != null) {
+                result = value.toString();
+            }
         }
-        else if (fieldClass == int.class) {
-            result = value.toString();
-        }
-        else if (fieldClass == int[].class) {
+        else if (fieldClass == int[].class
+                || ModuleJavadocParsingUtil.isPropertySpecialTokenProp(field)) {
             result = getIntArrayPropertyValue(value);
         }
         else if (fieldClass == double[].class) {
             result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
-            if (result.isEmpty()) {
-                result = CURLY_BRACKETS;
-            }
         }
         else if (fieldClass == String[].class) {
             result = getStringArrayPropertyValue(propertyName, value);
         }
-        else if (fieldClass == URI.class || fieldClass == String.class) {
-            if (value != null) {
-                result = '"' + value.toString() + '"';
-            }
-        }
         else if (fieldClass == Pattern.class) {
             if (value != null) {
-                result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
-                        .replace("\r", "\\r").replace("\f", "\\f") + '"';
+                result = value.toString().replace("\n", "\\n").replace("\t", "\\t")
+                        .replace("\r", "\\r").replace("\f", "\\f");
             }
         }
         else if (fieldClass == Pattern[].class) {
@@ -994,11 +1048,6 @@ public final class SiteUtil {
         }
         else if (fieldClass == AccessModifierOption[].class) {
             result = removeSquareBrackets(Arrays.toString((Object[]) value));
-        }
-        else {
-            final String message = String.format(Locale.ROOT,
-                    "Unknown property type: %s", fieldClass.getSimpleName());
-            throw new MacroExecutionException(message);
         }
 
         if (result == null) {
@@ -1017,7 +1066,6 @@ public final class SiteUtil {
     private static String getPatternArrayPropertyValue(Object fieldValue) {
         Object value = fieldValue;
         if (value instanceof Collection<?> collection) {
-
             value = collection.stream()
                     .map(Pattern.class::cast)
                     .toArray(Pattern[]::new);
@@ -1031,9 +1079,6 @@ public final class SiteUtil {
                     .collect(Collectors.joining(COMMA_SPACE)));
         }
 
-        if (result.isEmpty()) {
-            result = CURLY_BRACKETS;
-        }
         return result;
     }
 
@@ -1070,14 +1115,6 @@ public final class SiteUtil {
             }
         }
 
-        if (result.isEmpty()) {
-            if (FILE_EXTENSIONS.equals(propertyName)) {
-                result = "all files";
-            }
-            else {
-                result = CURLY_BRACKETS;
-            }
-        }
         return result;
     }
 
@@ -1107,14 +1144,10 @@ public final class SiteUtil {
      */
     private static String getIntArrayPropertyValue(Object value) {
         try (IntStream stream = getIntStream(value)) {
-            String result = stream
+            return stream
                     .mapToObj(TokenUtil::getTokenName)
                     .sorted()
                     .collect(Collectors.joining(COMMA_SPACE));
-            if (result.isEmpty()) {
-                result = CURLY_BRACKETS;
-            }
-            return result;
         }
     }
 
@@ -1150,7 +1183,7 @@ public final class SiteUtil {
      * @throws MacroExecutionException if an error occurs during getting the class.
      */
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable
-    private static Class<?> getFieldClass(Field field, String propertyName,
+    public static Class<?> getFieldClass(Field field, String propertyName,
                                           String moduleName, Object instance)
             throws MacroExecutionException {
         Class<?> result = null;
@@ -1159,13 +1192,18 @@ public final class SiteUtil {
                 .contains(moduleName + DOT + propertyName)) {
             result = getPropertyClass(propertyName, instance);
         }
+        if (ModuleJavadocParsingUtil.isPropertySpecialTokenProp(field)) {
+            result = String[].class;
+        }
         if (field != null && result == null) {
             result = field.getType();
         }
+
         if (result == null) {
             throw new MacroExecutionException(
                     "Could not find field " + propertyName + " in class " + moduleName);
         }
+
         if (field != null && (result == List.class || result == Set.class)) {
             final ParameterizedType type = (ParameterizedType) field.getGenericType();
             final Class<?> parameterClass = (Class<?>) type.getActualTypeArguments()[0];
@@ -1267,7 +1305,7 @@ public final class SiteUtil {
      */
     public static String getLinkToDocument(String moduleName, String document)
             throws MacroExecutionException {
-        final Path templatePath = getTemplatePath(moduleName.replace("Check", ""));
+        final Path templatePath = getTemplatePath(moduleName.replace(CHECK, ""));
         if (templatePath == null) {
             throw new MacroExecutionException(
                     String.format(Locale.ROOT,
@@ -1284,80 +1322,206 @@ public final class SiteUtil {
                 .replace('\\', '/');
     }
 
+    /**
+     * Get all templates whose content contains properties macro.
+     *
+     * @return templates whose content contains properties macro.
+     * @throws CheckstyleException if file could not be read.
+     * @throws MacroExecutionException if template file is not found.
+     */
+    public static List<Path> getTemplatesThatContainPropertiesMacro()
+            throws CheckstyleException, MacroExecutionException {
+        final List<Path> result = new ArrayList<>();
+        final Set<Path> templatesPaths = getXdocsTemplatesFilePaths();
+        for (Path templatePath: templatesPaths) {
+            final String content = getFileContents(templatePath);
+            final String propertiesMacroDefinition = "<macro name=\"properties\"";
+            if (content.contains(propertiesMacroDefinition)) {
+                result.add(templatePath);
+            }
+        }
+        return result;
+    }
+
+
+    /**
+     * Get file contents as string.
+     *
+     * @param pathToFile path to file.
+     * @return file contents as string.
+     * @throws CheckstyleException if file could not be read.
+     */
+    private static String getFileContents(Path pathToFile) throws CheckstyleException {
+        final String content;
+        try {
+            content = Files.readString(pathToFile, StandardCharsets.UTF_8);
+        }
+        catch (IOException ioException) {
+            final String message = String.format(Locale.ROOT, "Failed to read file: %s",
+                    pathToFile);
+            throw new CheckstyleException(message, ioException);
+        }
+        return content;
+    }
+
+    /**
+     * Get the module name from the file. The module name is the file name without the extension.
+     *
+     * @param file file to extract the module name from.
+     * @return module name.
+     */
+    public static String getModuleName(File file) {
+        final String fullFileName = file.getName();
+        return CommonUtil.getFileNameWithoutExtension(fullFileName);
+    }
+
+    /**
+     * Extracts the description from the javadoc detail node. Performs a DFS traversal on the
+     * detail node and extracts the text nodes. This description is additionally processed to
+     * fit Xdoc format.
+     *
+     * @param javadoc the Javadoc to extract the description from.
+     * @param moduleName the name of the module.
+     * @return the description of the setter.
+     * @throws MacroExecutionException if the description could not be extracted.
+     * @noinspection TooBroadScope
+     * @noinspectionreason TooBroadScope - complex nature of method requires large scope
+     */
+    // -@cs[NPathComplexity] Splitting would not make the code more readable
+    // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
+    private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
+            throws MacroExecutionException {
+        boolean isInCodeLiteral = false;
+        boolean isInHtmlElement = false;
+        boolean isInHrefAttribute = false;
+        final StringBuilder description = new StringBuilder(128);
+        final Deque<DetailNode> queue = new ArrayDeque<>();
+        final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
+        Lists.reverse(descriptionNodes).forEach(queue::push);
+
+        // Perform DFS traversal on description nodes
+        while (!queue.isEmpty()) {
+            final DetailNode node = queue.pop();
+            Lists.reverse(Arrays.asList(node.getChildren())).forEach(queue::push);
+
+            if (node.getType() == JavadocTokenTypes.HTML_TAG_NAME
+                    && "href".equals(node.getText())) {
+                isInHrefAttribute = true;
+            }
+            if (isInHrefAttribute && node.getType() == JavadocTokenTypes.ATTR_VALUE) {
+                final String href = node.getText();
+                if (href.contains(CHECKSTYLE_ORG_URL)) {
+                    DescriptionExtractor.handleInternalLink(description, moduleName, href);
+                }
+                else {
+                    description.append(href);
+                }
+
+                isInHrefAttribute = false;
+                continue;
+            }
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                isInHtmlElement = true;
+            }
+            if (node.getType() == JavadocTokenTypes.END
+                    && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
+                description.append(node.getText());
+                isInHtmlElement = false;
+            }
+            if (node.getType() == JavadocTokenTypes.TEXT
+                    // If a node has children, its text is not part of the description
+                    || isInHtmlElement && node.getChildren().length == 0
+                        // Some HTML elements span multiple lines, so we avoid the asterisk
+                        && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                description.append(node.getText());
+            }
+            if (node.getType() == JavadocTokenTypes.CODE_LITERAL) {
+                isInCodeLiteral = true;
+                description.append("<code>");
+            }
+            if (isInCodeLiteral
+                    && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
+                isInCodeLiteral = false;
+                description.append("</code>");
+            }
+        }
+        return description.toString().trim();
+    }
+
+    /**
+     * Get 1st paragraph from the Javadoc with no additional processing.
+     *
+     * @param javadoc the Javadoc to extract first paragraph from.
+     * @return first paragraph of javadoc.
+     */
+    public static String getFirstParagraphFromJavadoc(DetailNode javadoc) {
+        DetailNode detailNode;
+
+        final Deque<DetailNode> stack = new ArrayDeque<>();
+        final List<DetailNode> firstParagraphNodes = getFirstJavadocParagraphNodes(javadoc);
+        Lists.reverse(firstParagraphNodes).forEach(stack::push);
+        final StringBuilder result = new StringBuilder(1024);
+        while (!stack.isEmpty()) {
+            detailNode = stack.pop();
+
+            Lists.reverse(Arrays.asList(detailNode.getChildren())).forEach(stack::push);
+
+            String childText = detailNode.getText();
+
+            if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                childText = JavadocMetadataScraper.adjustCodeInlineTagChildToHtml(detailNode);
+            }
+
+            // Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF).
+            final Pattern tokenTextPattern = Pattern.compile("([A-Z_]{2,})+");
+            if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                    && !tokenTextPattern.matcher(childText).matches()) {
+                result.append(childText);
+            }
+        }
+        return result.toString().trim();
+    }
+
+    /**
+     * Extracts first paragraph nodes from javadoc.
+     *
+     * @param javadoc the Javadoc to extract the description from.
+     * @return the first paragraph nodes of the setter.
+     */
+    public static List<DetailNode> getFirstJavadocParagraphNodes(DetailNode javadoc) {
+        final DetailNode[] children = javadoc.getChildren();
+        final List<DetailNode> firstParagraphNodes = new ArrayList<>();
+        for (final DetailNode child : children) {
+            if (isEndOfFirstJavadocParagraph(child)) {
+                break;
+            }
+            firstParagraphNodes.add(child);
+        }
+        return firstParagraphNodes;
+    }
+
+    /**
+     * Determines if the given child index is the end of the first Javadoc paragraph. The end
+     * of the description is defined as 4 consecutive nodes of type NEWLINE, LEADING_ASTERISK,
+     * NEWLINE, LEADING_ASTERISK. This is an asterisk that is alone on a line. Just like the
+     * one below this line.
+     *
+     * @param child the child to check.
+     * @return true if the given child index is the end of the first javadoc paragraph.
+     */
+    public static boolean isEndOfFirstJavadocParagraph(DetailNode child) {
+        final DetailNode nextSibling = JavadocUtil.getNextSibling(child);
+        final DetailNode secondNextSibling = JavadocUtil.getNextSibling(nextSibling);
+        final DetailNode thirdNextSibling = JavadocUtil.getNextSibling(secondNextSibling);
+
+        return child.getType() == JavadocTokenTypes.NEWLINE
+                    && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                    && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
+                    && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+    }
+
     /** Utility class for extracting description from a method's Javadoc. */
     private static final class DescriptionExtractor {
-
-        /**
-         * Extracts the description from the javadoc detail node. Performs a DFS traversal on the
-         * detail node and extracts the text nodes.
-         *
-         * @param javadoc the Javadoc to extract the description from.
-         * @param moduleName the name of the module.
-         * @return the description of the setter.
-         * @throws MacroExecutionException if the description could not be extracted.
-         * @noinspection TooBroadScope
-         * @noinspectionreason TooBroadScope - complex nature of method requires large scope
-         */
-        // -@cs[NPathComplexity] Splitting would not make the code more readable
-        // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
-        private static String getDescriptionFromJavadoc(DetailNode javadoc, String moduleName)
-                throws MacroExecutionException {
-            boolean isInCodeLiteral = false;
-            boolean isInHtmlElement = false;
-            boolean isInHrefAttribute = false;
-            final StringBuilder description = new StringBuilder(128);
-            final Deque<DetailNode> queue = new ArrayDeque<>();
-            final List<DetailNode> descriptionNodes = getDescriptionNodes(javadoc);
-            Lists.reverse(descriptionNodes).forEach(queue::push);
-
-            // Perform DFS traversal on description nodes
-            while (!queue.isEmpty()) {
-                final DetailNode node = queue.pop();
-                Lists.reverse(Arrays.asList(node.getChildren())).forEach(queue::push);
-
-                if (node.getType() == JavadocTokenTypes.HTML_TAG_NAME
-                        && "href".equals(node.getText())) {
-                    isInHrefAttribute = true;
-                }
-                if (isInHrefAttribute && node.getType() == JavadocTokenTypes.ATTR_VALUE) {
-                    final String href = node.getText();
-                    if (href.contains(CHECKSTYLE_ORG_URL)) {
-                        handleInternalLink(description, moduleName, href);
-                    }
-                    else {
-                        description.append(href);
-                    }
-
-                    isInHrefAttribute = false;
-                    continue;
-                }
-                if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                    isInHtmlElement = true;
-                }
-                if (node.getType() == JavadocTokenTypes.END
-                        && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
-                    description.append(node.getText());
-                    isInHtmlElement = false;
-                }
-                if (node.getType() == JavadocTokenTypes.TEXT
-                        // If a node has children, its text is not part of the description
-                        || isInHtmlElement && node.getChildren().length == 0
-                            // Some HTML elements span multiple lines, so we avoid the asterisk
-                            && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
-                    description.append(node.getText());
-                }
-                if (node.getType() == JavadocTokenTypes.CODE_LITERAL) {
-                    isInCodeLiteral = true;
-                    description.append("<code>");
-                }
-                if (isInCodeLiteral
-                        && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
-                    isInCodeLiteral = false;
-                    description.append("</code>");
-                }
-            }
-            return description.toString().trim();
-        }
 
         /**
          * Converts the href value to a relative link to the document and appends it to the
@@ -1379,44 +1543,6 @@ public final class SiteUtil {
             final String relativeHref = getLinkToDocument(moduleName, href);
             final char doubleQuote = '\"';
             description.append(doubleQuote).append(relativeHref).append(doubleQuote);
-        }
-
-        /**
-         * Extracts description nodes from javadoc.
-         *
-         * @param javadoc the Javadoc to extract the description from.
-         * @return the description nodes of the setter.
-         */
-        private static List<DetailNode> getDescriptionNodes(DetailNode javadoc) {
-            final DetailNode[] children = javadoc.getChildren();
-            final List<DetailNode> descriptionNodes = new ArrayList<>();
-            for (final DetailNode child : children) {
-                if (isEndOfDescription(child)) {
-                    break;
-                }
-                descriptionNodes.add(child);
-            }
-            return descriptionNodes;
-        }
-
-        /**
-         * Determines if the given child index is the end of the description. The end of the
-         * description is defined as 4 consecutive nodes of type NEWLINE, LEADING_ASTERISK, NEWLINE,
-         * LEADING_ASTERISK. This is an asterisk that is alone on a line. Just like the one below
-         * this line.
-         *
-         * @param child the child to check.
-         * @return true if the given child index is the end of the description.
-         */
-        private static boolean isEndOfDescription(DetailNode child) {
-            final DetailNode nextSibling = JavadocUtil.getNextSibling(child);
-            final DetailNode secondNextSibling = JavadocUtil.getNextSibling(nextSibling);
-            final DetailNode thirdNextSibling = JavadocUtil.getNextSibling(secondNextSibling);
-
-            return child.getType() == JavadocTokenTypes.NEWLINE
-                        && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                        && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
-                        && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
         }
     }
 }
