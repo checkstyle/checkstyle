@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check and close inactive issues and PRs
-        uses: actions/stale@v9
+        uses: actions/stale@v10
         with:
           only-issue-labels: "awaiting response"
           only-pr-labels: "awaiting changes"
