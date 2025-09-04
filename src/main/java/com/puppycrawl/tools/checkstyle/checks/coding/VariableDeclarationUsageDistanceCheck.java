@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,6 +103,24 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * usage.
      */
     private static final int DEFAULT_DISTANCE = 3;
+
+    /**
+     * Set of token types that are considered to have zero distance
+     * when calculating variable declaration usage distance.
+     */
+    private static final Set<Integer> ZERO_DISTANCE_TOKENS = Set.of(
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.TYPE,
+            TokenTypes.MODIFIERS,
+            TokenTypes.RESOURCE,
+            TokenTypes.EXTENDS_CLAUSE,
+            TokenTypes.IMPLEMENTS_CLAUSE,
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.ANNOTATION_DEF
+    );
 
     /**
      * Specify the maximum distance between a variable's declaration and its first usage.
@@ -363,43 +382,57 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         int dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
+
         while (currentScopeAst != null) {
             final Entry<List<DetailAST>, Integer> searchResult =
                     searchVariableUsageExpressions(variable, currentScopeAst);
-
             currentScopeAst = null;
-
             final List<DetailAST> variableUsageExpressions = searchResult.getKey();
             dist += searchResult.getValue();
-
             // If variable usage exists in a single scope, then look into
             // this scope and count distance until variable usage.
             if (variableUsageExpressions.size() == 1) {
                 final DetailAST blockWithVariableUsage = variableUsageExpressions.get(0);
                 currentScopeAst = switch (blockWithVariableUsage.getType()) {
-                    case TokenTypes.VARIABLE_DEF, TokenTypes.EXPR -> {
+                    // Usage is in a plain expression or another variable def:
+                    // count this node itself and stop.
+                    case TokenTypes.VARIABLE_DEF,
+                         TokenTypes.EXPR -> {
                         dist++;
                         yield null;
                     }
-                    case TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE, TokenTypes.LITERAL_DO ->
-                        getFirstNodeInsideForWhileDoWhileBlocks(blockWithVariableUsage, variable);
+
+                    case TokenTypes.CLASS_DEF,
+                         TokenTypes.INTERFACE_DEF,
+                         TokenTypes.ENUM_DEF,
+                         TokenTypes.RECORD_DEF,
+                         TokenTypes.ANNOTATION_DEF -> {
+                        dist++;
+                        yield null;
+                    }
+
+                    case TokenTypes.LITERAL_FOR,
+                         TokenTypes.LITERAL_WHILE,
+                         TokenTypes.LITERAL_DO ->
+                        getFirstNodeInsideForWhileDoWhileBlocks(blockWithVariableUsage,
+                                variable);
+
                     case TokenTypes.LITERAL_IF ->
                         getFirstNodeInsideIfBlock(blockWithVariableUsage, variable);
+
                     case TokenTypes.LITERAL_SWITCH ->
                         getFirstNodeInsideSwitchBlock(blockWithVariableUsage, variable);
+
                     case TokenTypes.LITERAL_TRY ->
                         getFirstNodeInsideTryCatchFinallyBlocks(blockWithVariableUsage, variable);
+
                     default -> blockWithVariableUsage.getFirstChild();
                 };
                 variableUsageAst = blockWithVariableUsage;
             }
-
-            // If there's no any variable usage, then distance = 0.
             else if (variableUsageExpressions.isEmpty()) {
                 variableUsageAst = null;
             }
-            // If variable usage exists in different scopes, then distance =
-            // distance until variable first usage.
             else {
                 dist++;
                 variableUsageAst = variableUsageExpressions.get(0);
@@ -455,7 +488,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         if (!isVariableInOperatorExpr(block, variable)) {
             final DetailAST currentNode;
-
             // Find currentNode for DO-WHILE block.
             if (block.getType() == TokenTypes.LITERAL_DO) {
                 currentNode = block.getFirstChild();
@@ -466,7 +498,6 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 // expression.
                 currentNode = block.findFirstToken(TokenTypes.RPAREN).getNextSibling();
             }
-
             final int currentNodeType = currentNode.getType();
 
             if (currentNodeType != TokenTypes.EXPR) {
@@ -727,36 +758,12 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
     /**
      * Check if the token should be ignored for distance counting.
-     * For example,
-     * <pre>
-     *     try (final AutoCloseable t = new java.io.StringReader(a);) {
-     *     }
-     * </pre>
-     * final is a zero-distance token and should be ignored for distance counting.
-     * <pre>
-     *     class Table implements Comparator&lt;Integer&gt;{
-     *     }
-     * </pre>
-     * An inner class may be defined. Both tokens implements and extends
-     * are zero-distance tokens.
-     * <pre>
-     *     public int method(Object b){
-     *     }
-     * </pre>
-     * public is a modifier and zero-distance token. int is a type and
-     * zero-distance token.
      *
      * @param type
      *        Token type of the ast node.
      * @return true if it should be ignored for distance counting, otherwise false.
      */
     private static boolean isZeroDistanceToken(int type) {
-        return type == TokenTypes.VARIABLE_DEF
-                || type == TokenTypes.TYPE
-                || type == TokenTypes.MODIFIERS
-                || type == TokenTypes.RESOURCE
-                || type == TokenTypes.EXTENDS_CLAUSE
-                || type == TokenTypes.IMPLEMENTS_CLAUSE;
+        return ZERO_DISTANCE_TOKENS.contains(type);
     }
-
 }
