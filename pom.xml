@@ -553,8 +553,8 @@
             <source>${java.version}</source>
             <show>private</show>
             <failOnError>true</failOnError>
-            <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17642 -->
-            <failOnWarnings>false</failOnWarnings>
+            <failOnWarnings>true</failOnWarnings>
+            <doclint>-missing</doclint>
             <linksource>true</linksource>
             <tags>
               <tag>
