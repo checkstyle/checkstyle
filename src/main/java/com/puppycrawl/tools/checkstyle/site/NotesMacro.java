@@ -41,10 +41,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 @Component(role = Macro.class, hint = "notes")
 public class NotesMacro extends AbstractMacro {
 
-    /** "Notes:" line with new line accounted. */
-    public static final Pattern NOTES_LINE_WITH_NEWLINE = Pattern.compile("\r?\n\\s?"
-        + ModuleJavadocParsingUtil.NOTES);
-
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         final Path modulePath = Paths.get((String) request.getParameter("modulePath"));
@@ -58,39 +54,10 @@ public class NotesMacro extends AbstractMacro {
                 "Javadoc of module " + moduleName + " is not found.");
         }
 
-        final int notesStartIndex = ModuleJavadocParsingUtil
-            .getNotesSectionStartIndex(moduleJavadoc);
-        final int notesEndIndex = getNotesEndIndex(moduleJavadoc, propertyNames);
-
-        final String unprocessedModuleNotes = JavadocMetadataScraper.constructSubTreeText(
-            moduleJavadoc, notesStartIndex, notesEndIndex);
-        final String moduleNotes = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedModuleNotes)
-            .replaceAll("");
+        final String moduleNotes = ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc, propertyNames);
 
         ModuleJavadocParsingUtil.writeOutJavadocPortion(moduleNotes, sink);
 
-    }
-
-    /**
-     * Gets the end index of the Notes.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @param propertyNamesSet Set with property names.
-     * @return the end index.
-     */
-    private static int getNotesEndIndex(DetailNode moduleJavadoc,
-                                        Set<String> propertyNamesSet) {
-        int notesEndIndex = -1;
-
-        if (propertyNamesSet.isEmpty()) {
-            notesEndIndex += ModuleJavadocParsingUtil.getParentSectionStartIndex(moduleJavadoc);
-        }
-        else {
-            notesEndIndex += ModuleJavadocParsingUtil.getPropertySectionStartIndex(
-                moduleJavadoc, propertyNamesSet);
-        }
-
-        return notesEndIndex;
     }
 
 }
