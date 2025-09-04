@@ -1789,17 +1789,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath(
-            "InputIndentationInvalidArrayInitIndentWithoutTrailingComments.java");
+            "InputIndentationInvalidArrInitIndentWithoutTrailCmnts.java");
         final String[] expected = {
-            "29:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "31:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "35:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "37:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "12, 16"),
-            "39:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "41:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
-            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
+            "42:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "43:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
+            "45:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
         };
         verifyWarns(checkConfig, fileName, expected);
@@ -1820,17 +1820,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "4");
         final String fileName = getPath(
-            "InputIndentationInvalidArrayInitIndentWithoutTrailingComments.java");
+            "InputIndentationInvalidArrInitIndentWithoutTrailCmnts.java");
         final String[] expected = {
-            "29:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "31:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "35:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "37:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "12, 16"),
-            "39:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+            "41:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
-            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
+            "42:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "43:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
+            "45:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
         };
         verifyWarns(checkConfig, fileName, expected);
@@ -2850,13 +2850,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         checkConfig.addProperty("arrayInitIndent", "4");
         final String[] expected = {
-            "38:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "40:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "46:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
-            "58:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
-            "64:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "67:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
-            "73:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "40:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "42:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "48:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
+            "60:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
+            "66:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
+            "69:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "16, 20, 24"),
+            "75:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"), expected);
