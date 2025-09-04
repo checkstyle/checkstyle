@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -16,10 +15,8 @@
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
-  <description>
-    Checkstyle is a development tool to help programmers write Java code
-    that adheres to a coding standard
-  </description>
+  <description>Checkstyle is a development tool to help programmers write Java code
+    that adheres to a coding standard</description>
   <url>https://checkstyle.org/</url>
   <inceptionYear>2001</inceptionYear>
   <licenses>
@@ -173,17 +170,17 @@
   <mailingLists>
     <mailingList>
       <name>checkstyle</name>
-      <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
       <subscribe>mailto:checkstyle%2Bsubscribe@googlegroups.com</subscribe>
       <unsubscribe>mailto:checkstyle%2Bunsubscribe@googlegroups.com</unsubscribe>
       <post>mailto:checkstyle@googlegroups.com</post>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
     </mailingList>
     <mailingList>
       <name>checkstyle-devel</name>
-      <archive>https://groups.google.com/forum/#!forum/checkstyle-devel</archive>
       <subscribe>mailto:checkstyle-devel%2Bsubscribe@googlegroups.com</subscribe>
       <unsubscribe>mailto:checkstyle-devel%2Bunsubscribe@googlegroups.com</unsubscribe>
       <post>mailto:checkstyle-devel@googlegroups.com</post>
+      <archive>https://groups.google.com/forum/#!forum/checkstyle-devel</archive>
     </mailingList>
   </mailingLists>
 
@@ -200,21 +197,20 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <surefire.options />
+    <surefire.options/>
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.4.1</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
+    <maven.rewrite.plugin.version>6.17.0</maven.rewrite.plugin.version>
     <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.8</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
-    <maven.sevntu-checkstyle-check.checkstyle.version>
-      10.4
-    </maven.sevntu-checkstyle-check.checkstyle.version>
+    <maven.sevntu-checkstyle-check.checkstyle.version>10.4</maven.sevntu-checkstyle-check.checkstyle.version>
     <maven.versions.plugin.version>2.18.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
@@ -546,10 +542,8 @@
           <version>3.11.3</version>
           <configuration>
             <!-- Exclude generated sources. -->
-            <excludePackageNames>
-              com.puppycrawl.tools.checkstyle.grammar.java:
-              com.puppycrawl.tools.checkstyle.grammar.javadoc:
-            </excludePackageNames>
+            <excludePackageNames>com.puppycrawl.tools.checkstyle.grammar.java:
+              com.puppycrawl.tools.checkstyle.grammar.javadoc:</excludePackageNames>
             <source>${java.version}</source>
             <show>private</show>
             <failOnError>true</failOnError>
@@ -566,6 +560,49 @@
                 <placement>X</placement>
               </tag>
             </tags>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.46.1</version>
+          <configuration>
+            <formats>
+              <format>
+                <excludes>
+                  <exclude>**.ci-temp**</exclude>
+                  <exclude>**release.yml</exclude>
+                  <exclude>**resources-noncompilable**</exclude>
+                  <exclude>**src/it/resources**</exclude>
+                  <exclude>**src/test/resources**</exclude>
+                  <exclude>**xdocs-examples**</exclude>
+                </excludes>
+                <includes>
+                  <include>.gitignore</include>
+                </includes>
+                <trimTrailingWhitespace/>
+              </format>
+            </formats>
+            <pom>
+              <sortPom/>
+            </pom>
+            <java>
+              <excludes>
+                <exclude>**.ci-temp**</exclude>
+                <exclude>**release.yml</exclude>
+                <exclude>**resources-noncompilable**</exclude>
+                <exclude>**src/it/resources**</exclude>
+                <exclude>**src/test/resources**</exclude>
+                <exclude>**xdocs-examples**</exclude>
+              </excludes>
+              <removeWildcardImports/>
+              <endWithNewline/>
+              <trimTrailingWhitespace/>
+              <removeUnusedImports/>
+              <!--<importOrder>-->
+              <!--<file>.import.order</file>-->
+              <!--</importOrder>-->
+            </java>
           </configuration>
         </plugin>
         <plugin>
@@ -589,9 +626,7 @@
               <excludeRoot>src/test/resources</excludeRoot>
               <excludeRoot>src/xdocs-examples/resources</excludeRoot>
               <excludeRoot>target/generated-sources/antlr</excludeRoot>
-              <excludeRoot>
-                target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc
-              </excludeRoot>
+              <excludeRoot>target/generated-sources/antlr/com/puppycrawl/tools/checkstyle/grammar/javadoc</excludeRoot>
             </excludeRoots>
           </configuration>
           <dependencies>
@@ -656,7 +691,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute />
+                    <execute/>
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -684,7 +719,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore/>
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -697,7 +732,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute />
+                    <execute/>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -754,10 +789,10 @@
         <executions>
           <execution>
             <id>modernizer</id>
-            <phase>verify</phase>
             <goals>
               <goal>modernizer</goal>
             </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
@@ -775,10 +810,10 @@
         <executions>
           <execution>
             <id>validate</id>
-            <phase>validate</phase>
             <goals>
               <goal>check</goal>
             </goals>
+            <phase>validate</phase>
           </execution>
         </executions>
       </plugin>
@@ -790,10 +825,10 @@
         <executions>
           <execution>
             <id>copy-resources</id>
-            <phase>pre-site</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
+            <phase>pre-site</phase>
             <configuration>
               <outputDirectory>${basedir}/target/site/dtds</outputDirectory>
               <resources>
@@ -804,9 +839,7 @@
                   </includes>
                 </resource>
                 <resource>
-                  <directory>
-                    src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports
-                  </directory>
+                  <directory>src/main/resources/com/puppycrawl/tools/checkstyle/checks/imports</directory>
                   <includes>
                     <include>*.dtd</include>
                   </includes>
@@ -839,21 +872,17 @@
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
           <execution>
-            <phase>process-classes</phase>
             <goals>
               <goal>java</goal>
             </goals>
+            <phase>process-classes</phase>
             <configuration>
               <classpathScope>compile</classpathScope>
               <mainClass>com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator</mainClass>
               <arguments>
-                <argument>
-                  ${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java
-                </argument>
+                <argument>${project.build.sourceDirectory}/com/puppycrawl/tools/checkstyle/api/TokenTypes.java</argument>
                 <argument>--destfile</argument>
-                <argument>
-                  ${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties
-                </argument>
+                <argument>${project.build.outputDirectory}/com/puppycrawl/tools/checkstyle/api/tokentypes.properties</argument>
               </arguments>
             </configuration>
           </execution>
@@ -899,10 +928,10 @@
           </execution>
           <execution>
             <id>default-report</id>
-            <phase>site</phase>
             <goals>
               <goal>report</goal>
             </goals>
+            <phase>site</phase>
           </execution>
           <execution>
             <id>default-check</id>
@@ -915,47 +944,27 @@
                   <element>CLASS</element>
                   <excludes>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.api.AutomaticBean*
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.api.AutomaticBean*</exclude>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/13393 -->
                     <exclude>com.puppycrawl.tools.checkstyle.site.*</exclude>
                     <!-- Parser related classes -->
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*
-                    </exclude>
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer
-                    </exclude>
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy
-                    </exclude>
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</exclude>
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck
-                    </exclude>
-                    <exclude>
-                      com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass</exclude>
                     <!-- Swing related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.gui.BaseCellEditor</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.CodeSelector</exclude>
-                    <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable</exclude>
-                    <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTable.TreeTableCellEditor</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter</exclude>
-                    <exclude>
-                             com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
-                    </exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener</exclude>
                     <!-- Metadata Generator related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
@@ -1015,9 +1024,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1035,9 +1042,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.gui.ParseTreeTableModel</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1127,9 +1132,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1147,9 +1150,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1185,9 +1186,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1223,9 +1222,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1243,9 +1240,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1263,9 +1258,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.RegularClass</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1285,9 +1278,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1305,9 +1296,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1325,9 +1314,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.XmlMetaReader
-                    </include>
+                    <include>com.puppycrawl.tools.checkstyle.meta.XmlMetaReader</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1449,10 +1436,10 @@
         <executions>
           <execution>
             <id>add-source</id>
-            <phase>generate-sources</phase>
             <goals>
               <goal>add-source</goal>
             </goals>
+            <phase>generate-sources</phase>
             <configuration>
               <sources>
                 <source>${project.build.directory}/generated-sources/antlr/</source>
@@ -1461,10 +1448,10 @@
           </execution>
           <execution>
             <id>add-test-source</id>
-            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
+            <phase>process-resources</phase>
             <configuration>
               <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
@@ -1474,10 +1461,10 @@
           </execution>
           <execution>
             <id>add-it-test-source</id>
-            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
+            <phase>process-resources</phase>
             <configuration>
               <sources>
                 <source>src/it/java</source>
@@ -1486,10 +1473,10 @@
           </execution>
           <execution>
             <id>add-it-test-resource</id>
-            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
+            <phase>process-resources</phase>
             <configuration>
               <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
@@ -1499,10 +1486,10 @@
           </execution>
           <execution>
             <id>add-xdocs-examples-source</id>
-            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
+            <phase>process-resources</phase>
             <configuration>
               <sources>
                 <source>src/xdocs-examples/java</source>
@@ -1511,10 +1498,10 @@
           </execution>
           <execution>
             <id>add-xdocs-examples-resource</id>
-            <phase>process-resources</phase>
             <goals>
               <goal>add-test-source</goal>
             </goals>
+            <phase>process-resources</phase>
             <configuration>
               <skipAddTestSource>${checkstyle.skipCompileInputResources}</skipAddTestSource>
               <sources>
@@ -1563,12 +1550,9 @@
             <!-- Virtual AWT driver for GUI unit tests -->
             <awt.toolkit>com.github.caciocavallosilano.cacio.ctc.CTCToolkit</awt.toolkit>
             <java.awt.headless>false</java.awt.headless>
-            <java.awt.graphicsenv>
-              com.github.caciocavallosilano.cacio.ctc.CTCGraphicsEnvironment
-            </java.awt.graphicsenv>
+            <java.awt.graphicsenv>com.github.caciocavallosilano.cacio.ctc.CTCGraphicsEnvironment</java.awt.graphicsenv>
           </systemPropertyVariables>
-          <argLine>
-            --add-exports=java.desktop/java.awt=ALL-UNNAMED
+          <argLine>--add-exports=java.desktop/java.awt=ALL-UNNAMED
             --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED
             --add-exports=java.desktop/sun.awt.image=ALL-UNNAMED
             --add-exports=java.desktop/sun.java2d=ALL-UNNAMED
@@ -1580,12 +1564,9 @@
             --add-opens=java.base/java.util=ALL-UNNAMED
             --add-opens=java.desktop/java.awt=ALL-UNNAMED
             --add-opens=java.desktop/sun.java2d=ALL-UNNAMED
-            --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
-          </argLine>
+            --add-opens=java.base/java.lang.reflect=ALL-UNNAMED</argLine>
           <additionalClasspathElements>
-            <additionalClasspathElement>
-              src/test/resources-noncompilable
-            </additionalClasspathElement>
+            <additionalClasspathElement>src/test/resources-noncompilable</additionalClasspathElement>
           </additionalClasspathElements>
           <includes>
             <include>com/puppycrawl/**/*.java</include>
@@ -1599,16 +1580,16 @@
         <executions>
           <execution>
             <id>ant-phase-verify</id>
-            <phase>verify</phase>
             <goals>
               <goal>run</goal>
             </goals>
+            <phase>verify</phase>
             <configuration>
               <target>
-                <property name="mvn.project.build.directory" value="${project.build.directory}" />
-                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath" />
-                <property name="mvn.java.version" value="${java.version}" />
-                <ant antfile="config/ant-phase-verify.xml" />
+                <property name="mvn.project.build.directory" value="${project.build.directory}"/>
+                <property name="mvn.runtime_classpath" refid="maven.runtime.classpath"/>
+                <property name="mvn.java.version" value="${java.version}"/>
+                <ant antfile="config/ant-phase-verify.xml"/>
               </target>
             </configuration>
           </execution>
@@ -1665,10 +1646,24 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <executions>
           <execution>
-            <phase>verify</phase>
             <goals>
               <goal>check</goal>
             </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>spotless-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
@@ -1689,14 +1684,6 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xml-maven-plugin</artifactId>
         <version>1.1.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>validate</goal>
-              <goal>check-format</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <catalogHandling>strict</catalogHandling>
           <!-- We need to exclude some files, so the default configuration is not suitable. -->
@@ -1764,12 +1751,8 @@
               <validating>true</validating>
               <dir>src/test/resources</dir>
               <includes>
-                <include>
-                  com/puppycrawl/tools/checkstyle/packagenamesloader/InputPackageNamesLoaderFile.xml
-                </include>
-                <include>
-                  com/puppycrawl/tools/checkstyle/treewalker/InputTreeWalkerNotJava.xml
-                </include>
+                <include>com/puppycrawl/tools/checkstyle/packagenamesloader/InputPackageNamesLoaderFile.xml</include>
+                <include>com/puppycrawl/tools/checkstyle/treewalker/InputTreeWalkerNotJava.xml</include>
               </includes>
             </validationSet>
             <validationSet>
@@ -1794,6 +1777,14 @@
             <catalog>config/catalog.xml</catalog>
           </catalogs>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>validate</goal>
+              <goal>check-format</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -1813,10 +1804,10 @@
         <executions>
           <execution>
             <id>forbiddenapis-main</id>
-            <phase>verify</phase>
             <goals>
               <goal>check</goal>
             </goals>
+            <phase>verify</phase>
             <configuration>
               <signaturesFiles>
                 <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
@@ -1856,10 +1847,10 @@
           </execution>
           <execution>
             <id>forbiddenapis-test</id>
-            <phase>verify</phase>
             <goals>
               <goal>testCheck</goal>
             </goals>
+            <phase>verify</phase>
             <configuration>
               <signaturesFiles>
                 <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
@@ -1929,14 +1920,6 @@
         <groupId>com.groupon.maven.plugin.json</groupId>
         <artifactId>json-schema-validator</artifactId>
         <version>${json-schema-validator.version}</version>
-        <executions>
-          <execution>
-            <phase>verify</phase>
-            <goals>
-              <goal>validate</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <validations>
             <validation>
@@ -1948,6 +1931,14 @@
             </validation>
           </validations>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -2121,16 +2112,12 @@
             <excludedLink>http://search.maven.org/*</excludedLink>
             <!-- codehaus does not exist anymore -->
             <excludedLink>http://sonar-plugins.codehaus.org/maven-report</excludedLink>
-            <excludedLink>
-              http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin
-            </excludedLink>
+            <excludedLink>http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Codehaus Plugin's issue #4:
                  https://github.com/mojohaus/mojohaus.github.io/issues/4 -->
             <excludedLink>http://mojo.codehaus.org/antlr-maven-plugin</excludedLink>
             <!-- Excluded due to long lasting problem with link that they do not want to fix -->
-            <excludedLink>
-              https://www.mojohaus.org/jdepend-maven-plugin/jdepend-maven-plugin
-            </excludedLink>
+            <excludedLink>https://www.mojohaus.org/jdepend-maven-plugin/jdepend-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Taglist Plugin's issue #3:
                  https://github.com/mojohaus/taglist-maven-plugin/issues/3 -->
             <excludedLink>http://mojo.codehaus.org/taglist-maven-plugin</excludedLink>
@@ -2143,9 +2130,7 @@
             <!-- permanent java.net.UnknownHostException : -->
             <excludedLink>http://jacoco-maven-plugin/</excludedLink>
             <!-- Excluded till https://issues.sonatype.org/browse/NEXUS-9643 -->
-            <excludedLink>
-              http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/
-            </excludedLink>
+            <excludedLink>http://www.sonatype.com/public-parent/nexus-maven-plugins/nexus-staging/nexus-staging-maven-plugin/</excludedLink>
 
             <!-- Excluded due to linkcheck's issue #22:
                  https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
@@ -2162,9 +2147,7 @@
             <!-- 302 redirect to
              https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server/version-history
              this link does not look like permanent, it is better to keep the existing link -->
-            <excludedLink>
-              https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server
-            </excludedLink>
+            <excludedLink>https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server</excludedLink>
             <!-- 403 forbidden -->
             <excludedLink>https://oss.sonatype.org/content/repositories/snapshots/</excludedLink>
             <!-- link is valid but permanent "SocketTimeoutException : Read timed out" -->
@@ -2173,9 +2156,7 @@
             <excludedLink>https://gradle.org</excludedLink>
             <excludedLink>https://www.codacy.com/</excludedLink>
             <!-- 403 forbidden for linkcheck, works in the browser -->
-            <excludedLink>
-              https://docs.gradle.org/current/userguide/checkstyle_plugin.html
-            </excludedLink>
+            <excludedLink>https://docs.gradle.org/current/userguide/checkstyle_plugin.html</excludedLink>
             <!-- ConnectTimeoutException -->
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
@@ -2237,9 +2218,11 @@
       <id>no-validations</id>
       <properties>
         <skipTests>true</skipTests>
+        <skip>true</skip>
         <checkstyle.ant.skip>true</checkstyle.ant.skip>
         <pmd.skip>true</pmd.skip>
         <spotbugs.skip>true</spotbugs.skip>
+        <rewriteSkip>true</rewriteSkip>
         <xml.skip>true</xml.skip>
         <forbiddenapis.skip>true</forbiddenapis.skip>
         <jacoco.skip>true</jacoco.skip>
@@ -2279,27 +2262,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
-              <!-- disable non-profile run -->
-              <execution>
-                <id>ant-phase-verify</id>
-                <phase>none</phase>
-              </execution>
-              <!-- profile run -->
-              <execution>
-                <id>ant-phase-verify-sevntu</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <property name="mvn.project.build.directory" value="${project.build.directory}" />
-                    <ant antfile="config/ant-phase-verify-sevntu.xml" />
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
             <dependencies>
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
@@ -2312,6 +2274,27 @@
                 <version>${maven.sevntu.checkstyle.plugin.version}</version>
               </dependency>
             </dependencies>
+            <executions>
+              <!-- disable non-profile run -->
+              <execution>
+                <id>ant-phase-verify</id>
+                <phase>none</phase>
+              </execution>
+              <!-- profile run -->
+              <execution>
+                <id>ant-phase-verify-sevntu</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>verify</phase>
+                <configuration>
+                  <target>
+                    <property name="mvn.project.build.directory" value="${project.build.directory}"/>
+                    <ant antfile="config/ant-phase-verify-sevntu.xml"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -2336,10 +2319,10 @@
             <executions>
               <execution>
                 <id>gen-site</id>
-                <phase>prepare-package</phase>
                 <goals>
                   <goal>site</goal>
                 </goals>
+                <phase>prepare-package</phase>
               </execution>
             </executions>
           </plugin>
@@ -2350,10 +2333,10 @@
             <artifactId>maven-shade-plugin</artifactId>
             <executions>
               <execution>
-                <phase>package</phase>
                 <goals>
                   <goal>shade</goal>
                 </goals>
+                <phase>package</phase>
                 <configuration>
                   <filters>
                     <filter>
@@ -2391,10 +2374,10 @@
             <executions>
               <execution>
                 <id>make-bundle</id>
-                <phase>package</phase>
                 <goals>
                   <goal>single</goal>
                 </goals>
+                <phase>package</phase>
               </execution>
             </executions>
           </plugin>
@@ -2439,29 +2422,27 @@
               <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
               <execution>
                 <id>default-compile</id>
-                <phase>compile</phase>
                 <goals>
                   <goal>compile</goal>
                 </goals>
+                <phase>compile</phase>
                 <configuration>
                   <skipMain>true</skipMain>
                 </configuration>
               </execution>
               <execution>
                 <id>error-prone-compile</id>
-                <phase>compile</phase>
                 <goals>
                   <goal>compile</goal>
                 </goals>
+                <phase>compile</phase>
                 <configuration>
                   <failOnError>false</failOnError>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
-                    <arg>
-                      -Xplugin:ErrorProne ${error-prone.configuration-args}
-                    </arg>
+                    <arg>-Xplugin:ErrorProne ${error-prone.configuration-args}</arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
                     <path>
@@ -2495,31 +2476,29 @@
               <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
               <execution>
                 <id>default-testCompile</id>
-                <phase>test-compile</phase>
                 <goals>
                   <goal>testCompile</goal>
                 </goals>
+                <phase>test-compile</phase>
                 <configuration>
                   <skip>true</skip>
                 </configuration>
               </execution>
               <execution>
                 <id>error-prone-test-compile</id>
-                <phase>test-compile</phase>
                 <goals>
                   <goal>testCompile</goal>
                 </goals>
+                <phase>test-compile</phase>
                 <configuration>
                   <failOnError>false</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
-                    <arg>
-                      -Xplugin:ErrorProne \
+                    <arg>-Xplugin:ErrorProne \
                       -XepExcludedPaths:.*[\\/]resources[\\/].* \
-                      ${error-prone.configuration-args}
-                    </arg>
+                      ${error-prone.configuration-args}</arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
                     <path>
@@ -2564,6 +2543,17 @@
     <!-- Start Checker Framework profiles -->
     <profile>
       <id>checker-nullness-optional-interning</id>
+      <properties>
+        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
+        <animal.sniffer.skip>true</animal.sniffer.skip>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker</artifactId>
+          <version>${checkerframework.version}</version>
+        </dependency>
+      </dependencies>
       <build>
         <plugins>
           <plugin>
@@ -2608,6 +2598,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-methods-resource-fenum</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2619,10 +2613,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-methods-resource-fenum</id>
       <build>
         <plugins>
           <plugin>
@@ -2667,6 +2657,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-lock-tainting</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2678,10 +2672,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-lock-tainting</id>
       <build>
         <plugins>
           <plugin>
@@ -2725,6 +2715,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-index</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2736,10 +2730,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-index</id>
       <build>
         <plugins>
           <plugin>
@@ -2782,6 +2772,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-formatter</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2793,10 +2787,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-formatter</id>
       <build>
         <plugins>
           <plugin>
@@ -2839,6 +2829,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-signature-gui-units-init</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2850,10 +2844,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-signature-gui-units-init</id>
       <build>
         <plugins>
           <plugin>
@@ -2899,6 +2889,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-regex-property-key-compiler-message</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2910,10 +2904,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-regex-property-key-compiler-message</id>
       <build>
         <plugins>
           <plugin>
@@ -2958,6 +2948,10 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+
+    <profile>
+      <id>checker-purity-value-returns</id>
       <properties>
         <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
         <animal.sniffer.skip>true</animal.sniffer.skip>
@@ -2969,10 +2963,6 @@
           <version>${checkerframework.version}</version>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>checker-purity-value-returns</id>
       <build>
         <plugins>
           <plugin>
@@ -3017,17 +3007,6 @@
           </plugin>
         </plugins>
       </build>
-      <properties>
-        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-          <version>${checkerframework.version}</version>
-        </dependency>
-      </dependencies>
     </profile>
     <!-- End Checker Framework profiles -->
 
@@ -3074,9 +3053,7 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck*</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
@@ -3094,9 +3071,7 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
@@ -4565,12 +4540,8 @@
               </features>
               <avoidCallsTo>
                 <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
-                <avoidCallsTo>
-                  com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
-                </avoidCallsTo>
-                <avoidCallsTo>
-                  com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil
-                </avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
@@ -4701,28 +4672,16 @@
                 <param>com.puppycrawl.tools.checkstyle.AstTreeStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.SuppressionsStringPrinterTest</param>
                 <param>com.puppycrawl.tools.checkstyle.TreeWalkerTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheckTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheckTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheckTest</param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilterTest</param>
               </targetTests>
               <excludedTestClasses>
@@ -4741,17 +4700,13 @@
                 <!-- CheckstyleParserErrorStrategy calls super to handle
                 error which always results in throwing exception. There is no clear way to kill
                 mutation on it as mutation is only looking at the non-existent return value. -->
-                <avoidCallsTo>
-                  org.antlr.v4.runtime.BailErrorStrategy
-                </avoidCallsTo>
+                <avoidCallsTo>org.antlr.v4.runtime.BailErrorStrategy</avoidCallsTo>
                 <!-- Setting the prediction mode to SLL is an intentional optimization
                  to speed up parsing.
                  Since this is a deterministic change to the parser's behavior,
                  no normal check execution test case will be able to kill the mutation, as the test
                  will always pass regardless of the parsing strategy. -->
-                <avoidCallsTo>
-                  org.antlr.v4.runtime.atn.ParserATNSimulator
-                </avoidCallsTo>
+                <avoidCallsTo>org.antlr.v4.runtime.atn.ParserATNSimulator</avoidCallsTo>
               </avoidCallsTo>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>98</mutationThreshold>
@@ -4986,84 +4941,34 @@
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
                 <!-- 3% coverage in BlockCommentPosition,
                      11% mutation in JavadocUtil, 10% coverage in JavadocUtil, ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheckTest</param>
                 <!-- 2% mutation in ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest</param>
                 <!-- 1% mutation in ScopeUtil -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest</param>
                 <!-- TokenUtil#asBitSet -->
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest
-                </param>
-                <param>
-                  com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest
-                </param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.CovariantEqualsCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.xpath.XpathMapperTest</param>
+                <param>com.puppycrawl.tools.checkstyle.xpath.ElementNodeTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
@@ -5144,7 +5049,7 @@
               <executable>.ci/eclipse-compiler-javac.sh</executable>
               <classpathScope>test</classpathScope>
               <arguments>
-                <classpath />
+                <classpath/>
                 <argument>${next.java.version}</argument>
               </arguments>
             </configuration>
