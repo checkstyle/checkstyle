@@ -1593,6 +1593,38 @@
         </configuration>
       </plugin>
 
+      <!-- Checkstyle Autofix -->
+      <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+        <version>6.17.0</version>
+        <configuration>
+          <exportDatatables>true</exportDatatables>
+          <activeRecipes>
+            <recipe>CheckstyleAutoFixConfigured</recipe>
+          </activeRecipes>
+          <plainTextMasks>
+            <plainTextMask>**/*.xml</plainTextMask>
+            <plainTextMask>**/*.yml</plainTextMask>
+            <plainTextMask>**/*.groovy</plainTextMask>
+            <plainTextMask>**/resources/**</plainTextMask>
+            <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+          </plainTextMasks>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.checkstyle.autofix</groupId>
+            <artifactId>checkstyle-openrewrite-recipes</artifactId>
+            <version>1.0.0</version>
+          </dependency>
+          <dependency>
+            <groupId>org.openrewrite.recipe</groupId>
+            <artifactId>rewrite-rewrite</artifactId>
+            <version>0.12.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -1746,6 +1778,7 @@
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>yamllint.yaml</exclude>
+                <exclude>checkstyle.properties</exclude>
               </excludes>
             </validationSet>
             <validationSet>
