@@ -76,6 +76,37 @@ jobs:
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
+
+  openrewrite-recipes:
+    docker:
+      - image: amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
+    steps:
+      - checkout
+      - run:
+          name: Clone and build OpenRewrite recipes
+          command: |
+            cd /tmp
+            git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+            cd checkstyle-openrewrite-recipes
+            mvn -e --no-transfer-progress clean install -DskipTests
+      - run:
+          name: Run OpenRewrite recipes
+          command: |
+            cd ~/project
+            mvn -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+            mvn -e --no-transfer-progress rewrite:run
+      - run:
+          name: Check for uncommitted changes
+          command: |
+            cd ~/project
+            if [ -n "$(git diff --name-only)" ] || [ -n "$(git diff --cached --name-only)" ]; then
+              echo "ERROR: OpenRewrite recipes made changes to your code!"
+              echo "Changes made:"
+              git diff
+              echo ""
+              exit 1
+            fi
+
   sonarqube:
     docker:
       - image: amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
@@ -316,3 +347,7 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  openrewrite-validation:
+    jobs:
+      - openrewrite-recipes
