@@ -272,12 +272,15 @@
     <allow pkg="javax.xml"/>
     <allow pkg="org.reflections"/>
     <allow pkg="org.w3c.dom"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.site"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker"/>
     <allow class="com.puppycrawl.tools.checkstyle.DefaultConfiguration"/>
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalker"/>
-    <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+    <allow class="java.lang.reflect.Field"/>
+    <allow class="org.apache.maven.doxia.macro.MacroExecutionException"/>
 
     <file name="MetadataGeneratorUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions"/>

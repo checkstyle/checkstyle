@@ -19,10 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.site;
 
+import java.lang.reflect.Field;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.PropertyType;
+import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.sink.Sink;
 
@@ -59,6 +62,8 @@ public final class ModuleJavadocParsingUtil {
     public static final String NOTES = "Notes:";
     /** "Notes:" line. */
     public static final Pattern NOTES_LINE = Pattern.compile("\\s*" + NOTES + "$");
+    /** "Notes:" line with new line accounted. */
+    public static final Pattern NOTES_LINE_WITH_NEWLINE = Pattern.compile("\r?\n\\s?" + NOTES);
 
     /**
      * Private utility constructor.
@@ -79,50 +84,6 @@ public final class ModuleJavadocParsingUtil {
         final Class<?> clss = instance.getClass();
 
         return SiteUtil.getPropertiesForDocumentation(clss, instance);
-    }
-
-    /**
-     * Gets the starting index of the "Parent is" paragraph in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @return start index of parent subsection.
-     */
-    public static int getParentSectionStartIndex(DetailNode moduleJavadoc) {
-        int parentStartIndex = -1;
-
-        for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isParentText(paragraphNode)) {
-                    parentStartIndex = node.getIndex();
-                    break;
-                }
-            }
-        }
-
-        return parentStartIndex;
-    }
-
-    /**
-     * Gets the start index of the Notes section.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @return start index.
-     */
-    public static int getNotesSectionStartIndex(DetailNode moduleJavadoc) {
-        int notesStartIndex = -1;
-
-        for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && isStartOfNotesSection(node)) {
-
-                notesStartIndex += node.getIndex();
-                break;
-            }
-        }
-
-        return notesStartIndex;
     }
 
     /**
@@ -153,29 +114,6 @@ public final class ModuleJavadocParsingUtil {
             .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG))
             .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_ELEMENT))
             .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.LI));
-    }
-
-    /**
-     * Gets the start index of property section in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @param propertyNames set with property names.
-     * @return index of property section.
-     */
-    public static int getPropertySectionStartIndex(DetailNode moduleJavadoc,
-                                                   Set<String> propertyNames) {
-        int propertySectionStartIndex = -1;
-
-        final String somePropertyName = propertyNames.iterator().next();
-        final Optional<DetailNode> somePropertyModuleNode =
-            SiteUtil.getPropertyJavadocNodeInModule(somePropertyName, moduleJavadoc);
-
-        if (somePropertyModuleNode.isPresent()) {
-            propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
-                somePropertyModuleNode.get());
-        }
-
-        return propertySectionStartIndex;
     }
 
     /**
@@ -233,6 +171,193 @@ public final class ModuleJavadocParsingUtil {
                 result = true;
                 break;
             }
+        }
+
+        return result;
+    }
+
+    public static String getModuleDescription(DetailNode moduleJavadoc, Set<String> propertyNames) {
+        final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);
+
+        return JavadocMetadataScraper.constructSubTreeText(moduleJavadoc, 0, descriptionEndIndex);
+    }
+
+    /**
+     * Gets the end index of the description.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @param propertyNamesSet Set with property names.
+     * @return the end index.
+     */
+    public static int getDescriptionEndIndex(DetailNode moduleJavadoc,
+                                              Set<String> propertyNamesSet) {
+        int descriptionEndIndex = -1;
+
+        final int notesStartingIndex =
+            getNotesSectionStartIndex(moduleJavadoc);
+        final int propertiesSectionStartingIndex =
+            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
+        final int parentStartingIndex =
+            getParentSectionStartIndex(moduleJavadoc);
+
+        if (notesStartingIndex > -1) {
+            descriptionEndIndex += notesStartingIndex;
+        }
+        else if (propertiesSectionStartingIndex > -1) {
+            descriptionEndIndex += propertiesSectionStartingIndex;
+        }
+        else if (parentStartingIndex > -1) {
+            descriptionEndIndex += parentStartingIndex;
+        }
+        else {
+            descriptionEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
+        }
+
+        return descriptionEndIndex;
+    }
+
+    /**
+     * Gets the start index of the Notes section.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @return start index.
+     */
+    public static int getNotesSectionStartIndex(DetailNode moduleJavadoc) {
+        int notesStartIndex = -1;
+
+        for (DetailNode node : moduleJavadoc.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
+                && isStartOfNotesSection(node)) {
+
+                notesStartIndex += node.getIndex();
+                break;
+            }
+        }
+
+        return notesStartIndex;
+    }
+
+    /**
+     * Gets the start index of property section in module's javadoc.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @param propertyNames set with property names.
+     * @return index of property section.
+     */
+    public static int getPropertySectionStartIndex(DetailNode moduleJavadoc,
+                                                   Set<String> propertyNames) {
+        int propertySectionStartIndex = -1;
+
+        if (!propertyNames.isEmpty()) {
+            final String somePropertyName = propertyNames.iterator().next();
+            final Optional<DetailNode> somePropertyModuleNode =
+                SiteUtil.getPropertyJavadocNodeInModule(somePropertyName, moduleJavadoc);
+
+            if (somePropertyModuleNode.isPresent()) {
+                propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
+                    somePropertyModuleNode.get());
+            }
+        }
+
+        return propertySectionStartIndex;
+    }
+
+    /**
+     * Gets the starting index of the "Parent is" paragraph in module's javadoc.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @return start index of parent subsection.
+     */
+    public static int getParentSectionStartIndex(DetailNode moduleJavadoc) {
+        int parentStartIndex = -1;
+
+        for (DetailNode node : moduleJavadoc.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
+                    node, JavadocTokenTypes.PARAGRAPH);
+                if (paragraphNode != null && JavadocMetadataScraper.isParentText(paragraphNode)) {
+                    parentStartIndex = node.getIndex();
+                    break;
+                }
+            }
+        }
+
+        return parentStartIndex;
+    }
+
+    /**
+     * Gets the starting index of the "@since" version tag in module's javadoc.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @return start index of "@since".
+     */
+    public static int getModuleSinceVersionTagStartIndex(DetailNode moduleJavadoc) {
+        return SiteUtil.getNodesOfSpecificType(moduleJavadoc.getChildren(),
+                JavadocTokenTypes.JAVADOC_TAG).stream()
+            .filter(javadocTag ->
+                JavadocUtil.findFirstToken(javadocTag, JavadocTokenTypes.SINCE_LITERAL) != null)
+            .map(DetailNode::getIndex)
+            .findFirst()
+            .orElse(-1);
+    }
+
+    public static String getModuleNotes(DetailNode moduleJavadoc, Set<String> propertyNames) {
+        final String result;
+
+        final int notesStartIndex = getNotesSectionStartIndex(moduleJavadoc);
+
+        if (notesStartIndex < 0) {
+            result = "";
+        }
+        else {
+            final int notesEndIndex = getNotesEndIndex(moduleJavadoc, propertyNames);
+
+            final String unprocessedNotes = JavadocMetadataScraper.constructSubTreeText(
+                moduleJavadoc, notesStartIndex, notesEndIndex);
+
+            result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");
+        }
+
+        return result;
+    }
+
+    /**
+     * Gets the end index of the Notes.
+     *
+     * @param moduleJavadoc javadoc of module.
+     * @param propertyNamesSet Set with property names.
+     * @return the end index.
+     */
+    public static int getNotesEndIndex(DetailNode moduleJavadoc,
+                                        Set<String> propertyNamesSet) {
+        int notesEndIndex = -1;
+
+        final int parentStartingIndex = getParentSectionStartIndex(moduleJavadoc);
+        final int propertiesSectionStartingIndex =
+            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
+
+        if (propertiesSectionStartingIndex > -1) {
+            notesEndIndex += propertiesSectionStartingIndex;
+        }
+        else if (parentStartingIndex > -1) {
+            notesEndIndex += parentStartingIndex;
+        }
+        else{
+            notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
+        }
+
+        return notesEndIndex;
+    }
+
+    public static boolean isPropertySpecialTokenProp(Field propertyField) {
+        boolean result = false;
+
+        if (propertyField != null) {
+            final XdocsPropertyType fieldXdocAnnotation =
+                propertyField.getAnnotation(XdocsPropertyType.class);
+
+            result = fieldXdocAnnotation != null
+                && fieldXdocAnnotation.value() == PropertyType.TOKEN_ARRAY;
         }
 
         return result;
