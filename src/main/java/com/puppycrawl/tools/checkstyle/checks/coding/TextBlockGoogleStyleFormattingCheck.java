@@ -105,12 +105,12 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!areOpeningQuotesOnCorrectPosition(ast)) {
+        if (!openingQuotesAreOnCorrectPosition(ast)) {
             log(ast, MSG_OPEN_QUOTES_ERROR);
         }
 
         final DetailAST closingQuotes = getClosingQuotes(ast);
-        if (!areClosingQuotesOnCorrectPosition(getClosingQuotes(ast))) {
+        if (!closingQuotesAreOnCorrectPosition(getClosingQuotes(ast))) {
             log(closingQuotes, MSG_CLOSE_QUOTES_ERROR);
         }
 
@@ -146,83 +146,39 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @param openingQuotes opening quotes
      * @return true if the opening quotes are on the new line.
      */
-    private static boolean areOpeningQuotesOnCorrectPosition(DetailAST openingQuotes) {
+    private static boolean openingQuotesAreOnCorrectPosition(DetailAST openingQuotes) {
         DetailAST parent = openingQuotes;
-        while (!TokenUtil.isOfType(parent.getType(), TokenTypes.LITERAL_RETURN,
-            TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN, TokenTypes.METHOD_CALL,
-            TokenTypes.PLUS)) {
+        boolean quotesAreNotPreceded = true;
+        while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
+                || parent.getType() == TokenTypes.EXPR) {
 
             parent = parent.getParent();
 
-            if (parent.getType() == TokenTypes.PLUS
-                    && plusIsBetweenTwoTextBlocks(openingQuotes, parent)) {
-                parent = parent.getParent();
+            if (parent.getType() == TokenTypes.METHOD_DEF) {
+                quotesAreNotPreceded = !quotesAreProcededWithComma(openingQuotes);
+            }
+            else {
+                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);
+            }
+            if (TokenUtil.isOfType(parent.getType(), TokenTypes.LITERAL_RETURN, TokenTypes.ASSIGN,
+                    TokenTypes.METHOD_DEF)) {
+                break;
             }
         }
-
-        boolean result = !TokenUtil.areOnSameLine(openingQuotes, parent);
-        if (parent.getType() == TokenTypes.METHOD_CALL) {
-            result = checkMethodCall(openingQuotes, parent);
-        }
-        else if (parent.getType() == TokenTypes.PLUS) {
-            final DetailAST grandParent = parent.getParent();
-            if (grandParent.getType() == TokenTypes.PLUS) {
-                final DetailAST assign = grandParent.getParent().getParent();
-                result = !TokenUtil.areOnSameLine(openingQuotes, assign);
-            }
-            else if (grandParent.getParent().getType() == TokenTypes.LITERAL_RETURN) {
-                result = !TokenUtil.areOnSameLine(openingQuotes, grandParent.getParent());
-            }
-        }
-        return result;
+        return quotesAreNotPreceded;
     }
 
     /**
-     * Determines if {@code +} is present between two text blocks.
-     *
-     * @param ast opening quotes
-     * @param plus the plus Ast
-     * @return true if {@code +} is present between two text blocks.
-     */
-    private static boolean plusIsBetweenTwoTextBlocks(DetailAST ast, DetailAST plus) {
-        return plus.getFirstChild() == ast
-                && plus.getFirstChild().getNextSibling().getType()
-                == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
-    }
-
-    /**
-     * Checks the Method call expression.
+     * Determines if opening quotes are proceded by {@code ,}.
      *
      * @param openingQuotes the quotes
-     * @param methodCall the methodCall
-     * @return true
+     * @return true if {@code ,} is present before opening quotes.
      */
-    private static boolean checkMethodCall(DetailAST openingQuotes, DetailAST methodCall) {
-        final DetailAST methodCallChild = methodCall.getFirstChild();
-        boolean result = !TokenUtil.areOnSameLine(openingQuotes, methodCallChild);
-
-        if (methodCallChild.getType() != TokenTypes.DOT
-                || methodCallChild.getFirstChild() == openingQuotes) {
-
-            final DetailAST expressionList = methodCall.findFirstToken(TokenTypes.ELIST);
-            final DetailAST node = expressionList.getFirstChild().getFirstChild();
-
-            if (methodCall.getParent().getType() == TokenTypes.PLUS) {
-                result = !TokenUtil.areOnSameLine(openingQuotes, methodCall.getParent());
-            }
-
-            else if (node != openingQuotes
-                    && openingQuotes.getParent().getType() == TokenTypes.EXPR) {
-                final DetailAST comma = openingQuotes.getParent().getPreviousSibling();
-                result = !TokenUtil.areOnSameLine(openingQuotes, comma);
-            }
-
-            else if (methodCall.getParent().getParent().getType() == TokenTypes.LITERAL_RETURN) {
-                result = !TokenUtil.areOnSameLine(openingQuotes,
-                        methodCall.getParent().getParent());
-            }
-        }
-        return result;
+    private static boolean quotesAreProcededWithComma(DetailAST openingQuotes) {
+        final DetailAST expression = openingQuotes.getParent();
+        return expression.getType() == TokenTypes.EXPR
+                && expression.getPreviousSibling() != null
+                && TokenUtil.areOnSameLine(openingQuotes, expression.getPreviousSibling());
     }
 
     /**
@@ -231,7 +187,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * @param closingQuotes closing quotes
      * @return true if the closing quotes are on the new line.
      */
-    private static boolean areClosingQuotesOnCorrectPosition(DetailAST closingQuotes) {
+    private static boolean closingQuotesAreOnCorrectPosition(DetailAST closingQuotes) {
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
         int index = text.length() - 1;

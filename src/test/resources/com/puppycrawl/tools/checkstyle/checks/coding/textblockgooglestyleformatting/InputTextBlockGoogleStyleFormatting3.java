@@ -11,13 +11,6 @@ public class InputTextBlockGoogleStyleFormatting3 {
   			"""
   					<?xml version="1.0" encoding="UTF-8"?>
   					<beans:beans xmlns="http://www.springframework.org/schema/integration"
-  						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- 						xmlns:beans="http://www.springframework.org/schema/beans"
-  						xsi:schemaLocation="http://www.springframework.org/schema/beans
- 							https://www.springframework.org/schema/beans/spring-beans.xsd
-  							http://www.springframework.org/schema/integration
-  							https://www.springframework.org/schema/spring-integration.xsd">
-  
   						<channel id="routingChannel" />
  						<payload-type-router input-channel="routingChannel"/>
  					</beans:beans>
@@ -49,6 +42,7 @@ public class InputTextBlockGoogleStyleFormatting3 {
    }
 
    private static String testMethod2() {
+		String simplePropertyUpdateScript = "simplePUS";
 	   // violation below 'Opening quotes (""") of text-block must be on the new line'
        return ("""
 	       def newInstance = params.instance;
@@ -57,4 +51,63 @@ public class InputTextBlockGoogleStyleFormatting3 {
            + simplePropertyUpdateScript);
 	   // violation 2 lines above 'Text-block quotes are not vertically aligned'
    }
+
+    private static String testMethod2() {
+		String simpleProp = "simplePUS";
+
+		// violation below 'Opening quotes (""") of text-block must be on the new line'
+        return """
+        	def newInstance = params.instance;
+       		def existingInstance = ctx._source;
+        	""" // violation 'Text-block quotes are not vertically aligned'
+            + simpleProp // violation below 'Opening quotes (""") of text-block must be on the new'
+            + """
+            if (existingInstance.startDate != null && existingInstance.endDate != null) {
+              def dateFormatter = new SimpleDateFormat(params.dateFormatPattern);
+               .collect(Collectors.toMap(variable -> variable.id, Function.identity(), (oldVar, newVar) ->
+                  (newVar.version > oldVar.version) ? newVar : oldVar
+               )).values();
+           }
+           """; // violation 'Text-block quotes are not vertically aligned'
+	}
+	
+    private static void testMethod3() {
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
+	 	return """
+        	def flowNodesById = existingInstance.flowNodeInstances.stream()
+        	def newFlowNodes = params.instance.flowNodeInstances;
+            """ // violation 'Text-block quotes are not vertically aligned'
+        	+
+        	"""
+           	def isUserTaskImport = "user-task".equals(params.sourceExportIndex);
+           	for (def newFlowNode : newFlowNodes) {}
+           	""" // violation 'Text-block quotes are not vertically aligned'
+         	+ UserTaskDurationScriptUtil.createUpdateUser();
+    }
+
+    private static void testMethod4() {
+        String simpleProp = "simplePUS";
+        // violation below 'Opening quotes (""") of text-block must be on the new line'
+		return """
+       		def incidentsById = existingInstance.incidents.stream()
+        """ // violation 'Text-block quotes are not vertically aligned'
+         + simpleProp // violation below 'Opening quotes (""") of text-block must be on the new'
+         + """
+               if (existingIncident.createTime != null && existingIncident.endTime != null) {
+                 def dateFormatter = new SimpleDateFormat(params.dateFormatPattern);
+             }
+           }
+           """
+         +
+         """
+               def flowNodeIdsByFlowNodeInstanceIds = flowNodesById.values()
+                 .collect(Collectors.toList());
+           """; // violation 'Text-block quotes are not vertically aligned'
+	}
+	
+	class UserTaskDurationScriptUtil {
+		public static String createUpdateUser() {
+			return "CreateUpdateUser";
+		}
+	}
 }
