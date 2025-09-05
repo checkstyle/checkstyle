@@ -76,6 +76,7 @@ autoboxing
 autobuild
 autocomplete
 autocrlf
+autofix
 Autoproxy
 Autowire
 Autowired
@@ -1019,6 +1020,7 @@ oopsla
 OOQ
 opencollective
 openjdk
+openrewrite
 operatorwrap
 opsummary
 optgroup
