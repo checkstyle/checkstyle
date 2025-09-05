@@ -338,6 +338,7 @@ Dorekit
 Dorg
 DOTALL
 doubletag
+DOWHILE
 downloader
 doxia
 Dpi
@@ -775,6 +776,7 @@ Kotlin
 Kp
 lambdabodylength
 lambdaparametername
+LBRACE
 LBRACK
 lcurly
 Leanback
@@ -1151,6 +1153,7 @@ qwerty
 QX
 rawtypes
 rb
+RBRACE
 rbrack
 rcurly
 rdiachenko
