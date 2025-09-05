@@ -24,7 +24,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file:Test.java"
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerLineOnly.java"
                 },
                 "region": {
                   "startLine": 1
@@ -33,9 +33,9 @@
             }
           ],
           "message": {
-            "text": "found an error"
+            "text": "File must contain copyright statement"
           },
-          "ruleId": "ruleId"
+          "ruleId": "File must contain copyright statement"
         }
       ]
     }
