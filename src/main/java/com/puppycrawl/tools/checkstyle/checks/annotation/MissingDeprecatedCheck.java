@@ -69,46 +69,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     &lt;property name="files" value="package-info\.java"/&gt;
  * &lt;/module&gt;
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to
- * print violations if the Javadoc being examined by this check violates the
- * tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
- * Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * Since version 8.24
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.missing.deprecated}
- * </li>
- * <li>
- * {@code javadoc.duplicateTag}
- * </li>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * </ul>
  *
  * @since 5.0
  */
@@ -151,6 +111,21 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocTokenTypes.JAVADOC,
         };
+    }
+
+    /**
+     * Setter to control when to print violations if the Javadoc being examined by this check
+     * violates the tight html rules defined at
+     * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+     *     Tight-HTML Rules</a>.
+     *
+     * @param shouldReportViolation value to which the field shall be set to
+     * @since 8.3
+     * @propertySince 8.24
+     */
+    @Override
+    public void setViolateExecutionOnNonTightHtml(boolean shouldReportViolation) {
+        super.setViolateExecutionOnNonTightHtml(shouldReportViolation);
     }
 
     @Override
