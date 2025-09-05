@@ -1251,6 +1251,20 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
+checkstyle-auto-fix)
+  mkdir -p .ci-temp
+  cd .ci-temp
+  echo "Cloning OpenRewrite recipes repository..."
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  echo "Building OpenRewrite recipes..."
+  mvn -e --no-transfer-progress clean install -DskipTests
+  cd ../../
+  echo "Cleaning up..."
+  removeFolderWithProtectedFiles .ci-temp/checkstyle-openrewrite-recipes
+  echo "OpenRewrite recipes build completed successfully"
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   echo "Supported tasks:"
