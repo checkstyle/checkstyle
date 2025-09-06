@@ -1,39 +1,48 @@
+env:
+  CHECK_CHANGES_SCRIPT: |
+    CHANGED_FILES=$(git diff --name-only origin/${CIRRUS_BASE_BRANCH})
+    echo "Changed files: $CHANGED_FILES"
+    for file in $CHANGED_FILES; do
+      if [[ ! $file =~ \.(md|yml|yaml|properties|json|xml)$ ]]; then
+        echo "Code changes detected."
+        exit 1
+      fi
+    done
+    echo "Only docs/config changes detected."
+    exit 0
+  NO_COLOR: "1"
+  MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 -Dmaven.wagon.http.retryHandler.count=3"
+
 only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
+
 task:
   name: Windows build
   windows_container:
     image: cirrusci/windowsservercore:2019
   clone_script:
     - git config core.autocrlf
-    - git clone --recursive
-          https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
-          %CIRRUS_WORKING_DIR%/ci
+    - git clone --recursive https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git %CIRRUS_WORKING_DIR%/ci
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - cmd /c "if defined CIRRUS_PR (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
     - git reset --hard %CIRRUS_CHANGE_IN_REPO%
+  pre_script:
+    - bash -c "$CHECK_CHANGES_SCRIPT" || exit 1
+
   choco_cache:
-    # should be under %CIRRUS_WORKING_DIR%
     folder: .chocolatey
   maven_cache:
-    # should be under %CIRRUS_WORKING_DIR%
     folder: .m2
     include:
       - .mvn/wrapper
+
   matrix:
-    # add more JDK versions here
     - name: Cirrus - JDK21
       env:
         TEMURIN_VERSION: "21.0.6.7"
         TEMURIN_PATH: 'Eclipse Adoptium\jdk-21'
-  env:
-    # disable ANSI output for picocli (may affect tests)
-    NO_COLOR: "1"
-    # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
-    MAVEN_OPTS: "-Dhttp.keepAlive=false \
-      -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
-      -Dmaven.wagon.http.retryHandler.count=3"
+
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
@@ -48,21 +57,21 @@ task:
   version_script:
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
-    - set
     - ant -version
     - java --version
-    # - xsltproc --version
-    # - xml --version
+
   sevntu_script:
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd sevntu
+
   verify_without_checkstyle_script:
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd verify_without_checkstyle
+
   site_without_verify_script:
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
