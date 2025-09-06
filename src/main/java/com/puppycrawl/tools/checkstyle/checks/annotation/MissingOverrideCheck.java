@@ -66,29 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <b>Java 5 Compatibility mode severely limits this check. It is recommended to
  * only use it on Java 5 source.</b>
  * </p>
- * <ul>
- * <li>
- * Property {@code javaFiveCompatibility} - Enable java 5 compatibility mode.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.missing.override}
- * </li>
- * <li>
- * {@code tag.not.valid.on}
- * </li>
- * </ul>
  *
  * @since 5.0
  */

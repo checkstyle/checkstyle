@@ -83,7 +83,7 @@ List list; //No violation here
               <td><a id="illegalAbstractClassNameFormat"/><a href="#illegalAbstractClassNameFormat">illegalAbstractClassNameFormat</a></td>
               <td>Specify RegExp for illegal abstract class names.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(.*[.])?Abstract.*$&quot;</code></td>
+              <td><code>^(.*[.])?Abstract.*$</code></td>
               <td>3.2</td>
             </tr>
             <tr>

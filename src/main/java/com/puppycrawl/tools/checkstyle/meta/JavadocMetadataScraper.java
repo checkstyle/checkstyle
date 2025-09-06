@@ -432,7 +432,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param codeChild {@code @code} child to convert.
      * @return converted {@code @code} child element, otherwise just the original text.
      */
-    private static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
+    public static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
 
         return switch (codeChild.getType()) {
             case JavadocTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";

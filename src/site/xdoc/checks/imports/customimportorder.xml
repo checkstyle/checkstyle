@@ -162,21 +162,21 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
               <td><a id="specialImportsRegExp"/><a href="#specialImportsRegExp">specialImportsRegExp</a></td>
               <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot;</code></td>
+              <td><code>^$</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="standardPackageRegExp"/><a href="#standardPackageRegExp">standardPackageRegExp</a></td>
               <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(java|javax)\.&quot;</code></td>
+              <td><code>^(java|javax)\.</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td><a id="thirdPartyPackageRegExp"/><a href="#thirdPartyPackageRegExp">thirdPartyPackageRegExp</a></td>
               <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>.*</code></td>
               <td>5.8</td>
             </tr>
           </table>

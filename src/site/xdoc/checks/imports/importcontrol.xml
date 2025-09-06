@@ -107,7 +107,7 @@
               <td><a id="path"/><a href="#path">path</a></td>
               <td>Specify the regular expression of file paths to which this check should apply. Files that don't match the pattern will not be checked. The pattern will be matched against the full absolute file path.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>.*</code></td>
               <td>7.5</td>
             </tr>
           </table>

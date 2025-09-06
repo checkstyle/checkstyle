@@ -106,54 +106,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7">
  * Java Language specification, &#167;9.7</a>.
  * </p>
- * <ul>
- * <li>
- * Property {@code closingParens} - Define the policy for ending parenthesis.
- * Type is {@code
- * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption}.
- * Default value is {@code never}.
- * </li>
- * <li>
- * Property {@code elementStyle} - Define the annotation element styles.
- * Type is {@code
- * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption}.
- * Default value is {@code compact_no_array}.
- * </li>
- * <li>
- * Property {@code trailingArrayComma} - Define the policy for trailing comma in arrays.
- * Type is {@code
- * com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayCommaOption}.
- * Default value is {@code never}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.incorrect.style}
- * </li>
- * <li>
- * {@code annotation.parens.missing}
- * </li>
- * <li>
- * {@code annotation.parens.present}
- * </li>
- * <li>
- * {@code annotation.trailing.comma.missing}
- * </li>
- * <li>
- * {@code annotation.trailing.comma.present}
- * </li>
- * </ul>
  *
  * @since 5.0
- *
  */
 @StatelessCheck
 public final class AnnotationUseStyleCheck extends AbstractCheck {

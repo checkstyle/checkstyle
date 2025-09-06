@@ -145,7 +145,7 @@
               <td><a id="publicMemberPattern"/><a href="#publicMemberPattern">publicMemberPattern</a></td>
               <td>Specify pattern for public members that should be ignored.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^serialVersionUID$&quot;</code></td>
+              <td><code>^serialVersionUID$</code></td>
               <td>3.0</td>
             </tr>
           </table>

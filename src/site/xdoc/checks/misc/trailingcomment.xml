@@ -80,7 +80,7 @@ d = e / f;        // Another comment for this line
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Specify pattern for strings allowed before the comment.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^[\s});]*$&quot;</code></td>
+              <td><code>^[\s});]*$</code></td>
               <td>3.4</td>
             </tr>
             <tr>

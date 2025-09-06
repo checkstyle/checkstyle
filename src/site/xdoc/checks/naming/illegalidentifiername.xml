@@ -31,7 +31,7 @@
               <td><a id="format"/><a href="#format">format</a></td>
               <td>Sets the pattern to match valid identifiers.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^(?!var$|\S*\$)\S+$&quot;</code></td>
+              <td><code>^(?!var$|\S*\$)\S+$</code></td>
               <td>8.36</td>
             </tr>
             <tr>
