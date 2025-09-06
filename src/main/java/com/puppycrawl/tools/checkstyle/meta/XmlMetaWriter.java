@@ -190,4 +190,3 @@ public final class XmlMetaWriter {
 
     }
 }
-

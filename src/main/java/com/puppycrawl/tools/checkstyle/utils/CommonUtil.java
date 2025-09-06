@@ -29,7 +29,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.BitSet;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -510,7 +509,7 @@ public final class CommonUtil {
      *         or empty string if file does not have an extension.
      */
     public static String getFileExtension(String fileNameWithExtension) {
-        final String fileName = Paths.get(fileNameWithExtension).toString();
+        final String fileName = Path.of(fileNameWithExtension).toString();
         final int dotIndex = fileName.lastIndexOf('.');
         final String extension;
         if (dotIndex == -1) {

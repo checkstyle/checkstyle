@@ -117,4 +117,3 @@ public class MissingNullCaseInSwitchCheckTest extends
             expected);
     }
 }
-

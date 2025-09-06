@@ -2081,9 +2081,9 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      */
     private void processChildren(DetailAstImpl parent, List<? extends ParseTree> children) {
         children.forEach(child -> {
-            if (child instanceof TerminalNode) {
+            if (child instanceof TerminalNode node) {
                 // Child is a token, create a new DetailAstImpl and add it to parent
-                parent.addChild(create((TerminalNode) child));
+                parent.addChild(create(node));
             }
             else {
                 // Child is another rule context; visit it, create token, and add to parent

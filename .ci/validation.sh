@@ -1223,6 +1223,15 @@ pmd)
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
+rewrite)
+  export MAVEN_OPTS='-Xmx8g'
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
+  ;;
+
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+  ;;
+
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
