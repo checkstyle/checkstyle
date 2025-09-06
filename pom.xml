@@ -565,6 +565,10 @@
                 <name>noinspectionreason</name>
                 <placement>X</placement>
               </tag>
+              <tag>
+                <name>propertySince</name>
+                <placement>X</placement>
+              </tag>
             </tags>
           </configuration>
         </plugin>
@@ -973,6 +977,39 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <!-- Until #17746 -->
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.85</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.81</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <!-- Until #17746 -->
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
