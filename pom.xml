@@ -1747,7 +1747,7 @@
                 <exclude>jsoref-spellchecker/**</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>yamllint.yaml</exclude>
-                <exclude>checkstyle.properties</exclude>
+                <exclude>openrewrite-recipes-checkstyle.properties</exclude>
               </excludes>
             </validationSet>
             <validationSet>
