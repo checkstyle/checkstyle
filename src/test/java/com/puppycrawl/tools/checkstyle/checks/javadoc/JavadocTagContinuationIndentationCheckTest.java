@@ -177,4 +177,14 @@ public class JavadocTagContinuationIndentationCheckTest
                 getPath("InputJavadocTagContinuationIndentationCheckHtml.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocTagContinuationIndentationCheckPreTag() throws Exception {
+        final String[] expected = {
+            "94: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTagContinuationIndentationPreTag.java"),
+                expected);
+    }
 }

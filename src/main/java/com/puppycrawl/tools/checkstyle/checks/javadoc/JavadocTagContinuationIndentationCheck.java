@@ -121,9 +121,18 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     public void visitJavadocToken(DetailNode ast) {
         if (isBlockDescription(ast) && !isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
+            boolean preTagIsActive = false;
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
-                if (textNode.getType() != JavadocTokenTypes.NEWLINE && isViolation(textNode)) {
+                if (newlineNode.getType() == JavadocTokenTypes.HTML_TAG_NAME) {
+                    if ("pre".equals(newlineNode.getText())) {
+                        preTagIsActive = !preTagIsActive;
+                    }
+                    continue;
+                }
+                if (textNode.getType() != JavadocTokenTypes.NEWLINE
+                        && !preTagIsActive
+                        && isViolation(textNode)) {
                     log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }
@@ -178,13 +187,17 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                 textNodes.addAll(getAllNewlineNodes(descriptionNodeChild));
             }
             else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT_START
-                || node.getType() == JavadocTokenTypes.ATTRIBUTE) {
+                    || node.getType() == JavadocTokenTypes.ATTRIBUTE) {
                 textNodes.addAll(getAllNewlineNodes(node));
             }
-            if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
+            if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK
+                    || node.getType() == JavadocTokenTypes.HTML_TAG_NAME) {
                 textNodes.add(node);
             }
             node = JavadocUtil.getNextSibling(node);
+        }
+        if (node.getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
+            textNodes.addAll(getAllNewlineNodes(node));
         }
         return textNodes;
     }
