@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "block.noStatement",
+              "shortDescription": {
+                "text": "EmptyBlock"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for empty blocks.\n <\/div>\n\n <p>\n This check does not validate sequential blocks. This check does not violate fallthrough.\n <\/p>\n\n <p>\n NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.\n Verification empty block is done for single nearest {@code case} or {@code default}.\n <\/p>"
+              }
+            },
+            {
+              "id": "catch.block.empty",
+              "shortDescription": {
+                "text": "EmptyCatchBlock"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for empty catch blocks.\n By default, check allows empty catch block with any comment inside.\n <\/div>\n\n <p>\n There are two options to make validation more precise: <b>exceptionVariableName<\/b> and\n <b>commentFormat<\/b>.\n If both options are specified - they are applied by <b>any of them is matching<\/b>.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerMultipleRules.java"
+                },
+                "region": {
+                  "startColumn": 38,
+                  "startLine": 15
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "block.noStatement"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerMultipleRules.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 17
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "block.noStatement"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerMultipleRules.java"
+                },
+                "region": {
+                  "startColumn": 31,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Empty catch block."
+          },
+          "ruleId": "catch.block.empty"
+        }
+      ]
+    }
+  ]
+}
