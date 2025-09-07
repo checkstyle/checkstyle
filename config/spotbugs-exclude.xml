@@ -417,6 +417,12 @@
     <Method name="getAttributeNames" />
     <Bug pattern="IMC_IMMATURE_CLASS_COLLECTION_RETURN" />
   </Match>
+  <!-- it has xdoc annotation, we need to reconsider it after we finalize our xdoc generation -->
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck" />
+    <Field name="headerFiles" />
+    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
+  </Match>
   <!-- until https://github.com/checkstyle/checkstyle/issues/17720 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
@@ -426,6 +432,21 @@
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState" />
     <Field name="currentScopeState" />
+    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
+    <Field name="suppressionLineColumnNumber" />
+    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
+    <Field name="configurationFile" />
+    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
+  </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
+    <Field name="xpath" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
   </Match>
 </FindBugsFilter>
