@@ -75,7 +75,7 @@
               <td><a id="checkFormat"/><a href="#checkFormat">checkFormat</a></td>
               <td>Specify check pattern to suppress.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;.*&quot;</code></td>
+              <td><code>.*</code></td>
               <td>3.5</td>
             </tr>
             <tr>
@@ -96,14 +96,14 @@
               <td><a id="offCommentFormat"/><a href="#offCommentFormat">offCommentFormat</a></td>
               <td>Specify comment pattern to trigger filter to begin suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;CHECKSTYLE:OFF&quot;</code></td>
+              <td><code>CHECKSTYLE:OFF</code></td>
               <td>3.5</td>
             </tr>
             <tr>
               <td><a id="onCommentFormat"/><a href="#onCommentFormat">onCommentFormat</a></td>
               <td>Specify comment pattern to trigger filter to end suppression.</td>
               <td><a href="../property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;CHECKSTYLE:ON&quot;</code></td>
+              <td><code>CHECKSTYLE:ON</code></td>
               <td>3.5</td>
             </tr>
           </table>

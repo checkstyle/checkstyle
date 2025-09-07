@@ -128,7 +128,7 @@ public final class XmlMetaWriter {
                 property.setAttribute(XML_TAG_NAME, modulePropertyDetails.getName());
                 property.setAttribute("type", modulePropertyDetails.getType());
                 final String defaultValue = modulePropertyDetails.getDefaultValue();
-                if (defaultValue != null) {
+                if (defaultValue != null && !"null".equals(defaultValue)) {
                     property.setAttribute("default-value", defaultValue);
                 }
                 final String validationType = modulePropertyDetails.getValidationType();
