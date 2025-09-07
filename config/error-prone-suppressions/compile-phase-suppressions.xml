@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
-  <!-- Better suggestion after https://github.com/PicnicSupermarket/error-prone-support/issues/954. -->
-  <error>
-    <sourceFile>PropertiesMacro.java</sourceFile>
-    <bugPattern>CollectorMutability</bugPattern>
-    <description>Avoid `Collectors.to{List,Map,Set}` in favor of collectors that emphasize (im)mutability</description>
-    <lineContent>}).collect(Collectors.toSet()));</lineContent>
-  </error>
   <!-- This identity conversion prevents potential `NullPointerException`s from being thrown. -->
   <error>
     <sourceFile>SarifLogger.java</sourceFile>

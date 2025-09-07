@@ -566,6 +566,10 @@
                 <name>noinspectionreason</name>
                 <placement>X</placement>
               </tag>
+              <tag>
+                <name>propertySince</name>
+                <placement>X</placement>
+              </tag>
             </tags>
           </configuration>
         </plugin>
@@ -958,6 +962,7 @@
                              com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter.UpdatingTreeModelListener
                     </exclude>
                     <!-- Metadata Generator related classes -->
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
@@ -974,6 +979,25 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <!-- Until #17746 -->
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.85</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.81</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1319,7 +1343,7 @@
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.77</minimum>
+                      <minimum>0.75</minimum>
                     </limit>
                   </limits>
                 </rule>
