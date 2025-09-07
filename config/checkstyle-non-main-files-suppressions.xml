@@ -86,6 +86,8 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]it[\\/]resources[\\/].*[\\/]chapter4formatting[\\/]rule44columnlimit.*\.java"/>
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
