@@ -2046,8 +2046,6 @@ public final class JavadocTokenTypes {
 
  */
     public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
-
-
     /** "keygen" tag name. */
     public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
     /** "source" tag name. */
@@ -2086,7 +2084,6 @@ public final class JavadocTokenTypes {
      * }
      * </pre>
      */
-
     public static final int HTML_COMMENT_START = JavadocParser.HTML_COMMENT_START;
 
     /**
@@ -2183,8 +2180,7 @@ public final class JavadocTokenTypes {
      *  |   `--DESCRIPTION -> DESCRIPTION
      *  |       |--TEXT -> The bar.
      *  |       |--NEWLINE -> \n
-     git branch
-*  |       `--TEXT ->
+     *  |       `--TEXT ->
      *  `--EOF -> <EOF>
      * }</pre>
      */
