@@ -29,8 +29,6 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
@@ -56,13 +54,14 @@ import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * A Java Bean that implements the component lifecycle interfaces by
  * calling the bean's setters for all configuration attributes.
  */
 public abstract class AbstractAutomaticBean
-    implements Configurable, Contextualizable {
+        implements Configurable, Contextualizable {
 
     /**
      * Enum to specify behaviour regarding ignored modules.
