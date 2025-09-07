@@ -259,7 +259,7 @@ public class CheckstyleAntTask extends Task {
 
     @Override
     public void execute() {
-        final long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
 
         try {
             final String version = Objects.toString(
