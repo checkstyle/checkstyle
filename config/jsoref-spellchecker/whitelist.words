@@ -515,6 +515,7 @@ Ghj
 gitattributes
 github
 githubusercontent
+gitignore
 Gjs
 globbing
 GMetrics
@@ -995,6 +996,7 @@ npm
 nrmancuso
 ntokens
 NTU
+Nullability
 nullcase
 nullcheck
 nullness
@@ -1172,6 +1174,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refasterrules
 refid
 refreshenv
 regex
@@ -1310,6 +1313,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib
