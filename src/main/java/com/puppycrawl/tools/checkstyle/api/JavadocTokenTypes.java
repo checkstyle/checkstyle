@@ -1033,7 +1033,10 @@ public final class JavadocTokenTypes {
     public static final int START = JavadocParser.START;
 
     /**
-     * Slash html tag component: {@code '/'}.
+     * Represents the forward slash character '/'.
+     * Used in HTML tags within Javadoc, such as in closing tags like {@code </i> }.
+     *
+     * @since 8.41
      */
     public static final int SLASH = JavadocParser.SLASH;
 
