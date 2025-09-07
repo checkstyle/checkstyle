@@ -2116,6 +2116,9 @@
             <!-- we did too many requests to GitHub,
                  now GitHub reject all requests "429 Too Many Requests" -->
             <excludedLink>https://github.com/*</excludedLink>
+            <excludedLink>http://jeremymanson.blogspot.com/*</excludedLink>
+            <excludedLink>https://javarevisited.blogspot.com/*</excludedLink>
+            <excludedLink>https://webtoolkit.googleblog.com/*</excludedLink>
             <!-- redirects to US page, it is better to stay international -->
             <excludedLink>https://help.github.com/*</excludedLink>
             <excludedLink>http://search.maven.org/*</excludedLink>
