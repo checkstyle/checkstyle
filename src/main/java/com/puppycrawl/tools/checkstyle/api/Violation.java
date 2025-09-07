@@ -24,10 +24,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * Represents a violation that can be localised. The translations come from
@@ -39,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  *      bunch of constructors
  */
 public final class Violation
-    implements Comparable<Violation> {
+        implements Comparable<Violation> {
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;

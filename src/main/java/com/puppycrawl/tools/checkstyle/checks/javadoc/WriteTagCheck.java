@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -31,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * <div>
@@ -97,7 +96,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  */
 @StatelessCheck
 public class WriteTagCheck
-    extends AbstractCheck {
+        extends AbstractCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
