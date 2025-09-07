@@ -1251,6 +1251,27 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
+openrewrite-recipes)
+  echo "Cloning and building OpenRewrite recipes..."
+  PROJECT_ROOT="$(pwd)"
+
+  cd /tmp
+  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+  cd checkstyle-openrewrite-recipes
+  mvn -e --no-transfer-progress clean install -DskipTests
+
+  cd "$PROJECT_ROOT"
+
+  echo "Running OpenRewrite recipes..."
+  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
+  ./mvnw -e --no-transfer-progress rewrite:run -P checkstyle-autofix
+
+  echo "Checking for uncommitted changes..."
+  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+
+  rm -rf /tmp/checkstyle-openrewrite-recipes
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   echo "Supported tasks:"
