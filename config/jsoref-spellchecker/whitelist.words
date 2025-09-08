@@ -217,6 +217,7 @@ CNAME
 Cnt
 cobertura
 codacy
+codebases
 codeclimate
 codeconventions
 codecov
@@ -995,6 +996,7 @@ npm
 nrmancuso
 ntokens
 NTU
+Nullability
 nullcase
 nullcheck
 nullness
@@ -1172,6 +1174,8 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+Refaster
+refasterrules
 refid
 refreshenv
 regex
@@ -1310,6 +1314,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib

@@ -1,0 +1,24 @@
+---
+type: specs.openrewrite.org/v1beta/style
+name: org.checkstyle.CheckstyleImportLayout
+displayName: Checkstyle Import Layout
+description: |
+  Defines the import layout style to match Checkstyle’s expectations.
+  Controls grouping and ordering of imports, while preventing wildcard
+  imports unless thresholds are exceeded.
+styleConfigs:
+  - org.openrewrite.java.style.ImportLayoutStyle:
+      classCountToUseStarImport: 999
+      nameCountToUseStarImport: 999
+    layout:
+      - import static all other imports
+      - <blank line>
+      - import java.*
+      - <blank line>
+      - import javax.*
+      - <blank line>
+      - import org.*
+      - <blank line>
+      - import com.*
+      - import all other imports
+---
