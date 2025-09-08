@@ -38,35 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <b>commentFormat</b>.
  * If both options are specified - they are applied by <b>any of them is matching</b>.
  * </p>
- * <ul>
- * <li>
- * Property {@code commentFormat} - Specify the RegExp for the first comment inside empty
- * catch block. If check meets comment inside empty catch block matching specified format
- * - empty block is suppressed. If it is multi-line comment - only its first line is analyzed.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code exceptionVariableName} - Specify the RegExp for the name of the variable
- * associated with exception. If check meets variable name matching specified value - empty
- * block is suppressed.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code catch.block.empty}
- * </li>
- * </ul>
  *
  * @since 6.4
  */

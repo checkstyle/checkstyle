@@ -43,49 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code option} - Specify the policy on placement of a right curly brace
- * (<code>'}'</code>).
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption}.
- * Default value is {@code same}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
- * LITERAL_TRY</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
- * LITERAL_CATCH</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FINALLY">
- * LITERAL_FINALLY</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
- * LITERAL_IF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_ELSE">
- * LITERAL_ELSE</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code line.alone}
- * </li>
- * <li>
- * {@code line.break.before}
- * </li>
- * <li>
- * {@code line.same}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
