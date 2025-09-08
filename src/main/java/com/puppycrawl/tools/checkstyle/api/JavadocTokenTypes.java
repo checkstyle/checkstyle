@@ -2015,8 +2015,37 @@ public final class JavadocTokenTypes {
 
     /** Param tag name. */
     public static final int PARAM_HTML_TAG_NAME = JavadocParser.PARAM_HTML_TAG_NAME;
-    /** "embed" tag name. */
+
+    /**
+     * Embed tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <embed src="video.mp4" type="video/mp4">}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *  `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     `--EMBED_TAG -> EMBED_TAG
+     *        |--START -> <
+     *        |--EMBED_HTML_TAG_NAME -> embed
+     *        |--WS ->
+     *        |--ATTRIBUTE -> ATTRIBUTE
+     *        |   |--HTML_TAG_NAME -> src
+     *        |   |--EQUALS -> =
+     *        |   `--ATTR_VALUE -> "video.mp4"
+     *        |--WS ->
+     *        |--ATTRIBUTE -> ATTRIBUTE
+     *        |   |--HTML_TAG_NAME -> type
+     *        |   |--EQUALS -> =
+     *        |   `--ATTR_VALUE -> "video/mp4"
+     *        `--END -> >
+     * }
+     * </pre>
+     */
     public static final int EMBED_HTML_TAG_NAME = JavadocParser.EMBED_HTML_TAG_NAME;
+
     /** "keygen" tag name. */
     public static final int KEYGEN_HTML_TAG_NAME = JavadocParser.KEYGEN_HTML_TAG_NAME;
     /** "source" tag name. */
