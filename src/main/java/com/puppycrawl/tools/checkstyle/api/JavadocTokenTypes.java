@@ -1033,7 +1033,29 @@ public final class JavadocTokenTypes {
     public static final int START = JavadocParser.START;
 
     /**
-     * Slash html tag component: {@code '/'}.
+     * Slash HTML tag component.
+     *
+     * <p><b>Example:</b></p>
+     *
+     * <pre>{@code
+     * <p>Paragraph Tag.</p>
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     *
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * ├──HTML_ELEMENT_START -> HTML_ELEMENT_START
+     * │   ├──START -> <
+     * │   ├──HTML_TAG_NAME -> p
+     * │   └──END -> >
+     * ├──TEXT -> Paragraph Tag.
+     * └──HTML_ELEMENT_END -> HTML_ELEMENT_END
+     *     ├──START -> <
+     *     ├──SLASH -> /
+     *     ├──HTML_TAG_NAME -> p
+     *     └──END -> >
+     * }</pre>
      */
     public static final int SLASH = JavadocParser.SLASH;
 
