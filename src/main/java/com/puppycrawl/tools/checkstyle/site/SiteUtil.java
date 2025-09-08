@@ -738,10 +738,10 @@ public final class SiteUtil {
             getSpecifiedPropertyVersionInModule(propertyName, moduleJavadoc);
 
         if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
+            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.orElseThrow();
         }
         else if (specifiedPropertyVersionInModule.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInModule.get();
+            sinceVersion = specifiedPropertyVersionInModule.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -798,7 +798,7 @@ public final class SiteUtil {
             .map(DetailNode::getChildren);
 
         if (propertyJavadocNodes.isPresent()) {
-            for (final DetailNode child : propertyJavadocNodes.get()) {
+            for (final DetailNode child : propertyJavadocNodes.orElseThrow()) {
                 if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                     final DetailNode customName = JavadocUtil.findFirstToken(
                             child, JavadocTokenTypes.CUSTOM_NAME);
@@ -831,7 +831,7 @@ public final class SiteUtil {
 
         if (propertyNodeFromModuleJavadoc.isPresent()) {
             final List<DetailNode> propertyModuleTextNodes = getNodesOfSpecificType(
-                propertyNodeFromModuleJavadoc.get().getChildren(), JavadocTokenTypes.TEXT);
+                propertyNodeFromModuleJavadoc.orElseThrow().getChildren(), JavadocTokenTypes.TEXT);
 
             final Optional<String> sinceVersionLine = propertyModuleTextNodes.stream()
                 .map(DetailNode::getText)
@@ -839,7 +839,7 @@ public final class SiteUtil {
                 .findFirst();
 
             if (sinceVersionLine.isPresent()) {
-                final String sinceVersionText = sinceVersionLine.get();
+                final String sinceVersionText = sinceVersionLine.orElseThrow();
                 final int sinceVersionIndex = sinceVersionText.indexOf('.') - 1;
 
                 if (sinceVersionIndex > 0) {
@@ -895,9 +895,7 @@ public final class SiteUtil {
             .toList();
 
         return liTagsInlineTexts.stream()
-            .filter(text -> text.getText().equals(propertyName))
-            .map(textNode -> textNode.getParent().getParent())
-            .findFirst();
+                .filter(text -> text.getText().equals(propertyName)).findFirst().map(textNode -> textNode.getParent().getParent());
 
     }
 
@@ -1352,7 +1350,7 @@ public final class SiteUtil {
     private static String getFileContents(Path pathToFile) throws CheckstyleException {
         final String content;
         try {
-            content = Files.readString(pathToFile, StandardCharsets.UTF_8);
+            content = Files.readString(pathToFile);
         }
         catch (IOException ioException) {
             final String message = String.format(Locale.ROOT, "Failed to read file: %s",

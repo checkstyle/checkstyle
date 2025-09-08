@@ -100,7 +100,7 @@ public final class ModuleJavadocParsingUtil {
         return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
             paragraphNode, NOTES_LINE)
             || liNode.isPresent() && JavadocMetadataScraper.isChildNodeTextMatches(
-                liNode.get(), NOTES_LINE);
+                liNode.orElseThrow(), NOTES_LINE);
     }
 
     /**
@@ -262,7 +262,7 @@ public final class ModuleJavadocParsingUtil {
 
             if (somePropertyModuleNode.isPresent()) {
                 propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
-                    somePropertyModuleNode.get());
+                        somePropertyModuleNode.orElseThrow());
             }
         }
 
@@ -301,12 +301,10 @@ public final class ModuleJavadocParsingUtil {
     public static int getModuleSinceVersionTagStartIndex(DetailNode moduleJavadoc) {
         return SiteUtil.getNodesOfSpecificType(moduleJavadoc.getChildren(),
                 JavadocTokenTypes.JAVADOC_TAG).stream()
-            .filter(javadocTag -> {
-                return JavadocUtil
-                    .findFirstToken(javadocTag, JavadocTokenTypes.SINCE_LITERAL) != null;
-            })
-            .map(DetailNode::getIndex)
-            .findFirst()
+                .filter(javadocTag -> {
+                    return JavadocUtil
+                            .findFirstToken(javadocTag, JavadocTokenTypes.SINCE_LITERAL) != null;
+                }).findFirst().map(DetailNode::getIndex)
             .orElse(-1);
     }
 
