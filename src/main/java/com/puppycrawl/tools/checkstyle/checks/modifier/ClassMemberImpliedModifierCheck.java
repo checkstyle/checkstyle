@@ -58,39 +58,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * remember this rule, and this check provides the means to enforce that the modifier is coded
  * explicitly.
  * </p>
- * <ul>
- * <li>
- * Property {@code violateImpliedStaticOnNestedEnum} - Control whether to enforce that
- * {@code static} is explicitly coded on nested enums in classes and records.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code violateImpliedStaticOnNestedInterface} - Control whether to enforce that
- * {@code static} is explicitly coded on nested interfaces in classes and records.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code violateImpliedStaticOnNestedRecord} - Control whether to enforce that
- * {@code static} is explicitly coded on nested records in classes and records.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code class.implied.modifier}
- * </li>
- * </ul>
  *
  * @since 8.16
  */
