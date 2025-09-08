@@ -37,19 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Rationale: Complex boolean logic makes code hard to understand and maintain.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code simplify.expression}
- * </li>
- * </ul>
- *
  * @since 3.0
  */
 @StatelessCheck

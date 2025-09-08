@@ -58,26 +58,6 @@ import net.sf.saxon.trans.XPathException;
  * <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
  *     XpathUtil</a>.
  * </p>
- * <ul>
- * <li>
- * Property {@code query} - Specify Xpath query.
- * Type is {@code java.lang.String}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code matchxpath.match}
- * </li>
- * </ul>
  *
  * @since 8.39
  */

@@ -41,19 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * connection and mislead readers.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code pattern.variable.assignment}
- * </li>
- * </ul>
- *
  * @since 10.26.0
  */
 @StatelessCheck

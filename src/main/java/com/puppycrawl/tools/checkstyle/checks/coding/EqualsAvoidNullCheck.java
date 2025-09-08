@@ -44,30 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * pretty common to see null checks right before equals comparisons
  * but following this rule such checks are not required.
  * </p>
- * <ul>
- * <li>
- * Property {@code ignoreEqualsIgnoreCase} - Control whether to ignore
- * {@code String.equalsIgnoreCase(String)} invocations.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code equals.avoid.null}
- * </li>
- * <li>
- * {@code equalsIgnoreCase.avoid.null}
- * </li>
- * </ul>
  *
  * @since 5.0
  */
