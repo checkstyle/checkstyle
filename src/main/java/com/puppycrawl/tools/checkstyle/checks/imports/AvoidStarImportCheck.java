@@ -45,39 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Note that property {@code excludes} is not recursive, subpackages of excluded
  * packages are not automatically excluded.
  * </p>
- * <ul>
- * <li>
- * Property {@code allowClassImports} - Control whether to allow starred class
- * imports like {@code import java.util.*;}.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowStaticMemberImports} - Control whether to allow starred
- * static member imports like {@code import static org.junit.Assert.*;}.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code excludes} - Specify packages where starred class imports are
- * allowed and classes where starred static member imports are allowed.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code import.avoidStar}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
