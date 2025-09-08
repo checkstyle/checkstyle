@@ -50,31 +50,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * In both cases, code catching the exception could draw incorrect
  * conclusions based on the state.
  * </p>
- * <ul>
- * <li>
- * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
- * </li>
- * <li>
- * Property {@code format} - Specify pattern for exception class names.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code mutable.exception}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

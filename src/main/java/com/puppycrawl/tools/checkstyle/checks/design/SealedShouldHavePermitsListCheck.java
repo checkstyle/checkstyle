@@ -44,19 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Java Language Specification</a> for more information about sealed classes.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code sealed.should.have.permits}
- * </li>
- * </ul>
- *
  * @since 10.18.0
  */
 

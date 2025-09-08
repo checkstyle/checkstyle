@@ -35,19 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * method, constructor and field declarations.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code arrangement.members.before.inner}
- * </li>
- * </ul>
- *
  * @since 5.2
  */
 @FileStatefulCheck
