@@ -88,7 +88,7 @@ public final class MetadataGeneratorUtil {
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks", "annotation");
+            getTargetFiles(path + "/checks", "annotation", "blocks");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
