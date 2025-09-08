@@ -33,43 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks specified tokens text for matching an illegal pattern.
  * By default, no tokens are specified.
  * </div>
- * <ul>
- * <li>
- * Property {@code format} - Define the RegExp for illegal pattern.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
- * </li>
- * <li>
- * Property {@code ignoreCase} - Control whether to ignore case when matching.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code message} - Define the message which is used to notify about violations;
- * if empty then the default message is used.
- * Type is {@code java.lang.String}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is: {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code illegal.token.text}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

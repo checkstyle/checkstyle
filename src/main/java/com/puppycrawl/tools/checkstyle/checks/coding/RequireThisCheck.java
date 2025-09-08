@@ -68,40 +68,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Non-static methods invoked on either this or a variable name seem to be
  * OK, likewise.
  * </p>
- * <ul>
- * <li>
- * Property {@code checkFields} - Control whether to check references to fields.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code checkMethods} - Control whether to check references to methods.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code validateOnlyOverlapping} - Control whether to check only
- * overlapping by variables or arguments.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code require.this.method}
- * </li>
- * <li>
- * {@code require.this.variable}
- * </li>
- * </ul>
  *
  * @since 3.4
  */

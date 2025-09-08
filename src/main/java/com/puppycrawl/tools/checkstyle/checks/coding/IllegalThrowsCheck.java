@@ -39,38 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Declaring that a method throws {@code java.lang.Error} or
  * {@code java.lang.RuntimeException} is almost never acceptable.
  * </div>
- * <ul>
- * <li>
- * Property {@code ignoreOverriddenMethods} - Allow to ignore checking overridden methods
- * (marked with {@code Override} or {@code java.lang.Override} annotation).
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code ignoredMethodNames} - Specify names of methods to ignore.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code finalize}.
- * </li>
- * <li>
- * Property {@code illegalClassNames} - Specify throw class names to reject.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Error, RuntimeException, Throwable, java.lang.Error,
- * java.lang.RuntimeException, java.lang.Throwable}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code illegal.throw}
- * </li>
- * </ul>
  *
  * @since 4.0
  */

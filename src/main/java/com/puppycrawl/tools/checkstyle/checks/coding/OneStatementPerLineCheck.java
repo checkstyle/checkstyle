@@ -49,26 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * object creation statements, 'for loop' statements, 'break' statements,
  * 'continue' statements, 'return' statements, resources statements (optional).
  * </p>
- * <ul>
- * <li>
- * Property {@code treatTryResourcesAsStatement} - Enable resources processing.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code multiple.statements.line}
- * </li>
- * </ul>
  *
  * @since 5.3
  */

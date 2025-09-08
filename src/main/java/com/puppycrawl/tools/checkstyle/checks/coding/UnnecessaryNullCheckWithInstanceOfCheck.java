@@ -36,20 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * making explicit null checks redundant in boolean expressions with instanceof.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- *
- * <ul>
- *   <li>
- *     {@code unnecessary.nullcheck.with.instanceof}
- *   </li>
- * </ul>
- *
  * @since 10.25.0
  */
 @StatelessCheck

@@ -88,12 +88,19 @@ public final class MetadataGeneratorUtil {
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks", "annotation", "blocks");
+            getTargetFiles(path + "/checks", "annotation", "blocks", "coding");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
         try {
             for (File file : checksWithSimplifiedJavadocs) {
+                final String fileName = file.getName();
+
+                if (fileName.startsWith("Abstract")
+                    && !"AbstractClassNameCheck.java".equals(fileName)) {
+                    continue;
+                }
+
                 final ModuleDetails moduleDetails = getModuleDetails(file);
                 writeMetadataFile(moduleDetails);
             }
@@ -113,7 +120,8 @@ public final class MetadataGeneratorUtil {
      * @throws MacroExecutionException macroExecutionException
      */
     private static ModuleDetails getModuleDetails(File file) throws MacroExecutionException {
-        final String moduleName = SiteUtil.getModuleName(file).replace(SiteUtil.CHECK, "");
+        final String moduleName = SiteUtil.FINAL_CHECK.matcher(SiteUtil.getModuleName(file))
+            .replaceAll("");
 
         final Object instance = SiteUtil.getModuleInstance(moduleName);
         final Class<?> clss = instance.getClass();
@@ -185,13 +193,13 @@ public final class MetadataGeneratorUtil {
         for (String property : properties) {
             final String description = getPropertyDescription(property,
                     javadocs.get(property));
-            final Field field = SiteUtil.getField(instance.getClass(), property);
+            final Field propertyField = SiteUtil.getField(instance.getClass(), property);
 
-            final String type = SiteUtil.getType(field, property, className, instance);
+            final String type = SiteUtil.getType(propertyField, property, className, instance);
 
-            final String defaultValue = getPropertyDefaultValue(property, field, instance,
+            final String defaultValue = getPropertyDefaultValue(property, propertyField, instance,
                     className);
-            final String validationType = getValidationType(property);
+            final String validationType = getValidationType(propertyField);
 
             result.add(new ModulePropertyDetails(property, type, defaultValue,
                     validationType, description));
@@ -259,13 +267,18 @@ public final class MetadataGeneratorUtil {
     /**
      * Get validation type for the given property.
      *
-     * @param property property name.
+     * @param propertyField field of property.
      * @return validation type.
      */
-    private static String getValidationType(String property) {
+    private static String getValidationType(Field propertyField) {
+        final String propertyName = propertyField.getName();
+
         final String validationType;
-        if (SiteUtil.TOKENS.equals(property) || SiteUtil.JAVADOC_TOKENS.equals(property)) {
+        if (SiteUtil.TOKENS.equals(propertyName) || SiteUtil.JAVADOC_TOKENS.equals(propertyName)) {
             validationType = "tokenSet";
+        }
+        else if (ModuleJavadocParsingUtil.isPropertySpecialTokenProp(propertyField)) {
+            validationType = "tokenTypesSet";
         }
         else {
             validationType = null;

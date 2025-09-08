@@ -44,42 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Rationale: Code duplication makes maintenance more difficult, so it can be better
  * to replace the multiple occurrences with a constant.
  * </p>
- * <ul>
- * <li>
- * Property {@code allowedDuplicates} - Specify the maximum number of occurrences
- * to allow without generating a warning.
- * Type is {@code int}.
- * Default value is {@code 1}.
- * </li>
- * <li>
- * Property {@code ignoreOccurrenceContext} - Specify token type names where duplicate
- * strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
- * exclude syntactical contexts like annotations or static initializers from the check.
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenTypesSet}.
- * Default value is
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION">
- * ANNOTATION</a>.
- * </li>
- * <li>
- * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^""$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code multiple.string.literal}
- * </li>
- * </ul>
  *
  * @since 3.5
  */

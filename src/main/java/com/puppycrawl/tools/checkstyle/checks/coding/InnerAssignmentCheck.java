@@ -66,19 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * intention was to write {@code line == reader.readLine()}.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code assignment.inner.avoid}
- * </li>
- * </ul>
- *
  * @since 3.0
  */
 @StatelessCheck

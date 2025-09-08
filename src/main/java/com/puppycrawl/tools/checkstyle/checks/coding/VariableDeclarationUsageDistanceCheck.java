@@ -40,47 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Note: Any additional variables declared or initialized between the declaration and
  *  the first usage of the said variable are not counted when calculating the distance.
  * </div>
- * <ul>
- * <li>
- * Property {@code allowedDistance} - Specify the maximum distance between a
- * variable's declaration and its first usage. Value should be greater than 0.
- * Type is {@code int}.
- * Default value is {@code 3}.
- * </li>
- * <li>
- * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code ignoreVariablePattern} - Define RegExp to ignore distance calculation
- * for variables listed in this pattern.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code validateBetweenScopes} - Allow to calculate the distance between a
- * variable's declaration and its first usage across different scopes.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code variable.declaration.usage.distance}
- * </li>
- * <li>
- * {@code variable.declaration.usage.distance.extend}
- * </li>
- * </ul>
  *
  * @since 5.8
  */

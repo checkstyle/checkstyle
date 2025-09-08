@@ -27,7 +27,6 @@
  &lt;/ol&gt;
 
  &lt;p&gt;
- Notes:
  Limitations: Nothing is currently done about static variables
  or catch-blocks.  Static methods invoked on a class name seem to be OK;
  both the class name and the method name have a DOT parent.
@@ -42,8 +41,7 @@
                <description>Control whether to check references to methods.</description>
             </property>
             <property default-value="true" name="validateOnlyOverlapping" type="boolean">
-               <description>Control whether to check only
- overlapping by variables or arguments.</description>
+               <description>Control whether to check only overlapping by variables or arguments.</description>
             </property>
          </properties>
          <message-keys>
