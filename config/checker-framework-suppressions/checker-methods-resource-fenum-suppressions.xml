@@ -179,7 +179,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>required.method.not.called</specifier>
-    <message>@MustCall method close may not have been invoked on XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName) or any of its aliases.</message>
+    <message>@MustCall method close may not have been invoked on &quot;XmlMetaReader.class.getResourceAsStream(&quot;/&quot; +...&quot; or any of its aliases.</message>
     <lineContent>moduleDetails = read(XmlMetaReader.class.getResourceAsStream(&quot;/&quot; + fileName),</lineContent>
     <details>
       The type of object is: java.io.InputStream.

@@ -86,6 +86,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
+import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -1244,6 +1245,7 @@ public class XdocsPagesTest {
         final String expectedTypeName = Optional.ofNullable(field)
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
+                .map(SiteUtil::simplifyTypeName)
                 .orElse(fieldClass.getSimpleName());
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClass, instance);
@@ -1418,13 +1420,13 @@ public class XdocsPagesTest {
             }
             else if (fieldClass == URI.class || fieldClass == String.class) {
                 if (value != null) {
-                    result = '"' + value.toString() + '"';
+                    result = value.toString();
                 }
             }
             else if (fieldClass == Pattern.class) {
                 if (value != null) {
-                    result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
-                            .replace("\r", "\\r").replace("\f", "\\f") + '"';
+                    result = value.toString().replace("\n", "\\n").replace("\t", "\\t")
+                            .replace("\r", "\\r").replace("\f", "\\f");
                 }
             }
             else if (fieldClass == Pattern[].class) {
@@ -1893,7 +1895,7 @@ public class XdocsPagesTest {
             styleChecks.remove("SuppressWarningsFilter");
             styleChecks.remove("SuppressWarningsHolder");
             styleChecks.remove("SuppressWithNearbyTextFilter");
-
+            styleChecks.remove("SuppressWithPlainTextCommentFilter");
             assertWithMessage(
                     fileName + " requires the following check(s) to appear: " + styleChecks)
                 .that(styleChecks)
