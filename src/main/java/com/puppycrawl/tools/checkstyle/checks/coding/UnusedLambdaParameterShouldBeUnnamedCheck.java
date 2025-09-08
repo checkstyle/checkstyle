@@ -57,19 +57,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * This check should be activated only on source code which meets those requirements.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code unused.lambda.parameter}
- * </li>
- * </ul>
- *
  * @since 10.18.0
  */
 @FileStatefulCheck

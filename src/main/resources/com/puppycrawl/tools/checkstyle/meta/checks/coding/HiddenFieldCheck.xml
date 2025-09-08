@@ -10,7 +10,6 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Notes:
  It is possible to configure the check to ignore all property setter methods.
  &lt;/p&gt;
 
@@ -50,8 +49,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="ignoreAbstractMethods" type="boolean">
-               <description>Control whether to ignore parameters
- of abstract methods.</description>
+               <description>Control whether to ignore parameters of abstract methods.</description>
             </property>
             <property default-value="false"
                       name="ignoreConstructorParameter"
@@ -59,15 +57,14 @@
                <description>Control whether to ignore constructor parameters.</description>
             </property>
             <property name="ignoreFormat" type="java.util.regex.Pattern">
-               <description>Define the RegExp for names of variables
- and parameters to ignore.</description>
+               <description>Define the RegExp for names of variables and parameters to ignore.</description>
             </property>
             <property default-value="false" name="ignoreSetter" type="boolean">
                <description>Allow to ignore the parameter of a property setter method.</description>
             </property>
             <property default-value="false" name="setterCanReturnItsClass" type="boolean">
-               <description>Allow to expand the definition of a setter method
- to include methods that return the class' instance.</description>
+               <description>Allow to expand the definition of a setter method to include methods
+ that return the class' instance.</description>
             </property>
             <property default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF"
                       name="tokens"

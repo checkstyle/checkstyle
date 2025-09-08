@@ -21,8 +21,8 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="onlyObjectReferences" type="boolean">
-               <description>Control whether only explicit
- initializations made to null for objects should be checked.</description>
+               <description>Control whether only explicit initializations made to null
+ for objects should be checked.</description>
             </property>
          </properties>
          <message-keys>

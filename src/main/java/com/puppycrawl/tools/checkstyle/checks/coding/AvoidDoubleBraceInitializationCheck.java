@@ -50,19 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Check ignores any comments and semicolons in class body.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code avoid.double.brace.init}
- * </li>
- * </ul>
- *
  * @since 8.30
  */
 @StatelessCheck

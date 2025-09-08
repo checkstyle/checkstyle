@@ -11,8 +11,8 @@
  &lt;/div&gt;</description>
          <properties>
             <property default-value="3" name="allowedDistance" type="int">
-               <description>Specify the maximum distance between a
- variable's declaration and its first usage. Value should be greater than 0.</description>
+               <description>Specify the maximum distance between a variable's declaration and its first usage.
+ Value should be greater than 0.</description>
             </property>
             <property default-value="true" name="ignoreFinal" type="boolean">
                <description>Allow to ignore variables with a 'final' modifier.</description>
@@ -20,12 +20,11 @@
             <property default-value=""
                       name="ignoreVariablePattern"
                       type="java.util.regex.Pattern">
-               <description>Define RegExp to ignore distance calculation
- for variables listed in this pattern.</description>
+               <description>Define RegExp to ignore distance calculation for variables listed in this pattern.</description>
             </property>
             <property default-value="false" name="validateBetweenScopes" type="boolean">
-               <description>Allow to calculate the distance between a
- variable's declaration and its first usage across different scopes.</description>
+               <description>Allow to calculate the distance between a variable's declaration
+ and its first usage across different scopes.</description>
             </property>
          </properties>
          <message-keys>

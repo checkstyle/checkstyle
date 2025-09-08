@@ -30,19 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * on the default one.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code missing.ctor}
- * </li>
- * </ul>
- *
  * @since 3.4
  */
 @StatelessCheck
