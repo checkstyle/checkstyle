@@ -112,8 +112,8 @@ public final class SiteUtil {
             "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
     /** The string of JavaDoc module marking 'Since version'. */
     public static final String SINCE_VERSION = "Since version";
-    /** The string 'Check'. */
-    public static final String CHECK = "Check";
+    /** The 'Check' pattern at the end of string. */
+    public static final Pattern FINAL_CHECK = Pattern.compile("Check$");
     /** The string 'fileExtensions'. */
     public static final String FILE_EXTENSIONS = "fileExtensions";
     /** The string 'charset'. */
@@ -1304,7 +1304,7 @@ public final class SiteUtil {
      */
     public static String getLinkToDocument(String moduleName, String document)
             throws MacroExecutionException {
-        final Path templatePath = getTemplatePath(moduleName.replace(CHECK, ""));
+        final Path templatePath = getTemplatePath(FINAL_CHECK.matcher(moduleName).replaceAll(""));
         if (templatePath == null) {
             throw new MacroExecutionException(
                     String.format(Locale.ROOT,

@@ -76,8 +76,7 @@
             <property default-value="false"
                       name="alwaysDemandTrailingComma"
                       type="boolean">
-               <description>Control whether to always check for a trailing
- comma, even when an array is inline.</description>
+               <description>Control whether to always check for a trailing comma, even when an array is inline.</description>
             </property>
          </properties>
          <message-keys>

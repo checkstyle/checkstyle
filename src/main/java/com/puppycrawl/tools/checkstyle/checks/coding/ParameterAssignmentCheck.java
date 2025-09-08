@@ -46,19 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * the best of both worlds.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code parameter.assignment}
- * </li>
- * </ul>
- *
  * @since 3.2
  */
 @FileStatefulCheck

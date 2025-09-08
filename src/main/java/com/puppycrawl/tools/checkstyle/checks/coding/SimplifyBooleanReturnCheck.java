@@ -50,19 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     PMD</a> rule.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code simplify.boolReturn}
- * </li>
- * </ul>
- *
  * @since 3.0
  */
 @StatelessCheck

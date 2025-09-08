@@ -33,30 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Rationale: Java allows {@code default} anywhere within the
  * {@code switch} statement. But it is more readable if it comes after the last {@code case}.
  * </p>
- * <ul>
- * <li>
- * Property {@code skipIfLastAndSharedWithCase} - Control whether to allow {@code default}
- * along with {@code case} if they are not last.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code default.comes.last}
- * </li>
- * <li>
- * {@code default.comes.last.in.casegroup}
- * </li>
- * </ul>
  *
  * @since 3.4
  */

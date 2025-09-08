@@ -38,19 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * their employer's coding standards forbid them.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code inline.conditional.avoid}
- * </li>
- * </ul>
- *
  * @since 3.1
  */
 @StatelessCheck

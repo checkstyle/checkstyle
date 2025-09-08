@@ -52,53 +52,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Rationale: Too many return points can mean that code is
  * attempting to do too much or may be difficult to understand.
  * </p>
- * <ul>
- * <li>
- * Property {@code format} - Specify method names to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^equals$"}.
- * </li>
- * <li>
- * Property {@code max} - Specify maximum allowed number of return statements
- * in non-void methods/lambdas.
- * Type is {@code int}.
- * Default value is {@code 2}.
- * </li>
- * <li>
- * Property {@code maxForVoid} - Specify maximum allowed number of return statements
- * in void methods/constructors/lambdas.
- * Type is {@code int}.
- * Default value is {@code 1}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
- * CTOR_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
- * LAMBDA</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code return.count}
- * </li>
- * <li>
- * {@code return.countVoid}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

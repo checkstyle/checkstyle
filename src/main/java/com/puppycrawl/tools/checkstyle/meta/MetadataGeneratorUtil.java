@@ -88,12 +88,17 @@ public final class MetadataGeneratorUtil {
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks", "annotation", "blocks");
+            getTargetFiles(path + "/checks", "annotation", "blocks", "coding");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
         try {
             for (File file : checksWithSimplifiedJavadocs) {
+                if (file.getName().startsWith("Abstract")
+                    && !file.getName().startsWith("AbstractClassName")) {
+                    continue;
+                }
+
                 final ModuleDetails moduleDetails = getModuleDetails(file);
                 writeMetadataFile(moduleDetails);
             }
@@ -113,7 +118,8 @@ public final class MetadataGeneratorUtil {
      * @throws MacroExecutionException macroExecutionException
      */
     private static ModuleDetails getModuleDetails(File file) throws MacroExecutionException {
-        final String moduleName = SiteUtil.getModuleName(file).replace(SiteUtil.CHECK, "");
+        final String moduleName = SiteUtil.FINAL_CHECK.matcher(SiteUtil.getModuleName(file))
+            .replaceAll("");
 
         final Object instance = SiteUtil.getModuleInstance(moduleName);
         final Class<?> clss = instance.getClass();

@@ -57,21 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * unnamed catch parameters came out as the first preview in Java 21.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code unused.catch.parameter}
- * </li>
- * </ul>
- *
  * @since 10.18.0
- *
  */
 
 @FileStatefulCheck

@@ -74,40 +74,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   public double slope = x / y; // will be skipped from validation due to forward reference
  * }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code ignoreConstructors} - Control whether to ignore constructors.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreModifiers} - Control whether to ignore modifiers (fields, ...).
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code declaration.order.access}
- * </li>
- * <li>
- * {@code declaration.order.constructor}
- * </li>
- * <li>
- * {@code declaration.order.instance}
- * </li>
- * <li>
- * {@code declaration.order.static}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
