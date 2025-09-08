@@ -42,27 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
  * that do not contain methods or constants at all.
  * </p>
- * <ul>
- * <li>
- * Property {@code allowMarkerInterfaces} - Control whether marker interfaces
- * like Serializable are allowed.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code interface.type}
- * </li>
- * </ul>
  *
  * @since 3.1
  */
