@@ -64,19 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   </li>
  * </ol>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code final.class}
- * </li>
- * </ul>
- *
  * @since 3.1
  */
 @FileStatefulCheck

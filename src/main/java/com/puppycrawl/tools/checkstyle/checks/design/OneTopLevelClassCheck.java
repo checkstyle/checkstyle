@@ -35,19 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public class, interface, enum or annotation, top-level type is the first type in file.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code one.top.level.class}
- * </li>
- * </ul>
- *
  * @since 5.8
  */
 @StatelessCheck

@@ -57,32 +57,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *   }
  * }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code ignoreAnnotatedBy} - Ignore classes annotated
- * with the specified annotation(s). Annotation names provided in this property
- * must exactly match the annotation names on the classes. If the target class has annotations
- * specified with their fully qualified names (including package), the annotations in this
- * property should also be specified with their fully qualified names. Similarly, if the target
- * class has annotations specified with their simple names, this property should contain the
- * annotations with the same simple names.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code hide.utility.class}
- * </li>
- * </ul>
  *
  * @since 3.1
  */
