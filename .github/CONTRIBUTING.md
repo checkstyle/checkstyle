@@ -71,6 +71,32 @@ This project and everyone participating in it is governed by the
   smaller PRs that can be reviewed and merged independently. This makes it easier for
   reviewers to understand the changes and for maintainers to merge the PR.
 
+### Static Analysis and Code Quality
+
+Check applies several tools to ensure consistent code quality and maintainability.
+Please make sure to run these before submitting your pull requests.
+
+#### Rewrite
+
+The build system incorporates [Moderne](https://moderne.io/) rewrite capabilities for
+automated code transformations:
+
+- **Convention** (e.g., JUnit's naming rules)
+- **Refactor** safely (e.g., rename methods, migrate APIs)
+- **Modernize** (e.g., Java 8 → Java 17 features)
+- **Patterns** (e.g., replace `Vector` with `ArrayList`)
+
+Run `mvn rewrite:run` to execute automated rewrites. This uses the default `checkstyle-autofix`
+profile for quick formatting fixes.
+
+For full compliance checking and to apply all available fixes, use the `sanity-check` profile.
+
+**Commands:**
+
+`mvn rewrite:run -p checkstyle-autofix`
+
+`mvn rewrite:run -p sanity-check`
+
 ## Code Review
 
 All submissions, including submissions by project members, require review. We use GitHub pull
