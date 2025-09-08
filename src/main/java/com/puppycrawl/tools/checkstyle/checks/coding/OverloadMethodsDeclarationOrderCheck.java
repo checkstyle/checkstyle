@@ -35,19 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * input parameters or type of input parameters or both.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code overload.methods.declaration}
- * </li>
- * </ul>
- *
  * @since 5.8
  */
 @StatelessCheck

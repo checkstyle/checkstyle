@@ -48,19 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if ("something".equals(x))
  * </code></pre></div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code string.literal.equality}
- * </li>
- * </ul>
- *
  * @since 3.2
  * @noinspection HtmlTagCanBeJavadocTag
  * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded

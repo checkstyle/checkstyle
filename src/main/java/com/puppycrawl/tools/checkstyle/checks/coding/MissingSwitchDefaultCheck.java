@@ -66,19 +66,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     Java Language Specification</a> for more information about patterns.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code missing.switch.default}
- * </li>
- * </ul>
- *
  * @since 3.1
  */
 @StatelessCheck

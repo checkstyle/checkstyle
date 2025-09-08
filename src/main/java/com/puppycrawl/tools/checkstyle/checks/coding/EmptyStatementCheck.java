@@ -30,19 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Empty statements often introduce bugs that are hard to spot
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code empty.statement}
- * </li>
- * </ul>
- *
  * @since 3.1
  */
 @StatelessCheck

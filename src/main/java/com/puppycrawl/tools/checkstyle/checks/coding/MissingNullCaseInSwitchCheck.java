@@ -64,19 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * that is compiled by jdk21 or above.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code missing.switch.nullcase}
- * </li>
- * </ul>
- *
  * @since 10.18.0
  */
 

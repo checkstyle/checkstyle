@@ -54,35 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
- * <ul>
- * <li>
- * Property {@code checkLastCaseGroup} - Control whether the last case group must be checked.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code reliefPattern} - Define the RegExp to match the relief comment that suppresses
- * the warning about a fall through.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "falls?[ -]?thr(u|ough)"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code fall.through}
- * </li>
- * <li>
- * {@code fall.through.last}
- * </li>
- * </ul>
  *
  * @since 3.4
  */

@@ -8768,6 +8768,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
+    <specifier>unnecessary.equals</specifier>
+    <message>use of .equals can be safely replaced by ==/!=</message>
+    <lineContent>if (SiteUtil.TOKENS.equals(propertyName) || SiteUtil.JAVADOC_TOKENS.equals(propertyName)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
+    <specifier>unnecessary.equals</specifier>
+    <message>use of .equals can be safely replaced by ==/!=</message>
+    <lineContent>if (SiteUtil.TOKENS.equals(propertyName) || SiteUtil.JAVADOC_TOKENS.equals(propertyName)) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/ModuleDetails.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: name, fullQualifiedName, parent, description, moduleType</message>

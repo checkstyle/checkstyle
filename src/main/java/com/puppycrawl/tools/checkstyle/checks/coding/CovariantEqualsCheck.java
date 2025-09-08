@@ -82,19 +82,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * of bug can elude testing and code inspections.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code covariant.equals}
- * </li>
- * </ul>
- *
  * @since 3.2
  */
 @FileStatefulCheck

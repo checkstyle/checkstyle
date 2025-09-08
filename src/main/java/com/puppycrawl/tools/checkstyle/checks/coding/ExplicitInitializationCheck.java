@@ -42,27 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * initialization specified in the code.
  * So there is a minor inefficiency.
  * </p>
- * <ul>
- * <li>
- * Property {@code onlyObjectReferences} - Control whether only explicit
- * initializations made to null for objects should be checked.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code explicit.init}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

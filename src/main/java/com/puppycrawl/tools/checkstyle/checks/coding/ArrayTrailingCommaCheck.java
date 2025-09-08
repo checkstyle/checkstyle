@@ -94,27 +94,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *  100000000000000000001, // More work needed to duplicate
  * }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code alwaysDemandTrailingComma} - Control whether to always check for a trailing
- * comma, even when an array is inline.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code array.trailing.comma}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
