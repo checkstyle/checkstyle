@@ -35,19 +35,6 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * 10 points on finalize method in Java</a>.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code missing.super.call}
- * </li>
- * </ul>
- *
  * @since 3.2
  */
 @StatelessCheck

@@ -39,22 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * declarations should be one per line/statement.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code multiple.variable.declarations}
- * </li>
- * <li>
- * {@code multiple.variable.declarations.comma}
- * </li>
- * </ul>
- *
  * @since 3.4
  */
 @StatelessCheck

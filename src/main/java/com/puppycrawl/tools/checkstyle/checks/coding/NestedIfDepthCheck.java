@@ -28,26 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <div>
  * Restricts nested if-else blocks to a specified depth.
  * </div>
- * <ul>
- * <li>
- * Property {@code max} - Specify maximum allowed nesting depth.
- * Type is {@code int}.
- * Default value is {@code 1}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code nested.if.depth}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

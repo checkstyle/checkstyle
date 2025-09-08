@@ -48,19 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </code></pre></div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code no.array.trailing.comma}
- * </li>
- * </ul>
- *
  * @since 8.28
  */
 @StatelessCheck

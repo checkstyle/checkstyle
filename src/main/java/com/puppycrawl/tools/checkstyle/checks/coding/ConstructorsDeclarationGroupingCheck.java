@@ -44,19 +44,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and the tasks performed by each constructor.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code constructors.declaration.grouping}
- * </li>
- * </ul>
- *
  * @since 10.17.0
  */
 
