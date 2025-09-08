@@ -219,6 +219,10 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
+    <rewrite-maven-plugin.version>6.17.0</rewrite-maven-plugin.version>
+    <rewrite-migrate-java.version>3.16.0</rewrite-migrate-java.version>
+    <rewrite-static-analysis.version>2.16.0</rewrite-static-analysis.version>
+    <rewrite-third-party.version>0.26.0</rewrite-third-party.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -568,6 +572,62 @@
               </tag>
             </tags>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>${rewrite-maven-plugin.version}</version>
+          <configuration>
+            <activeRecipes>
+              <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
+              <recipe>org.checkstyle.CodeConvention</recipe>
+              <recipe>org.checkstyle.RefasterRules</recipe>
+            </activeRecipes>
+            <activeStyles>
+              <style>org.checkstyle.CheckstyleImportLayout</style>
+            </activeStyles>
+            <exclusions>
+              <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**.groovy</exclusion>
+              <exclusion>**/resources-noncompilable/**</exclusion>
+              <exclusion>**release.yml</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**xdocs-examples**</exclusion>
+            </exclusions>
+            <exportDatatables>true</exportDatatables>
+            <skipMavenParsing>true</skipMavenParsing>
+            <configLocation>config/rewrite.yml</configLocation>
+            <plainTextMasks>
+              <plainTextMask>**.groovy</plainTextMask>
+              <plainTextMask>**.xml</plainTextMask>
+              <plainTextMask>**.yml</plainTextMask>
+              <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+              <plainTextMask>**/resources/**</plainTextMask>
+            </plainTextMasks>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle-openrewrite-recipes</artifactId>
+              <version>${checkstyle.openrewrite.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-third-party</artifactId>
+              <version>${rewrite-third-party.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>${rewrite-migrate-java.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>${rewrite-static-analysis.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1662,6 +1722,11 @@
       </plugin>
 
       <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <executions>
@@ -1733,6 +1798,7 @@
               <dir>config</dir>
               <excludes>
                 <exclude>java.header</exclude>
+                <exclude>rewrite.yml</exclude>
                 <exclude>java-regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
@@ -5307,28 +5373,6 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.17.0</version>
-            <configuration>
-              <exportDatatables>true</exportDatatables>
-              <skipMavenParsing>true</skipMavenParsing>
-              <activeRecipes>
-                <recipe>CheckstyleAutoFix</recipe>
-              </activeRecipes>
-              <plainTextMasks>
-                <plainTextMask>**/*.xml</plainTextMask>
-                <plainTextMask>**/*.yml</plainTextMask>
-                <plainTextMask>**/*.groovy</plainTextMask>
-                <plainTextMask>**/resources/**</plainTextMask>
-                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
-              </plainTextMasks>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>com.puppycrawl.tools</groupId>
-                <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>${checkstyle.openrewrite.version}</version>
-              </dependency>
-            </dependencies>
           </plugin>
         </plugins>
       </build>
