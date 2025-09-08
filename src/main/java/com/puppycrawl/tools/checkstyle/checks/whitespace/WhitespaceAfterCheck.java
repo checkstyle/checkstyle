@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -118,11 +119,6 @@ public class WhitespaceAfterCheck
 
     @Override
     public int[] getDefaultTokens() {
-        return getAcceptableTokens();
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
         return new int[] {
             TokenTypes.COMMA,
             TokenTypes.SEMI,
@@ -148,6 +144,33 @@ public class WhitespaceAfterCheck
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return new int[] {
+            TokenTypes.COMMA,
+            TokenTypes.SEMI,
+            TokenTypes.TYPECAST,
+            TokenTypes.LITERAL_IF,
+            TokenTypes.LITERAL_ELSE,
+            TokenTypes.LITERAL_WHILE,
+            TokenTypes.LITERAL_DO,
+            TokenTypes.LITERAL_FOR,
+            TokenTypes.LITERAL_FINALLY,
+            TokenTypes.LITERAL_RETURN,
+            TokenTypes.LITERAL_YIELD,
+            TokenTypes.LITERAL_CATCH,
+            TokenTypes.DO_WHILE,
+            TokenTypes.ELLIPSIS,
+            TokenTypes.LITERAL_SWITCH,
+            TokenTypes.LITERAL_SYNCHRONIZED,
+            TokenTypes.LITERAL_TRY,
+            TokenTypes.LITERAL_CASE,
+            TokenTypes.LAMBDA,
+            TokenTypes.LITERAL_WHEN,
+            TokenTypes.ANNOTATIONS,
+        };
+    }
+
+    @Override
     public int[] getRequiredTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
@@ -159,6 +182,21 @@ public class WhitespaceAfterCheck
             final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
+            }
+        }
+        else if (ast.getType() == TokenTypes.ANNOTATIONS) {
+            if (!TokenUtil.isOfType(ast.getParent().getType(),
+                    TokenTypes.PACKAGE_DEF, TokenTypes.ENUM_CONSTANT_DEF,
+                    TokenTypes.RECORD_COMPONENT_DEF)) {
+                DetailAST targetAST = ast.getFirstChild().getLastChild();
+                if (targetAST.getType() == TokenTypes.DOT) {
+                    targetAST = targetAST.getLastChild();
+                }
+                final int[] line = getLineCodePoints(targetAST.getLineNo() - 1);
+                if (!isFollowedByWhitespace(targetAST, line)) {
+                    final Object[] message = {targetAST.getText()};
+                    log(targetAST, MSG_WS_NOT_FOLLOWED, message);
+                }
             }
         }
         else {
