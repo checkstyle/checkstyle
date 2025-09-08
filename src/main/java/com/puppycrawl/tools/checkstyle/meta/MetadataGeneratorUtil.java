@@ -94,7 +94,9 @@ public final class MetadataGeneratorUtil {
                 "header",
                 "javadoc",
                 "coding",
-                "design");
+                "design",
+                "imports",
+                "indentation");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
