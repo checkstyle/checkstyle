@@ -84,6 +84,8 @@ private static List<String> getErrorProneErrors(String profile) {
     final List<String> errorProneErrors = [] as ArrayList
     final String command = "mvn -e --no-transfer-progress clean" +
             " ${profile} -Perror-prone-${profile}"
+    print "Execution of error-prone by command:"
+    print command
     final Process process = getOsSpecificCmd(command).execute()
     process.in.eachLine { line ->
         if (line.startsWith("[ERROR]")) {
