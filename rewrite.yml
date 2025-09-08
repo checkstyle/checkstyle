@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: CheckstyleAutoFix
+name: org.checkstyle.CheckstyleAutoFix
 displayName: Checkstyle Auto Fix Configured
 description: |
   Automatically applies OpenRewrite recipes to fix Checkstyle violations
@@ -17,3 +17,130 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+---
+type: specs.openrewrite.org/v1beta/style
+name: org.checkstyle.CheckstyleImportLayout
+displayName: Checkstyle Import Layout
+description: |
+  Defines the import layout style to match Checkstyle’s expectations.
+  Controls grouping and ordering of imports, while preventing wildcard
+  imports unless thresholds are exceeded.
+styleConfigs:
+  - org.openrewrite.java.style.ImportLayoutStyle:
+      classCountToUseStarImport: 999
+      nameCountToUseStarImport: 999
+    layout:
+      - import static all other imports
+      - <blank line>
+      - import java.*
+      - <blank line>
+      - import javax.*
+      - <blank line>
+      - import org.*
+      - <blank line>
+      - import com.*
+      - import all other imports
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleLicenseHeader
+displayName: Checkstyle License Header
+description: |
+  Ensures that all Java source files include a standardized license header.
+  This enforces compliance with project licensing requirements and provides
+  legal and attribution information at the top of each file.
+recipeList:
+  - org.openrewrite.java.AddLicenseHeader:
+      licenseText: |
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+        // Copyright (C) 2001-${CURRENT_YEAR} the original author or authors.
+        //
+        // This library is free software; you can redistribute it and/or
+        // modify it under the terms of the GNU Lesser General Public
+        // License as published by the Free Software Foundation; either
+        // version 2.1 of the License, or (at your option) any later version.
+        //
+        // This library is distributed in the hope that it will be useful,
+        // but WITHOUT ANY WARRANTY; without even the implied warranty of
+        // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+        // Lesser General Public License for more details.
+        //
+        // You should have received a copy of the GNU Lesser General Public
+        // License along with this library; if not, write to the Free Software
+        // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleSanityCheck
+displayName: Checkstyle Sanity Check
+description: |
+  A comprehensive sanity-check recipe that integrates Checkstyle-driven
+  auto-fixes with additional OpenRewrite best practices and static analysis.
+  This recipe is intended as a higher-level entry point for improving Java
+  code quality across large projects.
+
+  It combines:
+    * **Checkstyle-based auto-fixes** – automatically applies corrections
+      for violations reported by Checkstyle.
+    * **License header enforcement** – ensures all files comply with the
+      project’s licensing policy.
+    * **Static analysis and cleanup** – removes unused code, enforces
+      consistent annotations and modifiers, and aligns code with modern
+      Java best practices.
+    * **Error Prone & Refaster rules (via Picnic Tech)** – applies advanced
+      correctness and performance improvements validated by the Error Prone
+      ecosystem.
+
+  The goal is to provide a single, opinionated recipe that enforces code
+  consistency, prevents common bugs, and ensures maintainable, high-quality
+  Java codebases. Intended to be used continuously (e.g., in CI pipelines)
+  to avoid style regressions and drift from standards.
+tags:
+  - checkstyle
+  - autofix
+  - static-analysis
+  - java
+  - code-quality
+recipeList:
+  - org.checkstyle.CheckstyleAutoFix # target/cs_errors.xml (No such file or directory)
+  - org.checkstyle.CheckstyleLicenseHeader #bug (not applied) #issue/todo
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.recipes.JavaRecipeBestPractices
+  - org.openrewrite.staticanalysis.JavaApiBestPractices
+  - org.openrewrite.staticanalysis.LowercasePackage
+  - org.openrewrite.staticanalysis.MissingOverrideAnnotation
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.NoFinalizer
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  # Potential future additions:
+  # - org.openrewrite.java.OrderImports bug (not complain) #issue/todo
+  # - org.openrewrite.java.migrate.UpgradeToJava17 #pull/17730
+  # - org.openrewrite.java.migrate.UpgradeToJava25 #issue/17734
+  # - org.openrewrite.java.recipes.RecipeNullabilityBestPractices
+  # - org.openrewrite.java.recipes.RecipeTestingBestPractices
+  # - org.openrewrite.maven.BestPractices
+  # - org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # - org.openrewrite.staticanalysis.UnnecessaryThrows
+  # - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.NullRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StringRulesRecipes
+---
