@@ -327,9 +327,7 @@ public class PackageObjectFactory implements ModuleFactory {
         return NAME_TO_FULL_MODULE_NAME
                 .entrySet()
                 .stream()
-                .filter(entry -> entry.getValue().equals(fullName))
-                .map(Entry::getKey)
-                .findFirst()
+                .filter(entry -> entry.getValue().equals(fullName)).findFirst().map(Entry::getKey)
                 .orElse(fullName);
     }
 
