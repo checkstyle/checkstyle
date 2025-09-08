@@ -4,31 +4,31 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   InputWhitespaceBeforeLeftCurlyOfEmptyBlock instance =
-      new InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){}; // ok until #10834
+      new InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){}; // ok until #17715
 
   // violation below 'WhitespaceAround: '{' is not preceded with whitespace.'
   InputWhitespaceBeforeLeftCurlyOfEmptyBlock(){}
 
-  void method(){} // ok until #10834
+  void method(){} // ok until #17715
 
-  class Class{} // ok until #10834
+  class Class{} // ok until #17715
 
-  interface Interface{} // ok until #10834
+  interface Interface{} // ok until #17715
 
-  @interface Annotation{} // ok until #10834
+  @interface Annotation{} // ok until #17715
 
-  enum Enum{} // ok until #10834
+  enum Enum{} // ok until #17715
 
-  record Record(){} // ok until #10834
+  record Record(){} // ok until #17715
 
   /** some javadoc. */
   public static void main(String... args) {
 
     boolean b = System.currentTimeMillis() < 0;
 
-    while (b){} // ok until #10834
+    while (b){} // ok until #17715
 
-    for (int i = 1; i > 1; i++){} // ok until #10834
+    for (int i = 1; i > 1; i++){} // ok until #17715
 
     do{} while (b);
     // 2 violations above:
@@ -41,7 +41,7 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
     //   'WhitespaceAround: '->' is not followed by whitespace. *'
   }
 
-  static{} // ok until #10834
+  static{} // ok until #17715
 
   record Record2(String str) {
 
