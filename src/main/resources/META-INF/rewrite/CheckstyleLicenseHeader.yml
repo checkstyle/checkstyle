@@ -102,7 +102,7 @@ tags:
   - java
   - code-quality
 recipeList:
-  - org.checkstyle.CheckstyleAutoFix
+  # - org.checkstyle.CheckstyleAutoFix
   - org.checkstyle.CheckstyleLicenseHeader
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.migrate.UpgradeToJava17

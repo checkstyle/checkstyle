@@ -790,17 +790,17 @@ public final class InlineConfigParser {
                            })
                            .collect(Collectors.joining(","));
         }
-        else if (value instanceof int[]) {
-            result = Arrays.toString((int[]) value).replaceAll("[\\[\\]\\s]", "");
+        else if (value instanceof int[] ints) {
+            result = Arrays.toString(ints).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof boolean[]) {
-            result = Arrays.toString((boolean[]) value).replaceAll("[\\[\\]\\s]", "");
+        else if (value instanceof boolean[] booleans) {
+            result = Arrays.toString(booleans).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof long[]) {
-            result = Arrays.toString((long[]) value).replaceAll("[\\[\\]\\s]", "");
+        else if (value instanceof long[] longs) {
+            result = Arrays.toString(longs).replaceAll("[\\[\\]\\s]", "");
         }
-        else if (value instanceof Object[]) {
-            result = Arrays.toString((Object[]) value).replaceAll("[\\[\\]\\s]", "");
+        else if (value instanceof Object[] objects) {
+            result = Arrays.toString(objects).replaceAll("[\\[\\]\\s]", "");
         }
         return result;
     }
@@ -871,17 +871,17 @@ public final class InlineConfigParser {
         if (value == null) {
             defaultValueAsString = NULL_STRING;
         }
-        else if (value instanceof String) {
-            defaultValueAsString = toStringForStringValue((String) value);
+        else if (value instanceof String stringValue) {
+            defaultValueAsString = toStringForStringValue(stringValue);
         }
         else if (value.getClass().isArray()) {
             defaultValueAsString = toStringConvertForArrayValue(value);
         }
-        else if (value instanceof BitSet) {
-            defaultValueAsString = toStringForBitSetValue((BitSet) value);
+        else if (value instanceof BitSet set) {
+            defaultValueAsString = toStringForBitSetValue(set);
         }
-        else if (value instanceof Collection<?>) {
-            defaultValueAsString = toStringForCollectionValue((Collection<?>) value);
+        else if (value instanceof Collection<?> values) {
+            defaultValueAsString = toStringForCollectionValue(values);
         }
         else {
             defaultValueAsString = String.valueOf(value);

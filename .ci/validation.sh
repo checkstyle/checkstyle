@@ -1223,6 +1223,15 @@ pmd)
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
+rewrite)
+  export MAVEN_OPTS='-Xmx8g'
+  ./mvnw -e --no-transfer-progress clean rewrite:dryRun
+  ;;
+
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+  ;;
+
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
@@ -1269,7 +1278,7 @@ openrewrite-recipes)
   set -e
   echo "Running OpenRewrite recipes..."
   ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-  rewrite:run -P checkstyle-autofix
+  rewrite:run -P sanity-check
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
