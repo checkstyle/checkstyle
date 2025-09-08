@@ -70,28 +70,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *  a[0]++;   // it will skip this violation
  * }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code skipEnhancedForLoopVariable} - Control whether to check
- * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
- * enhanced for-loop</a> variable.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code modified.control.variable}
- * </li>
- * </ul>
  *
  * @since 3.5
  */

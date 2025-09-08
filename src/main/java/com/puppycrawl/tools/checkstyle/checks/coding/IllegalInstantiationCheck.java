@@ -59,26 +59,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Notes:
  * There is a limitation that it is currently not possible to specify array classes.
  * </p>
- * <ul>
- * <li>
- * Property {@code classes} - Specify fully qualified class names that should not be instantiated.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code instantiation.avoid}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

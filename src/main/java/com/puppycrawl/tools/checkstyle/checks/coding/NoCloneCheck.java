@@ -137,19 +137,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * pages 45-52.  Give Bloch credit for writing an excellent book.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code avoid.clone.method}
- * </li>
- * </ul>
- *
  * @since 5.0
  */
 @StatelessCheck

@@ -30,19 +30,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Semicolon is not needed if enum body contains only enum constants.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code unnecessary.semicolon}
- * </li>
- * </ul>
- *
  * @since 8.22
  */
 @StatelessCheck

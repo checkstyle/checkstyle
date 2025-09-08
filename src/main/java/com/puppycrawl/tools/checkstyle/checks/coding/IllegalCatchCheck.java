@@ -43,27 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * multiple exception classes. This unfortunately leads to code that inadvertently
  * catches {@code NullPointerException}, {@code OutOfMemoryError}, etc.
  * </p>
- * <ul>
- * <li>
- * Property {@code illegalClassNames} - Specify exception class names to reject.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Error, Exception, RuntimeException, Throwable, java.lang.Error,
- * java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code illegal.catch}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
