@@ -81,14 +81,14 @@
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
          <properties>
             <property name="file" type="java.net.URI">
-               <description>Specify the location of the file containing the
- import control configuration. It can be a regular file, URL or resource path.
- It will try loading the path as a URL first, then as a file, and finally as a resource.</description>
+               <description>Specify the location of the file containing the import control configuration.
+ It can be a regular file, URL or resource path. It will try loading the path
+ as a URL first, then as a file, and finally as a resource.</description>
             </property>
             <property default-value=".*" name="path" type="java.util.regex.Pattern">
-               <description>Specify the regular expression of file paths to which
- this check should apply. Files that don't match the pattern will not be checked.
- The pattern will be matched against the full absolute file path.</description>
+               <description>Specify the regular expression of file paths to which this check should apply.
+ Files that don't match the pattern will not be checked. The pattern will be matched
+ against the full absolute file path.</description>
             </property>
          </properties>
          <message-keys>
