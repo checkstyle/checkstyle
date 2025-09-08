@@ -396,11 +396,10 @@ public final class TreeTable extends JTable {
          */
         @Override
         public boolean isCellEditable(EventObject event) {
-            if (event instanceof MouseEvent) {
+            if (event instanceof MouseEvent mouseEvent) {
                 for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {
-                        final MouseEvent mouseEvent = (MouseEvent) event;
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),
                                 mouseEvent.getWhen(), mouseEvent.getModifiersEx(),
                                 mouseEvent.getX() - getCellRect(0, counter, true).x,
