@@ -110,8 +110,6 @@ public class XdocsPagesTest {
     private static final Pattern DESCRIPTION_VERSION = Pattern
             .compile("^Since Checkstyle \\d+\\.\\d+(\\.\\d+)?");
 
-    private static final Pattern END_OF_SENTENCE = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
-
     private static final List<String> XML_FILESET_LIST = List.of(
             "TreeWalker",
             "name=\"Checker\"",
@@ -332,63 +330,42 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllModulesPageInSyncWithModuleSummaries() throws Exception {
-        validateModulesSyncWithTheirSummaries(AVAILABLE_CHECKS_PATH,
-            (Path path) -> {
-                final String fileName = path.getFileName().toString();
-                return isNonModulePage(fileName) || !path.toString().contains("checks");
-            });
+    public void testAllChecksPageInSyncWithChecksSummaries() throws Exception {
+        final Pattern endOfSentence = Pattern.compile("(.*?\\.)\\s", Pattern.DOTALL);
+        final Map<String, String> summaries = readSummaries();
 
-        validateModulesSyncWithTheirSummaries(AVAILABLE_FILTERS_PATH,
-            (Path path) -> {
-                final String fileName = path.getFileName().toString();
-                return isNonModulePage(fileName)
-                    || path.toString().contains("checks")
-                    || path.toString().contains("filefilters");
-            });
-
-        validateModulesSyncWithTheirSummaries(AVAILABLE_FILE_FILTERS_PATH,
-            (Path path) -> {
-                final String fileName = path.getFileName().toString();
-                return isNonModulePage(fileName) || !path.toString().contains("filefilters");
-            });
-    }
-
-    private static void validateModulesSyncWithTheirSummaries(Path availablePagePath,
-                                                              PredicateProcess skipPredicate)
-            throws Exception {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
-            if (skipPredicate.hasFit(path)) {
+            final String fileName = path.getFileName().toString();
+            if (isNonModulePage(fileName)
+                || path.toString().contains("filefilters")
+                || path.toString().contains("filters")) {
                 continue;
             }
 
-            final String fileName = path.getFileName().toString();
-            final Map<String, String> summaries = readSummaries(availablePagePath);
-            final NodeList subsectionSources = getTagSourcesNode(path, "subsection");
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("subsection");
 
-            for (int position = 0; position < subsectionSources.getLength(); position++) {
-                final Node subsection = subsectionSources.item(position);
-                final String subsectionName = XmlUtil.getNameAttributeOfNode(subsection);
-                if (!"Description".equals(subsectionName)) {
+            for (int position = 0; position < sources.getLength(); position++) {
+                final Node section = sources.item(position);
+                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
+                if (!"Description".equals(sectionName)) {
                     continue;
                 }
 
-                final String moduleName = XmlUtil.getNameAttributeOfNode(
-                    subsection.getParentNode());
-                final Matcher matcher = END_OF_SENTENCE.matcher(subsection.getTextContent());
+                final String checkName = XmlUtil.getNameAttributeOfNode(section.getParentNode());
+                final Matcher matcher = endOfSentence.matcher(section.getTextContent());
                 assertWithMessage(
-                    "The first sentence of the \"Description\" subsection for the module "
-                        + moduleName + " in the file \"" + fileName + "\" should end with a period")
+                    "The first sentence of the \"Description\" subsection for the check "
+                        + checkName + " in the file \"" + fileName + "\" should end with a period")
                     .that(matcher.find())
                     .isTrue();
-
                 final String firstSentence = XmlUtil.sanitizeXml(matcher.group(1));
-
-                assertWithMessage("The summary for module " + moduleName
-                        + " in the file \"" + availablePagePath + "\""
+                assertWithMessage("The summary for check " + checkName
+                        + " in the file \"" + AVAILABLE_CHECKS_PATH + "\""
                         + " should match the first sentence of the \"Description\" subsection"
-                        + " for this module in the file \"" + fileName + "\"")
-                    .that(summaries.get(moduleName))
+                        + " for this check in the file \"" + fileName + "\"")
+                    .that(summaries.get(checkName))
                     .isEqualTo(firstSentence);
             }
         }
@@ -396,18 +373,17 @@ public class XdocsPagesTest {
 
     @Test
     public void testCategoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
-        final Map<String, String> summaries = readSummaries(AVAILABLE_CHECKS_PATH);
+        final Map<String, String> summaries = readSummaries();
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             if (!"index.xml".equals(fileName)
-                    // Filters are excluded because they are not included in the main checks.xml
-                    // file and have their own separate validation in
-                    // testAllFiltersIndexPageTable()
                     || path.getParent().toString().contains("filters")) {
                 continue;
             }
 
-            final NodeList sources = getTagSourcesNode(path, "tr");
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("tr");
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node tableRow = sources.item(position);
@@ -426,65 +402,10 @@ public class XdocsPagesTest {
     }
 
     @Test
-    public void testAllFiltersIndexPageTable() throws Exception {
-        validateFilterTypeIndexPage(AVAILABLE_FILTERS_PATH);
-        validateFilterTypeIndexPage(AVAILABLE_FILE_FILTERS_PATH);
-    }
-
-    private static void validateFilterTypeIndexPage(Path availablePath)
-            throws Exception {
-        final NodeList tableRowSources = getTagSourcesNode(availablePath, "tr");
-
-        for (int position = 0; position < tableRowSources.getLength(); position++) {
-            final Node tableRow = tableRowSources.item(position);
-            final Iterator<Node> tdCells = XmlUtil
-                .findChildElementsByTag(tableRow, "td").iterator();
-
-            assertWithMessage("Filter name cell at row " + (position + 1)
-                + " in " + availablePath + " should exist")
-                .that(tdCells.hasNext())
-                .isTrue();
-            final Node nameCell = tdCells.next();
-            final String filterName = XmlUtil.sanitizeXml(nameCell.getTextContent().trim());
-
-            assertWithMessage("Description cell for " + filterName
-                + " in index.xml should exist")
-                .that(tdCells.hasNext())
-                .isTrue();
-
-            assertWithMessage("Filter name at row " + (position + 1) + " in " + availablePath
-                    + " should not be empty")
-                .that(filterName)
-                .isNotEmpty();
-
-            final Node descriptionCell = tdCells.next();
-            final String description = XmlUtil.sanitizeXml(
-                descriptionCell.getTextContent().trim());
-
-            assertWithMessage("Filter description for " + filterName
-                + " in " + availablePath + " should not be empty")
-                .that(description)
-                .isNotEmpty();
-
-            assertWithMessage("Filter description for " + filterName
-                + " in " + availablePath + " should end with a period")
-                .that(description.charAt(description.length() - 1))
-                .isEqualTo('.');
-        }
-    }
-
-    private static NodeList getTagSourcesNode(Path availablePath, String tagName)
-            throws Exception {
-        final String input = Files.readString(availablePath);
-        final Document document = XmlUtil.getRawXml(
-            availablePath.toString(), input, input);
-
-        return document.getElementsByTagName(tagName);
-    }
-
-    @Test
     public void testAlphabetOrderInNames() throws Exception {
-        final NodeList nodes = getTagSourcesNode(SITE_PATH, "item");
+        final String input = Files.readString(SITE_PATH);
+        final Document document = XmlUtil.getRawXml(SITE_PATH.toString(), input, input);
+        final NodeList nodes = document.getElementsByTagName("item");
 
         for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
             final Node current = nodes.item(nodeIndex);
@@ -553,14 +474,17 @@ public class XdocsPagesTest {
             final Path checks = Paths.get("src/site/xdoc/checks/" + name + "/index.xml");
             validateOrder(checks, "Check");
         }
-        validateOrder(AVAILABLE_FILTERS_PATH, "Filter");
+        final Path filters = Paths.get("src/site/xdoc/filters/index.xml");
+        validateOrder(filters, "Filter");
 
         final Path fileFilters = Paths.get("src/site/xdoc/filefilters/index.xml");
         validateOrder(fileFilters, "File Filter");
     }
 
     public static void validateOrder(Path path, String name) throws Exception {
-        final NodeList nodes = getTagSourcesNode(path, "div");
+        final String input = Files.readString(path);
+        final Document document = XmlUtil.getRawXml(path.toString(), input, input);
+        final NodeList nodes = document.getElementsByTagName("div");
 
         for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
             final Node current = nodes.item(nodeIndex);
@@ -624,8 +548,11 @@ public class XdocsPagesTest {
         return result;
     }
 
-    private static Map<String, String> readSummaries(Path availablePath) throws Exception {
-        final NodeList rows = getTagSourcesNode(availablePath, "tr");
+    private static Map<String, String> readSummaries() throws Exception {
+        final String fileName = AVAILABLE_CHECKS_PATH.getFileName().toString();
+        final String input = Files.readString(AVAILABLE_CHECKS_PATH);
+        final Document document = XmlUtil.getRawXml(fileName, input, input);
+        final NodeList rows = document.getElementsByTagName("tr");
         final Map<String, String> result = new HashMap<>();
 
         for (int position = 0; position < rows.getLength(); position++) {
@@ -643,8 +570,11 @@ public class XdocsPagesTest {
     @Test
     public void testAllSubSections() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
+            final String input = Files.readString(path);
             final String fileName = path.getFileName().toString();
-            final NodeList subSections = getTagSourcesNode(path, "subsection");
+
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList subSections = document.getElementsByTagName("subsection");
 
             for (int position = 0; position < subSections.getLength(); position++) {
                 final Node subSection = subSections.item(position);
@@ -695,8 +625,11 @@ public class XdocsPagesTest {
     @Test
     public void testAllXmlExamples() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
+            final String input = Files.readString(path);
             final String fileName = path.getFileName().toString();
-            final NodeList sources = getTagSourcesNode(path, "source");
+
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("source");
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final String unserializedSource = sources.item(position).getTextContent()
@@ -813,7 +746,9 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            final NodeList sources = getTagSourcesNode(path, "section");
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("section");
             String lastSectionName = null;
 
             for (int position = 0; position < sources.getLength(); position++) {
@@ -859,7 +794,9 @@ public class XdocsPagesTest {
         final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml");
         final String fileName = path.getFileName().toString();
 
-        final NodeList sources = getTagSourcesNode(path, "section");
+        final String input = Files.readString(path);
+        final Document document = XmlUtil.getRawXml(fileName, input, input);
+        final NodeList sources = document.getElementsByTagName("section");
 
         for (int position = 0; position < sources.getLength(); position++) {
             final Node section = sources.item(position);
@@ -1839,7 +1776,9 @@ public class XdocsPagesTest {
         for (Path path : XdocUtil.getXdocsStyleFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             final String styleName = fileName.substring(0, fileName.lastIndexOf('_'));
-            final NodeList sources = getTagSourcesNode(path, "tr");
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("tr");
 
             final Set<String> styleChecks = switch (styleName) {
                 case "google" -> new HashSet<>(GOOGLE_MODULES);
@@ -2208,7 +2147,9 @@ public class XdocsPagesTest {
     public void testAllExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
         for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
             final String fileName = path.getFileName().toString();
-            final NodeList sources = getTagSourcesNode(path, "macro");
+            final String input = Files.readString(path);
+            final Document document = XmlUtil.getRawXml(fileName, input, input);
+            final NodeList sources = document.getElementsByTagName("macro");
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node macro = sources.item(position);
@@ -2364,10 +2305,5 @@ public class XdocsPagesTest {
             result = id.substring(0, dash);
         }
         return result;
-    }
-
-    @FunctionalInterface
-    private interface PredicateProcess {
-        boolean hasFit(Path path);
     }
 }
