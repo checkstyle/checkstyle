@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
@@ -46,53 +48,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the class does not increase complexity.
  * </li>
  * </ol>
- * <ul>
- * <li>
- * Property {@code excludeClassesRegexps} - Specify user-configured regular
- * expressions to ignore classes.
- * Type is {@code java.util.regex.Pattern[]}.
- * Default value is {@code ^$}.
- * Since version 7.7
- * </li>
- * <li>
- * Property {@code excludedClasses} - Specify user-configured class names to ignore.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte,
- * Character, Class, Collection, Deprecated, Deque, Double, DoubleStream, EnumSet, Exception,
- * Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException,
- * IndexOutOfBoundsException, IntStream, Integer, LinkedHashMap, LinkedHashSet, LinkedList, List,
- * Long, LongStream, Map, NullPointerException, Object, Optional, OptionalDouble, OptionalInt,
- * OptionalLong, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short,
- * SortedMap, SortedSet, Stream, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
- * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
- * float, int, long, short, var, void}.
- * Since version 5.7
- * </li>
- * <li>
- * Property {@code excludedPackages} - Specify user-configured packages to ignore.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * Since version 7.7
- * </li>
- * <li>
- * Property {@code max} - Specify the maximum threshold allowed.
- * Type is {@code int}.
- * Default value is {@code 20}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code classFanOutComplexity}
- * </li>
- * </ul>
  *
  * @since 3.4
  */
@@ -139,6 +94,46 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
     @Override
     protected String getLogMessageId() {
         return MSG_KEY;
+    }
+
+    /**
+     * Setter to specify user-configured regular expressions to ignore classes.
+     *
+     * @param from array representing regular expressions of classes to ignore.
+     * @propertySince 7.7
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason Display module's unique property version
+     */
+    @Override
+    public void setExcludeClassesRegexps(Pattern... from) {
+        super.setExcludeClassesRegexps(from);
+    }
+
+    /**
+     * Setter to specify user-configured class names to ignore.
+     *
+     * @param excludedClasses classes to ignore.
+     * @propertySince 5.7
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason Display module's unique property version
+     */
+    @Override
+    public void setExcludedClasses(String... excludedClasses) {
+        super.setExcludedClasses(excludedClasses);
+    }
+
+    /**
+     * Setter to specify user-configured packages to ignore.
+     *
+     * @param excludedPackages packages to ignore.
+     * @throws IllegalArgumentException if there are invalid identifiers among the packages.
+     * @propertySince 7.7
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason Display module's unique property version
+     */
+    @Override
+    public void setExcludedPackages(String... excludedPackages) {
+        super.setExcludedPackages(excludedPackages);
     }
 
 }

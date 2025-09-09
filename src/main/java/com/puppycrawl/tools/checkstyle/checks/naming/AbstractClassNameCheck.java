@@ -37,40 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * interfaces. For this reason, it should be made obvious that a given class
  * is abstract by prefacing the class name with 'Abstract'.
  * </p>
- * <ul>
- * <li>
- * Property {@code format} - Specify valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^Abstract.+$"}.</li>
- * <li>
- * Property {@code ignoreModifier} - Control whether to ignore checking for the
- * {@code abstract} modifier on classes that match the name.
- * Type is {@code boolean}.
- * Default value is {@code false}.</li>
- * <li>
- * Property {@code ignoreName} - Control whether to ignore checking the name.
- * Realistically only useful if using the check to identify that match name and
- * do not have the {@code abstract} modifier.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code illegal.abstract.class.name}
- * </li>
- * <li>
- * {@code no.abstract.class.modifier}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
