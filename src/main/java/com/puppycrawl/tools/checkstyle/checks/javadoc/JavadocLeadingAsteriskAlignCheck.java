@@ -46,40 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * If you're using tabs then specify the the tab width in the
  * <a href="https://checkstyle.org/config.html#tabWidth">tabWidth</a> property.
  * </p>
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations if the
- * Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.asterisk.indentation}
- * </li>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * </ul>
  *
  * @since 10.18.0
  */

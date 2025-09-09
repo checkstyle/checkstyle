@@ -39,55 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
  * {@code Scope} constants.
  * </div>
- * <ul>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are not
- * checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code public}.
- * </li>
- * <li>
- * Property {@code skipAnnotations} - Specify annotations that allow missed
- * documentation. If annotation is present in target sources in multiple forms of qualified
- * name, all forms should be listed in this property.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code Generated}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
- * INTERFACE_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
- * CLASS_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
- * ENUM_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
- * ANNOTATION_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missing}
- * </li>
- * </ul>
  *
  * @since 8.20
  */

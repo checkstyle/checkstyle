@@ -50,63 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * are supported.
  * </p>
  *
- * <ul>
- * <li>
- * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}.
- * </li>
- * <li>
- * Property {@code period} - Specify the period symbol. Used to check the first sentence ends with a
- * period. Periods that are not followed by a whitespace character are ignored (eg. the period in
- * v1.0). Because some periods include whitespace built into the character, if this is set to a
- * non-default value any period will end the sentence, whether it is followed by whitespace or not.
- * Type is {@code java.lang.String}.
- * Default value is {@code "."}.
- * </li>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * <li>
- * {@code summary.first.sentence}
- * </li>
- * <li>
- * {@code summary.javaDoc}
- * </li>
- * <li>
- * {@code summary.javaDoc.missing}
- * </li>
- * <li>
- * {@code summary.javaDoc.missing.period}
- * </li>
- * </ul>
- *
  * @since 6.0
  */
 @StatelessCheck
