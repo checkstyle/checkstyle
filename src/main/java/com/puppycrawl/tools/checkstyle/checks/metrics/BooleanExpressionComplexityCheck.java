@@ -51,43 +51,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * of constructor or method call because they can be applied to non-boolean
  * variables and Checkstyle does not know types of methods from different classes.
  * </p>
- * <ul>
- * <li>
- * Property {@code max} - Specify the maximum number of boolean operations
- * allowed in one expression.
- * Type is {@code int}.
- * Default value is {@code 3}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
- * LAND</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
- * BAND</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
- * LOR</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">
- * BOR</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
- * BXOR</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code booleanExpressionComplexity}
- * </li>
- * </ul>
  *
  * @since 3.4
  */

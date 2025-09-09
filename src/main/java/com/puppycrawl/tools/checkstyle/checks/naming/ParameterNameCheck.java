@@ -44,38 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <a href="https://checkstyle.org/checks/naming/lambdaparametername.html">
  * LambdaParameterName</a>.
  * </p>
- * <ul>
- * <li>
- * Property {@code accessModifiers} - Access modifiers of methods where parameters are
- * checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
- * Default value is {@code public, protected, package, private}.
- * </li>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
- * </li>
- * <li>
- * Property {@code ignoreOverridden} - Allows to skip methods with Override annotation from
- * validation.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
