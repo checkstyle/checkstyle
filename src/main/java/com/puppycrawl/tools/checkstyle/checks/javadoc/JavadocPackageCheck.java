@@ -41,34 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>
  * A violation will be reported if both files exist as this is not allowed by the Javadoc tool.
  * </p>
- * <ul>
- * <li>
- * Property {@code allowLegacy} - Allow legacy {@code package.html} file to be used.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .java}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.legacyPackageHtml}
- * </li>
- * <li>
- * {@code javadoc.packageInfo}
- * </li>
- * </ul>
  *
  * @since 5.0
  */

@@ -39,53 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * In default configuration, if header is not specified, the default value
  * of header is set to {@code null} and the check does not rise any violations.
  * </p>
- * <ul>
- * <li>
- * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
- * Type is {@code java.lang.String}.
- * Default value is {@code the charset property of the parent
- * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module}.
- * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code header} - Specify the required header specified inline.
- * Individual header lines must be separated by the string {@code "\n"}
- * (even on platforms with a different line separator).
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code headerFile} - Specify the name of the file containing the required header.
- * Type is {@code java.net.URI}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code ignoreLines} - Specifies the line
- *           numbers to ignore when matching lines in a content of headerFile.
- * Type is {@code int[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code header.mismatch}
- * </li>
- * <li>
- * {@code header.missing}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

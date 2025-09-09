@@ -36,19 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * invalid by this check.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code invalid.position}
- * </li>
- * </ul>
- *
  * @since 8.23
  */
 @StatelessCheck
