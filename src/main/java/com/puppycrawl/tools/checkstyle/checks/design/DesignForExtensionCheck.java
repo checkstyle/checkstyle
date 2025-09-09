@@ -163,33 +163,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public abstract void grow();
  * }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code ignoredAnnotations} - Specify annotations which allow the check to
- * skip the method from validation.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code After, AfterClass, Before, BeforeClass, Test}.
- * </li>
- * <li>
- * Property {@code requiredJavadocPhrase} - Specify the comment text pattern which qualifies a
- * method as designed for extension. Supports multi-line regex.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code design.forExtension}
- * </li>
- * </ul>
  *
  * @since 3.1
  */
