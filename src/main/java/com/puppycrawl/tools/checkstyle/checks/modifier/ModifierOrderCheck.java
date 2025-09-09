@@ -70,22 +70,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * type annotations</a> from validation.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code annotation.order}
- * </li>
- * <li>
- * {@code mod.order}
- * </li>
- * </ul>
- *
  * @since 3.0
  */
 @StatelessCheck
