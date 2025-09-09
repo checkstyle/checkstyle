@@ -36,61 +36,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * have a choice in renaming such methods.
  * </p>
  *
- * <ul>
- * <li>
- * Property {@code allowClassName} - Control whether to allow a method name to have the same name
- * as the enclosing class name. Setting this property {@code false} helps to avoid
- * confusion between constructors and methods.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code applyToPackage} - Control if check should apply to package-private members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.1
- * </li>
- * <li>
- * Property {@code applyToPrivate} - Control if check should apply to private members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.1
- * </li>
- * <li>
- * Property {@code applyToProtected} - Control if check should apply to protected members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.1
- * </li>
- * <li>
- * Property {@code applyToPublic} - Control if check should apply to public members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.1
- * </li>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code method.name.equals.class.name}
- * </li>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
- *
  * @since 3.0
  */
 public class MethodNameCheck
@@ -127,6 +72,50 @@ public class MethodNameCheck
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.METHOD_DEF, };
+    }
+
+    /**
+     * Setter to control if check should apply to package-private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPackage(boolean applyTo) {
+        super.setApplyToPackage(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPrivate(boolean applyTo) {
+        super.setApplyToPrivate(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to protected members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToProtected(boolean applyTo) {
+        super.setApplyToProtected(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to public members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.1
+     */
+    @Override
+    public final void setApplyToPublic(boolean applyTo) {
+        super.setApplyToPublic(applyTo);
     }
 
     @Override

@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck.DEFAUL
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TypeNameCheckTest
     extends AbstractModuleTestSupport {
@@ -118,6 +119,15 @@ public class TypeNameCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputTypeNameRecords.java"), expected);
+    }
+
+    @Test
+    public void testApplyPropertiesSetters() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputTypeNameProperties.java"), expected);
     }
 
 }
