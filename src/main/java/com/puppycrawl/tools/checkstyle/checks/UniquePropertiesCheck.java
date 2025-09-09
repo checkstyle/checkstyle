@@ -95,6 +95,18 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         setFileExtensions("properties");
     }
 
+    /**
+     * Setter to specify the file extensions of the files to process.
+     *
+     * @param extensions the set of file extensions. A missing
+     *         initial '.' character of an extension is automatically added.
+     * @throws IllegalArgumentException is argument is null
+     */
+    @Override
+    public final void setFileExtensions(String... extensions) {
+        super.setFileExtensions(extensions);
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
         final UniqueProperties properties = new UniqueProperties();

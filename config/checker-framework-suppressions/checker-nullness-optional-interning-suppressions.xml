@@ -1491,7 +1491,7 @@
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck.class) @NonNull OrderedPropertiesCheck
-      required: @Initialized @NonNull AbstractFileSetCheck
+      required: @Initialized @NonNull OrderedPropertiesCheck
     </details>
   </checkerFrameworkError>
 
@@ -1618,7 +1618,7 @@
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.class) @NonNull TranslationCheck
-      required: @Initialized @NonNull AbstractFileSetCheck
+      required: @Initialized @NonNull TranslationCheck
     </details>
   </checkerFrameworkError>
 
@@ -1718,7 +1718,7 @@
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.class) @NonNull UniquePropertiesCheck
-      required: @Initialized @NonNull AbstractFileSetCheck
+      required: @Initialized @NonNull UniquePropertiesCheck
     </details>
   </checkerFrameworkError>
 
@@ -6415,7 +6415,7 @@
     <lineContent>setFileExtensions(&quot;java&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck.class) @NonNull JavadocPackageCheck
-      required: @Initialized @NonNull AbstractFileSetCheck
+      required: @Initialized @NonNull JavadocPackageCheck
     </details>
   </checkerFrameworkError>
 

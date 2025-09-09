@@ -35,26 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * where the lambda is defined. Therefore, long lambda body
  * should usually be extracted to method.
  * </p>
- * <ul>
- * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 10}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxLen.lambdaBody}
- * </li>
- * </ul>
  *
  * @since 8.37
  */
