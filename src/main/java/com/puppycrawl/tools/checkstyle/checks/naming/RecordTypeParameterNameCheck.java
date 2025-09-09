@@ -26,26 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <div>
  * Checks that record type parameter names conform to a specified pattern.
  * </div>
- * <ul>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[A-Z]$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 8.36
  */
