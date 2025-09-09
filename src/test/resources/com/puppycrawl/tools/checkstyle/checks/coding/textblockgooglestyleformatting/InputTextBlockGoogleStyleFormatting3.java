@@ -52,7 +52,7 @@ public class InputTextBlockGoogleStyleFormatting3 {
 	   // violation 2 lines above 'Text-block quotes are not vertically aligned'
    }
 
-    private static String testMethod2() {
+    private static String testMethod21() {
 		String simpleProp = "simplePUS";
 
 		// violation below 'Opening quotes (""") of text-block must be on the new line'
@@ -71,7 +71,7 @@ public class InputTextBlockGoogleStyleFormatting3 {
            """; // violation 'Text-block quotes are not vertically aligned'
 	}
 	
-    private static void testMethod3() {
+    private static String testMethod3() {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
 	 	return """
         	def flowNodesById = existingInstance.flowNodeInstances.stream()
@@ -85,7 +85,7 @@ public class InputTextBlockGoogleStyleFormatting3 {
          	+ UserTaskDurationScriptUtil.createUpdateUser();
     }
 
-    private static void testMethod4() {
+    private static String testMethod4() {
         String simpleProp = "simplePUS";
         // violation below 'Opening quotes (""") of text-block must be on the new line'
 		return """

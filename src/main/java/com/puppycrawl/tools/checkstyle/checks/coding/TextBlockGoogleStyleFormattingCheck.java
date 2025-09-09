@@ -110,7 +110,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         }
 
         final DetailAST closingQuotes = getClosingQuotes(ast);
-        if (!closingQuotesAreOnCorrectPosition(getClosingQuotes(ast))) {
+        if (!closingQuotesAreOnCorrectPosition(closingQuotes)) {
             log(closingQuotes, MSG_CLOSE_QUOTES_ERROR);
         }
 
@@ -156,6 +156,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
 
             if (parent.getType() == TokenTypes.METHOD_DEF) {
                 quotesAreNotPreceded = !quotesAreProcededWithComma(openingQuotes);
+            }
+            else if (parent.getType() == TokenTypes.QUESTION
+                    && openingQuotes.getPreviousSibling().getType() == TokenTypes.COLON) {
+                quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes,
+                    openingQuotes.getPreviousSibling());
             }
             else {
                 quotesAreNotPreceded = !TokenUtil.areOnSameLine(openingQuotes, parent);

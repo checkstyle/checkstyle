@@ -180,6 +180,34 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
+    public void testDefaultTextBlockFormat4() throws Exception {
+        final String[] expected = {
+            "17:49: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "19:13: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "25:52: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "27:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "32:55: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "34:26: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "39:24: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "43:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "47:23: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "49:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "53:20: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "55:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "62:52: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "65:25: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "74:32: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "76:9: " + getCheckMessage(MSG_INDENTATION_ERROR),
+            "76:15: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "78:9: " + getCheckMessage(MSG_INDENTATION_ERROR),
+        };
+
+        verifyWithInlineConfigParser(
+            getPath("InputTextBlockGoogleStyleFormatting4.java"),
+                expected);
+    }
+
+    @Test
     public void testTextBlockFormatNotVerticallyAligned() throws Exception {
         final String[] expected = {
             "29:17: " + getCheckMessage(MSG_INDENTATION_ERROR),
