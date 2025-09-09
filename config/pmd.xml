@@ -272,7 +272,11 @@
     <properties>
       <!-- until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='MainFrame']
+                value="//ClassDeclaration[@SimpleName='MainFrame'
+                                          or @SimpleName='OrderedPropertiesCheck'
+                                          or @SimpleName='TranslationCheck'
+                                          or @SimpleName='UniquePropertiesCheck'
+                                          or @SimpleName='JavadocPackageCheck']
                         //ConstructorDeclaration"/>
     </properties>
   </rule>
@@ -533,6 +537,8 @@
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='MissingDeprecatedCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      || //ClassDeclaration[@SimpleName='LineLengthCheck']
+                      //MethodDeclaration[@Name='setFileExtensions']
                       || //ClassDeclaration[@SimpleName='NonEmptyAtclauseDescriptionCheck']
                       //MethodDeclaration[@Name='setJavadocTokens']"/>
     </properties>
