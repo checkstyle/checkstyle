@@ -35,31 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Therefore, long classes should usually be refactored into several
  * individual classes that focus on a specific task.
  * </p>
- * <ul>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 2000}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxLen.file}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
