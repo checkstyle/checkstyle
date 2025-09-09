@@ -28,8 +28,7 @@
  &lt;/p&gt;</description>
          <properties>
             <property default-value="3" name="max" type="int">
-               <description>Specify the maximum number of boolean operations
- allowed in one expression.</description>
+               <description>Specify the maximum number of boolean operations allowed in one expression.</description>
             </property>
             <property default-value="LAND,BAND,LOR,BOR,BXOR"
                       name="tokens"
