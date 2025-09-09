@@ -53,8 +53,7 @@
             <property default-value="false"
                       name="switchBlockAsSingleDecisionPoint"
                       type="boolean">
-               <description>Control whether to treat
- the whole switch block as a single decision point.</description>
+               <description>Control whether to treat the whole switch block as a single decision point.</description>
             </property>
             <property default-value="LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_SWITCH,LITERAL_CASE,LITERAL_CATCH,QUESTION,LAND,LOR,LITERAL_WHEN"
                       name="tokens"
