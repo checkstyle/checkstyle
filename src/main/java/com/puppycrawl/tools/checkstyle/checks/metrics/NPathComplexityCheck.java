@@ -115,26 +115,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * your project style. Limit 200 is empirical number base on some sources of at
  * AT&amp;T Bell Laboratories of 1988 year.
  * </p>
- * <ul>
- * <li>
- * Property {@code max} - Specify the maximum threshold allowed.
- * Type is {@code int}.
- * Default value is {@code 200}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code npathComplexity}
- * </li>
- * </ul>
  *
  * @since 3.4
  */
