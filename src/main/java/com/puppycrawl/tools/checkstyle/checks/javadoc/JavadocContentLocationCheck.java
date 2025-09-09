@@ -92,29 +92,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * they should not be considered as the beginning of the Javadoc content.
  * In such cases, the check assumes that the Javadoc content begins on the second line.
  * </p>
- * <ul>
- * <li>
- * Property {@code location} - Specify the policy on placement of the Javadoc content.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption}.
- * Default value is {@code second_line}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.content.first.line}
- * </li>
- * <li>
- * {@code javadoc.content.second.line}
- * </li>
- * </ul>
  *
  * @since 8.27
  */

@@ -12,8 +12,7 @@
  &lt;/div&gt;</description>
          <properties>
             <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are not
- checked.</description>
+               <description>Specify the visibility scope where Javadoc comments are not checked.</description>
             </property>
             <property default-value="public"
                       name="scope"
@@ -23,8 +22,8 @@
             <property default-value="Generated"
                       name="skipAnnotations"
                       type="java.lang.String[]">
-               <description>Specify annotations that allow missed
- documentation. If annotation is present in target sources in multiple forms of qualified
+               <description>Specify annotations that allow missed documentation.
+ If annotation is present in target sources in multiple forms of qualified
  name, all forms should be listed in this property.</description>
             </property>
             <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
