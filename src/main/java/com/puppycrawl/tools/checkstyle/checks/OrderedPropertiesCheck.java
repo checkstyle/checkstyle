@@ -106,6 +106,18 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
     }
 
     /**
+     * Setter to specify the file extensions of the files to process.
+     *
+     * @param extensions the set of file extensions. A missing
+     *         initial '.' character of an extension is automatically added.
+     * @throws IllegalArgumentException is argument is null
+     */
+    @Override
+    public final void setFileExtensions(String... extensions) {
+        super.setFileExtensions(extensions);
+    }
+
+    /**
      * Processes the file and check order.
      *
      * @param file the file to be processed
