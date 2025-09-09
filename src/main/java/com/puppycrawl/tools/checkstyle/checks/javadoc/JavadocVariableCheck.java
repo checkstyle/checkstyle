@@ -37,45 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <div>
  * Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
  * </div>
- * <ul>
- * <li>
- * Property {@code accessModifiers} - Specify the set of access modifiers used to determine which
- * fields should be checked. This includes both explicitly declared modifiers and implicit ones,
- * such as package-private for fields without an explicit modifier.
- * It also accounts for special cases where fields have implicit modifiers,
- * such as {@code public static final} for interface fields and {@code public static}
- * for enum constants, or where the nesting types accessibility is more restrictive and hides the
- * nested field. Only fields matching the specified modifiers will be analyzed.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
- * Default value is {@code public, protected, package, private}.
- * </li>
- * <li>
- * Property {@code ignoreNamePattern} - Specify the regexp to define variable names to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
- * ENUM_CONSTANT_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missing}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

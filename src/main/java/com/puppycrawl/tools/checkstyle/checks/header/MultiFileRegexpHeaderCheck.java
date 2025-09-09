@@ -48,37 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> for each line of the source header.
  * </div>
- * <ul>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code headerFiles} - Specify a comma-separated list of files containing
- * the required headers. If a file's header matches none, the violation references
- * the first file in this list. Users can order files to set
- * a preferred header for such reporting.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code multi.file.regexp.header.mismatch}
- * </li>
- * <li>
- * {@code multi.file.regexp.header.missing}
- * </li>
- * </ul>
  *
  * @since 10.24.0
  */

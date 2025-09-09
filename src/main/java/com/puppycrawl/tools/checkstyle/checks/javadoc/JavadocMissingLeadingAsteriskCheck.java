@@ -37,40 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * The check does not require asterisks on the first line, nor on the last line if it is blank.
  * All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.
  * </p>
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations if the
- * Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.missing.asterisk}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * </ul>
  *
  * @since 8.38
  */

@@ -77,8 +77,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
                 System.out, "checks", "filters", "filefilters");
 
         final String[] expectedErrorMessages = {
-            "43: " + getCheckMessage(MSG_DESC_MISSING, "AbstractHeaderCheck"),
-            "44: " + getCheckMessage(MSG_DESC_MISSING, "AbstractJavadocCheck"),
             "44: " + getCheckMessage(MSG_DESC_MISSING, "AbstractClassCouplingCheck"),
             "26: " + getCheckMessage(MSG_DESC_MISSING, "AbstractAccessControlNameCheck"),
             "30: " + getCheckMessage(MSG_DESC_MISSING, "AbstractNameCheck"),

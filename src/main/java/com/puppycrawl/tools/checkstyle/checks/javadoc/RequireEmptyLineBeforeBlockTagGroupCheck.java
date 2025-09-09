@@ -33,42 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Checks that one blank line before the block tag if it is present in Javadoc.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
- * Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.tag.line.before}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * </ul>
- *
  * @since 8.36
  */
 @StatelessCheck

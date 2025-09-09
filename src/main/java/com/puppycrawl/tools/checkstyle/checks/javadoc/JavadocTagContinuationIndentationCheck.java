@@ -36,48 +36,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * the tag. Default indentation required is at least 4, but this can be changed with the help of
  * properties below.
  * </div>
- * <ul>
- * <li>
- * Property {@code offset} - Specify how many spaces to use for new indentation level.
- * Type is {@code int}.
- * Default value is {@code 4}.
- * </li>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * <li>
- * {@code tag.continuation.indent}
- * </li>
- * </ul>
  *
  * @since 6.0
- *
  */
 @StatelessCheck
 public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck {

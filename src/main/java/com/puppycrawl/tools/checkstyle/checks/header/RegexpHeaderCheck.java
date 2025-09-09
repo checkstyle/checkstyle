@@ -37,55 +37,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> for each line of the source header.
  * </div>
- * <ul>
- * <li>
- * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
- * Type is {@code java.lang.String}.
- * Default value is {@code the charset property of the parent
- * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module}.
- * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code header} - Define the required header specified inline.
- * Individual header lines must be separated by the string {@code "\n"}
- * (even on platforms with a different line separator).
- * For header lines containing {@code "\n\n"} checkstyle will
- * forcefully expect an empty line to exist. See examples below.
- * Regular expressions must not span multiple lines.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code headerFile} - Specify the name of the file containing the required header.
- * Type is {@code java.net.URI}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code multiLines} - Specify the line numbers to repeat (zero or more times).
- * Type is {@code int[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code header.mismatch}
- * </li>
- * <li>
- * {@code header.missing}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
