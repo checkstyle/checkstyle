@@ -27,52 +27,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <div>
  * Checks that {@code static}, non-{@code final} variable names conform to a specified pattern.
  * </div>
- * <ul>
- * <li>
- * Property {@code applyToPackage} - Control if check should apply to package-private
- *   members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.0
- * </li>
- * <li>
- * Property {@code applyToPrivate} - Control if check should apply to private members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.0
- * </li>
- * <li>
- * Property {@code applyToProtected} - Control if check should apply to protected
- *   members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.0
- * </li>
- * <li>
- * Property {@code applyToPublic} - Control if check should apply to public members.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * Since version 5.0
- * </li>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
@@ -97,6 +51,50 @@ public class StaticVariableNameCheck
     @Override
     public int[] getRequiredTokens() {
         return new int[] {TokenTypes.VARIABLE_DEF};
+    }
+
+    /**
+     * Setter to control if check should apply to package-private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.0
+     */
+    @Override
+    public final void setApplyToPackage(boolean applyTo) {
+        super.setApplyToPackage(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to private members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.0
+     */
+    @Override
+    public final void setApplyToPrivate(boolean applyTo) {
+        super.setApplyToPrivate(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to protected members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.0
+     */
+    @Override
+    public final void setApplyToProtected(boolean applyTo) {
+        super.setApplyToProtected(applyTo);
+    }
+
+    /**
+     * Setter to control if check should apply to public members.
+     *
+     * @param applyTo new value of the property.
+     * @propertySince 5.0
+     */
+    @Override
+    public final void setApplyToPublic(boolean applyTo) {
+        super.setApplyToPublic(applyTo);
     }
 
     @Override

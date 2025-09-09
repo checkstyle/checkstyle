@@ -225,4 +225,13 @@ public class MethodNameCheckTest
                 getPath("InputMethodNameRecordInInterfaceBody.java"), expected);
     }
 
+    @Test
+    public void testApplyPropertiesSetters() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMethodNameProperties.java"), expected);
+    }
+
 }
