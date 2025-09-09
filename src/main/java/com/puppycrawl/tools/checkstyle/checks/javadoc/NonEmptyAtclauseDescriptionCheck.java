@@ -30,58 +30,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Checks that the block tag is followed by description.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
- * if the Javadoc being examined by this check violates the tight html rules defined at
- * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code javadocTokens} - javadoc tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is
- * Since version 7.3
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
- * PARAM_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
- * RETURN_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
- * THROWS_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
- * EXCEPTION_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
- * DEPRECATED_LITERAL</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code javadoc.missed.html.close}
- * </li>
- * <li>
- * {@code javadoc.parse.rule.error}
- * </li>
- * <li>
- * {@code javadoc.unclosedHtml}
- * </li>
- * <li>
- * {@code javadoc.wrong.singleton.html.tag}
- * </li>
- * <li>
- * {@code non.empty.atclause}
- * </li>
- * </ul>
- *
  * @since 6.0
  */
 @StatelessCheck
@@ -102,6 +50,19 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
             JavadocTokenTypes.EXCEPTION_LITERAL,
             JavadocTokenTypes.DEPRECATED_LITERAL,
         };
+    }
+
+    /**
+     * Adds a set of tokens the check is interested in.
+     *
+     * @param strRep the string representation of the tokens interested in
+     * @propertySince 7.3
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason Display module's unique property version
+     */
+    @Override
+    public void setJavadocTokens(String... strRep) {
+        super.setJavadocTokens(strRep);
     }
 
     @Override

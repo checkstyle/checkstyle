@@ -46,19 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * interfaces declared in the package-info.java file.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code package.javadoc.missing}
- * </li>
- * </ul>
- *
  * @since 8.22
  */
 @StatelessCheck

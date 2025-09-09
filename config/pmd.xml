@@ -532,7 +532,9 @@
     <properties>
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='MissingDeprecatedCheck']
-                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']"/>
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
+                      || //ClassDeclaration[@SimpleName='NonEmptyAtclauseDescriptionCheck']
+                      //MethodDeclaration[@Name='setJavadocTokens']"/>
     </properties>
   </rule>
 </ruleset>

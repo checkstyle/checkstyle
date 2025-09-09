@@ -88,7 +88,13 @@ public final class MetadataGeneratorUtil {
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
         final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks", "annotation", "blocks", "coding", "design");
+            getTargetFiles(path + "/checks",
+                "annotation",
+                "blocks",
+                "header",
+                "javadoc",
+                "coding",
+                "design");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
@@ -199,7 +205,7 @@ public final class MetadataGeneratorUtil {
 
             final String defaultValue = getPropertyDefaultValue(property, propertyField, instance,
                     className);
-            final String validationType = getValidationType(propertyField);
+            final String validationType = getValidationType(property, propertyField);
 
             result.add(new ModulePropertyDetails(property, type, defaultValue,
                     validationType, description));
@@ -267,17 +273,17 @@ public final class MetadataGeneratorUtil {
     /**
      * Get validation type for the given property.
      *
+     * @param propertyName name of property.
      * @param propertyField field of property.
      * @return validation type.
      */
-    private static String getValidationType(Field propertyField) {
-        final String propertyName = propertyField.getName();
-
+    private static String getValidationType(String propertyName, Field propertyField) {
         final String validationType;
         if (SiteUtil.TOKENS.equals(propertyName) || SiteUtil.JAVADOC_TOKENS.equals(propertyName)) {
             validationType = "tokenSet";
         }
-        else if (ModuleJavadocParsingUtil.isPropertySpecialTokenProp(propertyField)) {
+        else if (propertyField != null
+                && ModuleJavadocParsingUtil.isPropertySpecialTokenProp(propertyField)) {
             validationType = "tokenTypesSet";
         }
         else {
