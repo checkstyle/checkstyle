@@ -88,26 +88,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
  * </li>
  * </ul>
- * <ul>
- * <li>
- * Property {@code processJavadoc} - Control whether to process Javadoc comments.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code import.unused}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

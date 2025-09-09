@@ -49,29 +49,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * of each static member in the Math class individually like
  * {@code java.lang.Math.PI, java.lang.Math.cos, ...}.
  * </p>
- * <ul>
- * <li>
- * Property {@code excludes} - Control whether to allow for certain classes via
- * a star notation to be excluded such as {@code java.lang.Math.*} or specific
- * static members to be excluded like {@code java.lang.System.out} for a variable
- * or {@code java.lang.Math.random} for a method. See notes section for details.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code import.avoidStatic}
- * </li>
- * </ul>
  *
  * @since 5.0
  */
