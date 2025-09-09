@@ -60,37 +60,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * will be 94 characters.
  * </li>
  * </ul>
- * <ul>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * Since version 8.24
- * </li>
- * <li>
- * Property {@code ignorePattern} - Specify pattern for lines to ignore.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(package|import) .*"}.
- * </li>
- * <li>
- * Property {@code max} - Specify the maximum line length allowed.
- * Type is {@code int}.
- * Default value is {@code 80}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxLineLen}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
@@ -143,6 +112,21 @@ public class LineLengthCheck extends AbstractFileSetCheck {
      */
     public final void setIgnorePattern(Pattern pattern) {
         ignorePattern = pattern;
+    }
+
+    /**
+     * Setter to specify the file extensions of the files to process.
+     *
+     * @param extensions the set of file extensions. A missing
+     *         initial '.' character of an extension is automatically added.
+     * @throws IllegalArgumentException is argument is null
+     * @propertySince 8.24
+     * @noinspection RedundantMethodOverride
+     * @noinspectionreason Display module's unique property version
+     */
+    @Override
+    public final void setFileExtensions(String... extensions) {
+        super.setFileExtensions(extensions);
     }
 
 }
