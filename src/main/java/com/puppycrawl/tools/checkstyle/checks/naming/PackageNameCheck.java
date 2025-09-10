@@ -41,26 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * uncommon, so most configurations should probably assign value
  * {@code ^[a-z]+(\.[a-z][a-z0-9]*)*$} to {@code format} for module {@code PackageName}.
  * </p>
- * <ul>
- * <li>
- * Property {@code format} - Control the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^[a-z]+(\.[a-zA-Z_]\w*)*$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
