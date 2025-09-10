@@ -52,48 +52,6 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * {@code SuppressionSingleFilter} can suppress Checks that have {@code Treewalker} or
  * {@code Checker} as parent module.
  * </p>
- * <ul>
- * <li>
- * Property {@code checks} - Define the RegExp for matching against the name of the check
- * associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code columns} - Specify a comma-separated list of values, where each value is an
- * integer or a range of integers denoted by integer-integer.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code files} - Define the RegExp for matching against the file name associated with
- * an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code id} - Specify a string matched against the ID of the check associated with
- * an audit event.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code lines} - Specify a comma-separated list of values, where each value is an
- * integer or a range of integers denoted by integer-integer.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code message} - Define the RegExp for matching against the message of the check
- * associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
  *
  * @since 8.23
  */

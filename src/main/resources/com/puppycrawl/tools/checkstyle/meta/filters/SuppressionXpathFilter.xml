@@ -134,7 +134,6 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Notes:
  The suppression file location is checked in following order:
  &lt;/p&gt;
  &lt;ol&gt;
@@ -211,7 +210,8 @@
             <property default-value="false" name="optional" type="boolean">
                <description>Control what to do when the file is not existing.
  If optional is set to false the file must exist, or else it ends with error.
- On the other hand if optional is true and file is not found, the filter accepts all audit events.</description>
+ On the other hand if optional is true and file is not found,
+ the filter accepts all audit events.</description>
             </property>
          </properties>
       </filter>
