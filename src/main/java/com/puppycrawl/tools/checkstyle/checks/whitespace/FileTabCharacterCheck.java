@@ -51,36 +51,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * only the first instance of a tab character is reported.
  * </p>
  *
- * <ul>
- * <li>
- * Property {@code eachLine} - Control whether to report on each line containing a tab,
- * or just the first instance.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code containsTab}
- * </li>
- * <li>
- * {@code file.containsTab}
- * </li>
- * </ul>
- *
  * @since 5.0
  */
 @StatelessCheck
