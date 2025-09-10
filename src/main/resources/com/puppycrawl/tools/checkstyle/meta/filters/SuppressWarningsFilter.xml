@@ -28,7 +28,6 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Notes:
  SuppressWarningsFilter can suppress Checks that have Treewalker or
  Checker as parent module.
  &lt;/p&gt;</description>

@@ -52,41 +52,6 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
  * Notes:
  * {@code SuppressionXpathSingleFilter} can suppress Checks that have {@code Treewalker} as parent module.
  * </p>
- * <ul>
- * <li>
- * Property {@code checks} - Define a Regular Expression matched against the name
- * of the check associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code files} - Define a Regular Expression matched against the file
- * name associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code id} - Define a string matched against the ID of the check
- * associated with an audit event.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code message} - Define a Regular Expression matched against the message
- * of the check associated with an audit event.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code query} - Define a string xpath query.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
  *
  * @since 8.18
  */

@@ -114,25 +114,6 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * <p>
  * SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
  * </p>
- * <ul>
- * <li>
- * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.
- * Type is {@code java.lang.String}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code optional} - Control what to do when the file is not existing.
- * If {@code optional} is set to {@code false} the file must exist, or else it
- * ends with error. On the other hand if optional is {@code true} and file is
- * not found, the filter accept all audit events.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
  *
  * @since 3.2
  */

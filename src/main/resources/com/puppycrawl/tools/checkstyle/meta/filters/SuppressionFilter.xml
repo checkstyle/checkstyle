@@ -12,7 +12,6 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Notes:
  A &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
  contains a set of &lt;code&gt;suppress&lt;/code&gt; elements, where each &lt;code&gt;suppress&lt;/code&gt;
  element can have the following attributes:
@@ -93,9 +92,9 @@
             </property>
             <property default-value="false" name="optional" type="boolean">
                <description>Control what to do when the file is not existing.
- If &lt;code&gt;optional&lt;/code&gt; is set to &lt;code&gt;false&lt;/code&gt; the file must exist, or else it
- ends with error. On the other hand if optional is &lt;code&gt;true&lt;/code&gt; and file is
- not found, the filter accept all audit events.</description>
+ If &lt;code&gt;optional&lt;/code&gt; is set to &lt;code&gt;false&lt;/code&gt; the file must exist, or else
+ it ends with error. On the other hand if optional is &lt;code&gt;true&lt;/code&gt;
+ and file is not found, the filter accept all audit events.</description>
             </property>
          </properties>
       </filter>
