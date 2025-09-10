@@ -166,4 +166,13 @@ public class ConstantNameCheckTest
             .isEqualTo(expected);
     }
 
+    @Test
+    public void testApplyPropertiesSetters() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputConstantNameProperties.java"), expected);
+    }
+
 }

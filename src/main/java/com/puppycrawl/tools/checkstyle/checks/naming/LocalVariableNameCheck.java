@@ -34,34 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/checks/naming/patternvariablename.html">
  * PatternVariableName</a>.
  * </p>
- * <ul>
- * <li>
- * Property {@code allowOneCharVarInForLoop} - Allow one character variable name in
- * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
- * initialization expressions</a>
- * in FOR loop if one char variable name is prohibited by {@code format} regexp.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^([a-z][a-zA-Z0-9]*|_)$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
