@@ -24,7 +24,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
  */
 public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
-    private static final Path XDOC_CHECKS_DIR = Paths.get("src", "site", "xdoc", "checks");
+    private static final Path XDOC_CHECKS_DIR = Path.of("src", "site", "xdoc", "checks");
 
     @Override
     protected String getPackageLocation() {
