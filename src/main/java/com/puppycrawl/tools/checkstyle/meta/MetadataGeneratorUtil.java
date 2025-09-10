@@ -90,6 +90,7 @@ public final class MetadataGeneratorUtil {
         final List<File> checksWithSimplifiedJavadocs =
             getTargetFiles(path + "/checks",
                 "annotation",
+                "sizes",
                 "modifier",
                 "regexp",
                 "blocks",
