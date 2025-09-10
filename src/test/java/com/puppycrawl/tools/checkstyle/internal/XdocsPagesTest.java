@@ -33,7 +33,6 @@ import java.lang.reflect.ParameterizedType;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -543,19 +542,19 @@ public class XdocsPagesTest {
 
     @Test
     public void testAlphabetOrderAtIndexPages() throws Exception {
-        final Path allChecks = Paths.get("src/site/xdoc/checks.xml");
+        final Path allChecks = Path.of("src/site/xdoc/checks.xml");
         validateOrder(allChecks, "Check");
 
         final String[] groupNames = {"annotation", "blocks", "design",
             "coding", "header", "imports", "javadoc", "metrics",
             "misc", "modifier", "naming", "regexp", "sizes", "whitespace"};
         for (String name : groupNames) {
-            final Path checks = Paths.get("src/site/xdoc/checks/" + name + "/index.xml");
+            final Path checks = Path.of("src/site/xdoc/checks/" + name + "/index.xml");
             validateOrder(checks, "Check");
         }
         validateOrder(AVAILABLE_FILTERS_PATH, "Filter");
 
-        final Path fileFilters = Paths.get("src/site/xdoc/filefilters/index.xml");
+        final Path fileFilters = Path.of("src/site/xdoc/filefilters/index.xml");
         validateOrder(fileFilters, "File Filter");
     }
 
@@ -2337,7 +2336,7 @@ public class XdocsPagesTest {
     }
 
     private static List<Path> collectAllXmlTemplatesUnderSrcSite() throws IOException {
-        final Path root = Paths.get("src/site/xdoc");
+        final Path root = Path.of("src/site/xdoc");
         try (Stream<Path> walk = Files.walk(root)) {
             return walk
                     .filter(path -> path.getFileName().toString().endsWith(".xml.template"))
