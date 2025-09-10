@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.lang.reflect.Field;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -88,7 +87,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static String currentModuleName = "";
 
     /** The file of the current module being processed. */
-    private static Path currentModulePath = Paths.get("");
+    private static Path currentModulePath = Path.of("");
 
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
@@ -112,7 +111,7 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static void configureGlobalProperties(String modulePath)
             throws MacroExecutionException {
-        final Path modulePathObj = Paths.get(modulePath);
+        final Path modulePathObj = Path.of(modulePath);
         currentModulePath = modulePathObj;
         final Path fileNamePath = modulePathObj.getFileName();
 
