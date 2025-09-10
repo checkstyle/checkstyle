@@ -10,6 +10,51 @@
   </mutation>
 
   <mutation unstable="false">
+    <sourceFile>MetadataGeneratorLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/AuditEventDefaultFormatter::&lt;init&gt;</description>
+    <lineContent>formatter = new AuditEventDefaultFormatter();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MetadataGeneratorLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable formatter</description>
+    <lineContent>formatter = new AuditEventDefaultFormatter();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MetadataGeneratorLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/io/PrintWriter::println</description>
+    <lineContent>errorWriter.println(errorMessage);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MetadataGeneratorLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/AuditEventFormatter::format</description>
+    <lineContent>final String errorMessage = formatter.format(event);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>MetadataGeneratorLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</mutatedClass>
+    <mutatedMethod>addError</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (severityLevel != SeverityLevel.IGNORE) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>renderSeverityLevel</mutatedMethod>

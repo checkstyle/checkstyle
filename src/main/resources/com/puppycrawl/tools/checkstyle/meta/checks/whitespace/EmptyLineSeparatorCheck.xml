@@ -29,8 +29,7 @@
             <property default-value="true"
                       name="allowMultipleEmptyLinesInsideClassMembers"
                       type="boolean">
-               <description>Allow multiple
- empty lines inside class members.</description>
+               <description>Allow multiple empty lines inside class members.</description>
             </property>
             <property default-value="false"
                       name="allowNoEmptyLineBetweenFields"
