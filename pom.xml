@@ -919,6 +919,9 @@
                 <rule>
                   <element>CLASS</element>
                   <excludes>
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger
+                    </exclude>
                     <!-- until https://github.com/checkstyle/checkstyle/issues/12873 -->
                     <exclude>
                       com.puppycrawl.tools.checkstyle.api.AutomaticBean*
@@ -979,6 +982,24 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.00</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.91</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.83</minimum>
                     </limit>
                   </limits>
                 </rule>

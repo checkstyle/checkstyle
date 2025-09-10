@@ -56,28 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   except diamond operators and when preceding a method name, constructor, or record header.</li>
  * </ul>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code ws.followed}
- * </li>
- * <li>
- * {@code ws.illegalFollow}
- * </li>
- * <li>
- * {@code ws.notPreceded}
- * </li>
- * <li>
- * {@code ws.preceded}
- * </li>
- * </ul>
- *
  * @since 5.0
  */
 @FileStatefulCheck
