@@ -98,7 +98,9 @@ public final class MetadataGeneratorUtil {
                 "coding",
                 "design",
                 "imports",
-                "indentation");
+                "indentation",
+                "metrics",
+                "naming");
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
         restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
 
