@@ -32,7 +32,6 @@
  &lt;/p&gt;
 
  &lt;p&gt;
- Notes:
  &lt;code&gt;offCommentFormat&lt;/code&gt; and &lt;code&gt;onCommentFormat&lt;/code&gt; must have equal
  &lt;a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
  paren counts&lt;/a&gt;.
@@ -62,8 +61,7 @@
             <property default-value="CHECKSTYLE:OFF"
                       name="offCommentFormat"
                       type="java.util.regex.Pattern">
-               <description>Specify comment pattern to
- trigger filter to begin suppression.</description>
+               <description>Specify comment pattern to trigger filter to begin suppression.</description>
             </property>
             <property default-value="CHECKSTYLE:ON"
                       name="onCommentFormat"

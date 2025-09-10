@@ -102,11 +102,18 @@ public final class MetadataGeneratorUtil {
                 "indentation",
                 "metrics",
                 "naming");
+        final List<File> filtersWithSimplifiedJavadocs =
+            getTargetFiles(path, "filters", "filefilters");
+
+        final List<File> modulesWithSimplifiedJavadocs = new ArrayList<>();
+        modulesWithSimplifiedJavadocs.addAll(checksWithSimplifiedJavadocs);
+        modulesWithSimplifiedJavadocs.addAll(filtersWithSimplifiedJavadocs);
+
         final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
-        restOfModuleFiles.removeAll(checksWithSimplifiedJavadocs);
+        restOfModuleFiles.removeAll(modulesWithSimplifiedJavadocs);
 
         try {
-            for (File file : checksWithSimplifiedJavadocs) {
+            for (File file : modulesWithSimplifiedJavadocs) {
                 final String fileName = file.getName();
 
                 if (fileName.startsWith("Abstract")
