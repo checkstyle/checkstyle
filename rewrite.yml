@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: CheckstyleAutoFix
+name: org.checkstyle.CheckstyleAutoFix
 displayName: Checkstyle Auto Fix Configured
 description: |
   Automatically applies OpenRewrite recipes to fix Checkstyle violations
@@ -17,3 +17,83 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleStaticAnalysis
+displayName: Checkstyle Static Analysis
+description: |
+  Static analysis and cleanup rules that enforce consistent annotations,
+  modifiers, and modern Java best practices. Independent of violation reports.
+tags:
+  - checkstyle
+  - static-analysis
+  - java
+recipeList:
+  - org.openrewrite.staticanalysis.LowercasePackage
+  - org.openrewrite.staticanalysis.MissingOverrideAnnotation
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.NoFinalizer
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  # - org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # - org.openrewrite.staticanalysis.JavaApiBestPractices
+  # - org.openrewrite.staticanalysis.UnnecessaryThrows
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleRefasterRules
+displayName: Checkstyle Refaster Rules
+description: |
+  Applies advanced correctness and performance improvements validated by
+  the Error Prone / Refaster ecosystem (via Picnic Tech).
+tags:
+  - checkstyle
+  - errorprone
+  - refaster
+  - java
+recipeList:
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.NullRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StringRulesRecipes
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleSanityCheck
+displayName: Checkstyle Sanity Check
+description: |
+  High-level chained recipe that enforces code consistency, correctness,
+  and maintainability by combining:
+    * Static analysis & cleanup
+    * License header enforcement
+    * Import layout normalization
+    * Error-process auto-fixes (Checkstyle violations)
+    * Refaster & Error Prone rules
+tags:
+  - checkstyle
+  - sanity-check
+  - java
+recipeList:
+  - org.checkstyle.CheckstyleRefasterRules
+  - org.checkstyle.CheckstyleStaticAnalysis
+  - org.openrewrite.java.RemoveUnusedImports
+  # - org.openrewrite.java.recipes.JavaRecipeBestPractices
+  # - org.openrewrite.java.recipes.RecipeNullabilityBestPractices
+  # - org.openrewrite.java.recipes.RecipeTestingBestPractices
+  # - org.openrewrite.maven.BestPractices
+---
