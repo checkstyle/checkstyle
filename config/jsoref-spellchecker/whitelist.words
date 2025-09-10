@@ -995,6 +995,7 @@ npm
 nrmancuso
 ntokens
 NTU
+Nullability
 nullcase
 nullcheck
 nullness
@@ -1172,6 +1173,8 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+refaster
+refasterrules
 refid
 refreshenv
 regex
@@ -1310,6 +1313,7 @@ stackoverflow
 stackoverflowerror
 stacktrace
 standalone
+staticanalysis
 staticvariablename
 stdin
 Stdlib
