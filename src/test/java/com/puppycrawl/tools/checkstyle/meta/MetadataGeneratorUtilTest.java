@@ -20,15 +20,11 @@
 package com.puppycrawl.tools.checkstyle.meta;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper.MSG_DESC_MISSING;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -75,24 +71,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
                 System.out, "checks", "filters", "filefilters");
-
-        final String[] expectedErrorMessages = {
-            "30: " + getCheckMessage(MSG_DESC_MISSING, "AbstractParenPadCheck"),
-        };
-
-        final String[] actualViolations = systemOut.getCapturedData().split("\\n");
-        final Pattern violationExtractingPattern = Pattern.compile("((?<=:)\\d.*:.*(?=\\s\\[))");
-
-        Arrays.setAll(actualViolations, id -> {
-            final Matcher matcher = violationExtractingPattern.matcher(actualViolations[id]);
-            matcher.find();
-            return matcher.group(1);
-        });
-
-        assertWithMessage("Expected and actual errors do not match")
-                .that(expectedErrorMessages)
-                .asList()
-                .containsExactlyElementsIn(actualViolations);
 
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(

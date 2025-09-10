@@ -95,6 +95,7 @@ public final class MetadataGeneratorUtil {
                 "regexp",
                 "blocks",
                 "header",
+                "whitespace",
                 "javadoc",
                 "coding",
                 "design",

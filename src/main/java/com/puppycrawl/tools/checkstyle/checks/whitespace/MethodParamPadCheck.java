@@ -40,62 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * allow line breaks. To allow linebreaks after the identifier, set property
  * {@code allowLineBreaks} to {@code true}.
  * </div>
- * <ul>
- * <li>
- * Property {@code allowLineBreaks} - Allow a line break between the identifier
- * and left parenthesis.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code option} - Specify policy on how to pad method parameter.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
- * Default value is {@code nospace}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
- * CTOR_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_CALL">
- * CTOR_CALL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
- * LITERAL_NEW</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
- * METHOD_CALL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SUPER_CTOR_CALL">
- * SUPER_CTOR_CALL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
- * ENUM_CONSTANT_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
- * RECORD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_PATTERN_DEF">
- * RECORD_PATTERN_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code line.previous}
- * </li>
- * <li>
- * {@code ws.notPreceded}
- * </li>
- * <li>
- * {@code ws.preceded}
- * </li>
- * </ul>
  *
  * @since 3.4
  */
