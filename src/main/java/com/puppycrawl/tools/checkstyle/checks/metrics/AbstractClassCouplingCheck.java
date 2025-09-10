@@ -146,7 +146,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      *
      * @param excludedClasses classes to ignore.
      */
-    public final void setExcludedClasses(String... excludedClasses) {
+    public void setExcludedClasses(String... excludedClasses) {
         this.excludedClasses = Set.of(excludedClasses);
     }
 
@@ -165,7 +165,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param excludedPackages packages to ignore.
      * @throws IllegalArgumentException if there are invalid identifiers among the packages.
      */
-    public final void setExcludedPackages(String... excludedPackages) {
+    public void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
             .filter(Predicate.not(CommonUtil::isName))
             .toList();

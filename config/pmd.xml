@@ -534,7 +534,40 @@
                 value="//ClassDeclaration[@SimpleName='MissingDeprecatedCheck']
                       //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml']
                       || //ClassDeclaration[@SimpleName='NonEmptyAtclauseDescriptionCheck']
-                      //MethodDeclaration[@Name='setJavadocTokens']"/>
+                      //MethodDeclaration[@Name='setJavadocTokens']
+                      || //ClassDeclaration[@SimpleName='ConstantNameCheck']
+                      //MethodDeclaration[@Name='setApplyToPackage'
+                                            or @Name='setApplyToPrivate'
+                                            or @Name='setApplyToProtected'
+                                            or @Name='setApplyToPublic']
+                      || //ClassDeclaration[@SimpleName='StaticVariableNameCheck']
+                      //MethodDeclaration[@Name='setApplyToPackage'
+                                            or @Name='setApplyToPrivate'
+                                            or @Name='setApplyToProtected'
+                                            or @Name='setApplyToPublic']
+                      || //ClassDeclaration[@SimpleName='TypeNameCheck']
+                      //MethodDeclaration[@Name='setApplyToPackage'
+                                            or @Name='setApplyToPrivate'
+                                            or @Name='setApplyToProtected'
+                                            or @Name='setApplyToPublic']
+                      || //ClassDeclaration[@SimpleName='MemberNameCheck']
+                      //MethodDeclaration[@Name='setApplyToPackage'
+                                            or @Name='setApplyToPrivate'
+                                            or @Name='setApplyToProtected'
+                                            or @Name='setApplyToPublic']
+                      || //ClassDeclaration[@SimpleName='MethodNameCheck']
+                      //MethodDeclaration[@Name='setApplyToPackage'
+                                            or @Name='setApplyToPrivate'
+                                            or @Name='setApplyToProtected'
+                                            or @Name='setApplyToPublic']
+                      || //ClassDeclaration[@SimpleName='ClassDataAbstractionCouplingCheck']
+                      //MethodDeclaration[@Name='setExcludeClassesRegexps'
+                                            or @Name='setExcludedClasses'
+                                            or @Name='setExcludedPackages']
+                      || //ClassDeclaration[@SimpleName='ClassFanOutComplexityCheck']
+                      //MethodDeclaration[@Name='setExcludeClassesRegexps'
+                                            or @Name='setExcludedClasses'
+                                            or @Name='setExcludedPackages']"/>
     </properties>
   </rule>
 </ruleset>

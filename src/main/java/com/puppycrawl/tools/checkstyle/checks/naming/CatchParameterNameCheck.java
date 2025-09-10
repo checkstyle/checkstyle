@@ -42,26 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>prohibits two letter abbreviations like {@code ie} or {@code ee}</li>
  * <li>prohibits any other characters than letters</li>
  * </ul>
- * <ul>
- * <li>
- * Property {@code format} - Sets the pattern to match valid identifiers.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code name.invalidPattern}
- * </li>
- * </ul>
  *
  * @since 6.14
  */
