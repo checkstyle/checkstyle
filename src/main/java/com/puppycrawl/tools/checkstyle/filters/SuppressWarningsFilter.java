@@ -54,10 +54,6 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * Checker as parent module.
  * </p>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
  * @since 5.7
  */
 public class SuppressWarningsFilter

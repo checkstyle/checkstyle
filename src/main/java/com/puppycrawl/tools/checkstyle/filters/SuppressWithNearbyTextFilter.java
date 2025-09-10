@@ -53,43 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * best to set this to a key phrase not commonly used in the file to help denote it
  * out of the rest of the file as a suppression. See the default value as an example.
  * </p>
- * <ul>
- * <li>
- * Property {@code checkPattern} - Specify check name pattern to suppress.
- * Property can also be a RegExp group index at {@code nearbyTextPattern} in
- * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code ".*"}.
- * </li>
- * <li>
- * Property {@code idPattern} - Specify check ID pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code lineRange} - Specify negative/zero/positive value that
- * defines the number of lines preceding/at/following the suppressing nearby text.
- * Property can also be a RegExp group index at {@code nearbyTextPattern} in
- * format of {@code $x} and be picked from line that matches {@code nearbyTextPattern}.
- * Type is {@code java.lang.String}.
- * Default value is {@code "0"}.
- * </li>
- * <li>
- * Property {@code messagePattern} - Specify check violation message pattern to suppress.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * <li>
- * Property {@code nearbyTextPattern} - Specify nearby text
- * pattern to trigger filter to begin suppression.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "SUPPRESS CHECKSTYLE (\w+)"}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
  *
  * @since 10.10.0
  */
