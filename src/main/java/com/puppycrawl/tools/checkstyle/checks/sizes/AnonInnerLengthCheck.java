@@ -36,26 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * classes should usually be refactored into a named inner class.
  * See also Bloch, Effective Java, p. 93.
  * </p>
- * <ul>
- * <li>
- * Property {@code max} - Specify the maximum number of lines allowed.
- * Type is {@code int}.
- * Default value is {@code 20}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxLen.anonInner}
- * </li>
- * </ul>
  *
  * @since 3.2
  */

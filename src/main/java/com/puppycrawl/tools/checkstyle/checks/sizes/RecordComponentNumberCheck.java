@@ -35,34 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * header</a> of a record definition.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code accessModifiers} - Access modifiers of record definitions where
- * the number of record components should be checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
- * Default value is {@code public, protected, package, private}.
- * </li>
- * <li>
- * Property {@code max} - Specify the maximum number of components allowed in the header of a
- * record definition.
- * Type is {@code int}.
- * Default value is {@code 8}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code too.many.components}
- * </li>
- * </ul>
- *
  * @since 8.36
  */
 @StatelessCheck

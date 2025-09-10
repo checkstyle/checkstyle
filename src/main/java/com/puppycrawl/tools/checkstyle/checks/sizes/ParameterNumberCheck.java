@@ -33,48 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <div>
  * Checks the number of parameters of a method or constructor.
  * </div>
- * <ul>
- * <li>
- * Property {@code ignoreAnnotatedBy} - Ignore methods and constructors
- * annotated with the specified annotation(s).
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code ignoreOverriddenMethods} - Ignore number of parameters for
- * methods with {@code @Override} annotation.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code max} - Specify the maximum number of parameters allowed.
- * Type is {@code int}.
- * Default value is {@code 7}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
- * CTOR_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxParam}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

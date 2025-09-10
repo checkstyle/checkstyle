@@ -169,7 +169,7 @@ public abstract class AbstractFileSetCheck
      *         initial '.' character of an extension is automatically added.
      * @throws IllegalArgumentException is argument is null
      */
-    public final void setFileExtensions(String... extensions) {
+    public void setFileExtensions(String... extensions) {
         if (extensions == null) {
             throw new IllegalArgumentException("Extensions array can not be null");
         }

@@ -32,26 +32,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>
  * Rationale: It is considered good practice to only define one outer type per file.
  * </p>
- * <ul>
- * <li>
- * Property {@code max} - Specify the maximum number of outer types allowed.
- * Type is {@code int}.
- * Default value is {@code 1}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code maxOuterTypes}
- * </li>
- * </ul>
  *
  * @since 5.0
  */

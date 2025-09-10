@@ -220,6 +220,18 @@ public class TranslationCheck extends AbstractFileSetCheck {
     }
 
     /**
+     * Setter to specify the file extensions of the files to process.
+     *
+     * @param extensions the set of file extensions. A missing
+     *         initial '.' character of an extension is automatically added.
+     * @throws IllegalArgumentException is argument is null
+     */
+    @Override
+    public final void setFileExtensions(String... extensions) {
+        super.setFileExtensions(extensions);
+    }
+
+    /**
      * Setter to specify
      * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
      * Base name</a> of resource bundles which contain message resources.
