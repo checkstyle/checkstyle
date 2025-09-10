@@ -17,3 +17,4 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+  - org.openrewrite.java.migrate.Java8toJava11
