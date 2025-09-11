@@ -8670,60 +8670,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Set.add.</message>
-    <lineContent>tokens.add(matcher.group(0));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter nodeTag of JavadocMetadataScraper.getTextFromTag.</message>
-    <lineContent>return getTextFromTag(tagNode);</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailNode
-      required: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field moduleDetails</message>
-    <lineContent>private ModuleDetails moduleDetails;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field rootNode</message>
-    <lineContent>private DetailNode rootNode;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>return Optional.ofNullable(nodeTag).map(JavadocMetadataScraper::getText).orElse(&quot;&quot;);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>.orElse(null);</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable String
-      method return type: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter message of CheckstyleException constructor.</message>
@@ -8731,17 +8677,6 @@
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter moduleClassLoader of Checker.setModuleClassLoader.</message>
-    <lineContent>checker.setModuleClassLoader(Checker.class.getClassLoader());</lineContent>
-    <details>
-      found   : @Initialized @Nullable ClassLoader
-      required: @Initialized @NonNull ClassLoader
     </details>
   </checkerFrameworkError>
 

@@ -52,7 +52,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testAddError() {
+    public void testAddErrorAndFileStart() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 OutputStreamOptions.CLOSE);
@@ -60,11 +60,13 @@ public class MetadataGeneratorLoggerTest {
                 new Violation(1, 2, "bundle", "key",
                         null, SeverityLevel.ERROR, null, getClass(), "customViolation"));
         logger.finishLocalSetup();
+        logger.fileStarted(event);
         logger.addError(event);
         logger.auditFinished(event);
         assertWithMessage("Output stream should be empty")
                 .that(outputStream.toString())
                 .contains(event.getMessage());
+        logger.fileFinished(event);
     }
 
     @Test

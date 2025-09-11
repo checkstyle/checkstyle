@@ -205,7 +205,7 @@
          It is better to use the default allocation size. -->
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.JavaAstVisitor"/>
-      <Class name="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper"/>
+      <Class name="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil"/>
     </Or>
     <Bug pattern="PSC_PRESIZE_COLLECTIONS"/>
   </Match>

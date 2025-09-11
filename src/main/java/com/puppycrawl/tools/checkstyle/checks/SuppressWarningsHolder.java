@@ -48,20 +48,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * You can also define aliases for check names that need to be suppressed.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code aliasList} - Specify aliases for check names that can be used in code
- * within {@code SuppressWarnings} in a format of comma separated attribute=value entries.
- * The attribute is the fully qualified name of the Check and value is its alias.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
  * @since 5.7
  */
 @StatelessCheck

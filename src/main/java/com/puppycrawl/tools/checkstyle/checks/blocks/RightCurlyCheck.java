@@ -43,7 +43,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
  * </div>
  *
- *
  * @since 3.0
  */
 @StatelessCheck

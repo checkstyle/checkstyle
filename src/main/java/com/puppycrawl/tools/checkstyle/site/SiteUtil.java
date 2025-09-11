@@ -80,7 +80,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
-import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper;
+import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -721,27 +721,20 @@ public final class SiteUtil {
      *
      * @param moduleName the name of the module.
      * @param moduleJavadoc the Javadoc of the module.
-     * @param propertyName the name of the property.
      * @param propertyJavadoc the Javadoc of the property setter method.
      * @return the since version of the property.
      * @throws MacroExecutionException if the module since version could not be extracted.
      */
     public static String getPropertySinceVersion(String moduleName, DetailNode moduleJavadoc,
-                                         String propertyName, DetailNode propertyJavadoc)
+                                                 DetailNode propertyJavadoc)
             throws MacroExecutionException {
         final String sinceVersion;
 
         final Optional<String> specifiedPropertyVersionInPropertyJavadoc =
             getPropertyVersionFromItsJavadoc(propertyJavadoc);
 
-        final Optional<String> specifiedPropertyVersionInModule =
-            getSpecifiedPropertyVersionInModule(propertyName, moduleJavadoc);
-
         if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
             sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
-        }
-        else if (specifiedPropertyVersionInModule.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInModule.get();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -811,48 +804,6 @@ public final class SiteUtil {
         }
 
         return propertySinceJavadocTag;
-    }
-
-    /**
-     * Gets the specifically indicated version of module's property from the javadoc of module.
-     *
-     * @param propertyName the name of property.
-     * @param moduleJavadoc the javadoc of module.
-     * @return the specific since version of module's property.
-     * @throws MacroExecutionException if the module since version could not be extracted.
-     */
-    private static Optional<String> getSpecifiedPropertyVersionInModule(String propertyName,
-                                                                        DetailNode moduleJavadoc)
-            throws MacroExecutionException {
-        Optional<String> specifiedVersion = Optional.empty();
-
-        final Optional<DetailNode> propertyNodeFromModuleJavadoc =
-            getPropertyJavadocNodeInModule(propertyName, moduleJavadoc);
-
-        if (propertyNodeFromModuleJavadoc.isPresent()) {
-            final List<DetailNode> propertyModuleTextNodes = getNodesOfSpecificType(
-                propertyNodeFromModuleJavadoc.get().getChildren(), JavadocTokenTypes.TEXT);
-
-            final Optional<String> sinceVersionLine = propertyModuleTextNodes.stream()
-                .map(DetailNode::getText)
-                .filter(text -> text.startsWith(WHITESPACE + SINCE_VERSION))
-                .findFirst();
-
-            if (sinceVersionLine.isPresent()) {
-                final String sinceVersionText = sinceVersionLine.get();
-                final int sinceVersionIndex = sinceVersionText.indexOf('.') - 1;
-
-                if (sinceVersionIndex > 0) {
-                    specifiedVersion = Optional.of(sinceVersionText.substring(sinceVersionIndex));
-                }
-                else {
-                    throw new MacroExecutionException(sinceVersionText
-                        + " has no valid version, at least one '.' is expected.");
-                }
-            }
-        }
-
-        return specifiedVersion;
     }
 
     /**
@@ -1465,7 +1416,7 @@ public final class SiteUtil {
             String childText = detailNode.getText();
 
             if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                childText = JavadocMetadataScraper.adjustCodeInlineTagChildToHtml(detailNode);
+                childText = JavadocMetadataScraperUtil.adjustCodeInlineTagChildToHtml(detailNode);
             }
 
             // Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF).
