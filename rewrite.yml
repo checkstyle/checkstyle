@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: CheckstyleAutoFix
+name: org.checkstyle.CheckstyleAutoFix
 displayName: Checkstyle Auto Fix Configured
 description: |
   Automatically applies OpenRewrite recipes to fix Checkstyle violations
@@ -17,3 +17,65 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleSanityCheck
+displayName: Checkstyle Sanity Check
+description: |
+  High-level chained recipe that enforces consistent, correct, and maintainable Java code.
+  This recipe bundles multiple static analysis and cleanup checks, license header enforcement,
+  and import normalization.
+  It also integrates automated fixes for common Checkstyle violations and applies Refaster &
+  Error Prone rules to prevent subtle bugs.
+
+  In practice, this means it will:
+  - Remove unused imports, variables, fields, and methods.
+  - Enforce standard package naming, annotation usage, and modifier order.
+  - Disallow problematic constructs like finalizers.
+  - Normalize code layout and style for readability.
+  - Apply curated Refaster and Error Prone rule sets
+
+  The goal is to catch common mistakes early, ensure uniform style across the codebase, and reduce
+  maintenance overhead without requiring manual fixes.
+tags:
+  - checkstyle
+  - sanity-check
+  - java
+recipeList:
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.format.RemoveTrailingWhitespace
+  - org.openrewrite.staticanalysis.LowercasePackage
+  - org.openrewrite.staticanalysis.MissingOverrideAnnotation
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.NoFinalizer
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.BugCheckerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.SuggestedFixRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+  # - org.openrewrite.java.recipes.JavaRecipeBestPractices
+  # - org.openrewrite.java.recipes.RecipeNullabilityBestPractices
+  # - org.openrewrite.java.recipes.RecipeTestingBestPractices
+  # - org.openrewrite.maven.BestPractices
+  # - org.openrewrite.staticanalysis.CodeCleanup
+  # - org.openrewrite.staticanalysis.CommonStaticAnalysis
+  # - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  # - org.openrewrite.staticanalysis.JavaApiBestPractices
+  # - org.openrewrite.staticanalysis.UnnecessaryThrows
+  # - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.FileRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.NullRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
+  # - tech.picnic.errorprone.refasterrules.StringRulesRecipes
+---
