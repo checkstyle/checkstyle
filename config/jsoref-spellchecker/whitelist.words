@@ -217,6 +217,7 @@ CNAME
 Cnt
 cobertura
 codacy
+codebase
 codeclimate
 codeconventions
 codecov
@@ -263,6 +264,7 @@ ctc
 ctor
 ctx
 CTYPE
+curated
 customimportorder
 CVS
 cyclomatic
@@ -1172,6 +1174,7 @@ redundantimport
 redundantmodifier
 refactor
 refactoring
+Refaster
 refid
 refreshenv
 regex
