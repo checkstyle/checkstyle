@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.io.Writer;
 
+import javax.inject.Singleton;
+
 import org.apache.maven.doxia.sink.Sink;
 import org.apache.maven.doxia.sink.SinkFactory;
 import org.apache.maven.doxia.sink.impl.AbstractTextSinkFactory;
@@ -31,7 +33,9 @@ import org.codehaus.plexus.component.annotations.Component;
  * This module will be removed once
  * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
  */
-@Component(role = SinkFactory.class, hint = "xdocs-template")
+
+@Singleton
+@Named("xdocs-template")
 public class XdocsTemplateSinkFactory extends AbstractTextSinkFactory {
 
     /**
