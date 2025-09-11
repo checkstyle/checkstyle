@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: CheckstyleAutoFix
+name: org.checkstyle.CheckstyleAutoFix
 displayName: Checkstyle Auto Fix Configured
 description: |
   Automatically applies OpenRewrite recipes to fix Checkstyle violations
@@ -17,3 +17,30 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.checkstyle.CheckstyleSanityCheck
+displayName: Checkstyle Sanity Check
+description: |
+  High-level chained recipe that enforces consistent, correct, and maintainable Java code.
+  This recipe bundles multiple static analysis and cleanup checks, license header enforcement,
+  and import normalization.
+  It also integrates automated fixes for common Checkstyle violations and applies Refaster &
+  Error Prone rules to prevent subtle bugs.
+
+  In practice, this means it will:
+  - Remove unused imports, variables, fields, and methods.
+  - Enforce standard package naming, annotation usage, and modifier order.
+  - Disallow problematic constructs like finalizers.
+  - Normalize code layout and style for readability.
+  - Apply curated Refaster and Error Prone rule sets
+
+  The goal is to catch common mistakes early, ensure uniform style across the codebase, and reduce
+  maintenance overhead without requiring manual fixes.
+tags:
+  - checkstyle
+  - sanity-check
+  - java
+recipeList:
+  - org.openrewrite.java.migrate.Java8toJava11
+---
