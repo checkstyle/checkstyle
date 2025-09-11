@@ -28,35 +28,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * is required after a left parenthesis and before a right parenthesis, or such
  * spaces are forbidden.
  * </div>
- * <ul>
- * <li>
- * Property {@code option} - Specify policy on how to pad parentheses.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
- * Default value is {@code nospace}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code ws.followed}
- * </li>
- * <li>
- * {@code ws.notFollowed}
- * </li>
- * <li>
- * {@code ws.notPreceded}
- * </li>
- * <li>
- * {@code ws.preceded}
- * </li>
- * </ul>
  *
  * @since 3.2
  */
