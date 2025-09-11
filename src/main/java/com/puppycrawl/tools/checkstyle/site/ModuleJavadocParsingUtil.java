@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper;
+import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -97,9 +97,9 @@ public final class ModuleJavadocParsingUtil {
             htmlElement, JavadocTokenTypes.PARAGRAPH);
         final Optional<DetailNode> liNode = getLiTagNode(htmlElement);
 
-        return paragraphNode != null && JavadocMetadataScraper.isChildNodeTextMatches(
+        return paragraphNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
             paragraphNode, NOTES_LINE)
-            || liNode.isPresent() && JavadocMetadataScraper.isChildNodeTextMatches(
+            || liNode.isPresent() && JavadocMetadataScraperUtil.isChildNodeTextMatches(
                 liNode.get(), NOTES_LINE);
     }
 
@@ -180,41 +180,29 @@ public final class ModuleJavadocParsingUtil {
      * Gets the description of module from module javadoc.
      *
      * @param moduleJavadoc module javadoc.
-     * @param propertyNames property names set.
      * @return module description.
      */
-    public static String getModuleDescription(DetailNode moduleJavadoc, Set<String> propertyNames) {
-        final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc, propertyNames);
+    public static String getModuleDescription(DetailNode moduleJavadoc) {
+        final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc);
 
-        return JavadocMetadataScraper.constructSubTreeText(moduleJavadoc, 0, descriptionEndIndex);
+        return JavadocMetadataScraperUtil
+            .constructSubTreeText(moduleJavadoc, 0, descriptionEndIndex);
     }
 
     /**
      * Gets the end index of the description.
      *
      * @param moduleJavadoc javadoc of module.
-     * @param propertyNamesSet Set with property names.
      * @return the end index.
      */
-    public static int getDescriptionEndIndex(DetailNode moduleJavadoc,
-                                              Set<String> propertyNamesSet) {
+    public static int getDescriptionEndIndex(DetailNode moduleJavadoc) {
         int descriptionEndIndex = -1;
 
         final int notesStartingIndex =
             getNotesSectionStartIndex(moduleJavadoc);
-        final int propertiesSectionStartingIndex =
-            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
-        final int parentStartingIndex =
-            getParentSectionStartIndex(moduleJavadoc);
 
         if (notesStartingIndex > -1) {
             descriptionEndIndex += notesStartingIndex;
-        }
-        else if (propertiesSectionStartingIndex > -1) {
-            descriptionEndIndex += propertiesSectionStartingIndex;
-        }
-        else if (parentStartingIndex > -1) {
-            descriptionEndIndex += parentStartingIndex;
         }
         else {
             descriptionEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
@@ -245,54 +233,6 @@ public final class ModuleJavadocParsingUtil {
     }
 
     /**
-     * Gets the start index of property section in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @param propertyNames set with property names.
-     * @return index of property section.
-     */
-    public static int getPropertySectionStartIndex(DetailNode moduleJavadoc,
-                                                   Set<String> propertyNames) {
-        int propertySectionStartIndex = -1;
-
-        if (!propertyNames.isEmpty()) {
-            final String somePropertyName = propertyNames.iterator().next();
-            final Optional<DetailNode> somePropertyModuleNode =
-                SiteUtil.getPropertyJavadocNodeInModule(somePropertyName, moduleJavadoc);
-
-            if (somePropertyModuleNode.isPresent()) {
-                propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
-                    somePropertyModuleNode.get());
-            }
-        }
-
-        return propertySectionStartIndex;
-    }
-
-    /**
-     * Gets the starting index of the "Parent is" paragraph in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @return start index of parent subsection.
-     */
-    public static int getParentSectionStartIndex(DetailNode moduleJavadoc) {
-        int parentStartIndex = -1;
-
-        for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isParentText(paragraphNode)) {
-                    parentStartIndex = node.getIndex();
-                    break;
-                }
-            }
-        }
-
-        return parentStartIndex;
-    }
-
-    /**
      * Gets the starting index of the "@since" version tag in module's javadoc.
      *
      * @param moduleJavadoc javadoc of module.
@@ -314,10 +254,9 @@ public final class ModuleJavadocParsingUtil {
      * Gets the Notes section of module from module javadoc.
      *
      * @param moduleJavadoc module javadoc.
-     * @param propertyNames property names set.
      * @return Notes section of module.
      */
-    public static String getModuleNotes(DetailNode moduleJavadoc, Set<String> propertyNames) {
+    public static String getModuleNotes(DetailNode moduleJavadoc) {
         final String result;
 
         final int notesStartIndex = getNotesSectionStartIndex(moduleJavadoc);
@@ -326,9 +265,9 @@ public final class ModuleJavadocParsingUtil {
             result = "";
         }
         else {
-            final int notesEndIndex = getNotesEndIndex(moduleJavadoc, propertyNames);
+            final int notesEndIndex = getNotesEndIndex(moduleJavadoc);
 
-            final String unprocessedNotes = JavadocMetadataScraper.constructSubTreeText(
+            final String unprocessedNotes = JavadocMetadataScraperUtil.constructSubTreeText(
                 moduleJavadoc, notesStartIndex, notesEndIndex);
 
             result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");
@@ -341,26 +280,12 @@ public final class ModuleJavadocParsingUtil {
      * Gets the end index of the Notes.
      *
      * @param moduleJavadoc javadoc of module.
-     * @param propertyNamesSet Set with property names.
      * @return the end index.
      */
-    public static int getNotesEndIndex(DetailNode moduleJavadoc,
-                                        Set<String> propertyNamesSet) {
+    public static int getNotesEndIndex(DetailNode moduleJavadoc) {
         int notesEndIndex = -1;
 
-        final int parentStartingIndex = getParentSectionStartIndex(moduleJavadoc);
-        final int propertiesSectionStartingIndex =
-            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
-
-        if (propertiesSectionStartingIndex > -1) {
-            notesEndIndex += propertiesSectionStartingIndex;
-        }
-        else if (parentStartingIndex > -1) {
-            notesEndIndex += parentStartingIndex;
-        }
-        else {
-            notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
-        }
+        notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
 
         return notesEndIndex;
     }

@@ -41,9 +41,6 @@
   <suppress checks="AvoidModifiersForTypesCheck"
              files="MainTest\.java"/>
 
-  <!-- No need for constructor with cause -->
-  <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
-
   <!-- Require for testing of util package -->
   <suppress checks="ForbidCertainImports" files="AnnotationUtilTest\.java"/>
   <suppress checks="ForbidCertainImports" files="CheckUtilTest\.java"/>

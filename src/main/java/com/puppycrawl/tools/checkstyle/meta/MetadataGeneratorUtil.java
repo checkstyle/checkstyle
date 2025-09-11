@@ -21,9 +21,7 @@ package com.puppycrawl.tools.checkstyle.meta;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.lang.reflect.Field;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -38,11 +36,6 @@ import javax.xml.transform.TransformerException;
 
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
-import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger;
-import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -63,58 +56,17 @@ public final class MetadataGeneratorUtil {
      * Generate metadata from the module source files available in the input argument path.
      *
      * @param path arguments
-     * @param out OutputStream for error messages
      * @param moduleFolders folders to check
      * @throws IOException ioException
      * @throws CheckstyleException checkstyleException
      */
-    public static void generate(String path, OutputStream out, String... moduleFolders)
+    public static void generate(String path, String... moduleFolders)
             throws IOException, CheckstyleException {
-        JavadocMetadataScraper.resetModuleDetailsStore();
-
-        final Checker checker = new Checker();
-        checker.setModuleClassLoader(Checker.class.getClassLoader());
-        final DefaultConfiguration scraperCheckConfig =
-                        new DefaultConfiguration(JavadocMetadataScraper.class.getName());
-        final DefaultConfiguration defaultConfiguration =
-                new DefaultConfiguration("configuration");
-        final DefaultConfiguration treeWalkerConfig =
-                new DefaultConfiguration(TreeWalker.class.getName());
-        defaultConfiguration.addProperty("charset", StandardCharsets.UTF_8.name());
-        defaultConfiguration.addChild(treeWalkerConfig);
-        treeWalkerConfig.addChild(scraperCheckConfig);
-        checker.configure(defaultConfiguration);
-
-        checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
-
-        final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks",
-                "annotation",
-                "sizes",
-                "modifier",
-                "regexp",
-                "blocks",
-                "header",
-                "whitespace",
-                "javadoc",
-                "coding",
-                "design",
-                "imports",
-                "indentation",
-                "metrics",
-                "naming");
-        final List<File> filtersWithSimplifiedJavadocs =
-            getTargetFiles(path, "filters", "filefilters");
-
-        final List<File> modulesWithSimplifiedJavadocs = new ArrayList<>();
-        modulesWithSimplifiedJavadocs.addAll(checksWithSimplifiedJavadocs);
-        modulesWithSimplifiedJavadocs.addAll(filtersWithSimplifiedJavadocs);
-
-        final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
-        restOfModuleFiles.removeAll(modulesWithSimplifiedJavadocs);
+        final List<File> modulesToProcess =
+            getTargetFiles(path, moduleFolders);
 
         try {
-            for (File file : modulesWithSimplifiedJavadocs) {
+            for (File file : modulesToProcess) {
                 final String fileName = file.getName();
 
                 if (fileName.startsWith("Abstract")
@@ -125,8 +77,6 @@ public final class MetadataGeneratorUtil {
                 final ModuleDetails moduleDetails = getModuleDetails(file);
                 writeMetadataFile(moduleDetails);
             }
-
-            checker.process(restOfModuleFiles);
         }
         catch (MacroExecutionException macroException) {
             throw new CheckstyleException(macroException.getMessage(), macroException);
@@ -162,9 +112,9 @@ public final class MetadataGeneratorUtil {
                 .getPropertiesJavadocs(properties, className, file.toPath());
         final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(className, file.toPath());
         String description = ModuleJavadocParsingUtil
-            .getModuleDescription(moduleJavadoc, properties);
+            .getModuleDescription(moduleJavadoc);
 
-        final String notes = ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc, properties);
+        final String notes = ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc);
         if (!notes.isEmpty()) {
             description = description + "\n\n " + notes;
         }

@@ -5,25 +5,6 @@
         "https://checkstyle.org/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-  <!-- permanent suppression as import needs to be of same package where class is -->
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAbstractSuperCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAnnotationUseStyleCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAtclauseOrderCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperBeforeExecutionExclusionFileFilter.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperNoCodeInFileCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperRightCurlyCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperSummaryJavadocCheck.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperSuppressWarningsFilter.java"/>
-  <suppress id="noCheckstyleInInputs"
-            files="[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperWriteTagCheck.java"/>
   <suppress id="noCheckstyleInInputs"
             files="[\\/]checks[\\/]imports[\\/]redundantimport[\\/]InputRedundantImportWithoutPackage.java"/>
   <suppress id="noCheckstyleInInputs"

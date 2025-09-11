@@ -691,7 +691,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java</fileName>
     <specifier>methodref.receiver.bound</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>.map(pattern::matcher)</lineContent>

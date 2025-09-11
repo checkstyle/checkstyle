@@ -21,7 +21,8 @@
                <description>Ignore primitive types as parameters.</description>
             </property>
             <property default-value="true" name="ignoreUnnamedParameters" type="boolean">
-               <description>Ignore &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
+               <description>Ignore
+ &lt;a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html"&gt;
  unnamed parameters&lt;/a&gt;.</description>
             </property>
             <property default-value="METHOD_DEF,CTOR_DEF"
