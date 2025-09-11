@@ -1845,7 +1845,28 @@ public final class JavadocTokenTypes {
 
     public static final int AREA_HTML_TAG_NAME = JavadocParser.AREA_HTML_TAG_NAME;
 
-    /** Base tag name. */
+    /**
+     * Base tag name.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <base href="https://example.com/">}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --HTML_ELEMENT -> HTML_ELEMENT
+     *    `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        `--BASE_TAG -> BASE_TAG
+     *            |--START -> <
+     *            |--BASE_HTML_TAG_NAME -> base
+     *            |--WS ->
+     *            |--ATTRIBUTE -> ATTRIBUTE
+     *            |   |--HTML_TAG_NAME -> href
+     *            |   |--EQUALS -> =
+     *            |   `--ATTR_VALUE -> "https://example.com/"
+     *            `--END -> >
+     * }
+     * </pre>
+     */
     public static final int BASE_HTML_TAG_NAME = JavadocParser.BASE_HTML_TAG_NAME;
 
     /** Basefont tag name. */
