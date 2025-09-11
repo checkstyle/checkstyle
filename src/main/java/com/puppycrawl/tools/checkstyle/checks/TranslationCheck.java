@@ -89,43 +89,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * (property "cacheFile") This is known design problem, will be addressed at
  * <a href="https://github.com/checkstyle/checkstyle/issues/3539">issue</a>.
  * </p>
- * <ul>
- * <li>
- * Property {@code baseName} - Specify
- * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ResourceBundle.html">
- * Base name</a> of resource bundles which contain message resources.
- * It helps the check to distinguish config and localization resources.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^messages.*$"}.
- * </li>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .properties}.
- * </li>
- * <li>
- * Property {@code requiredTranslations} - Specify language codes of required
- * translations which must exist in project.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code translation.missingKey}
- * </li>
- * <li>
- * {@code translation.missingTranslationFile}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

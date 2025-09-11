@@ -60,7 +60,9 @@
  are even more important in the age of automated refactorings.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="" name="format" type="java.util.regex.Pattern">
+            <property default-value="^[\s});]*$"
+                      name="format"
+                      type="java.util.regex.Pattern">
                <description>Specify pattern for strings allowed before the comment.</description>
             </property>
             <property name="legalComment" type="java.util.regex.Pattern">
