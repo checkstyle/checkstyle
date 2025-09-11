@@ -80,37 +80,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * It is also possible to enforce the use of a specific line-separator across
  * platforms, with the {@code lineSeparator} property.
  * </p>
- * <ul>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code ""}.
- * </li>
- * <li>
- * Property {@code lineSeparator} - Specify the type of line separator.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption}.
- * Default value is {@code lf_cr_crlf}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code noNewlineAtEOF}
- * </li>
- * <li>
- * {@code unable.open}
- * </li>
- * <li>
- * {@code wrong.line.end}
- * </li>
- * </ul>
  *
  * @since 3.1
  */

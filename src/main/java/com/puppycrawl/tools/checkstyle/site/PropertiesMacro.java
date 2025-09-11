@@ -256,7 +256,7 @@ public class PropertiesMacro extends AbstractMacro {
         writePropertyTypeCell(sink, propertyName, field, instance);
         writePropertyDefaultValueCell(sink, propertyName, field, instance);
         writePropertySinceVersionCell(
-                sink, propertyName, moduleJavadoc, propertyJavadoc);
+                sink, moduleJavadoc, propertyJavadoc);
 
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_12);
         sink.tableRow_();
@@ -576,19 +576,17 @@ public class PropertiesMacro extends AbstractMacro {
      * Writes a table cell with the property since version.
      *
      * @param sink sink to write to.
-     * @param propertyName the name of the property.
      * @param moduleJavadoc the Javadoc of the module.
      * @param propertyJavadoc the Javadoc of the property containing the since version.
      * @throws MacroExecutionException if an error occurs during retrieval of the since version.
      */
-    private static void writePropertySinceVersionCell(Sink sink, String propertyName,
-                                                      DetailNode moduleJavadoc,
+    private static void writePropertySinceVersionCell(Sink sink, DetailNode moduleJavadoc,
                                                       DetailNode propertyJavadoc)
             throws MacroExecutionException {
         sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_14);
         sink.tableCell();
         final String sinceVersion = SiteUtil.getPropertySinceVersion(
-                currentModuleName, moduleJavadoc, propertyName, propertyJavadoc);
+                currentModuleName, moduleJavadoc, propertyJavadoc);
         sink.text(sinceVersion);
         sink.tableCell_();
     }

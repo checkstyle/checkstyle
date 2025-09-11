@@ -58,27 +58,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *
  * <p>Known limitation: The key should not contain a newline.
  * The string compare will work, but not the line number reporting.</p>
- * <ul><li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .properties}.
- * </li></ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code properties.notSorted.property}
- * </li>
- * <li>
- * {@code unable.open.cause}
- * </li>
- * </ul>
  *
  * @since 8.22
  */
