@@ -33,39 +33,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <div>
  * Checks line wrapping with separators.
  * </div>
- * <ul>
- * <li>
- * Property {@code option} - Specify policy on how to wrap lines.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption}.
- * Default value is {@code eol}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
- * DOT</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
- * COMMA</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code line.new}
- * </li>
- * <li>
- * {@code line.previous}
- * </li>
- * </ul>
  *
  * @since 5.8
  */
