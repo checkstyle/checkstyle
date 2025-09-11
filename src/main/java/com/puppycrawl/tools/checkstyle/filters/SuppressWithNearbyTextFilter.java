@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -192,7 +191,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
      * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
-        final Path path = Paths.get(fileName);
+        final Path path = Path.of(fileName);
         FileText result = null;
 
         // some violations can be on a directory, instead of a file
