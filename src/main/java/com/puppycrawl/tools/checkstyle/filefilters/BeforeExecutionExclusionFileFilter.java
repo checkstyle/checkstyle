@@ -45,16 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * <b>Note:</b> When a file is excluded from the utility, it is excluded from all Checks and no
  * testing for violations will be performed on them.
  * </p>
- * <ul>
- * <li>
- * Property {@code fileNamePattern} - Define regular expression to match the file name against.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.</li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
  *
  * @since 7.2
  */
