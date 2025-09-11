@@ -5336,7 +5336,8 @@
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
-                <recipe>CheckstyleAutoFix</recipe>
+                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
+                <recipe>org.checkstyle.CheckstyleSanityCheck</recipe>
               </activeRecipes>
               <plainTextMasks>
                 <plainTextMask>**/*.xml</plainTextMask>
@@ -5351,6 +5352,16 @@
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle-openrewrite-recipes</artifactId>
                 <version>${checkstyle.openrewrite.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-third-party</artifactId>
+                <version>0.26.0</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>2.16.0</version>
               </dependency>
             </dependencies>
           </plugin>
