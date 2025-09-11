@@ -45,29 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * several branches. While there are no problems in runtime, there can be a confusion
  * due to having different values for the duplicated properties.
  * </p>
- * <ul>
- * <li>
- * Property {@code fileExtensions} - Specify the file extensions of the files to process.
- * Type is {@code java.lang.String[]}.
- * Default value is {@code .properties}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code properties.duplicate.property}
- * </li>
- * <li>
- * {@code unable.open.cause}
- * </li>
- * </ul>
  *
  * @since 5.7
  */

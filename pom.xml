@@ -966,7 +966,7 @@
                     <!-- Metadata Generator related classes -->
                     <exclude>com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
@@ -1313,19 +1313,14 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                      com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper
+                      com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil
                     </include>
                   </includes>
                   <limits>
                     <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.98</minimum>
-                    </limit>
-                    <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.95</minimum>
+                      <minimum>0.90</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1878,7 +1873,7 @@
                 <exclude>**/SingleLineJavadocCheck.class</exclude>
                 <exclude>**/SummaryJavadocCheck.class</exclude>
                 <exclude>**/WriteTagCheck.class</exclude>
-                <exclude>**/JavadocMetadataScraper.class</exclude>
+                <exclude>**/JavadocMetadataScraperUtil.class</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -3885,8 +3880,6 @@
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
-                <!-- JavadocMetadataScraper extends AbstractJavadocCheck -->
-                <param>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>

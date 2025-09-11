@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.nio.file.Path;
-import java.util.Set;
 
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
@@ -43,8 +42,6 @@ public class NotesMacro extends AbstractMacro {
         final Path modulePath = Path.of((String) request.getParameter("modulePath"));
         final String moduleName = CommonUtil.getFileNameWithoutExtension(modulePath.toString());
 
-        final Set<String> propertyNames = ModuleJavadocParsingUtil.getPropertyNames(moduleName);
-
         final DetailNode moduleJavadoc = SiteUtil.getModuleJavadoc(moduleName, modulePath);
         if (moduleJavadoc == null) {
             throw new MacroExecutionException(
@@ -52,7 +49,7 @@ public class NotesMacro extends AbstractMacro {
         }
 
         final String moduleNotes =
-            ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc, propertyNames);
+            ModuleJavadocParsingUtil.getModuleNotes(moduleJavadoc);
 
         ModuleJavadocParsingUtil.writeOutJavadocPortion(moduleNotes, sink);
 

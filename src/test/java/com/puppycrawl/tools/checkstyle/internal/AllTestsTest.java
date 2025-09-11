@@ -269,7 +269,7 @@ public class AllTestsTest {
         return !fileName.endsWith("TestSupport.java")
                 // tests external utility XPathEvaluator
                 && !"XpathMapper.java".equals(fileName)
-                // JavadocMetadataScraper and related classes are temporarily hosted in test
+                // JavadocMetadataScraperUtil and related classes are temporarily hosted in test
                 && !file.getPath().contains("meta")
                 // InlineConfigParser is hosted in test
                 && !file.getPath().contains("bdd")
