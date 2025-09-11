@@ -56,27 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public long toNanos(long d)  { return d;             } &#47;&#47; 2 violations
  * public long toMicros(long d) { return d / (C1 / C0); }
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code validateComments} - Control whether to validate whitespaces
- * surrounding comments.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code single.space.separator}
- * </li>
- * </ul>
  *
  * @since 6.19
  */
