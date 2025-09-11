@@ -219,6 +219,7 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
+    <rewrite-migrate-java.version>3.16.0</rewrite-migrate-java.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -5336,8 +5337,16 @@
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
-                <recipe>CheckstyleAutoFix</recipe>
+                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
+                <recipe>org.checkstyle.CheckstyleSanityCheck</recipe>
               </activeRecipes>
+              <exclusions>
+                <exclusion>**.ci-temp**</exclusion>
+                <exclusion>**/resources-noncompilable/**</exclusion>
+                <exclusion>**src/it/resources**</exclusion>
+                <exclusion>**src/test/resources**</exclusion>
+                <exclusion>**xdocs-examples**</exclusion>
+              </exclusions>
               <plainTextMasks>
                 <plainTextMask>**/*.xml</plainTextMask>
                 <plainTextMask>**/*.yml</plainTextMask>
@@ -5351,6 +5360,11 @@
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle-openrewrite-recipes</artifactId>
                 <version>${checkstyle.openrewrite.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-migrate-java</artifactId>
+                <version>${rewrite-migrate-java.version}</version>
               </dependency>
             </dependencies>
           </plugin>
