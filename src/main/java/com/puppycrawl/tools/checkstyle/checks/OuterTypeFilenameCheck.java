@@ -34,19 +34,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * For example, the class {@code Foo} must be in a file named {@code Foo.java}.
  * </div>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code type.file.mismatch}
- * </li>
- * </ul>
- *
  * @since 5.3
  */
 @FileStatefulCheck

@@ -38,29 +38,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     foo.hasNext();
  *    )
  * </code></pre></div>
- * <ul>
- * <li>
- * Property {@code option} - Specify policy on how to pad an empty for iterator.
- * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
- * Default value is {@code nospace}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code ws.followed}
- * </li>
- * <li>
- * {@code ws.notFollowed}
- * </li>
- * </ul>
  *
  * @since 3.0
  */

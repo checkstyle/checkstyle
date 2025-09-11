@@ -42,43 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * algorithm can be confusing and should be avoided. A great way to let the Java compiler
  * prevent this coding style is to declare parameters final.
  * </p>
- * <ul>
- * <li>
- * Property {@code ignorePrimitiveTypes} - Ignore primitive types as parameters.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code ignoreUnnamedParameters} -
- * Ignore <a href="https://docs.oracle.com/en/java/javase/21/docs/specs/unnamed-jls.html">
- * unnamed parameters</a>.
- * Type is {@code boolean}.
- * Default value is {@code true}.
- * </li>
- * <li>
- * Property {@code tokens} - tokens to check
- * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
- * Default value is:
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
- * CTOR_DEF</a>.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code final.parameter}
- * </li>
- * </ul>
  *
  * @since 3.0
  */
