@@ -1662,8 +1662,7 @@ public class XdocsPagesTest {
 
         if (!expectedText.isEmpty()) {
             expectedText.append("""
-                    All messages can be customized if the default message doesn't \
-                    suit you.
+                    All messages can be customized if the default message doesn't suit you.
                     Please see the documentation to learn how to.""");
         }
 
