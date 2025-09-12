@@ -5338,7 +5338,8 @@
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
-<!--                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>-->
+                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
+                <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
               </activeRecipes>
               <exclusions>
