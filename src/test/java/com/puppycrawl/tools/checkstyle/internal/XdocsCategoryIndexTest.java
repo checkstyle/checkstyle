@@ -326,8 +326,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
 
         for (int tableIdx = 0; tableIdx < tableNodes.getLength(); tableIdx++) {
             final Node tableNode = tableNodes.item(tableIdx);
-            if (tableNode instanceof Element) {
-                processTableElement((Element) tableNode, indexedChecks);
+            if (tableNode instanceof Element element) {
+                processTableElement(element, indexedChecks);
             }
         }
         return indexedChecks;
@@ -405,8 +405,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final NodeList children = parent.getChildNodes();
             for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
-                if (child instanceof Element && tagName.equals(child.getNodeName())) {
-                    elements.add((Element) child);
+                if (child instanceof Element element && tagName.equals(child.getNodeName())) {
+                    elements.add(element);
                 }
             }
         }
@@ -427,8 +427,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final NodeList children = parent.getChildNodes();
             for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
-                if (child instanceof Element && tagName.equals(child.getNodeName())) {
-                    result = Optional.of((Element) child);
+                if (child instanceof Element element && tagName.equals(child.getNodeName())) {
+                    result = Optional.of(element);
                     break;
                 }
             }
