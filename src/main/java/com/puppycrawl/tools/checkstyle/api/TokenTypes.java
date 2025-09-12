@@ -314,6 +314,7 @@ public final class TokenTypes {
      * @see #OBJBLOCK
      **/
     public static final int METHOD_DEF = JavaLanguageLexer.METHOD_DEF;
+
     /**
      * A field or local variable declaration.  The children are
      * modifiers, type, the identifier name, and an optional
@@ -330,7 +331,7 @@ public final class TokenTypes {
      *  |--MODIFIERS -&gt; MODIFIERS
      *  |   `--FINAL -&gt; final
      *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_DOUBLE -&gt; int
+     *  |   `--LITERAL_DOUBLE -&gt; double
      *  |--IDENT -&gt; PI
      *  |--ASSIGN -&gt; =
      *  |   `--EXPR -&gt; EXPR
