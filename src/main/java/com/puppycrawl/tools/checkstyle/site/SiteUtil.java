@@ -1154,6 +1154,8 @@ public final class SiteUtil {
      *
      * @param value the value to get the int stream from.
      * @return the int stream.
+     * @noinspectionreason ChainOfInstanceofChecks - We will deal with this at
+     *                     <a href="https://github.com/checkstyle/checkstyle/issues/13500">13500</a>
      */
     private static IntStream getIntStream(Object value) {
         final IntStream stream;
@@ -1161,8 +1163,8 @@ public final class SiteUtil {
             stream = collection.stream()
                     .mapToInt(int.class::cast);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
