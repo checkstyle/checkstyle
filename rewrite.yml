@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.CheckstyleAutoFix
+name: CheckstyleAutoFix
 displayName: Checkstyle Auto Fix Configured
 description: |
   Automatically applies OpenRewrite recipes to fix Checkstyle violations
@@ -17,3 +17,29 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: OpenRewrite
+displayName: OpenRewrite Recipes
+recipeList:
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.format.RemoveTrailingWhitespace
+  - org.openrewrite.java.migrate.Java8toJava11
+  - org.openrewrite.staticanalysis.LowercasePackage
+  - org.openrewrite.staticanalysis.MissingOverrideAnnotation
+  - org.openrewrite.staticanalysis.ModifierOrder
+  - org.openrewrite.staticanalysis.NoFinalizer
+  - org.openrewrite.staticanalysis.RemoveUnusedLocalVariables
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
+  - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: Picnic
+displayName: Picnic Refasterrules
+recipeList:
+  - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
+  - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
+  - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
+  - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
+  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
+---
