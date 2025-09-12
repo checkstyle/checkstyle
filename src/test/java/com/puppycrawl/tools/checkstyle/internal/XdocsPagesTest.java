@@ -1543,8 +1543,8 @@ public class XdocsPagesTest {
             stream = collection.stream()
                     .mapToInt(number -> (int) number);
         }
-        else if (value instanceof BitSet) {
-            stream = ((BitSet) value).stream();
+        else if (value instanceof BitSet set) {
+            stream = set.stream();
         }
         else {
             stream = Arrays.stream((int[]) value);
@@ -1661,8 +1661,9 @@ public class XdocsPagesTest {
         }
 
         if (!expectedText.isEmpty()) {
-            expectedText.append("All messages can be customized if the default message doesn't "
-                    + "suit you.\nPlease see the documentation to learn how to.");
+            expectedText.append("""
+                    All messages can be customized if the default message doesn't suit you.
+                    Please see the documentation to learn how to.""");
         }
 
         if (subSection == null) {

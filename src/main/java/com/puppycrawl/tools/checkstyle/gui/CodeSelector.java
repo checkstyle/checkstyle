@@ -48,8 +48,8 @@ public class CodeSelector {
     public CodeSelector(final Object node, final JTextArea editor,
                         final Collection<Integer> lines2position) {
         this.editor = editor;
-        if (node instanceof DetailAST) {
-            pModel = new CodeSelectorPresentation((DetailAST) node,
+        if (node instanceof DetailAST detailAst) {
+            pModel = new CodeSelectorPresentation(detailAst,
                     new ArrayList<>(lines2position));
         }
         else {
