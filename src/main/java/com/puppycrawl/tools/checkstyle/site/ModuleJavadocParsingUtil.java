@@ -305,8 +305,8 @@ public final class ModuleJavadocParsingUtil {
                 return JavadocUtil
                     .findFirstToken(javadocTag, JavadocTokenTypes.SINCE_LITERAL) != null;
             })
-            .map(DetailNode::getIndex)
             .findFirst()
+            .map(DetailNode::getIndex)
             .orElse(-1);
     }
 
