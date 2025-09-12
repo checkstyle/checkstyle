@@ -331,7 +331,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 .that(out.closeCount)
                 .isEqualTo(1);
 
-        final String actual = out.toString();
+        final String actual = out.toString(StandardCharsets.UTF_8);
         assertWithMessage("Invalid suppressions file content")
             .that(actual)
             .isEqualTo(expected);

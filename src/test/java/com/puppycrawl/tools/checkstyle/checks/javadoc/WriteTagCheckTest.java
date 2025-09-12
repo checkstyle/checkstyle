@@ -199,7 +199,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
         execute(checker, getPath("InputWriteTagResetSeverity.java"));
 
-        final String output = out.toString();
+        final String output = out.toString(StandardCharsets.UTF_8);
 
         // logs severity levels are between square brackets []
         final Pattern severityPattern = Pattern.compile("\\[(ERROR|WARN|INFO|IGNORE)]");
