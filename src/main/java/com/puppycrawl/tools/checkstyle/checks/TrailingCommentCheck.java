@@ -85,37 +85,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * McConnell's comments on being hard to maintain when the size of the line changes
  * are even more important in the age of automated refactorings.
  * </p>
- * <ul>
- * <li>
- * Property {@code format} - Specify pattern for strings allowed before the comment.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is <code>"^[\s});]*$"</code>.
- * </li>
- * <li>
- * Property {@code legalComment} - Define pattern for text allowed in trailing comments.
- * This pattern will not be applied to multiline comments.
- * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code null}.
- * </li>
- * </ul>
  *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code trailing.comments}
- * </li>
- * </ul>
- *
+ * @since 3.4
  * @noinspection HtmlTagCanBeJavadocTag
  * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
  *      when replaced with Javadoc tag
- * @since 3.4
  */
 @StatelessCheck
 public class TrailingCommentCheck extends AbstractCheck {

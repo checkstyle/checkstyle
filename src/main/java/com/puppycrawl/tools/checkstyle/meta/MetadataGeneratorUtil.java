@@ -87,34 +87,11 @@ public final class MetadataGeneratorUtil {
 
         checker.addListener(new MetadataGeneratorLogger(out, OutputStreamOptions.NONE));
 
-        final List<File> checksWithSimplifiedJavadocs =
-            getTargetFiles(path + "/checks",
-                "annotation",
-                "sizes",
-                "modifier",
-                "regexp",
-                "blocks",
-                "header",
-                "whitespace",
-                "javadoc",
-                "coding",
-                "design",
-                "imports",
-                "indentation",
-                "metrics",
-                "naming");
-        final List<File> filtersWithSimplifiedJavadocs =
-            getTargetFiles(path, "filters", "filefilters");
-
-        final List<File> modulesWithSimplifiedJavadocs = new ArrayList<>();
-        modulesWithSimplifiedJavadocs.addAll(checksWithSimplifiedJavadocs);
-        modulesWithSimplifiedJavadocs.addAll(filtersWithSimplifiedJavadocs);
-
-        final List<File> restOfModuleFiles = getTargetFiles(path, moduleFolders);
-        restOfModuleFiles.removeAll(modulesWithSimplifiedJavadocs);
+        final List<File> modulesToProcess =
+            getTargetFiles(path, moduleFolders);
 
         try {
-            for (File file : modulesWithSimplifiedJavadocs) {
+            for (File file : modulesToProcess) {
                 final String fileName = file.getName();
 
                 if (fileName.startsWith("Abstract")
@@ -125,8 +102,6 @@ public final class MetadataGeneratorUtil {
                 final ModuleDetails moduleDetails = getModuleDetails(file);
                 writeMetadataFile(moduleDetails);
             }
-
-            checker.process(restOfModuleFiles);
         }
         catch (MacroExecutionException macroException) {
             throw new CheckstyleException(macroException.getMessage(), macroException);

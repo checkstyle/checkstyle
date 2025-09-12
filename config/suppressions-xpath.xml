@@ -191,10 +191,6 @@
   <suppress-xpath
           files="XmlMetaReader.java"
           checks="LocalVariableNameCheck"
-          query="//METHOD_DEF[./IDENT[@text='createProperties']]//VARIABLE_DEF/IDENT[@text='i']"/>
-  <suppress-xpath
-          files="XmlMetaReader.java"
-          checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getListContentByAttribute']]
                 //VARIABLE_DEF/IDENT[@text='j']"/>
   <suppress-xpath

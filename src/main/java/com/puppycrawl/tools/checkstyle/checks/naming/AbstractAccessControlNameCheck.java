@@ -42,7 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>applyToPrivate, default true;</li>
  * </ol>
  *
- *
  */
 public abstract class AbstractAccessControlNameCheck
     extends AbstractNameCheck {

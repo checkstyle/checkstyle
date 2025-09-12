@@ -202,19 +202,9 @@ public final class ModuleJavadocParsingUtil {
 
         final int notesStartingIndex =
             getNotesSectionStartIndex(moduleJavadoc);
-        final int propertiesSectionStartingIndex =
-            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
-        final int parentStartingIndex =
-            getParentSectionStartIndex(moduleJavadoc);
 
         if (notesStartingIndex > -1) {
             descriptionEndIndex += notesStartingIndex;
-        }
-        else if (propertiesSectionStartingIndex > -1) {
-            descriptionEndIndex += propertiesSectionStartingIndex;
-        }
-        else if (parentStartingIndex > -1) {
-            descriptionEndIndex += parentStartingIndex;
         }
         else {
             descriptionEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
@@ -242,54 +232,6 @@ public final class ModuleJavadocParsingUtil {
         }
 
         return notesStartIndex;
-    }
-
-    /**
-     * Gets the start index of property section in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @param propertyNames set with property names.
-     * @return index of property section.
-     */
-    public static int getPropertySectionStartIndex(DetailNode moduleJavadoc,
-                                                   Set<String> propertyNames) {
-        int propertySectionStartIndex = -1;
-
-        if (!propertyNames.isEmpty()) {
-            final String somePropertyName = propertyNames.iterator().next();
-            final Optional<DetailNode> somePropertyModuleNode =
-                SiteUtil.getPropertyJavadocNodeInModule(somePropertyName, moduleJavadoc);
-
-            if (somePropertyModuleNode.isPresent()) {
-                propertySectionStartIndex = JavadocMetadataScraper.getParentIndexOf(
-                    somePropertyModuleNode.get());
-            }
-        }
-
-        return propertySectionStartIndex;
-    }
-
-    /**
-     * Gets the starting index of the "Parent is" paragraph in module's javadoc.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @return start index of parent subsection.
-     */
-    public static int getParentSectionStartIndex(DetailNode moduleJavadoc) {
-        int parentStartIndex = -1;
-
-        for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-                    node, JavadocTokenTypes.PARAGRAPH);
-                if (paragraphNode != null && JavadocMetadataScraper.isParentText(paragraphNode)) {
-                    parentStartIndex = node.getIndex();
-                    break;
-                }
-            }
-        }
-
-        return parentStartIndex;
     }
 
     /**
@@ -348,19 +290,7 @@ public final class ModuleJavadocParsingUtil {
                                         Set<String> propertyNamesSet) {
         int notesEndIndex = -1;
 
-        final int parentStartingIndex = getParentSectionStartIndex(moduleJavadoc);
-        final int propertiesSectionStartingIndex =
-            getPropertySectionStartIndex(moduleJavadoc, propertyNamesSet);
-
-        if (propertiesSectionStartingIndex > -1) {
-            notesEndIndex += propertiesSectionStartingIndex;
-        }
-        else if (parentStartingIndex > -1) {
-            notesEndIndex += parentStartingIndex;
-        }
-        else {
-            notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
-        }
+        notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
 
         return notesEndIndex;
     }

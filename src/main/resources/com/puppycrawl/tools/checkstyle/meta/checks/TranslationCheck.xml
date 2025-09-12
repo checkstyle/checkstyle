@@ -13,7 +13,6 @@
  &lt;/div&gt;
 
  &lt;p&gt;
- Notes:
  Language code for the property &lt;code&gt;requiredTranslations&lt;/code&gt; is composed of
  the lowercase, two-letter codes as defined by
  &lt;a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"&gt;ISO 639-1&lt;/a&gt;.
@@ -58,8 +57,7 @@
             <property default-value=""
                       name="requiredTranslations"
                       type="java.lang.String[]">
-               <description>Specify language codes of required
- translations which must exist in project.</description>
+               <description>Specify language codes of required translations which must exist in project.</description>
             </property>
          </properties>
          <message-keys>
