@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -100,7 +100,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * Returns the default javadoc token types a check is interested in.
      *
      * @return the default javadoc token types
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public abstract int[] getDefaultJavadocTokens();
 
@@ -119,7 +119,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The default implementation returns the check's default javadoc tokens.
      *
      * @return the javadoc token set this check is designed for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public int[] getAcceptableJavadocTokens() {
         final int[] defaultJavadocTokens = getDefaultJavadocTokens();
@@ -132,7 +132,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The javadoc tokens that this check must be registered for.
      *
      * @return the javadoc token set this must be registered for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public int[] getRequiredJavadocTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;

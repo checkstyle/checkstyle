@@ -209,6 +209,34 @@ public final class JavadocUtil {
         }
         return returnValue;
     }
+    
+    public static List<DetailNode> getAllNodesOfType(DetailNode detailNode, int type) {
+        final List<DetailNode> nodes = new ArrayList<>();
+        DetailNode node = detailNode.getFirstChild();
+        while (node != null) {
+            if (node.getType() == type) {
+                nodes.add(node);
+            }
+            node = node.getNextSibling();
+        }
+        return nodes;
+    }
+    
+    
+    /**
+     * Checks whether the given AST node is an HTML element with the specified tag name.
+     *
+     * @param ast the AST node to check
+     * @param expectedTagName the tag name to match (case-insensitive)
+     * @return {@code true} if the node has the given tag name, {@code false} otherwise
+     */
+    public static boolean isTag(DetailNode ast, String expectedTagName) {
+        final DetailNode htmlTagStart = JavadocUtil.findFirstToken(ast,
+                JavadocCommentsTokenTypes.HTML_TAG_START);
+        final String tagName = JavadocUtil.findFirstToken(htmlTagStart,
+                JavadocCommentsTokenTypes.TAG_NAME).getText();
+        return expectedTagName.equalsIgnoreCase(tagName);
+    }
 
     /**
      * Gets first child node of specified node.
