@@ -2481,17 +2481,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>result = ((DetailNode) parent).getChildren()[index];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;(DetailNode)parent.getChildren()&quot;) or @LTLengthOf(&quot;(DetailNode)parent.getChildren()&quot;) -- an integer less than (DetailNode)parent.getChildren()&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>return COLUMN_NAMES[column];</lineContent>
     <details>
       found   : int
@@ -2501,9 +2490,20 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
+    <specifier>array.access.unsafe.high</specifier>
+    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
+    <lineContent>result = node.getChildren()[index];</lineContent>
+    <details>
+      found   : int
+      required: @IndexFor(&quot;node.getChildren()&quot;) or @LTLengthOf(&quot;node.getChildren()&quot;) -- an integer less than node.getChildren()&apos;s length
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>result = ((DetailNode) parent).getChildren()[index];</lineContent>
+    <lineContent>result = node.getChildren()[index];</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
