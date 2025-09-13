@@ -1005,7 +1005,13 @@
       <property name="validateComments" value="false"/>
     </module>
     <module name="TypecastParenPad"/>
-    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAfter">
+      <property name="tokens"
+               value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
+                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,
+                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,
+                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS"/>
+    </module>
     <module name="WhitespaceAround"/>
 
   </module>

@@ -45,6 +45,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontal
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeEmptyForLoop.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeColonOfLabel.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeCaseDefaultColon.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputNoWhitespaceBeforeAnnotations.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputMethodParamPad2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundGenerics.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundArrow.java
