@@ -35,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
  * </div>
  *
- *
  * @since 3.0
  */
 @StatelessCheck

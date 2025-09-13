@@ -46,44 +46,6 @@ import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
  * allow using escapes if literal contains only them.
  * </div>
  *
- * <ul>
- * <li>
- * Property {@code allowByTailComment} - Allow use escapes if trail comment is present.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowEscapesForControlCharacters} - Allow use escapes for
- * non-printable, control characters.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowIfAllCharactersEscaped} - Allow if all characters in literal are escaped.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * <li>
- * Property {@code allowNonPrintableEscapes} - Allow use escapes for
- * non-printable, whitespace characters.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- *
- * <p>
- * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
- * </p>
- *
- * <p>
- * Violation Message Keys:
- * </p>
- * <ul>
- * <li>
- * {@code forbid.escaped.unicode.char}
- * </li>
- * </ul>
- *
  * @since 5.8
  */
 @FileStatefulCheck

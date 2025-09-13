@@ -42,7 +42,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
-            "JavadocMetadataScraper",
             "ClassAndPropertiesSettersJavadocScraper"
     );
 
@@ -58,10 +57,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      *
      * @param systemOut wrapper for {@code System.out}
      * @throws Exception if exception occurs during generating metadata or
-     *                   if an I/O error is thrown when accessing the starting file.
-     * @noinspection UseOfSystemOutOrSystemErr
-     * @noinspectionreason UseOfSystemOutOrSystemErr - generation of metadata
-     *      requires {@code System.out} for error messages
+     *                   if an I/O error is thrown when accessing the starting f
      */
     @Test
     public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
@@ -70,7 +66,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                System.out, "checks", "filters", "filefilters");
+                "checks", "filters", "filefilters");
 
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(
