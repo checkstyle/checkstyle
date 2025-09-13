@@ -40,7 +40,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *       same line, etc. can be collapsed into the superclass</LI>
  * </UL>
  *
- *
  */
 public class BlockParentHandler extends AbstractExpressionHandler {
 

@@ -2552,7 +2552,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of String.substring.</message>
     <lineContent>result.addLast(fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length()));</lineContent>
@@ -2563,7 +2563,7 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraper.java</fileName>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of String.substring.</message>
     <lineContent>return fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length());</lineContent>

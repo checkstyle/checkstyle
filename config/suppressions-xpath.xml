@@ -203,10 +203,6 @@
           query="//METHOD_DEF[./IDENT[@text='getDirectChildsByTag']]
                 //VARIABLE_DEF/IDENT[@text='i']"/>
   <suppress-xpath
-          files="JavadocMetadataScraper.java"
-          checks="LocalVariableNameCheck"
-          query="//METHOD_DEF[./IDENT[@text='getPackageName']]//VARIABLE_DEF/IDENT[@text='i']"/>
-  <suppress-xpath
           files="ParseTreeTablePresentation.java"
           checks="LocalVariableNameCheck"
           query="//METHOD_DEF[./IDENT[@text='getIndexOfChild']]//VARIABLE_DEF/IDENT[@text='i']"/>

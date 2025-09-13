@@ -42,7 +42,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     private final Set<String> modulesContainingNoMetadataFile = Set.of(
             "Checker",
             "TreeWalker",
-            "JavadocMetadataScraper",
             "ClassAndPropertiesSettersJavadocScraper"
     );
 
@@ -70,7 +69,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
         MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                         + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                System.out, "checks", "filters", "filefilters");
+                "checks", "filters", "filefilters");
 
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(

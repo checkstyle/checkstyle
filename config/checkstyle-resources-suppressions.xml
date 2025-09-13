@@ -654,8 +654,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]antlr4[\\/]InputAntlr4AstRegressionNewTypeTree\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]meta[\\/]javadocmetadatascraper[\\/]InputJavadocMetadataScraperAnnotationUseStyleCheck\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]xpathmapper[\\/]InputXpathMapperStringConcat\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]filters[\\/]suppressioncommentfilter[\\/]InputSuppressionCommentFilter3\.java"/>
