@@ -5333,9 +5333,23 @@
               <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
+                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
                 <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
+                <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
+                <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
+                <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
+                <recipe>org.openrewrite.staticanalysis.NoFinalizer</recipe>
+                <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
+                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
+                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
               </activeRecipes>
               <exclusions>
                 <exclusion>**.ci-temp**</exclusion>
@@ -5367,6 +5381,11 @@
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-static-analysis</artifactId>
                 <version>${rewrite-static-analysis.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-third-party</artifactId>
+                <version>${rewrite-third-party.version}</version>
               </dependency>
             </dependencies>
           </plugin>
