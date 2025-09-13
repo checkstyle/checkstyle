@@ -20,17 +20,16 @@
 package com.puppycrawl.tools.checkstyle.site;
 
 import java.lang.reflect.Field;
-import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.sink.Sink;
 
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -93,27 +92,11 @@ public final class ModuleJavadocParsingUtil {
      * @return true if the element starts the "Notes" section, false otherwise.
      */
     private static boolean isStartOfNotesSection(DetailNode htmlElement) {
-        final DetailNode paragraphNode = JavadocUtil.findFirstToken(
-            htmlElement, JavadocTokenTypes.PARAGRAPH);
-        final Optional<DetailNode> liNode = getLiTagNode(htmlElement);
-
-        return paragraphNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
-            paragraphNode, NOTES_LINE)
-            || liNode.isPresent() && JavadocMetadataScraperUtil.isChildNodeTextMatches(
-                liNode.get(), NOTES_LINE);
-    }
-
-    /**
-     * Gets the node of Li HTML tag.
-     *
-     * @param htmlElement html element to get li tag from.
-     * @return Optional of li tag node.
-     */
-    public static Optional<DetailNode> getLiTagNode(DetailNode htmlElement) {
-        return Optional.of(htmlElement)
-            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_TAG))
-            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.HTML_ELEMENT))
-            .map(element -> JavadocUtil.findFirstToken(element, JavadocTokenTypes.LI));
+        final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
+            htmlElement, JavadocCommentsTokenTypes.HTML_CONTENT);
+        
+        return htmlContentNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
+            htmlContentNode, NOTES_LINE);
     }
 
     /**
@@ -183,71 +166,75 @@ public final class ModuleJavadocParsingUtil {
      * @return module description.
      */
     public static String getModuleDescription(DetailNode moduleJavadoc) {
-        final int descriptionEndIndex = getDescriptionEndIndex(moduleJavadoc);
+        final DetailNode descriptionEndNode = getDescriptionEndNode(moduleJavadoc);
 
-        return JavadocMetadataScraperUtil
-            .constructSubTreeText(moduleJavadoc, 0, descriptionEndIndex);
+        return JavadocMetadataScraperUtil.constructSubTreeText(moduleJavadoc, descriptionEndNode);
     }
 
     /**
-     * Gets the end index of the description.
+     * Gets the end node of the description.
      *
      * @param moduleJavadoc javadoc of module.
      * @return the end index.
      */
-    public static int getDescriptionEndIndex(DetailNode moduleJavadoc) {
-        int descriptionEndIndex = -1;
+    public static DetailNode getDescriptionEndNode(DetailNode moduleJavadoc) {
+        DetailNode descriptionEndNode;
 
-        final int notesStartingIndex =
-            getNotesSectionStartIndex(moduleJavadoc);
+        final DetailNode notesStartingNode =
+            getNotesSectionStartNode(moduleJavadoc);
 
-        if (notesStartingIndex > -1) {
-            descriptionEndIndex += notesStartingIndex;
+        if (notesStartingNode != null) {
+            descriptionEndNode = notesStartingNode.getPreviousSibling();
         }
         else {
-            descriptionEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
+            descriptionEndNode 
+                    = getModuleSinceVersionTagStartNode(moduleJavadoc).getPreviousSibling();
         }
 
-        return descriptionEndIndex;
+        return descriptionEndNode;
     }
 
     /**
-     * Gets the start index of the Notes section.
+     * Gets the start node of the Notes section.
      *
      * @param moduleJavadoc javadoc of module.
-     * @return start index.
+     * @return start node.
      */
-    public static int getNotesSectionStartIndex(DetailNode moduleJavadoc) {
-        int notesStartIndex = -1;
+    public static DetailNode getNotesSectionStartNode(DetailNode moduleJavadoc) {
+        DetailNode notesStartNode = null;
+        DetailNode node = moduleJavadoc.getFirstChild();
 
-        for (DetailNode node : moduleJavadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                && (JavadocUtil.isTag(node, "p")
+                    || JavadocUtil.isTag(node, "li"))
                 && isStartOfNotesSection(node)) {
 
-                notesStartIndex += node.getIndex();
+                notesStartNode = node;
                 break;
             }
+            node = node.getNextSibling();
         }
 
-        return notesStartIndex;
+        return notesStartNode;
     }
 
     /**
-     * Gets the starting index of the "@since" version tag in module's javadoc.
+     * Gets the node representing the start of the {@code @since} version tag
+     * in the module's Javadoc.
      *
-     * @param moduleJavadoc javadoc of module.
-     * @return start index of "@since".
+     * @param moduleJavadoc the root Javadoc node of the module
+     * @return the {@code @since} tag start node, or {@code null} if not found
      */
-    public static int getModuleSinceVersionTagStartIndex(DetailNode moduleJavadoc) {
-        return SiteUtil.getNodesOfSpecificType(moduleJavadoc.getChildren(),
-                JavadocTokenTypes.JAVADOC_TAG).stream()
+    public static DetailNode getModuleSinceVersionTagStartNode(DetailNode moduleJavadoc) {
+        return JavadocUtil.getAllNodesOfType(
+                moduleJavadoc, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG).stream()
             .filter(javadocTag -> {
-                return JavadocUtil
-                    .findFirstToken(javadocTag, JavadocTokenTypes.SINCE_LITERAL) != null;
+                return javadocTag.getFirstChild().getType()
+                        == JavadocCommentsTokenTypes.SINCE_BLOCK_TAG;
             })
             .findFirst()
-            .map(DetailNode::getIndex)
-            .orElse(-1);
+            .orElse(null);
     }
 
     /**
@@ -259,17 +246,17 @@ public final class ModuleJavadocParsingUtil {
     public static String getModuleNotes(DetailNode moduleJavadoc) {
         final String result;
 
-        final int notesStartIndex = getNotesSectionStartIndex(moduleJavadoc);
+        final DetailNode notesStartNode = getNotesSectionStartNode(moduleJavadoc);
 
-        if (notesStartIndex < 0) {
+        if (notesStartNode == null) {
             result = "";
         }
         else {
-            final int notesEndIndex = getNotesEndIndex(moduleJavadoc);
+            final DetailNode notesEndNode = getNotesEndNode(moduleJavadoc);
 
-            final String unprocessedNotes = JavadocMetadataScraperUtil.constructSubTreeText(
-                moduleJavadoc, notesStartIndex, notesEndIndex);
-
+            final String unprocessedNotes = 
+                    JavadocMetadataScraperUtil.constructSubTreeText(
+                        notesStartNode, notesEndNode);
             result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");
         }
 
@@ -277,17 +264,14 @@ public final class ModuleJavadocParsingUtil {
     }
 
     /**
-     * Gets the end index of the Notes.
+     * Gets the end node of the Notes.
      *
      * @param moduleJavadoc javadoc of module.
      * @return the end index.
      */
-    public static int getNotesEndIndex(DetailNode moduleJavadoc) {
-        int notesEndIndex = -1;
-
-        notesEndIndex += getModuleSinceVersionTagStartIndex(moduleJavadoc);
-
-        return notesEndIndex;
+    public static DetailNode getNotesEndNode(DetailNode moduleJavadoc) {
+        return getModuleSinceVersionTagStartNode(
+                moduleJavadoc).getPreviousSibling();
     }
 
     /**
