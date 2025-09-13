@@ -847,8 +847,8 @@ public final class SiteUtil {
 
         return liTagsInlineTexts.stream()
             .filter(text -> text.getText().equals(propertyName))
-            .map(textNode -> textNode.getParent().getParent())
-            .findFirst();
+            .findFirst()
+            .map(textNode -> textNode.getParent().getParent());
 
     }
 

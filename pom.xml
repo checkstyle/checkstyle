@@ -221,6 +221,7 @@
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <rewrite-migrate-java.version>3.16.0</rewrite-migrate-java.version>
     <rewrite-static-analysis.version>2.16.0</rewrite-static-analysis.version>
+    <rewrite-third-party.version>0.26.0</rewrite-third-party.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -5334,6 +5335,7 @@
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
                 <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
               </activeRecipes>
               <exclusions>
                 <exclusion>**.ci-temp**</exclusion>
