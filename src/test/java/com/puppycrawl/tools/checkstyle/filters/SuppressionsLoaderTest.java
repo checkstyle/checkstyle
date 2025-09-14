@@ -24,6 +24,8 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -217,10 +219,10 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         return filterSet;
     }
 
-    private static boolean isUrlReachable(String url) {
+    private static boolean isUrlReachable(String url) throws URISyntaxException {
         boolean result = true;
         try {
-            final URL verifiableUrl = new URL(url);
+            final URL verifiableUrl = new URI(url).toURL();
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }

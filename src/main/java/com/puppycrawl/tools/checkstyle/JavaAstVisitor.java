@@ -190,7 +190,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeDeclaration(JavaLanguageParser.TypeDeclarationContext ctx) {
         final DetailAstImpl typeDeclaration;
         if (ctx.type == null) {
-            typeDeclaration = create(ctx.semi.get(0));
+            typeDeclaration = create(ctx.semi.getFirst());
             ctx.semi.subList(1, ctx.semi.size())
                     .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
         }
@@ -1579,7 +1579,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
 
         if (binOpList.isEmpty()) {
-            final DetailAstImpl leftChild = visit(ctx.children.get(0));
+            final DetailAstImpl leftChild = visit(ctx.children.getFirst());
             bop.addChild(leftChild);
         }
         else {
