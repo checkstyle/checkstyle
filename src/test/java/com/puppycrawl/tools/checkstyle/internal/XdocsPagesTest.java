@@ -1065,7 +1065,7 @@ public class XdocsPagesTest {
                     .that(columns)
                     .hasSize(5);
 
-                final String propertyName = columns.get(0).getTextContent();
+                final String propertyName = columns.getFirst().getTextContent();
                 tablePropertyNames.add(propertyName);
             });
 
@@ -1151,7 +1151,7 @@ public class XdocsPagesTest {
             if (skip) {
                 assertWithMessage(fileName + " section '" + sectionName
                                 + "' should have the specific title")
-                    .that(columns.get(0).getTextContent())
+                    .that(columns.getFirst().getTextContent())
                     .isEqualTo("name");
                 assertWithMessage(fileName + " section '" + sectionName
                                 + "' should have the specific title")
@@ -1179,7 +1179,7 @@ public class XdocsPagesTest {
                     .that(didTokens)
                     .isFalse();
 
-            final String propertyName = columns.get(0).getTextContent();
+            final String propertyName = columns.getFirst().getTextContent();
             assertWithMessage(fileName + " section '" + sectionName
                         + "' should not contain the property: " + propertyName)
                     .that(properties.remove(propertyName))
@@ -1871,7 +1871,7 @@ public class XdocsPagesTest {
                         fileName, lastRuleName, lastRuleNumberParts, ruleName);
 
                 if (!"--".equals(ruleName)) {
-                    validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.get(0), "a"),
+                    validateStyleAnchors(XmlUtil.findChildElementsByTag(columns.getFirst(), "a"),
                             fileName, ruleName);
                 }
 
