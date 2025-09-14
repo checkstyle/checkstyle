@@ -149,8 +149,8 @@ public final class TestInputConfiguration {
 
     private DefaultConfiguration createTreeWalker() {
         final DefaultConfiguration treeWalker;
-        if (childrenModules.get(0).getModuleName().equals(TreeWalker.class.getName())) {
-            treeWalker = childrenModules.get(0).createConfiguration();
+        if (childrenModules.getFirst().getModuleName().equals(TreeWalker.class.getName())) {
+            treeWalker = childrenModules.getFirst().createConfiguration();
         }
         else {
             treeWalker = new DefaultConfiguration(TreeWalker.class.getName());

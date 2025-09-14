@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -354,7 +353,7 @@ public final class CommonUtil {
     public static URI getUriByFilename(String filename) throws CheckstyleException {
         URI uri = getWebOrFileProtocolUri(filename);
 
-        if (uri == null) {
+        if (uri.getScheme() == null) {
             uri = getFilepathOrClasspathUri(filename);
         }
 
@@ -367,17 +366,17 @@ public final class CommonUtil {
      *
      * @param filename name of the file
      * @return resolved file URI or null if URL is malformed or non-existent
-     * @noinspection deprecation
-     * @noinspectionreason Disabled until #17646
      */
     public static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
+            uri = new URI(filename);
+            if (uri.getScheme() == null) {
+                uri = new File(filename).toURI();
+            }
         }
-        catch (URISyntaxException | MalformedURLException ignored) {
-            uri = null;
+        catch (URISyntaxException ignored) {
+            uri = new File(filename).toURI();
         }
         return uri;
     }
