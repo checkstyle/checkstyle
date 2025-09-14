@@ -221,7 +221,7 @@
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <rewrite-migrate-java.version>3.17.0</rewrite-migrate-java.version>
     <rewrite-static-analysis.version>2.16.0</rewrite-static-analysis.version>
-    <java.version>17</java.version>
+    <java.version>21</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <pitest.plugin.version>1.20.2</pitest.plugin.version>
@@ -832,6 +832,8 @@
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
           </compilerArgs>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
       </plugin>
 
@@ -5334,7 +5336,7 @@
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                 <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
-                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+                <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
                 <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
                 <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>

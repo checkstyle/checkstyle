@@ -209,7 +209,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
         for (Map.Entry<String, List<DetailAST>> stringListEntry : stringMap.entrySet()) {
             final List<DetailAST> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
-                final DetailAST firstFinding = hits.get(0);
+                final DetailAST firstFinding = hits.getFirst();
                 final String recurringString =
                     ALL_NEW_LINES.matcher(
                         stringListEntry.getKey()).replaceAll("\\\\n");
