@@ -341,7 +341,7 @@ public class MainTest {
     public void testExistingTargetFileButWithoutReadAccess(
             @SysErr Capturable systemErr, @SysOut Capturable systemOut) throws IOException {
         final File file = Files.createTempFile(temporaryFolder.toPath(),
-                    "testExistingTargetFileButWithoutReadAccess", null).toFile();
+                "testExistingTargetFileButWithoutReadAccess", null).toFile();
         // skip execution if file is still readable, it is possible on some Windows machines
         // see https://github.com/checkstyle/checkstyle/issues/7032 for details
         assumeTrue(file.setReadable(false), "file is still readable");
