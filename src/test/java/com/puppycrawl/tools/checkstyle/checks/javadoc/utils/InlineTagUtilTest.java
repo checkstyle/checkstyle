@@ -50,7 +50,7 @@ public class InlineTagUtilTest {
             .that(tags)
             .hasSize(4);
 
-        assertTag(tags.get(0), "link", "List", 2, 4);
+        assertTag(tags.getFirst(), "link", "List", 2, 4);
         assertTag(tags.get(1), "link", "List link text", 2, 19);
         assertTag(tags.get(2), "link", "List#add(Object) link text", 3, 4);
         assertTag(tags.get(3), "link", "Class link text", 4, 4);
@@ -69,7 +69,7 @@ public class InlineTagUtilTest {
         assertWithMessage("Unexpected tags size")
             .that(tags)
             .hasSize(1);
-        assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
+        assertTag(tags.getFirst(), "link", "foo bar baz", 2, 4);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class InlineTagUtilTest {
         assertWithMessage("Unexpected tags size")
             .that(tags)
             .hasSize(1);
-        assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
+        assertTag(tags.getFirst(), "code", "foo bar baz", 2, 4);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class InlineTagUtilTest {
             .that(tags)
             .hasSize(1);
 
-        final TagInfo tag = tags.get(0);
+        final TagInfo tag = tags.getFirst();
         assertTag(tag, "link", "foo", 1, 3);
     }
 

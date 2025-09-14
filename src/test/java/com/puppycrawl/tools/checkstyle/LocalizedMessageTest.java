@@ -24,6 +24,8 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -88,7 +90,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNull() throws IOException {
+    public void testBundleReloadUrlNotNull() throws IOException, URISyntaxException {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -113,7 +115,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(new URI("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -145,7 +147,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+    public void testBundleReloadUrlNotNullFalseReload() throws IOException, URISyntaxException {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -170,7 +172,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(new URI("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -194,8 +196,8 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+    public void testBundleReloadUrlNotNullStreamNull() throws IOException, URISyntaxException {
+        final URL url = URL.of(new URI("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
                 return null;
