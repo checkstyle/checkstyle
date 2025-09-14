@@ -582,7 +582,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
         assertWithMessage("Invalid child listener class")
-                .that(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter)
+                .that(listeners.getLast() instanceof DebugAuditAdapter)
                 .isTrue();
     }
 

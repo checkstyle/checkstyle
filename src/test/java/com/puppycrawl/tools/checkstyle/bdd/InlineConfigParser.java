@@ -589,13 +589,13 @@ public final class InlineConfigParser {
      * @return true if a file provides xml configuration, otherwise false.
      */
     private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.get(0));
+        return "/*xml".equals(lines.getFirst());
     }
 
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.get(0).startsWith("/*")) {
+        if (!lines.getFirst().startsWith("/*")) {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
@@ -1085,8 +1085,8 @@ public final class InlineConfigParser {
             throws CheckstyleException {
         final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
         final boolean specifyViolationMessage = moduleLists.size() == 1
-                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
-                && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName());
+                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.getFirst().getModuleName())
+                && !SUPPRESSED_CHECKS.contains(moduleLists.getFirst().getModuleName());
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
                     useFilteredViolations, lineNo, specifyViolationMessage);

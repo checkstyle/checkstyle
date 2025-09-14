@@ -144,8 +144,8 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Wrong messages count: " + violations.size())
             .that(violations)
             .hasSize(1);
-        final Violation violation = violations.iterator().next();
-        final String retrievedMessage = violations.iterator().next().getKey();
+        final Violation violation = violations.getFirst();
+        final String retrievedMessage = violations.getFirst().getKey();
         assertWithMessage("violation key '" + retrievedMessage + "' is not valid")
             .that(retrievedMessage)
             .isEqualTo("unable.open.cause");
