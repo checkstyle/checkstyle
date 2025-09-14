@@ -5334,7 +5334,7 @@
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                 <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
-                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+                <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
                 <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
                 <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
