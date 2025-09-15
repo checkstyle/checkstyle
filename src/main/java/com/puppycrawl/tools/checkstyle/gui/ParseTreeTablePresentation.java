@@ -152,8 +152,12 @@ public class ParseTreeTablePresentation {
     public Object getChild(Object parent, int index) {
         final Object result;
 
-        if (parent instanceof DetailNode node) {
-            result = node.getChildren()[index];
+        if (parent instanceof DetailNode parentNode) {
+            DetailNode node = parentNode.getFirstChild();
+            for (int i = 0; i < index; i++) {
+                node = node.getNextSibling();
+            }
+            result = node;
         }
         else {
             result = getChildAtDetailAst((DetailAST) parent, index);
@@ -169,10 +173,14 @@ public class ParseTreeTablePresentation {
      * @return the number of children of the node parent.
      */
     public int getChildCount(Object parent) {
-        final int result;
+        int result = 0;
 
-        if (parent instanceof DetailNode node) {
-            result = node.getChildren().length;
+        if (parent instanceof DetailNode parentNode) {
+            DetailNode node =  parentNode.getFirstChild();
+            while (node != null) {
+                node = node.getNextSibling();
+                result++;
+            }
         }
         else {
             if (parseMode == ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS

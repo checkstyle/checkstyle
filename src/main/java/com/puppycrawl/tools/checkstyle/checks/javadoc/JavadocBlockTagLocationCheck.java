@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
 /**
  * <div>
@@ -129,7 +128,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * in the javadoc text, thus it needs the {@code TEXT} tokens.
      *
      * @return the javadoc token set this must be registered for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     @Override
     public int[] getRequiredJavadocTokens() {
