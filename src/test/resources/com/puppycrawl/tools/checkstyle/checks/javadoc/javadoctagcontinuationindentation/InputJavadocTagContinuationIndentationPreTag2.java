@@ -68,7 +68,6 @@ public class InputJavadocTagContinuationIndentationPreTag2 {
       * Queries are a key tool for extracting information from date-times.
       * <p>
       * The most common query implementations are method references, such as
-      * {@code LocalDate::from} and {@code ZoneId::from}.
       * Additional implementations are provided as static methods on {@link TemporalQuery}.
       *
       * @implSpec
@@ -91,7 +90,6 @@ public class InputJavadocTagContinuationIndentationPreTag2 {
       * <pre>
       *  if (query == TemporalQueries.precision()) {
       *    return MINUTES;
-      *  }
       *  return TemporalAccessor.super.query(query);
       * </pre>
       * <p> // violation
@@ -100,7 +98,6 @@ public class InputJavadocTagContinuationIndentationPreTag2 {
       *
       * @param query  the query to invoke, not null
       * @return the query result, null may be returned (defined by the query)
-      * @throws DateTimeException if unable to query
       * @throws ArithmeticException if numeric overflow occurs
       */
      Object query(Object query) {
