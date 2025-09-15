@@ -734,7 +734,7 @@ public final class SiteUtil {
             getPropertyVersionFromItsJavadoc(propertyJavadoc);
 
         if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
+            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -791,7 +791,7 @@ public final class SiteUtil {
             .map(DetailNode::getChildren);
 
         if (propertyJavadocNodes.isPresent()) {
-            for (final DetailNode child : propertyJavadocNodes.get()) {
+            for (final DetailNode child : propertyJavadocNodes.orElseThrow()) {
                 if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                     final DetailNode customName = JavadocUtil.findFirstToken(
                             child, JavadocTokenTypes.CUSTOM_NAME);
