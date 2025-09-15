@@ -5346,8 +5346,15 @@
                 <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.OptionalRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.StringRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
               </activeRecipes>
               <exclusions>
