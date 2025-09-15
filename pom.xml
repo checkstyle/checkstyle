@@ -5346,6 +5346,7 @@
                 <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>

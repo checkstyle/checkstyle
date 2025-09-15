@@ -1306,7 +1306,7 @@ public final class SiteUtil {
     private static String getFileContents(Path pathToFile) throws CheckstyleException {
         final String content;
         try {
-            content = Files.readString(pathToFile, StandardCharsets.UTF_8);
+            content = Files.readString(pathToFile);
         }
         catch (IOException ioException) {
             final String message = String.format(Locale.ROOT, "Failed to read file: %s",
