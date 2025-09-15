@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -223,7 +224,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("headerFile", getPath("InputHeaderjava.header"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final File cacheFile = Files.createTempFile(temporaryFolder.toPath(), "junit", null)
+                .toFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
@@ -243,7 +245,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("header", "Test");
 
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
+        final File cacheFile = Files.createTempFile(temporaryFolder.toPath(), "junit", null)
+                .toFile();
         checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
