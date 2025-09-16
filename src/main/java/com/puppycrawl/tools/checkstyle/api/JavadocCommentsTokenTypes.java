@@ -124,4 +124,8 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_COMMENT_START = JavadocCommentsLexer.HTML_COMMENT_START;
     public static final int HTML_COMMENT_END = JavadocCommentsLexer.HTML_COMMENT_END;
     public static final int HTML_COMMENT_CONTENT = JavadocCommentsLexer.HTML_COMMENT_CONTENT;
+    
+    /** Empty private constructor of the current class. */
+    private JavadocCommentsTokenTypes() {
+    }
 }
