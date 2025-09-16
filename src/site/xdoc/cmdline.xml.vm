@@ -916,7 +916,9 @@ class Test {
 /SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE
   </code></pre>
 </div>
-
+  <pre>The XPath generated is intended
+    to be used with the SuppressionXpathFilter or SuppressionXpathSingleFilter modules.
+    Add the generated XPath to your suppressions.xml file and Referenced it in the configuration file.</pre>
 <h4 id="Generating_Xpath_Suppressions_XML"><span>
 6. Generating Xpath Suppressions XML
 (<span class="no-transform">-g, --generate-xpath-suppression</span>)
