@@ -39,7 +39,8 @@ public class InputNoWhitespaceBeforeEllipsis {
   void test7(String @NonNull[]... param) {} // false-negative, ok until #17451
 
   /** some javadoc. */
-  void test8(String @NonNull[] ... param) {} // false-negative, ok until #17451
+  void test8(String @NonNull[] ... param) {}
+  // violation above ''...' is preceded with whitespace.'
 
   void test9(String @Size(max = 10) ... names) {}
 
