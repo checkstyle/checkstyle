@@ -128,6 +128,17 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
+    public void testNoWhitespaceBeforeEllipsis() throws Exception {
+        final String[] expected = {
+            "25:37: " + getCheckMessage(MSG_KEY, "..."),
+            "28:37: " + getCheckMessage(MSG_KEY, "..."),
+            "31:37: " + getCheckMessage(MSG_KEY, "..."),
+            "34:37: " + getCheckMessage(MSG_KEY, "..."),
+        };
+        verifyWithInlineConfigParser(getPath("InputNoWhitespaceBeforeEllipsis.java"), expected);
+    }
+
+    @Test
     public void testNoWhitespaceBeforeWithEmoji() throws Exception {
         final String[] expected = {
             "13:15: " + getCheckMessage(MSG_KEY, ","),

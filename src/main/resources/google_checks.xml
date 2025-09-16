@@ -350,7 +350,9 @@
     </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="NoWhitespaceBefore"/>
-      <property name="query" value="//ELLIPSIS[preceding-sibling::TYPE/ANNOTATIONS/ANNOTATION]"/>
+      <property name="query"
+          value="//ELLIPSIS[preceding-sibling::TYPE/ANNOTATIONS[ANNOTATION[LPAREN]
+          or not(following-sibling::*)]]"/>
     </module>
     <module name="ParenPad">
       <property name="tokens"
