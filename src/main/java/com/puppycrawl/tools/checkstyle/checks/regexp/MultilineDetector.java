@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import java.util.regex.Matcher;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LineColumn;
 
@@ -80,7 +82,7 @@ class MultilineDetector {
         resetState();
 
         final String format = options.getFormat();
-        if (format == null || format.isEmpty()) {
+        if (StringUtils.isEmpty(format)) {
             options.getReporter().log(1, MSG_EMPTY);
         }
         else {
