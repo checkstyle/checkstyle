@@ -5370,6 +5370,7 @@
                 <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
+                <recipe>tech.picnic.errorprone.refasterrules.StringRulesRecipes</recipe>
                 <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
               </activeRecipes>
               <exclusions>
