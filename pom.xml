@@ -198,7 +198,6 @@
   </issueManagement>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
@@ -493,22 +492,19 @@
         <!-- we need to override just make "mvn versions:plugin-updates-report"
              see no old versions -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>3.7.1</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.8.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <!-- version is same as in supper-pom as it is better to use same version
-               as in sonatype-nexus-staging -->
-          <version>2.1</version>
         </plugin>
         <!-- from super-pom END -->
         <plugin>
@@ -802,7 +798,7 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${basedir}/target/site/dtds</outputDirectory>
+              <outputDirectory>${project.basedir}/target/site/dtds</outputDirectory>
               <resources>
                 <resource>
                   <directory>src/main/resources/com/puppycrawl/tools/checkstyle</directory>
@@ -878,7 +874,7 @@
         <version>${maven.versions.plugin.version}</version>
         <configuration>
           <generateBackupPoms>false</generateBackupPoms>
-          <rulesUri>file://${basedir}/config/version-number-rules.xml</rulesUri>
+          <rulesUri>file://${project.basedir}/config/version-number-rules.xml</rulesUri>
           <formats>
             <format>xml</format>
             <format>html</format>
@@ -1448,7 +1444,7 @@
         <configuration>
           <visitor>true</visitor>
           <listener>false</listener>
-          <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
+          <sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
           <includes>
             <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
@@ -1842,7 +1838,7 @@
             </goals>
             <configuration>
               <signaturesFiles>
-                <signaturesFile>${basedir}/config/signatures.txt</signaturesFile>
+                <signaturesFile>${project.basedir}/config/signatures.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
                 <!-- system-out is ok there, that is CLI -->
@@ -1885,7 +1881,7 @@
             </goals>
             <configuration>
               <signaturesFiles>
-                <signaturesFile>${basedir}/config/signatures-test.txt</signaturesFile>
+                <signaturesFile>${project.basedir}/config/signatures-test.txt</signaturesFile>
               </signaturesFiles>
               <excludes>
                 <exclude>**/Example*</exclude>
@@ -1963,7 +1959,7 @@
         <configuration>
           <validations>
             <validation>
-              <directory>${basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
+              <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
               <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
@@ -1978,11 +1974,13 @@
   <reporting>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>3.9.0</version>
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <reportSets>
           <reportSet>
@@ -2406,6 +2404,7 @@
 
           <!-- Creates the binary and source distributions -->
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
             <configuration>
               <descriptors>
@@ -2593,6 +2592,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2653,6 +2653,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2713,6 +2714,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2772,6 +2774,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2830,6 +2833,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2888,6 +2892,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -2949,6 +2954,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
@@ -3009,6 +3015,7 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <configuration>
