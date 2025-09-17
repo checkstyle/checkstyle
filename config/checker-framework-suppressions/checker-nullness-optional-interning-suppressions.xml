@@ -8916,28 +8916,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter cs of StringUtils.isEmpty.</message>
-    <lineContent>if (StringUtils.isEmpty(parentModuleName)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull CharSequence
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter cs of StringUtils.isEmpty.</message>
-    <lineContent>if (StringUtils.isEmpty(parentModuleName)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull CharSequence
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>annotations.on.use</specifier>
     <message>invalid type: annotations [@Initialized, @Nullable] conflict with declaration of type java.util.Optional</message>
     <lineContent>private static Optional&lt;String&gt; getPropertyVersionFromItsJavadoc(DetailNode propertyJavadoc) {</lineContent>

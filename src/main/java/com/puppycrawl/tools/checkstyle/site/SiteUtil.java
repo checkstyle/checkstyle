@@ -55,7 +55,6 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
 import com.google.common.collect.Lists;
@@ -414,7 +413,7 @@ public final class SiteUtil {
         }
 
         // If parent class is not found, check interfaces
-        if (StringUtils.isEmpty(parentModuleName)) {
+        if (parentModuleName == null || parentModuleName.isEmpty()) {
             final Class<?>[] interfaces = moduleClass.getInterfaces();
             for (Class<?> interfaceClass : interfaces) {
                 parentModuleName = CLASS_TO_PARENT_MODULE.get(interfaceClass);
@@ -424,7 +423,7 @@ public final class SiteUtil {
             }
         }
 
-        if (StringUtils.isEmpty(parentModuleName)) {
+        if (parentModuleName == null || parentModuleName.isEmpty()) {
             final String message = String.format(Locale.ROOT,
                     "Failed to find parent module for %s", moduleClass.getSimpleName());
             throw new MacroExecutionException(message);

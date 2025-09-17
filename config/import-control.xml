@@ -21,7 +21,6 @@
   <allow pkg="java.net"/>
   <allow pkg="java.util"/>
   <allow class="javax.annotation.Nullable"/>
-  <allow class="org.apache.commons.lang3.StringUtils"/>
   <allow pkg="javax.xml.parsers"/>
   <allow pkg="org.apache.commons.beanutils"/>
   <allow pkg="org.apache.commons.logging"/>
