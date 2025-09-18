@@ -866,14 +866,14 @@
                   <br />
                   We can detect URL with protocol type as http://, https:// etc.
                   <br />
+                  However, there are some cases we cannot cover, for example:
                   <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
-                    JSNI</a>
-                  is not supported, see reason at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/14938">
-                    #14938</a>.
+                    JSNI</a>(see reason at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/14938">#14938</a>),
+                  detecting command lines, long identifiers and so on.
                   <br />
                   <br />
-                  To suppress this rule for longer identifiers, please use
+                  To disable this rule for above cases, please use
                   <a href="filters/suppresswithnearbytextfilter.html#SuppressWithNearbyTextFilter">
                     SuppressWithNearbyTextFilter
                   </a>.
