@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * throws a violation. A continuation line is when the description starts/spans past the line with
  * the tag. Default indentation required is at least 4, but this can be changed with the help of
  * properties below.
+ * Note: This check does not validate the indentation of lines inside {@code pre} tags.
  * </div>
  *
  * @since 6.0
