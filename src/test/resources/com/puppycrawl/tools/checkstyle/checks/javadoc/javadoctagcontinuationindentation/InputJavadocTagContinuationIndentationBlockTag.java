@@ -61,7 +61,7 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * @param args
      * {@code this} line is not correctly indented // violation
      *     {@code this}
-     * <pre>this line is not correctly indented</pre> // violation
+     * <pre>pre tags are skipped</pre>
      */
     public void multipleLines1(String args) {
         // do stuff
@@ -73,7 +73,7 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * @return false always
      * {@code this} line is not correctly indented // violation
      * {@code this} line is not correctly indented // violation
-     * <pre>this line is not correctly indented</pre> // violation
+     * <pre>pre tags are skipped</pre>
      */
     public boolean isMultipleLines2() {
         return false;
