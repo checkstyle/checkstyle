@@ -5350,6 +5350,7 @@
                 <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
                 <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
                 <recipe>org.openrewrite.java.recipes.RecipeTestingBestPractices</recipe>
+                <recipe>org.openrewrite.maven.BestPractices</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
                 <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
                 <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
