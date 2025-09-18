@@ -204,7 +204,7 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.5.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.9.6.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.27.0</maven.pmd.plugin.version>
     <pmd.version>7.16.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
@@ -312,7 +312,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>33.4.8-jre</version>
+      <version>33.5.0-jre</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
@@ -5335,6 +5335,7 @@
                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                 <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
                 <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+                <recipe>org.openrewrite.maven.BestPractices</recipe>
                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
                 <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
                 <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
