@@ -74,7 +74,6 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks/InputTextBlocksIndentation.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames/InputClassNames.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase/InputCamelCaseDefined.java
-src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase/InputCamelCaseMultipartVersioningNames.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputSingleLineJavadocAndInvalidJavadocPosition.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputJavadocPositionOnCanonicalConstructorsWithAnnotation.java
 src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform/InputJavadocPositionOnCompactConstructorsWithAnnotation.java
