@@ -217,9 +217,6 @@
     <maven.versions.plugin.version>2.19.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
-    <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <rewrite-migrate-java.version>3.17.1</rewrite-migrate-java.version>
-    <rewrite-static-analysis.version>2.17.0</rewrite-static-analysis.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -5391,17 +5388,17 @@
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>${checkstyle.openrewrite.version}</version>
+                <version>1.0.0-SNAPSHOT</version>
               </dependency>
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-migrate-java</artifactId>
-                <version>${rewrite-migrate-java.version}</version>
+                <version>3.17.1</version>
               </dependency>
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-static-analysis</artifactId>
-                <version>${rewrite-static-analysis.version}</version>
+                <version>2.17.0</version>
               </dependency>
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
