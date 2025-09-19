@@ -300,29 +300,27 @@ public final class JavadocTokenTypes {
     public static final int EXCEPTION_LITERAL = JavadocParser.EXCEPTION_LITERAL;
 
     /**
-     * '@throws' literal in {@code @throws} Javadoc tag.
+     * The {@code @exception} tag, used in Javadoc comments to document an exception
+     * that a method can throw.
+     * <p>
+     * The following is an example of how this token appears in the AST when parsed:
+     * </p>
+     * <pre>
+     * JAVADOC -&gt; JAVADOC
+     * |--LEADING_ASTERISK -&gt; *
+     * |--WS -&gt;
+     * |--JAVADOC_TAG -&gt; JAVADOC_TAG
+     * |   |--EXCEPTION_LITERAL -&gt; @exception
+     * |   |--WS -&gt;
+     * |   |--CLASS_NAME -&gt; SQLException
+     * |   |--WS -&gt;
+     * |   `--DESCRIPTION -&gt; DESCRIPTION
+     * |       `--TEXT -&gt; if query is not correct
+     * `--EOF -&gt; &lt;EOF&gt;
+     * </pre>
      *
-     * <p>Such Javadoc tag can have two argument - {@link #CLASS_NAME} and {@link #DESCRIPTION}</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code @throws SQLException if query is not correct}</pre>
-     * <b>Tree:</b>
-     * <pre>{@code
-     *   JAVADOC_TAG -> JAVADOC_TAG
-     *      |--THROWS_LITERAL -> @throws
-     *      |--WS ->
-     *      |--CLASS_NAME -> SQLException
-     *      |--WS ->
-     *      `--DESCRIPTION -> DESCRIPTION
-     *          |--TEXT -> if query is not correct
-     *          |--NEWLINE -> \r\n
-     *          `--TEXT ->
-     * }</pre>
-     *
-     * @see
-     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/javadoc.html#CHDCHAHD">
-     *     Oracle Docs</a>
-     * @see #JAVADOC_TAG
+     * @see <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
+     * Javadoc Tool</a>
      */
     public static final int THROWS_LITERAL = JavadocParser.THROWS_LITERAL;
 
