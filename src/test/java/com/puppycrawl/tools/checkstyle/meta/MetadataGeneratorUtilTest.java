@@ -37,7 +37,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
-@Disabled
 @ExtendWith(SystemOutGuard.class)
 public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
 
