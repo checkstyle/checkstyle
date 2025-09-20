@@ -222,11 +222,11 @@ public final class JavadocUtil {
         return nodes;
     }
     
-    
     /**
      * Checks whether the given AST node is an HTML element with the specified tag name.
      *
-     * @param ast the AST node to check
+     * @param ast the AST node to check 
+     *            (must be of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT})
      * @param expectedTagName the tag name to match (case-insensitive)
      * @return {@code true} if the node has the given tag name, {@code false} otherwise
      */
@@ -236,40 +236,6 @@ public final class JavadocUtil {
         final String tagName = JavadocUtil.findFirstToken(htmlTagStart,
                 JavadocCommentsTokenTypes.TAG_NAME).getText();
         return expectedTagName.equalsIgnoreCase(tagName);
-    }
-
-    /**
-     * Gets first child node of specified node.
-     *
-     * @param node DetailNode
-     * @return first child
-     */
-    public static DetailNode getFirstChild(DetailNode node) {
-        DetailNode resultNode = null;
-
-        if (node.getChildren().length > 0) {
-            resultNode = node.getChildren()[0];
-        }
-        return resultNode;
-    }
-
-    /**
-     * Gets next sibling of specified node.
-     *
-     * @param node DetailNode
-     * @return next sibling.
-     */
-    public static DetailNode getNextSibling(DetailNode node) {
-        DetailNode nextSibling = null;
-        final DetailNode parent = node.getParent();
-        if (parent != null) {
-            final int nextSiblingIndex = node.getIndex() + 1;
-            final DetailNode[] children = parent.getChildren();
-            if (nextSiblingIndex <= children.length - 1) {
-                nextSibling = children[nextSiblingIndex];
-            }
-        }
-        return nextSibling;
     }
 
     /**
@@ -285,43 +251,6 @@ public final class JavadocUtil {
             nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
-    }
-
-    /**
-     * Finds the first {@link Optional} child token of {@link DetailNode} root node
-     * which matches the given predicate.
-     *
-     * @param root root node.
-     * @param predicate predicate.
-     * @return {@link Optional} of {@link DetailNode} node which matches the predicate.
-     */
-    public static Optional<DetailNode> findFirstTokenByPredicate(DetailNode root,
-                                                                Predicate<DetailNode> predicate) {
-        Optional<DetailNode> result = Optional.empty();
-        for (DetailNode ast = root.getFirstChild(); ast != null; ast = ast.getNextSibling()) {
-            if (predicate.test(ast)) {
-                result = Optional.of(ast);
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Gets previous sibling of specified node.
-     *
-     * @param node DetailNode
-     * @return previous sibling
-     */
-    public static DetailNode getPreviousSibling(DetailNode node) {
-        DetailNode previousSibling = null;
-        final int previousSiblingIndex = node.getIndex() - 1;
-        if (previousSiblingIndex >= 0) {
-            final DetailNode parent = node.getParent();
-            final DetailNode[] children = parent.getChildren();
-            previousSibling = children[previousSiblingIndex];
-        }
-        return previousSibling;
     }
 
     /**

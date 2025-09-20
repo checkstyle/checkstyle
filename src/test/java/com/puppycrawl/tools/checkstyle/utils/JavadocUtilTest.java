@@ -24,13 +24,11 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.Comment;
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
@@ -38,7 +36,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
-@Disabled
 public class JavadocUtilTest {
 
     @Test
@@ -276,8 +273,8 @@ public class JavadocUtilTest {
     @Test
     public void testGetTokenNameForId() {
         assertWithMessage("Invalid token name")
-            .that(JavadocUtil.getTokenName(JavadocTokenTypes.EOF))
-            .isEqualTo("EOF");
+            .that(JavadocUtil.getTokenName(JavadocCommentsTokenTypes.JAVADOC_CONTENT))
+            .isEqualTo("JAVADOC_CONTENT");
     }
 
     @Test
@@ -334,11 +331,11 @@ public class JavadocUtilTest {
 
     @Test
     public void testGetTokenId() {
-        final int tokenId = JavadocUtil.getTokenId("JAVADOC");
+        final int tokenId = JavadocUtil.getTokenId("JAVADOC_CONTENT");
 
         assertWithMessage("Invalid token id")
             .that(tokenId)
-            .isEqualTo(JavadocTokenTypes.JAVADOC);
+            .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
     }
 
     @Test
@@ -356,50 +353,48 @@ public class JavadocUtilTest {
     }
 
     @Test
-    public void testGetFirstToken() {
-        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
-        final JavadocNodeImpl basetag = new JavadocNodeImpl();
-        basetag.setType(JavadocTokenTypes.BASE_TAG);
-        final JavadocNodeImpl body = new JavadocNodeImpl();
-        body.setType(JavadocTokenTypes.BODY);
-
-        body.setParent(javadocNode);
-        basetag.setParent(javadocNode);
-        javadocNode.setChildren(basetag, body);
-
-        final DetailNode result = JavadocUtil.findFirstToken(javadocNode, JavadocTokenTypes.BODY);
-
-        assertWithMessage("Invalid first token")
-            .that(result)
-            .isEqualTo(body);
-    }
-
-    @Test
-    public void testGetPreviousSibling() {
-        final JavadocNodeImpl root = new JavadocNodeImpl();
-
-        final JavadocNodeImpl node = new JavadocNodeImpl();
-        node.setIndex(1);
-        node.setParent(root);
-
-        final JavadocNodeImpl previousNode = new JavadocNodeImpl();
-        previousNode.setIndex(0);
-        node.setParent(root);
-
-        root.setChildren(previousNode, node);
-
-        final DetailNode previousSibling = JavadocUtil.getPreviousSibling(node);
-
-        assertWithMessage("Unexpected node")
-            .that(previousSibling)
-            .isEqualTo(previousNode);
-    }
-
-    @Test
     public void testGetLastTokenName() {
         assertWithMessage("Unexpected token name")
-            .that(JavadocUtil.getTokenName(10094))
-            .isEqualTo("RP");
+            .that(JavadocUtil.getTokenName(103))
+            .isEqualTo("CUSTOM_BLOCK_TAG");
+    }
+    
+    @Test
+    public void testIsTagTrue() {
+        final JavadocNodeImpl htmlNode = new JavadocNodeImpl();
+        htmlNode.setType(JavadocCommentsTokenTypes.HTML_ELEMENT);
+        final JavadocNodeImpl htmlStartNode = new JavadocNodeImpl();
+        htmlStartNode.setType(JavadocCommentsTokenTypes.HTML_TAG_START);
+        final JavadocNodeImpl tagName = new JavadocNodeImpl();
+        tagName.setType(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("p");
+        tagName.setParent(htmlStartNode);
+        htmlStartNode.addChild(tagName);
+        htmlNode.addChild(htmlStartNode);
+        htmlStartNode.setParent(htmlNode);
+        
+        assertWithMessage("Invalid result")
+            .that(JavadocUtil.isTag(htmlNode, "P"))
+            .isTrue();
+    }
+    
+    @Test
+    public void testIsTagFalse() {
+        final JavadocNodeImpl htmlNode = new JavadocNodeImpl();
+        htmlNode.setType(JavadocCommentsTokenTypes.HTML_ELEMENT);
+        final JavadocNodeImpl htmlStartNode = new JavadocNodeImpl();
+        htmlStartNode.setType(JavadocCommentsTokenTypes.HTML_TAG_START);
+        final JavadocNodeImpl tagName = new JavadocNodeImpl();
+        tagName.setType(JavadocCommentsTokenTypes.TAG_NAME);
+        tagName.setText("p");
+        tagName.setParent(htmlStartNode);
+        htmlStartNode.addChild(tagName);
+        htmlNode.addChild(htmlStartNode);
+        htmlStartNode.setParent(htmlNode);
+        
+        assertWithMessage("Invalid result")
+            .that(JavadocUtil.isTag(htmlNode, "li"))
+            .isFalse();
     }
 
     @Test
