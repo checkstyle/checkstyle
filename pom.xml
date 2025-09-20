@@ -4465,6 +4465,7 @@
                 <param>com.puppycrawl.tools.checkstyle.LocalizedMessage*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.MetadataGeneratorLogger</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
@@ -5023,7 +5024,6 @@
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
-                <param>com.puppycrawl.tools.checkstyle.utils.JavadocUtil</param>
               </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
@@ -5115,6 +5115,10 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest
+                </param>
+                <!-- JavadocUtil#getAllNodesOfType, JavadocUtil#isTag  -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest
                 </param>
               </targetTests>
               <avoidCallsTo>
