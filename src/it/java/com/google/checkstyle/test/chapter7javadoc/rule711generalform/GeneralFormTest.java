@@ -85,4 +85,14 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
     public void testFormattedRecordClassJavadocPosition() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRecordClassJavadocPosition.java"));
     }
+
+    @Test
+    public void testCorrectJavadocLeadingAsteriskAlignment() throws Exception {
+        verifyWithWholeConfig(getPath("InputCorrectJavadocLeadingAsteriskAlignment.java"));
+    }
+
+    @Test
+    public void testIncorrectJavadocLeadingAsteriskAlignment() throws Exception {
+        verifyWithWholeConfig(getPath("InputIncorrectJavadocLeadingAsteriskAlignment.java"));
+    }
 }
