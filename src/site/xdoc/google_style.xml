@@ -2355,6 +2355,17 @@
                   <br />
                   <span class="wrapper inline">
                     <img
+                            src="images/ok_green.png"
+                            alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                    JavadocLeadingAsteriskAlign</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img
                             src="images/ok_blue.png"
                             alt="" />
                   </span>
