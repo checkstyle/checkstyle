@@ -58,25 +58,11 @@ public interface DetailNode {
     int getColumnNumber();
 
     /**
-     * Array of children.
-     *
-     * @return array of children
-     */
-    DetailNode[] getChildren();
-
-    /**
      * Parent node.
      *
      * @return parent node.
      */
     DetailNode getParent();
-
-    /**
-     * Node index among parent's children.
-     *
-     * @return index
-     */
-    int getIndex();
 
     /**
      * Sibling node.
