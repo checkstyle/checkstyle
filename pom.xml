@@ -3905,7 +3905,6 @@
               </excludedTestClasses>
               <excludedClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck</param>
-                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl</param>
               </excludedClasses>
               <excludedMethods>
                 <!-- destroy method was added in case module had to free up resources

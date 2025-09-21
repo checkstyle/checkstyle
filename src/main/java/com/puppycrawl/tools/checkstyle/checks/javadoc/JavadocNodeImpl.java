@@ -36,16 +36,6 @@ public class JavadocNodeImpl implements DetailNode {
     private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
 
     /**
-     * Empty array of {@link DetailNode} type.
-     */
-    public static final JavadocNodeImpl[] EMPTY_DETAIL_NODE_ARRAY = new JavadocNodeImpl[0];
-
-    /**
-     * Node index among parent's children.
-     */
-    private int index;
-
-    /**
      * Node type.
      */
     private int type;
@@ -64,11 +54,6 @@ public class JavadocNodeImpl implements DetailNode {
      * Column number.
      */
     private int columnNumber = NOT_INITIALIZED;
-
-    /**
-     * Array of child nodes.
-     */
-    private DetailNode[] children;
 
     /**
      * Parent node.
@@ -112,12 +97,7 @@ public class JavadocNodeImpl implements DetailNode {
     public int getLineNumber() {
         if (lineNumber == NOT_INITIALIZED) {
             JavadocNodeImpl node = this.firstChild;
-            while (node != null && node.getLineNumber() == NOT_INITIALIZED) {
-                node = (JavadocNodeImpl) node.getNextSibling();
-            }
-            if (node != null) {
-                lineNumber = node.getLineNumber();
-            }
+            lineNumber = node.getLineNumber();
         }
         return this.lineNumber;
     }
@@ -126,31 +106,14 @@ public class JavadocNodeImpl implements DetailNode {
     public int getColumnNumber() {
         if (columnNumber == NOT_INITIALIZED) {
             JavadocNodeImpl node = this.firstChild;
-            while (node != null && node.getColumnNumber() == NOT_INITIALIZED) {
-                node = (JavadocNodeImpl) node.getNextSibling();
-            }
-            if (node != null) {
-                columnNumber = node.getColumnNumber();
-            }
+            columnNumber = node.getColumnNumber();
         }
         return this.columnNumber;
     }
 
     @Override
-    public DetailNode[] getChildren() {
-        return Optional.ofNullable(children)
-                .map(array -> UnmodifiableCollectionUtil.copyOfArray(array, array.length))
-                .orElse(EMPTY_DETAIL_NODE_ARRAY);
-    }
-
-    @Override
     public DetailNode getParent() {
         return parent;
-    }
-
-    @Override
-    public int getIndex() {
-        return index;
     }
 
     @Override
@@ -205,15 +168,6 @@ public class JavadocNodeImpl implements DetailNode {
     }
 
     /**
-     * Sets array of child nodes.
-     *
-     * @param children Array of child nodes.
-     */
-    public void setChildren(DetailNode... children) {
-        this.children = UnmodifiableCollectionUtil.copyOfArray(children, children.length);
-    }
-
-    /**
      * Sets parent node.
      *
      * @param node Parent node.
@@ -228,27 +182,14 @@ public class JavadocNodeImpl implements DetailNode {
     }
 
     /**
-     * Sets node's index among parent's children.
-     *
-     * @param index Node's index among parent's children.
-     */
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
-    /**
      * Sets next sibling node.
      *
      * @param nextSibling Next sibling node.
      */
     public void setNextSibling(DetailNode nextSibling) {
         this.nextSibling = (JavadocNodeImpl) nextSibling;
-        if (nextSibling != null && parent != null) {
-            ((JavadocNodeImpl) nextSibling).setParent(parent);
-        }
-        if (nextSibling != null) {
-            ((JavadocNodeImpl) nextSibling).previousSibling = this;
-        }
+        ((JavadocNodeImpl) nextSibling).setParent(parent);
+        ((JavadocNodeImpl) nextSibling).previousSibling = this;
     }
 
     /**
