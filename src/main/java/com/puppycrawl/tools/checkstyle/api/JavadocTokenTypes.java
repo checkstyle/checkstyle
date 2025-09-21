@@ -810,21 +810,21 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     * JAVADOC_TAG -> JAVADOC_TAG
-     *  |--SEE_LITERAL -> @see
-     *  |--WS ->
-     *  |--REFERENCE -> REFERENCE
-     *  |   |--HASH -> #
-     *  |   |--MEMBER -> method
-     *  |   `--PARAMETERS -> PARAMETERS
-     *  |       |--LEFT_BRACE -> (
-     *  |       |--ARGUMENT -> Processor
-     *  |       |--COMMA -> ,
-     *  |       |--WS ->
-     *  |       |--ARGUMENT -> String
-     *  |       `--RIGHT_BRACE -> )
-     *  |--NEWLINE -> \r\n
-     *  `--WS ->
+     * --JAVADOC_TAG -&gt; JAVADOC_TAG
+     *     |--SEE_LITERAL -&gt; @see
+     *     |--WS -&gt;
+     *     |--REFERENCE -&gt; REFERENCE
+     *     |   |--HASH -&gt; #
+     *     |   |--MEMBER -&gt; method
+     *     |   `--PARAMETERS -&gt; PARAMETERS
+     *         |--LEFT_BRACE -&gt; (
+     *         |--ARGUMENT -&gt; Processor
+     *         |--COMMA -&gt; ,
+     *         |--WS -&gt;
+     *         |--ARGUMENT -&gt; String
+     *         `--RIGHT_BRACE -&gt; )
+     *     |--NEWLINE -&gt; \r\n
+     *     `--WS -&gt;
      * }
      * </pre>
      *
