@@ -381,7 +381,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.1</version>
+      <version>4.1.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
