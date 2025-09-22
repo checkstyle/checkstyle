@@ -62,10 +62,10 @@ public record InputInvalidJavadocPositionRecord(String containerPath, String... 
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** invalid comment. */
 /**
-* The configuration.
-*
-* @param text the text
-*/
+ * The configuration.
+ *
+ * @param text the text
+ */
 record MyRecord(String text) {
   // violation above 'Top-level class MyRecord has to reside in its own source file'
 
