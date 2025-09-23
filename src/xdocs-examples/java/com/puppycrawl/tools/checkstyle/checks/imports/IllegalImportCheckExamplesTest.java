@@ -33,10 +33,10 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
     public void testExample1() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.misc.*"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example1.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
                     IllegalImportCheck.MSG_KEY, "java.sql.Connection"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
 
     @Test
@@ -59,10 +59,10 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
             "22:1: " + getCheckMessage(
                     IllegalImportCheck.MSG_KEY, "java.util.Date"),
             "23:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.misc.*"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example3.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
                     IllegalImportCheck.MSG_KEY, "java.util.Date"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example4.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 
     @Test
@@ -91,9 +91,9 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
             "22:1: " + getCheckMessage(
                     IllegalImportCheck.MSG_KEY, "java.util.Arrays"),
             "24:1: " + getCheckMessage(
-                    IllegalImportCheck.MSG_KEY, "sun.applet.*"),
+                    IllegalImportCheck.MSG_KEY, "sun.misc.*"),
         };
 
-        verifyWithInlineConfigParser(getNonCompilablePath("Example5.java"), expected);
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }
