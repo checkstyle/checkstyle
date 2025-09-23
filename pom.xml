@@ -5342,7 +5342,6 @@
             <version>6.18.0</version>
             <configuration>
               <exportDatatables>true</exportDatatables>
-              <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
