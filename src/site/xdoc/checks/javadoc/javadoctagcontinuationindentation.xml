@@ -162,6 +162,49 @@ class Example3 {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">
+         Check does not validate the indentation of lines inside <code>pre</code> tags.
+         Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+
+   /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;pre&gt;
+   * out.writeByte(1);
+   * out.writeInt(nanos);
+   * &lt;/pre&gt;
+   */
+  public void testMethod1(String input) {}
+
+  /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;code&gt; // violation
+   * out.writeByte(1); // violation
+   * out.writeInt(nanos); // violation
+   * &lt;/code&gt; // violation
+   */
+  public void testMethod2(String input) {}
+
+  /**
+   * Test class.
+   *
+   * @apiNote
+   *          This is the predefined indentation applied by Eclipse formatter.
+   *          &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethod3(String input) {}
+
+}
 </code></pre></div>
       </subsection>
 
