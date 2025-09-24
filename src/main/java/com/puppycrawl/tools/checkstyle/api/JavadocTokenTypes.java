@@ -3384,11 +3384,11 @@ public final class JavadocTokenTypes {
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
 
     /**
-     * HTML void element {@code <track>}.
+     * HTML void element {@code <track>} tag.
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * <track kind="subtitles" src="subtitles_en.file" />
+     * <track kind="subtitles" src="subtitles_en.vtt" />
      * }</pre>
      * <b>Tree:</b>
      * <pre>
@@ -3407,16 +3407,15 @@ public final class JavadocTokenTypes {
      *    |           |--ATTRIBUTE -> ATTRIBUTE
      *    |           |   |--HTML_TAG_NAME -> src
      *    |           |   |--EQUALS -> =
-     *    |           |   `--ATTR_VALUE -> "subtitles_en.file"
-     *    |           `--END -> />
-     *    |--NEWLINE -> \r\n
-     *    |--TEXT ->
+     *    |           |   `--ATTR_VALUE -> "subtitles_en.vtt"
+     *    |           |--WS ->
+     *    |           `--SLASH_END -> />
      * }
      * </pre>
      *
      * @see #TRACK_TAG
      * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
-     *     W3 docs</a>
+     *     W3C HTML5 specification</a>
      */
     public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
 
