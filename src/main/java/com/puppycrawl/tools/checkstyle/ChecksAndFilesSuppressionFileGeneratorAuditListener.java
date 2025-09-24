@@ -239,8 +239,8 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListener
         if (!isXmlHeaderPrinted) {
             writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             writer.println("<!DOCTYPE suppressions PUBLIC");
-            writer.println("    \"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\"");
-            writer.println("    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">");
+            writer.println("    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"");
+            writer.println("    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">");
             writer.println("<suppressions>");
             isXmlHeaderPrinted = true;
         }
