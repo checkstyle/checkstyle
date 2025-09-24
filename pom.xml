@@ -5407,7 +5407,7 @@
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-rewrite</artifactId>
-                <version>0.12.2</version>
+                <version>0.13.0</version>
               </dependency>
             </dependencies>
           </plugin>
