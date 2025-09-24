@@ -15,6 +15,13 @@
         </macro>
       </subsection>
 
+      <subsection name="Notes" id="JavadocTagContinuationIndentation_Notes">
+        <macro name="notes">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagContinuationIndentationCheck.java"/>
+        </macro>
+      </subsection>
+
       <subsection name="Properties" id="JavadocTagContinuationIndentation_Properties">
         <div class="wrapper">
           <macro name="properties">
@@ -71,6 +78,15 @@
         <macro name="example">
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation/Example3.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example4-code">
+         Check does not validate the indentation of lines inside <code>pre</code> tags.
+         Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctagcontinuationindentation/Example4.java"/>
           <param name="type" value="code"/>
         </macro>
       </subsection>
