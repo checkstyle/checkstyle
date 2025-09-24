@@ -12,10 +12,6 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         return "com/puppycrawl/tools/checkstyle/grammar/javadoc/";
     }
 
-    private String geSimplePath(String filename) throws IOException {
-        return getPath("simple" + File.separator + filename);
-    }
-
     private String getInlineTagsPath(String filename) throws IOException {
         return getPath("inlinetags" + File.separator + filename);
     }
@@ -30,32 +26,32 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testEmptyJavadoc() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedEmptyJavadoc.txt"),
-                geSimplePath("InputEmptyJavadoc.javadoc"));
+        verifyJavadocTree(getPath("ExpectedEmptyJavadoc.txt"),
+                getPath("InputEmptyJavadoc.javadoc"));
     }
 
     @Test
     public void testEmptyJavadocWithTabs() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedEmptyJavadocWithTabs.txt"),
-                geSimplePath("InputEmptyJavadocWithTabs.javadoc"));
+        verifyJavadocTree(getPath("ExpectedEmptyJavadocWithTabs.txt"),
+                getPath("InputEmptyJavadocWithTabs.javadoc"));
     }
 
     @Test
     public void testEmptyJavadocStartsWithNewline() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedEmptyJavadocStartsWithNewline.txt"),
-                geSimplePath("InputEmptyJavadocStartsWithNewline.javadoc"));
+        verifyJavadocTree(getPath("ExpectedEmptyJavadocStartsWithNewline.txt"),
+                getPath("InputEmptyJavadocStartsWithNewline.javadoc"));
     }
 
     @Test
     public void testSimpleJavadocWithText() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText.txt"),
-                geSimplePath("InputSimpleJavadocWithText.javadoc"));
+        verifyJavadocTree(getPath("ExpectedSimpleJavadocWithText.txt"),
+                getPath("InputSimpleJavadocWithText.javadoc"));
     }
 
     @Test
     public void testSimpleJavadocWithText2() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedSimpleJavadocWithText2.txt"),
-                geSimplePath("InputSimpleJavadocWithText2.javadoc"));
+        verifyJavadocTree(getPath("ExpectedSimpleJavadocWithText2.txt"),
+                getPath("InputSimpleJavadocWithText2.javadoc"));
     }
 
     @Test
@@ -234,8 +230,8 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testCrAsNewLine() throws Exception {
-        verifyJavadocTree(geSimplePath("ExpectedCrAsNewline.txt"),
-                geSimplePath("InputCrAsNewline.javadoc"));
+        verifyJavadocTree(getPath("ExpectedCrAsNewline.txt"),
+                getPath("InputCrAsNewline.javadoc"));
     }
 
     @Test

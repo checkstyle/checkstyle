@@ -17,13 +17,4 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>return astType == TokenTypes.VARIABLE_DEF</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>NonEmptyAtclauseDescriptionCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptionCheck</mutatedClass>
-    <mutatedMethod>setJavadocTokens</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/AbstractJavadocCheck::setJavadocTokens</description>
-    <lineContent>super.setJavadocTokens(strRep);</lineContent>
-  </mutation>
 </suppressedMutations>
