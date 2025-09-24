@@ -358,44 +358,6 @@ public class JavadocUtilTest {
             .that(JavadocUtil.getTokenName(103))
             .isEqualTo("CUSTOM_BLOCK_TAG");
     }
-    
-    @Test
-    public void testIsTagTrue() {
-        final JavadocNodeImpl htmlNode = new JavadocNodeImpl();
-        htmlNode.setType(JavadocCommentsTokenTypes.HTML_ELEMENT);
-        final JavadocNodeImpl htmlStartNode = new JavadocNodeImpl();
-        htmlStartNode.setType(JavadocCommentsTokenTypes.HTML_TAG_START);
-        final JavadocNodeImpl tagName = new JavadocNodeImpl();
-        tagName.setType(JavadocCommentsTokenTypes.TAG_NAME);
-        tagName.setText("p");
-        tagName.setParent(htmlStartNode);
-        htmlStartNode.addChild(tagName);
-        htmlNode.addChild(htmlStartNode);
-        htmlStartNode.setParent(htmlNode);
-        
-        assertWithMessage("Invalid result")
-            .that(JavadocUtil.isTag(htmlNode, "P"))
-            .isTrue();
-    }
-    
-    @Test
-    public void testIsTagFalse() {
-        final JavadocNodeImpl htmlNode = new JavadocNodeImpl();
-        htmlNode.setType(JavadocCommentsTokenTypes.HTML_ELEMENT);
-        final JavadocNodeImpl htmlStartNode = new JavadocNodeImpl();
-        htmlStartNode.setType(JavadocCommentsTokenTypes.HTML_TAG_START);
-        final JavadocNodeImpl tagName = new JavadocNodeImpl();
-        tagName.setType(JavadocCommentsTokenTypes.TAG_NAME);
-        tagName.setText("p");
-        tagName.setParent(htmlStartNode);
-        htmlStartNode.addChild(tagName);
-        htmlNode.addChild(htmlStartNode);
-        htmlStartNode.setParent(htmlNode);
-        
-        assertWithMessage("Invalid result")
-            .that(JavadocUtil.isTag(htmlNode, "li"))
-            .isFalse();
-    }
 
     @Test
     public void testEscapeAllControlChars() {

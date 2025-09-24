@@ -26,14 +26,12 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphChe
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
-@Disabled
 public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
 
     @Override
@@ -99,6 +97,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "49:8: " + getCheckMessage(MSG_MISPLACED_TAG),
             "51:8: " + getCheckMessage(MSG_MISPLACED_TAG),
             "51:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
+            "64:67: " + getCheckMessage(MSG_LINE_BEFORE),
+            "65:11: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect4.java"), expected);

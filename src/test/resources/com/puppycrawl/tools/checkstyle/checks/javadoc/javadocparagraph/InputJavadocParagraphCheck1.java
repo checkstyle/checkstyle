@@ -90,4 +90,23 @@ class Check {
      * </p>
      */
     public void fooooo() {}
+ 
+     /**
+     * For the example above Checkstyle will enforce:
+     *
+     * <pre>
+     * if
+     * </pre>
+     *
+     **/
+    void test() { }
+
+    /**
+     * {@code 
+     * 
+     *   Test
+     * }
+     */
+    void test2()  {
+    }
 }
