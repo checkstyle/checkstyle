@@ -3393,24 +3393,23 @@ public final class JavadocTokenTypes {
      * <b>Tree:</b>
      * <pre>
      * {@code
-     *    |--HTML_ELEMENT -> HTML_ELEMENT
-     *    |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
-     *    |       `--TRACK_TAG -> TRACK_TAG
-     *    |           |--START -> <
-     *    |           |--TRACK_HTML_TAG_NAME -> track
-     *    |           |--WS ->
-     *    |           |--ATTRIBUTE -> ATTRIBUTE
-     *    |           |   |--HTML_TAG_NAME -> kind
-     *    |           |   |--EQUALS -> =
-     *    |           |   `--ATTR_VALUE -> "subtitles"
-     *    |           |--WS ->
-     *    |           |--ATTRIBUTE -> ATTRIBUTE
-     *    |           |   |--HTML_TAG_NAME -> src
-     *    |           |   |--EQUALS -> =
-     *    |           |   `--ATTR_VALUE -> "subtitles_en.file"
-     *    |           `--END -> />
-     *    |--NEWLINE -> \r\n
-     *    |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     * |       `--TRACK_TAG -> TRACK_TAG
+     * |           |--START -> <
+     * |           |--TRACK_HTML_TAG_NAME -> track
+     * |           |--WS ->
+     * |           |--ATTRIBUTE -> ATTRIBUTE
+     * |           |   |--HTML_TAG_NAME -> kind
+     * |           |   |--EQUALS -> =
+     * |           |   `--ATTR_VALUE -> "subtitles"
+     * |           |--WS ->
+     * |           |--ATTRIBUTE -> ATTRIBUTE
+     * |           |   |--HTML_TAG_NAME -> src
+     * |           |   |--EQUALS -> =
+     * |           |   `--ATTR_VALUE -> "subtitles_en.file"
+     * |           |--WS ->
+     * |           `--SLASH_END -> />
      * }
      * </pre>
      *
