@@ -56,4 +56,14 @@ public class InputJavadocParagraphIncorrect4 {
     // '<p> tag should be placed immediately before the first word'
     // '<p> tag should not precede HTML block-tag '<ol>''
     void foooo() {}
+    
+    // violation 4 lines below '<p> tag should be preceded with an empty line.'
+    // violation 4 lines below 'Empty line should be followed by <p> tag on the next line.'
+    /**
+ 	 * Version 1.8 GLOBAL TEMPORARY table definitions persist beyond the end
+ 	 * of the session (by default, data is cleared at commit).<p>
+ 	 *
+ 	 * Version 2.x LOCAL TEMPORARY table definitions do not persist beyond
+ 	 */
+ 	public boolean test() { }
 }

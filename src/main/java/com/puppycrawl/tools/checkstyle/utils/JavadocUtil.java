@@ -224,6 +224,7 @@ public final class JavadocUtil {
     
     /**
      * Checks whether the given AST node is an HTML element with the specified tag name.
+     * This method ignore void elements.
      *
      * @param ast the AST node to check 
      *            (must be of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT})
@@ -233,9 +234,14 @@ public final class JavadocUtil {
     public static boolean isTag(DetailNode ast, String expectedTagName) {
         final DetailNode htmlTagStart = JavadocUtil.findFirstToken(ast,
                 JavadocCommentsTokenTypes.HTML_TAG_START);
-        final String tagName = JavadocUtil.findFirstToken(htmlTagStart,
+        boolean isTag = false;
+        String tagName;
+        if (htmlTagStart != null) {
+            tagName = JavadocUtil.findFirstToken(htmlTagStart,
                 JavadocCommentsTokenTypes.TAG_NAME).getText();
-        return expectedTagName.equalsIgnoreCase(tagName);
+            isTag = expectedTagName.equalsIgnoreCase(tagName);
+        }
+        return isTag;
     }
 
     /**
