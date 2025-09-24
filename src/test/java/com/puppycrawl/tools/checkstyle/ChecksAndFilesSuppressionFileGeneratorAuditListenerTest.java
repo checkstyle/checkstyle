@@ -46,8 +46,8 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     private static final String SUPPRESSION_XML_HEADER =
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + EOL
                 + "<!DOCTYPE suppressions PUBLIC" + EOL
-                + "    \"-//Checkstyle//DTD Checkstyle Configuration 1.3//EN\"" + EOL
-                + "    \"https://checkstyle.org/dtds/configuration_1_3.dtd\">" + EOL;
+                + "    \"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN\"" + EOL
+                + "    \"https://checkstyle.org/dtds/suppressions_1_2.dtd\">" + EOL;
 
     private static final Violation FIRST_MESSAGE = createViolation(3, 51,
             TokenTypes.LCURLY, null, LeftCurlyCheck.class);
