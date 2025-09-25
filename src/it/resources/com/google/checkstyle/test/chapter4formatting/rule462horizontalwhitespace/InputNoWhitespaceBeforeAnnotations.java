@@ -9,26 +9,40 @@ public class InputNoWhitespaceBeforeAnnotations {
   @Target(ElementType.TYPE_USE)
   @interface NonNull {}
 
-  @NonNull int @NonNull [] @NonNull [] fiel1; // ok until #8205
-  @NonNull int @NonNull [] @NonNull [] field2; // ok
+  @Target(ElementType.TYPE_USE)
+  @interface AnnoType {}
 
-  /** some javadoc. */
-  public void foo(final char @NonNull [] param) {} // ok
+  @Target(ElementType.TYPE_USE)
+  @interface NonNull2 {}
+
+  @NonNull int @AnnoType[] @NonNull2[] field1;
+  // 2 violations above:
+  //   ''AnnoType' is not followed by whitespace'
+  //   ''NonNull2' is not followed by whitespace'
+
+  @NonNull int @AnnoType [] @NonNull2 [] field2;
+
+  @NonNull int @AnnoType [] @NonNull2[] field3;
+  // violation above ''NonNull2' is not followed by whitespace'
 
   // @NonNull int @NonNull ... field3; // non-compilable
   // @NonNull int @NonNull... field4; // non-compilable
 
   /** some javadoc. */
-  public void foo1(final char[] param) {} // ok
+  public void foo(final char @NonNull [] param) {}
 
   /** some javadoc. */
-  public void foo2(final char[] param) {} // ok
+  public void foo1(final char[] param) {}
 
   /** some javadoc. */
-  public void foo3(final char @NonNull [] param) {} // ok until #8205
+  public void foo2(final char[] param) {}
 
   /** some javadoc. */
-  public void foo4(final char @NonNull [] param) {} // ok
+  public void foo3(final char @NonNull[] param) {}
+  // violation above ''NonNull' is not followed by whitespace'
+
+  /** some javadoc. */
+  public void foo4(final char @NonNull [] param) {}
 
   void test1(String... param) {}
 
