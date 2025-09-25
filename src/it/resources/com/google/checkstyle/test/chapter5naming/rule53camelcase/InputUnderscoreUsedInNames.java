@@ -22,95 +22,100 @@ public class InputUnderscoreUsedInNames {
   private final String gradle851 = "";
 
   class InnerBad {
-    String guava_33_4_7 = ""; // violation due to '_' between digit and letter
-    String guava33_4_7 = "";
+    int guava_33_4_7 = 0; // violation, due to '_' between digit and letter, 'must match pattern'
+    int guava33_4_7 = 0;
 
-    String guava33_4_8_ = ""; // violation, underscore at the end
-    String guava33_4_8 = "";
+    int guava33_4_8_ = 0; // violation, underscore at the end, 'must match pattern'
+    int guava33_4_8 = 0;
 
-    String jdk_8_90 = ""; // violation due to '_' between digit and letter
-    String jdk8_90 = "";
+    int jdk_8_90 = 0; // violation, due to '_' between digit and letter, 'must match pattern'
+    int jdk8_90 = 0;
 
-    String jdk8_91_ = ""; // violation, underscore at the end
-    String jdk8_91 = "";
+    int jdk8_91_ = ""; // violation, underscore at the end, 'must match pattern'
+    int jdk8_91 = "";
 
-    String kotlin_1_9_24 = ""; // violation due to '_' between digit and letter
-    String kotlin1_9_24 = "";
+    int kotlin_1_9_24 = 0; // violation, due to '_' between digit and letter, 'must match pattern'
+    int kotlin1_9_24 = 0;
 
-    // violation below, '_' not allowed between lowercase character sequences
-    String kotlin_version1_9_24 = "";
+    // violation below, underscore not allowed between lowercase character sequences, 'pattern'
+    int kotlin_version1_9_24 = 0;
 
-    String kotlinVersion1_9_24 = "";
+    int kotlinVersion1_9_24 = 0; // violation, false-positive, 'must match pattern'
 
-    String kotlin1_9_25_ = ""; // violation, underscore at the end
-    String kotlin1_9_25 = "";
+    int kotlin1_9_25_ = 0; // violation, underscore at the end, 'must match pattern'
+    int kotlin1_9_25 = 0;
   }
 
   static class MultipartVersioningNamesBad {
 
-    void guava_34_4_6() {} // violation due to '_' between digit and letter
+    void guava_34_4_6() {} // violation, due to '_' between digit and letter, 'must match pattern'
 
     void guava34_4_6() {}
 
-    void kotlin_2_9_94() {} // violation due to '_' between digit and letter
+    void kotlin_2_9_94() {} // violation, due to '_' between digit and letter, 'must match pattern'
 
     void kotlin2_9_94() {}
 
-    void gradle_9_5_1() {} // violation due to '_' between digit and letter
+    void gradle_9_5_1() {} // violation, due to '_' between digit and letter, 'must match pattern'
 
     void gradle9_5_1() {}
 
-    void jdk_9_0_392() {} // violation due to '_' between digit and letter
+    void jdk_9_0_392() {} // violation, due to '_' between digit and letter, 'must match pattern'
 
     void jdk9_0_392() {}
 
-    // violation below, '_' not allowed between lowercase character sequences
+    // violation below, underscore not allowed between lowercase character sequences, 'pattern'
     void kotlin_lang1_9_2() {}
 
-    void kotlinLang1_9_2() {}
+    void kotlinLang1_9_2() {} // violation, false-positive, 'must match pattern'
 
-    // violation below, '_' not allowed between lowercase character sequences
+    // violation below, underscore not allowed between lowercase character sequences, 'pattern'
     void jdk_method8_90() {}
 
-    void jdk_Method8_90() {} // violation, uppercase letter after underscore
+    void jdk_Method8_90() {} // violation, uppercase letter after underscore, 'must match pattern'
 
-    void jdkMethod8_90() {}
+    void jdkMethod8_90() {} // violation, false-positive, 'must match pattern'
 
-    // violation below, '_' not allowed between lowercase character sequences
+    // violation below, underscore not allowed between lowercase character sequences, 'pattern'
     void guava_version33_4_2() {}
 
-    void guava_Version33_4_2() {} // violation, uppercase letter after underscore
+    void guava_Version33_4_2() {} // violation, uppercase letter after underscore, 'match pattern'
 
-    void guavaVersion33_4_2() {}
+    void guavaVersion33_4_2() {} // violation, false-positive, 'must match pattern'
 
-    void kotlin1_9_24_() {} // violation, underscore at the end
+    void kotlin1_9_24_() {} // violation, underscore at the end, 'must match pattern'
 
     void kotlin1_9_24() {}
 
-    void guava_33_4_5_() {} // violation, underscore at the end
+    void guava_33_4_5_() {} // violation, underscore at the end, 'must match pattern'
 
     void guava33_4_5() {}
   }
 
   class UnderscoresInNonTestMethods {
 
-    void testSetCount_zeroToZero_addSupported() {} // violation, normal method must not use '_'
+    // violation below, normal method must not use underscore, 'must match pattern'
+    void testSetCount_zeroToZero_addSupported() {}
 
     void testSetCountZeroToZeroAddSupported() {}
 
-    void testPutNullValue_supported() {} // violation, normal method must not use '_'
+    // violation below, normal method must not use underscore, 'must match pattern'
+    void testPutNullValue_supported() {}
 
     void testPutNullValueSupported() {}
 
-    void testAddAll_nonEmptyList() {} // violation, normal method must not use '_'
+    // violation below, normal method must not use underscore, 'must match pattern'
+    void testAddAll_nonEmptyList() {}
 
     void testAddAllNonEmptyList() {}
 
-    void testEntrySet_hashCode_size1() {} // violation, normal method must not use '_'
+    // violation below, normal method must not use underscore, 'must match pattern'
+    void testEntrySet_hashCode_size1() {}
 
     void testEntrySetHashCodeSize1() {}
 
-    void testCount_3() {} // violation, normal method must not use '_'
+    // violation below, normal method must not use underscore, 'must match pattern'
+    void testCount_3() {}
 
     void testCount3() {}
   }
@@ -120,41 +125,41 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testSetCount_zeroToZero_addSupported() {}
 
-    @Test // violation below, '_' not allowed between lowercase character sequences
+    @Test
     void testsetcount_zerotozero_addsupported() {}
 
-    @Test
-    void testSetCount_ZeroToZero_AddSupported() {} // violation, uppercase letter after underscore
+    @Test // violation below, uppercase letter after underscore, 'must match pattern'
+    void testSetCount_ZeroToZero_AddSupported() {}
 
     @Test
     void testPutNullValue_supported() {}
 
-    @Test // violation below, '_' not allowed between lowercase character sequences
+    @Test
     void testputnullvalue_supported() {}
 
-    @Test
-    void testPutNullValue_Supported() {} // violation, uppercase letter after underscore
+    @Test // violation below, uppercase letter after underscore, 'must match pattern'
+    void testPutNullValue_Supported() {}
 
     @Test
     void testAddAll_nonEmptyList() {}
 
-    @Test // violation below, '_' not allowed between lowercase character sequences
+    @Test
     void testaddall_nonemptylist() {}
 
     @Test
-    void testAddAll_NonEmptyList() {} // violation, uppercase letter after underscore
+    void testAddAll_NonEmptyList() {} // violation, uppercase letter after underscore, 'pattern'
 
     @Test
     void testEntrySet_hashCode_size1() {}
 
-    @Test // violation below, '_' not allowed between lowercase character sequences
+    @Test
     void testentryset_hashcode_size1() {}
 
     @Test
-    void testEntrySet_HashCode_Size1() {} // violation, uppercase letter after underscore
+    void testEntrySet_HashCode_Size1() {} // violation, uppercase letter after underscore, 'pattern'
 
     @Test
-    void testCount_3() {} // violation single number after '_'
+    void testCount_3() {} // violation, single number after underscore, 'must match pattern'
 
     @Test
     void testCount_number3() {}
