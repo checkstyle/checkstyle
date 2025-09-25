@@ -3384,18 +3384,63 @@ public final class JavadocTokenTypes {
     public static final int TRACK_TAG = JavadocParser.RULE_trackTag + RULE_TYPES_OFFSET;
 
     /**
-     * HTML void element {@code <wbr>}.
+     * HTML void element {@code <track>} tag.
      *
-     * @see #SINGLETON_ELEMENT
-     * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
-     *     W3 docs</a>
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <track kind="subtitles" src="subtitles_en.file" />
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     *    `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *        `--TRACK_TAG -> TRACK_TAG
+     *            |--START -> <
+     *            |--TRACK_HTML_TAG_NAME -> track
+     *            |--WS ->
+     *            |--ATTRIBUTE -> ATTRIBUTE
+     *            |   |--HTML_TAG_NAME -> kind
+     *            |   |--EQUALS -> =
+     *            |   `--ATTR_VALUE -> "subtitles"
+     *            |--WS ->
+     *            |--ATTRIBUTE -> ATTRIBUTE
+     *            |   |--HTML_TAG_NAME -> src
+     *            |   |--EQUALS -> =
+     *            |   `--ATTR_VALUE -> "subtitles_en.file"
+     *            |--WS ->
+     *            `--SLASH_END -> />
+     * }
+     * </pre>
+     *
+     * @see #TRACK_TAG
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
+     *     W3C HTML5 specification</a>
      */
     public static final int WBR_TAG = JavadocParser.RULE_wbrTag + RULE_TYPES_OFFSET;
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
     /**
-     * Html comment: {@code <!-- --> }.
+     * HTML void element {@code <wbr>} tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <wbr />
+     * }</pre>
+     * <b>Tree:</b>
+     * <pre>
+     * {@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * `--SINGLETON_ELEMENT -> SINGLETON_ELEMENT
+     *     `--WBR_TAG -> WBR_TAG
+     *         |--START -> <
+     *         |--WBR_HTML_TAG_NAME -> wbr
+     *         `--END -> >
+     * }
+     * </pre>
+     *
+     * @see #WBR_TAG
+     * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-wbr">
+     *     W3C HTML5 specification</a>
      */
     public static final int HTML_COMMENT = JavadocParser.RULE_htmlComment
             + RULE_TYPES_OFFSET;
