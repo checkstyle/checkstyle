@@ -36,29 +36,29 @@
               <td><a id="javadocTokens"/><a href="#javadocTokens">javadocTokens</a></td>
               <td>javadoc tokens to check</td>
               <td>subset of javadoc tokens
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                    PARAM_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                    RETURN_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                    THROWS_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
-                    EXCEPTION_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                    DEPRECATED_LITERAL</a>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_BLOCK_TAG">
+                    PARAM_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_BLOCK_TAG">
+                    RETURN_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_BLOCK_TAG">
+                    EXCEPTION_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
+                    DEPRECATED_BLOCK_TAG</a>
                   .
               </td>
               <td>
-                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                    PARAM_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                    RETURN_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                    THROWS_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
-                    EXCEPTION_LITERAL</a>
-                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                    DEPRECATED_LITERAL</a>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_BLOCK_TAG">
+                    PARAM_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_BLOCK_TAG">
+                    RETURN_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_BLOCK_TAG">
+                    EXCEPTION_BLOCK_TAG</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_BLOCK_TAG">
+                    DEPRECATED_BLOCK_TAG</a>
                   .
               </td>
               <td>7.3</td>
@@ -110,7 +110,7 @@ class Example1 {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="NonEmptyAtclauseDescription"&gt;
-      &lt;property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/&gt;
+      &lt;property name="javadocTokens" value="PARAM_BLOCK_TAG,THROWS_BLOCK_TAG"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -156,11 +156,6 @@ class Example2 {
       <subsection name="Violation Messages" id="NonEmptyAtclauseDescription_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
-              javadoc.missed.html.close
-            </a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
               javadoc.parse.rule.error
             </a>
@@ -168,11 +163,6 @@ class Example2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
               javadoc.unclosedHtml
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
-              javadoc.wrong.singleton.html.tag
             </a>
           </li>
           <li>
