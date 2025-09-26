@@ -40,12 +40,7 @@ public class CamelCaseDefinedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testCamelCaseNamesMultipartVersioningNames() throws Exception {
-        verifyWithWholeConfig(getPath("InputCamelCaseMultipartVersioningNames.java"));
-    }
-
-    @Test
-    public void testFormattedCamelCaseNamesMultipartVersioningNames() throws Exception {
-        verifyWithWholeConfig(getPath("InputFormattedCamelCaseMultipartVersioningNames.java"));
+    public void testCamelCaseNames2() throws Exception {
+        verifyWithWholeConfig(getPath("InputUnderscoreUsedInNames.java"));
     }
 }
