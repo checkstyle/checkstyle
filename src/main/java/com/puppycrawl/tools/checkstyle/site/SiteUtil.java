@@ -194,6 +194,7 @@ public final class SiteUtil {
         Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractNameCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "javadoc", "AbstractJavadocCheck.java"),
         Path.of(MAIN_FOLDER_PATH, "api", "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, "api", "AbstractCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "header", "AbstractHeaderCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "metrics", "AbstractClassCouplingCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "whitespace", "AbstractParenPadCheck.java")
@@ -852,7 +853,7 @@ public final class SiteUtil {
                         child, JavadocCommentsTokenTypes.SINCE_BLOCK_TAG);
                 
                 if (sinceNode != null) {
-                    javadocTagWithSince = child;
+                    javadocTagWithSince = sinceNode;
                     break;
                 }
             }
@@ -1306,7 +1307,6 @@ public final class SiteUtil {
         boolean isInHtmlElement = false;
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
-        final Deque<DetailNode> queue = new ArrayDeque<>();
         final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
         DetailNode node = descriptionNodes.get(0);
         final DetailNode endNode = descriptionNodes.get(descriptionNodes.size() - 1);
@@ -1327,33 +1327,39 @@ public final class SiteUtil {
                 }
 
                 isInHrefAttribute = false;
-                continue;
             }
-            
-            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+            else {
+                if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
                 isInHtmlElement = true;
-            }
-            if (node.getType() == JavadocCommentsTokenTypes.TAG_CLOSE
-                    && node.getParent().getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
-                description.append(node.getText());
-                isInHtmlElement = false;
-            }
-            if (node.getType() == JavadocCommentsTokenTypes.TEXT
-                    // If a node has children, its text is not part of the description
-                    || isInHtmlElement && node.getFirstChild() == null
-                        // Some HTML elements span multiple lines, so we avoid the asterisk
-                        && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
-                description.append(node.getText());
-            }
-            if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME 
-                    && node.getParent().getType() == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
-                isInCodeLiteral = true;
-                description.append("<code>");
-            }
-            if (isInCodeLiteral
-                    && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
-                isInCodeLiteral = false;
-                description.append("</code>");
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_CLOSE
+                        && node.getParent().getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
+                    description.append(node.getText());
+                    isInHtmlElement = false;
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TEXT
+                        // If a node has children, its text is not part of the description
+                        || isInHtmlElement && node.getFirstChild() == null
+                            // Some HTML elements span multiple lines, so we avoid the asterisk
+                            && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+                    if (isInCodeLiteral) {
+                        description.append(node.getText().trim());
+                    }
+                    else {
+                        description.append(node.getText());
+                    }
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME 
+                        && node.getParent().getType() == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
+                    isInCodeLiteral = true;
+                    description.append("<code>");
+                }
+                if (isInCodeLiteral
+                        && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInCodeLiteral = false;
+                    description.append("</code>");
+                }
+                    
             }
             
             DetailNode toVisit = node.getFirstChild();
