@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * @since 6.0
  */
-@StatelessCheck
+@FileStatefulCheck
 public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
