@@ -1057,7 +1057,7 @@ class Test {
 
 &lt;!DOCTYPE suppressions PUBLIC
     "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd"&gt;
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd""&gt;
 
 &lt;suppressions&gt;
   &lt;suppress
