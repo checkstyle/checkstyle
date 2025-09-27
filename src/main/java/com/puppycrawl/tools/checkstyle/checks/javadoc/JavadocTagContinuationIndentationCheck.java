@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <div>
@@ -35,6 +36,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * the tag. Default indentation required is at least 4, but this can be changed with the help of
  * properties below.
  * </div>
+ * <ul>
+ * <li>
+ * Notes:
+ * This check does not validate the indentation of lines inside {@code pre} tags.
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */
@@ -119,20 +126,22 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = ast.getFirstChild();
-
-        while (node != null) {
-            if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
-                // HTML_CONTENT contain text nodes only, so it can be treated as
-                // DESCRIPTION node
-                textNodes.addAll(getTargetedTextNodesInsideDescription(node));
+        
+        if (!JavadocUtil.isTag(ast, "pre") && !isInsidePreTag(ast)) {
+            while (node != null) {
+                if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+                    // HTML_CONTENT contain text nodes only, so it can be treated as
+                    // DESCRIPTION node
+                    textNodes.addAll(getTargetedTextNodesInsideDescription(node));
+                }
+                else if (subtreeContainsAttributeValue(node)) {
+                    textNodes.addAll(getTargetedTextNodesInsideHtmlElement(node));
+                }
+                else if (isTargetTextNode(node)) {
+                    textNodes.add(node);
+                }
+                node = node.getNextSibling();
             }
-            else if (subtreeContainsAttributeValue(node)) {
-                textNodes.addAll(getTargetedTextNodesInsideHtmlElement(node));
-            }
-            else if (isTargetTextNode(node)) {
-                textNodes.add(node);
-            }
-            node = node.getNextSibling();
         }
         return textNodes;
     }
@@ -194,7 +203,26 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
         return previousSibling != null
                 && isTextOrAttributeValueNode(node)
+                && !isBeforePreTag(node)
                 && previousSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
+    }
+    
+    private boolean isBeforePreTag(DetailNode node) {
+        DetailNode nextSibling = node.getNextSibling();
+        boolean isBeforePreTag = false;
+        if (nextSibling != null 
+                && nextSibling.getType() == JavadocCommentsTokenTypes.DESCRIPTION) {
+            isBeforePreTag = JavadocUtil.isTag(nextSibling.getFirstChild(), "pre");
+        }
+        else if (nextSibling != null ) {
+            isBeforePreTag = JavadocUtil.isTag(nextSibling, "pre");
+        }
+        return isBeforePreTag;
+    }
+    
+    private boolean isInsidePreTag(DetailNode node) {
+       DetailNode htmlElementParent = node.getParent().getParent();
+         return JavadocUtil.isTag(htmlElementParent, "pre");
     }
     
     /**
