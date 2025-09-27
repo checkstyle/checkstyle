@@ -124,6 +124,19 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             .that(systemErr.getCapturedData())
             .isEqualTo("");
     }
+    
+    @Test
+    public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
+                    29, "token recognition error at: '-'", "Fieldname"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbstractJavadocInvalidLexing.java"), expected);
+        assertWithMessage("Error is unexpected")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
 
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
