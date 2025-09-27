@@ -239,7 +239,13 @@
              value="Package name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="TypeName">
-      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*(?:[0-9](?:_[0-9]+)*)?$"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <message key="name.invalidPattern"
+             value="Type name ''{0}'' must match pattern ''{1}''."/>
+    </module>
+    <module name="TypeName">
+      <property name="tokens" value="INTERFACE_DEF, ENUM_DEF,
                     ANNOTATION_DEF, RECORD_DEF"/>
       <message key="name.invalidPattern"
              value="Type name ''{0}'' must match pattern ''{1}''."/>
