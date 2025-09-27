@@ -205,13 +205,21 @@ public final class ModuleJavadocParsingUtil {
         DetailNode node = moduleJavadoc.getFirstChild();
 
         while (node != null) {
-            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
-                && (JavadocUtil.isTag(node, "p")
-                    || JavadocUtil.isTag(node, "li"))
-                && isStartOfNotesSection(node)) {
-
-                notesStartNode = node;
-                break;
+            if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+                if (JavadocUtil.isTag(node, "ul")) {
+                    final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
+                        node, JavadocCommentsTokenTypes.HTML_CONTENT);
+                    if (isStartOfNotesSection(htmlContentNode.getFirstChild())) {
+                        notesStartNode = node;
+                        break;
+                    }
+                }
+                else if ((JavadocUtil.isTag(node, "p") 
+                            || JavadocUtil.isTag(node, "li"))
+                            && isStartOfNotesSection(node))  {
+                    notesStartNode = node;
+                    break;
+                }
             }
             node = node.getNextSibling();
         }

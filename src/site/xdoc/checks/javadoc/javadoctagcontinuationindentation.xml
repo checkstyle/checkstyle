@@ -16,16 +16,14 @@
           the tag. Default indentation required is at least 4, but this can be changed with the help of
           properties below.
         </div>
-        <ul>
-        <li>
-          Notes:
-          This check does not validate the indentation of lines inside <code>pre</code> tags.
-        </li>
-        </ul>
       </subsection>
 
       <subsection name="Notes" id="JavadocTagContinuationIndentation_Notes">
-        
+        <ul>
+        <li>
+          This check does not validate the indentation of lines inside <code>pre</code> tags.
+        </li>
+        </ul>
       </subsection>
 
       <subsection name="Properties" id="JavadocTagContinuationIndentation_Properties">

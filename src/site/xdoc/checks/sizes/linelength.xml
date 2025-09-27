@@ -18,9 +18,11 @@
           have limited screen space for the source code, e.g. if the IDE displays
           additional information like project tree, class hierarchy, etc.
         </p>
+      </subsection>
+
+      <subsection name="Notes" id="LineLength_Notes">
         <ul>
         <li>
-          Notes:
           The calculation of the length of a line takes into account the number of
           expanded spaces for a tab character (<code>'\t'</code>). The default number of spaces is <code>8</code>.
           To specify a different number of spaces, the user can set
@@ -41,10 +43,6 @@ import java.util.regex.Pattern; // The length of this comment will be taken into
           will be 94 characters.
         </li>
         </ul>
-      </subsection>
-
-      <subsection name="Notes" id="LineLength_Notes">
-        
       </subsection>
 
       <subsection name="Properties" id="LineLength_Properties">
