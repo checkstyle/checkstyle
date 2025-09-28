@@ -27,6 +27,7 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.OptionalInt;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -378,20 +379,14 @@ public final class CheckUtil {
 
     public static String getLineSeparatorForFile(String filepath, Charset charset)
             throws IOException {
-        final boolean[] crFound = {false};
-        new FileText(new File(filepath), charset.name())
+        final OptionalInt endOfLineChar = new FileText(new File(filepath), charset.name())
                 .getFullText()
                 .chars()
-                .peek(character -> {
-                    if (character == '\r') {
-                        crFound[0] = true;
-                    }
-                })
-                .filter(character -> character == '\n')
+                .filter(character -> character == '\r' || character == '\n')
                 .findFirst();
 
         final String result;
-        if (crFound[0]) {
+        if (endOfLineChar.isPresent() && endOfLineChar.getAsInt() == '\r') {
             result = CRLF;
         }
         else {
