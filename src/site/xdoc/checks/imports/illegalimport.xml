@@ -81,7 +81,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.applet.*; // violation, 'Illegal import'
+import sun.misc.*; // violation, 'Illegal import'
 
 public class Example1 {}
 </code></pre></div><hr class="example-separator"/>
@@ -113,7 +113,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date;
-import sun.applet.*;
+import sun.misc.*;
 
 public class Example2 {}
 </code></pre></div><hr class="example-separator"/>
@@ -146,7 +146,7 @@ import java.util.List;
 import java.util.Enumeration;
 import java.util.Arrays;
 import java.util.Date; // violation, 'Illegal import'
-import sun.applet.*; // violation, 'Illegal import'
+import sun.misc.*; // violation, 'Illegal import'
 
 public class Example3 {}
 </code></pre></div><hr class="example-separator"/>
@@ -184,7 +184,7 @@ import java.util.List; // violation, 'Illegal import'
 import java.util.Enumeration; // violation, 'Illegal import'
 import java.util.Arrays; // violation, 'Illegal import'
 import java.util.Date; // violation, 'Illegal import'
-import sun.applet.*;
+import sun.misc.*;
 
 public class Example4 {}
 </code></pre></div><hr class="example-separator"/>
@@ -220,7 +220,7 @@ import java.util.List; // violation, 'Illegal import'
 import java.util.Enumeration;
 import java.util.Arrays; // violation, 'Illegal import'
 import java.util.Date;
-import sun.applet.*; // violation, 'Illegal import'
+import sun.misc.*; // violation, 'Illegal import'
 
 public class Example5 {}
 </code></pre></div>

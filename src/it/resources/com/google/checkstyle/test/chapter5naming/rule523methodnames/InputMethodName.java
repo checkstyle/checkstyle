@@ -75,7 +75,7 @@ public class InputMethodName {
   void testingFoo_foo() {}
 
   @Test
-  void testing_0123() {} // violation 'Method name 'testing_0123' must match pattern'
+  void testing_0123() {} // false-negative, _ between digit and letter
 
   @Test
   void testing_0123_() {} // violation 'Method name 'testing_0123_' must match pattern'
@@ -181,7 +181,7 @@ public class InputMethodName {
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_01231(String str) {} // violation 'Method name 'testing_01231' must match pattern'
+  void testing_01231(String str) {} // false-negative, _ between digit and letter
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
@@ -242,7 +242,7 @@ public class InputMethodName {
   void testingFoo_foo2() {}
 
   @RepeatedTest(2)
-  void testing_01232() {} // violation 'Method name 'testing_01232' must match pattern'
+  void testing_01232() {} // false-negative, _ between digit and letter
 
   @RepeatedTest(2)
   void Testing_Foo3() {} // violation 'Method name 'Testing_Foo3' must match pattern'
@@ -289,7 +289,7 @@ public class InputMethodName {
 
     void testingFoo_foo() {} // violation 'Method name 'testingFoo_foo' must match pattern'
 
-    void testing_0123() {} // violation 'Method name 'testing_0123' must match pattern'
+    void testing_0123() {} // false-negative, _ between digit and letter
 
     void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
   }

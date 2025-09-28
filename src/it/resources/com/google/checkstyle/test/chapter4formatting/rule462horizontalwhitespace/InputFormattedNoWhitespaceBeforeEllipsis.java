@@ -10,6 +10,12 @@ public class InputFormattedNoWhitespaceBeforeEllipsis {
   @interface NonNull {}
 
   @Target(ElementType.TYPE_USE)
+  @interface B {}
+
+  @Target(ElementType.TYPE_USE)
+  @interface C {}
+
+  @Target(ElementType.TYPE_USE)
   @interface Size {
     int max();
   }
@@ -44,4 +50,12 @@ public class InputFormattedNoWhitespaceBeforeEllipsis {
   void test9(String @Size(max = 10) ... names) {}
 
   void test10(String @Size(max = 10) ... names) {}
+
+  void test11(@NonNull String @C [] @B ... arg) {}
+
+  void test12(@NonNull String @C []... arg) {}
+
+  void test13(@NonNull String[] @B ... arg) {}
+
+  void test14(String[] @B ... arg) {}
 }

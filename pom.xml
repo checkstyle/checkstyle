@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>11.0.2-SNAPSHOT</version>
+  <version>11.1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -218,7 +218,7 @@
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <rewrite-migrate-java.version>3.17.1</rewrite-migrate-java.version>
+    <rewrite-migrate-java.version>3.18.0</rewrite-migrate-java.version>
     <rewrite-static-analysis.version>2.17.0</rewrite-static-analysis.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
@@ -1375,7 +1375,7 @@
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.8.0</version>
+        <version>0.9.0</version>
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
@@ -5339,7 +5339,7 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.18.0</version>
+            <version>6.19.0</version>
             <configuration>
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
@@ -5407,7 +5407,7 @@
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-rewrite</artifactId>
-                <version>0.12.2</version>
+                <version>0.13.0</version>
               </dependency>
             </dependencies>
           </plugin>

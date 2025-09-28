@@ -150,7 +150,7 @@
                value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,
                     LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,
                     LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,
-                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN"/>
+                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN, ANNOTATIONS"/>
     </module>
     <module name="WhitespaceAround">
       <property name="allowEmptyConstructors" value="true"/>
@@ -195,6 +195,7 @@
     <module name="OneStatementPerLine"/>
     <module name="MultipleVariableDeclarations"/>
     <module name="ArrayTypeStyle"/>
+    <module name="JavadocLeadingAsteriskAlign"/>
     <module name="MissingSwitchDefault"/>
     <module name="FallThrough"/>
     <module name="UpperEll"/>
@@ -239,13 +240,20 @@
              value="Package name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="TypeName">
-      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
+      <property name="format" value="^[A-Z][a-zA-Z0-9]*(?:[0-9](?:_[0-9]+)*)?$"/>
+      <property name="tokens" value="CLASS_DEF"/>
+      <message key="name.invalidPattern"
+             value="Type name ''{0}'' must match pattern ''{1}''."/>
+    </module>
+    <module name="TypeName">
+      <property name="tokens" value="INTERFACE_DEF, ENUM_DEF,
                     ANNOTATION_DEF, RECORD_DEF"/>
       <message key="name.invalidPattern"
              value="Type name ''{0}'' must match pattern ''{1}''."/>
     </module>
     <module name="MemberName">
-      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="format"
+        value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-zA-Z0-9]*(?:_[0-9]+)*$"/>
       <message key="name.invalidPattern"
              value="Member name ''{0}'' must match pattern ''{1}''."/>
     </module>
@@ -350,7 +358,9 @@
     </module>
     <module name="SuppressionXpathSingleFilter">
       <property name="checks" value="NoWhitespaceBefore"/>
-      <property name="query" value="//ELLIPSIS[preceding-sibling::TYPE/ANNOTATIONS/ANNOTATION]"/>
+      <property name="query"
+          value="//ELLIPSIS[preceding-sibling::TYPE/ANNOTATIONS[ANNOTATION[LPAREN]
+              or not(following-sibling::*)]]"/>
     </module>
     <module name="ParenPad">
       <property name="tokens"
@@ -371,7 +381,7 @@
       <property name="id" value="AnnotationLocationMostCases"/>
       <property name="tokens"
                value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF,
-                      RECORD_DEF, COMPACT_CTOR_DEF"/>
+                      RECORD_DEF, COMPACT_CTOR_DEF, PACKAGE_DEF"/>
     </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationVariables"/>
@@ -424,7 +434,8 @@
       <property name="excludeScope" value="nothing"/>
     </module>
     <module name="MethodName">
-      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <property name="format"
+          value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-z0-9]*(?:[A-Z][a-z0-9]*)*(?:_[0-9]+)*$"/>
       <message key="name.invalidPattern"
              value="Method name ''{0}'' must match pattern ''{1}''."/>
     </module>
