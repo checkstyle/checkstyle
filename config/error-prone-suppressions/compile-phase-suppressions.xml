@@ -1,10 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedErrors>
-  <!-- This identity conversion prevents potential `NullPointerException`s from being thrown. -->
-  <error>
-    <sourceFile>SarifLogger.java</sourceFile>
-    <bugPattern>IdentityConversion</bugPattern>
-    <description>This method invocation appears redundant; remove it or suppress this warning and add a comment explaining its purpose</description>
-    <lineContent>return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));</lineContent>
-  </error>
 </suppressedErrors>
