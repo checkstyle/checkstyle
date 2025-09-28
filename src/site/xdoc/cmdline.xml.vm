@@ -916,6 +916,8 @@ class Test {
 /SLIST/LITERAL_WHILE/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE
   </code></pre>
 </div>
+  <pre>The XPath generated is intended to be used with the SuppressionXpathFilter or SuppressionXpathSingleFilter modules.
+    Add the generated XPath to your suppressions.xml file and Referenced it in the configuration file.</pre>
 
 <h4 id="Generating_Xpath_Suppressions_XML"><span>
 6. Generating Xpath Suppressions XML
@@ -1072,6 +1074,7 @@ class Test {
 &lt;/suppressions&gt;
   </code></pre>
 </div>
+  <pre>The XPath generated is intended to be used with the SuppressionFilter or SuppressionXpathFilter modules.</pre>
 
 <h4 id="Setting_Tab_Width"><span>
 8. Setting Tab Width (<span class="no-transform">-w, --tabWidth</span>)
@@ -1812,6 +1815,7 @@ COMPILATION_UNIT -> COMPILATION_UNIT [6:0]
         |       |--VARIABLE_DEF -> VARIABLE_DEF [11:8]
   </code></pre>
 </div>
+   <pre>The XPath generated is intended to be used with the TreeWalker or SuppressionXpathFilter modules.</pre>
 
 <h4 id="Displaying_Help_Message"><span>
 18. Displaying Help Message (<span class="no-transform">-h, --help</span>)
