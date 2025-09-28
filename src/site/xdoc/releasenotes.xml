@@ -10,6 +10,122 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 11.1.0">
+      <div class="releaseDate">28.09.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            false-negative: whitespace between type annotation and array declarator or ellipsis.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17451">#17451</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Annotation location rule is not enforced in package-info.java file.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17540">#17540</a>
+          </li>
+          <li>
+            Google style: Missing support for multipart versioning format using underscores in
+            method names.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17507">#17507</a>
+          </li>
+          <li>
+            Add support to properly follow Rule `7.1.1 General Form` in Google Style Guide
+            Implementation.
+            Author: Mauryan Kansara
+            <a href="https://github.com/checkstyle/checkstyle/issues/17778">#17778</a>
+          </li>
+          <li>
+            --generate-checks-and-files-suppression option generates invalid XML.
+            Author: Marvin Rensing
+            <a href="https://github.com/checkstyle/checkstyle/issues/17825">#17825</a>
+          </li>
+          <li>
+            JavadocTagContinuationIndentation: missing support to arbitrary indentation in
+            &lt;pre&gt; tags.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/13048">#13048</a>
+          </li>
+          <li>
+            LineLength gets triggered on multi-line strings for Google Checks.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/11867">#11867</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Javawired, Vinisha Wagh
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            Fix wrong dtd scheme reference in CLI example.
+            Author: Javawired
+            <a href="https://github.com/checkstyle/checkstyle/issues/17834">#17834</a>
+          </li>
+          <li>
+            move examples of IllegalImport to compilable folder.
+            Author: Usman Shaikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17684">#17684</a>
+          </li>
+          <li>
+            LineLength coverage page: missing note about command line exemptions.
+            Author: Mohit Attry
+            <a href="https://github.com/checkstyle/checkstyle/issues/17724">#17724</a>
+          </li>
+          <li>
+            Add `rewrite` support for `errorprone.refasterrules`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17487">#17487</a>
+          </li>
+          <li>
+            Reuse in metadata module scrapper all methods to get data from javadoc and reflection
+            only.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/13626">#13626</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: Usman Shaikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Add chechstyle-operewrite recipes to the project..
+            Author: Anmol202005
+            <a href="https://github.com/checkstyle/checkstyle/issues/17717">#17717</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: voidCounter
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            Fix Javadoc Warnings: &quot;use of default constructor, which does not provide a
+            comment&quot;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17642">#17642</a>
+          </li>
+          <li>
+            Upgrade all scripts to groovy 3.0.17 or 4.x.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17269">#17269</a>
+          </li>
+          <li>
+            doc: make nrmancuso &quot;former&quot;.
+            Author: nick mancuso
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 11.0.1">
       <div class="releaseDate">31.08.2025</div>
       <p>Bug fixes:</p>
