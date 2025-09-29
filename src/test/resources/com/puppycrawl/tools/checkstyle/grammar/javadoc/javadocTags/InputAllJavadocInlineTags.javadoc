@@ -1,3 +1,0 @@
-{@code <code>} {@literal <literal>} {@docRoot}
-{@inheritDoc} {@link A A class}
-{@linkplain A another link} {@value lang.Integer#MAX_VALUE}

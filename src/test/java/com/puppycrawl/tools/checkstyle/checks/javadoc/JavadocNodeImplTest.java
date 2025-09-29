@@ -21,33 +21,25 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
 public class JavadocNodeImplTest {
 
     @Test
     public void testToString() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
-        javadocNode.setType(JavadocTokenTypes.CODE_LITERAL);
+        javadocNode.setType(JavadocCommentsTokenTypes.EQUALS);
         javadocNode.setLineNumber(1);
         javadocNode.setColumnNumber(2);
-        final JavadocNodeImpl child1 = new JavadocNodeImpl();
-        final JavadocNodeImpl child2 = new JavadocNodeImpl();
-        child1.setType(JavadocTokenTypes.CODE_LITERAL);
-        child2.setType(JavadocTokenTypes.CODE_LITERAL);
-        javadocNode.setChildren(child1, child2);
+        javadocNode.setText("=");
 
         final String result = javadocNode.toString();
 
         assertWithMessage("Invalid toString result")
             .that(result)
-            .isEqualTo("JavadocNodeImpl[index=0, type=CODE_LITERAL, text='null', lineNumber=1,"
-                + " columnNumber=2, children=" + Arrays.hashCode(javadocNode.getChildren())
-                + ", parent=null]");
+            .isEqualTo("=[1x2]");
     }
 
     @Test
@@ -60,6 +52,22 @@ public class JavadocNodeImplTest {
         assertWithMessage("Invalid column number")
             .that(result)
             .isEqualTo(1);
+    }
+    
+    @Test
+    public void testSetNextSibling() {
+        final JavadocNodeImpl root = new JavadocNodeImpl();
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        
+        root.addChild(firstChild);
+        firstChild.setNextSibling(secondChild);
+
+        final JavadocNodeImpl result = (JavadocNodeImpl) secondChild.getParent();
+
+        assertWithMessage("Invalid parent")
+            .that(result)
+            .isSameInstanceAs(root);
     }
 
 }

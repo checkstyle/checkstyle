@@ -21,8 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
 /**
  * <div>
@@ -45,8 +44,8 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.JAVADOC,
-            JavadocTokenTypes.LEADING_ASTERISK,
+                JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+                JavadocCommentsTokenTypes.LEADING_ASTERISK,
         };
     }
 
@@ -57,24 +56,50 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
-        final DetailNode textNode;
+        final DetailNode nextNode = resolveNextNode(detailNode);
 
-        if (detailNode.getType() == JavadocTokenTypes.JAVADOC) {
-            textNode = JavadocUtil.getFirstChild(detailNode);
-        }
-        else {
-            textNode = JavadocUtil.getNextSibling(detailNode);
-        }
-
-        if (textNode != null && textNode.getType() != JavadocTokenTypes.EOF) {
-            final String text = textNode.getText();
+        if (nextNode != null) {
+            final String text = nextNode.getText();
             final int lastAsteriskPosition = getLastLeadingAsteriskPosition(text);
 
             if (!isLast(lastAsteriskPosition, text)
                     && !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {
-                log(textNode.getLineNumber(), textNode.getColumnNumber(), MSG_KEY);
+                log(nextNode.getLineNumber(), nextNode.getColumnNumber(), MSG_KEY);
             }
         }
+    }
+
+    /**
+     * Resolves the first child node related to the given Javadoc {@link DetailNode}.
+     * <p>
+     * The resolution works in two steps:
+     * <ul>
+     *   <li>If the current node is of type {@code JAVADOC_CONTENT}, use its first child;
+     *       otherwise use its next sibling.</li>
+     *   <li>If that base node has a first child, return it regardless of its type.</li>
+     * </ul>
+     * <p>
+     * The returned node may or may not be of type {@code TEXT}. If it is not,
+     * the violation logic will treat it as a violation later.
+     *
+     * @param detailNode the Javadoc node to resolve from
+     * @return the first child node if available; otherwise {@code null}
+     */
+    private DetailNode resolveNextNode(DetailNode detailNode) {
+        final DetailNode baseNode;
+        if (detailNode.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
+            baseNode = detailNode.getFirstChild();
+        }
+        else {
+            baseNode = detailNode.getNextSibling();
+        }
+
+        DetailNode nextNode = baseNode;
+        if (baseNode != null && baseNode.getFirstChild() != null) {
+            nextNode = baseNode.getFirstChild();
+        }
+
+        return nextNode;
     }
 
     /**

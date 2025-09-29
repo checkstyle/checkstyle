@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
 /**
  * <div>
@@ -128,12 +128,12 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * in the javadoc text, thus it needs the {@code TEXT} tokens.
      *
      * @return the javadoc token set this must be registered for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.TEXT,
+                JavadocCommentsTokenTypes.TEXT,
         };
     }
 
@@ -149,7 +149,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!isCommentOrInlineTag(ast.getParent())) {
+        if (!isCommentOrInlineTag(ast)) {
             final Matcher tagMatcher = JAVADOC_BLOCK_TAG_PATTERN.matcher(ast.getText());
             while (tagMatcher.find()) {
                 final String tagName = tagMatcher.group(1);
@@ -167,8 +167,19 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @return {@code true} if node is {@code @code}, {@code @literal} or HTML comment.
      */
     private static boolean isCommentOrInlineTag(DetailNode node) {
-        return node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
-                || node.getType() == JavadocTokenTypes.HTML_COMMENT;
+        boolean isInsideInlineTagOrHtmlComment = false;
+        DetailNode current = node;
+
+        while (current != null) {
+            if (current.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG
+                    || current.getType() == JavadocCommentsTokenTypes.HTML_COMMENT) {
+                isInsideInlineTagOrHtmlComment = true;
+                break;
+            }
+            current = current.getParent();
+        }
+
+        return isInsideInlineTagOrHtmlComment;
     }
 
 }

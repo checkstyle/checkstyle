@@ -79,4 +79,18 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
                 getPath("InputSingleLineJavadocIgnoredTags.java"), expected);
     }
 
+    /**
+     * Demonstrate that we can show lexer errors as violation messages, and keep parsing.
+     */
+    @Test
+    public void testLexerError() throws Exception {
+        final String[] expected = {
+                "14: " + getCheckMessage(AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR,
+                        4, "token recognition error at: '@'", "@"),
+                "19: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputSingleLineJavadocLexerError.java"), expected);
+    }
+
 }

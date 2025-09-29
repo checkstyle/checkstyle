@@ -1,0 +1,9 @@
+* <!-- This is an HTML comment inside Javadoc.
+* It contains special characters like:
+* @param a the first number
+* @return the sum
+* <b>bold</b>, <i>italic</i>, <p>paragraph</p>
+* {@code code}
+* These are not interpreted by Javadoc because they're in an HTML comment.
+* -->
+*

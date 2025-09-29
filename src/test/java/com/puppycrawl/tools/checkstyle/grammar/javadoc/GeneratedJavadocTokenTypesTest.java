@@ -24,6 +24,8 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +37,38 @@ import org.junit.jupiter.api.Test;
  *      requires this structure
  */
 public class GeneratedJavadocTokenTypesTest {
+    
+    private static final List<String> INTERNAL_TOKENS = List.of(
+        "WS",
+        "CODE",
+        "LINK",
+        "AUTHOR",
+        "DEPRECATED",
+        "RETURN",
+        "PARAM",
+        "VALUE",
+        "SUMMARY",
+        "SYSTEM_PROPERTY",
+        "INDEX",
+        "EXCEPTION",
+        "THROWS",
+        "SINCE",
+        "VERSION",
+        "SEE",
+        "LITERAL_HIDDEN",
+        "SERIAL",
+        "SERIAL_DATA",
+        "SERIAL_FIELD",
+        "USES",
+        "PROVIDES",
+        "LITERAL",
+        "CUSTOM_NAME",
+        "Snippet_ATTRIBUTE",
+        "See_TAG_OPEN",
+        "ATTRIBUTE",
+        "Link_COMMA"
+    );
+
 
     private static final String MSG = "Ensure that token numbers generated for the elements"
             + "present in JavadocParser are consistent with what the tests assert.";
@@ -52,312 +86,275 @@ public class GeneratedJavadocTokenTypesTest {
     @Test
     public void testTokenNumbers() {
         assertWithMessage(MSG)
-            .that(JavadocParser.LEADING_ASTERISK)
+            .that(JavadocCommentsLexer.JAVADOC)
             .isEqualTo(1);
         assertWithMessage(MSG)
-            .that(JavadocParser.HTML_COMMENT_START)
+            .that(JavadocCommentsLexer.LEADING_ASTERISK)
             .isEqualTo(2);
         assertWithMessage(MSG)
-            .that(JavadocParser.DEPRECATED_CDATA_DO_NOT_USE)
+            .that(JavadocCommentsLexer.NEWLINE)
             .isEqualTo(3);
         assertWithMessage(MSG)
-            .that(JavadocParser.WS)
+            .that(JavadocCommentsLexer.TEXT)
             .isEqualTo(4);
         assertWithMessage(MSG)
-            .that(JavadocParser.START)
-            .isEqualTo(5);
-        assertWithMessage(MSG)
-            .that(JavadocParser.NEWLINE)
+            .that(JavadocCommentsLexer.JAVADOC_INLINE_TAG)
             .isEqualTo(6);
         assertWithMessage(MSG)
-            .that(JavadocParser.AUTHOR_LITERAL)
+            .that(JavadocCommentsLexer.JAVADOC_INLINE_TAG_START)
             .isEqualTo(7);
         assertWithMessage(MSG)
-            .that(JavadocParser.DEPRECATED_LITERAL)
+            .that(JavadocCommentsLexer.JAVADOC_INLINE_TAG_END)
             .isEqualTo(8);
         assertWithMessage(MSG)
-            .that(JavadocParser.EXCEPTION_LITERAL)
-            .isEqualTo(9);
-        assertWithMessage(MSG)
-            .that(JavadocParser.PARAM_LITERAL)
-            .isEqualTo(10);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RETURN_LITERAL)
+            .that(JavadocCommentsLexer.IDENTIFIER)
             .isEqualTo(11);
         assertWithMessage(MSG)
-            .that(JavadocParser.SEE_LITERAL)
+            .that(JavadocCommentsLexer.HASH)
             .isEqualTo(12);
         assertWithMessage(MSG)
-            .that(JavadocParser.SERIAL_LITERAL)
+            .that(JavadocCommentsLexer.LPAREN)
             .isEqualTo(13);
         assertWithMessage(MSG)
-            .that(JavadocParser.SERIAL_FIELD_LITERAL)
+            .that(JavadocCommentsLexer.RPAREN)
             .isEqualTo(14);
         assertWithMessage(MSG)
-            .that(JavadocParser.SERIAL_DATA_LITERAL)
+            .that(JavadocCommentsLexer.COMMA)
             .isEqualTo(15);
         assertWithMessage(MSG)
-            .that(JavadocParser.SINCE_LITERAL)
-            .isEqualTo(16);
-        assertWithMessage(MSG)
-            .that(JavadocParser.THROWS_LITERAL)
-            .isEqualTo(17);
-        assertWithMessage(MSG)
-            .that(JavadocParser.VERSION_LITERAL)
-            .isEqualTo(18);
-        assertWithMessage(MSG)
-            .that(JavadocParser.JAVADOC_INLINE_TAG_START)
-            .isEqualTo(19);
-        assertWithMessage(MSG)
-            .that(JavadocParser.JAVADOC_INLINE_TAG_END)
-            .isEqualTo(20);
-        assertWithMessage(MSG)
-            .that(JavadocParser.CUSTOM_NAME)
+            .that(JavadocCommentsLexer.TAG_OPEN)
             .isEqualTo(21);
         assertWithMessage(MSG)
-            .that(JavadocParser.LITERAL_INCLUDE)
+            .that(JavadocCommentsLexer.TAG_CLOSE)
             .isEqualTo(22);
         assertWithMessage(MSG)
-            .that(JavadocParser.LITERAL_EXCLUDE)
+            .that(JavadocCommentsLexer.TAG_SLASH_CLOSE)
             .isEqualTo(23);
         assertWithMessage(MSG)
-            .that(JavadocParser.CHAR)
+            .that(JavadocCommentsLexer.TAG_SLASH)
             .isEqualTo(24);
         assertWithMessage(MSG)
-            .that(JavadocParser.PARAMETER_NAME)
+            .that(JavadocCommentsLexer.EQUALS)
             .isEqualTo(25);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char1)
+            .that(JavadocCommentsLexer.TAG_NAME)
             .isEqualTo(26);
         assertWithMessage(MSG)
-            .that(JavadocParser.STRING)
+            .that(JavadocCommentsLexer.ATTRIBUTE_VALUE)
             .isEqualTo(27);
         assertWithMessage(MSG)
-            .that(JavadocParser.PACKAGE_CLASS)
+            .that(JavadocCommentsLexer.SLASH)
             .isEqualTo(28);
         assertWithMessage(MSG)
-            .that(JavadocParser.DOT)
+            .that(JavadocCommentsLexer.PARAMETER_TYPE)
             .isEqualTo(29);
         assertWithMessage(MSG)
-            .that(JavadocParser.HASH)
+            .that(JavadocCommentsLexer.LT)
             .isEqualTo(30);
         assertWithMessage(MSG)
-            .that(JavadocParser.CLASS)
+            .that(JavadocCommentsLexer.GT)
             .isEqualTo(31);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char2)
+            .that(JavadocCommentsLexer.EXTENDS)
             .isEqualTo(32);
         assertWithMessage(MSG)
-            .that(JavadocParser.MEMBER)
+            .that(JavadocCommentsLexer.SUPER)
             .isEqualTo(33);
         assertWithMessage(MSG)
-            .that(JavadocParser.LEFT_BRACE)
+            .that(JavadocCommentsLexer.QUESTION)
             .isEqualTo(34);
         assertWithMessage(MSG)
-            .that(JavadocParser.RIGHT_BRACE)
-            .isEqualTo(35);
-        assertWithMessage(MSG)
-            .that(JavadocParser.ARGUMENT)
+            .that(JavadocCommentsLexer.FORMAT_SPECIFIER)
             .isEqualTo(36);
         assertWithMessage(MSG)
-            .that(JavadocParser.COMMA)
+            .that(JavadocCommentsLexer.INHERIT_DOC)
             .isEqualTo(37);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char20)
-            .isEqualTo(38);
-        assertWithMessage(MSG)
-            .that(JavadocParser.FIELD_NAME)
-            .isEqualTo(39);
-        assertWithMessage(MSG)
-            .that(JavadocParser.Char3)
-            .isEqualTo(40);
-        assertWithMessage(MSG)
-            .that(JavadocParser.FIELD_TYPE)
+            .that(JavadocCommentsLexer.INDEX_TERM)
             .isEqualTo(41);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char4)
+            .that(JavadocCommentsLexer.SNIPPET)
             .isEqualTo(42);
         assertWithMessage(MSG)
-            .that(JavadocParser.CLASS_NAME)
+            .that(JavadocCommentsLexer.SNIPPET_ATTR_NAME)
             .isEqualTo(43);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char5)
+            .that(JavadocCommentsLexer.COLON)
             .isEqualTo(44);
         assertWithMessage(MSG)
-            .that(JavadocParser.CODE_LITERAL)
-            .isEqualTo(45);
-        assertWithMessage(MSG)
-            .that(JavadocParser.DOC_ROOT_LITERAL)
-            .isEqualTo(46);
-        assertWithMessage(MSG)
-            .that(JavadocParser.INHERIT_DOC_LITERAL)
+            .that(JavadocCommentsLexer.PARAMETER_NAME)
             .isEqualTo(47);
         assertWithMessage(MSG)
-            .that(JavadocParser.LINK_LITERAL)
-            .isEqualTo(48);
-        assertWithMessage(MSG)
-            .that(JavadocParser.LINKPLAIN_LITERAL)
-            .isEqualTo(49);
-        assertWithMessage(MSG)
-            .that(JavadocParser.LITERAL_LITERAL)
-            .isEqualTo(50);
-        assertWithMessage(MSG)
-            .that(JavadocParser.VALUE_LITERAL)
+            .that(JavadocCommentsLexer.STRING_LITERAL)
             .isEqualTo(51);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char7)
-            .isEqualTo(52);
-        assertWithMessage(MSG)
-            .that(JavadocParser.Char8)
-            .isEqualTo(53);
-        assertWithMessage(MSG)
-            .that(JavadocParser.Char10)
-            .isEqualTo(54);
-        assertWithMessage(MSG)
-            .that(JavadocParser.END)
-            .isEqualTo(55);
-        assertWithMessage(MSG)
-            .that(JavadocParser.SLASH_END)
+            .that(JavadocCommentsLexer.FIELD_TYPE)
             .isEqualTo(56);
         assertWithMessage(MSG)
-            .that(JavadocParser.SLASH)
+            .that(JavadocCommentsLexer.AT_SIGN)
             .isEqualTo(57);
         assertWithMessage(MSG)
-            .that(JavadocParser.EQUALS)
+            .that(JavadocCommentsLexer.TYPE_NAME)
             .isEqualTo(58);
         assertWithMessage(MSG)
-            .that(JavadocParser.P_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.REFERENCE)
             .isEqualTo(59);
         assertWithMessage(MSG)
-            .that(JavadocParser.LI_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.MEMBER_REFERENCE)
             .isEqualTo(60);
         assertWithMessage(MSG)
-            .that(JavadocParser.TR_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.PARAMETER_TYPE_LIST)
             .isEqualTo(61);
         assertWithMessage(MSG)
-            .that(JavadocParser.TD_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.TYPE_ARGUMENTS)
             .isEqualTo(62);
         assertWithMessage(MSG)
-            .that(JavadocParser.TH_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.TYPE_ARGUMENT)
             .isEqualTo(63);
         assertWithMessage(MSG)
-            .that(JavadocParser.BODY_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.DESCRIPTION)
             .isEqualTo(64);
         assertWithMessage(MSG)
-            .that(JavadocParser.COLGROUP_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SNIPPET_ATTRIBUTES)
             .isEqualTo(65);
         assertWithMessage(MSG)
-            .that(JavadocParser.DD_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SNIPPET_ATTRIBUTE)
             .isEqualTo(66);
         assertWithMessage(MSG)
-            .that(JavadocParser.DT_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SNIPPET_BODY)
             .isEqualTo(67);
         assertWithMessage(MSG)
-            .that(JavadocParser.HEAD_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_ELEMENT)
             .isEqualTo(68);
         assertWithMessage(MSG)
-            .that(JavadocParser.HTML_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.VOID_ELEMENT)
             .isEqualTo(69);
         assertWithMessage(MSG)
-            .that(JavadocParser.OPTION_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_CONTENT)
             .isEqualTo(70);
         assertWithMessage(MSG)
-            .that(JavadocParser.TBODY_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_TAG_START)
             .isEqualTo(71);
         assertWithMessage(MSG)
-            .that(JavadocParser.TFOOT_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_TAG_END)
             .isEqualTo(72);
         assertWithMessage(MSG)
-            .that(JavadocParser.THEAD_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_ATTRIBUTES)
             .isEqualTo(73);
         assertWithMessage(MSG)
-            .that(JavadocParser.AREA_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HTML_ATTRIBUTE)
             .isEqualTo(74);
         assertWithMessage(MSG)
-            .that(JavadocParser.BASE_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.JAVADOC_BLOCK_TAG)
             .isEqualTo(75);
         assertWithMessage(MSG)
-            .that(JavadocParser.BASEFONT_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.CODE_INLINE_TAG)
             .isEqualTo(76);
         assertWithMessage(MSG)
-            .that(JavadocParser.BR_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.LINK_INLINE_TAG)
             .isEqualTo(77);
         assertWithMessage(MSG)
-            .that(JavadocParser.COL_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.LINKPLAIN_INLINE_TAG)
             .isEqualTo(78);
         assertWithMessage(MSG)
-            .that(JavadocParser.FRAME_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.VALUE_INLINE_TAG)
             .isEqualTo(79);
         assertWithMessage(MSG)
-            .that(JavadocParser.HR_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.INHERIT_DOC_INLINE_TAG)
             .isEqualTo(80);
         assertWithMessage(MSG)
-            .that(JavadocParser.IMG_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SUMMARY_INLINE_TAG)
             .isEqualTo(81);
         assertWithMessage(MSG)
-            .that(JavadocParser.INPUT_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG)
             .isEqualTo(82);
         assertWithMessage(MSG)
-            .that(JavadocParser.ISINDEX_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.INDEX_INLINE_TAG)
             .isEqualTo(83);
         assertWithMessage(MSG)
-            .that(JavadocParser.LINK_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.RETURN_INLINE_TAG)
             .isEqualTo(84);
         assertWithMessage(MSG)
-            .that(JavadocParser.META_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.LITERAL_INLINE_TAG)
             .isEqualTo(85);
         assertWithMessage(MSG)
-            .that(JavadocParser.PARAM_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SNIPPET_INLINE_TAG)
             .isEqualTo(86);
         assertWithMessage(MSG)
-            .that(JavadocParser.EMBED_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.CUSTOM_INLINE_TAG)
             .isEqualTo(87);
         assertWithMessage(MSG)
-            .that(JavadocParser.KEYGEN_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.AUTHOR_BLOCK_TAG)
             .isEqualTo(88);
         assertWithMessage(MSG)
-            .that(JavadocParser.ATTR_VALUE)
+            .that(JavadocCommentsLexer.DEPRECATED_BLOCK_TAG)
             .isEqualTo(89);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char12)
+            .that(JavadocCommentsLexer.RETURN_BLOCK_TAG)
             .isEqualTo(90);
         assertWithMessage(MSG)
-            .that(JavadocParser.HTML_COMMENT_END)
+            .that(JavadocCommentsLexer.PARAM_BLOCK_TAG)
             .isEqualTo(91);
         assertWithMessage(MSG)
-            .that(JavadocParser.SOURCE_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.EXCEPTION_BLOCK_TAG)
             .isEqualTo(92);
         assertWithMessage(MSG)
-            .that(JavadocParser.TRACK_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.THROWS_BLOCK_TAG)
             .isEqualTo(93);
         assertWithMessage(MSG)
-            .that(JavadocParser.WBR_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SINCE_BLOCK_TAG)
             .isEqualTo(94);
         assertWithMessage(MSG)
-            .that(JavadocParser.OPTGROUP_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.VERSION_BLOCK_TAG)
             .isEqualTo(95);
         assertWithMessage(MSG)
-            .that(JavadocParser.RB_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SEE_BLOCK_TAG)
             .isEqualTo(96);
         assertWithMessage(MSG)
-            .that(JavadocParser.RT_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.HIDDEN_BLOCK_TAG)
             .isEqualTo(97);
         assertWithMessage(MSG)
-            .that(JavadocParser.RTC_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.USES_BLOCK_TAG)
             .isEqualTo(98);
         assertWithMessage(MSG)
-            .that(JavadocParser.RP_HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.PROVIDES_BLOCK_TAG)
             .isEqualTo(99);
         assertWithMessage(MSG)
-            .that(JavadocParser.HTML_TAG_NAME)
+            .that(JavadocCommentsLexer.SERIAL_BLOCK_TAG)
             .isEqualTo(100);
         assertWithMessage(MSG)
-            .that(JavadocParser.Char11)
+            .that(JavadocCommentsLexer.SERIAL_DATA_BLOCK_TAG)
             .isEqualTo(101);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.SERIAL_FIELD_BLOCK_TAG)
+            .isEqualTo(102);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.CUSTOM_BLOCK_TAG)
+            .isEqualTo(103);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.HTML_COMMENT_START)
+            .isEqualTo(104);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.HTML_COMMENT_END)
+            .isEqualTo(105);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.HTML_COMMENT)
+            .isEqualTo(106);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.HTML_COMMENT_CONTENT)
+            .isEqualTo(107);
+        assertWithMessage(MSG)
+            .that(JavadocCommentsLexer.TAG_ATTR_NAME)
+            .isEqualTo(114);
+        
+        final Set<String> modeNames = Set.of(JavadocCommentsLexer.modeNames);
+        final Set<String> channelNames = Set.of(JavadocCommentsLexer.channelNames);
 
-        final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
+        final int tokenCount = (int) Arrays.stream(JavadocCommentsLexer.class.getDeclaredFields())
                 .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
-                .filter(field -> !isRule(field))
+                .filter(field -> !modeNames.contains(field.getName()))
+                .filter(field -> !channelNames.contains(field.getName()))
+                .filter(field -> !INTERNAL_TOKENS.contains(field.getName()))
                 .count();
 
         // Read JavaDoc before changing count below
@@ -365,328 +362,7 @@ public class GeneratedJavadocTokenTypesTest {
                         + " 'GeneratedJavadocTokenTypesTest' and verified"
                         + " that their old numbering didn't change")
             .that(tokenCount)
-            .isEqualTo(101);
-    }
-
-    /**
-     * This method checks that the numbers generated for rules in <tt>JavadocParser.g4</tt> don't
-     * change with the Parser grammar itself.
-     * <br>ANTLR maps all the parser rules to compile-time constants used internally by ANTLR.
-     * Compatibility damage is incurred <i>(with respect to the previous checkstyle versions)
-     * </i> if these compile-time constants keep changing with the grammar.
-     *
-     * @see "https://github.com/checkstyle/checkstyle/issues/5139"
-     * @see "https://github.com/checkstyle/checkstyle/issues/5186"
-     */
-    @Test
-    public void testRuleNumbers() {
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_javadoc)
-            .isEqualTo(0);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlElement)
-            .isEqualTo(1);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlElementStart)
-            .isEqualTo(2);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlElementEnd)
-            .isEqualTo(3);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_attribute)
-            .isEqualTo(4);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlTag)
-            .isEqualTo(5);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_pTagStart)
-            .isEqualTo(6);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_pTagEnd)
-            .isEqualTo(7);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_paragraph)
-            .isEqualTo(8);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_liTagStart)
-            .isEqualTo(9);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_liTagEnd)
-            .isEqualTo(10);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_li)
-            .isEqualTo(11);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_trTagStart)
-            .isEqualTo(12);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_trTagEnd)
-            .isEqualTo(13);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tr)
-            .isEqualTo(14);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tdTagStart)
-            .isEqualTo(15);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tdTagEnd)
-            .isEqualTo(16);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_td)
-            .isEqualTo(17);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_thTagStart)
-            .isEqualTo(18);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_thTagEnd)
-            .isEqualTo(19);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_th)
-            .isEqualTo(20);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_bodyTagStart)
-            .isEqualTo(21);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_bodyTagEnd)
-            .isEqualTo(22);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_body)
-            .isEqualTo(23);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_colgroupTagStart)
-            .isEqualTo(24);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_colgroupTagEnd)
-            .isEqualTo(25);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_colgroup)
-            .isEqualTo(26);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_ddTagStart)
-            .isEqualTo(27);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_ddTagEnd)
-            .isEqualTo(28);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_dd)
-            .isEqualTo(29);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_dtTagStart)
-            .isEqualTo(30);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_dtTagEnd)
-            .isEqualTo(31);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_dt)
-            .isEqualTo(32);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_headTagStart)
-            .isEqualTo(33);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_headTagEnd)
-            .isEqualTo(34);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_head)
-            .isEqualTo(35);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlTagStart)
-            .isEqualTo(36);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlTagEnd)
-            .isEqualTo(37);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_html)
-            .isEqualTo(38);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_optionTagStart)
-            .isEqualTo(39);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_optionTagEnd)
-            .isEqualTo(40);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_option)
-            .isEqualTo(41);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tbodyTagStart)
-            .isEqualTo(42);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tbodyTagEnd)
-            .isEqualTo(43);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tbody)
-            .isEqualTo(44);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tfootTagStart)
-            .isEqualTo(45);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tfootTagEnd)
-            .isEqualTo(46);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_tfoot)
-            .isEqualTo(47);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_theadTagStart)
-            .isEqualTo(48);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_theadTagEnd)
-            .isEqualTo(49);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_thead)
-            .isEqualTo(50);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_singletonElement)
-            .isEqualTo(51);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_emptyTag)
-            .isEqualTo(52);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_areaTag)
-            .isEqualTo(53);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_baseTag)
-            .isEqualTo(54);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_basefontTag)
-            .isEqualTo(55);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_brTag)
-            .isEqualTo(56);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_colTag)
-            .isEqualTo(57);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_frameTag)
-            .isEqualTo(58);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_hrTag)
-            .isEqualTo(59);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_imgTag)
-            .isEqualTo(60);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_inputTag)
-            .isEqualTo(61);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_isindexTag)
-            .isEqualTo(62);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_linkTag)
-            .isEqualTo(63);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_metaTag)
-            .isEqualTo(64);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_paramTag)
-            .isEqualTo(65);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_wrongSingletonTag)
-            .isEqualTo(66);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_singletonTagName)
-            .isEqualTo(67);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_description)
-            .isEqualTo(68);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_reference)
-            .isEqualTo(69);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_parameters)
-            .isEqualTo(70);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_javadocTag)
-            .isEqualTo(71);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_javadocInlineTag)
-            .isEqualTo(72);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_htmlComment)
-            .isEqualTo(73);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_text)
-            .isEqualTo(74);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_embedTag)
-            .isEqualTo(75);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_keygenTag)
-            .isEqualTo(76);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_sourceTag)
-            .isEqualTo(77);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_trackTag)
-            .isEqualTo(78);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_wbrTag)
-            .isEqualTo(79);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_optgroupTagStart)
-            .isEqualTo(80);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_optgroupTagEnd)
-            .isEqualTo(81);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_optgroup)
-            .isEqualTo(82);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rbTagStart)
-            .isEqualTo(83);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rbTagEnd)
-            .isEqualTo(84);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rb)
-            .isEqualTo(85);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rtTagStart)
-            .isEqualTo(86);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rtTagEnd)
-            .isEqualTo(87);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rt)
             .isEqualTo(88);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rtcTagStart)
-            .isEqualTo(89);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rtcTagEnd)
-            .isEqualTo(90);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rtc)
-            .isEqualTo(91);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rpTagStart)
-            .isEqualTo(92);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rpTagEnd)
-            .isEqualTo(93);
-        assertWithMessage(MSG)
-            .that(JavadocParser.RULE_rp)
-            .isEqualTo(94);
-
-        final int tokenCount = (int) Arrays.stream(JavadocParser.class.getDeclaredFields())
-                .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
-                .filter(GeneratedJavadocTokenTypesTest::isRule)
-                .count();
-
-        // Read JavaDoc before changing count below
-        assertWithMessage("all rules must be added to list in"
-                        + " 'GeneratedJavadocTokenTypesTest' and verified"
-                        + " that their old numbering didn't change")
-            .that(tokenCount)
-            .isEqualTo(95);
-    }
-
-    /**
-     * Checks that a given field is named 'RULE_'.
-     *
-     * @param field field to verify the name of
-     * @return true if field is named 'RULE_'
-     */
-    private static boolean isRule(Field field) {
-        return field.getName().startsWith("RULE_");
     }
 
     /**

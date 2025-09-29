@@ -97,6 +97,8 @@ public class JavadocTagContinuationIndentationCheckTest
             "47: " + getCheckMessage(MSG_KEY, 4),
             "49: " + getCheckMessage(MSG_KEY, 4),
             "50: " + getCheckMessage(MSG_KEY, 4),
+            "70: " + getCheckMessage(MSG_KEY, 4), 
+            "71: " + getCheckMessage(MSG_KEY, 4),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationDescription.java"),

@@ -940,9 +940,9 @@
                       com.puppycrawl.tools.checkstyle.CheckstyleParserErrorStrategy
                     </exclude>
                     <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*
+                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser*
                     </exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer</exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck
                     </exclude>
@@ -1215,7 +1215,7 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser
+                      com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser
                     </include>
                   </includes>
                   <limits>
@@ -1234,7 +1234,7 @@
                 <rule>
                   <element>CLASS</element>
                   <includes>
-                    <include>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</include>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer</include>
                   </includes>
                   <limits>
                     <limit>
@@ -1852,7 +1852,7 @@
                 <exclude>**/Main$CliOptions.class</exclude>
                 <exclude>**/JavadocPropertiesGenerator.class</exclude>
                 <!-- generated classes, unfortunately use problematic api -->
-                <exclude>**/JavadocParser.class</exclude>
+                <exclude>**/JavadocCommentsParser.class</exclude>
                 <!-- reason at https://github.com/checkstyle/checkstyle/issues/7759 -->
                 <exclude>**/RegexpCheck.class</exclude>
                 <!-- no code in file, no AST to log -->
@@ -4496,8 +4496,8 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulatorTest</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParseTreeTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsAstRegressionTest</param>
                 <!-- this test is required for CompositeLexerContextCache -->
                 <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
                 <!-- this test is required for Checker -->
@@ -5108,6 +5108,14 @@
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MissingSwitchDefaultCheckTest
+                </param>
+                <!-- JavadocUtil#isTag  -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheckTest
+                </param>
+                <!-- JavadocUtil#getAllNodesOfType  -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtilTest
                 </param>
               </targetTests>
               <avoidCallsTo>
