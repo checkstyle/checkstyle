@@ -163,9 +163,8 @@ public final class MissingOverrideCheck extends AbstractCheck {
         final DetailAST modifiers = ast.getFirstChild();
         final DetailAST startNode;
         if (modifiers.hasChildren()) {
-            startNode = Optional.ofNullable(ast.getFirstChild()
-                    .findFirstToken(TokenTypes.ANNOTATION))
-                .orElse(modifiers);
+            startNode = Objects.requireNonNullElse(ast.getFirstChild()
+                    .findFirstToken(TokenTypes.ANNOTATION), modifiers);
         }
         else {
             startNode = ast.findFirstToken(TokenTypes.TYPE);

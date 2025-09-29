@@ -72,7 +72,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
         assertWithMessage("Invalid message")
-                .that(firstFileMessages.first().getViolation())
+                .that(firstFileMessages.getFirst().getViolation())
                 .isEqualTo("File should not be empty.");
 
         final SortedSet<Violation> internalMessages =

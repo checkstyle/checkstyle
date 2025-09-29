@@ -54,6 +54,11 @@ public final class XmlUtil {
         Document rawXml = null;
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            try {
+                factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            } catch (ParserConfigurationException e) {
+                throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+            }
             factory.setValidating(false);
             factory.setFeature(
                     XmlLoader.LoadExternalDtdFeatureProvider.EXTERNAL_GENERAL_ENTITIES, false);

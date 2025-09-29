@@ -23,6 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+
+import com.google.common.base.Strings;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -341,7 +343,7 @@ public class RegexpCheck extends AbstractCheck {
     private String getMessage(int errorCount) {
         String msg;
 
-        if (message == null || message.isEmpty()) {
+        if (Strings.isNullOrEmpty(message)) {
             msg = format.pattern();
         }
         else {

@@ -204,7 +204,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                 final Optional<String> description =
                             getDescriptionFromSubsection(subsectionElement);
                 if (description.isPresent()) {
-                    return description.get();
+                    return description.orElseThrow();
                 }
             }
         }

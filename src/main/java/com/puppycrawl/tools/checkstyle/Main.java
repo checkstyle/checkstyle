@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Filter;
@@ -303,7 +302,7 @@ public final class Main {
                     JavaParser.Options.WITHOUT_COMMENTS);
             System.out.print(stringAst);
         }
-        else if (Objects.nonNull(options.xpath)) {
+        else if (options.xpath != null) {
             final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));
             System.out.print(branch);
         }
