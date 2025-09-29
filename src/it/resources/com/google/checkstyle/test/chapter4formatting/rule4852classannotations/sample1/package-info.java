@@ -1,4 +1,4 @@
 // violation 2 lines below 'Annotation 'SuppressWarnings' should be alone on line'
 /** This is a package. */
 @Deprecated @SuppressWarnings("...")
-package com.google.checkstyle.test.chapter4formatting.rule4852classannotations.example1;
+package com.google.checkstyle.test.chapter4formatting.rule4852classannotations.sample1;

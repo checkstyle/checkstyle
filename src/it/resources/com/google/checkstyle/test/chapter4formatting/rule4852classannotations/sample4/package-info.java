@@ -7,7 +7,7 @@
 //   'Annotation 'Name' should be alone on line'
 //   'Annotation 'SizePackage' should be alone on line'
 @ParentPackage("val") @Name("1") @SizePackage("2")
-package com.google.checkstyle.test.chapter4formatting.rule4852classannotations.example4;
+package com.google.checkstyle.test.chapter4formatting.rule4852classannotations.sample4;
 
 import com.google.checkstyle.test.chapter4formatting.rule4852classannotations.Name;
 import com.google.checkstyle.test.chapter4formatting.rule4852classannotations.ParentPackage;

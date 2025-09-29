@@ -62,25 +62,31 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testPackageAnnotation2() throws Exception {
-        final String filePath = getPath("example1/package-info.java");
+        final String filePath = getPath("sample1/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
     public void testPackageAnnotation3() throws Exception {
-        final String filePath = getPath("example2/package-info.java");
+        final String filePath = getPath("sample2/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
     public void testPackageAnnotation4() throws Exception {
-        final String filePath = getPath("example3/package-info.java");
+        final String filePath = getPath("sample3/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
     public void testPackageAnnotation5() throws Exception {
-        final String filePath = getPath("example4/package-info.java");
+        final String filePath = getPath("sample4/package-info.java");
+        verifyWithWholeConfig(filePath);
+    }
+
+    @Test
+    public void testPackageAnnotation6() throws Exception {
+        final String filePath = getPath("sample5/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 }
