@@ -98,6 +98,35 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
+      <hr class="example-separator"/>
+      <p id="Example6-config">
+        An example of how to suppress the check to private methods:
+      </p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example6.java"/>
+        <param name="type" value="config"/>
+      </macro>
+      <p id="Example6-code">Code Example:</p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example6.java"/>
+        <param name="type" value="code"/>
+      </macro><hr class="example-separator"/>
+      <p id="Example7-config">
+        An example of how to suppress the check to package-private methods:
+      </p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
+        <param name="type" value="config"/>
+      </macro>
+      <p id="Example7-code">Code Example:</p>
+      <macro name="example">
+        <param name="path"
+               value="resources/com/puppycrawl/tools/checkstyle/checks/naming/methodname/Example7.java"/>
+        <param name="type" value="code"/>
+      </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
