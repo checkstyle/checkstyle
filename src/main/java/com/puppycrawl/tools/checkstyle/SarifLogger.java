@@ -30,6 +30,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -189,7 +190,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      */
     private static String replaceVersionString(String report) {
         final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));
+        return report.replace(VERSION_PLACEHOLDER, Optional.ofNullable(version).orElse("null"));
     }
 
     @Override
