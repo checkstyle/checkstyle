@@ -184,6 +184,52 @@ class Example5 {
   void Method4() {} // violation 'Name 'Method4' must match pattern'
 }
 </code></pre></div>
+          <hr class="example-separator"/>
+        <p id="Example6-config">
+          An example of how to suppress the check to private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="applyToPrivate" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  public void Method1() {} // violation 'Name 'Method1' must match pattern'
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // ok, private methods ignored
+  void Method4() {} // violation 'Name 'Method4' must match pattern'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          An example of how to suppress the check to package-private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodName"&gt;
+       &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+       &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+  public void Method1() {} // violation 'Name 'Method1' must match pattern'
+  protected void Method2() {} // violation 'Name 'Method2' must match pattern'
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  void Method4() {} // ok, package-private methods ignored
+}
+</code></pre></div>
+
       </subsection>
 
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
