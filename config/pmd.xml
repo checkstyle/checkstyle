@@ -97,6 +97,8 @@
 
 
   <rule ref="category/java/documentation.xml">
+    <!-- too much false positives -->
+    <exclude name="DanglingJavadoc"/>
     <!-- We use class comments as source for xdoc files,
          so content is big and that is by design. -->
     <exclude name="CommentSize"/>
