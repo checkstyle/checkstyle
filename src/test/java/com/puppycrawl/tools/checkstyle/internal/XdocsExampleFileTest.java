@@ -54,7 +54,6 @@ public class XdocsExampleFileTest {
             Map.entry("MissingJavadocMethodCheck", Set.of("minLineCount")),
             Map.entry("TrailingCommentCheck", Set.of("legalComment")),
             Map.entry("IllegalTypeCheck", Set.of("legalAbstractClassNames")),
-            Map.entry("MethodNameCheck", Set.of("applyToPackage", "applyToPrivate")),
             Map.entry("MissingJavadocTypeCheck", Set.of("skipAnnotations")),
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat", "checkEmptyJavadoc")),
             Map.entry("ConstantNameCheck", Set.of("applyToPackage", "applyToPrivate")),
