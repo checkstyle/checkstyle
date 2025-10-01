@@ -52,11 +52,11 @@
         regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>
-  <file name="JavadocCommentsAstVisitor|JavadocNodeImpl|JavadocCommentsLexerUtility"
+  <file name="JavadocCommentsAstVisitor|JavadocNodeImpl|JavadocCommentsLexerUtil"
         regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>
-  <file name="JavadocDetailNodeParser|JavadocCommentsParserUtility|SimpleToken"
+  <file name="JavadocDetailNodeParser|JavadocCommentsParserUtil|SimpleToken"
         regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>

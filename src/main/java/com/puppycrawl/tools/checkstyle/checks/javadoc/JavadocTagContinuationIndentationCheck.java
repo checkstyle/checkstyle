@@ -203,7 +203,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the AST node to check
      * @return true if the node is a targeted node, false otherwise
      */
-    private boolean isTargetTextNode(DetailNode node) {
+    private static boolean isTargetTextNode(DetailNode node) {
         final DetailNode previousSibling = node.getPreviousSibling();
 
         return previousSibling != null
