@@ -65,7 +65,7 @@ import org.junit.jupiter.api.Test;
  * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
  */
-@Disabled
+@Disabled("Disabled until CI issues are resolved")
 public class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =

@@ -129,9 +129,9 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
-        DetailNode node = ast.getFirstChild();
 
         if (!JavadocUtil.isTag(ast, PRE_TAG) && !isInsidePreTag(ast)) {
+            DetailNode node = ast.getFirstChild();
             while (node != null) {
                 if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
                     // HTML_CONTENT contain text nodes only, so it can be treated as
@@ -157,7 +157,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the AST node to check
      * @return true if the subtree may contain attribute values, false otherwise
      */
-    private boolean subtreeContainsAttributeValue(DetailNode node) {
+    private static boolean subtreeContainsAttributeValue(DetailNode node) {
         return node.getType() == JavadocCommentsTokenTypes.HTML_TAG_START
             || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTES
             || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTE;
@@ -218,7 +218,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the node to check
      * @return true if the node is before a pre tag, false otherwise
      */
-    private boolean isBeforePreTag(DetailNode node) {
+    private static boolean isBeforePreTag(DetailNode node) {
         final DetailNode nextSibling = node.getNextSibling();
         final boolean isBeforePreTag;
         if (nextSibling != null
@@ -240,7 +240,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the node to check
      * @return true if the node is inside a pre tag, false otherwise
      */
-    private boolean isInsidePreTag(DetailNode node) {
+    private static boolean isInsidePreTag(DetailNode node) {
         final DetailNode htmlElementParent = node.getParent().getParent();
         return JavadocUtil.isTag(htmlElementParent, PRE_TAG);
     }
@@ -251,7 +251,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the AST node to check
      * @return true if the node is a TEXT or ATTRIBUTE_VALUE node, false otherwise
      */
-    private boolean isTextOrAttributeValueNode(DetailNode node) {
+    private static boolean isTextOrAttributeValueNode(DetailNode node) {
         return node.getType() == JavadocCommentsTokenTypes.TEXT
             || node.getType() == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE;
     }

@@ -87,7 +87,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
      * @param detailNode the Javadoc node to resolve from
      * @return the first child node if available; otherwise {@code null}
      */
-    private DetailNode resolveNextNode(DetailNode detailNode) {
+    private static DetailNode resolveNextNode(DetailNode detailNode) {
         final DetailNode baseNode;
         if (detailNode.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
             baseNode = detailNode.getFirstChild();

@@ -240,12 +240,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
         if (htmlContentToken != null) {
             final DetailNode child = htmlContentToken.getFirstChild();
-            if (child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                isEmpty = isHtmlTagWithoutText(child);
-            }
-            else {
-                isEmpty = false;
-            }
+            isEmpty = child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                        && isHtmlTagWithoutText(child);
         }
         return isEmpty;
     }
