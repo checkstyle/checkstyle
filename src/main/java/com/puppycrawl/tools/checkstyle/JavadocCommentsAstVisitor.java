@@ -149,13 +149,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         final JavadocNodeImpl blockTagNode =
                 createImaginary(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
         final ParseTree tag = ctx.getChild(0);
-        JavadocNodeImpl specificTagNode = null;
 
         if (tag instanceof ParserRuleContext prc) {
             final Token tagName = (Token) prc.getChild(1).getPayload();
             final int tokenType = tagName.getType();
 
-            specificTagNode = switch (tokenType) {
+            final JavadocNodeImpl specificTagNode = switch (tokenType) {
                 case JavadocCommentsLexer.AUTHOR ->
                     buildImaginaryNode(JavadocCommentsTokenTypes.AUTHOR_BLOCK_TAG, ctx);
                 case JavadocCommentsLexer.DEPRECATED ->
@@ -189,9 +188,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 default ->
                     buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG, ctx);
             };
+            blockTagNode.addChild(specificTagNode);
         }
-
-        blockTagNode.addChild(specificTagNode);
 
         return blockTagNode;
     }
@@ -281,13 +279,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         final JavadocNodeImpl inlineTagNode =
                 createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
         final ParseTree tagContent = ctx.inlineTagContent().getChild(0);
-        JavadocNodeImpl specificTagNode = null;
 
         if (tagContent instanceof ParserRuleContext prc) {
             final Token tagName = (Token) prc.getChild(0).getPayload();
             final int tokenType = tagName.getType();
 
-            specificTagNode = switch (tokenType) {
+            final JavadocNodeImpl specificTagNode = switch (tokenType) {
                 case JavadocCommentsLexer.CODE ->
                     buildImaginaryNode(JavadocCommentsTokenTypes.CODE_INLINE_TAG, ctx);
                 case JavadocCommentsLexer.LINK ->
@@ -312,9 +309,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                     buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG, ctx);
                 default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_INLINE_TAG, ctx);
             };
+            inlineTagNode.addChild(specificTagNode);
         }
-
-        inlineTagNode.addChild(specificTagNode);
 
         return inlineTagNode;
     }
