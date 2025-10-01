@@ -77,14 +77,16 @@ public final class InlineConfigParser {
      *
      * <p>
      * This pattern will not match the following formats.
+     * </p>
+     *
      * <ol>
      *     <li> // violation, explanation </li>
      *     <li> // violation, explanation, 'violation message' </li>
      * </ol>
      *
+     * <p>
      * These are matched by
      * {@link InlineConfigParser#VIOLATION_WITH_EXPLANATION_PATTERN}.
-     * </p>
      */
     private static final Pattern VIOLATION_PATTERN = Pattern
             .compile(".*//\\s*violation,?\\s*(?:['\"](.*)['\"])?$");

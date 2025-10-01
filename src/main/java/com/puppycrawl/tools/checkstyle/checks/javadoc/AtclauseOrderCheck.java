@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -110,7 +110,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.JAVADOC,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
         };
     }
 
@@ -135,11 +135,12 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     private void checkOrderInTagSection(DetailNode javadoc) {
         int maxIndexOfPreviousTag = 0;
+        DetailNode node = javadoc.getFirstChild();
 
-        for (DetailNode node : javadoc.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.JAVADOC_TAG) {
-                final String tagText = JavadocUtil.getFirstChild(node).getText();
-                final int indexOfCurrentTag = tagOrder.indexOf(tagText);
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+                final String tagText = JavadocUtil.getTagName(node);
+                final int indexOfCurrentTag = tagOrder.indexOf("@" + tagText);
 
                 if (indexOfCurrentTag != -1) {
                     if (indexOfCurrentTag < maxIndexOfPreviousTag) {
@@ -150,6 +151,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
                     }
                 }
             }
+            node = node.getNextSibling();
         }
     }
 
