@@ -19,11 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 import org.antlr.v4.runtime.Token;
 
-import java.util.Optional;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 /**
  * Implementation of DetailNode interface that is mutable.
@@ -75,7 +73,11 @@ public class JavadocNodeImpl implements DetailNode {
      */
     private JavadocNodeImpl firstChild;
 
-
+    /**
+     * Initializes the node from the given token.
+     *
+     * @param token the token to initialize from.
+     */
     public void initialize(Token token) {
         this.type = token.getType();
         this.text = token.getText();
@@ -96,7 +98,7 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public int getLineNumber() {
         if (lineNumber == NOT_INITIALIZED) {
-            JavadocNodeImpl node = this.firstChild;
+            final JavadocNodeImpl node = this.firstChild;
             lineNumber = node.getLineNumber();
         }
         return this.lineNumber;
@@ -105,7 +107,7 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public int getColumnNumber() {
         if (columnNumber == NOT_INITIALIZED) {
-            JavadocNodeImpl node = this.firstChild;
+            final JavadocNodeImpl node = this.firstChild;
             columnNumber = node.getColumnNumber();
         }
         return this.columnNumber;
@@ -174,9 +176,9 @@ public class JavadocNodeImpl implements DetailNode {
      */
     public void setParent(DetailNode node) {
         JavadocNodeImpl instance = this;
-        JavadocNodeImpl parent = (JavadocNodeImpl) node;
+        final JavadocNodeImpl newParent = (JavadocNodeImpl) node;
         do {
-            instance.parent = parent;
+            instance.parent = newParent;
             instance = instance.nextSibling;
         } while (instance != null);
     }
@@ -204,7 +206,8 @@ public class JavadocNodeImpl implements DetailNode {
         DetailNode temp = firstChild;
         if (temp == null) {
             firstChild = (JavadocNodeImpl) newChild;
-        } else {
+        }
+        else {
             while (temp.getNextSibling() != null) {
                 temp = temp.getNextSibling();
             }

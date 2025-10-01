@@ -66,16 +66,16 @@ class InputRequireEmptyLineBeforeBlockTagGroupIncorrect {
     public static void n() {}
     
     /**
-  	 * Parse the expected and actual content strings as XML and assert that the
-  	 * two are "similar" -- i.e. they contain the same elements and attributes
-  	 * regardless of order.
-  	 * <p>Use of this method assumes the
-  	 * <a href="http://xmlunit.sourceforge.net/">XMLUnit<a/> library is available.
-  	 * @param expected the expected XML content   // violation
-  	 * @param actual the actual XML content
-  	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers#xpath(String, Object...)
-  	 * @see org.springframework.test.web.servlet.result.MockMvcResultMatchers#xpath(String, Map, Object...)
-  	 */
+     * Parse the expected and actual content strings as XML and assert that the
+     * two are "similar" -- i.e. they contain the same elements and attributes
+     * regardless of order.
+     * <p>Use of this method assumes the
+     * <a href="http://xmlunit.sourceforge.net/">XMLUnit<a/> library is available.
+     * @param expected the expected XML content   // violation
+     * @param actual the actual XML content
+     * @see org.springframework.test.web.servlet#xpath(String, Object...)
+     * @see org.springframework.test.web.servlet#xpath(String, Map, Object...)
+     */
     public void assertXmlEquals() {
         
     }

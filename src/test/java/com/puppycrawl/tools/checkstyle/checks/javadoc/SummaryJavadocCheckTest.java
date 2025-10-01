@@ -164,7 +164,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "103: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "110: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING)
+            "110: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(
@@ -354,14 +354,14 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocInheritDoc.java"), expected);
     }
-    
+
     @Test
     public void testSummaryJavadocLargeJavaDoc() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING), 
-            "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE), 
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING), 
-            "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),                 
+            "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+            "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(

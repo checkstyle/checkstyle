@@ -154,7 +154,7 @@ public class ParseTreeTablePresentation {
 
         if (parent instanceof DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
-            for (int i = 0; i < index; i++) {
+            for (int nodeIndex = 0; nodeIndex < index; nodeIndex++) {
                 node = node.getNextSibling();
             }
             result = node;
@@ -176,7 +176,7 @@ public class ParseTreeTablePresentation {
         int result = 0;
 
         if (parent instanceof DetailNode parentNode) {
-            DetailNode node =  parentNode.getFirstChild();
+            DetailNode node = parentNode.getFirstChild();
             while (node != null) {
                 node = node.getNextSibling();
                 result++;

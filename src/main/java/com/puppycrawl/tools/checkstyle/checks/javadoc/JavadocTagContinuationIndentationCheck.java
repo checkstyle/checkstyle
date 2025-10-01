@@ -58,6 +58,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private static final int DEFAULT_INDENTATION = 4;
 
     /**
+     * Constant for the pre tag name.
+     */
+    private static final String PRE_TAG = "pre";
+
+    /**
      * Specify how many spaces to use for new indentation level.
      */
     private int offset = DEFAULT_INDENTATION;
@@ -74,8 +79,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {JavadocCommentsTokenTypes.HTML_ELEMENT, JavadocCommentsTokenTypes.DESCRIPTION};
-
+        return new int[] {
+            JavadocCommentsTokenTypes.HTML_ELEMENT,
+            JavadocCommentsTokenTypes.DESCRIPTION,
+        };
     }
 
     @Override
@@ -95,7 +102,6 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
     }
 
-    
     /**
      * Returns all targeted text nodes from the given AST node.
      * This method decides whether to process the node as a description node
@@ -105,8 +111,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return list of targeted text nodes
      */
     private List<DetailNode> getTargetedTextNodes(DetailNode ast) {
-        List<DetailNode> textNodes;
-
+        final List<DetailNode> textNodes;
         if (ast.getType() == JavadocCommentsTokenTypes.DESCRIPTION) {
             textNodes = getTargetedTextNodesInsideDescription(ast);
         }
@@ -116,7 +121,6 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         return textNodes;
     }
 
-    
     /**
      * Returns all targeted text nodes within an HTML element subtree.
      *
@@ -126,8 +130,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = ast.getFirstChild();
-        
-        if (!JavadocUtil.isTag(ast, "pre") && !isInsidePreTag(ast)) {
+
+        if (!JavadocUtil.isTag(ast, PRE_TAG) && !isInsidePreTag(ast)) {
             while (node != null) {
                 if (node.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
                     // HTML_CONTENT contain text nodes only, so it can be treated as
@@ -145,7 +149,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
         return textNodes;
     }
-    
+
     /**
      * Checks whether the given subtree node represents part of an HTML tag
      * structure that may contain attribute values.
@@ -155,8 +159,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      */
     private boolean subtreeContainsAttributeValue(DetailNode node) {
         return node.getType() == JavadocCommentsTokenTypes.HTML_TAG_START
-                    || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTES
-                    || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTE;
+            || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTES
+            || node.getType() == JavadocCommentsTokenTypes.HTML_ATTRIBUTE;
     }
 
     /**
@@ -165,10 +169,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param descriptionNode the DESCRIPTION node to process
      * @return list of targeted text nodes inside the description node
      */
-    private List<DetailNode> getTargetedTextNodesInsideDescription(DetailNode descriptionNode) {
+    private List<DetailNode> getTargetedTextNodesInsideDescription(
+            DetailNode descriptionNode) {
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = descriptionNode.getFirstChild();
-        DetailNode previousSibling = descriptionNode.getPreviousSibling();
+        final DetailNode previousSibling = descriptionNode.getPreviousSibling();
 
         // special case if the text node is previous sibling of the description node
         if (isTargetTextNode(previousSibling)) {
@@ -202,29 +207,44 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         final DetailNode previousSibling = node.getPreviousSibling();
 
         return previousSibling != null
-                && isTextOrAttributeValueNode(node)
-                && !isBeforePreTag(node)
-                && previousSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
+            && isTextOrAttributeValueNode(node)
+            && !isBeforePreTag(node)
+            && previousSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
-    
+
+    /**
+     * Checks if a node is located before a {@code pre} tag.
+     *
+     * @param node the node to check
+     * @return true if the node is before a pre tag, false otherwise
+     */
     private boolean isBeforePreTag(DetailNode node) {
-        DetailNode nextSibling = node.getNextSibling();
-        boolean isBeforePreTag = false;
-        if (nextSibling != null 
+        final DetailNode nextSibling = node.getNextSibling();
+        final boolean isBeforePreTag;
+        if (nextSibling != null
                 && nextSibling.getType() == JavadocCommentsTokenTypes.DESCRIPTION) {
-            isBeforePreTag = JavadocUtil.isTag(nextSibling.getFirstChild(), "pre");
+            isBeforePreTag = JavadocUtil.isTag(nextSibling.getFirstChild(), PRE_TAG);
         }
-        else if (nextSibling != null ) {
-            isBeforePreTag = JavadocUtil.isTag(nextSibling, "pre");
+        else if (nextSibling != null) {
+            isBeforePreTag = JavadocUtil.isTag(nextSibling, PRE_TAG);
+        }
+        else {
+            isBeforePreTag = false;
         }
         return isBeforePreTag;
     }
-    
+
+    /**
+     * Checks if a node is inside a {@code pre} tag.
+     *
+     * @param node the node to check
+     * @return true if the node is inside a pre tag, false otherwise
+     */
     private boolean isInsidePreTag(DetailNode node) {
-       DetailNode htmlElementParent = node.getParent().getParent();
-         return JavadocUtil.isTag(htmlElementParent, "pre");
+        final DetailNode htmlElementParent = node.getParent().getParent();
+        return JavadocUtil.isTag(htmlElementParent, PRE_TAG);
     }
-    
+
     /**
      * Checks whether the given node is either a TEXT node or an ATTRIBUTE_VALUE node.
      *
@@ -232,8 +252,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return true if the node is a TEXT or ATTRIBUTE_VALUE node, false otherwise
      */
     private boolean isTextOrAttributeValueNode(DetailNode node) {
-        return node.getType() == JavadocCommentsTokenTypes.TEXT 
-                    || node.getType() == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE;
+        return node.getType() == JavadocCommentsTokenTypes.TEXT
+            || node.getType() == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE;
     }
 
     /**
@@ -251,7 +271,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         final String text = textNode.getText();
         if (text.length() <= offset) {
             if (CommonUtil.isBlank(text)) {
-                final DetailNode nextNode  = textNode.getNextSibling();
+                final DetailNode nextNode = textNode.getNextSibling();
                 if (nextNode.getType() != JavadocCommentsTokenTypes.NEWLINE) {
                     // text is blank but line hasn't ended yet
                     result = true;
@@ -268,7 +288,6 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
         return result;
     }
-
 
     /**
      * Checks if the given description node is part of a block Javadoc tag.
@@ -307,5 +326,4 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         }
         return isInline;
     }
-
 }

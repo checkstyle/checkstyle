@@ -20,7 +20,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
  */
 public class InputSummaryJavadocLargeJavadoc {
     private int field4;
-    
+
     private int field5;
 
     // violation below 'First sentence of Javadoc is missing an ending period.'
@@ -36,7 +36,7 @@ public class InputSummaryJavadocLargeJavadoc {
      * singletonElement </head>
      */
     private int field6;
-    
+
     // violation below 'Summary javadoc is missing.'
     /**
      * <li> </li>

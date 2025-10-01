@@ -19,24 +19,21 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.Comparator;
 import java.util.Set;
 
-import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
-import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
-import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
-import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
+import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -72,17 +69,34 @@ public class JavadocDetailNodeParser {
      */
     private static String convertUpperCamelToUpperUnderscore(String text) {
         final StringBuilder result = new StringBuilder(20);
-        boolean first = true;
         for (char letter : text.toCharArray()) {
-            if (!first && Character.isUpperCase(letter)) {
+            if (Character.isUpperCase(letter)) {
                 result.append('_');
             }
             result.append(Character.toUpperCase(letter));
-            first = false;
         }
         return result.toString();
     }
 
+    /**
+     * Parses the given Javadoc comment AST into a {@link ParseStatus} object.
+     *
+     * <p>
+     * This method extracts the raw Javadoc comment text from the supplied
+     * {@link DetailAST}, creates a new lexer and parser for the Javadoc grammar,
+     * and attempts to parse it into an AST of {@link DetailNode}s.
+     * The parser uses {@link PredictionMode#SLL} for
+     * faster performance and stops parsing on the first error encountered by
+     * using {@link CheckstyleParserErrorStrategy}.
+     * </p>
+     *
+     * @param javadocCommentAst
+     *        the {@link DetailAST} node representing the Javadoc comment in the
+     *        source file
+     * @return a {@link ParseStatus} containing the root of the parsed Javadoc
+     *        tree (if successful), the first non-tight HTML tag (if any), and
+     *        the error message (if parsing failed)
+     */
     public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
         blockCommentLineNumber = javadocCommentAst.getLineNo();
 
@@ -102,8 +116,8 @@ public class JavadocDetailNodeParser {
         final JavadocCommentsLexer lexer =
                         new JavadocCommentsLexer(CharStreams.fromString(javadocComment), true);
 
-       lexer.removeErrorListeners();
-       lexer.addErrorListener(errorListener);
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(errorListener);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         tokens.fill();
@@ -125,10 +139,10 @@ public class JavadocDetailNodeParser {
 
         try {
             final JavadocCommentsParser.JavadocContext javadoc = parser.javadoc();
-            int javadocColumnNumber = javadocCommentAst.getColumnNo()
+            final int javadocColumnNumber = javadocCommentAst.getColumnNo()
                             + JAVADOC_START.length();
 
-            JavadocCommentsAstVisitor visitor = new JavadocCommentsAstVisitor(
+            final JavadocCommentsAstVisitor visitor = new JavadocCommentsAstVisitor(
                     tokens, blockCommentLineNumber, javadocColumnNumber);
             final DetailNode tree = visitor.visit(javadoc);
 
@@ -136,12 +150,9 @@ public class JavadocDetailNodeParser {
 
             result.firstNonTightHtmlTag = visitor.getFirstNonTightHtmlTag();
 
-            if (errorListener.getErrorMessage() != null) {
-                result.setParseErrorMessage(errorListener.getErrorMessage());
-            }
+            result.setParseErrorMessage(errorListener.getErrorMessage());
         }
         catch (ParseCancellationException | IllegalArgumentException exc) {
-            // until https://github.com/checkstyle-GSoC25/checkstyle/issues/11
             result.setParseErrorMessage(errorListener.getErrorMessage());
         }
 
@@ -206,7 +217,8 @@ public class JavadocDetailNodeParser {
             final String target;
             if (recognizer instanceof JavadocCommentsLexer lexer) {
                 target = lexer.getPreviousToken().getText();
-            } else {
+            }
+            else {
                 final int ruleIndex = ex.getCtx().getRuleIndex();
                 final String ruleName = recognizer.getRuleNames()[ruleIndex];
                 target = convertUpperCamelToUpperUnderscore(ruleName);

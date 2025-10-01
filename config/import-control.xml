@@ -48,10 +48,16 @@
   <allow class="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener"
          local-only="true"/>
 
-  <file name="DetailAstImpl|JavaParser|JavaAstVisitor|CheckstyleParserErrorStrategy" regex="true">
+  <file name="DetailAstImpl|JavaParser|JavaAstVisitor|CheckstyleParserErrorStrategy"
+        regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>
-  <file name="JavadocDetailNodeParser">
+  <file name="JavadocCommentsAstVisitor|JavadocNodeImpl|JavadocCommentsLexerUtility"
+        regex="true">
+    <allow pkg="org.antlr.v4.runtime"/>
+  </file>
+  <file name="JavadocDetailNodeParser|JavadocCommentsParserUtility|SimpleToken"
+        regex="true">
     <allow pkg="org.antlr.v4.runtime"/>
   </file>
   <file name="PropertyCacheFile">

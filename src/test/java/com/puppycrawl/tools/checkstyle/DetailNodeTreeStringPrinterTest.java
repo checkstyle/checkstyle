@@ -75,7 +75,6 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
             .isEqualTo(expected);
     }
 
-
     @Test
     public void testNoViableAltException() throws Exception {
         final File file = new File(

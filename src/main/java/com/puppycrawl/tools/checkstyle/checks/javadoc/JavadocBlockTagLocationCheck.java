@@ -133,7 +133,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-                JavadocCommentsTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.TEXT,
         };
     }
 

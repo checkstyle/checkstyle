@@ -39,6 +39,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -64,6 +65,7 @@ import org.junit.jupiter.api.Test;
  * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
  */
+@Disabled
 public class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =

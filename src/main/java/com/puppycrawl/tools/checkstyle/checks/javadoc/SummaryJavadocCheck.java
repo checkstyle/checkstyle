@@ -102,7 +102,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * any period will end the sentence, whether it is followed by whitespace or not.
      */
     private String period = DEFAULT_PERIOD;
-    
+
+    /**
+     * Whether to validate untagged summary text in Javadoc.
+     */
     private boolean shouldValidateUntaggedSummary = true;
 
     /**
@@ -134,7 +137,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return new int[] {
             JavadocCommentsTokenTypes.JAVADOC_CONTENT,
             JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG,
-            JavadocCommentsTokenTypes.RETURN_INLINE_TAG,    
+            JavadocCommentsTokenTypes.RETURN_INLINE_TAG,
         };
     }
 
@@ -154,7 +157,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             validateInlineReturnTag(ast);
         }
     }
-    
+
     @Override
     public void leaveJavadocToken(DetailNode ast) {
         if (ast.getType() == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {
@@ -210,9 +213,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     break;
                 case JavadocCommentsTokenTypes.HTML_ELEMENT:
                     isDefinedFirst = isHtmlTagWithoutText(currentAst);
-                    break; 
+                    break;
                 case JavadocCommentsTokenTypes.LEADING_ASTERISK:
-                case JavadocCommentsTokenTypes.NEWLINE:  
+                case JavadocCommentsTokenTypes.NEWLINE:
                     // Ignore formatting tokens
                     break;
                 default:
@@ -231,28 +234,27 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if some text is present inside the HTML element
      */
     public static boolean isHtmlTagWithoutText(DetailNode node) {
-         boolean isEmpty = true;
-         final DetailNode htmlContentToken =
-            JavadocUtil.findFirstToken(node, JavadocCommentsTokenTypes.HTML_CONTENT);
-         
-         if (htmlContentToken != null) {
-             DetailNode child = htmlContentToken.getFirstChild();
-             if (child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                 isEmpty = isHtmlTagWithoutText(child);
-             } 
-             else {
-                 isEmpty = false;
-             }
-         }
-         
-         return isEmpty;
+        boolean isEmpty = true;
+        final DetailNode htmlContentToken =
+             JavadocUtil.findFirstToken(node, JavadocCommentsTokenTypes.HTML_CONTENT);
+
+        if (htmlContentToken != null) {
+            final DetailNode child = htmlContentToken.getFirstChild();
+            if (child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+                isEmpty = isHtmlTagWithoutText(child);
+            }
+            else {
+                isEmpty = false;
+            }
+        }
+        return isEmpty;
     }
 
     /**
      * Checks if the given node is an inline summary tag.
      *
      * @param javadocInlineTag node
-     * @return {@code true} if inline tag is of 
+     * @return {@code true} if inline tag is of
      *       type {@link JavadocCommentsTokenTypes#SUMMARY_INLINE_TAG}
      */
     private static boolean isSummaryTag(DetailNode javadocInlineTag) {
@@ -260,10 +262,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if the given node is an inline return node
+     * Checks if the given node is an inline return node.
      *
      * @param javadocInlineTag node
-     * @return {@code true} if inline tag is of 
+     * @return {@code true} if inline tag is of
      *       type {@link JavadocCommentsTokenTypes#RETURN_INLINE_TAG}
      */
     private static boolean isInlineReturnTag(DetailNode javadocInlineTag) {
@@ -327,13 +329,13 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 && curNode.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
                 customTagContent.append(curNode.getText());
             }
-            
+
             DetailNode toVisit = curNode.getFirstChild();
             while (curNode != descriptionNode && toVisit == null) {
                 toVisit = curNode.getNextSibling();
                 curNode = curNode.getParent();
             }
-            
+
             curNode = toVisit;
         }
         return customTagContent.toString();
@@ -405,7 +407,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG
-                    && node.getFirstChild().getType() 
+                    && node.getFirstChild().getType()
                             == JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG) {
                 found = true;
             }
@@ -435,9 +437,9 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             }
             else {
                 final String summary = result.toString();
-                if (CommonUtil.isBlank(summary) 
+                if (CommonUtil.isBlank(summary)
                         && node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                    DetailNode htmlContentToken = JavadocUtil.findFirstToken(
+                    final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
                             node, JavadocCommentsTokenTypes.HTML_CONTENT);
                     result.append(getStringInsideHtmlTag(summary, htmlContentToken));
                 }
@@ -502,18 +504,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return All the text in all nodes that have no child nodes.
      */
     private static Stream<String> streamTextParts(DetailNode node) {
-        Stream<String> result;
+        final Stream<String> result;
         if (node.getFirstChild() == null) {
             result = Stream.of(node.getText());
         }
         else {
-            List<Stream<String>> childStreams = new ArrayList<>();
+            final List<Stream<String>> childStreams = new ArrayList<>();
             DetailNode child = node.getFirstChild();
             while (child != null) {
                 childStreams.add(streamTextParts(child));
                 child = child.getNextSibling();
             }
-            result = childStreams.stream().flatMap(s -> s);
+            result = childStreams.stream().flatMap(item -> item);
         }
         return result;
     }

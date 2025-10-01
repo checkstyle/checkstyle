@@ -156,8 +156,8 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
         DetailNode node = javadoc.getFirstChild();
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
-                    && node.getFirstChild().getType() ==
-                            JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG) {
+                    && node.getFirstChild().getType()
+                            == JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG) {
                 if (found) {
                     log(node.getLineNumber(), MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());

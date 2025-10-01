@@ -53,13 +53,13 @@ public class JavadocNodeImplTest {
             .that(result)
             .isEqualTo(1);
     }
-    
+
     @Test
     public void testSetNextSibling() {
         final JavadocNodeImpl root = new JavadocNodeImpl();
         final JavadocNodeImpl firstChild = new JavadocNodeImpl();
         final JavadocNodeImpl secondChild = new JavadocNodeImpl();
-        
+
         root.addChild(firstChild);
         firstChild.setNextSibling(secondChild);
 

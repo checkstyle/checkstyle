@@ -332,7 +332,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .that(size)
             .isEqualTo(0);
     }
-    
+
     @Test
     public void testInvalidTokensInsideTag() throws Exception {
         final String path = getPath("InputJavadocPropertiesGeneratorInvalidTokensInsideTag.java");

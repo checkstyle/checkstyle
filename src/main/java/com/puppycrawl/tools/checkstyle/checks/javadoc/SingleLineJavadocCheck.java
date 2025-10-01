@@ -127,7 +127,8 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocTags(DetailNode javadocRoot) {
         final DetailNode javadocTagSection =
-                JavadocUtil.findFirstToken(javadocRoot, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
+                JavadocUtil.findFirstToken(
+                        javadocRoot, JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
         return javadocTagSection != null && !isTagIgnored(javadocTagSection);
     }
 
@@ -142,7 +143,8 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private boolean hasJavadocInlineTags(DetailNode javadocRoot) {
         DetailNode javadocTagSection =
-                JavadocUtil.findFirstToken(javadocRoot, JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
+                JavadocUtil.findFirstToken(
+                        javadocRoot, JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
         boolean foundTag = false;
         while (javadocTagSection != null) {
             if (!isTagIgnored(javadocTagSection)) {
@@ -162,7 +164,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      * @return true, if ignoredTags contains javadocTagSection's javadoc tag.
      */
     private boolean isTagIgnored(DetailNode javadocTagSection) {
-        String tagName = JavadocUtil.getTagName(javadocTagSection);
+        final String tagName = JavadocUtil.getTagName(javadocTagSection);
         return ignoredTags.contains("@" + tagName);
     }
 

@@ -95,21 +95,21 @@ public class InputSummaryJavadocIncorrect3 {
     // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testHtmlTags3() {
     }
-    
+
     /**
-     * <p> 
-     *     
+     * <p>
+     *
      * </p>
      * {@summary This is the summary}
      */
     // violation 2 lines above 'Summary of Javadoc is missing an ending period'
     public void testHtmlTags4() {
     }
-    
+
     // violation below 'Summary javadoc is missing.'
     /**
      * <p>
-     *    
+     *
      *  {@code  text}
      * </p>
      * {@summary This is not the summary}

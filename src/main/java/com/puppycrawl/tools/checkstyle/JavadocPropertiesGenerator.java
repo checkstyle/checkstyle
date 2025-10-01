@@ -264,7 +264,7 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatInlineCodeTag(StringBuilder builder, DetailNode inlineTag)
             throws CheckstyleException {
-        int tagType = inlineTag.getFirstChild().getType();
+        final int tagType = inlineTag.getFirstChild().getType();
 
         if (tagType != JavadocCommentsTokenTypes.LITERAL_INLINE_TAG
                 && tagType != JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
@@ -272,7 +272,7 @@ public final class JavadocPropertiesGenerator {
                 + JavadocUtil.getTokenName(tagType));
         }
 
-        boolean wrapWithCodeTag = tagType == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
+        final boolean wrapWithCodeTag = tagType == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
 
         for (DetailNode node = inlineTag.getFirstChild().getFirstChild(); node != null;
                 node = node.getNextSibling()) {
