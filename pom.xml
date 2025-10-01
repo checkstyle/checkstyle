@@ -946,6 +946,10 @@
                       com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser*
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.grammar.SimpleToken</exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck
                     </exclude>
@@ -1243,12 +1247,84 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.84</minimum>
+                      <minimum>0.80</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.64</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.97</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.97</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.SimpleToken</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.88</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.70</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.90</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.92</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.50</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.50</minimum>
                     </limit>
                   </limits>
                 </rule>

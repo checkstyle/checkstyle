@@ -56,7 +56,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Set;
 import org.antlr.v4.runtime.Token;
-import com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtility;
+import com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil;
 import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
 import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
@@ -117,7 +117,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     public void emit(Token token) {
         super.emit(token);
         if (token.getType() == TAG_NAME) {
-            if (JavadocCommentsLexerUtility.isOpenTagName(previousToken)) {
+            if (JavadocCommentsLexerUtil.isOpenTagName(previousToken)) {
                 openTagNameTokens.push(token);
             }
             else {
@@ -132,7 +132,7 @@ import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
     }
 
     public Set<SimpleToken> getUnclosedTagNameTokens() {
-        return JavadocCommentsLexerUtility.getUnclosedTagNameTokens(
+        return JavadocCommentsLexerUtil.getUnclosedTagNameTokens(
                 openTagNameTokens, closeTagNameTokens);
     }
 
@@ -383,7 +383,7 @@ SnippetAttribute_NEWLINE
     : NEWLINE {setAfterNewline();} -> type(NEWLINE), channel(NEWLINES)
     ;
 
-SnippetArrtibute_WS
+SnippetAttribute_WS
     : [ \t]+ -> type(WS), channel(WHITESPACES)
     ;
 
@@ -391,7 +391,7 @@ SnippetAttribute_JAVADOC_INLINE_TAG_END
     : '}' { braceCounter--; } -> type(JAVADOC_INLINE_TAG_END), popMode, popMode
     ;
 
-SnippetArrtibute_LEADING_ASTERISK
+SnippetAttribute_LEADING_ASTERISK
     : [ \t]* '*' {isAfterNewline()}? -> channel(LEADING_ASTERISKS),
       type(LEADING_ASTERISK)
     ;

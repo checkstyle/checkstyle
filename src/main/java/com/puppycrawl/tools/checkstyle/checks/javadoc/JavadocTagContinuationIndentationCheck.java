@@ -110,7 +110,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param ast the AST node to process
      * @return list of targeted text nodes
      */
-    private List<DetailNode> getTargetedTextNodes(DetailNode ast) {
+    private static List<DetailNode> getTargetedTextNodes(DetailNode ast) {
         final List<DetailNode> textNodes;
         if (ast.getType() == JavadocCommentsTokenTypes.DESCRIPTION) {
             textNodes = getTargetedTextNodesInsideDescription(ast);
@@ -127,7 +127,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param ast the HTML element AST node
      * @return list of targeted text nodes inside the HTML element
      */
-    private List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
+    private static List<DetailNode> getTargetedTextNodesInsideHtmlElement(DetailNode ast) {
         final List<DetailNode> textNodes = new ArrayList<>();
 
         if (!JavadocUtil.isTag(ast, PRE_TAG) && !isInsidePreTag(ast)) {
@@ -169,7 +169,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param descriptionNode the DESCRIPTION node to process
      * @return list of targeted text nodes inside the description node
      */
-    private List<DetailNode> getTargetedTextNodesInsideDescription(
+    private static List<DetailNode> getTargetedTextNodesInsideDescription(
             DetailNode descriptionNode) {
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = descriptionNode.getFirstChild();
@@ -203,7 +203,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @param node the AST node to check
      * @return true if the node is a targeted node, false otherwise
      */
-    private boolean isTargetTextNode(DetailNode node) {
+    private static boolean isTargetTextNode(DetailNode node) {
         final DetailNode previousSibling = node.getPreviousSibling();
 
         return previousSibling != null
