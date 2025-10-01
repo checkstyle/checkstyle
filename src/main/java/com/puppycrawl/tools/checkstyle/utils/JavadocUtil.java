@@ -238,12 +238,11 @@ public final class JavadocUtil {
      * @return {@code true} if the node has the given tag name, {@code false} otherwise
      */
     public static boolean isTag(DetailNode ast, String expectedTagName) {
-        final DetailNode htmlTagStart = JavadocUtil.findFirstToken(ast,
+        final DetailNode htmlTagStart = findFirstToken(ast,
                 JavadocCommentsTokenTypes.HTML_TAG_START);
         boolean isTag = false;
-        final String tagName;
         if (htmlTagStart != null) {
-            tagName = JavadocUtil.findFirstToken(htmlTagStart,
+            final String tagName = findFirstToken(htmlTagStart,
                 JavadocCommentsTokenTypes.TAG_NAME).getText();
             isTag = expectedTagName.equalsIgnoreCase(tagName);
         }

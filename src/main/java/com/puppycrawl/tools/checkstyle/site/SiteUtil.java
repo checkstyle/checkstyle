@@ -1303,8 +1303,6 @@ public final class SiteUtil {
      * @param moduleName the name of the module.
      * @return the description of the setter.
      * @throws MacroExecutionException if the description could not be extracted.
-     * @noinspection TooBroadScope
-     * @noinspectionreason TooBroadScope - complex nature of method requires large scope
      */
     // -@cs[NPathComplexity] Splitting would not make the code more readable
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.

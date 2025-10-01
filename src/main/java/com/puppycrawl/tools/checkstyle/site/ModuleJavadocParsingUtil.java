@@ -206,18 +206,22 @@ public final class ModuleJavadocParsingUtil {
 
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+                boolean found = false;
                 if (JavadocUtil.isTag(node, "ul")) {
                     final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
                         node, JavadocCommentsTokenTypes.HTML_CONTENT);
                     if (isStartOfNotesSection(htmlContentNode.getFirstChild())) {
                         notesStartNode = node;
-                        break;
+                        found = true;
                     }
                 }
                 else if ((JavadocUtil.isTag(node, "p")
                             || JavadocUtil.isTag(node, "li"))
                             && isStartOfNotesSection(node)) {
                     notesStartNode = node;
+                    found = true;
+                }
+                if (found) {
                     break;
                 }
             }

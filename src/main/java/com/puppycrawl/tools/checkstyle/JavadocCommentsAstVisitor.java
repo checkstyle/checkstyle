@@ -605,7 +605,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 if (isTextToken(token)) {
                     accumulator.append(token);
                 }
-                else if (token.getType() != JavadocCommentsLexer.EOF) {
+                else if (token.getType() != Token.EOF) {
                     accumulator.flushTo(parent);
                     parent.addChild(create(token));
                 }
@@ -627,7 +627,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @param token the token to check
      * @return true if the token is a text token, false otherwise
      */
-    private boolean isTextToken(Token token) {
+    private static boolean isTextToken(Token token) {
         return token.getType() == JavadocCommentsTokenTypes.TEXT;
     }
 
@@ -689,7 +689,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @param type the token type to check
      * @return true if the token type is a Javadoc tag, false otherwise
      */
-    private boolean isJavadocTag(int type) {
+    private static boolean isJavadocTag(int type) {
         return JAVADOC_TAG_TYPES.contains(type);
     }
 
@@ -730,8 +730,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     private final class TextAccumulator {
         /**
          * Buffer to accumulate TEXT token texts.
+         *
+         * @noinspection StringBufferField
+         * @noinspectionreason StringBufferField - We want to reuse the same buffer to avoid
          */
-        private final StringBuilder buffer = new StringBuilder();
+        private final StringBuilder buffer = new StringBuilder(256);
 
         /**
          * The first token in the accumulation, used for line/column info.

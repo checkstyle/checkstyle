@@ -56,29 +56,6 @@ public class JavadocDetailNodeParser {
     private static final String JAVADOC_START = "/**";
 
     /**
-     * Line number of the Block comment AST that is being parsed.
-     */
-    private int blockCommentLineNumber;
-
-    /**
-     * Converts the given {@code text} from camel case to all upper case with
-     * underscores separating each word.
-     *
-     * @param text The string to convert.
-     * @return The result of the conversion.
-     */
-    private static String convertUpperCamelToUpperUnderscore(String text) {
-        final StringBuilder result = new StringBuilder(20);
-        for (char letter : text.toCharArray()) {
-            if (Character.isUpperCase(letter)) {
-                result.append('_');
-            }
-            result.append(Character.toUpperCase(letter));
-        }
-        return result.toString();
-    }
-
-    /**
      * Parses the given Javadoc comment AST into a {@link ParseStatus} object.
      *
      * <p>
@@ -98,7 +75,7 @@ public class JavadocDetailNodeParser {
      *        the error message (if parsing failed)
      */
     public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
-        blockCommentLineNumber = javadocCommentAst.getLineNo();
+        final int blockCommentLineNumber = javadocCommentAst.getLineNo();
 
         final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
         final ParseStatus result = new ParseStatus();
@@ -229,6 +206,23 @@ public class JavadocDetailNodeParser {
 
         }
 
+        /**
+         * Converts the given {@code text} from camel case to all upper case with
+         * underscores separating each word.
+         *
+         * @param text The string to convert.
+         * @return The result of the conversion.
+         */
+        private static String convertUpperCamelToUpperUnderscore(String text) {
+            final StringBuilder result = new StringBuilder(20);
+            for (char letter : text.toCharArray()) {
+                if (Character.isUpperCase(letter)) {
+                    result.append('_');
+                }
+                result.append(Character.toUpperCase(letter));
+            }
+            return result.toString();
+        }
     }
 
     /**

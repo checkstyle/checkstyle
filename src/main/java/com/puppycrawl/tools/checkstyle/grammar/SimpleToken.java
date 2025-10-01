@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
+import java.io.Serial;
 import java.util.Objects;
 
 import org.antlr.v4.runtime.CommonToken;
@@ -33,22 +34,25 @@ import org.antlr.v4.runtime.Token;
  */
 public final class SimpleToken extends CommonToken {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     /**
-     * Constructs a new instance of {@link SimpleToken} from an existing ANTLR {@link Token}.
+     * Constructs a new instance from an existing ANTLR {@link Token}.
      *
      * @param token the ANTLR token to wrap
      */
     private SimpleToken(
             Token token) {
         super(token);
-        this.index = token.getTokenIndex();
+        setTokenIndex(token.getTokenIndex());
     }
 
     /**
-     * Creates a new instance of {@link SimpleToken} from an existing ANTLR {@link Token}.
+     * Creates a new instance from an existing ANTLR {@link Token}.
      *
      * @param token the ANTLR token to wrap
-     * @return a new instance of {@link SimpleToken} wrapping the provided token
+     * @return a new instance of SimpleToken wrapping the provided token
      */
     public static SimpleToken from(Token token) {
         return new SimpleToken(token);
@@ -66,13 +70,13 @@ public final class SimpleToken extends CommonToken {
             return false;
         }
         final SimpleToken other = (SimpleToken) obj;
-        return this.getType() == other.getType()
-                && this.getText().equals(other.getText())
-                && this.getLine() == other.getLine()
-                && this.getTokenIndex() == other.getTokenIndex()
-                && this.getCharPositionInLine() == other.getCharPositionInLine()
-                && this.start == other.getStartIndex()
-                && this.stop == other.getStopIndex();
+        return getType() == other.getType()
+                && getText().equals(other.getText())
+                && getLine() == other.getLine()
+                && getTokenIndex() == other.getTokenIndex()
+                && getCharPositionInLine() == other.getCharPositionInLine()
+                && getStartIndex() == other.getStartIndex()
+                && getStopIndex() == other.getStopIndex();
     }
 
     @Override
@@ -83,8 +87,8 @@ public final class SimpleToken extends CommonToken {
                 getLine(),
                 getTokenIndex(),
                 getCharPositionInLine(),
-                start,
-                stop
+                getStartIndex(),
+                getStopIndex()
         );
     }
 }

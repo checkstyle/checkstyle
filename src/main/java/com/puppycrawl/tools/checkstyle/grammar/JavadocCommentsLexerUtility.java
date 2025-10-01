@@ -68,12 +68,10 @@ public final class JavadocCommentsLexerUtility {
 
         for (Token closingTag : closeTagNameTokens) {
             final Deque<Token> tempStack = new ArrayDeque<>();
-            boolean matched = false;
             while (!unmatchedOpen.isEmpty()) {
                 final Token openingTag = unmatchedOpen.pop();
                 if (openingTag.getText().equalsIgnoreCase(closingTag.getText())
                         && openingTag.getTokenIndex() < closingTag.getTokenIndex()) {
-                    matched = true;
                     break;
                 }
                 else {
@@ -86,9 +84,6 @@ public final class JavadocCommentsLexerUtility {
                 unmatchedOpen.push(tempStack.pop());
             }
 
-            if (!matched) {
-                // might need this, let's see how this works out
-            }
         }
 
         // We cannot map to SimpleToken until lexing has completed, otherwise
