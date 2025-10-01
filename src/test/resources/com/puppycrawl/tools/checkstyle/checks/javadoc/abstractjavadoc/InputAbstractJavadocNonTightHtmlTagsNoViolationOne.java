@@ -18,7 +18,7 @@ public class InputAbstractJavadocNonTightHtmlTagsNoViolationOne {
     /** <p> <p> paraception </p> </p> */
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
+    /**<li> paraTags should be opened list isn't nested in parse tree </li>*/
     private int field2;
 
     /**
@@ -29,7 +29,7 @@ public class InputAbstractJavadocNonTightHtmlTagsNoViolationOne {
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr>
+     * <tr> Zero nesting despite `tr` is closed </tr>
      */
 
     int getField1() {return field1;}
@@ -40,7 +40,7 @@ public class InputAbstractJavadocNonTightHtmlTagsNoViolationOne {
     /**
      * <tr> <li> list is going to be nested in the parse tree </li> </tr>
      *
-     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
+     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree
      */
     void setField1(int field1) {this.field1 = field1;}
 
@@ -56,7 +56,7 @@ public class InputAbstractJavadocNonTightHtmlTagsNoViolationOne {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th>
+     *     <tr> nonTight
      */
     private int getField3() {return field3;}
 

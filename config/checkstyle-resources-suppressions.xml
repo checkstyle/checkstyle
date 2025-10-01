@@ -109,10 +109,22 @@
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
             files="[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect4\.java"/>
   
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace" 
     files="separatorwrap[\\/]InputSeparatorWrapForTestTrailingWhitespace\.java"/>
+  <suppress id="noTrailingWhitespace" 
+    files="nonemptyatclausedescription[\\/]InputNonEmptyAtclauseDescriptionOne\.java"/>
+  <suppress id="noTrailingWhitespace" 
+    files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupIncorrect\.java"/>
+  <suppress id="noTrailingWhitespace" 
+    files="requireemptylinebeforeblocktaggroup[\\/]InputRequireEmptyLineBeforeBlockTagGroupCorrect\.java"/>
+  <suppress id="noTrailingWhitespace" 
+    files="javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
