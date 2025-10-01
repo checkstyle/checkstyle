@@ -65,5 +65,5 @@ public class InputJavadocParagraphIncorrect4 {
      *
      * Version 2.x LOCAL TEMPORARY table definitions do not persist beyond
      */
-     public boolean test() { }
+     public void test() { }
 }

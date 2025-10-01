@@ -240,12 +240,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
         if (htmlContentToken != null) {
             final DetailNode child = htmlContentToken.getFirstChild();
-            if (child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                isEmpty = isHtmlTagWithoutText(child);
-            }
-            else {
-                isEmpty = false;
-            }
+            isEmpty = child.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                        && isHtmlTagWithoutText(child);
         }
         return isEmpty;
     }
@@ -438,7 +434,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             else {
                 final String summary = result.toString();
                 if (CommonUtil.isBlank(summary)
-                        && node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+                        && node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                        || isNonTightTag(node)) {
                     final DetailNode htmlContentToken = JavadocUtil.findFirstToken(
                             node, JavadocCommentsTokenTypes.HTML_CONTENT);
                     result.append(getStringInsideHtmlTag(summary, htmlContentToken));
@@ -447,6 +444,18 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             node = node.getNextSibling();
         }
         return result.toString().trim();
+    }
+
+    /**
+     * Checks if the HTML tag is non-tight, i.e. does not have a closing tag.
+     *
+     * @param node DetailNode of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT}
+     * @return {@code true} if the HTML tag is non-tight
+     */
+    private static boolean isNonTightTag(DetailNode node) {
+        final boolean isHtml = node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT;
+        return isHtml && JavadocUtil.findFirstToken(
+                node, JavadocCommentsTokenTypes.HTML_TAG_END) == null;
     }
 
     /**

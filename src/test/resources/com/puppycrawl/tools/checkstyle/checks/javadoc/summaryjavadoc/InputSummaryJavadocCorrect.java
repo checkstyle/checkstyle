@@ -21,6 +21,11 @@ class InputSummaryJavadocCorrect {
     public static final byte NUL = 0;
 
     /**
+     * Some <p>Javadoc.
+     */
+    public static final byte NUL2 = 0;
+
+    /**
      * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
      */
     void foo3() {}
