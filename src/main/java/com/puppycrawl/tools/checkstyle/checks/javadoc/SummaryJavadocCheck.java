@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -511,7 +512,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 childStreams.add(streamTextParts(child));
                 child = child.getNextSibling();
             }
-            result = childStreams.stream().flatMap(item -> item);
+            result = childStreams.stream().flatMap(Function.identity());
         }
         return result;
     }
