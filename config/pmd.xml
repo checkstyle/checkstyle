@@ -50,6 +50,17 @@
                            //MethodDeclaration[@Name='visitJavadocToken']"/>
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/AvoidStringBufferField">
+    <!-- private final helper class with short lifetime,
+         reused per file and always cleared on flush,
+         so no risk of memory leak. 
+    -->
+    <properties>
+      <property name="violationSuppressXPath"
+                value="//ClassDeclaration[@SimpleName='TextAccumulator']
+                     //FieldDeclaration//VariableDeclarator[@Name='buffer']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/bestpractices.xml/SystemPrintln">
     <properties>
       <!-- it is ok to use println in CLI class. -->
@@ -145,7 +156,7 @@
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='Definitions'
                            or @SimpleName='LoadExternalDtdFeatureProvider'
-                           or @SimpleName='JavadocTokenTypes'
+                           or @SimpleName='JavadocCommentsTokenTypes'
                            or @SimpleName='TokenTypes'
                            or @SimpleName='AutomaticBean']"/>
     </properties>
@@ -346,7 +357,8 @@
                 value="//ClassDeclaration[@SimpleName='HandlerFactory'
                 or @SimpleName='SiteUtil' or @SimpleName='Checker' or @SimpleName='JavaAstVisitor'
                 or @SimpleName='Main' or @SimpleName='TreeWalker' or @SimpleName='CheckstyleAntTask'
-                or @SimpleName='TranslationCheck' or @SimpleName='JavadocMethodCheck']"/>
+                or @SimpleName='TranslationCheck' or @SimpleName='JavadocMethodCheck'
+                or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -401,7 +413,7 @@
       | //ClassDeclaration[@SimpleName='JavadocTokenTypes'
         or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
         or @SimpleName='JavadocMethodCheck' or @SimpleName='JavaAstVisitor'
-        or @SimpleName='SiteUtil']"/>
+        or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
@@ -420,7 +432,8 @@
       <property name="maxmethods" value="34"/>
       <!-- JavaAstVisitor is a visitor class with methods for the entire Java grammar. -->
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' or @SimpleName='SiteUtil']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
+                    or @SimpleName='SiteUtil' or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
@@ -521,7 +534,8 @@
   <rule ref="category/java/design.xml/ExcessivePublicCount">
     <properties>
       <property name="violationSuppressXPath"
-                value="//ClassDeclaration[@SimpleName='JavaAstVisitor']"/>
+                value="//ClassDeclaration[@SimpleName='JavaAstVisitor' 
+                    or @SimpleName='JavadocCommentsAstVisitor']"/>
     </properties>
   </rule>
 

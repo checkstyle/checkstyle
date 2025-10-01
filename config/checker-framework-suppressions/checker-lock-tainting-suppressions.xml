@@ -603,8 +603,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>method.guarantee.violated</specifier>
-    <message>@SideEffectFree method toString calls method getTokenName with a weaker @ReleasesNoLocks side effect guarantee</message>
-    <lineContent>+ &quot;, type=&quot; + JavadocUtil.getTokenName(type)</lineContent>
+    <message>@SideEffectFree method toString calls method getColumnNumber with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@SideEffectFree method toString calls method getLineNumber with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return text + &quot;[&quot; + getLineNumber() + &quot;x&quot; + getColumnNumber() + &quot;]&quot;;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -1308,6 +1315,198 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getCharPositionInLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getCharPositionInLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getCharPositionInLine() == other.getCharPositionInLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getLine() == other.getLine()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getStartIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getStartIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getStartIndex() == other.getStartIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getStopIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getStopIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getStopIndex() == other.getStopIndex();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getText with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getText with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getText().equals(other.getText())</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getTokenIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getTokenIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>&amp;&amp; getTokenIndex() == other.getTokenIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getType with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return getType() == other.getType()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method equals calls method getType with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>return getType() == other.getType()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getCharPositionInLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getCharPositionInLine(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getLine with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getLine(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getStartIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getStartIndex(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getStopIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getStopIndex()</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getText with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getText(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getTokenIndex with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getTokenIndex(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>method.guarantee.violated</specifier>
+    <message>@Pure method hashCode calls method getType with a weaker @ReleasesNoLocks side effect guarantee</message>
+    <lineContent>getType(),</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>override.param</specifier>
+    <message>Incompatible parameter type for obj.</message>
+    <lineContent>public boolean equals(Object obj) {</lineContent>
+    <details>
+      found   : @GuardedBy Object
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy SimpleToken
+      @GuardedBy boolean equals(@GuardedBy SimpleToken this, @GuardedBy Object p0)
+      cannot override method in @GuardedBy Object
+      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public boolean equals(Object obj) {</lineContent>
+    <details>
+      found   : @GuardedBy SimpleToken
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy SimpleToken
+      @GuardedBy boolean equals(@GuardedBy SimpleToken this, @GuardedBy Object p0)
+      cannot override method in @GuardedBy Object
+      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public int hashCode() {</lineContent>
+    <details>
+      found   : @GuardedBy SimpleToken
+      required: @GuardSatisfied Object
+      Consequence: method in @GuardedBy SimpleToken
+      @GuardedBy int hashCode(@GuardedBy SimpleToken this)
+      cannot override method in @GuardedBy Object
+      @GuardedBy int hashCode(@GuardSatisfied Object this)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrameModel.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
@@ -1319,21 +1518,6 @@
       @GuardedBy String toString(@GuardedBy ParseMode this)
       cannot override method in @GuardedBy Object
       @GuardedBy String toString(@GuardSatisfied Object this)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
-    <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
-    <lineContent>.filter(Objects::nonNull)</lineContent>
-    <details>
-      found   : @GuardSatisfied Object
-      required: @GuardedBy DetailNode
-      Consequence: method in @GuardedBy Objects
-      @GuardedBy boolean nonNull(@GuardSatisfied Object p0)
-      is not a valid method reference for method in @GuardedBy Predicate&lt;@GuardedBy DetailNode&gt;
-      @GuardedBy boolean test(@GuardedBy Predicate&lt;@GuardedBy DetailNode&gt; this, @GuardedBy DetailNode p0)
     </details>
   </checkerFrameworkError>
 

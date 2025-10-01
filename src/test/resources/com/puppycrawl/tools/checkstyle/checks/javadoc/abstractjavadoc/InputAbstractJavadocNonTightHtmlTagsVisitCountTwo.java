@@ -17,7 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 // violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsVisitCountTwo {
-    /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
+    /** <p> <p> paraception </p> </p> */
 
     private int field4;
 
@@ -26,7 +26,6 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountTwo {
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
      * <li> Outer tag <li> Inner tag nested </li> not nested </li>
      */
-    // violation 2 lines above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**
@@ -40,13 +39,12 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountTwo {
      * <head> head with <img src="~/singletonElement.jpg" alt="" width="100" height="150">
      * singletonElement </head>
      */
-    // violation 8 lines above 'tag BODY_TAG_START'
     private int field6;
 
     /**
      * <body> body <p> paragraph <li> list </li> </p> </body>
      *
-     * @return <li> <li> outer list isn't nested in parse tree </li> </li>
+     * @return <li> <li> outer list isn't nested in parse tree </li>
      */
     // violation 2 lines above 'Unclosed HTML tag found: li'
 
@@ -56,9 +54,9 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountTwo {
      * <thead> <br> </thead>
      * <tfoot> <AREA ALT="alt" COORDS="100,0,200,50" HREF="/href/"> </tfoot>
      * <p> </p>
-     * @param field4 value to which {@link #field4} is to be set to
+     * @see "String"
      */
-    // violation 3 lines above 'tag P_TAG_START'
+    // violation 2 lines above 'tag SEE_BLOCK_TAG'
     private void setField4(int field4) {this.field4 = field4;}
 
     /**
@@ -78,14 +76,12 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountTwo {
      * <tFoot> </TfOOT>
      * @param field5 value to which {@link #field5} is to be set to
      */
-    // violation 16 lines above 'tag LI_TAG_START'
-    // violation 13 lines above 'tag BODY_TAG_START'
     private void setField5(int field5) {this.field5 = field5;}
 
     /**
      *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD> <dt> <Head> <HTML> <option> <tBody> <tHead>
      *      <tFoot>
-     * @param field6 </p> value to which {@link #field6} is to be set to
+     * @param field6 value to which {@link #field6} is to be set to
      */
     // violation 4 lines above 'Unclosed HTML tag found: p'
     private void setField6(int field6) {this.field6 = field6;}

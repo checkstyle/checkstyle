@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -95,12 +95,17 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     public static final String MSG_PRECEDED_BLOCK_TAG = "javadoc.paragraph.preceded.block.tag";
 
     /**
+     * Constant for the paragraph tag name.
+     */
+    private static final String PARAGRAPH_TAG = "p";
+
+    /**
      * Set of block tags supported by this check.
      */
     private static final Set<String> BLOCK_TAGS =
             Set.of("address", "blockquote", "div", "dl",
                    "h1", "h2", "h3", "h4", "h5", "h6", "hr",
-                   "ol", "p", "pre", "table", "ul");
+                   "ol", PARAGRAPH_TAG, "pre", "table", "ul");
 
     /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
@@ -121,8 +126,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.NEWLINE,
-            JavadocTokenTypes.HTML_ELEMENT,
+            JavadocCommentsTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.HTML_ELEMENT,
         };
     }
 
@@ -133,12 +138,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (ast.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(ast)) {
+        if (ast.getType() == JavadocCommentsTokenTypes.NEWLINE && isEmptyLine(ast)) {
             checkEmptyLine(ast);
         }
-        else if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT
-                && (JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START
-                    || JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.PARAGRAPH)) {
+        else if (JavadocUtil.isTag(ast, PARAGRAPH_TAG)) {
             checkParagraphTag(ast);
         }
     }
@@ -150,7 +153,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (nearestToken.getType() == JavadocTokenTypes.TEXT
+        if (nearestToken != null && nearestToken.getType() == JavadocCommentsTokenTypes.TEXT
                 && !CommonUtil.isBlank(nearestToken.getText())) {
             log(newline.getLineNumber(), newline.getColumnNumber(), MSG_TAG_AFTER);
         }
@@ -197,7 +200,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode parent = tag.getParent();
 
         while (parent != null) {
-            if (parent.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            if (parent.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
                 nested = true;
                 break;
             }
@@ -236,15 +239,17 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode htmlElement = getNextSibling(tag);
 
         while (htmlElement != null
-                && htmlElement.getType() != JavadocTokenTypes.HTML_ELEMENT
-                && htmlElement.getType() != JavadocTokenTypes.HTML_TAG) {
-            if ((htmlElement.getType() == JavadocTokenTypes.TEXT
-                    || htmlElement.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG)
-                    && !CommonUtil.isBlank(htmlElement.getText())) {
-                htmlElement = null;
-                break;
+                && htmlElement.getType() != JavadocCommentsTokenTypes.HTML_ELEMENT) {
+            if (htmlElement.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+                htmlElement = htmlElement.getFirstChild();
+                continue;
             }
-            htmlElement = JavadocUtil.getNextSibling(htmlElement);
+            htmlElement = htmlElement.getNextSibling();
+        }
+        if (htmlElement != null
+                && JavadocUtil.findFirstToken(htmlElement,
+                        JavadocCommentsTokenTypes.HTML_TAG_END) == null) {
+            htmlElement = null;
         }
 
         return htmlElement;
@@ -258,18 +263,11 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     @Nullable
     private static String getHtmlElementName(DetailNode htmlElement) {
-        final DetailNode htmlTag;
-        if (htmlElement.getType() == JavadocTokenTypes.HTML_TAG) {
-            htmlTag = htmlElement;
-        }
-        else {
-            htmlTag = JavadocUtil.getFirstChild(htmlElement);
-        }
-        final DetailNode htmlTagFirstChild = JavadocUtil.getFirstChild(htmlTag);
+        final DetailNode htmlTagStart = htmlElement.getFirstChild();
         final DetailNode htmlTagName =
-                JavadocUtil.findFirstToken(htmlTagFirstChild, JavadocTokenTypes.HTML_TAG_NAME);
+                JavadocUtil.findFirstToken(htmlTagStart, JavadocCommentsTokenTypes.TAG_NAME);
         String blockTagName = null;
-        if (htmlTagName != null && BLOCK_TAGS.contains(htmlTagName.getText())) {
+        if (BLOCK_TAGS.contains(htmlTagName.getText())) {
             blockTagName = htmlTagName.getText();
         }
 
@@ -284,9 +282,14 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static DetailNode getNearestNode(DetailNode node) {
         DetailNode currentNode = node;
-        while (currentNode.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                || currentNode.getType() == JavadocTokenTypes.NEWLINE) {
-            currentNode = JavadocUtil.getNextSibling(currentNode);
+        while (currentNode != null
+                && (currentNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                    || currentNode.getType() == JavadocCommentsTokenTypes.NEWLINE)) {
+            currentNode = currentNode.getNextSibling();
+        }
+        if (currentNode != null
+                && currentNode.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+            currentNode = currentNode.getFirstChild();
         }
         return currentNode;
     }
@@ -299,17 +302,35 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static boolean isEmptyLine(DetailNode newLine) {
         boolean result = false;
-        DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
-        if (previousSibling != null
-                && previousSibling.getParent().getType() == JavadocTokenTypes.JAVADOC) {
-            if (previousSibling.getType() == JavadocTokenTypes.TEXT
+        DetailNode previousSibling = newLine.getPreviousSibling();
+        if (previousSibling != null && (previousSibling.getParent().getType()
+                == JavadocCommentsTokenTypes.JAVADOC_CONTENT
+                || insideNonTightHtml(previousSibling))) {
+            if (previousSibling.getType() == JavadocCommentsTokenTypes.TEXT
                     && CommonUtil.isBlank(previousSibling.getText())) {
-                previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
+                previousSibling = previousSibling.getPreviousSibling();
             }
             result = previousSibling != null
-                    && previousSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+                    && previousSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
         }
         return result;
+    }
+
+    /**
+     * Checks whether the given node is inside a non-tight HTML element.
+     *
+     * @param previousSibling the node to check
+     * @return true if inside non-tight HTML, false otherwise
+     */
+    private static boolean insideNonTightHtml(DetailNode previousSibling) {
+        final DetailNode parent = previousSibling.getParent();
+        DetailNode htmlElement = parent;
+        if (parent.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+            htmlElement = parent.getParent();
+        }
+        return htmlElement.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT
+                && JavadocUtil.findFirstToken(htmlElement,
+                    JavadocCommentsTokenTypes.HTML_TAG_END) == null;
     }
 
     /**
@@ -320,17 +341,17 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static boolean isFirstParagraph(DetailNode paragraphTag) {
         boolean result = true;
-        DetailNode previousNode = JavadocUtil.getPreviousSibling(paragraphTag);
+        DetailNode previousNode = paragraphTag.getPreviousSibling();
         while (previousNode != null) {
-            if (previousNode.getType() == JavadocTokenTypes.TEXT
+            if (previousNode.getType() == JavadocCommentsTokenTypes.TEXT
                     && !CommonUtil.isBlank(previousNode.getText())
-                || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && previousNode.getType() != JavadocTokenTypes.NEWLINE
-                    && previousNode.getType() != JavadocTokenTypes.TEXT) {
+                || previousNode.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK
+                    && previousNode.getType() != JavadocCommentsTokenTypes.NEWLINE
+                    && previousNode.getType() != JavadocCommentsTokenTypes.TEXT) {
                 result = false;
                 break;
             }
-            previousNode = JavadocUtil.getPreviousSibling(previousNode);
+            previousNode = previousNode.getPreviousSibling();
         }
         return result;
     }
@@ -344,8 +365,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private static DetailNode getNearestEmptyLine(DetailNode node) {
         DetailNode newLine = node;
         while (newLine != null) {
-            final DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
-            if (newLine.getType() == JavadocTokenTypes.NEWLINE && isEmptyLine(newLine)) {
+            final DetailNode previousSibling = newLine.getPreviousSibling();
+            if (newLine.getType() == JavadocCommentsTokenTypes.NEWLINE && isEmptyLine(newLine)) {
                 break;
             }
             newLine = previousSibling;
@@ -362,8 +383,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private static boolean isImmediatelyFollowedByText(DetailNode tag) {
         final DetailNode nextSibling = getNextSibling(tag);
 
-        return nextSibling.getType() == JavadocTokenTypes.EOF
-                || nextSibling.getText().startsWith(" ");
+        return nextSibling == null || nextSibling.getText().startsWith(" ");
     }
 
     /**
@@ -373,7 +393,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if the paragraph tag is immediately followed by the new line.
      */
     private static boolean isImmediatelyFollowedByNewLine(DetailNode tag) {
-        return getNextSibling(tag).getType() == JavadocTokenTypes.NEWLINE;
+        final DetailNode sibling = getNextSibling(tag);
+        return sibling != null && sibling.getType() == JavadocCommentsTokenTypes.NEWLINE;
     }
 
     /**
@@ -385,20 +406,23 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private static DetailNode getNextSibling(DetailNode tag) {
         DetailNode nextSibling;
+        final DetailNode paragraphStartTagToken = tag.getFirstChild();
+        final DetailNode nextNode = paragraphStartTagToken.getNextSibling();
 
-        if (JavadocUtil.getFirstChild(tag).getType() == JavadocTokenTypes.PARAGRAPH) {
-            final DetailNode paragraphToken = JavadocUtil.getFirstChild(tag);
-            final DetailNode paragraphStartTagToken = JavadocUtil.getFirstChild(paragraphToken);
-            nextSibling = JavadocUtil.getNextSibling(paragraphStartTagToken);
+        if (nextNode == null) {
+            nextSibling = tag.getNextSibling();
+        }
+        else if (nextNode.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
+            nextSibling = nextNode.getFirstChild();
         }
         else {
-            nextSibling = JavadocUtil.getNextSibling(tag);
+            nextSibling = nextNode;
         }
 
-        if (nextSibling.getType() == JavadocTokenTypes.HTML_COMMENT) {
-            nextSibling = JavadocUtil.getNextSibling(nextSibling);
+        if (nextSibling != null
+                && nextSibling.getType() == JavadocCommentsTokenTypes.HTML_COMMENT) {
+            nextSibling = nextSibling.getNextSibling();
         }
-
         return nextSibling;
     }
 }
