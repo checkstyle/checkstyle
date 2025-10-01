@@ -57,13 +57,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * public void setNumber(final int number)
  * {
  *     mNumber = number;
- * }
- *
+ * } <br>
  * public int getNumber()
  * {
  *     return mNumber;
- * }
- *
+ * } <br>
  * public boolean isSomething()
  * {
  *     return false;
