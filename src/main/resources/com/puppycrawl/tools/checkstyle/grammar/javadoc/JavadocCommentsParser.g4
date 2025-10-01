@@ -26,7 +26,7 @@ options {
 @parser::header {
 import java.util.Set;
 import java.util.stream.Collectors;
-import com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtility;
+import com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil;
 import com.puppycrawl.tools.checkstyle.grammar.SimpleToken;
 }
 
@@ -269,7 +269,7 @@ voidElement
     ;
 
 tightElement
-    : { !JavadocCommentsParserUtility.isNonTightTag(_input, unclosedTagNameTokens) }?
+    : { !JavadocCommentsParserUtil.isNonTightTag(_input, unclosedTagNameTokens) }?
       htmlTagStart htmlContent? htmlTagEnd
     ;
 
