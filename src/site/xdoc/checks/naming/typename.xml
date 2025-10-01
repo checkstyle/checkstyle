@@ -163,8 +163,32 @@ class Example3 {
   public interface I_firstName {}
   interface SecondName {} // violation 'Name 'SecondName' must match pattern'
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to public and package-private type:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeName"&gt;
+      &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+      &lt;property name="applyToPublic" value="false"/&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
 </code></pre></div>
-
+        <p id="Example4-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public interface FirstName {}
+  public class SecondName {}
+  protected class ThirdName {}   // violation 'Name 'ThirdName' must match pattern'
+  private class FourthName {}   // violation 'Name 'FourthName' must match pattern'
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="TypeName_Example_of_Usage">
