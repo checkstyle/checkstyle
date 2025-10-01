@@ -306,22 +306,22 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatHtmlElement(StringBuilder builder, DetailNode node) {
         switch (node.getType()) {
-            case JavadocCommentsTokenTypes.TAG_OPEN:
-            case JavadocCommentsTokenTypes.TAG_CLOSE:
-            case JavadocCommentsTokenTypes.TAG_SLASH:
-            case JavadocCommentsTokenTypes.TAG_SLASH_CLOSE:
-            case JavadocCommentsTokenTypes.TAG_NAME:
-            case JavadocCommentsTokenTypes.TEXT:
+            case JavadocCommentsTokenTypes.TAG_OPEN,
+                 JavadocCommentsTokenTypes.TAG_CLOSE,
+                 JavadocCommentsTokenTypes.TAG_SLASH,
+                 JavadocCommentsTokenTypes.TAG_SLASH_CLOSE,
+                 JavadocCommentsTokenTypes.TAG_NAME,
+                 JavadocCommentsTokenTypes.TEXT ->
                 builder.append(node.getText());
-                break;
 
-            default:
+            default -> {
                 for (DetailNode child = node.getFirstChild(); child != null;
-                    child = child.getNextSibling()) {
+                     child = child.getNextSibling()) {
                     formatHtmlElement(builder, child);
                 }
-                break;
+            }
         }
+
     }
 
     /**

@@ -82,7 +82,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * @param detailNode the node to process
      * @return {@code true} if the node is inside an HTML comment
      */
-    private boolean isInsideHtmlComment(DetailNode detailNode) {
+    private static boolean isInsideHtmlComment(DetailNode detailNode) {
         final int parentType = detailNode.getParent().getType();
         return parentType == JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT
                 || parentType == JavadocCommentsTokenTypes.HTML_COMMENT;

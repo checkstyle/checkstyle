@@ -25,6 +25,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 
 /**
  * Implementation of DetailNode interface that is mutable.
+ *
+ * @noinspection FieldNotUsedInToString
+ * @noinspectionreason FieldNotUsedInToString - We require a specific string format for
+ *       printing to CLI.
  */
 public class JavadocNodeImpl implements DetailNode {
 
@@ -79,10 +83,10 @@ public class JavadocNodeImpl implements DetailNode {
      * @param token the token to initialize from.
      */
     public void initialize(Token token) {
-        this.type = token.getType();
-        this.text = token.getText();
-        this.lineNumber = token.getLine() - 1;
-        this.columnNumber = token.getCharPositionInLine();
+        type = token.getType();
+        text = token.getText();
+        lineNumber = token.getLine() - 1;
+        columnNumber = token.getCharPositionInLine();
     }
 
     @Override
@@ -98,19 +102,19 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public int getLineNumber() {
         if (lineNumber == NOT_INITIALIZED) {
-            final JavadocNodeImpl node = this.firstChild;
+            final JavadocNodeImpl node = firstChild;
             lineNumber = node.getLineNumber();
         }
-        return this.lineNumber;
+        return lineNumber;
     }
 
     @Override
     public int getColumnNumber() {
         if (columnNumber == NOT_INITIALIZED) {
-            final JavadocNodeImpl node = this.firstChild;
+            final JavadocNodeImpl node = firstChild;
             columnNumber = node.getColumnNumber();
         }
-        return this.columnNumber;
+        return columnNumber;
     }
 
     @Override

@@ -223,7 +223,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int INDEX_INLINE_TAG = JavadocCommentsLexer.INDEX_INLINE_TAG;
 
     /**
-     * {@code {@snippet}} inline tag.
+     * {@code @snippet} inline tag.
      */
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
