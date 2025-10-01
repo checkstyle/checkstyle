@@ -74,7 +74,7 @@ public class JavadocDetailNodeParser {
      *        tree (if successful), the first non-tight HTML tag (if any), and
      *        the error message (if parsing failed)
      */
-    public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
+    public static ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
         final int blockCommentLineNumber = javadocCommentAst.getLineNo();
 
         final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);

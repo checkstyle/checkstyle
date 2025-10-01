@@ -33,11 +33,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 public class JavadocNodeImpl implements DetailNode {
 
     /**
-     * Constant to indicate if not calculated the child count.
-     */
-    private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
-
-    /**
      * Node type.
      */
     private int type;
@@ -50,12 +45,12 @@ public class JavadocNodeImpl implements DetailNode {
     /**
      * Line number.
      */
-    private int lineNumber = NOT_INITIALIZED;
+    private int lineNumber;
 
     /**
      * Column number.
      */
-    private int columnNumber = NOT_INITIALIZED;
+    private int columnNumber;
 
     /**
      * Parent node.
@@ -101,8 +96,8 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public int getLineNumber() {
-        if (lineNumber == NOT_INITIALIZED) {
-            final JavadocNodeImpl node = firstChild;
+        final JavadocNodeImpl node = firstChild;
+        if (node != null) {
             lineNumber = node.getLineNumber();
         }
         return lineNumber;
@@ -110,8 +105,8 @@ public class JavadocNodeImpl implements DetailNode {
 
     @Override
     public int getColumnNumber() {
-        if (columnNumber == NOT_INITIALIZED) {
-            final JavadocNodeImpl node = firstChild;
+        final JavadocNodeImpl node = firstChild;
+        if (node != null) {
             columnNumber = node.getColumnNumber();
         }
         return columnNumber;
