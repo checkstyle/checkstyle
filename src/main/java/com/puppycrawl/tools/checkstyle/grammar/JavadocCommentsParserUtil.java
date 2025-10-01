@@ -27,14 +27,14 @@ import org.antlr.v4.runtime.TokenStream;
 /**
  * Utility class for Javadoc comments parser operations.
  */
-public final class JavadocCommentsParserUtility {
+public final class JavadocCommentsParserUtil {
 
     /**
      * Private constructor to prevent instantiation of this utility class.
      *
      * @throws IllegalStateException if this constructor is called
      */
-    private JavadocCommentsParserUtility() {
+    private JavadocCommentsParserUtil() {
         throw new IllegalStateException("Utility class");
     }
 

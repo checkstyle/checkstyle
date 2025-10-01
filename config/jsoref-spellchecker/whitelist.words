@@ -70,6 +70,7 @@ ATest
 atid
 atlassian
 atn
+attchar
 attlist
 attr
 autoboxing
@@ -101,7 +102,6 @@ baratali
 Barowski
 basedir
 basefont
-basetag
 baz
 bc
 bdc
@@ -164,25 +164,7 @@ cfz
 cgi
 chainedpropertyutil
 charset
-CHDBACBF
 CHDBEFIF
-CHDCBAHA
-CHDCDBGG
-CHDCEAHH
-CHDCFJDG
-CHDCHAHD
-CHDCHBAE
-CHDDCDHH
-CHDDIECH
-CHDDIEDI
-CHDFHHBB
-CHDGBICD
-CHDGHIDG
-CHDGJCHC
-CHDHDECF
-CHDHGJGD
-CHDHJECF
-CHDJBFDB
 checkchmod
 checkerframework
 checksandfilessuppressionfilegeneratorauditlistener
@@ -289,6 +271,7 @@ Dconfig
 Dconnection
 ddd
 Ddry
+DECCHARS
 declarationorder
 declaredwhenneeded
 Deconstruction
@@ -378,7 +361,6 @@ Ei
 ej
 ejb
 elasticsearch
-elementdef
 elif
 elist
 Ellipsize
@@ -447,6 +429,7 @@ Fgoogle
 Fheader
 fht
 fieldannotations
+Fieldname
 fieldset
 filebasic
 filechooser
@@ -485,7 +468,6 @@ forbiddenapis
 Foreach
 Fpuppycrawl
 fq
-frameset
 freemarker
 Fregexp
 Fresources
@@ -560,7 +542,7 @@ hbase
 hcoles
 Headerjava
 Hejl
-HEXDIGIT
+HEXCHARS
 hh
 hiddenfield
 hideutilityclassconstructor
@@ -575,6 +557,7 @@ htag
 htdocs
 html
 HTMLJS
+htmltags
 htmlunit
 http
 httpcomponents
@@ -619,6 +602,7 @@ Inet
 infinispan
 initializedfields
 Inlined
+inlinetags
 innerassignment
 Innerclass
 INNERR
@@ -752,7 +736,6 @@ jsoref
 jsp
 JSplit
 jsr
-JSSOR
 JTable
 JText
 JToggle
@@ -760,7 +743,6 @@ JTool
 jtree
 junit
 junitpioneer
-justsometag
 jvm
 jxr
 kailasam
@@ -769,7 +751,6 @@ kazgroup
 kbd
 kclee
 KDoc
-keygen
 keyname
 keyscan
 konstantinos
@@ -778,6 +759,7 @@ Kotlin
 Kp
 lambdabodylength
 lambdaparametername
+LBRACE
 LBRACK
 lcurly
 Leanback
@@ -785,6 +767,7 @@ leftcurly
 legacywithboth
 len
 lexer
+lexing
 lgpl
 lhmap
 LHSOf
@@ -1025,7 +1008,6 @@ openjdk
 openrewrite
 operatorwrap
 opsummary
-optgroup
 optimisation
 optionalbracesusage
 OQ
@@ -1114,6 +1096,7 @@ POJO
 Popup
 Postgresql
 powershell
+prc
 prebuilts
 PRESIZE
 prettyprint
@@ -1155,6 +1138,7 @@ qwerty
 QX
 rawtypes
 rb
+RBRACE
 rbrack
 rcurly
 rdiachenko
@@ -1206,7 +1190,6 @@ rnveach
 robinraju
 romani
 romanivanovjr
-rp
 rparen
 rpmfind
 rq
@@ -1215,7 +1198,6 @@ Rrridden
 RRRR
 Rsa
 RSPEC
-rtc
 Rtl
 ru
 ruleset
@@ -1327,7 +1309,6 @@ STT
 Studman
 Styleable
 styleguide
-stylesheet
 subdir
 subelements
 subext
@@ -1458,7 +1439,6 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
-uppercased
 upperell
 upsss
 urandom
@@ -1501,7 +1481,6 @@ Wadl
 Wakelock
 walkthrough
 Warni
-wbr
 Weakento
 webclient
 Webflow

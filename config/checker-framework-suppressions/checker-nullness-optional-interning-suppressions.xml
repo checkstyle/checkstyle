@@ -451,21 +451,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter parent of JavadocDetailNodeParser.createJavadocNode.</message>
-    <lineContent>final JavadocNodeImpl rootJavadocNode = createJavadocNode(parseTreeNode, null, -1);</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull DetailNode
-    </details>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field startToken</message>
+    <lineContent>private Token startToken;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference stack.peek()</message>
-    <lineContent>&amp;&amp; stack.peek().getText().equals(token.getText())) {</lineContent>
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor.java</fileName>
+    <specifier>initialization.fields.uninitialized</specifier>
+    <message>the constructor does not initialize fields: firstNonTightHtmlTag</message>
+    <lineContent>public JavadocCommentsAstVisitor(CommonTokenStream tokens,</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -479,7 +475,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field firstNonTightHtmlTag</message>
-    <lineContent>private Token firstNonTightHtmlTag;</lineContent>
+    <lineContent>private DetailNode firstNonTightHtmlTag;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -494,28 +490,6 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field tree</message>
     <lineContent>private DetailNode tree;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return offendingToken;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable CommonToken
-      method return type: @Initialized @NonNull Token
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return nextSibling;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable ParseTree
-      method return type: @Initialized @NonNull ParseTree
-    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6365,15 +6339,29 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
-    <message>the default constructor does not initialize field children</message>
-    <lineContent>private DetailNode[] children;</lineContent>
+    <message>the default constructor does not initialize field firstChild</message>
+    <lineContent>private JavadocNodeImpl firstChild;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field nextSibling</message>
+    <lineContent>private JavadocNodeImpl nextSibling;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field parent</message>
-    <lineContent>private DetailNode parent;</lineContent>
+    <lineContent>private JavadocNodeImpl parent;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field previousSibling</message>
+    <lineContent>private JavadocNodeImpl previousSibling;</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6381,13 +6369,6 @@
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field text</message>
     <lineContent>private String text;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl.java</fileName>
-    <specifier>introduce.eliminate</specifier>
-    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
-    <lineContent>.orElse(EMPTY_DETAIL_NODE_ARRAY);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -6586,13 +6567,16 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return result;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailNode
-      method return type: @Initialized @NonNull DetailNode
-    </details>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (curNode != descriptionNode &amp;&amp; toVisit == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (curNode != descriptionNode &amp;&amp; toVisit == null) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -8289,6 +8273,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/grammar/SimpleToken.java</fileName>
+    <specifier>override.param</specifier>
+    <message>Incompatible parameter type for obj.</message>
+    <lineContent>public boolean equals(Object obj) {</lineContent>
+    <details>
+      found   : @Initialized @NonNull Object
+      required: @Initialized @Nullable Object
+      Consequence: method in @Initialized @NonNull SimpleToken
+      @Initialized @NonNull boolean equals(@Initialized @NonNull SimpleToken this, @Initialized @NonNull Object p0)
+      cannot override method in @Initialized @NonNull Object
+      @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
@@ -8670,6 +8669,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (curNode != endNode &amp;&amp; toVisit == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/JavadocMetadataScraperUtil.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (curNode != endNode &amp;&amp; toVisit == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/MetadataGeneratorUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter message of CheckstyleException constructor.</message>
@@ -8893,6 +8906,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ModuleJavadocParsingUtil.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>.orElse(null);</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable DetailNode
+      method return type: @Initialized @NonNull DetailNode
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ModuleJavadocParsingUtil.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return notesStartNode;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable DetailNode
+      method return type: @Initialized @NonNull DetailNode
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/PropertiesMacro.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter justification of XdocSink.tableRows.</message>
@@ -8995,6 +9030,20 @@
       is not a valid method reference for method in @Initialized @NonNull ToIntFunction&lt;capture extends @Initialized @Nullable Object&gt;
       @Initialized @NonNull int applyAsInt(@Initialized @NonNull ToIntFunction&lt;capture extends @Initialized @Nullable Object&gt; this, capture extends @Initialized @Nullable Object p0)
     </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (node != endNode &amp;&amp; toVisit == null) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
+    <specifier>not.interned</specifier>
+    <message>attempting to use a non-@Interned comparison operand</message>
+    <lineContent>while (node != endNode &amp;&amp; toVisit == null) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -9318,39 +9367,6 @@
     <details>
       type of expression: @Initialized @Nullable URL
       method return type: @Initialized @NonNull URL
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return nextSibling;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailNode
-      method return type: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return previousSibling;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailNode
-      method return type: @Initialized @NonNull DetailNode
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return resultNode;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailNode
-      method return type: @Initialized @NonNull DetailNode
     </details>
   </checkerFrameworkError>
 
