@@ -1,0 +1,23 @@
+* @serial Duration of this lease.
+* @serial
+* @serial The {@code SQLException} the driver is about to throw to the application.
+* @serial String identifying the other file or {@code null} if there isn't
+*  another file or if not known.
+* @serialData The value returned by {@code getTime()}
+*             is emitted (long).  This represents the offset from
+*             January 1, 1970, 00:00:00 GMT in milliseconds.
+* @serialData The <i>size</i> of the enum map (the number of key-value
+*             mappings) is emitted (int), followed by the key (Object)
+*             and value (Object) for each key-value mapping represented
+*             by the enum map.
+* @serialData
+* @serialField type String The notification type.
+*              A string expressed in a dot notation similar to Java properties.
+*              An example of a notification type is com.sun.management.gc.notification
+* @serialField name String Role name
+* @serialField isWritable boolean Write access mode: {@code true} if role is writable
+* @serialField tab         Hashtable
+*      deprecated, for forward compatibility only
+* @serialField bits long[]
+* @serialField perms java.util.Hashtable
+* @serialField

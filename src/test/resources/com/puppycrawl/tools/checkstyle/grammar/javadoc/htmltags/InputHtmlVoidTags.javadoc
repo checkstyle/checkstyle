@@ -1,0 +1,21 @@
+* This method does something important.
+*
+* <p>This is a normal paragraph.</p>
+*
+* <p>
+* Here's a list of features:
+* <ul>
+*   <li>Feature one</li>
+*   <li>Feature two</li>
+* </ul>
+* </p>
+*
+* <hr>
+*
+* <img src="example.png" alt="Example image">
+* <br>
+* <br/>
+* <input type="text" name="username"/>
+* <meta charset="UTF-8">
+* <link rel="stylesheet" href="style.css">
+* <area shape="rect" coords="34,44,270,350" href="link.html" alt="Link">
