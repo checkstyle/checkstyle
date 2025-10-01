@@ -28,7 +28,7 @@ import java.io.Serializable;
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField
+* @serialField Field description.
 * @serialData
 */
 public class Example1 {}
