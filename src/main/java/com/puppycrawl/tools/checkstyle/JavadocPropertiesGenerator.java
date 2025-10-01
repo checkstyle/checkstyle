@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import picocli.CommandLine;
@@ -231,8 +231,10 @@ public final class JavadocPropertiesGenerator {
     private static String getFirstJavadocSentence(DetailNode tree) throws CheckstyleException {
         String firstSentence = null;
         final StringBuilder builder = new StringBuilder(128);
-        for (DetailNode node : tree.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.TEXT) {
+
+        for (DetailNode node = tree.getFirstChild(); node != null;
+                node = node.getNextSibling()) {
+            if (node.getType() == JavadocCommentsTokenTypes.TEXT) {
                 final Matcher matcher = END_OF_SENTENCE_PATTERN.matcher(node.getText());
                 if (matcher.find()) {
                     // Commit the sentence if an end-of-sentence marker is found.
@@ -243,7 +245,7 @@ public final class JavadocPropertiesGenerator {
                 // on the next line.
                 builder.append(node.getText());
             }
-            else if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+            else if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG) {
                 formatInlineCodeTag(builder, node);
             }
             else {
@@ -262,29 +264,35 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatInlineCodeTag(StringBuilder builder, DetailNode inlineTag)
             throws CheckstyleException {
-        boolean wrapWithCodeTag = false;
-        for (DetailNode node : inlineTag.getChildren()) {
+        final int tagType = inlineTag.getFirstChild().getType();
+
+        if (tagType != JavadocCommentsTokenTypes.LITERAL_INLINE_TAG
+                && tagType != JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
+            throw new CheckstyleException("Unsupported inline tag "
+                + JavadocUtil.getTokenName(tagType));
+        }
+
+        final boolean wrapWithCodeTag = tagType == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
+
+        for (DetailNode node = inlineTag.getFirstChild().getFirstChild(); node != null;
+                node = node.getNextSibling()) {
             switch (node.getType()) {
-                case JavadocTokenTypes.CODE_LITERAL:
-                    wrapWithCodeTag = true;
-                    break;
                 // The text to append.
-                case JavadocTokenTypes.TEXT:
+                case JavadocCommentsTokenTypes.TEXT:
                     if (wrapWithCodeTag) {
-                        builder.append("<code>").append(node.getText()).append("</code>");
+                        builder.append("<code>").append(node.getText().trim()).append("</code>");
                     }
                     else {
-                        builder.append(node.getText());
+                        builder.append(node.getText().trim());
                     }
                     break;
-                // Empty content tags.
-                case JavadocTokenTypes.LITERAL_LITERAL:
-                case JavadocTokenTypes.JAVADOC_INLINE_TAG_START:
-                case JavadocTokenTypes.JAVADOC_INLINE_TAG_END:
-                case JavadocTokenTypes.WS:
+                // skip tag markers
+                case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START:
+                case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END:
+                case JavadocCommentsTokenTypes.TAG_NAME:
                     break;
                 default:
-                    throw new CheckstyleException("Unsupported inline tag "
+                    throw new CheckstyleException("Unsupported child in the inline tag "
                         + JavadocUtil.getTokenName(node.getType()));
             }
         }
@@ -298,17 +306,21 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatHtmlElement(StringBuilder builder, DetailNode node) {
         switch (node.getType()) {
-            case JavadocTokenTypes.START,
-                 JavadocTokenTypes.HTML_TAG_NAME,
-                 JavadocTokenTypes.END,
-                 JavadocTokenTypes.TEXT,
-                 JavadocTokenTypes.SLASH -> builder.append(node.getText());
+            case JavadocCommentsTokenTypes.TAG_OPEN:
+            case JavadocCommentsTokenTypes.TAG_CLOSE:
+            case JavadocCommentsTokenTypes.TAG_SLASH:
+            case JavadocCommentsTokenTypes.TAG_SLASH_CLOSE:
+            case JavadocCommentsTokenTypes.TAG_NAME:
+            case JavadocCommentsTokenTypes.TEXT:
+                builder.append(node.getText());
+                break;
 
-            default -> {
-                for (DetailNode child : node.getChildren()) {
+            default:
+                for (DetailNode child = node.getFirstChild(); child != null;
+                    child = child.getNextSibling()) {
                     formatHtmlElement(builder, child);
                 }
-            }
+                break;
         }
     }
 

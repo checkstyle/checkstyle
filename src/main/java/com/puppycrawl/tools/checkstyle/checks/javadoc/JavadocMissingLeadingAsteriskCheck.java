@@ -21,10 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -52,7 +50,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.NEWLINE,
         };
     }
 
@@ -68,49 +66,37 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
-        DetailNode nextSibling = getNextNode(detailNode);
+        if (!isInsideHtmlComment(detailNode)) {
+            final DetailNode nextSibling = detailNode.getNextSibling();
 
-        // Till https://github.com/checkstyle/checkstyle/issues/9005
-        // Due to bug in the Javadoc parser there may be phantom description nodes.
-        while (TokenUtil.isOfType(nextSibling.getType(),
-                JavadocTokenTypes.DESCRIPTION, JavadocTokenTypes.WS)) {
-            nextSibling = getNextNode(nextSibling);
-        }
-
-        if (!isLeadingAsterisk(nextSibling) && !isLastLine(nextSibling)) {
-            log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
+            if (nextSibling != null && !isLeadingAsterisk(nextSibling)
+                        && !isLastLine(nextSibling)) {
+                log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
+            }
         }
     }
 
     /**
-     * Gets next node in the ast (sibling or parent sibling for the last node).
+     * Checks whether the given node is inside an HTML comment.
      *
      * @param detailNode the node to process
-     * @return next node.
+     * @return {@code true} if the node is inside an HTML comment
      */
-    private static DetailNode getNextNode(DetailNode detailNode) {
-        DetailNode node = JavadocUtil.getFirstChild(detailNode);
-        if (node == null) {
-            node = JavadocUtil.getNextSibling(detailNode);
-            if (node == null) {
-                DetailNode parent = detailNode;
-                do {
-                    parent = parent.getParent();
-                    node = JavadocUtil.getNextSibling(parent);
-                } while (node == null);
-            }
-        }
-        return node;
+    private boolean isInsideHtmlComment(DetailNode detailNode) {
+        final int parentType = detailNode.getParent().getType();
+        return parentType == JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT
+                || parentType == JavadocCommentsTokenTypes.HTML_COMMENT;
+
     }
 
     /**
      * Checks whether the given node is a leading asterisk.
      *
      * @param detailNode the node to process
-     * @return {@code true} if the node is {@link JavadocTokenTypes#LEADING_ASTERISK}
+     * @return {@code true} if the node is {@link JavadocCommentsTokenTypes#LEADING_ASTERISK}
      */
     private static boolean isLeadingAsterisk(DetailNode detailNode) {
-        return detailNode.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+        return detailNode.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
 
     /**
@@ -118,17 +104,17 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * optionally preceded by blank text.
      *
      * @param detailNode the node to process
-     * @return {@code true} if the node is {@link JavadocTokenTypes#EOF}
+     * @return {@code true} if the node is {@code null}
      */
     private static boolean isLastLine(DetailNode detailNode) {
         final DetailNode node;
         if (CommonUtil.isBlank(detailNode.getText())) {
-            node = getNextNode(detailNode);
+            node = detailNode.getNextSibling();
         }
         else {
             node = detailNode;
         }
-        return node.getType() == JavadocTokenTypes.EOF;
+        return node == null;
     }
 
 }

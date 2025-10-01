@@ -1,0 +1,60 @@
+*
+* <p>This example demonstrates complex HTML inside a Javadoc comment.</p>
+*
+* <p>Formatting examples:
+* <strong>bold</strong>,
+* <em>emphasis</em>,
+* <code>{@code Map&lt;String, List&lt;Integer&gt;&gt;}</code>,
+* {@link java.util.function.Function#Function},
+* {@linkplain java.util.stream.Stream#Stream}.
+* </p>
+*
+* <p>List with nesting and formatting:</p>
+* <ul>
+*     <li>Item one
+*     <li>Item two with <code>inline code</code> and:
+*         <ul>
+*             <li>Nested item A with <em>emphasis</em></li>
+*             <li>Nested item B with {@code List<String>}</li>
+*         </ul>
+*     </li>
+*     <li>Item three with <a href="https://example.com" target="_blank">external link</a></li>
+* </ul>
+*
+* <p>Definition list with styling:</p>
+* <dl>
+*     <dt><strong>HTML</strong></dt>
+*     <dd>The markup language for the web</dd>
+*     <dt><strong>CSS</strong></dt>
+*     <dd>Styles and layout formatting</dd>
+* </dl>
+*
+* <p>Code formatting and escape testing:</p>
+* <pre>{@code
+* public class Example {
+*     public void method() {
+*         if (x > 0 && y < 5) {
+*             System.out.println("Valid & tricky!");
+*         }
+*     }
+* }
+* }</pre>
+*
+* <p>Unicode and symbols: π, ∑, ™, &copy;, &gt;, &lt;, &amp;</p>
+*
+* <p>Mixed tag and inline content:</p>
+* <p>Here's a <span style="color:green">green span</span> with {@literal @Annotation} and more.</p>
+*
+* <p>Table with formatting:</p>
+* <table>
+*     <thead>
+*         <tr><th>Name</th><th>Value</th></tr>
+*     </thead>
+*     <tbody>
+*         <tr><td><code>x</code></td><td>42</td></tr>
+*         <tr><td><code>y</code></td><td>17</td></tr>
+*     </tbody>
+* </table>
+*
+* <p>Final paragraph to end the example.</p>
+* Unicode madness: π, ✓, 你好, 💡, &not;

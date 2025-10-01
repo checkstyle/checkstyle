@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -50,22 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *      should be overridden only by demand in subclasses
  */
 public abstract class AbstractJavadocCheck extends AbstractCheck {
-
-    /**
-     * Message key of error message. Missed close HTML tag breaks structure
-     * of parse tree, so parser stops parsing and generates such error
-     * message. This case is special because parser prints error like
-     * {@code "no viable alternative at input 'b \n *\n'"} and it is not
-     * clear that error is about missed close HTML tag.
-     */
-    public static final String MSG_JAVADOC_MISSED_HTML_CLOSE =
-            JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
-
-    /**
-     * Message key of error message.
-     */
-    public static final String MSG_JAVADOC_WRONG_SINGLETON_TAG =
-            JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
 
     /**
      * Parse error while rule recognition.
@@ -116,7 +100,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * Returns the default javadoc token types a check is interested in.
      *
      * @return the default javadoc token types
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public abstract int[] getDefaultJavadocTokens();
 
@@ -135,7 +119,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The default implementation returns the check's default javadoc tokens.
      *
      * @return the javadoc token set this check is designed for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public int[] getAcceptableJavadocTokens() {
         final int[] defaultJavadocTokens = getDefaultJavadocTokens();
@@ -148,7 +132,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * The javadoc tokens that this check must be registered for.
      *
      * @return the javadoc token set this must be registered for.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     public int[] getRequiredJavadocTokens() {
         return CommonUtil.EMPTY_INT_ARRAY;
@@ -327,7 +311,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
 
             final ParseStatus result = TREE_CACHE.get()
                     .computeIfAbsent(treeCacheKey, lineNumber -> {
-                        return context.get().parser.parseJavadocAsDetailNode(blockCommentNode);
+                        return context.get().parser.parseJavadocComment(blockCommentNode);
                     });
 
             if (result.getParseErrorMessage() == null) {
@@ -336,7 +320,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                 }
 
                 if (violateExecutionOnNonTightHtml && result.isNonTight()) {
-                    log(result.getFirstNonTightHtmlTag().getLine(),
+                    log(result.getFirstNonTightHtmlTag().getLineNumber(),
                             MSG_KEY_UNCLOSED_HTML_TAG,
                             result.getFirstNonTightHtmlTag().getText());
                 }
@@ -385,13 +369,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             if (waitsForProcessing) {
                 visitJavadocToken(curNode);
             }
-            DetailNode toVisit = JavadocUtil.getFirstChild(curNode);
+            DetailNode toVisit = curNode.getFirstChild();
             while (curNode != null && toVisit == null) {
                 if (waitsForProcessing) {
                     leaveJavadocToken(curNode);
                 }
 
-                toVisit = JavadocUtil.getNextSibling(curNode);
+                toVisit = curNode.getNextSibling();
                 curNode = curNode.getParent();
                 if (curNode != null) {
                     waitsForProcessing = shouldBeProcessed(curNode);
