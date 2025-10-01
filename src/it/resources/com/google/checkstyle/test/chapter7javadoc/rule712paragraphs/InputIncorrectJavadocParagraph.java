@@ -27,6 +27,7 @@ class InputIncorrectJavadocParagraph {
   // violation 4 lines above '<p> tag should be placed immediately before the first word'
   public static final byte NUL = 0;
 
+  // violation 2 lines below 'First sentence of Javadoc is missing an ending period.'
   // violation 2 lines below '<p> tag should be preceded with an empty line.'
   /**
    * Some <p>Javadoc.

@@ -345,6 +345,10 @@
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
   </Match>
   <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor" />
+    <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
+  </Match>
+  <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler" />
     <Bug pattern="PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS" />
   </Match>
