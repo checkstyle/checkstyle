@@ -27,6 +27,11 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
 public class JavadocNodeImplTest {
 
+    /**
+     * Constant to indicate if not calculated the child count.
+     */
+    private static final int NOT_INITIALIZED = Integer.MIN_VALUE;
+
     @Test
     public void testToString() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
@@ -52,6 +57,28 @@ public class JavadocNodeImplTest {
         assertWithMessage("Invalid column number")
             .that(result)
             .isEqualTo(1);
+    }
+
+    @Test
+    public void testGetColumnNumberWithNoChild() {
+        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+
+        final int result = javadocNode.getColumnNumber();
+
+        assertWithMessage("Invalid column number")
+            .that(result)
+            .isEqualTo(NOT_INITIALIZED);
+    }
+
+    @Test
+    public void testGetLineNumberWithNoChild() {
+        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+
+        final int result = javadocNode.getLineNumber();
+
+        assertWithMessage("Invalid line number")
+            .that(result)
+            .isEqualTo(NOT_INITIALIZED);
     }
 
     @Test

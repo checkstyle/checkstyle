@@ -31,14 +31,14 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 /**
  * Utility class for Javadoc comments lexer operations.
  */
-public final class JavadocCommentsLexerUtility {
+public final class JavadocCommentsLexerUtil {
 
     /**
      * Private constructor to prevent instantiation of this utility class.
      *
      * @throws IllegalStateException if this constructor is called, indicating that
      */
-    private JavadocCommentsLexerUtility() {
+    private JavadocCommentsLexerUtil() {
         throw new IllegalStateException("Utility class");
     }
 
