@@ -90,7 +90,7 @@ class Check {
      * </p>
      */
     public void fooooo() {}
- 
+
      /**
      * For the example above Checkstyle will enforce:
      *
@@ -102,7 +102,7 @@ class Check {
     void test() { }
 
     /**
-     * {@code 
+     * {@code
      * 
      *   Test
      * }

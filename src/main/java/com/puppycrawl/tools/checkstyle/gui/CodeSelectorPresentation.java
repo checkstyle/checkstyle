@@ -156,11 +156,11 @@ public class CodeSelectorPresentation {
                     + detailNode.getColumnNumber() + detailNode.getText().length();
         }
         else {
-            DetailNode node = detailNode.getFirstChild();
-            while (node.getNextSibling() != null) {
-                node = node.getNextSibling();
+            DetailNode firstChild = detailNode.getFirstChild();
+            while (firstChild.getNextSibling() != null) {
+                firstChild = firstChild.getNextSibling();
             }
-            lastPosition = findLastPosition(node);
+            lastPosition = findLastPosition(firstChild);
         }
         return lastPosition;
     }

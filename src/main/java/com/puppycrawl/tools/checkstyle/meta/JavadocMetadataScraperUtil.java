@@ -54,7 +54,7 @@ public final class JavadocMetadataScraperUtil {
                                                DetailNode endNode) {
         DetailNode curNode = startNode;
         final StringBuilder result = new StringBuilder(1024);
-        
+
         while (curNode != null) {
             if (isContentToWrite(curNode)) {
                 String childText = curNode.getText();
@@ -65,13 +65,13 @@ public final class JavadocMetadataScraperUtil {
 
                 result.append(childText);
             }
-            
+
             DetailNode toVisit = curNode.getFirstChild();
             while (curNode != endNode && toVisit == null) {
                 toVisit = curNode.getNextSibling();
                 curNode = curNode.getParent();
             }
-            
+
             curNode = toVisit;
         }
         return result.toString().trim();
@@ -79,12 +79,12 @@ public final class JavadocMetadataScraperUtil {
 
     /**
      * Checks whether the given node is inside a {@code @code} Javadoc inline tag.
-     * 
+     *
      * @param node the node to check
      * @return true if the node is inside a {@code @code} inline tag, false otherwise
      */
     private static boolean isInsideCodeInlineTag(DetailNode node) {
-        return node.getParent() != null 
+        return node.getParent() != null
                 && node.getParent().getType() == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
     }
 

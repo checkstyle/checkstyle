@@ -23,13 +23,13 @@ import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.sink.Sink;
 
 import com.puppycrawl.tools.checkstyle.PropertyType;
 import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -94,7 +94,7 @@ public final class ModuleJavadocParsingUtil {
     private static boolean isStartOfNotesSection(DetailNode htmlElement) {
         final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
             htmlElement, JavadocCommentsTokenTypes.HTML_CONTENT);
-        
+
         return htmlContentNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
             htmlContentNode, NOTES_LINE);
     }
@@ -178,7 +178,7 @@ public final class ModuleJavadocParsingUtil {
      * @return the end index.
      */
     public static DetailNode getDescriptionEndNode(DetailNode moduleJavadoc) {
-        DetailNode descriptionEndNode;
+        final DetailNode descriptionEndNode;
 
         final DetailNode notesStartingNode =
             getNotesSectionStartNode(moduleJavadoc);
@@ -187,8 +187,8 @@ public final class ModuleJavadocParsingUtil {
             descriptionEndNode = notesStartingNode.getPreviousSibling();
         }
         else {
-            descriptionEndNode 
-                    = getModuleSinceVersionTagStartNode(moduleJavadoc).getPreviousSibling();
+            descriptionEndNode = getModuleSinceVersionTagStartNode(
+                                        moduleJavadoc).getPreviousSibling();
         }
 
         return descriptionEndNode;
@@ -214,9 +214,9 @@ public final class ModuleJavadocParsingUtil {
                         break;
                     }
                 }
-                else if ((JavadocUtil.isTag(node, "p") 
+                else if ((JavadocUtil.isTag(node, "p")
                             || JavadocUtil.isTag(node, "li"))
-                            && isStartOfNotesSection(node))  {
+                            && isStartOfNotesSection(node)) {
                     notesStartNode = node;
                     break;
                 }
@@ -262,7 +262,7 @@ public final class ModuleJavadocParsingUtil {
         else {
             final DetailNode notesEndNode = getNotesEndNode(moduleJavadoc);
 
-            final String unprocessedNotes = 
+            final String unprocessedNotes =
                     JavadocMetadataScraperUtil.constructSubTreeText(
                         notesStartNode, notesEndNode);
             result = NOTES_LINE_WITH_NEWLINE.matcher(unprocessedNotes).replaceAll("");

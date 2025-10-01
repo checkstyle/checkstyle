@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Test;
  * @noinspectionreason ClassIndependentOfModule - architecture of test modules
  *      requires this structure
  */
-public class GeneratedJavadocTokenTypesTest {
-    
+public class GeneratedJavadocCommentsTokenTypesTest {
+
     private static final List<String> INTERNAL_TOKENS = List.of(
         "WS",
         "CODE",
@@ -68,7 +68,6 @@ public class GeneratedJavadocTokenTypesTest {
         "ATTRIBUTE",
         "Link_COMMA"
     );
-
 
     private static final String MSG = "Ensure that token numbers generated for the elements"
             + "present in JavadocParser are consistent with what the tests assert.";
@@ -346,12 +345,12 @@ public class GeneratedJavadocTokenTypesTest {
         assertWithMessage(MSG)
             .that(JavadocCommentsLexer.TAG_ATTR_NAME)
             .isEqualTo(114);
-        
+
         final Set<String> modeNames = Set.of(JavadocCommentsLexer.modeNames);
         final Set<String> channelNames = Set.of(JavadocCommentsLexer.channelNames);
 
         final int tokenCount = (int) Arrays.stream(JavadocCommentsLexer.class.getDeclaredFields())
-                .filter(GeneratedJavadocTokenTypesTest::isPublicStaticFinalInt)
+                .filter(GeneratedJavadocCommentsTokenTypesTest::isPublicStaticFinalInt)
                 .filter(field -> !modeNames.contains(field.getName()))
                 .filter(field -> !channelNames.contains(field.getName()))
                 .filter(field -> !INTERNAL_TOKENS.contains(field.getName()))

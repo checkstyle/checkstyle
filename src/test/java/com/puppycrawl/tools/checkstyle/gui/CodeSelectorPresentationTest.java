@@ -137,8 +137,8 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         DetailNode javadocLeaf = null;
         DetailNode node = javadoc.getFirstChild();
-        for (int i = 0; node != null; i++, node = node.getNextSibling()) {
-            if (i == 2) {
+        for (int index = 0; node != null; index++, node = node.getNextSibling()) {
+            if (index == 2) {
                 javadocLeaf = node;
                 break;
             }

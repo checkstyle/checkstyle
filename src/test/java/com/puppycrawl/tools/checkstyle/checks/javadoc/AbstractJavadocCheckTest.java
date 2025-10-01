@@ -124,7 +124,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             .that(systemErr.getCapturedData())
             .isEqualTo("");
     }
-    
+
     @Test
     public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
@@ -422,9 +422,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "72: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     32, "mismatched input 'description' expecting <EOF>", "JAVADOC"),
             "88: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    34, "mismatched input 'description' expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
+                    34, "mismatched input 'description' "
+                             + "expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
             "95: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    39, "mismatched input 'description' expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
+                    39, "mismatched input 'description'"
+                            + " expecting JAVADOC_INLINE_TAG_END", "INLINE_TAG"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNoWsBeforeDescriptionInJavadocTags.java"),

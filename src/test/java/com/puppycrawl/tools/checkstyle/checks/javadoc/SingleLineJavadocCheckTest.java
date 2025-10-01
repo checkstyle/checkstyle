@@ -85,9 +85,9 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLexerError() throws Exception {
         final String[] expected = {
-                "14: " + getCheckMessage(AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR,
+            "14: " + getCheckMessage(AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR,
                         4, "token recognition error at: '@'", "@"),
-                "19: " + getCheckMessage(MSG_KEY),
+            "19: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputSingleLineJavadocLexerError.java"), expected);

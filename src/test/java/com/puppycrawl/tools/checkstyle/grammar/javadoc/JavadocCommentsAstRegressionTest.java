@@ -1,10 +1,30 @@
-package com.puppycrawl.tools.checkstyle.grammar.javadoc;
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2025 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
-import org.junit.jupiter.api.Test;
+package com.puppycrawl.tools.checkstyle.grammar.javadoc;
 
 import java.io.File;
 import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
 public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     @Override
@@ -16,7 +36,7 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
         return getPath("inlinetags" + File.separator + filename);
     }
 
-    private String getHTMLTagsPath(String filename) throws IOException {
+    private String getHtmlTagsPath(String filename) throws IOException {
         return getPath("htmltags" + File.separator + filename);
     }
 
@@ -176,44 +196,44 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testHtmlElements() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlElements.txt"),
-                getHTMLTagsPath("InputHtmlElements.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlElements.txt"),
+                getHtmlTagsPath("InputHtmlElements.javadoc"));
     }
 
     @Test
     public void testHtmlVoidTags() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlVoidTags.txt"),
-                getHTMLTagsPath("InputHtmlVoidTags.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlVoidTags.txt"),
+                getHtmlTagsPath("InputHtmlVoidTags.javadoc"));
     }
 
     @Test
     public void testEmptyHtmlContent() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedEmptyHtmlContent.txt"),
-                getHTMLTagsPath("InputEmptyHtmlContent.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedEmptyHtmlContent.txt"),
+                getHtmlTagsPath("InputEmptyHtmlContent.javadoc"));
     }
 
     @Test
     public void testNonTightTags1() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags1.txt"),
-                getHTMLTagsPath("InputNonTightTags1.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags1.txt"),
+                getHtmlTagsPath("InputNonTightTags1.javadoc"));
     }
 
     @Test
     public void testNonTightTags2() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags2.txt"),
-                getHTMLTagsPath("InputNonTightTags2.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags2.txt"),
+                getHtmlTagsPath("InputNonTightTags2.javadoc"));
     }
 
     @Test
     public void testNonTightTags3() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags3.txt"),
-                getHTMLTagsPath("InputNonTightTags3.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags3.txt"),
+                getHtmlTagsPath("InputNonTightTags3.javadoc"));
     }
 
     @Test
     public void testNonTightTags4() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedNonTightTags4.txt"),
-                getHTMLTagsPath("InputNonTightTags4.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags4.txt"),
+                getHtmlTagsPath("InputNonTightTags4.javadoc"));
     }
 
     @Test
@@ -224,8 +244,8 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testNewlinesInHtmlAttributes() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedNewlinesInHtmlAttributes.txt"),
-                getHTMLTagsPath("InputNewlinesInHtmlAttributes.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedNewlinesInHtmlAttributes.txt"),
+                getHtmlTagsPath("InputNewlinesInHtmlAttributes.javadoc"));
     }
 
     @Test
@@ -236,7 +256,7 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
 
     @Test
     public void testHtmlComments() throws Exception {
-        verifyJavadocTree(getHTMLTagsPath("ExpectedHtmlComment.txt"),
-                getHTMLTagsPath("InputHtmlComment.javadoc"));
+        verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlComment.txt"),
+                getHtmlTagsPath("InputHtmlComment.javadoc"));
     }
 }

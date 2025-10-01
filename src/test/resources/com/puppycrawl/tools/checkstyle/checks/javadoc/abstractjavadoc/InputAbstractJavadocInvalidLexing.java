@@ -5,7 +5,7 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$ParseJav
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
-class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
+class InputAbstractJavadocInvalidLexing {
     /**
      * @serialField Fieldname-fieldtype-fielddescription
      */

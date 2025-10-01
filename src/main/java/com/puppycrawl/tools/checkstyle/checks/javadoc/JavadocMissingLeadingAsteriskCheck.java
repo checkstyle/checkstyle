@@ -67,9 +67,10 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode detailNode) {
         if (!isInsideHtmlComment(detailNode)) {
-            DetailNode nextSibling = detailNode.getNextSibling();
+            final DetailNode nextSibling = detailNode.getNextSibling();
 
-            if (nextSibling != null && !isLeadingAsterisk(nextSibling) && !isLastLine(nextSibling)) {
+            if (nextSibling != null && !isLeadingAsterisk(nextSibling)
+                        && !isLastLine(nextSibling)) {
                 log(nextSibling.getLineNumber(), MSG_MISSING_ASTERISK);
             }
         }
@@ -82,7 +83,7 @@ public class JavadocMissingLeadingAsteriskCheck extends AbstractJavadocCheck {
      * @return {@code true} if the node is inside an HTML comment
      */
     private boolean isInsideHtmlComment(DetailNode detailNode) {
-        int parentType = detailNode.getParent().getType();
+        final int parentType = detailNode.getParent().getType();
         return parentType == JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT
                 || parentType == JavadocCommentsTokenTypes.HTML_COMMENT;
 

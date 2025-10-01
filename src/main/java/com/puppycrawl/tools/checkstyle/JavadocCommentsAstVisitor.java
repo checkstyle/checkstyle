@@ -1,4 +1,34 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2025 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 package com.puppycrawl.tools.checkstyle;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.antlr.v4.runtime.BufferedTokenStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
@@ -7,18 +37,56 @@ import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParserBaseVisitor;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
-import org.antlr.v4.runtime.BufferedTokenStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+/**
+ * Visitor class used to build Checkstyle's Javadoc AST from the parse tree
+ * produced by {@link JavadocCommentsParser}. Each overridden {@code visit...}
+ * method visits children of a parse tree node (subrules) or creates terminal
+ * nodes (tokens), and returns a {@link JavadocNodeImpl} subtree as the result.
+ *
+ * <p>
+ * The order of {@code visit...} methods in {@code JavaAstVisitor.java} and production rules in
+ * {@code JavaLanguageParser.g4} should be consistent to ease maintenance.
+ * </p>
+ *
+ * @see JavadocCommentsLexer
+ * @see JavadocCommentsParser
+ * @see JavadocNodeImpl
+ * @see JavaAstVisitor
+ */
 public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<JavadocNodeImpl> {
+
+    /**
+     * All Javadoc tag token types.
+     */
+    private static final Set<Integer> JAVADOC_TAG_TYPES = Set.of(
+        JavadocCommentsLexer.CODE,
+        JavadocCommentsLexer.LINK,
+        JavadocCommentsLexer.LINKPLAIN,
+        JavadocCommentsLexer.VALUE,
+        JavadocCommentsLexer.INHERIT_DOC,
+        JavadocCommentsLexer.SUMMARY,
+        JavadocCommentsLexer.SYSTEM_PROPERTY,
+        JavadocCommentsLexer.INDEX,
+        JavadocCommentsLexer.RETURN,
+        JavadocCommentsLexer.LITERAL,
+        JavadocCommentsLexer.SNIPPET,
+        JavadocCommentsLexer.CUSTOM_NAME,
+        JavadocCommentsLexer.AUTHOR,
+        JavadocCommentsLexer.DEPRECATED,
+        JavadocCommentsLexer.PARAM,
+        JavadocCommentsLexer.THROWS,
+        JavadocCommentsLexer.EXCEPTION,
+        JavadocCommentsLexer.SINCE,
+        JavadocCommentsLexer.VERSION,
+        JavadocCommentsLexer.SEE,
+        JavadocCommentsLexer.LITERAL_HIDDEN,
+        JavadocCommentsLexer.USES,
+        JavadocCommentsLexer.PROVIDES,
+        JavadocCommentsLexer.SERIAL,
+        JavadocCommentsLexer.SERIAL_DATA,
+        JavadocCommentsLexer.SERIAL_FIELD
+    );
 
     /**
      * Line number of the Block comment AST that is being parsed.
@@ -47,10 +115,20 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      */
     private final TextAccumulator accumulator = new TextAccumulator();
 
+    /**
+     * The first non-tight HTML tag encountered in the Javadoc comment, if any.
+     */
+    private DetailNode firstNonTightHtmlTag;
 
-    private DetailNode firstNonTightHtmlTag = null;
-
-    public JavadocCommentsAstVisitor(CommonTokenStream tokens, int blockCommentLineNumber, int javadocColumnNumber) {
+    /**
+     * Constructs a JavaAstVisitor with given token stream, line number, and column number.
+     *
+     * @param tokens the token stream to check for hidden tokens
+     * @param blockCommentLineNumber the line number of the block comment being parsed
+     * @param javadocColumnNumber the column number of the javadoc indent
+     */
+    public JavadocCommentsAstVisitor(CommonTokenStream tokens,
+                                     int blockCommentLineNumber, int javadocColumnNumber) {
         this.tokens = tokens;
         this.blockCommentLineNumber = blockCommentLineNumber;
         this.javadocColumnNumber = javadocColumnNumber;
@@ -68,31 +146,48 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitBlockTag(JavadocCommentsParser.BlockTagContext ctx) {
-        JavadocNodeImpl blockTagNode = createImaginary(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
-        ParseTree tag = ctx.getChild(0);
-        JavadocNodeImpl specificTagNode  = null;
+        final JavadocNodeImpl blockTagNode =
+                createImaginary(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
+        final ParseTree tag = ctx.getChild(0);
+        JavadocNodeImpl specificTagNode = null;
 
         if (tag instanceof ParserRuleContext prc) {
-            Token tagName = (Token) prc.getChild(1).getPayload();
-            int tokenType = tagName.getType();
+            final Token tagName = (Token) prc.getChild(1).getPayload();
+            final int tokenType = tagName.getType();
 
-            specificTagNode  = switch (tokenType) {
-                case JavadocCommentsLexer.AUTHOR -> buildImaginaryNode(JavadocCommentsTokenTypes.AUTHOR_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.DEPRECATED -> buildImaginaryNode(JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.RETURN -> buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.PARAM -> buildImaginaryNode(JavadocCommentsTokenTypes.PARAM_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.THROWS -> buildImaginaryNode(JavadocCommentsTokenTypes.THROWS_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.EXCEPTION -> buildImaginaryNode(JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.SINCE -> buildImaginaryNode(JavadocCommentsTokenTypes.SINCE_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.VERSION -> buildImaginaryNode(JavadocCommentsTokenTypes.VERSION_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.SEE -> buildImaginaryNode(JavadocCommentsTokenTypes.SEE_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.LITERAL_HIDDEN -> buildImaginaryNode(JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.USES -> buildImaginaryNode(JavadocCommentsTokenTypes.USES_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.PROVIDES -> buildImaginaryNode(JavadocCommentsTokenTypes.PROVIDES_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.SERIAL -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.SERIAL_DATA -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_DATA_BLOCK_TAG, ctx);
-                case JavadocCommentsLexer.SERIAL_FIELD -> buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_FIELD_BLOCK_TAG, ctx);
-                default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG, ctx);
+            specificTagNode = switch (tokenType) {
+                case JavadocCommentsLexer.AUTHOR ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.AUTHOR_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.DEPRECATED ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.RETURN ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.PARAM ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.PARAM_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.THROWS ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.THROWS_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.EXCEPTION ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.EXCEPTION_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SINCE ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SINCE_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.VERSION ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.VERSION_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SEE ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SEE_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.LITERAL_HIDDEN ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.HIDDEN_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.USES ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.USES_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.PROVIDES ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.PROVIDES_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL_DATA ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_DATA_BLOCK_TAG, ctx);
+                case JavadocCommentsLexer.SERIAL_FIELD ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SERIAL_FIELD_BLOCK_TAG, ctx);
+                default ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG, ctx);
             };
         }
 
@@ -121,7 +216,6 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return flattenedTree(ctx);
     }
 
-
     @Override
     public JavadocNodeImpl visitThrowsTag(JavadocCommentsParser.ThrowsTagContext ctx) {
         return flattenedTree(ctx);
@@ -146,7 +240,6 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     public JavadocNodeImpl visitSeeTag(JavadocCommentsParser.SeeTagContext ctx) {
         return flattenedTree(ctx);
     }
-
 
     @Override
     public JavadocNodeImpl visitHiddenTag(JavadocCommentsParser.HiddenTagContext ctx) {
@@ -185,26 +278,38 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitInlineTag(JavadocCommentsParser.InlineTagContext ctx) {
-        JavadocNodeImpl inlineTagNode = createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
-        ParseTree tagContent = ctx.inlineTagContent().getChild(0);
+        final JavadocNodeImpl inlineTagNode =
+                createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
+        final ParseTree tagContent = ctx.inlineTagContent().getChild(0);
         JavadocNodeImpl specificTagNode = null;
 
         if (tagContent instanceof ParserRuleContext prc) {
-            Token tagName = (Token) prc.getChild(0).getPayload();
-            int tokenType = tagName.getType();
+            final Token tagName = (Token) prc.getChild(0).getPayload();
+            final int tokenType = tagName.getType();
 
             specificTagNode = switch (tokenType) {
-                case JavadocCommentsLexer.CODE -> buildImaginaryNode(JavadocCommentsTokenTypes.CODE_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LINK -> buildImaginaryNode(JavadocCommentsTokenTypes.LINK_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LINKPLAIN -> buildImaginaryNode(JavadocCommentsTokenTypes.LINKPLAIN_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.VALUE -> buildImaginaryNode(JavadocCommentsTokenTypes.VALUE_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.INHERIT_DOC -> buildImaginaryNode(JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SUMMARY -> buildImaginaryNode(JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SYSTEM_PROPERTY -> buildImaginaryNode(JavadocCommentsTokenTypes.SYSTEM_PROPERTY_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.INDEX -> buildImaginaryNode(JavadocCommentsTokenTypes.INDEX_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.RETURN -> buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.LITERAL -> buildImaginaryNode(JavadocCommentsTokenTypes.LITERAL_INLINE_TAG, ctx);
-                case JavadocCommentsLexer.SNIPPET -> buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.CODE ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.CODE_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.LINK ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.LINK_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.LINKPLAIN ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.LINKPLAIN_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.VALUE ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.VALUE_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.INHERIT_DOC ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.INHERIT_DOC_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.SUMMARY ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SUMMARY_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.SYSTEM_PROPERTY ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SYSTEM_PROPERTY_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.INDEX ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.INDEX_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.RETURN ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.RETURN_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.LITERAL ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.LITERAL_INLINE_TAG, ctx);
+                case JavadocCommentsLexer.SNIPPET ->
+                    buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_INLINE_TAG, ctx);
                 default -> buildImaginaryNode(JavadocCommentsTokenTypes.CUSTOM_INLINE_TAG, ctx);
             };
         }
@@ -215,7 +320,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitInlineTagContent(JavadocCommentsParser.InlineTagContentContext ctx) {
+    public JavadocNodeImpl visitInlineTagContent(
+            JavadocCommentsParser.InlineTagContentContext ctx) {
         return flattenedTree(ctx);
     }
 
@@ -225,7 +331,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitLinkPlainInlineTag(JavadocCommentsParser.LinkPlainInlineTagContext ctx) {
+    public JavadocNodeImpl visitLinkPlainInlineTag(
+            JavadocCommentsParser.LinkPlainInlineTagContext ctx) {
         return flattenedTree(ctx);
     }
 
@@ -240,17 +347,20 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitInheritDocInlineTag(JavadocCommentsParser.InheritDocInlineTagContext ctx) {
+    public JavadocNodeImpl visitInheritDocInlineTag(
+            JavadocCommentsParser.InheritDocInlineTagContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
-    public JavadocNodeImpl visitSummaryInlineTag(JavadocCommentsParser.SummaryInlineTagContext ctx) {
+    public JavadocNodeImpl visitSummaryInlineTag(
+            JavadocCommentsParser.SummaryInlineTagContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
-    public JavadocNodeImpl visitSystemPropertyInlineTag(JavadocCommentsParser.SystemPropertyInlineTagContext ctx) {
+    public JavadocNodeImpl visitSystemPropertyInlineTag(
+            JavadocCommentsParser.SystemPropertyInlineTagContext ctx) {
         return flattenedTree(ctx);
     }
 
@@ -265,12 +375,14 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitLiteralInlineTag(JavadocCommentsParser.LiteralInlineTagContext ctx) {
+    public JavadocNodeImpl visitLiteralInlineTag(
+            JavadocCommentsParser.LiteralInlineTagContext ctx) {
         return flattenedTree(ctx);
     }
 
     @Override
-    public JavadocNodeImpl visitSnippetInlineTag(JavadocCommentsParser.SnippetInlineTagContext ctx) {
+    public JavadocNodeImpl visitSnippetInlineTag(
+            JavadocCommentsParser.SnippetInlineTagContext ctx) {
         final JavadocNodeImpl dummyRoot = new JavadocNodeImpl();
         if (!ctx.snippetAttributes.isEmpty()) {
             final JavadocNodeImpl snippetAttributes =
@@ -300,19 +412,16 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return buildImaginaryNode(JavadocCommentsTokenTypes.REFERENCE, ctx);
     }
 
-
     @Override
     public JavadocNodeImpl visitTypeName(JavadocCommentsParser.TypeNameContext ctx) {
         return flattenedTree(ctx);
 
     }
 
-
     @Override
     public JavadocNodeImpl visitQualifiedName(JavadocCommentsParser.QualifiedNameContext ctx) {
         return flattenedTree(ctx);
     }
-
 
     @Override
     public JavadocNodeImpl visitTypeArguments(JavadocCommentsParser.TypeArgumentsContext ctx) {
@@ -330,7 +439,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitParameterTypeList(JavadocCommentsParser.ParameterTypeListContext ctx) {
+    public JavadocNodeImpl visitParameterTypeList(
+            JavadocCommentsParser.ParameterTypeListContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.PARAMETER_TYPE_LIST, ctx);
     }
 
@@ -340,8 +450,9 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitSnippetAttribute(JavadocCommentsParser.SnippetAttributeContext ctx) {
-       return buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTE, ctx);
+    public JavadocNodeImpl visitSnippetAttribute(
+            JavadocCommentsParser.SnippetAttributeContext ctx) {
+        return buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTE, ctx);
     }
 
     @Override
@@ -351,7 +462,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitHtmlElement(JavadocCommentsParser.HtmlElementContext ctx) {
-       return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_ELEMENT, ctx);
+        return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_ELEMENT, ctx);
     }
 
     @Override
@@ -367,15 +478,16 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     @Override
     public JavadocNodeImpl visitNonTightElement(JavadocCommentsParser.NonTightElementContext ctx) {
         if (firstNonTightHtmlTag == null) {
-            ParseTree htmlTagStart = ctx.getChild(0);
-            ParseTree tagNameToken = htmlTagStart.getChild(1);
+            final ParseTree htmlTagStart = ctx.getChild(0);
+            final ParseTree tagNameToken = htmlTagStart.getChild(1);
             firstNonTightHtmlTag = create((Token) tagNameToken.getPayload());
         }
         return flattenedTree(ctx);
     }
 
     @Override
-    public JavadocNodeImpl visitSelfClosingElement(JavadocCommentsParser.SelfClosingElementContext ctx) {
+    public JavadocNodeImpl visitSelfClosingElement(
+            JavadocCommentsParser.SelfClosingElementContext ctx) {
         final JavadocNodeImpl javadocNode =
                 createImaginary(JavadocCommentsTokenTypes.VOID_ELEMENT);
         javadocNode.addChild(create((Token) ctx.TAG_OPEN().getPayload()));
@@ -409,9 +521,9 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
             });
             javadocNode.addChild(htmlAttributes);
         }
-        
-        Token tagClose = (Token) ctx.TAG_CLOSE().getPayload();
-        addHiddenTokensToTheLeft(tagClose, javadocNode, accumulator);
+
+        final Token tagClose = (Token) ctx.TAG_CLOSE().getPayload();
+        addHiddenTokensToTheLeft(tagClose, javadocNode);
         javadocNode.addChild(create(tagClose));
         return javadocNode;
     }
@@ -432,7 +544,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitNonTightHtmlContent(JavadocCommentsParser.NonTightHtmlContentContext ctx) {
+    public JavadocNodeImpl visitNonTightHtmlContent(
+            JavadocCommentsParser.NonTightHtmlContentContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_CONTENT, ctx);
     }
 
@@ -442,16 +555,32 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitHtmlCommentContent(JavadocCommentsParser.HtmlCommentContentContext ctx) {
+    public JavadocNodeImpl visitHtmlCommentContent(
+            JavadocCommentsParser.HtmlCommentContentContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_COMMENT_CONTENT, ctx);
     }
 
+    /**
+     * Creates an imaginary JavadocNodeImpl of the given token type and
+     * processes all children of the given ParserRuleContext.
+     *
+     * @param tokenType the token type of this JavadocNodeImpl
+     * @param ctx the ParserRuleContext whose children are to be processed
+     * @return new JavadocNodeImpl of given type with processed children
+     */
     private JavadocNodeImpl buildImaginaryNode(int tokenType, ParserRuleContext ctx) {
         final JavadocNodeImpl javadocNode = createImaginary(tokenType);
         processChildren(javadocNode, ctx.children);
         return javadocNode;
     }
 
+    /**
+     * Builds the AST for a particular node, then returns a "flattened" tree
+     * of siblings.
+     *
+     * @param ctx the ParserRuleContext to base tree on
+     * @return flattened DetailAstImpl
+     */
     private JavadocNodeImpl flattenedTree(ParserRuleContext ctx) {
         final JavadocNodeImpl dummyNode = new JavadocNodeImpl();
         processChildren(dummyNode, ctx.children);
@@ -466,12 +595,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @param children the list of children to add
      */
     private void processChildren(JavadocNodeImpl parent, List<? extends ParseTree> children) {
-        children.forEach(child -> {
+        for (ParseTree child : children) {
             if (child instanceof TerminalNode terminalNode) {
-                Token token = (Token) terminalNode.getPayload();
+                final Token token = (Token) terminalNode.getPayload();
 
                 // Add hidden tokens before this token
-                addHiddenTokensToTheLeft(token, parent, accumulator);
+                addHiddenTokensToTheLeft(token, parent);
 
                 if (isTextToken(token)) {
                     accumulator.append(token);
@@ -480,13 +609,14 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                     accumulator.flushTo(parent);
                     parent.addChild(create(token));
                 }
-            } else {
+            }
+            else {
                 accumulator.flushTo(parent);
-                Token token = ((ParserRuleContext) child).getStart();
-                addHiddenTokensToTheLeft(token, parent, accumulator);
+                final Token token = ((ParserRuleContext) child).getStart();
+                addHiddenTokensToTheLeft(token, parent);
                 parent.addChild(visit(child));
             }
-        });
+        }
 
         accumulator.flushTo(parent);
     }
@@ -508,13 +638,12 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      *
      * @param token      the token whose hidden tokens should be added
      * @param parent     the parent node to which hidden tokens are added
-     * @param accumulator the accumulator to flush before inserting hidden tokens
      */
-    private void addHiddenTokensToTheLeft(Token token, JavadocNodeImpl parent, TextAccumulator accumulator) {
-        boolean alreadyProcessed = !processedTokenIndices.add(token.getTokenIndex());
+    private void addHiddenTokensToTheLeft(Token token, JavadocNodeImpl parent) {
+        final boolean alreadyProcessed = !processedTokenIndices.add(token.getTokenIndex());
 
         if (!alreadyProcessed) {
-            int tokenIndex = token.getTokenIndex();
+            final int tokenIndex = token.getTokenIndex();
             final List<Token> hiddenTokens = tokens.getHiddenTokensToLeft(tokenIndex);
             if (hiddenTokens != null) {
                 accumulator.flushTo(parent);
@@ -554,22 +683,15 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return node;
     }
 
+    /**
+     * Checks if the given token type is a Javadoc tag.
+     *
+     * @param type the token type to check
+     * @return true if the token type is a Javadoc tag, false otherwise
+     */
     private boolean isJavadocTag(int type) {
-        return type == JavadocCommentsLexer.CODE  || type == JavadocCommentsLexer.LINK
-                || type == JavadocCommentsLexer.LINKPLAIN  || type == JavadocCommentsLexer.VALUE
-                || type == JavadocCommentsLexer.INHERIT_DOC  || type == JavadocCommentsLexer.SUMMARY
-                || type == JavadocCommentsLexer.SYSTEM_PROPERTY || type == JavadocCommentsLexer.INDEX
-                || type == JavadocCommentsLexer.RETURN  || type == JavadocCommentsLexer.LITERAL
-                || type == JavadocCommentsLexer.SNIPPET || type == JavadocCommentsLexer.CUSTOM_NAME
-                || type == JavadocCommentsLexer.AUTHOR || type == JavadocCommentsLexer.DEPRECATED
-                || type == JavadocCommentsLexer.PARAM  || type == JavadocCommentsLexer.THROWS
-                || type == JavadocCommentsLexer.EXCEPTION || type == JavadocCommentsLexer.SINCE
-                || type == JavadocCommentsLexer.VERSION || type == JavadocCommentsLexer.SEE
-                || type == JavadocCommentsLexer.LITERAL_HIDDEN || type == JavadocCommentsLexer.USES
-                || type == JavadocCommentsLexer.PROVIDES || type == JavadocCommentsLexer.SERIAL
-                || type == JavadocCommentsLexer.SERIAL_DATA || type == JavadocCommentsLexer.SERIAL_FIELD;
+        return JAVADOC_TAG_TYPES.contains(type);
     }
-
 
     /**
      * Create a JavadocNodeImpl from a given token and token type. This method
@@ -592,6 +714,11 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         return node;
     }
 
+    /**
+     * Returns the first non-tight HTML tag encountered in the Javadoc comment, if any.
+     *
+     * @return the first non-tight HTML tag, or null if none was found
+     */
     public DetailNode getFirstNonTightHtmlTag() {
         return firstNonTightHtmlTag;
     }
@@ -601,7 +728,14 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * preserving the starting token for accurate location metadata.
      */
     private final class TextAccumulator {
+        /**
+         * Buffer to accumulate TEXT token texts.
+         */
         private final StringBuilder buffer = new StringBuilder();
+
+        /**
+         * The first token in the accumulation, used for line/column info.
+         */
         private Token startToken;
 
         /**
@@ -624,7 +758,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
          */
         public void flushTo(JavadocNodeImpl parent) {
             if (!buffer.isEmpty()) {
-                JavadocNodeImpl startNode = create(startToken);
+                final JavadocNodeImpl startNode = create(startToken);
                 startNode.setText(buffer.toString());
                 parent.addChild(startNode);
                 buffer.setLength(0);

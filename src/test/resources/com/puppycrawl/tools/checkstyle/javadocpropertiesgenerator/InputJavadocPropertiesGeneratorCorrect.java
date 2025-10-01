@@ -42,8 +42,8 @@ public class InputJavadocPropertiesGeneratorCorrect {
      * Oracle Docs</a>
      */
     public static final int DEPRECATED_LITERAL = 5;
-    
-    
+
+
     /**
      * A line break tag <br/> in Javadoc comments.
      *

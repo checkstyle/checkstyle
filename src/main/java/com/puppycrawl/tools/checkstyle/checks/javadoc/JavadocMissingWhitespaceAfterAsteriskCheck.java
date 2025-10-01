@@ -44,8 +44,8 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-                JavadocCommentsTokenTypes.JAVADOC_CONTENT,
-                JavadocCommentsTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
         };
     }
 
@@ -71,6 +71,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
     /**
      * Resolves the first child node related to the given Javadoc {@link DetailNode}.
+     *
      * <p>
      * The resolution works in two steps:
      * <ul>
@@ -78,6 +79,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
      *       otherwise use its next sibling.</li>
      *   <li>If that base node has a first child, return it regardless of its type.</li>
      * </ul>
+     *
      * <p>
      * The returned node may or may not be of type {@code TEXT}. If it is not,
      * the violation logic will treat it as a violation later.

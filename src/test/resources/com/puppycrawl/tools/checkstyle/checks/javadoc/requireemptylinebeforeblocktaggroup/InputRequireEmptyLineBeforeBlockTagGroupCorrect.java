@@ -83,11 +83,11 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
      }
 
      /**
-  	 * Sets the file's name, to the value given as parameter.
-  	 *
-  	 * @param name
-  	 *            The new name of the file.
-  	 */
+     * Sets the file's name, to the value given as parameter.
+     *
+     * @param name
+     *            The new name of the file.
+     */
      void setFile(String name) { }
 }
 

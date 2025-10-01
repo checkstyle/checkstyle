@@ -159,6 +159,11 @@ public final class SiteUtil {
      */
     private static final String REGEXP_HEADER_CHECK_HEADER = "RegexpHeaderCheck.header";
 
+    /**
+     * The string 'api'.
+     */
+    private static final String API = "api";
+
     /** Set of properties that are undocumented. Those are internal properties. */
     private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
         "SuppressWithNearbyCommentFilter.fileContents",
@@ -191,8 +196,8 @@ public final class SiteUtil {
         Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractAccessControlNameCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractNameCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "javadoc", "AbstractJavadocCheck.java"),
-        Path.of(MAIN_FOLDER_PATH, "api", "AbstractFileSetCheck.java"),
-        Path.of(MAIN_FOLDER_PATH, "api", "AbstractCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, API, "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, API, "AbstractCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "header", "AbstractHeaderCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "metrics", "AbstractClassCouplingCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "whitespace", "AbstractParenPadCheck.java")
@@ -771,7 +776,9 @@ public final class SiteUtil {
 
         return propertyJavadocTag
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT))
+            .map(description -> {
+                return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
+            })
             .map(DetailNode::getText)
             .map(String::trim);
     }
@@ -785,12 +792,12 @@ public final class SiteUtil {
     private static Optional<DetailNode> getPropertySinceJavadocTag(DetailNode javadoc) {
         Optional<DetailNode> propertySinceJavadocTag = Optional.empty();
         DetailNode child = javadoc.getFirstChild();
-        
+
         while (child != null) {
             if (child.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
                 final DetailNode customBlockTag = JavadocUtil.findFirstToken(
                         child, JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG);
-                
+
                 if (customBlockTag != null
                         && "propertySince".equals(JavadocUtil.findFirstToken(
                             customBlockTag, JavadocCommentsTokenTypes.TAG_NAME).getText())) {
@@ -828,8 +835,10 @@ public final class SiteUtil {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
         return Optional.ofNullable(sinceJavadocTag)
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> JavadocUtil.findFirstToken(
-                    description, JavadocCommentsTokenTypes.TEXT))
+            .map(description -> {
+                return JavadocUtil.findFirstToken(
+                        description, JavadocCommentsTokenTypes.TEXT);
+            })
             .map(DetailNode::getText)
             .map(String::trim)
             .orElse(null);
@@ -844,12 +853,12 @@ public final class SiteUtil {
     private static DetailNode getSinceJavadocTag(DetailNode javadoc) {
         DetailNode child = javadoc.getFirstChild();
         DetailNode javadocTagWithSince = null;
-        
+
         while (child != null) {
             if (child.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
                 final DetailNode sinceNode = JavadocUtil.findFirstToken(
                         child, JavadocCommentsTokenTypes.SINCE_BLOCK_TAG);
-                
+
                 if (sinceNode != null) {
                     javadocTagWithSince = sinceNode;
                     break;
@@ -857,7 +866,7 @@ public final class SiteUtil {
             }
             child = child.getNextSibling();
         }
-        
+
         return javadocTagWithSince;
     }
 
@@ -1299,6 +1308,7 @@ public final class SiteUtil {
      */
     // -@cs[NPathComplexity] Splitting would not make the code more readable
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
+    // -@cs[ExecutableStatementCount] Splitting would not make the code more readable.
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
@@ -1308,13 +1318,13 @@ public final class SiteUtil {
         final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
         DetailNode node = descriptionNodes.get(0);
         final DetailNode endNode = descriptionNodes.get(descriptionNodes.size() - 1);
-                
+
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.TAG_ATTR_NAME
                     && "href".equals(node.getText())) {
                 isInHrefAttribute = true;
             }
-            if (isInHrefAttribute && node.getType() 
+            if (isInHrefAttribute && node.getType()
                      == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE) {
                 final String href = node.getText();
                 if (href.contains(CHECKSTYLE_ORG_URL)) {
@@ -1328,7 +1338,7 @@ public final class SiteUtil {
             }
             else {
                 if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                isInHtmlElement = true;
+                    isInHtmlElement = true;
                 }
                 if (node.getType() == JavadocCommentsTokenTypes.TAG_CLOSE
                         && node.getParent().getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
@@ -1347,8 +1357,9 @@ public final class SiteUtil {
                         description.append(node.getText());
                     }
                 }
-                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME 
-                        && node.getParent().getType() == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
+                        && node.getParent().getType()
+                                  == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
                     isInCodeLiteral = true;
                     description.append("<code>");
                 }
@@ -1357,9 +1368,9 @@ public final class SiteUtil {
                     isInCodeLiteral = false;
                     description.append("</code>");
                 }
-                    
+
             }
-            
+
             DetailNode toVisit = node.getFirstChild();
             while (node != endNode && toVisit == null) {
                 toVisit = node.getNextSibling();
@@ -1368,7 +1379,7 @@ public final class SiteUtil {
 
             node = toVisit;
         }
-        
+
         return description.toString().trim();
     }
 
@@ -1379,7 +1390,7 @@ public final class SiteUtil {
      * @return first paragraph of javadoc.
      */
     public static String getFirstParagraphFromJavadoc(DetailNode javadoc) {
-        String result;
+        final String result;
         final List<DetailNode> firstParagraphNodes = getFirstJavadocParagraphNodes(javadoc);
         if (firstParagraphNodes.isEmpty()) {
             result = "";
@@ -1400,8 +1411,8 @@ public final class SiteUtil {
      */
     public static List<DetailNode> getFirstJavadocParagraphNodes(DetailNode javadoc) {
         final List<DetailNode> firstParagraphNodes = new ArrayList<>();
-        
-        for (DetailNode child = javadoc.getFirstChild(); 
+
+        for (DetailNode child = javadoc.getFirstChild();
                 child != null; child = child.getNextSibling()) {
             if (isEndOfFirstJavadocParagraph(child)) {
                 break;

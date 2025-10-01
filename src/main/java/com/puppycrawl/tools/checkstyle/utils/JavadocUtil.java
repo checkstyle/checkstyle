@@ -21,9 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Map;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -78,7 +76,8 @@ public final class JavadocUtil {
 
     // initialise the constants
     static {
-        TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
+        TOKEN_NAME_TO_VALUE =
+                TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
         TOKEN_VALUE_TO_NAME = TokenUtil.invertMap(TOKEN_NAME_TO_VALUE);
     }
 
@@ -209,7 +208,14 @@ public final class JavadocUtil {
         }
         return returnValue;
     }
-    
+
+    /**
+     * Returns all child tokens that have a specified type.
+     *
+     * @param detailNode Javadoc AST node
+     * @param type the token type to match
+     * @return the matching tokens, or an empty list if no match
+     */
     public static List<DetailNode> getAllNodesOfType(DetailNode detailNode, int type) {
         final List<DetailNode> nodes = new ArrayList<>();
         DetailNode node = detailNode.getFirstChild();
@@ -221,12 +227,12 @@ public final class JavadocUtil {
         }
         return nodes;
     }
-    
+
     /**
      * Checks whether the given AST node is an HTML element with the specified tag name.
      * This method ignore void elements.
      *
-     * @param ast the AST node to check 
+     * @param ast the AST node to check
      *            (must be of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT})
      * @param expectedTagName the tag name to match (case-insensitive)
      * @return {@code true} if the node has the given tag name, {@code false} otherwise
@@ -235,7 +241,7 @@ public final class JavadocUtil {
         final DetailNode htmlTagStart = JavadocUtil.findFirstToken(ast,
                 JavadocCommentsTokenTypes.HTML_TAG_START);
         boolean isTag = false;
-        String tagName;
+        final String tagName;
         if (htmlTagStart != null) {
             tagName = JavadocUtil.findFirstToken(htmlTagStart,
                 JavadocCommentsTokenTypes.TAG_NAME).getText();
