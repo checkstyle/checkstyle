@@ -50,4 +50,27 @@ public class InputJavadocTagContinuationIndentationDescription {
      ***** Description with multiple asterisk and missing space // violation
      */
     public void testOtherCases(String s, String s2) {}
+    
+    /**
+    * @since Ant 1.6
+    *    
+    *     revised by <a href="mailto:daniel.armbrust@mayo.edu">Dan Armbrust</a>
+    */
+    public void testWithTextWithWhitespacesOnlyAloneOnLine() {}
+    
+   /**
+    * @since Ant 1.6
+    *
+    *     revised by <a href="mailto:daniel.armbrust@mayo.edu">Dan Armbrust</a>
+    */
+    public void testWithBlankLine() {}
+    
+    /**
+     * @see <a href=
+     * "http://www.saxproject.org/apidoc/org/xml/sax/package-summary.html"
+     *  >SAX.</a>     
+     */
+    public void test() { }
+    // violation 4 lines above
+    // violation 4 lines above
 }

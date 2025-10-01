@@ -23,7 +23,7 @@ class InputFormattedIncorrectJavadocParagraph {
   public static final byte NUL = 0;
 
   /**
-   * Some
+   * Some.
    *
    * <p>Javadoc.
    *

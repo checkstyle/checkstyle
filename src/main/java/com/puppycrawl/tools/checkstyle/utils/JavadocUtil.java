@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag;
@@ -76,7 +76,8 @@ public final class JavadocUtil {
 
     // initialise the constants
     static {
-        TOKEN_NAME_TO_VALUE = TokenUtil.nameToValueMapFromPublicIntFields(JavadocTokenTypes.class);
+        TOKEN_NAME_TO_VALUE =
+                TokenUtil.nameToValueMapFromPublicIntFields(JavadocCommentsTokenTypes.class);
         TOKEN_VALUE_TO_NAME = TokenUtil.invertMap(TOKEN_NAME_TO_VALUE);
     }
 
@@ -197,49 +198,55 @@ public final class JavadocUtil {
      */
     public static DetailNode findFirstToken(DetailNode detailNode, int type) {
         DetailNode returnValue = null;
-        DetailNode node = getFirstChild(detailNode);
+        DetailNode node = detailNode.getFirstChild();
         while (node != null) {
             if (node.getType() == type) {
                 returnValue = node;
                 break;
             }
-            node = getNextSibling(node);
+            node = node.getNextSibling();
         }
         return returnValue;
     }
 
     /**
-     * Gets first child node of specified node.
+     * Returns all child tokens that have a specified type.
      *
-     * @param node DetailNode
-     * @return first child
+     * @param detailNode Javadoc AST node
+     * @param type the token type to match
+     * @return the matching tokens, or an empty list if no match
      */
-    public static DetailNode getFirstChild(DetailNode node) {
-        DetailNode resultNode = null;
-
-        if (node.getChildren().length > 0) {
-            resultNode = node.getChildren()[0];
+    public static List<DetailNode> getAllNodesOfType(DetailNode detailNode, int type) {
+        final List<DetailNode> nodes = new ArrayList<>();
+        DetailNode node = detailNode.getFirstChild();
+        while (node != null) {
+            if (node.getType() == type) {
+                nodes.add(node);
+            }
+            node = node.getNextSibling();
         }
-        return resultNode;
+        return nodes;
     }
 
     /**
-     * Gets next sibling of specified node.
+     * Checks whether the given AST node is an HTML element with the specified tag name.
+     * This method ignore void elements.
      *
-     * @param node DetailNode
-     * @return next sibling.
+     * @param ast the AST node to check
+     *            (must be of type {@link JavadocCommentsTokenTypes#HTML_ELEMENT})
+     * @param expectedTagName the tag name to match (case-insensitive)
+     * @return {@code true} if the node has the given tag name, {@code false} otherwise
      */
-    public static DetailNode getNextSibling(DetailNode node) {
-        DetailNode nextSibling = null;
-        final DetailNode parent = node.getParent();
-        if (parent != null) {
-            final int nextSiblingIndex = node.getIndex() + 1;
-            final DetailNode[] children = parent.getChildren();
-            if (nextSiblingIndex <= children.length - 1) {
-                nextSibling = children[nextSiblingIndex];
-            }
+    public static boolean isTag(DetailNode ast, String expectedTagName) {
+        final DetailNode htmlTagStart = findFirstToken(ast,
+                JavadocCommentsTokenTypes.HTML_TAG_START);
+        boolean isTag = false;
+        if (htmlTagStart != null) {
+            final String tagName = findFirstToken(htmlTagStart,
+                JavadocCommentsTokenTypes.TAG_NAME).getText();
+            isTag = expectedTagName.equalsIgnoreCase(tagName);
         }
-        return nextSibling;
+        return isTag;
     }
 
     /**
@@ -250,28 +257,11 @@ public final class JavadocUtil {
      * @return next sibling.
      */
     public static DetailNode getNextSibling(DetailNode node, int tokenType) {
-        DetailNode nextSibling = getNextSibling(node);
+        DetailNode nextSibling = node.getNextSibling();
         while (nextSibling != null && nextSibling.getType() != tokenType) {
-            nextSibling = getNextSibling(nextSibling);
+            nextSibling = nextSibling.getNextSibling();
         }
         return nextSibling;
-    }
-
-    /**
-     * Gets previous sibling of specified node.
-     *
-     * @param node DetailNode
-     * @return previous sibling
-     */
-    public static DetailNode getPreviousSibling(DetailNode node) {
-        DetailNode previousSibling = null;
-        final int previousSiblingIndex = node.getIndex() - 1;
-        if (previousSiblingIndex >= 0) {
-            final DetailNode parent = node.getParent();
-            final DetailNode[] children = parent.getChildren();
-            previousSibling = children[previousSiblingIndex];
-        }
-        return previousSibling;
     }
 
     /**
@@ -307,21 +297,16 @@ public final class JavadocUtil {
     }
 
     /**
-     * Gets tag name from javadocTagSection.
+     * Extracts the tag name from the given Javadoc tag section.
      *
-     * @param javadocTagSection to get tag name from.
-     * @return name, of the javadocTagSection's tag.
+     * @param javadocTagSection the node representing a Javadoc tag section.
+     *       This node must be of type {@link JavadocCommentsTokenTypes#JAVADOC_BLOCK_TAG}
+     *       or {@link JavadocCommentsTokenTypes#JAVADOC_INLINE_TAG}.
+     *  @return the tag name (e.g., "param", "return", "link")
      */
     public static String getTagName(DetailNode javadocTagSection) {
-        final String javadocTagName;
-        if (javadocTagSection.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-            javadocTagName = getNextSibling(
-                    getFirstChild(javadocTagSection)).getText();
-        }
-        else {
-            javadocTagName = getFirstChild(javadocTagSection).getText();
-        }
-        return javadocTagName;
+        return findFirstToken(javadocTagSection.getFirstChild(),
+                    JavadocCommentsTokenTypes.TAG_NAME).getText();
     }
 
     /**
