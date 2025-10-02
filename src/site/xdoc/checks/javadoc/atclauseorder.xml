@@ -100,7 +100,7 @@
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField
+* @serialField Field description.
 * @serialData
 */
 public class Example1 {}
@@ -159,7 +159,7 @@ enum Test1 {}
 * @see Some javadoc.
 * @since Some javadoc. // violation
 * @serial Some javadoc.
-* @serialField
+* @serialField Field description.
 * @serialData
 */
 public class Example2 {}
@@ -219,7 +219,7 @@ enum Test2 {}
 * @see Some javadoc.
 * @since Some javadoc.
 * @serial Some javadoc.
-* @serialField
+* @serialField Field description.
 * @serialData
 */
 public class Example3 {}
@@ -270,11 +270,6 @@ enum Test3 {}
             </a>
           </li>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
-              javadoc.missed.html.close
-            </a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
               javadoc.parse.rule.error
             </a>
@@ -282,11 +277,6 @@ enum Test3 {}
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
               javadoc.unclosedHtml
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
-              javadoc.wrong.singleton.html.tag
             </a>
           </li>
         </ul>

@@ -17,11 +17,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 // violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
-    /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
+    /** <p> <p> paraception </p> </p> */
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
-    // violation above 'Unclosed HTML tag found: li'
+    /**<li> paraTags should be opened list isn't nested in parse tree </li>*/
     private int field2;
 
     /**
@@ -33,7 +32,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr>
+     * <tr> Zero nesting despite `tr` is closed
      */
     // violation 2 lines above 'Unclosed HTML tag found: tr'
 
@@ -45,9 +44,9 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
     /**
      * <tr> <li> list is going to be nested in the parse tree </li> </tr>
      *
-     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
+     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree <p>
      */
-    // violation 4 lines above 'tag LI_TAG_START'
+    // violation 2 lines above 'Unclosed HTML tag found: p'
     void setField1(int field1) {this.field1 = field1;}
 
     /**
@@ -63,7 +62,7 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th>
+     *     <tr> nonTight
      */
     // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
@@ -72,6 +71,15 @@ public class InputAbstractJavadocNonTightHtmlTagsVisitCountOne {
      * @param field3 <td> td with singletonElement <br/> </td>
      */
     private void setField3(int field3) { this.field3 = field3;}
+
+
+    /**
+     * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
+     */
+    // violation 2 lines above 'Type Javadoc tag SEE_BLOCK_TAG must match pattern*.'
+    public static void test() {
+
+    }
 
     /**
      * <html> <bR> <Br> <BR> <Br/> <BR/> <bR/> </html>

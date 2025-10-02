@@ -26,14 +26,12 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
     /**serialField*/
     private static Object field5;
 
-    /**@exception*/ // violation 'Javadoc comment at column 10 has parse error.'
-    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
+    /**@exception*/
     public static void method1() {
 
     }
 
-    /**@throws*/ // violation 'Javadoc comment at column 7 has parse error.'
-    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
+    /**@throws*/
     public static void method2() {
 
     }
@@ -43,8 +41,7 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
         return -1;
     }
 
-    /**@param*/ // violation 'Javadoc comment at column 6 has parse error.'
-    // Details: no viable alternative at input '<EOF>' while parsing JAVADOC_TAG
+    /**@param*/
     public static void method4(int a) {
 
     }
@@ -66,14 +63,16 @@ public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
 
     /**
      * {@link}
-     */
+     */// violation above 'Javadoc comment at column 13 has parse error.'
+    // Details: no viable alternative at input '}' while parsing REFERENCE
     public void method7() {
 
     }
 
     /**
      * {@linkplain }
-     */
+     */ // violation above 'Javadoc comment at column 19 has parse error.'
+    // Details: no viable alternative at input '}' while parsing REFERENCE
     public void method8() {
 
     }
