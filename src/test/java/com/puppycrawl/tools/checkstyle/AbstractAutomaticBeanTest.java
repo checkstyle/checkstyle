@@ -345,7 +345,7 @@ public class AbstractAutomaticBeanTest {
             }
         }
 
-        public int getRegisterCount() {
+        private int getRegisterCount() {
             return registerCount;
         }
 
