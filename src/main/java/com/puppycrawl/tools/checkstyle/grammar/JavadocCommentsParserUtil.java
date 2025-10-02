@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.grammar;
 
 import java.util.Set;
 
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 
 /**
@@ -47,7 +46,7 @@ public final class JavadocCommentsParserUtil {
      */
     public static boolean isNonTightTag(
             TokenStream input, Set<SimpleToken> unclosedTagNameTokens) {
-        final Token lookahead = SimpleToken.from(input.LT(2));
+        final SimpleToken lookahead = SimpleToken.from(input.LT(2));
         return unclosedTagNameTokens.contains(lookahead);
     }
 }

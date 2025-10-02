@@ -4540,7 +4540,7 @@
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
@@ -5396,8 +5396,10 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.JavaAstVisitor*</param>
+                <param>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor*</param>
               </targetClasses>
               <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.checks.javadoc.*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.*</param>
                 <param>com.puppycrawl.tools.checkstyle.JavaAstVisitorTest</param>
               </targetTests>

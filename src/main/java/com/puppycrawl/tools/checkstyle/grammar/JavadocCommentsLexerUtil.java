@@ -74,9 +74,7 @@ public final class JavadocCommentsLexerUtil {
                         && openingTag.getTokenIndex() < closingTag.getTokenIndex()) {
                     break;
                 }
-                else {
-                    tempStack.push(openingTag);
-                }
+                tempStack.push(openingTag);
             }
 
             // Put unmatched tags back

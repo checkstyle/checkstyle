@@ -487,9 +487,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 result = Optional.of(String.join("", sentenceParts));
                 break;
             }
-            else {
-                sentenceParts.add(text);
-            }
+            sentenceParts.add(text);
         }
         return result;
     }
@@ -541,9 +539,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 result = Optional.of(resultStr);
                 break;
             }
-            else {
-                periodIndex = text.indexOf(period, afterPeriodIndex);
-            }
+            periodIndex = text.indexOf(period, afterPeriodIndex);
         }
         return result;
     }

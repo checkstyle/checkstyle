@@ -150,8 +150,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 createImaginary(JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG);
         final ParseTree tag = ctx.getChild(0);
 
-        if (tag instanceof ParserRuleContext prc) {
-            final Token tagName = (Token) prc.getChild(1).getPayload();
+        if (tag instanceof ParserRuleContext context) {
+            final Token tagName = (Token) context.getChild(1).getPayload();
             final int tokenType = tagName.getType();
 
             final JavadocNodeImpl specificTagNode = switch (tokenType) {
@@ -280,8 +280,8 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
                 createImaginary(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
         final ParseTree tagContent = ctx.inlineTagContent().getChild(0);
 
-        if (tagContent instanceof ParserRuleContext prc) {
-            final Token tagName = (Token) prc.getChild(0).getPayload();
+        if (tagContent instanceof ParserRuleContext context) {
+            final Token tagName = (Token) context.getChild(0).getPayload();
             final int tokenType = tagName.getType();
 
             final JavadocNodeImpl specificTagNode = switch (tokenType) {
