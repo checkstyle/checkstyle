@@ -509,8 +509,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
      */
     @Test
     public void testNonPrintableCharsAreSorted() {
-        String expression = TestUtil.<Pattern>getInternalStaticState(
-                AvoidEscapedUnicodeCharactersCheck.class, "NON_PRINTABLE_CHARS").pattern();
+        String expression = TestUtil.getInternalStaticState(
+                AvoidEscapedUnicodeCharactersCheck.class,
+                "NON_PRINTABLE_CHARS", Pattern.class).pattern();
 
         // Replacing expressions like "\\u000[bB]" with "\\u000B"
         final String[] charExpressions = {"Aa", "Bb", "Cc", "Dd", "Ee", "Ff"};

@@ -642,6 +642,7 @@ public class SuppressionCommentFilterTest
      *
      * @return {@code Tag} list
      */
+    @SuppressWarnings("unchecked")
     private static List<Comparable<Object>> getTagsAfterExecution(SuppressionCommentFilter filter,
             String filename, String... lines) {
         final FileContents contents = new FileContents(
@@ -655,7 +656,7 @@ public class SuppressionCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
                 new Violation(1, null, null, null, null, Object.class, ""), null);
         filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "tags");
+        return TestUtil.getInternalState(filter, "tags", List.class);
     }
 
     @Test

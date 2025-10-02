@@ -192,7 +192,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
         checker.addFileSetCheck(treeWalker);
 
-        final ByteArrayOutputStream out = TestUtil.getInternalState(this, "stream");
+        final ByteArrayOutputStream out = TestUtil.getInternalState(this, "stream",
+                ByteArrayOutputStream.class);
         final DefaultLogger logger = new DefaultLogger(out,
                 AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(logger);
