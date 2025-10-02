@@ -344,6 +344,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     public void testGeneralClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
+            "92:9: " + getCheckMessage(MSG_KEY, "t", 3, 1),
         };
 
         verifyWithInlineConfigParser(
@@ -352,9 +353,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testGeneralClass4() throws Exception {
-        final String[] expected = {
-            "26:9: " + getCheckMessage(MSG_KEY, "z", 3, 1),
-        };
+        final String[] expected = {};
 
         verifyWithInlineConfigParser(
                 getPath("InputVariableDeclarationUsageDistanceGeneral4.java"), expected);
@@ -410,12 +409,81 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistancePatternVariables() throws Exception {
+    public void testVariableDeclarationUsageDistanceMethodDefinition() throws Exception {
         final String[] expected = {
-            "35:9: " + getCheckMessage(MSG_KEY, "b", 5, 1),
+            "18:9: " + getCheckMessage(MSG_KEY, "c", 2, 1),
         };
         verifyWithInlineConfigParser(
-                getPath("InputVariableDeclarationUsageDistancePatternVariables.java"),
+                getPath("InputVariableDeclarationUsageDistanceMethodDefinition.java"),
                 expected);
+    }
+
+    @Test
+    public void testLambdaScopeNoViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceLambda.java"), expected);
+    }
+
+    @Test
+    public void testAnonInnerScopeNoViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceAnonInner.java"), expected);
+    }
+
+    @Test
+    public void testDeepNestedTypesViolation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceDeepNested.java"), expected);
+    }
+
+    @Test
+    public void testMultipleDeclarationSameLine() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath(
+                        "InputVariableDeclarationUsageDistanceMultipleDeclarations.java"),
+                expected);
+    }
+
+    @Test
+    public void testInnerClassInMethodDoesNotCountDistance() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceInnerClassInMethod.java"),
+                expected);
+    }
+
+    @Test
+    public void testViolationDueToRecordDistance() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceRecordViolation.java"),
+                expected);
+    }
+
+    @Test
+    public void testLocalTypesAreSkippedWhenCountingDistance() throws Exception {
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_KEY_EXT, "b", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputVariableDeclarationUsageDistanceLocalType.java"),
+                expected);
+    }
+
+    @Test
+    public void testWithAnonymousBlock() throws Exception {
+        final String[] expected = {
+            "28:9: " + getCheckMessage(MSG_KEY_EXT, "b", 2, 1),
+        };
+
+        final String filePath = getPath("InputVariableDeclarationUsageDistanceLocalType.java");
+
+        verifyWithInlineConfigParser(filePath, expected);
     }
 }
