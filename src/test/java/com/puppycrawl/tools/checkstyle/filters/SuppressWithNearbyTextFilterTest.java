@@ -585,7 +585,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
                                                          String filename) {
         final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
         filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "suppressions");
+        return TestUtil.getInternalState(filter, "suppressions", List.class);
     }
 
     /**
@@ -599,7 +599,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
                                                                   String filename) {
         final AuditEvent dummyEvent = buildDummyAuditEvent(filename);
         filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "cachedFileAbsolutePath");
+        return TestUtil.getInternalState(filter, "cachedFileAbsolutePath", String.class);
     }
 
     /**

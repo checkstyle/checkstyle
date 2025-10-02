@@ -96,7 +96,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not copied")
-                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks"))
+                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks", int[].class))
                 .isNotNull();
         final LineColumn actual = copy.lineColumn(100);
         assertWithMessage("Invalid linecolumn")
@@ -111,7 +111,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not null")
-                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks"))
+                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks", int[].class))
                 .isNull();
         final LineColumn lineColumn = copy.lineColumn(100);
         assertWithMessage("Invalid line")
