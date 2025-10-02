@@ -129,7 +129,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    29, "token recognition error at: '-'", "Fieldname"),
+                    29, "token recognition error at: '-'", "fieldName"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocInvalidLexing.java"), expected);
@@ -416,7 +416,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     public void testNoWsBeforeDescriptionInJavadocTags() throws Exception {
         final String[] expected = {
             "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
-                    29, "token recognition error at: '-'", "Fieldname"),
+                    29, "token recognition error at: '-'", "fieldName"),
             "40: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     30, "token recognition error at: '-'", " "),
             "72: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
