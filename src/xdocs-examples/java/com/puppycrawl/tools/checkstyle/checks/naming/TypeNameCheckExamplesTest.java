@@ -60,4 +60,17 @@ public class TypeNameCheckExamplesTest extends AbstractExamplesModuleTestSupport
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "ThirdName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+            "20:17: " + getCheckMessage(MSG_INVALID_PATTERN,
+                    "FourthName", "^[a-z](_?[a-zA-Z0-9]+)*$"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }

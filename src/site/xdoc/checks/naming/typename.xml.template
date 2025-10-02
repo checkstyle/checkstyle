@@ -71,8 +71,23 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example3.java"/>
           <param name="type" value="code"/>
+         </macro><hr class="example-separator"/>
+        <p id="Example4-config">
+          An example of how to configure the check for names that begin with a lower case letter,
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to public and package-private type:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example4.java"/>
+          <param name="type" value="config"/>
         </macro>
-
+        <p id="Example4-code">Code Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/naming/typename/Example4.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="TypeName_Example_of_Usage">
