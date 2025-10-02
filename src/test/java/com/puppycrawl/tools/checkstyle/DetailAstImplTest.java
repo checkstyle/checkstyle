@@ -439,7 +439,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         for (Consumer<DetailAstImpl> method : clearChildCountCacheMethods) {
             final int startCount = parent.getChildCount();
             method.accept(null);
-            final int intermediateCount = TestUtil.getInternalState(parent, "childCount");
+            final int intermediateCount = TestUtil.getInternalState(parent, "childCount",
+                    Integer.class);
             final int finishCount = parent.getChildCount();
             assertWithMessage("Child count has changed")
                 .that(finishCount)
@@ -451,7 +452,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         final int startCount = child.getChildCount();
         child.addChild(null);
-        final int intermediateCount = TestUtil.getInternalState(child, "childCount");
+        final int intermediateCount = TestUtil.getInternalState(child, "childCount", Integer.class);
         final int finishCount = child.getChildCount();
         assertWithMessage("Child count has changed")
             .that(finishCount)

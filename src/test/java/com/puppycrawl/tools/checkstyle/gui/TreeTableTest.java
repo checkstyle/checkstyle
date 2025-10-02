@@ -114,8 +114,10 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     public void testFindNodesAllClassDefs() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         xpathTextArea.setText("//CLASS_DEF");
         findNodeButton.doClick();
 
@@ -136,8 +138,10 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     public void testFindNodesIdent() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         xpathTextArea.setText("//IDENT");
         findNodeButton.doClick();
 
@@ -172,8 +176,10 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     public void testFindNodesMissingElements() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         xpathTextArea.setText("//LITERAL_TRY");
         findNodeButton.doClick();
 
@@ -188,8 +194,10 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     public void testFindNodesUnexpectedTokenAtStart() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         xpathTextArea.setText("!*7^");
         findNodeButton.doClick();
 
@@ -204,8 +212,10 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     public void testFindNodesInvalidCharacterInExpression() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         xpathTextArea.setText("//CLASS_DEF^");
         findNodeButton.doClick();
 

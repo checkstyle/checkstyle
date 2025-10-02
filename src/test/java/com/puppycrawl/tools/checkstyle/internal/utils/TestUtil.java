@@ -27,16 +27,21 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.function.Executable;
+import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
@@ -44,8 +49,10 @@ import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 
 public final class TestUtil {
 
@@ -142,7 +149,7 @@ public final class TestUtil {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        return isClear.test(getInternalState(check, fieldName));
+        return isClear.test(getInternalState(check, fieldName, Object.class));
     }
 
     /**
@@ -267,13 +274,11 @@ public final class TestUtil {
      * @param instance the instance to read
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
-     * @noinspection unchecked
-     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalState(Object instance, String fieldName) {
+    public static <T> T getInternalState(Object instance, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(instance.getClass(), fieldName);
-            return (T) field.get(instance);
+            return clazz.cast(field.get(instance));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
@@ -284,19 +289,115 @@ public final class TestUtil {
     }
 
     /**
-     * Reads the value of a static field using reflection. This method will traverse the
-     * super class hierarchy until a field with name {@code fieldName} is found.
+     * Helper method for casting collection type Map.
      *
-     * @param clss the class of the field
+     * @param instance the instance to read
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
+    public static Map<String, String> getInternalStateMap(Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, Map.class);
+    }
+
+    /**
+     * Helper method for casting collection type Map.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static Map<Integer, List<TextBlock>> getInternalStateMapIntegerList(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, Map.class);
+    }
+
+    /**
+     * Helper method for casting collection type List.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static List<AuditListener> getInternalStateListAuditListener(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, List.class);
+    }
+
+    /**
+     * Helper method for casting collection type List.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static List<Pattern> getInternalStateListPattern(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, List.class);
+    }
+
+    /**
+     * Helper method for casting collection type List.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static List<Comparable<Object>> getInternalStateListComparable(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, List.class);
+    }
+
+    /**
+     * Helper method for casting to Collection.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static Collection<Checks> getInternalStateCollectionChecks(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, Collection.class);
+    }
+
+    /**
+     * Helper method for casting to collection type Set.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static Set<TreeWalkerFilter> getInternalStateSetTreeWalkerFilter(
+            Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, Set.class);
+    }
+
+    /**
+     * Reads the value of a static field using reflection. This method will traverse the
+     * super class hierarchy until a field with name {@code fieldName} is found.
+     *
+     * @param clss the class of the field
+     * @param fieldName the name of the field
+     * @param clazz the expected type of the field value, used for type-safe casting
+     * @throws RuntimeException if the field  can't be read
+     */
+    public static <T> T getInternalStaticState(Class<?> clss, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(clss, fieldName);
-            return (T) field.get(null);
+            return clazz.cast(field.get(null));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
@@ -304,6 +405,33 @@ public final class TestUtil {
                     fieldName, clss);
             throw new IllegalStateException(message, exc);
         }
+    }
+
+    /**
+     * Helper method for casting to collection type Map.
+     *
+     * @param clss the class of the field
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static Map<String, String> getInternalStaticStateMap(Class<?> clss, String fieldName) {
+        return getInternalStaticState(clss, fieldName, Map.class);
+    }
+
+    /**
+     * Helper method for casting to collection type Map.
+     *
+     * @param clss the class of the field
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static ThreadLocal<List<Object>> getInternalStaticStateThreadLocal(
+            Class<?> clss, String fieldName) {
+        return getInternalStaticState(clss, fieldName, ThreadLocal.class);
     }
 
     /**
