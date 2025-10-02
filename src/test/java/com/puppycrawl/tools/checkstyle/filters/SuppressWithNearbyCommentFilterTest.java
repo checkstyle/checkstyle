@@ -777,7 +777,7 @@ public class SuppressWithNearbyCommentFilterTest
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
                 new Violation(1, null, null, null, null, Object.class, null), null);
         filter.accept(dummyEvent);
-        return TestUtil.getInternalState(filter, "tags");
+        return TestUtil.getInternalState(filter, "tags", List.class);
     }
 
 }

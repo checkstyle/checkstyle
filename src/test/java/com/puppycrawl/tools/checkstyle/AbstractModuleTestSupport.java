@@ -643,13 +643,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      */
     protected final void verifyWithLimitedResources(String fileName, String... expected)
             throws Exception {
-        // We return null here, which gives us a result to make an assertion about
-        final Void result = TestUtil.getResultWithLimitedResources(() -> {
+        TestUtil.getResultWithLimitedResources(() -> {
             verifyWithInlineConfigParser(fileName, expected);
             return null;
         });
         assertWithMessage("Verify should complete successfully.")
-                .that(result)
+                .that((Object) null)
                 .isNull();
     }
 
