@@ -323,7 +323,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
                 .toArray()[0];
 
-        final String id = TestUtil.getInternalState(suppressElement, "moduleId");
+        final String id = TestUtil.getInternalState(suppressElement, "moduleId", String.class);
         assertWithMessage("Id has to be defined")
             .that(id)
             .isEqualTo("someId");

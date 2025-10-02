@@ -150,7 +150,7 @@ public class IllegalTokenTextCheckTest
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         check.setFormat("test");
         check.setIgnoreCase(true);
-        final Pattern actual = TestUtil.getInternalState(check, "format");
+        final Pattern actual = TestUtil.getInternalState(check, "format", Pattern.class);
         assertWithMessage("should match")
             .that(actual.flags())
             .isEqualTo(Pattern.CASE_INSENSITIVE);

@@ -66,7 +66,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         new SuppressWarningsHolder().beginTree(null);
 
-        final Map<String, String> map = TestUtil.getInternalStaticState(
+        final Map<String, String> map = TestUtil.getInternalStaticStateMap(
                 SuppressWarningsHolder.class, "CHECK_ALIAS_MAP");
         map.clear();
     }
@@ -450,7 +450,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 firstColumn, lastLine, lastColumn);
 
         final ThreadLocal<List<Object>> entries = TestUtil
-                .getInternalStaticState(SuppressWarningsHolder.class, "ENTRIES");
+                .getInternalStaticStateThreadLocal(SuppressWarningsHolder.class,
+                        "ENTRIES");
         entries.get().add(entryInstance);
     }
 
