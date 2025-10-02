@@ -275,6 +275,8 @@
       -Xep:StaticImport:OFF
       <!-- no ability to declare noinspection tags as valid tags -->
       -Xep:InvalidBlockTag:OFF
+      <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence -->
+      -Xep:OperatorPrecedence:OFF
     </error-prone.configuration-args>
   </properties>
 

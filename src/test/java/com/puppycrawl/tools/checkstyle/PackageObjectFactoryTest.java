@@ -477,7 +477,7 @@ public class PackageObjectFactoryTest {
 
             final String internalFieldName = "thirdPartyNameToFullModuleNames";
             final Map<String, String> nullMap = TestUtil.getInternalState(objectFactory,
-                    internalFieldName);
+                    internalFieldName, Map.class);
             assertWithMessage("Expected uninitialized field")
                     .that(nullMap)
                     .isNull();
@@ -488,7 +488,7 @@ public class PackageObjectFactoryTest {
                     .isEqualTo("");
 
             final Map<String, String> emptyMap = TestUtil.getInternalState(objectFactory,
-                    internalFieldName);
+                    internalFieldName, Map.class);
             assertWithMessage("Expected empty map")
                     .that(emptyMap)
                     .isEmpty();

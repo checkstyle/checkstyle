@@ -142,7 +142,7 @@ public final class TestUtil {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        return isClear.test(getInternalState(check, fieldName));
+        return isClear.test(getInternalState(check, fieldName, Object.class));
     }
 
     /**
@@ -270,10 +270,10 @@ public final class TestUtil {
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalState(Object instance, String fieldName) {
+    public static <T> T getInternalState(Object instance, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(instance.getClass(), fieldName);
-            return (T) field.get(instance);
+            return clazz.cast(field.get(instance));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
@@ -293,7 +293,7 @@ public final class TestUtil {
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
+    public static <T> T getInternalStaticState(Class<?> clss, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(clss, fieldName);
             return (T) field.get(null);

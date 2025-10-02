@@ -387,7 +387,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         assertWithMessage("There were more legal files than expected")
             .that(counter)
             .isEqualTo(numLegalFiles);
@@ -492,7 +493,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         checker.setModuleClassLoader(classLoader);
         checker.finishLocalSetup();
-        final Context actualCtx = TestUtil.getInternalState(checker, "childContext");
+        final Context actualCtx = TestUtil.getInternalState(checker, "childContext", Context.class);
 
         assertWithMessage("Default module factory should be created when it is not specified")
             .that(actualCtx.get("moduleFactory"))
@@ -512,7 +513,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setLocaleCountry("IT");
         checker.finishLocalSetup();
 
-        final Context context = TestUtil.getInternalState(checker, "childContext");
+        final Context context = TestUtil.getInternalState(checker, "childContext", Context.class);
         final String encoding = StandardCharsets.UTF_8.name();
         assertWithMessage("Charset was different than expected")
             .that(context.get("charset"))
@@ -580,7 +581,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
 
-        final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
+        final List<AuditListener> listeners = TestUtil.getInternalState(checker,
+                "listeners", List.class);
         assertWithMessage("Invalid child listener class")
                 .that(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter)
                 .isTrue();
@@ -761,7 +763,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(new File("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
@@ -778,7 +781,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void setFileExtension() {
         final Checker checker = new Checker();
         checker.setFileExtensions(".test1", "test2");
-        final String[] actual = TestUtil.getInternalState(checker, "fileExtensions");
+        final String[] actual = TestUtil.getInternalState(checker,
+                "fileExtensions", String[].class);
         assertWithMessage("Extensions are not expected")
             .that(actual)
             .isEqualTo(new String[] {".test1", ".test2"});
@@ -790,7 +794,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         assertWithMessage("If cache file is not set the cache should default to null")
             .that(cache)
             .isNull();
@@ -1607,7 +1612,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(root);
         // BriefUtLogger does not print the module name or id postfix,
         // so we need to set logger manually
-        final ByteArrayOutputStream out = TestUtil.getInternalState(this, "stream");
+        final ByteArrayOutputStream out = TestUtil.getInternalState(this,
+                "stream", ByteArrayOutputStream.class);
         final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);
