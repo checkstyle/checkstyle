@@ -208,9 +208,16 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
-        else if (!isCharacterValidAfterGenericEnd(charAfter)) {
+        else if (charAfter == ' ' && after + 1 < line.length
+                && line[after + 1] == ' ') {
             log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
+        else {
+            if (!isCharacterValidAfterGenericEnd(charAfter)) {
+                log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
+            }
+        }
+
     }
 
     /**
