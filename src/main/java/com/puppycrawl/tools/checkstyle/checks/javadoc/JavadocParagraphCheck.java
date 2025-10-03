@@ -242,9 +242,15 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                 && htmlElement.getType() != JavadocCommentsTokenTypes.HTML_ELEMENT) {
             if (htmlElement.getType() == JavadocCommentsTokenTypes.HTML_CONTENT) {
                 htmlElement = htmlElement.getFirstChild();
-                continue;
             }
-            htmlElement = htmlElement.getNextSibling();
+            else if (htmlElement.getType() == JavadocCommentsTokenTypes.TEXT
+                    && !CommonUtil.isBlank(htmlElement.getText())) {
+                htmlElement = null;
+                break;
+            }
+            else {
+                htmlElement = htmlElement.getNextSibling();
+            }
         }
         if (htmlElement != null
                 && JavadocUtil.findFirstToken(htmlElement,
