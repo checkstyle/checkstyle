@@ -68,11 +68,13 @@
              token explicitly.
            IndentationCheckTest has a lot of cases. -->
       <property name="violationSuppressXPath"
-              value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
+              value="//ClassDeclaration[@SimpleName='JavadocCommentsTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenValues']
-                   | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavadocCommentsTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbering']
-                   | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                   | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                       //MethodDeclaration[@Name='testTokenNumbering']    
+                   | //ClassDeclaration[@SimpleName='GeneratedJavadocCommentsTokenTypesTest']
                        //MethodDeclaration[@Name='testTokenNumbers']
                    | //ClassDeclaration[@SimpleName='IndentationCheckTest']"/>
     </properties>
@@ -150,11 +152,11 @@
       <!-- For ClassImportRuleTest and all the below suppressions
           until https://github.com/checkstyle/checkstyle/issues/14870 -->
       <property name="violationSuppressXPath"
-               value="//ClassDeclaration[@SimpleName='JavadocTokenTypesTest']
+               value="//ClassDeclaration[@SimpleName='JavadocCommentsTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenValues']
                     | //ClassDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbering']
-                    | //ClassDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                    | //ClassDeclaration[@SimpleName='GeneratedJavadocCommentsTokenTypesTest']
                         //MethodDeclaration[@Name='testTokenNumbers']
                     | //ClassDeclaration[@SimpleName='ParseTreeTablePresentationTest']
                         //MethodDeclaration[@Name='testGetValueAtDetailNode']

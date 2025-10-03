@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -164,7 +164,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int type = ((DetailNode) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
-            .isEqualTo(JavadocTokenTypes.JAVADOC);
+            .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
         final Object childSame = parseTree.getChild(commentContentNode, 0);
         assertWithMessage("Invalid child type")
                 .that(childSame)
@@ -172,7 +172,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int sameType = ((DetailNode) childSame).getType();
         assertWithMessage("Invalid child token type")
             .that(sameType)
-            .isEqualTo(JavadocTokenTypes.JAVADOC);
+            .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
     }
 
     @Test
@@ -188,11 +188,11 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
-            .isEqualTo(JavadocTokenTypes.JAVADOC);
+            .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
         final int javadocChildCount = parseTree.getChildCount(javadoc);
         assertWithMessage("Invalid child count")
             .that(javadocChildCount)
-            .isEqualTo(5);
+            .isEqualTo(4);
     }
 
     @Test
@@ -208,7 +208,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
-            .isEqualTo(JavadocTokenTypes.JAVADOC);
+            .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
         final Object javadocChild = parseTree.getChild(javadoc, 2);
         assertWithMessage("Invalid child type")
                 .that(javadocChild)
@@ -216,7 +216,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int childType = ((DetailNode) javadocChild).getType();
         assertWithMessage("Invalid child token type")
             .that(childType)
-            .isEqualTo(JavadocTokenTypes.TEXT);
+            .isEqualTo(JavadocCommentsTokenTypes.TEXT);
     }
 
     @Test
@@ -312,14 +312,14 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
         final int line = (int) parseTree.getValueAt(child, 2);
         final int column = (int) parseTree.getValueAt(child, 3);
         final String text = (String) parseTree.getValueAt(child, 4);
-        final String expectedText = "JAVADOC";
+        final String expectedText = "JAVADOC_CONTENT";
 
         assertWithMessage("Tree model must be null")
             .that(treeModel)
             .isNull();
         assertWithMessage("Invalid type")
             .that(type)
-            .isEqualTo("JAVADOC");
+            .isEqualTo("JAVADOC_CONTENT");
         assertWithMessage("Invalid line")
             .that(line)
             .isEqualTo(3);

@@ -17,61 +17,37 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-// violation 9 lines above 'tag BODY_TAG_START'
-// violation 9 lines above 'tag P_TAG_START'
-// 2 violations 8 lines above:
-//                            'Unclosed HTML tag found: p'
-//                            'tag P_TAG_START'
-// 2 violations 10 lines above:
-//                            'tag LI_TAG_START'
-//                            'tag P_TAG_START'
+// violation 6 lines above 'Unclosed HTML tag found: p'
 
 public class InputAbstractJavadocNonTightHtmlTags2 {
-    /** <p> <p> paraception </p> </p> */
-    // 3 violations above:
-    //                    'Unclosed HTML tag found: p'
-    //                    'tag P_TAG_START'
-    //                    'tag P_TAG_START'
+    /** <p> <p> paraception </p>  */
+    // violation above 'Unclosed HTML tag found: p'
     private int field1;
 
     /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
-    // 2 violations above:
-    //                    'Unclosed HTML tag found: li'
-    //                    'tag LI_TAG_START'
+    // violation above 'Javadoc comment at column 68 has parse error.'
+    // Details: no viable alternative at input '</' while parsing HTML_ELEMENT
     private int field2;
 
     /**
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
      * <li> list has an <p> unclosed para, but still the list would get nested </li>
      */
-    // violation 3 lines above 'P_TAG_START'
-    // 3 violations 3 lines above:
-    //                    'Unclosed HTML tag found: p'
-    //                    'tag LI_TAG_START'
-    //                    'tag P_TAG_START'
+    // violation 2 lines above 'Unclosed HTML tag found: p'
     private int field3;
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr>
+     * <tr> Zero nesting despite `tr` is closed </tr>
      */
-    // 2 violations 3 lines above:
-    //                            'tag LI_TAG_START'
-    //                            'tag P_TAG_START'
-    // violation 5 lines above 'Unclosed HTML tag found: tr'
     private int field4;
 
     /**
      * <p> <a href="www.something.com">something</a> paragraph with `htmlTag` </p>
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
-     * <li> Outer tag <li> Inner tag nested </li> not nested </li>
+     * <li> Outer tag <li> Inner tag nested </li> not nested
      */
-    // violation 4 lines above 'tag P_TAG_START'
-    // violation 4 lines above 'tag P_TAG_START'
-    // 3 violations 4 lines above:
-    //                            'Unclosed HTML tag found: li'
-    //                            'tag LI_TAG_START'
-    //                            'tag LI_TAG_START'
+    // violation 2 lines above 'Unclosed HTML tag found: li'
     private int field5;
 
     /**
@@ -79,14 +55,6 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      *
      * @return <li> <li> outer list isn't nested in parse tree </li> </li>
      */
-    // 3 violations 4 lines above:
-    //                            'tag BODY_TAG_START'
-    //                            'tag P_TAG_START'
-    //                            'tag LI_TAG_START'
-    // 3 violations 6 lines above:
-    //                            'Unclosed HTML tag found: li'
-    //                            'tag LI_TAG_START'
-    //                            'tag LI_TAG_START'
     int getField1() {return field1;}
 
     /***/
@@ -97,10 +65,9 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * And paraTag shall be nested in parse tree </p>
      * @param field2 <p> setter
      */
-    // violation 4 lines above 'tag P_TAG_START'
-    // 2 violations 3 lines above:
+    // 2 violations 2 lines above:
     //                            'Unclosed HTML tag found: p'
-    //                            'tag P_TAG_START'
+    //                            'tag PARAM_BLOCK_TAG'
     void setField2(int field2) {this.field2 = field2;}
 
     /**
@@ -108,10 +75,8 @@ public class InputAbstractJavadocNonTightHtmlTags2 {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th>
+     *     <tr> nonTight
      */
-    // violation 6 lines above 'tag P_TAG_START'
-    // violation 6 lines above 'tag LI_TAG_START'
-    // violation 4 lines above 'Unclosed HTML tag found: tr'
+    // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}
 }

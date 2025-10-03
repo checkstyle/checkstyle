@@ -5,18 +5,14 @@ com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$ParseJav
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
-/**
- * <unclosedTag>
- */
-// violation 2 lines above 'Javadoc comment at column 4 has parse error.'
-// Missed HTML close tag 'unclosedTag'. Sometimes it means that close tag missed for
-// one of previous tags.
 class InputAbstractJavadocParsingErrors2 {
     /**
-     * <img src="singletonTag"/></img>
+     * {@link java.util.Collections#singletonList(java.lang.Object)
      */
-    // violation 2 lines above 'Javadoc comment at column 35 has parse error.'
-    // It is forbidden to close singleton HTML tags. Tag: img.
+    // violation above 'Javadoc comment at column 5 has parse error.'
+    // Details: mismatched input '<EOF>' expecting
+    // 'JAVADOC_INLINE_TAG_END' while parsing INLINE_TAG
     void singletonTag() {
+
     }
 }
