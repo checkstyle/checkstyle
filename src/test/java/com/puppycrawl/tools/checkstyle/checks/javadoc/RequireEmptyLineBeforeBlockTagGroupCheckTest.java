@@ -64,6 +64,10 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
             "20: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
             "28: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
             "35: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@return"),
+            "47: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "63: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
+            "74: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
+            "87: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@serial"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputRequireEmptyLineBeforeBlockTagGroupIncorrect.java"),

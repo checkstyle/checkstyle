@@ -94,4 +94,23 @@ class TokenTypes {
    * METHOD_REF},
    */
   public int RBRACK;
+
+  /**
+   * <!-- ignore this
+   * spanning
+   * multiple lines --> text here
+   * text
+   */
+  public int getRBRACK() {
+    return RBRACK;
+  }
+
+  /**
+   * <code>0.0</code>&hellip;<code>0</code><!--
+   * --><i>s</i><sub>1</sub>&hellip;<i>s</i><sub><i>n</i></sub>,
+   * where there are exactly -(<i>n</i> + <i>i</i>) zeroes between
+   */
+  public int getMethodRef() {
+    return METHOD_REF;
+  }
 }
