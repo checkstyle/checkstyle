@@ -12,8 +12,8 @@ public class InputAbstractJavadocNonTightHtmlTags3 {
     private int field4;
     private int field5;
     /**
-     * @param field3 <td> td with singletonElement <br/> </td>
-     */
+     * @param field3 <td> td with singletonElement </td>
+     */ // violation above 'tag PARAM_BLOCK_TAG'
     private void setField3(int field3) { this.field3 = field3;}
 
     /**
@@ -29,18 +29,15 @@ public class InputAbstractJavadocNonTightHtmlTags3 {
      * <p> </p>
      * @param field4 value to which {@link #field4} is to be set to
      */
-    // violation 3 lines above 'tag P_TAG_START'
+    // violation 2 lines above 'tag PARAM_BLOCK_TAG'
     private void setField4(int field4) {this.field4 = field4;}
 
     /**
      *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD> <dt> <Head> <HTML> <option> <tBody> <tHead>
      *      <tFoot>
-     * @param field5 </p> value to which {@link #field5} is to be set to
+     * @param field5 value to which {@link #field5} is to be set to
      */
-    // 4 violations 4 lines above:
-    //                            'Unclosed HTML tag found: p'
-    //                            'tag P_TAG_START'
-    //                            'tag LI_TAG_START'
-    //                            'tag BODY_TAG_START'
+    // violation 4 lines above 'Unclosed HTML tag found: p'
+    // violation 3 lines above 'tag PARAM_BLOCK_TAG'
     private void setField5(int field5) {this.field5 = field5;}
 }
