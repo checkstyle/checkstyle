@@ -35,28 +35,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of String.substring.</message>
-    <lineContent>return className.substring(0, className.length() - contextLength);</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>children[i] = child;</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
     <lineContent>final String ruleName = recognizer.getRuleNames()[ruleIndex];</lineContent>
@@ -71,28 +49,6 @@
     <specifier>array.access.unsafe.low</specifier>
     <message>Potentially unsafe array access: the index could be negative.</message>
     <lineContent>final String ruleName = recognizer.getRuleNames()[ruleIndex];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>array.length.negative</specifier>
-    <message>Variable used in array creation could be negative.</message>
-    <lineContent>new JavadocNodeImpl[parseTreeNode.getChildCount()];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java</fileName>
-    <specifier>array.length.negative</specifier>
-    <message>Variable used in array creation could be negative.</message>
-    <lineContent>node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);</lineContent>
     <details>
       found   : int
       required: an integer &gt;= 0 (@NonNegative or @Positive)
@@ -635,17 +591,6 @@
     <details>
       found   : int
       required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; child.getChildren()[0].getType() == JavadocTokenTypes.DEPRECATED_LITERAL) {</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
     </details>
   </checkerFrameworkError>
 
@@ -1685,127 +1630,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/RequireEmptyLineBeforeBlockTagGroupCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>tagNode.getChildren()[0].getText());</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of BitSet.get.</message>
-    <lineContent>&amp;&amp; ALLOWED_TYPES.get(child.getType())) {</lineContent>
-    <details>
-      found   : int
-      required: @NonNegative int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; node.getChildren()[0].getChildren().length &gt; 1) {</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>child.getChildren()[0].getChildren()[0]));</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>child.getChildren()[0].getChildren()[0]));</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>node = node.getChildren()[0].getChildren()[1];</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>&amp;&amp; child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>node = node.getChildren()[0].getChildren()[1];</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>node = node.getChildren()[1];</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
-    <lineContent>return name.equals(child[1].getText());</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 3 could be larger than the array&apos;s bound</message>
-    <lineContent>DetailNode currentNode = childrenOfInlineTag[indexOfContentOfSummaryTag];</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(4) -- an array guaranteed to have at least 4 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
@@ -2467,17 +2291,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/CodeSelectorPresentation.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>detailNode.getChildren()[detailNode.getChildren().length - 1];</lineContent>
-    <details>
-      found   : @GTENegativeOne int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
     <specifier>array.access.unsafe.high</specifier>
     <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
@@ -2485,28 +2298,6 @@
     <details>
       found   : int
       required: @IndexFor(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&quot;) or @LTLengthOf(&quot;com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&quot;) -- an integer less than com.puppycrawl.tools.checkstyle.gui.ParseTreeTablePresentation.class.COLUMN_NAMES&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>result = node.getChildren()[index];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;node.getChildren()&quot;) or @LTLengthOf(&quot;node.getChildren()&quot;) -- an integer less than node.getChildren()&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/ParseTreeTablePresentation.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>result = node.getChildren()[index];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 
@@ -2944,39 +2735,6 @@
     <details>
       found   : @UpperBoundLiteral(1) int
       required: @LTEqLengthOf(&quot;commentContent.getText()&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>array.access.unsafe.high</specifier>
-    <message>Potentially unsafe array access: the index could be larger than the array&apos;s bound</message>
-    <lineContent>previousSibling = children[previousSiblingIndex];</lineContent>
-    <details>
-      found   : int
-      required: @IndexFor(&quot;children&quot;) or @LTLengthOf(&quot;children&quot;) -- an integer less than children&apos;s length
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>array.access.unsafe.high.constant</specifier>
-    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
-    <lineContent>resultNode = node.getChildren()[0];</lineContent>
-    <details>
-      found   : DetailNode []
-      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/JavadocUtil.java</fileName>
-    <specifier>array.access.unsafe.low</specifier>
-    <message>Potentially unsafe array access: the index could be negative.</message>
-    <lineContent>nextSibling = children[nextSiblingIndex];</lineContent>
-    <details>
-      found   : int
-      required: an integer &gt;= 0 (@NonNegative or @Positive)
     </details>
   </checkerFrameworkError>
 
