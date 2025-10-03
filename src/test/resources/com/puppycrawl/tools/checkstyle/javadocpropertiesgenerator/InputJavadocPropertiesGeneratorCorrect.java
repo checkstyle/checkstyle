@@ -42,4 +42,19 @@ public class InputJavadocPropertiesGeneratorCorrect {
      * Oracle Docs</a>
      */
     public static final int DEPRECATED_LITERAL = 5;
+
+
+    /**
+     * A line break tag <br/> in Javadoc comments.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code This is some text<br/>This is on a new line}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     *   |--TEXT[3x0] : [This is some text]
+     *   |--HTML_ELEMENT[3x20] : [<br/>]
+     *   |--TEXT[3x25] : [This is on a new line]
+     * }</pre>
+     */
+    public static final int HTML_SELF_CLOSING_BR = 6;
 }

@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="NonEmptyAtclauseDescription">
-      <property name="javadocTokens" value="PARAM_LITERAL,THROWS_LITERAL"/>
+      <property name="javadocTokens" value="PARAM_BLOCK_TAG,THROWS_BLOCK_TAG"/>
     </module>
   </module>
 </module>

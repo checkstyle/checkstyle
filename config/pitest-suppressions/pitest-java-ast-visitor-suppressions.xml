@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>JavadocCommentsAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</mutatedClass>
+    <mutatedMethod>createImaginary</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (tokenType == JavadocCommentsTokenTypes.JAVADOC_CONTENT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocCommentsAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</mutatedClass>
+    <mutatedMethod>createImaginary</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocNodeImpl::setColumnNumber</description>
+    <lineContent>node.setColumnNumber(javadocColumnNumber);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocCommentsAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</mutatedClass>
+    <mutatedMethod>processChildren</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/JavadocCommentsAstVisitor$TextAccumulator::flushTo</description>
+    <lineContent>accumulator.flushTo(parent);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocCommentsAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</mutatedClass>
+    <mutatedMethod>visitBlockTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (tag instanceof ParserRuleContext context) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocCommentsAstVisitor.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.JavadocCommentsAstVisitor</mutatedClass>
+    <mutatedMethod>visitInlineTag</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (tagContent instanceof ParserRuleContext context) {</lineContent>
+  </mutation>
+</suppressedMutations>

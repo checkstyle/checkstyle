@@ -76,7 +76,7 @@ private int getField4() {return field4;}
     /**
      *  <p> <li> <TR> <Td> <tH> <body> <colGROUP> <DD> <dt> <Head> <HTML> <option> <tBody> <tHead>
      *      <tFoot>
-     * @param field6 </p> value to which {@link #field6} is to be set to
+     * @param field6 value to which {@link #field6} is to be set to
      */
     private void setField6(int field6) {this.field6 = field6;}
 }

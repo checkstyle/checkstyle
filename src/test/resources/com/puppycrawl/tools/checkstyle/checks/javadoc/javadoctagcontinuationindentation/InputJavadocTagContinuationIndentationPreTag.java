@@ -95,7 +95,7 @@ public class InputJavadocTagContinuationIndentationPreTag {
 
     /**
      * Writes the object using a
-     * <a href="{@docRoot}/serialized-form.html#ja>deserialized form</a>.
+     * <a href="{@docRoot}/serialized-form.html#ja">deserialized form</a>.
      * @serialData
      * Refer to the serialized form of // violation
      * <a href="{@docRoot}/serialized-formRules">ZoneRules.writeReplace</a> // violation

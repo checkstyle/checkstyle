@@ -128,14 +128,21 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
                 .isEqualTo(74);
         assertWithMessage("Invalid selection end")
                 .that(selector.getSelectionEnd())
-                .isEqualTo(96);
+                .isEqualTo(91);
     }
 
     @Test
     public void testDetailNodeLeafSelection() {
         final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
-        final DetailNode javadocLeaf = javadoc.getChildren()[2];
+        DetailNode javadocLeaf = null;
+        DetailNode node = javadoc.getFirstChild();
+        for (int index = 0; node != null; index++, node = node.getNextSibling()) {
+            if (index == 2) {
+                javadocLeaf = node;
+                break;
+            }
+        }
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadocLeaf,
                 linesToPosition);
         selector.findSelectionPositions();

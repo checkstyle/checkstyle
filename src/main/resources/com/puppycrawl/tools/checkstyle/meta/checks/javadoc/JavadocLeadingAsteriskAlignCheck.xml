@@ -32,10 +32,8 @@
          </properties>
          <message-keys>
             <message-key key="javadoc.asterisk.indentation"/>
-            <message-key key="javadoc.missed.html.close"/>
             <message-key key="javadoc.parse.rule.error"/>
             <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
          </message-keys>
       </check>
    </module>
