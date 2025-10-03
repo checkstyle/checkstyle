@@ -208,9 +208,15 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
-        else if (!isCharacterValidAfterGenericEnd(charAfter)) {
+        else if (charAfter == ' ' && line[after + 1] == ' ') {
             log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
+        else {
+            if (!isCharacterValidAfterGenericEnd(charAfter)) {
+                log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
+            }
+        }
+
     }
 
     /**
@@ -373,7 +379,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         return charAfter == ')' || charAfter == ','
             || charAfter == '[' || charAfter == '.'
             || charAfter == ':' || charAfter == ';'
-            || Character.isWhitespace(charAfter);
+            || charAfter == ' ';
     }
 
 }
