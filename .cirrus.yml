@@ -38,7 +38,7 @@ task:
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress temurin --version %TEMURIN_VERSION%
-    - set "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.6.7-hotspot"
+    - set "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-%TEMURIN_VERSION%-hotspot"
     - set PATH=%JAVA_HOME%\bin;%PATH%
     - echo JAVA_HOME is %JAVA_HOME%
     - java -version
