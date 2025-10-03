@@ -97,6 +97,8 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "49:8: " + getCheckMessage(MSG_MISPLACED_TAG),
             "51:8: " + getCheckMessage(MSG_MISPLACED_TAG),
             "51:8: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ol"),
+            "64:63: " + getCheckMessage(MSG_LINE_BEFORE),
+            "65:7: " + getCheckMessage(MSG_TAG_AFTER),
         };
         verifyWithInlineConfigParser(
                 getPath("InputJavadocParagraphIncorrect4.java"), expected);

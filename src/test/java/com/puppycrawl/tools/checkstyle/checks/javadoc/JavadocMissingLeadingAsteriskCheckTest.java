@@ -25,7 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingLeadi
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSupport {
@@ -40,7 +40,7 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
         final JavadocMissingLeadingAsteriskCheck checkObj =
             new JavadocMissingLeadingAsteriskCheck();
         final int[] expected = {
-            JavadocTokenTypes.NEWLINE,
+            JavadocCommentsTokenTypes.NEWLINE,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(checkObj.getAcceptableJavadocTokens())
