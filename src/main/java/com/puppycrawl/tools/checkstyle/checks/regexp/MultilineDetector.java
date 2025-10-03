@@ -100,12 +100,12 @@ class MultilineDetector {
                 if (currentMatches > options.getMaximum()) {
                     final LineColumn start = text.lineColumn(matcher.start());
                     if (options.getMessage().isEmpty()) {
-                        options.getReporter().log(start.getLine(),
+                        options.getReporter().log(start.line(),
                                 MSG_REGEXP_EXCEEDED, matcher.pattern().toString());
                     }
                     else {
                         options.getReporter()
-                                .log(start.getLine(), options.getMessage());
+                                .log(start.line(), options.getMessage());
                     }
                 }
                 foundMatch = matcher.find();
