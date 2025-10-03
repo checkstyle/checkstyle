@@ -55,7 +55,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // recreate for each test because multiple invocations fail
         final String header = null;
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalStateListPattern(
+                instance, "headerRegexps");
 
         assertWithMessage("When header is null regexps should not be set")
                 .that(headerRegexps)
@@ -72,7 +73,8 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
         // check empty string passes
         final String header = "";
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalStateListPattern(
+                instance, "headerRegexps");
 
         assertWithMessage("When header is empty regexps should not be set")
                 .that(headerRegexps)
@@ -82,13 +84,15 @@ public class RegexpHeaderCheckTest extends AbstractModuleTestSupport {
     /**
      * Test of setHeader method, of class RegexpHeaderCheck.
      */
+
     @Test
     public void testSetHeaderSimple() {
         final RegexpHeaderCheck instance = new RegexpHeaderCheck();
         // check valid header passes
         final String header = "abc.*";
         instance.setHeader(header);
-        final List<Pattern> headerRegexps = TestUtil.getInternalState(instance, "headerRegexps");
+        final List<Pattern> headerRegexps = TestUtil.getInternalStateListPattern(
+                instance, "headerRegexps");
         assertWithMessage("Expected one pattern")
             .that(headerRegexps.size())
             .isEqualTo(1);
