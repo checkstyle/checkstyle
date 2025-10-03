@@ -317,12 +317,13 @@ public class FileContentsTest {
                 .isEqualTo(new String[] {"/* test   ", "  *"});
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testHasIntersectionEarlyOut() throws Exception {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.emptyList()));
         final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalState(fileContents,
-                "clangComments");
+                "clangComments", Map.class);
         final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
         clangComments.put(1, Collections.singletonList(textBlock));
         clangComments.put(2, Collections.emptyList());

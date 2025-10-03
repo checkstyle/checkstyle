@@ -86,6 +86,7 @@ public record TestInputViolation(int lineNo, String message)
 
     @Override
     public boolean equals(Object object) {
-        return getClass() == object.getClass() && compareTo((TestInputViolation) object) == 0;
+        return object instanceof TestInputViolation violation
+            && compareTo(violation) == 0;
     }
 }

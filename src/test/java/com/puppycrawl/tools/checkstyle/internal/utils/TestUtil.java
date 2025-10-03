@@ -142,7 +142,7 @@ public final class TestUtil {
         check.beginTree(astToVisit);
         check.visitToken(astToVisit);
         check.beginTree(null);
-        return isClear.test(getInternalState(check, fieldName));
+        return isClear.test(getInternalState(check, fieldName, Object.class));
     }
 
     /**
@@ -267,13 +267,11 @@ public final class TestUtil {
      * @param instance the instance to read
      * @param fieldName the name of the field
      * @throws RuntimeException if the field  can't be read
-     * @noinspection unchecked
-     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalState(Object instance, String fieldName) {
+    public static <T> T getInternalState(Object instance, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(instance.getClass(), fieldName);
-            return (T) field.get(instance);
+            return clazz.cast(field.get(instance));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
@@ -289,14 +287,13 @@ public final class TestUtil {
      *
      * @param clss the class of the field
      * @param fieldName the name of the field
+     * @param clazz the expected type of the field value, used for type-safe casting
      * @throws RuntimeException if the field  can't be read
-     * @noinspection unchecked
-     * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T getInternalStaticState(Class<?> clss, String fieldName) {
+    public static <T> T getInternalStaticState(Class<?> clss, String fieldName, Class<T> clazz) {
         try {
             final Field field = getClassDeclaredField(clss, fieldName);
-            return (T) field.get(null);
+            return clazz.cast(field.get(null));
         }
         catch (ReflectiveOperationException exc) {
             final String message = String.format(Locale.ROOT,
