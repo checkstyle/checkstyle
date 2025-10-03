@@ -26,4 +26,27 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
   </div>
  */
 public class InputJavadocParagraphNested {
+
+    /**
+     * Utility for using arrays in requests.
+     *
+     * <p>
+     * Binary format:
+     * <ul>
+     * <li>4 bytes with number of dimensions</li>
+     * <li>4 bytes, boolean indicating nulls present or not</li>
+     * <li>4 bytes type oid</li>
+     * <li>8 bytes describing the length of each dimension (repeated for each dimension)</li>
+     * <ul>
+     * <li>4 bytes for length</li>
+     * <li>4 bytes for lower bound on length to check for overflow</li>
+     * </ul>
+     * </ul>
+     * </p>
+     *
+     * @author Brett Okken
+     */
+    void test() {
+
+    }
 }
