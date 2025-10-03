@@ -244,6 +244,11 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                 htmlElement = htmlElement.getFirstChild();
                 continue;
             }
+            if (htmlElement.getType() == JavadocCommentsTokenTypes.TEXT
+                    && !CommonUtil.isBlank(htmlElement.getText())) {
+                htmlElement = null;
+                break;
+            }
             htmlElement = htmlElement.getNextSibling();
         }
         if (htmlElement != null
