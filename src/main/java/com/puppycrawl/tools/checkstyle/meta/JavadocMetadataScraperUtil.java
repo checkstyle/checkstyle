@@ -19,17 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.meta;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * Class for scraping module metadata from the corresponding class' class-level javadoc.
@@ -46,47 +42,50 @@ public final class JavadocMetadataScraperUtil {
     }
 
     /**
-     * Performs a DFS of the subtree with a node as the root and constructs the text of that
-     * tree, ignoring JavadocToken texts.
+     * Performs a depth-first traversal of the subtree starting at {@code startNode}
+     * and ending at {@code endNode}, and constructs the concatenated text of all nodes
+     * in that range, ignoring {@code JavadocToken} texts.
      *
-     * @param node root node of subtree
-     * @param childLeftLimit the left index of root children from where to scan
-     * @param childRightLimit the right index of root children till where to scan
-     * @return constructed text of subtree
+     * @param startNode the node where traversal begins (inclusive)
+     * @param endNode the node where traversal ends (inclusive)
+     * @return the constructed text from the specified subtree range
      */
-    public static String constructSubTreeText(DetailNode node, int childLeftLimit,
-                                               int childRightLimit) {
-        DetailNode detailNode = node;
-
-        final Deque<DetailNode> stack = new ArrayDeque<>();
-        stack.addFirst(detailNode);
-        final Set<DetailNode> visited = new HashSet<>();
+    public static String constructSubTreeText(DetailNode startNode,
+                                               DetailNode endNode) {
+        DetailNode curNode = startNode;
         final StringBuilder result = new StringBuilder(1024);
-        while (!stack.isEmpty()) {
-            detailNode = stack.removeFirst();
 
-            if (visited.add(detailNode) && isContentToWrite(detailNode)) {
-                String childText = detailNode.getText();
+        while (curNode != null) {
+            if (isContentToWrite(curNode)) {
+                String childText = curNode.getText();
 
-                if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                    childText = adjustCodeInlineTagChildToHtml(detailNode);
+                if (isInsideCodeInlineTag(curNode)) {
+                    childText = adjustCodeInlineTagChildToHtml(curNode);
                 }
 
-                result.insert(0, childText);
+                result.append(childText);
             }
 
-            for (DetailNode child : detailNode.getChildren()) {
-                if (child.getParent().equals(node)
-                        && (child.getIndex() < childLeftLimit
-                        || child.getIndex() > childRightLimit)) {
-                    continue;
-                }
-                if (!visited.contains(child)) {
-                    stack.addFirst(child);
-                }
+            DetailNode toVisit = curNode.getFirstChild();
+            while (curNode != endNode && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
             }
+
+            curNode = toVisit;
         }
         return result.toString().trim();
+    }
+
+    /**
+     * Checks whether the given node is inside a {@code @code} Javadoc inline tag.
+     *
+     * @param node the node to check
+     * @return true if the node is inside a {@code @code} inline tag, false otherwise
+     */
+    private static boolean isInsideCodeInlineTag(DetailNode node) {
+        return node.getParent() != null
+                && node.getParent().getType() == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
     }
 
     /**
@@ -97,8 +96,8 @@ public final class JavadocMetadataScraperUtil {
      */
     private static boolean isContentToWrite(DetailNode detailNode) {
 
-        return detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-            && (detailNode.getType() == JavadocTokenTypes.TEXT
+        return detailNode.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK
+            && (detailNode.getType() == JavadocCommentsTokenTypes.TEXT
             || !TOKEN_TEXT_PATTERN.matcher(detailNode.getText()).matches());
     }
 
@@ -111,28 +110,23 @@ public final class JavadocMetadataScraperUtil {
     public static String adjustCodeInlineTagChildToHtml(DetailNode codeChild) {
 
         return switch (codeChild.getType()) {
-            case JavadocTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
-            case JavadocTokenTypes.WS -> "";
-            case JavadocTokenTypes.CODE_LITERAL -> codeChild.getText().replace("@", "") + ">";
-            case JavadocTokenTypes.JAVADOC_INLINE_TAG_START -> "<";
-            default -> codeChild.getText();
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END -> "</code>";
+            case JavadocCommentsTokenTypes.TAG_NAME -> "";
+            case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START -> "<code>";
+            default -> codeChild.getText().trim();
         };
     }
 
     /**
-     * Returns the first child node which matches the provided {@code TokenType} and has the
-     * children index after the offset value.
+     * Returns the first child node of the given parent that matches the provided {@code tokenType}.
      *
-     * @param node parent node
-     * @param tokenType token type to match
-     * @param offset children array index offset
-     * @return the first child satisfying the conditions
+     * @param node the parent node
+     * @param tokenType the token type to match
+     * @return an {@link Optional} containing the first matching child node,
+     *         or an empty {@link Optional} if none is found
      */
-    private static Optional<DetailNode> getFirstChildOfType(DetailNode node, int tokenType,
-                                                            int offset) {
-        return Arrays.stream(node.getChildren())
-                .filter(child -> child.getIndex() >= offset && child.getType() == tokenType)
-                .findFirst();
+    private static Optional<DetailNode> getFirstChildOfType(DetailNode node, int tokenType) {
+        return JavadocUtil.getAllNodesOfType(node, tokenType).stream().findFirst();
     }
 
     /**
@@ -143,7 +137,7 @@ public final class JavadocMetadataScraperUtil {
      * @return true if one of child text nodes matches pattern
      */
     public static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
-        return getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0)
+        return getFirstChildOfType(ast, JavadocCommentsTokenTypes.TEXT)
                 .map(DetailNode::getText)
                 .map(pattern::matcher)
                 .map(Matcher::matches)

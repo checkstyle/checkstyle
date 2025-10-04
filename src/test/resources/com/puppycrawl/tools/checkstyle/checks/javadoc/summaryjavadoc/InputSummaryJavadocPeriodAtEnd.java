@@ -79,4 +79,22 @@ public class InputSummaryJavadocPeriodAtEnd {
     public void foo8() {
 
     }
+
+    /**
+     * <p>
+     *     This is valid java doc
+     *     This is valid java doc.
+     * </p>
+     */
+    public void foo9(){
+
+    }
+
+    /**
+     * <p>
+     *     This is valid java doc.
+     */
+    public void foo10(){
+
+    }
 }

@@ -47,7 +47,6 @@
             </property>
          </properties>
          <message-keys>
-            <message-key key="javadoc.missed.html.close"/>
             <message-key key="javadoc.paragraph.line.before"/>
             <message-key key="javadoc.paragraph.misplaced.tag"/>
             <message-key key="javadoc.paragraph.preceded.block.tag"/>
@@ -55,7 +54,6 @@
             <message-key key="javadoc.paragraph.tag.after"/>
             <message-key key="javadoc.parse.rule.error"/>
             <message-key key="javadoc.unclosedHtml"/>
-            <message-key key="javadoc.wrong.singleton.html.tag"/>
          </message-keys>
       </check>
    </module>
