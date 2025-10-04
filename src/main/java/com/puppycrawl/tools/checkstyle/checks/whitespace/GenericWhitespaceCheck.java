@@ -373,7 +373,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         return charAfter == ')' || charAfter == ','
             || charAfter == '[' || charAfter == '.'
             || charAfter == ':' || charAfter == ';'
-            || Character.isWhitespace(charAfter);
+            || charAfter == ' ';
     }
 
 }
