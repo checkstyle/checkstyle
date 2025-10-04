@@ -1,8 +1,8 @@
 /*
 TodoComment
-format = (default)"TODO:"
-tokens = (default){SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN}
+format = (default)FIXME:
 */
+
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
 public class InputTodoCommentDefault {
@@ -11,4 +11,5 @@ public class InputTodoCommentDefault {
         i++; // TODO: do differently in future
         i++;
     }
+
 }
