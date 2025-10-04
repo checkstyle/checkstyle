@@ -1,4 +1,5 @@
-only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
+only_if: >-
+  $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
 task:
   name: Windows build
   windows_container:
@@ -11,7 +12,9 @@ task:
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
-    - cmd /c "if defined CIRRUS_PR (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
+    - >-
+      cmd /c "if defined CIRRUS_PR
+      (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
     - git reset --hard %CIRRUS_CHANGE_IN_REPO%
   choco_cache:
     # should be under %CIRRUS_WORKING_DIR%
@@ -46,11 +49,15 @@ task:
     - javac -version
 
   version_script:
-    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
-    - set "PATH=%JAVA_HOME%\bin;%PATH%"
-    - set
-    - ant -version
-    - java --version
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && set
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && ant -version
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && java --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:
