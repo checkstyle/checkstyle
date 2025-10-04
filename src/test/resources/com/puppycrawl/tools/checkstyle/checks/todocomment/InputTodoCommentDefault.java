@@ -1,6 +1,6 @@
 /*
 TodoComment
-format = (default)FIXME:
+
 */
 
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
