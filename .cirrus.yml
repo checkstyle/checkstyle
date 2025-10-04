@@ -33,13 +33,13 @@ task:
     MAVEN_OPTS: "-Dhttp.keepAlive=false \
       -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
       -Dmaven.wagon.http.retryHandler.count=3"
+    JAVA_HOME: "C:\\Program Files\\Eclipse Adoptium\\jdk-21"
+    PATH: "%JAVA_HOME%\\bin;%PATH%"
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress temurin --version %TEMURIN_VERSION%
-    - set "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-%TEMURIN_VERSION%-hotspot"
-    - set PATH=%JAVA_HOME%\bin;%PATH%
     - echo JAVA_HOME is %JAVA_HOME%
     - java -version
     - javac -version
