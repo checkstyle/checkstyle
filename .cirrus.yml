@@ -1,16 +1,20 @@
-only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
+only_if: >-
+  $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
 task:
   name: Windows build
   windows_container:
     image: cirrusci/windowsservercore:2019
   clone_script:
     - git config core.autocrlf
-    - >
-      git clone --recursive
-      https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
-      %CIRRUS_WORKING_DIR%/ci
+    - git clone --recursive
+          https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
+          %CIRRUS_WORKING_DIR%/ci
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
-    - cmd /c "if defined CIRRUS_PR (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
+    - >-
+      cmd /c "if defined CIRRUS_PR
+      (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
     - git reset --hard %CIRRUS_CHANGE_IN_REPO%
   choco_cache:
     # should be under %CIRRUS_WORKING_DIR%
@@ -25,7 +29,7 @@ task:
     - name: Cirrus - JDK21
       env:
         TEMURIN_VERSION: "21.0.6.7"
-
+        TEMURIN_PATH: 'Eclipse Adoptium\jdk-21'
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
@@ -33,29 +37,41 @@ task:
     MAVEN_OPTS: "-Dhttp.keepAlive=false \
       -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
       -Dmaven.wagon.http.retryHandler.count=3"
-    JAVA_HOME: "C:\\Program Files\\Eclipse Adoptium\\jdk-21"
-    PATH: "%JAVA_HOME%\\bin;%PATH%"
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y --no-progress ant
     - choco install -y --no-progress temurin --version %TEMURIN_VERSION%
-    - echo JAVA_HOME is %JAVA_HOME%
+    - refreshenv
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - java -version
     - javac -version
 
   version_script:
-    - echo JAVA_HOME is %JAVA_HOME%
-    - ant -version
-    - java --version
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && set
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && ant -version
+    - >-
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
+      set "PATH=%JAVA_HOME%\bin;%PATH%" && java --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd sevntu
   verify_without_checkstyle_script:
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd verify_without_checkstyle
   site_without_verify_script:
+    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+    - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
     - .ci/validation.cmd site_without_verify
