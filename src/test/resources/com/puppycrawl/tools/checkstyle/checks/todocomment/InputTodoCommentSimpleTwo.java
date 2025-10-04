@@ -1,10 +1,8 @@
-/* // violation
+/*
 TodoComment
 format = FIXME:
-
-
+tokens = (default){SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN}
 */
-
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
 
 import java.io.*;
@@ -16,7 +14,6 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-
 public class InputTodoCommentSimpleTwo {
     /** test local variables */
     private void localVariables()
@@ -117,4 +114,3 @@ class InputTodoCommentSimple2
         }
     }
 }
-
