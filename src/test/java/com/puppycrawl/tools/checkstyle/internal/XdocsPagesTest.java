@@ -57,6 +57,7 @@ import java.util.stream.Stream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.BeforeAll;
@@ -2346,6 +2347,11 @@ public class XdocsPagesTest {
 
     private static Document parseXmlToDomDocument(Path template) throws Exception {
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        try {
+            dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        } catch (ParserConfigurationException e) {
+            throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+        }
         dbFactory.setNamespaceAware(true);
         final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         final Document doc = dBuilder.parse(template.toFile());

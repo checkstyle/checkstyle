@@ -54,6 +54,7 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import com.google.common.base.Strings;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
@@ -413,7 +414,7 @@ public final class SiteUtil {
         }
 
         // If parent class is not found, check interfaces
-        if (parentModuleName == null || parentModuleName.isEmpty()) {
+        if (Strings.isNullOrEmpty(parentModuleName)) {
             final Class<?>[] interfaces = moduleClass.getInterfaces();
             for (Class<?> interfaceClass : interfaces) {
                 parentModuleName = CLASS_TO_PARENT_MODULE.get(interfaceClass);
@@ -423,7 +424,7 @@ public final class SiteUtil {
             }
         }
 
-        if (parentModuleName == null || parentModuleName.isEmpty()) {
+        if (Strings.isNullOrEmpty(parentModuleName)) {
             final String message = String.format(Locale.ROOT,
                     "Failed to find parent module for %s", moduleClass.getSimpleName());
             throw new MacroExecutionException(message);
@@ -734,7 +735,7 @@ public final class SiteUtil {
             getPropertyVersionFromItsJavadoc(propertyJavadoc);
 
         if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
+            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
@@ -791,7 +792,7 @@ public final class SiteUtil {
             .map(DetailNode::getChildren);
 
         if (propertyJavadocNodes.isPresent()) {
-            for (final DetailNode child : propertyJavadocNodes.get()) {
+            for (final DetailNode child : propertyJavadocNodes.orElseThrow()) {
                 if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                     final DetailNode customName = JavadocUtil.findFirstToken(
                             child, JavadocTokenTypes.CUSTOM_NAME);

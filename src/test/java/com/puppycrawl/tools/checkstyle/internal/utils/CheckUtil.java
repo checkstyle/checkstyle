@@ -33,6 +33,7 @@ import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -100,6 +101,12 @@ public final class CheckUtil {
     private static Set<String> getCheckStyleModulesReferencedInConfig(String configFilePath) {
         try {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+            try {
+                factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            } catch (ParserConfigurationException e) {
+                throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+            }
 
             // Validations of XML file make parsing too slow, that is why we
             // disable all validations.
