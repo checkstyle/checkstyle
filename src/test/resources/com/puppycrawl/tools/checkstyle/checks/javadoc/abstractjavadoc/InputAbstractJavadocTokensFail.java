@@ -1,6 +1,6 @@
 /*
 com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest$TokenIsNotInAcceptablesCheck
-javadocTokens: RETURN_LITERAL
+javadocTokens: RETURN_BLOCK_TAG
 
 */
 
