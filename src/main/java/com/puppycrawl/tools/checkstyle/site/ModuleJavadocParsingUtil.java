@@ -100,7 +100,7 @@ public final class ModuleJavadocParsingUtil {
         return paragraphNode != null && JavadocMetadataScraperUtil.isChildNodeTextMatches(
             paragraphNode, NOTES_LINE)
             || liNode.isPresent() && JavadocMetadataScraperUtil.isChildNodeTextMatches(
-                liNode.get(), NOTES_LINE);
+                liNode.orElseThrow(), NOTES_LINE);
     }
 
     /**

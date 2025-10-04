@@ -30,6 +30,7 @@ import java.util.Map;
 
 import javax.swing.text.html.HTML.Attribute;
 
+import com.google.common.base.Strings;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 import org.apache.maven.doxia.macro.MacroRequest;
 import org.apache.maven.doxia.macro.manager.MacroNotFoundException;
@@ -132,7 +133,7 @@ public class XdocsTemplateParser extends XdocParser {
     private void processMacroStart(XmlPullParser parser) throws MacroExecutionException {
         macroName = parser.getAttributeValue(null, Attribute.NAME.toString());
 
-        if (macroName == null || macroName.isEmpty()) {
+        if (Strings.isNullOrEmpty(macroName)) {
             final String message = String.format(Locale.ROOT,
                     "The '%s' attribute for the '%s' tag is required.",
                     Attribute.NAME, MACRO_TAG);

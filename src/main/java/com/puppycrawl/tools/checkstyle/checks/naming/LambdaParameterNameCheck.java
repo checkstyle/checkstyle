@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
-import java.util.Objects;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -60,7 +58,7 @@ public class LambdaParameterNameCheck extends AbstractNameCheck {
     public void visitToken(DetailAST ast) {
         final boolean isInSwitchRule = ast.getParent().getType() == TokenTypes.SWITCH_RULE;
 
-        if (Objects.nonNull(ast.findFirstToken(TokenTypes.PARAMETERS))) {
+        if (ast.findFirstToken(TokenTypes.PARAMETERS) != null) {
             final DetailAST parametersNode = ast.findFirstToken(TokenTypes.PARAMETERS);
             TokenUtil.forEachChild(parametersNode, TokenTypes.PARAMETER_DEF, super::visitToken);
         }

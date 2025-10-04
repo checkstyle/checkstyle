@@ -42,6 +42,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
@@ -363,7 +364,7 @@ public class PackageObjectFactoryTest {
     public void testCreateCheckWithPartialPackageNameByBruteForce() throws Exception {
         final String checkName = "checks.annotation.AnnotationLocation";
         final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
-            new HashSet<>(Collections.singletonList(BASE_PACKAGE)),
+            new HashSet<>(List.of(BASE_PACKAGE)),
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         final AnnotationLocationCheck check = (AnnotationLocationCheck) packageObjectFactory
                 .createModule(checkName);
@@ -378,7 +379,7 @@ public class PackageObjectFactoryTest {
         final Method method =
             clazz.getDeclaredMethod("joinPackageNamesWithClassName", String.class, Set.class);
         method.setAccessible(true);
-        final Set<String> packages = Collections.singleton("test");
+        final Set<String> packages = Set.of("test");
         final String className = "SomeClass";
         final String actual =
             String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
@@ -466,7 +467,7 @@ public class PackageObjectFactoryTest {
         final String name = "String";
         final String packageName = "java.lang";
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        final Set<String> packages = Collections.singleton(packageName);
+        final Set<String> packages = Set.of(packageName);
         final PackageObjectFactory objectFactory = new PackageObjectFactory(packages, classLoader,
                 TRY_IN_ALL_REGISTERED_PACKAGES);
 
@@ -498,7 +499,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateObjectWithNameContainingPackageSeparator() throws Exception {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final Set<String> packages = Set.of(BASE_PACKAGE);
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
 
@@ -517,7 +518,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateObjectWithNameContainingPackageSeparatorWithoutSearch() throws Exception {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final Set<String> packages = Set.of(BASE_PACKAGE);
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, TRY_IN_ALL_REGISTERED_PACKAGES);
 
@@ -540,7 +541,7 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateModuleWithTryInAllRegisteredPackages() {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        final Set<String> packages = Collections.singleton(BASE_PACKAGE);
+        final Set<String> packages = Set.of(BASE_PACKAGE);
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
         final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static java.util.Objects.requireNonNullElseGet;
+
 import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -77,8 +79,7 @@ public final class ScopeUtil {
      * @see #getDefaultScope(DetailAST)
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
-        return Optional.ofNullable(getDeclaredScopeFromMods(aMods))
-                .orElseGet(() -> getDefaultScope(aMods));
+        return requireNonNullElseGet(getDeclaredScopeFromMods(aMods), () -> getDefaultScope(aMods));
     }
 
     /**

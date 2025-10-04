@@ -157,7 +157,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
 
         final File tempFile = createTempFile("junit");
-        checker.process(Collections.singletonList(tempFile));
+        checker.process(List.of(tempFile));
         final SortedSet<Violation> violations = new TreeSet<>();
         violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
@@ -298,7 +298,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addBeforeExecutionFileFilter(filter);
 
         filter.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(filter.wasCalled())
                 .isTrue();
@@ -314,7 +314,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeBeforeExecutionFileFilter(filter);
 
         f2.resetFilter();
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call filter")
                 .that(f2.wasCalled())
                 .isTrue();
@@ -758,7 +758,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(checkerConfig);
         checker.addListener(getBriefUtLogger());
 
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
         final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
@@ -1122,7 +1122,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final String filePath = getPath("InputChecker.java");
         try {
-            checker.process(Collections.singletonList(new File(filePath)));
+            checker.process(List.of(new File(filePath)));
             assertWithMessage("Exception is expected").fail();
         }
         catch (CheckstyleException exc) {
@@ -1450,7 +1450,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DummyFileSet fileSet = new DummyFileSet();
         final Checker checker = new Checker();
         checker.addFileSetCheck(fileSet);
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         final List<String> expected =
             Arrays.asList("beginProcessing", "finishProcessing", "destroy");
         assertWithMessage("Method calls were not expected")
@@ -1486,7 +1486,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
         // Let's try fire some events
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -1509,7 +1509,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         };
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
-        checker.process(Collections.singletonList(new File("dummy.java")));
+        checker.process(List.of(new File("dummy.java")));
         assertWithMessage("Checker.acceptFileStarted() doesn't call listener")
                 .that(fileFilter.wasCalled())
                 .isTrue();
@@ -1626,7 +1626,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // super.verify does not work here, for we change the logger
         out.flush();
-        final int errs = checker.process(Collections.singletonList(new File(path)));
+        final int errs = checker.process(List.of(new File(path)));
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(out.toByteArray());
             LineNumberReader lnr = new LineNumberReader(

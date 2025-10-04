@@ -30,7 +30,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.BitSet;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -570,7 +569,7 @@ public final class CommonUtil {
      * @return true if the arg is blank.
      */
     public static boolean isBlank(String value) {
-        return Objects.isNull(value)
+        return value == null
                 || indexOfNonWhitespace(value) >= value.length();
     }
 
