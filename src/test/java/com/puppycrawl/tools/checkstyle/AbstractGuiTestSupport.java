@@ -25,11 +25,14 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 
+import javax.swing.JComboBox;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.github.caciocavallosilano.cacio.ctc.junit.CacioExtension;
 import com.github.caciocavallosilano.cacio.ctc.junit.CacioTest;
+import com.puppycrawl.tools.checkstyle.gui.MainFrameModel;
 
 /**
  * Abstract base class for testing GUI components.
@@ -55,12 +58,12 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
      *
      * @param root the root component to start search
      * @param name the name of component to find
+     * @param clazz the subtype of component
      * @param <T> the type of component to find
      * @return the component if found, {@code null} otherwise
-     * @noinspection unchecked
-     * @noinspectionreason unchecked - we know that any component is OK to typecast to T
      */
-    protected static <T extends Component> T findComponentByName(Component root, String name) {
+    protected static <T extends Component> T findComponentByName(Component root, String name,
+                                                                 Class<T> clazz) {
         Component result = null;
         if (name.equals(root.getName())) {
             result = root;
@@ -68,12 +71,26 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
         else if (root instanceof Container container) {
             final Component[] children = container.getComponents();
             for (Component component : children) {
-                result = findComponentByName(component, name);
+                result = findComponentByName(component, name, clazz);
                 if (result != null) {
                     break;
                 }
             }
         }
-        return (T) result;
+        return clazz.cast(result);
+    }
+
+    /**
+     * Helper method to find a component by its name.
+     *
+     * @param root the root component to start search
+     * @param name the name of component to find
+     * @return the component if found, {@code null} otherwise
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    protected static JComboBox<MainFrameModel.ParseMode> findComponentComboBoxByName(
+            Component root, String name) {
+        return findComponentByName(root, name, JComboBox.class);
     }
 }

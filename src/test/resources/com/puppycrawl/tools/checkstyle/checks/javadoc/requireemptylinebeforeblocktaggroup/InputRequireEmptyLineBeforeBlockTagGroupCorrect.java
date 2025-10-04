@@ -70,4 +70,49 @@ class InputRequireEmptyLineBeforeBlockTagGroupCorrect {
     public static boolean noWhiteSpace() {
         return false;
     }
+    
+    /**
+      * Given a cell coordinate, return the point that represents the upper left corner of that cell
+      * 
+      * @param cellX X coordinate of the cell 
+      * @param cellY Y coordinate of the cell
+      * 
+      * @param result Array of 2 ints to hold the x and y coordinate of the point
+      */
+     void cellToPoint(int cellX, int cellY, int[] result) {
+     }
+
+     /**
+     * Sets the file's name, to the value given as parameter.
+     *
+     * @param name
+     *            The new name of the file.
+     */
+     void setFile(String name) { }
+}
+
+/**
+  Contains no logic, just to test the check.
+
+   @author Mohamed Mahfouz
+ */
+class Test {
+
+}
+
+
+/**
+* A task that returns a result and may throw an exception capable of being executed in another JVM.
+* <p>
+*
+*
+* @see Callable
+*
+* @author Manik Surtani
+* @author Vladimir Blagojevic
+*
+* @since 5.0
+*
+*/
+interface TestInterface {
 }

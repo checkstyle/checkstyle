@@ -151,14 +151,16 @@ public class CodeSelectorPresentation {
      */
     private int findLastPosition(final DetailNode detailNode) {
         final int lastPosition;
-        if (detailNode.getChildren().length == 0) {
+        if (detailNode.getFirstChild() == null) {
             lastPosition = lines2position.get(detailNode.getLineNumber())
                     + detailNode.getColumnNumber() + detailNode.getText().length();
         }
         else {
-            final DetailNode lastChild =
-                    detailNode.getChildren()[detailNode.getChildren().length - 1];
-            lastPosition = findLastPosition(lastChild);
+            DetailNode firstChild = detailNode.getFirstChild();
+            while (firstChild.getNextSibling() != null) {
+                firstChild = firstChild.getNextSibling();
+            }
+            lastPosition = findLastPosition(firstChild);
         }
         return lastPosition;
     }

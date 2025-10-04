@@ -16,10 +16,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  */
 // violation 5 lines above 'Unclosed HTML tag found: p'
 public class InputAbstractJavadocNonTightHtmlTagsOne {
-    /** <p> <p> paraception </p> </p> */ // violation 'Unclosed HTML tag found: p'
+    /** <p> <p> paraception </p> */ // violation 'Unclosed HTML tag found: p'
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
+    /**<li> paraTags should be opened list isn't nested in parse tree */
     // violation above 'Unclosed HTML tag found: li'
     private int field2;
 
@@ -32,7 +32,7 @@ public class InputAbstractJavadocNonTightHtmlTagsOne {
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr>
+     * <tr> Zero <p> </p> nesting despite `tr` is closed
      */
     // violation 2 lines above 'Unclosed HTML tag found: tr'
 
@@ -44,7 +44,7 @@ public class InputAbstractJavadocNonTightHtmlTagsOne {
     /**
      * <tr> <li> list is going to be nested in the parse tree </li> </tr>
      *
-     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
+     * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree
      */
     void setField1(int field1) {this.field1 = field1;}
 
@@ -61,7 +61,7 @@ public class InputAbstractJavadocNonTightHtmlTagsOne {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th>
+     *     <tr> nonTight <th> </th>
      */
     // violation 2 lines above 'Unclosed HTML tag found: tr'
     private int getField3() {return field3;}

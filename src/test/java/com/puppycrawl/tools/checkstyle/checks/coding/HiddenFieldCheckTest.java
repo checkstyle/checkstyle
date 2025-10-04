@@ -545,9 +545,9 @@ public class HiddenFieldCheckTest
 
             // verify object is cleared
             if (result
-                    && (TestUtil.getInternalState(frame, "parent") != null
-                        || !TestUtil.<Boolean>getInternalState(frame, "staticType")
-                        || TestUtil.getInternalState(frame, "frameName") != null)) {
+                    && (TestUtil.getInternalState(frame, "parent", Boolean.class) != null
+                        || !TestUtil.<Boolean>getInternalState(frame, "staticType", Boolean.class)
+                        || TestUtil.getInternalState(frame, "frameName", Boolean.class) != null)) {
                 result = false;
             }
 

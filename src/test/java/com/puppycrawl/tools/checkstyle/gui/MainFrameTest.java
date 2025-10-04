@@ -96,7 +96,8 @@ public class MainFrameTest extends AbstractGuiTestSupport {
                         startsWith("FileNotFoundException occurred while opening file"));
             });
         }
-        final MainFrameModel model = TestUtil.getInternalState(mainFrame, "model");
+        final MainFrameModel model = TestUtil.getInternalState(mainFrame,
+                "model", MainFrameModel.class);
         assertWithMessage("Unexpected current file")
                 .that(model.getCurrentFile())
                 .isEqualTo(file);
@@ -105,10 +106,12 @@ public class MainFrameTest extends AbstractGuiTestSupport {
     @Test
     public void testChangeMode() {
         final JComboBox<MainFrameModel.ParseMode> modesCombobox =
-                findComponentByName(mainFrame, "modesCombobox");
+                findComponentComboBoxByName(mainFrame, "modesCombobox");
         modesCombobox.setSelectedIndex(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS.ordinal());
-        final MainFrameModel model = TestUtil.getInternalState(mainFrame, "model");
-        final MainFrameModel.ParseMode parseMode = TestUtil.getInternalState(model, "parseMode");
+        final MainFrameModel model = TestUtil.getInternalState(mainFrame,
+                "model", MainFrameModel.class);
+        final MainFrameModel.ParseMode parseMode = TestUtil.getInternalState(model,
+                "parseMode", MainFrameModel.ParseMode.class);
         assertWithMessage("Unexpected parse mode")
                 .that(parseMode)
                 .isEqualTo(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS);
@@ -122,7 +125,8 @@ public class MainFrameTest extends AbstractGuiTestSupport {
      */
     @Test
     public void testOpenFileButton() throws IOException {
-        final JButton openFileButton = findComponentByName(mainFrame, "openFileButton");
+        final JButton openFileButton = findComponentByName(mainFrame,
+                "openFileButton", JButton.class);
         final File testFile = new File(getPath(TEST_FILE_NAME));
         try (MockedConstruction<JFileChooser> mocked = mockConstruction(
                 JFileChooser.class, (mock, context) -> {
@@ -142,7 +146,8 @@ public class MainFrameTest extends AbstractGuiTestSupport {
      */
     @Test
     public void testFileFilter() {
-        final JButton openFileButton = findComponentByName(mainFrame, "openFileButton");
+        final JButton openFileButton = findComponentByName(mainFrame,
+                "openFileButton", JButton.class);
         try (MockedConstruction<JFileChooser> mocked = mockConstruction(
                 JFileChooser.class, (mock, context) -> {
                     when(mock.showOpenDialog(mainFrame)).thenReturn(JFileChooser.CANCEL_OPTION);
@@ -163,8 +168,10 @@ public class MainFrameTest extends AbstractGuiTestSupport {
 
     @Test
     public void testExpandButton() {
-        final JButton expandButton = findComponentByName(mainFrame, "expandButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton expandButton = findComponentByName(mainFrame,
+                "expandButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         expandButton.doClick();
         assertWithMessage("The XPath text area should be visible")
                 .that(xpathTextArea.isVisible())
@@ -178,8 +185,10 @@ public class MainFrameTest extends AbstractGuiTestSupport {
     @Test
     public void testFindNodeButton() throws IOException {
         mainFrame.openFile(new File(getPath(TEST_FILE_NAME)));
-        final JButton findNodeButton = findComponentByName(mainFrame, "findNodeButton");
-        final JTextArea xpathTextArea = findComponentByName(mainFrame, "xpathTextArea");
+        final JButton findNodeButton = findComponentByName(mainFrame,
+                "findNodeButton", JButton.class);
+        final JTextArea xpathTextArea = findComponentByName(mainFrame,
+                "xpathTextArea", JTextArea.class);
         findNodeButton.doClick();
         assertWithMessage("Unexpected XPath text area text")
                 .that(xpathTextArea.getText())

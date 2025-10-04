@@ -25,7 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLoca
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport {
@@ -39,7 +39,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     public void testGetAcceptableTokens() {
         final JavadocBlockTagLocationCheck checkObj = new JavadocBlockTagLocationCheck();
         final int[] expected = {
-            JavadocTokenTypes.TEXT,
+            JavadocCommentsTokenTypes.TEXT,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(checkObj.getAcceptableJavadocTokens())

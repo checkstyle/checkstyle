@@ -38,7 +38,7 @@ public class XmlLoaderTest {
     @Test
     public void testParserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
-        final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser");
+        final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser", XMLReader.class);
         assertWithMessage("Invalid entity resolver")
             .that(parser.getEntityResolver())
             .isEqualTo(dummyLoader);

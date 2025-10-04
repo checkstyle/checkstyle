@@ -530,14 +530,14 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         };
         assertWithMessage("State is not cleared on beginTree")
                 .that(isClear.test(TestUtil.getInternalState(
-                        check, "anonInnerAstToTypeDeclDesc")))
+                        check, "anonInnerAstToTypeDeclDesc", Object.class)))
                 .isTrue();
         final Predicate<Object> isQueueClear = anonInnerClassHolders -> {
             return ((Collection<?>) anonInnerClassHolders).isEmpty();
         };
         assertWithMessage("State is not cleared on beginTree")
                 .that(isQueueClear.test(TestUtil.getInternalState(
-                        check, "anonInnerClassHolders")))
+                        check, "anonInnerClassHolders", Object.class)))
                 .isTrue();
     }
 
