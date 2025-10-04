@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -76,7 +76,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
         };
     }
 

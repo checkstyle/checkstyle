@@ -24,7 +24,7 @@ import java.util.BitSet;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
@@ -109,7 +109,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     @Override
     public int[] getRequiredJavadocTokens() {
         return new int[] {
-            JavadocTokenTypes.JAVADOC,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
         };
     }
 
@@ -153,15 +153,18 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      */
     private boolean containsDeprecatedTag(DetailNode javadoc) {
         boolean found = false;
-        for (DetailNode child : javadoc.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG
-                    && child.getChildren()[0].getType() == JavadocTokenTypes.DEPRECATED_LITERAL) {
+        DetailNode node = javadoc.getFirstChild();
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
+                    && node.getFirstChild().getType()
+                            == JavadocCommentsTokenTypes.DEPRECATED_BLOCK_TAG) {
                 if (found) {
-                    log(child.getLineNumber(), MSG_KEY_JAVADOC_DUPLICATE_TAG,
+                    log(node.getLineNumber(), MSG_KEY_JAVADOC_DUPLICATE_TAG,
                             JavadocTagInfo.DEPRECATED.getText());
                 }
                 found = true;
             }
+            node = node.getNextSibling();
         }
         return found;
     }
