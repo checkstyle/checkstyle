@@ -25,7 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMissingWhite
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocMissingWhitespaceAfterAsteriskCheckTest
@@ -42,8 +42,8 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
         final JavadocMissingWhitespaceAfterAsteriskCheck checkObj =
                 new JavadocMissingWhitespaceAfterAsteriskCheck();
         final int[] expected = {
-            JavadocTokenTypes.JAVADOC,
-            JavadocTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
         };
         assertWithMessage("Default tokens are invalid")
             .that(checkObj.getAcceptableJavadocTokens())
@@ -55,8 +55,8 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
         final JavadocMissingWhitespaceAfterAsteriskCheck checkObj =
                 new JavadocMissingWhitespaceAfterAsteriskCheck();
         final int[] expected = {
-            JavadocTokenTypes.JAVADOC,
-            JavadocTokenTypes.LEADING_ASTERISK,
+            JavadocCommentsTokenTypes.JAVADOC_CONTENT,
+            JavadocCommentsTokenTypes.LEADING_ASTERISK,
         };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredJavadocTokens())

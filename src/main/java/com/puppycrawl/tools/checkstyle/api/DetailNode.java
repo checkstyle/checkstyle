@@ -32,7 +32,7 @@ public interface DetailNode {
      * Node type.
      *
      * @return node type.
-     * @see JavadocTokenTypes
+     * @see JavadocCommentsTokenTypes
      */
     int getType();
 
@@ -58,13 +58,6 @@ public interface DetailNode {
     int getColumnNumber();
 
     /**
-     * Array of children.
-     *
-     * @return array of children
-     */
-    DetailNode[] getChildren();
-
-    /**
      * Parent node.
      *
      * @return parent node.
@@ -72,10 +65,23 @@ public interface DetailNode {
     DetailNode getParent();
 
     /**
-     * Node index among parent's children.
+     * Sibling node.
      *
-     * @return index
+     * @return sibling node
      */
-    int getIndex();
+    DetailNode getNextSibling();
 
+    /**
+     * First child node.
+     *
+     * @return first child node
+     */
+    DetailNode getFirstChild();
+
+    /**
+     * Previous sibling node.
+     *
+     * @return sibling node
+     */
+    DetailNode getPreviousSibling();
 }
