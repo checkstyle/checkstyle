@@ -803,7 +803,7 @@
         <version>3.3.1</version>
         <executions>
           <execution>
-            <id>copy-resources</id>
+            <id>copy-dtd-resources</id>
             <phase>pre-site</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -823,6 +823,25 @@
                   </directory>
                   <includes>
                     <include>*.dtd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-xsd-resources</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/site/xsds</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>config</directory>
+                  <includes>
+                    <include>configuration*.xsd</include>
+                    <include>checkstyle-report-*.xsd</include>
                   </includes>
                 </resource>
               </resources>
