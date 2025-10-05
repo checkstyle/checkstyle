@@ -11,7 +11,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {
     void testNestedInsideAnonClass() {
         try {
             int x = 1 / 0;
-        } catch (Exception e) {  // violation
+        } catch (Exception e) {  // violation 'Unused catch parameter 'e' should be unnamed.'
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
@@ -36,8 +36,8 @@ public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {
                         int x = 1 / 0;
                         throw e;
                     }
-                    catch (Exception e) {  // violation
-
+                    catch (Exception e) {
+                        // violation above 'Unused catch parameter 'e' should be unnamed.'
                     }
                 }
             };
@@ -47,15 +47,15 @@ public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {
     void testNestedInsideAnonClass3() {
         try {
             int x = 1 / 0;
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation 'Unused catch parameter 'e' should be unnamed.'
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     try {
                         int x = 1 / 0;
                     }
-                    catch (Exception e) { // violation
-
+                    catch (Exception e) {
+                        // violation above 'Unused catch parameter 'e' should be unnamed.'
                     }
                 }
             };
@@ -89,7 +89,8 @@ public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {
                 public void run() {
                     try {
                         int x = 1 / 0;
-                    } catch (Exception ex) { // violation
+                    } catch (Exception ex) {
+                        // violation above 'Unused catch parameter 'ex' should be unnamed.'
                         System.out.println(e.getMessage());
                     }
                 }
@@ -100,7 +101,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedInsideAnonClass {
     void testNestedInsideAnonClass6() {
         try {
             int x = 1 / 0;
-        } catch (final Exception e) { // violation
+        } catch (final Exception e) { // violation 'Unused catch parameter 'e' should be unnamed.'
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {

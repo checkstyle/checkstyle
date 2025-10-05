@@ -14,21 +14,22 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
         try {
             int x = 1/ 0;
         }
-        catch (Exception e) { // violation
+        catch (Exception e) { // violation 'Unused catch parameter 'e' should be unnamed.'
             System.out.println("infinity");
         }
 
         try {
             int x = 1/ 0;
         }
-        catch (final Exception e) {  // violation
+        catch (final Exception e) {  // violation 'Unused catch parameter 'e' should be unnamed.'
 
         }
 
         try {
             int x = 1/ 0;
         }
-        catch (@SuppressWarnings("") Exception e) {  // violation
+        catch (@SuppressWarnings("") Exception e) {
+            // violation above 'Unused catch parameter 'e' should be unnamed.'
             this.e.printStackTrace();
         }
 
@@ -45,11 +46,11 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         try {
             int x = 1/ 0;
         }
-        catch (Exception e) {  // violation
+        catch (Exception e) {
+            // violation above 'Unused catch parameter 'e' should be unnamed.'
            e = new Exception();
         }
         try {
@@ -58,25 +59,24 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
         catch (Exception e) {
             exception = e;
         }
-
         try {
             int x = 1/ 0;
         }
-        catch (Exception A) {  // violation
+        catch (Exception A) {  // violation 'Unused catch parameter 'A' should be unnamed.'
            ATwo a;
         }
 
         try {
             int x = 1/ 0;
         }
-        catch (Exception A) {  // violation
+        catch (Exception A) {  // violation 'Unused catch parameter 'A' should be unnamed.'
            Object a = new ATwo();
         }
 
         try {
             int x = 1/ 0;
         }
-        catch (Exception e) {   // violation
+        catch (Exception e) {   // violation 'Unused catch parameter 'e' should be unnamed.'
             System.out.println(this.e);
         }
 
@@ -100,7 +100,7 @@ public class InputUnusedCatchParameterShouldBeUnnamed {
         try {
             int x = 1/ 0;
         }
-        catch (Exception e) {  // violation
+        catch (Exception e) {  // violation 'Unused catch parameter 'e' should be unnamed.'
             e();
         }
 
