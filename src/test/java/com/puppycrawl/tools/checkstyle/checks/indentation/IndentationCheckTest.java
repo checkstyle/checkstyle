@@ -2934,9 +2934,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("basicOffset", "2");
         checkConfig.addProperty("lineWrappingIndentation", "4");
         final String[] expected = {
-            "68:10: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
-            "69:12: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
-            "74:8: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+            "69:10: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
+            "70:12: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
+            "75:8: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationLambda1.java"), expected);
     }
@@ -3171,29 +3171,29 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationCustomAnnotation.java");
         final String[] expected = {
             "14:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
-            "15:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "16:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
-            "17:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
-            "18:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "20:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
-            "22:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
-            "23:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "25:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
-            "26:6: " + getCheckMessage(MSG_ERROR, "AnnotationWithLineWrap", 5, 0),
-            "30:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
-            "31:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
-            "34:6: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
-            "35:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
-            "36:1: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 0, 4),
-            "37:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "38:9: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
-            "41:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
-            "58:5: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
-            "59:4: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
-            "60:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
-            "61:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
-            "72:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
-            "87:29: " + getCheckMessage(MSG_ERROR_MULTI, "new", 28, "20, 24"),
+            "16:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "17:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "18:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "19:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "21:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "23:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "24:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "26:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "27:6: " + getCheckMessage(MSG_ERROR, "AnnotationWithLineWrap", 5, 0),
+            "31:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
+            "32:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "35:6: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
+            "36:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "37:1: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 0, 4),
+            "38:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
+            "39:9: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
+            "42:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
+            "60:5: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
+            "61:4: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
+            "62:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
+            "64:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
+            "75:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "91:29: " + getCheckMessage(MSG_ERROR_MULTI, "new", 28, "20, 24"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
