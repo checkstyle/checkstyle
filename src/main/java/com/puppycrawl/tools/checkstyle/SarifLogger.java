@@ -189,7 +189,7 @@ public class SarifLogger extends AbstractAutomaticBean implements AuditListener 
      */
     private static String replaceVersionString(String report) {
         final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));
+        return report.replace(VERSION_PLACEHOLDER, version);
     }
 
     @Override

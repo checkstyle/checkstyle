@@ -140,6 +140,12 @@ public final class XdocUtil {
         final DocumentBuilderFactory factory = DocumentBuilderFactory
                 .newInstance();
 
+        try {
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        } catch (ParserConfigurationException e) {
+            throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+        }
+
         // Validations of XML file make parsing too slow, that is why we disable
         // all validations.
         factory.setNamespaceAware(false);
