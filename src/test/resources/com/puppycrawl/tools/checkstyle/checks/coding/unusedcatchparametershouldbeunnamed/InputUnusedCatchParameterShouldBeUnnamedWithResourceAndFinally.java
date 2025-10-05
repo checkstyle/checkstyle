@@ -16,7 +16,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
         try {
             int y = 5;
             File file = new File("file.txt");
-        } catch (NullPointerException | IllegalArgumentException e) { // violation
+        } catch (NullPointerException | IllegalArgumentException e) { // Unused catch parameter 'e' should be unnamed.
             this.e.printStackTrace();
         }
 
@@ -35,7 +35,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
 
         try {
             File file = new File("file.txt");
-        } catch (NullPointerException e) { // violation
+        } catch (NullPointerException e) { // Unused catch parameter 'e' should be unnamed.
             System.out.println("null pointer exception");
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
     void testTryWithResource() {
         try (var a = lock()) {
             int y = 5;
-        } catch (Exception e) {  // violation
+        } catch (Exception e) {  // Unused catch parameter 'e' should be unnamed.
             // no code
         }
 
@@ -66,7 +66,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally {
     void tryCatchFinally() {
         try {
             File file = new File("file.txt");
-        } catch (NullPointerException | IllegalArgumentException e) { // violation
+        } catch (NullPointerException | IllegalArgumentException e) { // Unused catch parameter 'e' should be unnamed.
             this.e.printStackTrace();
         } finally {
             System.out.println(e); // catch parameter is not in this scope
