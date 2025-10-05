@@ -82,8 +82,8 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
         final String[] expected = {
             "19:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "38:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
-            "48:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
-            "69:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
+            "49:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
+            "70:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath(
@@ -114,7 +114,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
             "50:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "57:28: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "92:30: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "ex"),
-            "103:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
+            "104:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
         };
         verifyWithInlineConfigParser(
                 getPath(
