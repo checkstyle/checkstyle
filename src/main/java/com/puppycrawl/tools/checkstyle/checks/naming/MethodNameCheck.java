@@ -56,7 +56,7 @@ public class MethodNameCheck
 
     /** Creates a new {@code MethodNameCheck} instance. */
     public MethodNameCheck() {
-        super("^[a-z][a-zA-Z0-9]*$");
+        super("^[a-z][a-zA-Z0-9]*(_[0-9]+)*$");
     }
 
     @Override
