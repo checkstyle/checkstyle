@@ -1,6 +1,6 @@
         {
           "level": "${severityLevel}",
           "message": {
-            "text": "${message}"
+${message}
           }
         }
