@@ -396,6 +396,11 @@
     <Method name="findTokensInAstByType" />
     <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
   </Match>
+  <Match>
+    <Class name="com.puppycrawl.tools.checkstyle.SarifLogger" />
+    <Method name="generateRules" />
+    <Bug pattern="PSC_PRESIZE_COLLECTIONS" />
+  </Match>
 
   <!-- Suppress RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE -->
   <!-- until https://github.com/checkstyle/checkstyle/issues/16979 -->

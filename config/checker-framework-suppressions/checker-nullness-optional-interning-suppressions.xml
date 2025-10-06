@@ -872,9 +872,53 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg1 of Map.putIfAbsent.</message>
+    <lineContent>ruleMetadata.putIfAbsent(key, module);</lineContent>
+    <details>
+      found   : @Initialized @Nullable ModuleDetails
+      required: @Initialized @NonNull ModuleDetails
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg2 of ResourceBundle.getBundle.</message>
+    <lineContent>moduleClass.getClassLoader(),</lineContent>
+    <details>
+      found   : @Initialized @Nullable ClassLoader
+      required: @Initialized @NonNull ClassLoader
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter value of SarifLogger.escape.</message>
+    <lineContent>.replace(&quot;${text}&quot;, escape(message));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference SarifLogger.class.getPackage()</message>
     <lineContent>final String version = SarifLogger.class.getPackage().getImplementationVersion();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to loadModuleMetadata() not allowed on the given receiver.</message>
+    <lineContent>loadModuleMetadata();</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.class) @NonNull SarifLogger
+      required: @Initialized @NonNull SarifLogger
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

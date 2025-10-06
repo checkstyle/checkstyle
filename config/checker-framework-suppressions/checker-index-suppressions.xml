@@ -56,6 +56,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg1 of String.substring.</message>
+    <lineContent>final String packageName = fullQualifiedName.substring(0, lastDot);</lineContent>
+    <details>
+      found   : @GTENegativeOne int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XMLLogger.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.charAt.</message>
