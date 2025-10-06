@@ -19,14 +19,15 @@ class Example2 {
     System.out.println(3);
     System.out.println(4);
   };
-  Runnable r2 = () -> { // violation 'length is 6'
+  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  Runnable r2 = () -> {
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
     System.out.println(5);
   };
-
-  Runnable r3 = () -> // violation 'length is 6'
+  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  Runnable r3 = () ->
     "someString".concat("1")
                 .concat("2")
                 .concat("3")

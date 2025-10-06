@@ -13,11 +13,12 @@ import java.util.function.Supplier;
 public class InputLambdaBodyLengthMax {
     {
         List<String> list = null;
-        list.forEach(item -> { // violation
+        list.forEach(item -> { // violation 'Lambda body length is 4 lines (max allowed is 3).'
             System.out.println(1);
             System.out.println(2);
         });
-        list.forEach(item -> System.out.println( // violation
+        // violation below 'Lambda body length is 4 lines (max allowed is 3).'
+        list.forEach(item -> System.out.println(
             item.concat("2")
                 .concat("3")
             )
@@ -27,13 +28,15 @@ public class InputLambdaBodyLengthMax {
                 out.
                 println(item)
         );
-        Supplier<Runnable> s = () -> // violation
+        // violation below 'Lambda body length is 5 lines (max allowed is 3).'
+        Supplier<Runnable> s = () ->
             (
 
             ) -> {
 
             };
-        Supplier<String> s1 = () -> // violation
+        // violation below 'Lambda body length is 4 lines (max allowed is 3).'
+        Supplier<String> s1 = () ->
             "1"
                 + "2"
                 + "3"
