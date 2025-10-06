@@ -47,8 +47,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -72,13 +72,13 @@ public class PackageObjectFactoryTest {
     private final PackageObjectFactory factory = new PackageObjectFactory(
             BASE_PACKAGE, Thread.currentThread().getContextClassLoader());
 
-    @BeforeClass
+    @BeforeAll
     public static void setupLocale() {
         defaultLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @AfterClass
+    @AfterAll
     public static void restoreLocale() {
         Locale.setDefault(defaultLocale);
     }
