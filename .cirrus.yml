@@ -6,9 +6,10 @@ task:
     image: cirrusci/windowsservercore:2019
   clone_script:
     - git config core.autocrlf
-    - git clone --recursive
-          https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
-          %CIRRUS_WORKING_DIR%/ci
+    - >-
+      git clone --recursive
+      https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
+      %CIRRUS_WORKING_DIR%/ci
     - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
     - set "PATH=%JAVA_HOME%\bin;%PATH%"
     - cd ci
@@ -33,7 +34,8 @@ task:
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
-    # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
+    # https://stackoverflow.com/questions/42024619/
+    # maven-build-gets-connection-reset-when-downloading-artifacts
     MAVEN_OPTS: "-Dhttp.keepAlive=false \
       -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
       -Dmaven.wagon.http.retryHandler.count=3"
@@ -49,29 +51,35 @@ task:
     - javac -version
 
   version_script:
-    - >-
-      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
-      set "PATH=%JAVA_HOME%\bin;%PATH%" && set
-    - >-
-      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
-      set "PATH=%JAVA_HOME%\bin;%PATH%" && ant -version
-    - >-
-      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%" &&
-      set "PATH=%JAVA_HOME%\bin;%PATH%" && java --version
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      set
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      ant -version
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      java --version
     # - xsltproc --version
     # - xml --version
   sevntu_script:
-    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
-    - set "PATH=%JAVA_HOME%\bin;%PATH%"
-    - cd ci
-    - .ci/validation.cmd sevntu
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      cd ci
+      .ci/validation.cmd sevntu
   verify_without_checkstyle_script:
-    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
-    - set "PATH=%JAVA_HOME%\bin;%PATH%"
-    - cd ci
-    - .ci/validation.cmd verify_without_checkstyle
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      cd ci
+      .ci/validation.cmd verify_without_checkstyle
   site_without_verify_script:
-    - set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
-    - set "PATH=%JAVA_HOME%\bin;%PATH%"
-    - cd ci
-    - .ci/validation.cmd site_without_verify
+    - |
+      set "JAVA_HOME=%ProgramFiles%\%TEMURIN_PATH%"
+      set "PATH=%JAVA_HOME%\bin;%PATH%"
+      cd ci
+      .ci/validation.cmd site_without_verify
