@@ -26,7 +26,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serial;
+import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 
 public class SarifLoggerTest extends AbstractModuleTestSupport {
 
@@ -407,6 +410,113 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 .that(exception.getMessage())
                 .isEqualTo("Cannot find the resource random");
         }
+    }
+
+    @Test
+    public void testMultipleRules() throws Exception {
+        final String inputFile = "InputSarifLoggerMultipleRules.java";
+        final String expectedReportFile = "ExpectedSarifLoggerMultipleRules.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testModuleIdSuffix() throws Exception {
+        final String inputFile = "InputSarifLoggerModuleId.java";
+        final String expectedReportFile = "ExpectedSarifLoggerModuleId.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testMultipleMessageStrings() throws Exception {
+        final String inputFile = "InputSarifLoggerMultipleMessages.java";
+        final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testEscapedMessageText() throws Exception {
+        final String inputFile = "InputSarifLoggerEscapedMessage.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    /**
+     * Tests {@code ClassNotFoundException} handling in {@code getMessages} method.
+     * Uses reflection to inject fake module metadata with non-existent class
+     * to trigger the exception. Real checkstyle modules cannot be used as
+     * all are on the classpath during testing.
+     */
+    @Test
+    public void testGetMessagesWithClassNotFoundException() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        final ModuleDetails fakeModule = new ModuleDetails();
+        fakeModule.setName("FakeCheck");
+        fakeModule.setFullQualifiedName("com.fake.NonExistentCheck");
+        fakeModule.setDescription("Fake check for testing");
+        fakeModule.addToViolationMessages("fake.message.key");
+
+        @SuppressWarnings("unchecked")
+        final Map<Object, ModuleDetails> ruleMetadata =
+                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+        final Constructor<?> constructor =
+                ruleKeyClass.getDeclaredConstructor(String.class, String.class);
+        constructor.setAccessible(true);
+        final Object ruleKey = constructor.newInstance("com.fake.NonExistentCheck", null);
+        ruleMetadata.put(ruleKey, fakeModule);
+
+        logger.auditFinished(null);
+
+        verifyContent(getPath("ExpectedSarifLoggerClassNotFoundException.sarif"), outStream);
+    }
+
+    /**
+     * Tests {@code MissingResourceException} handling in {@code getMessages} method.
+     * Uses reflection to inject fake module metadata pointing to a test class
+     * without messages.properties to trigger the exception. Real checkstyle modules
+     * cannot be used as all have proper resource bundles during testing.
+     */
+    @Test
+    public void testGetMessagesWithMissingResourceException() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+
+        final ModuleDetails fakeModule = new ModuleDetails();
+        fakeModule.setName("SarifLoggerTest");
+        fakeModule.setFullQualifiedName("com.puppycrawl.tools.checkstyle.SarifLoggerTest");
+        fakeModule.setDescription("Test class without resource bundle");
+        fakeModule.addToViolationMessages("nonexistent.message.key");
+
+        @SuppressWarnings("unchecked")
+        final Map<Object, ModuleDetails> ruleMetadata =
+                TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
+        final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
+        final Constructor<?> constructor =
+                ruleKeyClass.getDeclaredConstructor(String.class, String.class);
+        constructor.setAccessible(true);
+        final Object ruleKey = constructor.newInstance(
+                "com.puppycrawl.tools.checkstyle.SarifLoggerTest", null);
+        ruleMetadata.put(ruleKey, fakeModule);
+
+        logger.auditFinished(null);
+
+        verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
     }
 
     private static void verifyContent(
