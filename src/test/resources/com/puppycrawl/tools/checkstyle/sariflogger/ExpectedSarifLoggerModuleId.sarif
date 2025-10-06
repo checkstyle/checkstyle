@@ -1,0 +1,142 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#lenient",
+              "messageStrings": {
+                "block.empty": {
+                  "text": "Empty {0} block."
+                },
+                "block.noStatement": {
+                  "text": "Must have at least one statement."
+                }
+              },
+              "shortDescription": {
+                "text": "EmptyBlock"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for empty blocks.\n <\/div>\n\n <p>\n This check does not validate sequential blocks. This check does not violate fallthrough.\n <\/p>\n\n <p>\n NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.\n Verification empty block is done for single nearest <code>case<\/code> or <code>default<\/code>.\n <\/p>"
+              }
+            },
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#strict",
+              "messageStrings": {
+                "block.empty": {
+                  "text": "Empty {0} block."
+                },
+                "block.noStatement": {
+                  "text": "Must have at least one statement."
+                }
+              },
+              "shortDescription": {
+                "text": "EmptyBlock"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for empty blocks.\n <\/div>\n\n <p>\n This check does not validate sequential blocks. This check does not violate fallthrough.\n <\/p>\n\n <p>\n NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.\n Verification empty block is done for single nearest <code>case<\/code> or <code>default<\/code>.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerModuleId.java"
+                },
+                "region": {
+                  "startColumn": 19,
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "block.noStatement",
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#lenient"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerModuleId.java"
+                },
+                "region": {
+                  "startColumn": 19,
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "block.noStatement",
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#strict"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerModuleId.java"
+                },
+                "region": {
+                  "startColumn": 38,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "block.noStatement",
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#lenient"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerModuleId.java"
+                },
+                "region": {
+                  "startColumn": 38,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "block.noStatement",
+            "text": "Must have at least one statement."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck#strict"
+        }
+      ]
+    }
+  ]
+}
