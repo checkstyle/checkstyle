@@ -13,7 +13,7 @@ import java.util.function.*;
 public class InputLambdaBodyLengthDefault {
     {
         List<String> list = null;
-        list.forEach(item -> { // violation
+        list.forEach(item -> { // violation 'Lambda body length is 12 lines (max allowed is 10).'
             System.out.println(1);
             System.out.println(2);
             System.out.println(3);
@@ -25,7 +25,8 @@ public class InputLambdaBodyLengthDefault {
             System.out.println(9);
             System.out.println(10);
         });
-        list.forEach(item -> System.out.println( // violation
+        // violation below 'Lambda body length is 12 lines (max allowed is 10).'
+        list.forEach(item -> System.out.println(
             item.concat("2")
                 .concat("3")
                 .concat("4")
@@ -38,7 +39,7 @@ public class InputLambdaBodyLengthDefault {
                 .concat("11")
             )
         );
-        list.forEach(item -> // violation
+        list.forEach(item -> // violation 'Lambda body length is 11 lines (max allowed is 10).'
             System
 
                 .
@@ -51,10 +52,11 @@ public class InputLambdaBodyLengthDefault {
                             item
                         )
         );
-        Supplier<Runnable> s = () -> // violation
+        Supplier<Runnable> s = () ->
+                // violation above 'Lambda body length is 13 lines (max allowed is 10).'
             (
 
-            ) -> { // violation
+            ) -> { // violation 'Lambda body length is 11 lines (max allowed is 10).'
 
                 // some lambda body code
 
@@ -65,7 +67,8 @@ public class InputLambdaBodyLengthDefault {
 
 
             };
-        Supplier<String> s1 = () -> // violation
+        // violation below 'Lambda body length is 11 lines (max allowed is 10).'
+        Supplier<String> s1 = () ->
             "1"
                 + "2"
                 + "3"
