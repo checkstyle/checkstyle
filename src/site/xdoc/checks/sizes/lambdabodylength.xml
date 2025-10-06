@@ -68,7 +68,8 @@ class Example1 {
     System.out.println(8);
     System.out.println(9);
   }; // line 10
-  Runnable r2 = () -&gt; { // violation 'length is 11'
+  // violation below 'Lambda body length is 11 lines (max allowed is 10).'
+  Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
@@ -79,7 +80,8 @@ class Example1 {
     System.out.println(9);
     System.out.println(10);
   }; // line 11
-  Runnable r3 = () -&gt; // violation 'length is 11'
+  // violation below 'Lambda body length is 11 lines (max allowed is 10).'
+  Runnable r3 = () -&gt;
     "someString".concat("1") // line 1 of lambda
                 .concat("2")
                 .concat("3")
@@ -115,14 +117,15 @@ class Example2 {
     System.out.println(3);
     System.out.println(4);
   };
-  Runnable r2 = () -&gt; { // violation 'length is 6'
+  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  Runnable r2 = () -&gt; {
     System.out.println(2); // line 2 of lambda
     System.out.println(3);
     System.out.println(4);
     System.out.println(5);
   };
-
-  Runnable r3 = () -&gt; // violation 'length is 6'
+  // violation below 'Lambda body length is 6 lines (max allowed is 5).'
+  Runnable r3 = () -&gt;
     "someString".concat("1")
                 .concat("2")
                 .concat("3")
