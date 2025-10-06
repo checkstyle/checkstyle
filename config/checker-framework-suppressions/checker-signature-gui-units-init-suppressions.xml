@@ -34,6 +34,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Class.forName.</message>
+    <lineContent>final Class&lt;?&gt; moduleClass = Class.forName(fullQualifiedName);</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @ClassGetName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of ResourceBundle.getBundle.</message>
+    <lineContent>bundleName,</lineContent>
+    <details>
+      found   : @SignatureUnknown String
+      required: @BinaryName String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/BaseCellEditor.java</fileName>
     <specifier>call.ui</specifier>
     <message>Calling a method with UIEffect effect from a context limited to SafeEffect effects.</message>

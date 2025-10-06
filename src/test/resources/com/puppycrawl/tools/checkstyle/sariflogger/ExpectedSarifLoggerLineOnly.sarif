@@ -12,6 +12,23 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck",
+              "messageStrings": {
+                "regexp.exceeded": {
+                  "text": "Line matches the illegal pattern ''{0}''."
+                },
+                "regexp.minimum": {
+                  "text": "File does not contain at least {0} matches for pattern ''{1}''."
+                }
+              },
+              "shortDescription": {
+                "text": "RegexpSingleline"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks that a specified pattern matches a single-line in any file type.\n <\/div>\n\n <p>\n Rationale: This check can be used to prototype checks and to find common bad\n practice such as calling <code>ex.printStacktrace()<\/code>,\n <code>System.out.println()<\/code>, <code>System.exit()<\/code>, etc.\n <\/p>"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
@@ -35,7 +52,7 @@
           "message": {
             "text": "File must contain copyright statement"
           },
-          "ruleId": "File must contain copyright statement"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"
         }
       ]
     }
