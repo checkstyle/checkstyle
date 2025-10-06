@@ -333,8 +333,11 @@ public class GenericWhitespaceCheckTest
     @Test
     public void testTabAndMissingSpace() throws Exception {
         final String[] expected = {
-            "13:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
-            "15:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "14:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "16:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "18:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "20:29: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "26:42: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespace.java"),

@@ -208,7 +208,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
         }
-        else if (charAfter == ' ' && after + 1 < line.length
+        else if (after + 1 < line.length && charAfter == ' '
                 && line[after + 1] == ' ') {
             log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
