@@ -115,6 +115,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of ResourceBundle.getString.</message>
+    <lineContent>result.put(key, bundle.getString(key));</lineContent>
+    <details>
+      found   : @UnknownPropertyKey String
+      required: @PropertyKey String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>

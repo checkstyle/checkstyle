@@ -12,6 +12,20 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck",
+              "messageStrings": {
+                "maxLineLen": {
+                  "text": "Line is longer than {0,number,integer} characters (found {1,number,integer})."
+                }
+              },
+              "shortDescription": {
+                "text": "LineLength"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for long lines.\n <\/div>\n\n <p>\n Rationale: Long lines are hard to read in printouts or if developers\n have limited screen space for the source code, e.g. if the IDE displays\n additional information like project tree, class hierarchy, etc.\n <\/p>\n\n <ul>\n <li>\n The calculation of the length of a line takes into account the number of\n expanded spaces for a tab character (<code>'\\t'<\/code>). The default number of spaces is <code>8<\/code>.\n To specify a different number of spaces, the user can set\n <a href=\"https:\/\/checkstyle.org\/config.html#Checker\"><code>Checker<\/code><\/a>\n property <code>tabWidth<\/code> which applies to all Checks, including <code>LineLength<\/code>;\n or can set property <code>tabWidth<\/code> for <code>LineLength<\/code> alone.\n <\/li>\n <li>\n By default, package and import statements (lines matching pattern <code>^(package|import) .*<\/code>)\n are not verified by this check.\n <\/li>\n <li>\n Trailing comments are taken into consideration while calculating the line length.\n <div class=\"wrapper\"><pre class=\"prettyprint\"><code class=\"language-java\">\n import java.util.regex.Pattern; \/\/ The length of this comment will be taken into consideration\n <\/code><\/pre><\/div>\n In the example above the length of the import statement is just 31 characters but total length\n will be 94 characters.\n <\/li>\n <\/ul>"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
@@ -33,9 +47,10 @@
             }
           ],
           "message": {
+            "id": "maxLineLen",
             "text": "Line is longer than 70 characters (found 80)."
           },
-          "ruleId": "maxLineLen"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
         },
         {
           "level": "error",
@@ -52,9 +67,10 @@
             }
           ],
           "message": {
+            "id": "maxLineLen",
             "text": "Line is longer than 70 characters (found 81)."
           },
-          "ruleId": "maxLineLen"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
         }
       ]
     }

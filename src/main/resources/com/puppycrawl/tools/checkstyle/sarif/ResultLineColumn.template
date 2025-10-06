@@ -14,7 +14,7 @@
             }
           ],
           "message": {
-            "text": "${message}"
+${message}
           },
           "ruleId": "${ruleId}"
         }
