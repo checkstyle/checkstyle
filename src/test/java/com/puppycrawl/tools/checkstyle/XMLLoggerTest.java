@@ -156,15 +156,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testFileStarted()
-            throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java");
-        logger.fileStarted(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLogger.xml"), outStream);
+        public void testFileStarted() throws Exception {
+        verifyWithInlineConfigParserAndXmlLogger(
+            "InputXMLLoggerFileStarted.java",
+            "ExpectedXMLLoggerFileStarted.xml");
     }
 
     @Test
