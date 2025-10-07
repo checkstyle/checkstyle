@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serial;
-import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -477,10 +476,8 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final Map<Object, ModuleDetails> ruleMetadata =
                 TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
         final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
-        final Constructor<?> constructor =
-                ruleKeyClass.getDeclaredConstructor(String.class, String.class);
-        constructor.setAccessible(true);
-        final Object ruleKey = constructor.newInstance("com.fake.NonExistentCheck", null);
+        final Object ruleKey =
+                TestUtil.instantiate(ruleKeyClass, "com.fake.NonExistentCheck", null);
         ruleMetadata.put(ruleKey, fakeModule);
 
         logger.auditFinished(null);
@@ -508,11 +505,9 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final Map<Object, ModuleDetails> ruleMetadata =
                 TestUtil.getInternalState(logger, "ruleMetadata", Map.class);
         final Class<?> ruleKeyClass = TestUtil.getInnerClassType(SarifLogger.class, "RuleKey");
-        final Constructor<?> constructor =
-                ruleKeyClass.getDeclaredConstructor(String.class, String.class);
-        constructor.setAccessible(true);
-        final Object ruleKey = constructor.newInstance(
-                "com.puppycrawl.tools.checkstyle.SarifLoggerTest", null);
+        final Object ruleKey =
+                TestUtil.instantiate(ruleKeyClass,
+                        "com.puppycrawl.tools.checkstyle.SarifLoggerTest", null);
         ruleMetadata.put(ruleKey, fakeModule);
 
         logger.auditFinished(null);

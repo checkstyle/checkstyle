@@ -30,13 +30,10 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -334,10 +331,8 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateObjectByBruteForce() throws Exception {
         final String className = "Checker";
-        final Method createModuleByBruteForce = PackageObjectFactory.class.getDeclaredMethod(
-                "createModuleByTryInEachPackage", String.class);
-        createModuleByBruteForce.setAccessible(true);
-        final Checker checker = (Checker) createModuleByBruteForce.invoke(factory, className);
+        final Checker checker =
+                TestUtil.invokeMethod(factory, "createModuleByTryInEachPackage", className);
         assertWithMessage("Checker should not be null when creating module from name")
             .that(checker)
             .isNotNull();
@@ -346,14 +341,11 @@ public class PackageObjectFactoryTest {
     @Test
     public void testCreateCheckByBruteForce() throws Exception {
         final String checkName = "AnnotationLocation";
-        final Method createModuleByBruteForce = PackageObjectFactory.class.getDeclaredMethod(
-                "createModuleByTryInEachPackage", String.class);
         final PackageObjectFactory packageObjectFactory = new PackageObjectFactory(
             new HashSet<>(Arrays.asList(BASE_PACKAGE, BASE_PACKAGE + ".checks.annotation")),
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
-        createModuleByBruteForce.setAccessible(true);
-        final AnnotationLocationCheck check = (AnnotationLocationCheck) createModuleByBruteForce
-                .invoke(packageObjectFactory, checkName);
+        final AnnotationLocationCheck check = TestUtil.invokeMethod(
+                packageObjectFactory, "createModuleByTryInEachPackage", checkName);
         assertWithMessage("Check should not be null when creating module from name")
             .that(check)
             .isNotNull();
@@ -374,27 +366,22 @@ public class PackageObjectFactoryTest {
 
     @Test
     public void testJoinPackageNamesWithClassName() throws Exception {
-        final Class<PackageObjectFactory> clazz = PackageObjectFactory.class;
-        final Method method =
-            clazz.getDeclaredMethod("joinPackageNamesWithClassName", String.class, Set.class);
-        method.setAccessible(true);
         final Set<String> packages = Collections.singleton("test");
         final String className = "SomeClass";
-        final String actual =
-            String.valueOf(method.invoke(PackageObjectFactory.class, className, packages));
+        final String actual = TestUtil.invokeStaticMethod(
+                PackageObjectFactory.class, "joinPackageNamesWithClassName", className, packages);
         assertWithMessage("Invalid class name")
             .that(actual)
             .isEqualTo("test." + className);
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void testNameToFullModuleNameMap() throws Exception {
         final Set<Class<?>> classes = CheckUtil.getCheckstyleModules();
         final Class<PackageObjectFactory> packageObjectFactoryClass = PackageObjectFactory.class;
-        final Field field = packageObjectFactoryClass.getDeclaredField("NAME_TO_FULL_MODULE_NAME");
-        field.setAccessible(true);
-        final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
+        final Collection<String> canonicalNames =
+                TestUtil.getInternalStaticStateMap(
+                        packageObjectFactoryClass, "NAME_TO_FULL_MODULE_NAME").values();
 
         final Optional<Class<?>> optional1 = classes.stream()
                 .filter(clazz -> {
@@ -543,9 +530,10 @@ public class PackageObjectFactoryTest {
         final Set<String> packages = Collections.singleton(BASE_PACKAGE);
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            objectFactory.createModule("PackageObjectFactoryTest$MockClass");
-        });
+        final CheckstyleException ex =
+                TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
+                    objectFactory.createModule("PackageObjectFactoryTest$MockClass");
+                });
 
         assertWithMessage("Invalid exception message")
             .that(ex.getMessage())

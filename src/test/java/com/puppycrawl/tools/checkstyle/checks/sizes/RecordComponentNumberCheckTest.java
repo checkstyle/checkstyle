@@ -186,11 +186,9 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
      * the array and is not re-using and possible overwriting the one given to
      * it. Without this, pitest says {@code Arrays.copyOf} is not needed, but it
      * is needed for other style checks.
-     *
-     * @throws Exception if an error occurs.
      */
     @Test
-    public void testCloneInAccessModifiersProperty() throws Exception {
+    public void testCloneInAccessModifiersProperty() {
         final AccessModifierOption[] input = {
             AccessModifierOption.PACKAGE,
         };
@@ -199,8 +197,8 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
         assertWithMessage("check creates its own instance of access modifier array")
             .that(System.identityHashCode(
-                TestUtil.getClassDeclaredField(RecordComponentNumberCheck.class, "accessModifiers")
-                        .get(check)))
+                    TestUtil.getInternalState(
+                            check, "accessModifiers", AccessModifierOption[].class)))
             .isNotEqualTo(System.identityHashCode(input));
     }
 

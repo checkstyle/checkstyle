@@ -22,7 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISSING;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -508,12 +509,12 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final String headerFile = "UnExisted file";
         final IllegalArgumentException thrown =
-                Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
                     check.setHeaderFiles(headerFile);
                 });
-        Assertions.assertEquals("Error reading or corrupted header file: "
-                + headerFile, thrown.getMessage(),
-                "Exception message did not match for invalid file name.");
+        assertWithMessage("Exception message did not match for invalid file name.")
+                .that(thrown.getMessage())
+                .isEqualTo("Error reading or corrupted header file: " + headerFile);
     }
 
     @Test
@@ -846,18 +847,18 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final IllegalArgumentException thrown =
-                Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
                     check.setHeaderFiles((String) null);
                 });
-        Assertions.assertEquals("Header file is not set", thrown.getMessage(),
-                "Exception message mismatch for null header path");
+        assertWithMessage("Exception message mismatch for null header path")
+                .that(thrown.getMessage()).isEqualTo("Header file is not set");
     }
 
     @Test
     public void testSetHeaderFilesWithNullVarargsArray() {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
-        Assertions.assertDoesNotThrow(() -> {
+        assertDoesNotThrow(() -> {
             check.setHeaderFiles((String[]) null);
         });
 
