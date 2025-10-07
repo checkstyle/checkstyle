@@ -39,8 +39,6 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.Serial;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -114,18 +112,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         return Files.createFile(temporaryFolder.toPath().resolve(name)).toFile();
     }
 
-    private static Method getFireAuditFinished() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditFinished = checkerClass.getDeclaredMethod("fireAuditFinished");
-        fireAuditFinished.setAccessible(true);
-        return fireAuditFinished;
+    private static void invokeFireAuditFinished(Checker checker)
+            throws ReflectiveOperationException {
+        TestUtil.invokeMethod(checker, "fireAuditFinished");
     }
 
-    private static Method getFireAuditStartedMethod() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditStarted = checkerClass.getDeclaredMethod("fireAuditStarted");
-        fireAuditStarted.setAccessible(true);
-        return fireAuditStarted;
+    private static void invokeFireAuditStartedMethod(Checker checker)
+            throws ReflectiveOperationException {
+        TestUtil.invokeMethod(checker, "fireAuditStarted");
     }
 
     @Override
@@ -184,7 +178,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         // Let's try fire some events
-        getFireAuditStartedMethod().invoke(checker);
+        invokeFireAuditStartedMethod(checker);
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -193,7 +187,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .isTrue();
 
         auditAdapter.resetListener();
-        getFireAuditFinished().invoke(checker);
+        invokeFireAuditFinished(checker);
         assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -242,7 +236,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeListener(auditAdapter);
 
         // Let's try fire some events
-        getFireAuditStartedMethod().invoke(checker);
+        invokeFireAuditStartedMethod(checker);
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
@@ -251,7 +245,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .isFalse();
 
         aa2.resetListener();
-        getFireAuditFinished().invoke(checker);
+        invokeFireAuditFinished(checker);
         assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
@@ -525,9 +519,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
-        sLocale.setAccessible(true);
-        final Locale locale = (Locale) sLocale.get(null);
+        final Locale locale =
+                TestUtil.getInternalStaticState(LocalizedMessage.class, "sLocale", Locale.class);
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);

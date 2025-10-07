@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG
 import static com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck.MSG_VARIABLE;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
@@ -522,9 +521,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         ident.setText("testName");
 
         final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
-        final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-        final Object o = constructor.newInstance(null, ident);
+        final Object o = TestUtil.instantiate(cls, null, ident);
 
         final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
         assertWithMessage("expected ident token")
@@ -547,9 +544,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         ident.setText("testName");
 
         final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$ForFrame");
-        final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-        final Object o = constructor.newInstance(null, ident);
+        final Object o = TestUtil.instantiate(cls, null, ident);
 
         assertWithMessage("expected for frame type")
             .that(TestUtil.invokeMethod(o, "getType").toString())
