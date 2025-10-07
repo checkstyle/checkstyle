@@ -21,12 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class JavadocTagInfoTest {
 
@@ -111,10 +110,7 @@ public class JavadocTagInfoTest {
             astParent.setType(TokenTypes.LITERAL_CATCH);
 
             final DetailAstImpl ast = new DetailAstImpl();
-            final Method setParent = ast.getClass().getDeclaredMethod("setParent",
-                    DetailAstImpl.class);
-            setParent.setAccessible(true);
-            setParent.invoke(ast, astParent);
+            TestUtil.invokeMethod(ast, "setParent", astParent);
 
             final int[] validTypes = {
                 TokenTypes.PACKAGE_DEF,
@@ -151,9 +147,7 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAstImpl.class);
-        setParent.setAccessible(true);
-        setParent.invoke(ast, astParent);
+        TestUtil.invokeMethod(ast, "setParent", astParent);
 
         final int[] validTypes = {
             TokenTypes.CLASS_DEF,
@@ -190,9 +184,7 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        final Method setParent = ast.getClass().getDeclaredMethod("setParent", DetailAstImpl.class);
-        setParent.setAccessible(true);
-        setParent.invoke(ast, astParent);
+        TestUtil.invokeMethod(ast, "setParent", astParent);
 
         final int[] validTypes = {
             TokenTypes.VARIABLE_DEF,

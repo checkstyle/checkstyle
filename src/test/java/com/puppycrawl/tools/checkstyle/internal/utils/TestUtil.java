@@ -31,12 +31,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -91,8 +93,8 @@ public final class TestUtil {
      * @param fieldName the name of the field to retrieve
      * @return the class' field if found
      */
-    public static Field getClassDeclaredField(Class<?> clss, String fieldName) {
-        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+    private static Field getClassDeclaredField(Class<?> clss, String fieldName) {
+        return Stream.<Class<?>>iterate(clss, Objects::nonNull, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
             .findFirst()
@@ -114,23 +116,45 @@ public final class TestUtil {
      * @param parameters the expected number of parameters
      * @return the class' method
      */
-    public static Method getClassDeclaredMethod(Class<?> clss, String methodName, int parameters) {
-        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
-            .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
-            .filter(method -> {
-                return methodName.equals(method.getName())
-                    && parameters == method.getParameterCount();
-            })
-            .findFirst()
-            .map(method -> {
-                method.setAccessible(true);
-                return method;
-            })
-            .orElseThrow(() -> {
-                return new IllegalStateException(String.format(Locale.ROOT,
-                        "Method '%s' with %d parameters not found in '%s'",
-                        methodName, parameters, clss.getCanonicalName()));
-            });
+    private static Method getClassDeclaredMethod(Class<?> clss,
+                                                 String methodName,
+                                                 int parameters) {
+        final Stream<Method> methods = Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+                .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
+                .filter(method -> {
+                    return methodName.equals(method.getName());
+                });
+
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Method '%s' with %d parameters not found in '%s'",
+                    methodName, parameters, clss.getCanonicalName());
+        };
+
+        return getMatchingExecutable(methods, parameters, exceptionMessage);
+    }
+
+    /**
+     * Retrieves the specified executable from a class.
+     *
+     * @param <T> the type of executable to search
+     * @param execs The stream of executables to search
+     * @param parameters the expected number of parameters
+     * @param exceptionMessage the exception message to use if executable is not found
+     * @return the matching executable
+     */
+    private static <T extends java.lang.reflect.Executable> T getMatchingExecutable(
+            Stream<T> execs, int parameters, Supplier<String> exceptionMessage) {
+        return execs.filter(method -> {
+            return parameters == method.getParameterCount();
+        })
+        .findFirst()
+        .map(method -> {
+            method.setAccessible(true);
+            return method;
+        })
+        .orElseThrow(() -> {
+            return new IllegalStateException(exceptionMessage.get());
+        });
     }
 
     /**
@@ -491,6 +515,34 @@ public final class TestUtil {
             String methodToExecute, Object... arguments) throws ReflectiveOperationException {
         final Method method = getClassDeclaredMethod(clss, methodToExecute, arguments.length);
         return (T) method.invoke(null, arguments);
+    }
+
+    /**
+     * Instantiates an object of the given class with the given arguments,
+     * even if the constructor is private.
+     *
+     * @param clss The class to instantiate
+     * @param arguments The arguments to pass to the constructor
+     * @param <T> the type of the object to instantiate
+     * @return  The instantiated object
+     * @throws ReflectiveOperationException if the constructor invocation failed
+     */
+    public static <T> T instantiate(Class<T> clss, Object... arguments)
+            throws ReflectiveOperationException {
+
+        final Stream<Constructor<T>> ctors =
+                Arrays.stream(clss.getDeclaredConstructors()).map(Constructor.class::cast);
+
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Constructor with %d parameters not found in '%s'",
+                    arguments.length, clss.getCanonicalName());
+        };
+
+        final Constructor<T> constructor =
+                getMatchingExecutable(ctors, arguments.length, exceptionMessage);
+        constructor.setAccessible(true);
+
+        return constructor.newInstance(arguments);
     }
 
     /**
