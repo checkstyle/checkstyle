@@ -841,6 +841,7 @@
                   <directory>config</directory>
                   <includes>
                     <include>configuration*.xsd</include>
+                    <include>checkstyle-report-*.xsd</include>
                   </includes>
                 </resource>
               </resources>
