@@ -21,7 +21,7 @@
   <disallow class="org.junit.jupiter.api.BeforeAll"/>
   <!-- Disallow JUnit assertion in favor of Truth asserts in few exceptions -->
   <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
-  <disallow pkg="org.junit.jupiter.api.Assertions"/>
+  <disallow class="org\.junit\.jupiter\.api\.Assertions.*" regex="true" />
 
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
