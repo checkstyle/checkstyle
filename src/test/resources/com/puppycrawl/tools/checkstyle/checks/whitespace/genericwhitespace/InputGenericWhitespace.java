@@ -13,17 +13,20 @@ public class InputGenericWhitespace {
 
     List<String>items; // violation ''>' is followed by an illegal character.'
 
-    List<String>	withTab; // violation ''>' is followed by an illegal character.'
+    List<String>    withTab; // violation ''>' is followed by an illegal character.'
 
-    List<String>       attributes = new ArrayList<String>(); // violation ''>' is followed by an illegal character.'
+    // violation below ''>' is followed by an illegal character.'
+    List<String>       attributes = new ArrayList<String>();
 
-    Hashtable<String, Object>  ret = new Hashtable<>(); // violation ''>' is followed by an illegal character.'
+    // violation below ''>' is followed by an illegal character.'
+    Hashtable<String, Object>  ret = new Hashtable<>();
 
     final Map<String, String>
         comeMapWithLongName = new HashMap
             <String, String>();
 
-    public void fieldMappers(List<List<?>>  fieldMappers) {  // violation ''>' is followed by an illegal character.'
+    // violation below ''>' is followed by an illegal character.'
+    public void fieldMappers(List<List<?>>  fieldMappers) {
         for (List<?> mapper : fieldMappers) {
             System.out.println(mapper);
         }
@@ -90,7 +93,6 @@ public class InputGenericWhitespace {
     static class WeightedStrongValueReference<T1, T2> {
 
         public WeightedStrongValueReference(int value, int weight) {
-
         }
 
     }
@@ -99,24 +101,18 @@ public class InputGenericWhitespace {
 
         public SoftValueReference(Object valueReferenceQueue, int value,
                                   ReferenceEntry<Integer, Integer> entry) {
-
         }
 
     }
 
     static class WeightedSoftValueReference<T1, T2> {
-
     }
 
     static class WeakValueReference<T1, T2> {
-
     }
 
     static class WeightedWeakValueReference<T1, T2> {
-
     }
 
 }
 }
-
-

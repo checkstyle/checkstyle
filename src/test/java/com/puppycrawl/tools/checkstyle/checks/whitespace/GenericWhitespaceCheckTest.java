@@ -335,9 +335,9 @@ public class GenericWhitespaceCheckTest
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
             "16:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
-            "18:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
-            "20:29: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
-            "26:42: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "19:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "22:29: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+            "29:42: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
         };
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespace.java"),
