@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +31,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -117,7 +118,8 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            Assertions.fail("Xdocs are missing properties:\n" + String.join("\n", failures));
+            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+                    .fail();
         }
     }
 }
