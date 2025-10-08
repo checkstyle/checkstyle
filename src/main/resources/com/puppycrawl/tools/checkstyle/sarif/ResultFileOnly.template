@@ -10,6 +10,6 @@
             }
           ],
           "message": {
-            "text": "${message}"
+${message}
           }
         }

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "downloadUri": "https://github.com/checkstyle/checkstyle/releases/",
+          "fullName": "Checkstyle",
+          "informationUri": "https://checkstyle.org/",
+          "language": "en",
+          "name": "Checkstyle",
+          "organization": "Checkstyle",
+          "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck",
+              "messageStrings": {
+                "annotation.order": {
+                  "text": "''{0}'' annotation modifier does not precede non-annotation modifiers."
+                },
+                "mod.order": {
+                  "text": "''{0}'' modifier out of order with the JLS suggestions."
+                }
+              },
+              "shortDescription": {
+                "text": "ModifierOrder"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks that the order of modifiers conforms to the suggestions in the\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se16\/preview\/specs\/sealed-classes-jls.html\">\n Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3<\/a> and\n <a href=\"https:\/\/docs.oracle.com\/javase\/specs\/jls\/se11\/html\/jls-9.html\">9.4<\/a>.\n The correct order is:\n <\/div>\n\n <ol>\n <li> <code>public<\/code> <\/li>\n <li> <code>protected<\/code> <\/li>\n <li> <code>private<\/code> <\/li>\n <li> <code>abstract<\/code> <\/li>\n <li> <code>default<\/code> <\/li>\n <li> <code>static<\/code> <\/li>\n <li> <code>sealed<\/code> <\/li>\n <li> <code>non-sealed<\/code> <\/li>\n <li> <code>final<\/code> <\/li>\n <li> <code>transient<\/code> <\/li>\n <li> <code>volatile<\/code> <\/li>\n <li> <code>synchronized<\/code> <\/li>\n <li> <code>native<\/code> <\/li>\n <li> <code>strictfp<\/code> <\/li>\n <\/ol>\n\n <p>\n In additional, modifiers are checked to ensure all annotations\n are declared before all other modifiers.\n <\/p>\n\n <p>\n Rationale: Code is easier to read if everybody follows\n a standard.\n <\/p>\n\n <p>\n ATTENTION: We skip\n <a href=\"https:\/\/www.oracle.com\/technical-resources\/articles\/java\/ma14-architect-annotations.html\">\n type annotations<\/a> from validation.\n <\/p>"
+              }
+            }
+          ],
+          "semanticVersion": "null",
+          "version": "null"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerMultipleMessages.java"
+                },
+                "region": {
+                  "startColumn": 11,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "mod.order",
+            "text": "'static' modifier out of order with the JLS suggestions."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger/InputSarifLoggerMultipleMessages.java"
+                },
+                "region": {
+                  "startColumn": 13,
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "message": {
+            "id": "annotation.order",
+            "text": "'@Deprecated' annotation modifier does not precede non-annotation modifiers."
+          },
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
+        }
+      ]
+    }
+  ]
+}
