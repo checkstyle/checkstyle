@@ -46,6 +46,11 @@
         <allow class="org.junit.jupiter.api.Assertions.assertThrows" />
       </file>
     </subpackage>
+
+    <file name="XdocsPagesTest">
+      <!-- BeforeAll is used to create test resources on disk, which might be slow. -->
+      <allow class="org.junit.jupiter.api.BeforeAll" />
+    </file>
   </subpackage>
 
   <subpackage name="bdd">
@@ -58,6 +63,11 @@
   <file name="JavaAstVisitorTest">
     <!-- Uses reflection to validate method order. -->
     <allow pkg="java.lang.reflect" />
+  </file>
+
+  <file name="PackageObjectFactoryTest">
+    <!-- BeforeAll is used to set up the Locale, not Checkstyle classes. -->
+    <allow class="org.junit.jupiter.api.BeforeAll" />
   </file>
 
 </import-control>
