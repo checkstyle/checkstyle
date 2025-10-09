@@ -12,6 +12,18 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.SarifLoggerTest",
+              "messageStrings": {
+
+              },
+              "shortDescription": {
+                "text": "SarifLoggerTest"
+              },
+              "fullDescription": {
+                "text": "No description available"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
@@ -36,7 +48,7 @@
           "message": {
             "text": "found an error"
           },
-          "ruleId": "ruleId"
+          "ruleId": "com.puppycrawl.tools.checkstyle.SarifLoggerTest"
         }
       ]
     }
