@@ -455,7 +455,6 @@ firstsentence
 FIXME
 Fjava
 Fjavadoc
-Flas
 fluido
 Fmain
 Fmessages
@@ -657,7 +656,6 @@ javadocpropertiesgenerator
 javadocstyle
 javadoctagcontinuationindentation
 javadoctags
-Javadoctoken
 javadoctype
 javadocvariable
 Javaee
@@ -1132,7 +1130,6 @@ Qube
 qux
 qw
 qwe
-qwerty
 QX
 rawtypes
 rb
