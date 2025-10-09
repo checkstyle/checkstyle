@@ -30,7 +30,6 @@ import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.NULL_PACKAGE_
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.PACKAGE_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.STRING_SEPARATOR;
 import static com.puppycrawl.tools.checkstyle.PackageObjectFactory.UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
@@ -543,9 +542,10 @@ public class PackageObjectFactoryTest {
         final Set<String> packages = Collections.singleton(BASE_PACKAGE);
         final PackageObjectFactory objectFactory =
             new PackageObjectFactory(packages, classLoader, SEARCH_REGISTERED_PACKAGES);
-        final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-            objectFactory.createModule("PackageObjectFactoryTest$MockClass");
-        });
+        final CheckstyleException ex =
+                TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
+                    objectFactory.createModule("PackageObjectFactoryTest$MockClass");
+                });
 
         assertWithMessage("Invalid exception message")
             .that(ex.getMessage())

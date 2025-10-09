@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck.MSG_HEADER_MISSING;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
 
 import java.io.File;
@@ -508,7 +509,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final String headerFile = "UnExisted file";
         final IllegalArgumentException thrown =
-                Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
                     check.setHeaderFiles(headerFile);
                 });
         Assertions.assertEquals("Error reading or corrupted header file: "
@@ -846,7 +847,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final IllegalArgumentException thrown =
-                Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                getExpectedThrowable(IllegalArgumentException.class, () -> {
                     check.setHeaderFiles((String) null);
                 });
         Assertions.assertEquals("Header file is not set", thrown.getMessage(),

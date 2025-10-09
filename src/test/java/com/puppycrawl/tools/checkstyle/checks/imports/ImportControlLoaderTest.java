@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -153,7 +153,7 @@ public class ImportControlLoaderTest {
             final URI uri = mock();
             when(uri.toURL()).thenReturn(url);
 
-            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () -> {
                 ImportControlLoader.load(uri);
             });
             assertWithMessage("Invalid exception class")
