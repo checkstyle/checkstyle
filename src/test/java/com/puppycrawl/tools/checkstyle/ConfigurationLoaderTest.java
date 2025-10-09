@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
 
@@ -757,11 +756,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     when(mock.getName()).thenReturn("MemberName");
                     when(mock.getProperty("severity")).thenThrow(CheckstyleException.class);
                 })) {
-            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-                ConfigurationLoader.loadConfiguration(
-                        getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
-            });
+            final CheckstyleException ex =
+                    TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
+                        ConfigurationLoader.loadConfiguration(
+                                getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
+                                new PropertiesExpander(
+                                        new Properties()), IgnoredModulesOptions.OMIT);
+                    });
             final String expectedMessage =
                 "Problem during accessing 'severity' attribute for MemberName";
             assertWithMessage("Invalid exception cause message")
