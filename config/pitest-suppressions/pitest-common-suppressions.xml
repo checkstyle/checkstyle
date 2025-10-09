@@ -66,6 +66,15 @@
   <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
+    <mutatedMethod>generateRules</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::size</description>
+    <lineContent>final List&lt;String&gt; result = new ArrayList&lt;&gt;(ruleMetadata.size());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>SarifLogger.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>renderSeverityLevel</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
     <description>removed call to java/lang/IncompatibleClassChangeError::&lt;init&gt;</description>

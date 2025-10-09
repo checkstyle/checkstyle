@@ -13,15 +13,15 @@
           "organization": "Checkstyle",
           "rules": [
             {
-              "id": "com.puppycrawl.tools.checkstyle.SarifLoggerTest",
+              "id": "com.fake.NonExistentCheck",
               "messageStrings": {
 
               },
               "shortDescription": {
-                "text": "SarifLoggerTest"
+                "text": "FakeCheck"
               },
               "fullDescription": {
-                "text": "No description available"
+                "text": "Fake check for testing"
               }
             }
           ],
@@ -30,26 +30,7 @@
         }
       },
       "results": [
-        {
-          "level": "error",
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "file:/home/someuser/Code/Test%202.java"
-                },
-                "region": {
-                  "startColumn": 1,
-                  "startLine": 1
-                }
-              }
-            }
-          ],
-          "message": {
-            "text": "found an error"
-          },
-          "ruleId": "com.puppycrawl.tools.checkstyle.SarifLoggerTest"
-        }
+
       ]
     }
   ]
