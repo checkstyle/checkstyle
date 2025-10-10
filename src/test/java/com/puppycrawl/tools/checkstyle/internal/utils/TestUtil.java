@@ -79,10 +79,7 @@ public final class TestUtil {
     public static boolean isUtilsClassHasPrivateConstructor(final Class<?> utilClass)
             throws ReflectiveOperationException {
         final Constructor<?> constructor = utilClass.getDeclaredConstructor();
-        final boolean result = Modifier.isPrivate(constructor.getModifiers());
-        constructor.setAccessible(true);
-        constructor.newInstance();
-        return result;
+        return Modifier.isPrivate(constructor.getModifiers());
     }
 
     /**
