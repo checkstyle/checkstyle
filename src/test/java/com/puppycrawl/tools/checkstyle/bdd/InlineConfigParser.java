@@ -943,7 +943,7 @@ public final class InlineConfigParser {
     private static Object createCheckInstance(String className) throws
             ReflectiveOperationException {
         final Class<?> checkClass = Class.forName(className);
-        return checkClass.getDeclaredConstructor().newInstance();
+        return TestUtil.instantiate(checkClass);
     }
 
     private static String readPropertiesContent(int beginLineNo, List<String> lines) {

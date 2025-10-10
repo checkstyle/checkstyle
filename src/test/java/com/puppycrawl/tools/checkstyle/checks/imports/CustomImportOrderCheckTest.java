@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
@@ -413,7 +414,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     // which is a candidate for utility method in the future
     public void testGetFullImportIdent() throws Exception {
         final Class<?> clazz = CustomImportOrderCheck.class;
-        final Object t = clazz.getConstructor().newInstance();
+        final Object t = TestUtil.instantiate(clazz);
         final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
         method.setAccessible(true);
         final Object actual = method.invoke(t, new Object[] {null});
