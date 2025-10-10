@@ -179,8 +179,8 @@ public class ModifiedControlVariableCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
