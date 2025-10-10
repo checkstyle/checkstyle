@@ -140,7 +140,7 @@ public final class JavadocCommentsTokenTypes {
      *     |--TEXT ->
      *     |--IDENTIFIER -> FileNotFoundException
      *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  when file is not found.
+     *         `--TEXT -> when file is not found.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
