@@ -125,6 +125,11 @@ public final class XmlMetaReader {
         ModuleDetails result = null;
         if (moduleType != null) {
             final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            try {
+                factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            } catch (ParserConfigurationException e) {
+                throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+            }
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             final DocumentBuilder builder = factory.newDocumentBuilder();
