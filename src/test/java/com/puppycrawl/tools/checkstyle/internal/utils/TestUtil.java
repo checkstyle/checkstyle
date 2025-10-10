@@ -515,6 +515,34 @@ public final class TestUtil {
     }
 
     /**
+     * Instantiates an object of the given class with the given arguments,
+     * even if the constructor is private.
+     *
+     * @param clss The class to instantiate
+     * @param arguments The arguments to pass to the constructor
+     * @param <T> the type of the object to instantiate
+     * @return  The instantiated object
+     * @throws ReflectiveOperationException if the constructor invocation failed
+     */
+    public static <T> T instantiate(Class<T> clss, Object... arguments)
+            throws ReflectiveOperationException {
+
+        final Stream<Constructor<T>> ctors =
+                Arrays.stream(clss.getDeclaredConstructors()).map(Constructor.class::cast);
+
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Constructor with %d parameters not found in '%s'",
+                    arguments.length, clss.getCanonicalName());
+        };
+
+        final Constructor<T> constructor =
+                getMatchingExecutable(ctors, arguments.length, exceptionMessage);
+        constructor.setAccessible(true);
+
+        return constructor.newInstance(arguments);
+    }
+
+    /**
      * Returns the inner class type by its name.
      *
      * @param declaringClass the class in which the inner class is declared

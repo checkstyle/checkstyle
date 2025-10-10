@@ -62,9 +62,4 @@
     <allow pkg="java.lang.reflect" />
   </file>
 
-  <file name="SarifLoggerTest">
-    <!-- Uses reflection to inject fake module metadata for exception testing. -->
-    <allow class="java.lang.reflect.Constructor" />
-  </file>
-
 </import-control>

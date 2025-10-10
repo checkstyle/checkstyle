@@ -24,7 +24,6 @@ import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -68,12 +67,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     private static Object getInternalLoaderInstance(PropertyResolver resolver)
              throws Exception {
-        final Constructor<ConfigurationLoader> constructor = ConfigurationLoader.class
-                .getDeclaredConstructor(PropertyResolver.class, boolean.class,
-                        ThreadModeSettings.class);
-        constructor.setAccessible(true);
-        final ConfigurationLoader loader = constructor.newInstance(resolver, false,
-                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+
+        final ConfigurationLoader loader = TestUtil.instantiate(ConfigurationLoader.class,
+                resolver, false, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
 
         return TestUtil.getInternalState(loader, "saxHandler", Object.class);
     }
@@ -566,17 +562,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testIncorrectTag() throws Exception {
         final Class<?> aClassParent = ConfigurationLoader.class;
-        final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
-                PropertyResolver.class, boolean.class, ThreadModeSettings.class);
-        ctorParent.setAccessible(true);
-        final Object objParent = ctorParent.newInstance(null, true, null);
+        final Object objParent = TestUtil.instantiate(aClassParent, null, true, null);
 
         final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                 + "ConfigurationLoader$InternalLoader");
-        final Constructor<?> constructor = aClass.getDeclaredConstructor(objParent.getClass());
-        constructor.setAccessible(true);
-
-        final Object obj = constructor.newInstance(objParent);
+        final Object obj = TestUtil.instantiate(aClass, objParent);
 
         try {
             TestUtil.invokeMethod(obj, "startElement", "", "", "hello", null);

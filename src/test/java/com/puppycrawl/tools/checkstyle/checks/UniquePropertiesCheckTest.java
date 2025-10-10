@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_K
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -43,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
@@ -159,9 +159,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final Class<?> uniquePropertiesClass = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks."
                     + "UniquePropertiesCheck$UniqueProperties");
-        final Constructor<?> constructor = uniquePropertiesClass.getDeclaredConstructor();
-        constructor.setAccessible(true);
-        final Object uniqueProperties = constructor.newInstance();
+        final Object uniqueProperties = TestUtil.instantiate(uniquePropertiesClass);
         final Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class,
                 Object.class);
         final Object result = method.invoke(uniqueProperties, 1, "value");

@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -442,11 +441,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                                                          int lastColumn) throws Exception {
         final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
-        final Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
-                int.class, int.class, int.class);
-        entryConstr.setAccessible(true);
 
-        final Object entryInstance = entryConstr.newInstance(checkName, firstLine,
+        final Object entryInstance = TestUtil.instantiate(entry, checkName, firstLine,
                 firstColumn, lastLine, lastColumn);
 
         final ThreadLocal<List<Object>> entries = TestUtil
