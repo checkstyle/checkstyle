@@ -28,19 +28,18 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
 import org.junit.jupiter.api.Test;
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class ImportControlLoaderTest {
 
@@ -99,10 +98,7 @@ public class ImportControlLoaderTest {
             };
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            final Method privateMethod = clazz.getDeclaredMethod("safeGet",
-                Attributes.class, String.class);
-            privateMethod.setAccessible(true);
-            privateMethod.invoke(null, attr, "you_cannot_find_me");
+            TestUtil.invokeStaticMethod(clazz, "safeGet", attr, "you_cannot_find_me");
             assertWithMessage("exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -125,10 +121,7 @@ public class ImportControlLoaderTest {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            final Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class,
-                URI.class);
-            privateMethod.setAccessible(true);
-            privateMethod.invoke(null, source,
+            TestUtil.invokeStaticMethod(clazz, "load", source,
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             assertWithMessage("exception expected").fail();
         }

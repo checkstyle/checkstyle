@@ -33,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serial;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -812,13 +811,9 @@ public class MainTest {
 
     @Test
     public void testLoadPropertiesIoException() throws Exception {
-        final Class<?>[] param = new Class<?>[1];
-        param[0] = File.class;
         final Class<?> cliOptionsClass = Class.forName(Main.class.getName());
-        final Method method = cliOptionsClass.getDeclaredMethod("loadProperties", param);
-        method.setAccessible(true);
         try {
-            method.invoke(null, new File("."));
+            TestUtil.invokeStaticMethod(cliOptionsClass, "loadProperties", new File("."));
             assertWithMessage("Exception was expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -1837,13 +1832,11 @@ public class MainTest {
     @Test
     public void testExcludeDirectoryNotMatch() throws Exception {
         final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
         final List<Pattern> list = new ArrayList<>();
         list.add(Pattern.compile("BAD_PATH"));
 
-        final List<File> result = (List<File>) method.invoke(null, new File(getFilePath("")),
-                list);
+        final List<File> result = TestUtil.invokeStaticMethod(
+                optionsClass, "listFiles", new File(getFilePath("")), list);
         assertWithMessage("Invalid result size")
             .that(result)
             .isNotEmpty();
