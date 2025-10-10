@@ -72,6 +72,11 @@ public final class XmlMetaWriter {
     public static void write(ModuleDetails moduleDetails) throws TransformerException,
             ParserConfigurationException {
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        try {
+            dbFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        } catch (ParserConfigurationException e) {
+            throw new IllegalStateException("ParserConfigurationException was thrown. The feature 'disallow-doctype-decl' is not supported by your XML processor.", e);
+        }
         dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         dbFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
         final DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -180,6 +185,9 @@ public final class XmlMetaWriter {
         }
 
         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        transformerFactory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+        transformerFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         final Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
