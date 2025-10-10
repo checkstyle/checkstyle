@@ -92,7 +92,7 @@ public final class TestUtil {
      * @param fieldName the name of the field to retrieve
      * @return the class' field if found
      */
-    public static Field getClassDeclaredField(Class<?> clss, String fieldName) {
+    private static Field getClassDeclaredField(Class<?> clss, String fieldName) {
         return Stream.<Class<?>>iterate(clss, Objects::nonNull, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
@@ -115,7 +115,9 @@ public final class TestUtil {
      * @param parameters the expected number of parameters
      * @return the class' method
      */
-    public static Method getClassDeclaredMethod(Class<?> clss, String methodName, int parameters) {
+    private static Method getClassDeclaredMethod(Class<?> clss,
+                                                 String methodName,
+                                                 int parameters) {
         return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
             .filter(method -> {
