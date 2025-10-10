@@ -127,7 +127,7 @@ public final class JavadocCommentsTokenTypes {
      *    |--AT_SIGN -> @
      *    |--TAG_NAME -> return
      *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  value The return of method.
+     *        `--TEXT ->  The return of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
