@@ -113,7 +113,7 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code @return} Javadoc block tag.
      *
-     * <p>Such Javadoc tag can have one children:</p>
+     * <p>Such Javadoc tag can have one child:</p>
      * <ol>
      *  <li>{@link #DESCRIPTION}</li>
      * </ol>
