@@ -25,7 +25,6 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -76,9 +75,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final ConfigurationLoader loader = constructor.newInstance(resolver, false,
                 ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
 
-        final Field saxHandlerField = ConfigurationLoader.class.getDeclaredField("saxHandler");
-        saxHandlerField.setAccessible(true);
-        return saxHandlerField.get(loader);
+        return TestUtil.getInternalState(loader, "saxHandler", Object.class);
     }
 
     private static Method getReplacePropertiesMethod(Class<?> internalLoaderClass)

@@ -34,7 +34,6 @@ import static org.mockito.Mockito.mockStatic;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
@@ -391,9 +390,9 @@ public class PackageObjectFactoryTest {
     public void testNameToFullModuleNameMap() throws Exception {
         final Set<Class<?>> classes = CheckUtil.getCheckstyleModules();
         final Class<PackageObjectFactory> packageObjectFactoryClass = PackageObjectFactory.class;
-        final Field field = packageObjectFactoryClass.getDeclaredField("NAME_TO_FULL_MODULE_NAME");
-        field.setAccessible(true);
-        final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
+        final Collection<String> canonicalNames =
+                TestUtil.getInternalStaticStateMap(
+                        packageObjectFactoryClass, "NAME_TO_FULL_MODULE_NAME").values();
 
         final Optional<Class<?>> optional1 = classes.stream()
                 .filter(clazz -> {
