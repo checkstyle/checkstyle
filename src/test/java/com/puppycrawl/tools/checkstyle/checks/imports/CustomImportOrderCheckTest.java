@@ -28,7 +28,6 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCh
 import static com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 
 import java.io.File;
-import java.lang.reflect.Method;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,6 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -415,9 +413,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     public void testGetFullImportIdent() throws Exception {
         final Class<?> clazz = CustomImportOrderCheck.class;
         final Object t = TestUtil.instantiate(clazz);
-        final Method method = clazz.getDeclaredMethod("getFullImportIdent", DetailAST.class);
-        method.setAccessible(true);
-        final Object actual = method.invoke(t, new Object[] {null});
+        final Object actual = TestUtil.invokeMethod(t, "getFullImportIdent", new Object[] {null});
 
         final String expected = "";
         assertWithMessage("Invalid getFullImportIdent result")

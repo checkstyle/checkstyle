@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -818,8 +817,7 @@ public final class InlineConfigParser {
         final String actualDefaultAsString;
 
         if ("tokens".equals(propertyName)) {
-            final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
-            actualDefault = getter.invoke(checkInstance);
+            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultTokens");
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)
@@ -827,8 +825,7 @@ public final class InlineConfigParser {
                                           .collect(Collectors.joining(", "));
         }
         else if ("javadocTokens".equals(propertyName)) {
-            final Method getter = checkInstance.getClass().getMethod("getDefaultJavadocTokens");
-            actualDefault = getter.invoke(checkInstance);
+            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultJavadocTokens");
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)

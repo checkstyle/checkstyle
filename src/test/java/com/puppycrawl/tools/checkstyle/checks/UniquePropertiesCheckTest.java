@@ -26,7 +26,6 @@ import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_K
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
@@ -91,18 +90,12 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNotFoundKey() throws Exception {
         final List<String> testStrings = new ArrayList<>(3);
-        final Method getLineNumber = UniquePropertiesCheck.class.getDeclaredMethod(
-            "getLineNumber", FileText.class, String.class);
-        assertWithMessage("Get line number method should be present")
-            .that(getLineNumber)
-            .isNotNull();
-        getLineNumber.setAccessible(true);
         testStrings.add("");
         testStrings.add("0 = 0");
         testStrings.add("445");
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
-        final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
-                fileText, "some key");
+        final Object lineNumber = TestUtil.invokeStaticMethod(
+                UniquePropertiesCheck.class, "getLineNumber", fileText, "some key");
         assertWithMessage("Line number should not be null")
             .that(lineNumber)
             .isNotNull();
@@ -160,16 +153,14 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
                 .forName("com.puppycrawl.tools.checkstyle.checks."
                     + "UniquePropertiesCheck$UniqueProperties");
         final Object uniqueProperties = TestUtil.instantiate(uniquePropertiesClass);
-        final Method method = uniqueProperties.getClass().getDeclaredMethod("put", Object.class,
-                Object.class);
-        final Object result = method.invoke(uniqueProperties, 1, "value");
+        final Object result = TestUtil.invokeMethod(uniqueProperties, "put", 1, "value");
         final Map<Object, Object> table = new HashMap<>();
         final Object expected = table.put(1, "value");
         assertWithMessage("Invalid result of put method")
             .that(result)
             .isEqualTo(expected);
 
-        final Object result2 = method.invoke(uniqueProperties, 1, "value");
+        final Object result2 = TestUtil.invokeMethod(uniqueProperties, "put", 1, "value");
         final Object expected2 = table.put(1, "value");
         assertWithMessage("Value should be substituted")
             .that(result2)

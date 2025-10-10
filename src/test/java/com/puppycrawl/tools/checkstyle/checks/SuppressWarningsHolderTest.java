@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -282,11 +281,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAllAnnotationValuesWrongArg() throws ReflectiveOperationException {
+    public void testGetAllAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAllAnnotationValues = holder.getClass()
-                .getDeclaredMethod("getAllAnnotationValues", DetailAST.class);
-        getAllAnnotationValues.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -302,7 +298,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.addChild(methodDef);
 
         try {
-            getAllAnnotationValues.invoke(holder, parent);
+            TestUtil.invokeMethod(holder, "getAllAnnotationValues", parent);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -319,11 +315,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAnnotationValuesWrongArg() throws ReflectiveOperationException {
+    public void testGetAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAllAnnotationValues = holder.getClass()
-                .getDeclaredMethod("getAnnotationValues", DetailAST.class);
-        getAllAnnotationValues.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -332,7 +325,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         methodDef.setColumnNo(0);
 
         try {
-            getAllAnnotationValues.invoke(holder, methodDef);
+            TestUtil.invokeMethod(holder, "getAnnotationValues", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -350,11 +343,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAnnotationTargetWrongArg() throws ReflectiveOperationException {
+    public void testGetAnnotationTargetWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAnnotationTarget = holder.getClass()
-                .getDeclaredMethod("getAnnotationTarget", DetailAST.class);
-        getAnnotationTarget.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -368,7 +358,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.setColumnNo(0);
 
         try {
-            getAnnotationTarget.invoke(holder, methodDef);
+            TestUtil.invokeMethod(holder, "getAnnotationTarget", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
