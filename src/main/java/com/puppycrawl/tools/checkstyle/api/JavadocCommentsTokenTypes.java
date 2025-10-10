@@ -131,7 +131,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int SINCE_BLOCK_TAG = JavadocCommentsLexer.SINCE_BLOCK_TAG;
 
     /**
-     * {@code @version} block tag.
+     * {@code @version} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can has only one argument - {@link #TEXT}:</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @version value}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> version
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  value
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int VERSION_BLOCK_TAG = JavadocCommentsLexer.VERSION_BLOCK_TAG;
 
