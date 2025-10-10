@@ -43,9 +43,9 @@ import java.lang.annotation.Target;
  * @noinspectionreason ClassIndependentOfModule - we keep this annotation at top level by design
  * @noinspectionreason ClassOnlyUsedInOnePackage - checks live in one package by design
  */
+@Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Inherited
 public @interface GlobalStatefulCheck {
 
     // this annotation does not have properties
