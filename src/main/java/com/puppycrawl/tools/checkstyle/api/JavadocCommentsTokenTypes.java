@@ -135,12 +135,12 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> exception
-     *     |--TEXT ->
-     *     |--IDENTIFIER -> FileNotFoundException
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT -> when file is not found.
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> exception
+     *    |--TEXT ->
+     *    |--IDENTIFIER -> FileNotFoundException
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT -> when file is not found.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
