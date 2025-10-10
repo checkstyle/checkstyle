@@ -121,7 +121,29 @@ public final class JavadocCommentsTokenTypes {
     public static final int THROWS_BLOCK_TAG = JavadocCommentsLexer.THROWS_BLOCK_TAG;
 
     /**
-     * {@code @exception} block tag.
+     * {@code @exception} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     * <ol>
+     *  <li>{@link #TYPE_NAME}</li>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @exception FileNotFoundException when file is not found.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> exception
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> FileNotFoundException
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  when file is not found.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int EXCEPTION_BLOCK_TAG = JavadocCommentsLexer.EXCEPTION_BLOCK_TAG;
 
