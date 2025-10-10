@@ -251,8 +251,8 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation")
     public void beginTree(DetailAST rootAST) {
         singlelineComments = getFileContents().getSingleLineComments();
         blockComments = getFileContents().getBlockComments();

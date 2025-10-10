@@ -93,8 +93,8 @@ public class SuperCloneCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final AbstractSuperCheck check = new SuperCloneCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(

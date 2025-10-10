@@ -416,8 +416,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder7.java"), expected);
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
 

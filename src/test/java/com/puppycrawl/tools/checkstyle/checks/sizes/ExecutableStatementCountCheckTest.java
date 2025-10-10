@@ -42,8 +42,8 @@ public class ExecutableStatementCountCheckTest
         return "com/puppycrawl/tools/checkstyle/checks/sizes/executablestatementcount";
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testStatefulFieldsClearedOnBeginTree() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.STATIC_INIT);

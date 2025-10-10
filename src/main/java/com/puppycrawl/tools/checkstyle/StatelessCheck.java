@@ -36,9 +36,9 @@ import java.lang.annotation.Target;
  * @noinspection ClassIndependentOfModule
  * @noinspectionreason ClassIndependentOfModule - we keep this annotation at top level by design
  */
+@Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Inherited
 public @interface StatelessCheck {
 
     // this annotation does not have properties
