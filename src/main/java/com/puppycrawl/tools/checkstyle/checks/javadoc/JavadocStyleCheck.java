@@ -193,8 +193,8 @@ public class JavadocStyleCheck
     }
 
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation")
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
