@@ -328,8 +328,11 @@
     </module>
     <module name="EmptyCatchBlock"/>
     <module name="LeftCurly"/>
-    <module name="NeedBraces"/>
     <module name="NeedBraces">
+      <property name="id" value="fooDefault"/>
+    </module>
+    <module name="NeedBraces">
+      <property name="id" value="foo"/>
       <property name="tokens" value="LAMBDA"/>
       <property name="allowSingleLineStatement" value="true"/>
     </module>
