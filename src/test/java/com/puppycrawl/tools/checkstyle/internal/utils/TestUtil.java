@@ -38,6 +38,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -115,22 +116,42 @@ public final class TestUtil {
     private static Method getClassDeclaredMethod(Class<?> clss,
                                                  String methodName,
                                                  int parameters) {
-        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
-            .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
-            .filter(method -> {
-                return methodName.equals(method.getName())
-                    && parameters == method.getParameterCount();
-            })
-            .findFirst()
-            .map(method -> {
-                method.setAccessible(true);
-                return method;
-            })
-            .orElseThrow(() -> {
-                return new IllegalStateException(String.format(Locale.ROOT,
-                        "Method '%s' with %d parameters not found in '%s'",
-                        methodName, parameters, clss.getCanonicalName()));
-            });
+        final Stream<Method> methods = Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+                .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
+                .filter(method -> {
+                    return methodName.equals(method.getName());
+                });
+
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Method '%s' with %d parameters not found in '%s'",
+                    methodName, parameters, clss.getCanonicalName());
+        };
+
+        return getMatchingExecutable(methods, parameters, exceptionMessage);
+    }
+
+    /**
+     * Retrieves the specified executable from a class.
+     *
+     * @param <T> the type of executable to search
+     * @param execs The stream of executables to search
+     * @param parameters the expected number of parameters
+     * @param exceptionMessage the exception message to use if executable is not found
+     * @return the matching executable
+     */
+    private static <T extends java.lang.reflect.Executable> T getMatchingExecutable(
+            Stream<T> execs, int parameters, Supplier<String> exceptionMessage) {
+        return execs.filter(method -> {
+            return parameters == method.getParameterCount();
+        })
+        .findFirst()
+        .map(method -> {
+            method.setAccessible(true);
+            return method;
+        })
+        .orElseThrow(() -> {
+            return new IllegalStateException(exceptionMessage.get());
+        });
     }
 
     /**
