@@ -179,6 +179,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
                 "ExpectedXMLLoggerAddError.xml");
     }
 
+    /**
+     * This test cannot use the standard input/expected XML approach
+     * because it requires an AuditEvent with a null fileName.
+     */
     @Test
     public void testAddErrorWithNullFileName() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
