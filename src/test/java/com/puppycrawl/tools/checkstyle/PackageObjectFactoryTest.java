@@ -387,8 +387,8 @@ public class PackageObjectFactoryTest {
             .isEqualTo("test." + className);
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testNameToFullModuleNameMap() throws Exception {
         final Set<Class<?>> classes = CheckUtil.getCheckstyleModules();
         final Class<PackageObjectFactory> packageObjectFactoryClass = PackageObjectFactory.class;

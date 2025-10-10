@@ -295,8 +295,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         Files.delete(filePath);
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
         final Path tempDirectory = temporaryFolder.toPath();
         final Path symbolicLinkDirectory = temporaryFolder.toPath()
@@ -315,8 +315,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .isTrue();
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testSymbolicLinkResolution() throws IOException {
         final Path tempDirectory = temporaryFolder.toPath();
         final Path symbolicLinkDirectory = temporaryFolder.toPath()
@@ -336,8 +336,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .isTrue();
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final String uniqueFileName = "tempFile_" + UUID.randomUUID() + ".java";
         final File tempFile = new File(temporaryFolder, uniqueFileName);
@@ -361,8 +361,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .contains(expectedMessage);
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testMultipleSymbolicLinkResolution() throws IOException {
         final Path actualDirectory = temporaryFolder.toPath();
         final Path firstSymbolicLink = temporaryFolder.toPath()
@@ -530,7 +530,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * @param rawMessages exception messages separated by ';'
      */
     @ParameterizedTest
-    @ValueSource(strings = {"Same;Same", "First;Second"})
+    @ValueSource(strings = {"First;Second", "Same;Same"})
     public void testPutNonExistentExternalResource(String rawMessages) throws Exception {
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File cacheFile = new File(temporaryFolder, uniqueFileName);

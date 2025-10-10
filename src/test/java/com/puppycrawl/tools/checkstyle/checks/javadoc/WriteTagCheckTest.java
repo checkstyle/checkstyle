@@ -170,8 +170,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
      * This test needs to use a forbidden api {@code ByteArrayOutputStream#toString()}
      * to get the logs as a string from the output stream
      */
-    @Test
     @SuppressForbidden
+    @Test
     public void testResetSeverityLevel() throws Exception {
 
         final Checker checker = new Checker();

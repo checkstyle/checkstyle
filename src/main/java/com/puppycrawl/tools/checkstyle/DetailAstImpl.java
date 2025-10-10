@@ -394,8 +394,8 @@ public final class DetailAstImpl implements DetailAST {
         return previousSibling;
     }
 
-    @Override
     @Nullable
+    @Override
     public DetailAST findFirstToken(int tokenType) {
         DetailAST returnValue = null;
         for (DetailAST ast = firstChild; ast != null; ast = ast.getNextSibling()) {

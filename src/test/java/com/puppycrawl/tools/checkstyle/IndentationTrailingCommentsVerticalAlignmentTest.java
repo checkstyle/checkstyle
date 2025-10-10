@@ -71,8 +71,8 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         "InputIndentationPackageDeclaration3.java"
     );
 
-    @ParameterizedTest
     @MethodSource("indentationTestFiles")
+    @ParameterizedTest
     public void testTrailingCommentsAlignment(Path testFile) throws IOException {
         final String fileName = testFile.getFileName().toString();
         if (ALLOWED_VIOLATION_FILES.contains(fileName)) {

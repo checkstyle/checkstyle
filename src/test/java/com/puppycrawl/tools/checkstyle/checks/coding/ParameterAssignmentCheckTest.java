@@ -104,8 +104,8 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
