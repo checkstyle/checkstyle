@@ -118,8 +118,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNPathComplexityOverflow.java"), expected);
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testStatefulFieldsClearedOnBeginTree1() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_ELSE);
@@ -144,8 +144,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testStatefulFieldsClearedOnBeginTree2() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_RETURN);

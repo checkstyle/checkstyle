@@ -308,8 +308,8 @@ public abstract class AbstractAutomaticBean
     /** A converter that converts a string to a pattern. */
     private static final class PatternConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             return CommonUtil.createPattern(value.toString());
         }
@@ -319,8 +319,8 @@ public abstract class AbstractAutomaticBean
     /** A converter that converts a comma-separated string into an array of patterns. */
     private static final class PatternArrayConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
                     value.toString(), COMMA_SEPARATOR);
@@ -338,8 +338,8 @@ public abstract class AbstractAutomaticBean
     /** A converter that converts strings to severity level. */
     private static final class SeverityLevelConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             return SeverityLevel.getInstance(value.toString());
         }
@@ -349,8 +349,8 @@ public abstract class AbstractAutomaticBean
     /** A converter that converts strings to scope. */
     private static final class ScopeConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             return Scope.getInstance(value.toString());
         }
@@ -360,9 +360,9 @@ public abstract class AbstractAutomaticBean
     /** A converter that converts strings to uri. */
     private static final class UriConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
-        @Override
         @Nullable
+        @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             final String url = value.toString();
             URI result = null;
@@ -388,8 +388,8 @@ public abstract class AbstractAutomaticBean
      */
     private static final class RelaxedStringArrayConverter implements Converter {
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             final StringTokenizer tokenizer = new StringTokenizer(
                 value.toString().trim(), COMMA_SEPARATOR);
@@ -416,8 +416,8 @@ public abstract class AbstractAutomaticBean
         private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
                 new AccessModifierOption[0];
 
-        @SuppressWarnings("unchecked")
         @Override
+        @SuppressWarnings("unchecked")
         public Object convert(Class type, Object value) {
             // Converts to a String and trims it for the tokenizer.
             final StringTokenizer tokenizer = new StringTokenizer(

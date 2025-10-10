@@ -312,8 +312,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearStateImportedClassPackages() throws Exception {
         final ClassFanOutComplexityCheck check = new ClassFanOutComplexityCheck();
         final DetailAST root = JavaParser.parseFile(
