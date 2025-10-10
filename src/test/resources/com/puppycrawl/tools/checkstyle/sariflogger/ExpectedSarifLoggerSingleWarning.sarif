@@ -12,6 +12,20 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
+              "messageStrings": {
+                "illegal.token.text": {
+                  "text": "Token text matches the illegal pattern ''{0}''."
+                }
+              },
+              "shortDescription": {
+                "text": "IllegalTokenText"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks specified tokens text for matching an illegal pattern.\n By default, no tokens are specified.\n <\/div>"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
@@ -36,7 +50,7 @@
           "message": {
             "text": "Avoid using the number 123. \\n try again"
           },
-          "ruleId": "Avoid using the number 123. \n try again"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck"
         }
       ]
     }

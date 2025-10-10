@@ -62,7 +62,6 @@
     <description>Removed assignment to member variable args</description>
     <lineContent>this.args = null;</lineContent>
   </mutation>
-
   <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>

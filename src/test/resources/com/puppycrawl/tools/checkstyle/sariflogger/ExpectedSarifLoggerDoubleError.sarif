@@ -12,6 +12,34 @@
           "name": "Checkstyle",
           "organization": "Checkstyle",
           "rules": [
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck",
+              "messageStrings": {
+                "import.unused": {
+                  "text": "Unused import - {0}."
+                }
+              },
+              "shortDescription": {
+                "text": "UnusedImports"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks for unused import statements. An import statement\n is considered unused if:\n <\/div>\n\n <ul>\n <li>\n It is not referenced in the file. The algorithm does not support wild-card\n imports like <code>import java.io.*;<\/code>. Most IDE's provide very sophisticated\n checks for imports that handle wild-card imports.\n <\/li>\n <li>\n The class imported is from the <code>java.lang<\/code> package. For example\n importing <code>java.lang.String<\/code>.\n <\/li>\n <li>\n The class imported is from the same package.\n <\/li>\n <li>\n A static method is imported when used as method reference. In that case,\n only the type needs to be imported and that's enough to resolve the method.\n <\/li>\n <li>\n <b>Optionally:<\/b> it is referenced in Javadoc comments. This check is on by\n default, but it is considered bad practice to introduce a compile-time\n dependency for documentation purposes only. As an example, the import\n <code>java.util.List<\/code> would be considered referenced with the Javadoc\n comment <code>{@link List}<\/code>. The alternative to avoid introducing a compile-time\n dependency would be to write the Javadoc comment as <code>{&#64;link java.util.List}<\/code>.\n <\/li>\n <\/ul>\n\n <p>\n The main limitation of this check is handling the cases where:\n <\/p>\n <ul>\n <li>\n An imported type has the same name as a declaration, such as a member variable.\n <\/li>\n <li>\n There are two or more static imports with the same method name\n (javac can distinguish imports with same name but different parameters, but checkstyle can not\n due to <a href=\"https:\/\/checkstyle.org\/writingchecks.html#Limitations\">limitation.<\/a>)\n <\/li>\n <\/ul>"
+              }
+            },
+            {
+              "id": "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck",
+              "messageStrings": {
+                "variable.notPrivate": {
+                  "text": "Variable ''{0}'' must be private and have accessor methods."
+                }
+              },
+              "shortDescription": {
+                "text": "VisibilityModifier"
+              },
+              "fullDescription": {
+                "text": "<div>\n Checks visibility of class members. Only static final, immutable or annotated\n by specified annotation members may be public;\n other class members must be private unless the property <code>protectedAllowed<\/code>\n or <code>packageAllowed<\/code> is set.\n <\/div>\n\n <p>\n Public members are not flagged if the name matches the public\n member regular expression (contains <code>\"^serialVersionUID$\"<\/code> by\n default).\n <\/p>\n\n <p>\n Note that Checkstyle 2 used to include <code>\"^f[A-Z][a-zA-Z0-9]*$\"<\/code> in the default pattern\n to allow names used in container-managed persistence for Enterprise JavaBeans (EJB) 1.1 with\n the default settings. With EJB 2.0 it is no longer necessary to have public access for\n persistent fields, so the default has been changed.\n <\/p>\n\n <p>\n Rationale: Enforce encapsulation.\n <\/p>\n\n <p>\n Check also has options making it less strict:\n <\/p>\n\n <p>\n <b>ignoreAnnotationCanonicalNames<\/b> - the list of annotations which ignore\n variables in consideration. If user want to provide short annotation name that\n type will match to any named the same type without consideration of package.\n <\/p>\n\n <p>\n <b>allowPublicFinalFields<\/b> - which allows public final fields.\n <\/p>\n\n <p>\n <b>allowPublicImmutableFields<\/b> - which allows immutable fields to be\n declared as public if defined in final class.\n <\/p>\n\n <p>\n Field is known to be immutable if:\n <\/p>\n <ul>\n <li>It's declared as final<\/li>\n <li>Has either a primitive type or instance of class user defined to be immutable\n (such as String, ImmutableCollection from Guava, etc.)<\/li>\n <\/ul>\n\n <p>\n Classes known to be immutable are listed in <b>immutableClassCanonicalNames<\/b>\n by their canonical names.\n <\/p>\n\n <p>\n Property Rationale: Forcing all fields of class to have private modifier by default is\n good in most cases, but in some cases it drawbacks in too much boilerplate get\/set code.\n One of such cases are immutable classes.\n <\/p>\n\n <p>\n Restriction: Check doesn't check if class is immutable, there's no checking\n if accessory methods are missing and all fields are immutable, we only check\n if current field is immutable or final.\n Under the flag <b>allowPublicImmutableFields<\/b>, the enclosing class must\n also be final, to encourage immutability.\n Under the flag <b>allowPublicFinalFields<\/b>, the final modifier\n on the enclosing class is optional.\n <\/p>\n\n <p>\n Star imports are out of scope of this Check. So if one of type imported via\n star import collides with user specified one by its short name - there\n won't be Check's violation.\n <\/p>"
+              }
+            }
           ],
           "semanticVersion": "null",
           "version": "null"
@@ -34,9 +62,10 @@
             }
           ],
           "message": {
+            "id": "import.unused",
             "text": "Unused import - java.util.List."
           },
-          "ruleId": "import.unused"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"
         },
         {
           "level": "none",
@@ -54,9 +83,10 @@
             }
           ],
           "message": {
+            "id": "variable.notPrivate",
             "text": "Variable 'field1' must be private and have accessor methods."
           },
-          "ruleId": "variable.notPrivate"
+          "ruleId": "com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"
         }
       ]
     }
