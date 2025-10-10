@@ -1833,8 +1833,8 @@ public class MainTest {
             .isEqualTo("");
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testExcludeDirectoryNotMatch() throws Exception {
         final Class<?> optionsClass = Class.forName(Main.class.getName());
         final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);

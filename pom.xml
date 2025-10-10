@@ -253,6 +253,8 @@
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
+      -Xep:LexicographicalAnnotationAttributeListing:ERROR
+      -Xep:LexicographicalAnnotationListing:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
@@ -269,14 +271,16 @@
       -Xep:JUnitMethodDeclaration:OFF
       <!-- We prefer different style of writing tests. -->
       -Xep:JUnitValueSource:OFF
-      <!-- Until https://github.com/checkstyle/checkstyle/issues/14194. -->
-      -Xep:LexicographicalAnnotationListing:OFF
       <!-- We prefer to qualify all static method calls with class name. -->
       -Xep:StaticImport:OFF
       <!-- no ability to declare noinspection tags as valid tags -->
       -Xep:InvalidBlockTag:OFF
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence -->
       -Xep:OperatorPrecedence:OFF
+      -XepPatchLocation:IN_PLACE
+      -XepPatchChecks:LexicographicalAnnotationListing,LexicographicalAnnotationAttributeListing
+        <!-- add new with:
+      -->
     </error-prone.configuration-args>
   </properties>
 

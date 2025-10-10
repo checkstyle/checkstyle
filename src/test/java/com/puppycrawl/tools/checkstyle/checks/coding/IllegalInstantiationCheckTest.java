@@ -167,8 +167,8 @@ public class IllegalInstantiationCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearStateClassNames() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(
@@ -218,8 +218,8 @@ public class IllegalInstantiationCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearStateInstantiations() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(new File(

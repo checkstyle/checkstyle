@@ -40,8 +40,8 @@ import com.puppycrawl.tools.checkstyle.gui.MainFrameModel;
  * @noinspection NewClassNamingConvention
  * @noinspectionreason Abstract base class for GUI tests
  */
-@ExtendWith(CacioExtension.class)
 @CacioTest
+@ExtendWith(CacioExtension.class)
 public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
 
     /**
