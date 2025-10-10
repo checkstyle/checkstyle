@@ -135,8 +135,8 @@ public class XpathFileGeneratorAstFilterTest {
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final Violation violation = new Violation(3, 47, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
