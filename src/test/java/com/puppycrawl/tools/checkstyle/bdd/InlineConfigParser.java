@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.file.Files;
@@ -49,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
@@ -1366,22 +1366,15 @@ public final class InlineConfigParser {
     }
 
     public static Object getPropertyDefaultValue(Object checkInstance,
-                                                 String propertyName)
-            throws IllegalAccessException {
-        Object result = null;
-        Class<?> currentClass = checkInstance.getClass();
-        while (currentClass != null) {
-            try {
-                final Field field = currentClass.getDeclaredField(propertyName);
-                field.setAccessible(true);
-                result = field.get(checkInstance);
-                break;
-            }
-            catch (NoSuchFieldException exc) {
-                currentClass = currentClass.getSuperclass();
-            }
+                                                 String propertyName) {
+        Object retVal;
+        try {
+            retVal = TestUtil.getInternalState(checkInstance, propertyName, Object.class);
         }
-        return result;
+        catch (IllegalStateException exc) {
+            retVal = null;
+        }
+        return retVal;
     }
 
     private static boolean isNull(String propertyDefaultValue) {

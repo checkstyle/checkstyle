@@ -31,6 +31,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -92,7 +93,7 @@ public final class TestUtil {
      * @return the class' field if found
      */
     public static Field getClassDeclaredField(Class<?> clss, String fieldName) {
-        return Stream.<Class<?>>iterate(clss, Class::getSuperclass)
+        return Stream.<Class<?>>iterate(clss, Objects::nonNull, Class::getSuperclass)
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
             .findFirst()

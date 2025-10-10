@@ -39,7 +39,6 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.Serial;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -525,9 +524,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
-        sLocale.setAccessible(true);
-        final Locale locale = (Locale) sLocale.get(null);
+        final Locale locale =
+                TestUtil.getInternalStaticState(LocalizedMessage.class, "sLocale", Locale.class);
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);
