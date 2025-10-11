@@ -11,29 +11,37 @@
         |org\.checkstyle.*)"
         regex="true">
 
-  <!-- Disallow obsolete Junit API -->
+  <!-- Disallow obsolete JUnit API -->
   <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
   <!-- Disallow hamcrest and only allow Truth -->
-  <disallow pkg="org.hamcrest.CoreMatchers"/>
-  <disallow pkg="org.hamcrest.MatcherAssert"/>
+  <disallow class="org\.hamcrest\.CoreMatchers.*" regex="true" />
+  <disallow class="org\.hamcrest\.MatcherAssert.*" regex="true" />
   <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
   <disallow class="org.junit.jupiter.api.BeforeAll"/>
-  <!-- Disallow Junit assert in favor of Truth asserts in few exceptions -->
+  <!-- Disallow JUnit assertion in favor of Truth asserts in few exceptions -->
   <allow class="org.junit.jupiter.api.Assertions.assertDoesNotThrow"/>
-  <disallow pkg="org.junit.jupiter.api.Assertions"/>
+  <disallow class="org\.junit\.jupiter\.api\.Assertions.*" regex="true" />
 
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
 
-  <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
-  <disallow pkg="org.junit.jupiter.api.Assertions.assertThrows"/>
-  <disallow pkg="org.junit.Assert.assertThrows"/>
-
   <allow pkg=".*" regex="true" />
 
-  <subpackage name="api">
+  <subpackage name="grammar">
+    <subpackage name="javadoc">
+      <file name="GeneratedJavadocCommentsTokenTypesTest">
+        <!-- Uses reflection to validate token numbering -->
+        <allow pkg="java.lang.reflect" />
+      </file>
+    </subpackage>
+
+    <file name="GeneratedJavaTokenTypesTest">
+      <!-- Uses reflection to validate token numbering -->
+      <allow pkg="java.lang.reflect" />
+    </file>
   </subpackage>
+
   <subpackage name="internal">
     <subpackage name="utils">
       <file name="CheckUtil">
@@ -43,24 +51,44 @@
       <file name="TestUtil">
         <!-- All reflection usage should be in this class. -->
         <allow pkg="java.lang.reflect" />
+        <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
         <allow class="org.junit.jupiter.api.Assertions.assertThrows" />
       </file>
     </subpackage>
+
+    <file name="AllChecksTest">
+      <!-- Uses reflection to collect all check messages. -->
+      <allow pkg="java.lang.reflect" />
+    </file>
+
+    <file name="XdocsPagesTest">
+      <!-- BeforeAll is used to create test resources on disk, which might be slow. -->
+      <allow class="org.junit.jupiter.api.BeforeAll" />
+      <!-- Uses reflection to validate properties. -->
+      <allow pkg="java.lang.reflect" />
+    </file>
   </subpackage>
 
-  <subpackage name="bdd">
-    <file name="InlineConfigParser">
-      <!-- Use reflection to count violation messages in a check. -->
-      <allow class="java.lang.reflect.Modifier" />
-      <!-- Use reflection to validate default in a check. -->
+  <subpackage name="utils" >
+    <file name="CommonUtilTest">
+      <!-- CommonUtil.getConstructor returns a Constructor, so the test needs this import too. -->
+      <allow class="java.lang.reflect.Constructor" />
+    </file>
+
+    <file name="TokenUtilTest">
+      <!-- TokenUtil's API uses Fields,  so the test needs it too -->
       <allow class="java.lang.reflect.Field" />
-      <allow class="java.lang.reflect.Method" />
     </file>
   </subpackage>
 
   <file name="JavaAstVisitorTest">
     <!-- Uses reflection to validate method order. -->
     <allow pkg="java.lang.reflect" />
+  </file>
+
+  <file name="PackageObjectFactoryTest">
+    <!-- BeforeAll is used to set up the Locale, not Checkstyle classes. -->
+    <allow class="org.junit.jupiter.api.BeforeAll" />
   </file>
 
 </import-control>

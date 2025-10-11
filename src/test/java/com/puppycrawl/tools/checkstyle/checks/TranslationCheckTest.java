@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
@@ -141,11 +140,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.beginProcessing(charset);
         check.processFiltered(fileToProcess, new FileText(fileToProcess, charset));
         check.beginProcessing(charset);
-        final Field field = check.getClass().getDeclaredField("filesToProcess");
-        field.setAccessible(true);
 
         assertWithMessage("Stateful field is not cleared on beginProcessing")
-                .that((Iterable<?>) field.get(check))
+                .that(TestUtil.getInternalState(check, "filesToProcess", Iterable.class))
                 .isEmpty();
     }
 
