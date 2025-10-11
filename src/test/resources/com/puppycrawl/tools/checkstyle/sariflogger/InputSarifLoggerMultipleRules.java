@@ -12,12 +12,11 @@ package com.puppycrawl.tools.checkstyle.sariflogger;
 public class InputSarifLoggerMultipleRules {
 
     InputSarifLoggerMultipleRules() {
-        for (int i = 0; i < 10; i++) { } // EmptyBlock violation
+        for (int i = 0; i < 10; i++) { } // violation 'Must have at least one statement.'
 
-        try {
-            // EmptyCatchBlock violation
+        try { // violation 'Must have at least one statement.'
+
         } catch (Exception e) {
-
-        }
+        } // violation above 'Empty catch block.'
     }
 }
