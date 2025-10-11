@@ -204,7 +204,9 @@ public class JavadocStyleCheck
             final TextBlock textBlock =
                 contents.getJavadocBefore(ast.getFirstChild().getLineNo());
 
-            checkComment(ast, textBlock);
+            if (textBlock != null) {
+                checkComment(ast, textBlock);
+            }
         }
     }
 
