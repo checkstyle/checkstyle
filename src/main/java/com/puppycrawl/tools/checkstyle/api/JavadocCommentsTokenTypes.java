@@ -179,22 +179,12 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT 
-     * |--TEXT -> /** 
-     * |--NEWLINE -> \n 
-     * |--LEADING_ASTERISK ->  * 
-     * |--TEXT ->  Test class for generating AST for @since tag. 
-     * |--NEWLINE -> \n 
-     * |--LEADING_ASTERISK ->  * 
-     * |--NEWLINE -> \n 
-     * |--LEADING_ASTERISK ->  * 
-     * |--TEXT ->   
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG 
-     *     `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG 
-     *         |--AT_SIGN -> @ 
-     *         |--TAG_NAME -> since 
-     *         `--DESCRIPTION -> DESCRIPTION 
-     *             `--TEXT ->  1.0
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> since
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  1.0
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
