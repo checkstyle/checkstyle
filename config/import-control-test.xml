@@ -26,10 +26,6 @@
   <!-- Reflection shouldn't be used in tests. -->
   <disallow pkg="java\.lang\.reflect\.*" regex="true" />
 
-  <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
-  <disallow pkg="org.junit.jupiter.api.Assertions.assertThrows"/>
-  <disallow pkg="org.junit.Assert.assertThrows"/>
-
   <allow pkg=".*" regex="true" />
 
   <subpackage name="grammar">
@@ -55,6 +51,7 @@
       <file name="TestUtil">
         <!-- All reflection usage should be in this class. -->
         <allow pkg="java.lang.reflect" />
+        <!-- see reason at https://github.com/checkstyle/checkstyle/issues/11343 -->
         <allow class="org.junit.jupiter.api.Assertions.assertThrows" />
       </file>
     </subpackage>
