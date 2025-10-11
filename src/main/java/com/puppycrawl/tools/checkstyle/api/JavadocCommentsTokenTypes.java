@@ -167,7 +167,27 @@ public final class JavadocCommentsTokenTypes {
     public static final int EXCEPTION_BLOCK_TAG = JavadocCommentsLexer.EXCEPTION_BLOCK_TAG;
 
     /**
-     * {@code @since} block tag.
+     * {@code @since} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @since 1.0}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> since
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  1.0
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SINCE_BLOCK_TAG = JavadocCommentsLexer.SINCE_BLOCK_TAG;
 
