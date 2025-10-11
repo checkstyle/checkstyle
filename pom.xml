@@ -3247,6 +3247,7 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder</param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*
                 </param>
