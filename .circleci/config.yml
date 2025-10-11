@@ -39,6 +39,9 @@ jobs:
         description: "command to run"
         type: string
         default: ""
+      timeout:
+        type: string
+        default: 10m
     docker:
       - image: << parameters.image-name >>
     steps:
@@ -49,6 +52,7 @@ jobs:
             - mvn-cache-{{ checksum "pom.xml" }}
       - run:
           command: << parameters.command >>
+          no_output_timeout: << parameters.timeout >>
       - run:
           command: |
             ./.ci/validation.sh git-diff
@@ -324,3 +328,4 @@ workflows:
           name: "openrewrite-recipes"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-recipes"
+          timeout: 30m
