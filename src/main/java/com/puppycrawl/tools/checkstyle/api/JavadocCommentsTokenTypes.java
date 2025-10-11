@@ -189,12 +189,52 @@ public final class JavadocCommentsTokenTypes {
     public static final int EXCEPTION_BLOCK_TAG = JavadocCommentsLexer.EXCEPTION_BLOCK_TAG;
 
     /**
-     * {@code @since} block tag.
+     * {@code @since} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} - the description of when the feature was added</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @since 1.2 This method is available since version 1.2}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> since
+     *     |--TEXT ->
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT -> 1.2 This method is available since version 1.2
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SINCE_BLOCK_TAG = JavadocCommentsLexer.SINCE_BLOCK_TAG;
 
     /**
-     * {@code @version} block tag.
+     * {@code @version} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} - the version information or description</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @version 1.0 Initial release.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> version
+     *     |--TEXT ->
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT -> 1.0 Initial release.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int VERSION_BLOCK_TAG = JavadocCommentsLexer.VERSION_BLOCK_TAG;
 
