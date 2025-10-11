@@ -77,6 +77,7 @@
   </file>
 
   <subpackage name="site">
+    <allow class="com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder"/>
     <allow pkg="org.apache.maven" local-only="true"/>
     <allow pkg="java.nio" local-only="true"/>
     <allow pkg="org.codehaus.plexus" local-only="true"/>
@@ -187,6 +188,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder"/>
 
     <file name="TranslationCheck">
       <allow class="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
@@ -219,6 +221,11 @@
     </subpackage>
   </subpackage>
 
+  <subpackage name="internal">
+    <subpackage name="annotation">
+      <allow pkg="java.lang.annotation"/>
+    </subpackage>
+  </subpackage>
   <subpackage name="filefilters">
     <file name="BeforeExecutionExclusionFileFilter">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
