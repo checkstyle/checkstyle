@@ -182,7 +182,27 @@ public final class JavadocCommentsTokenTypes {
     public static final int SEE_BLOCK_TAG = JavadocCommentsLexer.SEE_BLOCK_TAG;
 
     /**
-     * {@code @hidden} block tag.
+     * {@code @hidden} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} – optional description text</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @hidden value}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--HIDDEN_BLOCK_TAG -> HIDDEN_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> hidden
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  value
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int HIDDEN_BLOCK_TAG = JavadocCommentsLexer.HIDDEN_BLOCK_TAG;
 
