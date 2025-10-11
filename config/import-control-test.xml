@@ -32,8 +32,6 @@
 
   <allow pkg=".*" regex="true" />
 
-  <subpackage name="api">
-  </subpackage>
   <subpackage name="internal">
     <subpackage name="utils">
       <file name="CheckUtil">
