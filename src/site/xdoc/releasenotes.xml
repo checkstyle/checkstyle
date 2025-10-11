@@ -10,6 +10,45 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.0.1">
+      <div class="releaseDate">11.10.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SARIF report does not contain information about the failing rules.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/17131">#17131</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Nikhil, JANHVI BABANI, daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Use LexicographicalAnnotationListing  for annotations.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/14194">#14194</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.0.0">
       <div class="releaseDate">09.10.2025</div>
       <p>Breaking backward compatibility:</p>
