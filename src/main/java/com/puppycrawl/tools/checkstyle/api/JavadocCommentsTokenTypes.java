@@ -190,6 +190,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @since} block tag.
+     *
+     * <p>Represents the Javadoc {@code @since} tag, which specifies
+     * the version in which an API element was first introduced.</p>
+     *
+     * <p>This tag has only one argument — {@link #TEXT}:</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @since 1.8}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> since
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT -> 1.8
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SINCE_BLOCK_TAG = JavadocCommentsLexer.SINCE_BLOCK_TAG;
 
