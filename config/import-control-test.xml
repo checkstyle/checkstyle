@@ -35,6 +35,7 @@
   <subpackage name="api">
   </subpackage>
   <subpackage name="internal">
+    <allow class="com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder"/>
     <subpackage name="utils">
       <file name="CheckUtil">
         <!-- Uses reflection to collect violation messages. -->
