@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -58,6 +59,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     /**
      * Default order of atclauses.
      */
+    @PreserveOrder
     private static final String[] DEFAULT_ORDER = {
         "@author", "@version",
         "@param", "@return",
@@ -84,6 +86,8 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Specify the order by tags.
+     * Default value is
+     * {@code @author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated}.
      */
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
