@@ -80,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
@@ -1414,7 +1415,8 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == String[].class) {
-                result = getStringArrayPropertyValue(propertyName, value);
+                final boolean preserveOrder = hasPreserveOrderAnnotation(field);
+                result = getStringArrayPropertyValue(propertyName, value, preserveOrder);
             }
             else if (fieldClass == URI.class || fieldClass == String.class) {
                 if (value != null) {
@@ -1448,6 +1450,10 @@ public class XdocsPagesTest {
         }
 
         return result;
+    }
+
+    private static boolean hasPreserveOrderAnnotation(Field field) {
+        return field != null && field.isAnnotationPresent(PreserveOrder.class);
     }
 
     /**
@@ -1497,9 +1503,11 @@ public class XdocsPagesTest {
      *
      * @param propertyName The bean property's name
      * @param value The bean property's value
+     * @param preserveOrder whether to preserve the original order
      * @return String form of property's default value
      */
-    private static String getStringArrayPropertyValue(String propertyName, Object value) {
+    private static String getStringArrayPropertyValue(String propertyName, Object value,
+            boolean preserveOrder) {
         String result;
         if (value == null) {
             result = "";
@@ -1513,10 +1521,15 @@ public class XdocsPagesTest {
                 final Object[] array = (Object[]) value;
                 valuesStream = Arrays.stream(array);
             }
-            result = valuesStream
-                .map(String.class::cast)
-                .sorted()
-                .collect(Collectors.joining(", "));
+
+            Stream<String> stringStream = valuesStream.map(String.class::cast);
+
+            if (!preserveOrder) {
+                stringStream = stringStream.sorted();
+            }
+
+            result = stringStream.collect(Collectors.joining(", "));
+
         }
 
         if (result.isEmpty()) {

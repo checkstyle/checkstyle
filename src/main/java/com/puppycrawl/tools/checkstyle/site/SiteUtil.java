@@ -76,6 +76,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -947,7 +948,8 @@ public final class SiteUtil {
             result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
         }
         else if (fieldClass == String[].class) {
-            result = getStringArrayPropertyValue(value);
+            final boolean preserveOrder = hasPreserveOrderAnnotation(field);
+            result = getStringArrayPropertyValue(value, preserveOrder);
         }
         else if (fieldClass == Pattern.class) {
             if (value != null) {
@@ -972,6 +974,16 @@ public final class SiteUtil {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if a field has the {@code PreserveOrder} annotation.
+     *
+     * @param field the field to check
+     * @return true if the field has {@code PreserveOrder} annotation, false otherwise
+     */
+    private static boolean hasPreserveOrderAnnotation(Field field) {
+        return field != null && field.isAnnotationPresent(PreserveOrder.class);
     }
 
     /**
@@ -1015,22 +1027,30 @@ public final class SiteUtil {
      * Gets the name of the bean property's default value for the string array class.
      *
      * @param value The bean property's value
+     * @param preserveOrder whether to preserve the original order
      * @return String form of property's default value
      */
-    private static String getStringArrayPropertyValue(Object value) {
+    private static String getStringArrayPropertyValue(Object value, boolean preserveOrder) {
         final String result;
         if (value == null) {
             result = "";
         }
         else {
             try (Stream<?> valuesStream = getValuesStream(value)) {
-                result = valuesStream
+                final List<String> stringList = valuesStream
                     .map(String.class::cast)
+                    .collect(Collectors.toCollection(ArrayList<String>::new));
+
+                if (preserveOrder) {
+                    result = String.join(COMMA_SPACE, stringList);
+                }
+                else {
+                    result = stringList.stream()
                     .sorted()
                     .collect(Collectors.joining(COMMA_SPACE));
+                }
             }
         }
-
         return result;
     }
 
