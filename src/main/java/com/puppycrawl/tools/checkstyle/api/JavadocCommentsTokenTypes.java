@@ -233,7 +233,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *   <li>{@link #DESCRIPTION} – the referenced service type</li>
+     *   <li>{@link #IDENTIFIER} – the referenced service type</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
