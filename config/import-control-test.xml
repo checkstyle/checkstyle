@@ -32,6 +32,20 @@
 
   <allow pkg=".*" regex="true" />
 
+  <subpackage name="grammar">
+    <subpackage name="javadoc">
+      <file name="GeneratedJavadocCommentsTokenTypesTest">
+        <!-- Uses reflection to validate token numbering -->
+        <allow pkg="java.lang.reflect" />
+      </file>
+    </subpackage>
+
+    <file name="GeneratedJavaTokenTypesTest">
+      <!-- Uses reflection to validate token numbering -->
+      <allow pkg="java.lang.reflect" />
+    </file>
+  </subpackage>
+
   <subpackage name="internal">
     <subpackage name="utils">
       <file name="CheckUtil">
@@ -45,9 +59,28 @@
       </file>
     </subpackage>
 
+    <file name="AllChecksTest">
+      <!-- Uses reflection to collect all check messages. -->
+      <allow pkg="java.lang.reflect" />
+    </file>
+
     <file name="XdocsPagesTest">
       <!-- BeforeAll is used to create test resources on disk, which might be slow. -->
       <allow class="org.junit.jupiter.api.BeforeAll" />
+      <!-- Uses reflection to validate properties. -->
+      <allow pkg="java.lang.reflect" />
+    </file>
+  </subpackage>
+
+  <subpackage name="utils" >
+    <file name="CommonUtilTest">
+      <!-- CommonUtil.getConstructor returns a Constructor, so the test needs this import too. -->
+      <allow class="java.lang.reflect.Constructor" />
+    </file>
+
+    <file name="TokenUtilTest">
+      <!-- TokenUtil's API uses Fields,  so the test needs it too -->
+      <allow class="java.lang.reflect.Field" />
     </file>
   </subpackage>
 
