@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -62,8 +61,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             final int tabWidth)
             throws IOException {
         final List<IndentComment> result = new ArrayList<>();
-        try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName),
-                StandardCharsets.UTF_8)) {
+        try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName))) {
             int lineNumber = 1;
             String line = br.readLine();
             IndentComment pendingBelowComment = null;
