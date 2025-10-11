@@ -15,8 +15,8 @@
   <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
   <!-- Disallow hamcrest and only allow Truth -->
-  <disallow pkg="org.hamcrest.CoreMatchers"/>
-  <disallow pkg="org.hamcrest.MatcherAssert"/>
+  <disallow class="org\.hamcrest\.CoreMatchers.*" regex="true" />
+  <disallow class="org\.hamcrest\.MatcherAssert.*" regex="true" />
   <!-- Disallow @BeforeAll, see https://github.com/checkstyle/checkstyle/issues/12100 -->
   <disallow class="org.junit.jupiter.api.BeforeAll"/>
   <!-- Disallow JUnit assertion in favor of Truth asserts in few exceptions -->
