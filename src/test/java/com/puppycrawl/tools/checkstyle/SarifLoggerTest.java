@@ -353,17 +353,18 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCloseStream() throws IOException {
+    public void testCloseStream() throws Exception {
+        final String inputFile = "InputSarifLoggerEmpty.java";
+        final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        logger.auditFinished(null);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
 
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
             .isEqualTo(1);
-
-        verifyContent(getPath("ExpectedSarifLoggerEmpty.sarif"), outStream);
     }
 
     @Test
