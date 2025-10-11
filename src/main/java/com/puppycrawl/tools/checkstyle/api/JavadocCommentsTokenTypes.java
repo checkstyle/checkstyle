@@ -111,7 +111,37 @@ public final class JavadocCommentsTokenTypes {
     public static final int PARAM_BLOCK_TAG = JavadocCommentsLexer.PARAM_BLOCK_TAG;
 
     /**
-     * {@code @return} block tag.
+     * {@code @return} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @return The result of the operation.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT 
+     * |--TEXT -> /** 
+     * |--NEWLINE -> \n 
+     * |--LEADING_ASTERISK ->  * 
+     * |--TEXT ->  Test class for generating AST. 
+     * |--NEWLINE -> \n 
+     * |--LEADING_ASTERISK ->  * 
+     * |--NEWLINE -> \n 
+     * |--LEADING_ASTERISK ->  * 
+     * |--TEXT ->   
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG 
+     *     `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG 
+     *         |--AT_SIGN -> @ 
+     *         |--TAG_NAME -> return 
+     *         `--DESCRIPTION -> DESCRIPTION 
+     *             `--TEXT ->  The result of the operation.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int RETURN_BLOCK_TAG = JavadocCommentsLexer.RETURN_BLOCK_TAG;
 
