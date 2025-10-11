@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.sariflogger;
 
 public class InputSarifLoggerModuleId {
     void method() {
-        if (true) { } // violation from both check instances
-        for (int i = 0; i < 10; i++) { } // violation from both check instances
+        if (true) { } // 2 violations 'Must have at least one statement.'
+        for (int i = 0; i < 10; i++) { } // 2 violations 'Must have at least one statement.'
     }
 }
