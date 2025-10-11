@@ -103,6 +103,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.PackageObjectFactory" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil"
            local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CommonUtil" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.BlockCommentPosition" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.utils.CheckUtil" local-only="true"/>
@@ -187,6 +188,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.StatelessCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
     <allow class="com.puppycrawl.tools.checkstyle.GlobalStatefulCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder"/>
 
     <file name="TranslationCheck">
       <allow class="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
@@ -216,6 +218,12 @@
         <allow pkg="net.sf.saxon"/>
         <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
       </file>
+    </subpackage>
+  </subpackage>
+
+  <subpackage name="internal">
+    <subpackage name="annotation">
+      <allow pkg="java.lang"/>
     </subpackage>
   </subpackage>
 
