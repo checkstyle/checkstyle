@@ -42,7 +42,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
         // reason: IndentationCheckTest tests fail after alignment
-        "InputIndentationAnnArrInit.java",
         "InputIndentationDifficultAnnotations.java",
         "InputIndentationZeroArrayInit.java",
         "InputIndentationAnnArrInitWithEmoji.java",
