@@ -712,16 +712,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("throwsIndent", "4");
         final String[] expected = {
 
-            "17:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "0, 33, 35"),
-            "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 8, "4, 29, 31"),
-            "32:3: " + getCheckMessage(MSG_ERROR,
+            "19:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "0, 33, 63"),
+            "32:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 8, "4, 29, 63"),
+            "34:3: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization rcurly", 2, 4),
-            "47:7: " + getCheckMessage(MSG_ERROR,
+            "49:7: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization lcurly", 6, 2),
-            "49:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "2, 6, 8"),
+            "51:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "2, 6, 63"),
         };
         final String fileName = getPath("InputIndentationAnnArrInit2.java");
         verifyWarns(checkConfig, fileName, expected);
