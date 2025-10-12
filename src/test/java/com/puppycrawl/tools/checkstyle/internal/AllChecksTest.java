@@ -40,6 +40,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -260,8 +261,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "ELLIPSIS").collect(Collectors.toUnmodifiableSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
                 .map(moduleName -> {
-                    final String[] packageTokens = moduleName.split("\\.");
-                    return packageTokens[packageTokens.length - 1];
+                    final List<String> packageTokens = Splitter
+                            .on(".").splitToList(moduleName);
+                    return packageTokens.get(packageTokens.size() - 1);
                 })
                 .collect(Collectors.toUnmodifiableSet());
     }

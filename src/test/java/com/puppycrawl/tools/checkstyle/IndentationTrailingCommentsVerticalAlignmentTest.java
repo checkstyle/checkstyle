@@ -98,7 +98,8 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                     else {
                         assertWithMessage("Trailing comment alignment mismatch in file: "
                                 + testFile + " on line " + (idx + 1))
-                                .that(actualStartIndex).isEqualTo(expectedStartIndex);
+                                .that(actualStartIndex)
+                                .isEqualTo(expectedStartIndex);
                     }
                 }
             }
@@ -108,21 +109,22 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static Stream<Path> indentationTestFiles() {
         final Path resourcesDir = Path.of("src", "test", "resources");
         final Path indentationDir = resourcesDir.resolve(INDENTATION_TEST_FILES_PATH);
-
-        Stream<Path> testFiles;
-        try {
-            testFiles = Files.walk(indentationDir)
+        Stream<Path> result;
+        try (Stream<Path> testFiles = Files.walk(indentationDir)) {
+            final List<Path> collected = testFiles
                 .filter(path -> {
-                        final String fileName = path.getFileName().toString();
-                        return fileName.startsWith("InputIndentation")
+                    final String fileName = path.getFileName().toString();
+                    return fileName.startsWith("InputIndentation")
                             && fileName.endsWith(".java");
-                    }
-                );
+                }).toList();
+            result = collected.stream();
         }
         catch (IOException exception) {
-            assertWithMessage("Failed to find indentation test files").fail();
-            testFiles = Stream.empty();
+            assertWithMessage("Failed to find indentation test files")
+                    .that(exception)
+                    .isNull();
+            result = Stream.empty();
         }
-        return testFiles;
+        return result;
     }
 }
