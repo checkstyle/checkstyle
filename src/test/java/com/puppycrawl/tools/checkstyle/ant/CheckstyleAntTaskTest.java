@@ -45,6 +45,8 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import com.google.common.truth.StandardSubjectBuilder;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
@@ -290,7 +292,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public static void testNoFileOrPathSpecified() {
+    public void testNoFileOrPathSpecified() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
 
@@ -634,7 +636,8 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             final StandardSubjectBuilder assertWithMessage =
                     assertWithMessage("Content of file with violations differs from expected");
             if (line.trim().startsWith("\"uri\"")) {
-                final String expectedPathEnd = line.split("\\*\\*")[1];
+                final String expectedPathEnd = Iterables.get(
+                        Splitter.on("**").split(line), 1);
                 // normalize windows path
                 final String actualLine = actual.get(lineNumber).replaceAll("\\\\", "/");
                 assertWithMessage

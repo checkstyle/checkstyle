@@ -785,8 +785,8 @@ public class GeneratedJavaTokenTypesTest {
                 + " lexer grammar.";
 
         assertWithMessage(message)
-                .that(expectedNumberOfUsedTokens)
-                .isEqualTo(lastIndexOfSublist);
+                .that(lastIndexOfSublist)
+                .isEqualTo(expectedNumberOfUsedTokens);
     }
 
     /**
