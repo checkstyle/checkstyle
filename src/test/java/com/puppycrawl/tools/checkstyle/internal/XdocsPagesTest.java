@@ -1244,7 +1244,7 @@ public class XdocsPagesTest {
                 .map(nonNullField -> nonNullField.getAnnotation(XdocsPropertyType.class))
                 .map(propertyType -> propertyType.value().getDescription())
                 .map(SiteUtil::simplifyTypeName)
-                .orElse(fieldClass.getSimpleName());
+                .orElseGet(fieldClass::getSimpleName);
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClass, instance);
 

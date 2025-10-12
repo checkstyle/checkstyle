@@ -201,8 +201,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verify(config, filePath, expected, linesWithWarn);
         assertWithMessage("Expected warning count in UT does not match warn comment count "
                 + "in input file")
-            .that(expected.length)
-            .isEqualTo(linesWithWarn.length);
+            .that(linesWithWarn.length)
+            .isEqualTo(expected.length);
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
@@ -4150,7 +4150,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             warning = match.group(5) != null;
         }
 
-        public String[] getExpectedMessages() {
+        private String[] getExpectedMessages() {
             final String[] expectedMessages;
             if (expectedWarning.contains(",")) {
                 expectedMessages = new String[] {
@@ -4175,27 +4175,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             return msg.substring(indexOfMsgPostfix);
         }
 
-        public int getLineNumber() {
+        private int getLineNumber() {
             return lineNumber;
         }
 
-        public int getIndent() {
+        private int getIndent() {
             return indent;
         }
 
-        public int getIndentOffset() {
+        private int getIndentOffset() {
             return indentOffset;
         }
 
-        public boolean isExpectedNonStrict() {
+        private boolean isExpectedNonStrict() {
             return expectedNonStrict;
         }
 
-        public String getExpectedWarning() {
+        private String getExpectedWarning() {
             return expectedWarning;
         }
 
-        public boolean isWarning() {
+        private boolean isWarning() {
             return warning;
         }
 
