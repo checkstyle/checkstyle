@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
@@ -187,9 +186,10 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
+                        () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
+                        "IllegalArgumentException expected");
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
@@ -199,8 +199,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
                     final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
                             OutputStreamOptions.CLOSE, outputStream, null);
 

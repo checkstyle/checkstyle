@@ -296,8 +296,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
-                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
-                        .newInstance();
+                final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
@@ -313,8 +312,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
-                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
-                        .newInstance();
+                final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
                 final int[] acceptableTokens = testedCheck.getAcceptableTokens();
 
@@ -330,8 +328,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
-                final AbstractCheck testedCheck = (AbstractCheck) check.getDeclaredConstructor()
-                        .newInstance();
+                final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
                 final int[] defaultTokens = testedCheck.getDefaultTokens();
                 final int[] requiredTokens = testedCheck.getRequiredTokens();
 

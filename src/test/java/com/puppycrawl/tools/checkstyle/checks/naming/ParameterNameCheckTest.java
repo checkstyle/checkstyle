@@ -187,7 +187,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    public void testSetAccessModifiers() throws Exception {
+    public void testSetAccessModifiers() {
         final AccessModifierOption[] input = {
             AccessModifierOption.PACKAGE,
         };
@@ -196,8 +196,8 @@ public class ParameterNameCheckTest
 
         assertWithMessage("check creates its own instance of access modifier array")
             .that(System.identityHashCode(
-                TestUtil.getClassDeclaredField(ParameterNameCheck.class, "accessModifiers")
-                        .get(check)))
+                    TestUtil.getInternalState(
+                            check, "accessModifiers", AccessModifierOption[].class)))
             .isNotEqualTo(System.identityHashCode(input));
     }
 
