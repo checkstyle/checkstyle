@@ -22,8 +22,6 @@ package com.puppycrawl.tools.checkstyle.bdd;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.meta.ModuleDetails;
 import com.puppycrawl.tools.checkstyle.meta.ModulePropertyDetails;
 import com.puppycrawl.tools.checkstyle.meta.XmlMetaReader;
@@ -818,8 +817,7 @@ public final class InlineConfigParser {
         final String actualDefaultAsString;
 
         if ("tokens".equals(propertyName)) {
-            final Method getter = checkInstance.getClass().getMethod("getDefaultTokens");
-            actualDefault = getter.invoke(checkInstance);
+            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultTokens");
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)
@@ -827,8 +825,7 @@ public final class InlineConfigParser {
                                           .collect(Collectors.joining(", "));
         }
         else if ("javadocTokens".equals(propertyName)) {
-            final Method getter = checkInstance.getClass().getMethod("getDefaultJavadocTokens");
-            actualDefault = getter.invoke(checkInstance);
+            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultJavadocTokens");
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)
@@ -943,7 +940,7 @@ public final class InlineConfigParser {
     private static Object createCheckInstance(String className) throws
             ReflectiveOperationException {
         final Class<?> checkClass = Class.forName(className);
-        return checkClass.getDeclaredConstructor().newInstance();
+        return TestUtil.instantiate(checkClass);
     }
 
     private static String readPropertiesContent(int beginLineNo, List<String> lines) {
@@ -1366,22 +1363,15 @@ public final class InlineConfigParser {
     }
 
     public static Object getPropertyDefaultValue(Object checkInstance,
-                                                 String propertyName)
-            throws IllegalAccessException {
-        Object result = null;
-        Class<?> currentClass = checkInstance.getClass();
-        while (currentClass != null) {
-            try {
-                final Field field = currentClass.getDeclaredField(propertyName);
-                field.setAccessible(true);
-                result = field.get(checkInstance);
-                break;
-            }
-            catch (NoSuchFieldException exc) {
-                currentClass = currentClass.getSuperclass();
-            }
+                                                 String propertyName) {
+        Object retVal;
+        try {
+            retVal = TestUtil.getInternalState(checkInstance, propertyName, Object.class);
         }
-        return result;
+        catch (IllegalStateException exc) {
+            retVal = null;
+        }
+        return retVal;
     }
 
     private static boolean isNull(String propertyDefaultValue) {
