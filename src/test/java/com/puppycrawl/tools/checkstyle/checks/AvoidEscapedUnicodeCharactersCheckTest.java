@@ -23,12 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -531,11 +533,11 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         }
 
         // Verifying character order
-        final String[] expressionParts = expression.split("\\|");
+        final List<String> expressionParts = Splitter.on("|").splitToList(expression);
         final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
-        for (int i = 0; i < expressionParts.length; i++) {
-            final String currentChar = expressionParts[i];
+        for (int i = 0; i < expressionParts.size(); i++) {
+            final String currentChar = expressionParts.get(i);
             final Matcher matcher = unicodeCharPattern.matcher(currentChar);
             if (!matcher.matches()) {
                 final String message = "Character '" + currentChar + "' (at position " + i
