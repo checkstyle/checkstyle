@@ -368,6 +368,41 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @snippet} inline tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     * <ol>
+     *   <li>{@link #PARAMETER_NAME}</li>
+     *   <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @param value The parameter of method.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     *    |--TAG_NAME -> code
+     *    |--TEXT ->  {@index}
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT ->  inline tag.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class testtwo {
+     * |--NEWLINE -> \n
+     * |--TEXT -> }
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
