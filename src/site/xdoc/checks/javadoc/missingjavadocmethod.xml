@@ -323,6 +323,41 @@ public class Example6 {
   protected void testMethod4() {}
   void testMethod5() {}
 }
+</code></pre></div><hr class="example-separator"/>
+          <p id="Example7-config">
+              An example of how to configure the check to exclude short methods from Javadoc
+              requirements, based on the <code>minLineCount</code> property.
+          </p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+              &lt;module name="Checker"&gt;
+              &lt;module name="TreeWalker"&gt;
+              &lt;module name="MissingJavadocMethod"&gt;
+              &lt;property name="minLineCount" value="2"/&gt;
+              &lt;/module&gt;
+              &lt;/module&gt;
+              &lt;/module&gt;
+          </code></pre></div>
+          <p id="Example7-code">Example:</p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example7 {
+  public Example7() {}
+  public void testMethod1() {}
+
+  public void testMethod2() { // violation, 'Missing a Javadoc comment'
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+
+  /**
+   * This method has javadoc.
+   */
+  public void testMethod3() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
+}
 </code></pre></div>
       </subsection>
 
