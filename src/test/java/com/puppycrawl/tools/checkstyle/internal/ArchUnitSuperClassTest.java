@@ -137,10 +137,11 @@ public class ArchUnitSuperClassTest {
             if (superclassOptional.isPresent()) {
                 final JavaClass superclass = superclassOptional.get().toErasure();
                 if (!superclass.isEquivalentTo(expectedSuperclass)) {
-                    final String format = "<%s> is subclass of <%s> instead of <%s>";
-                    final String message = String
-                        .format(Locale.ROOT, format, item.getFullName(), superclass.getFullName(),
-                                expectedSuperclass.getName());
+                    final String message = String.format(Locale.ROOT,
+                            "<%s> is subclass of <%s> instead of <%s>",
+                            item.getFullName(),
+                            superclass.getFullName(),
+                            expectedSuperclass.getName());
                     events.add(SimpleConditionEvent.violated(item, message));
                 }
             }

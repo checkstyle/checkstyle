@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
@@ -270,7 +270,7 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> filterValidCommits(List<RevCommit> revCommits) {
-        final List<RevCommit> filteredCommits = new LinkedList<>();
+        final List<RevCommit> filteredCommits = new ArrayList<>();
         for (RevCommit commit : revCommits) {
             final String commitAuthor = commit.getAuthorIdent().getName();
             if (!USERS_EXCLUDED_FROM_VALIDATION.contains(commitAuthor)) {
@@ -326,7 +326,7 @@ public class CommitValidationTest {
 
     private static List<RevCommit> getCommitsByLastCommitAuthor(
             Iterator<RevCommit> previousCommitsIterator) {
-        final List<RevCommit> commits = new LinkedList<>();
+        final List<RevCommit> commits = new ArrayList<>();
 
         if (previousCommitsIterator.hasNext()) {
             final RevCommit lastCommit = previousCommitsIterator.next();
@@ -392,11 +392,11 @@ public class CommitValidationTest {
             this.second = second;
         }
 
-        public Iterator<RevCommit> getFirst() {
+        private Iterator<RevCommit> getFirst() {
             return first;
         }
 
-        public Iterator<RevCommit> getSecond() {
+        private Iterator<RevCommit> getSecond() {
             return second;
         }
 

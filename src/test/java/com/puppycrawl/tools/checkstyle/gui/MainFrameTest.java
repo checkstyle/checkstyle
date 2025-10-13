@@ -107,7 +107,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
     public void testChangeMode() {
         final JComboBox<MainFrameModel.ParseMode> modesCombobox =
                 findComponentComboBoxByName(mainFrame, "modesCombobox");
-        modesCombobox.setSelectedIndex(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS.ordinal());
+        modesCombobox.setSelectedItem(MainFrameModel.ParseMode.JAVA_WITH_COMMENTS);
         final MainFrameModel model = TestUtil.getInternalState(mainFrame,
                 "model", MainFrameModel.class);
         final MainFrameModel.ParseMode parseMode = TestUtil.getInternalState(model,
