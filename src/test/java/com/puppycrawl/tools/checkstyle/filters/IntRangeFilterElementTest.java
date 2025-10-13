@@ -91,4 +91,13 @@ public class IntRangeFilterElementTest {
                 .isTrue();
     }
 
+    @Test
+    public void testToString() {
+        final IntFilterElement filter = new IntRangeFilterElement(1, 2);
+        assertWithMessage("toString output")
+                .that(filter.toString())
+                .isEqualTo("IntRangeFilterElement{" + "lowerBound=" + 1
+                        + ", upperBound=" + 2 + '}');
+    }
+
 }
