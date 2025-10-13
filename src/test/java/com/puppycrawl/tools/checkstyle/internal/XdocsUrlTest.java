@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -164,14 +165,14 @@ public class XdocsUrlTest {
         public void startElement(String uri, String localName, String qName,
                                  Attributes attributes) {
             if (NODE_NAME.equals(qName)) {
-                final String[] moduleAndCheckName =
-                        attributes.getValue(0).split(SPLIT_CHECK_NAME_IN_ATTRIBUTE);
-                if (moduleAndCheckName[0].startsWith(PREFIX_CONFIG)) {
+                final List<String> moduleAndCheckName =
+                       Arrays.asList(attributes.getValue(0).split(SPLIT_CHECK_NAME_IN_ATTRIBUTE));
+                if (moduleAndCheckName.get(0).startsWith(PREFIX_CONFIG)) {
                     singleCheckNameList = new ArrayList<>();
                     final String moduleName =
-                            moduleAndCheckName[0].replaceAll("(.*config_)|(\\.html.*)", "");
+                            moduleAndCheckName.get(0).replaceAll("(.*config_)|(\\.html.*)", "");
                     singleCheckNameList.add(moduleName);
-                    singleCheckNameList.add(moduleAndCheckName[1]);
+                    singleCheckNameList.add(moduleAndCheckName.get(1));
                 }
             }
             currentTag = qName;
