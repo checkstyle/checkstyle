@@ -56,7 +56,7 @@ public class IntMatchFilterElementTest {
         final IntFilterElement filter = new IntMatchFilterElement(6);
         assertWithMessage("Invalid toString result")
                 .that(filter.toString())
-                .isEqualTo("IntMatchFilterElement[6]");
+                .isEqualTo("IntMatchFilterElement{" + "matchValue=" + 6 + '}');
     }
 
 }
