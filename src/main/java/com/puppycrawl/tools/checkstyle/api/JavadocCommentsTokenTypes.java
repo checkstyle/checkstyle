@@ -389,6 +389,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@index}} inline tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #PARAMETER_NAME} – the name of the parameter</li>
+     *   <li>{@link #DESCRIPTION} – description of the parameter</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @param value The parameter of the method.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     *     |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     |   `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *     |       |--AT_SIGN -> @
+     *     |       |--TAG_NAME -> param
+     *     |       |--TEXT ->
+     *     |       |--PARAMETER_NAME -> value
+     *     |       `--DESCRIPTION -> DESCRIPTION
+     *     |           `--TEXT -> The parameter of the method.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int INDEX_INLINE_TAG = JavadocCommentsLexer.INDEX_INLINE_TAG;
 
