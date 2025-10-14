@@ -42,16 +42,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static final int TAB_WIDTH = 4;
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
-        // reason: IndentationCheckTest tests fail after alignment
-        "InputIndentationDifficultAnnotations.java",
-        "InputIndentationZeroArrayInit.java",
-        "InputIndentationAnnArrInitWithEmoji.java",
-        "InputIndentationOddLineWrappingAndArrayInit.java",
-        "InputIndentationArrayInitIndentWithEmoji.java",
-        "InputIndentationInvalidArrayInitIndent.java",
-        "InputIndentationInvalidArrayInitIndentTwoDimensional.java",
-        "InputIndentationInvalidArrayInitIndent1.java",
-
         // reason: checkstyle check: Line gets longer than 100 characters
         "InputIndentationInvalidLabelIndent.java",
         "InputIndentationInvalidMethodIndent2.java",
@@ -83,15 +73,21 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
         for (int idx = 0; idx < lines.size(); idx++) {
             final String line = lines.get(idx);
-            if (line.trim().startsWith("import ")) {
+            if (line.trim().startsWith("import ") || line.trim().startsWith("package ")) {
                 continue;
             }
             final int commentStartIndex = line.indexOf("//indent:");
             if (commentStartIndex > 0) {
                 final String codePart = line.substring(0, commentStartIndex);
                 if (!codePart.isBlank()) {
-                    final int actualStartIndex =
+                    int actualStartIndex =
                         CommonUtil.lengthExpandedTabs(line, commentStartIndex, TAB_WIDTH);
+
+                    // for unicode characters having supplementary code points
+                    final long extraWidth = codePart.codePoints().filter(
+                        Character::isSupplementaryCodePoint).count();
+                    actualStartIndex -= (int) extraWidth;
+
                     if (expectedStartIndex == -1) {
                         expectedStartIndex = actualStartIndex;
                     }
