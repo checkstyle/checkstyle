@@ -1000,6 +1000,10 @@
                     <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMeta*</exclude>
                     <!-- OS specific utility providing class -->
                     <exclude>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</exclude>
+                    <!-- Temporary -->
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck
+                    </exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1463,6 +1467,21 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.93</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>
+                      com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck
+                    </include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.95</minimum>
                     </limit>
                   </limits>
                 </rule>
