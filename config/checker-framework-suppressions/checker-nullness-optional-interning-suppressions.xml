@@ -7598,27 +7598,12 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
-    <lineContent>public final boolean equals(Object object) {</lineContent>
+    <lineContent>public boolean equals(Object object) {</lineContent>
     <details>
       found   : @Initialized @NonNull Object
       required: @Initialized @Nullable Object
       Consequence: method in @Initialized @NonNull IntMatchFilterElement
       @Initialized @NonNull boolean equals(@Initialized @NonNull IntMatchFilterElement this, @Initialized @NonNull Object p0)
-      cannot override method in @Initialized @NonNull Object
-      @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
-    <specifier>override.param</specifier>
-    <message>Incompatible parameter type for other.</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @Initialized @NonNull Object
-      required: @Initialized @Nullable Object
-      Consequence: method in @Initialized @NonNull IntRangeFilterElement
-      @Initialized @NonNull boolean equals(@Initialized @NonNull IntRangeFilterElement this, @Initialized @NonNull Object p0)
       cannot override method in @Initialized @NonNull Object
       @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
     </details>
