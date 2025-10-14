@@ -325,6 +325,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @serial} block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} – optional description text</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @serial include}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> serial
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  include
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SERIAL_BLOCK_TAG = JavadocCommentsLexer.SERIAL_BLOCK_TAG;
 
