@@ -363,6 +363,31 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@summary}} inline tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #PARAMETER_NAME} – the name of the parameter</li>
+     *   <li>{@link #DESCRIPTION} – description of the parameter</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@summary This method computes the total sum.}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     *     |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     *     |       |--JAVADOC_INLINE_TAG_START -> {
+     *     |       |--TAG_NAME -> code
+     *     |       |--TEXT ->  {@summary}
+     *     |       `--JAVADOC_INLINE_TAG_END -> }
+     *     |--TEXT ->  inline tag.
+     *     |--NEWLINE -> \n
+     *     |--LEADING_ASTERISK ->      *
+     *     |--TEXT -> /
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SUMMARY_INLINE_TAG = JavadocCommentsLexer.SUMMARY_INLINE_TAG;
 
