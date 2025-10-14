@@ -206,7 +206,7 @@
     <maven.spotbugs.plugin.version>4.9.6.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
     <pmd.version>7.17.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.9</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
@@ -5452,7 +5452,7 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.21.0</version>
+            <version>6.21.1</version>
             <configuration>
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>

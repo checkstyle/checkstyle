@@ -194,7 +194,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int SINCE_BLOCK_TAG = JavadocCommentsLexer.SINCE_BLOCK_TAG;
 
     /**
-     * {@code @version} block tag.
+     * {@code @version} Javadoc block tag.
+     *
+     * <p>This tag has only one argument — {@link #TEXT}:</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @version value}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> version
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  value
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int VERSION_BLOCK_TAG = JavadocCommentsLexer.VERSION_BLOCK_TAG;
 
@@ -258,6 +274,32 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @provides} block tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     * <ol>
+     *  <li>{@link #IDENTIFIER}</li>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @provides com.example.MyService with com.example.MyServiceImpl}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> provides
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> com.example.MyService
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  with com.example.MyServiceImpl
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int PROVIDES_BLOCK_TAG = JavadocCommentsLexer.PROVIDES_BLOCK_TAG;
 

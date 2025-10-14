@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,7 +28,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -42,7 +43,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
         // reason: IndentationCheckTest tests fail after alignment
-        "InputIndentationAnnArrInit.java",
         "InputIndentationDifficultAnnotations.java",
         "InputIndentationZeroArrayInit.java",
         "InputIndentationAnnArrInitWithEmoji.java",
@@ -50,7 +50,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         "InputIndentationArrayInitIndentWithEmoji.java",
         "InputIndentationInvalidArrayInitIndent.java",
         "InputIndentationInvalidArrayInitIndentTwoDimensional.java",
-        "InputIndentationAnnArrInit2.java",
         "InputIndentationInvalidArrayInitIndent1.java",
 
         // reason: checkstyle check: Line gets longer than 100 characters
@@ -97,9 +96,9 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                         expectedStartIndex = actualStartIndex;
                     }
                     else {
-                        Assertions.assertEquals(expectedStartIndex, actualStartIndex,
-                            "Trailing comment alignment mismatch in file: "
-                                + testFile + " on line " + (idx + 1));
+                        assertWithMessage("Trailing comment alignment mismatch in file: "
+                                + testFile + " on line " + (idx + 1))
+                                .that(actualStartIndex).isEqualTo(expectedStartIndex);
                     }
                 }
             }
@@ -121,7 +120,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                 );
         }
         catch (IOException exception) {
-            Assertions.fail("Failed to find indentation test files", exception);
+            assertWithMessage("Failed to find indentation test files").fail();
             testFiles = Stream.empty();
         }
         return testFiles;

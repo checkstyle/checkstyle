@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.grammar.java21;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.Assert.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
 
@@ -78,9 +78,9 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                 new File(getPath("InputTextBlockParsingFail.java.fail"));
 
         final Throwable throwable =
-                assertThrows("Exception should be thrown due to parsing failure.",
-                        CheckstyleException.class,
-                        () -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS)
+                getExpectedThrowable(CheckstyleException.class,
+                        () -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS),
+                        "Exception should be thrown due to parsing failure."
                 );
 
         final String incorrectThrowableCauseMessage =
