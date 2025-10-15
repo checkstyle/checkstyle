@@ -2,7 +2,6 @@ package com.google.checkstyle.test.chapter3filestructure.rule333orderingandspaci
 
 // it is not forbidden to have extra lines (more than one) between package and import group
 
-
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.containsAnnotation;
 import static com.puppycrawl.tools.checkstyle.utils.AnnotationUtil.getAnnotation;
 

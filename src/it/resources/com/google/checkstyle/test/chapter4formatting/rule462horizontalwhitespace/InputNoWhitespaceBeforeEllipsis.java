@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-
+//
 /** some javadoc. */
 public class InputNoWhitespaceBeforeEllipsis {
 
