@@ -277,15 +277,12 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--USES_BLOCK_TAG -> USES_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> uses
-     *         |--TEXT ->
-     *         `--IDENTIFIER -> com.example.app.MyService
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--USES_BLOCK_TAG -> USES_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> uses
+     *    |--TEXT ->
+     *    `--IDENTIFIER -> com.example.app.MyService
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -306,17 +303,14 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> provides
-     *         |--TEXT ->
-     *         |--IDENTIFIER -> com.example.MyService
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  with com.example.MyServiceImpl
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> provides
+     *    |--TEXT ->
+     *    |--IDENTIFIER -> com.example.MyService
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  with com.example.MyServiceImpl
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
