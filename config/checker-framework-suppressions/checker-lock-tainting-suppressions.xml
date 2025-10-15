@@ -787,14 +787,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
-    <lineContent>public final boolean equals(Object object) {</lineContent>
+    <lineContent>public boolean equals(Object object) {</lineContent>
     <details>
       found   : @GuardedBy Object
       required: @GuardSatisfied Object
       Consequence: method in @GuardedBy IntMatchFilterElement
       @GuardedBy boolean equals(@GuardedBy IntMatchFilterElement this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
+      cannot override method in @GuardedBy Record
+      @GuardedBy boolean equals(@GuardSatisfied Record this, @GuardSatisfied Object p0)
     </details>
   </checkerFrameworkError>
 
@@ -805,11 +805,11 @@
     <lineContent>public String toString() {</lineContent>
     <details>
       found   : @GuardedBy IntMatchFilterElement
-      required: @GuardSatisfied Object
+      required: @GuardSatisfied Record
       Consequence: method in @GuardedBy IntMatchFilterElement
       @GuardedBy String toString(@GuardedBy IntMatchFilterElement this)
-      cannot override method in @GuardedBy Object
-      @GuardedBy String toString(@GuardSatisfied Object this)
+      cannot override method in @GuardedBy Record
+      @GuardedBy String toString(@GuardSatisfied Record this)
     </details>
   </checkerFrameworkError>
 
@@ -817,74 +817,44 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
-    <lineContent>public final boolean equals(Object object) {</lineContent>
+    <lineContent>public boolean equals(Object object) {</lineContent>
     <details>
       found   : @GuardedBy IntMatchFilterElement
-      required: @GuardSatisfied Object
+      required: @GuardSatisfied Record
       Consequence: method in @GuardedBy IntMatchFilterElement
       @GuardedBy boolean equals(@GuardedBy IntMatchFilterElement this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
+      cannot override method in @GuardedBy Record
+      @GuardedBy boolean equals(@GuardSatisfied Record this, @GuardSatisfied Object p0)
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntMatchFilterElement.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public final int hashCode() {</lineContent>
-    <details>
-      found   : @GuardedBy IntMatchFilterElement
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy IntMatchFilterElement
-      @GuardedBy int hashCode(@GuardedBy IntMatchFilterElement this)
-      cannot override method in @GuardedBy Object
-      @GuardedBy int hashCode(@GuardSatisfied Object this)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
-    <specifier>override.param</specifier>
-    <message>Incompatible parameter type for other.</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @GuardedBy Object
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy IntRangeFilterElement
-      @GuardedBy boolean equals(@GuardedBy IntRangeFilterElement this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
-    <specifier>override.receiver</specifier>
-    <message>Incompatible receiver type</message>
-    <lineContent>public boolean equals(Object other) {</lineContent>
-    <details>
-      found   : @GuardedBy IntRangeFilterElement
-      required: @GuardSatisfied Object
-      Consequence: method in @GuardedBy IntRangeFilterElement
-      @GuardedBy boolean equals(@GuardedBy IntRangeFilterElement this, @GuardedBy Object p0)
-      cannot override method in @GuardedBy Object
-      @GuardedBy boolean equals(@GuardSatisfied Object this, @GuardSatisfied Object p0)
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
     <specifier>override.receiver</specifier>
     <message>Incompatible receiver type</message>
     <lineContent>public int hashCode() {</lineContent>
     <details>
+      found   : @GuardedBy IntMatchFilterElement
+      required: @GuardSatisfied Record
+      Consequence: method in @GuardedBy IntMatchFilterElement
+      @GuardedBy int hashCode(@GuardedBy IntMatchFilterElement this)
+      cannot override method in @GuardedBy Record
+      @GuardedBy int hashCode(@GuardSatisfied Record this)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/IntRangeFilterElement.java</fileName>
+    <specifier>override.receiver</specifier>
+    <message>Incompatible receiver type</message>
+    <lineContent>public String toString() {</lineContent>
+    <details>
       found   : @GuardedBy IntRangeFilterElement
-      required: @GuardSatisfied Object
+      required: @GuardSatisfied Record
       Consequence: method in @GuardedBy IntRangeFilterElement
-      @GuardedBy int hashCode(@GuardedBy IntRangeFilterElement this)
-      cannot override method in @GuardedBy Object
-      @GuardedBy int hashCode(@GuardSatisfied Object this)
+      @GuardedBy String toString(@GuardedBy IntRangeFilterElement this)
+      cannot override method in @GuardedBy Record
+      @GuardedBy String toString(@GuardSatisfied Record this)
     </details>
   </checkerFrameworkError>
 
