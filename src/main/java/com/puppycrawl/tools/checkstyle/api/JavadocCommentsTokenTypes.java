@@ -354,7 +354,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int SERIAL_DATA_BLOCK_TAG = JavadocCommentsLexer.SERIAL_DATA_BLOCK_TAG;
 
     /**
-     * {@code @serialField} block tag.
+     * {@code @serialField} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have three children:</p>
+     * <ol>
+     *   <li>{@link #IDENTIFIER} – field name</li>
+     *   <li>{@link #FIELD_TYPE} – field type</li>
+     *   <li>{@link #DESCRIPTION} – field description</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @serialField name String The person's full name.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> serialField
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> name
+     *     |--TEXT ->
+     *     |--FIELD_TYPE -> String
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The person's full name.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SERIAL_FIELD_BLOCK_TAG = JavadocCommentsLexer.SERIAL_FIELD_BLOCK_TAG;
 
