@@ -363,6 +363,26 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@code}} inline tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     *  <ol>
+     *   <li>{@link #DESCRIPTION}</li>
+     *  </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @code code}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> code
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  code.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int CODE_INLINE_TAG = JavadocCommentsLexer.CODE_INLINE_TAG;
 
