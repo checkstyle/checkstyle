@@ -74,7 +74,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
     /**
-     * {@code @author} block tag.
+     * {@code @author} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @author name.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> author
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  name.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AUTHOR_BLOCK_TAG = JavadocCommentsLexer.AUTHOR_BLOCK_TAG;
 
