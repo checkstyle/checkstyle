@@ -121,7 +121,8 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//CLASS_DEF");
         findNodeButton.doClick();
 
-        final String expected = """
+        final String expected =
+                """
                 /COMPILATION_UNIT/CLASS_DEF[./IDENT\
                 [@text='InputTreeTableXpathAreaPanel']]
                 /COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputTreeTableXpathAreaPanel']]\
@@ -145,7 +146,8 @@ public class TreeTableTest extends AbstractGuiTestSupport {
         xpathTextArea.setText("//IDENT");
         findNodeButton.doClick();
 
-        final String expected = """
+        final String expected =
+                """
                 /COMPILATION_UNIT/CLASS_DEF/IDENT\
                 [@text='InputTreeTableXpathAreaPanel']
                 /COMPILATION_UNIT/PACKAGE_DEF/DOT/IDENT[@text='treetable']
