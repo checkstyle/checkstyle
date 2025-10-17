@@ -38,6 +38,7 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobre
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak/InputNoWrappingAfterRecordName2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines/InputClassWithChainedMethods2.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/InputVerticalWhitespace.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/InputEmptyLineSeparator3.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAroundBasic.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAfterBad.java
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/InputWhitespaceAfterGood.java
