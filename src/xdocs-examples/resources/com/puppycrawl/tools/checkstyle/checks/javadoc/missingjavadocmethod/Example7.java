@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="MissingJavadocMethod">
-      <property name="scope" value="private"/>
+      <property name="minLineCount" value="2"/>
     </module>
   </module>
 </module>
@@ -10,9 +10,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 // xdoc section -- start
-public class Example2 {
-  public Example2() {} // violation, 'Missing a Javadoc comment'
-  public void testMethod1() {} // violation, 'Missing a Javadoc comment'
+public class Example7 {
+  public Example7() {}
+  public void testMethod1() {}
   /**
    * Some description here.
    */
@@ -23,9 +23,9 @@ public class Example2 {
     return "Some string";
   }
 
-  private void testMethod3() {} // violation, 'Missing a Javadoc comment'
-  protected void testMethod4() {} // violation, 'Missing a Javadoc comment'
-  void testMethod5() {} // violation, 'Missing a Javadoc comment'
+  private void testMethod3() {}
+  protected void testMethod4() {}
+  void testMethod5() {}
 
   public void testMethod6() { // violation, 'Missing a Javadoc comment'
     System.out.println("line 1");

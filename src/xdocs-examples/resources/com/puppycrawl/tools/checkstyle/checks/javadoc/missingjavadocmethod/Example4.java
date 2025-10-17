@@ -26,5 +26,11 @@ public class Example4 {
   private void testMethod3() {}
   protected void testMethod4() {}
   void testMethod5() {}
+
+  public void testMethod6() {
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
 }
 // xdoc section -- end
