@@ -28,7 +28,7 @@ tags:
   - static-analysis
   - cleanup
 recipeList:
-  - org.checkstyle.CheckstyleAutoFix # checkstyle-openrewrite-recipes/issues/116
+  # - org.checkstyle.CheckstyleAutoFix # checkstyle-openrewrite-recipes/issues/116
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
