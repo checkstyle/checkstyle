@@ -86,9 +86,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final Map<String, CheckIndexInfo> indexedChecks = parseCategoryIndex(categoryIndexFile);
             final Set<String> foundKeys = indexedChecks.keySet();
 
-            final String checkNotFoundFmt = "Check '%s' from %s not in %s. Found Checks: %s";
             final String checkNotFoundMsg = String.format(Locale.ROOT,
-                    checkNotFoundFmt,
+                    "Check '%s' from %s not in %s. Found Checks: %s",
                     mainSectionName, checkXdocFile.getFileName(), categoryIndexFile, foundKeys);
             assertWithMessage(checkNotFoundMsg)
                     .that(indexedChecks.containsKey(mainSectionName)).isTrue();
@@ -107,10 +106,8 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                     + "#" + mainSectionName;
             final String actualHref = checkInfoFromIndex.href();
 
-            final String hrefMismatchFmt = "Href mismatch for '%s' in %s."
-                    + "Expected: '%s', Found: '%s'";
             final String hrefMismatchMsg = String.format(Locale.ROOT,
-                    hrefMismatchFmt,
+                    "Href mismatch for '%s' in %s." + "Expected: '%s', Found: '%s'",
                     mainSectionName, categoryIndexFile, expectedHref, actualHref);
             assertWithMessage(hrefMismatchMsg)
                     .that(actualHref).isEqualTo(expectedHref);
@@ -121,10 +118,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final String normalizedIndexDesc = normalizeText(descriptionFromIndex);
             final String normalizedXdocDesc = normalizeText(descriptionFromXdoc);
 
-            final String descMismatchFmt = "Check '%s' in index '%s': "
-                    + "index description is not a prefix of XDoc description.";
             final String descMismatchMsg = String.format(Locale.ROOT,
-                    descMismatchFmt,
+                    "Check '%s' in index '%s': "
+                            + "index description is not a prefix of XDoc description.",
                     mainSectionName, categoryIndexFile);
             assertWithMessage(descMismatchMsg)
                     .that(normalizedXdocDesc)
@@ -173,8 +169,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                 return sectionElement.getAttribute("name");
             }
         }
-        final String errorFormat = "No <section name=...> found in %s";
-        final String errorMsg = String.format(Locale.ROOT, errorFormat, checkXdocFile);
+
+        final String errorMsg = String.format(Locale.ROOT,
+                "No <section name=...> found in %s", checkXdocFile);
         throw new AssertionError(errorMsg);
     }
 
@@ -208,9 +205,9 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                 }
             }
         }
-        final String errorFormat =
-                "No <subsection name=\"Description\"> with suitable content in %s";
-        final String errorMsg = String.format(Locale.ROOT, errorFormat, checkXdocFile);
+        final String errorMsg = String.format(Locale.ROOT,
+                "No <subsection name=\"Description\"> with suitable content in %s",
+                checkXdocFile);
         throw new AssertionError(errorMsg);
     }
 
@@ -475,7 +472,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
          *
          * @return The href string.
          */
-        public String href() {
+        private String href() {
             return hrefValue;
         }
 
@@ -484,7 +481,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
          *
          * @return The description string.
          */
-        public String description() {
+        private String description() {
             return descriptionText;
         }
     }
