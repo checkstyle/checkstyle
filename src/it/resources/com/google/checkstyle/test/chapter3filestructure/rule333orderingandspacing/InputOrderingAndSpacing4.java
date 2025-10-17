@@ -12,7 +12,6 @@ import com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.SourceFi
 import com.google.common.reflect.Invokable;
 import java.util.List;
 
-
 import java.util.StringTokenizer;
 // violation above 'Extra separation in import group before 'java.util.StringTokenizer''
 

@@ -23,7 +23,6 @@ class inputHeaderClass {
   class NoValidName$ {}
   // violation above 'Type name 'NoValidName\$' must match pattern'
 
-
   class ValidName {}
 
   class _ValidName {} // violation 'Type name '_ValidName' must match pattern'
