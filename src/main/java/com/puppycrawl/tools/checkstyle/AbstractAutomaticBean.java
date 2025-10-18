@@ -25,7 +25,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
@@ -232,8 +231,9 @@ public abstract class AbstractAutomaticBean
                 final PropertyDescriptor descriptor =
                         PropertyUtils.getPropertyDescriptor(this, key);
                 if (descriptor == null) {
-                    final String message = String.format(Locale.ROOT, "Property '%s' "
-                            + "does not exist, please check the documentation", key);
+                    final String message = getLocalizedMessage(
+                        AbstractAutomaticBean.class,
+                        "AbstractAutomaticBean.doesNotExist", key);
                     throw new CheckstyleException(message);
                 }
             }
@@ -246,13 +246,15 @@ public abstract class AbstractAutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty,
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            final String message = String.format(Locale.ROOT,
-                    "Cannot set property '%s' to '%s'", key, value);
+            final String message = getLocalizedMessage(
+                AbstractAutomaticBean.class,
+                "AbstractAutomaticBean.cannotSet", key, value);
             throw new CheckstyleException(message, exc);
         }
         catch (final IllegalArgumentException | ConversionException exc) {
-            final String message = String.format(Locale.ROOT, "illegal value '%s' for property "
-                    + "'%s'", value, key);
+            final String message = getLocalizedMessage(
+                AbstractAutomaticBean.class,
+                "AbstractAutomaticBean.illegalValue", value, key);
             throw new CheckstyleException(message, exc);
         }
     }
@@ -299,10 +301,30 @@ public abstract class AbstractAutomaticBean
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {
-            throw new CheckstyleException(childConf.getName() + " is not allowed as a child in "
-                    + configuration.getName() + ". Please review 'Parent Module' section "
-                    + "for this Check in web documentation if Check is standard.");
+            final String message = getLocalizedMessage(
+                    AbstractAutomaticBean.class,
+                    "AbstractAutomaticBean.disallowedChild", childConf.getName(),
+                    configuration.getName());
+            throw new CheckstyleException(message);
         }
+    }
+
+    /**
+     * Extracts localized messages from properties files.
+     *
+     * @param caller the {@link Class} used to resolve the resource bundle
+     * @param messageKey the key pointing to localized message in respective properties file.
+     * @param args the arguments of message in respective properties file.
+     * @return a string containing extracted localized message
+     */
+
+    private static String getLocalizedMessage(Class<?> caller,
+                                              String messageKey, Object... args) {
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, caller,
+                    messageKey, args);
+
+        return localizedMessage.getMessage();
     }
 
     /** A converter that converts a string to a pattern. */

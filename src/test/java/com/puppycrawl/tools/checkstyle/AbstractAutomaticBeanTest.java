@@ -138,7 +138,7 @@ public class AbstractAutomaticBeanTest {
                     .fail();
         }
         catch (CheckstyleException exc) {
-            final String expected = "Cannot set property 'exceptionalMethod' to '123.0'";
+            final String expected = "Cannot set property 'exceptionalMethod' to '123'";
             assertWithMessage("Invalid exception cause, should be: ReflectiveOperationException")
                     .that(exc)
                     .hasCauseThat()
