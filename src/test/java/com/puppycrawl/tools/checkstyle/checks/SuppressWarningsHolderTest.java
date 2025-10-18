@@ -298,7 +298,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.addChild(methodDef);
 
         try {
-            TestUtil.invokeMethod(holder, "getAllAnnotationValues", parent);
+            TestUtil.invokeVoidMethod(holder, "getAllAnnotationValues", parent);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -325,7 +325,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         methodDef.setColumnNo(0);
 
         try {
-            TestUtil.invokeMethod(holder, "getAnnotationValues", methodDef);
+            TestUtil.invokeVoidMethod(holder, "getAnnotationValues", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -358,7 +358,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.setColumnNo(0);
 
         try {
-            TestUtil.invokeMethod(holder, "getAnnotationTarget", methodDef);
+            TestUtil.invokeVoidMethod(holder, "getAnnotationTarget", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {

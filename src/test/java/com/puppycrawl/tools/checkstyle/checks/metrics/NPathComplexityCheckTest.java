@@ -402,7 +402,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         token.setColumnNo(0);
 
         assertWithMessage("isAfter must be true for same line/column")
-                .that(TestUtil.<Boolean>invokeMethod(tokenEnd, "isAfter", token))
+                .that(TestUtil.invokeMethod(tokenEnd, "isAfter", Boolean.class, token))
                 .isTrue();
     }
 
