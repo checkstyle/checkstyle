@@ -71,7 +71,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
     private static void invokeSetParentMethod(DetailAST instance, DetailAstImpl parent)
             throws Exception {
-        TestUtil.invokeMethod(instance, "setParent", parent);
+        TestUtil.invokeVoidMethod(instance, "setParent", parent);
     }
 
     @Test
@@ -383,7 +383,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 child::addChild,
             ast -> {
                 try {
-                    TestUtil.invokeMethod(child, "setParent", ast);
+                    TestUtil.invokeVoidMethod(child, "setParent", ast);
                 }
                 // -@cs[IllegalCatch] Cannot avoid catching it.
                 catch (Exception exception) {
@@ -393,9 +393,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         );
 
         for (Consumer<DetailAstImpl> method : clearBranchTokenTypesMethods) {
-            final BitSet branchTokenTypes = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
+            final BitSet branchTokenTypes = TestUtil.invokeMethod(parent,
+                    "getBranchTokenTypes", BitSet.class);
             method.accept(null);
-            final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
+            final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent,
+                    "getBranchTokenTypes", BitSet.class);
             assertWithMessage("Branch token types are not equal")
                 .that(branchTokenTypes)
                 .isEqualTo(branchTokenTypes2);
