@@ -332,7 +332,8 @@ public class PackageObjectFactoryTest {
     public void testCreateObjectByBruteForce() throws Exception {
         final String className = "Checker";
         final Checker checker =
-                TestUtil.invokeMethod(factory, "createModuleByTryInEachPackage", className);
+                TestUtil.invokeMethod(factory, "createModuleByTryInEachPackage",
+                        Checker.class, className);
         assertWithMessage("Checker should not be null when creating module from name")
             .that(checker)
             .isNotNull();
@@ -345,7 +346,8 @@ public class PackageObjectFactoryTest {
             new HashSet<>(Arrays.asList(BASE_PACKAGE, BASE_PACKAGE + ".checks.annotation")),
             Thread.currentThread().getContextClassLoader(), TRY_IN_ALL_REGISTERED_PACKAGES);
         final AnnotationLocationCheck check = TestUtil.invokeMethod(
-                packageObjectFactory, "createModuleByTryInEachPackage", checkName);
+                packageObjectFactory, "createModuleByTryInEachPackage",
+                AnnotationLocationCheck.class, checkName);
         assertWithMessage("Check should not be null when creating module from name")
             .that(check)
             .isNotNull();
@@ -369,7 +371,8 @@ public class PackageObjectFactoryTest {
         final Set<String> packages = Collections.singleton("test");
         final String className = "SomeClass";
         final String actual = TestUtil.invokeStaticMethod(
-                PackageObjectFactory.class, "joinPackageNamesWithClassName", className, packages);
+                PackageObjectFactory.class, "joinPackageNamesWithClassName", String.class,
+                className, packages);
         assertWithMessage("Invalid class name")
             .that(actual)
             .isEqualTo("test." + className);

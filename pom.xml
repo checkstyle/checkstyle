@@ -246,25 +246,38 @@
       -Xep:CollectorMutability:ERROR
       -Xep:ConstantNaming:ERROR
       -Xep:DirectReturn:ERROR
+      -Xep:DefaultCharset:ERROR
       -Xep:EmptyMethod:ERROR
+      -Xep:EnumOrdinal:ERROR
+      -Xep:EqualsGetClass:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InlineFormatString:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
+      -Xep:JdkObsolete:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:OptionalOrElseGet:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
+      -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StreamResourceLeak:ERROR 
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
       -Xep:TimeZoneUsage:ERROR
+      -Xep:TruthAssertExpected:ERROR
+      -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:VoidUsed:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
