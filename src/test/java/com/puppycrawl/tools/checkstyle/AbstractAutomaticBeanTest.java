@@ -195,7 +195,7 @@ public class AbstractAutomaticBeanTest {
     @Test
     public void testRegisterIntegralTypes() throws Exception {
         final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
-        TestUtil.invokeStaticMethod(AbstractAutomaticBean.class,
+        TestUtil.invokeStaticMethodDefault(AbstractAutomaticBean.class,
                 "registerIntegralTypes", convertUtilsBean);
         assertWithMessage("Number of converters registered differs from expected")
                 .that(convertUtilsBean.getRegisterCount())
