@@ -208,6 +208,7 @@
     <pmd.version>7.17.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
+    <slf4j.version>2.0.17</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
@@ -409,8 +410,14 @@
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.17</version>
+      <version>${slf4j.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
