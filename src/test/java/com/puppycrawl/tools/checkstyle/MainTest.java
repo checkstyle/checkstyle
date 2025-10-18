@@ -508,7 +508,8 @@ public class MainTest {
     public void testGetOutputStreamOptionsMethod() throws Exception {
         final Path path = new File(getPath("InputMain.java")).toPath();
         final OutputStreamOptions option =
-                TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions", path);
+                TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions",
+                        OutputStreamOptions.class, path);
         assertWithMessage("Main.getOutputStreamOptions return CLOSE on not null Path")
                 .that(option)
                 .isEqualTo(OutputStreamOptions.CLOSE);
@@ -813,7 +814,8 @@ public class MainTest {
     public void testLoadPropertiesIoException() throws Exception {
         final Class<?> cliOptionsClass = Class.forName(Main.class.getName());
         try {
-            TestUtil.invokeStaticMethod(cliOptionsClass, "loadProperties", new File("."));
+            TestUtil.invokeStaticMethodDefault(cliOptionsClass,
+                    "loadProperties", new File("."));
             assertWithMessage("Exception was expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -911,7 +913,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethodList(Main.class, "listFiles",
                 fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
@@ -948,7 +950,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethodList(Main.class, "listFiles",
                 fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
@@ -1834,7 +1836,7 @@ public class MainTest {
         final List<Pattern> list = new ArrayList<>();
         list.add(Pattern.compile("BAD_PATH"));
 
-        final List<File> result = TestUtil.invokeStaticMethod(
+        final List<File> result = TestUtil.invokeStaticMethodList(
                 optionsClass, "listFiles", new File(getFilePath("")), list);
         assertWithMessage("Invalid result size")
             .that(result)
