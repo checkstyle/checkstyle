@@ -196,7 +196,7 @@ public class NewlineAtEndOfFileCheckTest
     public void testWrongSeparatorLength() throws Exception {
         try (RandomAccessFile file =
                      new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
-            TestUtil.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
+            TestUtil.invokeMethodDefault(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
                 LineSeparatorOption.LF);
             assertWithMessage("ReflectiveOperationException is expected").fail();
         }
