@@ -21,20 +21,10 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 /**
  * This filter element is immutable and accepts a matching Integer.
+ *
+ * @param matchValue the integer value a match
  */
-class IntMatchFilterElement implements IntFilterElement {
-
-    /** The matching Integer. */
-    private final int matchValue;
-
-    /**
-     * Constructs a MatchFilter for an int.
-     *
-     * @param matchValue the matching int.
-     */
-    /* package */ IntMatchFilterElement(int matchValue) {
-        this.matchValue = matchValue;
-    }
+record IntMatchFilterElement(int matchValue) implements IntFilterElement {
 
     @Override
     public boolean accept(int intValue) {
@@ -43,17 +33,7 @@ class IntMatchFilterElement implements IntFilterElement {
 
     @Override
     public String toString() {
-        return "IntMatchFilterElement[" + matchValue + "]";
-    }
-
-    @Override
-    public final int hashCode() {
-        return Integer.valueOf(matchValue).hashCode();
-    }
-
-    @Override
-    public final boolean equals(Object object) {
-        return object instanceof IntMatchFilterElement other && matchValue == other.matchValue;
+        return "IntMatchFilterElement{" + "matchValue=" + matchValue + '}';
     }
 
 }

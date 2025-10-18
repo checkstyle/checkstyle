@@ -74,7 +74,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
     /**
-     * {@code @author} block tag.
+     * {@code @author} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @author name.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> author
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  name.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AUTHOR_BLOCK_TAG = JavadocCommentsLexer.AUTHOR_BLOCK_TAG;
 
@@ -193,20 +212,20 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *   <li>{@link #DESCRIPTION} - the description of when the feature was added</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @since 1.2 This method is available since version 1.2}</pre>
+     * <pre>{@code * @since 1.0}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> since
-     *     |--TEXT ->
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT -> 1.2 This method is available since version 1.2
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> since
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  1.0
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -216,22 +235,18 @@ public final class JavadocCommentsTokenTypes {
     /**
      * {@code @version} Javadoc block tag.
      *
-     * <p>Such Javadoc tag can have one child:</p>
-     * <ol>
-     *   <li>{@link #DESCRIPTION} - the version information or description</li>
-     * </ol>
+     * <p>This tag has only one argument — {@link #TEXT}:</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @version 1.0 Initial release.}</pre>
+     * <pre>{@code * @version value}</pre>
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> version
-     *     |--TEXT ->
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT -> 1.0 Initial release.
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> version
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -269,32 +284,159 @@ public final class JavadocCommentsTokenTypes {
     public static final int HIDDEN_BLOCK_TAG = JavadocCommentsLexer.HIDDEN_BLOCK_TAG;
 
     /**
-     * {@code @uses} block tag.
+     * {@code @uses} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #IDENTIFIER} – the referenced service type</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @uses com.example.app.MyService}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--USES_BLOCK_TAG -> USES_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> uses
+     *    |--TEXT ->
+     *    `--IDENTIFIER -> com.example.app.MyService
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int USES_BLOCK_TAG = JavadocCommentsLexer.USES_BLOCK_TAG;
 
     /**
      * {@code @provides} block tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     * <ol>
+     *  <li>{@link #IDENTIFIER}</li>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @provides com.example.MyService with com.example.MyServiceImpl}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> provides
+     *    |--TEXT ->
+     *    |--IDENTIFIER -> com.example.MyService
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  with com.example.MyServiceImpl
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int PROVIDES_BLOCK_TAG = JavadocCommentsLexer.PROVIDES_BLOCK_TAG;
 
     /**
      * {@code @serial} block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} – optional description text</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @serial include}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
+     *   |--AT_SIGN -> @
+     *   |--TAG_NAME -> serial
+     *   `--DESCRIPTION -> DESCRIPTION
+     *       `--TEXT ->  include
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SERIAL_BLOCK_TAG = JavadocCommentsLexer.SERIAL_BLOCK_TAG;
 
     /**
      * {@code @serialData} block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #DESCRIPTION} – optional description text</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @serialData data description value}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> serialData
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  data description value
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SERIAL_DATA_BLOCK_TAG = JavadocCommentsLexer.SERIAL_DATA_BLOCK_TAG;
 
     /**
-     * {@code @serialField} block tag.
+     * {@code @serialField} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have three children:</p>
+     * <ol>
+     *   <li>{@link #IDENTIFIER} – field name</li>
+     *   <li>{@link #FIELD_TYPE} – field type</li>
+     *   <li>{@link #DESCRIPTION} – field description</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @serialField name String The person's full name.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> serialField
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> name
+     *     |--TEXT ->
+     *     |--FIELD_TYPE -> String
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The person's full name.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SERIAL_FIELD_BLOCK_TAG = JavadocCommentsLexer.SERIAL_FIELD_BLOCK_TAG;
 
     /**
-     * Custom or unrecognized block tag.
+     * Custom or unrecognized Javadoc block tag.
+     *
+     * <p>This type represents any block tag that is not explicitly recognized by Checkstyle,
+     * such as a project-specific or malformed tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @mycustomtag This is a custom block tag.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> mycustomtag
+     *     |--TEXT ->
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  This is a custom block tag.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int CUSTOM_BLOCK_TAG = JavadocCommentsLexer.CUSTOM_BLOCK_TAG;
 

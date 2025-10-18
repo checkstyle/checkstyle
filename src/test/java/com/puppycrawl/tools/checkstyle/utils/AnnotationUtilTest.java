@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.SuppressWarningsCheck.MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.instantiate;
 
 import java.util.Set;
 
@@ -43,7 +43,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     @Test
     public void testIsProperUtilsClass() {
         try {
-            isUtilsClassHasPrivateConstructor(AnnotationUtil.class);
+            instantiate(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
         }
         catch (ReflectiveOperationException exc) {

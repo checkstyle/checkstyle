@@ -26,5 +26,11 @@ public class Example2 {
   private void testMethod3() {} // violation, 'Missing a Javadoc comment'
   protected void testMethod4() {} // violation, 'Missing a Javadoc comment'
   void testMethod5() {} // violation, 'Missing a Javadoc comment'
+
+  public void testMethod6() { // violation, 'Missing a Javadoc comment'
+    System.out.println("line 1");
+    System.out.println("line 2");
+    System.out.println("line 3");
+  }
 }
 // xdoc section -- end

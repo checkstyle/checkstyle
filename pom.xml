@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>12.0.2-SNAPSHOT</version>
+  <version>12.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -203,10 +203,10 @@
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.13.2</antlr4.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.9.6.0</maven.spotbugs.plugin.version>
+    <maven.spotbugs.plugin.version>4.9.7.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
     <pmd.version>7.17.0</pmd.version>
-    <maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
+    <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <saxon.version>12.9</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
@@ -803,7 +803,7 @@
         <version>3.3.1</version>
         <executions>
           <execution>
-            <id>copy-resources</id>
+            <id>copy-dtd-resources</id>
             <phase>pre-site</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -823,6 +823,25 @@
                   </directory>
                   <includes>
                     <include>*.dtd</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-xsd-resources</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.basedir}/target/site/xsds</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>config</directory>
+                  <includes>
+                    <include>configuration*.xsd</include>
+                    <include>checkstyle-report-*.xsd</include>
                   </includes>
                 </resource>
               </resources>
@@ -3219,6 +3238,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheckTest</param>
@@ -3238,6 +3258,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.UpperEllCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheckTest</param>
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
@@ -5433,7 +5454,7 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.21.0</version>
+            <version>6.21.1</version>
             <configuration>
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>

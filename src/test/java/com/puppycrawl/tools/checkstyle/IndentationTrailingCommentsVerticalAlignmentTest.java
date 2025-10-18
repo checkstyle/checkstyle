@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,7 +28,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -41,18 +42,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static final int TAB_WIDTH = 4;
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
-        // reason: IndentationCheckTest tests fail after alignment
-        "InputIndentationAnnArrInit.java",
-        "InputIndentationDifficultAnnotations.java",
-        "InputIndentationZeroArrayInit.java",
-        "InputIndentationAnnArrInitWithEmoji.java",
-        "InputIndentationOddLineWrappingAndArrayInit.java",
-        "InputIndentationArrayInitIndentWithEmoji.java",
-        "InputIndentationInvalidArrayInitIndent.java",
-        "InputIndentationInvalidArrayInitIndentTwoDimensional.java",
-        "InputIndentationAnnArrInit2.java",
-        "InputIndentationInvalidArrayInitIndent1.java",
-
         // reason: checkstyle check: Line gets longer than 100 characters
         "InputIndentationInvalidLabelIndent.java",
         "InputIndentationInvalidMethodIndent2.java",
@@ -84,22 +73,29 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
         for (int idx = 0; idx < lines.size(); idx++) {
             final String line = lines.get(idx);
-            if (line.trim().startsWith("import ")) {
+            if (line.trim().startsWith("import ") || line.trim().startsWith("package ")) {
                 continue;
             }
             final int commentStartIndex = line.indexOf("//indent:");
             if (commentStartIndex > 0) {
                 final String codePart = line.substring(0, commentStartIndex);
                 if (!codePart.isBlank()) {
-                    final int actualStartIndex =
+                    int actualStartIndex =
                         CommonUtil.lengthExpandedTabs(line, commentStartIndex, TAB_WIDTH);
+
+                    // for unicode characters having supplementary code points
+                    final long extraWidth = codePart.codePoints().filter(
+                        Character::isSupplementaryCodePoint).count();
+                    actualStartIndex -= Math.toIntExact(extraWidth);
+
                     if (expectedStartIndex == -1) {
                         expectedStartIndex = actualStartIndex;
                     }
                     else {
-                        Assertions.assertEquals(expectedStartIndex, actualStartIndex,
-                            "Trailing comment alignment mismatch in file: "
-                                + testFile + " on line " + (idx + 1));
+                        assertWithMessage("Trailing comment alignment mismatch in file: "
+                                + testFile + " on line " + (idx + 1))
+                                .that(actualStartIndex)
+                                .isEqualTo(expectedStartIndex);
                     }
                 }
             }
@@ -109,21 +105,22 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static Stream<Path> indentationTestFiles() {
         final Path resourcesDir = Path.of("src", "test", "resources");
         final Path indentationDir = resourcesDir.resolve(INDENTATION_TEST_FILES_PATH);
-
-        Stream<Path> testFiles;
-        try {
-            testFiles = Files.walk(indentationDir)
+        Stream<Path> result;
+        try (Stream<Path> testFiles = Files.walk(indentationDir)) {
+            final List<Path> collected = testFiles
                 .filter(path -> {
-                        final String fileName = path.getFileName().toString();
-                        return fileName.startsWith("InputIndentation")
+                    final String fileName = path.getFileName().toString();
+                    return fileName.startsWith("InputIndentation")
                             && fileName.endsWith(".java");
-                    }
-                );
+                }).toList();
+            result = collected.stream();
         }
         catch (IOException exception) {
-            Assertions.fail("Failed to find indentation test files", exception);
-            testFiles = Stream.empty();
+            assertWithMessage("Failed to find indentation test files")
+                    .that(exception)
+                    .isNull();
+            result = Stream.empty();
         }
-        return testFiles;
+        return result;
     }
 }
