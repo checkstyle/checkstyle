@@ -1705,6 +1705,8 @@
             --add-opens=java.desktop/java.awt=ALL-UNNAMED
             --add-opens=java.desktop/sun.java2d=ALL-UNNAMED
             --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+            -XX:+EnableDynamicAgentLoading
+            -Xshare:off
           </argLine>
           <additionalClasspathElements>
             <additionalClasspathElement>
