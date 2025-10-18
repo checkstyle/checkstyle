@@ -5458,6 +5458,7 @@
             <configuration>
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
+              <failOnDryRunResults>true</failOnDryRunResults>
               <activeRecipes>
                 <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
