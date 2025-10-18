@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.io.File;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -190,7 +191,7 @@ public final class TestUtil {
             TreeWalkerFilter filter, TreeWalkerAuditEvent event,
             String fieldName, Predicate<Object> isClear) throws Exception {
         filter.accept(event);
-        invokeMethod(filter, "finishLocalSetup");
+        invokeVoidMethod(filter, "finishLocalSetup");
         final Field resultField = getClassDeclaredField(filter.getClass(), fieldName);
         return isClear.test(resultField.get(filter));
     }
@@ -485,36 +486,97 @@ public final class TestUtil {
      *
      * @param instance the instance whose method to invoke
      * @param methodToExecute the name of the method to invoke
+     * @param resultClazz used for cast of result
      * @param arguments the optional arguments
      * @param <T> the type of the result
+     * @return the method's result
+     * @throws ReflectiveOperationException if the method invocation failed
+     */
+    public static <T> T invokeMethod(Object instance, String methodToExecute,
+                                     Class<T> resultClazz, Object... arguments)
+            throws ReflectiveOperationException {
+        final Class<?> ownerClass = instance.getClass();
+        final Method method = getClassDeclaredMethod(ownerClass, methodToExecute, arguments.length);
+        return resultClazz.cast(method.invoke(instance, arguments));
+    }
+
+    /**
+     * Helper method to invoke private method for an instance with cast to Object.
+     *
+     * @param instance the instance whose method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
+     * @throws ReflectiveOperationException if the method invocation failed
+     */
+    public static void invokeVoidMethod(Object instance,
+                                        String methodToExecute, Object... arguments)
+            throws ReflectiveOperationException {
+        invokeMethod(instance, methodToExecute, Object.class, arguments);
+    }
+
+    /**
+     * Helper method to invoke private method for an instance with cast to Set.
+     *
+     * @param instance the instance whose method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T invokeMethod(Object instance,
-            String methodToExecute, Object... arguments) throws ReflectiveOperationException {
-        final Class<?> clss = instance.getClass();
-        final Method method = getClassDeclaredMethod(clss, methodToExecute, arguments.length);
-        return (T) method.invoke(instance, arguments);
+    public static Set<String> invokeMethodSet(Object instance, String methodToExecute,
+                                       Object... arguments) throws ReflectiveOperationException {
+        return (Set<String>) invokeMethod(instance, methodToExecute, Set.class, arguments);
     }
 
     /**
      * Invokes a static private method for a class.
      *
-     * @param clss the class whose static method to invoke
+     * @param ownerClass the class whose static method to invoke
      * @param methodToExecute the name of the method to invoke
+     * @param resultClass used for cast of result
      * @param arguments the optional arguments
      * @param <T> the type of the result
+     * @return the method's result
+     * @throws ReflectiveOperationException if the method invocation failed
+     */
+    public static <T> T invokeStaticMethod(Class<?> ownerClass,
+            String methodToExecute, Class<T> resultClass, Object... arguments)
+            throws ReflectiveOperationException {
+        final Method method = getClassDeclaredMethod(ownerClass, methodToExecute, arguments.length);
+        return resultClass.cast(method.invoke(null, arguments));
+    }
+
+    /**
+     * Helper method to invoke static private method for an instance with cast to Object.
+     *
+     * @param ownerClass the class whose static method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
+     * @throws ReflectiveOperationException if the method invocation failed
+     */
+    public static void invokeVoidStaticMethod(Class<?> ownerClass,
+                                              String methodToExecute, Object... arguments)
+            throws ReflectiveOperationException {
+        invokeStaticMethod(ownerClass, methodToExecute, Object.class, arguments);
+    }
+
+    /**
+     * Helper method to invoke static private method for an instance with cast to List.
+     *
+     * @param ownerClass the class whose static method to invoke
+     * @param methodToExecute the name of the method to invoke
+     * @param arguments the optional arguments
      * @return the method's result
      * @throws ReflectiveOperationException if the method invocation failed
      * @noinspection unchecked
      * @noinspectionreason unchecked - unchecked cast is ok on test code
      */
-    public static <T> T invokeStaticMethod(Class<?> clss,
-            String methodToExecute, Object... arguments) throws ReflectiveOperationException {
-        final Method method = getClassDeclaredMethod(clss, methodToExecute, arguments.length);
-        return (T) method.invoke(null, arguments);
+    public static List<File> invokeStaticMethodList(Class<?> ownerClass,
+                                                    String methodToExecute, Object... arguments)
+            throws ReflectiveOperationException {
+        return (List<File>) invokeStaticMethod(ownerClass, methodToExecute, List.class, arguments);
     }
 
     /**
@@ -588,3 +650,4 @@ public final class TestUtil {
     }
 
 }
+
