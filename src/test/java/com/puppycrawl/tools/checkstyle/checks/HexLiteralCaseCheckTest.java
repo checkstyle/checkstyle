@@ -40,8 +40,8 @@ public class HexLiteralCaseCheckTest
         final HexLiteralCaseCheck check = new HexLiteralCaseCheck();
         final int[] expectedTokens = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
         assertWithMessage("Default required tokens are valid")
-            .that(expectedTokens)
-            .isEqualTo(check.getRequiredTokens());
+            .that(check.getRequiredTokens())
+            .isEqualTo(expectedTokens);
     }
 
     @Test

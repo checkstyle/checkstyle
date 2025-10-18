@@ -274,7 +274,7 @@ public final class CheckUtil {
         String checkMessage;
         try {
             final Properties pr = new Properties();
-            if (locale == Locale.ENGLISH) {
+            if (locale.equals(Locale.ENGLISH)) {
                 pr.load(module.getResourceAsStream("messages.properties"));
             }
             else {

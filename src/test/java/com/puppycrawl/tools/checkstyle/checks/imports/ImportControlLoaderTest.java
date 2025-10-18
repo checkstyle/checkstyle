@@ -98,7 +98,7 @@ public class ImportControlLoaderTest {
             };
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            TestUtil.invokeStaticMethod(clazz, "safeGet", attr, "you_cannot_find_me");
+            TestUtil.invokeStaticMethodDefault(clazz, "safeGet", attr, "you_cannot_find_me");
             assertWithMessage("exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -121,7 +121,7 @@ public class ImportControlLoaderTest {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            TestUtil.invokeStaticMethod(clazz, "load", source,
+            TestUtil.invokeStaticMethodDefault(clazz, "load", source,
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             assertWithMessage("exception expected").fail();
         }
