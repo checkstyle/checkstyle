@@ -60,7 +60,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     @Test
     public void testParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                "getParseErrorMessage",
+                "getParseErrorMessage", String.class,
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
                         9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"));
         final LocalizedMessage violation = new LocalizedMessage(
@@ -85,7 +85,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
         catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage",
+                    "getParseErrorMessage", String.class,
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             8, "no viable alternative at input 'see <'", "SEE_TAG"));
             assertWithMessage("Generated and expected parse error messages don't match")
@@ -104,7 +104,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         }
         catch (IllegalArgumentException exc) {
             final String expected = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
-                    "getParseErrorMessage",
+                    "getParseErrorMessage", String.class,
                     new ParseErrorMessage(0, MSG_JAVADOC_PARSE_RULE_ERROR,
                             3, "no viable alternative at input '</'", "HTML_ELEMENT"));
             assertWithMessage("Generated and expected parse error messages don't match")
