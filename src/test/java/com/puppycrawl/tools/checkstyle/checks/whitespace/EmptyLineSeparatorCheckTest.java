@@ -728,4 +728,17 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void testEmptyLineSeparator() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
+            "21:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "CLASS_DEF"),
+            "25:5: " + getCheckMessage(MSG_MULTIPLE_LINES, "VARIABLE_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparator3.java"),
+                expected
+        );
+    }
+
 }

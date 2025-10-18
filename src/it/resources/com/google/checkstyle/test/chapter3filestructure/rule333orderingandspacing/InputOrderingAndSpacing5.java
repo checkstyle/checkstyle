@@ -4,7 +4,6 @@ import static java.awt.Button.ABORT;
 import static java.io.File.createTempFile;
 // comments
 
-
 // comments
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 // violation above 'Extra separation .* before 'javax.swing.WindowConstants.DISPOSE_ON_CLOSE''
