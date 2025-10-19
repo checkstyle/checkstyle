@@ -441,7 +441,24 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
 
     /**
-     * {@code {@code}} inline tag.
+     * {@code {@code}} Javadoc inline tag.
+     *
+     * <p>Such Javadoc tag can have no children:</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@code println("Hello");}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     |--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> { @
+     *     |--TAG_NAME -> code
+     *     |--TEXT ->  println("Hello");
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int CODE_INLINE_TAG = JavadocCommentsLexer.CODE_INLINE_TAG;
 
