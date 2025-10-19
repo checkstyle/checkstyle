@@ -80,6 +80,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
@@ -1414,7 +1415,7 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == String[].class) {
-                result = getStringArrayPropertyValue(propertyName, value);
+                result = getStringArrayPropertyValue(propertyName, value, field);
             }
             else if (fieldClass == URI.class || fieldClass == String.class) {
                 if (value != null) {
@@ -1499,7 +1500,8 @@ public class XdocsPagesTest {
      * @param value The bean property's value
      * @return String form of property's default value
      */
-    private static String getStringArrayPropertyValue(String propertyName, Object value) {
+    private static String getStringArrayPropertyValue(String propertyName, Object value,
+            Field field) {
         String result;
         if (value == null) {
             result = "";
@@ -1513,10 +1515,19 @@ public class XdocsPagesTest {
                 final Object[] array = (Object[]) value;
                 valuesStream = Arrays.stream(array);
             }
-            result = valuesStream
-                .map(String.class::cast)
-                .sorted()
-                .collect(Collectors.joining(", "));
+            // Check if field has @PreserveOrder annotation
+            final boolean shouldPreserveOrder = field != null
+                  && field.isAnnotationPresent(PreserveOrder.class);
+
+            Stream<String> stringStream = valuesStream.map(String.class::cast);
+
+            // Only sort if @PreserveOrder is not present
+            if (!shouldPreserveOrder) {
+                stringStream = stringStream.sorted();
+            }
+
+            result = stringStream.collect(Collectors.joining(", "));
+
         }
 
         if (result.isEmpty()) {

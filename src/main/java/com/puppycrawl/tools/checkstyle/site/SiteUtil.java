@@ -76,6 +76,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -947,7 +948,7 @@ public final class SiteUtil {
             result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
         }
         else if (fieldClass == String[].class) {
-            result = getStringArrayPropertyValue(value);
+            result = getStringArrayPropertyValue(value, field);
         }
         else if (fieldClass == Pattern.class) {
             if (value != null) {
@@ -1015,22 +1016,34 @@ public final class SiteUtil {
      * Gets the name of the bean property's default value for the string array class.
      *
      * @param value The bean property's value
+     * @param field the Field being processed
      * @return String form of property's default value
      */
-    private static String getStringArrayPropertyValue(Object value) {
+    private static String getStringArrayPropertyValue(Object value, Field field) {
         final String result;
         if (value == null) {
             result = "";
         }
         else {
+            // Check if field has @PreserveOrder annotation
+            final boolean preserveOrder = field != null
+                && field.isAnnotationPresent(PreserveOrder.class);
             try (Stream<?> valuesStream = getValuesStream(value)) {
-                result = valuesStream
+                final List<String> stringList = valuesStream
                     .map(String.class::cast)
+                    .collect(Collectors.toCollection(ArrayList<String>::new));
+
+                // Preserve original order or sort alphabetically
+                if (preserveOrder) {
+                    result = String.join(COMMA_SPACE, stringList);
+                }
+                else {
+                    result = stringList.stream()
                     .sorted()
                     .collect(Collectors.joining(COMMA_SPACE));
+                }
             }
         }
-
         return result;
     }
 
