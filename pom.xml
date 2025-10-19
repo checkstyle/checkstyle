@@ -589,15 +589,6 @@
           <configuration>
             <java>
               <removeUnusedImports />
-              <importOrder>
-                <order>java|javax,org,com,com.puppycrawl,,\#com.puppycrawl,\#</order>
-              </importOrder>
-              <!--
-              <palantirJavaFormat/>
-              <licenseHeader>
-                <file>config/maven-header-plain.txt</file>
-              </licenseHeader>
-              -->
             </java>
             <!--
               <pom>
