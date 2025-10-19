@@ -235,7 +235,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeStaticMethodDefault(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(sourceName), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
@@ -253,7 +253,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeStaticMethodDefault(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
