@@ -817,7 +817,8 @@ public final class InlineConfigParser {
         final String actualDefaultAsString;
 
         if ("tokens".equals(propertyName)) {
-            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultTokens");
+            actualDefault = TestUtil.invokeMethod(checkInstance,
+                    "getDefaultTokens", Object.class);
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)
@@ -825,7 +826,8 @@ public final class InlineConfigParser {
                                           .collect(Collectors.joining(", "));
         }
         else if ("javadocTokens".equals(propertyName)) {
-            actualDefault = TestUtil.invokeMethod(checkInstance, "getDefaultJavadocTokens");
+            actualDefault = TestUtil.invokeMethod(checkInstance,
+                    "getDefaultJavadocTokens", Object.class);
             propertyType = actualDefault.getClass();
             final int[] arr = (int[]) actualDefault;
             actualDefaultAsString = Arrays.stream(arr)

@@ -219,7 +219,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
 
-        final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
+        final Set<String> keys = TestUtil.invokeMethodSet(check, "getTranslationKeys",
                 new File(".no.such.file"));
         assertWithMessage("Translation keys should be empty when File is not found")
                 .that(keys)
@@ -249,7 +249,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.setId("ID1");
 
         final Exception exception = new IOException("test exception");
-        TestUtil.invokeMethod(check, "logException", exception, new File(""));
+        TestUtil.invokeMethodDefault(check, "logException", exception, new File(""));
 
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors.size())
