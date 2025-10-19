@@ -10,6 +10,75 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.1.0">
+      <div class="releaseDate">19.10.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New check: HexLiteralCase, Hexadecimal literals should use upper case letters A-F.
+            Author: zyad
+            <a href="https://github.com/checkstyle/checkstyle/issues/16836">#16836</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: JANHVI BABANI
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17845">#17845</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Andrei Mititelu, ivanmalutin, ANISETTY AKASH
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: voidCounter, Kishor
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Talib Hussain
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            CheckstyleAntTaskTest.testNoFileOrPathSpecified not executed because it&#39;s static.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17924">#17924</a>
+          </li>
+          <li>
+            Resolving spotbugs violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17933">#17933</a>
+          </li>
+          <li>
+            Remove ImportControlTest supressions.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17910">#17910</a>
+          </li>
+          <li>
+            Deploy configuration-1-3.xsd to the CheckStyle website.
+            Author: Sockalingam
+            <a href="https://github.com/checkstyle/checkstyle/issues/17865">#17865</a>
+          </li>
+          <li>
+            Add `id` to `NeedBraces` declaration.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17891">#17891</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.0.1">
       <div class="releaseDate">11.10.2025</div>
       <p>Bug fixes:</p>
