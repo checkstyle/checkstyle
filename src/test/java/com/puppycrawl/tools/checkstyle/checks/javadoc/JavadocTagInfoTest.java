@@ -110,7 +110,7 @@ public class JavadocTagInfoTest {
             astParent.setType(TokenTypes.LITERAL_CATCH);
 
             final DetailAstImpl ast = new DetailAstImpl();
-            TestUtil.invokeMethod(ast, "setParent", astParent);
+            TestUtil.invokeMethodDefault(ast, "setParent", astParent);
 
             final int[] validTypes = {
                 TokenTypes.PACKAGE_DEF,
@@ -147,7 +147,7 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        TestUtil.invokeMethod(ast, "setParent", astParent);
+        TestUtil.invokeMethodDefault(ast, "setParent", astParent);
 
         final int[] validTypes = {
             TokenTypes.CLASS_DEF,
@@ -184,7 +184,7 @@ public class JavadocTagInfoTest {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
-        TestUtil.invokeMethod(ast, "setParent", astParent);
+        TestUtil.invokeMethodDefault(ast, "setParent", astParent);
 
         final int[] validTypes = {
             TokenTypes.VARIABLE_DEF,

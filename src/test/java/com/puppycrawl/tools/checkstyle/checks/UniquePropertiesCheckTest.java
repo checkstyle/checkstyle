@@ -95,7 +95,8 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         testStrings.add("445");
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
         final Object lineNumber = TestUtil.invokeStaticMethod(
-                UniquePropertiesCheck.class, "getLineNumber", fileText, "some key");
+                UniquePropertiesCheck.class, "getLineNumber", Object.class,
+                fileText, "some key");
         assertWithMessage("Line number should not be null")
             .that(lineNumber)
             .isNotNull();
@@ -153,14 +154,16 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
                 .forName("com.puppycrawl.tools.checkstyle.checks."
                     + "UniquePropertiesCheck$UniqueProperties");
         final Object uniqueProperties = TestUtil.instantiate(uniquePropertiesClass);
-        final Object result = TestUtil.invokeMethod(uniqueProperties, "put", 1, "value");
+        final Object result = TestUtil.invokeMethod(uniqueProperties, "put",
+                Object.class, 1, "value");
         final Map<Object, Object> table = new HashMap<>();
         final Object expected = table.put(1, "value");
         assertWithMessage("Invalid result of put method")
             .that(result)
             .isEqualTo(expected);
 
-        final Object result2 = TestUtil.invokeMethod(uniqueProperties, "put", 1, "value");
+        final Object result2 = TestUtil.invokeMethod(uniqueProperties, "put",
+                Object.class, 1, "value");
         final Object expected2 = table.put(1, "value");
         assertWithMessage("Value should be substituted")
             .that(result2)
