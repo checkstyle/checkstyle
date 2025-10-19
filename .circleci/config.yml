@@ -324,3 +324,10 @@ workflows:
           name: "openrewrite-recipes"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-recipes"
+
+  spotless:
+    jobs:
+      - validate-with-maven-script:
+          name: spotless
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh spotless"
