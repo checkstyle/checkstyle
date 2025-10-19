@@ -1251,6 +1251,10 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check -P spotless-autofix
+  ;;
+
 openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
