@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
@@ -32,8 +33,10 @@
               AbbreviationAsWordInName</a>
             </td>
             <td>
-              Validates abbreviations (consecutive capital letters) length in
-              identifier name, it also allows to enforce camel case naming.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbbreviationAsWordInNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -43,8 +46,10 @@
               </a>
             </td>
             <td>
-              Ensures that the names of abstract classes conforming to some pattern
-              and check that <code>abstract</code> modifier exists.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -54,7 +59,10 @@
               </a>
             </td>
             <td>
-              Checks location of annotation on language elements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationLocationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -64,8 +72,10 @@
               </a>
             </td>
             <td>
-              Checks that annotations are located on the same line with their
-              targets.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationOnSameLineCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -75,7 +85,10 @@
               </a>
             </td>
             <td>
-              Checks the style of elements in annotations.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -83,7 +96,10 @@
               <a href="checks/sizes/anoninnerlength.html#AnonInnerLength">AnonInnerLength</a>
             </td>
             <td>
-              Checks for long anonymous inner classes.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/AnonInnerLengthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -93,7 +109,10 @@
               </a>
             </td>
             <td>
-              Checks that array initialization contains a trailing comma.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ArrayTrailingCommaCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -101,7 +120,10 @@
               <a href="checks/misc/arraytypestyle.html#ArrayTypeStyle">ArrayTypeStyle</a>
             </td>
             <td>
-              Checks the style of array type definitions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/ArrayTypeStyleCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -109,7 +131,10 @@
               <a href="checks/javadoc/atclauseorder.html#AtclauseOrder">AtclauseOrder</a>
             </td>
             <td>
-              Checks the order of javadoc block-tags or javadoc tags.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/AtclauseOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -119,7 +144,10 @@
               </a>
             </td>
             <td>
-              Detects double brace initialization.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidDoubleBraceInitializationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -129,7 +157,10 @@
               </a>
             </td>
             <td>
-              Restricts using Unicode escapes (such as &#92;u221e).
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -138,7 +169,10 @@
               AvoidInlineConditionals</a>
             </td>
             <td>
-              Detects inline conditionals.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidInlineConditionalsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -148,7 +182,10 @@
               </a>
             </td>
             <td>
-              Finds nested blocks (blocks that are used freely in the code).
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/AvoidNestedBlocksCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -158,7 +195,10 @@
               </a>
             </td>
             <td>
-              Checks if call to superclass constructor without arguments is present.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -168,8 +208,10 @@
               </a>
             </td>
             <td>
-              Checks that there are no import statements that use the <code>*</code>
-              notation.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStarImportCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -179,7 +221,10 @@
               </a>
             </td>
             <td>
-              Checks that there are no static import statements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AvoidStaticImportCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -189,9 +234,10 @@
               </a>
             </td>
             <td>
-              Restricts the number of boolean operators (<code>&amp;&amp;</code>,
-              <code>||</code>, <code>&amp;</code>, <code>|</code> and
-              <code>^</code>) in an expression.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/BooleanExpressionComplexityCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -201,8 +247,10 @@
               </a>
             </td>
             <td>
-              Checks that <code>catch</code> parameter names conform to a specified
-              pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/CatchParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -212,8 +260,10 @@
               </a>
             </td>
             <td>
-              Measures the number of distinct classes that are instantiated within
-              the given class or record.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassDataAbstractionCouplingCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -223,8 +273,10 @@
               </a>
             </td>
             <td>
-              Checks the number of other types a given
-              class/record/interface/enum/annotation relies on.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/ClassFanOutComplexityCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -234,7 +286,10 @@
               </a>
             </td>
             <td>
-              Checks for implicit modifiers on nested types in classes and records.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ClassMemberImpliedModifierCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -244,7 +299,10 @@
               </a>
             </td>
             <td>
-              Checks that class type parameter names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ClassTypeParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -254,7 +312,10 @@
               </a>
             </td>
             <td>
-              Controls the indentation between comments and surrounding code.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -262,7 +323,10 @@
               <a href="checks/naming/constantname.html#ConstantName">ConstantName</a>
             </td>
             <td>
-              Checks that constant names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ConstantNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -272,7 +336,10 @@
               </a>
             </td>
             <td>
-              Checks that all constructors are grouped together.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ConstructorsDeclarationGroupingCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -282,9 +349,10 @@
               </a>
             </td>
             <td>
-              Checks that classes and records which define a covariant
-              <code>equals()</code> method also override method
-              <code>equals(Object)</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/CovariantEqualsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -294,8 +362,10 @@
               </a>
             </td>
             <td>
-              Checks that the groups of import declarations appear in the order
-              specified by the user.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/CustomImportOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -305,7 +375,10 @@
               </a>
             </td>
             <td>
-              Checks cyclomatic complexity against a specified limit.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/CyclomaticComplexityCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -315,9 +388,10 @@
               </a>
             </td>
             <td>
-              Checks that the parts of a class, record, or interface declaration
-              appear in the order suggested by the Code Conventions for the Java
-              Programming Language.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -327,8 +401,10 @@
               </a>
             </td>
             <td>
-              Check that the <code>default</code> is after all the cases in a
-              <code>switch</code> statement.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DefaultComesLastCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -336,7 +412,10 @@
               <a href="checks/misc/descendanttoken.html#DescendantToken">DescendantToken</a>
             </td>
             <td>
-              Checks for restricted tokens beneath other tokens.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/DescendantTokenCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -346,7 +425,10 @@
               </a>
             </td>
             <td>
-              Checks that classes are designed for extension (subclass creation).
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/DesignForExtensionCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -354,7 +436,10 @@
               <a href="checks/blocks/emptyblock.html#EmptyBlock">EmptyBlock</a>
             </td>
             <td>
-              Checks for empty blocks.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -364,7 +449,10 @@
               </a>
             </td>
             <td>
-              Checks for empty catch blocks.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyCatchBlockCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -373,9 +461,10 @@
               EmptyForInitializerPad</a>
             </td>
             <td>
-              Checks the padding of an empty for initializer; that is whether a
-              white space is required at an empty for initializer, or such white
-              space is forbidden.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyForInitializerPadCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -385,9 +474,10 @@
               </a>
             </td>
             <td>
-              Checks the padding of an empty for iterator; that is whether a white
-              space is required at an empty for iterator, or such white space is
-              forbidden.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyForIteratorPadCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -397,9 +487,10 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package, all import
-              declarations, fields, constructors, methods, nested classes, static
-              initializers and instance initializers.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -409,7 +500,10 @@
               </a>
             </td>
             <td>
-              Detects empty statements (standalone <code>";"</code> semicolon).
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EmptyStatementCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -419,8 +513,10 @@
               </a>
             </td>
             <td>
-              Checks that any combination of String literals is on the left side of
-              an <code>equals()</code> comparison.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsAvoidNullCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -428,8 +524,10 @@
               <a href="checks/coding/equalshashcode.html#EqualsHashCode">EqualsHashCode</a>
             </td>
             <td>
-              Checks that classes that either override <code>equals()</code> or
-              <code>hashCode()</code> also overrides the other.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/EqualsHashCodeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -438,7 +536,10 @@
               ExecutableStatementCount</a>
             </td>
             <td>
-              Restricts the number of executable statements to a specified limit.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/ExecutableStatementCountCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -448,10 +549,10 @@
               </a>
             </td>
             <td>
-              Checks if any class or object member is explicitly initialized to
-              default for its type value (<code>null</code> for object references,
-              zero for numeric types and <code>char</code> and <code>false</code>
-              for <code>boolean</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ExplicitInitializationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -459,7 +560,10 @@
               <a href="checks/coding/fallthrough.html#FallThrough">FallThrough</a>
             </td>
             <td>
-              Checks for fall-through in <code>switch</code> statements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -467,7 +571,10 @@
               <a href="checks/sizes/filelength.html#FileLength">FileLength</a>
             </td>
             <td>
-              Checks for long source files.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/FileLengthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -477,8 +584,10 @@
               </a>
             </td>
             <td>
-              Checks that there are no tab characters (<code>'\t'</code>) in the
-              source code.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -486,8 +595,10 @@
               <a href="checks/design/finalclass.html#FinalClass">FinalClass</a>
             </td>
             <td>
-              Ensures that identifies classes that can be effectively declared as
-              final are explicitly marked as final.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -497,8 +608,10 @@
               </a>
             </td>
             <td>
-              Checks that local variables that never have their values changed are
-              declared final.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -506,8 +619,10 @@
               <a href="checks/misc/finalparameters.html#FinalParameters">FinalParameters</a>
             </td>
             <td>
-              Checks that parameters for methods, constructors, catch and for-each
-              blocks are final.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/FinalParametersCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -517,8 +632,10 @@
               </a>
             </td>
             <td>
-              Checks that the whitespace around the Generic tokens (angle brackets)
-              "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/GenericWhitespaceCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -526,7 +643,10 @@
               <a href="checks/header/header.html#Header">Header</a>
             </td>
             <td>
-              Checks that a source file begins with a specified header.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/HeaderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -534,8 +654,10 @@
               <a href="checks/misc/hexliteralcase.html#HexLiteralCase">HexLiteralCase</a>
             </td>
             <td>
-              Checks that hexadecimal literals are defined using uppercase letters
-              <code>(A-F)</code> rather than lowercase <code>(a-f)</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/HexLiteralCaseCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -543,8 +665,10 @@
               <a href="checks/coding/hiddenfield.html#HiddenField">HiddenField</a>
             </td>
             <td>
-              Checks that a local variable or a parameter does not shadow a field
-              that is defined in the same class.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/HiddenFieldCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -554,8 +678,10 @@
               </a>
             </td>
             <td>
-              Makes sure that utility classes (classes that contain only static
-              methods or fields in their API) do not have a public constructor.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/HideUtilityClassConstructorCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -563,8 +689,10 @@
               <a href="checks/coding/illegalcatch.html#IllegalCatch">IllegalCatch</a>
             </td>
             <td>
-              Checks that certain exception types do not appear in a
-              <code>catch</code> statement.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalCatchCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -574,8 +702,10 @@
               </a>
             </td>
             <td>
-              Checks identifiers against a regular expression pattern to detect
-              illegal names.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/IllegalIdentifierNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -583,7 +713,10 @@
               <a href="checks/imports/illegalimport.html#IllegalImport">IllegalImport</a>
             </td>
             <td>
-              Checks for imports from a set of illegal packages.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -593,7 +726,10 @@
               </a>
             </td>
             <td>
-              Checks for illegal instantiations where a factory method is preferred.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalInstantiationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -601,7 +737,10 @@
               <a href="checks/coding/illegalthrows.html#IllegalThrows">IllegalThrows</a>
             </td>
             <td>
-              Checks that specified types are not declared to be thrown.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalThrowsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -609,7 +748,10 @@
               <a href="checks/coding/illegaltoken.html#IllegalToken">IllegalToken</a>
             </td>
             <td>
-              Checks for illegal tokens.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -619,7 +761,10 @@
               </a>
             </td>
             <td>
-              Checks specified tokens text for matching an illegal pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTokenTextCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -627,7 +772,10 @@
               <a href="checks/coding/illegaltype.html#IllegalType">IllegalType</a>
             </td>
             <td>
-              Checks that particular classes or interfaces are never used.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalTypeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -635,7 +783,10 @@
               <a href="checks/imports/importcontrol.html#ImportControl">ImportControl</a>
             </td>
             <td>
-              Controls what can be imported in each package and file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportControlCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -643,7 +794,10 @@
               <a href="checks/imports/importorder.html#ImportOrder">ImportOrder</a>
             </td>
             <td>
-              Checks the ordering/grouping of imports.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/ImportOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -651,7 +805,10 @@
               <a href="checks/misc/indentation.html#Indentation">Indentation</a>
             </td>
             <td>
-              Checks correct indentation of Java code.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -661,8 +818,10 @@
               </a>
             </td>
             <td>
-              Checks for assignments in subexpressions, such as in <code>String s =
-              Integer.toString(i = 2);</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/InnerAssignmentCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -670,9 +829,10 @@
               <a href="checks/design/innertypelast.html#InnerTypeLast">InnerTypeLast</a>
             </td>
             <td>
-              Checks nested (internal) classes/interfaces are declared at the bottom
-              of the primary (top-level) class after all init and static init
-              blocks, method, constructor and field declarations.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InnerTypeLastCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -682,8 +842,10 @@
               </a>
             </td>
             <td>
-              Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only
-              to define types.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/InterfaceIsTypeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -693,7 +855,10 @@
               </a>
             </td>
             <td>
-              Checks for implicit modifiers on interface members and nested types.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/InterfaceMemberImpliedModifierCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -702,8 +867,10 @@
               InterfaceTypeParameterName</a>
             </td>
             <td>
-              Checks that interface type parameter names conform to a specified
-              pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/InterfaceTypeParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -712,7 +879,10 @@
               InvalidJavadocPosition</a>
             </td>
             <td>
-              Checks that Javadocs are located at the correct position.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/InvalidJavadocPositionCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -720,8 +890,10 @@
               <a href="checks/metrics/javancss.html#JavaNCSS">JavaNCSS</a>
             </td>
             <td>
-              Determines complexity of methods, classes and files by counting the
-              Non Commenting Source Statements (NCSS).
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/JavaNCSSCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -730,8 +902,10 @@
               JavadocBlockTagLocation</a>
             </td>
             <td>
-              Checks that a javadoc block tag appears only at the beginning of a
-              line, ignoring leading asterisks and white space.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocBlockTagLocationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -740,8 +914,10 @@
               JavadocContentLocation</a>
             </td>
             <td>
-              Checks that the Javadoc content begins from the same position for all
-              Javadoc comments in the project.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocContentLocationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -751,7 +927,10 @@
               </a>
             </td>
             <td>
-              Checks the alignment of leading asterisks in a Javadoc comment.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocLeadingAsteriskAlignCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -759,7 +938,10 @@
               <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
             </td>
             <td>
-              Checks the Javadoc of a method or constructor.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -769,7 +951,10 @@
               </a>
             </td>
             <td>
-              Checks if the javadoc has leading asterisks on each line.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingLeadingAsteriskCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -779,8 +964,10 @@
               </a>
             </td>
             <td>
-              Checks that there is at least one whitespace after the leading
-              asterisk.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -788,7 +975,10 @@
               <a href="checks/javadoc/javadocpackage.html#JavadocPackage">JavadocPackage</a>
             </td>
             <td>
-              Checks that each Java package has a Javadoc file used for commenting.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocPackageCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -798,7 +988,10 @@
               </a>
             </td>
             <td>
-              Checks the Javadoc paragraph.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocParagraphCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -806,7 +999,10 @@
               <a href="checks/javadoc/javadocstyle.html#JavadocStyle">JavadocStyle</a>
             </td>
             <td>
-              Validates Javadoc comments to help ensure they are well formed.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocStyleCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -816,7 +1012,10 @@
               </a>
             </td>
             <td>
-              Checks the indentation of the continuation lines in block tags.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTagContinuationIndentationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -824,7 +1023,10 @@
               <a href="checks/javadoc/javadoctype.html#JavadocType">JavadocType</a>
             </td>
             <td>
-              Checks the Javadoc comments for type definitions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -834,7 +1036,10 @@
               </a>
             </td>
             <td>
-              Checks that a variable has a Javadoc comment.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -844,7 +1049,10 @@
               </a>
             </td>
             <td>
-              Checks lambda body length.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -854,7 +1062,10 @@
               </a>
             </td>
             <td>
-              Checks lambda parameter names.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LambdaParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -862,8 +1073,10 @@
               <a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a>
             </td>
             <td>
-              Checks for the placement of left curly braces (<code>'{'</code>) for
-              code blocks.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/LeftCurlyCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -871,7 +1084,10 @@
               <a href="checks/sizes/linelength.html#LineLength">LineLength</a>
             </td>
             <td>
-              Checks for long lines.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LineLengthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -881,7 +1097,10 @@
               </a>
             </td>
             <td>
-              Checks that local final variable names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalFinalVariableNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -891,8 +1110,10 @@
               </a>
             </td>
             <td>
-              Checks that local, non-<code>final</code> variable names conform to a
-              specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalVariableNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -900,8 +1121,10 @@
               <a href="checks/coding/magicnumber.html#MagicNumber">MagicNumber</a>
             </td>
             <td>
-              Checks that there are no &quot;magic numbers&quot; where a magic
-              number is a numeric literal that is not defined as a constant.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MagicNumberCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -909,7 +1132,10 @@
               <a href="checks/coding/matchxpath.html#MatchXpath">MatchXpath</a>
             </td>
             <td>
-              Evaluates Xpath query and report violation on all matching AST nodes.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -917,7 +1143,10 @@
               <a href="checks/naming/membername.html#MemberName">MemberName</a>
             </td>
             <td>
-              Checks that instance variable names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MemberNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -925,8 +1154,10 @@
               <a href="checks/sizes/methodcount.html#MethodCount">MethodCount</a>
             </td>
             <td>
-              Checks the number of methods declared in each type declaration by
-              access modifier or total count.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodCountCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -934,7 +1165,10 @@
               <a href="checks/sizes/methodlength.html#MethodLength">MethodLength</a>
             </td>
             <td>
-              Checks for long methods and constructors.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/MethodLengthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -942,7 +1176,10 @@
               <a href="checks/naming/methodname.html#MethodName">MethodName</a>
             </td>
             <td>
-              Checks that method names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -952,9 +1189,10 @@
               </a>
             </td>
             <td>
-              Checks the padding between the identifier of a method definition,
-              constructor definition, method call, constructor invocation, record,
-              or record pattern; and the left parenthesis of the parameter list.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/MethodParamPadCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -963,8 +1201,10 @@
               MethodTypeParameterName</a>
             </td>
             <td>
-              Checks that method type parameter names conform to a specified
-              pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/MethodTypeParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -972,8 +1212,10 @@
               <a href="checks/coding/missingctor.html#MissingCtor">MissingCtor</a>
             </td>
             <td>
-              Checks that classes (except abstract ones) define a constructor and
-              don't rely on the default one.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingCtorCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -983,9 +1225,10 @@
               </a>
             </td>
             <td>
-              Verifies that the annotation <code>@Deprecated</code> and the Javadoc
-              tag <code>@deprecated</code> are both present when either of them is
-              present.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -995,7 +1238,10 @@
               </a>
             </td>
             <td>
-              Checks for missing Javadoc comments for a method or constructor.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocMethodCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1005,8 +1251,10 @@
               </a>
             </td>
             <td>
-              Checks for missing package definition Javadoc comments in
-              package-info.java files.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocPackageCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1016,8 +1264,10 @@
               </a>
             </td>
             <td>
-              Checks for missing Javadoc comments for class, enum, interface, and
-              annotation interface definitions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1027,9 +1277,10 @@
               </a>
             </td>
             <td>
-              Checks that a given switch statement or expression that use a
-              reference type in its selector expression has a <code>null</code> case
-              label.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingNullCaseInSwitchCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1037,8 +1288,10 @@
               <a href="checks/annotation/missingoverride.html#MissingOverride">MissingOverride</a>
             </td>
             <td>
-              Verifies that the <code>@Override</code> annotation is present when
-              the <code>@inheritDoc</code> javadoc tag is present.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1048,7 +1301,10 @@
               </a>
             </td>
             <td>
-              Checks that switch statement has a <code>default</code> clause.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MissingSwitchDefaultCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1057,8 +1313,10 @@
               ModifiedControlVariable</a>
             </td>
             <td>
-              Checks that for loop control variables are not modified inside the for
-              block.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ModifiedControlVariableCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1066,8 +1324,10 @@
               <a href="checks/modifier/modifierorder.html#ModifierOrder">ModifierOrder</a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the
-              Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ModifierOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1077,8 +1337,10 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against multiple header files that
-              contain a pattern for each line of the source header.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/MultiFileRegexpHeaderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1088,8 +1350,10 @@
               </a>
             </td>
             <td>
-              Checks for multiple occurrences of the same string literal within a
-              single file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleStringLiteralsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1099,8 +1363,10 @@
               </a>
             </td>
             <td>
-              Checks that each variable declaration is in its own statement and on
-              its own line.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MultipleVariableDeclarationsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1110,10 +1376,10 @@
               </a>
             </td>
             <td>
-              Ensures that exception classes (classes with names conforming to some
-              pattern and explicitly extending classes with names conforming to
-              other pattern) are immutable, that is, that they have only final
-              fields.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/MutableExceptionCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1123,7 +1389,10 @@
               </a>
             </td>
             <td>
-              Checks the NPATH complexity against a specified limit.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/NPathComplexityCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1131,7 +1400,10 @@
               <a href="checks/blocks/needbraces.html#NeedBraces">NeedBraces</a>
             </td>
             <td>
-              Checks for braces around code blocks.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/NeedBracesCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1139,7 +1411,10 @@
               <a href="checks/coding/nestedfordepth.html#NestedForDepth">NestedForDepth</a>
             </td>
             <td>
-              Restricts nested <code>for</code> blocks to a specified depth.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedForDepthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1147,7 +1422,10 @@
               <a href="checks/coding/nestedifdepth.html#NestedIfDepth">NestedIfDepth</a>
             </td>
             <td>
-              Restricts nested if-else blocks to a specified depth.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedIfDepthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1155,7 +1433,10 @@
               <a href="checks/coding/nestedtrydepth.html#NestedTryDepth">NestedTryDepth</a>
             </td>
             <td>
-              Restricts nested try-catch-finally blocks to a specified depth.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedTryDepthCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1165,7 +1446,10 @@
               </a>
             </td>
             <td>
-              Checks whether files end with a line separator.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1175,7 +1459,10 @@
               </a>
             </td>
             <td>
-              Checks that array initialization do not contain a trailing comma.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoArrayTrailingCommaCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1183,7 +1470,10 @@
               <a href="checks/coding/noclone.html#NoClone">NoClone</a>
             </td>
             <td>
-              Checks that the clone method is not overridden from the Object class.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoCloneCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1191,7 +1481,10 @@
               <a href="checks/misc/nocodeinfile.html#NoCodeInFile">NoCodeInFile</a>
             </td>
             <td>
-              Checks whether file contains code.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NoCodeInFileCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1201,7 +1494,10 @@
               </a>
             </td>
             <td>
-              Checks that enum definition does not contain a trailing comma.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoEnumTrailingCommaCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1209,8 +1505,10 @@
               <a href="checks/coding/nofinalizer.html#NoFinalizer">NoFinalizer</a>
             </td>
             <td>
-              Checks that there is no method <code>finalize</code> with zero
-              parameters.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoFinalizerCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1218,7 +1516,10 @@
               <a href="checks/whitespace/nolinewrap.html#NoLineWrap">NoLineWrap</a>
             </td>
             <td>
-              Checks that chosen statements are not line-wrapped.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoLineWrapCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1228,7 +1529,10 @@
               </a>
             </td>
             <td>
-              Checks that there is no whitespace after a token.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceAfterCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1238,7 +1542,10 @@
               </a>
             </td>
             <td>
-              Checks that there is no whitespace before a token.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceBeforeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1248,7 +1555,10 @@
               </a>
             </td>
             <td>
-              Checks that there is no whitespace before the colon in a switch block.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/NoWhitespaceBeforeCaseDefaultColonCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1258,7 +1568,10 @@
               </a>
             </td>
             <td>
-              Checks that the block tag is followed by description.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/NonEmptyAtclauseDescriptionCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1268,7 +1581,10 @@
               </a>
             </td>
             <td>
-              Checks that there is only one statement per line.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1278,8 +1594,10 @@
               </a>
             </td>
             <td>
-              Checks that each top-level class, interface, enum or annotation
-              resides in a source file of its own.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/OneTopLevelClassCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1287,7 +1605,10 @@
               <a href="checks/whitespace/operatorwrap.html#OperatorWrap">OperatorWrap</a>
             </td>
             <td>
-              Checks the policy on how to wrap lines on operators.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/OperatorWrapCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1297,7 +1618,10 @@
               </a>
             </td>
             <td>
-              Detects if keys in properties files are in correct order.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1307,7 +1631,10 @@
               </a>
             </td>
             <td>
-              Checks that the outer type name and the file name match.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OuterTypeFilenameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1315,8 +1642,10 @@
               <a href="checks/sizes/outertypenumber.html#OuterTypeNumber">OuterTypeNumber</a>
             </td>
             <td>
-              Checks for the number of types declared at the <i>outer</i> (or
-              <i>root</i>) level in a file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/OuterTypeNumberCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1326,7 +1655,10 @@
               </a>
             </td>
             <td>
-              Checks that overloaded methods are grouped together.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OverloadMethodsDeclarationOrderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1336,7 +1668,10 @@
               </a>
             </td>
             <td>
-              Checks that all package annotations are in the package-info.java file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/PackageAnnotationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1346,9 +1681,10 @@
               </a>
             </td>
             <td>
-              Ensures that a class has a package declaration, and (optionally)
-              whether the package name matches the directory name for the source
-              file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PackageDeclarationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1356,7 +1692,10 @@
               <a href="checks/naming/packagename.html#PackageName">PackageName</a>
             </td>
             <td>
-              Checks that package names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/PackageNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1366,7 +1705,10 @@
               </a>
             </td>
             <td>
-              Disallows assignment of parameters.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ParameterAssignmentCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1374,7 +1716,10 @@
               <a href="checks/naming/parametername.html#ParameterName">ParameterName</a>
             </td>
             <td>
-              Checks that method parameter names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/ParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1382,7 +1727,10 @@
               <a href="checks/sizes/parameternumber.html#ParameterNumber">ParameterNumber</a>
             </td>
             <td>
-              Checks the number of parameters of a method or constructor.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/ParameterNumberCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1390,9 +1738,10 @@
               <a href="checks/whitespace/parenpad.html#ParenPad">ParenPad</a>
             </td>
             <td>
-              Checks the policy on the padding of parentheses; that is whether a
-              space is required after a left parenthesis and before a right
-              parenthesis, or such spaces are forbidden.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ParenPadCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1402,7 +1751,10 @@
               </a>
             </td>
             <td>
-              Checks for assignment of pattern variables.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1412,7 +1764,10 @@
               </a>
             </td>
             <td>
-              Checks that pattern variable names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/PatternVariableNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1422,7 +1777,10 @@
               </a>
             </td>
             <td>
-              Checks that record component names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/RecordComponentNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1432,8 +1790,10 @@
               </a>
             </td>
             <td>
-              Checks the number of record components in the header of a record
-              definition.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/RecordComponentNumberCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1443,8 +1803,10 @@
               </a>
             </td>
             <td>
-              Checks that record type parameter names conform to a specified
-              pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/RecordTypeParameterNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1454,7 +1816,10 @@
               </a>
             </td>
             <td>
-              Checks for redundant import statements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/RedundantImportCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1464,7 +1829,10 @@
               </a>
             </td>
             <td>
-              Checks for redundant modifiers.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/RedundantModifierCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1472,8 +1840,10 @@
               <a href="checks/regexp/regexp.html#Regexp">Regexp</a>
             </td>
             <td>
-              Checks that a specified pattern exists, exists less than a set number
-              of times, or does not exist in the file.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1481,8 +1851,10 @@
               <a href="checks/header/regexpheader.html#RegexpHeader">RegexpHeader</a>
             </td>
             <td>
-              Checks the header of a source file against a header that contains a
-              pattern for each line of the source header.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/header/RegexpHeaderCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1492,8 +1864,10 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches across multiple lines in any
-              file type.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1503,8 +1877,10 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches based on file and/or folder
-              path.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpOnFilenameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1514,8 +1890,10 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches a single-line in any file
-              type.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1525,7 +1903,10 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches a single-line in Java files.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineJavaCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1535,8 +1916,10 @@
               </a>
             </td>
             <td>
-              Checks that one blank line before the block tag if it is present in
-              Javadoc.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/RequireEmptyLineBeforeBlockTagGroupCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1544,10 +1927,10 @@
               <a href="checks/coding/requirethis.html#RequireThis">RequireThis</a>
             </td>
             <td>
-              Checks that references to instance variables and methods of the
-              present object are explicitly of the form "this.varName" or
-              "this.methodName(args)" and that those references don't rely on the
-              default behavior when "this." is absent.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1555,8 +1938,10 @@
               <a href="checks/coding/returncount.html#ReturnCount">ReturnCount</a>
             </td>
             <td>
-              Restricts the number of return statements in methods, constructors and
-              lambda expressions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/ReturnCountCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1564,8 +1949,10 @@
               <a href="checks/blocks/rightcurly.html#RightCurly">RightCurly</a>
             </td>
             <td>
-              Checks the placement of right curly braces (<code>'}'</code>) for code
-              blocks.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/RightCurlyCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1573,7 +1960,10 @@
               <a href="checks/design/sealedshouldhavepermitslist.html#SealedShouldHavePermitsList">SealedShouldHavePermitsList</a>
             </td>
             <td>
-              Checks that sealed classes and interfaces have a permits list.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/SealedShouldHavePermitsListCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1581,7 +1971,10 @@
               <a href="checks/whitespace/separatorwrap.html#SeparatorWrap">SeparatorWrap</a>
             </td>
             <td>
-              Checks line wrapping with separators.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SeparatorWrapCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1590,7 +1983,10 @@
               SimplifyBooleanExpression</a>
             </td>
             <td>
-              Checks for over-complicated boolean expressions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SimplifyBooleanExpressionCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1600,7 +1996,10 @@
               </a>
             </td>
             <td>
-              Checks for over-complicated boolean return or yield statements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SimplifyBooleanReturnCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1610,8 +2009,10 @@
               </a>
             </td>
             <td>
-              Checks that a Javadoc block can fit in a single-line and doesn't
-              contain block tags.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SingleLineJavadocCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1621,8 +2022,10 @@
               </a>
             </td>
             <td>
-              Checks that non-whitespace characters are separated by no more than
-              one whitespace.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/SingleSpaceSeparatorCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1632,8 +2035,10 @@
               </a>
             </td>
             <td>
-              Checks that <code>static</code>, non-<code>final</code> variable names
-              conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/StaticVariableNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1643,8 +2048,10 @@
               </a>
             </td>
             <td>
-              Checks that string literals are not used with <code>==</code> or
-              <code>&#33;=</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/StringLiteralEqualityCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1652,8 +2059,10 @@
               <a href="checks/javadoc/summaryjavadoc.html#SummaryJavadoc">SummaryJavadoc</a>
             </td>
             <td>
-              Checks that Javadoc summary sentence does not contain phrases that are
-              not recommended to use.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/SummaryJavadocCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1661,8 +2070,10 @@
               <a href="checks/coding/superclone.html#SuperClone">SuperClone</a>
             </td>
             <td>
-              Checks that an overriding <code>clone()</code> method invokes
-              <code>super.clone()</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SuperCloneCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1670,8 +2081,10 @@
               <a href="checks/coding/superfinalize.html#SuperFinalize">SuperFinalize</a>
             </td>
             <td>
-              Checks that an overriding <code>finalize()</code> method invokes
-              <code>super.finalize()</code>.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SuperFinalizeCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1680,8 +2093,10 @@
               </a>
             </td>
             <td>
-              Allows to specify what warnings that <code>@SuppressWarnings</code> is
-              not allowed to suppress.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1689,7 +2104,10 @@
               <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
             </td>
             <td>
-              Restricts throws statements to a specified count.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1697,7 +2115,10 @@
               <a href="checks/misc/todocomment.html#TodoComment">TodoComment</a>
             </td>
             <td>
-              Checks for <code>TODO:</code> comments.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TodoCommentCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1705,7 +2126,10 @@
               <a href="checks/misc/trailingcomment.html#TrailingComment">TrailingComment</a>
             </td>
             <td>
-              The check to ensure that lines with code do not end with comment.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TrailingCommentCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1713,8 +2137,10 @@
               <a href="checks/misc/translation.html#Translation">Translation</a>
             </td>
             <td>
-              Ensures the correct translation of code by checking property files for
-              consistency regarding their keys.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/TranslationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1722,7 +2148,10 @@
               <a href="checks/naming/typename.html#TypeName">TypeName</a>
             </td>
             <td>
-              Checks that type names conform to a specified pattern.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/TypeNameCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1732,7 +2161,10 @@
               </a>
             </td>
             <td>
-              Checks the policy on the padding of parentheses for typecasts.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypecastParenPadCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1740,7 +2172,10 @@
               <a href="checks/misc/uncommentedmain.html#UncommentedMain">UncommentedMain</a>
             </td>
             <td>
-              Detects uncommented <code>main</code> methods.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1750,7 +2185,10 @@
               </a>
             </td>
             <td>
-              Detects duplicated keys in properties files.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/UniquePropertiesCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1760,7 +2198,10 @@
               </a>
             </td>
             <td>
-              Checks for redundant null checks with the instanceof operator.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1770,8 +2211,10 @@
               </a>
             </td>
             <td>
-              Checks if unnecessary parentheses are used in a statement or
-              expression.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1781,7 +2224,10 @@
               </a>
             </td>
             <td>
-              Checks if unnecessary semicolon is used after type declaration.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterOuterTypeDeclarationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1791,7 +2237,10 @@
               </a>
             </td>
             <td>
-              Checks if unnecessary semicolon is used after type member declaration.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterTypeMemberDeclarationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1801,7 +2250,10 @@
               </a>
             </td>
             <td>
-              Checks if unnecessary semicolon is in enum definitions.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInEnumerationCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1811,7 +2263,10 @@
               </a>
             </td>
             <td>
-              Checks if unnecessary semicolon is used in last resource declaration.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInTryWithResourcesCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1821,8 +2276,10 @@
               </a>
             </td>
             <td>
-              Ensures that catch parameters that are not used are declared as an
-              unnamed variable.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedCatchParameterShouldBeUnnamedCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1830,7 +2287,10 @@
               <a href="checks/imports/unusedimports.html#UnusedImports">UnusedImports</a>
             </td>
             <td>
-              Checks for unused import statements.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1840,8 +2300,10 @@
               </a>
             </td>
             <td>
-              Ensures that lambda parameters that are not used are declared as an
-              unnamed variable.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLambdaParameterShouldBeUnnamedCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1851,8 +2313,10 @@
               </a>
             </td>
             <td>
-              Checks that a local variable is declared and/or assigned, but not
-              used.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1860,7 +2324,10 @@
               <a href="checks/misc/upperell.html#UpperEll">UpperEll</a>
             </td>
             <td>
-              Checks that long constants are defined with an upper ell.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/UpperEllCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1870,8 +2337,10 @@
               </a>
             </td>
             <td>
-              Checks the distance between declaration of variable and its first
-              usage.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1881,7 +2350,10 @@
               </a>
             </td>
             <td>
-              Checks visibility of class members.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/VisibilityModifierCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1891,8 +2363,10 @@
               </a>
             </td>
             <td>
-              Ensures that <code>when</code> is used instead of a single
-              <code>if</code> statement inside a case block.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/WhenShouldBeUsedCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1902,9 +2376,10 @@
               </a>
             </td>
             <td>
-              Checks that a token is followed by whitespace, with the exception that
-              it does not check for whitespace after the semicolon of an empty for
-              iterator.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAfterCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1914,7 +2389,10 @@
               </a>
             </td>
             <td>
-              Checks that a token is surrounded by whitespace.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java" />
+              </macro>
             </td>
           </tr>
           <tr>
@@ -1922,8 +2400,10 @@
               <a href="checks/javadoc/writetag.html#WriteTag">WriteTag</a>
             </td>
             <td>
-              Requires user defined Javadoc tag to be present in Javadoc comment
-              with defined format.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java" />
+              </macro>
             </td>
           </tr>
         </table>
@@ -1942,8 +2422,10 @@
               SuppressWarningsHolder</a>
             </td>
             <td>
-              Maintains a set of check suppressions from
-              <code>@SuppressWarnings</code> annotations.
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java" />
+              </macro>
             </td>
           </tr>
         </table>
