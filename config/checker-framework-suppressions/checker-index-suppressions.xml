@@ -2431,6 +2431,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+    <lineContent>|| Character.isWhitespace(description.charAt(index + 1))</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;description&quot;) int
+      required: @LTLengthOf(&quot;description&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+    <lineContent>|| description.charAt(index + 1) == &apos;&lt;&apos;)) {</lineContent>
+    <details>
+      found   : @LTEqLengthOf(&quot;description&quot;) int
+      required: @LTLengthOf(&quot;description&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ClassAndPropertiesSettersJavadocScraper.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.substring.</message>
