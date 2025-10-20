@@ -99,6 +99,26 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @deprecated} block tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *  <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @deprecated deprecated text.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> deprecated
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  deprecated text.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int DEPRECATED_BLOCK_TAG = JavadocCommentsLexer.DEPRECATED_BLOCK_TAG;
 
