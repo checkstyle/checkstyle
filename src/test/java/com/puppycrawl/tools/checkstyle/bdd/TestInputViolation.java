@@ -40,6 +40,9 @@ public record TestInputViolation(int lineNo, String message)
     /** Pattern to match the symbol: ")". */
     private static final Pattern CLOSE_PAREN_PATTERN = Pattern.compile("\\)");
 
+    /** Pattern to match the symbol "+" before digit. */
+    private static final Pattern EXPLICIT_POSITIVE_NUMBER_PATTERN = Pattern.compile("\\+(?=\\d)");
+
     /** Legacy getter for line number (backward compatibility). */
     public int getLineNo() {
         return lineNo;
@@ -62,6 +65,7 @@ public record TestInputViolation(int lineNo, String message)
             rawMessage = OPEN_CURLY_PATTERN.matcher(rawMessage).replaceAll("\\\\{");
             rawMessage = OPEN_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\(");
             rawMessage = CLOSE_PAREN_PATTERN.matcher(rawMessage).replaceAll("\\\\)");
+            rawMessage = EXPLICIT_POSITIVE_NUMBER_PATTERN.matcher(rawMessage).replaceAll("\\\\+");
             regex += rawMessage + ".*";
         }
         return regex;

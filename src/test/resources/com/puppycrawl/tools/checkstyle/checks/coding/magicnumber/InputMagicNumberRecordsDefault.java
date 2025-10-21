@@ -18,21 +18,21 @@ tokens = (default)NUM_DOUBLE, NUM_FLOAT, NUM_INT, NUM_LONG
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberRecordsDefault {
-    @anno(6) // violation
+    @anno(6) // violation ''6' is a magic number'
     public record MyRecord() {
-        private static int myInt = 7; // violation
+        private static int myInt = 7; // violation ''7' is a magic number'
 
         public MyRecord{
             int i = myInt + 1; // no violation, 1 is defined as non-magic
-            int j = myInt + 8; // violation
+            int j = myInt + 8; // violation ''8' is a magic number'
         }
         void foo() {
             int i = myInt + 1; // no violation, 1 is defined as non-magic
-            int j = myInt + 8; // violation
+            int j = myInt + 8; // violation ''8' is a magic number'
         }
 
         public int hashCode() {
-            return 10;    // violation
+            return 10;    // violation ''10' is a magic number'
         }
     }
 
