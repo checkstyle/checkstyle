@@ -563,7 +563,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int LINKPLAIN_INLINE_TAG = JavadocCommentsLexer.LINKPLAIN_INLINE_TAG;
 
     /**
-     * {@code {@value}} inline tag.
+     * {@code {@value}} Javadoc inline tag.
+     *
+     * <p>Such Javadoc tag can have one child:</p>
+     * <ol>
+     *   <li>{@link #REFERENCE}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@value Integer#MAX_VALUE}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * --JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--VALUE_INLINE_TAG -> VALUE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> { @
+     *     |--TAG_NAME -> value
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> Integer
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       `--IDENTIFIER -> MAX_VALUE
+     *     |--TEXT ->
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int VALUE_INLINE_TAG = JavadocCommentsLexer.VALUE_INLINE_TAG;
 
