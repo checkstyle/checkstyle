@@ -523,7 +523,42 @@ public final class JavadocCommentsTokenTypes {
     public static final int LINK_INLINE_TAG = JavadocCommentsLexer.LINK_INLINE_TAG;
 
     /**
-     * {@code {@linkplain}} inline tag.
+     * {@code {@linkplain}} Javadoc inline tag.
+     *
+     * <p>Such Javadoc tag can have two children:</p>
+     * <ol>
+     *   <li>{@link #REFERENCE}</li>
+     *   <li>{@link #DESCRIPTION}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@linkplain String#indexOf(int, int) label}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * --JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINKPLAIN_INLINE_TAG -> LINKPLAIN_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> { @
+     *     |--TAG_NAME -> linkplain
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> String
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> indexOf
+     *     |       |--LPAREN -> (
+     *     |       |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *     |       |   |--PARAMETER_TYPE -> int
+     *     |       |   |--COMMA -> ,
+     *     |       |   |--TEXT ->
+     *     |       |   `--PARAMETER_TYPE -> int
+     *     |       `--RPAREN -> )
+     *     |--DESCRIPTION -> DESCRIPTION
+     *     |   `--TEXT ->  label
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int LINKPLAIN_INLINE_TAG = JavadocCommentsLexer.LINKPLAIN_INLINE_TAG;
 
