@@ -438,7 +438,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int SERIAL_FIELD_BLOCK_TAG = JavadocCommentsLexer.SERIAL_FIELD_BLOCK_TAG;
 
     /**
-     * {@code @serialField} Javadoc block tag.
+     * {@code @customBlock} Javadoc block tag.
      *
      * <p>This type represents any block tag that is not explicitly recognized by Checkstyle,
      * such as a project-specific or malformed tag.</p>
@@ -450,7 +450,7 @@ public final class JavadocCommentsTokenTypes {
      * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
      *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> mycustom
+     *     |--TAG_NAME -> customBlock
      *     |--TEXT ->
      *     `--DESCRIPTION -> DESCRIPTION
      *         `--TEXT ->  This is a custom block tag.
