@@ -19,9 +19,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
 public class InputMagicNumberMagicNumberWithUnnamedVariables {
     void test() {
-        int _ = 9; // violation
+        int _ = 9; // violation ''9' is a magic number'
         int _ = 1;
-        Integer _ = 17; // violation
-        double _ = 3.1415; // violation
+        Integer _ = 17; // violation ''17' is a magic number'
+        double _ = 3.1415; // violation ''3.1415' is a magic number'
     }
 }
