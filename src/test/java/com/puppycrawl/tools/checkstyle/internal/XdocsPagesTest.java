@@ -101,8 +101,6 @@ public class XdocsPagesTest {
     private static final Path AVAILABLE_FILE_FILTERS_PATH = Path.of(
         "src/site/xdoc/filefilters/index.xml");
     private static final Path AVAILABLE_FILTERS_PATH = Path.of("src/site/xdoc/filters/index.xml");
-    private static final String LINK_TEMPLATE =
-            "(?s).*<a href=\"[^\"]+#%1$s\">([\\r\\n\\s])*%1$s([\\r\\n\\s])*</a>.*";
 
     private static final Pattern VERSION = Pattern.compile("\\d+\\.\\d+(\\.\\d+)?");
 
@@ -301,7 +299,9 @@ public class XdocsPagesTest {
     }
 
     private static boolean isPresent(String availableChecks, String checkName) {
-        final String linkPattern = String.format(Locale.ROOT, LINK_TEMPLATE, checkName);
+        final String linkPattern = String.format(Locale.ROOT,
+                "(?s).*<a href=\"[^\"]+#%1$s\">([\\r\\n\\s])*%1$s([\\r\\n\\s])*</a>.*",
+                checkName);
         return availableChecks.matches(linkPattern);
     }
 

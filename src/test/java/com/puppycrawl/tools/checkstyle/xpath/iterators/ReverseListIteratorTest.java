@@ -31,7 +31,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.om.TreeInfo;
 
 public class ReverseListIteratorTest {
 
@@ -61,14 +60,10 @@ public class ReverseListIteratorTest {
         }
     }
 
-    private static class TestNode extends AbstractNode {
+    private static final class TestNode extends AbstractNode {
 
         private TestNode() {
             super(null);
-        }
-
-        protected TestNode(TreeInfo treeInfo) {
-            super(treeInfo);
         }
 
         @Override
