@@ -242,14 +242,12 @@ public class InputOneStatementPerLine {
     // 'Only one statement per line allowed.'
   }
 
-
   /**
    * While theoretically being distributed over two lines, this is a sample
    * of 2 statements on one line.
    */
   int var9 = 1, var10 = 5 // violation 'Each variable declaration must be in its own statement.'
       ; int var11 = 2; // violation 'Only one statement per line allowed.'
-
 
   /**
    * Multiline for loop statement is legal.
