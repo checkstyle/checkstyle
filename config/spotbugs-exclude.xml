@@ -313,13 +313,6 @@
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
   <Match>
-    <!-- variable is just being saved for further analysis and isn't the main decider
-         of the loop if it is done or not -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck"/>
-    <Method name="getBlockContainingLocalAnonInnerClass"/>
-    <Bug pattern="SLS_SUSPICIOUS_LOOP_SEARCH"/>
-  </Match>
-  <Match>
     <!-- conflicts with PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.imports.PkgImportControl"/>
     <Method name="matchesAtFrontNoRegex"/>
