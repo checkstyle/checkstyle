@@ -49,7 +49,6 @@ strictfp abstract class InputModifierOrder {
   // violation below ''static' modifier out of order with the JLS suggestions.'
   @MyAnnotation2 strictfp static final synchronized private void fooMethod4() {}
 
-
   // violation below ''final' modifier out of order with the JLS suggestions.'
   synchronized final strictfp @MyAnnotation2 static public void fooMethod5() {}
 
