@@ -150,13 +150,16 @@ public class IllegalInstantiationCheckTest
 
         final DetailAstImpl lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
+        lambdaAst.setText("LAMBDA");
 
         try {
             check.visitToken(lambdaAst);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException exc) {
-            // it is OK
+            assertWithMessage("Message must include token name")
+                .that(exc.getMessage())
+                .contains("LAMBDA");
         }
     }
 
