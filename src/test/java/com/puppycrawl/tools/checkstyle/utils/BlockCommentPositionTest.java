@@ -141,21 +141,21 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
         /**
          * Legacy getter for fileName, for backward compatibility.
          */
-        public String getFileName() {
+        private String getFileName() {
             return fileName;
         }
 
         /**
          * Legacy getter for assertion, for backward compatibility.
          */
-        public Function<DetailAST, Boolean> getAssertion() {
+        private Function<DetailAST, Boolean> getAssertion() {
             return assertion;
         }
 
         /**
          * Legacy getter for matchesNum, for backward compatibility.
          */
-        public int getMatchesNum() {
+        private int getMatchesNum() {
             return matchesNum;
         }
     }
