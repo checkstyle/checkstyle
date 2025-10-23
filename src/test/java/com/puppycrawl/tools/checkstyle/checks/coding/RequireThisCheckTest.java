@@ -523,12 +523,13 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
         final Object o = TestUtil.instantiate(cls, null, ident);
 
-        final DetailAstImpl actual = TestUtil.invokeMethod(o, "getFrameNameIdent");
+        final DetailAstImpl actual = TestUtil.invokeMethod(o,
+                "getFrameNameIdent", DetailAstImpl.class);
         assertWithMessage("expected ident token")
             .that(actual)
             .isSameInstanceAs(ident);
         assertWithMessage("expected catch frame type")
-            .that(TestUtil.invokeMethod(o, "getType").toString())
+            .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
             .isEqualTo("CATCH_FRAME");
     }
 
@@ -547,7 +548,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final Object o = TestUtil.instantiate(cls, null, ident);
 
         assertWithMessage("expected for frame type")
-            .that(TestUtil.invokeMethod(o, "getType").toString())
+            .that(TestUtil.invokeMethod(o, "getType", Object.class).toString())
             .isEqualTo("FOR_FRAME");
     }
 
