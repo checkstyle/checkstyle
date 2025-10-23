@@ -498,7 +498,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
-        final int actual = TestUtil.invokeMethod(check, "countMatches",
+        final int actual = TestUtil.invokeMethod(check, "countMatches", Integer.class,
                 Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
         assertWithMessage("Unexpected matches count")
             .that(actual)
