@@ -266,6 +266,7 @@
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
       -Xep:TimeZoneUsage:ERROR
+      -Xep:UnnecessaryLambda:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
