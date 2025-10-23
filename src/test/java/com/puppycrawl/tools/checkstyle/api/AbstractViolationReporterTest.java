@@ -44,16 +44,17 @@ public class AbstractViolationReporterTest {
     @Test
     public void testGetMessageBundleWithPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
-                .that(TestUtil.<String>invokeStaticMethod(AbstractViolationReporter.class,
-                        "getMessageBundle", "com.mycompany.checks.MyCoolCheck"))
+                .that(TestUtil.invokeStaticMethod(AbstractViolationReporter.class,
+                        "getMessageBundle", String.class,
+                        "com.mycompany.checks.MyCoolCheck"))
                 .isEqualTo("com.mycompany.checks.messages");
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
-                .that(TestUtil.<String>invokeStaticMethod(AbstractViolationReporter.class,
-                        "getMessageBundle", "MyCoolCheck"))
+                .that(TestUtil.invokeStaticMethod(AbstractViolationReporter.class,
+                        "getMessageBundle", String.class, "MyCoolCheck"))
                 .isEqualTo("messages");
     }
 
