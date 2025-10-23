@@ -491,6 +491,7 @@ defaultValue
 // STATEMENTS / BLOCKS
 constructorBlock
     : LCURLY
+      blockStatement*
       explicitConstructorInvocation?
       blockStatement*
       RCURLY
