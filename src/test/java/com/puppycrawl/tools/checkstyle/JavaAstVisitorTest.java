@@ -239,7 +239,8 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
     @Test
     public void testNullSelfInAddLastSibling() {
         assertDoesNotThrow(() -> {
-            TestUtil.invokeStaticMethod(JavaAstVisitor.class, "addLastSibling", null, null);
+            TestUtil.invokeStaticMethodDefault(JavaAstVisitor.class, "addLastSibling",
+                    null, null);
         }, "Method should not throw exception.");
     }
     /**
