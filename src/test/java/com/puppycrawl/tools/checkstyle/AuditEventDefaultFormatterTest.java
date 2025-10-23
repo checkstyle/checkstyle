@@ -81,7 +81,8 @@ public class AuditEventDefaultFormatterTest {
                 getClass(), null);
         final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", violation);
         final StringBuilder result = TestUtil.invokeStaticMethod(AuditEventDefaultFormatter.class,
-                "initStringBuilderWithOptimalBuffer", auditEvent, SeverityLevel.ERROR.toString());
+                "initStringBuilderWithOptimalBuffer", StringBuilder.class,
+                auditEvent, SeverityLevel.ERROR.toString());
 
         assertWithMessage("Buffer length is not expected")
                 .that(result.capacity())
