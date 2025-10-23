@@ -1,15 +1,8 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="TrailingComment"/>
-    <module name="SuppressionXpathSingleFilter">
-      <property name="checks" value="TrailingCommentCheck"/>
-      <property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/>
-      <property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/>
-      <property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/>
+    <module name="TrailingComment">
+      <property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR).*"/>
     </module>
   </module>
 </module>
