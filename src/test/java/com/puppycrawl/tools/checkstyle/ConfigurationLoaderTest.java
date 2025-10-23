@@ -75,7 +75,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     private static String invokeReplacePropertiesMethod(
             Object internalLoader, String value, String defaultValue)
             throws ReflectiveOperationException {
-        return TestUtil.invokeMethod(internalLoader, "replaceProperties", value, defaultValue);
+        return TestUtil.invokeMethod(internalLoader, "replaceProperties",
+                String.class, value, defaultValue);
     }
 
     private static void invokeParsePropertyStringMethod(
@@ -84,7 +85,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             Collection<String> fragments,
             Collection<String> propertyRefs)
             throws ReflectiveOperationException {
-        TestUtil.invokeMethod(
+        TestUtil.invokeMethodDefault(
                 internalLoader, "parsePropertyString", value, fragments, propertyRefs);
     }
 
@@ -556,7 +557,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Object obj = TestUtil.instantiate(aClass, objParent);
 
         try {
-            TestUtil.invokeMethod(obj, "startElement", "", "", "hello", null);
+            TestUtil.invokeMethodDefault(obj, "startElement", "", "", "hello", null);
 
             assertWithMessage("InvocationTargetException is expected").fail();
         }

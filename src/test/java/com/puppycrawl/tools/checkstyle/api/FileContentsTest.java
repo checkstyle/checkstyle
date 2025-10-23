@@ -328,8 +328,8 @@ public class FileContentsTest {
         clangComments.put(2, Collections.emptyList());
 
         assertWithMessage("Invalid results")
-                .that(TestUtil.<Boolean>invokeMethod(fileContents,
-                        "hasIntersectionWithBlockComment", 1, 1, 1, 1))
+                .that(TestUtil.invokeMethod(fileContents,
+                        "hasIntersectionWithBlockComment", Boolean.class, 1, 1, 1, 1))
                 .isTrue();
     }
 
