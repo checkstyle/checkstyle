@@ -19,7 +19,7 @@
  &lt;/p&gt;
  &lt;div class="wrapper"&gt;&lt;pre class="prettyprint"&gt;&lt;code class="language-java"&gt;
  a = b + c;      // Some insightful comment
- d = e / f;        // Another comment for this line
+ d = e / f;      /* Some insightful block comment &amp;#42;/
  &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
  &lt;p&gt;
