@@ -374,11 +374,11 @@ public class ModuleReflectionUtilTest {
 
     }
 
-    private static class InvalidNonDefaultConstructorClass extends AbstractAutomaticBean {
+    private static final class InvalidNonDefaultConstructorClass extends AbstractAutomaticBean {
 
         private int field;
 
-        protected InvalidNonDefaultConstructorClass(int data) {
+        private InvalidNonDefaultConstructorClass(int data) {
             // keep pmd calm and happy
             field = 0;
             method(data);
@@ -389,11 +389,11 @@ public class ModuleReflectionUtilTest {
          *
          * @param data of int type.
          */
-        public final void method(int data) {
+        private void method(int data) {
             field = data + 1;
         }
 
-        public int getField() {
+        private int getField() {
             return field;
         }
 
@@ -405,3 +405,4 @@ public class ModuleReflectionUtilTest {
     }
 
 }
+
