@@ -222,6 +222,42 @@ public class Example4 {
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
   int d; // violation, not suppressed
 }
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          To configure the check to allow trailing comments that match a specific pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (TODO|FIXME|trailingcomment).*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // TODO: refactor this - ok, matches legalComment pattern
+    doSomething(
+            "param1"
+    ); // FIXME: handle edge cases - ok, matches legalComment pattern
+
+    int b = 10; // trailingcomment - ok, matches legalComment pattern
+    int c = 15; // violation, regular comment doesn't match pattern
+  }
+
+  private static void doSomething(String param) {
+  }
+}
 </code></pre></div>
 
       </subsection>
