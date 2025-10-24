@@ -106,6 +106,9 @@ public class ModuleReflectionUtilTest {
         assertWithMessage("Should return false when invalid class is passed")
                 .that(ModuleReflectionUtil.isCheckstyleModule(AbstractInvalidClass.class))
                 .isFalse();
+        assertWithMessage("Should return true when valid checkstyle class is passed")
+                .that(ModuleReflectionUtil.isCheckstyleModule(ValidClass.class))
+                .isTrue();
         assertWithMessage("Should return false when invalid class is passed")
                 .that(ModuleReflectionUtil
                     .isCheckstyleModule(InvalidNonDefaultConstructorClass.class))
@@ -217,14 +220,25 @@ public class ModuleReflectionUtilTest {
 
     /**
      * AbstractInvalidClass.
-     *
-     * @noinspection AbstractClassNeverImplemented
-     * @noinspectionreason AbstractClassNeverImplemented - class is only used in testing
      */
     private abstract static class AbstractInvalidClass extends AbstractAutomaticBean {
 
         public abstract void method();
 
+    }
+
+    private static final class ValidClass extends AbstractInvalidClass {
+
+        @Override
+        public void method() {
+            // dummy method
+        }
+
+        @Override
+        protected void finishLocalSetup() {
+            final AbstractInvalidClass ref = this;
+            ref.method();
+        }
     }
 
     private static final class CheckClass extends AbstractCheck {
@@ -405,3 +419,4 @@ public class ModuleReflectionUtilTest {
     }
 
 }
+
