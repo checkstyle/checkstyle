@@ -9118,11 +9118,16 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
-    <message>Could not infer type arguments for Stream.map</message>
-    <lineContent>.map(Pattern.class::cast)</lineContent>
+    <message>Could not infer type arguments for Stream.collect</message>
+    <lineContent>.collect(Collectors.toCollection(ArrayList&lt;String&gt;::new));</lineContent>
     <details>
-      unsatisfiable constraint: capture extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
-      Pattern.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      unsatisfiable constraint: @Initialized @PolyNull String &lt;: @Initialized @NonNull String
+      @Initialized @NonNull String = use of T from Collectors.toCollection(ArrayList&lt;String&gt;::new)
+      From complementary bound.: @Initialized @NonNull String &lt;= use of T from Collectors.toCollection(ArrayList&lt;String&gt;::new)
+      @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; &lt;: inference type: java.util.Collection&lt;T&gt;
+      @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; &lt;: use of C from Collectors.toCollection(ArrayList&lt;String&gt;::new)
+      From complementary bound.: @Initialized @NonNull ArrayList&lt;@Initialized @NonNull String&gt; -&gt; use of C from Collectors.toCollection(ArrayList&lt;String&gt;::new)
+      ArrayList&lt;String&gt;::new -&gt; inference type: java.util.function.Supplier&lt;C&gt;
       From: Argument constraint
     </details>
   </checkerFrameworkError>
@@ -9131,10 +9136,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>type.arguments.not.inferred</specifier>
     <message>Could not infer type arguments for Stream.map</message>
-    <lineContent>.map(String.class::cast)</lineContent>
+    <lineContent>.map(Pattern.class::cast)</lineContent>
     <details>
       unsatisfiable constraint: capture extends @Initialized @Nullable Object &lt;: @Initialized @PolyNull Object
-      String.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
+      Pattern.class::cast -&gt; inference type: java.util.function.Function&lt;? super capture of ?,? extends R&gt;
       From: Argument constraint
     </details>
   </checkerFrameworkError>

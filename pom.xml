@@ -3393,6 +3393,28 @@
       </build>
     </profile>
     <profile>
+      <id>pitest-internal-annotation</id>
+      <properties>
+        <jacoco.skip>true</jacoco.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.internal.annotation.*</param>
+              </targetClasses>
+              <coverageThreshold>0</coverageThreshold>
+              <mutationThreshold>0</mutationThreshold>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>pitest-blocks</id>
       <properties>
         <jacoco.skip>true</jacoco.skip>
