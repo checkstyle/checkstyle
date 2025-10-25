@@ -1273,7 +1273,7 @@ openrewrite-recipes)
   set -e
   echo "Running OpenRewrite recipes..."
   ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-  rewrite:run -P checkstyle-autofix
+    rewrite:run -P checkstyle-autofix
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
