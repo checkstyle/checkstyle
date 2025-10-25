@@ -98,6 +98,42 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          To configure the check to allow trailing comments that match a specific pattern:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example5-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example5.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example6-config">
+          To configure the check to allow trailing multiline comments that match a specific pattern:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example6-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/trailingcomment/Example6.java"/>
+          <param name="type" value="code"/>
         </macro>
 
       </subsection>

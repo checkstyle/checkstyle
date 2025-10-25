@@ -168,12 +168,8 @@ public class Example2 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="TrailingComment"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
-      &lt;property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
-        or @text=' SUPPRESS CHECKSTYLE\n']]"/&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR)$"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -198,15 +194,8 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="TrailingComment"/&gt;
-    &lt;module name="SuppressionXpathSingleFilter"&gt;
-      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
-      &lt;property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/&gt;
-      &lt;property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/&gt;
-      &lt;property name="query" value="//SINGLE_LINE_COMMENT
-        [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (SUPPRESS CHECKSTYLE|NOPMD|NOSONAR).*"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -221,6 +210,71 @@ public class Example4 {
   int b; // NOPMD - OK, comment starts with " NOPMD"
   int c; // NOSONAR - OK, comment starts with " NOSONAR"
   int d; // violation, not suppressed
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example5-config">
+          To configure the check to allow trailing comments that match a specific pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"&gt;
+      &lt;property name="legalComment" value="^ (TODO|FIXME|trailingcomment).*"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public static void main(String[] args) {
+    int x = 10;
+
+    if (/* OK */ x &gt; 5) {}
+    int a = 5; // TODO: refactor this - ok, matches legalComment pattern
+    doSomething(
+            "param1"
+    ); // FIXME: handle edge cases - ok, matches legalComment pattern
+
+    int b = 10; // trailingcomment - ok, matches legalComment pattern
+    int c = 15; // violation, regular comment doesn't match pattern
+  }
+
+  private static void doSomething(String param) {
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example6-config">
+          To configure the check to allow trailing multiline comments that match a specific pattern:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TrailingComment"/&gt;
+    &lt;module name="SuppressionXpathSingleFilter"&gt;
+      &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+      &lt;property name="query" value="//BLOCK_COMMENT_BEGIN
+        [./COMMENT_CONTENT[@text=' NOSONAR ' or @text=' NOPMD '
+        or @text=' SUPPRESS CHECKSTYLE ']]"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example6-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example6 {
+  int a; /* SUPPRESS CHECKSTYLE */
+  int b; /* NOPMD */
+  int c; /* NOSONAR */
+  int d; // violation, content is not legal
 }
 </code></pre></div>
 
