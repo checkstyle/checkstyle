@@ -227,13 +227,17 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
 
         for (int level = 0; level < 2; level++) {
             final DetailAST objBlock = current.findFirstToken(TokenTypes.OBJBLOCK);
+            final DetailAST nextNew;
             if (objBlock == null) {
+                nextNew = null;
+            }
+            else {
+                nextNew = objBlock.findFirstToken(TokenTypes.LITERAL_NEW);
+            }
+            if (objBlock == null || nextNew == null) {
                 break;
             }
-            final DetailAST nextNew = objBlock.findFirstToken(TokenTypes.LITERAL_NEW);
-            if (nextNew == null) {
-                break;
-            }
+
             current = nextNew;
         }
 
