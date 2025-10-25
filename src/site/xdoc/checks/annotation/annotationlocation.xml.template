@@ -91,6 +91,90 @@
           <param name="path"
                    value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example4.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to validate annotations on type arguments:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example5.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to validate annotations on typecasts:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example6.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to validate annotations on constructor invocations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example7.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to validate annotations on exception types in throws clause:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example8.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example8-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example8.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check to validate annotations on interface types in implements clause:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example9.java"/>
+            <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example10-config">
+          To configure the check to validate annotations on qualified types:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example10.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example10-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                   value="resources/com/puppycrawl/tools/checkstyle/checks/annotation/annotationlocation/Example10.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 
