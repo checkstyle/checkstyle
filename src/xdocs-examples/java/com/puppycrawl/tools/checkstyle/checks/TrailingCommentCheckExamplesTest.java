@@ -67,4 +67,13 @@ public class TrailingCommentCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "22:16: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }
