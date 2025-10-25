@@ -595,7 +595,14 @@
           <version>3.0.0</version>
           <configuration>
             <java>
+              <forbidWildcardImports />
               <removeUnusedImports />
+              <importOrder>
+                <file>config/.spotless/import.order</file>
+              </importOrder>
+              <licenseHeader>
+                <file>config/.spotless/licence.header</file>
+              </licenseHeader>
             </java>
             <upToDateChecking>
               <enabled>true</enabled>
@@ -1881,22 +1888,24 @@
             <validationSet>
               <dir>config</dir>
               <excludes>
-                <exclude>java.header</exclude>
-                <exclude>java-regexp.header</exclude>
-                <exclude>org.eclipse.jdt.core.prefs</exclude>
-                <exclude>intellij-idea-inspections.properties</exclude>
-                <exclude>markdownlint.rb</exclude>
-                <exclude>signatures.txt</exclude>
-                <exclude>signatures-test.txt</exclude>
+                <exclude>.spotless/import.order</exclude>
+                <exclude>.spotless/licence.header</exclude>
+                <exclude>archunit-store/**</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
+                <exclude>google-java-format/**</exclude>
+                <exclude>intellij-idea-inspections.properties</exclude>
+                <exclude>java-regexp.header</exclude>
+                <exclude>java.header</exclude>
+                <exclude>jsoref-spellchecker/**</exclude>
+                <exclude>markdownlint.rb</exclude>
+                <exclude>openrewrite-recipes-checkstyle.properties</exclude>
+                <exclude>org.eclipse.jdt.core.prefs</exclude>
+                <exclude>projects-to-test/**</exclude>
+                <exclude>signatures-test.txt</exclude>
+                <exclude>signatures.txt</exclude>
+                <exclude>yamllint.yaml</exclude>
                 <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
                 <exclude>linkcheck-suppressions.txt</exclude>
-                <exclude>archunit-store/**</exclude>
-                <exclude>google-java-format/**</exclude>
-                <exclude>jsoref-spellchecker/**</exclude>
-                <exclude>projects-to-test/**</exclude>
-                <exclude>yamllint.yaml</exclude>
-                <exclude>openrewrite-recipes-checkstyle.properties</exclude>
               </excludes>
             </validationSet>
             <validationSet>
