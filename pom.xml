@@ -1885,6 +1885,7 @@
             <validationSet>
               <dir>config</dir>
               <excludes>
+                <exclude>spotless.licence.header</exclude>
                 <exclude>java.header</exclude>
                 <exclude>java-regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
