@@ -102,6 +102,7 @@ public class WhitespaceAfterCheck
             TokenTypes.LAMBDA,
             TokenTypes.LITERAL_WHEN,
             TokenTypes.ANNOTATIONS,
+            TokenTypes.TYPE,
         };
     }
 
@@ -118,6 +119,9 @@ public class WhitespaceAfterCheck
             if (!isFollowedByWhitespace(targetAST, line)) {
                 log(targetAST, MSG_WS_TYPECAST);
             }
+        }
+        else if (ast.getType() == TokenTypes.TYPE) {
+            visitType(ast);
         }
         else if (ast.getType() == TokenTypes.ANNOTATIONS) {
             if (ast.getFirstChild() != null) {
@@ -158,9 +162,75 @@ public class WhitespaceAfterCheck
 
             followedByWhitespace = codePoint == ';'
                 || codePoint == ')'
+                || codePoint == ','
                 || Character.isWhitespace(codePoint);
         }
         return followedByWhitespace;
+    }
+
+    /**
+     * Performs a whitespace check on a {@code TokenTypes.TYPE} token by locating the
+     * rightmost token of the {@code TokenTypes.TYPE} expression and verifying that it
+     * is followed by a whitespace character when appropriate. If the check fails, a log
+     * message is recorded. The rightmost token may be {@code null} when
+     * the {@code TokenTypes.TYPE} node has no meaningful trailing token to validate.
+     *
+     * @param typeAst AST node of type {@code TokenTypes.TYPE}
+     */
+    private void visitType(DetailAST typeAst) {
+        final DetailAST targetAst = getTypeRightmostToken(typeAst);
+        if (targetAst != null) {
+            final int[] line = getLineCodePoints(targetAst.getLineNo() - 1);
+            if (!isFollowedByWhitespace(targetAst, line)) {
+                final Object[] args = {targetAst.getText()};
+                log(targetAst, MSG_WS_NOT_FOLLOWED, args);
+            }
+        }
+    }
+
+    /**
+     * Determines the appropriate AST node representing the end of a TYPE token.
+     * Used to locate the final token of a type expression for whitespace checks.
+     * Depending on context, this may be an ellipsis token, the deepest child of
+     * the type node, or {@code null} if the type is already the rightmost element
+     * and has no relevant token following it.
+     *
+     * @param typeAst AST node of type {@code TokenTypes.TYPE}
+     * @return the rightmost AST token relevant to the TYPE, or {@code null}
+     *         if no applicable token is found
+     */
+    private static DetailAST getTypeRightmostToken(DetailAST typeAst) {
+        final int parentType = typeAst.getParent().getType();
+        DetailAST targetAst = null;
+        if (parentType == TokenTypes.PARAMETER_DEF
+                || parentType == TokenTypes.RECORD_COMPONENT_DEF) {
+            final DetailAST sibling = typeAst.getNextSibling();
+            if (sibling.getType() == TokenTypes.ELLIPSIS) {
+                targetAst = sibling;
+            }
+            else if (typeAst.hasChildren()) {
+                targetAst = getDeepestLastChild(typeAst);
+            }
+        }
+        else if (parentType != TokenTypes.RECORD_PATTERN_DEF) {
+            targetAst = getDeepestLastChild(typeAst);
+        }
+        return targetAst;
+    }
+
+    /**
+     * Finds the deepest descendant of the given AST by repeatedly
+     * following the last child until a leaf node is reached.
+     *
+     * @param ast AST node from which to start the search.
+     * @return the deepest last child AST node.
+     */
+    private static DetailAST getDeepestLastChild(DetailAST ast) {
+        DetailAST current = ast;
+        while (current.getLastChild() != null) {
+            current = current.getLastChild();
+        }
+        return current;
     }
 
 }
