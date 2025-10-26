@@ -1260,12 +1260,13 @@ openrewrite-recipes)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
-  mvn -e --no-transfer-progress clean install -DskipTests
-
-  cd "$PROJECT_ROOT"
+# disable until: https://github.com/checkstyle/checkstyle-openrewrite-recipes/issues/116
+#  cd /tmp
+#  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
+#  cd checkstyle-openrewrite-recipes
+#  mvn -e --no-transfer-progress clean install -DskipTests
+#
+#  cd "$PROJECT_ROOT"
 
   echo "Running Checkstyle validation to get report for openrewrite..."
   set +e
@@ -1273,13 +1274,13 @@ openrewrite-recipes)
   set -e
   echo "Running OpenRewrite recipes..."
   ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-  rewrite:run -P checkstyle-autofix
+    rewrite:dryRun -P checkstyle-autofix
 
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
+#  echo "Checking for uncommitted changes..."
+#  ./.ci/print-diff-as-patch.sh target/rewrite.patch
 
-  rm -rf /tmp/checkstyle-openrewrite-recipes
-  ;;
+#  rm -rf /tmp/checkstyle-openrewrite-recipes
+#  ;;
 
 *)
   echo "Unexpected argument: $1"
