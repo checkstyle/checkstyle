@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * a = b + c;      // Some insightful comment
- * d = e / f;        // Another comment for this line
+ * d = e / f;      /* Some insightful block comment &#42;/
  * </code></pre></div>
  *
  * <p>
