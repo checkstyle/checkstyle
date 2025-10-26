@@ -274,7 +274,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int VERSION_BLOCK_TAG = JavadocCommentsLexer.VERSION_BLOCK_TAG;
 
     /**
-     * {@code @see} block tag.
+     * {@code @see} Javadoc block tag.
+     *
+     * <p>Such Javadoc tag can have three children:</p>
+     * <ol>
+     *  <li>{@link #REFERENCE}</li>
+     *  <li>{@link #DESCRIPTION}</li>
+     *  <li>{@link #HTML_ELEMENT}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see SomeClass#Field}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> see
+     *     |--TEXT ->
+     *     `--REFERENCE -> REFERENCE
+     *         |--IDENTIFIER -> SomeClass
+     *         |--HASH -> #
+     *         `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *             `--IDENTIFIER -> Field
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int SEE_BLOCK_TAG = JavadocCommentsLexer.SEE_BLOCK_TAG;
 
@@ -438,7 +464,25 @@ public final class JavadocCommentsTokenTypes {
     public static final int SERIAL_FIELD_BLOCK_TAG = JavadocCommentsLexer.SERIAL_FIELD_BLOCK_TAG;
 
     /**
-     * Custom or unrecognized block tag.
+     * {@code @customBlock} Javadoc block tag.
+     *
+     * <p>This type represents any block tag that is not explicitly recognized by Checkstyle,
+     * such as a project-specific or malformed tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @mycustomtag This is a custom block tag.}</pre>
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> customBlock
+     *     |--TEXT ->
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  This is a custom block tag.
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int CUSTOM_BLOCK_TAG = JavadocCommentsLexer.CUSTOM_BLOCK_TAG;
 

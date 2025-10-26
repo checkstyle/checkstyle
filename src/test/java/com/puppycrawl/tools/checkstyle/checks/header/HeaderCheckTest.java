@@ -210,7 +210,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
 
         final ReflectiveOperationException ex =
                 getExpectedThrowable(ReflectiveOperationException.class,
-                        () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
+                        () -> TestUtil.invokeVoidMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
             .that(ex)
                 .hasCauseThat()
@@ -272,7 +272,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         check.setHeader("Header");
         final ReflectiveOperationException ex =
                 getExpectedThrowable(ReflectiveOperationException.class,
-                        () -> TestUtil.invokeMethod(check, "loadHeaderFile"));
+                        () -> TestUtil.invokeVoidMethod(check, "loadHeaderFile"));
         assertWithMessage("Invalid exception cause message")
                 .that(ex)
                 .hasCauseThat()

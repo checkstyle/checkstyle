@@ -114,12 +114,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     private static void invokeFireAuditFinished(Checker checker)
             throws ReflectiveOperationException {
-        TestUtil.invokeMethod(checker, "fireAuditFinished");
+        TestUtil.invokeVoidMethod(checker, "fireAuditFinished");
     }
 
     private static void invokeFireAuditStartedMethod(Checker checker)
             throws ReflectiveOperationException {
-        TestUtil.invokeMethod(checker, "fireAuditStarted");
+        TestUtil.invokeVoidMethod(checker, "fireAuditStarted");
     }
 
     @Override

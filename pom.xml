@@ -218,9 +218,6 @@
     <maven.versions.plugin.version>2.19.1</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
-    <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <rewrite-migrate-java.version>3.20.0</rewrite-migrate-java.version>
-    <rewrite-static-analysis.version>2.20.0</rewrite-static-analysis.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -246,8 +243,10 @@
       -Xep:CanonicalAnnotationSyntax:ERROR
       -Xep:CollectorMutability:ERROR
       -Xep:ConstantNaming:ERROR
+      -Xep:DefaultCharset:ERROR
       -Xep:DirectReturn:ERROR
       -Xep:EmptyMethod:ERROR
+      -Xep:EnumOrdinal:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
@@ -259,13 +258,27 @@
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:OptionalOrElseGet:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
+      -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
       -Xep:TimeZoneUsage:ERROR
+      -Xep:TruthAssertExpected:ERROR
+      -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnusedMethod:ERROR
+      -Xep:VoidUsed:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
+      -Xep:EqualsGetClass:WARN
+      -Xep:InlineFormatString:WARN
+      -Xep:JdkObsolete:WARN
+      -Xep:StatementSwitchToExpressionSwitch:WARN
+      -Xep:StringSplitter:WARN
+      -Xep:EffectivelyPrivate:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -595,12 +608,69 @@
           <version>3.0.0</version>
           <configuration>
             <java>
+              <forbidWildcardImports />
               <removeUnusedImports />
+              <importOrder>
+                <file>config/spotless/import.order</file>
+              </importOrder>
+              <licenseHeader>
+                <file>config/spotless/licence.header</file>
+              </licenseHeader>
             </java>
             <upToDateChecking>
               <enabled>true</enabled>
             </upToDateChecking>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>6.21.1</version>
+          <configuration>
+            <exportDatatables>true</exportDatatables>
+            <skipMavenParsing>true</skipMavenParsing>
+            <activeRecipes>
+              <recipe>org.checkstyle.AutoFixes</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**/resources-noncompilable/**</exclusion>
+              <exclusion>**AvoidEscapedUnicodeCharactersCheckTest.java</exclusion>
+              <exclusion>**FinalClassCheck.java</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**xdocs-examples**</exclusion>
+            </exclusions>
+            <plainTextMasks>
+              <plainTextMask>**/*.xml</plainTextMask>
+              <plainTextMask>**/*.yml</plainTextMask>
+              <plainTextMask>**/*.groovy</plainTextMask>
+              <plainTextMask>**/resources/**</plainTextMask>
+              <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+            </plainTextMasks>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>3.20.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-java-security</artifactId>
+              <version>3.20.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.20.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.14.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1881,22 +1951,24 @@
             <validationSet>
               <dir>config</dir>
               <excludes>
-                <exclude>java.header</exclude>
-                <exclude>java-regexp.header</exclude>
-                <exclude>org.eclipse.jdt.core.prefs</exclude>
-                <exclude>intellij-idea-inspections.properties</exclude>
-                <exclude>markdownlint.rb</exclude>
-                <exclude>signatures.txt</exclude>
-                <exclude>signatures-test.txt</exclude>
+                <exclude>archunit-store/**</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
+                <exclude>google-java-format/**</exclude>
+                <exclude>intellij-idea-inspections.properties</exclude>
+                <exclude>java-regexp.header</exclude>
+                <exclude>java.header</exclude>
+                <exclude>jsoref-spellchecker/**</exclude>
+                <exclude>markdownlint.rb</exclude>
+                <exclude>openrewrite-recipes-checkstyle.properties</exclude>
+                <exclude>org.eclipse.jdt.core.prefs</exclude>
+                <exclude>projects-to-test/**</exclude>
+                <exclude>signatures-test.txt</exclude>
+                <exclude>signatures.txt</exclude>
+                <exclude>spotless/import.order</exclude>
+                <exclude>spotless/licence.header</exclude>
+                <exclude>yamllint.yaml</exclude>
                 <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
                 <exclude>linkcheck-suppressions.txt</exclude>
-                <exclude>archunit-store/**</exclude>
-                <exclude>google-java-format/**</exclude>
-                <exclude>jsoref-spellchecker/**</exclude>
-                <exclude>projects-to-test/**</exclude>
-                <exclude>yamllint.yaml</exclude>
-                <exclude>openrewrite-recipes-checkstyle.properties</exclude>
               </excludes>
             </validationSet>
             <validationSet>
@@ -3247,6 +3319,7 @@
               </mutators>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.internal.annotation.*</param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*
                 </param>
@@ -5480,88 +5553,13 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.22.1</version>
-            <configuration>
-              <exportDatatables>true</exportDatatables>
-              <skipMavenParsing>true</skipMavenParsing>
-              <activeRecipes>
-                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
-                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-                <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
-                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-                <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
-                <recipe>org.openrewrite.java.recipes.RecipeTestingBestPractices</recipe>
-                <recipe>org.openrewrite.maven.BestPractices</recipe>
-                <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
-                <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
-                <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
-                <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
-                <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
-                <recipe>org.openrewrite.staticanalysis.NoFinalizer</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
-              </activeRecipes>
-              <exclusions>
-                <exclusion>**.ci-temp**</exclusion>
-                <exclusion>**/resources-noncompilable/**</exclusion>
-                <exclusion>**src/it/resources**</exclusion>
-                <exclusion>**src/test/resources**</exclusion>
-                <exclusion>**xdocs-examples**</exclusion>
-              </exclusions>
-              <plainTextMasks>
-                <plainTextMask>**/*.xml</plainTextMask>
-                <plainTextMask>**/*.yml</plainTextMask>
-                <plainTextMask>**/*.groovy</plainTextMask>
-                <plainTextMask>**/resources/**</plainTextMask>
-                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
-              </plainTextMasks>
-            </configuration>
             <dependencies>
               <dependency>
                 <groupId>com.puppycrawl.tools</groupId>
                 <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>${checkstyle.openrewrite.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-migrate-java</artifactId>
-                <version>${rewrite-migrate-java.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-static-analysis</artifactId>
-                <version>${rewrite-static-analysis.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-rewrite</artifactId>
-                <version>0.14.1</version>
+                <version>1.0.0-SNAPSHOT</version>
               </dependency>
             </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>spotless-autofix</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.diffplug.spotless</groupId>
-            <artifactId>spotless-maven-plugin</artifactId>
           </plugin>
         </plugins>
       </build>
