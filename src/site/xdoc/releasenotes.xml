@@ -10,6 +10,81 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.1.1">
+      <div class="releaseDate">26.10.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Incorrect encoding in non-English properties files causing garbled characters in
+            localized messages.
+            Author: Vinisha Wagh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17975">#17975</a>
+          </li>
+          <li>
+            Google style config and formatter differ on blank line separation.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17681">#17681</a>
+          </li>
+          <li>
+            some messages are still hardcoded in english.
+            Author: Vinisha Wagh
+            <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Andrei Mititelu, Stoyan, Aryant, daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Add `rewrite` support for `errorprone.refasterrules`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17487">#17487</a>
+          </li>
+          <li>
+            avoid horizontal scrolling in atclauseorder.html.
+            Author: ANISETTY AKASH
+            <a href="https://github.com/checkstyle/checkstyle/issues/17939">#17939</a>
+          </li>
+          <li>
+            Wrong tagOrder in AtClauseOrder documentation..
+            Author: Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/10086">#10086</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17845">#17845</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            SLF4J configuration warnings when running tests.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17956">#17956</a>
+          </li>
+          <li>
+            JVM warnings when running tests.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17954">#17954</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.1.0">
       <div class="releaseDate">19.10.2025</div>
       <p>New:</p>
