@@ -651,6 +651,14 @@
             </plainTextMasks>
           </configuration>
           <dependencies>
+            <!--
+            disable until: https://github.com/checkstyle/checkstyle-openrewrite-recipes/issues/116
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle-openrewrite-recipes</artifactId>
+              <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            -->
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
@@ -5554,13 +5562,6 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <dependencies>
-              <dependency>
-                <groupId>com.puppycrawl.tools</groupId>
-                <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-              </dependency>
-            </dependencies>
           </plugin>
         </plugins>
       </build>

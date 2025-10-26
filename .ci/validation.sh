@@ -1260,7 +1260,7 @@ openrewrite-recipes)
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
 
-# tmp-disable until: https://github.com/checkstyle/checkstyle-openrewrite-recipes/issues/116
+# disable until: https://github.com/checkstyle/checkstyle-openrewrite-recipes/issues/116
 #  cd /tmp
 #  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
 #  cd checkstyle-openrewrite-recipes
