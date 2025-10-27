@@ -219,8 +219,6 @@
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <rewrite-migrate-java.version>3.20.0</rewrite-migrate-java.version>
-    <rewrite-static-analysis.version>2.20.0</rewrite-static-analysis.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -5511,34 +5509,7 @@
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
               <activeRecipes>
-                <recipe>org.checkstyle.CheckstyleAutoFix</recipe>
-                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-                <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
-                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-                <recipe>org.openrewrite.java.recipes.JavaRecipeBestPractices</recipe>
-                <recipe>org.openrewrite.java.recipes.RecipeTestingBestPractices</recipe>
-                <recipe>org.openrewrite.maven.BestPractices</recipe>
-                <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
-                <recipe>org.openrewrite.staticanalysis.JavaApiBestPractices</recipe>
-                <recipe>org.openrewrite.staticanalysis.LowercasePackage</recipe>
-                <recipe>org.openrewrite.staticanalysis.MissingOverrideAnnotation</recipe>
-                <recipe>org.openrewrite.staticanalysis.ModifierOrder</recipe>
-                <recipe>org.openrewrite.staticanalysis.NoFinalizer</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedLocalVariables</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateFields</recipe>
-                <recipe>org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.ClassRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.CollectionRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.FileRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PatternRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.StreamRulesRecipes</recipe>
-                <recipe>tech.picnic.errorprone.refasterrules.TimeRulesRecipes</recipe>
+                <recipe>org.checkstyle.AllAutoFixes</recipe>
               </activeRecipes>
               <exclusions>
                 <exclusion>**.ci-temp**</exclusion>
@@ -5564,12 +5535,12 @@
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-migrate-java</artifactId>
-                <version>${rewrite-migrate-java.version}</version>
+                <version>3.20.0</version>
               </dependency>
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-static-analysis</artifactId>
-                <version>${rewrite-static-analysis.version}</version>
+                <version>2.20.0</version>
               </dependency>
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
