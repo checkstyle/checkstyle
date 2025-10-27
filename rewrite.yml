@@ -1,30 +1,13 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.CheckstyleOpenRewriteRecipes
-displayName: Checkstyle OpenRewrite Recipes Auto Fix Configuration
-description: |
-  Automatically applies Checkstyle OpenRewrite recipes to fix Checkstyle violations
-  based on the provided XML violation report. This recipe serves as an
-  entry point, to apply auto-fixable rules configured in the report.
-tags:
-  - checkstyle
-  - autofix
-  - static-analysis
-  - java
-  - code-quality
+name: org.checkstyle.AllAutoFixes
+displayName: Auto Fixes
+description: List of auto fixes from different providers.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
----
-type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AutoFixes
-displayName: Auto Fixes
-description: Comprehensive quality recipe combining modernization, security, and best practices.
-recipeList:
-  # checkstyle-openrewrite-recipes/issues/116
-  - org.checkstyle.CheckstyleOpenRewriteRecipes
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
