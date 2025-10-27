@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="ImportOrder">
-      <property name="groups" value="/^java\./,javax,org,com"/>
+      <property name="groups" value="/^java\./,jakarta,org,com"/>
       <property name="ordered" value="true"/>
       <property name="separated" value="true"/>
       <property name="option" value="above"/>

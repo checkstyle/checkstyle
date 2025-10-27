@@ -4,7 +4,7 @@ package com.puppycrawl.tools.checkstyle.api.fullident;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 import org.junit.Assert;
 
