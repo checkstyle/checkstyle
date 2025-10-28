@@ -19,9 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.BitSet;
-import java.util.function.Predicate;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -62,20 +59,22 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     public static final String MSG_KEY = "avoid.double.brace.init";
 
     /**
-     * Set of token types that are used in {@link #HAS_MEMBERS} predicate.
+     * Checks if the given token represents a member declaration or initialization.
+     * Used in {@link #hasOnlyInitialization(DetailAST)} to identify tokens that
+     * are considered class members rather than structural elements.
+     *
+     * @param token the AST token to check
+     * @return {@code true} if the token represents a class member (not a structural element),
+     *         {@code false} otherwise
      */
-    private static final BitSet IGNORED_TYPES = TokenUtil.asBitSet(
-        TokenTypes.INSTANCE_INIT,
-        TokenTypes.SEMI,
-        TokenTypes.LCURLY,
-        TokenTypes.RCURLY
-    );
-
-    /**
-     * Predicate for tokens that is used in {@link #hasOnlyInitialization(DetailAST)}.
-     */
-    private static final Predicate<DetailAST> HAS_MEMBERS =
-        token -> !IGNORED_TYPES.get(token.getType());
+    private static boolean hasMembers(DetailAST token) {
+        return !TokenUtil.asBitSet(
+                TokenTypes.INSTANCE_INIT,
+                TokenTypes.SEMI,
+                TokenTypes.LCURLY,
+                TokenTypes.RCURLY
+        ).get(token.getType());
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -108,8 +107,9 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
      *     false otherwise
      */
     private static boolean hasOnlyInitialization(DetailAST objBlock) {
-        final boolean hasInitBlock = objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null;
-        return hasInitBlock
-                  && TokenUtil.findFirstTokenByPredicate(objBlock, HAS_MEMBERS).isEmpty();
+        return objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null
+                && TokenUtil.findFirstTokenByPredicate(
+                        objBlock,
+                        AvoidDoubleBraceInitializationCheck::hasMembers).isEmpty();
     }
 }

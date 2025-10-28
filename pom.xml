@@ -271,6 +271,7 @@
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnnecessaryLambda:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
