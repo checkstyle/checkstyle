@@ -129,4 +129,13 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "23:12: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "AbstractSet"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+    }
 }

@@ -768,6 +768,34 @@ public class Example8 extends TreeSet {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
 }
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example9-config">
+          To configure the check so that it violates usage of var:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalType"&gt;
+      &lt;property name="validateAbstractClassNames" value="true"/&gt;
+      &lt;property name="legalAbstractClassNames" value="AbstractList"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example9 {
+
+    // violation below 'Usage of type 'AbstractSet' is not allowed'
+    public AbstractSet&lt;String&gt; getItems() {
+        return new HashSet&lt;&gt;();
+    }
+
+    public AbstractList&lt;String&gt; getNames() {
+        return new ArrayList&lt;&gt;();
+    }
+}
 </code></pre></div>
       </subsection>
 
