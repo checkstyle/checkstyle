@@ -206,7 +206,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIoExceptionWhenLoadingHeaderFile() throws Exception {
         final HeaderCheck check = new HeaderCheck();
-        check.setHeaderFile(new URI("test://bad"));
+        final String uri = "test://bad";
+        check.setHeaderFile(new URI(uri));
 
         final ReflectiveOperationException ex =
                 getExpectedThrowable(ReflectiveOperationException.class,
@@ -215,7 +216,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             .that(ex)
                 .hasCauseThat()
                     .hasMessageThat()
-                    .startsWith("unable to load header file ");
+                    .isEqualTo("unable to load header file " + uri);
     }
 
     @Test
