@@ -30,8 +30,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * The base class for checks.
  *
+ * <p>
  * @see <a href="{@docRoot}/../writingchecks.html" target="_top">Writing
  *     your own checks</a>
+ * </p>
+ *
  * @noinspection NoopMethodInAbstractClass
  * @noinspectionreason NoopMethodInAbstractClass - we allow each check to
  *      define these methods, as needed. They should be overridden only
@@ -120,14 +123,14 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return the sorted set of {@link Violation}.
      */
     public SortedSet<Violation> getViolations() {
-        return new TreeSet<>(context.get().violations);
+        return new TreeSet<>(getContext().violations);
     }
 
     /**
      * Clears the sorted set of {@link Violation} of the check.
      */
     public final void clearViolations() {
-        context.get().violations.clear();
+        getContext().violations.clear();
     }
 
     /**
@@ -175,7 +178,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Called after all the child nodes have been process.
+     * Called after all the child nodes have been processed.
      *
      * @param ast the token leaving
      */
@@ -189,7 +192,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @param contents the manager
      */
     public final void setFileContents(FileContents contents) {
-        context.get().fileContents = contents;
+        getContext().fileContents = contents;
     }
 
     /**
@@ -204,7 +207,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      */
     @Deprecated(since = "9.3")
     public final FileContents getFileContents() {
-        return context.get().fileContents;
+        return getContext().fileContents;
     }
 
     /**
@@ -220,14 +223,18 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * Set the tab width to report audit events with.
      *
      * @param tabWidth an {@code int} value
+     * @throws IllegalArgumentException if tabWidth is negative
      */
     public final void setTabWidth(int tabWidth) {
+        if (tabWidth < 0) {
+            throw new IllegalArgumentException("tabWidth must not be negative: " + tabWidth);
+        }
         this.tabWidth = tabWidth;
     }
 
     @Override
     public final void log(int line, String key, Object... args) {
-        context.get().violations.add(
+        getContext().violations.add(
             new Violation(
                 line,
                 getMessageBundle(),
@@ -244,7 +251,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
             Object... args) {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
-        context.get().violations.add(
+        getContext().violations.add(
             new Violation(
                 lineNo,
                 col,
@@ -274,7 +281,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
-        context.get().violations.add(
+        getContext().violations.add(
                 new Violation(
                         ast.getLineNo(),
                         col,
@@ -292,20 +299,30 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the lines associated with the tree.
      *
-     * @return the file contents
+     * @return the file contents lines; never null (empty array if not set)
      */
     public final String[] getLines() {
-        return context.get().fileContents.getLines();
+        final FileContents fc = getContext().fileContents;
+        if (fc == null) {
+            return new String[0];
+        }
+        final String[] lines = fc.getLines();
+        return lines == null ? new String[0] : lines;
     }
 
     /**
      * Returns the line associated with the tree.
      *
      * @param index index of the line
-     * @return the line from the file contents
+     * @return the line from the file contents, or empty string if not available
      */
     public final String getLine(int index) {
-        return context.get().fileContents.getLine(index);
+        final FileContents fc = getContext().fileContents;
+        if (fc == null) {
+            return "";
+        }
+        final String line = fc.getLine(index);
+        return line == null ? "" : line;
     }
 
     /**
@@ -314,17 +331,33 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * @return full path to file.
      */
     public final String getFilePath() {
-        return context.get().fileContents.getFileName();
+        final FileContents fc = getContext().fileContents;
+        return fc == null ? "" : fc.getFileName();
     }
 
     /**
      * Returns code point representation of file text from given line number.
      *
      * @param index index of the line
-     * @return the array of Unicode code points
+     * @return the array of Unicode code points (empty array if line not available)
      */
     public final int[] getLineCodePoints(int index) {
-        return getLine(index).codePoints().toArray();
+        final String line = getLine(index);
+        if (line == null || line.isEmpty()) {
+            return new int[0];
+        }
+        return line.codePoints().toArray();
+    }
+
+    /**
+     * Protected accessor for the ThreadLocal FileContext.
+     * Using this method centralizes ThreadLocal access and makes future
+     * thread-safety audits or changes easier.
+     *
+     * @return the current thread's FileContext
+     */
+    protected final FileContext getContext() {
+        return context.get();
     }
 
     /**
