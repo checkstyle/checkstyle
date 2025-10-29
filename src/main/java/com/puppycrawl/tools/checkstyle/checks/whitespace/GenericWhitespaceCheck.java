@@ -36,6 +36,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </div>
  *
  * <p>
+ * Whitespace is defined by implementation of
+ * <code>java.lang.Character#isWhitespace(char)</code>
+ * </p>
+ *
+ * <p>
  * Left angle bracket ("&lt;"):
  * </p>
  * <ul>
