@@ -446,6 +446,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Checker is not processed")
                 .that(TestRootModuleChecker.isProcessed())
                 .isTrue();
+        assertWithMessage("Property should be passed to checker with correct value")
+            .that(TestRootModuleChecker.getProperty())
+            .isEqualTo("ignore");
+
     }
 
     @Test
