@@ -140,6 +140,12 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndXmlLogger because it requires
+     * a custom stream to count close() calls.
+     *
+     * @throws Exception
+     */
     @Test
     public void testNoCloseStream()
             throws Exception {
@@ -149,7 +155,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
         assertWithMessage("Invalid close count")
             .that(outStream.getCloseCount())
-            .isEqualTo(0);
+                .isEqualTo(0);
 
         outStream.close();
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
