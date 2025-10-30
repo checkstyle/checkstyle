@@ -1,0 +1,55 @@
+name: Qodana Code Quality
+
+on:
+  pull_request:
+    branches:
+      - master
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: none
+      checks: write
+      security-events: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Run Qodana Scan
+        uses: JetBrains/qodana-action@v2024.3
+        with:
+          args: --fail-threshold,0, --save-report
+          upload-result: true
+          artifact-name: qodana-report
+
+      - name: Upload SARIF to GitHub Code Scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{ runner.temp }}/qodana/results/qodana.sarif.json
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qodana-html-report
+          path: ${{ runner.temp }}/qodana/results/report
+
+      - name: Log Issues
+        run: |
+          # will convert it to script
+          jq '.results[] | "\(.ruleId) at \(.locations[0].physicalLocation.artifactLocation.uri):\(.locations[0].physicalLocation.region.startLine) - \(.message.text)"' < ${{ runner.temp }}/qodana/results/qodana.sarif.json
