@@ -113,6 +113,7 @@ public class ModifiedControlVariableCheckTest
 
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
+        classDefAst.setText("CLASS_DEF");
 
         try {
             check.visitToken(classDefAst);
@@ -120,6 +121,9 @@ public class ModifiedControlVariableCheckTest
         }
         catch (IllegalStateException exc) {
             // it is OK
+            assertWithMessage("Error message must include token name")
+                    .that(exc.getMessage())
+                    .contains("CLASS_DEF");
         }
 
         try {
@@ -128,6 +132,9 @@ public class ModifiedControlVariableCheckTest
         }
         catch (IllegalStateException exc) {
             // it is OK
+            assertWithMessage("Error message must include token name")
+                    .that(exc.getMessage())
+                    .contains("CLASS_DEF");
         }
     }
 
