@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
 
@@ -193,6 +194,70 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableGenericAnonInnerClasses.java"),
                 expected);
+    }
+
+    @Test
+    public void testUnusedLocalVarInDeepAnonInnerClasses() throws Exception {
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
+            "17:29: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "b"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableAnonInnerClassesDeepNesting.java"),
+                expected);
+    }
+
+    @Test
+    public void testGetBlockContainingLocalAnonInnerClassTraversal() throws Exception {
+        final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
+
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputUnusedLocalVariableAnonInnerClassesDeepNesting.java")),
+                JavaParser.Options.WITHOUT_COMMENTS
+        );
+
+        // Find first anonymous inner class
+        DetailAST current = TestUtil.findTokenInAstByPredicate(
+                root,
+                ast -> {
+                    return ast.getType() == TokenTypes.LITERAL_NEW
+                        && ast.findFirstToken(TokenTypes.OBJBLOCK) != null;
+                }
+        ).orElseThrow(() -> new IllegalStateException("No anonymous inner class found"));
+
+        for (int level = 0; level < 2; level++) {
+            final DetailAST objBlock = current.findFirstToken(TokenTypes.OBJBLOCK);
+            final DetailAST nextNew;
+            if (objBlock == null) {
+                nextNew = null;
+            }
+            else {
+                nextNew = objBlock.findFirstToken(TokenTypes.LITERAL_NEW);
+            }
+            if (objBlock == null || nextNew == null) {
+                break;
+            }
+
+            current = nextNew;
+        }
+
+        final DetailAST result = TestUtil.invokeMethod(
+                check,
+                "getBlockContainingLocalAnonInnerClass",
+                DetailAST.class,
+                current
+        );
+
+        assertWithMessage("Expected non-null enclosing block AST")
+                .that(result)
+                .isNotNull();
+
+        assertWithMessage("Result should be an enclosing block (method, objblock, or slist)")
+                .that(TokenUtil.isOfType(result,
+                        TokenTypes.OBJBLOCK,
+                        TokenTypes.METHOD_DEF,
+                        TokenTypes.SLIST))
+                .isTrue();
     }
 
     @Test
