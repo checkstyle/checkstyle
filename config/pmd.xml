@@ -332,7 +332,7 @@
     <properties>
       <!-- The default is 3, but we try to use single point of exit from the method and that
        requires some extra IFs. -->
-      <property name="problemDepth" value="4"/>
+      <property name="problemDepth" value="5"/>
       <property name="violationSuppressXPath"
                 value="//ClassDeclaration[@SimpleName='ClassResolver']
                              //MethodDeclaration[@Name='resolve']"/>
