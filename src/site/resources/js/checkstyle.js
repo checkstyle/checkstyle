@@ -150,43 +150,12 @@ window.addEventListener("load", function () {
 });
 
 function trimCodeBlock(codeBlock) {
-    const walker = document.createTreeWalker(
-      codeBlock,
-      NodeFilter.SHOW_TEXT,
-      null,
-      false
-    );
-    const textNodes = [];
-    let node;
-    while ((node = walker.nextNode())) {
-      textNodes.push(node);
-    }
-
-    for (let i = 0; i < textNodes.length; i++) {
-      const txt = textNodes[i].textContent;
-      const trimmed = txt.trim();
-      if (trimmed.length === 0) {
-        // If whole node is whitespace remove it.
-        if (textNodes[i].parentNode) {
-          textNodes[i].parentNode.removeChild(textNodes[i]);
-        }
-      } else {
-        textNodes[i].textContent = trimmed;
-        break;
-      }
-    }
-
-    for (let i = textNodes.length - 1; i >= 0; i--) {
-      const txt = textNodes[i].textContent;
-      const trimmed = txt.trim();
-      if (trimmed.length === 0) {
-        if (textNodes[i].parentNode) {
-          textNodes[i].parentNode.removeChild(textNodes[i]);
-        }
-      } else {
-        textNodes[i].textContent = trimmed;
-        break;
-      }
+    const textNodes = codeBlock.children;
+    if (textNodes.length > 0) {
+        const firstNodeIdx = 0;
+        const lastNodeIdx = textNodes.length - 1;
+        textNodes[firstNodeIdx].textContent = textNodes[firstNodeIdx].textContent.trimStart();
+        textNodes[lastNodeIdx].textContent = textNodes[lastNodeIdx].textContent.trimEnd();
     }
 }
 
