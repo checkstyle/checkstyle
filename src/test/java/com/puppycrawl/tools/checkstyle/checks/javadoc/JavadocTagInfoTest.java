@@ -398,6 +398,29 @@ public class JavadocTagInfoTest {
     }
 
     @Test
+    public void testSerialField2(){
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl astChild = new DetailAstImpl();
+        astChild.setType(TokenTypes.TYPE);
+        ast.setFirstChild(astChild);
+        final DetailAstImpl astChild2 = new DetailAstImpl();
+        astChild2.setType(TokenTypes.ARRAY_DECLARATOR);
+        astChild2.setText("ObjectStreamField");
+        astChild.setFirstChild(astChild2);
+
+        ast.setType(TokenTypes.METHOD_DEF);
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                        .isFalse();
+
+        ast.setType(TokenTypes.VARIABLE_DEF);
+        astChild2.setType(TokenTypes.IDENT);
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                        .isFalse();
+    }
+
+    @Test
     public void testSerialData() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.METHOD_DEF);
