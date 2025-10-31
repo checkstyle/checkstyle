@@ -354,6 +354,20 @@ public class JavadocTagInfoTest {
                     .isTrue();
         }
 
+        ast.setType(TokenTypes.METHOD_DEF);
+        astChild2.setType(TokenTypes.ARRAY_DECLARATOR);
+        astChild2.setText("ObjectStreamField");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                        .isFalse();
+
+        ast.setType(TokenTypes.VARIABLE_DEF);
+        astChild2.setType(TokenTypes.IDENT);
+        astChild2.setText("ObjectStreamField");
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                        .isFalse();
+
         astChild2.setText("1111");
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
