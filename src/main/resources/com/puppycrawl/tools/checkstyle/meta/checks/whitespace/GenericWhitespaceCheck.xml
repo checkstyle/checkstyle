@@ -11,6 +11,11 @@
  &lt;/div&gt;
 
  &lt;p&gt;
+ Whitespace is defined by implementation of
+ java.lang.Character.isWhitespace(char)
+ &lt;/p&gt;
+
+ &lt;p&gt;
  Left angle bracket ("&amp;lt;"):
  &lt;/p&gt;
  &lt;ul&gt;
