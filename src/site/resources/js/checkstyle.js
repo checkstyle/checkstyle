@@ -190,5 +190,5 @@ function trimCodeBlock(codeBlock) {
     }
 }
 
-window.addEventListener("load", setBodyColumnMargin);
+document.addEventListener("DOMContentLoaded", setBodyColumnMargin);
 window.addEventListener("resize", setBodyColumnMargin);
