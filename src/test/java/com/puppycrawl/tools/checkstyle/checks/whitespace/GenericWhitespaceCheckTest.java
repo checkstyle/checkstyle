@@ -330,4 +330,14 @@ public class GenericWhitespaceCheckTest
         }
     }
 
+    @Test
+    public void testTabAndMissingSpace() throws Exception {
+        final String[] expected = {
+            "14:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGenericWhitespace.java"),
+                expected);
+    }
+
 }

@@ -16,6 +16,11 @@
         </div>
 
         <p>
+          Whitespace is defined by implementation of
+          java.lang.Character.isWhitespace(char)
+        </p>
+
+        <p>
           Left angle bracket ("&lt;"):
         </p>
         <ul>
