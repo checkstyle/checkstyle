@@ -17,6 +17,34 @@ window.addEventListener("load", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const url = new URL(window.location.href);
+    if (!url.pathname.endsWith("/releasenotes.html")
+            || !url.hash.startsWith("#Release_")
+            || document.getElementById(url.hash.replace("#", ""))) {
+        return;
+    }
+
+    const version = url.hash.split('_')[1];
+    const versionParts = version.split(".");
+    if (versionParts.length !== 2 && versionParts.length !== 3) {
+        return;
+    }
+
+    let major = parseInt(versionParts[0], 10);
+    let minor = parseInt(versionParts[1], 10);
+
+    if (major >= 1 && major < 6) {
+        window.location.replace(`./releasenotes_old_1-0_5-9.html${url.hash}`);
+    }
+    else if (major === 6 || major === 7) {
+        window.location.replace(`./releasenotes_old_6-0_7-8.html${url.hash}`);
+    }
+    else if (major === 8 && minor >= 0 && minor <= 34) {
+        window.location.replace(`./releasenotes_old_8-0_8-34.html${url.hash}`);
+    }
+});
+
 window.addEventListener("load", function () {
     const currentUrl = window.location.href;
 
