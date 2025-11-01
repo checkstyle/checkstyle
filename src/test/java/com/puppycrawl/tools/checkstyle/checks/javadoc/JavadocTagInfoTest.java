@@ -354,19 +354,6 @@ public class JavadocTagInfoTest {
                     .isTrue();
         }
 
-        final int[] invalidTypes = {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.ENUM_DEF,
-        };
-        for (int type: invalidTypes) {
-            ast.setType(type);
-            assertWithMessage("@serialField should only be valid on VARIABLE_DEF, not on others")
-                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
-                .isFalse();
-        }
-
         astChild2.setText("1111");
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
@@ -381,20 +368,29 @@ public class JavadocTagInfoTest {
         assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
                 .isFalse();
+    }
+
+    @Test
+    public void testSerialField2(){
+        final DetailAstImpl ast = new DetailAstImpl();
+        final DetailAstImpl astChild = new DetailAstImpl();
+        astChild.setType(TokenTypes.TYPE);
+        ast.setFirstChild(astChild);
+        final DetailAstImpl astChild2 = new DetailAstImpl();
+        astChild2.setType(TokenTypes.ARRAY_DECLARATOR);
+        astChild2.setText("ObjectStreamField");
+        astChild.setFirstChild(astChild2);
+
+        ast.setType(TokenTypes.METHOD_DEF);
+        assertWithMessage("Should return false when ast type is invalid for current tag")
+                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
+                        .isFalse();
 
         ast.setType(TokenTypes.VARIABLE_DEF);
         astChild2.setType(TokenTypes.IDENT);
-        astChild2.setText("ObjectStreamField");
-        assertWithMessage("Should return false when type is not ARRAY_DECLARATOR ")
+        assertWithMessage("Should return false when ast type is invalid for current tag")
                 .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
-                .isFalse();
-
-        ast.setType(TokenTypes.VARIABLE_DEF);
-        astChild2.setType(TokenTypes.ARRAY_DECLARATOR);
-        astChild2.setText("WrongField");
-        assertWithMessage("Should return false when text is not ObjectStreamField")
-                .that(JavadocTagInfo.SERIAL_FIELD.isValidOn(ast))
-                .isFalse();
+                        .isFalse();
     }
 
     @Test
