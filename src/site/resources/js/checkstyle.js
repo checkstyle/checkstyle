@@ -55,7 +55,6 @@ window.addEventListener("load", function () {
     externalLinks.forEach((link) => {
         link.setAttribute("target", "_blank");
     });
-    prettyPrint();
 });
 
 window.addEventListener("scroll", function () {
