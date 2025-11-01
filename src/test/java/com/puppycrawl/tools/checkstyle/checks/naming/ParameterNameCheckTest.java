@@ -55,18 +55,48 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    public void testSpecified()
-            throws Exception {
-
-        final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
-
-        final String[] expected = {
-            "68:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
-            "68:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
-            "69:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
-        };
+    public void testParameterNameFields() throws Exception {
+        // Corresponds to InputParameterNameFields.java
+        // No parameter violations expected in the fields section
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputParameterNameOne.java"), expected);
+                getPath("InputParameterNameFields.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameMethods() throws Exception {
+        // Corresponds to InputParameterNameMethods.java
+        // No parameter violations expected in the methods section for the default pattern
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameMethods.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameMisc() throws Exception {
+        // Corresponds to InputParameterNameMisc.java
+        // No parameter violations expected in the misc methods section
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameMisc.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameForEach() throws Exception {
+        // Corresponds to InputParameterNameForEach.java
+        // Test currently expects no violation for 'O' with default pattern
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameForEach.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameEnum() throws Exception {
+        // Corresponds to InputParameterNameEnum.java
+        // No parameter violations expected in the enum section
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameEnum.java"), expected);
     }
 
     @Test
@@ -81,11 +111,55 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    public void testDefault()
-            throws Exception {
+    public void testParameterNameOneFields() throws Exception {
+        // Corresponds to InputParameterNameOneFields.java
+        // No parameter violations expected in the fields section
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
-                getPath("InputParameterName.java"), expected);
+                getPath("InputParameterNameOneFields.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameOneMethods() throws Exception {
+        // Corresponds to InputParameterNameOneMethods.java
+        // Contains the violations from the original test1 method
+        final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
+        final String[] expected = {
+            // Line numbers adjusted for InputParameterNameOneMethods.java
+            "26:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
+            "26:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
+            "27:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOneMethods.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameOneMisc() throws Exception {
+        // Corresponds to InputParameterNameOneMisc.java
+        // No parameter violations expected in the misc methods section
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOneMisc.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameOneForEach() throws Exception {
+        // Corresponds to InputParameterNameOneForEach.java
+        // Test currently expects no violation for 'O' with given pattern
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOneForEach.java"), expected);
+    }
+
+    @Test
+    public void testParameterNameOneEnum() throws Exception {
+        // Corresponds to InputParameterNameOneEnum.java
+        // No parameter violations expected in the enum section
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputParameterNameOneEnum.java"), expected);
     }
 
     @Test
