@@ -143,16 +143,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testNoCloseStream()
             throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.NONE);
-        logger.auditStarted(null);
-        logger.auditFinished(null);
-
-        assertWithMessage("Invalid close count")
-            .that(outStream.getCloseCount())
-            .isEqualTo(0);
-
-        outStream.close();
-        verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
+        verifyWithInlineConfigParserAndXmlLogger(
+                "InputXMLLoggerEmpty.java",
+                "ExpectedXMLLoggerEmpty.xml");
     }
 
     @Test
