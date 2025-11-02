@@ -209,6 +209,9 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
                     .that(exc)
                     .hasMessageThat()
                     .isNotEqualTo("unable to get package file resources");
+            assertWithMessage("Exception message must contain URL")
+                    .that(exc.getMessage())
+                    .contains(url.toString());
         }
     }
 
