@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (major === 8 && minor >= 0 && minor <= 34) {
         window.location.replace(`./releasenotes_old_8-0_8-34.html${url.hash}`);
     }
+    else if (major >= 8 && major <= 10) {
+        window.location.replace(`./releasenotes_old_8-35_10-26.html${url.hash}`);
+    }
 });
 
 window.addEventListener("load", function () {
