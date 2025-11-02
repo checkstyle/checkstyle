@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.io.Writer;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.MessageFormat;
@@ -70,12 +69,9 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/api/detailast";
     }
 
-    private static Method getSetParentMethod() throws Exception {
-        final Class<DetailAstImpl> detailAstClass = DetailAstImpl.class;
-        final Method setParentMethod =
-            detailAstClass.getDeclaredMethod("setParent", DetailAstImpl.class);
-        setParentMethod.setAccessible(true);
-        return setParentMethod;
+    private static void invokeSetParentMethod(DetailAST instance, DetailAstImpl parent)
+            throws Exception {
+        TestUtil.invokeVoidMethod(instance, "setParent", parent);
     }
 
     @Test
@@ -139,14 +135,13 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         root.setFirstChild(firstLevelA);
 
-        final Method setParentMethod = getSetParentMethod();
-        setParentMethod.invoke(firstLevelA, root);
+        invokeSetParentMethod(firstLevelA, root);
         firstLevelA.setFirstChild(secondLevelA);
         firstLevelA.setNextSibling(firstLevelB);
 
-        setParentMethod.invoke(firstLevelB, root);
+        invokeSetParentMethod(firstLevelB, root);
 
-        setParentMethod.invoke(secondLevelA, root);
+        invokeSetParentMethod(secondLevelA, root);
 
         assertWithMessage("Invalid child count")
             .that(secondLevelA.getChildCount())
@@ -200,14 +195,13 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         root.setFirstChild(firstLevelA);
 
-        final Method setParentMethod = getSetParentMethod();
-        setParentMethod.invoke(firstLevelA, root);
+        invokeSetParentMethod(firstLevelA, root);
         firstLevelA.setNextSibling(firstLevelB);
 
         firstLevelA.setType(TokenTypes.IDENT);
         firstLevelB.setType(TokenTypes.EXPR);
 
-        setParentMethod.invoke(firstLevelB, root);
+        invokeSetParentMethod(firstLevelB, root);
 
         final int childCountLevelB = firstLevelB.getChildCount(0);
         assertWithMessage("Invalid child count")
@@ -242,7 +236,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .that(root.getChildCount())
             .isEqualTo(1);
 
-        getSetParentMethod().invoke(firstLevelA, root);
+        invokeSetParentMethod(firstLevelA, root);
         firstLevelA.addPreviousSibling(null);
         firstLevelA.addNextSibling(null);
 
@@ -331,22 +325,21 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             .isEqualTo(0);
 
         root.setFirstChild(firstLevelA);
-        final Method setParentMethod = getSetParentMethod();
-        setParentMethod.invoke(firstLevelA, root);
+        invokeSetParentMethod(firstLevelA, root);
 
         assertWithMessage("Invalid child count")
             .that(root.getChildCount())
             .isEqualTo(1);
 
         firstLevelA.addNextSibling(firstLevelB);
-        setParentMethod.invoke(firstLevelB, root);
+        invokeSetParentMethod(firstLevelB, root);
 
         assertWithMessage("Invalid next sibling")
             .that(firstLevelA.getNextSibling())
             .isEqualTo(firstLevelB);
 
         firstLevelA.addNextSibling(firstLevelC);
-        setParentMethod.invoke(firstLevelC, root);
+        invokeSetParentMethod(firstLevelC, root);
 
         assertWithMessage("Invalid next sibling")
             .that(firstLevelA.getNextSibling())
@@ -390,7 +383,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 child::addChild,
             ast -> {
                 try {
-                    TestUtil.invokeMethod(child, "setParent", ast);
+                    TestUtil.invokeVoidMethod(child, "setParent", ast);
                 }
                 // -@cs[IllegalCatch] Cannot avoid catching it.
                 catch (Exception exception) {
@@ -400,9 +393,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         );
 
         for (Consumer<DetailAstImpl> method : clearBranchTokenTypesMethods) {
-            final BitSet branchTokenTypes = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
+            final BitSet branchTokenTypes = TestUtil.invokeMethod(parent,
+                    "getBranchTokenTypes", BitSet.class);
             method.accept(null);
-            final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent, "getBranchTokenTypes");
+            final BitSet branchTokenTypes2 = TestUtil.invokeMethod(parent,
+                    "getBranchTokenTypes", BitSet.class);
             assertWithMessage("Branch token types are not equal")
                 .that(branchTokenTypes)
                 .isEqualTo(branchTokenTypes2);
@@ -439,7 +434,8 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         for (Consumer<DetailAstImpl> method : clearChildCountCacheMethods) {
             final int startCount = parent.getChildCount();
             method.accept(null);
-            final int intermediateCount = TestUtil.getInternalState(parent, "childCount");
+            final int intermediateCount = TestUtil.getInternalState(parent, "childCount",
+                    Integer.class);
             final int finishCount = parent.getChildCount();
             assertWithMessage("Child count has changed")
                 .that(finishCount)
@@ -451,7 +447,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         final int startCount = child.getChildCount();
         child.addChild(null);
-        final int intermediateCount = TestUtil.getInternalState(child, "childCount");
+        final int intermediateCount = TestUtil.getInternalState(child, "childCount", Integer.class);
         final int finishCount = child.getChildCount();
         assertWithMessage("Child count has changed")
             .that(finishCount)

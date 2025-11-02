@@ -36,6 +36,7 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
         final String[] expected = {
             "12:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "13:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,6 +50,7 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
             "26:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "28:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -61,6 +63,7 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
             "16:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "29:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "31:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -80,6 +83,7 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
         final String[] expected = {
             "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -90,8 +94,18 @@ public class MissingJavadocMethodCheckExamplesTest extends AbstractExamplesModul
         final String[] expected = {
             "14:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "15:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "30:3: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
 }

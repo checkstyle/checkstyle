@@ -1251,6 +1251,10 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check -P spotless-autofix
+  ;;
+
 openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
@@ -1269,7 +1273,7 @@ openrewrite-recipes)
   set -e
   echo "Running OpenRewrite recipes..."
   ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-  rewrite:run -P checkstyle-autofix
+    rewrite:run -P checkstyle-autofix
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch

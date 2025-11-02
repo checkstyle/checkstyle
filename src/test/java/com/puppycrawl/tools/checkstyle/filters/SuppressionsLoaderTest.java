@@ -235,7 +235,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(sourceName), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
@@ -253,7 +253,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String sourceName = "InputSuppressionsLoaderNone.xml";
 
         try {
-            TestUtil.invokeStaticMethod(SuppressionsLoader.class, "loadSuppressions",
+            TestUtil.invokeVoidStaticMethod(SuppressionsLoader.class, "loadSuppressions",
                     new InputSource(), sourceName);
             assertWithMessage("InvocationTargetException is expected").fail();
         }
@@ -323,7 +323,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final SuppressFilterElement suppressElement = (SuppressFilterElement) fc.getFilters()
                 .toArray()[0];
 
-        final String id = TestUtil.getInternalState(suppressElement, "moduleId");
+        final String id = TestUtil.getInternalState(suppressElement, "moduleId", String.class);
         assertWithMessage("Id has to be defined")
             .that(id)
             .isEqualTo("someId");

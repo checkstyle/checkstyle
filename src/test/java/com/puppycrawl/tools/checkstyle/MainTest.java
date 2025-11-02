@@ -33,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serial;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -509,7 +508,8 @@ public class MainTest {
     public void testGetOutputStreamOptionsMethod() throws Exception {
         final Path path = new File(getPath("InputMain.java")).toPath();
         final OutputStreamOptions option =
-                TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions", path);
+                TestUtil.invokeStaticMethod(Main.class, "getOutputStreamOptions",
+                        OutputStreamOptions.class, path);
         assertWithMessage("Main.getOutputStreamOptions return CLOSE on not null Path")
                 .that(option)
                 .isEqualTo(OutputStreamOptions.CLOSE);
@@ -812,13 +812,10 @@ public class MainTest {
 
     @Test
     public void testLoadPropertiesIoException() throws Exception {
-        final Class<?>[] param = new Class<?>[1];
-        param[0] = File.class;
         final Class<?> cliOptionsClass = Class.forName(Main.class.getName());
-        final Method method = cliOptionsClass.getDeclaredMethod("loadProperties", param);
-        method.setAccessible(true);
         try {
-            method.invoke(null, new File("."));
+            TestUtil.invokeVoidStaticMethod(cliOptionsClass,
+                    "loadProperties", new File("."));
             assertWithMessage("Exception was expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -916,7 +913,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethodList(Main.class, "listFiles",
                 fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
@@ -953,7 +950,7 @@ public class MainTest {
             }
         };
 
-        final List<File> result = TestUtil.invokeStaticMethod(Main.class, "listFiles",
+        final List<File> result = TestUtil.invokeStaticMethodList(Main.class, "listFiles",
                 fileMock, new ArrayList<>());
         assertWithMessage("Invalid result size")
             .that(result)
@@ -1834,16 +1831,13 @@ public class MainTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void testExcludeDirectoryNotMatch() throws Exception {
         final Class<?> optionsClass = Class.forName(Main.class.getName());
-        final Method method = optionsClass.getDeclaredMethod("listFiles", File.class, List.class);
-        method.setAccessible(true);
         final List<Pattern> list = new ArrayList<>();
         list.add(Pattern.compile("BAD_PATH"));
 
-        final List<File> result = (List<File>) method.invoke(null, new File(getFilePath("")),
-                list);
+        final List<File> result = TestUtil.invokeStaticMethodList(
+                optionsClass, "listFiles", new File(getFilePath("")), list);
         assertWithMessage("Invalid result size")
             .that(result)
             .isNotEmpty();

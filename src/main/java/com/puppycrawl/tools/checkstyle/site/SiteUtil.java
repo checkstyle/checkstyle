@@ -31,19 +31,16 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collection;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -57,7 +54,6 @@ import javax.annotation.Nullable;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
@@ -74,12 +70,13 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck;
+import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
@@ -163,6 +160,11 @@ public final class SiteUtil {
      */
     private static final String REGEXP_HEADER_CHECK_HEADER = "RegexpHeaderCheck.header";
 
+    /**
+     * The string 'api'.
+     */
+    private static final String API = "api";
+
     /** Set of properties that are undocumented. Those are internal properties. */
     private static final Set<String> UNDOCUMENTED_PROPERTIES = Set.of(
         "SuppressWithNearbyCommentFilter.fileContents",
@@ -195,7 +197,8 @@ public final class SiteUtil {
         Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractAccessControlNameCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, NAMING, "AbstractNameCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "javadoc", "AbstractJavadocCheck.java"),
-        Path.of(MAIN_FOLDER_PATH, "api", "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, API, "AbstractFileSetCheck.java"),
+        Path.of(MAIN_FOLDER_PATH, API, "AbstractCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "header", "AbstractHeaderCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "metrics", "AbstractClassCouplingCheck.java"),
         Path.of(MAIN_FOLDER_PATH, CHECKS, "whitespace", "AbstractParenPadCheck.java")
@@ -773,9 +776,12 @@ public final class SiteUtil {
             getPropertySinceJavadocTag(propertyJavadoc);
 
         return propertyJavadocTag
-            .map(tag -> JavadocUtil.findFirstToken(tag, JavadocTokenTypes.DESCRIPTION))
-            .map(description -> JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT))
-            .map(DetailNode::getText);
+            .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
+            .map(description -> {
+                return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
+            })
+            .map(DetailNode::getText)
+            .map(String::trim);
     }
 
     /**
@@ -786,70 +792,24 @@ public final class SiteUtil {
      */
     private static Optional<DetailNode> getPropertySinceJavadocTag(DetailNode javadoc) {
         Optional<DetailNode> propertySinceJavadocTag = Optional.empty();
+        DetailNode child = javadoc.getFirstChild();
 
-        final Optional<DetailNode[]> propertyJavadocNodes = Optional.ofNullable(javadoc)
-            .map(DetailNode::getChildren);
+        while (child != null) {
+            if (child.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+                final DetailNode customBlockTag = JavadocUtil.findFirstToken(
+                        child, JavadocCommentsTokenTypes.CUSTOM_BLOCK_TAG);
 
-        if (propertyJavadocNodes.isPresent()) {
-            for (final DetailNode child : propertyJavadocNodes.get()) {
-                if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
-                    final DetailNode customName = JavadocUtil.findFirstToken(
-                            child, JavadocTokenTypes.CUSTOM_NAME);
-                    if (customName != null && "@propertySince".equals(customName.getText())) {
-                        propertySinceJavadocTag = Optional.of(child);
-                        break;
-                    }
+                if (customBlockTag != null
+                        && "propertySince".equals(JavadocUtil.findFirstToken(
+                            customBlockTag, JavadocCommentsTokenTypes.TAG_NAME).getText())) {
+                    propertySinceJavadocTag = Optional.of(customBlockTag);
+                    break;
                 }
             }
+            child = child.getNextSibling();
         }
 
         return propertySinceJavadocTag;
-    }
-
-    /**
-     * Gets the javadoc node part of the property from the javadoc of the module.
-     *
-     * @param propertyName the name of property.
-     * @param moduleJavadoc the javadoc of module.
-     * @return the Optional of javadoc node part of the property.
-     */
-    public static Optional<DetailNode> getPropertyJavadocNodeInModule(String propertyName,
-                                                             DetailNode moduleJavadoc) {
-        final List<DetailNode> htmlElementNodes = getNodesOfSpecificType(
-            moduleJavadoc.getChildren(), JavadocTokenTypes.HTML_ELEMENT);
-
-        final List<DetailNode> ulTags = htmlElementNodes.stream()
-            .map(JavadocUtil::getFirstChild)
-            .filter(child -> {
-                final boolean isHtmlTag = child.getType() == JavadocTokenTypes.HTML_TAG;
-                final DetailNode htmlTagNameNode = JavadocUtil.findFirstToken(
-                    JavadocUtil.getFirstChild(child), JavadocTokenTypes.HTML_TAG_NAME);
-
-                return isHtmlTag && "ul".equals(htmlTagNameNode.getText());
-            })
-            .toList();
-        final DetailNode[] childrenOfUlTags = ulTags.stream()
-            .flatMap(ulTag -> Arrays.stream(ulTag.getChildren()))
-            .toArray(DetailNode[]::new);
-        final List<DetailNode> innerHtmlElementsOfUlTags =
-            getNodesOfSpecificType(childrenOfUlTags, JavadocTokenTypes.HTML_ELEMENT);
-
-        final List<DetailNode> liTags = innerHtmlElementsOfUlTags.stream()
-            .map(JavadocUtil::getFirstChild)
-            .filter(tag -> tag.getType() == JavadocTokenTypes.LI)
-            .toList();
-
-        final List<DetailNode> liTagsInlineTexts = liTags.stream()
-            .map(liTag -> JavadocUtil.findFirstToken(liTag, JavadocTokenTypes.JAVADOC_INLINE_TAG))
-            .filter(Objects::nonNull)
-            .map(inlineTag -> JavadocUtil.findFirstToken(inlineTag, JavadocTokenTypes.TEXT))
-            .toList();
-
-        return liTagsInlineTexts.stream()
-            .filter(text -> text.getText().equals(propertyName))
-            .findFirst()
-            .map(textNode -> textNode.getParent().getParent());
-
     }
 
     /**
@@ -875,9 +835,13 @@ public final class SiteUtil {
     private static String getSinceVersionFromJavadoc(DetailNode javadoc) {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
         return Optional.ofNullable(sinceJavadocTag)
-            .map(tag -> JavadocUtil.findFirstToken(tag, JavadocTokenTypes.DESCRIPTION))
-            .map(description -> JavadocUtil.findFirstToken(description, JavadocTokenTypes.TEXT))
+            .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
+            .map(description -> {
+                return JavadocUtil.findFirstToken(
+                        description, JavadocCommentsTokenTypes.TEXT);
+            })
             .map(DetailNode::getText)
+            .map(String::trim)
             .orElse(null);
     }
 
@@ -888,18 +852,22 @@ public final class SiteUtil {
      * @return the since Javadoc tag node or null if not found.
      */
     private static DetailNode getSinceJavadocTag(DetailNode javadoc) {
-        final DetailNode[] children = javadoc.getChildren();
+        DetailNode child = javadoc.getFirstChild();
         DetailNode javadocTagWithSince = null;
-        for (final DetailNode child : children) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+
+        while (child != null) {
+            if (child.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
                 final DetailNode sinceNode = JavadocUtil.findFirstToken(
-                        child, JavadocTokenTypes.SINCE_LITERAL);
+                        child, JavadocCommentsTokenTypes.SINCE_BLOCK_TAG);
+
                 if (sinceNode != null) {
-                    javadocTagWithSince = child;
+                    javadocTagWithSince = sinceNode;
                     break;
                 }
             }
+            child = child.getNextSibling();
         }
+
         return javadocTagWithSince;
     }
 
@@ -980,7 +948,8 @@ public final class SiteUtil {
             result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
         }
         else if (fieldClass == String[].class) {
-            result = getStringArrayPropertyValue(value);
+            final boolean preserveOrder = hasPreserveOrderAnnotation(field);
+            result = getStringArrayPropertyValue(value, preserveOrder);
         }
         else if (fieldClass == Pattern.class) {
             if (value != null) {
@@ -1005,6 +974,16 @@ public final class SiteUtil {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if a field has the {@code PreserveOrder} annotation.
+     *
+     * @param field the field to check
+     * @return true if the field has {@code PreserveOrder} annotation, false otherwise
+     */
+    private static boolean hasPreserveOrderAnnotation(Field field) {
+        return field != null && field.isAnnotationPresent(PreserveOrder.class);
     }
 
     /**
@@ -1048,22 +1027,30 @@ public final class SiteUtil {
      * Gets the name of the bean property's default value for the string array class.
      *
      * @param value The bean property's value
+     * @param preserveOrder whether to preserve the original order
      * @return String form of property's default value
      */
-    private static String getStringArrayPropertyValue(Object value) {
+    private static String getStringArrayPropertyValue(Object value, boolean preserveOrder) {
         final String result;
         if (value == null) {
             result = "";
         }
         else {
             try (Stream<?> valuesStream = getValuesStream(value)) {
-                result = valuesStream
+                final List<String> stringList = valuesStream
                     .map(String.class::cast)
+                    .collect(Collectors.toCollection(ArrayList<String>::new));
+
+                if (preserveOrder) {
+                    result = String.join(COMMA_SPACE, stringList);
+                }
+                else {
+                    result = stringList.stream()
                     .sorted()
                     .collect(Collectors.joining(COMMA_SPACE));
+                }
             }
         }
-
         return result;
     }
 
@@ -1336,31 +1323,27 @@ public final class SiteUtil {
      * @param moduleName the name of the module.
      * @return the description of the setter.
      * @throws MacroExecutionException if the description could not be extracted.
-     * @noinspection TooBroadScope
-     * @noinspectionreason TooBroadScope - complex nature of method requires large scope
      */
     // -@cs[NPathComplexity] Splitting would not make the code more readable
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
+    // -@cs[ExecutableStatementCount] Splitting would not make the code more readable.
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
         boolean isInHtmlElement = false;
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
-        final Deque<DetailNode> queue = new ArrayDeque<>();
         final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
-        Lists.reverse(descriptionNodes).forEach(queue::push);
+        DetailNode node = descriptionNodes.get(0);
+        final DetailNode endNode = descriptionNodes.get(descriptionNodes.size() - 1);
 
-        // Perform DFS traversal on description nodes
-        while (!queue.isEmpty()) {
-            final DetailNode node = queue.pop();
-            Lists.reverse(Arrays.asList(node.getChildren())).forEach(queue::push);
-
-            if (node.getType() == JavadocTokenTypes.HTML_TAG_NAME
+        while (node != null) {
+            if (node.getType() == JavadocCommentsTokenTypes.TAG_ATTR_NAME
                     && "href".equals(node.getText())) {
                 isInHrefAttribute = true;
             }
-            if (isInHrefAttribute && node.getType() == JavadocTokenTypes.ATTR_VALUE) {
+            if (isInHrefAttribute && node.getType()
+                     == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE) {
                 final String href = node.getText();
                 if (href.contains(CHECKSTYLE_ORG_URL)) {
                     DescriptionExtractor.handleInternalLink(description, moduleName, href);
@@ -1370,33 +1353,51 @@ public final class SiteUtil {
                 }
 
                 isInHrefAttribute = false;
-                continue;
             }
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                isInHtmlElement = true;
+            else {
+                if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
+                    isInHtmlElement = true;
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_CLOSE
+                        && node.getParent().getType() == JavadocCommentsTokenTypes.HTML_TAG_END) {
+                    description.append(node.getText());
+                    isInHtmlElement = false;
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TEXT
+                        // If a node has children, its text is not part of the description
+                        || isInHtmlElement && node.getFirstChild() == null
+                            // Some HTML elements span multiple lines, so we avoid the asterisk
+                            && node.getType() != JavadocCommentsTokenTypes.LEADING_ASTERISK) {
+                    if (isInCodeLiteral) {
+                        description.append(node.getText().trim());
+                    }
+                    else {
+                        description.append(node.getText());
+                    }
+                }
+                if (node.getType() == JavadocCommentsTokenTypes.TAG_NAME
+                        && node.getParent().getType()
+                                  == JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
+                    isInCodeLiteral = true;
+                    description.append("<code>");
+                }
+                if (isInCodeLiteral
+                        && node.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END) {
+                    isInCodeLiteral = false;
+                    description.append("</code>");
+                }
+
             }
-            if (node.getType() == JavadocTokenTypes.END
-                    && node.getParent().getType() == JavadocTokenTypes.HTML_ELEMENT_END) {
-                description.append(node.getText());
-                isInHtmlElement = false;
+
+            DetailNode toVisit = node.getFirstChild();
+            while (node != endNode && toVisit == null) {
+                toVisit = node.getNextSibling();
+                node = node.getParent();
             }
-            if (node.getType() == JavadocTokenTypes.TEXT
-                    // If a node has children, its text is not part of the description
-                    || isInHtmlElement && node.getChildren().length == 0
-                        // Some HTML elements span multiple lines, so we avoid the asterisk
-                        && node.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
-                description.append(node.getText());
-            }
-            if (node.getType() == JavadocTokenTypes.CODE_LITERAL) {
-                isInCodeLiteral = true;
-                description.append("<code>");
-            }
-            if (isInCodeLiteral
-                    && node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
-                isInCodeLiteral = false;
-                description.append("</code>");
-            }
+
+            node = toVisit;
         }
+
         return description.toString().trim();
     }
 
@@ -1407,29 +1408,17 @@ public final class SiteUtil {
      * @return first paragraph of javadoc.
      */
     public static String getFirstParagraphFromJavadoc(DetailNode javadoc) {
-        final Deque<DetailNode> stack = new ArrayDeque<>();
+        final String result;
         final List<DetailNode> firstParagraphNodes = getFirstJavadocParagraphNodes(javadoc);
-        Lists.reverse(firstParagraphNodes).forEach(stack::push);
-        final StringBuilder result = new StringBuilder(1024);
-        while (!stack.isEmpty()) {
-            final DetailNode detailNode = stack.pop();
-
-            Lists.reverse(Arrays.asList(detailNode.getChildren())).forEach(stack::push);
-
-            String childText = detailNode.getText();
-
-            if (detailNode.getParent().getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                childText = JavadocMetadataScraperUtil.adjustCodeInlineTagChildToHtml(detailNode);
-            }
-
-            // Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF).
-            final Pattern tokenTextPattern = Pattern.compile("([A-Z_]{2,})+");
-            if (detailNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && !tokenTextPattern.matcher(childText).matches()) {
-                result.append(childText);
-            }
+        if (firstParagraphNodes.isEmpty()) {
+            result = "";
         }
-        return result.toString().trim();
+        else {
+            final DetailNode startNode = firstParagraphNodes.get(0);
+            final DetailNode endNode = firstParagraphNodes.get(firstParagraphNodes.size() - 1);
+            result = JavadocMetadataScraperUtil.constructSubTreeText(startNode, endNode);
+        }
+        return result;
     }
 
     /**
@@ -1439,9 +1428,10 @@ public final class SiteUtil {
      * @return the first paragraph nodes of the setter.
      */
     public static List<DetailNode> getFirstJavadocParagraphNodes(DetailNode javadoc) {
-        final DetailNode[] children = javadoc.getChildren();
         final List<DetailNode> firstParagraphNodes = new ArrayList<>();
-        for (final DetailNode child : children) {
+
+        for (DetailNode child = javadoc.getFirstChild();
+                child != null; child = child.getNextSibling()) {
             if (isEndOfFirstJavadocParagraph(child)) {
                 break;
             }
@@ -1460,14 +1450,14 @@ public final class SiteUtil {
      * @return true if the given child index is the end of the first javadoc paragraph.
      */
     public static boolean isEndOfFirstJavadocParagraph(DetailNode child) {
-        final DetailNode nextSibling = JavadocUtil.getNextSibling(child);
-        final DetailNode secondNextSibling = JavadocUtil.getNextSibling(nextSibling);
-        final DetailNode thirdNextSibling = JavadocUtil.getNextSibling(secondNextSibling);
+        final DetailNode nextSibling = child.getNextSibling();
+        final DetailNode secondNextSibling = nextSibling.getNextSibling();
+        final DetailNode thirdNextSibling = secondNextSibling.getNextSibling();
 
-        return child.getType() == JavadocTokenTypes.NEWLINE
-                    && nextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                    && secondNextSibling.getType() == JavadocTokenTypes.NEWLINE
-                    && thirdNextSibling.getType() == JavadocTokenTypes.LEADING_ASTERISK;
+        return child.getType() == JavadocCommentsTokenTypes.NEWLINE
+                    && nextSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK
+                    && secondNextSibling.getType() == JavadocCommentsTokenTypes.NEWLINE
+                    && thirdNextSibling.getType() == JavadocCommentsTokenTypes.LEADING_ASTERISK;
     }
 
     /**

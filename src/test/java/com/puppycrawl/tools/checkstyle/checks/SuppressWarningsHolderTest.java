@@ -24,8 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -66,7 +64,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
         new SuppressWarningsHolder().beginTree(null);
 
-        final Map<String, String> map = TestUtil.getInternalStaticState(
+        final Map<String, String> map = TestUtil.getInternalStaticStateMap(
                 SuppressWarningsHolder.class, "CHECK_ALIAS_MAP");
         map.clear();
     }
@@ -283,11 +281,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAllAnnotationValuesWrongArg() throws ReflectiveOperationException {
+    public void testGetAllAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAllAnnotationValues = holder.getClass()
-                .getDeclaredMethod("getAllAnnotationValues", DetailAST.class);
-        getAllAnnotationValues.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -303,7 +298,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.addChild(methodDef);
 
         try {
-            getAllAnnotationValues.invoke(holder, parent);
+            TestUtil.invokeVoidMethod(holder, "getAllAnnotationValues", parent);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -320,11 +315,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAnnotationValuesWrongArg() throws ReflectiveOperationException {
+    public void testGetAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAllAnnotationValues = holder.getClass()
-                .getDeclaredMethod("getAnnotationValues", DetailAST.class);
-        getAllAnnotationValues.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -333,7 +325,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         methodDef.setColumnNo(0);
 
         try {
-            getAllAnnotationValues.invoke(holder, methodDef);
+            TestUtil.invokeVoidMethod(holder, "getAnnotationValues", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -351,11 +343,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAnnotationTargetWrongArg() throws ReflectiveOperationException {
+    public void testGetAnnotationTargetWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
-        final Method getAnnotationTarget = holder.getClass()
-                .getDeclaredMethod("getAnnotationTarget", DetailAST.class);
-        getAnnotationTarget.setAccessible(true);
 
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -369,7 +358,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         parent.setColumnNo(0);
 
         try {
-            getAnnotationTarget.invoke(holder, methodDef);
+            TestUtil.invokeVoidMethod(holder, "getAnnotationTarget", methodDef);
             assertWithMessage("Exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -416,8 +405,8 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder7.java"), expected);
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
 
@@ -442,15 +431,13 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                                                          int lastColumn) throws Exception {
         final Class<?> entry = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder$Entry");
-        final Constructor<?> entryConstr = entry.getDeclaredConstructor(String.class, int.class,
-                int.class, int.class, int.class);
-        entryConstr.setAccessible(true);
 
-        final Object entryInstance = entryConstr.newInstance(checkName, firstLine,
+        final Object entryInstance = TestUtil.instantiate(entry, checkName, firstLine,
                 firstColumn, lastLine, lastColumn);
 
         final ThreadLocal<List<Object>> entries = TestUtil
-                .getInternalStaticState(SuppressWarningsHolder.class, "ENTRIES");
+                .getInternalStaticStateThreadLocal(SuppressWarningsHolder.class,
+                        "ENTRIES");
         entries.get().add(entryInstance);
     }
 

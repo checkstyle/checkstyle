@@ -60,11 +60,11 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     public void testDefault() throws Exception {
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "28:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "41:27: " + getCheckMessage(MSG_KEY, 11, 10),
-            "54:35: " + getCheckMessage(MSG_KEY, 13, 10),
-            "57:15: " + getCheckMessage(MSG_KEY, 11, 10),
-            "68:34: " + getCheckMessage(MSG_KEY, 11, 10),
+            "29:27: " + getCheckMessage(MSG_KEY, 12, 10),
+            "42:27: " + getCheckMessage(MSG_KEY, 11, 10),
+            "55:35: " + getCheckMessage(MSG_KEY, 13, 10),
+            "59:15: " + getCheckMessage(MSG_KEY, 11, 10),
+            "71:34: " + getCheckMessage(MSG_KEY, 11, 10),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthDefault.java"), expected);
@@ -81,9 +81,9 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     public void testMaxLimitIsDifferent() throws Exception {
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 4, 3),
-            "20:27: " + getCheckMessage(MSG_KEY, 4, 3),
-            "30:35: " + getCheckMessage(MSG_KEY, 5, 3),
-            "36:34: " + getCheckMessage(MSG_KEY, 4, 3),
+            "21:27: " + getCheckMessage(MSG_KEY, 4, 3),
+            "32:35: " + getCheckMessage(MSG_KEY, 5, 3),
+            "39:34: " + getCheckMessage(MSG_KEY, 4, 3),
         };
         verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthMax.java"), expected);

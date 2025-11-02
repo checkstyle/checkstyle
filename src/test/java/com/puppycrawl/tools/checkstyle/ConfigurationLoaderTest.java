@@ -20,15 +20,10 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mockConstruction;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -70,32 +65,28 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
 
     private static Object getInternalLoaderInstance(PropertyResolver resolver)
              throws Exception {
-        final Constructor<ConfigurationLoader> constructor = ConfigurationLoader.class
-                .getDeclaredConstructor(PropertyResolver.class, boolean.class,
-                        ThreadModeSettings.class);
-        constructor.setAccessible(true);
-        final ConfigurationLoader loader = constructor.newInstance(resolver, false,
-                ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
 
-        final Field saxHandlerField = ConfigurationLoader.class.getDeclaredField("saxHandler");
-        saxHandlerField.setAccessible(true);
-        return saxHandlerField.get(loader);
+        final ConfigurationLoader loader = TestUtil.instantiate(ConfigurationLoader.class,
+                resolver, false, ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE);
+
+        return TestUtil.getInternalState(loader, "saxHandler", Object.class);
     }
 
-    private static Method getReplacePropertiesMethod(Class<?> internalLoaderClass)
-            throws NoSuchMethodException {
-        final Class<?>[] params = {String.class, String.class};
-        final Method method = internalLoaderClass.getDeclaredMethod("replaceProperties", params);
-        method.setAccessible(true);
-        return method;
+    private static String invokeReplacePropertiesMethod(
+            Object internalLoader, String value, String defaultValue)
+            throws ReflectiveOperationException {
+        return TestUtil.invokeMethod(internalLoader, "replaceProperties",
+                String.class, value, defaultValue);
     }
 
-    private static Method getParsePropertyStringMethod(Class<?> internalLoaderClass)
-            throws NoSuchMethodException {
-        final Class<?>[] params = {String.class, Collection.class, Collection.class};
-        final Method method = internalLoaderClass.getDeclaredMethod("parsePropertyString", params);
-        method.setAccessible(true);
-        return method;
+    private static void invokeParsePropertyStringMethod(
+            Object internalLoader,
+            String value,
+            Collection<String> fragments,
+            Collection<String> propertyRefs)
+            throws ReflectiveOperationException {
+        TestUtil.invokeVoidMethod(
+                internalLoader, "parsePropertyString", value, fragments, propertyRefs);
     }
 
     @Test
@@ -104,11 +95,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                                      "{a}", "a}", "$a}", "$", "a$b", };
         final Properties props = initProperties();
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getReplacePropertiesMethod(internalLoaderClass);
 
         for (String testValue : testValues) {
-            final String value = (String) method.invoke(internalLoader, testValue, null);
+            final String value = invokeReplacePropertiesMethod(internalLoader, testValue, null);
             assertWithMessage("\"" + testValue + "\"")
                 .that(testValue)
                 .isEqualTo(value);
@@ -119,14 +108,12 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testReplacePropertiesSyntaxError() throws Exception {
         final Properties props = initProperties();
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getReplacePropertiesMethod(internalLoaderClass);
 
         try {
-            final String value = (String) method.invoke(internalLoader, "${a", null);
+            final String value = invokeReplacePropertiesMethod(internalLoader, "${a", null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (InvocationTargetException exc) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
                 .that(exc.getCause())
                 .isInstanceOf(CheckstyleException.class);
@@ -140,14 +127,12 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testReplacePropertiesMissingProperty() throws Exception {
         final Properties props = initProperties();
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getReplacePropertiesMethod(internalLoaderClass);
 
         try {
-            final String value = (String) method.invoke(internalLoader, "${c}", null);
+            final String value = invokeReplacePropertiesMethod(internalLoader, "${c}", null);
             assertWithMessage("expected to fail, instead got: " + value).fail();
         }
-        catch (InvocationTargetException exc) {
+        catch (ReflectiveOperationException exc) {
             assertWithMessage("Invalid exception cause message")
                 .that(exc.getCause())
                 .isInstanceOf(CheckstyleException.class);
@@ -175,11 +160,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         };
         final Properties props = initProperties();
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getReplacePropertiesMethod(internalLoaderClass);
 
         for (String[] testValue : testValues) {
-            final String value = (String) method.invoke(internalLoader, testValue[0], null);
+            final String value = invokeReplacePropertiesMethod(internalLoader, testValue[0], null);
             assertWithMessage("\"" + testValue[0] + "\"")
                 .that(value)
                 .isEqualTo(testValue[1]);
@@ -191,11 +174,10 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Properties props = new Properties();
         final String defaultValue = "defaultValue";
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getReplacePropertiesMethod(internalLoaderClass);
 
-        final String value = (String) method.invoke(
-            internalLoader, "${checkstyle.basedir}", defaultValue);
+        final String value =
+                invokeReplacePropertiesMethod(
+                        internalLoader, "${checkstyle.basedir}", defaultValue);
 
         assertWithMessage("Invalid property value")
             .that(value)
@@ -206,13 +188,11 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     public void testParsePropertyString() throws Exception {
         final Properties props = initProperties();
         final Object internalLoader = getInternalLoaderInstance(new PropertiesExpander(props));
-        final Class<?> internalLoaderClass = internalLoader.getClass();
-        final Method method = getParsePropertyStringMethod(internalLoaderClass);
 
         final List<String> propertyRefs = new ArrayList<>();
         final List<String> fragments = new ArrayList<>();
 
-        method.invoke(internalLoader, "$", fragments, propertyRefs);
+        invokeParsePropertyStringMethod(internalLoader, "$", fragments, propertyRefs);
         assertWithMessage("Fragments list has unexpected amount of items")
             .that(fragments)
             .hasSize(1);
@@ -570,20 +550,14 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testIncorrectTag() throws Exception {
         final Class<?> aClassParent = ConfigurationLoader.class;
-        final Constructor<?> ctorParent = aClassParent.getDeclaredConstructor(
-                PropertyResolver.class, boolean.class, ThreadModeSettings.class);
-        ctorParent.setAccessible(true);
-        final Object objParent = ctorParent.newInstance(null, true, null);
+        final Object objParent = TestUtil.instantiate(aClassParent, null, true, null);
 
         final Class<?> aClass = Class.forName("com.puppycrawl.tools.checkstyle."
                 + "ConfigurationLoader$InternalLoader");
-        final Constructor<?> constructor = aClass.getDeclaredConstructor(objParent.getClass());
-        constructor.setAccessible(true);
-
-        final Object obj = constructor.newInstance(objParent);
+        final Object obj = TestUtil.instantiate(aClass, objParent);
 
         try {
-            TestUtil.invokeMethod(obj, "startElement", "", "", "hello", null);
+            TestUtil.invokeVoidMethod(obj, "startElement", "", "", "hello", null);
 
             assertWithMessage("InvocationTargetException is expected").fail();
         }
@@ -757,11 +731,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                     when(mock.getName()).thenReturn("MemberName");
                     when(mock.getProperty("severity")).thenThrow(CheckstyleException.class);
                 })) {
-            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
-                ConfigurationLoader.loadConfiguration(
-                        getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
-                        new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
-            });
+            final CheckstyleException ex =
+                    TestUtil.getExpectedThrowable(CheckstyleException.class, () -> {
+                        ConfigurationLoader.loadConfiguration(
+                                getPath("InputConfigurationLoaderModuleIgnoreSeverity.xml"),
+                                new PropertiesExpander(
+                                        new Properties()), IgnoredModulesOptions.OMIT);
+                    });
             final String expectedMessage =
                 "Problem during accessing 'severity' attribute for MemberName";
             assertWithMessage("Invalid exception cause message")

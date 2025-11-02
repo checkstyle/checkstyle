@@ -12,10 +12,10 @@ public class InputUnusedCatchParameterShouldBeUnnamedNested {
     void testNestedCatch1() {
         try {
             int x = 1 / 0;
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation 'Unused catch parameter 'e' should be unnamed.'
             try {
                 int y = 1 / 0;
-            } catch (Exception ex) {  // violation
+            } catch (Exception ex) {  // violation 'Unused catch parameter 'ex' should be unnamed.'
                 System.out.println("infinity");
             }
             System.out.println("infinity");
@@ -28,7 +28,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedNested {
         } catch (Exception e) {
             try {
                 int y = 1 / 0;
-            } catch (Exception ex) {  // violation
+            } catch (Exception ex) {  // violation 'Unused catch parameter 'ex' should be unnamed.'
                 e.printStackTrace();
                 System.out.println("infinity");
             }
@@ -39,7 +39,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedNested {
     void testNestedCatch3() {
         try {
             int x = 1 / 0;
-        } catch (Exception e) { // violation
+        } catch (Exception e) { // violation 'Unused catch parameter 'e' should be unnamed.'
             try {
                 int y = 1 / 0;
             } catch (Exception ex) {
@@ -84,7 +84,7 @@ public class InputUnusedCatchParameterShouldBeUnnamedNested {
         } catch (Exception e) {
             try {
                 int y = 1 / 0;
-            } catch (Exception ex) { // violation
+            } catch (Exception ex) { // violation 'Unused catch parameter 'ex' should be unnamed.'
                 try {
                     int z = 1 / 0;
                 } catch (Exception exx) {

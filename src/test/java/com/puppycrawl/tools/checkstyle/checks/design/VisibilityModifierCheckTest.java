@@ -83,7 +83,7 @@ public class VisibilityModifierCheckTest
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void testSimple1() throws Exception {
         final String[] expected = {
             "49:19: " + getCheckMessage(MSG_KEY, "mNumCreated2"),
             "59:23: " + getCheckMessage(MSG_KEY, "sTest1"),
@@ -94,6 +94,14 @@ public class VisibilityModifierCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputVisibilityModifierSimple.java"), expected);
+    }
+
+    @Test
+    public void testSimple2() throws Exception {
+        final String[] expected = {
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputVisibilityModifierSimple2.java"), expected);
     }
 
     @Test
@@ -422,7 +430,8 @@ public class VisibilityModifierCheckTest
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
             JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
-        final boolean actual = TestUtil.invokeMethod(check, "isStarImport", importAst);
+        final boolean actual = TestUtil.invokeMethod(check, "isStarImport",
+                Boolean.class, importAst);
 
         assertWithMessage("Should return true when star import is passed")
                 .that(actual)

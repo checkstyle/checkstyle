@@ -156,8 +156,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearState() throws Exception {
         final ReturnCountCheck check = new ReturnCountCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(

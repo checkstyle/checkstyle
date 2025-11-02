@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
@@ -141,11 +140,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.beginProcessing(charset);
         check.processFiltered(fileToProcess, new FileText(fileToProcess, charset));
         check.beginProcessing(charset);
-        final Field field = check.getClass().getDeclaredField("filesToProcess");
-        field.setAccessible(true);
 
         assertWithMessage("Stateful field is not cleared on beginProcessing")
-                .that((Iterable<?>) field.get(check))
+                .that(TestUtil.getInternalState(check, "filesToProcess", Iterable.class))
                 .isEmpty();
     }
 
@@ -222,7 +219,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.configure(checkConfig);
         check.setMessageDispatcher(dispatcher);
 
-        final Set<String> keys = TestUtil.invokeMethod(check, "getTranslationKeys",
+        final Set<String> keys = TestUtil.invokeMethodSet(check, "getTranslationKeys",
                 new File(".no.such.file"));
         assertWithMessage("Translation keys should be empty when File is not found")
                 .that(keys)
@@ -252,7 +249,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         check.setId("ID1");
 
         final Exception exception = new IOException("test exception");
-        TestUtil.invokeMethod(check, "logException", exception, new File(""));
+        TestUtil.invokeVoidMethod(check, "logException", exception, new File(""));
 
         assertWithMessage("expected number of errors to fire")
             .that(dispatcher.savedErrors.size())

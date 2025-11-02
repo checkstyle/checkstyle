@@ -10,6 +10,242 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.1.1">
+      <div class="releaseDate">26.10.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Incorrect encoding in non-English properties files causing garbled characters in
+            localized messages.
+            Author: Vinisha Wagh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17975">#17975</a>
+          </li>
+          <li>
+            Google style config and formatter differ on blank line separation.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17681">#17681</a>
+          </li>
+          <li>
+            some messages are still hardcoded in english.
+            Author: Vinisha Wagh
+            <a href="https://github.com/checkstyle/checkstyle/issues/3110">#3110</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Andrei Mititelu, Stoyan, Aryant, daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Add `rewrite` support for `errorprone.refasterrules`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17487">#17487</a>
+          </li>
+          <li>
+            avoid horizontal scrolling in atclauseorder.html.
+            Author: ANISETTY AKASH
+            <a href="https://github.com/checkstyle/checkstyle/issues/17939">#17939</a>
+          </li>
+          <li>
+            Wrong tagOrder in AtClauseOrder documentation..
+            Author: Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/10086">#10086</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17845">#17845</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            SLF4J configuration warnings when running tests.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17956">#17956</a>
+          </li>
+          <li>
+            JVM warnings when running tests.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17954">#17954</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 12.1.0">
+      <div class="releaseDate">19.10.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New check: HexLiteralCase, Hexadecimal literals should use upper case letters A-F.
+            Author: zyad
+            <a href="https://github.com/checkstyle/checkstyle/issues/16836">#16836</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: JANHVI BABANI
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17845">#17845</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Andrei Mititelu, ivanmalutin, ANISETTY AKASH
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: voidCounter, Kishor
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            update JavadocTokenTypes.java to new format of AST print.
+            Author: Talib Hussain
+            <a href="https://github.com/checkstyle/checkstyle/issues/14631">#14631</a>
+          </li>
+          <li>
+            CheckstyleAntTaskTest.testNoFileOrPathSpecified not executed because it&#39;s static.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17924">#17924</a>
+          </li>
+          <li>
+            Resolving spotbugs violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17933">#17933</a>
+          </li>
+          <li>
+            Remove ImportControlTest supressions.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17910">#17910</a>
+          </li>
+          <li>
+            Deploy configuration-1-3.xsd to the CheckStyle website.
+            Author: Sockalingam
+            <a href="https://github.com/checkstyle/checkstyle/issues/17865">#17865</a>
+          </li>
+          <li>
+            Add `id` to `NeedBraces` declaration.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17891">#17891</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 12.0.1">
+      <div class="releaseDate">11.10.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            SARIF report does not contain information about the failing rules.
+            Author: Ruslan Diachenko
+            <a href="https://github.com/checkstyle/checkstyle/issues/17131">#17131</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Nikhil, JANHVI BABANI, daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Use LexicographicalAnnotationListing  for annotations.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/14194">#14194</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 12.0.0">
+      <div class="releaseDate">09.10.2025</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            New ANTLR Grammar for Javadoc Comments.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/17514">#17514</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: update writing javadoc checks page in the documentation.
+            Author: mahfouz72
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: mahfouz72
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Fix PackageObjectFactoryTest before/after annotations.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/17876">#17876</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/17845">#17845</a>
+          </li>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: Javawired, Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 11.1.0">
       <div class="releaseDate">28.09.2025</div>
       <p>New:</p>

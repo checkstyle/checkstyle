@@ -77,8 +77,8 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
     }
 
     // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     @Override
+    @SuppressWarnings("deprecation")
     public void beginTree(DetailAST rootAST) {
         MatchSuppressor suppressor = null;
         if (ignoreComments) {

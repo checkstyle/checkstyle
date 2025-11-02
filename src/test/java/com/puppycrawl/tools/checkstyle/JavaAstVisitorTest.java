@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
 import java.io.IOException;
@@ -236,13 +237,11 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullSelfInAddLastSibling() throws Exception {
-        final Method addLastSibling = JavaAstVisitor.class
-                .getDeclaredMethod("addLastSibling", DetailAstImpl.class, DetailAstImpl.class);
-        addLastSibling.setAccessible(true);
-        assertWithMessage("Method should not throw exception.")
-                .that(addLastSibling.invoke(JavaAstVisitor.class, null, null))
-                .isNull();
+    public void testNullSelfInAddLastSibling() {
+        assertDoesNotThrow(() -> {
+            TestUtil.invokeVoidStaticMethod(JavaAstVisitor.class, "addLastSibling",
+                    null, null);
+        }, "Method should not throw exception.");
     }
     /**
      * This test exists to kill surviving mutation from pitest removing expression AST building

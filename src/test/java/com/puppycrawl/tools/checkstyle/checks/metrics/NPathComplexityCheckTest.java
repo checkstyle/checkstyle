@@ -118,8 +118,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 getPath("InputNPathComplexityOverflow.java"), expected);
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testStatefulFieldsClearedOnBeginTree1() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_ELSE);
@@ -144,8 +144,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testStatefulFieldsClearedOnBeginTree2() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_RETURN);
@@ -177,9 +177,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.orElseThrow(),
                         "processingTokenEnd", processingTokenEnd -> {
                             return TestUtil.<Integer>getInternalState(processingTokenEnd,
-                                    "endLineNo") == 0
+                                    "endLineNo", Integer.class) == 0
                                     && TestUtil.<Integer>getInternalState(processingTokenEnd,
-                                            "endColumnNo") == 0;
+                                            "endColumnNo", Integer.class) == 0;
                         }))
                 .isTrue();
     }
@@ -395,13 +395,14 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokenEndIsAfterSameLineColumn() throws Exception {
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        final Object tokenEnd = TestUtil.getInternalState(check, "processingTokenEnd");
+        final Object tokenEnd = TestUtil.getInternalState(check,
+                "processingTokenEnd", Object.class);
         final DetailAstImpl token = new DetailAstImpl();
         token.setLineNo(0);
         token.setColumnNo(0);
 
         assertWithMessage("isAfter must be true for same line/column")
-                .that(TestUtil.<Boolean>invokeMethod(tokenEnd, "isAfter", token))
+                .that(TestUtil.invokeMethod(tokenEnd, "isAfter", Boolean.class, token))
                 .isTrue();
     }
 

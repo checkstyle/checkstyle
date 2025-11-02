@@ -739,7 +739,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
     private static List<?> getSuppressionsAfterExecution(
                             SuppressWithPlainTextCommentFilter filter) {
-        return TestUtil.getInternalState(filter, "currentFileSuppressionCache");
+        return TestUtil.getInternalState(filter, "currentFileSuppressionCache", List.class);
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,

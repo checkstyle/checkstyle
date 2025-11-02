@@ -100,10 +100,14 @@
             files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskSarifOutput\.sarif"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]sariflogger[\\/].*\.sarif"/>
 
   <!-- the files in this folder cannot be line wrapped, we can not change expected AST -->
   <suppress id="lineLength"
-         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]javadocTags[\\/]expected.*\.txt"/>
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]inlinetags[\\/]Expected.*\.txt"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]javadoc[\\/]inlinetags[\\/]Input.*\.javadoc"/>
 
   <!-- property names a too long, nothing we can do -->
   <suppress id="lineLength"
@@ -312,5 +316,7 @@
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]whenshouldbeused.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]hexliteralcase.xml.template"/>
 
 </suppressions>

@@ -20,7 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -28,19 +28,18 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
 import org.junit.jupiter.api.Test;
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.AttributesImpl;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class ImportControlLoaderTest {
 
@@ -99,10 +98,7 @@ public class ImportControlLoaderTest {
             };
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            final Method privateMethod = clazz.getDeclaredMethod("safeGet",
-                Attributes.class, String.class);
-            privateMethod.setAccessible(true);
-            privateMethod.invoke(null, attr, "you_cannot_find_me");
+            TestUtil.invokeVoidStaticMethod(clazz, "safeGet", attr, "you_cannot_find_me");
             assertWithMessage("exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -125,10 +121,7 @@ public class ImportControlLoaderTest {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
-            final Method privateMethod = clazz.getDeclaredMethod("load", InputSource.class,
-                URI.class);
-            privateMethod.setAccessible(true);
-            privateMethod.invoke(null, source,
+            TestUtil.invokeVoidStaticMethod(clazz, "load", source,
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
             assertWithMessage("exception expected").fail();
         }
@@ -153,7 +146,7 @@ public class ImportControlLoaderTest {
             final URI uri = mock();
             when(uri.toURL()).thenReturn(url);
 
-            final CheckstyleException ex = assertThrows(CheckstyleException.class, () -> {
+            final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class, () -> {
                 ImportControlLoader.load(uri);
             });
             assertWithMessage("Invalid exception class")

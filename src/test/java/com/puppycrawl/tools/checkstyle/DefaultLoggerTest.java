@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.ByteArrayOutputStream;
@@ -148,7 +147,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo");
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
 
         assertWithMessage("closeInfo should be true")
                 .that(closeInfo)
@@ -165,7 +164,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
-        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo");
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
 
         assertWithMessage("closeInfo should be false")
                 .that(closeInfo)
@@ -187,9 +186,10 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     @Test
     public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
-                "IllegalArgumentException expected");
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class,
+                        () -> new DefaultLogger(outputStream, (OutputStreamOptions) null),
+                        "IllegalArgumentException expected");
         assertWithMessage("Invalid error message")
                 .that(ex)
                 .hasMessageThat()
@@ -199,8 +199,8 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     @Test
     public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> {
+        final IllegalArgumentException ex =
+                TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
                     final DefaultLogger defaultLogger = new DefaultLogger(outputStream,
                             OutputStreamOptions.CLOSE, outputStream, null);
 

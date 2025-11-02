@@ -163,6 +163,11 @@ th {
   font-size: 14px;
 }
 
+section[id$="_Properties"] .wrapper table td:nth-child(4) code {
+  white-space: normal;
+  word-break: break-word;
+}
+
 .wrapper {
   overflow-x: auto;
   margin: 1em 0;

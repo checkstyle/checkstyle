@@ -321,15 +321,15 @@ public class FileContentsTest {
     public void testHasIntersectionEarlyOut() throws Exception {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.emptyList()));
-        final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalState(fileContents,
-                "clangComments");
+        final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalStateMapIntegerList(
+                fileContents, "clangComments");
         final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
         clangComments.put(1, Collections.singletonList(textBlock));
         clangComments.put(2, Collections.emptyList());
 
         assertWithMessage("Invalid results")
-                .that(TestUtil.<Boolean>invokeMethod(fileContents,
-                        "hasIntersectionWithBlockComment", 1, 1, 1, 1))
+                .that(TestUtil.invokeMethod(fileContents,
+                        "hasIntersectionWithBlockComment", Boolean.class, 1, 1, 1, 1))
                 .isTrue();
     }
 

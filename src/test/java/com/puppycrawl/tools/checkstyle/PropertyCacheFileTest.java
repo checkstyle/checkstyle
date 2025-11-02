@@ -38,6 +38,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
@@ -52,6 +53,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.MockedStatic;
 
+import com.google.common.base.Splitter;
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -295,8 +297,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         Files.delete(filePath);
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testPersistWithSymbolicLinkToDirectory() throws IOException {
         final Path tempDirectory = temporaryFolder.toPath();
         final Path symbolicLinkDirectory = temporaryFolder.toPath()
@@ -315,8 +317,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .isTrue();
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testSymbolicLinkResolution() throws IOException {
         final Path tempDirectory = temporaryFolder.toPath();
         final Path symbolicLinkDirectory = temporaryFolder.toPath()
@@ -336,8 +338,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .isTrue();
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testSymbolicLinkToNonDirectory() throws IOException {
         final String uniqueFileName = "tempFile_" + UUID.randomUUID() + ".java";
         final File tempFile = new File(temporaryFolder, uniqueFileName);
@@ -361,8 +363,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
                 .contains(expectedMessage);
     }
 
-    @Test
     @DisabledOnOs(OS.WINDOWS)
+    @Test
     public void testMultipleSymbolicLinkResolution() throws IOException {
         final Path actualDirectory = temporaryFolder.toPath();
         final Path firstSymbolicLink = temporaryFolder.toPath()
@@ -481,7 +483,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
             final ReflectiveOperationException ex =
                 getExpectedThrowable(ReflectiveOperationException.class, () -> {
-                    TestUtil.invokeStaticMethod(PropertyCacheFile.class,
+                    TestUtil.invokeVoidStaticMethod(PropertyCacheFile.class,
                             "getHashCodeBasedOnObjectContent", config);
                 });
             assertWithMessage("Invalid exception cause")
@@ -530,20 +532,20 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
      * @param rawMessages exception messages separated by ';'
      */
     @ParameterizedTest
-    @ValueSource(strings = {"Same;Same", "First;Second"})
+    @ValueSource(strings = {"First;Second", "Same;Same"})
     public void testPutNonExistentExternalResource(String rawMessages) throws Exception {
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File cacheFile = new File(temporaryFolder, uniqueFileName);
-        final String[] messages = rawMessages.split(";");
+        final List<String> messages = Splitter.on(';').splitToList(rawMessages);
         // We mock getUriByFilename method of CommonUtil to guarantee that it will
         // throw CheckstyleException with the specific content.
         try (MockedStatic<CommonUtil> commonUtil = mockStatic(CommonUtil.class)) {
-            final int numberOfRuns = messages.length;
+            final int numberOfRuns = messages.size();
             final String[] configHashes = new String[numberOfRuns];
             final String[] externalResourceHashes = new String[numberOfRuns];
             for (int i = 0; i < numberOfRuns; i++) {
                 commonUtil.when(() -> CommonUtil.getUriByFilename(any(String.class)))
-                        .thenThrow(new CheckstyleException(messages[i]));
+                        .thenThrow(new CheckstyleException(messages.get(i)));
                 final Configuration config = new DefaultConfiguration("myConfig");
                 final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
                 cache.load();
@@ -579,7 +581,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid config hash")
                     .that(configHashes[0])
                     .isEqualTo(configHashes[1]);
-            final boolean sameException = messages[0].equals(messages[1]);
+            final boolean sameException = messages.get(0).equals(messages.get(1));
             assertWithMessage("Invalid external resource hashes")
                     .that(externalResourceHashes[0].equals(externalResourceHashes[1]))
                     .isEqualTo(sameException);

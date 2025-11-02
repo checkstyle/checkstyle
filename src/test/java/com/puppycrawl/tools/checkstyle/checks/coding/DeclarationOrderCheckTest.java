@@ -44,7 +44,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefault1() throws Exception {
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -56,41 +56,67 @@ public class DeclarationOrderCheckTest
             "60:9: " + getCheckMessage(MSG_STATIC),
             "69:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "95:5: " + getCheckMessage(MSG_INSTANCE),
-            "107:9: " + getCheckMessage(MSG_ACCESS),
-            "115:9: " + getCheckMessage(MSG_STATIC),
-            "121:5: " + getCheckMessage(MSG_ACCESS),
-            "126:5: " + getCheckMessage(MSG_ACCESS),
-            "131:5: " + getCheckMessage(MSG_ACCESS),
-            "134:5: " + getCheckMessage(MSG_ACCESS),
-            "140:5: " + getCheckMessage(MSG_STATIC),
-            "147:9: " + getCheckMessage(MSG_ACCESS),
-            "158:9: " + getCheckMessage(MSG_STATIC),
-            "167:5: " + getCheckMessage(MSG_CONSTRUCTOR),
-            "193:5: " + getCheckMessage(MSG_INSTANCE),
-            "198:9: " + getCheckMessage(MSG_ACCESS),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDeclarationOrder.java"), expected);
+                getPath("InputDeclarationOrderDefault1.java"), expected);
     }
 
     @Test
-    public void testOnlyConstructors() throws Exception {
+    public void testDefault2() throws Exception {
+
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_ACCESS),
+            "28:9: " + getCheckMessage(MSG_STATIC),
+            "34:5: " + getCheckMessage(MSG_ACCESS),
+            "39:5: " + getCheckMessage(MSG_ACCESS),
+            "44:5: " + getCheckMessage(MSG_ACCESS),
+            "47:5: " + getCheckMessage(MSG_ACCESS),
+            "53:5: " + getCheckMessage(MSG_STATIC),
+            "60:9: " + getCheckMessage(MSG_ACCESS),
+            "71:9: " + getCheckMessage(MSG_STATIC),
+            "80:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "106:5: " + getCheckMessage(MSG_INSTANCE),
+            "111:9: " + getCheckMessage(MSG_ACCESS),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderDefault2.java"), expected);
+    }
+
+    @Test
+    public void testDefault3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderDefault3.java"),
+                expected);
+    }
+
+    @Test
+    public void testOnlyConstructors1() throws Exception {
 
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_STATIC),
             "62:5: " + getCheckMessage(MSG_CONSTRUCTOR),
             "88:5: " + getCheckMessage(MSG_INSTANCE),
-            "107:9: " + getCheckMessage(MSG_STATIC),
-            "143:9: " + getCheckMessage(MSG_STATIC),
-            "152:5: " + getCheckMessage(MSG_CONSTRUCTOR),
-            "178:5: " + getCheckMessage(MSG_INSTANCE),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDeclarationOrderOnlyConstructors.java"), expected);
+                getPath("InputDeclarationOrderOnlyConstructors1.java"), expected);
     }
 
     @Test
-    public void testOnlyModifiers() throws Exception {
+    public void testOnlyConstructors2() throws Exception {
+
+        final String[] expected = {
+            "27:9: " + getCheckMessage(MSG_STATIC),
+            "63:9: " + getCheckMessage(MSG_STATIC),
+            "72:5: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "98:5: " + getCheckMessage(MSG_INSTANCE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderOnlyConstructors2.java"), expected);
+    }
+
+    @Test
+    public void testOnlyModifiers1() throws Exception {
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -101,20 +127,29 @@ public class DeclarationOrderCheckTest
             "42:9: " + getCheckMessage(MSG_ACCESS),
             "60:9: " + getCheckMessage(MSG_STATIC),
             "94:5: " + getCheckMessage(MSG_INSTANCE),
-            "106:9: " + getCheckMessage(MSG_ACCESS),
-            "114:9: " + getCheckMessage(MSG_STATIC),
-            "120:5: " + getCheckMessage(MSG_ACCESS),
-            "125:5: " + getCheckMessage(MSG_ACCESS),
-            "130:5: " + getCheckMessage(MSG_ACCESS),
-            "133:5: " + getCheckMessage(MSG_ACCESS),
-            "139:5: " + getCheckMessage(MSG_STATIC),
-            "146:9: " + getCheckMessage(MSG_ACCESS),
-            "157:9: " + getCheckMessage(MSG_STATIC),
-            "191:5: " + getCheckMessage(MSG_INSTANCE),
-            "196:9: " + getCheckMessage(MSG_ACCESS),
         };
         verifyWithInlineConfigParser(
-                getPath("InputDeclarationOrderOnlyModifiers.java"), expected);
+                getPath("InputDeclarationOrderOnlyModifiers1.java"), expected);
+    }
+
+    @Test
+    public void testOnlyModifiers2() throws Exception {
+
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_ACCESS),
+            "28:9: " + getCheckMessage(MSG_STATIC),
+            "34:5: " + getCheckMessage(MSG_ACCESS),
+            "39:5: " + getCheckMessage(MSG_ACCESS),
+            "44:5: " + getCheckMessage(MSG_ACCESS),
+            "47:5: " + getCheckMessage(MSG_ACCESS),
+            "53:5: " + getCheckMessage(MSG_STATIC),
+            "60:9: " + getCheckMessage(MSG_ACCESS),
+            "71:9: " + getCheckMessage(MSG_STATIC),
+            "105:5: " + getCheckMessage(MSG_INSTANCE),
+            "110:9: " + getCheckMessage(MSG_ACCESS),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputDeclarationOrderOnlyModifiers2.java"), expected);
     }
 
     @Test
@@ -234,14 +269,6 @@ public class DeclarationOrderCheckTest
         };
         verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderAvoidDuplicatesInStaticFinalFields.java"),
-                expected);
-    }
-
-    @Test
-    public void test() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getPath("InputDeclarationOrder2.java"),
                 expected);
     }
 

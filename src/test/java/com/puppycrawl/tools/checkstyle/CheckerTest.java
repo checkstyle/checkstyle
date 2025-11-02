@@ -39,8 +39,6 @@ import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.Serial;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -114,18 +112,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
         return Files.createFile(temporaryFolder.toPath().resolve(name)).toFile();
     }
 
-    private static Method getFireAuditFinished() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditFinished = checkerClass.getDeclaredMethod("fireAuditFinished");
-        fireAuditFinished.setAccessible(true);
-        return fireAuditFinished;
+    private static void invokeFireAuditFinished(Checker checker)
+            throws ReflectiveOperationException {
+        TestUtil.invokeVoidMethod(checker, "fireAuditFinished");
     }
 
-    private static Method getFireAuditStartedMethod() throws NoSuchMethodException {
-        final Class<Checker> checkerClass = Checker.class;
-        final Method fireAuditStarted = checkerClass.getDeclaredMethod("fireAuditStarted");
-        fireAuditStarted.setAccessible(true);
-        return fireAuditStarted;
+    private static void invokeFireAuditStartedMethod(Checker checker)
+            throws ReflectiveOperationException {
+        TestUtil.invokeVoidMethod(checker, "fireAuditStarted");
     }
 
     @Override
@@ -184,7 +178,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addListener(auditAdapter);
 
         // Let's try fire some events
-        getFireAuditStartedMethod().invoke(checker);
+        invokeFireAuditStartedMethod(checker);
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -193,7 +187,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .isTrue();
 
         auditAdapter.resetListener();
-        getFireAuditFinished().invoke(checker);
+        invokeFireAuditFinished(checker);
         assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
                 .that(auditAdapter.wasCalled())
                 .isTrue();
@@ -242,7 +236,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeListener(auditAdapter);
 
         // Let's try fire some events
-        getFireAuditStartedMethod().invoke(checker);
+        invokeFireAuditStartedMethod(checker);
         assertWithMessage("Checker.fireAuditStarted() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
@@ -251,7 +245,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 .isFalse();
 
         aa2.resetListener();
-        getFireAuditFinished().invoke(checker);
+        invokeFireAuditFinished(checker);
         assertWithMessage("Checker.fireAuditFinished() doesn't call listener")
                 .that(aa2.wasCalled())
                 .isTrue();
@@ -387,7 +381,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // comparing to 1 as there is only one legal file in input
         final int numLegalFiles = 1;
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         assertWithMessage("There were more legal files than expected")
             .that(counter)
             .isEqualTo(numLegalFiles);
@@ -492,7 +487,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         checker.setModuleClassLoader(classLoader);
         checker.finishLocalSetup();
-        final Context actualCtx = TestUtil.getInternalState(checker, "childContext");
+        final Context actualCtx = TestUtil.getInternalState(checker, "childContext", Context.class);
 
         assertWithMessage("Default module factory should be created when it is not specified")
             .that(actualCtx.get("moduleFactory"))
@@ -512,7 +507,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.setLocaleCountry("IT");
         checker.finishLocalSetup();
 
-        final Context context = TestUtil.getInternalState(checker, "childContext");
+        final Context context = TestUtil.getInternalState(checker, "childContext", Context.class);
         final String encoding = StandardCharsets.UTF_8.name();
         assertWithMessage("Charset was different than expected")
             .that(context.get("charset"))
@@ -524,9 +519,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             .that(context.get("basedir"))
             .isEqualTo("testBaseDir");
 
-        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
-        sLocale.setAccessible(true);
-        final Locale locale = (Locale) sLocale.get(null);
+        final Locale locale =
+                TestUtil.getInternalStaticState(LocalizedMessage.class, "sLocale", Locale.class);
         assertWithMessage("Locale is set to unexpected value")
             .that(locale)
             .isEqualTo(Locale.ITALY);
@@ -580,7 +574,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
             DebugAuditAdapter.class.getCanonicalName());
         checker.setupChild(config);
 
-        final List<AuditListener> listeners = TestUtil.getInternalState(checker, "listeners");
+        final List<AuditListener> listeners = TestUtil.getInternalStateListAuditListener(checker,
+                "listeners");
         assertWithMessage("Invalid child listener class")
                 .that(listeners.get(listeners.size() - 1) instanceof DebugAuditAdapter)
                 .isTrue();
@@ -761,7 +756,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(new File("dummy.java")));
         checker.clearCache();
         // invoke destroy to persist cache
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         cache.persist();
 
         final Properties cacheAfterClear = new Properties();
@@ -778,7 +774,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void setFileExtension() {
         final Checker checker = new Checker();
         checker.setFileExtensions(".test1", "test2");
-        final String[] actual = TestUtil.getInternalState(checker, "fileExtensions");
+        final String[] actual = TestUtil.getInternalState(checker,
+                "fileExtensions", String[].class);
         assertWithMessage("Extensions are not expected")
             .that(actual)
             .isEqualTo(new String[] {".test1", ".test2"});
@@ -790,7 +787,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         // the invocation of clearCache method does not throw an exception.
         final Checker checker = new Checker();
         checker.clearCache();
-        final PropertyCacheFile cache = TestUtil.getInternalState(checker, "cacheFile");
+        final PropertyCacheFile cache = TestUtil.getInternalState(checker,
+                "cacheFile", PropertyCacheFile.class);
         assertWithMessage("If cache file is not set the cache should default to null")
             .that(cache)
             .isNull();
@@ -1607,7 +1605,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.configure(root);
         // BriefUtLogger does not print the module name or id postfix,
         // so we need to set logger manually
-        final ByteArrayOutputStream out = TestUtil.getInternalState(this, "stream");
+        final ByteArrayOutputStream out = TestUtil.getInternalState(this,
+                "stream", ByteArrayOutputStream.class);
         final DefaultLogger logger = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
                 OutputStreamOptions.NONE, new AuditEventDefaultFormatter());
         checker.addListener(logger);

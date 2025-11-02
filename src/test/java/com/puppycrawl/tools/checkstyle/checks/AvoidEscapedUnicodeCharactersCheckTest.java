@@ -23,12 +23,14 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
@@ -48,12 +50,12 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         0x0007,
         0x0008,
         0x0009,
-        0x000a,
-        0x000b,
-        0x000c,
-        0x000d,
-        0x000e,
-        0x000f,
+        0x000A,
+        0x000B,
+        0x000C,
+        0x000D,
+        0x000E,
+        0x000F,
         0x0010,
         0x0011,
         0x0012,
@@ -64,12 +66,12 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         0x0017,
         0x0018,
         0x0019,
-        0x001a,
-        0x001b,
-        0x001c,
-        0x001d,
-        0x001e,
-        0x001f,
+        0x001A,
+        0x001B,
+        0x001C,
+        0x001D,
+        0x001E,
+        0x001F,
     };
 
     // C1 set
@@ -85,12 +87,12 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         0x0087,
         0x0088,
         0x0089,
-        0x008a,
-        0x008b,
-        0x008c,
-        0x008d,
-        0x008e,
-        0x008f,
+        0x008A,
+        0x008B,
+        0x008C,
+        0x008D,
+        0x008E,
+        0x008F,
         0x0090,
         0x0091,
         0x0092,
@@ -101,46 +103,46 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         0x0097,
         0x0098,
         0x0099,
-        0x009a,
-        0x009b,
-        0x009c,
-        0x009d,
-        0x009e,
-        0x009f,
+        0x009A,
+        0x009B,
+        0x009C,
+        0x009D,
+        0x009E,
+        0x009F,
     };
 
     // Other control characters which do not occur in the C0 or C1 sets
     // https://en.wiktionary.org/wiki/Appendix:Control_characters#Unicode_control_characters
     private static final int[] OTHER_CONTROL_CHARACTER_INDICES = {
-        0x00ad,
-        0x034f,
-        0x070f,
-        0x180e,
-        0x200b,
-        0x200c,
-        0x200d,
-        0x200e,
-        0x200f,
-        0x202a,
-        0x202b,
-        0x202c,
-        0x202d,
-        0x202e,
+        0x00AD,
+        0x034F,
+        0x070F,
+        0x180E,
+        0x200B,
+        0x200C,
+        0x200D,
+        0x200E,
+        0x200F,
+        0x202A,
+        0x202B,
+        0x202C,
+        0x202D,
+        0x202E,
         0x2060,
         0x2061,
         0x2062,
         0x2063,
         0x2064,
-        0x206a,
-        0x206b,
-        0x206c,
-        0x206d,
-        0x206e,
-        0x206f,
-        0xfeff,
-        0xfff9,
-        0xfffa,
-        0xfffb,
+        0x206A,
+        0x206B,
+        0x206C,
+        0x206D,
+        0x206E,
+        0x206F,
+        0xFEFF,
+        0xFFF9,
+        0xFFFA,
+        0xFFFB,
     };
 
     @Override
@@ -473,7 +475,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
 
         final int indexOfStartLineInInputFile = 16;
         final String message = getCheckMessage(MSG_KEY);
-        final String[] expected = IntStream.rangeClosed(0, 0xffff)
+        final String[] expected = IntStream.rangeClosed(0, 0xFFFF)
                 .parallel()
                 .filter(val -> !isControlCharacter(val))
                 .mapToObj(msg -> indexOfStartLineInInputFile + msg + ":54: " + message)
@@ -496,7 +498,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
-        final int actual = TestUtil.invokeMethod(check, "countMatches",
+        final int actual = TestUtil.invokeMethod(check, "countMatches", Integer.class,
                 Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
         assertWithMessage("Unexpected matches count")
             .that(actual)
@@ -509,8 +511,9 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
      */
     @Test
     public void testNonPrintableCharsAreSorted() {
-        String expression = TestUtil.<Pattern>getInternalStaticState(
-                AvoidEscapedUnicodeCharactersCheck.class, "NON_PRINTABLE_CHARS").pattern();
+        String expression = TestUtil.getInternalStaticState(
+                AvoidEscapedUnicodeCharactersCheck.class,
+                "NON_PRINTABLE_CHARS", Pattern.class).pattern();
 
         // Replacing expressions like "\\u000[bB]" with "\\u000B"
         final String[] charExpressions = {"Aa", "Bb", "Cc", "Dd", "Ee", "Ff"};
@@ -530,11 +533,11 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         }
 
         // Verifying character order
-        final String[] expressionParts = expression.split("\\|");
+        final List<String> expressionParts = Splitter.on("|").splitToList(expression);
         final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
-        for (int i = 0; i < expressionParts.length; i++) {
-            final String currentChar = expressionParts[i];
+        for (int i = 0; i < expressionParts.size(); i++) {
+            final String currentChar = expressionParts.get(i);
             final Matcher matcher = unicodeCharPattern.matcher(currentChar);
             if (!matcher.matches()) {
                 final String message = "Character '" + currentChar + "' (at position " + i

@@ -150,13 +150,16 @@ public class IllegalInstantiationCheckTest
 
         final DetailAstImpl lambdaAst = new DetailAstImpl();
         lambdaAst.setType(TokenTypes.LAMBDA);
+        lambdaAst.setText("LAMBDA");
 
         try {
             check.visitToken(lambdaAst);
             assertWithMessage("IllegalArgumentException is expected").fail();
         }
         catch (IllegalArgumentException exc) {
-            // it is OK
+            assertWithMessage("Message must include token name")
+                .that(exc.getMessage())
+                .contains("LAMBDA");
         }
     }
 
@@ -167,8 +170,8 @@ public class IllegalInstantiationCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearStateClassNames() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(
@@ -218,8 +221,8 @@ public class IllegalInstantiationCheckTest
      *
      * @throws Exception when code tested throws exception
      */
-    @Test
     @SuppressWarnings("unchecked")
+    @Test
     public void testClearStateInstantiations() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(new File(

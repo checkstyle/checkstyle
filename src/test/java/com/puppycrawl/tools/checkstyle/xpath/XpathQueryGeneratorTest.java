@@ -607,8 +607,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                     + "&amp;1line\\n        &gt;2line\\n        &lt;3line\\n        ']"
             );
         assertWithMessage("Generated queries do not match expected ones")
-                .that(expected)
-                .isEqualTo(actual);
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -634,8 +634,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                         + "&amp;1line\\n\\n        &gt;2line\\n        &lt;3line\\n        ']"
         );
         assertWithMessage("Generated queries do not match expected ones")
-                .that(expected)
-                .isEqualTo(actual);
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test
@@ -662,8 +662,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                         + "        ']"
         );
         assertWithMessage("Generated queries do not match expected ones")
-                .that(expected)
-                .isEqualTo(actual);
+                .that(actual)
+                .isEqualTo(expected);
     }
 
     @Test

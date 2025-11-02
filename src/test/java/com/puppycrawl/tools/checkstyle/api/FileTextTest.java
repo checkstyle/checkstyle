@@ -96,7 +96,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not copied")
-                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks"))
+                .that(TestUtil.getInternalState(copy, "lineBreaks", int[].class))
                 .isNotNull();
         final LineColumn actual = copy.lineColumn(100);
         assertWithMessage("Invalid linecolumn")
@@ -111,7 +111,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not null")
-                .that(TestUtil.<int[]>getInternalState(copy, "lineBreaks"))
+                .that(TestUtil.getInternalState(copy, "lineBreaks", int[].class))
                 .isNull();
         final LineColumn lineColumn = copy.lineColumn(100);
         assertWithMessage("Invalid line")
@@ -159,14 +159,14 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File("fileName"), Arrays.asList("1", "2"));
 
         assertWithMessage("Invalid line breaks")
-                .that(TestUtil.<int[]>invokeMethod(fileText, "findLineBreaks"))
+                .that(TestUtil.invokeMethod(fileText, "findLineBreaks", int[].class))
                 .isEqualTo(new int[] {0, 2, 4});
 
         final FileText fileText2 = new FileText(new File("fileName"), Arrays.asList("1", "2"));
         TestUtil.setInternalState(fileText2, "fullText", "1\n2");
 
         assertWithMessage("Invalid line breaks")
-                .that(TestUtil.<int[]>invokeMethod(fileText2, "findLineBreaks"))
+                .that(TestUtil.invokeMethod(fileText2, "findLineBreaks", int[].class))
                 .isEqualTo(new int[] {0, 2, 3});
     }
 
@@ -186,7 +186,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         TestUtil.setInternalState(fileText, "fullText", null);
 
         assertWithMessage("Invalid line breaks")
-                .that(TestUtil.<int[]>invokeMethod(fileText, "findLineBreaks"))
+                .that(TestUtil.invokeMethod(fileText, "findLineBreaks", int[].class))
                 .isEqualTo(lineBreaks);
     }
 
