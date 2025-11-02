@@ -310,6 +310,7 @@ diffplug
 DIFFTOOL
 dirname
 Djacoco
+Djdepend
 Dlinkcheck
 DMail
 Dmaven
