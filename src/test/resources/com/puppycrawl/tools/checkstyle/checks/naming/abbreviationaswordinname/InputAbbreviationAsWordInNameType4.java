@@ -106,28 +106,3 @@ class FIleNameFormatException4 extends Exception {
         super(e);
     }
 }
-
-class StateX4 {
-    int userID;
-    int scaleX, scaleY, scaleZ;
-
-    int getScaleX() {
-        return this.scaleX;
-    }
-}
-
-@interface Annotation14 {
-    String VALUE = "value"; // in @interface this is final/static
-}
-
-@interface Annotation24 {
-    static String VALUE = "value"; // in @interface this is final/static
-}
-
-@interface Annotation34 {
-    final String VALUE = "value"; // in @interface this is final/static
-}
-
-@interface Annotation44 {
-    final static String VALUE = "value"; // in @interface this is final/static
-}
