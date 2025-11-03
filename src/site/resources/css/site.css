@@ -141,6 +141,7 @@ table {
 
 th {
   background-color: #ededed;
+  vertical-align: top !important;
 }
 
 .prettyprint {
