@@ -222,6 +222,8 @@
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswithnearbytextfilter.xml.template"/>
   <suppress id="violationMessagesModuleMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]filters[\\/]suppresswithplaintextcommentfilter.xml.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
 
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
@@ -318,5 +320,17 @@
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]patternvariableassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]misc[\\/]hexliteralcase.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+
+  <!-- no description in module by design -->
+  <suppress id="descriptionMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+  <!-- no example in module by design -->
+  <suppress id="exampleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+  <!-- no parent in module by design -->
+  <suppress id="parentModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
 
 </suppressions>
