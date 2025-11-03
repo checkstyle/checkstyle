@@ -129,4 +129,22 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample9() throws Exception {
+        final String[] expected = {
+            "20:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),
+            "22:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "24:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "LinkedHashMap"),
+            "26:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeMap"),
+            "29:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.TreeSet"),
+            "32:21: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
+            "34:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "38:11: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "42:13: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "HashMap"),
+            "77:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "AbstractSet"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example9.java"), expected);
+    }
 }
