@@ -145,6 +145,20 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example8.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check so that it violates Abstract Types which are illegal:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example9.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example9-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltype/Example9.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
