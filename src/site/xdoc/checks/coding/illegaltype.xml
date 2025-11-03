@@ -768,6 +768,88 @@ public class Example8 extends TreeSet {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check so that it violates Abstract Types which are illegal:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalType"&gt;
+      &lt;property name="validateAbstractClassNames" value="true"/&gt;
+      &lt;property name="legalAbstractClassNames" value="AbstractList"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+// violation below 'Usage of type 'TreeSet' is not allowed'
+public class Example9 extends TreeSet {
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void method() {
+    // violation below 'Usage of type 'LinkedHashMap' is not allowed'
+    LinkedHashMap&lt;Integer, String&gt; lhmap = new LinkedHashMap&lt;Integer, String&gt;();
+    // violation below 'Usage of type 'TreeMap' is not allowed'
+    TreeMap&lt;Integer, String&gt; treemap = new TreeMap&lt;Integer, String&gt;();
+    java.lang.IllegalArgumentException illegalex;
+    // violation below 'Usage of type 'java.util.TreeSet' is not allowed'
+    java.util.TreeSet treeset;
+  }
+  // violation below 'Usage of type 'java.util.HashSet' is not allowed'
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  public HashMap&lt;String, String&gt; function1() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  private HashMap&lt;String, String&gt; function2() {
+    return null;
+  }
+  // violation below 'Usage of type 'HashMap' is not allowed'
+  protected HashMap&lt;Integer, String&gt; function3() {
+    return null;
+  }
+
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+
+  public &lt;T extends java.util.Optional&gt; void method(T t) {
+    Optional&lt;T&gt; i;
+  }
+
+  abstract class A {
+
+    public abstract Set&lt;Boolean&gt; shortName(Set&lt;? super Boolean&gt; a);
+
+  }
+
+  class B extends Gitter {}
+  class C extends Github {}
+
+  public Optional&lt;String&gt; field2;
+  protected String field3;
+  Optional&lt;String&gt; field4;
+
+  private void method(List&lt;Foo&gt; list, Boolean value) {}
+
+  void foo() {
+    Optional&lt;String&gt; i;
+  }
+
+  final Consumer&lt;Foo&gt; consumer = Foo&lt;Boolean&gt;::foo;
+
+  public void var() {
+    var message = "Hello, World!";
+  }
+  // violation below 'Usage of type 'AbstractSet' is not allowed'
+  public AbstractSet&lt;String&gt; function4() {
+    return null;
+  }
+
+  private AbstractList&lt;String&gt; function5() {
+    return null;
+  }
+}
 </code></pre></div>
       </subsection>
 
