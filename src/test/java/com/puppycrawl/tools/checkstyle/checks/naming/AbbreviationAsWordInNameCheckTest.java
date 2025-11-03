@@ -364,14 +364,18 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "98:25: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
             "102:7: " + getWarningMessage("FIleNameFormatException6", expectedCapitalCount),
             "104:31: " + getWarningMessage("serialVersionUID", expectedCapitalCount),
-            "112:9: " + getWarningMessage("userID", expectedCapitalCount),
-            "121:12: " + getWarningMessage("VALUE", expectedCapitalCount),
-            "125:19: " + getWarningMessage("VALUE", expectedCapitalCount),
-            "129:18: " + getWarningMessage("VALUE", expectedCapitalCount),
-            "133:25: " + getWarningMessage("VALUE", expectedCapitalCount),
+        };
+        final String[] expectedPart2 = {
+            "20:9: " + getWarningMessage("userID", expectedCapitalCount),
+            "29:12: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "33:19: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "37:18: " + getWarningMessage("VALUE", expectedCapitalCount),
+            "41:25: " + getWarningMessage("VALUE", expectedCapitalCount),
         };
         verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameType6.java"), expected);
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameType6Part2.java"), expectedPart2);
     }
 
     @Test
