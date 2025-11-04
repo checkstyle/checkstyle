@@ -491,6 +491,7 @@ defaultValue
 // STATEMENTS / BLOCKS
 constructorBlock
     : LCURLY
+      (blockStatement { !_input.LT(1).equals("LITERAL_SUPER")}?)*
       explicitConstructorInvocation?
       blockStatement*
       RCURLY
