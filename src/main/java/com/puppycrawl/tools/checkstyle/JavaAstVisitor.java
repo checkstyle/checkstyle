@@ -1336,23 +1336,27 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitSuperExp(JavaLanguageParser.SuperExpContext ctx) {
-        final DetailAstImpl bop = create(ctx.bop);
-        bop.addChild(visit(ctx.expr()));
-        bop.addChild(create(ctx.LITERAL_SUPER()));
-        DetailAstImpl superSuffixParent = visit(ctx.superSuffix());
+        final DetailAstImpl primaryCtorCall = create(TokenTypes.SUPER_CTOR_CALL,
+                (Token) ctx.LITERAL_SUPER().getPayload());
+        // filter 'LITERAL_SUPER'
+        processChildren(primaryCtorCall, ctx.children.stream()
+                   .filter(child -> !child.equals(ctx.LITERAL_SUPER()))
+                   .toList());
+        return primaryCtorCall;
+    }
 
-        if (superSuffixParent == null) {
-            superSuffixParent = bop;
+    @Override
+    public DetailAstImpl visitSuperSuffixSimple(JavaLanguageParser.SuperSuffixSimpleContext ctx) {
+        DetailAstImpl lparen = create(TokenTypes.LPAREN, (Token) ctx.LPAREN().getPayload());
+        DetailAstImpl expList = createImaginary(TokenTypes.ELIST);
+        if (ctx.expressionList() != null) {
+            expList = visit(ctx.expressionList());
         }
-        else {
-            DetailAstImpl firstChild = superSuffixParent;
-            while (firstChild.getFirstChild() != null) {
-                firstChild = firstChild.getFirstChild();
-            }
-            firstChild.addPreviousSibling(bop);
-        }
+        lparen.addNextSibling(expList);
+        DetailAstImpl rparen = create(TokenTypes.RPAREN, (Token) ctx.children.get(ctx.children.size() - 1).getPayload());
+        expList.addNextSibling(rparen);
 
-        return superSuffixParent;
+        return lparen;
     }
 
     @Override
