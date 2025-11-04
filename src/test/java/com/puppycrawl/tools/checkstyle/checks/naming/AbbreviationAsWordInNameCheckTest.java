@@ -119,13 +119,23 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "88:23: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
             "94:22: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
             "100:29: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "138:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
-            "142:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
-            "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameNoIgnore.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithNoIgnoresPart2() throws Exception {
+        final int expectedCapitalCount = 6;
+
+        final String[] expected = {
+            "43:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
+            "47:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
+            "51:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameNoIgnorePart2.java"), expected);
     }
 
     @Test
@@ -136,13 +146,23 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
             "48:15: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "53:15: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
             "54:25: " + getWarningMessage("marazmaticMETHODName", expectedCapitalCount),
-            "138:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
-            "142:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
-            "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(
                 getPath("InputAbbreviationAsWordInNameIgnore.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresPart2() throws Exception {
+        final int expectedCapitalCount = 6;
+
+        final String[] expected = {
+            "44:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
+            "48:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
+            "52:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAbbreviationAsWordInNameIgnorePart2.java"), expected);
     }
 
     @Test
@@ -228,22 +248,30 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                     + getWarningMessage("VALUEEEE", expectedCapitalCount),
             "100:29: "
                     + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "123:16: "
-                    + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "127:23: "
-                    + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "131:22: "
-                    + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "135:29: "
-                    + getWarningMessage("VALUEEEE", expectedCapitalCount),
-            "138:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
-            "142:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
-            "146:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
         };
 
         verifyWithInlineConfigParser(
                 getPath(
                 "InputAbbreviationAsWordInNameIgnoreNonStaticFinal.java"), expected);
+    }
+
+    @Test
+    public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinalPart2()
+            throws Exception {
+        final int expectedCapitalCount = 5;
+
+        final String[] expected = {
+            "28:16: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "32:23: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "36:22: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "40:29: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
+            "43:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
+            "47:18: " + getWarningMessage("InnerClassTwoVIOLATION", expectedCapitalCount),
+            "51:24: " + getWarningMessage("InnerClassThreeVIOLATION", expectedCapitalCount),
+        };
+        verifyWithInlineConfigParser(
+                getPath(
+                "InputAbbreviationAsWordInNameIgnoreNonStaticFinalPart2.java"), expected);
     }
 
     @Test
