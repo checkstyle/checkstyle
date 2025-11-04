@@ -413,4 +413,32 @@ public class WhitespaceAfterCheckTest
         verifyWithInlineConfigParser(
             getPath("example2/package-info.java"), expected);
     }
+
+    @Test
+    public void testWhitespaceAfterType() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "13:11: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "15:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "20:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "21:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "23:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "25:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "27:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "29:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "31:32: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "31:67: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "38:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "48:34: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ">"),
+            "50:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "56:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "58:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "62:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "..."),
+            "64:5: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "int"),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputWhitespaceAfterType.java"),
+            expected
+        );
+    }
 }

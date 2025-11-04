@@ -74,6 +74,8 @@
                     LITERAL_WHEN</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS">
                     ANNOTATIONS</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE">
+                    TYPE</a>
                   .
               </td>
               <td>
