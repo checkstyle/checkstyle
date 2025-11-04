@@ -112,19 +112,19 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      * @return true if chained class are wrapped
      */
     private boolean isChainedMethodCallWrapped() {
-        boolean result = false;
         final DetailAST main = getMainAst();
         final DetailAST dot = main.getFirstChild();
         final DetailAST target = dot.getFirstChild();
 
         final DetailAST dot1 = target.getFirstChild();
-        final DetailAST target1 = dot1.getFirstChild();
-
-        if (dot1.getType() == TokenTypes.DOT
-            && target1.getType() == TokenTypes.METHOD_CALL) {
-            result = true;
+        DetailAST target1 = dot1;
+        while (target1.getFirstChild() != null
+                && target1.getType() != TokenTypes.METHOD_CALL) {
+            target1 = target1.getFirstChild();
         }
-        return result;
+
+        return dot1.getType() == TokenTypes.DOT
+                && target1.getType() == TokenTypes.METHOD_CALL;
     }
 
     /**
