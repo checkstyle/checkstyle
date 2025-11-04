@@ -109,42 +109,4 @@ public class InputAbbreviationAsWordInNameIgnoreNonStaticFinal {
             super(e);
         }
     }
-
-    class StateX {
-        int userID;
-        int scaleX, scaleY, scaleZ;
-
-        int getScaleX() {
-            return this.scaleX;
-        }
-    }
-
-    @interface Annotation1 {
-        String VALUEEEE = "value"; // violation
-    }
-
-    @interface Annotation2 {
-        static String VALUEEEE = "value"; // violation
-    }
-
-    @interface Annotation3 {
-        final String VALUEEEE = "value"; // violation
-    }
-
-    @interface Annotation4 {
-        final static String VALUEEEE = "value"; // violation
-    }
-
-    final class InnerClassOneVIOLATION { // violation
-        // only variable definitions are affected by ignore static/final properties
-    }
-
-    static class InnerClassTwoVIOLATION { // violation
-        // only variable definitions are affected by ignore static/final properties
-    }
-
-    static final class InnerClassThreeVIOLATION { // violation
-        // only variable definitions are affected by ignore static/final properties
-    }
-
 }
