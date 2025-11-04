@@ -11,14 +11,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.TreeSet;
-import java.util.TreeMap;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
-import java.util.List;
+
 // xdoc section -- start
 public class Example2 extends TreeSet {
   // violation below 'Usage of type 'java.util.HashSet' is not allowed'
@@ -75,6 +70,14 @@ public class Example2 extends TreeSet {
 
   public void var() {
     var message = "Hello, World!";
+  }
+
+  public AbstractSet<String> function4() {
+    return null;
+  }
+
+  private AbstractList<String> function5() {
+    return null;
   }
 }
 // xdoc section -- end
