@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <head>
+    <title>Result Reports</title>
+  </head>
+
+  <body>
+    <section name="Content">
+      <macro name="toc">
+        <param name="fromDepth" value="1"/>
+        <param name="toDepth" value="1"/>
+      </macro>
+    </section>
+
+    <section name="Overview">
+      <p>
+        Checkstyle can generate XML, SARIF and plain text reports of its findings.
+      </p>
+    </section>
+
+    <section name="Xml report">
+      <p>
+        The XML report schema is available at:
+        <a href="/xsds/checkstyle-report-1.0.0.xsd">
+          checkstyle-report-1.0.0.xsd
+        </a>
+      </p>
+      <p>
+        Use this schema to validate XML output from Checkstyle's report
+        generation.
+      </p>
+      <p>
+        Below is an example of a Checkstyle XML report:
+      </p>
+      <div class="wrapper">
+        <pre class="prettyprint">
+          <code class="language-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;checkstyle version="10.0"&gt;
+  &lt;file name="com/puppycrawl/tools/checkstyle/Main.java"&gt;
+    &lt;error line="1" column="1" severity="error"
+      message="Missing package-info.java file."
+      source="com.puppycrawl.tools.checkstyle.checks.coding.MissingPackageInfoCheck"/&gt;
+  &lt;/file&gt;
+&lt;/checkstyle&gt;
+          </code>
+        </pre>
+      </div>
+    </section>
+  </body>
+</document>
+
