@@ -152,7 +152,7 @@ th {
 }
 
 .prettyprint code {
-  font-size: 12pxx;
+  font-size: inherit;
   text-wrap: nowrap;
   line-height: 1.625;
 }
@@ -447,6 +447,10 @@ section#Properties .wrapper table td a {
   section#Properties .wrapper table th,
   section#Properties .wrapper table td {
     width: auto !important;
+  }
+
+  .prettyprint code {
+    font-size: 12px;
   }
 }
 
