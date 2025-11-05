@@ -74,6 +74,7 @@
       <item name="Configuration" href="config.html">
         <item name="Property Types" href="property_types.html"/>
         <item name="System Properties" href="config_system_properties.html"/>
+        <item name="XSD Schemas" href="xsds.html"/>
       </item>
 
       <item name="Running" href="running.html">
