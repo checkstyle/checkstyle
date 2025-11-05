@@ -28,12 +28,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import org.checkerframework.checker.index.qual.IndexOrLow;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -100,6 +100,8 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "import.unused";
 
+    /** Pattern to split on any newline sequence */
+    private static final Pattern NEWLINE_PATTERN = Pattern.compile("\\R");
     /** Regex to match class names. */
     private static final Pattern CLASS_NAME = CommonUtil.createPattern(
            "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
@@ -152,6 +154,11 @@ public class UnusedImportsCheck extends AbstractCheck {
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;
     }
+
+     @Override
+     public boolean isCommentNodesRequired() {
+         return true;
+     }
 
     @Override
     public void beginTree(DetailAST rootAST) {
@@ -215,12 +222,12 @@ public class UnusedImportsCheck extends AbstractCheck {
             case TokenTypes.IMPORT -> processImport(ast);
             case TokenTypes.STATIC_IMPORT -> processStaticImport(ast);
             case TokenTypes.OBJBLOCK, TokenTypes.SLIST -> currentFrame = currentFrame.push();
-            default -> {
-                collect = true;
+            case TokenTypes.BLOCK_COMMENT_BEGIN -> {
                 if (processJavadoc) {
                     collectReferencesFromJavadoc(ast);
                 }
             }
+            default -> collect = true;
         }
     }
 
@@ -310,18 +317,35 @@ public class UnusedImportsCheck extends AbstractCheck {
     /**
      * Collects references made in Javadoc comments.
      *
-     * @param ast node to inspect for Javadoc
+     * @param blockComment the BLOCK_COMMENT_BEGIN node
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private void collectReferencesFromJavadoc(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock textBlock = contents.getJavadocBefore(lineNo);
-        if (textBlock != null) {
-            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
+    private void collectReferencesFromJavadoc(DetailAST blockComment) {
+        final String commentText = blockComment.getFirstChild().getText().trim();
+
+        // Only process Javadoc comments (/** ... */)
+        if (commentText.startsWith("/**") && !commentText.startsWith("/***")) {
+            final TextBlock javadoc = convertCommentToTextBlock(blockComment);
+            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(javadoc));
         }
     }
+
+    /**
+     * Converts BLOCK_COMMENT_BEGIN AST to TextBlock.
+     *
+     * @param blockComment the BLOCK_COMMENT_BEGIN node
+     * @return TextBlock representation
+     */
+     private static TextBlock convertCommentToTextBlock(DetailAST blockComment) {
+         final DetailAST commentContent = blockComment.getFirstChild();
+         final String[] lines = NEWLINE_PATTERN.split(commentContent.getText(), -1);
+
+         final int startLine = blockComment.getLineNo();
+         final int startCol = blockComment.getColumnNo();
+         final int endLine = startLine + lines.length - 1;
+
+         return new Comment(
+             lines, startLine, startCol, endLine);
+     }
 
     /**
      * Process a javadoc {@link TextBlock} and return the set of classes
