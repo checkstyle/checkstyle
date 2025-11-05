@@ -79,6 +79,7 @@
       <item name="Running" href="running.html">
         <item name="Ant Task" href="anttask.html"/>
         <item name="Command Line" href="cmdline.html"/>
+        <item name="Result Reports" href="result_reports.html"/>
       </item>
 
       <item name="Checks" href="checks.html">
