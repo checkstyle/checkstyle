@@ -262,7 +262,9 @@ public class XdocsPagesTest {
         "beginning_development.xml",
         "writingchecks.xml",
         "config.xml",
-        "report_issue.xml"
+        "report_issue.xml",
+        "xsds.xml",
+        "result_report.xml"
     );
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
