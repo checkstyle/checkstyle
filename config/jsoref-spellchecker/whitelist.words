@@ -1445,6 +1445,7 @@ unusedcatchparametershouldbeunnamed
 unusedimports
 unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
+unusedtryresourceshouldbeunnamed
 upperell
 upsss
 urandom
