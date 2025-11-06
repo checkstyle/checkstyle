@@ -227,6 +227,7 @@ pre {
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 5px !important;
+  padding: 0 15px;
 }
 
 #bodyColumn h2, h2 {
