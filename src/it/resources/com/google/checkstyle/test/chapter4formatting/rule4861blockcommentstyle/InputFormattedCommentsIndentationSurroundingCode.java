@@ -83,7 +83,7 @@ public class InputFormattedCommentsIndentationSurroundingCode {
   };
 
   private void foo4() {
-    if (!Arrays.equals(new String[] {""}, new String[] {""}) /* wierd comment */) {
+    if (!Arrays.equals(new String[] {""}, new String[] {""}) /* weird comment */) {
       /* foo */
     }
   }

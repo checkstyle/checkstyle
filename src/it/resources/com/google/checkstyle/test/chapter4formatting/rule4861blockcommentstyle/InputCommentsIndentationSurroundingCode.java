@@ -81,7 +81,7 @@ public class InputCommentsIndentationSurroundingCode {
   };
 
   private void foo4() {
-    if (!Arrays.equals(new String[] {""}, new String[] {""})/* wierd comment */) { /* foo */ }
+    if (!Arrays.equals(new String[] {""}, new String[] {""})/* weird comment */) { /* foo */ }
   }
 
   /** some javadoc. */

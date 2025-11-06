@@ -26,7 +26,7 @@ public class InputOneStatementPerLine {
   }
 
   /**
-   * The illegal format is used within a String. Therefor the whole method is legal.
+   * The illegal format is used within a String. Therefore the whole method is legal.
    */
   public void doLegalString() {
     one = 1;

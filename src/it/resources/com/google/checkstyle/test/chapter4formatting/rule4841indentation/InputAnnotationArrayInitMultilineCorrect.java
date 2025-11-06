@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 /** some annotation. */
 @InputAnnotationArrayInitMultilineCorrect.AnnotList({
   @InputAnnotationArrayInitMultilineCorrect.Annot(
-      "hello-Goodbye world in one very long and lengthy string in annoation array"),
+      "hello-Goodbye world in one very long and lengthy string in annotation array"),
   @InputAnnotationArrayInitMultilineCorrect.Annot(
       "suppressUnnecessaryWarningsByCheckstyleIndentationCheck Annotation"),
   @InputAnnotationArrayInitMultilineCorrect.Annot(
