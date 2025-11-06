@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 /** some annotation. */
 @InputAnnotationArrayInitMultiline.AnnotList({
   @InputAnnotationArrayInitMultiline.Annot(
-      "hello-Goodbye world in one very long and lengthy string in annoation array"),
+      "hello-Goodbye world in one very long and lengthy string in annotation array"),
   @InputAnnotationArrayInitMultiline.Annot(
       "suppressUnnecessaryWarningsByCheckstyleIndentationCheck Annotation"),
   @InputAnnotationArrayInitMultiline.Annot(
