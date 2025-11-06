@@ -7,7 +7,6 @@
 *Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
 
 [![][appveyor img]][appveyor]
-[![][circleci img]][circleci]
 [![CircleCI Status][circleci img]][circleci]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
@@ -22,6 +21,7 @@
 [![][link check img]][link check]
 [![][milestone img]][milestone]
 [![][mavenbadge img]][mavenbadge]
+
 
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
@@ -143,29 +143,29 @@ Checkstyle uses libraries:
 
 [![JProfiler logo.][jprofiler img]][jprofiler]
 
-[jetbrains]:https://jb.gg/OpenSource
-[jetbrains img]:https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
+[jetbrains]: https://jb.gg/OpenSource
+[jetbrains img]: https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
 
-[jprofiler]:https://www.ej-technologies.com/jprofiler
-[jprofiler img]:https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png
+[jprofiler]: https://www.ej-technologies.com/jprofiler
+[jprofiler img]: https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png
 
-[appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
-[appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
+[appveyor]: https://ci.appveyor.com/project/checkstyle/checkstyle/history
+[appveyor img]: https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
-[coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
-[coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+[coverage]: https://codecov.io/github/checkstyle/checkstyle?branch=master
+[coverage img]: https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 
-[mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
-[mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
+[mavenbadge]: https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
+[mavenbadge img]: https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg
 
-[stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
-[stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
+[stackoverflow]: https://stackoverflow.com/questions/tagged/checkstyle
+[stackoverflow img]: https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
-[teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
-[teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
+[teamcity]: https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspections
+[teamcity img]: https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspections)/statusIcon.svg
 
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
-[circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
+[circleci img]: https://circleci.com/gh/checkstyle/checkstyle.svg?style=svg
 
 [cirrusci]: https://cirrus-ci.com/github/checkstyle/checkstyle
 [cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=master
@@ -174,10 +174,11 @@ Checkstyle uses libraries:
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
 [semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
-[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
+[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg
 
-[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
-[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+[azure]: https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
+[azure img]: https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
