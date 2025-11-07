@@ -152,7 +152,7 @@ th {
 }
 
 .prettyprint code {
-  font-size: inherit;
+  font-size: 15px;
   text-wrap: nowrap;
   line-height: 1.625;
 }
