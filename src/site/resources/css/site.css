@@ -154,7 +154,7 @@ th {
 .prettyprint code {
   font-size: 15px;
   text-wrap: nowrap;
-  line-height: 1.625;
+  line-height: 1;
 }
 
 .inline-command code {
