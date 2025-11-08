@@ -95,6 +95,14 @@
 
   <!-- Miscellaneous -->
   <module name="NewlineAtEndOfFile"/>
+  <module name="LineEnding">
+    <property name="lineSeparator" value="lf"/>
+    <property name="fileExtensions" value="java, xml, cpp"/>
+  </module>
+  <module name="LineEnding">
+    <property name="lineSeparator" value="crlf"/>
+    <property name="fileExtensions" value="bat, cmd"/>
+  </module>
   <module name="Translation">
     <property name="requiredTranslations" value="de, es, fi, fr, ja, pt, ru, tr, zh"/>
   </module>
@@ -104,6 +112,10 @@
   <!-- Regexp -->
   <module name="RegexpMultiline">
     <property name="id" value="regexpMultilineDefault"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="(\r\n|\r)"/>
+    <property name="message" value="Line has Windows line delimiter."/>
   </module>
   <module name="RegexpMultiline">
     <property name="id" value="noIndentationConfigExamples"/>
