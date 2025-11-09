@@ -1,0 +1,33 @@
+--- config/checker-framework-suppressions/checker-index-suppressions.xml
++++ config/checker-framework-suppressions/checker-index-suppressions.xml
+@@ -2433,22 +2433,22 @@
+   <checkerFrameworkError unstable="false">
+     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+     <specifier>argument</specifier>
+-    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+-    <lineContent>|| Character.isWhitespace(description.charAt(index + 1))</lineContent>
++    <message>incompatible argument for parameter arg1 of String.substring.</message>
++    <lineContent>fileNameString.length() - extensionLength)</lineContent>
+     <details>
+-      found   : @LTEqLengthOf(&quot;description&quot;) int
+-      required: @LTLengthOf(&quot;description&quot;) int
++      found   : int
++      required: @NonNegative int
+     </details>
+   </checkerFrameworkError>
+ 
+   <checkerFrameworkError unstable="false">
+     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+     <specifier>argument</specifier>
+-    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+-    <lineContent>|| description.charAt(index + 1) == &apos;&lt;&apos;)) {</lineContent>
++    <message>incompatible argument for parameter arg1 of String.substring.</message>
++    <lineContent>simpleName = moduleName.substring(0, moduleName.length() - &quot;Check&quot;.length());</lineContent>
+     <details>
+-      found   : @LTEqLengthOf(&quot;description&quot;) int
+-      required: @LTLengthOf(&quot;description&quot;) int
++      found   : int
++      required: @NonNegative int
+     </details>
+   </checkerFrameworkError>
+ 
