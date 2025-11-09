@@ -26,7 +26,7 @@ task:
     - name: Cirrus - JDK21
       env:
         TEMURIN_VERSION: "21.0.6.7"
-        TEMURIN_PATH: 'Eclipse Adoptium\jdk-21'
+        TEMURIN_PATH: 'Eclipse Adoptium\jdk-%TEMURIN_VERSION%-hotspot'
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
