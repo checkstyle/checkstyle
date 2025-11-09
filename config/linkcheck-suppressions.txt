@@ -1413,3 +1413,16 @@
 <a href="com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.html#%3Cinit%3E(java.util.Collection)">com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.html#%3Cinit%3E(java.util.Collection)</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.html#copyOfArray(T%5B%5D,int)">com/puppycrawl/tools/checkstyle/utils/UnmodifiableCollectionUtil.html#copyOfArray(T%5B%5D,int)</a>: doesn't exist.
 <a href="com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.CustomPrintWriter.html#%3Cinit%3E(java.io.Writer)">com/puppycrawl/tools/checkstyle/site/XdocsTemplateSink.CustomPrintWriter.html#%3Cinit%3E(java.io.Writer)</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.CheckInfo.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,boolean)">#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,boolean)</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/meta/ModuleType.html#%3Cinit%3E(java.lang.String)">#%3Cinit%3E(java.lang.String)</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
+<a href="apidocs/com/puppycrawl/tools/checkstyle/meta/XmlMetaWriter.html#%3Cinit%3E()">#%3Cinit%3E()</a>: doesn't exist.
+
+<a href="com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.CheckInfo.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,boolean)">com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.CheckInfo.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,boolean)</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/meta/ModulePropertyDetails.html#%3Cinit%3E()</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/meta/ModuleType.html#%3Cinit%3E(java.lang.String)">com/puppycrawl/tools/checkstyle/meta/ModuleType.html#%3Cinit%3E(java.lang.String)</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.html#%3Cinit%3E()</a>: doesn't exist.
+<a href="com/puppycrawl/tools/checkstyle/meta/XmlMetaWriter.html#%3Cinit%3E()">com/puppycrawl/tools/checkstyle/meta/XmlMetaWriter.html#%3Cinit%3E()</a>: doesn't exist.
