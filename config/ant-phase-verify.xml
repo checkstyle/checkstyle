@@ -192,6 +192,7 @@
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
           />
+          
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
