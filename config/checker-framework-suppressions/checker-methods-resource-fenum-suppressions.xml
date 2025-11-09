@@ -188,6 +188,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>@MustCall method close may not have been invoked on Files.walk(JAVA_CHECKS_ROOT) or any of its aliases.</message>
+    <lineContent>final List&lt;Path&gt; checkFiles = Files.walk(JAVA_CHECKS_ROOT)</lineContent>
+    <details>
+      The type of object is: java.util.stream.Stream&lt;java.nio.file.Path&gt;.
+      Reason for going out of scope: regular method exit
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ChecksXmlMacro.java</fileName>
+    <specifier>required.method.not.called</specifier>
+    <message>@MustCall method close may not have been invoked on Files.walk(SITE_CHECKS_ROOT) or any of its aliases.</message>
+    <lineContent>final List&lt;Path&gt; xmlFiles = Files.walk(SITE_CHECKS_ROOT)</lineContent>
+    <details>
+      The type of object is: java.util.stream.Stream&lt;java.nio.file.Path&gt;.
+      Reason for going out of scope: regular method exit
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/SiteUtil.java</fileName>
     <specifier>methodref.param</specifier>
     <message>Incompatible parameter type for arg0</message>
