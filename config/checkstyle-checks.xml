@@ -106,6 +106,18 @@
     <property name="id" value="regexpMultilineDefault"/>
   </module>
   <module name="RegexpMultiline">
+    <property name="lineSeparator" value="lf"/>
+    <property name="fileExtensions" value="java, xml, cpp"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="lineSeparator" value="crlf"/>
+    <property name="fileExtensions" value="bat, cmd"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="(\r\n|\r)"/>
+    <property name="message" value="Line has Windows line delimiter."/>
+  </module>
+  <module name="RegexpMultiline">
     <property name="id" value="noIndentationConfigExamples"/>
     <property name="format" value="&lt;source&gt;\r?\n\s+"/>
     <property name="fileExtensions" value="xml"/>
