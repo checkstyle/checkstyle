@@ -219,7 +219,7 @@
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <java.version>17</java.version>
+    <java.version>21</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <pitest.plugin.version>1.21.1</pitest.plugin.version>
@@ -3237,7 +3237,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3349,7 +3348,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3410,7 +3408,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3471,7 +3468,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3593,7 +3589,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3719,7 +3714,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3780,7 +3774,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3841,7 +3834,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3902,7 +3894,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -3964,7 +3955,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4009,7 +3999,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4082,7 +4071,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4143,7 +4131,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4204,7 +4191,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4265,7 +4251,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4326,7 +4311,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4387,7 +4371,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4449,7 +4432,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4510,7 +4492,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4568,7 +4549,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4708,7 +4688,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4793,7 +4772,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4856,7 +4834,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -4974,7 +4951,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -5062,7 +5038,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -5131,7 +5106,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -5300,7 +5274,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -5370,7 +5343,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
@@ -5442,7 +5414,6 @@
           <plugin>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
-            <version>${pitest.plugin.version}</version>
             <configuration>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
