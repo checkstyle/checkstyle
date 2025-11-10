@@ -87,6 +87,7 @@ packageDeclaration
 
 importDeclaration
     : IMPORT LITERAL_STATIC? qualifiedName (DOT STAR)? SEMI    #importDec
+    | IMPORT LITERAL_MODULE qualifiedName SEMI                 #importDec
     | SEMI                                                     #singleSemiImport
     ;
 
@@ -920,4 +921,5 @@ id:  LITERAL_UNDERSCORE
     | LITERAL_PERMITS
     | IDENT
     | LITERAL_WHEN
+    | LITERAL_MODULE
     ;
