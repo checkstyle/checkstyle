@@ -165,6 +165,13 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
             importRoot.addChild(create(literalStaticNode));
         }
 
+        // Module import
+        final TerminalNode literalModuleNode = ctx.LITERAL_MODULE();
+        if (literalModuleNode != null) {
+            importRoot.setType(TokenTypes.MODULE_IMPORT);
+            importRoot.addChild(create(literalModuleNode));
+        }
+
         // Handle star imports
         final boolean isStarImport = ctx.STAR() != null;
         if (isStarImport) {
