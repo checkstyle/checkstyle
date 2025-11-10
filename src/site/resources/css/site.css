@@ -455,3 +455,6 @@ section#Properties .wrapper table td a {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
