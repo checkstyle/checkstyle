@@ -10,6 +10,120 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.1.2">
+      <div class="releaseDate">11.11.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JAR for 12.1.1 is missing org.slf4j package.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/18074">#18074</a>
+          </li>
+          <li>
+            Indent issue with multiline method call with array element .
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/8396">#8396</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            UI Flickering on Checkstyle.org – Panel Resizes Erratically on Navigation.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/17045">#17045</a>
+          </li>
+          <li>
+            Enhancement: Add Smooth Scrolling to Anchor Links in Documentation.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/18000">#18000</a>
+          </li>
+          <li>
+            Broken link to Maven Snapshot repository in README.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18062">#18062</a>
+          </li>
+          <li>
+            Inprove website rendering.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/16243">#16243</a>
+          </li>
+          <li>
+            Deploy configuration-1-3.xsd to the CheckStyle website.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/17865">#17865</a>
+          </li>
+          <li>
+            Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
+            checks/&lt;type&gt;/index.xml.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Vinisha Wagh, gianmarco
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            doc: archive release notes for 8.35-10.26.
+            Author: stoyanK7
+          </li>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: gianmarco, daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+          <li>
+            links to old releases in web are damaged.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/3073">#3073</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - packagenamesloader.
+            Author: Usman Shaikh
+            <a href="https://github.com/checkstyle/checkstyle/issues/18032">#18032</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            GenericWhitespace when TAB is used instead of space.
+            Author: daksh
+            <a href="https://github.com/checkstyle/checkstyle/issues/17756">#17756</a>
+          </li>
+          <li>
+            Webpage is blank of  JDEPEND section .
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/16146">#16146</a>
+          </li>
+          <li>
+            Code syntax highlighting javascript (code-prettify) is executed twice.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18010">#18010</a>
+          </li>
+          <li>
+            Cover pitest survivals with tests.
+            Author: Hariom, gianmarco, ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/14019">#14019</a>
+          </li>
+          <li>
+            No space in command line checkstyle commands.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/17887">#17887</a>
+          </li>
+          <li>
+            Resolve Pitest Suppression in Pitest-Javadoc Profile.
+            Author: Hariom
+            <a href="https://github.com/checkstyle/checkstyle/issues/13999">#13999</a>
+          </li>
+          <li>
+            Add `rewrite` support for `errorprone.refasterrules`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17487">#17487</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.1.1">
       <div class="releaseDate">26.10.2025</div>
       <p>Bug fixes:</p>
