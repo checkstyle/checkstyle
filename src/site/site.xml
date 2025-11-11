@@ -51,7 +51,7 @@
     <head>
       <!-- Will be added to every generated page -->
       <![CDATA[
-        <script type="text/javascript" src="$relativePath/js/checkstyle.js" defer async></script>
+        <script type="text/javascript" src="$relativePath/js/checkstyle.js"></script>
         <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
         <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
         <script type="text/javascript" src="$relativePath/js/copy-clipboard.js"></script>
