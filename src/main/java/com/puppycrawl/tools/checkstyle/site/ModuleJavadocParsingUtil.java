@@ -39,6 +39,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 public final class ModuleJavadocParsingUtil {
     /** New line escape character. */
     public static final String NEWLINE = System.lineSeparator();
+    /** A newline with 4 spaces of indentation. */
+    public static final String INDENT_LEVEL_4 = SiteUtil.getNewlineAndIndentSpaces(4);
+    /** A newline with 6 spaces of indentation. */
+    public static final String INDENT_LEVEL_6 = SiteUtil.getNewlineAndIndentSpaces(6);
     /** A newline with 8 spaces of indentation. */
     public static final String INDENT_LEVEL_8 = SiteUtil.getNewlineAndIndentSpaces(8);
     /** A newline with 10 spaces of indentation. */
