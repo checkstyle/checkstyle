@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initCopyButtons() {
   const xmlHeader = `<?xml version="1.0"?>
 <!DOCTYPE module PUBLIC
   "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
@@ -55,4 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   });
-});
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCopyButtons);
+}
+else {
+    initCopyButtons();
+}

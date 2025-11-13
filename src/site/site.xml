@@ -52,9 +52,11 @@
       <!-- Will be added to every generated page -->
       <![CDATA[
         <script type="text/javascript" src="$relativePath/js/checkstyle.js" defer async></script>
-        <script type="text/javascript" src="$relativePath/js/anchors.js"></script>
-        <script type="text/javascript" src="$relativePath/js/google-analytics.js"></script>
-        <script type="text/javascript" src="$relativePath/js/copy-clipboard.js"></script>
+        <script type="text/javascript" src="$relativePath/js/anchors.js" defer async></script>
+        <script type="text/javascript"
+                src="$relativePath/js/google-analytics.js" defer async></script>
+        <script type="text/javascript"
+                src="$relativePath/js/copy-clipboard.js" defer async></script>
         <link rel="icon" href="$relativePath/images/favicon.png" type="image/x-icon" />
         <link rel="shortcut icon" href="$relativePath/images/favicon.ico" type="image/ico" />
       ]]>
