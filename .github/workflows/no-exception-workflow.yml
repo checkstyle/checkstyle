@@ -67,7 +67,7 @@ jobs:
 
       - run: .ci/no-exception-test.sh openjdk20-with-checks-nonjavadoc-error
   # this execution should stay on GitHub actions due to time/ memory limits in other CI
-  no-exception-openjdk21:
+  no-exception-openjdk25:
     if: github.repository == 'checkstyle/checkstyle'
     runs-on: ubuntu-latest
     steps:
@@ -83,4 +83,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - run: .ci/no-exception-test.sh openjdk21-with-checks-nonjavadoc-error
+      - run: .ci/no-exception-test.sh openjdk25-with-checks-nonjavadoc-error

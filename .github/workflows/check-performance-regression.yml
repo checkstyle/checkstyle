@@ -48,11 +48,11 @@ jobs:
       - name: Checkout Pull Request Code
         uses: actions/checkout@v5
 
-      - name: Clone JDK 21 Repo
+      - name: Clone JDK 25 Repo
         uses: actions/checkout@v5
         with:
-          repository: openjdk/jdk21
-          path: ./.ci-temp/jdk21
+          repository: openjdk/jdk25u
+          path: ./.ci-temp/jdk25
 
       - name: Setup local maven cache
         uses: actions/cache@v4

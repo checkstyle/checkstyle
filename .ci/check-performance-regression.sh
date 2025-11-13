@@ -15,7 +15,7 @@ CONFIG_FILE=$2
 # max difference tolerance in %
 THRESHOLD_PERCENTAGE=10
 # JDK version
-JDK_VERSION=21
+JDK_VERSION=25
 # sample project path
 SAMPLE_PROJECT="./.ci-temp/jdk$JDK_VERSION"
 # suppression file
