@@ -28,6 +28,58 @@
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unicode[\\/]FirstChar2.java$"/>
 </module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]util[\\/]elements[\\/]TestGetDocComment_Line.java$"/>
+</module>
+
+<!-- until https://github.com/checkstyle/checkstyle/issues/17052 -->
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]FeatureFlexibleConstructors.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]PreviewFeatureUse.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]patterns[\\/]UninitializedThisException.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]LambdaOuterCapture.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest1.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLambdaReturn.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest2.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalCtorRef.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest4.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest5.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalTest3.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]SuperInitGood.java$"/>
+</module>
+
+<!-- until https://github.com/checkstyle/checkstyle/issues/17810 -->
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClass.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]NestedEnum.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]flags[\\/]NoFalseSealedError.java$"/>
+</module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/13987 -->
 <module name="BeforeExecutionExclusionFileFilter">
@@ -44,6 +96,20 @@
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]NestedEnum.java$"/>
+</module>
+
+<!-- until https://github.com/checkstyle/checkstyle/issues/17919 -->
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModule.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleDoesNotReadUnnamed.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleDoesNotRead[\\/]test[\\/]Test.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleNotFound.java$"/>
 </module>
 
 <!-- Permanent suppression for string templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
@@ -617,4 +683,76 @@
 </module>
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]switchexpr[\\/]ParserRecovery.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]recovery[\\/]T8337976.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClassBad-Filename.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]CallOnlyInConstructor.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]CallsNotAllowedHere.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ClassMethodOrFieldExpected.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClassNoMain.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]IllegalCharLiteralMultipleSurrogates.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClassHasPackage.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]SourceLevelErrorPosition.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]Implicit.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]ImplicitClassRecovery.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ReturnBeforeSuperclassInit.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]RedundantSuperclassInit.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]IllegalDigitInOctalLiteral.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]IllegalDigitInBinaryLiteral.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]StatementNotExpected.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]CantAssignInitializedBeforeCtorCalled.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]LocalClassCtorPrologue.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]DefiniteAssignment[\\/]DA_DUConstructors.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]SuperInitFails.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyAssignments.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImportUnnamed[\\/]foo[\\/]A.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyLocalClass.java$"/>
+</module>
+<module name="BeforeExecutionExclusionFileFilter">
+  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]EarlyInnerAccessErrorMessageTest.java$"/>
 </module>
