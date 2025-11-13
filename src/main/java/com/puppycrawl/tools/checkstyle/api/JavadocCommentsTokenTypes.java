@@ -863,8 +863,34 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_ATTRIBUTES = JavadocCommentsLexer.HTML_ATTRIBUTES;
 
     /**
-     * Start of an HTML tag.
+     * Start of an HTML tag (the opening tag node).
+     *
+     * <p>This node represents the opening part of an HTML element and contains
+     * the opening delimiter, tag name, optional attributes, and the closing
+     * delimiter of the opening tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * `--HTML_ELEMENT -> HTML_ELEMENT
+     *     `--HTML_TAG_START -> HTML_TAG_START
+     *         |--TAG_OPEN -> <
+     *         |--TAG_NAME -> a
+     *         |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     *         |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     *         |       |--TEXT ->
+     *         |       |--TAG_ATTR_NAME -> href
+     *         |       |--EQUALS -> =
+     *         |       `--ATTRIBUTE_VALUE -> "https://example.com"
+     *         `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
+
     public static final int HTML_TAG_START = JavadocCommentsLexer.HTML_TAG_START;
 
     /**
