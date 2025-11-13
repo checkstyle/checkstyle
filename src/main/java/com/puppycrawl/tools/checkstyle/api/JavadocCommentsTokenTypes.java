@@ -863,8 +863,69 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_ATTRIBUTES = JavadocCommentsLexer.HTML_ATTRIBUTES;
 
     /**
-     * Start of an HTML tag.
+     * Start of an HTML tag (the opening tag node).
+     *
+     * <p>This node represents the opening part of an HTML element and contains
+     * the opening delimiter, tag name, optional attributes, and the closing
+     * delimiter of the opening tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->  Test class to demonstrate HTML tag start in Javadoc.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {
+     * |--NEWLINE -> \n
+     * |--TEXT ->     /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  Example with HTML anchor tag.
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   |--HTML_TAG_START -> HTML_TAG_START
+     * |   |   |--TAG_OPEN -> <
+     * |   |   |--TAG_NAME -> a
+     * |   |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |   |       |--TEXT ->
+     * |   |   |       |--TAG_ATTR_NAME -> href
+     * |   |   |       |--EQUALS -> =
+     * |   |   |       `--ATTRIBUTE_VALUE -> "https://example.com"
+     * |   |   `--TAG_CLOSE -> >
+     * |   |--HTML_CONTENT -> HTML_CONTENT
+     * |   |   `--TEXT -> link
+     * |   `--HTML_TAG_END -> HTML_TAG_END
+     * |       |--TAG_OPEN -> <
+     * |       |--TAG_SLASH -> /
+     * |       |--TAG_NAME -> a
+     * |       `--TAG_CLOSE -> >
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT ->     public void m() {}
+     * |--NEWLINE -> \n
+     * |--TEXT -> }
+     * |--NEWLINE -> \n
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
+
     public static final int HTML_TAG_START = JavadocCommentsLexer.HTML_TAG_START;
 
     /**
