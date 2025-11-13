@@ -2017,6 +2017,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
+            </td>
+            <td>
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java" />
+              </macro>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">
                 SingleSpaceSeparator
               </a>
@@ -2096,17 +2107,6 @@
               <macro name="checks">
                 <param name="modulePath"
   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/SuppressWarningsCheck.java" />
-              </macro>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
-            </td>
-            <td>
-              <macro name="checks">
-                <param name="modulePath"
-  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/ThrowsCountCheck.java" />
               </macro>
             </td>
           </tr>
