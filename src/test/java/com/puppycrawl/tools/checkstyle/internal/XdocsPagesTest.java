@@ -571,10 +571,17 @@ public class XdocsPagesTest {
                     .sorted()
                     .toList();
 
-            assertWithMessage(name + NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH + path)
-                    .that(names)
-                    .containsExactlyElementsIn(namesSorted)
-                    .inOrder();
+            String previousCheck = namesSorted.get(0);
+            for (int i = 0; i < names.size(); i++) {
+                String actual = names.get(i);
+                String expected = namesSorted.get(i);
+
+                assertWithMessage(actual + "Check is not in alphabetical order at " +
+                        SITE_PATH + ". it must come after " + previousCheck + "Check.")
+                        .that(actual)
+                        .isEqualTo(expected);
+                previousCheck = namesSorted.get(i);
+            }
         }
     }
 

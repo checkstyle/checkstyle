@@ -1616,6 +1616,14 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
+            </td>
+            <td>
+              Restricts throws statements to a specified count.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/whitespace/singlespaceseparator.html#SingleSpaceSeparator">
                 SingleSpaceSeparator
               </a>
@@ -1682,14 +1690,6 @@
             <td>
               Allows to specify what warnings that <code>@SuppressWarnings</code> is
               not allowed to suppress.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
-            </td>
-            <td>
-              Restricts throws statements to a specified count.
             </td>
           </tr>
           <tr>
