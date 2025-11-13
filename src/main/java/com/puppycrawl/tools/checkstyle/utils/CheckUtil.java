@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.utils;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -412,12 +411,12 @@ public final class CheckUtil {
     public static String stripIndentAndInitialNewLineFromTextBlock(String textBlockContent) {
         final String contentWithInitialNewLineRemoved =
             ALL_NEW_LINES.matcher(textBlockContent).replaceFirst("");
-        final List<String> lines =
-            Arrays.asList(ALL_NEW_LINES.split(contentWithInitialNewLineRemoved));
+        final Stream<String> lines =
+            Arrays.stream(ALL_NEW_LINES.split(contentWithInitialNewLineRemoved));
         final int indent = getSmallestIndent(lines);
         final String suffix = "";
 
-        return lines.stream()
+        return lines
                 .map(line -> stripIndentAndTrailingWhitespaceFromLine(line, indent))
                 .collect(Collectors.joining(System.lineSeparator(), suffix, suffix));
     }
@@ -446,8 +445,8 @@ public final class CheckUtil {
      * @param lines collection of actual text block content, split by line.
      * @return number of spaces representing the smallest indent in this text block.
      */
-    private static int getSmallestIndent(Collection<String> lines) {
-        return lines.stream()
+    private static int getSmallestIndent(Stream<String> lines) {
+        return lines
             .mapToInt(CommonUtil::indexOfNonWhitespace)
             .min()
             .orElse(0);
