@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -27,11 +29,13 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <div>
@@ -79,6 +83,11 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|206[0-4a-fA-F]"
             + "|[fF]{3}[9a-bA-B]"
             + "|[fF][eE][fF]{2})");
+
+    /**
+     * Pattern to detect empty block comments like /**\/ or /* *\/.
+     */
+    private static final Pattern EMPTY_BLOCK_COMMENT = Pattern.compile("/\\*\\s*\\*/");
 
     /**
      * Regular expression for all escaped chars.
@@ -175,9 +184,9 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{4}");
 
     /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
+    private final Map<Integer, TextBlock> singlelineComments = new HashMap<>();
     /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
+    private final Map<Integer, List<TextBlock>> blockComments = new HashMap<>();
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -250,12 +259,16 @@ public class AvoidEscapedUnicodeCharactersCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+        singlelineComments.clear();
+        blockComments.clear();
+        collectComments(rootAST);
     }
 
     @Override
@@ -271,6 +284,94 @@ public class AvoidEscapedUnicodeCharactersCheck
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Recursively collects all comments from the AST.
+     *
+     * @param ast the root node to start collecting from
+     */
+    private void collectComments(DetailAST ast) {
+        DetailAST node = ast;
+        while (node != null) {
+            if (node.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+                singlelineComments.put(node.getLineNo(), convertToTextBlock(node));
+            }
+            else if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                final TextBlock comment = convertToTextBlock(node);
+                final int startLine = node.getLineNo();
+                final int endLine = comment.getEndLineNo();
+
+                for (int line = startLine; line <= endLine; line++) {
+                    blockComments.computeIfAbsent(line, key -> new ArrayList<>())
+                        .add(comment);
+                }
+            }
+
+            collectComments(node.getFirstChild());
+            node = node.getNextSibling();
+        }
+    }
+
+    /**
+     * Converts comment AST node to TextBlock with code-point-based positions.
+     * Handles emoji and multi-byte characters correctly.
+     *
+     * @param commentAst the comment node
+     * @return TextBlock representation with code-point-based endCol
+     */
+    private TextBlock convertToTextBlock(DetailAST commentAst) {
+        final int lineNo = commentAst.getLineNo();
+        final String line = getLine(lineNo - 1);
+
+        final String commentContent;
+        int codePointEndCol;
+
+        if (commentAst.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            final String rawText = commentAst.getFirstChild().getText();
+
+            if (rawText.isBlank()) {
+                commentContent = "";
+                final DetailAST blockCommentEnd = commentAst.getLastChild();
+                final int charPosAfterComment = blockCommentEnd.getColumnNo() + 2;
+                codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment);
+            }
+            else {
+                commentContent = JavadocUtil.getJavadocCommentContent(commentAst);
+                final DetailAST blockCommentEnd = commentAst.getLastChild();
+                final int charPosAfterComment = blockCommentEnd.getColumnNo() + 2;
+                codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment + 2);
+            }
+        }
+        else {
+            commentContent = commentAst.getFirstChild().getText();
+
+            final int charPosAfterComment = commentAst.getColumnNo() + 2 + commentContent.length();
+            codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment);
+        }
+
+        final String[] lines = commentContent.split("\n", -1);
+        final int lineCodePointLength = line.codePointCount(0, line.length());
+        final int startCol = commentAst.getColumnNo();
+        final int endLine = commentAst.getLineNo() + lines.length - 1;
+
+        return new Comment(lines, startCol, endLine, codePointEndCol);
+    }
+
+    /**
+     * Converts a char-based index to a code-point-based index.
+     *
+     * @param line the line text
+     * @param charIndex the char-based index
+     * @return the code-point-based index
+     */
+    private static int charIndexToCodePointIndex(String line, int charIndex) {
+        int result = 0;
+        if (charIndex > 0) {
+            final int safeCharIndex = Math.min(charIndex, line.length());
+            result = line.codePointCount(0, safeCharIndex);
+        }
+        return result;
     }
 
     /**
@@ -309,37 +410,51 @@ public class AvoidEscapedUnicodeCharactersCheck
     private boolean hasTrailComment(DetailAST ast) {
         int lineNo = ast.getLineNo();
 
-        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
-        // we need to look for it after TEXT_BLOCK_LITERAL_END.
         if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
             lineNo = ast.getNextSibling().getLineNo();
         }
+
+        final String line = getLine(lineNo - 1);
+        final int[] codePoints = getLineCodePoints(lineNo - 1);
         boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
+
+        final TextBlock singleComment = singlelineComments.get(lineNo);
+        if (singleComment != null) {
+            final int codePointEndCol = charIndexToCodePointIndex(
+                    line, singleComment.getEndColNo());
+            result = isTrailingBlockComment(codePointEndCol, codePoints);
         }
-        else {
+
+        if (!result) {
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
-                final TextBlock comment = commentList.get(commentList.size() - 1);
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
-                result = isTrailingBlockComment(comment, codePoints);
+                for (TextBlock comment : commentList) {
+                    if (comment.getStartLineNo() <= lineNo && comment.getEndLineNo() >= lineNo) {
+                        final int codePointEndCol = charIndexToCodePointIndex(
+                            line, comment.getEndColNo());
+                        if (isTrailingBlockComment(codePointEndCol, codePoints)) {
+                            result = true;
+                            break;
+                        }
+                    }
+                }
             }
         }
+
         return result;
     }
 
     /**
      * Whether the C style comment is trailing.
      *
-     * @param comment the comment to check.
+     * @param commentEndCol the end column of the comment in code points.
      * @param codePoints the first line of the comment, in unicode code points
      * @return true if the comment is trailing.
      */
-    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
-        return comment.getText().length != 1
+    private static boolean isTrailingBlockComment(int commentEndCol, int... codePoints) {
+        return commentEndCol + 1 >= codePoints.length
             || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
+            commentEndCol + 1, codePoints.length));
     }
 
     /**
