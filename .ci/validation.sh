@@ -553,7 +553,7 @@ javac17_standard)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
-  files=($(grep -REL --include='*.java' \
+  files=($(grep -RELi --include='*.java' \
         --exclude='InputCustomImportOrderNoPackage2.java' \
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
@@ -570,7 +570,7 @@ javac17_standard)
   ;;
 
 javac17)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java17' \
+  files=($(grep -Rli --include='*.java' ': Compilable with Java17' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable \
@@ -587,7 +587,7 @@ javac17)
   ;;
 
 javac19)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java19' \
+  files=($(grep -Rli --include='*.java' ': Compilable with Java19' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
@@ -603,7 +603,7 @@ javac19)
   ;;
 
 javac20)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java20' \
+  files=($(grep -Rli --include='*.java' ': Compilable with Java20' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
@@ -619,7 +619,7 @@ javac20)
   ;;
 
 javac21)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java21' \
+  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
@@ -635,7 +635,7 @@ javac21)
   ;;
 
 javac22)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java22' \
+  files=($(grep -Rli --include='*.java' ': Compilable with Java22' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
