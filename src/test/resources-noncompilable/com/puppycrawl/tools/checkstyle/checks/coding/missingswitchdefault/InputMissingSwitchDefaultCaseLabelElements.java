@@ -4,7 +4,7 @@ MissingSwitchDefault
 
 */
 
-// non-compiled with javac: compilable with Java22
+// non-compiled with javac: until https://github.com/checkstyle/checkstyle/issues/18097
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
 public class InputMissingSwitchDefaultCaseLabelElements {
