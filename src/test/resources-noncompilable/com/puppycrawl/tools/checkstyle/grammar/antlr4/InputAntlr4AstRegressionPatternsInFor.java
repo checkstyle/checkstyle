@@ -1,4 +1,4 @@
-// non-compiled with javac: compilable with Java22
+// non-compiled with javac: until https://github.com/checkstyle/checkstyle/issues/18097
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionPatternsInFor {
