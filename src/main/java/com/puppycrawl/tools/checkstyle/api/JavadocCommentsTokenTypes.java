@@ -849,7 +849,34 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Content inside an HTML element.
+     *
+     * <p>This node represents the textual content between an HTML start tag and
+     * the corresponding end tag inside a Javadoc comment.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * `--HTML_ELEMENT -> HTML_ELEMENT
+     *     |--HTML_TAG_START -> HTML_TAG_START
+     *     |   |--TAG_OPEN -> <
+     *     |   |--TAG_NAME -> a
+     *     |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     *     |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     *     |   |       |--TEXT ->   (whitespace)
+     *     |   |       |--TAG_ATTR_NAME -> href
+     *     |   |       |--EQUALS -> =
+     *     |   |       `--ATTRIBUTE_VALUE -> "https://example.com"
+     *     |   `--TAG_CLOSE -> >
+     *     `--HTML_CONTENT -> HTML_CONTENT
+     *         `--TEXT -> link
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
+
     public static final int HTML_CONTENT = JavadocCommentsLexer.HTML_CONTENT;
 
     /**
