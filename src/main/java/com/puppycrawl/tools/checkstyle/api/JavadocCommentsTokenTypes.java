@@ -894,8 +894,28 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_TAG_START = JavadocCommentsLexer.HTML_TAG_START;
 
     /**
-     * End of an HTML tag.
+     * End of an HTML tag (the closing tag node).
+     *
+     * <p>This node represents the closing part of an HTML element and contains the
+     * closing delimiter, optional slash, and the tag name.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <a href="https://example.com">link</a>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * `--HTML_ELEMENT -> HTML_ELEMENT
+     *     `--HTML_TAG_END -> HTML_TAG_END
+     *         |--TAG_OPEN -> <
+     *         |--TAG_SLASH -> /
+     *         |--TAG_NAME -> a
+     *         `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
+
     public static final int HTML_TAG_END = JavadocCommentsLexer.HTML_TAG_END;
 
     /**
