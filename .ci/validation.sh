@@ -650,6 +650,22 @@ javac22)
   fi
   ;;
 
+javac25)
+  files=($(grep -Rli --include='*.java' ': Compilable with Java25' \
+        src/test/resources-noncompilable \
+        src/it/resources-noncompilable \
+        src/xdocs-examples/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java25 files to process"
+  else
+    mkdir -p target
+    for file in "${files[@]}"
+    do
+      javac --release 25 --enable-preview -d target "${file}"
+    done
+  fi
+  ;;
+
 package-site)
   ./mvnw -e --no-transfer-progress package -Passembly,no-validations
   ./mvnw -e --no-transfer-progress site -Dlinkcheck.skip=true
