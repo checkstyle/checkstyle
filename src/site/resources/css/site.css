@@ -421,6 +421,10 @@ section#Properties .wrapper table td a {
     word-break: break-word;
   }
 
+  code {
+    white-space: pre-wrap;
+  }
+
   table tr {
     display: block;
     margin-bottom: 1rem;
