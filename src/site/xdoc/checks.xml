@@ -1686,6 +1686,17 @@
           </tr>
           <tr>
             <td>
+              <a href="textblockgooglestyleformatting.html#TextBlockGoogleStyleFormatting">
+                TextBlockGoogleStyleFormatting
+              </a>
+            </td>
+            <td>
+              Checks correct format of Java Text Blocks as specified in Google Java
+              Style Guide.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/design/throwscount.html#ThrowsCount">ThrowsCount</a>
             </td>
             <td>
