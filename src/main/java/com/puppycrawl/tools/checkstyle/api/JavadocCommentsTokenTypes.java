@@ -659,8 +659,30 @@ public final class JavadocCommentsTokenTypes {
     public static final int LITERAL_INLINE_TAG = JavadocCommentsLexer.LITERAL_INLINE_TAG;
 
     /**
-     * {@code {@return}} inline tag.
+     * Inline {@code return} tag inside Javadoc.
+     *
+     * <p>This node represents an inline {@code {@return ...}} tag used to
+     * describe the returned value directly within a Javadoc sentence.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Example showing result {@return The computed value.}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Example showing result
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--RETURN_INLINE_TAG -> RETURN_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> return
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  The computed value.
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
+
     public static final int RETURN_INLINE_TAG = JavadocCommentsLexer.RETURN_INLINE_TAG;
 
     /**
