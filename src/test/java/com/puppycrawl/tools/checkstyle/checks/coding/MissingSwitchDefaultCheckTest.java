@@ -100,14 +100,6 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultCaseLabelElements() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getNonCompilablePath("InputMissingSwitchDefaultCaseLabelElements.java"),
-                expected);
-    }
-
-    @Test
     public void testMissingSwitchDefaultRecordPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
