@@ -81,6 +81,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
             "visitVariableInitializer",
             "visitLambdaBody",
             "visitPatternVariableDef",
+            "visitConstructorBlockStatement",
 
             // AST built in parent rule
             "visitCreatedNameExtended",
