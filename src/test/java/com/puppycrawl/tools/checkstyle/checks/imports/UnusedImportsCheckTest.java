@@ -418,4 +418,23 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
 
     }
 
+    @Test
+    public void testUnusedImportsJavadocAnnotation() throws Exception {
+        final String[] expected = {
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsJavadocAnnotation.java"), expected);
+    }
+
+    @Test
+    public void testUnusedImportsBlockComment() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsBlockComment.java"), expected);
+    }
+
 }
