@@ -1004,7 +1004,27 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Closing part of an HTML comment.
+     *
+     * <p>This node represents the closing delimiter of an HTML comment in
+     * Javadoc (for example {@code -->}).</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <!-- hidden comment -->}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * |--HTML_COMMENT -> HTML_COMMENT
+     * |   |--HTML_COMMENT_START -> <!--
+     * |   |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     * |   |   `--TEXT ->  hidden comment
+     * |   `--HTML_COMMENT_END -> -->
+     * }</pre>
+     *
+     * @see #HTML_COMMENT
      */
+
     public static final int HTML_COMMENT_END = JavadocCommentsLexer.HTML_COMMENT_END;
 
     /**
