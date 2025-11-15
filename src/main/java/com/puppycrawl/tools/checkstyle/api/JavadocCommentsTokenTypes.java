@@ -994,6 +994,19 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Full HTML comment.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--HTML_COMMENT -> HTML_COMMENT
+     *     |--HTML_COMMENT_START -> <!--
+     *     |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     *     |   `--TEXT ->  Hello World!
+     *     `--HTML_COMMENT_END -> -->
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT -> /
      */
     public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
 
