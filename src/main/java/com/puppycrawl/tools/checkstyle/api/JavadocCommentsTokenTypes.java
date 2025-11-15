@@ -993,10 +993,15 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
 
     /**
-     * Full HTML comment.
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--TEXT -> /**
-     * |--NEWLINE -> \r\n
+     * Start of an HTML comment node.
+     *
+     * <p>This node represents a full HTML comment inside Javadoc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <!-- Hello World! -->}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
      * |--LEADING_ASTERISK ->  *
      * |--TEXT ->
      * |--HTML_COMMENT -> HTML_COMMENT
@@ -1004,9 +1009,9 @@ public final class JavadocCommentsTokenTypes {
      *     |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      *     |   `--TEXT ->  Hello World!
      *     `--HTML_COMMENT_END -> -->
-     * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK ->  *
-     * |--TEXT -> /
+     * }</pre>
+     *
+     * @see #HTML_COMMENT
      */
     public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
 
