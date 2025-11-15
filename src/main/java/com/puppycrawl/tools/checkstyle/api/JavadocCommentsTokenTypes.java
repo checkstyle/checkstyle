@@ -638,8 +638,30 @@ public final class JavadocCommentsTokenTypes {
     public static final int VALUE_INLINE_TAG = JavadocCommentsLexer.VALUE_INLINE_TAG;
 
     /**
-     * {@code {@summary}} inline tag.
+     * Inline {@code {@summary ...}} tag inside Javadoc.
+     *
+     * <p>This node represents an inline {@code {@summary ...}} tag used to provide a
+     * short summary description within a Javadoc sentence.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code Example showing {@summary This is a short summary.}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Example showing
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--SUMMARY_INLINE_TAG -> SUMMARY_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> summary
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  This is a short summary.
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
+
     public static final int SUMMARY_INLINE_TAG = JavadocCommentsLexer.SUMMARY_INLINE_TAG;
 
     /**
