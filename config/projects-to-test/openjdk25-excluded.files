@@ -98,20 +98,6 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]NestedEnum.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/17919 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModule.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleDoesNotReadUnnamed.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleDoesNotRead[\\/]test[\\/]Test.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImportModuleNotFound.java$"/>
-</module>
-
 <!-- Permanent suppression for string templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]StringTemplateTest.java$"/>

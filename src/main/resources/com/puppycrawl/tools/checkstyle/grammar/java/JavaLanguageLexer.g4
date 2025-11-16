@@ -117,7 +117,8 @@ tokens {
     NOT_FOR_USAGE_1, NOT_FOR_USAGE_2, NOT_FOR_USAGE_3, NOT_FOR_USAGE_4,
     NOT_FOR_USAGE_5, NOT_FOR_USAGE_6, NOT_FOR_USAGE_7,
 
-    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF
+    LITERAL_UNDERSCORE, UNNAMED_PATTERN_DEF,
+    LITERAL_MODULE, MODULE_IMPORT
 }
 
 @header {
@@ -186,6 +187,7 @@ LITERAL_INSTANCEOF:      'instanceof';
 LITERAL_INT:             'int';
 LITERAL_INTERFACE:       'interface';
 LITERAL_LONG:            'long';
+LITERAL_MODULE:          'module';
 LITERAL_NATIVE:          'native';
 LITERAL_NEW:             'new';
 LITERAL_PACKAGE:         'package';

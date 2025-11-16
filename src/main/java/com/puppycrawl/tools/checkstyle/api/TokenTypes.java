@@ -6691,6 +6691,62 @@ public final class TokenTypes {
     public static final int UNNAMED_PATTERN_DEF =
             JavaLanguageLexer.UNNAMED_PATTERN_DEF;
 
+    /**
+     * A {@code module} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * import module java.base;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * MODULE_IMPORT -> import
+     *  |--LITERAL_MODULE -> module
+     *  |--DOT -> .
+     *  |   |--IDENT -> java
+     *  |   `--IDENT -> base
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.5.5">
+     *     Java Language Specification, &sect;7.5.5</a>
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.7">
+     *     Java Language Specification, &sect;7.7</a>
+     * @see #IMPORT
+     * @see #MODULE_IMPORT
+     *
+     * @since 12.2.0
+     */
+    public static final int LITERAL_MODULE = JavaLanguageLexer.LITERAL_MODULE;
+
+    /**
+     * A module import declaration - {@code import module}.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * import module java.base;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * MODULE_IMPORT -> import
+     *  |--LITERAL_MODULE -> module
+     *  |--DOT -> .
+     *  |   |--IDENT -> java
+     *  |   `--IDENT -> base
+     *  `--SEMI -> ;
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se25/html/jls-7.html#jls-7.5.5">
+     *     Java Language Specification, &sect;7.5.5</a>
+     * @see #IMPORT
+     * @see #LITERAL_MODULE
+     *
+     * @since 12.2.0
+     */
+    public static final int MODULE_IMPORT = JavaLanguageLexer.MODULE_IMPORT;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
