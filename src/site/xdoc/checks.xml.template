@@ -2145,6 +2145,19 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              <macro name="checks">
+                <param name="modulePath"
+  value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/TypeBodyPaddingCheck.java" />
+              </macro>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/typename.html#TypeName">TypeName</a>
             </td>
             <td>
