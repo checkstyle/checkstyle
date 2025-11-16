@@ -50,17 +50,20 @@ for list_file_path in "${NONFORMATTED_LIST[@]}"; do
     fi
     if (( diff > 500 )); then
       if ! is_suppressed "$SUPPRESS_GT_500" "Input${name}.java"; then
-        echo -e "\033[1;31mError: Difference for Input${name}.java is more than 50 bytes (${diff})"
+        echo -e "\033[1;31mError: Input${name}.java and InputFormatted${name}.java might not be synchronized."
+        echo -e "\033[1;31mError: Difference is more than 500 bytes. Detected diff is ${diff} bytes."
         exit 1
       fi
     elif (( diff > 100 )); then
       if ! is_suppressed "$SUPPRESS_GT_100_LTE_500" "Input${name}.java"; then
-        echo -e "\033[1;31mError: Difference for Input${name}.java is more than 50 bytes (${diff})"
+        echo -e "\033[1;31mError: Input${name}.java and InputFormatted${name}.java might not be synchronized."
+        echo -e "\033[1;31mError: Difference is more than 100 bytes. Detected diff is ${diff} bytes."
         exit 1
       fi
     elif (( diff > 50 )); then
       if ! is_suppressed "$SUPPRESS_LTE_100" "Input${name}.java"; then
-        echo -e "\033[1;31mError: Difference for Input${name}.java is more than 50 bytes (${diff})"
+        echo -e "\033[1;31mError: Input${name}.java and InputFormatted${name}.java might not be synchronized."
+        echo -e "\033[1;31mError: Difference is more than 50 bytes. Detected diff is ${diff} bytes."
         exit 1
       fi
     fi
