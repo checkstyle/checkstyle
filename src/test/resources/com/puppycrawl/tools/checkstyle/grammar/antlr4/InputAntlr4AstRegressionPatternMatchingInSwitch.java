@@ -1,4 +1,3 @@
-// non-compiled with javac: until https://github.com/checkstyle/checkstyle/issues/18097
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionPatternMatchingInSwitch {
@@ -7,7 +6,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
         String result = switch (value) {
             case null -> "It's null...";
             case String s -> "It's a string: " + s;
-            case Integer i && i > 50 -> "It's an integer: " + i.toString();
+            case Integer i when i > 50 -> "It's an integer: " + i.toString();
             case Object v -> "It's something else: " + v.toString();
         };
         System.out.println(result);
@@ -38,10 +37,10 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
     }
     static void m1(Object o) {
         switch (o) {
-            case String s && s.length() > 4:
+            case String s when s.length() > 4:
                 System.out.println(s);
                 break;
-            case Integer i && i > 40:
+            case Integer i when i > 40:
                 System.out.println("Integer");
                 break;
             default:
@@ -50,8 +49,8 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
     }
     static void m2(Object o) {
         switch (o) {
-            case String s && s.length() > 4 -> System.out.println(s);
-            case Integer i && i > 40 -> System.out.println("Integer");
+            case String s when s.length() > 4 -> System.out.println(s);
+            case Integer i when i > 40 -> System.out.println("Integer");
             default -> {
             }
         }
@@ -64,7 +63,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
                 }
                 System.out.println("Character");
             }
-            case Integer i && (i > 2) ->
+            case Integer i when (i > 2) ->
                 throw new IllegalStateException("Invalid Integer argument of value " + i);
             default -> {
                 break;
@@ -87,16 +86,14 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
     }
     static void test3(Object o) {
         switch(o) {
-            case null: case String s:
+            case null: default:
                 System.out.println("String, including null");
                 break;
-            default:
         }
     }
     static void test4(Object o) {
         switch (o) {
-            case null, String s -> System.out.println("String, including null");
-            default -> System.out.println("something else");
+            case null, default -> System.out.println("String, including null");
         }
         switch(o) {
             case null: default:
@@ -111,7 +108,7 @@ public class InputAntlr4AstRegressionPatternMatchingInSwitch {
                 System.out.println("The rest (including null)");
         }
         // example of parenthesized pattern in instanceof
-        if (o instanceof (String s && s.length() > 1)) {
+        if (o instanceof String s && s.length() > 1) {
         }
     }
 }
