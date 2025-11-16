@@ -795,7 +795,31 @@ public final class JavadocCommentsTokenTypes {
     public static final int GT = JavadocCommentsLexer.GT;
 
     /**
-     * Keyword {@code extends} in type parameters.
+     * {@code extends} keyword in type parameters.
+     *
+     * <p>Such Javadoc inline tag has one child:</p>
+     * <ol>
+     *   <li>{@link #CODE_INLINE_TAG}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Keyword {@code extends} in type parameters.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> Keyword
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> code
+     *         |--EXTENDS -> extends
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT ->  in type parameters.
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int EXTENDS = JavadocCommentsLexer.EXTENDS;
 
