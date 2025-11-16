@@ -2076,8 +2076,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" \
-          &#xa0;&#xa0;&#xa0;&#xa0;-Dexec.args="-c /sun_checks.xml src/main/java"
+          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.Main" -Dexec.args="-c /sun_checks.xml src/main/java"
         </code></pre></div>
       </div>
       <p>
@@ -2085,8 +2084,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args=\
-          &#xa0;&#xa0;&#xa0;&#xa0;"src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
+          ./mvnw exec:java -Dexec.mainClass="com.puppycrawl.tools.checkstyle.gui.Main" -Dexec.args="src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"
         </code></pre></div>
       </div>
       <p>
@@ -2150,8 +2148,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
-          &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
+          java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
         </code></pre></div>
       </div>
 
@@ -2164,8 +2161,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
-          &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -p myCheckstyle.properties Check.java
         </code></pre></div>
       </div>
 
@@ -2178,8 +2174,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
-          &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml -o build/checkstyle_errors.xml Check.java
         </code></pre></div>
       </div>
 
@@ -2191,8 +2186,7 @@ Checkstyle ends with 2 errors.
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-bash">
-          java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar \
-          &#xa0;&#xa0;&#xa0;&#xa0;com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
+          java -classpath MyCustom.jar;checkstyle-${projectVersion}-all.jar com.puppycrawl.tools.checkstyle.Main -c config.xml Check.java
         </code></pre></div>
       </div>
       <p>
