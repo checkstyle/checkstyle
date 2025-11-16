@@ -739,6 +739,35 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code @snippet} inline tag.
+     *
+     * <p>This node represents an inline { @code { @snippet :}} tag used to embed
+     * code snippets directly inside a Javadoc sentence.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{ @code * Example showing { @snippet :java |
+     * System.out.println("hello");
+     * }}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT -> Example showing
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--SNIPPET_INLINE_TAG -> SNIPPET_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--COLON -> :
+     *         |--SNIPPET_BODY -> SNIPPET_BODY
+     *         |   |--TEXT -> java |
+     *         |   |--NEWLINE -> \n
+     *         |   |--LEADING_ASTERISK -> *
+     *         |   |--TEXT -> System.out.println("hello");
+     *         |   |--NEWLINE -> \n
+     *         |   |--LEADING_ASTERISK -> *
+     *         |   `--TEXT ->
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
