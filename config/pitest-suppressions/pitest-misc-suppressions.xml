@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::clear</description>
+    <lineContent>blockComments.clear();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::clear</description>
+    <lineContent>singlelineComments.clear();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>charIndexToCodePointIndex</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/String::codePointCount with argument</description>
+    <lineContent>return line.codePointCount(0, safeCharIndex);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck::charIndexToCodePointIndex with argument</description>
+    <lineContent>codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment + 2);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck::charIndexToCodePointIndex</description>
+    <lineContent>codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck::charIndexToCodePointIndex with argument</description>
+    <lineContent>codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST blockCommentEnd = commentAst.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced integer addition with subtraction</description>
+    <lineContent>final int charPosAfterComment = blockCommentEnd.getColumnNo() + 2;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>final int charPosAfterComment = blockCommentEnd.getColumnNo() + 2;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>convertToTextBlock</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>final int startCol = commentAst.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>hasTrailComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck::charIndexToCodePointIndex with argument</description>
+    <lineContent>final int codePointEndCol = charIndexToCodePointIndex(</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>hasTrailComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (!result) {</lineContent>
+  </mutation>
+</suppressedMutations>
