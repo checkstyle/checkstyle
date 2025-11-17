@@ -1,12 +1,13 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="JavadocMethod"/>
-    <module name="EqualsAvoidNull"/>
+    <module name="NoWhitespaceAfter"/>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="files" value="Example2.java"/>
-    <property name="checks" value="JavadocMethod|EqualsAvoidNull"/>
+    <property name="checks" value="NoWhitespaceAfter"/>
+    <property name="lines" value="18"/>
+    <property name="columns" value="12"/>
   </module>
 </module>
 */
@@ -14,14 +15,14 @@ package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example2 {
 
-  public void checkStringEquality(String s) {
-    // filtered violation below 'String literal expressions should be on the left'
-    s.equals("M");
+  public void exampleMethod(int a, int b) {
+    // filtered violation below ''.' is followed by whitespace'
+    Integer. parseInt("3");
   }
-  /**
-   * @param p1 The first number
-   */
-  // filtered violation below '@return tag should be present'
-  private int m2(int p1) { return p1; }
+
+  public void exampleMethod2() {
+    int [] x; // violation ''int' is followed by whitespace'
+  }
+
 }
 // xdoc section -- end
