@@ -795,7 +795,42 @@ public final class JavadocCommentsTokenTypes {
     public static final int GT = JavadocCommentsLexer.GT;
 
     /**
-     * Keyword {@code extends} in type parameters.
+     * {@code extends} keyword inside type arguments of a Javadoc inline tag.
+     *
+     * <p>This node represents the {@code extends} bound used inside a
+     * parameterized type within an inline Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * {@link java.util.List<? extends Number> list of any subtype of Number}
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> link
+     *         |--TEXT ->
+     *         |--REFERENCE -> REFERENCE
+     *         |   |--IDENTIFIER -> java.util.List
+     *         |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *         |       |--LT -> <
+     *         |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *         |       |   |--QUESTION -> ?
+     *         |       |   |--TEXT ->
+     *         |       |   |--EXTENDS -> extends
+     *         |       |   |--TEXT ->
+     *         |       |   `--IDENTIFIER -> Number
+     *         |       `--GT -> >
+     *         |--DESCRIPTION -> DESCRIPTION
+     *         |   `--TEXT ->  list of any subtype of Number
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int EXTENDS = JavadocCommentsLexer.EXTENDS;
 
