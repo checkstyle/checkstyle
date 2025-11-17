@@ -1,26 +1,20 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="NoWhitespaceAfter"/>
+    <module name="MemberName">
+      <property name="id" value="customMemberName"/>
+    </module>
   </module>
   <module name="SuppressionSingleFilter">
     <property name="files" value="Example4.java"/>
-    <property name="checks" value="NoWhitespaceAfter"/>
+    <property name="id" value="customMemberName"/>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.filters.suppressionsinglefilter;
 // xdoc section -- start
 public class Example4 {
-
-  public void exampleMethod(int a, int b) {
-    // filtered violation below ''.' is followed by whitespace'
-    Integer. parseInt("3");
-  }
-
-  public void exampleMethod2() {
-    int [] x; // filtered violation ''int' is followed by whitespace'
-  }
-
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  private int MyVariable = 5;
 }
 // xdoc section -- end

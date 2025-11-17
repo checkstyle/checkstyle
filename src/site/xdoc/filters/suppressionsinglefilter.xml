@@ -130,12 +130,13 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocMethod"/&gt;
-    &lt;module name="EqualsAvoidNull"/&gt;
+    &lt;module name="NoWhitespaceAfter"/&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example2.java"/&gt;
-    &lt;property name="checks" value="JavadocMethod|EqualsAvoidNull"/&gt;
+    &lt;property name="checks" value="NoWhitespaceAfter"/&gt;
+    &lt;property name="lines" value="18"/&gt;
+    &lt;property name="columns" value="12"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -144,15 +145,15 @@ public class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example2 {
 
-  public void checkStringEquality(String s) {
-    // filtered violation below 'String literal expressions should be on the left'
-    s.equals("M");
+  public void exampleMethod(int a, int b) {
+    // filtered violation below ''.' is followed by whitespace'
+    Integer. parseInt("3");
   }
-  /**
-   * @param p1 The first number
-   */
-  // filtered violation below '@return tag should be present'
-  private int m2(int p1) { return p1; }
+
+  public void exampleMethod2() {
+    int [] x; // violation ''int' is followed by whitespace'
+  }
+
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -196,11 +197,13 @@ public class Example3 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="NoWhitespaceAfter"/&gt;
+    &lt;module name="MemberName"&gt;
+      &lt;property name="id" value="customMemberName"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
   &lt;module name="SuppressionSingleFilter"&gt;
     &lt;property name="files" value="Example4.java"/&gt;
-    &lt;property name="checks" value="NoWhitespaceAfter"/&gt;
+    &lt;property name="id" value="customMemberName"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -208,16 +211,8 @@ public class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example4 {
-
-  public void exampleMethod(int a, int b) {
-    // filtered violation below ''.' is followed by whitespace'
-    Integer. parseInt("3");
-  }
-
-  public void exampleMethod2() {
-    int [] x; // filtered violation ''int' is followed by whitespace'
-  }
-
+  // filtered violation below 'Name 'MyVariable' must match pattern'
+  private int MyVariable = 5;
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
