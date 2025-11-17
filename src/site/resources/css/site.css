@@ -436,6 +436,10 @@ section#Properties .wrapper table td a {
     text-align: left;
   }
 
+  section[id$="_Properties"] table tr:nth-of-type(n+2) td:first-of-type a {
+    font-weight: bold;
+  }
+
   section#Properties .wrapper {
     overflow-x: hidden;
   }
