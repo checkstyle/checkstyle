@@ -108,16 +108,6 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultCaseLabelElementsNoLongerSupportedByJava()
-            throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWithInlineConfigParser(
-                getNonCompilablePath(
-                    "InputMissingSwitchDefaultCaseLabelElementsNoLongerSupportedByJava.java"),
-                expected);
-    }
-
-    @Test
     public void testMissingSwitchDefaultRecordPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
