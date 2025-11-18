@@ -51,13 +51,16 @@ public class InputCatchParametersOnNewLine {
   }
 
   private static String test5() {
-    final String simplePropertyUpdateScript = """
+    final String simplePropertyUpdateScript =
+        """
         s
         """;
-    return ("""
+    return (
+        """
         def newInstance = params.instance;
         def existingInstance = ctx._source;
-      """ // violation '.* incorrect indentation level 6, expected .* 8.'
+      """ // violation 'Text-block quotes are not vertically aligned'
+        // violation above '.* incorrect indentation level 6, expected .* 8.'
         + simplePropertyUpdateScript);
   }
 
