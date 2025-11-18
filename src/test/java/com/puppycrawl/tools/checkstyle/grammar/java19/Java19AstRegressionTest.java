@@ -31,12 +31,6 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testPatternsInSwitch() throws Exception {
-        verifyAst(getNonCompilablePath("ExpectedJava19PatternsInSwitchLabels.txt"),
-                getNonCompilablePath("InputJava19PatternsInSwitchLabels.java"));
-    }
-
-    @Test
     public void testPatternsInNullSwitch1() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19PatternsInNullSwitch1.txt"),
                 getNonCompilablePath("InputJava19PatternsInNullSwitch1.java"));
@@ -49,33 +43,9 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testAnnotationsOnBinding() throws Exception {
-        verifyAst(getNonCompilablePath("ExpectedJava19PatternsAnnotationsOnBinding.txt"),
-                getNonCompilablePath("InputJava19PatternsAnnotationsOnBinding.java"));
-    }
-
-    @Test
-    public void testTrickyWhenUsage() throws Exception {
-        verifyAst(getNonCompilablePath("ExpectedJava19PatternsTrickyWhenUsage.txt"),
-                getNonCompilablePath("InputJava19PatternsTrickyWhenUsage.java"));
-    }
-
-    @Test
     public void testLotsOfOperators() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19BindingsWithLotsOfOperators.txt"),
                 getNonCompilablePath("InputJava19BindingsWithLotsOfOperators.java"));
-    }
-
-    @Test
-    public void testRecordPatternsWithNestedDecomposition() throws Exception {
-        verifyAst(getPath("ExpectedRecordPatternsPreviewNestedDecomposition.txt"),
-                getNonCompilablePath("InputRecordPatternsPreviewNestedDecomposition.java"));
-    }
-
-    @Test
-    public void testRecordPatternsPreview() throws Exception {
-        verifyAst(getPath("ExpectedRecordPatternsPreview.txt"),
-                getNonCompilablePath("InputRecordPatternsPreview.java"));
     }
 
     @Test

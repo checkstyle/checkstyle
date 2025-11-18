@@ -1,7 +1,6 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
-package com.puppycrawl.tools.checkstyle.grammar.java19;
+package com.puppycrawl.tools.checkstyle.grammar;
 
-public class InputJava19PatternsAnnotationsOnBinding {
+public class InputPatternsAnnotationsOnBinding {
         static void m1(Object o) {
         switch (o) {
             case @A Integer i when i >= 0 -> System.out.println(i);
