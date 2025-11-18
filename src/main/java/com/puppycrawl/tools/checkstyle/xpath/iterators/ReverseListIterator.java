@@ -63,12 +63,12 @@ public class ReverseListIterator implements AxisIterator {
     @Override
     public NodeInfo next() {
         final NodeInfo result;
+        //MUTATION: incorrect condition (to kill pitest mutation)
         if (index == -1) {
-            result = null;
-        }
-        else {
             result = items.get(index);
             index--;
+        } else {
+            result = null;
         }
         return result;
     }
