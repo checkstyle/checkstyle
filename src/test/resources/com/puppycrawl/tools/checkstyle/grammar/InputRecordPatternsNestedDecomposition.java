@@ -1,7 +1,6 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
-package com.puppycrawl.tools.checkstyle.grammar.java19;
+package com.puppycrawl.tools.checkstyle.grammar;
 
-public class InputRecordPatternsPreviewNestedDecomposition {
+public class InputRecordPatternsNestedDecomposition {
     record A(Object o) {
     }
 

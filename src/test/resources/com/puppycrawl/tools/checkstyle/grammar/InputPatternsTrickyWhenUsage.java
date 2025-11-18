@@ -1,7 +1,6 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
-package com.puppycrawl.tools.checkstyle.grammar.java19;
+package com.puppycrawl.tools.checkstyle.grammar;
 
-public class InputJava19PatternsTrickyWhenUsage {
+public class InputPatternsTrickyWhenUsage {
     static String m1(Object when) {
         when = new Object();
         return switch (when) {

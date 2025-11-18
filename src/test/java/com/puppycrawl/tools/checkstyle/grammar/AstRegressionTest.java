@@ -260,6 +260,36 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
                 getPath("InputAstRegressionTryWithResourcesOnAutoCloseable.java"));
     }
 
+    @Test
+    public void testRecordPatterns() throws Exception {
+        verifyAst(getPath("ExpectedRecordPatterns.txt"),
+                getPath("InputRecordPatterns.java"));
+    }
+
+    @Test
+    public void testTrickyWhenUsage() throws Exception {
+        verifyAst(getPath("ExpectedPatternsTrickyWhenUsage.txt"),
+                getPath("InputPatternsTrickyWhenUsage.java"));
+    }
+
+    @Test
+    public void testPatternsInSwitch() throws Exception {
+        verifyAst(getPath("ExpectedPatternsInSwitchLabels.txt"),
+                getPath("InputPatternsInSwitchLabels.java"));
+    }
+
+    @Test
+    public void testRecordPatternsWithNestedDecomposition() throws Exception {
+        verifyAst(getPath("ExpectedRecordPatternsNestedDecomposition.txt"),
+                getPath("InputRecordPatternsNestedDecomposition.java"));
+    }
+
+    @Test
+    public void testAnnotationsOnBinding() throws Exception {
+        verifyAst(getPath("ExpectedPatternsAnnotationsOnBinding.txt"),
+                getPath("InputPatternsAnnotationsOnBinding.java"));
+    }
+
     private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
             throws Exception {
         verifyAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
