@@ -1,12 +1,11 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
-package com.puppycrawl.tools.checkstyle.grammar.java19;
+package com.puppycrawl.tools.checkstyle.grammar;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class InputJava19PatternsInSwitchLabels {
+public class InputPatternsInSwitchLabels {
     static void m1(Object o) {
         // patterns in switch are guarded by 'when'
         switch (o) {
@@ -48,11 +47,11 @@ public class InputJava19PatternsInSwitchLabels {
 
             case Integer i1 when i1 < 3 && i1 > 0 -> "small integer!";
             case Integer i2 when i2 < 0 || i2 < -5 -> "small negative integer!";
-            case A a when a instanceof B b && b.f == 2 ->
+            case AA a when a instanceof BB b && b.f == 2 ->
                     "it's a 'b'!";
-            case A a when !(a instanceof B b) || a instanceof B  b1 && b.f < 0 ->
+            case AA a when !(a instanceof BB b) || a instanceof BB  b1 && b.f < 0 ->
                     "it's not a 'b' or it's a negative 'b'";
-            case A a when !(a instanceof B b) || a instanceof B b2 && b.f < -5 ->
+            case AA a when !(a instanceof BB b) || a instanceof BB b2 && b.f < -5 ->
                     "it's not a 'b' or it's a negative 'b'...";
             case null -> "it's null!";
             default -> throw new IllegalStateException(
@@ -62,10 +61,10 @@ public class InputJava19PatternsInSwitchLabels {
 
 }
 
-sealed class A permits B {
+sealed class AA permits BB {
 
 }
 
-non-sealed class B extends A {
+non-sealed class BB extends AA {
     public int f = 2;
 }
