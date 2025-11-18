@@ -56,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler;
 
 public final class TestUtil {
 
@@ -337,6 +338,21 @@ public final class TestUtil {
      */
     public static Map<Integer, List<TextBlock>> getInternalStateMapIntegerList(
             Object instance, String fieldName) {
+        return getInternalState(instance, fieldName, Map.class);
+    }
+
+    /**
+     * Helper method for casting collection type Map.
+     *
+     * @param instance the instance to read
+     * @param fieldName the name of the field
+     * @throws RuntimeException if the field  can't be read
+     * @noinspection unchecked
+     * @noinspectionreason unchecked - unchecked cast is ok on test code
+     */
+    public static Map<DetailAST, AbstractExpressionHandler> getInternalStateMapDetailASTHandler(
+            Object instance, String fieldName
+    ) {
         return getInternalState(instance, fieldName, Map.class);
     }
 
