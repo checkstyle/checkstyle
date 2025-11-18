@@ -1,4 +1,4 @@
-// non-compiled with javac: compiling on jdk before Java21 (java19)
+// non-compiled with javac: Compilable with Java19
 package com.puppycrawl.tools.checkstyle.grammar.java19;
 
 import java.util.Iterator;
