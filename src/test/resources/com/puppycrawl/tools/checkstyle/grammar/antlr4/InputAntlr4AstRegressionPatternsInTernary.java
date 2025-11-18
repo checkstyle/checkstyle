@@ -1,10 +1,7 @@
-// non-compiled with javac: until https://github.com/checkstyle/checkstyle/issues/18097
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionPatternsInTernary {
     void m1(Object o) {
-        // parenthesized pattern, `PATTERN_DEF`
-        int x = o instanceof (String s && s.length() > 6) ? 4 : 5;
         // type pattern, no `PATTERN_DEF`
         int y = o instanceof String s && s.length() > 4 ? 2 : 3;
         // type pattern, no `PATTERN_DEF`
