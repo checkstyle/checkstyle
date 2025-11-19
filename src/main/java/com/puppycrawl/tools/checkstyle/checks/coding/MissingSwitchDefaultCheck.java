@@ -109,7 +109,6 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (!containsDefaultLabel(ast)
                 && !containsPatternCaseLabelElement(ast)
-                && !containsDefaultCaseLabelElement(ast)
                 && !containsNullCaseLabelElement(ast)
                 && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
@@ -142,19 +141,6 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
             return ast.getFirstChild() != null
                     && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
                     || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
-        }).isPresent();
-    }
-
-    /**
-     * Checks if a switch block contains a default case label.
-     *
-     * @param detailAst first case group to check.
-     * @return true if switch block contains default case label
-     */
-    private static boolean containsDefaultCaseLabelElement(DetailAST detailAst) {
-        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
-            return ast.getFirstChild() != null
-                    && ast.getFirstChild().findFirstToken(TokenTypes.LITERAL_DEFAULT) != null;
         }).isPresent();
     }
 
