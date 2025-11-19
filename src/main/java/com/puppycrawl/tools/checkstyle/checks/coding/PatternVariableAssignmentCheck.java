@@ -162,9 +162,11 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
             final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
 
             if (assignToken != null) {
-                reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
+                if (!isPrecededByThis(neededAssignIdent)) {
+                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                }
             }
-
         }
 
         return reassignedVariableIdents;
@@ -296,5 +298,16 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         }
 
         return assignIdent;
+    }
+
+    /**
+     * Check if the given {@code DetailAST} is preceded by a {@code this} keyword.
+     *
+     * @param ast the {@code DetailAST} to check.
+     * @return {@code true} if {@code ast} is preceded by a {@code this} keyword.
+     */
+    private static boolean isPrecededByThis(DetailAST ast) {
+        final DetailAST previous = ast.getPreviousSibling();
+        return previous != null && previous.getType() == TokenTypes.LITERAL_THIS;
     }
 }

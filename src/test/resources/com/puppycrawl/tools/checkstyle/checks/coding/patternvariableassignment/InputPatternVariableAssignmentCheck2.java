@@ -66,4 +66,15 @@ public class InputPatternVariableAssignmentCheck2 {
         r = null; // ok until #17203
         return true;
      }
+
+     public class StringHolder {
+
+         String string;
+
+         void setString(Object object) {
+             if (object instanceof String string) {
+                 this.string = string; // ok because assignment to field, not pattern variable
+             }
+         }
+     }
 }
