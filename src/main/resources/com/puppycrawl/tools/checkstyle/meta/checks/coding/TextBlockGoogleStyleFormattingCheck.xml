@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck"
+             name="TextBlockGoogleStyleFormatting"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks correct format of
+ &lt;a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html"&gt;Java Text Blocks&lt;/a&gt;
+ as specified in
+ &lt;a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks"&gt;
+ Google Java Style Guide&lt;/a&gt;.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This Check performs two validations:
+ &lt;ol&gt;
+   &lt;li&gt;
+    It ensures that the opening and closing text-block quotes (&lt;code&gt;"""&lt;/code&gt;) each appear on their
+    own line, with no other item preceding them.
+   &lt;/li&gt;
+   &lt;li&gt;
+    Opening and closing quotes are vertically aligned.
+   &lt;/li&gt;
+ &lt;/ol&gt;
+ Note: Closing quotes can be followed by additional code on the same line.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="textblock.format.close"/>
+            <message-key key="textblock.format.open"/>
+            <message-key key="textblock.vertically.unaligned"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

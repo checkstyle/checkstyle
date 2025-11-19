@@ -55,10 +55,13 @@ public class InputFormattedCatchParametersOnNewLine {
         """
         s
         """;
+
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
     return ("""
       def newInstance = params.instance;
       def existingInstance = ctx._source;
-    """ // violation '.* incorrect indentation level 4, expected .* 8.'
+    """ // violation 'Text-block quotes are not vertically aligned'
+        // violation above '.* incorrect indentation level 4, expected .* 8.'
         + simplePropertyUpdateScript);
   }
 

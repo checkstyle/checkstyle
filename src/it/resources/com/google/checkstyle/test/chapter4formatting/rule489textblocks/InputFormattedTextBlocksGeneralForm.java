@@ -53,11 +53,12 @@ public class InputFormattedTextBlocksGeneralForm {
         """,
         0);
 
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
     return s
         + """
         very good
         """
-            .charAt(0)
+            .charAt(0) // violation above 'Text-block quotes are not vertically aligned'
         + getName();
   }
 
