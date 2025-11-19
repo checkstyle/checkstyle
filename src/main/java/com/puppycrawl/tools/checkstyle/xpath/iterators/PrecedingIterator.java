@@ -65,13 +65,15 @@ public class PrecedingIterator implements AxisIterator {
             }
 
             if (result == null && previousSiblingEnum != null) {
-                result = previousSiblingEnum.next();
-                if (result == null) {
+                final NodeInfo nextSibling = previousSiblingEnum.next();
+
+                if (nextSibling == null) {
                     previousSiblingEnum = null;
+                    continue;
                 }
-                else {
-                    descendantEnum = new ReverseDescendantIterator(result);
-                }
+
+                result = nextSibling;
+                descendantEnum = new ReverseDescendantIterator(result);
             }
 
             if (result == null) {
