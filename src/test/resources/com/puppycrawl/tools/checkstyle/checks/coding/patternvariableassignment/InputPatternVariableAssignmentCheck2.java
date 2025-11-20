@@ -66,4 +66,26 @@ public class InputPatternVariableAssignmentCheck2 {
         r = null; // ok until #17203
         return true;
      }
+
+     public class StringHolder {
+
+         String string;
+
+         void setString(Object object) {
+             StringHolder stringHolder = new StringHolder();
+             if (object instanceof String string) {
+                 this.string = string; // ok because assignment to field, not pattern variable
+                 stringHolder.string = string;
+                 getObj().string = string;
+                 {
+                     string = "string";
+                     // violation above, "Assignment of pattern variable 'string' is not allowed."
+                 }
+             }
+         }
+
+         StringHolder getObj() {
+             return new StringHolder();
+         }
+     }
 }
