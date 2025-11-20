@@ -237,9 +237,6 @@ public class OperatorWrapCheck
         if (node.getFirstChild() == null || isAssignToVariable(node)) {
             result = node.getPreviousSibling();
         }
-        else if (isInPatternDefinition(node)) {
-            result = node.getFirstChild();
-        }
         else {
             result = adjustParens(node.getFirstChild(), DetailAST::getNextSibling);
         }
@@ -247,30 +244,6 @@ public class OperatorWrapCheck
             result = result.getLastChild();
         }
         return result;
-    }
-
-    /**
-     * Ascends AST to determine if given node is part of a pattern
-     * definition.
-     *
-     * @param node the node to check
-     * @return true if node is in pattern definition
-     */
-    private static boolean isInPatternDefinition(DetailAST node) {
-        DetailAST parent = node;
-        final int[] tokensToStopOn = {
-            // token we are looking for
-            TokenTypes.PATTERN_DEF,
-            // tokens that mean we can stop looking
-            TokenTypes.EXPR,
-            TokenTypes.RESOURCE,
-            TokenTypes.COMPILATION_UNIT,
-        };
-
-        do {
-            parent = parent.getParent();
-        } while (!TokenUtil.isOfType(parent, tokensToStopOn));
-        return parent.getType() == TokenTypes.PATTERN_DEF;
     }
 
     /**
