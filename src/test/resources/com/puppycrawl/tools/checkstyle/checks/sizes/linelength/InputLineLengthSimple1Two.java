@@ -86,6 +86,6 @@ final public class InputLineLengthSimple1Two {
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // line has a tab ->	<- and but OK if tab counted as 1 char // violation
+    // line has a tab ->	<- and but OK if tab counted as 1 char // violation, '80,92'
     // tabs that count as one char because of their position ->	<-   ->	<-, OK
 }
