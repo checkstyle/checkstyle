@@ -141,19 +141,15 @@ public class OperatorWrapCheckTest
     @Test
     public void testGuardedPattern() throws Exception {
         final String[] expected = {
-            "52:30: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "54:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "62:30: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "64:31: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "71:23: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "72:43: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "75:30: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "76:44: " + getCheckMessage(MSG_LINE_NEW, "&&"),
-            "77:34: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "30:23: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "31:40: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "34:30: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "35:40: " + getCheckMessage(MSG_LINE_NEW, "&&"),
+            "36:32: " + getCheckMessage(MSG_LINE_NEW, "&&"),
         };
 
         verifyWithInlineConfigParser(
-                getNonCompilablePath("InputOperatorWrapGuardedPatterns.java"), expected);
+                getPath("InputOperatorWrapGuardedPatterns.java"), expected);
     }
 
     @Test
