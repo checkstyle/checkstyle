@@ -68,7 +68,7 @@ jobs:
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Generate pitest-${{ matrix.profile }} report
         run: |
