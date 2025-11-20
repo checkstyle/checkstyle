@@ -162,9 +162,11 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
             final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
 
             if (assignToken != null) {
-                reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
+                if (neededAssignIdent.getPreviousSibling() == null) {
+                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                }
             }
-
         }
 
         return reassignedVariableIdents;
