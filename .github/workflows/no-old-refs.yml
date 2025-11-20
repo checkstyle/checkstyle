@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Download checkstyle
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: PR linked issues
         id: links

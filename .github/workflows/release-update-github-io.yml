@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/checkstyle
           fetch-depth: 0
@@ -43,7 +43,7 @@ jobs:
           ./.ci/generate-website.sh ${{ inputs.version }}
 
       - name: Checkout checkstyle.github.io repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: ${{ github.repository_owner }}/checkstyle.github.io
           token: ${{ secrets.PAT }}
