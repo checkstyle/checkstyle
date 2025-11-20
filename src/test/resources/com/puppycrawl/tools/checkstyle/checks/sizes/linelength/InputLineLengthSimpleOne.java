@@ -19,7 +19,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
  **/
 final class InputLineLengthSimpleOne
 {
-    // Long line --------------------------------------------------- // violation
+    // Long line --------------------------------------------------- // violation, 'Line is longer than 80 characters (found 131).'
     // Contains a tab ->\t<-
     // Contains trailing whitespace ->
 
