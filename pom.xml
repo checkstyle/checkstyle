@@ -5545,7 +5545,7 @@
               <dependency>
                 <groupId>org.openrewrite.recipe</groupId>
                 <artifactId>rewrite-rewrite</artifactId>
-                <version>0.15.0</version>
+                <version>0.16.0</version>
               </dependency>
             </dependencies>
           </plugin>
