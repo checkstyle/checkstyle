@@ -97,13 +97,13 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Checkout PR branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
       - name: Checkout master branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle
           path: .ci-temp/checkstyle

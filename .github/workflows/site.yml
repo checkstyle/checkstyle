@@ -80,7 +80,7 @@ jobs:
       # 0, because we need access to all branches to create a report.
       # ref - branch to checkout.
       - name: Download checkstyle for PR
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: refs/pull/${{ inputs.pr-number || github.event.issue.number }}/head
           path: .ci-temp/checkstyle
@@ -113,7 +113,7 @@ jobs:
       message: ${{ steps.out.outputs.message}}
     steps:
       - name: Checkout master branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle
 
@@ -162,7 +162,7 @@ jobs:
     if: failure() || success()
     steps:
       - name: Checkout master branch
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle
 
