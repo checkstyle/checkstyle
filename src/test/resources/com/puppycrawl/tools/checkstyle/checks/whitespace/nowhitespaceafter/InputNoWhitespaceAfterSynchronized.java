@@ -15,7 +15,7 @@ public class InputNoWhitespaceAfterSynchronized<T> {
     private final Object lock = new Object();
 
     void m1() {
-        synchronized (lock) {} // violation
+        synchronized (lock) {} // violation, ''synchronized' is followed by whitespace.'
         synchronized(lock) {}
     }
 

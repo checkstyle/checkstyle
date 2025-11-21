@@ -84,9 +84,9 @@ class InputNoWhitespaceAfterTestTypecast
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // violation
+        Object o = (Object) new Object(); // violation, '')' is followed by whitespace.'
         o = (Object)o;
-        o = ( Object ) o; // violation
+        o = ( Object ) o; // violation, '')' is followed by whitespace.'
         o = (Object)
             o;
     }
@@ -238,7 +238,7 @@ class SpecialCasesInForLoopTestTypecast
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // violation
+        int i = (int) ( 2 / 3 ); // violation, '')' is followed by whitespace.'
         return null;
     }
 

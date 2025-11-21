@@ -19,6 +19,6 @@ class InputNoWhitespaceAfterTestSynchronized {
         synchronized(this) {}
         synchronized
             (this) {}
-        synchronized (this) {} // violation
+        synchronized (this) {} // violation, ''synchronized' is followed by whitespace.'
     }
 }
