@@ -14,6 +14,7 @@ import java.util.function.IntFunction;
 
 public class InputNoWhitespaceAfterTestMethodRef
 {
-    IntFunction<int[]> arrayMaker = int []::new; // violation
-    Function<Integer, String[]> messageArrayFactory = String []::new; // violation
+    IntFunction<int[]> arrayMaker = int []::new; // violation, ''int' is followed by whitespace.'
+    Function<Integer, String[]> messageArrayFactory = String []::new;
+    // violation above, ''String' is followed by whitespace.'
 }

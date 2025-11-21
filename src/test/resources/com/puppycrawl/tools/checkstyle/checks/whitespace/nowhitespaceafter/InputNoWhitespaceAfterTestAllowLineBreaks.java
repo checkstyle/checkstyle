@@ -6,7 +6,7 @@ tokens = DOT
 
 */
 
-package com . puppycrawl // violation
+package com . puppycrawl // violation, ''.' is followed by whitespace.'
     .tools.
     checkstyle.checks.whitespace.nowhitespaceafter;
 
@@ -126,14 +126,14 @@ class InputNoWhitespaceAfterTestAllowLineBreaks
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest() // violation
+    private java .lang.  String dotTest() // violation, ''.' is followed by whitespace.'
     {
         Object o = new Object();
         o.
             toString();
         o
             .toString();
-        o . toString(); // violation
+        o . toString(); // violation, ''.' is followed by whitespace.'
         return o.toString();
     }
 
