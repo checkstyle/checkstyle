@@ -1,5 +1,5 @@
 // non-compiled with javac: Compilable with Java17
-// until https://github.com/checkstyle/checkstyle/issues/18104
+// until https://github.com/checkstyle/checkstyle/issues/18146
 package com.puppycrawl.tools.checkstyle.grammar.antlr4;
 
 public class InputAntlr4AstRegressionNoLongerSupportedByJava {
