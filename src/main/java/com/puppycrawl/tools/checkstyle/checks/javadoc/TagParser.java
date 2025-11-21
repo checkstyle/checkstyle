@@ -273,5 +273,26 @@ class TagParser {
         private Point {
         }
 
+        /**
+         * Getter for line number.
+         *
+         * @return line number of the position.
+         */
+        @Override
+        public int lineNo() {
+            return lineNo;
+        }
+
+        /**
+         * Getter for column number.
+         *
+         * @return column number of the position.
+         */
+        @Override
+        public int columnNo() {
+            return columnNo;
+        }
+
     }
+
 }

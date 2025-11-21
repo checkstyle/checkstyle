@@ -332,8 +332,14 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Structure that contains all details for validation.
+     *
+     * @param rcurly                Right curly.
+     * @param lcurly                Left curly.
+     * @param nextToken             Next token.
+     * @param shouldCheckLastRcurly Should check last right curly.
      */
-    private static final class Details {
+    private record Details(DetailAST lcurly, DetailAST rcurly,
+                           DetailAST nextToken, boolean shouldCheckLastRcurly) {
 
         /**
          * Token types that identify tokens that will never have SLIST in their AST.
@@ -346,15 +352,6 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.RECORD_DEF,
         };
 
-        /** Right curly. */
-        private final DetailAST rcurly;
-        /** Left curly. */
-        private final DetailAST lcurly;
-        /** Next token. */
-        private final DetailAST nextToken;
-        /** Should check last right curly. */
-        private final boolean shouldCheckLastRcurly;
-
         /**
          * Constructor.
          *
@@ -363,12 +360,7 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param nextToken the token after the token whose details are being collected
          * @param shouldCheckLastRcurly boolean value to determine if to check last rcurly
          */
-        private Details(DetailAST lcurly, DetailAST rcurly,
-                        DetailAST nextToken, boolean shouldCheckLastRcurly) {
-            this.lcurly = lcurly;
-            this.rcurly = rcurly;
-            this.nextToken = nextToken;
-            this.shouldCheckLastRcurly = shouldCheckLastRcurly;
+        private Details {
         }
 
         /**
