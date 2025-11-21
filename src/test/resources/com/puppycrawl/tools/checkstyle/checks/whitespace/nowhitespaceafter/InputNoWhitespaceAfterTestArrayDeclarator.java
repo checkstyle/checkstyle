@@ -16,7 +16,7 @@ public class InputNoWhitespaceAfterTestArrayDeclarator {
     Map.Entry<Integer,String>[] genEntries(int n) {
         return IntStream.range(0, n)
             .mapToObj(i -> entry(i, valueFor(i)))
-            .toArray(Map.Entry []::new); // violation
+            .toArray(Map.Entry []::new); // violation, ''Entry' is followed by whitespace.'
     }
 
     static Map.Entry<Integer, String> entry(int k, String v) {

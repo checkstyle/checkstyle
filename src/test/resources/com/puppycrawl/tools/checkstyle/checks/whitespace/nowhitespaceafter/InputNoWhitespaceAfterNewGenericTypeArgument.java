@@ -56,22 +56,41 @@ public class InputNoWhitespaceAfterNewGenericTypeArgument {
     static SomeClass[] v2 = new FinalSubclass[4];
 
     public static int run(String args[],PrintStream out) {
-        int i [], j []; // 2 violations
-        SomeInterface u []; // violation
-        SomeInterface v[] [] = null; // violation
-        AnotherInterface w []; // violation
-        SomeClass x [] []; // 2 violations
+        int i [], j [];
+            // 2 violations above:
+            //          ''i' is followed by whitespace.'
+            //          ''j' is followed by whitespace.'
+        SomeInterface u []; // violation, ''u' is followed by whitespace.'
+        SomeInterface v[] [] = null; // violation, '']' is followed by whitespace.'
+        AnotherInterface w []; // violation, ''w' is followed by whitespace.'
+        SomeClass x [] [];
+            // 2 violations above:
+            //          ''x' is followed by whitespace.'
+            //          '']' is followed by whitespace.'
 
-        x = (SomeClass [] []) v; // 2 violations
+        x = (SomeClass [] []) v;
+            // 2 violations above:
+            //          ''SomeClass' is followed by whitespace.'
+            //          '']' is followed by whitespace.'
 
-        x[0] = (SomeClass []) new ImmediateSubclass [4]; // 2 violations
-        if (! (x[0] instanceof ImmediateSubclass [])) // 2 violations
+        x[0] = (SomeClass []) new ImmediateSubclass [4];
+            // 2 violations above:
+            //          ''SomeClass' is followed by whitespace.'
+            //          ''ImmediateSubclass' is followed by whitespace.'
+        if (! (x[0] instanceof ImmediateSubclass []))
+            // 2 violations above:
+            //          ''!' is followed by whitespace.'
+            //          ''ImmediateSubclass' is followed by whitespace.'
             errorAlert(out, 8);
 
-        if (! (x[1] instanceof FinalSubclass []))  // 2 violations
+        if (! (x[1] instanceof FinalSubclass []))
+            // 2 violations above:
+            //          ''!' is followed by whitespace.'
+            //          ''FinalSubclass' is followed by whitespace.'
             errorAlert(out, 10);
 
-        w = (AnotherInterface []) x[1]; // violation
+        w = (AnotherInterface []) x[1];
+            // violation above, ''AnotherInterface' is followed by whitespace.'
 
         return errorStatus;
     }

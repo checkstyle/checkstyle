@@ -13,7 +13,10 @@ public class InputNoWhitespaceAfterWithEmoji {
 
     String txt = new String ("sd🤩🎄😂 " );
     public String foo() {
-        String []   s =  { "🎄😂", // 2 violations
+        String []   s =  { "🎄😂",
+            // 2 violations above:
+            //          ''String' is followed by whitespace.'
+            //          ''{' is followed by whitespace.'
                         "🎄😂12wq"
         };
 
@@ -25,14 +28,20 @@ public class InputNoWhitespaceAfterWithEmoji {
         return "😅🧐 dsad ";
     }
     public String foo2() {
-        String str = (@ MyAnnotation String) "🤩dsa😂adsad"; // 2 violations
+        String str = (@ MyAnnotation String) "🤩dsa😂adsad";
+            // 2 violations above:
+            //          '')' is followed by whitespace.'
+            //          ''@' is followed by whitespace.'
         String str3 = str + "😂" + "sadsa" +"😅🧐" +    " " ;
         return("  🎄😂  ");
     }
 
     public String foo3() {
 
-        return  ! "🎄". isEmpty() ?"dsa😂a":  "😂..😅" ; // 2 violations
+        return  ! "🎄". isEmpty() ?"dsa😂a":  "😂..😅" ;
+            // 2 violations above:
+            //          ''!' is followed by whitespace.'
+            //          ''.' is followed by whitespace.'
     }
 
     public String[] foo4 () {

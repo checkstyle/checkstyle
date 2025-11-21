@@ -7,8 +7,8 @@ tokens = ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, \
 
 */
 
-package com . puppycrawl // violation
-    .tools. // violation
+package com . puppycrawl // violation, ''.' is followed by whitespace.'
+    .tools. // violation, ''.' is followed by whitespace.'
     checkstyle.checks.whitespace.nowhitespaceafter; // ^ 2 violations above
 
 class InputNoWhitespaceAfterTestAllTokens
@@ -27,9 +27,15 @@ class InputNoWhitespaceAfterTestAllTokens
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // 2 violations
+        b -=- 1 + (+ b);
+        // 2 violations above:
+        //          ''-' is followed by whitespace.'
+        //          'is followed by whitespace.'
         b = b ++ + b --; // Ignore 1
-        b = ++ b - -- b; // 2 violations
+        b = ++ b - -- b;
+        // 2 violations above:
+        //          'is followed by whitespace.'
+        //          ''--' is followed by whitespace.'
     }
 
     /** method **/
@@ -85,10 +91,10 @@ class InputNoWhitespaceAfterTestAllTokens
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // violation
+        Object o = (Object) new Object(); // violation, '')' is followed by whitespace.'
         o = (Object)o;
-        o = ( Object ) o; // violation
-        o = (Object) // violation
+        o = ( Object ) o; // violation, '')' is followed by whitespace.'
+        o = (Object) // violation, '')' is followed by whitespace.'
             o;
     }
 
@@ -109,8 +115,8 @@ class InputNoWhitespaceAfterTestAllTokens
     private void boolTest()
     {
         boolean a = true;
-        boolean x = ! a; // violation
-        int z = ~1 + ~ 2; // violation
+        boolean x = ! a; // violation, ''!' is followed by whitespace.'
+        int z = ~1 + ~ 2; // violation, ''~' is followed by whitespace.'
     }
 
     /** division test **/
@@ -127,14 +133,14 @@ class InputNoWhitespaceAfterTestAllTokens
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest() // violation
+    private java .lang.  String dotTest() // violation, ''.' is followed by whitespace.'
     {
         Object o = new Object();
-        o. // violation
+        o. // violation, ''.' is followed by whitespace.'
             toString();
         o
             .toString();
-        o . toString(); // violation
+        o . toString(); // violation, ''.' is followed by whitespace.'
         return o.toString();
     }
 
@@ -239,7 +245,7 @@ class SpecialCasesInForLoopTestAllTokens
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // violation
+        int i = (int) ( 2 / 3 ); // violation, '')' is followed by whitespace.'
         return null;
     }
 
@@ -262,7 +268,7 @@ class SpecialCasesInForLoopTestAllTokens
                 }
             }};
         runs[0]
-. // violation
+. // violation, ''.' is followed by whitespace.'
  run()
 ;
     }
@@ -287,18 +293,18 @@ class SpecialCasesInForLoopTestAllTokens
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
-    @ interface BAD{} // violation
-    @   interface BAD2{} // violation
-    @ // violation
+    @ interface BAD{} // violation, ''@' is followed by whitespace.'
+    @   interface BAD2{} // violation, ''@' is followed by whitespace.'
+    @ // violation, ''@' is followed by whitespace.'
     interface BAD3{}
     @interface Ok{}
 
     static {
-        int[]err = new int [50]; // violation
+        int[]err = new int [50]; // violation, ''int' is followed by whitespace.'
     }
 
     Object foo() {
-        return ( (Object // violation
+        return ( (Object // violation, '')' is followed by whitespace.'
                 ) ""); // ^ violation
     }
 
@@ -306,5 +312,5 @@ class SpecialCasesInForLoopTestAllTokens
         variable;
 
     int someStuff8
-    []; // violation
+    []; // violation, ''someStuff8' is followed by whitespace.'
 }
