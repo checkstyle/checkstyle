@@ -1,0 +1,36 @@
+# This file configures Qodana
+linter: jetbrains/qodana-jvm-community:2025.1
+
+profile:
+  path: config/intellij-idea-inspections.xml
+
+exclude:
+  - name: All
+    paths:
+      - target/
+      - src/test/resources/
+      - src/it/resources/
+      - src/site/resources/js/google-analytics.js
+      - src/site/resources/styleguides/
+      - config/intellij-idea-inspections.properties
+      - .ci-temp/
+      - bin/
+      - .settings/
+      - .classpath
+      - .project
+      - .circleci/config.yml
+      - config/projects-to-test/openjdk-projects-to-test-on.config
+      - config/projects-for-no-exception-javadoc.config
+      - .ci/pitest-survival-check-xml.groovy
+
+      - .idea/
+      - .ci/*.config
+      - .ci/checker-framework.groovy
+      - .ci/codenarc.groovy
+      - .ci/error-prone-check.groovy
+      - src/xdocs-examples/resources/
+      - src/test/java/com/puppycrawl/tools/checkstyle/checks/javadoc/ParseTreeBuilder.java
+      - src/test/java/com/puppycrawl/tools/checkstyle/grammar/javadoc/ParseTreeBuilder.java
+      - config/idea.properties
+      - .mvn/
+      - docs/GRAMMAR_UPDATES.md
