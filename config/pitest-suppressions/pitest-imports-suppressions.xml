@@ -71,4 +71,121 @@
     <description>Removed assignment to member variable regex</description>
     <lineContent>this.regex = false;</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced integer addition with subtraction</description>
+    <lineContent>final int endCol = startCol + 2;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced integer addition with subtraction</description>
+    <lineContent>final int endLine = javadocAst.getLineNo() + lines.length - 1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced integer subtraction with addition</description>
+    <lineContent>final int endLine = javadocAst.getLineNo() + lines.length - 1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLineNo</description>
+    <lineContent>final int endLine = javadocAst.getLineNo() + lines.length - 1;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getColumnNo</description>
+    <lineContent>final int startCol = javadocAst.getColumnNo();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (lines.length == 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (lines.length == 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>buildTextBlockFromJavadoc</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (lines.length == 1) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>findJavadocComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck::findComment</description>
+    <lineContent>cmt = findComment(typeParameters);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>findJavadocComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck::findComment with argument</description>
+    <lineContent>cmt = findComment(typeParameters);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>findJavadocComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken</description>
+    <lineContent>final DetailAST typeParameters = ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>findJavadocComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::findFirstToken with receiver</description>
+    <lineContent>final DetailAST typeParameters = ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>UnusedImportsCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck</mutatedClass>
+    <mutatedMethod>findJavadocComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (cmt == null) {</lineContent>
+  </mutation>
 </suppressedMutations>
