@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TypeBodyPadding</title>
+  </head>
+  <body>
+    <section name="TypeBodyPadding">
+      <p>Since Checkstyle 12.2.0</p>
+      <subsection name="Description" id="TypeBodyPadding_Description">
+        <div>
+          Checks the padding policy for type bodies. Ensures that a blank line is present
+          immediately after the opening brace and/or immediately before the closing brace
+          of type definitions: (<code>class</code>, <code>interface</code>, <code>enum</code>,
+          <code>record</code>, and <code>annotation</code> types).
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="TypeBodyPadding_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="allowEmpty"/><a href="#allowEmpty">allowEmpty</a></td>
+              <td>Control whether to allow empty type bodies without padding.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.2.0</td>
+            </tr>
+            <tr>
+              <td><a id="ending"/><a href="#ending">ending</a></td>
+              <td>Control whether padding is required at the end of the body.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>12.2.0</td>
+            </tr>
+            <tr>
+              <td><a id="skipInner"/><a href="#skipInner">skipInner</a></td>
+              <td>Control whether to skip checking of inner types.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.2.0</td>
+            </tr>
+            <tr>
+              <td><a id="skipLocal"/><a href="#skipLocal">skipLocal</a></td>
+              <td>Control whether to skip checking of local types.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.2.0</td>
+            </tr>
+            <tr>
+              <td><a id="starting"/><a href="#starting">starting</a></td>
+              <td>Control whether padding is required at the start of the body.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.2.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
+                  .
+              </td>
+              <td>12.2.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="TypeBodyPadding_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeBodyPadding"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 { // violation 'A blank line is required after the opening'
+  int a = 0;
+
+  static class Inner {
+    int b = 0;
+  }
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.TYPE)
+  public @interface MyAnnotation {}
+
+  public void myMethod() {
+    class LocalClass {
+      int c = 0;
+    }
+    interface LocalInterface {
+      void foo();
+    }
+    enum LocalEnum { A, B }
+    record LocalRecord(int d) {}
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to require a blank line after the opening brace and before the
+           closing brace:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeBodyPadding"&gt;
+      &lt;property name="ending" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 { // violation 'A blank line is required after the opening'
+  int a = 0;
+
+  static class Inner {
+    int b = 0;
+  }
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.TYPE)
+  public @interface MyAnnotation {}
+
+  public void myMethod() {
+    class LocalClass {
+      int c = 0;
+    }
+    interface LocalInterface {
+      void foo();
+    }
+    enum LocalEnum { A, B }
+    record LocalRecord(int d) {}
+  }
+} // violation 'A blank line is required before the closing brace'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to only require a blank line before the closing brace:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeBodyPadding"&gt;
+        &lt;property name="starting" value="false"/&gt;
+        &lt;property name="ending" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  int a = 0;
+
+  static class Inner {
+    int b = 0;
+  }
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.TYPE)
+  public @interface MyAnnotation {}
+
+  public void myMethod() {
+    class LocalClass {
+      int c = 0;
+    }
+    interface LocalInterface {
+      void foo();
+    }
+    enum LocalEnum { A, B }
+    record LocalRecord(int d) {}
+  }
+} // violation 'A blank line is required before the closing brace'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to not allow empty type bodies without padding and to also check
+           inner and local types:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeBodyPadding"&gt;
+      &lt;property name="allowEmpty" value="false"/&gt;
+      &lt;property name="skipInner" value="false"/&gt;
+      &lt;property name="skipLocal" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {  // violation 'A blank line is required after the opening'
+  int a = 0;
+
+  static class Inner { // violation 'A blank line is required after the opening'
+    int b = 0;
+  }
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.TYPE)
+  public @interface MyAnnotation {} // violation 'A blank line is required after'
+
+  public void myMethod() {
+    class LocalClass { // violation 'A blank line is required after the opening'
+      int c = 0;
+    }
+    interface LocalInterface { // violation 'A blank line is required after the'
+      void foo();
+    }
+    enum LocalEnum { A, B } // violation 'A blank line is required after the'
+    record LocalRecord(int d) {} // violation 'A blank line is required after the'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to only check classes and enums (and not other types),
+          and allow empty bodies without padding and to also check and local classes and enums:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TypeBodyPadding"&gt;
+      &lt;property name="skipLocal" value="false"/&gt;
+      &lt;property name="allowEmpty" value="false"/&gt;
+      &lt;property name="tokens" value="CLASS_DEF, ENUM_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 { // violation 'A blank line is required after the opening'
+  int a = 0;
+
+  static class Inner {
+    int b = 0;
+  }
+
+  @Retention(RetentionPolicy.RUNTIME)
+  @Target(ElementType.TYPE)
+  public @interface MyAnnotation {}
+
+  public void myMethod() {
+    class LocalClass { // violation 'A blank line is required after the opening'
+      int c = 0;
+    }
+    interface LocalInterface {
+      void foo();
+    }
+    enum LocalEnum { A, B } // violation 'A blank line is required after the opening'
+    record LocalRecord(int d) {}
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+      </subsection>
+
+      <subsection name="Example of Usage" id="TypeBodyPadding_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeBodyPadding">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="TypeBodyPadding_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.body.padding.end.required%22">
+              type.body.padding.end.required
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22type.body.padding.start.required%22">
+              type.body.padding.start.required
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="TypeBodyPadding_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="TypeBodyPadding_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+
+    </section>
+  </body>
+</document>
