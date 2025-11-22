@@ -1369,6 +1369,21 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/LineColumn.java</fileName>
+    <specifier>override.param</specifier>
+    <message>Incompatible parameter type for other.</message>
+    <lineContent>public boolean equals(Object other) {</lineContent>
+    <details>
+      found   : @Initialized @NonNull Object
+      required: @Initialized @Nullable Object
+      Consequence: method in @Initialized @NonNull LineColumn
+      @Initialized @NonNull boolean equals(@Initialized @NonNull LineColumn this, @Initialized @NonNull Object p0)
+      cannot override method in @Initialized @NonNull Object
+      @Initialized @NonNull boolean equals(@Initialized @NonNull Object this, @Initialized @Nullable Object p0)
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/Violation.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>

@@ -5273,6 +5273,7 @@
     <option name="ADD_SERVLET_TO_ENTRIES" value="true"/>
     <option name="ADD_NONJAVA_TO_ENTRIES" value="true"/>
   </inspection_tool>
-  <inspection_tool class="ClassCanBeRecord" enabled="true"
+  <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17299 -->
+  <inspection_tool class="ClassCanBeRecord" enabled="false"
                    level="WEAK WARNING" enabled_by_default="true" />
 </profile>

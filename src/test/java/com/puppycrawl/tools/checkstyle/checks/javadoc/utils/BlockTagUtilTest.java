@@ -123,18 +123,18 @@ public class BlockTagUtilTest {
     }
 
     private static void assertTagEquals(TagInfo tag, String name, String value,
-                                        int line, int column) {
+            int line, int column) {
         assertWithMessage("Invalid tag name")
             .that(tag.getName())
             .isEqualTo(name);
         assertWithMessage("Invalid tag value")
             .that(tag.getValue())
-             .isEqualTo(value);
+            .isEqualTo(value);
         assertWithMessage("Invalid tag line")
-            .that(tag.getPosition().line())
+            .that(tag.getPosition().getLine())
             .isEqualTo(line);
         assertWithMessage("Invalid tag column")
-            .that(tag.getPosition().column())
+            .that(tag.getPosition().getColumn())
             .isEqualTo(column);
     }
 

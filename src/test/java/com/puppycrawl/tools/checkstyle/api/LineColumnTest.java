@@ -78,10 +78,10 @@ public class LineColumnTest {
         final LineColumn lineColumn = new LineColumn(2, 3);
 
         assertWithMessage("Invalid LineColumn comparison result")
-                .that(lineColumn.line())
+                .that(lineColumn.getLine())
                 .isEqualTo(2);
         assertWithMessage("Invalid LineColumn comparison result")
-                .that(lineColumn.column())
+                .that(lineColumn.getColumn())
                 .isEqualTo(3);
     }
 

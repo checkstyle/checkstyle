@@ -19,22 +19,29 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.Objects;
+
 /**
  * Immutable line and column numbers.
  *
- * @param line   The one-based line number.
- * @param column The zero-based column number.
  */
-public record LineColumn(int line, int column) implements
-        Comparable<LineColumn> {
+public class LineColumn implements Comparable<LineColumn> {
+
+    /** The one-based line number. */
+    private final int line;
+
+    /** The zero-based column number. */
+    private final int column;
 
     /**
      * Constructs a new pair of line and column numbers.
      *
-     * @param line   the one-based line number
+     * @param line the one-based line number
      * @param column the zero-based column number
      */
-    public LineColumn {
+    public LineColumn(int line, int column) {
+        this.line = line;
+        this.column = column;
     }
 
     /**
@@ -42,8 +49,7 @@ public record LineColumn(int line, int column) implements
      *
      * @return the one-based line number
      */
-    @Override
-    public int line() {
+    public int getLine() {
         return line;
     }
 
@@ -52,8 +58,7 @@ public record LineColumn(int line, int column) implements
      *
      * @return the zero-based column number
      */
-    @Override
-    public int column() {
+    public int getColumn() {
         return column;
     }
 
@@ -67,6 +72,24 @@ public record LineColumn(int line, int column) implements
             result = Integer.compare(line, lineColumn.line);
         }
         return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        final LineColumn lineColumn = (LineColumn) other;
+        return Objects.equals(line, lineColumn.line)
+                && Objects.equals(column, lineColumn.column);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(line, column);
     }
 
 }
