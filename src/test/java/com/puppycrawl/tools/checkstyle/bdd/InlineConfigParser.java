@@ -236,7 +236,6 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
@@ -309,6 +308,14 @@ public final class InlineConfigParser {
             "com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck",
             "com.puppycrawl.tools.checkstyle.api.AbstractCheckTest$ViolationAstCheck",
             "com.puppycrawl.tools.checkstyle.CheckerTest$VerifyPositionAfterTabFileSet"
+    );
+
+    /**
+     * Input files where violation messages are intentionally not specified,
+     * because they would be too big or impractical to maintain.
+     */
+    private static final Set<String> SUPPRESSED_FILES = Set.of(
+            "InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"
     );
 
     /**
@@ -483,7 +490,7 @@ public final class InlineConfigParser {
                     + inputFilePath, exc);
         }
         try {
-            setViolations(testInputConfigBuilder, lines, setFilteredViolations);
+            setViolations(testInputConfigBuilder, lines, setFilteredViolations, inputFilePath);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
@@ -566,7 +573,7 @@ public final class InlineConfigParser {
                 new TestInputConfiguration.Builder();
         testInputConfigBuilder.setXmlConfiguration(xmlConfig);
         try {
-            setViolations(testInputConfigBuilder, lines, false);
+            setViolations(testInputConfigBuilder, lines, false, inputFilePath);
         }
         catch (CheckstyleException exc) {
             throw new CheckstyleException(exc.getMessage() + " in " + inputFilePath, exc);
@@ -1072,13 +1079,40 @@ public final class InlineConfigParser {
         }
     }
 
+    private static boolean shouldSpecifyViolationMessage(
+            TestInputConfiguration.Builder inputConfigBuilder,
+            String inputFilePath) {
+
+        boolean result = false;
+
+        final List<ModuleInputConfiguration> moduleLists =
+                inputConfigBuilder.getChildrenModules();
+
+        if (moduleLists.size() == 1) {
+            final String moduleName = moduleLists.get(0).getModuleName();
+
+            if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
+                    && !SUPPRESSED_CHECKS.contains(moduleName)) {
+
+                final String fileName = Path.of(inputFilePath).getFileName().toString();
+                if (!SUPPRESSED_FILES.contains(fileName)) {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
+    }
+
     private static void setViolations(TestInputConfiguration.Builder inputConfigBuilder,
-                                      List<String> lines, boolean useFilteredViolations)
+                                      List<String> lines,
+                                      boolean useFilteredViolations,
+                                      String inputFilePath)
             throws CheckstyleException {
-        final List<ModuleInputConfiguration> moduleLists = inputConfigBuilder.getChildrenModules();
-        final boolean specifyViolationMessage = moduleLists.size() == 1
-                && !PERMANENT_SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName())
-                && !SUPPRESSED_CHECKS.contains(moduleLists.get(0).getModuleName());
+
+        final boolean specifyViolationMessage =
+                shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
+
         for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
                     useFilteredViolations, lineNo, specifyViolationMessage);
