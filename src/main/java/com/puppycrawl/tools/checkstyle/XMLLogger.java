@@ -211,14 +211,15 @@ public class XMLLogger
                 + encode(event.getMessage())
                 + "\"");
         writer.print(" source=\"");
-        final String sourceValue;
-        if (event.getModuleId() == null) {
-            sourceValue = event.getSourceName();
+        final StringBuilder sourceValueBuilder = new StringBuilder();
+        final String moduleId = event.getModuleId();
+        if (moduleId != null && !moduleId.isBlank()) {
+            sourceValueBuilder
+                    .append(moduleId)
+                    .append('#');
         }
-        else {
-            sourceValue = event.getModuleId();
-        }
-        writer.print(encode(sourceValue));
+        sourceValueBuilder.append(event.getSourceName());
+        writer.print(encode(sourceValueBuilder.toString()));
         writer.println("\"/>");
     }
 

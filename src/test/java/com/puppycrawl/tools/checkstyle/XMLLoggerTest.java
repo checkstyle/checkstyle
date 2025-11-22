@@ -209,6 +209,13 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
+    public void testAddErrorEmptyModuleId() throws Exception {
+        final String inputFile = "InputXMLLoggerErrorEmptyModuleId.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerErrorEmptyModuleId.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
+    }
+
+    @Test
     public void testAddErrorWithEncodedMessage() throws Exception {
         final String inputFileWithConfig = "InputXMLLoggerEncodedMessage.java";
         final String expectedXmlReport = "ExpectedXMLLoggerEncodedMessage.xml";
