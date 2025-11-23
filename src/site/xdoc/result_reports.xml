@@ -22,6 +22,17 @@
       </p>
     </section>
 
+    <section name="Description">
+        <p>
+            The <strong>source</strong> attribute of the <strong>error</strong> tag contains
+            the fully qualified class name of the check that generated the violation.
+        </p>
+        <p>
+            When a custom ID is provided for a check, the format becomes:
+            <code>source="fully.qualified.ClassName#customId"</code>
+        </p>
+    </section>
+
     <section name="Xml report">
       <p>
         The XML report schema is available at:

@@ -53,6 +53,9 @@ public class XMLLogger
     /** Hex radix. */
     private static final int BASE_16 = 16;
 
+    /** Initial capacity for StringBuilder to "source" attribute. */
+    private static final int SOURCE_BUILDER_CAPACITY = 128;
+
     /** Some known entities to detect. */
     private static final String[] ENTITIES = {"gt", "amp", "lt", "apos",
                                               "quot", };
@@ -211,14 +214,15 @@ public class XMLLogger
                 + encode(event.getMessage())
                 + "\"");
         writer.print(" source=\"");
-        final String sourceValue;
-        if (event.getModuleId() == null) {
-            sourceValue = event.getSourceName();
+        final StringBuilder sourceValueBuilder = new StringBuilder(SOURCE_BUILDER_CAPACITY);
+        sourceValueBuilder.append(event.getSourceName());
+        final String moduleId = event.getModuleId();
+        if (moduleId != null && !moduleId.isBlank()) {
+            sourceValueBuilder
+                    .append('#')
+                    .append(moduleId);
         }
-        else {
-            sourceValue = event.getModuleId();
-        }
-        writer.print(encode(sourceValue));
+        writer.print(encode(sourceValueBuilder.toString()));
         writer.println("\"/>");
     }
 
