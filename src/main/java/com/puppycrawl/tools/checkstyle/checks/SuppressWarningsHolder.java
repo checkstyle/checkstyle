@@ -207,7 +207,7 @@ public class SuppressWarningsHolder
         for (Entry entry : entries) {
             final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
             final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
-            final String checkName = entry.getCheckName();
+            final String checkName = entry.checkName();
             final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
                     || checkName.equalsIgnoreCase(checkAlias)
@@ -233,9 +233,9 @@ public class SuppressWarningsHolder
      *         in the source file.
      */
     private static boolean isSuppressedAfterEventStart(int line, int column, Entry entry) {
-        return entry.getFirstLine() < line
-            || entry.getFirstLine() == line
-            && (column == 0 || entry.getFirstColumn() <= column);
+        return entry.firstLine() < line
+            || entry.firstLine() == line
+            && (column == 0 || entry.firstColumn() <= column);
     }
 
     /**
@@ -249,9 +249,9 @@ public class SuppressWarningsHolder
      *         in the source file.
      */
     private static boolean isSuppressedBeforeEventEnd(int line, int column, Entry entry) {
-        return entry.getLastLine() > line
-            || entry.getLastLine() == line && entry
-                .getLastColumn() >= column;
+        return entry.lastLine() > line
+            || entry.lastLine() == line && entry
+                .lastColumn() >= column;
     }
 
     @Override
@@ -514,36 +514,28 @@ public class SuppressWarningsHolder
         ENTRIES.remove();
     }
 
-    /** Records a particular suppression for a region of a file. */
-    private static final class Entry {
-
-        /** The source name of the suppressed check. */
-        private final String checkName;
-        /** The suppression region for the check - first line. */
-        private final int firstLine;
-        /** The suppression region for the check - first column. */
-        private final int firstColumn;
-        /** The suppression region for the check - last line. */
-        private final int lastLine;
-        /** The suppression region for the check - last column. */
-        private final int lastColumn;
+    /**
+     * Records a particular suppression for a region of a file.
+     *
+     * @param checkName   The source name of the suppressed check.
+     * @param firstLine   The suppression region for the check - first line.
+     * @param firstColumn The suppression region for the check - first column.
+     * @param lastLine    The suppression region for the check - last line.
+     * @param lastColumn  The suppression region for the check - last column.
+     */
+    private record Entry(String checkName, int firstLine,
+                         int firstColumn, int lastLine, int lastColumn) {
 
         /**
          * Constructs a new suppression region entry.
          *
-         * @param checkName the source name of the suppressed check
-         * @param firstLine the first line of the suppression region
+         * @param checkName   the source name of the suppressed check
+         * @param firstLine   the first line of the suppression region
          * @param firstColumn the first column of the suppression region
-         * @param lastLine the last line of the suppression region
-         * @param lastColumn the last column of the suppression region
+         * @param lastLine    the last line of the suppression region
+         * @param lastColumn  the last column of the suppression region
          */
-        private Entry(String checkName, int firstLine, int firstColumn,
-            int lastLine, int lastColumn) {
-            this.checkName = checkName;
-            this.firstLine = firstLine;
-            this.firstColumn = firstColumn;
-            this.lastLine = lastLine;
-            this.lastColumn = lastColumn;
+        private Entry {
         }
 
         /**
@@ -551,7 +543,8 @@ public class SuppressWarningsHolder
          *
          * @return the source name of the suppressed check
          */
-        public String getCheckName() {
+        @Override
+        public String checkName() {
             return checkName;
         }
 
@@ -560,7 +553,8 @@ public class SuppressWarningsHolder
          *
          * @return the first line of the suppression region
          */
-        public int getFirstLine() {
+        @Override
+        public int firstLine() {
             return firstLine;
         }
 
@@ -569,7 +563,8 @@ public class SuppressWarningsHolder
          *
          * @return the first column of the suppression region
          */
-        public int getFirstColumn() {
+        @Override
+        public int firstColumn() {
             return firstColumn;
         }
 
@@ -578,7 +573,8 @@ public class SuppressWarningsHolder
          *
          * @return the last line of the suppression region
          */
-        public int getLastLine() {
+        @Override
+        public int lastLine() {
             return lastLine;
         }
 
@@ -587,7 +583,8 @@ public class SuppressWarningsHolder
          *
          * @return the last column of the suppression region
          */
-        public int getLastColumn() {
+        @Override
+        public int lastColumn() {
             return lastColumn;
         }
 

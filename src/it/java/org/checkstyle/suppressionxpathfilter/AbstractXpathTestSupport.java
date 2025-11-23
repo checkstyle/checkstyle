@@ -225,14 +225,13 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         verify(treeWalkerConfigWithXpath, fileToProcess.getPath(), CommonUtil.EMPTY_STRING_ARRAY);
     }
 
-    private record ViolationPosition(int violationLineNumber, int violationColumnNumber) {
-        /**
-         * Constructor of the class.
-         *
-         * @param violationLineNumber   line no of the violation produced for the check.
-         * @param violationColumnNumber column no of the violation produced for the check.
-         */
-        private ViolationPosition {
-        }
+    /**
+     * Represents the position of a violation.
+     *
+     * @param violationLineNumber   line no of the violation produced for the check.
+     * @param violationColumnNumber column no of the violation produced for the check.
+     */
+    private record ViolationPosition(int violationLineNumber,
+                                                  int violationColumnNumber) {
     }
 }

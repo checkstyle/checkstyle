@@ -39,7 +39,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -53,7 +52,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
-import com.puppycrawl.tools.checkstyle.site.SiteUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -83,16 +81,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     @Test
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
-        final List<Path> templatesWithPropertiesMacro =
-                SiteUtil.getTemplatesThatContainPropertiesMacro();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;
             final File file = path.toFile();
             final String fileName = file.getName();
 
-            if (XdocsPagesTest.isNonModulePage(fileName)
-                || templatesWithPropertiesMacro.contains(Path.of(currentXdocPath + ".template"))) {
+            if (XdocsPagesTest.isNonModulePage(fileName)) {
                 continue;
             }
 
@@ -139,7 +134,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
             if (child.getNodeType() == Node.TEXT_NODE) {
-                for (String temp : Splitter.on("\n").split(child.getTextContent())) {
+                for (String temp : child.getTextContent().split("\n")) {
                     final String text = temp.trim();
 
                     if (!text.isEmpty()) {
@@ -346,16 +341,27 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final DetailAST parentNode = getParent(ast);
 
                 switch (parentNode.getType()) {
-                    case TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.ENUM_DEF,
-                         TokenTypes.ENUM_CONSTANT_DEF -> {
+                    case TokenTypes.CLASS_DEF:
+                        // ignore;
+                        break;
+                    case TokenTypes.METHOD_DEF:
+                        visitMethod(ast, parentNode);
+                        break;
+                    case TokenTypes.VARIABLE_DEF:
+                        visitField(ast, parentNode);
+                        break;
+                    case TokenTypes.CTOR_DEF:
+                    case TokenTypes.ENUM_DEF:
+                    case TokenTypes.RECORD_DEF:
+                    case TokenTypes.COMPACT_CTOR_DEF:
+                    case TokenTypes.ENUM_CONSTANT_DEF:
                         // ignore
-                    }
-                    case TokenTypes.METHOD_DEF -> visitMethod(ast, parentNode);
-                    case TokenTypes.VARIABLE_DEF -> visitField(ast, parentNode);
-                    default ->
+                        break;
+                    default:
                         assertWithMessage(
                                 "Unknown token '" + TokenUtil.getTokenName(parentNode.getType())
                                         + "': " + ast.getLineNo()).fail();
+                        break;
                 }
             }
         }

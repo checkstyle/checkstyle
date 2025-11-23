@@ -266,7 +266,7 @@ public class RegexpCheck extends AbstractCheck {
         final FileText text = getFileContents().getText();
         while (errorCount < errorLimit && matcher.find()) {
             final LineColumn start = text.lineColumn(matcher.start());
-            final int startLine = start.getLine();
+            final int startLine = start.line();
 
             final boolean ignore = isIgnore(startLine, text, start, matcher);
             if (!ignore) {
@@ -306,9 +306,9 @@ public class RegexpCheck extends AbstractCheck {
         boolean ignore = false;
         if (ignoreComments) {
             final FileContents theFileContents = getFileContents();
-            final int startColumn = start.getColumn();
-            final int endLine = end.getLine();
-            final int endColumn = end.getColumn();
+            final int startColumn = start.column();
+            final int endLine = end.line();
+            final int endColumn = end.column();
             ignore = theFileContents.hasIntersectionWithComment(startLine,
                 startColumn, endLine, endColumn);
         }
