@@ -31,8 +31,9 @@ import java.util.stream.Stream;
 import org.checkerframework.checker.index.qual.IndexOrLow;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -41,6 +42,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+
 
 /**
  * <div>
@@ -92,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class UnusedImportsCheck extends AbstractCheck {
+public class UnusedImportsCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -155,6 +157,7 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
+        super.beginTree(rootAST);
         collect = false;
         currentFrame = Frame.compilationUnit();
         imports.clear();
@@ -162,6 +165,7 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST rootAST) {
+        super.finishTree(rootAST);
         currentFrame.finish();
         // loop over all the imports to see if referenced.
         imports.stream()
@@ -170,8 +174,13 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     @Override
-    public int[] getDefaultTokens() {
-        return getRequiredTokens();
+    public int[] getDefaultJavadocTokens() {
+        return new int[0];
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+
     }
 
     @Override
@@ -196,16 +205,14 @@ public class UnusedImportsCheck extends AbstractCheck {
             // Tokens for creating a new frame
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            // Javadoc
+            //TokenTypes.BLOCK_COMMENT_BEGIN
         };
     }
 
     @Override
-    public int[] getAcceptableTokens() {
-        return getRequiredTokens();
-    }
-
-    @Override
     public void visitToken(DetailAST ast) {
+        //super.visitToken(ast);
         switch (ast.getType()) {
             case TokenTypes.IDENT -> {
                 if (collect) {
