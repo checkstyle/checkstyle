@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -27,6 +29,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -175,9 +178,9 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{4}");
 
     /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
+    private final Map<Integer, TextBlock> singlelineComments = new HashMap<>();
     /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
+    private final Map<Integer, List<TextBlock>> blockComments = new HashMap<>();
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -247,19 +250,56 @@ public class AvoidEscapedUnicodeCharactersCheck
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+        singlelineComments.clear();
+        blockComments.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
+        switch (ast.getType()) {
+            case TokenTypes.SINGLE_LINE_COMMENT:
+                singlelineComments.put(ast.getLineNo(), convertToTextBlock(ast));
+                break;
+
+            case TokenTypes.BLOCK_COMMENT_BEGIN:
+                final TextBlock block = convertToTextBlock(ast);
+                final int start = ast.getLineNo();
+                final int end = block.getEndLineNo();
+                for (int line = start; line <= end; line++) {
+                    blockComments.computeIfAbsent(line, key -> new ArrayList<>())
+                        .add(block);
+                }
+                break;
+
+            case TokenTypes.STRING_LITERAL:
+            case TokenTypes.CHAR_LITERAL:
+            case TokenTypes.TEXT_BLOCK_CONTENT:
+                checkUnicodeEscapes(ast);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Checks a literal for illegal Unicode characters and logs a violation if needed.
+     *
+     * @param ast literal AST node
+     */
+    private void checkUnicodeEscapes(DetailAST ast) {
         final String literal =
             CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
@@ -271,6 +311,57 @@ public class AvoidEscapedUnicodeCharactersCheck
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Converts comment AST node to TextBlock with code-point-based positions.
+     * Handles emoji and multi-byte characters correctly.
+     *
+     * @param commentAst the comment node
+     * @return TextBlock representation with code-point-based endCol
+     */
+    private TextBlock convertToTextBlock(DetailAST commentAst) {
+        final int lineNo = commentAst.getLineNo();
+        final String line = getLine(lineNo - 1);
+
+        final String commentContent;
+        final int codePointEndCol;
+        int endLine = lineNo;
+        final String[] commentLines;
+
+        if (commentAst.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            commentContent = commentAst.getFirstChild().getText();
+
+            commentLines = commentContent.split("\n", -1);
+            endLine = lineNo + commentLines.length - 1;
+
+            final DetailAST blockCommentEnd = commentAst.getLastChild();
+            final int endLineNo = endLine;
+            final String endLineStr = getLine(endLineNo - 1);
+            final int charPosAfterComment = blockCommentEnd.getColumnNo() + 2;
+            codePointEndCol = charIndexToCodePointIndex(endLineStr, charPosAfterComment);
+        }
+        else {
+            commentContent = commentAst.getFirstChild().getText();
+            commentLines = new String[]{commentContent};
+
+            final int charPosAfterComment = commentAst.getColumnNo() + 2 + commentContent.length();
+            codePointEndCol = charIndexToCodePointIndex(line, charPosAfterComment);
+        }
+
+        return new Comment(commentLines, commentAst.getColumnNo(), endLine, codePointEndCol);
+    }
+
+    /**
+     * Converts a char-based index to a code-point-based index.
+     *
+     * @param line the line text
+     * @param charIndex the char-based index
+     * @return the code-point-based index
+     */
+    private static int charIndexToCodePointIndex(String line, int charIndex) {
+        final int safeCharIndex = Math.min(charIndex, line.length());
+        return line.codePointCount(0, safeCharIndex);
     }
 
     /**
@@ -314,18 +405,23 @@ public class AvoidEscapedUnicodeCharactersCheck
         if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
             lineNo = ast.getNextSibling().getLineNo();
         }
+
+        final int[] codePoints = getLineCodePoints(lineNo - 1);
         boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
+
+        final TextBlock singleComment = singlelineComments.get(lineNo);
+        if (singleComment != null) {
+            result = isTrailingBlockComment(singleComment, codePoints);
         }
-        else {
+
+        if (!result) {
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
                 final TextBlock comment = commentList.get(commentList.size() - 1);
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
                 result = isTrailingBlockComment(comment, codePoints);
             }
         }
+
         return result;
     }
 
