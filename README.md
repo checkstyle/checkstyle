@@ -7,7 +7,7 @@
 *Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
 
 [![][appveyor img]][appveyor]
-[![][circleci img]][circleci]
+[![CircleCI Status][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
@@ -15,14 +15,14 @@
 [![][azure img]][azure]
 [![][error prone img]][error prone]
 [![][pitest img]][pitest]
-[![][checker framework img]][checker framework]
+[![Checker Framework Build][checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
 [![][release notes/version img]][release notes/version]
 [![][closed issues img]][closed issues]
 [![][link check img]][link check]
 [![][milestone img]][milestone]
-
 [![][mavenbadge img]][mavenbadge]
+
 
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
@@ -80,7 +80,7 @@ Starting audit...
 Audit done.
 Checkstyle ends with 1 errors.
 ```
-
+ 
 ## Contributing
 
 Thanks for your interest in contributing to CheckStyle! Please see the
@@ -138,32 +138,31 @@ Checkstyle uses libraries:
 ## Development Tools Powered by
 
 [![JetBrains logo.][jetbrains img]][jetbrains]
-
 [![JProfiler logo.][jprofiler img]][jprofiler]
 
-[jetbrains]:https://jb.gg/OpenSource
-[jetbrains img]:https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
+[jetbrains]: https://jb.gg/OpenSource
+[jetbrains img]: https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg
 
-[jprofiler]:https://www.ej-technologies.com/jprofiler
-[jprofiler img]:https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png
+[jprofiler]: https://www.ej-technologies.com/jprofiler
+[jprofiler img]: https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png
 
-[appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
-[appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
+[appveyor]: https://ci.appveyor.com/project/checkstyle/checkstyle/history
+[appveyor img]: https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
-[coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
-[coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+[coverage]: https://codecov.io/github/checkstyle/checkstyle?branch=master
+[coverage img]: https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
 
-[mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
-[mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
+[mavenbadge]: https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
+[mavenbadge img]: https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
 
-[stackoverflow]:https://stackoverflow.com/questions/tagged/checkstyle
-[stackoverflow img]:https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
+[stackoverflow]: https://stackoverflow.com/questions/tagged/checkstyle
+[stackoverflow img]: https://img.shields.io/badge/stackoverflow-CHECKSTYLE-blue.svg
 
-[teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
-[teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
+[teamcity]: https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
+[teamcity img]: https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
 
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
-[circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
+[circleci img]: https://circleci.com/gh/checkstyle/checkstyle.svg?style=svg
 
 [cirrusci]: https://cirrus-ci.com/github/checkstyle/checkstyle
 [cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=master
@@ -172,37 +171,38 @@ Checkstyle uses libraries:
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
 [semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
-[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
+[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg
 
-[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
-[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+[azure]: https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
+[azure img]: https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
 
-[backers.opencollective]:https://opencollective.com/checkstyle/
-[backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
+[backers.opencollective]: https://opencollective.com/checkstyle/
+[backers.opencollective img]: https://opencollective.com/checkstyle/backers/badge.svg
 
-[sponsors.opencollective]:https://opencollective.com/checkstyle/
-[sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
+[sponsors.opencollective]: https://opencollective.com/checkstyle/
+[sponsors.opencollective img]: https://opencollective.com/checkstyle/sponsors/badge.svg
 
-[dependabot]:https://github.com/dependabot
-[dependabot img]:https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot
+[dependabot]: https://github.com/dependabot
+[dependabot img]: https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot
 
-[closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
-[closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml/badge.svg
+[closed issues]: https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml
+[closed issues img]: https://github.com/checkstyle/checkstyle/actions/workflows/no-old-refs.yml/badge.svg
 
-[release notes/version]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml
-[release notes/version img]:https://github.com/checkstyle/checkstyle/actions/workflows/releasenotes-gen.yml/badge.svg
+[release notes/version]: https://github.com/checkstyle/checkstyle/actions/workflows/release.yml
+[release notes/version img]: https://github.com/checkstyle/checkstyle/actions/workflows/release.yml/badge.svg
 
-[link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml
-[link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml/badge.svg
+[link check]: https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml
+[link check img]: https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml/badge.svg
 
-[error prone]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml
-[error prone img]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml/badge.svg
+[error prone]: https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml
+[error prone img]: https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml/badge.svg
 
-[pitest]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml
-[pitest img]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml/badge.svg
+[pitest]: https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml
+[pitest img]: https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml/badge.svg
 
-[checker framework]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml
-[checker framework img]:https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml/badge.svg
+[checker framework]: https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml
+[checker framework img]: https://github.com/checkstyle/checkstyle/actions/workflows/checker-framework.yml/badge.svg
 
-[milestone]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml
-[milestone img]:https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-referenced-issue.yml/badge.svg
+[milestone]: https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-release.yml
+[milestone img]: https://github.com/checkstyle/checkstyle/actions/workflows/set-milestone-on-release.yml/badge.svg
+
