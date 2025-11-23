@@ -245,10 +245,10 @@ public class SuppressionCommentFilter
     public boolean accept(TreeWalkerAuditEvent event) {
         boolean accepted = true;
 
-        if (event.violation() != null) {
+        if (event.getViolation() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = event.fileContents();
+            final FileContents currentContents = event.getFileContents();
 
             if (getFileContents() != currentContents) {
                 setFileContents(currentContents);

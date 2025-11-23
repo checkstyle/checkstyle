@@ -135,9 +135,9 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @return true if it is matching
      */
     private boolean isFileNameAndModuleAndModuleNameMatching(TreeWalkerAuditEvent event) {
-        return event.fileName() != null
-                && (fileRegexp == null || fileRegexp.matcher(event.fileName()).find())
-                && event.violation() != null
+        return event.getFileName() != null
+                && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
+                && event.getViolation() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
@@ -189,11 +189,11 @@ public class XpathFilterElement implements TreeWalkerFilter {
      */
     private List<Item> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
-        if (event.rootAst() == null) {
+        if (event.getRootAst() == null) {
             rootNode = null;
         }
         else {
-            rootNode = new RootNode(event.rootAst());
+            rootNode = new RootNode(event.getRootAst());
         }
         final List<Item> items;
         try {

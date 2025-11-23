@@ -112,12 +112,12 @@ public final class JavadocUtil {
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
         for (TagInfo tag : tags) {
-            final int col = tag.getPosition().column();
+            final int col = tag.getPosition().getColumn();
 
             // Add the starting line of the comment to the line number to get the actual line number
             // in the source.
             // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + tag.getPosition().line() - 1;
+            final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
             if (JavadocTagInfo.isValidName(tag.getName())) {
                 validTags.add(
