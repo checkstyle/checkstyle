@@ -127,7 +127,7 @@ public class RightCurlyCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final Details details = Details.getDetails(ast);
-        final DetailAST rcurly = details.rcurly;
+        final DetailAST rcurly = details.rcurly();
 
         if (rcurly != null) {
             final String violation = validate(details);
@@ -168,8 +168,8 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldHaveLineBreakBefore(RightCurlyOption bracePolicy,
                                                      Details details) {
         return bracePolicy == RightCurlyOption.SAME
-                && !hasLineBreakBefore(details.rcurly)
-                && !TokenUtil.areOnSameLine(details.lcurly, details.rcurly);
+                && !hasLineBreakBefore(details.rcurly())
+                && !TokenUtil.areOnSameLine(details.lcurly(), details.rcurly());
     }
 
     /**
@@ -181,8 +181,8 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean shouldBeOnSameLine(RightCurlyOption bracePolicy, Details details) {
         return bracePolicy == RightCurlyOption.SAME
-                && !details.shouldCheckLastRcurly
-                && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
+                && !details.shouldCheckLastRcurly()
+                && !TokenUtil.areOnSameLine(details.rcurly(), details.nextToken());
     }
 
     /**
@@ -237,11 +237,11 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if right curly is alone on a line.
      */
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
-        final DetailAST rcurly = details.rcurly;
-        final DetailAST nextToken = details.nextToken;
+        final DetailAST rcurly = details.rcurly();
+        final DetailAST nextToken = details.nextToken();
         return (nextToken == null || !TokenUtil.areOnSameLine(rcurly, nextToken)
             || skipDoubleBraceInstInit(details))
-            && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
+            && CommonUtil.hasWhitespaceBefore(details.rcurly().getColumnNo(),
                targetSrcLine);
     }
 
@@ -265,12 +265,12 @@ public class RightCurlyCheck extends AbstractCheck {
      */
     private static boolean skipDoubleBraceInstInit(Details details) {
         boolean skipDoubleBraceInstInit = false;
-        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
+        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken());
         if (tokenAfterNextToken != null) {
-            final DetailAST rcurly = details.rcurly;
+            final DetailAST rcurly = details.rcurly();
             skipDoubleBraceInstInit = rcurly.getParent().getParent()
                     .getType() == TokenTypes.INSTANCE_INIT
-                    && details.nextToken.getType() == TokenTypes.RCURLY
+                    && details.nextToken().getType() == TokenTypes.RCURLY
                     && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
         }
         return skipDoubleBraceInstInit;
@@ -283,7 +283,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if block has single-line format and is alone on a line.
      */
     private static boolean isBlockAloneOnSingleLine(Details details) {
-        DetailAST nextToken = details.nextToken;
+        DetailAST nextToken = details.nextToken();
 
         while (nextToken != null && nextToken.getType() == TokenTypes.LITERAL_ELSE) {
             nextToken = Details.getNextToken(nextToken);
@@ -301,8 +301,8 @@ public class RightCurlyCheck extends AbstractCheck {
             nextToken = Details.getNextToken(parent);
         }
 
-        return TokenUtil.areOnSameLine(details.lcurly, details.rcurly)
-            && (nextToken == null || !TokenUtil.areOnSameLine(details.rcurly, nextToken)
+        return TokenUtil.areOnSameLine(details.lcurly(), details.rcurly())
+            && (nextToken == null || !TokenUtil.areOnSameLine(details.rcurly(), nextToken)
                 || isRightcurlyFollowedBySemicolon(details));
     }
 
@@ -313,7 +313,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if the right curly is followed by a semicolon.
      */
     private static boolean isRightcurlyFollowedBySemicolon(Details details) {
-        return details.nextToken.getType() == TokenTypes.SEMI;
+        return details.nextToken().getType() == TokenTypes.SEMI;
     }
 
     /**
@@ -332,8 +332,14 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Structure that contains all details for validation.
+     *
+     * @param lcurly                the left curly token being analysed
+     * @param rcurly                the matching right curly token
+     * @param nextToken             the token following the right curly
+     * @param shouldCheckLastRcurly flag that indicates if the last right curly should be checked
      */
-    private static final class Details {
+    private record Details(DetailAST lcurly, DetailAST rcurly,
+                           DetailAST nextToken, boolean shouldCheckLastRcurly) {
 
         /**
          * Token types that identify tokens that will never have SLIST in their AST.
@@ -345,31 +351,6 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
         };
-
-        /** Right curly. */
-        private final DetailAST rcurly;
-        /** Left curly. */
-        private final DetailAST lcurly;
-        /** Next token. */
-        private final DetailAST nextToken;
-        /** Should check last right curly. */
-        private final boolean shouldCheckLastRcurly;
-
-        /**
-         * Constructor.
-         *
-         * @param lcurly the lcurly of the token whose details are being collected
-         * @param rcurly the rcurly of the token whose details are being collected
-         * @param nextToken the token after the token whose details are being collected
-         * @param shouldCheckLastRcurly boolean value to determine if to check last rcurly
-         */
-        private Details(DetailAST lcurly, DetailAST rcurly,
-                        DetailAST nextToken, boolean shouldCheckLastRcurly) {
-            this.lcurly = lcurly;
-            this.rcurly = rcurly;
-            this.nextToken = nextToken;
-            this.shouldCheckLastRcurly = shouldCheckLastRcurly;
-        }
 
         /**
          * Collects validation Details.
