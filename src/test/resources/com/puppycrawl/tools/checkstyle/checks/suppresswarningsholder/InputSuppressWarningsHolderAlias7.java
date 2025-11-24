@@ -6,9 +6,19 @@ com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilter
 
 com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck
 format = ^[A-Z][a-zA-Z0-9]*$
+allowClassName = (default)false
+applyToPublic = (default)true
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
 
 com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck
+format = (default)^[a-z][a-zA-Z0-9]*$
+allowClassName = (default)false
 applyToPublic = false
+applyToProtected = (default)true
+applyToPackage = (default)true
+applyToPrivate = (default)true
 
 
 */
