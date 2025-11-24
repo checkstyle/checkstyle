@@ -40,6 +40,9 @@ public class InputParenPadCheckEmoji {
     void emojiFamilyWithSkinToneModifierRunnerTricky(Consumer<String> testRunner, String text) {
         testRunner
         .accept
-        ( "👩🏻‍👩🏽‍👧🏾‍👦🏿 "  + "ab cdefg" + "👩🏽‍👧🏾‍👦🏿 " + text ); // 2 violations
+        ( "👩🏻‍👩🏽‍👧🏾‍👦🏿 "  + "ab cdefg" + "👩🏽‍👧🏾‍👦🏿 " + text );
+        // 2 violations above:
+        //           ''(' is followed by whitespace.'
+        //           '')' is preceded with whitespace.'
     }
 }
