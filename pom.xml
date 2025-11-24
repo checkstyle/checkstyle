@@ -635,7 +635,7 @@
               </activeRecipes>
               <exclusions>
                 <exclusion>**.ci-temp**</exclusion>
-                <exclusion>**resources-noncompilable**</exclusion>
+                <exclusion>**/resources-noncompilable</exclusion>
                 <exclusion>**src/it/resources**</exclusion>
                 <exclusion>**src/test/resources**</exclusion>
                 <exclusion>**xdocs-examples**</exclusion>
@@ -644,8 +644,8 @@
                 <plainTextMask>**.groovy</plainTextMask>
                 <plainTextMask>**.xml</plainTextMask>
                 <plainTextMask>**.yml</plainTextMask>
-                <plainTextMask>**resources-noncompilable/**</plainTextMask>
-                <plainTextMask>**resources/**</plainTextMask>
+                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+                <plainTextMask>**/resources/**</plainTextMask>
               </plainTextMasks>
             </configuration>
             <dependencies>
