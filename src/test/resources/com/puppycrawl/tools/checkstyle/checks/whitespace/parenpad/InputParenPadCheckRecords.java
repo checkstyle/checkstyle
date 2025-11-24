@@ -17,27 +17,33 @@ import java.util.HashMap;
 import org.w3c.dom.Node;
 
 public class InputParenPadCheckRecords {
-    record MyRecord1( ) { // 2 violations
+    record MyRecord1( ) {
+        // 2 violations above:
+        //           ''(' is followed by whitespace.'
+        //           '')' is preceded with whitespace.'
 
-        MyRecord1( int x ){this();} // 2 violations
+        MyRecord1( int x ){this();}
+        // 2 violations above:
+        //           ''(' is followed by whitespace.'
+        //           '')' is preceded with whitespace.'
 
         public MyRecord1{
-            bar( 1);  // violation
+            bar( 1);  // violation, ''(' is followed by whitespace.'
         }
 
         static int n;
 
         public void fun() {
-            bar( 1);  // violation
+            bar( 1);  // violation, ''(' is followed by whitespace.'
         }
 
-        public void bar(int k ) {  // violation
+        public void bar(int k ) {  // violation, '')' is preceded with whitespace.'
             while (k > 0) {
             }
         }
 
         public void fun2() {
-            switch( n) {  // violation
+            switch( n) {  // violation, ''(' is followed by whitespace.'
                 case 2:
                     bar(n);
                 default:
@@ -48,8 +54,12 @@ public class InputParenPadCheckRecords {
     }
 
     //record components
-    record MyRecord2( String s){} // violation
-    record MyRecord4( String s, String ...varargs ){} // 2 violations
-    record MyRecord6( String[] strArr){} // violation
-    record MyRecord7(HashMap<String, Node> hashMap ){} // violation
+    record MyRecord2( String s){} // violation, ''(' is followed by whitespace.'
+    record MyRecord4( String s, String ...varargs ){}
+        // 2 violations above:
+        //           ''(' is followed by whitespace.'
+        //           '')' is preceded with whitespace.'
+    record MyRecord6( String[] strArr){} // violation, ''(' is followed by whitespace.'
+    record MyRecord7(HashMap<String, Node> hashMap ){}
+    // violation above, '')' is preceded with whitespace.'
 }

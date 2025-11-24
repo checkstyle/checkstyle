@@ -15,28 +15,34 @@ class InputParenPadForWhitespace2
 {
     void method1()
     {
-        for (int i = 0; i < 1; i++) { // 2 violations
+        for (int i = 0; i < 1; i++) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         }
 
-        for (int i = 0; i < 1;i++) { // 2 violations
+        for (int i = 0; i < 1;i++) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         }
 
-        for (int i = 0; i < 1;i++ ) { // violation
+        for (int i = 0; i < 1;i++ ) { // violation, ''(' is not followed by whitespace.'
         }
 
-        for (int i = 0; i < 1; i++ ) { // violation
+        for (int i = 0; i < 1; i++ ) { // violation, ''(' is not followed by whitespace.'
         }
 
-        for (int i = 0; i < 1;) { // violation
+        for (int i = 0; i < 1;) { // violation, ''(' is not followed by whitespace.'
             i++;
         }
 
-        for (int i = 0; i < 1; ) { // violation
+        for (int i = 0; i < 1; ) { // violation, ''(' is not followed by whitespace.'
             i++;
         }
 
         // test eol, there is no space after second SEMI
-        for (int i = 0; i < 1; // violation
+        for (int i = 0; i < 1; // violation, ''(' is not followed by whitespace.'
             ) {
             i++;
         }
