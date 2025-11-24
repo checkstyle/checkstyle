@@ -4,16 +4,11 @@ name: org.checkstyle.openrewrite.SanityCheck
 displayName: Apply all best practices
 description: Comprehensive code quality recipe combining modernization, security, and best practices.
 recipeList:
-#  - org.checkstyle.autofix.CheckstyleAutoFix:
-#      violationReportPath: "target/cs_errors.xml"
-#      configurationPath: "config/checkstyle-checks.xml"
-#      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+  - org.checkstyle.autofix.CheckstyleAutoFix:
+      violationReportPath: "target/cs_errors.xml"
+      configurationPath: "config/checkstyle-checks.xml"
+      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.codemods.ESLint
-  - org.openrewrite.codemods.UI5
-  - org.openrewrite.codemods.cleanup.javascript.EmptyBraceSpaces
-  - org.openrewrite.codemods.cleanup.javascript.PreferModule
-  - org.openrewrite.codemods.ecmascript.5to6.ECMAScript6BestPractices
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.RemoveTrailingWhitespace
