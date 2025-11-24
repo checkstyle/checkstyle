@@ -44,6 +44,7 @@ import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
@@ -72,6 +73,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             "InputCheckstyleAntTaskConfigCustomRootModule.xml";
     private static final String NOT_EXISTING_FILE = "target/not_existing.xml";
     private static final String FAILURE_PROPERTY_VALUE = "myValue";
+
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -995,6 +999,43 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(inputFile);
         antTask.setLocation(fileLocation);
         assertDoesNotThrow(antTask::execute, "BuildException is not expected");
+    }
+
+    @Test
+    public void testMultipleFormattersProduceOutputs() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setFailOnViolation(false);
+
+        final File firstOutput = new File(temporaryFolder, "ant_task_multi_formatter_1.txt");
+        final File secondOutput = new File(temporaryFolder, "ant_task_multi_formatter_2.txt");
+
+        antTask.addFormatter(createPlainFormatter(firstOutput));
+        antTask.addFormatter(createPlainFormatter(secondOutput));
+
+        antTask.execute();
+
+        assertWithMessage("First formatter output was not created")
+                .that(firstOutput.exists())
+                .isTrue();
+        assertWithMessage("First formatter output is empty")
+                .that(firstOutput.length())
+                .isGreaterThan(0L);
+        assertWithMessage("Second formatter output was not created")
+                .that(secondOutput.exists())
+                .isTrue();
+        assertWithMessage("Second formatter output is empty")
+                .that(secondOutput.length())
+                .isGreaterThan(0L);
+    }
+
+    private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("plain");
+        formatter.setType(formatterType);
+        return formatter;
     }
 
 }
