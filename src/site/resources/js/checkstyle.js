@@ -2,11 +2,14 @@
 /*jslint es6: true */
 /*jshint esversion: 6 */
 /*global window */
+/*jslint browser: true */
+/*jslint es6: true */
+/*jshint esversion: 6 */
+/*global window */
 let scrollButton;
 const scrollDistanceToButtonVisibility = 500;
 
 window.addEventListener("load", function () {
-    "use strict";
     scrollButton = document.querySelector(".pull-right > a");
     scrollButton.innerText = "To Top";
     scrollButton.style.display = "none";
@@ -89,7 +92,6 @@ window.addEventListener("load", function () {
 });
 
 window.addEventListener("scroll", function () {
-    "use strict";
     if (document.documentElement.scrollTop > scrollDistanceToButtonVisibility) {
         scrollButton.style.display = "block";
     } else {
