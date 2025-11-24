@@ -1,8 +1,8 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AllAutoFixes
-displayName: Auto Fixes
-description: List of auto fixes from different providers.
+name: org.checkstyle.openrewrite.SanityCheck
+displayName: Apply all best practices
+description: Comprehensive code quality recipe combining modernization, security, and best practices.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: "target/cs_errors.xml"
