@@ -17,8 +17,9 @@ class InputParenPadTryWithResources {
         try (AutoCloseable a = null; AutoCloseable b = null) {}
         try (AutoCloseable a = null; AutoCloseable b = null; ) {}
         try (AutoCloseable a = null; AutoCloseable b = null; ) {}
-        try (AutoCloseable a = null ) {} // violation
-        try (AutoCloseable a = null; AutoCloseable b = null ) {} // violation
-        try ( AutoCloseable a = null) {} // violation
+        try (AutoCloseable a = null ) {} // violation, '')' is preceded with whitespace.'
+        try (AutoCloseable a = null; AutoCloseable b = null ) {}
+        // violation above, '')' is preceded with whitespace.'
+        try ( AutoCloseable a = null) {} // violation, ''(' is followed by whitespace.'
     }
 }
