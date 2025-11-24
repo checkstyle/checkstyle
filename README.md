@@ -78,7 +78,7 @@ $ java -jar checkstyle-10.18.1-all.jar -c config.xml Test.java
 Starting audit...
 [ERROR] Test.java:9:9: Fall through from previous branch of switch statement [FallThrough]
 Audit done.
-Checkstyle ends with 1 errors.
+Checkstyle ends with 1 error(s).
 ```
 
 ## Contributing
