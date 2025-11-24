@@ -1,14 +1,20 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AllAutoFixes
-displayName: Auto Fixes
-description: List of auto fixes from different providers.
+name: org.checkstyle.openrewrite.SanityCheck
+displayName: Apply all best practices
+description: Comprehensive code quality recipe combining modernization, security, and best practices.
 recipeList:
-  - org.checkstyle.autofix.CheckstyleAutoFix:
-      violationReportPath: "target/cs_errors.xml"
-      configurationPath: "config/checkstyle-checks.xml"
-      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+#  - org.checkstyle.autofix.CheckstyleAutoFix:
+#      violationReportPath: "target/cs_errors.xml"
+#      configurationPath: "config/checkstyle-checks.xml"
+#      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.codemods.ESLint
+  - org.openrewrite.codemods.UI5
+  - org.openrewrite.codemods.cleanup.javascript.EmptyBraceSpaces
+  - org.openrewrite.codemods.cleanup.javascript.PreferModule
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.RemoveTrailingWhitespace
@@ -36,6 +42,7 @@ recipeList:
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+  - org.openrewrite.text.EndOfLineAtEndOfFile
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
