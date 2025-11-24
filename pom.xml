@@ -623,6 +623,54 @@
             </upToDateChecking>
           </configuration>
         </plugin>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>6.24.0</version>
+            <configuration>
+              <exportDatatables>true</exportDatatables>
+              <skipMavenParsing>true</skipMavenParsing>
+              <activeRecipes>
+                <recipe>org.checkstyle.openrewrite.SanityCheck</recipe>
+              </activeRecipes>
+              <exclusions>
+                <exclusion>**.ci-temp**</exclusion>
+                <exclusion>**/resources-noncompilable/**</exclusion>
+                <exclusion>**src/it/resources**</exclusion>
+                <exclusion>**src/test/resources**</exclusion>
+                <exclusion>**xdocs-examples**</exclusion>
+              </exclusions>
+              <plainTextMasks>
+                <plainTextMask>**/*.xml</plainTextMask>
+                <plainTextMask>**/*.yml</plainTextMask>
+                <plainTextMask>**/*.groovy</plainTextMask>
+                <plainTextMask>**/resources/**</plainTextMask>
+                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+              </plainTextMasks>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>com.puppycrawl.tools</groupId>
+                <artifactId>checkstyle-openrewrite-recipes</artifactId>
+                <version>${checkstyle.openrewrite.version}</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-migrate-java</artifactId>
+                <version>3.22.0</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>2.22.0</version>
+              </dependency>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-rewrite</artifactId>
+                <version>0.16.0</version>
+              </dependency>
+            </dependencies>
+          </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
