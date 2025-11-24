@@ -639,6 +639,7 @@
               <exclusion>**/resources-noncompilable</exclusion>
               <exclusion>**src/it/resources**</exclusion>
               <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**styleguides/google-java-style**</exclusion>
               <exclusion>**xdocs-examples**</exclusion>
               <exclusion>mvnw</exclusion>
             </exclusions>
