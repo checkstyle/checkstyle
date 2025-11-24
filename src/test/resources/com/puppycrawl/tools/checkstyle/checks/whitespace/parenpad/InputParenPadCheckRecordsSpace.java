@@ -22,24 +22,30 @@ public class InputParenPadCheckRecordsSpace {
         MyRecord1( int x ){this();}
 
         public MyRecord1{
-            bar( 1);  // violation
+            bar( 1);  // violation, '')' is not preceded with whitespace.'
         }
 
         static int n;
 
         public void fun() {
-            bar( 1);  // violation
+            bar( 1);  // violation, '')' is not preceded with whitespace.'
         }
 
-        public void bar(int k ) {  // violation
-            while (k > 0) {  // 2 violations
+        public void bar(int k ) {  // violation, ''(' is not followed by whitespace.'
+            while (k > 0) {
+        // 2 violations above:
+        //           ''(' is not followed by whitespace.'
+        //           '')' is not preceded with whitespace.'
             }
         }
 
         public void fun2() {
-            switch( n) {  // violation
+            switch( n) {  // violation, '')' is not preceded with whitespace.'
                 case 2:
-                    bar(n);  // 2 violations
+                    bar(n);
+        // 2 violations above:
+        //           ''(' is not followed by whitespace.'
+        //           '')' is not preceded with whitespace.'
                 default:
                     break;
             }
@@ -48,11 +54,12 @@ public class InputParenPadCheckRecordsSpace {
     }
 
     //record components
-    record MyRecord2( String s){} // violation
+    record MyRecord2( String s){} // violation, '')' is not preceded with whitespace.'
     record MyRecord4( String s, String ...varargs ){}
-    record MyRecord6( String[] strArr){} // violation
-    record MyRecord7(HashMap<String, Node> hashMap ){} // violation
-    record MyRecord8(int x // violation
+    record MyRecord6( String[] strArr){} // violation, '')' is not preceded with whitespace.'
+    record MyRecord7(HashMap<String, Node> hashMap ){}
+    // violation above, ''(' is not followed by whitespace.'
+    record MyRecord8(int x // violation, ''(' is not followed by whitespace.'
         ){
     }
 }

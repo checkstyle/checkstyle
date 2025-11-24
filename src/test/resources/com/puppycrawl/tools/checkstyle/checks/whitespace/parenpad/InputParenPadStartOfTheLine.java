@@ -13,7 +13,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.parenpad;
 
 public class InputParenPadStartOfTheLine {
 public String checkSmth( String
-a) { // violation
+a) { // violation, '')' is not preceded with whitespace.'
     return a + 1;
    }
 }

@@ -33,7 +33,10 @@ class InputParenPadWhitespace2
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // 2 violations
+        b -=- 1 + (+ b);
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         b = b ++ + b --; // Ignore 1
         b = ++ b - -- b; // Ignore 1
     }
@@ -41,11 +44,17 @@ class InputParenPadWhitespace2
     /** method **/
     void method2()
     {
-        synchronized(this) { // 2 violations
+        synchronized(this) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         }
         try{
         }
-        catch(RuntimeException e){ // 2 violations
+        catch(RuntimeException e){
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         }
     }
 
@@ -80,7 +89,10 @@ class InputParenPadWhitespace2
     {
         if ( true )
         {
-            return(2); // 2 violations
+            return(2);
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         }
         else
         {
@@ -101,8 +113,14 @@ class InputParenPadWhitespace2
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false; // 2 violations
-        b = (1==2) ? false : true; // 2 violations
+        boolean b = (1 == 2)?true:false;
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
+        b = (1==2) ? false : true;
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
     }
 
     /** star test **/
@@ -154,22 +172,31 @@ class InputParenPadWhitespace2
         assert true : "Whups";
 
         // evil colons, should be OK
-        assert "OK".equals(null) ? false : true : "Whups"; // 2 violations
+        assert "OK".equals(null) ? false : true : "Whups";
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
 
         // missing WS around assert
-        assert(true); // 2 violations
+        assert(true);
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
 
         // missing WS around colon
         assert true:"Whups";
     }
 
     /** another check */
-    void donBradman(Runnable aRun) // 2 violations
+    void donBradman(Runnable aRun)
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
     {
-        donBradman(new Runnable() { // violation
+        donBradman(new Runnable() { // violation,''(' is not followed by whitespace.'
             public void run() {
             }
-        }); // violation
+        }); // violation,'')' is not preceded with whitespace.'
 
         final Runnable r = new Runnable() {
             public void run() {
@@ -182,7 +209,10 @@ class InputParenPadWhitespace2
     {
         doStuff() ;
         //       ^ whitespace
-        for (int i = 0 ; i < 5; i++) { // 2 violations
+        for (int i = 0 ; i < 5; i++) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
             //        ^ whitespace
         }
     }
@@ -229,7 +259,7 @@ class SpecialCasesInForLoop2
     void forIterator()
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
-        for (int i = 0; i++ < 5;) { // violation
+        for (int i = 0; i++ < 5;) { // violation,''(' is not followed by whitespace.'
         //                  ^ no whitespace
     }
 
@@ -239,7 +269,10 @@ class SpecialCasesInForLoop2
     for ( ; i < 5; i++ ) {
     //   ^ whitespace
     }
-        for (int anInt : getSomeInts()) { // 2 violations
+        for (int anInt : getSomeInts()) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
             //Should be ignored
         }
     }
@@ -255,9 +288,11 @@ class SpecialCasesInForLoop2
             }
         }.start();
     }
-    // 2 violations below
-    public void foo(java.util.List<? extends String[]> bar, Comparable<? super Object[]> baz) { }
 
+    public void foo(java.util.List<? extends String[]> bar, Comparable<? super Object[]> baz) { }
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
     public void mySuperMethod() {
         Runnable[] runs = new Runnable[] {new Runnable() {
                 public void run() {
@@ -277,10 +312,19 @@ class SpecialCasesInForLoop2
         return ;
     }
 
-    public void register(Object obj) { } // 2 violations
+    public void register(Object obj) { }
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
 
-    public void doSomething(String args[]) { // 2 violations
-        register(boolean[].class); // 2 violations
+    public void doSomething(String args[]) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
+        register(boolean[].class);
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
         register( args );
     }
 
@@ -291,6 +335,9 @@ class SpecialCasesInForLoop2
 ;
     }
 
-    public static void testNoWhitespaceBeforeEllipses(String ... args) { // 2 violations
+    public static void testNoWhitespaceBeforeEllipses(String ... args) {
+            // 2 violations above:
+            //           ''(' is not followed by whitespace.'
+            //           '')' is not preceded with whitespace.'
     }
 }
