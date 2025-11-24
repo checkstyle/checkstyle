@@ -218,7 +218,7 @@
     <maven.versions.plugin.version>2.19.1</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
-<!--    <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>-->
+    <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
     <java.version>17</java.version>
     <next.java.version>21</next.java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
