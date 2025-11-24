@@ -15,7 +15,7 @@ class InputParenPadForSynchronized {
     }
 
     public synchronized static InputParenPadForSynchronized getInstance() {
-        if(instance == null ) { // violation
+        if(instance == null ) { // violation, '')' is preceded with whitespace.'
             instance = new InputParenPadForSynchronized();
         }
         return instance;

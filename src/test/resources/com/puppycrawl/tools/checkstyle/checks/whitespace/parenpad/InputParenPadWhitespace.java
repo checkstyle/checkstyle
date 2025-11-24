@@ -62,7 +62,10 @@ class InputParenPadWhitespace
     private void fastExit()
     {
         boolean complicatedStuffNeeded = true;
-        if( !complicatedStuffNeeded ) // 2 violations
+        if( !complicatedStuffNeeded )
+            // 2 violations above:
+            //           ''(' is followed by whitespace.'
+            //           '')' is preceded with whitespace.'
         {
             return; // should not complain about missing WS after return
         }
@@ -78,7 +81,10 @@ class InputParenPadWhitespace
     */
     private int nonVoid()
     {
-        if ( true ) // 2 violations
+        if ( true )
+            // 2 violations above:
+            //           ''(' is followed by whitespace.'
+            //           '')' is preceded with whitespace.'
         {
             return(2); // should complain about missing WS after return
         }
@@ -236,7 +242,7 @@ class SpecialCasesInForLoop
         // bug 895072
 	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
 	int i = 0;
-	for ( ; i < 5; i++ ) { // violation
+	for ( ; i < 5; i++ ) { // violation, '')' is preceded with whitespace.'
 	//   ^ whitespace
 	}
         for (int anInt : getSomeInts()) {
@@ -245,7 +251,10 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 ); // 2 violations
+        int i = (int) ( 2 / 3 );
+            // 2 violations above:
+            //           ''(' is followed by whitespace.'
+            //           '')' is preceded with whitespace.'
         return null;
     }
 
@@ -281,7 +290,10 @@ class SpecialCasesInForLoop
 
     public void doSomething(String args[]) {
         register(boolean[].class);
-        register( args ); // 2 violations
+        register( args );
+            // 2 violations above:
+            //           ''(' is followed by whitespace.'
+            //           '')' is preceded with whitespace.'
     }
 
     public void parentheses() {
