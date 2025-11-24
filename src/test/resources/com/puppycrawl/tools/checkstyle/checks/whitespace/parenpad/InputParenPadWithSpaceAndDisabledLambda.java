@@ -27,6 +27,9 @@ class InputParenPadWithSpaceAndDisabledLambda {
         java.util.stream.Stream.of().forEach( o -> o.toString() );
     }
 
-    void someMethod(String param) { // 2 violations
+    void someMethod(String param) {
+        // 2 violations above:
+        //           ''(' is not followed by whitespace.'
+        //           '')' is not preceded with whitespace.'
     }
 }
