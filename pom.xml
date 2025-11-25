@@ -1059,7 +1059,6 @@
                     </limit>
                   </limits>
                 </rule>
-                <!-- Until #17746 -->
                 <rule>
                   <element>CLASS</element>
                   <includes>
@@ -1069,12 +1068,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.85</minimum>
+                      <minimum>0.95</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.80</minimum>
+                      <minimum>1.00</minimum>
                     </limit>
                   </limits>
                 </rule>
