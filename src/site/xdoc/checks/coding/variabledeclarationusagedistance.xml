@@ -44,7 +44,7 @@
               <td><a id="ignoreVariablePattern"/><a href="#ignoreVariablePattern">ignoreVariablePattern</a></td>
               <td>Define RegExp to ignore distance calculation for variables listed in this pattern.</td>
               <td><a href="../../property_types.html#Pattern">Pattern</a></td>
-              <td><code></code></td>
+              <td><code/></td>
               <td>5.8</td>
             </tr>
             <tr>

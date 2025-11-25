@@ -1063,8 +1063,7 @@
   <inspection_tool class="CheckImageSize" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="CheckNodeTest" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="CheckStyle" enabled="true" level="WARNING" enabled_by_default="true"/>
-  <!-- Until #17746 -->
-  <inspection_tool class="CheckTagEmptyBody" enabled="false" level="ERROR"
+  <inspection_tool class="CheckTagEmptyBody" enabled="true" level="ERROR"
                    enabled_by_default="true"/>
   <inspection_tool class="CheckValidXmlInScriptTagBody" enabled="true" level="WARNING"
                    enabled_by_default="true"/>
