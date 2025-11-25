@@ -19,19 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
  * Value object for combining the list of valid validTags with information
  * about invalid validTags encountered in a certain Javadoc comment.
  */
-public final class JavadocTags {
-
-    /** Valid validTags. */
-    private final List<JavadocTag> validTags;
-    /** Invalid validTags. */
-    private final List<InvalidJavadocTag> invalidTags;
+public record JavadocTags(List<JavadocTag> validTags,
+                          List<InvalidJavadocTag> invalidTags) {
 
     /**
      * Creates an instance.
@@ -39,9 +34,9 @@ public final class JavadocTags {
      * @param tags valid tags
      * @param invalidTags invalid tags
      */
-    public JavadocTags(Collection<JavadocTag> tags, Collection<InvalidJavadocTag> invalidTags) {
-        validTags = List.copyOf(tags);
-        this.invalidTags = List.copyOf(invalidTags);
+    public JavadocTags {
+        validTags = List.copyOf(validTags);
+        invalidTags = List.copyOf(invalidTags);
     }
 
     /**
