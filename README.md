@@ -7,7 +7,7 @@
 *Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
 
 [![][appveyor img]][appveyor]
-[![CircleCI Status][circleci img]][circleci]
+[![circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
@@ -15,7 +15,7 @@
 [![][azure img]][azure]
 [![][error prone img]][error prone]
 [![][pitest img]][pitest]
-[![Checker Framework Build][checker framework img]][checker framework]
+[![checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
 [![][release notes/version img]][release notes/version]
 [![][closed issues img]][closed issues]
