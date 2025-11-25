@@ -324,7 +324,6 @@ public final class InlineConfigParser {
      */
     private static final Set<String> SUPPRESSED_MODULES = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck",
-            "com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
