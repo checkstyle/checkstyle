@@ -1116,7 +1116,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
 
     /**
-     * Slash symbol inside a closing tag.
+     * {@code /} Slash symbol inside a closing tag.
+     *
+     * <p>Used to close an HTML element.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * </html>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_TAG_END -> HTML_TAG_END
+     * |--TAG_OPEN -> <
+     * |--TAG_SLASH -> /
+     * |--TAG_NAME -> html
+     * `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
     public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
 
