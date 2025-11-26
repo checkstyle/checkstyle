@@ -1131,7 +1131,39 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_OPEN = JavadocCommentsLexer.TAG_OPEN;
 
     /**
-     * HTML tag name.
+     * {@code TAG_NAME} Name of an HTML element.
+     *
+     * <p>Appears inside an HTML tag within Javadoc comments.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <div class="container">
+     *     Content
+     * </div>
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> div
+     * |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |       |--TAG_ATTR_NAME -> class
+     * |   |       |--EQUALS -> =
+     * |   |       `--ATTRIBUTE_VALUE -> "container"
+     * |   `--TAG_CLOSE -> >
+     * |--HTML_CONTENT -> HTML_CONTENT
+     * |   `--TEXT ->      Content
+     * `--HTML_TAG_END -> HTML_TAG_END
+     *     |--TAG_OPEN -> <
+     *     |--TAG_SLASH -> /
+     *     |--TAG_NAME -> div
+     *     `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * <p>Here {@code TAG_NAME} corresponds to {@code "div"}.</p>
      */
     public static final int TAG_NAME = JavadocCommentsLexer.TAG_NAME;
 
