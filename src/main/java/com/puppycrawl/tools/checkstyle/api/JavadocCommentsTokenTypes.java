@@ -1476,7 +1476,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
 
     /**
-     * Opening part of an HTML comment.
+     * {@code HTML_COMMENT_START} represents the beginning of an HTML comment,
+     * i.e., the {@literal "<!--"} sequence inside a Javadoc comment.
+     *
+     * <p>HTML comments occasionally appear in Javadoc to add internal notes or
+     * explanations without affecting the rendered output.</p>
+     * Example: {@code <!-- Note: This method is for demonstration purposes only. -->}
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_COMMENT -> HTML_COMMENT
+     * |--HTML_COMMENT_START -> <!--
+     * |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     * |   `--TEXT ->  Note: This method is for demonstration purposes only.
+     * `--HTML_COMMENT_END -> -->
+     * }</pre>
+     *
+     * @see #HTML_COMMENT_END
      */
     public static final int HTML_COMMENT_START = JavadocCommentsLexer.HTML_COMMENT_START;
 
