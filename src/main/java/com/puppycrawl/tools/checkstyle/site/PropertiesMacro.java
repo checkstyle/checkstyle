@@ -517,9 +517,14 @@ public class PropertiesMacro extends AbstractMacro {
                 writeTokensList(sink, defaultValuesList, SiteUtil.PATH_TO_TOKEN_TYPES, false);
             }
             else {
-                sink.rawText(CODE_START);
-                sink.text(defaultValue);
-                sink.rawText(CODE_END);
+                if (defaultValue.isEmpty()) {
+                    sink.rawText("<code/>");
+                }
+                else {
+                    sink.rawText(CODE_START);
+                    sink.text(defaultValue);
+                    sink.rawText(CODE_END);
+                }
             }
         }
 

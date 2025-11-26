@@ -48,7 +48,7 @@
               <td><a id="query"/><a href="#query">query</a></td>
               <td>Specify Xpath query.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td><code></code></td>
+              <td><code/></td>
               <td>8.39</td>
             </tr>
           </table>
