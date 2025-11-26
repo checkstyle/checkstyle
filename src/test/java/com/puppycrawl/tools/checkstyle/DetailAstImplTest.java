@@ -681,7 +681,13 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         final File file = new File(temporaryFolder, "InputDetailASTManyComments.java");
 
         try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            bw.write("/*\ncom.puppycrawl.tools.checkstyle.checks.TodoCommentCheck\n\n\n\n*/\n");
+            bw.write("""
+                    /*
+                    com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck
+                    format = (default)TODO\\:
+
+                    */
+                    """);
             bw.write("class C {\n");
             for (int i = 0; i <= 30000; i++) {
                 bw.write("// " + i + "\n");
