@@ -1023,7 +1023,21 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_ATTRIBUTE = JavadocCommentsLexer.HTML_ATTRIBUTE;
 
     /**
-     * List of HTML attributes.
+     * {@code HTML_ATTRIBUTES} List of HTML attributes.
+     *
+     * <p>Represents multiple attributes in an HTML tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * lang="en" custom-attr="value"}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
     public static final int HTML_ATTRIBUTES = JavadocCommentsLexer.HTML_ATTRIBUTES;
 
