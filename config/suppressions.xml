@@ -161,6 +161,11 @@
   <suppress id="lineLengthXml"
             files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
+  <!-- Command examples in cmdline.xml.vm need to be single-line for proper browser/CSS wrapping.
+       Suppressing lineLengthXml for this file to allow long command examples. -->
+  <suppress id="lineLengthXml"
+            files="[\\/]src[\\/]site[\\/]xdoc[\\/]cmdline\.xml\.vm"/>
+
   <!-- The file is generated -->
   <suppress checks="FileTabCharacter"
     files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]filetabcharacter\.xml"/>
