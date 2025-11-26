@@ -1192,7 +1192,20 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_COMMENT_END = JavadocCommentsLexer.HTML_COMMENT_END;
 
     /**
-     * Content inside an HTML comment.
+     * {@code HTML_COMMENT_CONTENT} Content inside an HTML comment.
+     *
+     * <p>Text within an HTML comment.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * This is a comment}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     * |--TEXT -> This is a comment
+     * }</pre>
+     *
+     * @see #HTML_COMMENT
      */
     public static final int HTML_COMMENT_CONTENT = JavadocCommentsLexer.HTML_COMMENT_CONTENT;
 
