@@ -1106,7 +1106,35 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_NAME = JavadocCommentsLexer.TAG_NAME;
 
     /**
-     * Closing tag delimiter {@code > }.
+     * {@code TAG_CLOSE} represents the closing {@code >} symbol of an HTML start tag.
+     *
+     * <b>Example:</b>
+     * <pre>{@code
+     * /**
+     *  * Example using an HTML tag with attributes.
+     *  * <html lang="en" custom-attr="value">
+     *  *\/
+     * public class Example { }
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_TAG_START -> HTML_TAG_START
+     * |--TAG_OPEN -> <
+     * |--TAG_NAME -> html
+     * |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |   |--TAG_ATTR_NAME -> lang
+     * |   |   |--EQUALS -> =
+     * |   |   `--ATTRIBUTE_VALUE -> "en"
+     * |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |       |--TAG_ATTR_NAME -> custom-attr
+     * |       |--EQUALS -> =
+     * |       `--ATTRIBUTE_VALUE -> "value"
+     * `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_TAG_START
      */
     public static final int TAG_CLOSE = JavadocCommentsLexer.TAG_CLOSE;
 
