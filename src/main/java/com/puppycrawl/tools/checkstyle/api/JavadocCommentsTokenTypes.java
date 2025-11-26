@@ -908,7 +908,37 @@ public final class JavadocCommentsTokenTypes {
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
     /**
-     * List of parameter types in a reference.
+     * {@code PARAMETER_TYPE_LIST} represents the list of parameter types inside a
+     * member reference within a Javadoc inline {@code @link} tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link Math#max(int, int)}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {\@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> Math
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> max
+     *     |       |--LPAREN -> (
+     *     |       |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *     |       |   |--PARAMETER_TYPE -> int
+     *     |       |   |--COMMA -> ,
+     *     |       |   |--TEXT ->
+     *     |       |   `--PARAMETER_TYPE -> int
+     *     |       `--RPAREN -> )
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
