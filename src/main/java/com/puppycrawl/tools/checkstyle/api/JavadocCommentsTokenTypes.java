@@ -879,7 +879,19 @@ public final class JavadocCommentsTokenTypes {
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
 
     /**
-     * Type name reference.
+     * {@code TYPE_NAME} Type name reference.
+     *
+     * <p>Name of a type in Javadoc references.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link java.util.List}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * TYPE_NAME -> List
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
