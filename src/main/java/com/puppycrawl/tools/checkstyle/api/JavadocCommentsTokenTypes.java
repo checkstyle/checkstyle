@@ -1111,7 +1111,22 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_CLOSE = JavadocCommentsLexer.TAG_CLOSE;
 
     /**
-     * Self-closing tag delimiter {@code /> }.
+     * {@code />} Self-closing tag delimiter.
+     *
+     * <p>Used for void HTML elements.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <br />}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * VOID_ELEMENT -> VOID_ELEMENT
+     * |--TAG_OPEN -> <
+     * |--TAG_NAME -> br
+     * `--TAG_SLASH_CLOSE -> />
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
 
