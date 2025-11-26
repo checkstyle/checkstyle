@@ -102,6 +102,16 @@ h1:hover:has(> a > img:first-child) .anchor {
   word-wrap: break-word !important;
 }
 
+.wrap-content .prettyprint code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-wrap: wrap;
+}
+
+pre.block-command {
+  white-space: normal !important;
+}
+
 section {
   position: relative;
 }
