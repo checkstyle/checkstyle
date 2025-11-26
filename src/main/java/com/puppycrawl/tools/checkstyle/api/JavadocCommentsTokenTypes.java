@@ -1018,7 +1018,24 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_CONTENT = JavadocCommentsLexer.HTML_CONTENT;
 
     /**
-     * Single HTML attribute.
+     * {@code HTML_ATTRIBUTE} Single HTML attribute.
+     *
+     * <p>Represents one attribute inside an HTML tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <input type="text">
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |--TAG_ATTR_NAME -> type
+     * |--EQUALS -> =
+     * `--ATTRIBUTE_VALUE -> "text"
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTES
      */
     public static final int HTML_ATTRIBUTE = JavadocCommentsLexer.HTML_ATTRIBUTE;
 
