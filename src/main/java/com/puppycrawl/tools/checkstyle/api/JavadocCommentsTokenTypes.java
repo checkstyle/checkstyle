@@ -1096,22 +1096,21 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_TAG_END = JavadocCommentsLexer.HTML_TAG_END;
 
     /**
-     * {@code <} Opening tag delimiter.
-     *
-     * <p>Part of an HTML start tag.</p>
+     * {@code TAG_OPEN} represents the {@literal "<"} symbol that begins an HTML tag
+     * inside a Javadoc comment.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * <html>}</pre>
-     *
-     * <b>Tree:</b>
      * <pre>{@code
-     * HTML_TAG_START -> HTML_TAG_START
-     * |--TAG_OPEN -> <
-     * |--TAG_NAME -> html
-     * `--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * <div class="container" lang="en"></div>
      * }</pre>
      *
-     * @see #HTML_ELEMENT
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_TAG_START -> HTML_TAG_START
+     *     |--TAG_OPEN -> <
+     * }</pre>
+     *
+     * @see #HTML_TAG_START
      */
     public static final int TAG_OPEN = JavadocCommentsLexer.TAG_OPEN;
 
