@@ -145,6 +145,11 @@
   <suppress id="lineLength"
             files="[\\/]src[\\/]site[\\/]xdoc[\\/](checks|(file)?filters)[\\/](?!.*index\.xml)(?!.*\.xml\.template).+\.xml"/>
 
+  <!-- Command examples in cmdline.xml.vm need to be single-line for proper browser/CSS wrapping.
+       Suppressing lineLength for this file to allow long command examples. -->
+  <suppress id="lineLength"
+            files="[\\/]src[\\/]site[\\/]xdoc[\\/]cmdline\.xml\.vm"/>
+
   <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
   <suppress id="numberOfTestCasesInXpath"
          files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
