@@ -864,7 +864,20 @@ public final class JavadocCommentsTokenTypes {
     public static final int EXTENDS = JavadocCommentsLexer.EXTENDS;
 
     /**
-     * Keyword {@code super} in type parameters.
+     * {@code SUPER} Keyword {@code super} in type parameters.
+     *
+     * <p>Represents the {@code super} keyword in generics.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code List<? super Number>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * PARAMETER_TYPE -> PARAMETER_TYPE
+     * |--SUPER -> super
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int SUPER = JavadocCommentsLexer.SUPER;
 
