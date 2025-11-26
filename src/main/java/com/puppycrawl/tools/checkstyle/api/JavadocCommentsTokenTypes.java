@@ -1101,9 +1101,20 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_OPEN = JavadocCommentsLexer.TAG_OPEN;
 
     /**
-     * HTML tag name.
+     * Name of an HTML element.
+     *
+     * <b>Example:</b>
+     * <pre>{@code
+     * <div class="container">
+     *     Content
+     * </div>
+     * }</pre>
+     *
+     * Here {@code TAG_NAME} corresponds to {@code "div"} in
+     * the start tag {@code &lt;div class="container"&gt;}.
      */
     public static final int TAG_NAME = JavadocCommentsLexer.TAG_NAME;
+
 
     /**
      * Closing tag delimiter {@code > }.
