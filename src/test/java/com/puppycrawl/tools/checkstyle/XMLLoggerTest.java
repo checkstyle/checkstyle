@@ -126,6 +126,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         outStream.close();
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndXmlLogger because this test
+     * relies on a custom OutputStream to assert close() call behavior.
+     */
     @Test
     public void testCloseStream()
             throws Exception {
@@ -259,6 +263,11 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             .isEqualTo(1);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndXmlLogger because this test
+     * requires an AuditEvent with a null file name and a custom OutputStream
+     * to verify close() behavior.
+     */
     @Test
     public void testAddExceptionWithNullFileName()
             throws Exception {
