@@ -1120,8 +1120,29 @@ public final class JavadocCommentsTokenTypes {
      */
     public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
 
+
     /**
-     * Attribute name inside an HTML tag.
+     * {@code attributeName} Javadoc HTML tag attribute name.
+     *
+     * <p>Represents the name of an attribute inside an HTML element.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * <input type="text" disabled readonly>}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * HTML_TAG_START -> HTML_TAG_START
+     * |--TAG_OPEN -> <
+     * |--TAG_NAME -> input
+     * |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |       |--TAG_ATTR_NAME -> type
+     * |       |--EQUALS -> =
+     * |       `--ATTRIBUTE_VALUE -> "text"
+     * `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTES
      */
     public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
 
