@@ -48,7 +48,7 @@ public record JavadocTags(List<JavadocTag> validTags,
      *  @return validTags field
      */
     public List<JavadocTag> getValidTags() {
-        return validTags;
+        return List.copyOf(validTags);
     }
 
     /**
@@ -57,7 +57,7 @@ public record JavadocTags(List<JavadocTag> validTags,
      *  @return invalidTags field
      */
     public List<InvalidJavadocTag> getInvalidTags() {
-        return invalidTags;
+        return List.copyOf(invalidTags);
     }
 
 }
