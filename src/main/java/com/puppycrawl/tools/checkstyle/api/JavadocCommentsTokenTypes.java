@@ -869,7 +869,20 @@ public final class JavadocCommentsTokenTypes {
     public static final int SUPER = JavadocCommentsLexer.SUPER;
 
     /**
-     * Parameter type reference.
+     * {@code PARAMETER_TYPE} Parameter type reference.
+     *
+     * <p>Represents a type used in a method parameter.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * T value}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * PARAMETER_TYPE -> PARAMETER_TYPE
+     * |--TYPE_NAME -> T
+     * }</pre>
+     *
+     * @see #TYPE_NAME
      */
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
