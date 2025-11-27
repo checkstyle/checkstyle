@@ -874,7 +874,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
     /**
-     * General reference within Javadoc.
+     * {@code REFERENCE} General reference within Javadoc.
+     *
+     * <p>Represents the target of an inline reference tag such as
+     * {@code {@link String#length()}}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * {@link String#length()}
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     * |   |--JAVADOC_INLINE_TAG_START -> &#123;@
+     * |   |--TAG_NAME -> link
+     * |   `--REFERENCE -> String#length()
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
 
