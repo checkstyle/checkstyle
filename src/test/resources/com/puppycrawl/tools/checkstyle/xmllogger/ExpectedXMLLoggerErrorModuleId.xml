@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
 <file name="InputXMLLoggerErrorModuleId.java">
-<error line="11" column="17" severity="error"
+<error line="17" column="17" severity="error"
 message="Name 'Method' must match pattern '^[a-z][a-zA-Z0-9]*$'."
 source="com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck#&lt;i&gt;&lt;/i&gt;--&gt;"/>
 </file>

@@ -43,7 +43,7 @@
               <td><a id="message"/><a href="#message">message</a></td>
               <td>Define the message which is used to notify about violations; if empty then the default message is used.</td>
               <td><a href="../../property_types.html#String">String</a></td>
-              <td><code></code></td>
+              <td><code/></td>
               <td>3.2</td>
             </tr>
             <tr>

@@ -238,3 +238,11 @@ find the tests
 [here](https://github.com/checkstyle/checkstyle/blob/master/.ci/check-performance-regression.sh) and
 the CI job
 [here](https://github.com/checkstyle/checkstyle/blob/master/.github/workflows/check-performance-regression.yml).
+
+### ANTLR Regression Report
+
+Whenever making changes to the grammar, you must also generate an ANTLR Regression Report using the
+tool described [here](https://github.com/checkstyle/contribution/tree/master/checkstyle-tester#antlr-regression-report).
+This report compares the behavior of the updated grammar against the current baseline (the `master`
+branch) and helps us detect unintended parsing regressions. Please include the generated report in
+your pull request description for review.
