@@ -14,8 +14,8 @@
           considered redundant if:
         </div>
         <ul>
-        <li>It is a duplicate of another import. This is, when a class is imported
-          more than once.</li>
+        <li>It is a duplicate of another import. This is, when a class or a module
+          is imported more than once.</li>
         <li>The class non-statically imported is from the <code>java.lang</code>
           package, e.g. importing <code>java.lang.String</code>.</li>
         <li>The class non-statically imported is from the same package as the
@@ -48,6 +48,17 @@ import java.util.Scanner;
 import java.util.Scanner; // violation 'Duplicate import to line 18 - java.util.Scanner'
 
 public class Example1{ }
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import module java.base;
+import module java.logging;
+import module java.base; // violation 'Duplicate import to line 14 - java.base'
+
+public class Example2{ }
 </code></pre></div>
       </subsection>
 

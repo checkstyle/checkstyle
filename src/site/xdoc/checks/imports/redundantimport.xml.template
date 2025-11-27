@@ -32,6 +32,15 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/redundantimport/Example1.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/redundantimport/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
