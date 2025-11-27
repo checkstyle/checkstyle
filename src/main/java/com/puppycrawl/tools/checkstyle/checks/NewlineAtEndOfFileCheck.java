@@ -75,7 +75,9 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Notes:
  * This will check against the platform-specific default line separator.
  * </p>
- *
+ * <p>This check verifies only the presence of a single line separator at the end of the file.
+ * It does not report violations for multiple trailing blank lines or additional newline characters beyond the final separator.
+ * </p>
  * <p>
  * It is also possible to enforce the use of a specific line-separator across
  * platforms, with the {@code lineSeparator} property.
