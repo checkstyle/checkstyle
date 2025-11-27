@@ -1136,7 +1136,36 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_SLASH = JavadocCommentsLexer.TAG_SLASH;
 
     /**
-     * Attribute name inside an HTML tag.
+     * {@code TAG_ATTR_NAME} represents the name of an attribute inside an
+     * HTML element within a Javadoc comment.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <img src="logo.png" alt="Site logo">
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * `--VOID_ELEMENT -> VOID_ELEMENT
+     *     `--HTML_TAG_START -> HTML_TAG_START
+     *         |--TAG_OPEN -> <
+     *         |--TAG_NAME -> img
+     *         |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     *         |   |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     *         |   |   |--TEXT ->
+     *         |   |   |--TAG_ATTR_NAME -> src
+     *         |   |   |--EQUALS -> =
+     *         |   |   `--ATTRIBUTE_VALUE -> "logo.png"
+     *         |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     *         |       |--TEXT ->
+     *         |       |--TAG_ATTR_NAME -> alt
+     *         |       |--EQUALS -> =
+     *         |       `--ATTRIBUTE_VALUE -> "Site logo"
+     *         `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTES
      */
     public static final int TAG_ATTR_NAME = JavadocCommentsLexer.TAG_ATTR_NAME;
 
