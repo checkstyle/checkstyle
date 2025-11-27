@@ -1,7 +1,7 @@
 /*
 UnusedImports
 processJavadoc = (default)true
-
+violateExecutionOnNonTightHtml = (default)false
 
 */
 
@@ -28,10 +28,11 @@ import static java.util.Arrays.sort; // violation 'Unused import - java.util.Arr
 import static java.util.List.of; // violation 'Unused import - java.util.List.of.'
 import static java.util.Collections.emptyMap; // violation 'Unused import - java.util.Collections.emptyMap.'
 
-/**
- * This {@link Collections::emptyMap} is NOT a valid link,
- * and this check does not count this as a usage.
- */
+
+
+
+
+
 public class InputUnusedImportsFromStaticMethodRef {
     public static <T, R> Function<T, R> func(Function<T, R> f) { return f; }
 

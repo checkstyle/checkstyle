@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import javax.annotation.Nullable;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import org.antlr.v4.runtime.Token;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
@@ -218,6 +221,19 @@ public class JavadocNodeImpl implements DetailNode {
     @Override
     public String toString() {
         return text + "[" + getLineNumber() + "x" + getColumnNumber() + "]";
+    }
+
+    @Nullable
+    @Override
+    public DetailNode findFirstToken(int tokenType) {
+        DetailNode returnValue = null;
+        for (DetailNode ast = firstChild; ast != null; ast = ast.getNextSibling()) {
+            if (ast.getType() == tokenType) {
+                returnValue = ast;
+                break;
+            }
+        }
+        return returnValue;
     }
 
 }
