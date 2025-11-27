@@ -1978,6 +1978,34 @@ public class MainTest {
                 .isInstanceOf(DefaultLogger.class);
     }
 
+    @Test
+    public void testExcludeOptionDirectoryWithPlusInName(@SysErr Capturable systemErr,
+                                                         @SysOut Capturable systemOut)
+            throws IOException {
+
+        final File specialDir = new File(temporaryFolder, "dir+name");
+        assertWithMessage("Directory must be created")
+                .that(specialDir.mkdirs())
+                .isTrue();
+
+        final File inputFile = new File(specialDir, "InputMainExclude.java");
+        Files.writeString(inputFile.toPath(),
+                "public class InputMainExclude { }" + System.lineSeparator());
+
+        final String dirPath = specialDir.getCanonicalPath();
+
+        assertMainReturnCode(-1, "-c", "/google_checks.xml", dirPath,
+                "-e", dirPath);
+
+        assertWithMessage("Unexpected output log")
+                .that(systemOut.getCapturedData())
+                .isEqualTo("Files to process must be specified, found 0."
+                        + System.lineSeparator());
+        assertWithMessage("Unexpected system error log")
+                .that(systemErr.getCapturedData())
+                .isEqualTo("");
+    }
+
     /**
      * Helper method to run {@link Main#main(String...)} and verify the exit code.
      * Uses {@link Mockito#mockStatic(Class)} to mock method {@link Runtime#exit(int)}
