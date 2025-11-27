@@ -44,4 +44,13 @@ public class RedundantImportCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(MSG_DUPLICATE, 14, "java.base"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example2.java"), expected);
+    }
 }

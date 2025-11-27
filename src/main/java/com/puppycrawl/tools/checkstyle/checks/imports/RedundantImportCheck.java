@@ -34,8 +34,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * considered redundant if:
  * </div>
  * <ul>
- *   <li>It is a duplicate of another import. This is, when a class is imported
- *   more than once.</li>
+ *   <li>It is a duplicate of another import. This is, when a class or a module
+ *   is imported more than once.</li>
  *   <li>The class non-statically imported is from the {@code java.lang}
  *   package, e.g. importing {@code java.lang.String}.</li>
  *   <li>The class non-statically imported is from the same package as the
@@ -68,8 +68,8 @@ public class RedundantImportCheck
 
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
-    /** Set of static imports. */
-    private final Set<FullIdent> staticImports = new HashSet<>();
+    /** Set of static and module imports. */
+    private final Set<FullIdent> staticAndModuleImports = new HashSet<>();
 
     /** Name of package in file. */
     private String pkgName;
@@ -78,7 +78,7 @@ public class RedundantImportCheck
     public void beginTree(DetailAST aRootAST) {
         pkgName = null;
         imports.clear();
-        staticImports.clear();
+        staticAndModuleImports.clear();
     }
 
     @Override
@@ -94,7 +94,10 @@ public class RedundantImportCheck
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
-            TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT, TokenTypes.PACKAGE_DEF,
+            TokenTypes.IMPORT,
+            TokenTypes.STATIC_IMPORT,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.MODULE_IMPORT,
         };
     }
 
@@ -122,14 +125,19 @@ public class RedundantImportCheck
             imports.add(imp);
         }
         else {
-            // Check for a duplicate static import
-            final FullIdent imp =
-                FullIdent.createFullIdent(
-                    ast.getLastChild().getPreviousSibling());
-            staticImports.stream().filter(full -> imp.getText().equals(full.getText()))
-                .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), imp.getText()));
+            // Check for a duplicate static or module import
+            final DetailAST identNode = ast.getLastChild().getPreviousSibling();
+            final FullIdent importFullIdent = FullIdent.createFullIdent(identNode);
+            final String importText = importFullIdent.getText();
 
-            staticImports.add(imp);
+            staticAndModuleImports
+                    .stream()
+                    .filter(existingImport -> importText.equals(existingImport.getText()))
+                    .forEach(existingImport -> {
+                        log(ast, MSG_DUPLICATE, existingImport.getLineNo(), importText);
+                    });
+
+            staticAndModuleImports.add(importFullIdent);
         }
     }
 

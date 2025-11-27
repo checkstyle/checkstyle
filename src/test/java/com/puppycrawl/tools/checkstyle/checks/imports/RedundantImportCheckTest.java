@@ -51,6 +51,7 @@ public class RedundantImportCheckTest
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.MODULE_IMPORT,
         };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredTokens())
@@ -114,6 +115,7 @@ public class RedundantImportCheckTest
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.MODULE_IMPORT,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -134,5 +136,25 @@ public class RedundantImportCheckTest
             "10:1: " + getCheckMessage(MSG_LANG, "java.lang.String")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
+    }
+
+    @Test
+    public void testModuleImportBuiltInModules() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DUPLICATE, 10, "java.base"),
+            "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.logging"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantImportBuiltInModules.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportCustomModules() throws Exception {
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_DUPLICATE, 10, "moduleA"),
+            "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "moduleB"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRedundantImportCustomModules.java"), expected);
     }
 }
