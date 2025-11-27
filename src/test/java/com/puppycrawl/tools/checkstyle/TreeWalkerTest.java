@@ -58,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
@@ -596,6 +597,120 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCommentCheckIsRegisteredWithinCommentCollection() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setModuleFactory(
+                new PackageObjectFactory(new HashSet<>(), Thread.currentThread()
+                        .getContextClassLoader()));
+        treeWalker.configure(new DefaultConfiguration("default config"));
+
+        final DefaultConfiguration commentCheckConfig =
+                createModuleConfig(TrackingCommentCheck.class);
+        commentCheckConfig.addProperty("tokens", "CLASS_DEF");
+        treeWalker.setupChild(commentCheckConfig);
+
+        final Collection<AbstractCheck> commentCollection = TestUtil.getInternalState(
+                treeWalker, "commentChecks", Collection.class);
+        final Collection<AbstractCheck> ordinaryCollection = TestUtil.getInternalState(
+                treeWalker, "ordinaryChecks", Collection.class);
+        final Map<Integer, Set<AbstractCheck>> tokenToCommentChecks = TestUtil.getInternalState(
+                treeWalker, "tokenToCommentChecks", Map.class);
+        final Map<Integer, Set<AbstractCheck>> tokenToOrdinaryChecks = TestUtil.getInternalState(
+                treeWalker, "tokenToOrdinaryChecks", Map.class);
+
+        assertWithMessage("Comment check should reside in comment collection")
+                .that(commentCollection)
+                .containsExactly(TrackingCommentCheck.getLastInstance());
+
+        assertWithMessage("Comment check must not reside in ordinary collection")
+                .that(ordinaryCollection)
+                .doesNotContain(TrackingCommentCheck.getLastInstance());
+
+        assertWithMessage("Token map should register CLASS_DEF for comment check")
+                .that(tokenToCommentChecks.get(TokenTypes.CLASS_DEF))
+                .containsExactly(TrackingCommentCheck.getLastInstance());
+
+        assertWithMessage("Ordinary token map should remain empty for comment checks")
+                .that(tokenToOrdinaryChecks.get(TokenTypes.CLASS_DEF))
+                .isNull();
+    }
+
+    @Test
+    public void testOrdinaryCheckIsRegisteredWithinOrdinaryCollection() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setModuleFactory(
+                new PackageObjectFactory(new HashSet<>(), Thread.currentThread()
+                        .getContextClassLoader()));
+        treeWalker.configure(new DefaultConfiguration("default config"));
+
+        final DefaultConfiguration ordinaryCheckConfig =
+                createModuleConfig(TrackingOrdinaryCheck.class);
+        ordinaryCheckConfig.addProperty("tokens", "CLASS_DEF");
+        treeWalker.setupChild(ordinaryCheckConfig);
+
+        final Collection<AbstractCheck> commentCollection = TestUtil.getInternalState(
+                treeWalker, "commentChecks", Collection.class);
+        final Collection<AbstractCheck> ordinaryCollection = TestUtil.getInternalState(
+                treeWalker, "ordinaryChecks", Collection.class);
+        final Map<Integer, Set<AbstractCheck>> tokenToCommentChecks = TestUtil.getInternalState(
+                treeWalker, "tokenToCommentChecks", Map.class);
+        final Map<Integer, Set<AbstractCheck>> tokenToOrdinaryChecks = TestUtil.getInternalState(
+                treeWalker, "tokenToOrdinaryChecks", Map.class);
+
+        assertWithMessage("Ordinary check should reside in ordinary collection")
+                .that(ordinaryCollection)
+                .containsExactly(TrackingOrdinaryCheck.getLastInstance());
+
+        assertWithMessage("Ordinary check must not reside in comment collection")
+                .that(commentCollection)
+                .doesNotContain(TrackingOrdinaryCheck.getLastInstance());
+
+        assertWithMessage("Token map should register CLASS_DEF for ordinary check")
+                .that(tokenToOrdinaryChecks.get(TokenTypes.CLASS_DEF))
+                .containsExactly(TrackingOrdinaryCheck.getLastInstance());
+
+        assertWithMessage("Comment token map should remain empty for ordinary checks")
+                .that(tokenToCommentChecks.get(TokenTypes.CLASS_DEF))
+                .isNull();
+    }
+
+    @Test
+    public void testMisconfiguredCommentTokenCheckRequiresCommentNodes() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        treeWalker.setModuleFactory(
+                new PackageObjectFactory(new HashSet<>(), Thread.currentThread()
+                        .getContextClassLoader()));
+        treeWalker.configure(new DefaultConfiguration("default config"));
+
+        final DefaultConfiguration misconfiguredCheckConfig =
+                createModuleConfig(CommentTokenWithoutFlagCheck.class);
+        misconfiguredCheckConfig.addProperty("tokens", "SINGLE_LINE_COMMENT");
+
+        final CheckstyleException exception = TestUtil.getExpectedThrowable(
+                CheckstyleException.class,
+                () -> treeWalker.setupChild(misconfiguredCheckConfig),
+                "Exception should be thrown for comment token without flag");
+
+        assertWithMessage("Exception message should mention comment nodes requirement")
+                .that(exception.getMessage())
+                .contains("should override 'isCommentNodesRequired()' method to return 'true'");
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverityDefaultAndSetter() {
+        final TreeWalker treeWalker = new TreeWalker();
+        assertWithMessage("Default severity should be ERROR")
+                .that(treeWalker.getJavaParseExceptionSeverity())
+                .isEqualTo(SeverityLevel.ERROR);
+
+        treeWalker.setJavaParseExceptionSeverity(SeverityLevel.IGNORE);
+
+        assertWithMessage("Severity setter should update value")
+                .that(treeWalker.getJavaParseExceptionSeverity())
+                .isEqualTo(SeverityLevel.IGNORE);
+    }
+
+    @Test
     public void testCacheWhenFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
         filterConfig.addProperty("file", getPath("InputTreeWalkerSuppressionXpathFilter.xml"));
@@ -893,6 +1008,90 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         @Override
         public boolean isCommentNodesRequired() {
             return true;
+        }
+
+    }
+
+    public static class TrackingCommentCheck extends AbstractCheck {
+
+        private static final int[] TOKENS = {TokenTypes.CLASS_DEF};
+        private static TrackingCommentCheck lastInstance;
+
+        TrackingCommentCheck() {
+            lastInstance = this;
+        }
+
+        static TrackingCommentCheck getLastInstance() {
+            return lastInstance;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public boolean isCommentNodesRequired() {
+            return true;
+        }
+
+    }
+    public static class TrackingOrdinaryCheck extends AbstractCheck {
+
+        private static final int[] TOKENS = {TokenTypes.CLASS_DEF};
+        private static TrackingOrdinaryCheck lastInstance;
+
+        TrackingOrdinaryCheck() {
+            lastInstance = this;
+        }
+
+        static TrackingOrdinaryCheck getLastInstance() {
+            return lastInstance;
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return TOKENS;
+        }
+
+    }
+    public static class CommentTokenWithoutFlagCheck extends AbstractCheck {
+
+        private static final int[] TOKENS = {TokenTypes.SINGLE_LINE_COMMENT};
+
+        @Override
+        public int[] getDefaultTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return TOKENS;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return TOKENS;
         }
 
     }

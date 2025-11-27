@@ -90,6 +90,15 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     private SeverityLevel javaParseExceptionSeverity = SeverityLevel.ERROR;
 
     /**
+     * Provides the severity level used for Java parsing exceptions.
+     *
+     * @return severity level that will be used when logging skipped files
+     */
+    SeverityLevel getJavaParseExceptionSeverity() {
+        return javaParseExceptionSeverity;
+    }
+
+    /**
      * Creates a new {@code TreeWalker} instance.
      */
     public TreeWalker() {
@@ -269,7 +278,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             for (String token : checkTokens) {
                 final int tokenId = TokenUtil.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
-                    registerCheck(tokenId, check);
+                    registerCheck(tokenId, check.isCommentNodesRequired(), check);
                 }
                 else {
                     final String message = String.format(Locale.ROOT, "Token \"%s\" was "
@@ -280,8 +289,18 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
         }
         for (int element : tokens) {
-            registerCheck(element, check);
+            registerCheck(element, check.isCommentNodesRequired(), check);
         }
+        registerTopLevelCheck(check);
+    }
+
+    /**
+     * Registers {@code check} within either ordinary or comment collections based on its
+     * {@link AbstractCheck#isCommentNodesRequired()} preference.
+     *
+     * @param check the check to register
+     */
+    private void registerTopLevelCheck(AbstractCheck check) {
         if (check.isCommentNodesRequired()) {
             commentChecks.add(check);
         }
@@ -294,11 +313,13 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * Register a check for a specified token id.
      *
      * @param tokenId the id of the token
+     * @param commentRequired whether the check requires comment nodes
      * @param check the check to register
      * @throws CheckstyleException if Check is misconfigured
      */
-    private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
-        if (check.isCommentNodesRequired()) {
+    private void registerCheck(int tokenId, boolean commentRequired, AbstractCheck check)
+            throws CheckstyleException {
+        if (commentRequired) {
             tokenToCommentChecks.computeIfAbsent(tokenId, empty -> createNewCheckSortedSet())
                     .add(check);
         }
