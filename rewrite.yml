@@ -1,13 +1,13 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.openrewrite.SanityCheck
-displayName: Apply all best practices
-description: Comprehensive code quality recipe combining modernization, security, and best practices.
+name: org.checkstyle.AllAutoFixes
+displayName: Auto Fixes
+description: List of auto fixes from different providers.
 recipeList:
-#  - org.checkstyle.autofix.CheckstyleAutoFix:
-#      violationReportPath: "target/cs_errors.xml"
-#      configurationPath: "config/checkstyle-checks.xml"
-#      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+  - org.checkstyle.autofix.CheckstyleAutoFix:
+      violationReportPath: "target/cs_errors.xml"
+      configurationPath: "config/checkstyle-checks.xml"
+      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.codemods.ESLint
   - org.openrewrite.codemods.UI5

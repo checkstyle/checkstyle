@@ -6,10 +6,10 @@ TocTypeEnum = {
 function CreateTOC(tocElement) {
 
   // Find the toc element DIV. We'll place our TOC there.
-  let toc = document.getElementById(tocElement);
+  var toc = document.getElementById(tocElement);
 
-  let tocTypeClass = toc.className;
-  let tocType;
+  var tocTypeClass = toc.className;
+  var tocType;
 
   switch (tocTypeClass) {
       case 'horizontal_toc':
@@ -25,7 +25,7 @@ function CreateTOC(tocElement) {
 
   // If toc_levels is defined, set headingLevels to it.
   // Otherwise, use default value of "h2,h3"
-  let headingLevels;
+  var headingLevels;
   if (typeof toc_levels === 'undefined') {
     headingLevels = 'h2,h3';
   } else {
@@ -33,37 +33,37 @@ function CreateTOC(tocElement) {
   }
 
   // Collect all section heading elements in an array
-  let headings = document.querySelectorAll(headingLevels);
+  var headings = document.querySelectorAll(headingLevels);
 
   // Add TOC title elements
-  let tocHeadingDiv = document.createElement('div');
+  var tocHeadingDiv = document.createElement('div');
   toc.appendChild(tocHeadingDiv);
   tocHeadingDiv.className = 'toc_title';
-  let tocHeading = document.createElement('h3');
+  var tocHeading = document.createElement('h3');
   toc.appendChild(tocHeading);
   tocHeading.className = 'ignoreLink';
   tocHeading.id = 'toc';
-  let tocText = document.createTextNode('Table of Contents');
+  var tocText = document.createTextNode('Table of Contents');
   tocHeading.appendChild(tocText);
 
   // Add table and tbody
-  let tocTable = document.createElement('table');
+  var tocTable = document.createElement('table');
   if (tocType == TocTypeEnum.VERTICAL) {
     tocTable.className = 'columns';
   }
   toc.appendChild(tocTable);
 
-  let tbody_element = document.createElement('tbody');
+  var tbody_element = document.createElement('tbody');
   tbody_element.setAttribute('valign', 'top');
   tbody_element.className = 'toc';
   tocTable.appendChild(tbody_element);
 
   // Get the highest level heading
-  let firstHeading = headings[0];
-  let masterLevel = parseInt(headingLevels.charAt(1));
+  var firstHeading = headings[0];
+  var masterLevel = parseInt(headingLevels.charAt(1));
 
   // Get the lowest heading level
-  let lowestLevel = parseInt(headingLevels.charAt(headingLevels - 1));
+  var lowestLevel = parseInt(headingLevels.charAt(headingLevels - 1));
 
   switch (tocType) {
     case TocTypeEnum.HORIZONTAL:
@@ -80,15 +80,15 @@ function CreateHorizontalTOC(
              headings, masterLevel, lowestLevel, tbody_element) {
 
   // Initialize the header counter
-  let h = 0;
-  let ignoreChildren = false;
+  var h = 0;
+  var ignoreChildren = false;
 
   while (h < headings.length) {
     // Get current heading
-    let heading = headings[h];
+    var heading = headings[h];
 
     // Get the current heading level
-    let level = parseInt(heading.tagName.charAt(1));
+    var level = parseInt(heading.tagName.charAt(1));
 
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
@@ -115,25 +115,25 @@ function CreateHorizontalTOC(
 function AddTOCMaster(tocTable, heading) {
 
   // Add the table row scaffolding
-  let toc_tr = document.createElement('tr');
+  var toc_tr = document.createElement('tr');
   tocTable.appendChild(toc_tr);
   toc_tr.setAttribute('valign', 'top');
-  let toc_tr_td = document.createElement('td');
+  var toc_tr_td = document.createElement('td');
   toc_tr.appendChild(toc_tr_td);
-  let toc_category = document.createElement('div');
+  var toc_category = document.createElement('div');
   toc_tr_td.appendChild(toc_category);
   toc_category.className = 'toc_category';
 
   // Create the link to this header
-  let link = document.createElement('a');
+  var link = document.createElement('a');
   link.href = '#' + heading.id;       // Create the anchor link
   link.textContent = heading.textContent; // Link text is same as heading
   toc_category.appendChild(link);
 
   // Add the container table cell for its children
-  let toc_td = document.createElement('td');
+  var toc_td = document.createElement('td');
   toc_tr.appendChild(toc_td);
-  let toc_td_div = document.createElement('div');
+  var toc_td_div = document.createElement('div');
   toc_td_div.className = 'toc_stylepoint';
   toc_td.appendChild(toc_td_div);
 
@@ -147,12 +147,12 @@ function AddTOCElements(toc_div, heading) {
     // The element is currently hidden, so don't create a TOC entry
   } else {
     // Create the list item element
-    let toc_list_element = document.createElement('li');
+    var toc_list_element = document.createElement('li');
     toc_list_element.className = 'toc_entry';
     toc_div.appendChild(toc_list_element);
 
     // Create the link to this header
-    let link = document.createElement('a');
+    var link = document.createElement('a');
     link.href = '#' + heading.id;       // Create the anchor link
     link.textContent = heading.textContent; // Link text is same as heading
     toc_list_element.appendChild(link);
@@ -162,24 +162,24 @@ function AddTOCElements(toc_div, heading) {
 function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
 
   // Create the Column scaffolding
-  let toc_tr = document.createElement('tr');
+  var toc_tr = document.createElement('tr');
   tbody_element.appendChild(toc_tr);
-  let toc_tr_td = document.createElement('td');
+  var toc_tr_td = document.createElement('td');
   toc_tr_td.className = 'two_columns';
   toc_tr.appendChild(toc_tr_td);
 
 
   // Initialize the header counter and the current row
-  let h = 0;
-  let toc_current_col = null;
-  let ignoreChildren = false;
+  var h = 0;
+  var toc_current_col = null;
+  var ignoreChildren = false;
 
   while (h < headings.length) {
     // Get current heading
-    let heading = headings[h];
+    var heading = headings[h];
 
     // Get the current heading level
-    let level = parseInt(heading.tagName.charAt(1));
+    var level = parseInt(heading.tagName.charAt(1));
 
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
@@ -188,14 +188,14 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {
-        let td_dl = document.createElement('dl');
+        var td_dl = document.createElement('dl');
         toc_tr_td.appendChild(td_dl);
-        let td_dt = document.createElement('dt');
+        var td_dt = document.createElement('dt');
         td_dl.appendChild(td_dt);
         toc_current_col = td_dl;
 
         // Create the link to this header
-        let link = document.createElement('a');
+        var link = document.createElement('a');
         link.href = '#' + heading.id;       // Create the anchor link
         link.textContent = heading.textContent; // Link text is same as heading
         td_dt.appendChild(link);
@@ -213,10 +213,10 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {
-        let td_dd = document.createElement('dd');
+        var td_dd = document.createElement('dd');
         toc_current_col.appendChild(td_dd);
         // Create the link to this header
-        let link = document.createElement('a');
+        var link = document.createElement('a');
         link.href = '#' + heading.id;       // Create the anchor link
         link.textContent = heading.textContent; // Link text is same as heading
         td_dd.appendChild(link);
@@ -243,7 +243,7 @@ function hasClass(element, cls) {
 
 // Add the link image to the element.
 function LinkifyHeader(header, fileName, sizePixels) {
-  let link = document.createElement('a');
+  var link = document.createElement('a');
   link.href = '#' + header.id;
   link.setAttribute('alt', 'link to ' + header.id);
   link.innerHTML =
@@ -257,9 +257,9 @@ function LinkifyHeader(header, fileName, sizePixels) {
 // Find all elements of the given tag and linkify if
 // they don't have 'ignoreLink' in their class.
 function LinkifyHeadersForTag(tagName) {
-  let headers = document.getElementsByTagName(tagName);
-  let header;
-  for (let j = 0; j != headers.length; j++) {
+  var headers = document.getElementsByTagName(tagName);
+  var header;
+  for (var j = 0; j != headers.length; j++) {
     header = headers[j];
     if (!hasClass(header, 'ignoreLink') && ('id' in header)) {
       if (header.id != '') {

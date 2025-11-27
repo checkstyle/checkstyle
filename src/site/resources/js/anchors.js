@@ -1,11 +1,10 @@
 /*jslint browser: true*/
 /*global window */
-/*jslint browser: true*/
-/*global window */
 (function () {
+    "use strict";
     window.addEventListener("load", function () {
-        let url = window.location.href;
-        let position = url.indexOf("#");
+        var url = window.location.href;
+        var position = url.indexOf("#");
 
         if (position !== -1) {
             url = url.substring(0, position);
@@ -15,23 +14,23 @@
         const scriptElementSrc = scriptElement.attributes.src.textContent;
         const relativePath = scriptElementSrc.replace(/\/js\/anchors.js/, '');
 
-        let anchors = document.querySelectorAll("h1, h2");
+        var anchors = document.querySelectorAll("h1, h2");
         [].forEach.call(anchors, function (anchorItem) {
 
             if (anchorItem.closest("#bannerRight") || anchorItem.closest("#bannerLeft")) {
                 return;
             }
 
-            let name = anchorItem.previousSibling.previousElementSibling.id;
-            let link = "" + url + "#" + name + "";
+            var name = anchorItem.previousSibling.previousElementSibling.id;
+            var link = "" + url + "#" + name + "";
 
-            let a = document.createElement("a");
+            var a = document.createElement("a");
             a.setAttribute("href", link);
 
-            let image = document.createElement("img");
+            var image = document.createElement("img");
             image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
-            let anchor = document.createElement("div");
+            var anchor = document.createElement("div");
             anchor.className = "anchor";
 
             a.appendChild(image);
@@ -39,23 +38,23 @@
             anchorItem.appendChild(anchor);
         });
 
-        let anchorsSubSection = document.getElementsByTagName("h3");
+        var anchorsSubSection = document.getElementsByTagName("h3");
         [].forEach.call(anchorsSubSection, function (anchorItem) {
-            let name;
+            var name;
             if (anchorItem.parentNode.id) {
                 name = anchorItem.parentNode.id;
             } else {
                 name = anchorItem.childNodes[0].name;
             }
-            let link = "" + url + "#" + name + "";
+            var link = "" + url + "#" + name + "";
 
-            let a = document.createElement("a");
+            var a = document.createElement("a");
             a.setAttribute("href", link);
 
-            let image = document.createElement("img");
+            var image = document.createElement("img");
             image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
-            let anchor = document.createElement("div");
+            var anchor = document.createElement("div");
             anchor.className = "anchor";
 
             a.appendChild(image);
