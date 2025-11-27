@@ -191,8 +191,7 @@ public final class ModuleJavadocParsingUtil {
             descriptionEndNode = notesStartingNode.getPreviousSibling();
         }
         else {
-            descriptionEndNode = getModuleSinceVersionTagStartNode(
-                                        moduleJavadoc).getPreviousSibling();
+            descriptionEndNode = getNodeBeforeJavadocTags(moduleJavadoc);
         }
 
         return descriptionEndNode;
@@ -254,6 +253,26 @@ public final class ModuleJavadocParsingUtil {
     }
 
     /**
+     * Gets the node of module's javadoc whose next sibling is a node that defines a javadoc tag.
+     *
+     * @param moduleJavadoc the root Javadoc node of the module
+     * @return the node that precedes node defining javadoc tag if present,
+     *     otherwise just the last node of module's javadoc.
+     */
+    public static DetailNode getNodeBeforeJavadocTags(DetailNode moduleJavadoc) {
+        DetailNode nodeBeforeJavadocTags = moduleJavadoc.getFirstChild();
+
+        while (nodeBeforeJavadocTags.getNextSibling() != null
+                && nodeBeforeJavadocTags.getNextSibling().getType()
+                    != JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
+
+            nodeBeforeJavadocTags = nodeBeforeJavadocTags.getNextSibling();
+        }
+
+        return nodeBeforeJavadocTags;
+    }
+
+    /**
      * Gets the Notes section of module from module javadoc.
      *
      * @param moduleJavadoc module javadoc.
@@ -268,7 +287,7 @@ public final class ModuleJavadocParsingUtil {
             result = "";
         }
         else {
-            final DetailNode notesEndNode = getNotesEndNode(moduleJavadoc);
+            final DetailNode notesEndNode = getNodeBeforeJavadocTags(moduleJavadoc);
 
             final String unprocessedNotes =
                     JavadocMetadataScraperUtil.constructSubTreeText(
@@ -277,17 +296,6 @@ public final class ModuleJavadocParsingUtil {
         }
 
         return result;
-    }
-
-    /**
-     * Gets the end node of the Notes.
-     *
-     * @param moduleJavadoc javadoc of module.
-     * @return the end index.
-     */
-    public static DetailNode getNotesEndNode(DetailNode moduleJavadoc) {
-        return getModuleSinceVersionTagStartNode(
-                moduleJavadoc).getPreviousSibling();
     }
 
     /**
