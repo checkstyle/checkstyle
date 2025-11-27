@@ -50,6 +50,12 @@
  &lt;/li&gt;
  &lt;/ul&gt;</description>
          <properties>
+            <property default-value="REFERENCE,PARAMETER_TYPE,THROWS_BLOCK_TAG"
+                      name="javadocTokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>javadoc tokens to check</description>
+            </property>
             <property default-value="true" name="processJavadoc" type="boolean">
                <description>Control whether to process Javadoc comments.</description>
             </property>

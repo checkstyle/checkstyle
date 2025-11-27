@@ -81,6 +81,29 @@
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
+            <tr>
+              <td><a id="javadocTokens"/><a href="#javadocTokens">javadocTokens</a></td>
+              <td>javadoc tokens to check</td>
+              <td>subset of javadoc tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#REFERENCE">
+                    REFERENCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAMETER_TYPE">
+                    PARAMETER_TYPE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#REFERENCE">
+                    REFERENCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAMETER_TYPE">
+                    PARAMETER_TYPE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                  .
+              </td>
+              <td>3.0</td>
+            </tr>
           </table>
         </div>
       </subsection>

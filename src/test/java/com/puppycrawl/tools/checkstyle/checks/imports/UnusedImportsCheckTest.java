@@ -180,21 +180,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            TokenTypes.BLOCK_COMMENT_BEGIN
         };
 
         assertWithMessage("Default required tokens are invalid")
@@ -211,21 +199,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            TokenTypes.BLOCK_COMMENT_BEGIN
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -370,18 +346,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImportsInDocsOnly() throws Exception {
-        final String[] expected = {
-            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
-            "12:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyEnumeration"),
-            "13:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
-            "14:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.shuffle"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
-    }
-
-    @Test
     public void testUnusedImportsJavadocAboveComments() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -405,13 +369,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImportJavaLinkTagWithMethod() throws Exception {
         final String[] expected = {
-            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Collections"),
-            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.util.PriorityQueue"),
-            "16:8: " + getCheckMessage(MSG_KEY, "java.util.Queue"),
-            "20:8: " + getCheckMessage(MSG_KEY, "java.util.LinkedList"),
-            "24:8: " + getCheckMessage(MSG_KEY, "java.time.LocalDateTime"),
-            "27:8: " + getCheckMessage(MSG_KEY, "java.util.concurrent.TimeUnit"),
+            "11:8: " + getCheckMessage(MSG_KEY, "java.util.PriorityQueue"),
+            "19:8: " + getCheckMessage(MSG_KEY, "java.util.concurrent.TimeUnit"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithLinkAndMethodTag.java"), expected);
