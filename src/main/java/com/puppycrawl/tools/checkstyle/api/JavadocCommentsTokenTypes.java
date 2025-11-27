@@ -889,7 +889,24 @@ public final class JavadocCommentsTokenTypes {
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
     /**
-     * List of parameter types in a reference.
+     * Represents a list of parameter types inside a Javadoc member reference.
+     *
+     * <p>Appears when a Javadoc inline tag refers to a method that has
+     * multiple parameter types.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * {@link java.util.List#add(int, int)}
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |--PARAMETER_TYPE -> int
+     * `--PARAMETER_TYPE -> int
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
