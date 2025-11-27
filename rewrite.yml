@@ -1,13 +1,18 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AllAutoFixes
-displayName: Auto Fixes
-description: List of auto fixes from different providers.
+name: org.checkstyle.openrewrite.SanityCheck
+displayName: Apply best practices
+description: Comprehensive code quality recipe combining modernization and best practices.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+  - org.openrewrite.codemods.ESLint
+  # 100% system freeze/melt down... https://github.com/openrewrite/rewrite/issues/6330
+  # - org.openrewrite.codemods.ecmascript.5to6.ECMAScript6BestPractices
+  - org.openrewrite.codemods.cleanup.javascript.EmptyBraceSpaces
+  - org.openrewrite.codemods.cleanup.javascript.PreferModule
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
