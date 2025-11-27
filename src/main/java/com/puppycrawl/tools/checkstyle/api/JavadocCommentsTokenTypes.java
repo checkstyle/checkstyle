@@ -889,7 +889,22 @@ public final class JavadocCommentsTokenTypes {
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
     /**
-     * List of parameter types in a reference.
+     * {@code PARAMETER_TYPE_LIST} represents a list of parameter types in a method
+     * or constructor reference.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@link java.util.List#add(int, int)}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |--PARAMETER_TYPE -> int
+     * |--COMMA -> ,
+     * |--TEXT ->
+     * `--PARAMETER_TYPE -> int
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
