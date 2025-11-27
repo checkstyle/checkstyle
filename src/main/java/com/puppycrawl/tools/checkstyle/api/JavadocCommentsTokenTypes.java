@@ -894,7 +894,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
     /**
-     * Type arguments in generics.
+     * {@code TYPE_ARGUMENTS} Type arguments in generics.
+     *
+     * <p>Represents the type arguments inside a generic type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * List<String, Integer>
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--TYPE_ARGUMENT -> String
+     * `--TYPE_ARGUMENT -> Integer
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
      */
     public static final int TYPE_ARGUMENTS = JavadocCommentsLexer.TYPE_ARGUMENTS;
 
