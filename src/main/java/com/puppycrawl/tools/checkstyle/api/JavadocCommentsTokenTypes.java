@@ -884,7 +884,22 @@ public final class JavadocCommentsTokenTypes {
     public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
     /**
-     * Member reference (e.g. method or field).
+     * {@code MEMBER_REFERENCE} Member reference (method or field).
+     *
+     * <p>Represents a field or method in a type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * length()}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |--IDENTIFIER -> length
+     * |--LPAREN -> (
+     * |--RPAREN -> )
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
