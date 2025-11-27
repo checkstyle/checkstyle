@@ -1096,18 +1096,28 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_TAG_END = JavadocCommentsLexer.HTML_TAG_END;
 
     /**
-     * {@code TAG_OPEN} represents the {@literal "<"} symbol that begins an HTML tag
-     * inside a Javadoc comment.
+     * {@code TAG_OPEN} represents the opening {@literal "<"} symbol of an HTML start tag.
+     *
+     * <p>Appears in Javadoc comments when documenting HTML elements.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * <div class="container" lang="en"></div>
-     * }</pre>
+     * <pre>{@code * &lt;div class="container" lang="en"&gt;}</pre>
      *
-     * <p><b>Tree:</b></p>
+     * <b>Tree:</b>
      * <pre>{@code
      * HTML_TAG_START -> HTML_TAG_START
-     *     |--TAG_OPEN -> <
+     * |--TAG_OPEN -> <
+     * |--TAG_NAME -> div
+     * |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |   |--TAG_ATTR_NAME -> class
+     * |   |   |--EQUALS -> =
+     * |   |   `--ATTRIBUTE_VALUE -> "container"
+     * |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |       |--TAG_ATTR_NAME -> lang
+     * |       |--EQUALS -> =
+     * |       `--ATTRIBUTE_VALUE -> "en"
+     * `--TAG_CLOSE -> >
      * }</pre>
      *
      * @see #HTML_TAG_START
@@ -1125,22 +1135,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int TAG_CLOSE = JavadocCommentsLexer.TAG_CLOSE;
 
     /**
-     * {@code />} Self-closing tag delimiter.
-     *
-     * <p>Used for void HTML elements.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code * <br />}</pre>
-     *
-     * <b>Tree:</b>
-     * <pre>{@code
-     * VOID_ELEMENT -> VOID_ELEMENT
-     * |--TAG_OPEN -> <
-     * |--TAG_NAME -> br
-     * `--TAG_SLASH_CLOSE -> />
-     * }</pre>
-     *
-     * @see #HTML_ELEMENT
+     * Self-closing tag delimiter {@code /> }.
      */
     public static final int TAG_SLASH_CLOSE = JavadocCommentsLexer.TAG_SLASH_CLOSE;
 
