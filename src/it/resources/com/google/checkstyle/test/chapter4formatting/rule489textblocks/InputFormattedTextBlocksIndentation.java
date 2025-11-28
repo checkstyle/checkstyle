@@ -15,11 +15,17 @@ public class InputFormattedTextBlocksIndentation {
         content of the block of e3
         """;
 
+    // Expected indentation is the opening quotes on line 22 is 8,
+    // Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     String e3 =
         """
         content of the block. e1
         """;
 
+    // Expected indentation is the opening quotes on line 30 is 8,
+    // Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     getData(
         """
         Indentation of Text-block

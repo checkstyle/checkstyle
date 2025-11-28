@@ -13,16 +13,19 @@ public class InputTextBlocksIndentation {
     String e2 =
         """
         content of the block of e3
-            """; // 'not vertically aligned with opening quotes', ok until #17223
+            """; // violation 'Text-block quotes are not vertically aligned'
 
-    // 'wrong indentation of 10, expected 8' below, ok until #17223
+    // Expected indentation is the opening quotes on line 22 is 8,
+    // but Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     String e3 =
           """
       content of the block. e1
-        """;
-    // not vertically aligned with opening quotes above, ok until #17223
+        """; // violation 'Text-block quotes are not vertically aligned'
 
-    // 'wrong indentation of 12, expected 8' 2 lines below, ok until #17223
+    // Expected indentation is the opening quotes on line 30 is 8,
+    // but Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     getData(
             """
         Indentation of Text-block
