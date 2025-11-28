@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>TextBlockGoogleStyleFormatting</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="TextBlockGoogleStyleFormatting">
+      <p>Since Checkstyle 12.3.0</p>
+      <subsection name="Description" id="Description">
+        <div>
+          Checks correct format of
+          <a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html">Java Text Blocks</a>
+          as specified in
+          <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
+          Google Java Style Guide</a>.
+        </div>
+
+          This Check performs two validations:
+        <ol>
+        <li>
+          It ensures that the opening and closing text-block quotes (<code>"""</code>) each appear on their
+          own line, with no other item preceding them.
+        </li>
+        <li>
+          Opening and closing quotes are vertically aligned.
+        </li>
+        </ol>
+          Note: Closing quotes can be followed by additional code on the same line.
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">To configure the check:</p>
+          <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="TextBlockGoogleStyleFormatting"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example of correct cases:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+
+  public String testMethod1() {
+
+    final String simpleScript =
+"""
+        contents of Text block
+""";
+
+    final String simpleScript1 =
+        """
+        contents of Text block
+        """;
+
+    String stringFollowedBy =
+        """
+          Hello there
+        """ + getName();
+
+    getData(
+        """
+        Hello,
+        This is a multi-line message.
+        """, 0);
+
+    return
+        """
+        this is sample text
+        """;
+  }
+
+  public void getData(String text, int num) {}
+
+  public String getName() {
+    return null;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-code"> Example: Opening quotes are not on new line:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+
+  public String testMethod1() {
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    final String simpleScript1Violate = """
+        contents of the text block
+      """; // violation 'Text-block quotes are not vertically aligned'
+    final String simpleScript1Correct =
+        """
+        contents of the text block
+        """;
+
+    final String simpleScript2Violate = simpleScript1Violate +
+        // violation below 'quotes (""") of text-block must be on the new line'
+        simpleScript1Violate + """
+        this is simple script
+        """; // violation 'Text-block quotes are not vertically aligned'
+    final String simpleScript2Correct = simpleScript1Violate +
+        simpleScript1Violate +
+            """
+            contents of the text block
+            """;
+
+    getData(
+        // violation below 'quotes (""") of text-block must be on the new line'
+        1, """
+           this is a multi-line message
+           """);
+    getData(
+        1,
+           """
+           this is a multi-line message
+           """);
+
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    return """
+        this is sample text
+        """; // violation 'Text-block quotes are not vertically aligned'
+  }
+  public void getData(String text, int num) {}
+  public void getData(int num, String text) {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-code"> Example: Closing quotes are not on new line</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  public String testMethod1() {
+    final String simpleScript1Violate =
+            """
+            this is simple test""";
+    // 2 violations above:
+    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Text-block quotes are not vertically aligned'
+    final String simpleScript1Correct =
+            """
+            this is simple test
+            """;
+
+    String simpleScript2Violate = simpleScript1Correct
+        +
+        """
+        very good""".charAt(0);
+    // 2 violations above:
+    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Text-block quotes are not vertically aligned'
+    String simpleScript2Correct = simpleScript1Correct
+        +
+        """
+        very good
+        """.charAt(0);
+
+    getData(
+        """
+        This is a multi-line message.""");
+    // 2 violations above:
+    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Text-block quotes are not vertically aligned'
+    getData(
+        """
+        This is a multi-line message.
+        """);
+
+    return
+        """
+        THE MULTI-LINE MESSAGE""";
+    // 2 violations above:
+    //   'Closing quotes (""") of text-block must be on the new line.'
+    //   'Text-block quotes are not vertically aligned'
+  }
+  public void getData(String text, int num) {}
+  public void getData(String text) {}
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">
+            Example: Opening and closing quotes are on new lines but not vertically aligned
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 {
+
+  public String testMethod1() {
+
+    final String simpleScriptViolate =
+      """
+          s
+           """; // violation 'text-block quotes are not vertically aligned'
+    final String simpleScriptCorrect =
+      """
+          s
+      """;
+
+    getData(
+      1,
+        """
+        this is a multi-line message
+           """); // violation 'Text-block quotes are not vertically aligned'
+    getData(
+      1,
+        """
+        this is a multi-line message
+        """);
+
+    return
+        """
+    this is sample text
+      """; // violation 'text-block quotes are not vertically aligned'
+  }
+  public void getData(int num, String text) {}
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
+            Checkstyle Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
+            Google Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.close%22">
+              textblock.format.close
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.open%22">
+              textblock.format.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.vertically.unaligned%22">
+              textblock.vertically.unaligned
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
