@@ -105,6 +105,10 @@
   <suppress checks="Indentation"
     files="indentation[\\/]Example[1-5].java"/>
 
+  <!-- To match the behavior with Google style guide -->
+  <suppress checks="Indentation"
+    files="textblockgooglestyleformatting[\\/]Example1\.java"/>
+
   <!-- violation required by to show behavior of Check -->
   <suppress checks="FileLength"
     files="cyclomaticcomplexity[\\/]Example\d+.*"/>
