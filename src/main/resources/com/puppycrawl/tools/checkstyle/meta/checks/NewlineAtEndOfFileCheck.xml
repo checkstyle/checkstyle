@@ -50,6 +50,11 @@
  This will check against the platform-specific default line separator.
  &lt;/p&gt;
 
+ &lt;p&gt;This check verifies only the presence of a single line separator at the end of the file.
+ It does not report violations for multiple trailing blank lines
+ or additional newline characters beyond the final separator.
+ &lt;/p&gt;
+
  &lt;p&gt;
  It is also possible to enforce the use of a specific line-separator across
  platforms, with the &lt;code&gt;lineSeparator&lt;/code&gt; property.
