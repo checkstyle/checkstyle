@@ -842,6 +842,8 @@
     <module name="UpperEll"/>
     <module name="HexLiteralCase"/>
 
+    <module name="StoyansNewCheck"/>
+
     <!-- Modifiers -->
     <module name="ClassMemberImpliedModifier">
       <!-- effectively the opposite of RedundantModifier, so output must be ignored -->
