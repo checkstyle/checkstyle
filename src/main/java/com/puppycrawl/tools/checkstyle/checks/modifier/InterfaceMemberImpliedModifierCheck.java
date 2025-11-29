@@ -67,23 +67,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * public interface AddressFactory {
  *   // check enforces code contains "public static final"
- *   public static final String UNKNOWN = "Unknown";
- *
- *   String OTHER = "Other";  // violation
- *
+ *   public static final String UNKNOWN = "Unknown"; <br>
+ *   String OTHER = "Other";  // violation <br>
  *   // check enforces code contains "public" or "private"
- *   public static AddressFactory instance();
- *
+ *   public static AddressFactory instance(); <br>
  *   // check enforces code contains "public abstract"
- *   public abstract Address createAddress(String addressLine, String city);
- *
- *   List&lt;Address&gt; findAddresses(String city);  // violation
- *
+ *   public abstract Address createAddress(String addressLine, String city); <br>
+ *   List&lt;Address&gt; findAddresses(String city);  // violation <br>
  *   // check enforces default methods are explicitly declared "public"
  *   public default Address createAddress(String city) {
  *     return createAddress(UNKNOWN, city);
- *   }
- *
+ *   } <br>
  *   default Address createOtherAddress() {  // violation
  *     return createAddress(OTHER, OTHER);
  *   }
