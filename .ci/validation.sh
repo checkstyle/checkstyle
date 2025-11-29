@@ -356,6 +356,9 @@ verify-no-exception-configs)
 
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
+    echo "SEMA: $SEMAPHORE_GIT_PR_NUMBER"
+    echo "PR: $PULL_REQUEST"
+    echo "Token: $READ_ONLY_TOKEN"
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
