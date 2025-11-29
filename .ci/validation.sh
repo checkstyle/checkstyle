@@ -330,11 +330,11 @@ verify-no-exception-configs)
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
-    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
+    https://raw.githubusercontent.com/stoyanK7/contribution/7304-add-new-check-test/checkstyle-tester/checks-nonjavadoc-error.xml
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
-    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
+    https://raw.githubusercontent.com/stoyanK7/contribution/7304-add-new-check-test/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
     -n $working_dir/checks-nonjavadoc-error.xml \
