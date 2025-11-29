@@ -208,7 +208,7 @@
     <pmd.version>7.19.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <slf4j.version>1.7.32</slf4j.version> <!-- Aligned with the version reflections depends on -->
+    <slf4j.version>2.0.17</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
@@ -1561,6 +1561,7 @@
                     <exclude>org.apache.commons*</exclude>
                     <exclude>org.apache.httpcomponents*</exclude>
                     <exclude>org.codehaus.plexus*</exclude>
+                    <exclude>org.slf4j*</exclude>
                   </excludes>
                 </dependencyConvergence>
                 <!-- we can not use this as it require same version for all dependencies -->
