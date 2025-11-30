@@ -16,8 +16,8 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern exists, exists less than a set
-            number of times, or does not exist in the file.
+              Checks that a specified pattern exists, exists less than a set number of times, or
+              does not exist in the file.
             </td>
           </tr>
           <tr>
@@ -27,8 +27,7 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches across multiple lines in
-            any file type.
+              Checks that a specified pattern matches across multiple lines in any file type.
             </td>
           </tr>
           <tr>
