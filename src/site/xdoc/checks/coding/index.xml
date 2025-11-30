@@ -524,6 +524,21 @@
           </tr>
           <tr>
             <td>
+              <a href="textblockgooglestyleformatting.html#TextBlockGoogleStyleFormatting">
+                TextBlockGoogleStyleFormatting
+              </a>
+            </td>
+            <td>
+              Checks correct format of
+              <a href="https://docs.oracle.com/en/java/javase/17/text-blocks/index.html">
+              Java Text Blocks
+              </a> as specified in
+              <a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks">
+              Google Java Style Guide</a>.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="unnecessarynullcheckwithinstanceof.html#UnnecessaryNullCheckWithInstanceOf">
                 UnnecessaryNullCheckWithInstanceOf
               </a>
