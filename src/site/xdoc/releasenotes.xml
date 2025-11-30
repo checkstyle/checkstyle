@@ -10,6 +10,163 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.2.0">
+      <div class="releaseDate">30.11.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Include full check name alongside ID in XML violation reports.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/18088">#18088</a>
+          </li>
+          <li>
+            Java25&#39;s import-module support.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/17919">#17919</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            JAR for 12.1.1 is missing org.slf4j package.
+            Author: Allon Mureinik
+            <a href="https://github.com/checkstyle/checkstyle/issues/18074">#18074</a>
+          </li>
+          <li>
+            RedundantImport does not work with module imports.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18171">#18171</a>
+          </li>
+          <li>
+            `PatternVariableAssignment` gives error when assigning to field (using `this.`) with
+            the same name as pattern variable.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/18132">#18132</a>
+          </li>
+          <li>
+            Drop support in checks for no-longer-compilable preview feature - Pattern matching for
+            swtich.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18104">#18104</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: clarify behavior of NewlineAtEndOfFileCheck regarding extra blank lines.
+            Author: EKansh Mittal
+          </li>
+          <li>
+            Resolve Pitest Suppressions - main.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18026">#18026</a>
+          </li>
+          <li>
+            Improve wrapping in web site.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18110">#18110</a>
+          </li>
+          <li>
+            resolve PMD warning during execution.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/18070">#18070</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: vivek-0509, github-actions[bot], Mithun, vishalup29
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            doc: mention ANTLR regression report.
+            Author: stoyanK7
+          </li>
+          <li>
+            Refine newly added reuse of metadata and xdoc to simplify Javadocs.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17746">#17746</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: Amit Kumar Deohoria
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            doc: explain how to use CLI generated xpath.
+            Author: pascofire
+            <a href="https://github.com/checkstyle/checkstyle/issues/17114">#17114</a>
+          </li>
+          <li>
+            Update SuppressionSingleFilter examples to use all properties.
+            Author: Talib Hussain
+            <a href="https://github.com/checkstyle/checkstyle/issues/16729">#16729</a>
+          </li>
+          <li>
+            Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
+            checks/&lt;type&gt;/index.xml.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
+          </li>
+          <li>
+            Java 22 test files that were marked as compilable but are not.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18097">#18097</a>
+          </li>
+          <li>
+            Special color for property links.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18117">#18117</a>
+          </li>
+          <li>
+            Inprove website rendering.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/16243">#16243</a>
+          </li>
+          <li>
+            Add check to prohibit Windows line endings.
+            Author: Brijeshthummar02
+            <a href="https://github.com/checkstyle/checkstyle/issues/893">#893</a>
+          </li>
+          <li>
+            Complitaion jobs in CircleCI do not pick up all files.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18092">#18092</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk25.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18089">#18089</a>
+          </li>
+          <li>
+            Add Java 25 compilation to CircleCI.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18091">#18091</a>
+          </li>
+          <li>
+            Add `async` and/or `defer` attributes to site scripts.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18045">#18045</a>
+          </li>
+          <li>
+            doc: Add extra section about &#39;Performance Regressions&#39;.
+            Author: stoyanK7
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.1.2">
       <div class="releaseDate">11.11.2025</div>
       <p>Bug fixes:</p>
