@@ -4619,7 +4619,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses</message>
+    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses, illegalModules</message>
     <lineContent>public IllegalImportCheck() {</lineContent>
   </checkerFrameworkError>
 
