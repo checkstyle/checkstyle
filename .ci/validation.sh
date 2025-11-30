@@ -4,6 +4,28 @@ set -e
 
 source ./.ci/util.sh
 
+get_maven_offline_flag() {
+  if [ "${MAVEN_OFFLINE}" = "true" ]; then
+    echo "--offline"
+    return 0
+  fi
+
+  if [ "${MAVEN_OFFLINE}" = "false" ]; then
+    return 1
+  fi
+
+  # Auto-detect: check cache
+  if [ -f ./.ci/check-maven-cache.sh ]; then
+    export MAVEN_REPO_LOCAL="${MAVEN_REPO_LOCAL:-${MAVEN_CACHE_FOLDER:-$HOME/.m2/repository}}"
+    if ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1; then
+      echo "--offline"
+      return 0
+    fi
+  fi
+
+  return 1
+}
+
 addCheckstyleBundleToAntResolvers() {
   # shellcheck disable=2016 # we do not want to expand properties in this command
   xmlstarlet ed --inplace \
@@ -133,57 +155,68 @@ pr-age)
   ;;
 
 test)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
 test-de)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1g -Xmx2g'
   ;;
 
 test-es)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1g -Xmx2g'
   ;;
 
 test-fi)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1g -Xmx2g'
   ;;
 
 test-fr)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1g -Xmx2g'
   ;;
 
 test-zh)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1g -Xmx2g'
   ;;
 
 test-ja)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1g -Xmx2g'
   ;;
 
 test-pt)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1g -Xmx2g'
   ;;
 
 test-tr)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1g -Xmx2g'
   ;;
 
 test-ru)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1g -Xmx2g'
   ;;
 
 test-al)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  offline_flag=$(get_maven_offline_flag || echo "")
+  ./mvnw -e --no-transfer-progress $offline_flag clean integration-test failsafe:verify \
     -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1g -Xmx2g'
   ;;
 
