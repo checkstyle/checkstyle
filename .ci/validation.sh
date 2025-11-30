@@ -356,13 +356,16 @@ verify-no-exception-configs)
 
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
+    echo "SEMA: $SEMAPHORE_GIT_PR_NUMBER"
+    echo "PR: $PULL_REQUEST"
+    echo "Token: $READ_ONLY_TOKEN"
     if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
-      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
-                  | jq '.body' | grep $REGEXP | cat )
-      echo 'PR Description grepped:'"${PR_DESC:0:180}"
-      if [[ -z $PR_DESC ]]; then
+      CONTRIBUTION_PR_LINK=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
+                  | jq -r '.body' | grep $REGEXP | cat )
+      echo "Link to contribution PR: ${CONTRIBUTION_PR_LINK:0:180}"
+      if [[ -z $CONTRIBUTION_PR_LINK ]]; then
         echo 'You introduce new Check'
         diff -u $working_dir/web.txt $working_dir/file.txt | cat
         echo 'Please create PR to repository https://github.com/checkstyle/contribution'
@@ -372,6 +375,34 @@ verify-no-exception-configs)
         echo 'Place the contribution repository PR link in the description of this PR.'
         echo 'PR for contribution repository will be merged right after this PR.'
         fail=1;
+      else
+        CONTRIBUTION_PR_NUMBER="$(echo "$CONTRIBUTION_PR_LINK" | grep -oP '(?<=pull/)[0-9]+')"
+        LINK_FILES="https://api.github.com/repos/checkstyle/contribution/pulls/$CONTRIBUTION_PR_NUMBER/files"
+        FILES="$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_FILES" | jq -r '
+          .[]
+          | select(.filename == "checkstyle-tester/checks-only-javadoc-error.xml"
+                or .filename == "checkstyle-tester/checks-nonjavadoc-error.xml")
+          | { filename, patch }
+        ')"
+        FILE_COUNT="$(echo "$FILES"| jq -s 'length')"
+        if [ "$FILE_COUNT" -ne 1 ]; then
+          echo "Expected only 1 of checkstyle-tester/checks-only-javadoc-error.xml or"
+          echo "checkstyle-tester/checks-nonjavadoc-error.xml to be changed in"
+          echo "$CONTRIBUTION_PR_LINK. Found $FILE_COUNT files changed."
+          fail=1;
+        else
+          PATCH="$(echo "$FILES" | jq -r '.patch')"
+          MODULE_NAME="$(echo "$DIFF_TEXT" | grep -E "^[+-][^+-]" | sed 's/^.//')"
+          if echo "$PATCH" | grep -qE "\+\s*<module name=\"$MODULE_NAME\""; then
+            echo "Module $MODULE_NAME found in contribution PR patch."
+          else
+            echo "Module $MODULE_NAME not found in contribution PR patch."
+            echo "Please add $MODULE_NAME to one of the following files:"
+            echo '   checkstyle-tester/checks-nonjavadoc-error.xml'
+            echo 'or checkstyle-tester/checks-only-javadoc-error.xml'
+            fail=1;
+          fi
+        fi
       fi
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
