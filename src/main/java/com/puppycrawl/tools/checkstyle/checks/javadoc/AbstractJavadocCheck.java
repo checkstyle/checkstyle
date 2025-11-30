@@ -277,7 +277,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     @Override
-    public final int[] getRequiredTokens() {
+    public int[] getRequiredTokens() {
         return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
     }
 
@@ -292,17 +292,12 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     }
 
     @Override
-    public final void beginTree(DetailAST rootAST) {
+    public void beginTree(DetailAST rootAST) {
         TREE_CACHE.get().clear();
     }
 
     @Override
-    public final void finishTree(DetailAST rootAST) {
-        // No code, prevent override in subclasses
-    }
-
-    @Override
-    public final void visitToken(DetailAST blockCommentNode) {
+    public void visitToken(DetailAST blockCommentNode) {
         if (JavadocUtil.isJavadocComment(blockCommentNode)) {
             // store as field, to share with child Checks
             context.get().blockCommentAst = blockCommentNode;
