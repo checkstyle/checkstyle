@@ -158,27 +158,33 @@ steps:
       export MAVEN_REPO_LOCAL="$(MAVEN_CACHE_FOLDER)"
       export BUILD_REASON="$(BUILD_REASON)"
       export MAVEN_CACHE_FOLDER="$(MAVEN_CACHE_FOLDER)"
-      
+
       # Check if cache script exists and is executable
       if [ -f ./.ci/check-maven-cache.sh ]; then
         chmod +x ./.ci/check-maven-cache.sh || true
       fi
-      
+
       # Determine offline mode - cache check should never cause failure
+      # Use explicit error handling to prevent any failure
       export MAVEN_OFFLINE="false"
       if [ "$(SKIP_CACHE)" != "true" ]; then
         if [ -f ./.ci/check-maven-cache.sh ]; then
-          if ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1; then
+          # Use explicit check to prevent set -e from causing failure
+          set +e
+          ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1
+          cache_check_result=$?
+          set -e
+          if [ "$cache_check_result" -eq 0 ]; then
             export MAVEN_OFFLINE="true"
           fi
         fi
       fi
-      
+
       # Only check Maven version if mvnw exists (some jobs don't need it)
       if [ -f ./mvnw ]; then
         ./mvnw --version || true
       fi
-      
+
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
       echo "MAVEN_OFFLINE:"$MAVEN_OFFLINE
