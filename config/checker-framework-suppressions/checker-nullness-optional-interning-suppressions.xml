@@ -8874,6 +8874,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Pattern.matcher.</message>
+    <lineContent>final String cleanedUrl = SPACE_PATTERN.matcher(originalUrl).replaceAll(&quot;&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ClassAndPropertiesSettersJavadocScraper.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference classDef.findFirstToken(TokenTypes.IDENT)</message>
