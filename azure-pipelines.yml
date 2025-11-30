@@ -164,14 +164,14 @@ steps:
         chmod +x ./.ci/check-maven-cache.sh || true
       fi
       
+      # Determine offline mode - cache check should never cause failure
+      export MAVEN_OFFLINE="false"
       if [ "$(SKIP_CACHE)" != "true" ]; then
-        if [ -f ./.ci/check-maven-cache.sh ] && ./.ci/check-maven-cache.sh should-offline 2>/dev/null; then
-          export MAVEN_OFFLINE="true"
-        else
-          export MAVEN_OFFLINE="false"
+        if [ -f ./.ci/check-maven-cache.sh ]; then
+          if ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1; then
+            export MAVEN_OFFLINE="true"
+          fi
         fi
-      else
-        export MAVEN_OFFLINE="false"
       fi
       
       # Only check Maven version if mvnw exists (some jobs don't need it)

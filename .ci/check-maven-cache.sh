@@ -2,8 +2,6 @@
 # Check if Maven cache is good enough to run offline
 # Fixes issue #18200 where Maven tries to download artifacts that are already cached
 
-set -e
-
 MAVEN_REPO="${MAVEN_REPO_LOCAL:-${MAVEN_CACHE_FOLDER:-$HOME/.m2/repository}}"
 
 check_cache_completeness() {
@@ -18,6 +16,14 @@ check_cache_completeness() {
     echo "Cache size check failed" >&2
     return 1
   fi
+  
+  # Ensure cache_size is a number before comparison
+  case "$cache_size" in
+    ''|*[!0-9]*)
+      echo "Cache size is not a valid number: $cache_size" >&2
+      return 1
+      ;;
+  esac
   
   if [ "$cache_size" -lt 100 ]; then
     echo "Cache too small ($cache_size MB), probably incomplete" >&2
@@ -61,7 +67,13 @@ should_use_offline() {
   if check_cache_completeness; then
     # In PRs, allow network if pom.xml changed (might need new deps)
     if [ "${BUILD_REASON}" = "PullRequest" ]; then
-      if git diff --name-only origin/master...HEAD 2>/dev/null | grep -q "pom.xml" 2>/dev/null; then
+      # Check if we can determine pom.xml changes
+      if git rev-parse --verify origin/master >/dev/null 2>&1; then
+        if git diff --name-only origin/master...HEAD 2>/dev/null | grep -q "pom.xml" 2>/dev/null; then
+          return 1
+        fi
+      else
+        # Can't check, be conservative and allow network
         return 1
       fi
     fi
