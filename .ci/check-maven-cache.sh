@@ -1,0 +1,85 @@
+#!/bin/bash
+# Check if Maven cache is good enough to run offline
+# Fixes issue #18200 where Maven tries to download artifacts that are already cached
+
+set -e
+
+MAVEN_REPO="${MAVEN_REPO_LOCAL:-${MAVEN_CACHE_FOLDER:-$HOME/.m2/repository}}"
+
+check_cache_completeness() {
+  if [ ! -d "$MAVEN_REPO" ]; then
+    echo "Cache directory missing: $MAVEN_REPO" >&2
+    return 1
+  fi
+
+  cache_size=$(du -sm "$MAVEN_REPO" 2>/dev/null | cut -f1 2>/dev/null || echo "0")
+  
+  if [ -z "$cache_size" ] || [ "$cache_size" = "0" ]; then
+    echo "Cache size check failed" >&2
+    return 1
+  fi
+  
+  if [ "$cache_size" -lt 100 ]; then
+    echo "Cache too small ($cache_size MB), probably incomplete" >&2
+    return 1
+  fi
+
+  # Check if we have the basic Maven stuff
+  required_paths=(
+    "org/apache/maven/plugins"
+    "org/apache/maven/surefire"
+    "org/jacoco"
+  )
+
+  missing=0
+  for path in "${required_paths[@]}"; do
+    if [ ! -d "$MAVEN_REPO/$path" ] || [ -z "$(ls -A "$MAVEN_REPO/$path" 2>/dev/null)" ]; then
+      missing=$((missing + 1))
+    fi
+  done
+
+  if [ $missing -eq ${#required_paths[@]} ]; then
+    echo "Required Maven artifacts missing from cache" >&2
+    return 1
+  fi
+
+  echo "Cache looks good ($cache_size MB)" >&2
+  return 0
+}
+
+should_use_offline() {
+  # If explicitly set, use that
+  if [ "${MAVEN_OFFLINE}" = "false" ]; then
+    return 1
+  fi
+
+  if [ "${MAVEN_OFFLINE}" = "true" ]; then
+    return 0
+  fi
+
+  # Auto-detect: check if cache is good
+  if check_cache_completeness; then
+    # In PRs, allow network if pom.xml changed (might need new deps)
+    if [ "${BUILD_REASON}" = "PullRequest" ]; then
+      if git diff --name-only origin/master...HEAD 2>/dev/null | grep -q "pom.xml" 2>/dev/null; then
+        return 1
+      fi
+    fi
+    return 0
+  else
+    return 1
+  fi
+}
+
+case "${1}" in
+  check)
+    check_cache_completeness
+    ;;
+  should-offline)
+    should_use_offline
+    ;;
+  *)
+    echo "Usage: $0 {check|should-offline}"
+    exit 1
+    ;;
+esac
