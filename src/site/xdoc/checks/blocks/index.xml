@@ -46,7 +46,8 @@
               </a>
             </td>
             <td>
-              Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
+              Checks for the placement of left curly braces ('{') for code
+              blocks.
             </td>
           </tr>
           <tr>
@@ -66,7 +67,7 @@
               </a>
             </td>
             <td>
-              Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+              Checks the placement of right curly braces ('}') for code blocks.
             </td>
           </tr>
         </table>
