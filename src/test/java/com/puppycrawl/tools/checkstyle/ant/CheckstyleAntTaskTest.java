@@ -997,4 +997,43 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertDoesNotThrow(antTask::execute, "BuildException is not expected");
     }
 
+    @Test
+    public void testMultipleFormattersProduceOutputs() throws IOException {
+        final CheckstyleAntTask antTask = getCheckstyleAntTask();
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+        antTask.setFailOnViolation(false);
+
+        final File firstOutput = new File("target/ant_task_multi_formatter_1.txt");
+        final File secondOutput = new File("target/ant_task_multi_formatter_2.txt");
+        Files.deleteIfExists(firstOutput.toPath());
+        Files.deleteIfExists(secondOutput.toPath());
+
+        antTask.addFormatter(createPlainFormatter(firstOutput));
+        antTask.addFormatter(createPlainFormatter(secondOutput));
+
+        antTask.execute();
+
+        assertWithMessage("First formatter output was not created")
+                .that(firstOutput.exists())
+                .isTrue();
+        assertWithMessage("First formatter output is empty")
+                .that(firstOutput.length())
+                .isGreaterThan(0L);
+        assertWithMessage("Second formatter output was not created")
+                .that(secondOutput.exists())
+                .isTrue();
+        assertWithMessage("Second formatter output is empty")
+                .that(secondOutput.length())
+                .isGreaterThan(0L);
+    }
+
+    private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
+        final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
+        formatter.setTofile(outputFile);
+        final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
+        formatterType.setValue("plain");
+        formatter.setType(formatterType);
+        return formatter;
+    }
+
 }
