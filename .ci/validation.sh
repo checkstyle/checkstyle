@@ -133,6 +133,7 @@ pr-age)
   ;;
 
 test)
+  ./mvnw -e --no-transfer-progress -Pci-cache-preload dependency:go-offline || true
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
