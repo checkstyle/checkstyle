@@ -120,6 +120,7 @@ variables:
   NEED_XMLSTARLET: $(needXmlstarlet)
   NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
+  MAVEN_REPO_LOCAL: $(Pipeline.Workspace)/.m2/repository
 
 steps:
   - bash: |
@@ -154,9 +155,49 @@ steps:
 
   - bash: |
       set -e
-      ./mvnw --version
+      export MAVEN_REPO_LOCAL="${MAVEN_CACHE_FOLDER}"
+      export BUILD_REASON="${BUILD_REASON}"
+      export MAVEN_CACHE_FOLDER="${MAVEN_CACHE_FOLDER}"
+      export SKIP_CACHE="${SKIP_CACHE}"
+
+      # Copy Maven settings to standard location if it exists
+      if [ -f .mvn/settings.xml ]; then
+        mkdir -p ~/.m2
+        cp .mvn/settings.xml ~/.m2/settings.xml
+      fi
+
+      # Check if cache script exists and is executable
+      if [ -f ./.ci/check-maven-cache.sh ]; then
+        chmod +x ./.ci/check-maven-cache.sh || true
+      fi
+
+      # Determine offline mode - cache check should never cause failure
+      # Use explicit error handling to prevent any failure
+      export MAVEN_OFFLINE="false"
+      if [ "${SKIP_CACHE}" != "true" ]; then
+        if [ -f ./.ci/check-maven-cache.sh ] && [ -x ./.ci/check-maven-cache.sh ]; then
+          # Use explicit check to prevent set -e from causing failure
+          # Temporarily disable exit on error, run check, capture result, re-enable
+          set +e
+          ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1
+          cache_check_result=$?
+          set -e
+          # Only set offline if check explicitly returned success
+          if [ "$cache_check_result" -eq 0 ]; then
+            export MAVEN_OFFLINE="true"
+          fi
+        fi
+      fi
+
+      # Only check Maven version if mvnw exists (some jobs don't need it)
+      if test -f ./mvnw; then
+        ./mvnw --version || true
+      fi
+
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
+      echo "MAVEN_OFFLINE:"$MAVEN_OFFLINE
+      echo "MAVEN_CACHE_FOLDER:"$MAVEN_CACHE_FOLDER
       echo "cmd: "$(cmd)
       eval "$(cmd)"
       ./.ci/validation.sh git-diff
