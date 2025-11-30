@@ -26,8 +26,9 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against multiple header files that contain a
-              pattern for each line of the source header.
+              Checks the header of a source file against multiple header files that contain a <a
+              href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pat
+              ern.html"> pattern</a> for each line of the source header.
             </td>
           </tr>
           <tr>
@@ -37,8 +38,9 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against a header that contains
-            a pattern for each line of the source header.
+              Checks the header of a source file against a header that contains a <a
+              href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pat
+              ern.html"> pattern</a> for each line of the source header.
             </td>
           </tr>
         </table>
