@@ -48,19 +48,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Macro to generate table rows for all Checkstyle modules.
  * Includes every Check.java file that has a Javadoc.
  * Uses href path structure based on src/site/xdoc/checks.
+ * Usage:
+ * <pre>
+ * &lt;macro name="allCheckSummaries"/&gt;
+ * </pre>
+ *
+ * <p>Supports optional "package" parameter to filter checks by package.
+ * When package parameter is provided, only checks from that package are included.
+ * Usage:
+ * <pre>
+ * &lt;macro name="allCheckSummaries"&gt;
+ *   &lt;param name="package" value="annotation"/&gt;
+ * &lt;/macro&gt;
+ * </pre>
  */
 @Component(role = Macro.class, hint = "allCheckSummaries")
 public class AllCheckSummaries extends AbstractMacro {
 
-    /**
-     * Matches HTML anchor tags and captures their inner text.
-     * Used to strip &lt;a&gt; elements while keeping their display text.
-     */
-    private static final Pattern LINK_PATTERN = Pattern.compile("<a[^>]*>([^<]*)</a>");
+    /** Initial capacity for StringBuilder in wrapSummary method. */
+    public static final int CAPACITY = 3000;
 
     /**
      * Matches common HTML tags such as paragraph, div, span, strong, and em.
      * Used to remove formatting tags from the Javadoc HTML content.
+     * Note: anchor tags are preserved.
      */
     private static final Pattern TAG_PATTERN =
             Pattern.compile("(?i)</?(?:p|div|span|strong|em)[^>]*>");
@@ -75,6 +86,9 @@ public class AllCheckSummaries extends AbstractMacro {
      * Matches '&amp;' characters that are not part of a valid HTML entity.
      */
     private static final Pattern AMP_PATTERN = Pattern.compile("&(?![a-zA-Z#0-9]+;)");
+
+    /** Pattern to match trailing spaces before closing code tags. */
+    private static final Pattern CODE_SPACE_PATTERN = Pattern.compile("\\s+(</code>)");
 
     /** Path component for source directory. */
     private static final String SRC = "src";
@@ -104,12 +118,50 @@ public class AllCheckSummaries extends AbstractMacro {
     /** TD closing tag. */
     private static final String TD_CLOSE_TAG = "</td>";
 
+    /** Package name for miscellaneous checks. */
+    private static final String MISC_PACKAGE = "misc";
+
+    /** Package name for annotation checks. */
+    private static final String ANNOTATION_PACKAGE = "annotation";
+
+    /** HTML table closing tag. */
+    private static final String TABLE_CLOSE_TAG = "</table>";
+
+    /** HTML div closing tag. */
+    private static final String DIV_CLOSE_TAG = "</div>";
+
+    /** HTML section closing tag. */
+    private static final String SECTION_CLOSE_TAG = "</section>";
+
+    /** HTML div wrapper opening tag. */
+    private static final String DIV_WRAPPER_TAG = "<div class=\"wrapper\">";
+
+    /** HTML table opening tag. */
+    private static final String TABLE_OPEN_TAG = "<table>";
+
+    /** HTML anchor separator. */
+    private static final String ANCHOR_SEPARATOR = "#";
+
+    /** Regex replacement for first capture group. */
+    private static final String FIRST_CAPTURE_GROUP = "$1";
+
+    /** Maximum line width for complete line including indentation. */
+    private static final int MAX_LINE_WIDTH_TOTAL = 100;
+
+    /** Indentation width for INDENT_LEVEL_14 (14 spaces). */
+    private static final int INDENT_WIDTH = 14;
+
+    /** Maximum content width excluding indentation. */
+    private static final int MAX_CONTENT_WIDTH = MAX_LINE_WIDTH_TOTAL - INDENT_WIDTH;
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
+        final String packageFilter = (String) request.getParameter("package");
+
         final Map<String, String> xmlHrefMap = buildXmlHtmlMap();
         final Map<String, CheckInfo> infos = new TreeMap<>();
 
-        processCheckFiles(infos, xmlHrefMap);
+        processCheckFiles(infos, xmlHrefMap, packageFilter);
 
         final StringBuilder normalRows = new StringBuilder(4096);
         final StringBuilder holderRows = new StringBuilder(512);
@@ -117,9 +169,11 @@ public class AllCheckSummaries extends AbstractMacro {
         buildTableRows(infos, normalRows, holderRows);
 
         sink.rawText(normalRows.toString());
-
-        if (!holderRows.isEmpty()) {
+        if (packageFilter == null && !holderRows.isEmpty()) {
             appendHolderSection(sink, holderRows);
+        }
+        else if (packageFilter != null && !holderRows.isEmpty()) {
+            appendFilteredHolderSection(sink, holderRows, packageFilter);
         }
     }
 
@@ -128,10 +182,12 @@ public class AllCheckSummaries extends AbstractMacro {
      *
      * @param infos map of collected module info
      * @param xmlHrefMap map of XML-to-HTML hrefs
+     * @param packageFilter optional package to filter by, null for all
      * @throws MacroExecutionException if file walk fails
      */
     private static void processCheckFiles(Map<String, CheckInfo> infos,
-                                          Map<String, String> xmlHrefMap)
+                                          Map<String, String> xmlHrefMap,
+                                          String packageFilter)
             throws MacroExecutionException {
         try {
             final List<Path> checkFiles = new ArrayList<>();
@@ -145,7 +201,7 @@ public class AllCheckSummaries extends AbstractMacro {
                 }
             });
 
-            checkFiles.forEach(path -> processCheckFile(path, infos, xmlHrefMap));
+            checkFiles.forEach(path -> processCheckFile(path, infos, xmlHrefMap, packageFilter));
         }
         catch (IOException | IllegalStateException exception) {
             throw new MacroExecutionException("Failed to discover checks", exception);
@@ -159,21 +215,21 @@ public class AllCheckSummaries extends AbstractMacro {
      * @return true if the path is a Check or Holder file, false otherwise
      */
     private static boolean isCheckOrHolderFile(Path path) {
-        final boolean result;
-        if (Files.isRegularFile(path)) {
-            final Path fileName = path.getFileName();
-            if (fileName == null) {
-                result = false;
-            }
-            else {
-                final String name = fileName.toString();
-                result = name.endsWith("Check.java") || name.endsWith("Holder.java");
-            }
-        }
-        else {
-            result = false;
-        }
-        return result;
+        final Path fileName = path.getFileName();
+        return fileName != null
+                && (fileName.toString().endsWith("Check.java")
+                || fileName.toString().endsWith("Holder.java"))
+                && Files.isRegularFile(path);
+    }
+
+    /**
+     * Checks if a module is a holder type.
+     *
+     * @param moduleName the module name
+     * @return true if the module is a holder, false otherwise
+     */
+    private static boolean isHolder(String moduleName) {
+        return moduleName.endsWith("Holder");
     }
 
     /**
@@ -182,28 +238,27 @@ public class AllCheckSummaries extends AbstractMacro {
      * @param path the check class file
      * @param infos map of results
      * @param xmlHrefMap map of XML hrefs
+     * @param packageFilter optional package to filter by, null for all
      * @throws IllegalArgumentException if macro execution fails
      */
     private static void processCheckFile(Path path, Map<String, CheckInfo> infos,
-                                         Map<String, String> xmlHrefMap) {
+                                         Map<String, String> xmlHrefMap,
+                                         String packageFilter) {
         try {
             final String moduleName = CommonUtil.getFileNameWithoutExtension(path.toString());
-            final boolean isHolder = moduleName.endsWith("Holder");
-            final String simpleName;
-            if (isHolder) {
-                simpleName = moduleName;
-            }
-            else {
-                simpleName = moduleName.substring(0, moduleName.length() - "Check".length());
-            }
             final DetailNode javadoc = SiteUtil.getModuleJavadoc(moduleName, path);
             if (javadoc != null) {
                 final String description = getDescriptionIfPresent(javadoc);
                 if (description != null) {
-                    final String summary = createSummary(description);
-                    final String category = extractCategory(path);
-                    final String href = resolveHref(xmlHrefMap, category, simpleName);
-                    addCheckInfo(infos, simpleName, href, summary, isHolder);
+                    final String packageName = determinePackageName(path, moduleName);
+
+                    if (packageFilter == null || packageFilter.equals(packageName)) {
+                        final String simpleName = determineSimpleName(moduleName);
+                        final String summary = createSummary(description);
+                        final String href = resolveHref(xmlHrefMap, packageName, simpleName,
+                                packageFilter);
+                        addCheckInfo(infos, simpleName, href, summary);
+                    }
                 }
             }
 
@@ -211,6 +266,43 @@ public class AllCheckSummaries extends AbstractMacro {
         catch (MacroExecutionException exceptionThrown) {
             throw new IllegalArgumentException(exceptionThrown);
         }
+    }
+
+    /**
+     * Determines the simple name of a check module.
+     *
+     * @param moduleName the full module name
+     * @return the simple name
+     */
+    private static String determineSimpleName(String moduleName) {
+        final String simpleName;
+        if (isHolder(moduleName)) {
+            simpleName = moduleName;
+        }
+        else {
+            simpleName = moduleName.substring(0, moduleName.length() - "Check".length());
+        }
+        return simpleName;
+    }
+
+    /**
+     * Determines the package name for a check, applying remapping rules.
+     *
+     * @param path the check class file
+     * @param moduleName the module name
+     * @return the package name
+     */
+    private static String determinePackageName(Path path, String moduleName) {
+        String packageName = extractCategory(path);
+
+        // Apply remapping for indentation -> misc
+        if ("indentation".equals(packageName)) {
+            packageName = MISC_PACKAGE;
+        }
+        if (isHolder(moduleName)) {
+            packageName = ANNOTATION_PACKAGE;
+        }
+        return packageName;
     }
 
     /**
@@ -256,14 +348,12 @@ public class AllCheckSummaries extends AbstractMacro {
      * @param simpleName simple class name
      * @param href documentation href
      * @param summary short summary of the check
-     * @param isHolder true if the check is a holder module
      */
     private static void addCheckInfo(Map<String, CheckInfo> infos,
                                      String simpleName,
                                      String href,
-                                     String summary,
-                                     boolean isHolder) {
-        infos.put(simpleName, new CheckInfo(simpleName, href, summary, isHolder));
+                                     String summary) {
+        infos.put(simpleName, new CheckInfo(simpleName, href, summary));
     }
 
     /**
@@ -315,7 +405,7 @@ public class AllCheckSummaries extends AbstractMacro {
                                    StringBuilder holderRows) {
         for (CheckInfo info : infos.values()) {
             final String row = buildTableRow(info);
-            if (info.isHolder) {
+            if (isHolder(info.simpleName)) {
                 holderRows.append(row);
             }
             else {
@@ -392,11 +482,11 @@ public class AllCheckSummaries extends AbstractMacro {
      */
     private static String buildHolderSectionHtml(StringBuilder holderRows) {
         return ModuleJavadocParsingUtil.INDENT_LEVEL_8
-                + "</table>"
+                + TABLE_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
-                + "</div>"
+                + DIV_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_4
-                + "</section>"
+                + SECTION_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_4
                 + "<section name=\"Holder Checks\">"
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
@@ -410,11 +500,68 @@ public class AllCheckSummaries extends AbstractMacro {
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
                 + "</p>"
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
-                + "<div class=\"wrapper\">"
+                + DIV_WRAPPER_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_8
-                + "<table>"
+                + TABLE_OPEN_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_10
                 + holderRows;
+    }
+
+    /**
+     * Appends the filtered Holder Checks section for package views.
+     *
+     * @param sink the output sink
+     * @param holderRows the holder rows content
+     * @param packageName the package name
+     */
+    private static void appendFilteredHolderSection(Sink sink, StringBuilder holderRows,
+                                                    String packageName) {
+        final String packageTitle = getPackageDisplayName(packageName);
+        final String holderSection = buildFilteredHolderSectionHtml(holderRows, packageTitle);
+        sink.rawText(holderSection);
+    }
+
+    /**
+     * Builds the HTML for the filtered Holder Checks section.
+     *
+     * @param holderRows the holder rows content
+     * @param packageTitle the display name of the package
+     * @return the complete HTML section as a string
+     */
+    private static String buildFilteredHolderSectionHtml(StringBuilder holderRows,
+                                                         String packageTitle) {
+        return ModuleJavadocParsingUtil.INDENT_LEVEL_8
+                + TABLE_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_6
+                + DIV_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_4
+                + SECTION_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_4
+                + "<section name=\"" + packageTitle + " Holder Checks\">"
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_6
+                + DIV_WRAPPER_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_8
+                + TABLE_OPEN_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_10
+                + holderRows;
+    }
+
+    /**
+     * Get display name for package (capitalize first letter).
+     *
+     * @param packageName the package name
+     * @return the capitalized package name
+     */
+    private static String getPackageDisplayName(String packageName) {
+        final String result;
+        if (packageName == null || packageName.isEmpty()) {
+            result = packageName;
+        }
+        else {
+            result = packageName.substring(0, 1).toUpperCase(Locale.ENGLISH)
+                    + packageName.substring(1);
+        }
+        return result;
     }
 
     /**
@@ -453,18 +600,11 @@ public class AllCheckSummaries extends AbstractMacro {
      * @return true if the path is a valid XML file, false otherwise
      */
     private static boolean isValidXmlFile(Path path) {
-        final boolean result;
-        if (Files.isRegularFile(path)
-                && path.toString().endsWith(XML_EXTENSION)) {
-            final Path fileName = path.getFileName();
-            result = fileName != null
-                    && !("index" + XML_EXTENSION)
-                    .equalsIgnoreCase(fileName.toString());
-        }
-        else {
-            result = false;
-        }
-        return result;
+        final Path fileName = path.getFileName();
+        return fileName != null
+                && !("index" + XML_EXTENSION).equalsIgnoreCase(fileName.toString())
+                && path.toString().endsWith(XML_EXTENSION)
+                && Files.isRegularFile(path);
     }
 
     /**
@@ -492,23 +632,52 @@ public class AllCheckSummaries extends AbstractMacro {
 
     /**
      * Resolves the href for a given check module.
+     * When packageFilter is null, returns full path: checks/category/filename.html#CheckName
+     * When packageFilter is set, returns relative path: filename.html#CheckName
      *
      * @param xmlMap map of XML file names to HTML paths
      * @param category the category of the check
      * @param simpleName simple name of the check
+     * @param packageFilter optional package filter, null for all checks
      * @return the resolved href for the check
      */
     private static String resolveHref(Map<String, String> xmlMap, String category,
-                                      String simpleName) {
+                                      String simpleName, @Nullable String packageFilter) {
         final String lower = simpleName.toLowerCase(Locale.ROOT);
         final String href = xmlMap.get(lower);
         final String result;
+
         if (href != null) {
-            result = href + "#" + simpleName;
+            // XML file exists in the map
+            if (packageFilter == null) {
+                // Full path for all checks view
+                result = href + ANCHOR_SEPARATOR + simpleName;
+            }
+            else {
+                // Extract just the filename for filtered view
+                final int lastSlash = href.lastIndexOf('/');
+                final String filename;
+                if (lastSlash >= 0) {
+                    filename = href.substring(lastSlash + 1);
+                }
+                else {
+                    filename = href;
+                }
+                result = filename + ANCHOR_SEPARATOR + simpleName;
+            }
         }
         else {
-            result = String.format(Locale.ROOT, "%s/%s/%s.html#%s",
-                    CHECKS, category, lower, simpleName);
+            // XML file not found, construct default path
+            if (packageFilter == null) {
+                // Full path for all checks view
+                result = String.format(Locale.ROOT, "%s/%s/%s.html%s%s",
+                        CHECKS, category, lower, ANCHOR_SEPARATOR, simpleName);
+            }
+            else {
+                // Just filename for filtered view
+                result = String.format(Locale.ROOT, "%s.html%s%s",
+                        lower, ANCHOR_SEPARATOR, simpleName);
+            }
         }
         return result;
     }
@@ -524,7 +693,8 @@ public class AllCheckSummaries extends AbstractMacro {
         final Path parent = rel.getParent();
         final String result;
         if (parent == null) {
-            result = "";
+            // Root-level checks go to misc
+            result = MISC_PACKAGE;
         }
         else {
             result = parent.toString().replace('\\', '/');
@@ -534,6 +704,7 @@ public class AllCheckSummaries extends AbstractMacro {
 
     /**
      * Sanitizes HTML and extracts first sentence.
+     * Preserves anchor tags while removing other HTML formatting.
      *
      * @param html the HTML string to process
      * @return the sanitized first sentence
@@ -544,10 +715,10 @@ public class AllCheckSummaries extends AbstractMacro {
             result = "";
         }
         else {
-            String cleaned = LINK_PATTERN.matcher(html).replaceAll("$1");
-            cleaned = TAG_PATTERN.matcher(cleaned).replaceAll("");
+            String cleaned = TAG_PATTERN.matcher(html).replaceAll("");
             cleaned = SPACE_PATTERN.matcher(cleaned).replaceAll(" ").trim();
             cleaned = AMP_PATTERN.matcher(cleaned).replaceAll("&amp;");
+            cleaned = CODE_SPACE_PATTERN.matcher(cleaned).replaceAll(FIRST_CAPTURE_GROUP);
             result = extractFirstSentence(cleaned);
         }
         return result;
@@ -589,53 +760,48 @@ public class AllCheckSummaries extends AbstractMacro {
      * @return the wrapped text
      */
     private static String wrapSummary(String text) {
-        final String result;
-        if (text == null || text.isEmpty()) {
-            result = "";
-        }
-        else if (text.length() <= MAX_LINE_WIDTH) {
-            result = text;
-        }
-        else {
-            result = performWrapping(text);
-        }
-        return result;
-    }
+        String wrapped = "";
 
-    /**
-     * Performs wrapping of summary text.
-     *
-     * @param text the text to wrap
-     * @return the wrapped text
-     */
-    private static String performWrapping(String text) {
-        final int textLength = text.length();
-        final StringBuilder result = new StringBuilder(textLength + 100);
-        int pos = 0;
-        final String indent = ModuleJavadocParsingUtil.INDENT_LEVEL_14;
-        boolean firstLine = true;
+        if (text != null && !text.isEmpty()) {
+            final String indent = ModuleJavadocParsingUtil.INDENT_LEVEL_14;
+            final String clean = text.trim();
 
-        while (pos < textLength) {
-            final int end = Math.min(pos + MAX_LINE_WIDTH, textLength);
-            if (end >= textLength) {
-                if (!firstLine) {
-                    result.append(indent);
+            final StringBuilder result = new StringBuilder(CAPACITY);
+            int cleanIndex = 0;
+            final int cleanLen = clean.length();
+
+            while (cleanIndex < cleanLen) {
+                final int remainingChars = cleanLen - cleanIndex;
+
+                if (remainingChars <= MAX_CONTENT_WIDTH) {
+                    result.append(indent)
+                            .append(clean.substring(cleanIndex))
+                            .append('\n');
+                    break;
                 }
-                result.append(text.substring(pos));
-                break;
+
+                final int idealBreak = cleanIndex + MAX_CONTENT_WIDTH;
+                int actualBreak = idealBreak;
+
+                final int lastSpace = clean.lastIndexOf(' ', idealBreak);
+
+                if (lastSpace > cleanIndex && lastSpace >= cleanIndex + MAX_CONTENT_WIDTH / 2) {
+                    actualBreak = lastSpace;
+                }
+
+                result.append(indent)
+                        .append(clean, cleanIndex, actualBreak);
+
+                cleanIndex = actualBreak;
+                if (cleanIndex < cleanLen && clean.charAt(cleanIndex) == ' ') {
+                    cleanIndex++;
+                }
             }
-            int breakPos = text.lastIndexOf(' ', end);
-            if (breakPos <= pos) {
-                breakPos = end;
-            }
-            if (!firstLine) {
-                result.append(indent);
-            }
-            result.append(text, pos, breakPos);
-            pos = breakPos + 1;
-            firstLine = false;
+
+            wrapped = result.toString().trim();
         }
-        return result.toString();
+
+        return wrapped;
     }
 
     /**
@@ -648,8 +814,6 @@ public class AllCheckSummaries extends AbstractMacro {
         private final String link;
         /** Short summary text. */
         private final String summary;
-        /** Whether the module is a holder type. */
-        private final boolean isHolder;
 
         /**
          * Constructs an info record.
@@ -657,17 +821,11 @@ public class AllCheckSummaries extends AbstractMacro {
          * @param simpleName check simple name
          * @param link documentation link
          * @param summary module summary
-         * @param isHolder whether holder
-         * @noinspection unused
-         * @noinspectionreason moduleName parameter is required for consistent API
-         *      but not used in this implementation
          */
-        private CheckInfo(String simpleName, String link,
-                          String summary, boolean isHolder) {
+        private CheckInfo(String simpleName, String link, String summary) {
             this.simpleName = simpleName;
             this.link = link;
             this.summary = summary;
-            this.isHolder = isHolder;
         }
     }
 }
