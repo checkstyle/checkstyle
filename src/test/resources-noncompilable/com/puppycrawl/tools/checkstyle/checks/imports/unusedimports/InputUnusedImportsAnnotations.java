@@ -1,10 +1,10 @@
 /*
 UnusedImports
 processJavadoc = (default)true
-
+violateExecutionOnNonTightHtml = (default)false
+javadocTokens = (default)REFERENCE, PARAMETER_TYPE, THROWS_BLOCK_TAG
 
 */
-
 // non-compiled with javac: contains specially crafted set of imports for testing
 // this file content is based on package-info.java file structure
 // Created: 2005
