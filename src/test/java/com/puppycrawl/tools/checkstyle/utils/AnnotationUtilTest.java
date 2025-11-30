@@ -234,26 +234,10 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testContainsAnnotationListWithNoMatchingAnnotation() {
-        final DetailAstImpl ast = new DetailAstImpl();
-        final DetailAstImpl modifiersAst = create(
-                TokenTypes.MODIFIERS,
-                create(
-                        TokenTypes.ANNOTATION,
-                        create(
-                                TokenTypes.DOT,
-                                create(
-                                        TokenTypes.IDENT,
-                                        "Override")
-                        )
-                )
-        );
-        ast.addChild(modifiersAst);
-        final Set<String> annotations = Set.of("Deprecated");
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
-        assertWithMessage("No matching annotation found")
-            .that(result)
-            .isFalse();
+    public void testContainsAnnotationListWithNoMatchingAnnotation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputAnnotationUtilNoMatchingAnnotation.java"), expected);
     }
 
     @Test
@@ -363,21 +347,4 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
                 getPath("InputAnnotationUtil2.java"), expected);
     }
 
-    private static DetailAstImpl create(int tokenType) {
-        final DetailAstImpl ast = new DetailAstImpl();
-        ast.setType(tokenType);
-        return ast;
-    }
-
-    private static DetailAstImpl create(int tokenType, String text) {
-        final DetailAstImpl ast = create(tokenType);
-        ast.setText(text);
-        return ast;
-    }
-
-    private static DetailAstImpl create(int tokenType, DetailAstImpl child) {
-        final DetailAstImpl ast = create(tokenType);
-        ast.addChild(child);
-        return ast;
-    }
 }
