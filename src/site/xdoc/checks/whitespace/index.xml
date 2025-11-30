@@ -16,8 +16,8 @@
               </a>
             </td>
             <td>
-              Checks the padding of an empty for initializer; that is whether
-              a white space is required at an empty for initializer, or such white
+              Checks the padding of an empty for initializer; that is whether a
+              white space is required at an empty for initializer, or such white
               space is forbidden.
             </td>
           </tr>
@@ -28,9 +28,9 @@
               </a>
             </td>
             <td>
-              Checks the padding of an empty for iterator; that is whether a white
-              space is required at an empty for iterator, or such white space is
-              forbidden.
+              Checks the padding of an empty for iterator; that is whether a
+              white space is required at an empty for iterator, or such white
+              space is forbidden.
             </td>
           </tr>
           <tr>
@@ -40,8 +40,8 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package,
-              all import declarations, fields, constructors, methods, nested classes,
+              Checks for empty line separators before package, all import
+              declarations, fields, constructors, methods, nested classes,
               static initializers and instance initializers.
             </td>
           </tr>
@@ -62,8 +62,9 @@
               </a>
             </td>
             <td>
-              Checks that the whitespace around the Generic tokens (angle brackets)
-              "&lt;" and "&gt;" are correct to the typical convention.
+              Checks that the whitespace around the Generic tokens (angle
+              brackets) "&lt;" and "&gt;" are correct to the <i>typical</i>
+              convention.
             </td>
           </tr>
           <tr>
@@ -74,9 +75,9 @@
             </td>
             <td>
               Checks the padding between the identifier of a method definition,
-              constructor definition, method call,
-              constructor invocation, record, or record pattern;
-              and the left parenthesis of the parameter list.
+              constructor definition, method call, constructor invocation,
+              record, or record pattern; and the left parenthesis of the
+              parameter list.
             </td>
           </tr>
           <tr>
@@ -116,7 +117,8 @@
               </a>
             </td>
             <td>
-              Checks that there is no whitespace before the colon in a switch block.
+              Checks that there is no whitespace before the colon in a switch
+              block.
             </td>
           </tr>
           <tr>
@@ -158,8 +160,8 @@
               </a>
             </td>
             <td>
-              Checks that non-whitespace characters are separated by no more than one
-              whitespace.
+              Checks that non-whitespace characters are separated by no more
+              than one whitespace.
             </td>
           </tr>
           <tr>
@@ -179,8 +181,9 @@
               </a>
             </td>
             <td>
-              Checks that a token is followed by whitespace, with the exception that it does not
-              check for whitespace after the semicolon of an empty for iterator.
+              Checks that a token is followed by whitespace, with the exception
+              that it does not check for whitespace after the semicolon of an
+              empty for iterator.
             </td>
           </tr>
           <tr>

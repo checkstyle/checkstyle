@@ -17,7 +17,7 @@
             </td>
             <td>
               Checks that a specified pattern exists, exists less than a set
-            number of times, or does not exist in the file.
+              number of times, or does not exist in the file.
             </td>
           </tr>
           <tr>
@@ -28,7 +28,7 @@
             </td>
             <td>
               Checks that a specified pattern matches across multiple lines in
-            any file type.
+              any file type.
             </td>
           </tr>
           <tr>
@@ -38,7 +38,8 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches based on file and/or folder path.
+              Checks that a specified pattern matches based on file and/or
+              folder path.
             </td>
           </tr>
           <tr>
@@ -48,7 +49,8 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches a single-line in any file type.
+              Checks that a specified pattern matches a single-line in any file
+              type.
             </td>
           </tr>
           <tr>
@@ -58,7 +60,8 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches a single-line in Java files.
+              Checks that a specified pattern matches a single-line in Java
+              files.
             </td>
           </tr>
         </table>

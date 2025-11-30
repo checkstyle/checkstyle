@@ -26,8 +26,8 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against multiple header files that contain a
-              pattern for each line of the source header.
+              Checks the header of a source file against multiple header files
+              that contain a pattern for each line of the source header.
             </td>
           </tr>
           <tr>
@@ -38,7 +38,7 @@
             </td>
             <td>
               Checks the header of a source file against a header that contains
-            a pattern for each line of the source header.
+              a pattern for each line of the source header.
             </td>
           </tr>
         </table>

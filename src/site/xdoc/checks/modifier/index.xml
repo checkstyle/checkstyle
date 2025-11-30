@@ -16,7 +16,8 @@
               </a>
             </td>
             <td>
-              Checks for implicit modifiers on nested types in classes and records.
+              Checks for implicit modifiers on nested types in classes and
+              records.
             </td>
           </tr>
           <tr>
@@ -26,7 +27,8 @@
               </a>
             </td>
             <td>
-              Checks for implicit modifiers on interface members and nested types.
+              Checks for implicit modifiers on interface members and nested
+              types.
             </td>
           </tr>
           <tr>
@@ -36,8 +38,9 @@
               </a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the
-            Java Language specification, § 8.1.1, 8.3.1, 8.4.3 and 9.4.
+              Checks that the order of modifiers conforms to the suggestions in
+              the Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3 and
+              9.4.
             </td>
           </tr>
           <tr>
