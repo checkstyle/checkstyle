@@ -26,7 +26,8 @@
               </a>
             </td>
             <td>
-              Restricts using Unicode escapes (such as \u221e).
+              Restricts using <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+              Unicode escapes</a> (such as &#92;u221e).
             </td>
           </tr>
           <tr>
@@ -66,8 +67,8 @@
               </a>
             </td>
             <td>
-              Checks that hexadecimal literals are defined using uppercase letters (A-F)
-              rather than lowercase (a-f).
+              Checks that hexadecimal literals are defined using uppercase letters
+              <code>(A-F)</code> rather than lowercase <code>(a-f)</code>.
             </td>
           </tr>
           <tr>
@@ -127,7 +128,7 @@
               </a>
             </td>
             <td>
-              Checks for TODO: comments.
+              Checks for <code>TODO:</code> comments.
             </td>
           </tr>
           <tr>
@@ -147,8 +148,8 @@
               </a>
             </td>
             <td>
-              Ensures the correct translation of code by checking property files
-            for consistency regarding their keys.
+              Ensures the correct translation of code by checking property files for consistency
+              regarding their keys.
             </td>
           </tr>
           <tr>
