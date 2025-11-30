@@ -36,8 +36,8 @@
               </a>
             </td>
             <td>
-              Checks that a javadoc block tag appears only at the beginning of a line,
-            ignoring leading asterisks and white space.
+              Checks that a javadoc block tag appears only at the beginning of a
+              line, ignoring leading asterisks and white space.
             </td>
           </tr>
           <tr>
@@ -47,8 +47,8 @@
               </a>
             </td>
             <td>
-              Checks that the Javadoc content begins from the same position
-            for all Javadoc comments in the project.
+              Checks that the Javadoc content begins from the same position for
+              all Javadoc comments in the project.
             </td>
           </tr>
           <tr>
@@ -88,7 +88,8 @@
               </a>
             </td>
             <td>
-              Checks that there is at least one whitespace after the leading asterisk.
+              Checks that there is at least one whitespace after the leading
+              asterisk.
             </td>
           </tr>
           <tr>
@@ -98,7 +99,8 @@
               </a>
             </td>
             <td>
-              Checks that each Java package has a Javadoc file used for commenting.
+              Checks that each Java package has a Javadoc file used for
+              commenting.
             </td>
           </tr>
           <tr>
@@ -168,7 +170,8 @@
               </a>
             </td>
             <td>
-              Checks for missing package definition Javadoc comments in package-info.java files.
+              Checks for missing package definition Javadoc comments in
+              package-info.java files.
             </td>
           </tr>
           <tr>
@@ -178,8 +181,8 @@
               </a>
             </td>
             <td>
-              Checks for missing Javadoc comments for class, enum, interface, and annotation
-            interface definitions.
+              Checks for missing Javadoc comments for class, enum, interface,
+              and annotation interface definitions.
             </td>
           </tr>
           <tr>
@@ -199,7 +202,8 @@
               </a>
             </td>
             <td>
-              Checks that one blank line before the block tag if it is present in Javadoc.
+              Checks that one blank line before the block tag if it is present
+              in Javadoc.
             </td>
           </tr>
           <tr>
@@ -209,8 +213,8 @@
               </a>
             </td>
             <td>
-              Checks that a Javadoc block can fit in a single-line and doesn't contain
-            block tags.
+              Checks that a Javadoc block can fit in a single-line and doesn't
+              contain block tags.
             </td>
           </tr>
           <tr>
@@ -220,8 +224,8 @@
               </a>
             </td>
             <td>
-              Checks that Javadoc summary sentence does not contain phrases that are not recommended
-            to use.
+              Checks that Javadoc summary sentence does not contain phrases that
+              are not recommended to use.
             </td>
           </tr>
           <tr>
@@ -232,7 +236,7 @@
             </td>
             <td>
               Requires user defined Javadoc tag to be present in Javadoc comment
-            with defined format.
+              with defined format.
             </td>
           </tr>
         </table>
