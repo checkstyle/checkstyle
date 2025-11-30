@@ -26,7 +26,7 @@
               </a>
             </td>
             <td>
-              Restricts using Unicode escapes (such as \u221e).
+              Restricts using Unicode escapes (such as &#92;u221e).
             </td>
           </tr>
           <tr>
@@ -56,7 +56,8 @@
               </a>
             </td>
             <td>
-              Checks that parameters for methods, constructors, catch and for-each blocks are final.
+              Checks that parameters for methods, constructors, catch and
+              for-each blocks are final.
             </td>
           </tr>
           <tr>
@@ -66,8 +67,8 @@
               </a>
             </td>
             <td>
-              Checks that hexadecimal literals are defined using uppercase letters (A-F)
-              rather than lowercase (a-f).
+              Checks that hexadecimal literals are defined using uppercase
+              letters (A-F) rather than lowercase (a-f).
             </td>
           </tr>
           <tr>
@@ -148,7 +149,7 @@
             </td>
             <td>
               Ensures the correct translation of code by checking property files
-            for consistency regarding their keys.
+              for consistency regarding their keys.
             </td>
           </tr>
           <tr>
@@ -158,7 +159,7 @@
               </a>
             </td>
             <td>
-              Detects uncommented <code>main</code> methods.
+              Detects uncommented main methods.
             </td>
           </tr>
           <tr>

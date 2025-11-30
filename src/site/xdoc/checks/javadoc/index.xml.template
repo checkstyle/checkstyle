@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>Javadoc Comments</title>
+  </head>
+  <body>
+    <section name="Javadoc Comments Checks">
+      <div class="wrapper">
+        <macro name="generate-checks-indexes">
+          <param name="package" value="javadoc"/>
+        </macro>
+      </div>
+    </section>
+  </body>
+</document>
