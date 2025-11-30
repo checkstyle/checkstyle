@@ -8,8 +8,8 @@
   <body>
     <section name="Modifiers Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="classmemberimpliedmodifier.html#ClassMemberImpliedModifier">
                 ClassMemberImpliedModifier
@@ -36,8 +36,8 @@
               </a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the
-            Java Language specification, § 8.1.1, 8.3.1, 8.4.3 and 9.4.
+              Checks that the order of modifiers conforms to the suggestions in the Java Language
+              specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
             </td>
           </tr>
           <tr>
@@ -50,7 +50,7 @@
               Checks for redundant modifiers.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
