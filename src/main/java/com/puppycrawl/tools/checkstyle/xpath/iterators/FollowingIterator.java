@@ -65,13 +65,15 @@ public class FollowingIterator implements AxisIterator {
             }
 
             if (result == null && siblingEnum != null) {
-                result = siblingEnum.next();
-                if (result == null) {
+                final NodeInfo nextSibling = siblingEnum.next();
+
+                if (nextSibling == null) {
                     siblingEnum = null;
+                    continue;
                 }
-                else {
-                    descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
-                }
+
+                result = nextSibling;
+                descendantEnum = result.iterateAxis(AxisInfo.DESCENDANT);
             }
 
             if (result == null) {
