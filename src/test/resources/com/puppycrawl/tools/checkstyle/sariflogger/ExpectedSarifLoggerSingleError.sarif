@@ -17,6 +17,12 @@
               "messageStrings": {
                 "import.unused": {
                   "text": "Unused import - {0}."
+                },
+                "javadoc.parse.rule.error": {
+                  "text": "Javadoc comment at column {0} has parse error. Details: {1} while parsing {2}"
+                },
+                "javadoc.unclosedHtml": {
+                  "text": "Unclosed HTML tag found: {0}"
                 }
               },
               "shortDescription": {
