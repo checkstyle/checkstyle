@@ -21,25 +21,18 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
-
-import org.checkerframework.checker.index.qual.IndexOrLow;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -94,10 +87,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  *
+ * @noinspection JavadocReference
+ * @noinspectionreason IntelliJ treats {@code {@link List}} in this example as a real reference,
+ *     but the import is intentionally omitted since it is an unused-import case.
  * @since 3.0
  */
 @FileStatefulCheck
-public class UnusedImportsCheck extends AbstractCheck {
+public class UnusedImportsCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -105,31 +101,9 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "import.unused";
 
-    /** Regex to match class names. */
-    private static final Pattern CLASS_NAME = CommonUtil.createPattern(
-           "((:?[\\p{L}_$][\\p{L}\\p{N}_$]*\\.)*[\\p{L}_$][\\p{L}\\p{N}_$]*)");
-    /** Regex to match the first class name. */
-    private static final Pattern FIRST_CLASS_NAME = CommonUtil.createPattern(
-           "^" + CLASS_NAME);
-    /** Regex to match argument names. */
-    private static final Pattern ARGUMENT_NAME = CommonUtil.createPattern(
-           "[(,]\\s*" + CLASS_NAME.pattern());
-
     /** Regexp pattern to match java.lang package. */
     private static final Pattern JAVA_LANG_PACKAGE_PATTERN =
         CommonUtil.createPattern("^java\\.lang\\.[a-zA-Z]+$");
-
-    /** Reference pattern. */
-    private static final Pattern REFERENCE = Pattern.compile(
-            "^([a-z_$][a-z\\d_$<>.]*)?(#(.*))?$",
-            Pattern.CASE_INSENSITIVE
-    );
-
-    /** Method pattern. */
-    private static final Pattern METHOD = Pattern.compile(
-            "^([a-z_$#][a-z\\d_$]*)(\\([^)]*\\))?$",
-            Pattern.CASE_INSENSITIVE
-    );
 
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
@@ -137,8 +111,6 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
-    /** Flag to indicate when time to start collecting references. */
-    private boolean collect;
     /** Control whether to process Javadoc comments. */
     private boolean processJavadoc = true;
 
@@ -160,7 +132,7 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        collect = false;
+        super.beginTree(rootAST);
         currentFrame = Frame.compilationUnit();
         imports.clear();
     }
@@ -175,8 +147,22 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     @Override
-    public int[] getDefaultTokens() {
-        return getRequiredTokens();
+    public int[] getDefaultJavadocTokens() {
+        return new int[] {
+            JavadocCommentsTokenTypes.REFERENCE,
+            JavadocCommentsTokenTypes.PARAMETER_TYPE,
+            JavadocCommentsTokenTypes.THROWS_BLOCK_TAG,
+        };
+    }
+
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+        switch (ast.getType()) {
+            case JavadocCommentsTokenTypes.REFERENCE -> processReference(ast);
+            case JavadocCommentsTokenTypes.PARAMETER_TYPE -> processParameterType(ast);
+            case JavadocCommentsTokenTypes.THROWS_BLOCK_TAG -> processThrows(ast);
+            default -> throw new IllegalArgumentException("Unknown token type " + ast);
+        }
     }
 
     @Override
@@ -185,47 +171,27 @@ public class UnusedImportsCheck extends AbstractCheck {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
             // Tokens for creating a new frame
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            // Javadoc
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        return getRequiredTokens();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.IDENT -> {
-                if (collect) {
-                    processIdent(ast);
-                }
-            }
+            case TokenTypes.IDENT -> processIdent(ast);
             case TokenTypes.IMPORT -> processImport(ast);
             case TokenTypes.STATIC_IMPORT -> processStaticImport(ast);
             case TokenTypes.OBJBLOCK, TokenTypes.SLIST -> currentFrame = currentFrame.push();
-            default -> {
-                collect = true;
+            case TokenTypes.BLOCK_COMMENT_BEGIN -> {
                 if (processJavadoc) {
-                    collectReferencesFromJavadoc(ast);
+                    super.visitToken(ast);
                 }
             }
+            default -> throw new IllegalArgumentException("Unknown javadoc token type " + ast);
         }
     }
 
@@ -257,14 +223,20 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
 
-        final boolean isClassOrMethod = parentType == TokenTypes.DOT
+        // Ignore IDENTs that are part of the import statement itself
+        final boolean collect = parentType != TokenTypes.IMPORT
+                && parentType != TokenTypes.STATIC_IMPORT;
+
+        if (collect) {
+            final boolean isClassOrMethod = parentType == TokenTypes.DOT
                 || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
 
-        if (TokenUtil.isTypeDeclaration(parentType)) {
-            currentFrame.addDeclaredType(ast.getText());
-        }
-        else if (!isClassOrMethod || isQualifiedIdentifier(ast)) {
-            currentFrame.addReferencedType(ast.getText());
+            if (TokenUtil.isTypeDeclaration(parentType)) {
+                currentFrame.addDeclaredType(ast.getText());
+            }
+            else if (!isClassOrMethod || isQualifiedIdentifier(ast)) {
+                currentFrame.addReferencedType(ast.getText());
+            }
         }
     }
 
@@ -313,97 +285,69 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
-     * Collects references made in Javadoc comments.
+     * Processes a Javadoc reference to record referenced types.
+     * Validates the class and optional member part before adding
+     * the type to the current frame.
      *
-     * @param ast node to inspect for Javadoc
+     * @param ast the Javadoc reference node
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
-    private void collectReferencesFromJavadoc(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock textBlock = contents.getJavadocBefore(lineNo);
-        if (textBlock != null) {
-            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
+    private void processReference(DetailNode ast) {
+        final String referenceText = topLevelType(ast.getFirstChild().getText());
+        final boolean isClassValid = isValidIdentifier(referenceText);
+
+        final DetailNode memberReference = ast
+                .findFirstToken(JavadocCommentsTokenTypes.MEMBER_REFERENCE);
+        // Default to true if no member exists
+        boolean isMemberValid = true;
+
+        if (memberReference != null) {
+            final String memberText = memberReference.getFirstChild().getText();
+            isMemberValid = isValidIdentifier(memberText);
+        }
+
+        if (isClassValid && isMemberValid) {
+            currentFrame.addReferencedType(referenceText);
         }
     }
 
     /**
-     * Process a javadoc {@link TextBlock} and return the set of classes
-     * referenced within.
+     * Processes a Javadoc parameter type tag to record referenced type.
      *
-     * @param textBlock The javadoc block to parse
-     * @return a set of classes referenced in the javadoc block
+     * @param ast the Javadoc parameter type node
      */
-    private static Set<String> collectReferencesFromJavadoc(TextBlock textBlock) {
-        // Process INLINE tags
-        final List<JavadocTag> inlineTags = getTargetTags(textBlock,
-                JavadocUtil.JavadocTagType.INLINE);
-        // Process BLOCK tags
-        final List<JavadocTag> blockTags = getTargetTags(textBlock,
-                JavadocUtil.JavadocTagType.BLOCK);
-        final List<JavadocTag> targetTags = Stream.concat(inlineTags.stream(), blockTags.stream())
-                .toList();
-
-        final Set<String> references = new HashSet<>();
-
-        targetTags.stream()
-            .filter(JavadocTag::canReferenceImports)
-            .forEach(tag -> references.addAll(processJavadocTag(tag)));
-        return references;
-    }
-
-    /**
-     * Returns the list of valid tags found in a javadoc {@link TextBlock}.
-     * Filters tags based on whether they are inline or block tags, ensuring they match
-     * the correct format supported.
-     *
-     * @param cmt The javadoc block to parse
-     * @param javadocTagType The type of tags we're interested in
-     * @return the list of tags
-     */
-    private static List<JavadocTag> getTargetTags(TextBlock cmt,
-            JavadocUtil.JavadocTagType javadocTagType) {
-        return JavadocUtil.getJavadocTags(cmt, javadocTagType)
-            .getValidTags()
-            .stream()
-            .filter(tag -> isMatchingTagType(tag, javadocTagType))
-            .map(UnusedImportsCheck::bestTryToMatchReference)
-            .flatMap(Optional::stream)
-            .toList();
-    }
-
-    /**
-     * Returns a list of references that found in a javadoc {@link JavadocTag}.
-     *
-     * @param tag The javadoc tag to parse
-     * @return A list of references that found in this tag
-     */
-    private static Set<String> processJavadocTag(JavadocTag tag) {
-        final Set<String> references = new HashSet<>();
-        final String identifier = tag.getFirstArg();
-        for (Pattern pattern : new Pattern[]
-        {FIRST_CLASS_NAME, ARGUMENT_NAME}) {
-            references.addAll(matchPattern(identifier, pattern));
+    private void processParameterType(DetailNode ast) {
+        String parameterTypeText = topLevelType(ast.getText());
+        if (parameterTypeText.endsWith("[]")) {
+            parameterTypeText = parameterTypeText.substring(0, parameterTypeText.length() - 2);
         }
-        return references;
+        currentFrame.addReferencedType(parameterTypeText);
     }
 
     /**
-     * Extracts a set of texts matching a {@link Pattern} from a
-     * {@link String}.
+     * Processes a Javadoc throws tag to record referenced type.
      *
-     * @param identifier The String to match the pattern against
-     * @param pattern The Pattern used to extract the texts
-     * @return A set of texts which matched the pattern
+     * @param ast the Javadoc throws node
      */
-    private static Set<String> matchPattern(String identifier, Pattern pattern) {
-        final Set<String> references = new HashSet<>();
-        final Matcher matcher = pattern.matcher(identifier);
-        while (matcher.find()) {
-            references.add(topLevelType(matcher.group(1)));
+    private void processThrows(DetailNode ast) {
+        final DetailNode ident = ast.findFirstToken(JavadocCommentsTokenTypes.IDENTIFIER);
+        if (ident != null) {
+            currentFrame.addReferencedType(ident.getText());
         }
-        return references;
+    }
+
+    /**
+     * Checks if the provided string starts as a valid Java identifier.
+     *
+     * @param identifier the string to check
+     * @return true if the string starts as a valid Java identifier, false otherwise
+     */
+    private static boolean isValidIdentifier(String identifier) {
+        boolean isValid = false;
+        if (!identifier.isEmpty()) {
+            final int character = identifier.codePointAt(0);
+            isValid = Character.isJavaIdentifierStart(character);
+        }
+        return isValid;
     }
 
     /**
@@ -424,95 +368,6 @@ public class UnusedImportsCheck extends AbstractCheck {
             topLevelType = type.substring(0, dotIndex);
         }
         return topLevelType;
-    }
-
-    /**
-     * Checks if a Javadoc tag matches the expected type based on its extraction format.
-     * This method checks if an inline tag is extracted as a block tag or vice versa.
-     * It ensures that block tags are correctly recognized as block tags and inline tags
-     * as inline tags during processing.
-     *
-     * @param tag The Javadoc tag to check.
-     * @param javadocTagType The expected type of the tag (BLOCK or INLINE).
-     * @return {@code true} if the tag matches the expected type, otherwise {@code false}.
-     */
-    private static boolean isMatchingTagType(JavadocTag tag,
-                                             JavadocUtil.JavadocTagType javadocTagType) {
-        final boolean isInlineTag = tag.isInlineTag();
-        final boolean isBlockTagType = javadocTagType == JavadocUtil.JavadocTagType.BLOCK;
-
-        return isBlockTagType != isInlineTag;
-    }
-
-    /**
-     * Attempts to match a reference string against a predefined pattern
-     * and extracts valid reference.
-     *
-     * @param tag the input tag to check
-     * @return Optional of extracted references
-     */
-    public static Optional<JavadocTag> bestTryToMatchReference(JavadocTag tag) {
-        final String content = tag.getFirstArg();
-        final int referenceIndex = extractReferencePart(content);
-        Optional<JavadocTag> validTag = Optional.empty();
-
-        if (referenceIndex != -1) {
-            final String referenceString;
-            if (referenceIndex == 0) {
-                referenceString = content;
-            }
-            else {
-                referenceString = content.substring(0, referenceIndex);
-            }
-            final Matcher matcher = REFERENCE.matcher(referenceString);
-            if (matcher.matches()) {
-                final int methodIndex = 3;
-                final String methodPart = matcher.group(methodIndex);
-                final boolean isValid = methodPart == null
-                        || METHOD.matcher(methodPart).matches();
-                if (isValid) {
-                    validTag = Optional.of(tag);
-                }
-            }
-        }
-        return validTag;
-    }
-
-    /**
-     * Extracts the reference part from an input string while ensuring balanced parentheses.
-     *
-     * @param input the input string
-     * @return -1 if parentheses are unbalanced, 0 if no method is found,
-     *         or the index of the first space outside parentheses.
-     */
-    private static @IndexOrLow("#1")int extractReferencePart(String input) {
-        int parenthesesCount = 0;
-        int firstSpaceOutsideParens = -1;
-        for (int index = 0; index < input.length(); index++) {
-            final char currentCharacter = input.charAt(index);
-
-            if (currentCharacter == '(') {
-                parenthesesCount++;
-            }
-            else if (currentCharacter == ')') {
-                parenthesesCount--;
-            }
-            else if (currentCharacter == ' ' && parenthesesCount == 0) {
-                firstSpaceOutsideParens = index;
-                break;
-            }
-        }
-
-        int methodIndex = -1;
-        if (parenthesesCount == 0) {
-            if (firstSpaceOutsideParens == -1) {
-                methodIndex = 0;
-            }
-            else {
-                methodIndex = firstSpaceOutsideParens;
-            }
-        }
-        return methodIndex;
     }
 
     /**

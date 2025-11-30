@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import javax.annotation.Nullable;
+
 /**
  * DetailNode is used to construct tree during parsing Javadoc comments.
  * Contains array of children, parent node and other useful fields.
@@ -84,4 +86,13 @@ public interface DetailNode {
      * @return sibling node
      */
     DetailNode getPreviousSibling();
+
+    /**
+     * Returns the first child token that makes a specified type.
+     *
+     * @param type the token type to match
+     * @return the matching token, or null if no match
+     */
+    @Nullable
+    DetailNode findFirstToken(int type);
 }
