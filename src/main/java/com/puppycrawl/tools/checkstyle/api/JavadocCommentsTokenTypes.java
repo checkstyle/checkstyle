@@ -666,6 +666,25 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@inheritDoc}} inline tag.
+     *
+     * <p>This node models the inline {@code {@inheritDoc}} tag that instructs Javadoc
+     * to inherit documentation from the corresponding element in a parent class or interface.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@inheritDoc}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--INHERIT_DOC_INLINE_TAG -> INHERIT_DOC_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> inheritDoc
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int INHERIT_DOC_INLINE_TAG = JavadocCommentsLexer.INHERIT_DOC_INLINE_TAG;
 
