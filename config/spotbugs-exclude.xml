@@ -309,6 +309,9 @@
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
       <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
       <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
+      <Class name="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener" />
+      <Class name=
+           "com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener" />
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
