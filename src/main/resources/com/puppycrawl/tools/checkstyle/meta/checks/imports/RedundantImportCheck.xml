@@ -9,8 +9,8 @@
  considered redundant if:
  &lt;/div&gt;
  &lt;ul&gt;
-   &lt;li&gt;It is a duplicate of another import. This is, when a class is imported
-   more than once.&lt;/li&gt;
+   &lt;li&gt;It is a duplicate of another import. This is, when a class or a module
+   is imported more than once.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the &lt;code&gt;java.lang&lt;/code&gt;
    package, e.g. importing &lt;code&gt;java.lang.String&lt;/code&gt;.&lt;/li&gt;
    &lt;li&gt;The class non-statically imported is from the same package as the

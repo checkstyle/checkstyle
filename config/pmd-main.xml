@@ -50,7 +50,7 @@
          value="//ClassDeclaration[@SimpleName='AutomaticBean']"/>
     </properties>
   </rule>
-  <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+  <rule ref="category/java/errorprone.xml/AvoidCatchingGenericException">
     <properties>
       <!-- we allow catching Exception in certain cases to provide more details in wrapper -->
       <property name="violationSuppressXPath"

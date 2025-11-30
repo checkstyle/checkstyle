@@ -205,10 +205,10 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.8.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
-    <pmd.version>7.18.0</pmd.version>
+    <pmd.version>7.19.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
-    <slf4j.version>1.7.32</slf4j.version> <!-- Aligned with the version reflections depends on -->
+    <slf4j.version>2.0.17</slf4j.version>
     <saxon.version>12.9</saxon.version>
     <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.44.1</maven.sevntu.checkstyle.plugin.version>
@@ -234,7 +234,7 @@
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.52.0</checkerframework.version>
-    <error-prone.version>2.44.0</error-prone.version>
+    <error-prone.version>2.45.0</error-prone.version>
     <error-prone-support.version>0.26.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
@@ -685,7 +685,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.6.15</version>
+                <version>7.7.1</version>
               </plugin>
             </plugins>
           </configuration>
@@ -1561,6 +1561,7 @@
                     <exclude>org.apache.commons*</exclude>
                     <exclude>org.apache.httpcomponents*</exclude>
                     <exclude>org.codehaus.plexus*</exclude>
+                    <exclude>org.slf4j*</exclude>
                   </excludes>
                 </dependencyConvergence>
                 <!-- we can not use this as it require same version for all dependencies -->
