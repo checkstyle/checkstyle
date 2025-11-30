@@ -204,6 +204,7 @@ codeclimate
 codeconventions
 codecov
 codehaus
+codemods
 codenarc
 codeql
 codeselectorpresentation
@@ -356,6 +357,7 @@ EBNF
 ecj
 eclemma
 eclipsecommunityawards
+ecmascript
 Edad
 edb
 ededed
@@ -719,6 +721,7 @@ JNDI
 JNullness
 jooq
 JOption
+jp
 Jpa
 JPanel
 Jpdl
