@@ -87,6 +87,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * (javac can distinguish imports with same name but different parameters, but checkstyle can not
  * due to <a href="https://checkstyle.org/writingchecks.html#Limitations">limitation.</a>)
  * </li>
+ * <li>
+ * Module import declarations are used. Checkstyle does not resolve modules and therefore cannot
+ * determine which packages or types are brought into scope by an {@code import module} declaration.
+ * See <a href="https://checkstyle.org/writingchecks.html#Limitations">limitations.</a>
+ * </li>
  * </ul>
  *
  * @since 3.0
