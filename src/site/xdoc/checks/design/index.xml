@@ -16,7 +16,8 @@
               </a>
             </td>
             <td>
-              Checks that classes are designed for extension (subclass creation).
+              Checks that classes are designed for extension (subclass
+              creation).
             </td>
           </tr>
           <tr>
@@ -26,8 +27,8 @@
               </a>
             </td>
             <td>
-              Ensures that identifies classes that can be effectively declared as final are
-              explicitly marked as final.
+              Ensures that identifies classes that can be effectively declared
+              as final are explicitly marked as final.
             </td>
           </tr>
           <tr>
@@ -38,7 +39,7 @@
             </td>
             <td>
               Makes sure that utility classes (classes that contain only static
-            methods or fields in their API) do not have a public constructor.
+              methods or fields in their API) do not have a public constructor.
             </td>
           </tr>
           <tr>
@@ -48,9 +49,9 @@
               </a>
             </td>
             <td>
-              Checks nested (internal) classes/interfaces are declared at the bottom of the
-            primary (top-level) class after all init and static init blocks,
-            method, constructor and field declarations.
+              Checks nested (internal) classes/interfaces are declared at the
+              bottom of the primary (top-level) class after all init and static
+              init blocks, method, constructor and field declarations.
             </td>
           </tr>
           <tr>
@@ -60,8 +61,8 @@
               </a>
             </td>
             <td>
-              Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
-            define types.
+              Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces
+              only to define types.
             </td>
           </tr>
           <tr>
@@ -72,9 +73,9 @@
             </td>
             <td>
               Ensures that exception classes (classes with names conforming to
-            some pattern and explicitly extending classes with names
-            conforming to other pattern) are immutable, that is,
-            that they have only final fields.
+              some pattern and explicitly extending classes with names
+              conforming to other pattern) are immutable, that is, that they
+              have only final fields.
             </td>
           </tr>
           <tr>
@@ -84,8 +85,8 @@
               </a>
             </td>
             <td>
-              Checks that each top-level class, interface, enum or annotation resides in
-            a source file of its own.
+              Checks that each top-level class, interface, enum or annotation
+              resides in a source file of its own.
             </td>
           </tr>
           <tr>

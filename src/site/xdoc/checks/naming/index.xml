@@ -16,8 +16,8 @@
               </a>
             </td>
             <td>
-              Validates abbreviations (consecutive capital letters)
-             length in identifier name, it also allows to enforce camel case naming.
+              Validates abbreviations (consecutive capital letters) length in
+              identifier name, it also allows to enforce camel case naming.
             </td>
           </tr>
           <tr>
@@ -27,8 +27,8 @@
               </a>
             </td>
             <td>
-              Ensures that the names of abstract classes conforming to some pattern and
-              check that <code>abstract</code> modifier exists.
+              Ensures that the names of abstract classes conforming to some
+              pattern and check that abstract modifier exists.
             </td>
           </tr>
           <tr>
@@ -38,7 +38,7 @@
               </a>
             </td>
             <td>
-              Checks that <code>catch</code> parameter names conform to a specified pattern.
+              Checks that catch parameter names conform to a specified pattern.
             </td>
           </tr>
           <tr>
@@ -48,7 +48,8 @@
               </a>
             </td>
             <td>
-              Checks that class type parameter names conform to a specified pattern.
+              Checks that class type parameter names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -68,7 +69,8 @@
               </a>
             </td>
             <td>
-              Checks identifiers against a regular expression pattern to detect illegal names.
+              Checks identifiers against a regular expression pattern to detect
+              illegal names.
             </td>
           </tr>
           <tr>
@@ -78,7 +80,8 @@
               </a>
             </td>
             <td>
-              Checks that interface type parameter names conform to a specified pattern.
+              Checks that interface type parameter names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -98,7 +101,8 @@
               </a>
             </td>
             <td>
-              Checks that local final variable names conform to a specified pattern.
+              Checks that local final variable names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -108,7 +112,8 @@
               </a>
             </td>
             <td>
-              Checks that local, non-final variable names conform to a specified pattern.
+              Checks that local, non-final variable names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -118,7 +123,8 @@
               </a>
             </td>
             <td>
-              Checks that instance variable names conform to a specified pattern.
+              Checks that instance variable names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -138,7 +144,8 @@
               </a>
             </td>
             <td>
-              Checks that method type parameter names conform to a specified pattern.
+              Checks that method type parameter names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -188,7 +195,8 @@
               </a>
             </td>
             <td>
-              Checks that record type parameter names conform to a specified pattern.
+              Checks that record type parameter names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -198,8 +206,8 @@
               </a>
             </td>
             <td>
-              Checks that <code>static</code>, non-<code>final</code> variable names
-              conform to a specified pattern.
+              Checks that static, non-final variable names conform to a
+              specified pattern.
             </td>
           </tr>
           <tr>
