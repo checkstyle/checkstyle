@@ -159,8 +159,13 @@ steps:
       export BUILD_REASON="$(BUILD_REASON)"
       export MAVEN_CACHE_FOLDER="$(MAVEN_CACHE_FOLDER)"
       
+      # Check if cache script exists and is executable
+      if [ -f ./.ci/check-maven-cache.sh ]; then
+        chmod +x ./.ci/check-maven-cache.sh || true
+      fi
+      
       if [ "$(SKIP_CACHE)" != "true" ]; then
-        if ./.ci/check-maven-cache.sh should-offline; then
+        if [ -f ./.ci/check-maven-cache.sh ] && ./.ci/check-maven-cache.sh should-offline 2>/dev/null; then
           export MAVEN_OFFLINE="true"
         else
           export MAVEN_OFFLINE="false"
@@ -169,7 +174,11 @@ steps:
         export MAVEN_OFFLINE="false"
       fi
       
-      ./mvnw --version
+      # Only check Maven version if mvnw exists (some jobs don't need it)
+      if [ -f ./mvnw ]; then
+        ./mvnw --version || true
+      fi
+      
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
       echo "MAVEN_OFFLINE:"$MAVEN_OFFLINE

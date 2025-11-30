@@ -8,14 +8,19 @@ MAVEN_REPO="${MAVEN_REPO_LOCAL:-${MAVEN_CACHE_FOLDER:-$HOME/.m2/repository}}"
 
 check_cache_completeness() {
   if [ ! -d "$MAVEN_REPO" ]; then
-    echo "Cache directory missing: $MAVEN_REPO"
+    echo "Cache directory missing: $MAVEN_REPO" >&2
     return 1
   fi
 
-  cache_size=$(du -sm "$MAVEN_REPO" 2>/dev/null | cut -f1 || echo "0")
+  cache_size=$(du -sm "$MAVEN_REPO" 2>/dev/null | cut -f1 2>/dev/null || echo "0")
+  
+  if [ -z "$cache_size" ] || [ "$cache_size" = "0" ]; then
+    echo "Cache size check failed" >&2
+    return 1
+  fi
   
   if [ "$cache_size" -lt 100 ]; then
-    echo "Cache too small ($cache_size MB), probably incomplete"
+    echo "Cache too small ($cache_size MB), probably incomplete" >&2
     return 1
   fi
 
@@ -34,11 +39,11 @@ check_cache_completeness() {
   done
 
   if [ $missing -eq ${#required_paths[@]} ]; then
-    echo "Required Maven artifacts missing from cache"
+    echo "Required Maven artifacts missing from cache" >&2
     return 1
   fi
 
-  echo "Cache looks good ($cache_size MB)"
+  echo "Cache looks good ($cache_size MB)" >&2
   return 0
 }
 
@@ -56,7 +61,7 @@ should_use_offline() {
   if check_cache_completeness; then
     # In PRs, allow network if pom.xml changed (might need new deps)
     if [ "${BUILD_REASON}" = "PullRequest" ]; then
-      if git diff --name-only origin/master...HEAD 2>/dev/null | grep -q "pom.xml"; then
+      if git diff --name-only origin/master...HEAD 2>/dev/null | grep -q "pom.xml" 2>/dev/null; then
         return 1
       fi
     fi
