@@ -113,13 +113,14 @@ pool:
 
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
-  MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+  MAVEN_OPTS: '--show-version -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER) -s .mvn/settings.xml'
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
   NEED_XMLSTARLET: $(needXmlstarlet)
   NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
+  MAVEN_REPO_LOCAL: $(Pipeline.Workspace)/.m2/repository
 
 steps:
   - bash: |
@@ -154,9 +155,25 @@ steps:
 
   - bash: |
       set -e
+      export MAVEN_REPO_LOCAL="$(MAVEN_CACHE_FOLDER)"
+      export BUILD_REASON="$(BUILD_REASON)"
+      export MAVEN_CACHE_FOLDER="$(MAVEN_CACHE_FOLDER)"
+      
+      if [ "$(SKIP_CACHE)" != "true" ]; then
+        if ./.ci/check-maven-cache.sh should-offline; then
+          export MAVEN_OFFLINE="true"
+        else
+          export MAVEN_OFFLINE="false"
+        fi
+      else
+        export MAVEN_OFFLINE="false"
+      fi
+      
       ./mvnw --version
       echo "ON_CRON_ONLY:"$ON_CRON_ONLY
       echo "BUILD_REASON:"$BUILD_REASON
+      echo "MAVEN_OFFLINE:"$MAVEN_OFFLINE
+      echo "MAVEN_CACHE_FOLDER:"$MAVEN_CACHE_FOLDER
       echo "cmd: "$(cmd)
       eval "$(cmd)"
       ./.ci/validation.sh git-diff
