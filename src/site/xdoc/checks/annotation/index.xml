@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document xmlns="http://maven.apache.org/XDOC/2.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
-
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
   <head>
     <title>Annotations</title>
   </head>
-
   <body>
     <section name="Annotation Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="annotationlocation.html#AnnotationLocation">
                 AnnotationLocation
               </a>
             </td>
-            <td>Checks location of annotation on language elements.</td>
+            <td>
+              Checks location of annotation on language elements.
+            </td>
           </tr>
           <tr>
             <td>
@@ -26,7 +25,9 @@
                 AnnotationOnSameLine
               </a>
             </td>
-            <td>Checks that annotations are located on the same line with their targets.</td>
+            <td>
+              Checks that annotations are located on the same line with their targets.
+            </td>
           </tr>
           <tr>
             <td>
@@ -34,7 +35,9 @@
                 AnnotationUseStyle
               </a>
             </td>
-            <td>Checks the style of elements in annotations.</td>
+            <td>
+              Checks the style of elements in annotations.
+            </td>
           </tr>
           <tr>
             <td>
@@ -44,8 +47,7 @@
             </td>
             <td>
               Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
-              <code>@deprecated</code>
-              are both present when either of them is present.
+              <code>@deprecated</code> are both present when either of them is present.
             </td>
           </tr>
           <tr>
@@ -55,8 +57,8 @@
               </a>
             </td>
             <td>
-              Verifies that the <code>@Override</code> annotation is present
-              when the <code>@inheritDoc</code> javadoc tag is present.
+              Verifies that the <code>@Override</code> annotation is present when the
+              <code>@inheritDoc</code> javadoc tag is present.
             </td>
           </tr>
           <tr>
@@ -65,24 +67,24 @@
                 PackageAnnotation
               </a>
             </td>
-            <td>Checks that all package annotations are in the package-info.java file.</td>
+            <td>
+              Checks that all package annotations are in the package-info.java file.
+            </td>
           </tr>
           <tr>
             <td>
-              <a href="suppresswarnings.html#SuppressWarnings">SuppressWarnings
+              <a href="suppresswarnings.html#SuppressWarnings">
+                SuppressWarnings
               </a>
             </td>
             <td>
-              Allows to specify what warnings that
-              <code>@SuppressWarnings</code>
-              is not allowed to suppress.
+              Allows to specify what warnings that <code>@SuppressWarnings</code> is not allowed to
+              suppress.
             </td>
           </tr>
         </table>
       </div>
-
     </section>
-
     <section name="Annotation Holder Checks">
       <div class="wrapper">
         <table>
@@ -93,12 +95,10 @@
               </a>
             </td>
             <td>
-              Maintains a set of check suppressions from
-              <code>@SuppressWarnings</code>
-              annotations.
+              Maintains a set of check suppressions from <code>@SuppressWarnings</code> annotations.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
