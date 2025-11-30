@@ -543,7 +543,10 @@
                       | //ClassDeclaration[@SimpleName='ClassFanOutComplexityCheck']
                       //MethodDeclaration[@Name='setExcludeClassesRegexps'
                                             or @Name='setExcludedClasses'
-                                            or @Name='setExcludedPackages']"/>
+                                            or @Name='setExcludedPackages']
+                      | //ClassDeclaration[@SimpleName='UnusedImportsCheck']
+                      //MethodDeclaration[@Name='setViolateExecutionOnNonTightHtml'
+                                            or @Name='setJavadocTokens']"/>
     </properties>
   </rule>
 </ruleset>
