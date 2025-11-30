@@ -4652,6 +4652,9 @@
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.SimpleTokenTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtilTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtilTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsAstRegressionTest</param>
                 <!-- this test is required for CompositeLexerContextCache -->
                 <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
