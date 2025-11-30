@@ -8,8 +8,8 @@
   <body>
     <section name="Blocks Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="avoidnestedblocks.html#AvoidNestedBlocks">
                 AvoidNestedBlocks
@@ -69,7 +69,7 @@
               Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
