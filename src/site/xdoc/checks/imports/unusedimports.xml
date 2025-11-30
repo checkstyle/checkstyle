@@ -35,9 +35,9 @@
           <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
           default, but it is considered bad practice to introduce a compile-time
           dependency for documentation purposes only. As an example, the import
-          <code>java.util.List</code> would be considered referenced with the Javadoc
-          comment <code>{@link List}</code>. The alternative to avoid introducing a compile-time
-          dependency would be to write the Javadoc comment as <code>{@link List}</code>.
+          <code>java.util.Set</code> would be considered referenced with the Javadoc
+          comment <code>{@link Set}</code>. The alternative to avoid introducing a compile-time
+          dependency would be to write the Javadoc comment as <code>{@link Set}</code>.
         </li>
         </ul>
 
@@ -77,6 +77,14 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.4</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>13.3.0</td>
             </tr>
           </table>
         </div>
@@ -185,6 +193,16 @@ class Example2{
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
               import.unused
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
             </a>
           </li>
         </ul>
