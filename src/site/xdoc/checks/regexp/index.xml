@@ -8,16 +8,16 @@
   <body>
     <section name="Regexp Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="regexp.html#Regexp">
                 Regexp
               </a>
             </td>
             <td>
-              Checks that a specified pattern exists, exists less than a set
-            number of times, or does not exist in the file.
+              Checks that a specified pattern exists, exists less than a set number of times, or
+              does not exist in the file.
             </td>
           </tr>
           <tr>
@@ -27,8 +27,7 @@
               </a>
             </td>
             <td>
-              Checks that a specified pattern matches across multiple lines in
-            any file type.
+              Checks that a specified pattern matches across multiple lines in any file type.
             </td>
           </tr>
           <tr>
@@ -61,7 +60,7 @@
               Checks that a specified pattern matches a single-line in Java files.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
