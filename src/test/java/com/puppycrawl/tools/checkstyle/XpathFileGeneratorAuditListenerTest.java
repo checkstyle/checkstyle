@@ -269,6 +269,25 @@ public class XpathFileGeneratorAuditListenerTest {
             .isEqualTo(0);
     }
 
+    @Test
+    public void testNullOutputStreamOptions() {
+        final OutputStream out = new ByteArrayOutputStream();
+        try {
+            final XpathFileGeneratorAuditListener listener = new XpathFileGeneratorAuditListener(
+                    out, null);
+
+            assertWithMessage("Null instance")
+                    .that(listener)
+                    .isNotNull();
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (IllegalArgumentException exception) {
+            assertWithMessage("Invalid error message")
+                    .that(exception.getMessage())
+                    .isEqualTo("Parameter outputStreamOptions can not be null");
+        }
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
