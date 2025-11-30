@@ -36,8 +36,10 @@
               </a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the
-            Java Language specification, § 8.1.1, 8.3.1, 8.4.3 and 9.4.
+              Checks that the order of modifiers conforms to the suggestions in the <a
+              href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.h
+              tml"> Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and <a
+              href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
             </td>
           </tr>
           <tr>
