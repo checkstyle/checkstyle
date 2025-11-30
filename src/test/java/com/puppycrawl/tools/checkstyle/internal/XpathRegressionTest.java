@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -42,6 +43,7 @@ import org.junit.jupiter.api.Test;
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
@@ -149,10 +151,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateIncompatibleJavadocCheckNames() throws IOException {
-        // subclasses of AbstractJavadocCheck
+        // subclasses of AbstractJavadocCheck that are only interested in Javadoc tree
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()
                 .filter(AbstractJavadocCheck.class::isAssignableFrom)
+                .filter(XpathRegressionTest::isPureJavadocCheck)
                 .collect(Collectors.toCollection(HashSet::new));
         // add the extra checks
         abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
@@ -249,6 +252,18 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 // input files should be named correctly
                 validateInputDirectory(dir);
             }
+        }
+    }
+
+    private static boolean isPureJavadocCheck(Class<?> check) {
+        try {
+            final AbstractJavadocCheck instance =
+                    (AbstractJavadocCheck) check.getDeclaredConstructor().newInstance();
+            return Arrays.equals(instance.getRequiredTokens(),
+                    new int[] {TokenTypes.BLOCK_COMMENT_BEGIN});
+        }
+        catch (ReflectiveOperationException exc) {
+            throw new IllegalStateException(exc);
         }
     }
 
