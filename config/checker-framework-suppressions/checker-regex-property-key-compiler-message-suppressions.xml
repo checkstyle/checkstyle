@@ -325,16 +325,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
-    <specifier>group.count</specifier>
-    <message>invalid groups parameter 1. Only 0 groups are guaranteed to exist for matcher.</message>
-    <lineContent>references.add(topLevelType(matcher.group(1)));</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
-    <specifier>group.count.unknown</specifier>
-    <message>unable to verify non-literal groups parameter.</message>
-    <lineContent>final String methodPart = matcher.group(methodIndex);</lineContent>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(JavadocCommentsTokenTypes.IDENTIFIER)</message>
+    <lineContent>.findFirstToken(JavadocCommentsTokenTypes.IDENTIFIER).getText());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
