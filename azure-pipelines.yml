@@ -168,12 +168,14 @@ steps:
       # Use explicit error handling to prevent any failure
       export MAVEN_OFFLINE="false"
       if [ "$(SKIP_CACHE)" != "true" ]; then
-        if [ -f ./.ci/check-maven-cache.sh ]; then
+        if [ -f ./.ci/check-maven-cache.sh ] && [ -x ./.ci/check-maven-cache.sh ]; then
           # Use explicit check to prevent set -e from causing failure
+          # Temporarily disable exit on error, run check, capture result, re-enable
           set +e
           ./.ci/check-maven-cache.sh should-offline >/dev/null 2>&1
           cache_check_result=$?
           set -e
+          # Only set offline if check explicitly returned success
           if [ "$cache_check_result" -eq 0 ]; then
             export MAVEN_OFFLINE="true"
           fi
