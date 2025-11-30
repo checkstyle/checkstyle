@@ -8,17 +8,16 @@
   <body>
     <section name="Whitespace Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
                 EmptyForInitializerPad
               </a>
             </td>
             <td>
-              Checks the padding of an empty for initializer; that is whether
-              a white space is required at an empty for initializer, or such white
-              space is forbidden.
+              Checks the padding of an empty for initializer; that is whether a white space is
+              required at an empty for initializer, or such white space is forbidden.
             </td>
           </tr>
           <tr>
@@ -28,9 +27,8 @@
               </a>
             </td>
             <td>
-              Checks the padding of an empty for iterator; that is whether a white
-              space is required at an empty for iterator, or such white space is
-              forbidden.
+              Checks the padding of an empty for iterator; that is whether a white space is required
+              at an empty for iterator, or such white space is forbidden.
             </td>
           </tr>
           <tr>
@@ -40,9 +38,8 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package,
-              all import declarations, fields, constructors, methods, nested classes,
-              static initializers and instance initializers.
+              Checks for empty line separators before package, all import declarations, fields,
+              constructors, methods, nested classes, static initializers and instance initializers.
             </td>
           </tr>
           <tr>
@@ -52,7 +49,7 @@
               </a>
             </td>
             <td>
-              Checks that there are no tab characters ('\t') in the source code.
+              Checks that there are no tab characters (<code>'\t'</code>) in the source code.
             </td>
           </tr>
           <tr>
@@ -62,8 +59,8 @@
               </a>
             </td>
             <td>
-              Checks that the whitespace around the Generic tokens (angle brackets)
-              "&lt;" and "&gt;" are correct to the typical convention.
+              Checks that the whitespace around the Generic tokens (angle brackets) "&lt;" and
+              "&gt;" are correct to the <i>typical</i> convention.
             </td>
           </tr>
           <tr>
@@ -73,10 +70,9 @@
               </a>
             </td>
             <td>
-              Checks the padding between the identifier of a method definition,
-              constructor definition, method call,
-              constructor invocation, record, or record pattern;
-              and the left parenthesis of the parameter list.
+              Checks the padding between the identifier of a method definition, constructor
+              definition, method call, constructor invocation, record, or record pattern; and the
+              left parenthesis of the parameter list.
             </td>
           </tr>
           <tr>
@@ -136,9 +132,8 @@
               </a>
             </td>
             <td>
-              Checks the policy on the padding of parentheses; that is whether a
-              space is required after a left parenthesis and before a right
-              parenthesis, or such spaces are forbidden.
+              Checks the policy on the padding of parentheses; that is whether a space is required
+              after a left parenthesis and before a right parenthesis, or such spaces are forbidden.
             </td>
           </tr>
           <tr>
@@ -158,8 +153,7 @@
               </a>
             </td>
             <td>
-              Checks that non-whitespace characters are separated by no more than one
-              whitespace.
+              Checks that non-whitespace characters are separated by no more than one whitespace.
             </td>
           </tr>
           <tr>
@@ -193,7 +187,7 @@
               Checks that a token is surrounded by whitespace.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>

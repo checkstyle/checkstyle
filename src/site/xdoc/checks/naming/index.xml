@@ -8,16 +8,16 @@
   <body>
     <section name="Naming Conventions Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="abbreviationaswordinname.html#AbbreviationAsWordInName">
                 AbbreviationAsWordInName
               </a>
             </td>
             <td>
-              Validates abbreviations (consecutive capital letters)
-             length in identifier name, it also allows to enforce camel case naming.
+              Validates abbreviations (consecutive capital letters) length in identifier name, it
+              also allows to enforce camel case naming.
             </td>
           </tr>
           <tr>
@@ -27,8 +27,8 @@
               </a>
             </td>
             <td>
-              Ensures that the names of abstract classes conforming to some pattern and
-              check that <code>abstract</code> modifier exists.
+              Ensures that the names of abstract classes conforming to some pattern and check that
+              <code>abstract</code> modifier exists.
             </td>
           </tr>
           <tr>
@@ -108,7 +108,8 @@
               </a>
             </td>
             <td>
-              Checks that local, non-final variable names conform to a specified pattern.
+              Checks that local, non-<code>final</code> variable names conform to a specified
+              pattern.
             </td>
           </tr>
           <tr>
@@ -198,8 +199,8 @@
               </a>
             </td>
             <td>
-              Checks that <code>static</code>, non-<code>final</code> variable names
-              conform to a specified pattern.
+              Checks that <code>static</code>, non-<code>final</code> variable names conform to a
+              specified pattern.
             </td>
           </tr>
           <tr>
@@ -212,7 +213,7 @@
               Checks that type names conform to a specified pattern.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
