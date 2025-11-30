@@ -399,19 +399,8 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Arrays.copyOfRange.</message>
-    <lineContent>comment.getEndColNo() + 1, codePoints.length));</lineContent>
-    <details>
-      found   : int
-      required: @LTEqLengthOf(&quot;codePoints&quot;) int
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Arrays.copyOfRange.</message>
-    <lineContent>comment.getEndColNo() + 1, codePoints.length));</lineContent>
+    <message>incompatible argument for parameter arg1 of String.codePointCount.</message>
+    <lineContent>return line.codePointCount(0, safeCharIndex);</lineContent>
     <details>
       found   : int
       required: @NonNegative int

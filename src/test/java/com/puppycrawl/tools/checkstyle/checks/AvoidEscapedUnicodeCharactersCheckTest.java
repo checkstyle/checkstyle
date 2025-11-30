@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.Arrays;
 import java.util.List;
@@ -158,6 +159,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -457,6 +460,50 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testCommentProcessing() throws Exception {
+        final String[] expected = {
+            "28:20: " + getCheckMessage(MSG_KEY),
+            "30:20: " + getCheckMessage(MSG_KEY),
+            "36:32: " + getCheckMessage(MSG_KEY),
+            "38:37: " + getCheckMessage(MSG_KEY),
+            "40:24: " + getCheckMessage(MSG_KEY),
+            "43:32: " + getCheckMessage(MSG_KEY),
+            "47:27: " + getCheckMessage(MSG_KEY),
+            "49:29: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersComments.java"), expected);
+    }
+
+    @Test
+    public void testBeginTreeHandlesNullAndClearsComments() throws Exception {
+        final String[] expected = {
+            "28:20: " + getCheckMessage(MSG_KEY),
+            "30:20: " + getCheckMessage(MSG_KEY),
+            "36:32: " + getCheckMessage(MSG_KEY),
+            "38:37: " + getCheckMessage(MSG_KEY),
+            "40:24: " + getCheckMessage(MSG_KEY),
+            "43:32: " + getCheckMessage(MSG_KEY),
+            "47:27: " + getCheckMessage(MSG_KEY),
+            "49:29: " + getCheckMessage(MSG_KEY),
+        };
+        // First call - populates and checks
+        verifyWithInlineConfigParser(
+                    getPath("InputAvoidEscapedUnicodeCharactersComments.java"), expected);
+
+        // Second call - clears and repopulates
+        verifyWithInlineConfigParser(
+                    getPath("InputAvoidEscapedUnicodeCharactersComments.java"), expected);
+    }
+
+    @Test
+    public void testBeginTreeHandlesNullRoot() {
+        final AvoidEscapedUnicodeCharactersCheck check =
+            new AvoidEscapedUnicodeCharactersCheck();
+        assertDoesNotThrow(() -> check.beginTree(null));
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -464,6 +511,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)
