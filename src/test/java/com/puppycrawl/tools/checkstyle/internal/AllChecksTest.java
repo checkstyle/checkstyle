@@ -151,7 +151,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
                 Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
                         "METHOD_DEF", "VARIABLE_DEF",
-                        "RECORD_DEF", "COMPACT_CTOR_DEF")
+                        "RECORD_DEF", "COMPACT_CTOR_DEF",
+                        // Type annotation tokens - opt-in only, not used by default
+                        "TYPECAST", "TYPE_ARGUMENT", "DOT", "LITERAL_NEW",
+                        "LITERAL_THROWS", "IMPLEMENTS_CLAUSE")
                         .collect(Collectors.toUnmodifiableSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method/constructor declaration could be long due to "parameters/exceptions", it
@@ -188,7 +191,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation", Stream.of(
                 // state of the configuration when test was made until reason found in
                 // https://github.com/checkstyle/checkstyle/issues/3730
-                "ANNOTATION_DEF", "ANNOTATION_FIELD_DEF", "ENUM_CONSTANT_DEF", "PACKAGE_DEF")
+                "ANNOTATION_DEF", "ANNOTATION_FIELD_DEF", "ENUM_CONSTANT_DEF", "PACKAGE_DEF",
+                // Type annotation tokens - opt-in only, not used by default
+                "TYPECAST", "TYPE_ARGUMENT", "DOT", "LITERAL_NEW",
+                "LITERAL_THROWS", "IMPLEMENTS_CLAUSE")
                 .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AbbreviationAsWordInName", Stream.of(
                 // enum values should be uppercase
