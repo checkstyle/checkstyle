@@ -19,19 +19,18 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
+
 import static com.google.common.truth.Truth.assertWithMessage;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
-
-import java.io.File;
-
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocStyleCheckTest
@@ -832,6 +831,19 @@ public class JavadocStyleCheckTest
 
         verifyWithInlineConfigParser(
                 getPath("InputJavadocStyleAboveComments.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocStyleUnclosedTags() throws Exception {
+        final String[] expected = {
+            "25:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<span>"),
+            "33:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
+            "33:23: " + getCheckMessage(MSG_EXTRA_HTML, "</pre>"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleUnclosedTags.java"),
                 expected);
     }
 }
