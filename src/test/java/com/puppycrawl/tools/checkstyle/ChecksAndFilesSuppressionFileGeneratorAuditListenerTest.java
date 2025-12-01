@@ -252,6 +252,26 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
             .isEmpty();
     }
 
+    @Test
+    public void testNullOutputStreamOptions() {
+        final OutputStream out = new ByteArrayOutputStream();
+        try {
+            final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
+                    new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
+                            null);
+            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            assertWithMessage("Null instance")
+                    .that(listener)
+                    .isNotNull();
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (IllegalArgumentException exception) {
+            assertWithMessage("Invalid error message")
+                    .that(exception.getMessage())
+                    .isEqualTo("Parameter outputStreamOptions can not be null");
+        }
+    }
+
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
         final Violation violation =
