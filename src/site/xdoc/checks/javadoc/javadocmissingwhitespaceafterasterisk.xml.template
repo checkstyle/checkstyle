@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="JavadocMissingWhitespaceAfterAsterisk">
-      <p>Since Checkstyle 8.32</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingWhitespaceAfterAsteriskCheck.java"/>
+      </macro>
       <subsection name="Description" id="JavadocMissingWhitespaceAfterAsterisk_Description">
         <macro name="description">
             <param name="modulePath"
