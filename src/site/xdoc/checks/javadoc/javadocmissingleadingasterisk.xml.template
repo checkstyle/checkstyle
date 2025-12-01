@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="JavadocMissingLeadingAsterisk">
-      <p>Since Checkstyle 8.38</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMissingLeadingAsteriskCheck.java"/>
+      </macro>
       <subsection name="Description" id="JavadocMissingLeadingAsterisk_Description">
         <macro name="description">
             <param name="modulePath"

@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="LambdaBodyLength">
-      <p>Since Checkstyle 8.37</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/sizes/LambdaBodyLengthCheck.java"/>
+      </macro>
       <subsection name="Description" id="LambdaBodyLength_Description">
         <macro name="description">
             <param name="modulePath"

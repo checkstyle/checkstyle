@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="RecordTypeParameterName">
-      <p>Since Checkstyle 8.36</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/RecordTypeParameterNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="RecordTypeParameterName_Description">
         <macro name="description">
             <param name="modulePath"

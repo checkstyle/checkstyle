@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="NonEmptyAtclauseDescription">
-      <p>Since Checkstyle 6.0</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/NonEmptyAtclauseDescriptionCheck.java"/>
+      </macro>
       <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
         <macro name="description">
             <param name="modulePath"

@@ -826,6 +826,32 @@ public final class SiteUtil {
     }
 
     /**
+     * Get the since version of the module from its Javadoc.
+     *
+     * @param moduleName the name of the module.
+     * @param modulePath the path to the module file.
+     * @return the since version of the module.
+     * @throws MacroExecutionException if the module since version could not be extracted.
+     */
+    public static String getModuleSinceVersion(String moduleName, Path modulePath)
+            throws MacroExecutionException {
+        final DetailNode moduleJavadoc = getModuleJavadoc(moduleName, modulePath);
+        if (moduleJavadoc == null) {
+            throw new MacroExecutionException(
+                    "Javadoc of module " + moduleName + " is not found.");
+        }
+
+        final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
+
+        if (moduleSince == null) {
+            throw new MacroExecutionException(
+                    "Missing @since on module " + moduleName);
+        }
+
+        return moduleSince;
+    }
+
+    /**
      * Extract the since version from the Javadoc.
      *
      * @param javadoc the Javadoc to extract the since version from.
