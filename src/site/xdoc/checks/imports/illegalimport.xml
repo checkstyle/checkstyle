@@ -10,7 +10,7 @@
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="IllegalImport_Description">
         <div>
-          Checks for imports from a set of illegal packages.
+          Checks for imports from a set of illegal packages and modules.
         </div>
       </subsection>
 
@@ -42,6 +42,13 @@
               <td>7.8</td>
             </tr>
             <tr>
+              <td><a id="illegalModules"/><a href="#illegalModules">illegalModules</a></td>
+              <td>Specify module names to reject, if <b>regexp</b> property is not set, checks if import equals module name. If <b>regexp</b> property is set, then list of module names will be interpreted as regular expressions. Note, all properties for match will be used.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>{}</code></td>
+              <td>12.3.0</td>
+            </tr>
+            <tr>
               <td><a id="illegalPkgs"/><a href="#illegalPkgs">illegalPkgs</a></td>
               <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import is the part of package. If <b>regexp</b> property is set, then list of packages will be interpreted as regular expressions. Note, all properties for match will be used.</td>
               <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
@@ -50,7 +57,7 @@
             </tr>
             <tr>
               <td><a id="regexp"/><a href="#regexp">regexp</a></td>
-              <td>Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code> should be interpreted as regular expressions.</td>
+              <td>Control whether the <code>illegalPkgs</code>, <code>illegalClasses</code> and <code>illegalModules</code> should be interpreted as regular expressions.</td>
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
@@ -223,6 +230,36 @@ import java.util.Date;
 import sun.misc.*; // violation, 'Illegal import'
 
 public class Example5 {}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check so that it rejects modules <code>java.base</code> and
+          <code>java.logging</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalImport"&gt;
+      &lt;property name="illegalModules" value="java.base, java.logging"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          The following example shows module with two illegal module imports:
+          <ul>
+            <li><b>java.base</b>, <code>illegalModules</code> property contains this module</li>
+            <li><b>java.logging</b>, <code>illegalModules</code> property contains this module</li>
+            </ul>
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import module java.base; // violation, 'Illegal import'
+import module java.xml;
+import module java.sql;
+import module java.logging; // violation, 'Illegal import'
+import module java.se;
+
+public class Example6 {}
 </code></pre></div>
       </subsection>
 
