@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="RegexpMultiline">
-      <p>Since Checkstyle 5.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpMultilineCheck.java"/>
+      </macro>
       <subsection name="Description" id="RegexpMultiline_Description">
         <macro name="description">
             <param name="modulePath"

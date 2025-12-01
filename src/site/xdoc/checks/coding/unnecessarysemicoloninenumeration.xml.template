@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="UnnecessarySemicolonInEnumeration">
-      <p>Since Checkstyle 8.22</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonInEnumerationCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnnecessarySemicolonInEnumeration_Description">
         <macro name="description">
             <param name="modulePath"

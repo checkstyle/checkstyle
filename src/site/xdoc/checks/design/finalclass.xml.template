@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="FinalClass">
-      <p>Since Checkstyle 3.1</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/design/FinalClassCheck.java"/>
+      </macro>
       <subsection name="Description" id="FinalClass_Description">
         <macro name="description">
             <param name="modulePath"
