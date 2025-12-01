@@ -49,6 +49,8 @@ public class SimpleTokenTest {
     }
 
     @Test
+    // @noinspection EqualsWithItself
+    // @noinspectionreason EqualsWithItself - Testing reflexive property of equals method
     public void testEqualsSameInstance() {
         final CommonToken token = new CommonToken(1, "test");
         final SimpleToken simpleToken = SimpleToken.from(token);
@@ -70,14 +72,13 @@ public class SimpleTokenTest {
     }
 
     @Test
+    // @noinspection EqualsBetweenInconvertibleTypes
+    // @noinspectionreason EqualsBetweenInconvertibleTypes - Testing type checking in equals method
     public void testEqualsDifferentClass() {
         final CommonToken token = new CommonToken(1, "test");
         final SimpleToken simpleToken = SimpleToken.from(token);
         final Object differentClass = "not a token";
 
-        // @noinspection EqualsBetweenInconvertibleTypes
-        // @noinspectionreason EqualsBetweenInconvertibleTypes - intentional test to verify
-        // equals() returns false for different types
         assertWithMessage("Should not be equal to different class")
                 .that(simpleToken.equals(differentClass))
                 .isFalse();
