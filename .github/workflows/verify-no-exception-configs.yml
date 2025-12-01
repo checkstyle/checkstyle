@@ -1,0 +1,29 @@
+name: 'verify-no-exception-configs'
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: '*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-no-exception-configs:
+    if: github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt install xmlstarlet
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Run verify-no-exception-configs
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          PR_NUMBER: '${{ github.event.pull_request.number }}'
+        run: ./.ci/validation.sh verify-no-exception-configs
