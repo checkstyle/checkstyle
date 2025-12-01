@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="FileTabCharacter">
-      <p>Since Checkstyle 5.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/FileTabCharacterCheck.java"/>
+      </macro>
       <subsection name="Description" id="FileTabCharacter_Description">
         <macro name="description">
             <param name="modulePath"

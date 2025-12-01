@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="LambdaParameterName">
-      <p>Since Checkstyle 8.11</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LambdaParameterNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="LambdaParameterName_Description">
         <macro name="description">
             <param name="modulePath"
