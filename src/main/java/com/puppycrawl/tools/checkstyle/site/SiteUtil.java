@@ -115,6 +115,8 @@ public final class SiteUtil {
     public static final String FILE_EXTENSIONS = "fileExtensions";
     /** The string 'charset'. */
     public static final String CHARSET = "charset";
+    /** The string 'Missing &#64;since on module '. */
+    private static final String MISSING_SINCE_ON_MODULE = "Missing @since on module ";
     /** The url of the checkstyle website. */
     private static final String CHECKSTYLE_ORG_URL = "https://checkstyle.org/";
     /** The string 'checks'. */
@@ -744,7 +746,7 @@ public final class SiteUtil {
 
             if (moduleSince == null) {
                 throw new MacroExecutionException(
-                        "Missing @since on module " + moduleName);
+                        MISSING_SINCE_ON_MODULE + moduleName);
             }
 
             String propertySetterSince = null;
@@ -823,6 +825,32 @@ public final class SiteUtil {
         return Arrays.stream(allNodes)
             .filter(child -> child.getType() == neededType)
             .toList();
+    }
+
+    /**
+     * Get the since version of the module from its Javadoc.
+     *
+     * @param moduleName the name of the module.
+     * @param modulePath the path to the module file.
+     * @return the since version of the module.
+     * @throws MacroExecutionException if the module since version could not be extracted.
+     */
+    public static String getModuleSinceVersion(String moduleName, Path modulePath)
+            throws MacroExecutionException {
+        final DetailNode moduleJavadoc = getModuleJavadoc(moduleName, modulePath);
+        if (moduleJavadoc == null) {
+            throw new MacroExecutionException(
+                    "Javadoc of module " + moduleName + " is not found.");
+        }
+
+        final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
+
+        if (moduleSince == null) {
+            throw new MacroExecutionException(
+                    MISSING_SINCE_ON_MODULE + moduleName);
+        }
+
+        return moduleSince;
     }
 
     /**

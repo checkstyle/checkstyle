@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="WriteTag">
-      <p>Since Checkstyle 4.2</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/WriteTagCheck.java"/>
+      </macro>
       <subsection name="Description" id="WriteTag_Description">
         <macro name="description">
             <param name="modulePath"

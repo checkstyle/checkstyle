@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="RecordComponentName">
-      <p>Since Checkstyle 8.40</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/RecordComponentNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="RecordComponentName_Description">
         <macro name="description">
             <param name="modulePath"

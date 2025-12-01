@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="MissingJavadocType">
-      <p>Since Checkstyle 8.20</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/MissingJavadocTypeCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingJavadocType_Description">
         <macro name="description">
             <param name="modulePath"

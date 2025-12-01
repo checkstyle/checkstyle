@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="ClassMemberImpliedModifier">
-      <p>Since Checkstyle 8.16</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/modifier/ClassMemberImpliedModifierCheck.java"/>
+      </macro>
       <subsection name="Description" id="ClassMemberImpliedModifier_Description">
         <macro name="description">
             <param name="modulePath"
