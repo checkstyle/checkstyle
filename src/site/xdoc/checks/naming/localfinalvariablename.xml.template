@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="LocalFinalVariableName">
-      <p>Since Checkstyle 3.0</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/LocalFinalVariableNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="LocalFinalVariableName_Description">
         <macro name="description">
             <param name="modulePath"

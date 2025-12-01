@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="NewlineAtEndOfFile">
-      <p>Since Checkstyle 3.1</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NewlineAtEndOfFileCheck.java"/>
+      </macro>
       <subsection name="Description" id="NewlineAtEndOfFile_Description">
         <macro name="description">
           <param name="modulePath"

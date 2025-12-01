@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="AvoidNoArgumentSuperConstructorCall">
-      <p>Since Checkstyle 8.29</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidNoArgumentSuperConstructorCallCheck.java"/>
+      </macro>
       <subsection name="Description" id="AvoidNoArgumentSuperConstructorCall_Description">
         <macro name="description">
             <param name="modulePath"

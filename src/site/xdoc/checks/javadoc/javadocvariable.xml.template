@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="JavadocVariable">
-      <p>Since Checkstyle 3.0</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocVariableCheck.java"/>
+      </macro>
       <subsection name="Description" id="JavadocVariable_Description">
         <macro name="description">
             <param name="modulePath"

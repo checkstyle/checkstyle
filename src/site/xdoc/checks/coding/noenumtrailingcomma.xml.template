@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="NoEnumTrailingComma">
-      <p>Since Checkstyle 8.29</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NoEnumTrailingCommaCheck.java"/>
+      </macro>
       <subsection name="Description" id="NoEnumTrailingComma_Description">
         <macro name="description">
             <param name="modulePath"

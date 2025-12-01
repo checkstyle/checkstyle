@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="SimplifyBooleanExpression">
-      <p>Since Checkstyle 3.0</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/SimplifyBooleanExpressionCheck.java"/>
+      </macro>
       <subsection name="Description" id="SimplifyBooleanExpression_Description">
         <macro name="description">
             <param name="modulePath"

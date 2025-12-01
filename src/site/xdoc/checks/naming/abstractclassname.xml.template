@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="AbstractClassName">
-      <p>Since Checkstyle 3.2</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/AbstractClassNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="AbstractClassName_Description">
         <macro name="description">
             <param name="modulePath"
