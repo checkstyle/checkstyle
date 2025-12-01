@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="NestedIfDepth">
-      <p>Since Checkstyle 3.2</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/NestedIfDepthCheck.java"/>
+      </macro>
       <subsection name="Description" id="NestedIfDepth_Description">
         <macro name="description">
             <param name="modulePath"

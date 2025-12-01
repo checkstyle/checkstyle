@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="UnnecessarySemicolonAfterOuterTypeDeclaration">
-      <p>Since Checkstyle 8.31</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessarySemicolonAfterOuterTypeDeclarationCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Description">
         <macro name="description">
           <param name="modulePath"

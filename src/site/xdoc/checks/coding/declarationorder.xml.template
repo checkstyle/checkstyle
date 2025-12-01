@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="DeclarationOrder">
-      <p>Since Checkstyle 3.2</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/DeclarationOrderCheck.java"/>
+      </macro>
       <subsection name="Description" id="DeclarationOrder_Description">
         <macro name="description">
             <param name="modulePath"

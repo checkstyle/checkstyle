@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="UnusedLocalVariable">
-      <p>Since Checkstyle 9.3</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnusedLocalVariableCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnusedLocalVariable_Description">
         <macro name="description">
             <param name="modulePath"

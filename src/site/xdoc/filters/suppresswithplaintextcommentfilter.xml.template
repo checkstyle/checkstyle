@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="SuppressWithPlainTextCommentFilter">
-      <p>Since Checkstyle 8.6</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithPlainTextCommentFilter.java"/>
+      </macro>
       <subsection name="Description" id="SuppressWithPlainTextCommentFilter_Description">
         <macro name="description">
             <param name="modulePath"
