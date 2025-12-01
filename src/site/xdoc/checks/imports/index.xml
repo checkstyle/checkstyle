@@ -8,15 +8,15 @@
   <body>
     <section name="Imports Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="avoidstarimport.html#AvoidStarImport">
                 AvoidStarImport
               </a>
             </td>
             <td>
-              Checks that there are no import statements that use the * notation.
+              Checks that there are no import statements that use the <code>*</code> notation.
             </td>
           </tr>
           <tr>
@@ -36,8 +36,8 @@
               </a>
             </td>
             <td>
-              Checks that the groups of import declarations appear in the order specified
-            by the user.
+              Checks that the groups of import declarations appear in the order specified by the
+              user.
             </td>
           </tr>
           <tr>
@@ -90,7 +90,7 @@
               Checks for unused import statements.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>

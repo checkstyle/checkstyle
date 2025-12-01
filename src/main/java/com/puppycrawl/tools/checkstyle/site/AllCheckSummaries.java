@@ -48,6 +48,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Macro to generate table rows for all Checkstyle modules.
  * Includes every Check.java file that has a Javadoc.
  * Uses href path structure based on src/site/xdoc/checks.
+ *
+ * <p>Supports optional "package" parameter to filter checks by package.
+ * When package parameter is provided, only checks from that package are included.
+ * Usage:
+ * <pre>
+ * &lt;macro name="allCheckSummaries"/&gt;  (all checks)
+ * &lt;macro name="allCheckSummaries"&gt;
+ *   &lt;param name="package" value="annotation"/&gt;
+ * &lt;/macro&gt;
+ * </pre>
  */
 @Component(role = Macro.class, hint = "allCheckSummaries")
 public class AllCheckSummaries extends AbstractMacro {
@@ -75,6 +85,9 @@ public class AllCheckSummaries extends AbstractMacro {
      * Matches '&amp;' characters that are not part of a valid HTML entity.
      */
     private static final Pattern AMP_PATTERN = Pattern.compile("&(?![a-zA-Z#0-9]+;)");
+
+    /** Pattern to match trailing spaces before closing code tags. */
+    private static final Pattern CODE_SPACE_PATTERN = Pattern.compile("\\s+(</code>)");
 
     /** Path component for source directory. */
     private static final String SRC = "src";
@@ -104,12 +117,42 @@ public class AllCheckSummaries extends AbstractMacro {
     /** TD closing tag. */
     private static final String TD_CLOSE_TAG = "</td>";
 
+    /** Package name for miscellaneous checks. */
+    private static final String MISC_PACKAGE = "misc";
+
+    /** Package name for annotation checks. */
+    private static final String ANNOTATION_PACKAGE = "annotation";
+
+    /** HTML table closing tag. */
+    private static final String TABLE_CLOSE_TAG = "</table>";
+
+    /** HTML div closing tag. */
+    private static final String DIV_CLOSE_TAG = "</div>";
+
+    /** HTML section closing tag. */
+    private static final String SECTION_CLOSE_TAG = "</section>";
+
+    /** HTML div wrapper opening tag. */
+    private static final String DIV_WRAPPER_TAG = "<div class=\"wrapper\">";
+
+    /** HTML table opening tag. */
+    private static final String TABLE_OPEN_TAG = "<table>";
+
+    /** HTML anchor separator. */
+    private static final String ANCHOR_SEPARATOR = "#";
+
+    /** Regex replacement for first capture group. */
+    private static final String FIRST_CAPTURE_GROUP = "$1";
+
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
+        // Get optional package parameter
+        final String packageFilter = (String) request.getParameter("package");
+
         final Map<String, String> xmlHrefMap = buildXmlHtmlMap();
         final Map<String, CheckInfo> infos = new TreeMap<>();
 
-        processCheckFiles(infos, xmlHrefMap);
+        processCheckFiles(infos, xmlHrefMap, packageFilter);
 
         final StringBuilder normalRows = new StringBuilder(4096);
         final StringBuilder holderRows = new StringBuilder(512);
@@ -118,8 +161,13 @@ public class AllCheckSummaries extends AbstractMacro {
 
         sink.rawText(normalRows.toString());
 
-        if (!holderRows.isEmpty()) {
+        // Only output holder section if packageFilter is null (all checks)
+        if (!holderRows.isEmpty() && packageFilter == null) {
             appendHolderSection(sink, holderRows);
+        }
+        else if (!holderRows.isEmpty() && packageFilter != null) {
+            // For filtered view, output holder section differently
+            appendFilteredHolderSection(sink, holderRows, packageFilter);
         }
     }
 
@@ -128,10 +176,12 @@ public class AllCheckSummaries extends AbstractMacro {
      *
      * @param infos map of collected module info
      * @param xmlHrefMap map of XML-to-HTML hrefs
+     * @param packageFilter optional package to filter by, null for all
      * @throws MacroExecutionException if file walk fails
      */
     private static void processCheckFiles(Map<String, CheckInfo> infos,
-                                          Map<String, String> xmlHrefMap)
+                                          Map<String, String> xmlHrefMap,
+                                          String packageFilter)
             throws MacroExecutionException {
         try {
             final List<Path> checkFiles = new ArrayList<>();
@@ -145,7 +195,7 @@ public class AllCheckSummaries extends AbstractMacro {
                 }
             });
 
-            checkFiles.forEach(path -> processCheckFile(path, infos, xmlHrefMap));
+            checkFiles.forEach(path -> processCheckFile(path, infos, xmlHrefMap, packageFilter));
         }
         catch (IOException | IllegalStateException exception) {
             throw new MacroExecutionException("Failed to discover checks", exception);
@@ -182,28 +232,29 @@ public class AllCheckSummaries extends AbstractMacro {
      * @param path the check class file
      * @param infos map of results
      * @param xmlHrefMap map of XML hrefs
+     * @param packageFilter optional package to filter by, null for all
      * @throws IllegalArgumentException if macro execution fails
      */
     private static void processCheckFile(Path path, Map<String, CheckInfo> infos,
-                                         Map<String, String> xmlHrefMap) {
+                                         Map<String, String> xmlHrefMap,
+                                         String packageFilter) {
         try {
             final String moduleName = CommonUtil.getFileNameWithoutExtension(path.toString());
             final boolean isHolder = moduleName.endsWith("Holder");
-            final String simpleName;
-            if (isHolder) {
-                simpleName = moduleName;
-            }
-            else {
-                simpleName = moduleName.substring(0, moduleName.length() - "Check".length());
-            }
+            final String simpleName = determineSimpleName(moduleName, isHolder);
             final DetailNode javadoc = SiteUtil.getModuleJavadoc(moduleName, path);
             if (javadoc != null) {
                 final String description = getDescriptionIfPresent(javadoc);
                 if (description != null) {
                     final String summary = createSummary(description);
-                    final String category = extractCategory(path);
-                    final String href = resolveHref(xmlHrefMap, category, simpleName);
-                    addCheckInfo(infos, simpleName, href, summary, isHolder);
+                    final String packageName = determinePackageName(path, simpleName, isHolder);
+
+                    // Filter by package if specified
+                    if (packageFilter == null || packageFilter.equals(packageName)) {
+                        final String href = resolveHref(xmlHrefMap, packageName, simpleName,
+                                packageFilter);
+                        addCheckInfo(infos, simpleName, href, summary, isHolder);
+                    }
                 }
             }
 
@@ -211,6 +262,51 @@ public class AllCheckSummaries extends AbstractMacro {
         catch (MacroExecutionException exceptionThrown) {
             throw new IllegalArgumentException(exceptionThrown);
         }
+    }
+
+    /**
+     * Determines the simple name of a check module.
+     *
+     * @param moduleName the full module name
+     * @param isHolder whether the module is a holder
+     * @return the simple name
+     */
+    private static String determineSimpleName(String moduleName, boolean isHolder) {
+        final String simpleName;
+        if (isHolder) {
+            simpleName = moduleName;
+        }
+        else {
+            simpleName = moduleName.substring(0, moduleName.length() - "Check".length());
+        }
+        return simpleName;
+    }
+
+    /**
+     * Determines the package name for a check, applying remapping rules.
+     *
+     * @param path the check class file
+     * @param simpleName simple name of the check
+     * @param isHolder whether the module is a holder
+     * @return the package name
+     */
+    private static String determinePackageName(Path path, String simpleName, boolean isHolder) {
+        String packageName = extractCategory(path);
+
+        // Apply remapping for indentation -> misc
+        if ("indentation".equals(packageName)) {
+            packageName = MISC_PACKAGE;
+        }
+
+        // Apply holder overrides
+        if (isHolder && "SuppressWarningsHolder".equals(simpleName)) {
+            packageName = ANNOTATION_PACKAGE;
+        }
+        else if (isHolder && "SuppressXpathWarningsHolder".equals(simpleName)) {
+            packageName = ANNOTATION_PACKAGE;
+        }
+
+        return packageName;
     }
 
     /**
@@ -392,11 +488,11 @@ public class AllCheckSummaries extends AbstractMacro {
      */
     private static String buildHolderSectionHtml(StringBuilder holderRows) {
         return ModuleJavadocParsingUtil.INDENT_LEVEL_8
-                + "</table>"
+                + TABLE_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
-                + "</div>"
+                + DIV_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_4
-                + "</section>"
+                + SECTION_CLOSE_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_4
                 + "<section name=\"Holder Checks\">"
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
@@ -410,11 +506,68 @@ public class AllCheckSummaries extends AbstractMacro {
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
                 + "</p>"
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_6
-                + "<div class=\"wrapper\">"
+                + DIV_WRAPPER_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_8
-                + "<table>"
+                + TABLE_OPEN_TAG
                 + ModuleJavadocParsingUtil.INDENT_LEVEL_10
                 + holderRows;
+    }
+
+    /**
+     * Appends the filtered Holder Checks section for package views.
+     *
+     * @param sink the output sink
+     * @param holderRows the holder rows content
+     * @param packageName the package name
+     */
+    private static void appendFilteredHolderSection(Sink sink, StringBuilder holderRows,
+                                                    String packageName) {
+        final String packageTitle = getPackageDisplayName(packageName);
+        final String holderSection = buildFilteredHolderSectionHtml(holderRows, packageTitle);
+        sink.rawText(holderSection);
+    }
+
+    /**
+     * Builds the HTML for the filtered Holder Checks section.
+     *
+     * @param holderRows the holder rows content
+     * @param packageTitle the display name of the package
+     * @return the complete HTML section as a string
+     */
+    private static String buildFilteredHolderSectionHtml(StringBuilder holderRows,
+                                                         String packageTitle) {
+        return ModuleJavadocParsingUtil.INDENT_LEVEL_8
+                + TABLE_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_6
+                + DIV_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_4
+                + SECTION_CLOSE_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_4
+                + "<section name=\"" + packageTitle + " Holder Checks\">"
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_6
+                + DIV_WRAPPER_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_8
+                + TABLE_OPEN_TAG
+                + ModuleJavadocParsingUtil.INDENT_LEVEL_10
+                + holderRows;
+    }
+
+    /**
+     * Get display name for package (capitalize first letter).
+     *
+     * @param packageName the package name
+     * @return the capitalized package name
+     */
+    private static String getPackageDisplayName(String packageName) {
+        final String result;
+        if (packageName == null || packageName.isEmpty()) {
+            result = packageName;
+        }
+        else {
+            result = packageName.substring(0, 1).toUpperCase(Locale.ENGLISH)
+                    + packageName.substring(1);
+        }
+        return result;
     }
 
     /**
@@ -492,23 +645,52 @@ public class AllCheckSummaries extends AbstractMacro {
 
     /**
      * Resolves the href for a given check module.
+     * When packageFilter is null, returns full path: checks/category/filename.html#CheckName
+     * When packageFilter is set, returns relative path: filename.html#CheckName
      *
      * @param xmlMap map of XML file names to HTML paths
      * @param category the category of the check
      * @param simpleName simple name of the check
+     * @param packageFilter optional package filter, null for all checks
      * @return the resolved href for the check
      */
     private static String resolveHref(Map<String, String> xmlMap, String category,
-                                      String simpleName) {
+                                      String simpleName, @Nullable String packageFilter) {
         final String lower = simpleName.toLowerCase(Locale.ROOT);
         final String href = xmlMap.get(lower);
         final String result;
+
         if (href != null) {
-            result = href + "#" + simpleName;
+            // XML file exists in the map
+            if (packageFilter == null) {
+                // Full path for all checks view
+                result = href + ANCHOR_SEPARATOR + simpleName;
+            }
+            else {
+                // Extract just the filename for filtered view
+                final int lastSlash = href.lastIndexOf('/');
+                final String filename;
+                if (lastSlash >= 0) {
+                    filename = href.substring(lastSlash + 1);
+                }
+                else {
+                    filename = href;
+                }
+                result = filename + ANCHOR_SEPARATOR + simpleName;
+            }
         }
         else {
-            result = String.format(Locale.ROOT, "%s/%s/%s.html#%s",
-                    CHECKS, category, lower, simpleName);
+            // XML file not found, construct default path
+            if (packageFilter == null) {
+                // Full path for all checks view
+                result = String.format(Locale.ROOT, "%s/%s/%s.html%s%s",
+                        CHECKS, category, lower, ANCHOR_SEPARATOR, simpleName);
+            }
+            else {
+                // Just filename for filtered view
+                result = String.format(Locale.ROOT, "%s.html%s%s",
+                        lower, ANCHOR_SEPARATOR, simpleName);
+            }
         }
         return result;
     }
@@ -524,7 +706,8 @@ public class AllCheckSummaries extends AbstractMacro {
         final Path parent = rel.getParent();
         final String result;
         if (parent == null) {
-            result = "";
+            // Root-level checks go to misc
+            result = MISC_PACKAGE;
         }
         else {
             result = parent.toString().replace('\\', '/');
@@ -544,10 +727,11 @@ public class AllCheckSummaries extends AbstractMacro {
             result = "";
         }
         else {
-            String cleaned = LINK_PATTERN.matcher(html).replaceAll("$1");
+            String cleaned = LINK_PATTERN.matcher(html).replaceAll(FIRST_CAPTURE_GROUP);
             cleaned = TAG_PATTERN.matcher(cleaned).replaceAll("");
             cleaned = SPACE_PATTERN.matcher(cleaned).replaceAll(" ").trim();
             cleaned = AMP_PATTERN.matcher(cleaned).replaceAll("&amp;");
+            cleaned = CODE_SPACE_PATTERN.matcher(cleaned).replaceAll(FIRST_CAPTURE_GROUP);
             result = extractFirstSentence(cleaned);
         }
         return result;
@@ -658,9 +842,6 @@ public class AllCheckSummaries extends AbstractMacro {
          * @param link documentation link
          * @param summary module summary
          * @param isHolder whether holder
-         * @noinspection unused
-         * @noinspectionreason moduleName parameter is required for consistent API
-         *      but not used in this implementation
          */
         private CheckInfo(String simpleName, String link,
                           String summary, boolean isHolder) {
