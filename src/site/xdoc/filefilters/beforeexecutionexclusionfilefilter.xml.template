@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="BeforeExecutionExclusionFileFilter">
-      <p>Since Checkstyle 7.2</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/filefilters/BeforeExecutionExclusionFileFilter.java"/>
+      </macro>
       <subsection name="Description" id="BeforeExecutionExclusionFileFilter_Description">
         <macro name="description">
             <param name="modulePath"

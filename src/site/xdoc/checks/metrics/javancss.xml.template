@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="JavaNCSS">
-      <p>Since Checkstyle 3.5</p>
+      <macro name="since">
+          <param name="modulePath"
+                 value="src/main/java/com/puppycrawl/tools/checkstyle/checks/metrics/JavaNCSSCheck.java"/>
+      </macro>
       <subsection name="Description" id="JavaNCSS_Description">
         <macro name="description">
             <param name="modulePath"
