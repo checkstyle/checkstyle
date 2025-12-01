@@ -4617,9 +4617,6 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.SimpleToken*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
@@ -4674,6 +4671,11 @@
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.grammar.SimpleToken</class>
+              </excludedClasses>
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
