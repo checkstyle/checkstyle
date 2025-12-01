@@ -8,8 +8,8 @@
   <body>
     <section name="Javadoc Comments Checks">
       <div class="wrapper">
-        <table>
-          <tr>
+       <table>
+        <tr>
             <td>
               <a href="atclauseorder.html#AtclauseOrder">
                 AtclauseOrder
@@ -36,8 +36,8 @@
               </a>
             </td>
             <td>
-              Checks that a javadoc block tag appears only at the beginning of a line,
-            ignoring leading asterisks and white space.
+              Checks that a javadoc block tag appears only at the beginning of a line, ignoring
+              leading asterisks and white space.
             </td>
           </tr>
           <tr>
@@ -47,8 +47,8 @@
               </a>
             </td>
             <td>
-              Checks that the Javadoc content begins from the same position
-            for all Javadoc comments in the project.
+              Checks that the Javadoc content begins from the same position for all Javadoc comments
+              in the project.
             </td>
           </tr>
           <tr>
@@ -179,7 +179,7 @@
             </td>
             <td>
               Checks for missing Javadoc comments for class, enum, interface, and annotation
-            interface definitions.
+              interface definitions.
             </td>
           </tr>
           <tr>
@@ -209,8 +209,7 @@
               </a>
             </td>
             <td>
-              Checks that a Javadoc block can fit in a single-line and doesn't contain
-            block tags.
+              Checks that a Javadoc block can fit in a single-line and doesn't contain block tags.
             </td>
           </tr>
           <tr>
@@ -221,7 +220,7 @@
             </td>
             <td>
               Checks that Javadoc summary sentence does not contain phrases that are not recommended
-            to use.
+              to use.
             </td>
           </tr>
           <tr>
@@ -231,11 +230,11 @@
               </a>
             </td>
             <td>
-              Requires user defined Javadoc tag to be present in Javadoc comment
-            with defined format.
+              Requires user defined Javadoc tag to be present in Javadoc comment with defined
+              format.
             </td>
           </tr>
-        </table>
+       </table>
       </div>
     </section>
   </body>
