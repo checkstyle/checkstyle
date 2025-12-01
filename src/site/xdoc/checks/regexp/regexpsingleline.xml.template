@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="RegexpSingleline">
-      <p>Since Checkstyle 5.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/regexp/RegexpSinglelineCheck.java"/>
+      </macro>
       <subsection name="Description" id="RegexpSingleline_Description">
         <macro name="description">
             <param name="modulePath"

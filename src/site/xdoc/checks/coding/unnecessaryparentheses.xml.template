@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="UnnecessaryParentheses">
-      <p>Since Checkstyle 3.4</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryParenthesesCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnnecessaryParentheses_Description">
         <macro name="description">
           <param name="modulePath"

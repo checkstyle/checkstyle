@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="OneStatementPerLine">
-      <p>Since Checkstyle 5.3</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/OneStatementPerLineCheck.java"/>
+      </macro>
       <subsection name="Description" id="OneStatementPerLine_Description">
         <macro name="description">
             <param name="modulePath"

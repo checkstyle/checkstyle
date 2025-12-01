@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="UnnecessaryNullCheckWithInstanceOf">
-      <p>Since Checkstyle 10.25.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UnnecessaryNullCheckWithInstanceOfCheck.java"/>
+      </macro>
       <subsection name="Description" id="UnnecessaryNullCheckWithInstanceOf_Description">
         <macro name="description">
             <param name="modulePath"
