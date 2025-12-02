@@ -834,4 +834,16 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleAboveComments.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocStyleUnclosedTags() throws Exception {
+        final String[] expected = {
+            "25:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<span>"),
+            "33:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleUnclosedTags.java"),
+                expected);
+    }
 }
