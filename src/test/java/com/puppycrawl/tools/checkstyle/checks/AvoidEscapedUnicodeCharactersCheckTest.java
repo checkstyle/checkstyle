@@ -34,6 +34,7 @@ import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSupport {
 
@@ -454,6 +455,14 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         verifyWithInlineConfigParser(
                 getPath("InputAvoidEscapedUnicodeCharactersEscapedS.java"),
                 expected);
+    }
+
+    @Test
+    public void testBlockCommentAtAbsoluteEndOfFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getPath("InputAvoidEscapedUnicodeCharactersBlock.java"),
+            expected);
     }
 
     @Test
