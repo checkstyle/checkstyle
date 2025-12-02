@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +35,7 @@ import org.junit.jupiter.api.Test;
 
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -158,6 +162,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -457,6 +463,30 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAvoidEscapedUnicodeCharactersBlockComments() throws Exception {
+        final String[] expected = {
+            "22:17: " + getCheckMessage(MSG_KEY),
+            "27:17: " + getCheckMessage(MSG_KEY),
+            "39:18: " + getCheckMessage(MSG_KEY),
+            "50:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersBlockComments.java"),
+                expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersControlChars() throws Exception {
+        final String[] expected = {
+            "17:34: " + getCheckMessage(MSG_KEY),
+            "24:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersControlChars.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -464,6 +494,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)
@@ -555,6 +587,44 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             }
             lastChar = currentChar;
         }
+    }
+
+    private static boolean isTrailingComment(DetailAST ast) throws Exception {
+        return TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class,
+                "isTrailingComment",
+                Boolean.class,
+                ast);
+    }
+
+    @Test
+    public void detectsTrailingCommentWithoutNextSibling() throws Exception {
+        final DetailAST comment = mock(DetailAST.class);
+        final DetailAST lastChild = mock(DetailAST.class);
+
+        when(comment.getLineNo()).thenReturn(20);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(20);
+        when(comment.getNextSibling()).thenReturn(null);
+
+        assertThat(isTrailingComment(comment)).isTrue();
+    }
+
+    @Test
+    public void detectsTrailingCommentWithNextLineSibling() throws Exception {
+        final DetailAST comment = mock(DetailAST.class);
+        final DetailAST lastChild = mock(DetailAST.class);
+        final DetailAST next = mock(DetailAST.class);
+
+        when(comment.getLineNo()).thenReturn(30);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(30);
+
+        when(comment.getNextSibling()).thenReturn(next);
+        when(next.getLineNo()).thenReturn(31);
+        when(next.getType()).thenReturn(TokenTypes.IDENT);
+
+        assertThat(isTrailingComment(comment)).isTrue();
     }
 
     private static boolean isControlCharacter(final int character) {
