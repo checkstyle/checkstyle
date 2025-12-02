@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="RequireThis">
-      <p>Since Checkstyle 3.4</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/RequireThisCheck.java"/>
+      </macro>
       <subsection name="Description" id="RequireThis_Description">
         <macro name="description">
           <param name="modulePath"

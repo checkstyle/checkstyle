@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="NoCodeInFile">
-      <p>Since Checkstyle 8.33</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/NoCodeInFileCheck.java"/>
+      </macro>
 
       <subsection name="Description" id="NoCodeInFile_Description">
         <macro name="description">

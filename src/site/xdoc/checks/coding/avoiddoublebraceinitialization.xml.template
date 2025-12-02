@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="AvoidDoubleBraceInitialization">
-      <p>Since Checkstyle 8.30</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/AvoidDoubleBraceInitializationCheck.java"/>
+      </macro>
       <subsection name="Description" id="AvoidDoubleBraceInitialization_Description">
         <macro name="description">
             <param name="modulePath"
