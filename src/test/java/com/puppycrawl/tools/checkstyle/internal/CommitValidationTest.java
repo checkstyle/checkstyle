@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assumptions;
 
 /**
  * Validate commit message has proper structure.
@@ -254,6 +256,10 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> getCommitsToCheck() throws Exception {
+
+        Assumptions.assumeTrue(new File(".git").exists(), 
+            "Project is not a git repository (likely a zip download), skipping commit validation");
+
         final List<RevCommit> commits;
         try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
             final RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);
