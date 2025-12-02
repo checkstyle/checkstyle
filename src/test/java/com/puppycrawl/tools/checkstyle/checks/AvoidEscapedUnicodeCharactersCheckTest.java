@@ -158,6 +158,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -464,6 +466,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)
