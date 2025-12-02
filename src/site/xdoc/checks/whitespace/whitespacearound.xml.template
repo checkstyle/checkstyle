@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="WhitespaceAround">
-      <p>Since Checkstyle 3.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java"/>
+      </macro>
       <subsection name="Description" id="WhitespaceAround_Description">
         <macro name="description">
             <param name="modulePath"

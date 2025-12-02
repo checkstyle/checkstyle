@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="SuppressWithNearbyTextFilter">
-      <p>Since Checkstyle 10.10.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyTextFilter.java"/>
+      </macro>
       <subsection name="Description" id="SuppressWithNearbyTextFilter_Description">
         <macro name="description">
             <param name="modulePath"

@@ -8,7 +8,10 @@
   <body>
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="SuppressWarningsHolder">
-      <p>Since Checkstyle 5.7</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/SuppressWarningsHolder.java"/>
+      </macro>
       <subsection name="Description" id="SuppressWarningsHolder_Description">
         <macro name="description">
             <param name="modulePath"

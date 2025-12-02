@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="InterfaceTypeParameterName">
-      <p>Since Checkstyle 5.8</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/InterfaceTypeParameterNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="InterfaceTypeParameterName_Description">
         <macro name="description">
             <param name="modulePath"
