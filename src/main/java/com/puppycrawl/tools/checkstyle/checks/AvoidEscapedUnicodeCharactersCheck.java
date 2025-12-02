@@ -19,19 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <div>
@@ -174,10 +171,15 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{3}[bB]"
             + "|\\\\u[fF]{4}");
 
-    /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
-    /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
+    /** Pending literal to be checked. */
+    @Nullable
+    private DetailAST pendingLiteral;
+
+    /** Line number of the pending literal. */
+    private int pendingLineNo;
+
+    /** Whether the pending literal line has a trailing comment. */
+    private boolean pendingLineHasComment;
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -247,30 +249,147 @@ public class AvoidEscapedUnicodeCharactersCheck
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
-    public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal =
-            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
+        final int tokenType = ast.getType();
 
-        if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
-                || isAllCharactersEscaped(literal)
-                || allowEscapesForControlCharacters
-                        && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
-                || allowNonPrintableEscapes
-                        && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
+        if (tokenType == TokenTypes.STRING_LITERAL
+            || tokenType == TokenTypes.CHAR_LITERAL
+            || tokenType == TokenTypes.TEXT_BLOCK_CONTENT) {
+
+            processPendingLiteral();
+            pendingLiteral = ast;
+            pendingLineNo = getLineNumberForLiteral(ast, tokenType);
+            pendingLineHasComment = false;
+        }
+        if (tokenType == TokenTypes.SINGLE_LINE_COMMENT) {
+            processSingleLineComment(ast);
+        }
+        if (tokenType == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            processBlockComment(ast);
+        }
+    }
+
+    /**
+     * Processes a single-line comment to check if it's a trailing comment.
+     *
+     * @param ast the single-line comment AST node
+     */
+    private void processSingleLineComment(DetailAST ast) {
+        if (pendingLiteral != null && ast.getLineNo() == pendingLineNo) {
+            pendingLineHasComment = true;
+        }
+    }
+
+    /**
+     * Processes a block comment to check if it's a trailing comment.
+     *
+     * @param ast the block comment AST node
+     */
+    private void processBlockComment(DetailAST ast) {
+        if (pendingLiteral != null
+            && ast.getLineNo() == pendingLineNo
+            && isTrailingComment(ast)) {
+            pendingLineHasComment = true;
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        processPendingLiteral();
+    }
+
+    /**
+     * Processes the pending literal if it exists.
+     */
+    private void processPendingLiteral() {
+        if (pendingLiteral != null) {
+            checkLiteral(pendingLiteral, pendingLineHasComment);
+            pendingLiteral = null;
+        }
+    }
+
+    /**
+     * Gets the line number to check for trailing comments for a literal.
+     *
+     * @param ast the literal AST node
+     * @param tokenType the token type of the literal
+     * @return the line number to check for trailing comments
+     */
+    private static int getLineNumberForLiteral(DetailAST ast, int tokenType) {
+        int lineNo = ast.getLineNo();
+
+        if (tokenType == TokenTypes.TEXT_BLOCK_CONTENT) {
+            final DetailAST textBlockEnd = ast.getNextSibling();
+            lineNo = textBlockEnd.getLineNo();
+        }
+        return lineNo;
+    }
+
+    /**
+     * Checks if a comment is a trailing comment for the pending literal.
+     *
+     * @param ast the comment AST node
+     * @return true if the comment is a trailing comment
+     */
+    private static boolean isTrailingComment(DetailAST ast) {
+        final boolean isTrailing;
+        final int astLine = ast.getLineNo();
+        final DetailAST commentEnd = ast.getLastChild();
+
+        if (commentEnd.getLineNo() > astLine) {
+            isTrailing = true;
+        }
+        else {
+            final DetailAST nextToken = ast.getNextSibling();
+            final int nextLine = nextToken.getLineNo();
+            final int nextType = nextToken.getType();
+
+            isTrailing = nextLine != astLine
+                || nextType == TokenTypes.SINGLE_LINE_COMMENT
+                || nextType == TokenTypes.BLOCK_COMMENT_BEGIN;
+        }
+
+        return isTrailing;
+    }
+
+    /**
+     * Checks a literal for Unicode escape violations.
+     *
+     * @param ast the literal AST node
+     * @param hasTrailing whether the literal has a trailing comment
+     */
+    private void checkLiteral(DetailAST ast, boolean hasTrailing) {
+        final String literal = CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
+        if (hasUnicodeChar(literal) && !isAllowed(literal, hasTrailing)) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Determines if a Unicode escape is allowed based on configuration.
+     *
+     * @param literal the literal text
+     * @param hasTrailing whether the literal has a trailing comment
+     * @return true if the Unicode escape is allowed
+     */
+    private boolean isAllowed(String literal, boolean hasTrailing) {
+        return allowByTailComment && hasTrailing
+            || isAllCharactersEscaped(literal)
+            || allowEscapesForControlCharacters
+            && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
+            || allowNonPrintableEscapes
+            && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS);
     }
 
     /**
@@ -298,48 +417,6 @@ public class AvoidEscapedUnicodeCharactersCheck
         final int unicodeValidMatchesCounter =
                 countMatches(pattern, literal);
         return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
-    }
-
-    /**
-     * Check if trail comment is present after ast token.
-     *
-     * @param ast current token.
-     * @return true if trail comment is present after ast token.
-     */
-    private boolean hasTrailComment(DetailAST ast) {
-        int lineNo = ast.getLineNo();
-
-        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
-        // we need to look for it after TEXT_BLOCK_LITERAL_END.
-        if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
-            lineNo = ast.getNextSibling().getLineNo();
-        }
-        boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
-        }
-        else {
-            final List<TextBlock> commentList = blockComments.get(lineNo);
-            if (commentList != null) {
-                final TextBlock comment = commentList.get(commentList.size() - 1);
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
-                result = isTrailingBlockComment(comment, codePoints);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Whether the C style comment is trailing.
-     *
-     * @param comment the comment to check.
-     * @param codePoints the first line of the comment, in unicode code points
-     * @return true if the comment is trailing.
-     */
-    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
-        return comment.getText().length != 1
-            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
     }
 
     /**
