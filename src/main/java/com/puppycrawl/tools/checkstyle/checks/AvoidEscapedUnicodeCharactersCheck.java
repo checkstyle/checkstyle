@@ -19,19 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <div>
@@ -174,10 +171,8 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{3}[bB]"
             + "|\\\\u[fF]{4}");
 
-    /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
-    /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
+    /** Track which lines have trailing comments. */
+    private Set<Integer> validCommentLines;
 
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
@@ -250,27 +245,94 @@ public class AvoidEscapedUnicodeCharactersCheck
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+        validCommentLines = new HashSet<>();
+        collectCommentLines(rootAST);
+    }
+
+    /**
+     * Traverses the AST to find lines containing trailing comments.
+     * Uses iterative traversal to avoid StackOverflowError on deep trees.
+     *
+     * @param root the root AST node to start traversal from.
+     */
+    private void collectCommentLines(DetailAST root) {
+        DetailAST curNode = root;
+        while (curNode != null) {
+            final int type = curNode.getType();
+            if (type == TokenTypes.SINGLE_LINE_COMMENT) {
+                validCommentLines.add(curNode.getLineNo());
+            }
+            else if (type == TokenTypes.BLOCK_COMMENT_BEGIN
+                && isTrailingBlockComment(curNode)) {
+                validCommentLines.add(curNode.getLineNo());
+            }
+
+            DetailAST toVisit = curNode.getFirstChild();
+            if (toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                while (toVisit == null && curNode.getParent() != null) {
+                    curNode = curNode.getParent();
+                    toVisit = curNode.getNextSibling();
+                }
+            }
+            curNode = toVisit;
+        }
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal =
-            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
+        final String literal = CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
-        if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
-                || isAllCharactersEscaped(literal)
-                || allowEscapesForControlCharacters
-                        && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
-                || allowNonPrintableEscapes
-                        && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
-            log(ast, MSG_KEY);
+        if (hasUnicodeChar(literal)) {
+            final int lineNo;
+            if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                lineNo = ast.getNextSibling().getLineNo();
+            }
+            else {
+                lineNo = ast.getLineNo();
+            }
+
+            final boolean hasTrailingComment = allowByTailComment
+                    && validCommentLines.contains(lineNo);
+
+            if (!isAllowed(literal, hasTrailingComment)) {
+                log(ast, MSG_KEY);
+            }
         }
+    }
+
+    /**
+     * Checks if a block comment is a trailing comment.
+     *
+     * @param ast the block comment AST node
+     * @return true if the comment is a trailing comment
+     */
+    private static boolean isTrailingBlockComment(DetailAST ast) {
+        final DetailAST nextSibling = ast.getNextSibling();
+        return nextSibling == null || nextSibling.getLineNo() != ast.getLineNo();
+    }
+
+    /**
+     * Determines if a Unicode escape is allowed based on configuration.
+     *
+     * @param literal the literal text
+     * @param hasTrailing whether the literal has a trailing comment
+     * @return true if the Unicode escape is allowed
+     */
+    private boolean isAllowed(String literal, boolean hasTrailing) {
+        return hasTrailing
+            || isAllCharactersEscaped(literal)
+            || allowEscapesForControlCharacters
+            && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
+            || allowNonPrintableEscapes
+            && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS);
     }
 
     /**
@@ -298,48 +360,6 @@ public class AvoidEscapedUnicodeCharactersCheck
         final int unicodeValidMatchesCounter =
                 countMatches(pattern, literal);
         return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
-    }
-
-    /**
-     * Check if trail comment is present after ast token.
-     *
-     * @param ast current token.
-     * @return true if trail comment is present after ast token.
-     */
-    private boolean hasTrailComment(DetailAST ast) {
-        int lineNo = ast.getLineNo();
-
-        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
-        // we need to look for it after TEXT_BLOCK_LITERAL_END.
-        if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
-            lineNo = ast.getNextSibling().getLineNo();
-        }
-        boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
-        }
-        else {
-            final List<TextBlock> commentList = blockComments.get(lineNo);
-            if (commentList != null) {
-                final TextBlock comment = commentList.getLast();
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
-                result = isTrailingBlockComment(comment, codePoints);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Whether the C style comment is trailing.
-     *
-     * @param comment the comment to check.
-     * @param codePoints the first line of the comment, in unicode code points
-     * @return true if the comment is trailing.
-     */
-    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
-        return comment.getText().length != 1
-            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
     }
 
     /**
