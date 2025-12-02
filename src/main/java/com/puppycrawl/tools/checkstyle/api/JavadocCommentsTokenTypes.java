@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 
+import java.util.List;
+
 /**
  * Contains the constants for all the tokens contained in the Abstract
  * Syntax Tree for the javadoc grammar.
@@ -879,7 +881,19 @@ public final class JavadocCommentsTokenTypes {
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
 
     /**
-     * Type name reference.
+     * {@code TYPE_NAME} Type name reference.
+     *
+     * <p>Name of a type in Javadoc references.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link List#add(Object)}}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * TYPE_NAME -> Object
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
