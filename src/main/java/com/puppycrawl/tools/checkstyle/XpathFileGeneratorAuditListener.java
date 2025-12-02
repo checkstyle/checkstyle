@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
  * Generates <b>suppressions.xml</b> file, based on violations occurred.
  * See issue <a href="https://github.com/checkstyle/checkstyle/issues/102">#102</a>
  */
-public class XpathFileGeneratorAuditListener
+public final class XpathFileGeneratorAuditListener
         extends AbstractAutomaticBean
         implements AuditListener {
 
