@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingBlockComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>return nextSibling == null || nextSibling.getLineNo() != ast.getLineNo();</lineContent>
+  </mutation>
+</suppressedMutations>
