@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * SARIF stands for the static analysis results interchange format.
  * See <a href="https://sarifweb.azurewebsites.net/">reference</a>
  */
-public class SarifLogger extends AbstractAutomaticBean implements AuditListener {
+public final class SarifLogger extends AbstractAutomaticBean implements AuditListener {
 
     /** The length of unicode placeholder. */
     private static final int UNICODE_LENGTH = 4;
