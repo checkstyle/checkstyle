@@ -158,6 +158,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -457,6 +459,32 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAvoidEscapedUnicodeCharactersControlChars() throws Exception {
+        final String[] expected = {
+            "17:34: " + getCheckMessage(MSG_KEY),
+            "24:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersControlChars.java"),
+                expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersAllowByTailComment() throws Exception {
+        final String[] expected = {
+            "16:17: " + getCheckMessage(MSG_KEY),
+            "23:17: " + getCheckMessage(MSG_KEY),
+            "33:20: " + getCheckMessage(MSG_KEY),
+            "39:18: " + getCheckMessage(MSG_KEY),
+            "44:32: " + getCheckMessage(MSG_KEY),
+            "47:18: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAvoidEscapedUnicodeCharactersAllowByTailComment.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -464,6 +492,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)
