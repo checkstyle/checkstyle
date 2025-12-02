@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>getLineNumberForLiteral</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (textBlockEnd != null &amp;&amp; textBlockEnd.getType()</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>getLineNumberForLiteral</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (tokenType == TokenTypes.TEXT_BLOCK_CONTENT) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; nextToken.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; nextToken.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>&amp;&amp; nextToken.getType() != TokenTypes.SINGLE_LINE_COMMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; nextToken.getType() != TokenTypes.SINGLE_LINE_COMMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (commentEnd != null &amp;&amp; commentEnd.getType() == TokenTypes.BLOCK_COMMENT_END) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLineNo</description>
+    <lineContent>if (commentEnd.getLineNo() &gt; ast.getLineNo()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>if (commentEnd.getLineNo() &gt; ast.getLineNo()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (nextToken != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (tokenType == TokenTypes.BLOCK_COMMENT_BEGIN) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>processPendingLiteral</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable pendingLiteral</description>
+    <lineContent>pendingLiteral = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (tokenType == TokenTypes.SINGLE_LINE_COMMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (tokenType == TokenTypes.SINGLE_LINE_COMMENT</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (pendingLiteral != null &amp;&amp; ast.getLineNo() == pendingLineNo) {</lineContent>
+  </mutation>
+</suppressedMutations>
