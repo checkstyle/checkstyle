@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>beginTree</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Map::clear</description>
+    <lineContent>pendingViolations.clear();</lineContent>
+  </mutation>
+</suppressedMutations>

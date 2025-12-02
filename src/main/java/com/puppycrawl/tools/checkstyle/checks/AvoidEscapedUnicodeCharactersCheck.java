@@ -19,7 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -28,10 +29,8 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.CodePointUtil;
 
 /**
  * <div>
@@ -174,11 +173,6 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\u[fF]{3}[bB]"
             + "|\\\\u[fF]{4}");
 
-    /** Cpp style comments. */
-    private Map<Integer, TextBlock> singlelineComments;
-    /** C style comments. */
-    private Map<Integer, List<TextBlock>> blockComments;
-
     /** Allow use escapes for non-printable, control characters. */
     private boolean allowEscapesForControlCharacters;
 
@@ -190,6 +184,13 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /** Allow use escapes for non-printable, whitespace characters. */
     private boolean allowNonPrintableEscapes;
+
+    /**
+     * Map of Pending Violations.
+     * Key: Line number of the violation.
+     * Value: List of literal AST nodes on that line pending validation.
+     */
+    private final Map<Integer, List<DetailAST>> pendingViolations = new HashMap<>();
 
     /**
      * Setter to allow use escapes for non-printable, control characters.
@@ -247,30 +248,91 @@ public class AvoidEscapedUnicodeCharactersCheck
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
     }
 
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
     @Override
-    @SuppressWarnings("deprecation")
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public void beginTree(DetailAST rootAST) {
-        singlelineComments = getFileContents().getSingleLineComments();
-        blockComments = getFileContents().getBlockComments();
+          System.out.println("beginTree called, map size before clear: " + pendingViolations.size());
+        pendingViolations.clear();
     }
 
     @Override
     public void visitToken(DetailAST ast) {
+        if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                || ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            checkComment(ast);
+        }
+        else {
+            checkLiteral(ast);
+        }
+    }
+
+    @Override
+    public void finishTree(DetailAST rootAST) {
+        for (List<DetailAST> asts : pendingViolations.values()) {
+            for (DetailAST ast : asts) {
+                log(ast, MSG_KEY);
+            }
+        }
+    }
+
+    /**
+     * Checks if the literal has Unicode char and should be reported.
+     * If violation is found, it is added to pendingViolations.
+     *
+     * @param ast literal token.
+     */
+    private void checkLiteral(DetailAST ast) {
         final String literal =
             CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
-        if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
-                || isAllCharactersEscaped(literal)
+        if (hasUnicodeChar(literal) && !(isAllCharactersEscaped(literal)
                 || allowEscapesForControlCharacters
                         && isOnlyUnicodeValidChars(literal, UNICODE_CONTROL)
                 || allowNonPrintableEscapes
                         && isOnlyUnicodeValidChars(literal, NON_PRINTABLE_CHARS))) {
-            log(ast, MSG_KEY);
+
+            if (allowByTailComment) {
+                int lineNo = ast.getLineNo();
+                if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                    lineNo = ast.getNextSibling().getLineNo();
+                }
+                pendingViolations.computeIfAbsent(lineNo, key -> new ArrayList<>()).add(ast);
+            }
+            else {
+                log(ast, MSG_KEY);
+            }
         }
+    }
+
+    /**
+     * Checks if a comment clears any pending violations on the same line.
+     *
+     * @param comment comment token.
+     */
+    private void checkComment(DetailAST comment) {
+        if (isTrailingComment(comment)) {
+            pendingViolations.remove(comment.getLineNo());
+        }
+    }
+
+    /**
+     * Checks if a comment is trailing (has no code after it on the same line).
+     *
+     * @param commentNode the comment AST node
+     * @return true if it is trailing
+     */
+    private static boolean isTrailingComment(DetailAST commentNode) {
+        final DetailAST nextSibling = commentNode.getNextSibling();
+        return nextSibling == null || nextSibling.getLineNo() != commentNode.getLineNo();
     }
 
     /**
@@ -301,48 +363,6 @@ public class AvoidEscapedUnicodeCharactersCheck
     }
 
     /**
-     * Check if trail comment is present after ast token.
-     *
-     * @param ast current token.
-     * @return true if trail comment is present after ast token.
-     */
-    private boolean hasTrailComment(DetailAST ast) {
-        int lineNo = ast.getLineNo();
-
-        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
-        // we need to look for it after TEXT_BLOCK_LITERAL_END.
-        if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
-            lineNo = ast.getNextSibling().getLineNo();
-        }
-        boolean result = false;
-        if (singlelineComments.containsKey(lineNo)) {
-            result = true;
-        }
-        else {
-            final List<TextBlock> commentList = blockComments.get(lineNo);
-            if (commentList != null) {
-                final TextBlock comment = commentList.getLast();
-                final int[] codePoints = getLineCodePoints(lineNo - 1);
-                result = isTrailingBlockComment(comment, codePoints);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Whether the C style comment is trailing.
-     *
-     * @param comment the comment to check.
-     * @param codePoints the first line of the comment, in unicode code points
-     * @return true if the comment is trailing.
-     */
-    private static boolean isTrailingBlockComment(TextBlock comment, int... codePoints) {
-        return comment.getText().length != 1
-            || CodePointUtil.isBlank(Arrays.copyOfRange(codePoints,
-                comment.getEndColNo() + 1, codePoints.length));
-    }
-
-    /**
      * Count regexp matches into String literal.
      *
      * @param pattern pattern.
@@ -368,5 +388,4 @@ public class AvoidEscapedUnicodeCharactersCheck
         return allowIfAllCharactersEscaped
                 && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
-
 }
