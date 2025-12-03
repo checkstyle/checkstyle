@@ -171,5 +171,13 @@
     <property name="maximum" value="1"/>
     <property name="message" value="Description macro usage is required in template files."/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="sinceMacroMustExist"/>
+    <property name="format" value="&lt;macro name=&quot;since&quot;&gt;"/>
+    <property name="fileExtensions" value="xml.template"/>
+    <property name="minimum" value="1"/>
+    <property name="maximum" value="1"/>
+    <property name="message" value="Since macro usage is required in template files."/>
+  </module>
 
 </module>

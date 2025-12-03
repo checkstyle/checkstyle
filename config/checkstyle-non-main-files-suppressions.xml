@@ -323,6 +323,9 @@
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
 
+  <!-- no since in module by design -->
+  <suppress id="sinceMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <!-- no description in module by design -->
   <suppress id="descriptionMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
