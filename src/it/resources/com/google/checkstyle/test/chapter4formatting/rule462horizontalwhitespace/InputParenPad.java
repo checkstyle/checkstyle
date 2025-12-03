@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputParenPad {
   boolean fooo = this.bar(( true && false ) && true);
   // 2 violations above:
@@ -35,7 +35,7 @@ public class InputParenPad {
                     //  '')' is preceded with whitespace.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @MyAnnotation
   public boolean bar(boolean a) {
     assert ( true );
@@ -199,7 +199,7 @@ public class InputParenPad {
       }
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void myMethod() {
       String s = "test";
       Object o = s;
@@ -210,7 +210,7 @@ public class InputParenPad {
       //  '')' is preceded with whitespace.'
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void crisRon() {
       Object leo = "messi";
       Object ibra = leo;
@@ -221,7 +221,7 @@ public class InputParenPad {
       Math.random();
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void intStringConv() {
       Object a = 5;
       Object b = "string";
@@ -235,7 +235,7 @@ public class InputParenPad {
       String d = ((String) b);
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public int something( Object o ) {
       // 2 violations above:
       //  ''(' is followed by whitespace.'
@@ -264,7 +264,7 @@ public class InputParenPad {
       boolean result = number == 123;
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public String testing() {
       return ( this.exam != null )
               // 2 violations above:

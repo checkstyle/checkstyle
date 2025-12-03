@@ -2,10 +2,10 @@ package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationl
 
 import java.util.Iterator;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputIndentationCorrectClass implements Runnable, Cloneable {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @Override
   public void run() {
     SecondClassWithLongLongLongLongName anon = new SecondClassWithLongLongLongLongName() {};

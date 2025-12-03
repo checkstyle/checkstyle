@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputJavadocPositionOnCanonicalConstructorsWithAnnotation {
 
   @interface SizeType {
@@ -54,7 +54,7 @@ public class InputJavadocPositionOnCanonicalConstructorsWithAnnotation {
   record BindCtor(String from, String to) {
 
     // violation below 'Javadoc comment is placed in the wrong location.'
-    /** some javadoc. */
+    /** Some javadoc. */
     /**
      * The constructor for Mapping.
      *

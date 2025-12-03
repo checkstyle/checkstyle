@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputRightCurlyOther {
   /**
-   * summary.
+   * Summary.
    *
    * @see test method *
    */

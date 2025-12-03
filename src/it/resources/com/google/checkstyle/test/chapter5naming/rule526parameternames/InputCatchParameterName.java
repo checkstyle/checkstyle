@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputCatchParameterName {
   {
     try {

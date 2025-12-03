@@ -1,14 +1,14 @@
 package com.google.checkstyle.test.chapter7javadoc.rule731selfexplanatory;
 
-/** some javadoc. */
+/** Some javadoc. */
 public record InputSelfExplanatoryMembersRecord(int scoreBoard) {
 
   public static int score = 0;
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputSelfExplanatoryMembersRecord {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void myScore() {}
 
   public void setScoreBoard(int score) {
@@ -19,12 +19,12 @@ public record InputSelfExplanatoryMembersRecord(int scoreBoard) {
     return score;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public int getFoo() {
     return scoreBoard * 2;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @Override
   public String toString() {
     return "failed to get score";
@@ -58,17 +58,17 @@ public record InputSelfExplanatoryMembersRecord(int scoreBoard) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + x;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void smallMethod1() {
     foo2();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected void smallMethod2() {
     foo2();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String testingParams(String param1, String param2) {
     return "Fooooooooooooooo" + "ooooo" + "ooo" + param1 + param2;
   }

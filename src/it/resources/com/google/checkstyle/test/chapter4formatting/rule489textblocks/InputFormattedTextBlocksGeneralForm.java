@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule489textblocks;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputFormattedTextBlocksGeneralForm {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void textFun() {
 
     final String simpleScript =
@@ -23,7 +23,7 @@ public class InputFormattedTextBlocksGeneralForm {
         """);
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public void textFun2() {
 
     final String simpleScript2 =
@@ -38,7 +38,7 @@ public class InputFormattedTextBlocksGeneralForm {
         """);
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String textFun3() {
 
     String s =
@@ -61,14 +61,14 @@ public class InputFormattedTextBlocksGeneralForm {
         + getName();
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data) {}
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data, int length) {}
 }
