@@ -90,6 +90,11 @@ public class SuppressFilterElement
         }
         if (columns == null) {
             columnsCsv = null;
+            // PIT note: Removing this assignment produces an equivalent mutant because
+            // the field defaults to null and all usages guard with a null check
+            // (see isLineAndColumnMatching). This explicit assignment exists for
+            // readability/definite assignment; behavior is identical without it.
+            // See config/pitest-suppressions/pitest-filters-suppressions.xml.
             columnFilter = null;
         }
         else {
