@@ -84,9 +84,9 @@ class InputEmptyBlocksAndCatchBlocks {
     //  'WhitespaceAround: '}' is not preceded with whitespace.'
   }
 
-  /** some. */
+  /** Some. */
   public class MyResource implements AutoCloseable {
-    /** some. */
+    /** Some. */
     @Override
     public void close() throws Exception {
       System.out.println("Closed MyResource");

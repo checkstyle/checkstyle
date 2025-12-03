@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedTryCatchIfElse {
 
   @interface TesterAnnotation {}
@@ -94,9 +94,9 @@ public class InputFormattedTryCatchIfElse {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public class MyResource implements AutoCloseable {
-    /** some javadoc. */
+    /** Some javadoc. */
     @Override
     public void close() throws Exception {
       System.out.println("Closed MyResource");

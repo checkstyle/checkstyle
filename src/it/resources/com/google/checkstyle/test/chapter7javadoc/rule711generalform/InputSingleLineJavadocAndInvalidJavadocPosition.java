@@ -1,13 +1,13 @@
 package // violation 'package statement should not be line-wrapped.'
     // violation below 'Javadoc comment is placed in the wrong location.'
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
     com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
-/** invalid javadoc. */
+/** Invalid javadoc. */
 import javax.swing.JFrame;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputSingleLineJavadocAndInvalidJavadocPosition {
 
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
@@ -24,7 +24,7 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   void foo3() {}
 
   /**
-   * summary.
+   * Summary.
    *
    * @throws CheckstyleException if a problem occurs
    */
@@ -54,7 +54,7 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   void bar() {}
 
   /**
-   * summary.
+   * Summary.
    *
    * <h1>Some header </h1>
    *
@@ -82,7 +82,7 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @return in multi line javadoc
    */
@@ -92,96 +92,96 @@ public class InputSingleLineJavadocAndInvalidJavadocPosition {
 }
 
 // violation below 'Javadoc comment is placed in the wrong location.'
-/** invalid javadoc. */
-/** valid javadoc. */
+/** Invalid javadoc. */
+/** Valid javadoc. */
 class InputInvalidJavadocPosition {
   // violation above '.* InputInvalidJavadocPosition has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
 }
 
-/** valid javadoc. */
+/** Valid javadoc. */
 /* ignore */
 class InputInvalidJavadocPosition2 {
   // violation above '.* InputInvalidJavadocPosition2 has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   static {
     /* ignore */
   }
 
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
-  /** valid javadoc. */
+  /** Invalid javadoc. */
+  /** Valid javadoc. */
   int field1;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   int[] field2;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   public int[] field3;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   @Deprecated int field4;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   int
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       field20;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   int field21
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       ;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   @Deprecated
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   JFrame frame = new JFrame();
 
   void method1() {}
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   void method2() {}
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   <T> T method3() {
     return null;
   }
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   String[] method4() {
     return null;
   }
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       method20() {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method21
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   () {} // violation ''(' should be on the previous line.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method22(
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   ) {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method23()
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
     {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method24() {
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
   }
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method25() {
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
     int variable;
   }
 }
@@ -189,26 +189,26 @@ class InputInvalidJavadocPosition2 {
 // violation 2 lines below '.* InputInvalidJavadocPosition3 has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 @Deprecated
-/** invalid javadoc. */
+/** Invalid javadoc. */
 class InputInvalidJavadocPosition3 {}
 
 // violation 2 lines below '.* InputInvalidJavadocPosition4 has to reside in its own source file.'
-/** valid javadoc. */
+/** Valid javadoc. */
 @Deprecated
 class InputInvalidJavadocPosition4 {}
 
 // violation 2 lines below '.* InputInvalidJavadocPosition5 has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 class
-/** invalid javadoc. */
+/** Invalid javadoc. */
 InputInvalidJavadocPosition5 {}
 // violation above ''InputInvalidJavadocPosition5' has incorrect indentation .* 0, expected .* 4.'
 
 // violation 2 lines below '.* InputInvalidJavadocPosition6 has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 class InputInvalidJavadocPosition6
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   {}
-/** invalid javadoc. */
+/** Invalid javadoc. */
 // violation 2 lines above''}' at column 4 should be alone on a line.'
 // violation 2 lines above 'Javadoc comment is placed in the wrong location.'

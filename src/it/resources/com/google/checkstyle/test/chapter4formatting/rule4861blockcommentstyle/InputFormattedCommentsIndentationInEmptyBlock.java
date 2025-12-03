@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedCommentsIndentationInEmptyBlock {
 
   private void foo1() {
@@ -59,7 +59,7 @@ public class InputFormattedCommentsIndentationInEmptyBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo6() {
     try {
       /* foo */
@@ -68,7 +68,7 @@ public class InputFormattedCommentsIndentationInEmptyBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo7() {
     try {
       /* foo */
