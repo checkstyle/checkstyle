@@ -262,6 +262,7 @@
 
   <module name="TreeWalker">
     <property name="tabWidth" value="4"/>
+    <module name="ArrayBracketNoWhitespace"/>
 
     <!-- Annotations -->
     <module name="AnnotationLocation">
@@ -395,6 +396,7 @@
 
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>
+    <module name="ArrayBracketNoWhitespace"/>
     <module name="AvoidDoubleBraceInitialization"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>
