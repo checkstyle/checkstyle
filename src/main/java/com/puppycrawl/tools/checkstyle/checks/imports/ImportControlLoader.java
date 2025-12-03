@@ -37,6 +37,9 @@ import org.xml.sax.SAXException;
 import com.puppycrawl.tools.checkstyle.XmlLoader;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.LocalizedMessage;
+
 /**
  * Responsible for loading the contents of an import control configuration file.
  */
@@ -271,11 +274,12 @@ public final class ImportControlLoader extends XmlLoader {
             return loader.getRoot();
         }
         catch (ParserConfigurationException | SAXException exc) {
-            throw new CheckstyleException("unable to parse " + uri
-                    + " - " + exc.getMessage(), exc);
+            throw new CheckstyleException(getLocalizedMessage(
+                    "import.control.parse.error", uri, exc.getMessage()), exc);
         }
         catch (IOException exc) {
-            throw new CheckstyleException("unable to read " + uri, exc);
+            throw new CheckstyleException(getLocalizedMessage(
+                    "import.control.read.error", uri), exc);
         }
     }
 
@@ -292,10 +296,12 @@ public final class ImportControlLoader extends XmlLoader {
             return load(source, uri);
         }
         catch (MalformedURLException exc) {
-            throw new CheckstyleException("syntax error in url " + uri, exc);
+            throw new CheckstyleException(getLocalizedMessage(
+                    "import.control.syntax.error", uri, exc.getMessage()), exc);
         }
         catch (IOException exc) {
-            throw new CheckstyleException("unable to find " + uri, exc);
+            throw new CheckstyleException(getLocalizedMessage(
+                    "import.control.cannot.find", uri), exc);
         }
     }
 
@@ -356,9 +362,25 @@ public final class ImportControlLoader extends XmlLoader {
         if (returnValue == null) {
             // -@cs[IllegalInstantiation] SAXException is in the overridden method signature
             // of the only method which calls the current one
-            throw new SAXException("missing attribute " + name);
+            throw new SAXException(getLocalizedMessage(
+                    "import.control.missing.attribute", name));
         }
         return returnValue;
+    }
+
+    /**
+     * Extracts localized messages from properties files.
+     *
+     * @param messageKey the key pointing to localized message in respective properties file.
+     * @param args the arguments of message in respective properties file.
+     * @return a string containing extracted localized message
+     */
+    private static String getLocalizedMessage(String messageKey, Object... args) {
+        final LocalizedMessage localizedMessage = new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, ImportControlLoader.class,
+                    messageKey, args);
+
+        return localizedMessage.getMessage();
     }
 
 }
