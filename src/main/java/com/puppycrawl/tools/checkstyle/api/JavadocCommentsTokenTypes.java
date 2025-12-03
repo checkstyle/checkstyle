@@ -70,6 +70,21 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * At-sign {@code @} that starts a block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @author name}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *    |--AT_SIGN -> @
+     *    |--TAG_NAME -> author
+     *    `--DESCRIPTION -> DESCRIPTION
+     *        `--TEXT ->  name
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
