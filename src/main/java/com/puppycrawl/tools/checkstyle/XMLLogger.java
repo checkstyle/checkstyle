@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,
 // check's name is part of API (used in configurations).
-public class XMLLogger
+public final class XMLLogger
     extends AbstractAutomaticBean
     implements AuditListener {
 
