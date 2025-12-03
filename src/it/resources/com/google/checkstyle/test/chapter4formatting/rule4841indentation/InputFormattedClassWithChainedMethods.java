@@ -1,12 +1,12 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedClassWithChainedMethods {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedClassWithChainedMethods(Object... params) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     new InputFormattedClassWithChainedMethods()
         .getInstance("string_one")
@@ -23,12 +23,12 @@ public class InputFormattedClassWithChainedMethods {
             .doNothing("nothing");
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String doNothing(String something, String... uselessParams) {
     return something;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedClassWithChainedMethods getInstance(String... uselessParams) {
     return this;
   }

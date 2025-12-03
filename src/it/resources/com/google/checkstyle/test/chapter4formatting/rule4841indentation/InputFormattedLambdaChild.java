@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedLambdaChild {
   String testMethod1(List<Integer> operations) {
     return operations.stream()

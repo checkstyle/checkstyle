@@ -8,7 +8,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
  */
 public class InputCorrectJavadocLeadingAsteriskAlignment {
 
-  /** javadoc for instance variable. */
+  /** Javadoc for instance variable. */
   private int int1;
 
   /** */ // violation "Summary javadoc is missing."

@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Optional;
 
-/** some data. */
+/** Some data. */
 public class InputNewKeywordChildrenCorrect {
 
-  /** some data. */
+  /** Some data. */
   public Object foo() {
     return Optional.empty()
         .orElseThrow(
@@ -17,7 +17,7 @@ public class InputNewKeywordChildrenCorrect {
                     "Something wrong 1, something wrong 2, something wrong 3"));
   }
 
-  /** some data. */
+  /** Some data. */
   public void foo2() throws IOException {
     BufferedReader bf =
         new BufferedReader(
