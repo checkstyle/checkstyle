@@ -65,6 +65,10 @@ class InputIncorrectSummaryFragment {
 
     /** An especially short bit of Javadoc. */
     void foo6() {}
+
+    // violation below 'Forbidden summary fragment.'
+    /** adds an element to the list. */
+    void add(String element) {}
   }
 
   // violation below 'Forbidden summary fragment.'
