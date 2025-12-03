@@ -592,6 +592,7 @@
     <module name="StringLiteralEquality"/>
     <module name="SuperClone"/>
     <module name="SuperFinalize"/>
+    <module name="TextBlockGoogleStyleFormatting"/>
     <module name="UnnecessaryNullCheckWithInstanceOf"/>
     <module name="UnnecessaryParentheses">
       <property name="tokens"

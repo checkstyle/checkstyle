@@ -6,29 +6,26 @@ public class InputTextBlocksGeneralForm {
   /** some javadoc. */
   public static String textFun() {
 
-    // opening quotes should be on new line below, ok until #17223
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
     final String simpleScript = """
         s
-        """;
-    // not vertically aligned with opening quotes above, ok until #17223
+        """; // violation 'Text-block quotes are not vertically aligned'
 
     final String simpleScript1 =
         """
         this is simple test;
         """;
 
-    // opening quotes should be on new line below, ok until #17223
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
     getData("""
         Hello,
         This is a multi-line message.
-        """);
-    // not vertically aligned with opening quotes above, ok until #17223
+        """); // violation 'Text-block quotes are not vertically aligned'
 
-    // opening quotes should be on new line below, ok until #17223
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
         this is sample text
-        """;
-    // not vertically aligned with opening quotes above, ok until #17223
+        """; // violation 'Text-block quotes are not vertically aligned'
   }
 
   /** somejavadoc. */
@@ -37,25 +34,24 @@ public class InputTextBlocksGeneralForm {
     final String simpleScript2 =
         """
         this is sample text""";
-    // Two violations above, ok until #17223
-    //   'closing quotes should be on new line'
-    //   'not vertically aligned with opening quotes'
+    // 2 violations above:
+    //   'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
+    //   'Text-block quotes are not vertically aligned'
 
     getData(
         """
         Hello,
         This is a multi-line message."""
-    );
-    // Two violations 2 lines above, ok until #17223
-    //   'closing quotes should be on new line'
-    //   'not vertically aligned with opening quotes'
+    ); // 2 violations above:
+    // 'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
+    // 'Text-block quotes are not vertically aligned'
 
     return
           """
             THE MULTI-LINE MESSAGE""";
-    // Two violations above, ok until #17223
-    //   'closing quotes should be on new line'
-    //   'not vertically aligned with opening quotes'
+    // 2 violations above:
+    // 'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
+    // 'Text-block quotes are not vertically aligned'
   }
 
   /** somejavadoc. */
