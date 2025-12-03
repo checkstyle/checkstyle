@@ -48,47 +48,47 @@ public class InputMissingJavadocTypeCorrect {
 
   private @interface MyAnnotationPrivate {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void myMethod() {
     class MyMethodClass {}
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected int testProtectedMethod1() {
     return 0;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected void testProtectedMethod2() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void testPublicMethod() {}
 
   private void testPrivateMethod() {}
 
   void testPackagePrivateMethod() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected InputMissingJavadocTypeCorrect() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputMissingJavadocTypeCorrect(String arg) {}
 
   private InputMissingJavadocTypeCorrect(int arg) {}
 
   InputMissingJavadocTypeCorrect(double arg) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected @interface ProtectedAnnotation {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public @interface PublicAnnotation {}
 
   private @interface PrivateAnnotation {}
 
   @interface PackagePrivateAnnotation {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected class InnerProtected {
     protected void testProtectedInnerMethod() {}
 
@@ -105,14 +105,14 @@ public class InputMissingJavadocTypeCorrect {
     private InnerProtected(double arg) {}
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public enum MyEnumPublic2 {
     TEST;
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void testPublicEnumMethod() {}
 
-    /** some javadoc. */
+    /** Some javadoc. */
     protected void testProtectedEnumMethod() {}
 
     private void testPrivateEnumMethod() {}
@@ -124,7 +124,7 @@ public class InputMissingJavadocTypeCorrect {
     MyEnumPublic2(String arg) {}
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected enum MyEnumProtected {
     TEST;
 
@@ -141,7 +141,7 @@ public class InputMissingJavadocTypeCorrect {
     MyEnumProtected(String arg) {}
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   protected interface MyInterfaceProtected {
     public void testPublicInterfaceMethod();
 
@@ -150,14 +150,14 @@ public class InputMissingJavadocTypeCorrect {
     void testPackagePrivateInterfaceMethod();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public interface MyInterfacePublic2 {
-    /** some javadoc. */
+    /** Some javadoc. */
     public void testPublicInterfaceMethod();
 
     private void testPrivateInterfaceMethod() {}
 
-    /** some javadoc. */
+    /** Some javadoc. */
     void testPackagePrivateInterfaceMethod();
   }
 }

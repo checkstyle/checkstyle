@@ -20,37 +20,37 @@ public record InputFormattedInvalidJavadocPositionRecord(String containerPath, S
    * @throws NullPointerException if any of the arguments are null
    */
   public InputFormattedInvalidJavadocPositionRecord {
-    /** some javadoc. */
+    /** Some javadoc. */
     // violation above 'Javadoc comment is placed in the wrong location'
   }
 
-  /** some javadoc. * */
+  /** Some javadoc. * */
   record Example1(int num, String data) {
 
-    /** some javadoc. */
+    /** Some javadoc. */
     Example1 {}
 
     @Override
-    /** some javadoc. * */
+    /** Some javadoc. * */
     public String toString() {
       // violation 2 lines above 'Javadoc comment is placed in the wrong location.'
       return "Example" + data;
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     @Override
-    /** some javadoc. * */
+    /** Some javadoc. * */
     public int hashCode() {
       // violation 2 lines above 'Javadoc comment is placed in the wrong location.'
       return 5 + num;
     }
 
-    /** some javadoc. * */
+    /** Some javadoc. * */
     @Override
-    /** some javadoc. * */
+    /** Some javadoc. * */
     public boolean equals(Object obj) {
       // violation 2 lines above 'Javadoc comment is placed in the wrong location.'
-      /** some javadoc. * */
+      /** Some javadoc. * */
       // violation above 'Javadoc comment is placed in the wrong location.'
       return false;
     }
@@ -67,13 +67,13 @@ public record InputFormattedInvalidJavadocPositionRecord(String containerPath, S
 record MyRecord1(String text) {
   // violation above 'Top-level class MyRecord1 has to reside in its own source file'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   MyRecord1 {}
   /** invalid comment. */
   // violation above 'Javadoc comment is placed in the wrong location.'
 }
 
-/** some javadoc. */
+/** Some javadoc. */
 // violation above 'Javadoc comment is placed in the wrong location.'
 /**
  * some javadoc.
@@ -82,7 +82,7 @@ record MyRecord1(String text) {
  */
 record Mapping1(String from) { // violation 'Top-level class Mapping1 has to reside in its own'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   // violation above 'Javadoc comment is placed in the wrong location.'
   /**
    * The constructor for Mapping.
@@ -91,7 +91,7 @@ record Mapping1(String from) { // violation 'Top-level class Mapping1 has to res
    */
   Mapping1(String from) {
     this.from = from;
-    /** some javadoc. */
+    /** Some javadoc. */
     // violation above 'Javadoc comment is placed in the wrong location.'
   }
 }
