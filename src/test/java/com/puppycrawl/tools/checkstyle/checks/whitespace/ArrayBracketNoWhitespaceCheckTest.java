@@ -8,18 +8,18 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import org.junit.Test;
 
 /**
- * Exact tests for {@link ArrayBracketWhitespaceCheck} using the two provided inputs.
+ * Exact tests for {@link ArrayBracketNoWhitespaceCheck} using the two provided inputs.
  * The expected arrays were generated from the `// violation` comments in the input files.
  */
 public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/whitespace/arraybracketwhitespace";
+        return "com/puppycrawl/tools/checkstyle/checks/whitespace/arraybracketnowhitespace";
     }
 
     /**
-     * Test against InputArrayBracketWhitespaceDefault.java
+     * Test against InputArrayBracketNoWhitespaceDefault.java
      */
     @Test
     public void testDefault() throws Exception {
@@ -102,11 +102,11 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
             "150:21: " + getCheckMessage(MSG_WS_PRECEDED, "["),
         };
 
-        verifyWithInlineConfigParser(getPath("InputArrayBracketWhitespaceDefault.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputArrayBracketNoWhitespaceDefault.java"), expected);
     }
 
     /**
-     * Test against InputArrayBracketWhitespaceDeclarations.java
+     * Test against InputArrayBracketNoWhitespaceDeclarations.java
      */
     @Test
     public void testDeclarations() throws Exception {
@@ -164,6 +164,6 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
             "106:12: " + getCheckMessage(MSG_WS_PRECEDED, "["),
         };
         
-        verifyWithInlineConfigParser(getPath("InputArrayBracketWhitespaceDeclarations.java"), expected);
+        verifyWithInlineConfigParser(getPath("InputArrayBracketNoWhitespaceDeclarations.java"), expected);
     }
 }

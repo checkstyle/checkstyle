@@ -1,11 +1,11 @@
 /*
-ArrayBracketWhitespace
+ArrayBracketNoWhitespace
 */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketwhitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketnowhitespace;
 
 import java.util.function.IntUnaryOperator;
 
-public class InputArrayBracketWhitespaceDefault {
+public class InputArrayBracketNoWhitespaceDefault {
 
     // ========== ARRAY DECLARATIONS ==========
 

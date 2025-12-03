@@ -1,12 +1,12 @@
 /*
-ArrayBracketWhitespace
+ArrayBracketNoWhitespace
 */
-package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketwhitespace;
+package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketnowhitespace;
 
 /**
  * Test input focused on array declarations.
  */
-public class InputArrayBracketWhitespaceDeclarations {
+public class InputArrayBracketNoWhitespaceDeclarations {
 
     // ========== PRIMITIVE TYPES ==========
 
@@ -45,6 +45,10 @@ public class InputArrayBracketWhitespaceDeclarations {
     int[] []badMatrix2D_2; // violation '']' is followed by whitespace.'
     int[][] []badMatrix3D_2; // violation '']' is followed by whitespace.'
     int[] [][] badMatrix3D_3; // violation '']' is followed by whitespace.'
+
+    // Added as per instruction: whitespace after ]
+    int[]arr, goodCase1; // violation '']' is not followed by whitespace.'
+    int[]arr2 ; // violation '']' is not followed by whitespace.'
 
     // ========== MIXED BRACKET POSITIONS ==========
 
@@ -118,6 +122,9 @@ public class InputArrayBracketWhitespaceDeclarations {
     void param2(int[][] matrix) {}
     void param3(String[] strings) {}
 
+    // Case: no whitespace after ]
+    void param4(int[]arr) {} // violation '']' is not followed by whitespace.'
+
     // Violations: space before [ in parameters
     void badParam1(int []arr) {} // violation ''[' is preceded with whitespace.'
     void badParam2(int [][]matrix) {} // violation ''[' is preceded with whitespace.'
@@ -126,12 +133,12 @@ public class InputArrayBracketWhitespaceDeclarations {
     // ========== CONSTRUCTOR PARAMETERS ==========
 
     // Correct
-    InputArrayBracketWhitespaceDeclarations(int[] arr) {}
-    InputArrayBracketWhitespaceDeclarations(int[][] matrix, String[] strings) {}
+    InputArrayBracketNoWhitespaceDeclarations(int[]arr) {} // violation '']' is not followed by whitespace.'
+    InputArrayBracketNoWhitespaceDeclarations(int[][] matrix, String[] strings) {}
 
     // Violations: space before [ in constructor parameters
-    InputArrayBracketWhitespaceDeclarations(byte []arr) {} // violation ''[' is preceded with whitespace.'
-    InputArrayBracketWhitespaceDeclarations(short [][]matrix, char []chars) {} // 2 violations
+    InputArrayBracketNoWhitespaceDeclarations(byte []arr) {} // violation ''[' is preceded with whitespace.'
+    InputArrayBracketNoWhitespaceDeclarations(short [][]matrix, char []chars) {} // 2 violations
     // violation above ''[' is preceded with whitespace.'
     // violation above ''[' is preceded with whitespace.'
 
@@ -142,6 +149,9 @@ public class InputArrayBracketWhitespaceDeclarations {
         int[] local1 = new int[10];
         int[][] local2 = new int[5][5];
         String[] local3 = new String[20];
+
+        // Case: no whitespace after ]
+        int[]local6 = new int[10]; // violation '']' is not followed by whitespace.'
 
         // Violations: space before [
         int []badLocal1 = new int[10]; // violation ''[' is preceded with whitespace.'
@@ -194,6 +204,9 @@ public class InputArrayBracketWhitespaceDeclarations {
         // Correct
         int[] arr1 = (int[]) obj;
         int[][] arr2 = (int[][]) obj;
+
+        // Case: no whitespace after ]
+        int[]arr5 = (int[]) obj; // violation '']' is not followed by whitespace.'
 
         // Violations: space before [ in cast
         int[] arr3 = (int []) obj; // violation ''[' is preceded with whitespace.'
