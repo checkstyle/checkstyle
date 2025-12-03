@@ -60,8 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * {
  *   100000000000000000000,
  *   200000000000000000000, // OK
- * }
- *
+ * } <br>
  * {
  *   100000000000000000000,
  *   200000000000000000000,
@@ -76,8 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * {100000000000000000000,
- *  200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
- *
+ *  200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway <br>
  * {100000000000000000000,
  *  200000000000000000000, // Modified line
  *  300000000000000000000,} // Added line
@@ -88,8 +86,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
- * }
- *
+ * } <br>
  * {100000000000000000000,
  *  100000000000000000001, // More work needed to duplicate
  * }
