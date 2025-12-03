@@ -32,9 +32,9 @@ public class InputJavadocPositionOnConstructorInRecord {
   public record MyRecord(String text) {
 
     // violation 3 lines below 'Javadoc comment is placed in the wrong location.'
-    /** invalid comment. */
+    /** Invalid comment. */
     public MyRecord {}
-    /** invalid comment. */
+    /** Invalid comment. */
   }
 
   /**
@@ -46,7 +46,7 @@ public class InputJavadocPositionOnConstructorInRecord {
   record Mapping(String from, String to) {
 
     // violation below 'Javadoc comment is placed in the wrong location.'
-    /** some javadoc. */
+    /** Some javadoc. */
     /**
      * The constructor for Mapping.
      *

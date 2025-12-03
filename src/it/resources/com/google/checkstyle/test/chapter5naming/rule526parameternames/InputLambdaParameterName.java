@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputLambdaParameterName {
 
   Function<String, String> badNamedParameterWithoutParenthesis =

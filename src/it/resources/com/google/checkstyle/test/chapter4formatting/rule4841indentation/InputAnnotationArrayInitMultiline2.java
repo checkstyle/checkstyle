@@ -76,7 +76,7 @@ class CustomResponseDto {}
 // violation below 'Top-level class ErrorDto has to reside in its own source file.'
 class ErrorDto {}
 
-/** some javadoc. */
+/** Some javadoc. */
 @TagNameAndDescriptionNew(
     name = "${something1.something2.something3}",
     description = "Endpoint for blah blah blah activities",
@@ -87,7 +87,7 @@ class ErrorDto {}
 )
 public interface InputAnnotationArrayInitMultiline2 {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @OperationFinal(summary = "Retrieves something for verifying something")
   @ResponseStatus(HttpStatus.OK)
   @ApiResponses(value = {

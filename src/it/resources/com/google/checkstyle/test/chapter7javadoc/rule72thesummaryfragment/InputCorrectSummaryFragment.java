@@ -25,7 +25,7 @@ class InputCorrectSummaryFragment {
   /** This is valid. <a href="mailto:vlad@htmlbook.ru"/> */
   class InnerInputCorrectJavaDocParagraphCheck {
 
-    /** foooo@foooo. */
+    /** Foooo@foooo. */
     public static final byte NUL = 0;
 
     /** Some java@doc. This method returns. */

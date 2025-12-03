@@ -10,7 +10,7 @@ interface Foo {}
 // violation below 'Top-level class Foo2 has to reside in its own source file.'
 interface Foo2 {}
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputWhitespaceAroundGenerics {}
 
 // No whitespace after commas

@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule523methodnames;
 
 import org.junit.jupiter.api.Test;
 
-/** some data. */
+/** Some data. */
 public class InputMethodName2 {
 
   @Test
