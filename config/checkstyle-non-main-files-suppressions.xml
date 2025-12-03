@@ -328,12 +328,21 @@
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <!-- no description in module by design -->
   <suppress id="descriptionMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template|src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <!-- no example in module by design -->
   <suppress id="exampleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template|src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
   <!-- no parent in module by design -->
   <suppress id="parentModuleMacroMustExist"
-            files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template|src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+  <!-- no since in module by design -->
+  <suppress id="sinceMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template"/>
+  <!-- no properties in module by design -->
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template"/>
+  <!-- no violation messages in module by design -->
+  <suppress id="violationMessagesModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks([\\/][a-z]+)?[\\/]index\.xml\.template"/>
 
 </suppressions>
