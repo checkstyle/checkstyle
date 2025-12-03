@@ -394,7 +394,7 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="SummaryJavadoc">
       <property name="forbiddenSummaryFragments"
-               value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
+               value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )|^\s*[a-z]"/>
     </module>
     <module name="JavadocParagraph">
       <property name="allowNewlineParagraph" value="false"/>
