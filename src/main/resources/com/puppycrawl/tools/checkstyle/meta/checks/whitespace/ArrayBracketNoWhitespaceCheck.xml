@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck"
+             name="ArrayBracketNoWhitespace"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that the whitespace around square-bracket tokens &lt;code&gt;[&lt;/code&gt; and &lt;code&gt;]&lt;/code&gt;
+ follows the typical Java convention for array declarations, array creation,
+ and array indexing.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Whitespace is defined by implementation of
+ {@link Character#isWhitespace(char)}.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Left square bracket ("&lt;code&gt;[&lt;/code&gt;"):
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;must not be preceded with whitespace when preceded by a
+   &lt;code&gt;TYPE&lt;/code&gt; or &lt;code&gt;IDENT&lt;/code&gt; in array declarations or array access&lt;/li&gt;
+ &lt;li&gt;must not be followed with whitespace&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Right square bracket ("&lt;code&gt;]&lt;/code&gt;"):
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;must not be preceded with whitespace&lt;/li&gt;
+ &lt;li&gt;must be followed with whitespace in all cases, except when followed by:
+   &lt;ul&gt;
+     &lt;li&gt;another bracket: &lt;code&gt;[][]&lt;/code&gt;&lt;/li&gt;
+     &lt;li&gt;a dot for member access: &lt;code&gt;arr[i].length&lt;/code&gt;&lt;/li&gt;
+     &lt;li&gt;a comma or semicolon: &lt;code&gt;arr[i],&lt;/code&gt; or &lt;code&gt;arr[i];&lt;/code&gt;&lt;/li&gt;
+     &lt;li&gt;postfix operators: &lt;code&gt;arr[i]++&lt;/code&gt; or &lt;code&gt;arr[i]--&lt;/code&gt;&lt;/li&gt;
+     &lt;li&gt;a right parenthesis or another closing construct: &lt;code&gt;(arr[i])&lt;/code&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Parent is &lt;code&gt;com.puppycrawl.tools.checkstyle.TreeWalker&lt;/code&gt;
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Violation Message Keys:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;code&gt;ws.followed&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;ws.notFollowed&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;ws.notPreceded&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;code&gt;ws.preceded&lt;/code&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="ws.followed"/>
+            <message-key key="ws.notFollowed"/>
+            <message-key key="ws.preceded"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

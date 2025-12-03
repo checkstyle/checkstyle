@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>ArrayBracketNoWhitespace</title>
+  </head>
+  <body>
+    <section name="ArrayBracketNoWhitespace">
+      <p>Since Checkstyle 10.20.0</p>
+      <subsection name="Description" id="ArrayBracketNoWhitespace_Description">
+        <div>
+          Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
+          follows the typical Java convention for array declarations, array creation, and array indexing.
+          This check ensures that the opening square bracket <code>[</code> is <b>not</b> preceded or followed by whitespace,
+          and the closing square bracket <code>]</code> is <b>not</b> preceded by whitespace.
+          For the closing square bracket <code>]</code>, whitespace is required after it unless the next character is another bracket, a dot, a postfix operator, comma, semicolon, or a closing construct.
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;ArrayBracketNoWhitespace&quot;/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  int [] values; // violation: '[' is preceded with whitespace
+  int[] counts = values [0]; // violation: '[' is preceded with whitespace
+  int[] offsets = values[ 0]; // violation: '[' is followed by whitespace
+  int bad = values[0] .length; // violation: ']' is followed with whitespace
+  int total = values[0]+1; // violation: ']' is not followed by whitespace
+
+  int[] okValues = values[0];
+  int[][] data = new int[2][3];
+  int size = values[0].length;
+  int next = values[0] + 1;
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="ArrayBracketNoWhitespace_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+ArrayBracketNoWhitespace">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="ArrayBracketNoWhitespace_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
+              ws.followed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
+              ws.notFollowed
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
+              ws.preceded
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="ArrayBracketNoWhitespace_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.whitespace
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="ArrayBracketNoWhitespace_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
