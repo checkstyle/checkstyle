@@ -11,48 +11,6 @@
   </Match>
   <Match>
     <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.Main" />
-    <Method name="loadProperties" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
-    <Method name="load" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
-    <Method name="persist" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask" />
-    <Method name="createOverridingProperties" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck" />
-    <Method name="processFiltered" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck" />
-    <Method name="getTranslationKeys" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck" />
-    <Method name="processFiltered" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/17933 fails on java11+ -->
     <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
     <Method name="dumpMetadata" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
