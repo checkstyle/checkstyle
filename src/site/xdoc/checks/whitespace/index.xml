@@ -11,6 +11,17 @@
         <table>
           <tr>
             <td>
+              <a href="arraybracketnowhitespace.html#ArrayBracketNoWhitespace">
+                ArrayBracketNoWhitespace
+              </a>
+            </td>
+            <td>
+              Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
+              follows the typical Java convention for array declarations, array creation, and array indexing.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="emptyforinitializerpad.html#EmptyForInitializerPad">
                 EmptyForInitializerPad
               </a>
