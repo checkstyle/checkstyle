@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedRightCurlySwitchCase {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void method0() {
     int mode = 0;
     switch (mode) {
@@ -15,7 +15,7 @@ public class InputFormattedRightCurlySwitchCase {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void method1() {
     int mode = 0;
     switch (mode) {
@@ -24,7 +24,7 @@ public class InputFormattedRightCurlySwitchCase {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void method2() {
     int mode = 0;
     switch (mode) {
@@ -36,7 +36,7 @@ public class InputFormattedRightCurlySwitchCase {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void method3() {
     int mode = 0;
     switch (mode) {
@@ -45,7 +45,7 @@ public class InputFormattedRightCurlySwitchCase {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void method4() {
     int mode = 0;
     switch (mode) {

@@ -2,10 +2,10 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputCatchParametersOnNewLine {
 
-  /** some test Method. */
+  /** Some test Method. */
   public void test1() {
     try {
       System.out.println("try0");

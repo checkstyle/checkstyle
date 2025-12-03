@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedParenPad {
   boolean fooo = this.bar((true && false) && true);
 
@@ -13,7 +13,7 @@ public class InputFormattedParenPad {
         .toString();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @MyAnnotation
   public boolean bar(boolean a) {
     assert (true);
@@ -140,7 +140,7 @@ public class InputFormattedParenPad {
       }
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void myMethod() {
       String s = "test";
       Object o = s;
@@ -148,7 +148,7 @@ public class InputFormattedParenPad {
       ((String) o).length();
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void crisRon() {
       Object leo = "messi";
       Object ibra = leo;
@@ -156,7 +156,7 @@ public class InputFormattedParenPad {
       Math.random();
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public void intStringConv() {
       Object a = 5;
       Object b = "string";
@@ -167,7 +167,7 @@ public class InputFormattedParenPad {
       String d = ((String) b);
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public int something(Object o) {
       if (o == null || !(o instanceof Float)) {
         return -1;
@@ -180,7 +180,7 @@ public class InputFormattedParenPad {
       boolean result = number == 123;
     }
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public String testing() {
       return (this.exam != null) ? ((Enum) this.exam).name() : null;
     }

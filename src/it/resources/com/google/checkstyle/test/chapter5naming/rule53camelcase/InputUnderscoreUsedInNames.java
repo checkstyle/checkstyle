@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter5naming.rule53camelcase;
 
 import org.junit.jupiter.api.Test;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputUnderscoreUsedInNames {
 
   private String guava33_4_6;

@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedRightCurlySwitchCasesBlocks {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test0() {
     int mode = 0;
     switch (mode) {
@@ -24,7 +24,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test() {
     int mode = 0;
     switch (mode) {
@@ -38,7 +38,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test1() {
     int k = 0;
     switch (k) {
@@ -54,7 +54,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test2() {
     int mode = 0;
     switch (mode) {
@@ -72,7 +72,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test3() {
     int k = 0;
     switch (k) {
@@ -93,7 +93,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test4() {
     int mode = 0;
     switch (mode) {
@@ -109,7 +109,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test5() {
     int k = 0;
     switch (k) {
@@ -125,7 +125,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test6() {
     int mode = 0;
     switch (mode) {
@@ -140,7 +140,7 @@ public class InputFormattedRightCurlySwitchCasesBlocks {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void test7() {
     int k = 0;
     switch (k) {
