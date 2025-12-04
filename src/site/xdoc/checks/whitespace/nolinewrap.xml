@@ -26,6 +26,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
+              <td>Specify whether annotations on the previous line should be checked as errors.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.3.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -164,6 +171,7 @@ import static java.math.BigInteger.ZERO;
 class // violation 'should not be line-wrapped'
   Example5 {
 
+  @Deprecated
   public Example5() {
   }
 
@@ -171,6 +179,7 @@ class // violation 'should not be line-wrapped'
     doSomething() {
   }
 
+  @SuppressWarnings("unused")
   class Bar {
 
     public // violation 'should not be line-wrapped'

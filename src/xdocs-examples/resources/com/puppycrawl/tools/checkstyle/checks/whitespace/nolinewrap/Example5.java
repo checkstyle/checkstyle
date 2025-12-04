@@ -19,6 +19,7 @@ import static java.math.BigInteger.ZERO;
 class // violation 'should not be line-wrapped'
   Example5 {
 
+  @Deprecated
   public Example5() {
   }
 
@@ -26,6 +27,7 @@ class // violation 'should not be line-wrapped'
     doSomething() {
   }
 
+  @SuppressWarnings("unused")
   class Bar {
 
     public // violation 'should not be line-wrapped'
