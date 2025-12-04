@@ -39,7 +39,7 @@ class InputCorrectAtClauseOrderCheck2 implements Serializable {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @author max
    * @version 1.0

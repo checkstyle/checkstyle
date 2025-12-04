@@ -1,13 +1,13 @@
 package // violation 'package statement should not be line-wrapped.'
     // violation below 'Javadoc comment is placed in the wrong location.'
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
     com.google.checkstyle.test.chapter7javadoc.rule711generalform;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
-/** invalid javadoc. */
+/** Invalid javadoc. */
 import javax.swing.JFrame;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
 
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
@@ -23,7 +23,7 @@ public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
   void foo3() {}
 
   /**
-   * summary.
+   * Summary.
    *
    * @throws CheckstyleException if a problem occurs
    */
@@ -51,7 +51,7 @@ public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
   void bar() {}
 
   /**
-   * summary.
+   * Summary.
    *
    * <h1>Some header </h1>
    *
@@ -77,7 +77,7 @@ public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @return in multi line javadoc
    */
@@ -87,76 +87,76 @@ public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
 }
 
 // violation below 'Javadoc comment is placed in the wrong location.'
-/** invalid javadoc. */
-/** valid javadoc. */
+/** Invalid javadoc. */
+/** Valid javadoc. */
 class ExtraInputInvalidJavadocPosition {
   // violation above '.* ExtraInputInvalidJavadocPosition has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
 }
 
-/** valid javadoc. */
+/** Valid javadoc. */
 /* ignore */
 class ExtraInputInvalidJavadocPosition2 {
   // violation above '.* ExtraInputInvalidJavadocPosition2 has to reside in its own source file.'
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   static {
     /* ignore */
   }
 
   // violation below 'Javadoc comment is placed in the wrong location.'
-  /** invalid javadoc. */
-  /** valid javadoc. */
+  /** Invalid javadoc. */
+  /** Valid javadoc. */
   int field1;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   int[] field2;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   public int[] field3;
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   @Deprecated int field4;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   int
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       field20;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   int field21
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       ;
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   @Deprecated
-  /** invalid javadoc. */
+  /** Invalid javadoc. */
   JFrame frame = new JFrame();
 
   void method1() {}
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   void method2() {}
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   <T> T method3() {
     return null;
   }
 
-  /** valid javadoc. */
+  /** Valid javadoc. */
   String[] method4() {
     return null;
   }
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       method20() {}
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method21
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       () {}
 
   // 2 violations 2 lines above:
@@ -165,7 +165,7 @@ class ExtraInputInvalidJavadocPosition2 {
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method22(
-      /** invalid javadoc. */
+      /** Invalid javadoc. */
       ) {}
 
   // violation 2 lines above ''method def rparen' has incorrect indentation level 6, expected .* 2.'
@@ -174,19 +174,19 @@ class ExtraInputInvalidJavadocPosition2 {
   //  '.* indentation should be the same level as line 178.'
   //  'Javadoc comment is placed in the wrong location.'
   void method23()
-        /** invalid javadoc. */
+        /** Invalid javadoc. */
       {}
 
   // violation 2 lines above ''method def lcurly' has incorrect indentation level 6, expected .* 4.'
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method24() {
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
   }
 
   // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
   void method25() {
-    /** invalid javadoc. */
+    /** Invalid javadoc. */
     int variable;
   }
 }
@@ -194,18 +194,18 @@ class ExtraInputInvalidJavadocPosition2 {
 // violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 @Deprecated
-/** invalid javadoc. */
+/** Invalid javadoc. */
 class ExtraInputInvalidJavadocPosition3 {}
 
 // violation 2 lines below '.* has to reside in its own source file.'
-/** valid javadoc. */
+/** Valid javadoc. */
 @Deprecated
 class ExtraInputInvalidJavadocPosition4 {}
 
 // violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 class
-/** invalid javadoc. */
+/** Invalid javadoc. */
 ExtraInputInvalidJavadocPosition5 {}
 
 // violation 2 lines above '.* has incorrect indentation .* 0, expected .* 4.'
@@ -213,9 +213,9 @@ ExtraInputInvalidJavadocPosition5 {}
 // violation 2 lines below '.* has to reside in its own source file.'
 // violation 2 lines below 'Javadoc comment is placed in the wrong location.'
 class ExtraInputInvalidJavadocPosition6
-/** invalid javadoc. */
+/** Invalid javadoc. */
 {}
-/** invalid javadoc. */
+/** Invalid javadoc. */
 // 2 violations 2 lines above:
 //  ''class def lcurly' has incorrect indentation level 0, expected level should be 2.'
 //  ''}' at column 2 should be alone on a line.'

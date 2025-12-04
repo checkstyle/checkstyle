@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
-/** some javadoc. */
+/** Some javadoc. */
 public sealed class InputFormattedModifierOrderSealed
     permits InputFormattedModifierOrderSealed.Four1,
         InputFormattedModifierOrderSealed.Three1,
@@ -16,7 +16,7 @@ public sealed class InputFormattedModifierOrderSealed
     private final class OtherSquare4 extends OtherSquare3 {}
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public final class FilledFour1 extends Four1 {}
 
   abstract sealed interface Five1 permits Two1, Three1 {}
