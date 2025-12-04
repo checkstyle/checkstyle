@@ -940,7 +940,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
 
     /**
-     * Type name reference.
+     * {@code TYPE_NAME} Type name reference.
+     *
+     * <p>Name of a type in Javadoc references.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code @throws IOException if an I/O error occurs}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     * |--AT_SIGN -> @
+     * |--TAG_NAME -> throws
+     * |--CLASS_NAME -> CLASS_NAME
+     * |   `--TYPE_NAME -> TYPE_NAME
+     * |       `--IDENTIFIER -> IOException
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  if an I/O error occurs
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
