@@ -186,6 +186,7 @@ public class XdocsExamplesAstConsistencyTest {
         "checks/whitespace/operatorwrap",
         "checks/whitespace/parenpad",
         "checks/whitespace/separatorwrap",
+        "checks/whitespace/nolinewrap",
         "filters/suppressioncommentfilter",
         "filters/suppressionsinglefilter",
         "filters/suppressionxpathfilter",
@@ -247,7 +248,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/imports/importorder/Example6",
             "checks/imports/importorder/Example7",
             "checks/imports/importorder/Example8",
-            "checks/imports/importorder/Example9"
+            "checks/imports/importorder/Example9",
+            "checks/whitespace/nolinewrap/Example4",
+            "checks/whitespace/nolinewrap/Example5"
     );
 
     /**
