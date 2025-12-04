@@ -250,6 +250,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/whitespace/nolinewrap/Example3",
             "checks/whitespace/nolinewrap/Example4",
             "checks/whitespace/nolinewrap/Example5",
+            "checks/whitespace/nolinewrap/Example6",
             "checks/whitespace/nowhitespacebefore/Example2",
             "checks/whitespace/nowhitespacebefore/Example3",
             "checks/whitespace/nowhitespacebefore/Example4",
