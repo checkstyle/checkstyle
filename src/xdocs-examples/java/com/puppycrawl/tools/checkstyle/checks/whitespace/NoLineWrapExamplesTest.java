@@ -81,4 +81,13 @@ public class NoLineWrapExamplesTest extends AbstractExamplesModuleTestSupport {
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY, "CLASS_DEF"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
 }
