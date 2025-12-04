@@ -70,6 +70,23 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * At-sign {@code @} that starts a block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @author name}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> author
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  name
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
@@ -869,7 +886,32 @@ public final class JavadocCommentsTokenTypes {
     public static final int SUPER = JavadocCommentsLexer.SUPER;
 
     /**
-     * Parameter type reference.
+     * {@code PARAMETER_TYPE} Parameter type reference.
+     *
+     * <p>Represents a type used in a method parameter.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link java.util.List#add(Object)}} </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> List
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> add
+     *     |       |--LPAREN -> (
+     *     |       |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *     |       |   `--PARAMETER_TYPE -> Object
+     *     |       `--RPAREN -> )
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #TYPE_NAME
      */
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
@@ -903,7 +945,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
     /**
-     * Member reference (e.g. method or field).
+     * {@code MEMBER_REFERENCE} Member reference (method or field).
+     *
+     * <p>Represents a field or method in a type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link String#length()}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> String
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> length
+     *     |       |--LPAREN -> (
+     *     |       `--RPAREN -> )
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
@@ -1425,7 +1493,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
 
     /**
-     * Opening part of an HTML comment.
+     * {@code HTML_COMMENT_START} represents the beginning of an HTML comment,
+     * i.e., the {@literal "<!--"} sequence inside a Javadoc comment.
+     *
+     * <p>HTML comments occasionally appear in Javadoc to add internal notes or
+     * explanations without affecting the rendered output.</p>
+     * Example: {@code <!-- Note: This method is for demonstration purposes only. -->}
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_COMMENT -> HTML_COMMENT
+     * |--HTML_COMMENT_START -> <!--
+     * |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     * |   `--TEXT ->  Note: This method is for demonstration purposes only.
+     * `--HTML_COMMENT_END -> -->
+     * }</pre>
+     *
+     * @see #HTML_COMMENT_END
      */
     public static final int HTML_COMMENT_START = JavadocCommentsLexer.HTML_COMMENT_START;
 
