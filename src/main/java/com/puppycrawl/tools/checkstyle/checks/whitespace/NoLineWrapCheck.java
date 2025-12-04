@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -42,6 +43,23 @@ public class NoLineWrapCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "no.line.wrap";
+
+    /**
+     * Property that defines whether annotations on the previous line should be
+     * checked as errors.
+     */
+    private boolean skipAnnotations = true;
+
+    /**
+     * Setter to specify whether annotations on the previous line should be
+     * checked as errors.
+     *
+     * @param shouldSkipAnnotations whether to skip annotations on the previous line.
+     * @since 12.2.1
+     */
+    public void setSkipAnnotations(boolean shouldSkipAnnotations) {
+        this.skipAnnotations = shouldSkipAnnotations;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -71,9 +89,24 @@ public class NoLineWrapCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!TokenUtil.areOnSameLine(ast, ast.getLastChild())) {
+        final boolean isOnSameLine = TokenUtil.areOnSameLine(ast, ast.getLastChild());
+        final boolean containsAnnotation = AnnotationUtil.containsAnnotation(ast);
+
+        if (shouldReportViolation(isOnSameLine, containsAnnotation)) {
             log(ast, MSG_KEY, ast.getText());
         }
+    }
+
+    /**
+     * Determines whether a violation should be logged based on the AST node properties.
+     *
+     * @param isOnSameLine     indicates if the AST node and its last child on the same line
+     * @param containsAnnotation indicates if the AST node is annotated with annotation
+     *
+     * @return {@code true} if violation should be logged, {@code false} otherwise
+     */
+    private boolean shouldReportViolation(boolean isOnSameLine, boolean containsAnnotation) {
+        return !isOnSameLine && (!skipAnnotations || !containsAnnotation);
     }
 
 }
