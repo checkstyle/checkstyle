@@ -7,7 +7,7 @@ package // violation 'package statement should not be line-wrapped.'
 /** invalid javadoc. */
 import javax.swing.JFrame;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedSingleLineJavadocAndInvalidJavadocPosition {
 
   /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}. */
