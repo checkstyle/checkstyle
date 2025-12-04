@@ -1,6 +1,7 @@
 /*
 NoLineWrap
 tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, MODULE_IMPORT
+skipAnnotations = (default)true
 
 
 */
@@ -21,5 +22,6 @@ import java.util.List;
 import
     java.util.Map;
 
+@Deprecated
 public class InputNoLineWrapModuleImport {
 }
