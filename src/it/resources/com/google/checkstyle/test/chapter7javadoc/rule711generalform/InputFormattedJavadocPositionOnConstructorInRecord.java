@@ -43,7 +43,7 @@ public class InputFormattedJavadocPositionOnConstructorInRecord {
   record Mapping(String from, String to) {
 
     // violation below 'Javadoc comment is placed in the wrong location.'
-    /** some javadoc. */
+    /** Some javadoc. */
     /**
      * The constructor for Mapping.
      *
