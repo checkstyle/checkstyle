@@ -138,7 +138,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
 
         if (leftBracket != null) {
-            processLeftBracket(ast, leftBracket, line);
+            processLeftBracket(leftBracket, line);
         }
 
         if (rightBracket != null) {
@@ -149,77 +149,23 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     /**
      * Checks the left square bracket for whitespace violations.
      *
-     * @param ast the parent AST node
      * @param leftBracket the left bracket token
      * @param line the unicode code points array of the line
      */
-    private void processLeftBracket(DetailAST ast, DetailAST leftBracket, int[] line) {
+    private void processLeftBracket(DetailAST leftBracket, int[] line) {
         final int columnNo = leftBracket.getColumnNo();
         final int before = columnNo - 1;
         final int after = columnNo + 1;
 
-        // Check if preceded by whitespace (only for TYPE or IDENT contexts)
+        // Check if preceded by whitespace
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
-            if (shouldCheckLeftBracketPrecededByWhitespace(ast)) {
-                log(leftBracket, MSG_WS_PRECEDED, OPEN_BRACKET);
-            }
+            log(leftBracket, MSG_WS_PRECEDED, OPEN_BRACKET);
         }
 
         // Check if followed by whitespace
         if (after < line.length && CommonUtil.isCodePointWhitespace(line, after)) {
             log(leftBracket, MSG_WS_FOLLOWED, OPEN_BRACKET);
         }
-    }
-
-    /**
-     * Determines if we should check for whitespace before the left bracket.
-     * Only checks when the bracket is preceded by TYPE or IDENT tokens.
-     *
-     * @param ast the parent AST node (ARRAY_DECLARATOR or INDEX_OP)
-     * @return true if we should check for preceding whitespace
-     */
-    private static boolean shouldCheckLeftBracketPrecededByWhitespace(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INDEX_OP) {
-            // For INDEX_OP, the first child should be the expression being indexed
-            final DetailAST firstChild = ast.getFirstChild();
-            return firstChild != null
-                && (firstChild.getType() == TokenTypes.IDENT
-                    || isTypeToken(firstChild));
-        }
-        else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-            // For ARRAY_DECLARATOR, check the previous sibling or parent context
-            final DetailAST parent = ast.getParent();
-            if (parent != null) {
-                final DetailAST previousSibling = ast.getPreviousSibling();
-                if (previousSibling != null) {
-                    return previousSibling.getType() == TokenTypes.IDENT
-                        || isTypeToken(previousSibling);
-                }
-                // Check if parent is TYPE or has TYPE/IDENT
-                return parent.getType() == TokenTypes.TYPE
-                    || parent.getType() == TokenTypes.IDENT
-                    || isTypeToken(parent);
-            }
-        }
-        return true; // Default to checking
-    }
-
-    /**
-     * Checks if the given AST represents a type token.
-     *
-     * @param ast the AST to check
-     * @return true if the AST is a type-related token
-     */
-    private static boolean isTypeToken(DetailAST ast) {
-        return ast.getType() == TokenTypes.TYPE
-            || ast.getType() == TokenTypes.LITERAL_INT
-            || ast.getType() == TokenTypes.LITERAL_BOOLEAN
-            || ast.getType() == TokenTypes.LITERAL_BYTE
-            || ast.getType() == TokenTypes.LITERAL_CHAR
-            || ast.getType() == TokenTypes.LITERAL_SHORT
-            || ast.getType() == TokenTypes.LITERAL_LONG
-            || ast.getType() == TokenTypes.LITERAL_FLOAT
-            || ast.getType() == TokenTypes.LITERAL_DOUBLE;
     }
 
     /**
@@ -245,13 +191,13 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
             final boolean isValidWithoutWhitespace =
                 isCharacterValidAfterRightBracket(charAfter, line, after);
 
-            // If character requires whitespace but doesn't have it, report violation
-            if (!isValidWithoutWhitespace && !hasWhitespace) {
-                log(rightBracket, MSG_WS_NOT_FOLLOWED, CLOSE_BRACKET);
-            }
             // If character is valid without whitespace but has it, report violation
-            else if (isValidWithoutWhitespace && hasWhitespace) {
+            if (isValidWithoutWhitespace && hasWhitespace) {
                 log(rightBracket, MSG_WS_FOLLOWED, CLOSE_BRACKET);
+            }
+            // If character requires whitespace but doesn't have it, report violation
+            else if (!isValidWithoutWhitespace && !hasWhitespace) {
+                log(rightBracket, MSG_WS_NOT_FOLLOWED, CLOSE_BRACKET);
             }
         }
     }

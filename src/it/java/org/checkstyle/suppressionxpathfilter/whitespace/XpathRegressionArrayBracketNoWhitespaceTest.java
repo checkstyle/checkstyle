@@ -52,14 +52,14 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "3:7: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+            "4:9: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
                     ArrayBracketNoWhitespaceCheck.MSG_WS_PRECEDED, "["),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathArrayBracketNoWhitespacePreceded']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='values']]/TYPE/ARRAY_DECLARATOR"
+                + "/VARIABLE_DEF[./IDENT[@text='bad']]/TYPE/ARRAY_DECLARATOR"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -74,15 +74,15 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "4:16: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+            "5:31: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
                     ArrayBracketNoWhitespaceCheck.MSG_WS_FOLLOWED, "["),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathArrayBracketNoWhitespaceFollowed']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='offsets']]/ASSIGN/EXPR/INDEX_OP"
-                + "/INDEX_OP"
+                + "/METHOD_DEF[./IDENT[@text='bad']]/SLIST/VARIABLE_DEF[./IDENT[@text='offsets']]"
+                + "/ASSIGN/EXPR/LITERAL_NEW/ARRAY_DECLARATOR"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
@@ -97,15 +97,15 @@ public class XpathRegressionArrayBracketNoWhitespaceTest extends AbstractXpathTe
                 createModuleConfig(ArrayBracketNoWhitespaceCheck.class);
 
         final String[] expectedViolation = {
-            "6:21: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
-                    ArrayBracketNoWhitespaceCheck.MSG_WS_NOT_FOLLOWED, "]"),
+            "6:25: " + getCheckMessage(ArrayBracketNoWhitespaceCheck.class,
+                    ArrayBracketNoWhitespaceCheck.MSG_WS_FOLLOWED, "]"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathArrayBracketNoWhitespaceNotFollowed']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='total']]/ASSIGN/EXPR/INDEX_OP"
-                + "/INDEX_OP"
+                + "/METHOD_DEF[./IDENT[@text='bad']]/SLIST/VARIABLE_DEF[./IDENT[@text='total']]"
+                + "/ASSIGN/EXPR/INDEX_OP"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

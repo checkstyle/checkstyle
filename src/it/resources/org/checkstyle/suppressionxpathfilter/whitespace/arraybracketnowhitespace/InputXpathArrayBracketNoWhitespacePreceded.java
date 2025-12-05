@@ -1,5 +1,6 @@
 package org.checkstyle.suppressionxpathfilter.whitespace.arraybracketnowhitespace;
 
 public class InputXpathArrayBracketNoWhitespacePreceded {
-    int [] values; // violation: whitespace before '['
+    int [] bad; //warn
+    int[] good;
 }
