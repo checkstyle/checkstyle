@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="CatchParameterName">
-      <p>Since Checkstyle 6.14</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/naming/CatchParameterNameCheck.java"/>
+      </macro>
       <subsection name="Description" id="CatchParameterName_Description">
         <macro name="description">
             <param name="modulePath"

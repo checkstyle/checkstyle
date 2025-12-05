@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="OrderedProperties">
-      <p>Since Checkstyle 8.22</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/OrderedPropertiesCheck.java"/>
+      </macro>
       <subsection name="Description" id="OrderedProperties_Description">
         <macro name="description">
             <param name="modulePath"

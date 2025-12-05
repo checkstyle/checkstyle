@@ -176,6 +176,19 @@ public final class ModuleJavadocParsingUtil {
     }
 
     /**
+     * Gets the {@code @since} version of module from module javadoc.
+     *
+     * @param moduleJavadoc module javadoc
+     * @return module {@code @since} version. For instance, {@code 8.0}
+     */
+    public static String getModuleSinceVersion(DetailNode moduleJavadoc) {
+        final DetailNode sinceTagNode = getModuleSinceVersionTagStartNode(moduleJavadoc);
+        return JavadocMetadataScraperUtil
+                    .constructSubTreeText(sinceTagNode, sinceTagNode.getFirstChild())
+                    .replace("@since ", "");
+    }
+
+    /**
      * Gets the end node of the description.
      *
      * @param moduleJavadoc javadoc of module.

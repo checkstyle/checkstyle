@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="CommentsIndentation">
-      <p>Since Checkstyle 6.10</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java"/>
+      </macro>
       <subsection name="Description" id="CommentsIndentation_Description">
         <macro name="description">
             <param name="modulePath"

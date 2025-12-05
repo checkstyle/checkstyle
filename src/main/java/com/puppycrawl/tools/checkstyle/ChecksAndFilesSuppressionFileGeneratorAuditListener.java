@@ -70,9 +70,14 @@ public class ChecksAndFilesSuppressionFileGeneratorAuditListener
      *
      * @param out the output stream
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if outputStreamOptions is null.
      */
     public ChecksAndFilesSuppressionFileGeneratorAuditListener(OutputStream out,
                                            OutputStreamOptions outputStreamOptions) {
+        if (outputStreamOptions == null) {
+            throw new IllegalArgumentException("Parameter outputStreamOptions can not be null");
+        }
+
         writer = new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
         closeStream = outputStreamOptions == OutputStreamOptions.CLOSE;
     }

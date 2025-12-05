@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="Indentation">
-      <p>Since Checkstyle 3.1</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/IndentationCheck.java"/>
+      </macro>
       <subsection name="Description" id="Indentation_Description">
         <macro name="description">
             <param name="modulePath"

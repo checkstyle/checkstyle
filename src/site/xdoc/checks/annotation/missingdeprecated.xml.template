@@ -8,7 +8,10 @@
   <body>
     <section xmlns="http://maven.apache.org/XDOC/2.0"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingDeprecated">
-      <p>Since Checkstyle 5.0</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingDeprecatedCheck.java"/>
+      </macro>
       <subsection name="Description" id="MissingDeprecated_Description">
         <macro name="description">
             <param name="modulePath"

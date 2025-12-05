@@ -7,7 +7,10 @@
   </head>
   <body>
     <section name="SuppressionXpathFilter">
-      <p>Since Checkstyle 8.6</p>
+      <macro name="since">
+        <param name="modulePath"
+               value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java"/>
+      </macro>
       <subsection name="Description" id="SuppressionXpathFilter_Description">
         <macro name="description">
             <param name="modulePath"

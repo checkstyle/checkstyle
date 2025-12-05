@@ -2403,6 +2403,31 @@ public class XdocsPagesTest {
         }
     }
 
+    @Test
+    public void testAllXdocsModulesTemplatesHaveSinceMacroAtTheBeginning() throws Exception {
+        for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
+            final String fileName = path.getFileName().toString();
+
+            if (isNonModulePage(fileName.replace(".template", ""))) {
+                continue;
+            }
+
+            final NodeList sources = getTagSourcesNode(path, "section");
+            final Node section = sources.item(0);
+            final String sectionName = section.getNodeName();
+            final Node firstChild = XmlUtil.getFirstChildElement(section);
+            assertWithMessage(
+                fileName + " first child of section " + sectionName + " should be a <macro> tag")
+                .that(firstChild.getNodeName())
+                .isEqualTo("macro");
+            assertWithMessage(
+                fileName + " first child of section " + sectionName
+                        + " should be a <macro> tag with name 'since'")
+                .that(firstChild.getAttributes().getNamedItem("name").getTextContent())
+                .isEqualTo("since");
+        }
+    }
+
     @FunctionalInterface
     private interface PredicateProcess {
         boolean hasFit(Path path);
