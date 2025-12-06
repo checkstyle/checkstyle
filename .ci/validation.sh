@@ -89,6 +89,7 @@ check-missing-pitests)
   ;;
 
 eclipse-static-analysis)
+  # override pom.xml defaults
   ./mvnw -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler
   ;;
 
