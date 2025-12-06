@@ -66,8 +66,8 @@
               </a>
             </td>
             <td>
-              Checks that classes and records which define a covariant <code>equals()</code>
-              method also override method <code>equals(Object)</code>.
+              Checks that classes and records which define a covariant <code>equals()</code> method
+              also override method <code>equals(Object)</code>.
             </td>
           </tr>
           <tr>
@@ -77,10 +77,10 @@
               </a>
             </td>
             <td>
-              Checks that the parts of a class, record, or interface declaration
-              appear in the order suggested by the <a
-              href="../../styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"
-              >Code Conventions for the Java Programming Language</a>.
+              Checks that the parts of a class, record, or interface declaration appear in the order
+              suggested by the <a href="https://checkstyle.org/styleguides/sun-code-conventions-1999
+              0420/CodeConventions.doc2.html#a1852"> Code Conventions for the Java Programming
+              Language</a>.
             </td>
           </tr>
           <tr>
@@ -90,8 +90,8 @@
               </a>
             </td>
             <td>
-              Check that the <code>default</code> is after all the
-              <code>case</code>s in a <code>switch</code> statement.
+              Check that the <code>default</code> is after all the cases in a <code>switch</code>
+              statement.
             </td>
           </tr>
           <tr>
@@ -111,8 +111,8 @@
               </a>
             </td>
             <td>
-              Checks that any combination of String literals
-            is on the left side of an equals() comparison.
+              Checks that any combination of String literals is on the left side of an
+              <code>equals()</code> comparison.
             </td>
           </tr>
           <tr>
@@ -122,8 +122,8 @@
               </a>
             </td>
             <td>
-              Checks that classes that either override <code>equals()</code>
-              or <code>hashCode()</code> also overrides the other.
+              Checks that classes that either override <code>equals()</code> or
+              <code>hashCode()</code> also overrides the other.
             </td>
           </tr>
           <tr>
@@ -133,9 +133,9 @@
               </a>
             </td>
             <td>
-              Checks if any class or object member is explicitly initialized to default
-              for its type value (<code>null</code> for object references, zero for numeric
-              types and <code>char</code> and <code>false</code> for <code>boolean</code>.
+              Checks if any class or object member is explicitly initialized to default for its type
+              value (<code>null</code> for object references, zero for numeric types and
+              <code>char</code> and <code>false</code> for <code>boolean</code>.
             </td>
           </tr>
           <tr>
@@ -145,7 +145,7 @@
               </a>
             </td>
             <td>
-              Checks for fall-through in switch statements.
+              Checks for fall-through in <code>switch</code> statements.
             </td>
           </tr>
           <tr>
@@ -165,8 +165,8 @@
               </a>
             </td>
             <td>
-              Checks that a local variable or a parameter does not shadow
-            a field that is defined in the same class.
+              Checks that a local variable or a parameter does not shadow a field that is defined in
+              the same class.
             </td>
           </tr>
           <tr>
@@ -176,7 +176,7 @@
               </a>
             </td>
             <td>
-              Checks that certain exception types do not appear in a catch statement.
+              Checks that certain exception types do not appear in a <code>catch</code> statement.
             </td>
           </tr>
           <tr>
@@ -236,8 +236,8 @@
               </a>
             </td>
             <td>
-              Checks for assignments in subexpressions, such as in
-              <code>String s = Integer.toString(i = 2);</code>.
+              Checks for assignments in subexpressions, such as in <code>String s =
+              Integer.toString(i = 2);</code>.
             </td>
           </tr>
           <tr>
@@ -247,8 +247,9 @@
               </a>
             </td>
             <td>
-              Checks that there are no "magic numbers" where a magic number
-            is a numeric literal that is not defined as a constant.
+              Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28progra
+              mming%29"> &quot;magic numbers&quot;</a> where a magic number is a numeric literal
+              that is not defined as a constant.
             </td>
           </tr>
           <tr>
@@ -268,8 +269,8 @@
               </a>
             </td>
             <td>
-              Checks that classes (except abstract ones) define a constructor
-            and don't rely on the default one.
+              Checks that classes (except abstract ones) define a constructor and don't rely on the
+              default one.
             </td>
           </tr>
           <tr>
@@ -279,8 +280,8 @@
               </a>
             </td>
             <td>
-             Checks that a given switch statement or expression that use a reference type
-             in its selector expression has a <code>null</code> case label.
+              Checks that a given switch statement or expression that use a reference type in its
+              selector expression has a <code>null</code> case label.
             </td>
           </tr>
           <tr>
@@ -310,8 +311,7 @@
               </a>
             </td>
             <td>
-              Checks for multiple occurrences of the same string literal within a
-            single file.
+              Checks for multiple occurrences of the same string literal within a single file.
             </td>
           </tr>
           <tr>
@@ -321,8 +321,7 @@
               </a>
             </td>
             <td>
-              Checks that each variable declaration is in its own statement
-            and on its own line.
+              Checks that each variable declaration is in its own statement and on its own line.
             </td>
           </tr>
           <tr>
@@ -372,8 +371,7 @@
               </a>
             </td>
             <td>
-              Checks that the clone method is not overridden from the
-            Object class.
+              Checks that the clone method is not overridden from the Object class.
             </td>
           </tr>
           <tr>
@@ -423,8 +421,8 @@
               </a>
             </td>
             <td>
-              Ensures that a class has a package declaration, and (optionally) whether
-            the package name matches the directory name for the source file.
+              Ensures that a class has a package declaration, and (optionally) whether the package
+              name matches the directory name for the source file.
             </td>
           </tr>
           <tr>
@@ -454,10 +452,9 @@
               </a>
             </td>
             <td>
-              Checks that references to instance variables and methods of the present
-            object are explicitly of the form "this.varName" or
-            "this.methodName(args)" and that those references don't
-            rely on the default behavior when "this." is absent.
+              Checks that references to instance variables and methods of the present object are
+              explicitly of the form "this.varName" or "this.methodName(args)" and that those
+              references don't rely on the default behavior when "this." is absent.
             </td>
           </tr>
           <tr>
@@ -467,8 +464,8 @@
               </a>
             </td>
             <td>
-              Restricts the number of return statements in methods, constructors
-            and lambda expressions.
+              Restricts the number of return statements in methods, constructors and lambda
+              expressions.
             </td>
           </tr>
           <tr>
@@ -498,8 +495,7 @@
               </a>
             </td>
             <td>
-              Checks that string literals are not used with
-              <code>==</code> or <code>&#33;=</code>.
+              Checks that string literals are not used with <code>==</code> or <code>&#33;=</code>.
             </td>
           </tr>
           <tr>
@@ -509,7 +505,8 @@
               </a>
             </td>
             <td>
-              Checks that an overriding clone() method invokes super.clone().
+              Checks that an overriding <code>clone()</code> method invokes
+              <code>super.clone()</code>.
             </td>
           </tr>
           <tr>
@@ -519,7 +516,8 @@
               </a>
             </td>
             <td>
-              Checks that an overriding finalize() method invokes super.finalize().
+              Checks that an overriding <code>finalize()</code> method invokes
+              <code>super.finalize()</code>.
             </td>
           </tr>
           <tr>
@@ -629,8 +627,8 @@
               </a>
             </td>
             <td>
-              Ensures that <code>when</code> is used instead of a single
-              <code>if</code> statement inside a case block.
+              Ensures that <code>when</code> is used instead of a single <code>if</code> statement
+              inside a case block.
             </td>
           </tr>
         </table>
