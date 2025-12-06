@@ -141,9 +141,6 @@ public class JavadocCommentsTokenTypesTest {
                 .that(JavadocCommentsTokenTypes.AT_SIGN)
                 .isEqualTo(57);
         assertWithMessage(msg)
-                .that(JavadocCommentsTokenTypes.TYPE_NAME)
-                .isEqualTo(58);
-        assertWithMessage(msg)
                 .that(JavadocCommentsTokenTypes.REFERENCE)
                 .isEqualTo(59);
         assertWithMessage(msg)
