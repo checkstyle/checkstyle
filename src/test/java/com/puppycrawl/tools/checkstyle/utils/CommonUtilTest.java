@@ -602,6 +602,39 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         }
     }
 
+    @Test
+    public void testRelativizePathExceptionMessage() {
+        final String baseDirectory = "/absolute/base";
+        final String relativePath = "relative/file.java";
+
+        final IllegalStateException exception = getExpectedThrowable(
+            IllegalStateException.class,
+            () -> CommonUtil.relativizePath(baseDirectory, relativePath)
+        );
+
+        final String message = exception.getMessage();
+
+        assertWithMessage("Exception message should mention failed relativization")
+            .that(message)
+            .contains("Failed to relativize path");
+
+        assertWithMessage("Exception message should mention base directory phrase")
+            .that(message)
+            .contains("base directory");
+
+        assertWithMessage("Exception message should contain the actual path value")
+            .that(message)
+            .contains(relativePath);
+
+        assertWithMessage("Exception message should contain the actual base directory")
+            .that(message)
+            .contains(baseDirectory);
+
+        assertWithMessage("Exception cause should be IllegalArgumentException")
+            .that(exception.getCause())
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static final class TestCloseable implements Closeable {
 
         private boolean closed;
