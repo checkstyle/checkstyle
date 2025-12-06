@@ -12,12 +12,18 @@
                value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ArrayBracketNoWhitespaceCheck.java"/>
       </macro>
       <subsection name="Description" id="ArrayBracketNoWhitespace_Description">
-        <div>
-          Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
-          follows the typical Java convention for array declarations, array creation, and array indexing.
-          This check ensures that the opening square bracket <code>[</code> is <b>not</b> preceded or followed by whitespace,
-          and the closing square bracket <code>]</code> is <b>not</b> preceded by whitespace.
-          For the closing square bracket <code>]</code>, whitespace is required after it unless the next character is another bracket, a dot, a postfix operator, comma, semicolon, or a closing construct.
+        <macro name="description">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ArrayBracketNoWhitespaceCheck.java"/>
+        </macro>
+      </subsection>
+
+      <subsection name="Properties" id="ArrayBracketNoWhitespace_Properties">
+        <div class="wrapper">
+          <macro name="properties">
+            <param name="modulePath"
+                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ArrayBracketNoWhitespaceCheck.java"/>
+          </macro>
         </div>
       </subsection>
 
@@ -25,28 +31,28 @@
         <p id="Example1-config">
           To configure the check:
         </p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="ArrayBracketNoWhitespace"/&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
-</code></pre></div>
-        <p id="Example1-code">Example:</p>
-        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example1 {
-  int [] values; // violation: '[' is preceded with whitespace
-  int[] counts = values [0]; // violation: '[' is preceded with whitespace
-  int[] offsets = values[ 0]; // violation: '[' is followed by whitespace
-  int bad = values[0] .length; // violation: ']' is followed with whitespace
-  int total = values[0]+1; // violation: ']' is not followed by whitespace
-
-  int[] okValues = values[0];
-  int[][] data = new int[2][3];
-  int size = values[0].length;
-  int next = values[0] + 1;
-}
-</code></pre></div>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/arraybracketnowhitespace/Example1.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example1-code">
+          Examples with incorrect array bracket whitespace:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/arraybracketnowhitespace/Example1.java"/>
+          <param name="type" value="code"/>
+        </macro>
+        <hr class="example-separator"/>
+        <p id="Example2-code">
+          Examples without violations:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/arraybracketnowhitespace/Example2.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="ArrayBracketNoWhitespace_Example_of_Usage">
@@ -59,23 +65,9 @@ class Example1 {
       </subsection>
 
       <subsection name="Violation Messages" id="ArrayBracketNoWhitespace_Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
-              ws.followed
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.notFollowed%22">
-              ws.notFollowed
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-              ws.preceded
-            </a>
-          </li>
-        </ul>
+      <macro name="violation-messages">
+          <param name="checkName" value="ArrayBracketNoWhitespace"/>
+        </macro>
         <p>
           All messages can be customized if the default message doesn't suit you.
           Please <a href="../../config.html#Custom_messages">see the documentation</a>
@@ -90,9 +82,9 @@ class Example1 {
       </subsection>
 
       <subsection name="Parent Module" id="ArrayBracketNoWhitespace_Parent_Module">
-        <p>
-          <a href="../../config.html#TreeWalker">TreeWalker</a>
-        </p>
+        <macro name="parent-module">
+          <param name="moduleName" value="ArrayBracketNoWhitespace"/>
+        </macro>
       </subsection>
     </section>
   </body>
