@@ -89,7 +89,10 @@ check-missing-pitests)
   ;;
 
 eclipse-static-analysis)
-  ./mvnw -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler
+  # override pom.xml defaults
+  ./mvnw -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler \
+    -Dmaven.compiler.source=24 \
+    -Dmaven.compiler.target=24
   ;;
 
 nondex)
