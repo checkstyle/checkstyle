@@ -911,7 +911,7 @@ public final class JavadocCommentsTokenTypes {
      *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
-     * @see #TYPE_NAME
+     * @see #REFERENCE
      */
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
@@ -938,11 +938,6 @@ public final class JavadocCommentsTokenTypes {
      * @see #JAVADOC_INLINE_TAG
      */
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
-
-    /**
-     * Type name reference.
-     */
-    public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
     /**
      * {@code MEMBER_REFERENCE} Member reference (method or field).

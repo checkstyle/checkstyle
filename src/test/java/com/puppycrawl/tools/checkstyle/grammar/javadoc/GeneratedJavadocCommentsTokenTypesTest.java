@@ -193,9 +193,6 @@ public class GeneratedJavadocCommentsTokenTypesTest {
             .that(JavadocCommentsLexer.AT_SIGN)
             .isEqualTo(57);
         assertWithMessage(MSG)
-            .that(JavadocCommentsLexer.TYPE_NAME)
-            .isEqualTo(58);
-        assertWithMessage(MSG)
             .that(JavadocCommentsLexer.REFERENCE)
             .isEqualTo(59);
         assertWithMessage(MSG)
