@@ -41,7 +41,7 @@ import net.sf.saxon.trans.XPathException;
  * objects based on the criteria of file, check, module id, xpathQuery.
  *
  */
-public class XpathFilterElement implements TreeWalkerFilter {
+public final class XpathFilterElement implements TreeWalkerFilter {
 
     /** The regexp to match file names against. */
     private final Pattern fileRegexp;

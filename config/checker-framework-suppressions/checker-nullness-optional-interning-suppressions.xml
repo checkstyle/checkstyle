@@ -1636,7 +1636,7 @@
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.class) @NonNull TranslationCheck
-      required: @Initialized @NonNull TranslationCheck
+      required: @Initialized @NonNull AbstractFileSetCheck
     </details>
   </checkerFrameworkError>
 
