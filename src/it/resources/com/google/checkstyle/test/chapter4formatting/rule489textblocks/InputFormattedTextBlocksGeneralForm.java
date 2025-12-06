@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule489textblocks;
 public class InputFormattedTextBlocksGeneralForm {
 
   /** some javadoc. */
-  public static void textFun() {
+  public static String textFun() {
 
     final String simpleScript =
         """
@@ -21,10 +21,16 @@ public class InputFormattedTextBlocksGeneralForm {
         Hello,
         This is a multi-line message.
         """);
+
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    return """
+    this is sample text
+    """; // violation 'Text-block quotes are not vertically aligned'
+    // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
 
   /** somejavadoc. */
-  public void textFun2() {
+  public String textFun2() {
 
     final String simpleScript2 =
         """
@@ -36,6 +42,12 @@ public class InputFormattedTextBlocksGeneralForm {
         Hello,
         This is a multi-line message.
         """);
+
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    return """
+    THE MULTI-LINE MESSAGE
+    """; // violation 'Text-block quotes are not vertically aligned'
+    // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
 
   /** somejavadoc. */
@@ -53,11 +65,12 @@ public class InputFormattedTextBlocksGeneralForm {
         """,
         0);
 
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
     return s
         + """
         very good
         """
-            .charAt(0)
+            .charAt(0) // violation above 'Text-block quotes are not vertically aligned'
         + getName();
   }
 

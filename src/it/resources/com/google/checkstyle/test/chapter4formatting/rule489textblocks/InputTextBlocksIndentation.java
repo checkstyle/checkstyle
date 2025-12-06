@@ -8,25 +8,28 @@ public class InputTextBlocksIndentation {
     String e1 =
         """
     content of the block. e1
-        """;
+        """; // ok until #18227
 
     String e2 =
         """
         content of the block of e3
-            """; // 'not vertically aligned with opening quotes', ok until #17223
+            """; // violation 'Text-block quotes are not vertically aligned'
 
-    // 'wrong indentation of 10, expected 8' below, ok until #17223
+    // Expected indentation is the opening quotes on line 22 is 8,
+    // but Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     String e3 =
           """
       content of the block. e1
-        """;
-    // not vertically aligned with opening quotes above, ok until #17223
+        """; // violation 'Text-block quotes are not vertically aligned'
 
-    // 'wrong indentation of 12, expected 8' 2 lines below, ok until #17223
+    // Expected indentation is the opening quotes on line 30 is 8,
+    // but Indentation check is lenient when actual indentation is more
+    // than expected indentation if `forceStrictCondition` is turned off.
     getData(
             """
         Indentation of Text-block
-            """,
+            """, // Above line's indentation is less, ok until #18227
         5
     );
   }
@@ -34,10 +37,10 @@ public class InputTextBlocksIndentation {
   /** somejavadoc. */
   public void textFuncIndenation2() {
     // violation 2 lines below '.* incorrect indentation level 0, expected .* 8.'
-    String e2 =
+    String e2 = // false-positive, ok until #18228
 """
 content of the block e2
-""";
+"""; // false-positive, ok until #18228
     // violation above '.* incorrect indentation level 0, expected .* 8.'
 
     // violation 2 lines below '.* incorrect indentation level 4, expected .* 6.'
