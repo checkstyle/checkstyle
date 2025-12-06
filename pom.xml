@@ -5168,6 +5168,8 @@
               <excludedMethods>
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
                 <param>isFileExists</param>
+                <!-- Its mutation potentially causes the cascade change in generated xml files -->
+                <param>getAllNodesOfType</param>
               </excludedMethods>
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
