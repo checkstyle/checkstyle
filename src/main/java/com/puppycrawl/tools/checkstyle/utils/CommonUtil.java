@@ -30,7 +30,9 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.BitSet;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -255,6 +257,7 @@ public final class CommonUtil {
      *            the path to relativize against base directory
      * @return the relative normalized path between base directory and
      *     path or path if base directory is null.
+     * @throws IllegalStateException if the path cannot be relativized against base directory
      */
     public static String relativizePath(final String baseDirectory, final String path) {
         final String resultPath;
@@ -264,7 +267,16 @@ public final class CommonUtil {
         else {
             final Path pathAbsolute = Path.of(path);
             final Path pathBase = Path.of(baseDirectory);
-            resultPath = pathBase.relativize(pathAbsolute).toString();
+            try {
+                resultPath = pathBase.relativize(pathAbsolute).toString();
+            }
+            catch (IllegalArgumentException exception) {
+                final ResourceBundle bundle = ResourceBundle.getBundle(
+                    "com.puppycrawl.tools.checkstyle.messages", Locale.ROOT);
+                final String pattern = bundle.getString("general.relativizePath");
+                final String message = String.format(Locale.ROOT, pattern, path, baseDirectory);
+                throw new IllegalStateException(message, exception);
+            }
         }
         return resultPath;
     }
