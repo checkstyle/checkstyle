@@ -34,6 +34,7 @@ org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsDeprecatedRef=error
 org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsNotVisibleRef=error
 org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsVisibility=error
 org.eclipse.jdt.core.compiler.problem.localVariableHiding=error
+org.eclipse.jdt.core.compiler.problem.memberOfDeprecatedTypeNotDeprecated=ignore
 org.eclipse.jdt.core.compiler.problem.methodWithConstructorName=error
 org.eclipse.jdt.core.compiler.problem.missingDefaultCase=error
 org.eclipse.jdt.core.compiler.problem.missingDeprecatedAnnotation=error
@@ -68,7 +69,7 @@ org.eclipse.jdt.core.compiler.problem.redundantNullCheck=error
 org.eclipse.jdt.core.compiler.problem.redundantSpecificationOfTypeArguments=error
 org.eclipse.jdt.core.compiler.problem.redundantSuperinterface=error
 org.eclipse.jdt.core.compiler.problem.reportMethodCanBeStatic=error
-org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=error
+org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=ignore
 org.eclipse.jdt.core.compiler.problem.specialParameterHidingField=error
 org.eclipse.jdt.core.compiler.problem.staticAccessReceiver=error
 org.eclipse.jdt.core.compiler.problem.syntacticNullAnalysisForFields=enabled
@@ -109,7 +110,7 @@ org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
 # We can not enforce this rule as we are library and we keep deprecated stuff for some time
 org.eclipse.jdt.core.compiler.problem.deprecation=ignore
 # Preview features can be enabled be enabled only at source level 14, we are using 8
-org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
+# org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
 # We don't document the tests. As we cannot exclude them, this check is muted.
 org.eclipse.jdt.core.compiler.problem.missingJavadocComments=ignore
 # We don't document the tests. As we cannot exclude them, this check is muted.
