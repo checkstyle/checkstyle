@@ -11,11 +11,29 @@ if [ -z "$1" ]; then
 fi
 JAVA_RELEASE=${2:-$DEFAULT_JAVA_RELEASE}
 
-ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
-ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
-echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
+# ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
+# ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+# echo "Latest eclipse release is $ECJ_MAVEN_VERSION"
 
-ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+# ECJ_MAVEN_VERSION=$(wget --quiet -O- "$ECLIPSE_URL/?C=M;O=D" | grep -o "R-[^/]*" | head -n1)
+# ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
+# ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
+
+ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
+
+# FIX: STOP fetching the "latest" version dynamically.
+# OLD (Broken): 
+# ECJ_MAVEN_VERSION=$(wget ... | head -n1)
+#
+# NEW (Stable):
+# Pinned to the last known working version.
+
+ECJ_MAVEN_VERSION="R-4.37-202509050730" 
+
+echo "Using pinned eclipse release: $ECJ_MAVEN_VERSION"
+
+# (Keep the rest of the script below, but ensure you remove the 
+#  duplicate calculation lines if they exist further down)
 ECJ_JAR=$(wget --quiet -O- "$ECLIPSE_URL/$ECJ_MAVEN_VERSION/" | grep -o "ecj-[^\"]*" | head -n1)
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
