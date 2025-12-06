@@ -71,9 +71,9 @@ class InputFormattedEmptyBlocksAndCatchBlocks {
     }
   }
 
-  /** some. */
+  /** Some. */
   public class MyResource implements AutoCloseable {
-    /** some. */
+    /** Some. */
     @Override
     public void close() throws Exception {
       System.out.println("Closed MyResource");

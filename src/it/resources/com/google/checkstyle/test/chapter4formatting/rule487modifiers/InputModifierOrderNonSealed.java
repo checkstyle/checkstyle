@@ -1,7 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule487modifiers;
 
 // violation 2 lines below ''public' modifier out of order with the JLS suggestions.'
-/** some javadoc. */
+/** Some javadoc. */
 sealed public class InputModifierOrderNonSealed
     permits InputModifierOrderNonSealed.CircleOne1, InputModifierOrderNonSealed.RectangleOne1,
         InputModifierOrderNonSealed.SquareOne1 {

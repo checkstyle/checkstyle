@@ -2,13 +2,13 @@ package com.google.checkstyle.test.chapter4formatting.rule4852classannotations;
 
 import javax.annotation.CheckReturnValue;
 
-/** somejavadoc data. */
+/** Somejavadoc data. */
 @Deprecated
 @CheckReturnValue
 public final class InputFormattedClassAnnotation2 {
   void test1() {}
 
-  /** somejavadoc data. */
+  /** Somejavadoc data. */
   @Deprecated
   @CheckReturnValue
   public class Inner {
@@ -17,7 +17,7 @@ public final class InputFormattedClassAnnotation2 {
 }
 
 // violation 2 lines below 'Top-level class InputClassAnnotation4 has to reside'
-/** somejavadoc data. */
+/** Somejavadoc data. */
 @Deprecated
 @CheckReturnValue
 final class InputClassAnnotation4 {
@@ -25,7 +25,7 @@ final class InputClassAnnotation4 {
 }
 
 // violation 2 lines below 'Top-level class InputClassAnnotation6 has to reside'
-/** some javadoc. */
+/** Some javadoc. */
 @Deprecated
 // testing
 @CheckReturnValue

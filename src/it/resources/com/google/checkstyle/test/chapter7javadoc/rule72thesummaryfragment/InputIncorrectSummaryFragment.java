@@ -27,7 +27,7 @@ class InputIncorrectSummaryFragment {
   class InnerInputCorrectJavaDocParagraphCheck {
 
     // violation below 'First sentence of Javadoc is missing an ending period.'
-    /** foooo@foooo */
+    /** Foooo@foooo */
     public static final byte NUL = 0;
 
     /** Some java@doc. */
@@ -65,6 +65,10 @@ class InputIncorrectSummaryFragment {
 
     /** An especially short bit of Javadoc. */
     void foo6() {}
+
+    // violation below 'Forbidden summary fragment.'
+    /** adds an element to the list. */
+    void add(String element) {}
   }
 
   // violation below 'Forbidden summary fragment.'

@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 // some
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedCommentsIndentationSurroundingCode {
   private void foo1() {
     if (true) {
@@ -88,17 +88,17 @@ public class InputFormattedCommentsIndentationSurroundingCode {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   private static void testing() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foid5() {
     String s = "";
     s.toString().toString().toString();
     // comment
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo6() {
     // comment
     // ...
@@ -109,7 +109,7 @@ public class InputFormattedCommentsIndentationSurroundingCode {
     String someStr = new String();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo7() {
     // comment
     // ...
@@ -120,7 +120,7 @@ public class InputFormattedCommentsIndentationSurroundingCode {
     String someStr = new String();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo8() {
     String s = new String(); // comment
     // ...
@@ -131,12 +131,12 @@ public class InputFormattedCommentsIndentationSurroundingCode {
     String someStr = new String();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String foo9(String s1, String s2, String s3) {
     return "";
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo10() throws Exception {
 
     final String pattern = "^foo$";

@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 import java.lang.reflect.Proxy;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputLambdaAndChildOnTheSameLine {
 
   enum A { A1, A2, A3, A4, A5 }

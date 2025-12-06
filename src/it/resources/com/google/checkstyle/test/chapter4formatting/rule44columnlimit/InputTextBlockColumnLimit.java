@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputTextBlockColumnLimit {
   static final String SAMPLE = """
    locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
@@ -8,7 +8,7 @@ public class InputTextBlockColumnLimit {
    ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
       """;
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void main(String[] args) {
     String textBlock = """
       This STRing will exceed the column limit of 100 but checktyle will not show many error because it is allowed

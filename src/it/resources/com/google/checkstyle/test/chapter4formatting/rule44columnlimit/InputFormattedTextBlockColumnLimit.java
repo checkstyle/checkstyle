@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputFormattedTextBlockColumnLimit {
   static final String SAMPLE =
       """
@@ -9,7 +9,7 @@ public class InputFormattedTextBlockColumnLimit {
       ST002,Station 002,ZONE2,,CP2,,668 Street,Unit 23,San Jose,CA,95191,US,37.35102477242508,-121.9209934020318
       """;
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void main(String[] args) {
     String textBlock =
         """

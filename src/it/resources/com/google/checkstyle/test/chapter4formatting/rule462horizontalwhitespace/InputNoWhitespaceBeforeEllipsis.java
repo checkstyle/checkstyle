@@ -4,7 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
 //
-/** some javadoc. */
+/** Some javadoc. */
 public class InputNoWhitespaceBeforeEllipsis {
 
   @Target(ElementType.TYPE_USE)
@@ -23,30 +23,30 @@ public class InputNoWhitespaceBeforeEllipsis {
   // @NonNull int @NonNull ... field3; // non-compilable
   // @NonNull int @NonNull... field4; // non-compilable
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test1(String... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test2(String ... param) {} // violation ''...' is preceded with whitespace.'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test3(String @NonNull ... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test4(String @NonNull... param) {}
   // violation above ''NonNull' is not followed by whitespace'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test5(String[]... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test6(String[] ... param) {} // violation ''...' is preceded with whitespace.'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test7(String @NonNull[]... param) {}
   // violation above ''NonNull' is not followed by whitespace'
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test8(String @NonNull[] ... param) {}
   // 2 violations above:
   //   ''NonNull' is not followed by whitespace'

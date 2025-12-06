@@ -29,7 +29,7 @@ import com.google.common.base.Ascii;
 
 /** Some javadoc. */
 public class InputOrderingAndSpacing1 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
     try {

@@ -7,7 +7,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule711generalform;
  */
 public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
 
-  /** javadoc for instance variable. */
+  /** Javadoc for instance variable. */
   private int int1;
 
   /** */
@@ -51,7 +51,7 @@ public class InputFormattedCorrectJavadocLeadingAsteriskAlignment {
 
   /**
    * Opening tag should be alone on line. // False negative until #17778, Subproblem 1. This method
-   * does nothing.
+   * Does nothing.
    */
   private void foo2() {}
 

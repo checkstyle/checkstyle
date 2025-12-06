@@ -10,27 +10,27 @@ public class InputMethodsAndConstructorsAnnotations {
 
   // ********testing methods.***********
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   void test1() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 void test2() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
   void test3() {}
 
   @SomeAnnotation1
   @SomeAnnotation2
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   void test4() {}
 
   @SomeAnnotation1 @SomeAnnotation2
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   void test5() {}
 
   @SomeAnnotation1 @SomeAnnotation2 void test6() {}
@@ -41,27 +41,27 @@ public class InputMethodsAndConstructorsAnnotations {
 
   // ********testing constructors.*********
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   InputMethodsAndConstructorsAnnotations() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 InputMethodsAndConstructorsAnnotations(float f) {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
   InputMethodsAndConstructorsAnnotations(int x) {}
 
   @SomeAnnotation1
   @SomeAnnotation2
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   InputMethodsAndConstructorsAnnotations(String str) {}
 
   @SomeAnnotation1 @SomeAnnotation2
   // violation above 'Annotation 'SomeAnnotation2' should be alone on line.'
-  /** testing. */ // violation 'Javadoc comment is placed in the wrong location.'
+  /** Testing. */ // violation 'Javadoc comment is placed in the wrong location.'
   InputMethodsAndConstructorsAnnotations(double d) {}
 
   // violation below 'Annotation 'SomeAnnotation2' should be alone on line.'

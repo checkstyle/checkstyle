@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule411optionalbracesusage
 
 class InputUseOfOptionalBraces {
   /**
-   * some javadoc..
+   * Some javadoc..
    *
    * @return helper func *
    */
