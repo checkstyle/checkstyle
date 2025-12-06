@@ -142,6 +142,28 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
+        <hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check so that it rejects modules <code>java.base</code> and
+          <code>java.logging</code>:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example6-code">
+          The following example shows module with two illegal module imports:
+          <ul>
+            <li><b>java.base</b>, <code>illegalModules</code> property contains this module</li>
+            <li><b>java.logging</b>, <code>illegalModules</code> property contains this module</li>
+            </ul>
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/illegalimport/Example6.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="IllegalImport_Example_of_Usage">

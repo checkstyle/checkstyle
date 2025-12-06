@@ -2,6 +2,7 @@
 IllegalImport
 illegalPkgs = (default)sun
 illegalClasses = ^java\\.util\\.(List|Arrays)
+illegalModules = (default)
 regexp = true
 
 

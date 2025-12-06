@@ -96,4 +96,14 @@ public class IllegalImportCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+            "15:1: " + getCheckMessage(IllegalImportCheck.MSG_KEY, "java.base"),
+            "18:1: " + getCheckMessage(IllegalImportCheck.MSG_KEY, "java.logging"),
+        };
+
+        verifyWithInlineConfigParser(getNonCompilablePath("Example6.java"), expected);
+    }
 }

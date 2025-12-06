@@ -2,6 +2,7 @@
 IllegalImport
 illegalPkgs = (default)sun
 illegalClasses = (default)
+illegalModules = (default)
 regexp = (default)false
 
 
