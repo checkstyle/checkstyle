@@ -36,6 +36,7 @@ import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.puppycrawl.tools.checkstyle.LocalizedMessage.Utf8Control;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
  * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
@@ -273,6 +274,17 @@ public class LocalizedMessageTest {
     private static LocalizedMessage createSampleViolation() {
         return new LocalizedMessage("com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 LocalizedMessage.class, "empty.statement");
+    }
+
+    @Test
+    public void testArgsFieldIsSetToNullWhenArgsIsNull() {
+        final LocalizedMessage message = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
+                DefaultLogger.class, "DefaultLogger.addException", (Object[]) null);
+        final Object[] args = TestUtil.getInternalState(message, "args", Object[].class);
+
+        assertWithMessage("Args field should be null when null args are passed")
+                .that(args)
+                .isNull();
     }
 
     @AfterEach

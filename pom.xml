@@ -4618,7 +4618,6 @@
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.SimpleToken*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
@@ -4652,6 +4651,8 @@
                 <param>com.puppycrawl.tools.checkstyle.CheckerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettingsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.SimpleTokenTest</param>
+                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtilTest</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsAstRegressionTest</param>
                 <!-- this test is required for CompositeLexerContextCache -->
                 <param>com.puppycrawl.tools.checkstyle.grammar.java21.Java21AstRegressionTest</param>
@@ -4674,6 +4675,9 @@
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</class>
+              </excludedClasses>
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
