@@ -36,6 +36,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Dictionary;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -599,6 +600,32 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                     .that(ex)
                     .hasMessageThat()
                             .isEqualTo("Unable to find: " + fileName);
+        }
+    }
+
+    @Test
+    public void testRelativizePathExceptionMessage() {
+        try (MockedStatic<Path> pathMock = mockStatic(Path.class)) {
+            final Path mockBasePath = mock(Path.class);
+            final Path mockFilePath = mock(Path.class);
+
+            pathMock.when(() -> Path.of("/unix/base")).thenReturn(mockBasePath);
+            pathMock.when(() -> Path.of("C:\\windows\\file.java")).thenReturn(mockFilePath);
+            when(mockBasePath.relativize(mockFilePath))
+                .thenThrow(new IllegalArgumentException("'other' is different type of Path"));
+
+            final IllegalStateException exception = getExpectedThrowable(
+                IllegalStateException.class,
+                () -> CommonUtil.relativizePath("/unix/base", "C:\\windows\\file.java")
+            );
+
+            assertWithMessage(
+                    "Exception message should mention failed relativization")
+                .that(exception.getMessage())
+                .contains("Failed to relativize path");
+            assertWithMessage("Exception message should mention base directory")
+                .that(exception.getMessage())
+                .contains("base directory");
         }
     }
 

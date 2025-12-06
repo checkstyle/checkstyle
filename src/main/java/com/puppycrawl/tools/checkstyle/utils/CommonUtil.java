@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.BitSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -255,6 +256,7 @@ public final class CommonUtil {
      *            the path to relativize against base directory
      * @return the relative normalized path between base directory and
      *     path or path if base directory is null.
+     * @throws IllegalStateException if the path cannot be relativized against base directory
      */
     public static String relativizePath(final String baseDirectory, final String path) {
         final String resultPath;
@@ -264,7 +266,17 @@ public final class CommonUtil {
         else {
             final Path pathAbsolute = Path.of(path);
             final Path pathBase = Path.of(baseDirectory);
-            resultPath = pathBase.relativize(pathAbsolute).toString();
+            try {
+                resultPath = pathBase.relativize(pathAbsolute).toString();
+            }
+            catch (IllegalArgumentException exception) {
+                throw new IllegalStateException(
+                    String.format(Locale.ROOT,
+                        "Failed to relativize path '%s' against base directory '%s' "
+                        + "(configured via 'basedir' property). "
+                        + "Please ensure the base directory path matches the current OS/path type.",
+                        path, baseDirectory), exception);
+            }
         }
         return resultPath;
     }
