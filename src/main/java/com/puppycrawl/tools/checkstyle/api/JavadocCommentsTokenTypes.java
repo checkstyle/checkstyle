@@ -881,7 +881,36 @@ public final class JavadocCommentsTokenTypes {
     public static final int EXTENDS = JavadocCommentsLexer.EXTENDS;
 
     /**
-     * Keyword {@code super} in type parameters.
+     * {@code SUPER} represents the {@code super} keyword inside a generic
+     * wildcard bound (e.g., {@code ? super Number}).
+     *
+     * <p><b>Example:</b> {@link java.util.List<? super Integer> list
+     * of any supertype of Integer}</p>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> java.util.List
+     *     |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *     |       |--LT -> <
+     *     |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *     |       |   |--QUESTION -> ?
+     *     |       |   |--TEXT ->
+     *     |       |   |--SUPER -> super
+     *     |       |   |--TEXT ->
+     *     |       |   `--IDENTIFIER -> Integer
+     *     |       `--GT -> >
+     *     |--DESCRIPTION -> DESCRIPTION
+     *     |   `--TEXT ->  list of any supertype of Integer
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int SUPER = JavadocCommentsLexer.SUPER;
 
