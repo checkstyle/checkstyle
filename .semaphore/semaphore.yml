@@ -46,7 +46,8 @@ blocks:
               values:
                 - .ci/validation.sh all-sevntu-checks
                 - .ci/validation.sh check-missing-pitests
-                - .ci/validation.sh eclipse-static-analysis
+                # static analysis is failing with jdk 21. Isolating test to jdk 24
+                # - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh verify-regexp-id
                 - .ci/no-exception-test.sh guava-with-google-checks
                 - .ci/no-exception-test.sh guava-with-sun-checks
@@ -97,3 +98,35 @@ blocks:
             - echo "eval of CMD is completed";
             - ./.ci/validation.sh git-diff
             - ./.ci/validation.sh ci-temp-check
+
+  - name: "Linux openjdk 24 build"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore m2
+          - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
+          - sudo apt-get update
+          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+          # Install JDK 24 manually
+          - |
+            wget https://download.java.net/java/GA/jdk24.0.2/ \
+            fdc5d0102fe0414db21410ad5834341f/12/GPL/openjdk-24.0.2_linux-x64_bin.tar.gz
+          - tar -xvf openjdk-24.0.2_linux-x64_bin.tar.gz
+          - export JAVA_HOME=$PWD/jdk-24.0.2
+          - export PATH=$JAVA_HOME/bin:$PATH
+          - java -version
+          - export GRADLE_OPTS=-Dorg.gradle.console=plain
+      epilogue:
+        commands:
+          - |
+            if [[ ${M2_CACHE_SIZE} -ne $(du -s $HOME/.m2 | cut -f1) ]]
+            then
+              cache delete m2
+              cache store m2 $HOME/.m2
+            fi
+      jobs:
+        - name: Validation (openjdk24, fast pool)
+          commands:
+            - ./.ci/validation.sh eclipse-static-analysis
+            - ./.ci/validation.sh git-diff
