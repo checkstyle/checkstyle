@@ -255,6 +255,7 @@ public final class CommonUtil {
      *            the path to relativize against base directory
      * @return the relative normalized path between base directory and
      *     path or path if base directory is null.
+     * @throws IllegalArgumentException if the path cannot be relativized against base directory
      */
     public static String relativizePath(final String baseDirectory, final String path) {
         final String resultPath;
