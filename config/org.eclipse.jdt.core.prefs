@@ -34,6 +34,7 @@ org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsDeprecatedRef=error
 org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsNotVisibleRef=error
 org.eclipse.jdt.core.compiler.problem.invalidJavadocTagsVisibility=error
 org.eclipse.jdt.core.compiler.problem.localVariableHiding=error
+org.eclipse.jdt.core.compiler.problem.memberOfDeprecatedTypeNotDeprecated=ignore
 org.eclipse.jdt.core.compiler.problem.methodWithConstructorName=error
 org.eclipse.jdt.core.compiler.problem.missingDefaultCase=error
 org.eclipse.jdt.core.compiler.problem.missingDeprecatedAnnotation=error
