@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter7javadoc.rule734nonrequiredjavadoc;
 
 // violation below 'Javadoc comment is placed in the wrong location.'
 /** odd javadoc */
-/** valid javadoc.
+/** valid javadoc. // violation "Javadoc content should start from the next line."
  *
  * @param containerPath options
  * @param options path
