@@ -1604,7 +1604,7 @@ public final class TokenTypes {
     public static final int SEMI = JavaLanguageLexer.SEMI;
 
     /**
-     * The {@code ]} symbol.
+     * The {@code ]} symbol, representing the right bracket.
      *
      * <p>For example:</p>
      * <pre>
@@ -1627,6 +1627,32 @@ public final class TokenTypes {
      * @see #ARRAY_DECLARATOR
      **/
     public static final int RBRACK = JavaLanguageLexer.RBRACK;
+
+    /**
+     * The {@code [} symbol, representing the left bracket or array declarator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * int a[];
+     * </pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--LBRACK -&gt; ]
+     *  |--IDENT -&gt; a
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
+     * @see #INDEX_OP
+     * @see #ARRAY_DECLARATOR
+     **/
+    public static final int LBRACK = JavaLanguageLexer.LBRACK;
+    
     /**
      * The {@code void} keyword.
      *
