@@ -16,8 +16,8 @@
               </a>
             </td>
             <td>
-              Restricts the number of boolean operators (&amp;&amp;, ||, &amp;, | and ^)
-            in an expression.
+              Restricts the number of boolean operators (<code>&amp;&amp;</code>, <code>||</code>,
+              <code>&amp;</code>, <code>|</code> and <code>^</code>) in an expression.
             </td>
           </tr>
           <tr>
@@ -27,8 +27,8 @@
               </a>
             </td>
             <td>
-              Measures the number of distinct classes that are instantiated
-              within the given class or record.
+              Measures the number of distinct classes that are instantiated within the given class
+              or record.
             </td>
           </tr>
           <tr>
@@ -38,8 +38,8 @@
               </a>
             </td>
             <td>
-              Checks the number of other types a given class/record/interface/enum/annotation
-            relies on.
+              Checks the number of other types a given class/record/interface/enum/annotation relies
+              on.
             </td>
           </tr>
           <tr>
@@ -59,8 +59,8 @@
               </a>
             </td>
             <td>
-              Determines complexity of methods, classes and files by counting
-            the Non Commenting Source Statements (NCSS).
+              Determines complexity of methods, classes and files by counting the Non Commenting
+              Source Statements (NCSS).
             </td>
           </tr>
           <tr>

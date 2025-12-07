@@ -717,6 +717,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Pattern.compile.</message>
+    <lineContent>+ &quot;(&quot; + CLOSING_ANCHOR_TAG.substring(0, 2) + &quot;code&gt;)&quot;);</lineContent>
+    <details>
+      found   : String
+      required: @Regex String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ModuleJavadocParsingUtil.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of String.split.</message>
