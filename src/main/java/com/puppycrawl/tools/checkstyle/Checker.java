@@ -376,7 +376,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @return {@code true} if the file is accepted.
      */
     private boolean acceptFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
+        final String stripped = safeRelativizePath(fileName);
         return beforeExecutionFileFilters.accept(stripped);
     }
 
@@ -388,7 +388,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireFileStarted(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
+        final String stripped = safeRelativizePath(fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileStarted(event);
@@ -403,7 +403,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireErrors(String fileName, SortedSet<Violation> errors) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
+        final String stripped = safeRelativizePath(fileName);
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
@@ -427,7 +427,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      */
     @Override
     public void fireFileFinished(String fileName) {
-        final String stripped = CommonUtil.relativizePath(basedir, fileName);
+        final String stripped = safeRelativizePath(fileName);
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(event);
@@ -662,6 +662,25 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
                     messageKey, args);
 
         return localizedMessage.getMessage();
+    }
+
+    /**
+     * Safely relativizes a path, wrapping any IllegalArgumentException
+     * with a user-friendly localized message.
+     *
+     * @param fileName the file path to relativize
+     * @return the relativized path
+     * @throws IllegalStateException if relativization fails
+     */
+    private String safeRelativizePath(String fileName) {
+        try {
+            return CommonUtil.relativizePath(basedir, fileName);
+        }
+        catch (IllegalArgumentException exception) {
+            throw new IllegalStateException(
+                getLocalizedMessage("general.relativizePath",
+                        fileName, basedir), exception);
+        }
     }
 
 }
