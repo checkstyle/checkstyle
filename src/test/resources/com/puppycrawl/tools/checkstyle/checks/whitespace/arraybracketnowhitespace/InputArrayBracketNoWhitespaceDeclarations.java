@@ -3,9 +3,7 @@ ArrayBracketNoWhitespace
 */
 package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketnowhitespace;
 
-/**
- * Test input focused on array declarations.
- */
+/* Config : default */
 public class InputArrayBracketNoWhitespaceDeclarations {
 
     // ========== PRIMITIVE TYPES ==========
