@@ -930,7 +930,7 @@ public final class JavadocCommentsTokenTypes {
      *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
-     * @see #TYPE_NAME
+     * @see #REFERENCE
      */
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
@@ -957,11 +957,6 @@ public final class JavadocCommentsTokenTypes {
      * @see #JAVADOC_INLINE_TAG
      */
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
-
-    /**
-     * Type name reference.
-     */
-    public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
 
     /**
      * {@code MEMBER_REFERENCE} Member reference (method or field).
@@ -1030,7 +1025,31 @@ public final class JavadocCommentsTokenTypes {
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
     /**
-     * Type arguments in generics.
+     * {@code TYPE_ARGUMENTS} Type arguments in generics.
+     *
+     * <p>Represents the type arguments inside a generic type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link java.util.List<String>}}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> java.util.List
+     *     |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *     |       |--LT -> <
+     *     |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *     |       |   `--IDENTIFIER -> String
+     *     |       `--GT -> >
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
      */
     public static final int TYPE_ARGUMENTS = JavadocCommentsLexer.TYPE_ARGUMENTS;
 
