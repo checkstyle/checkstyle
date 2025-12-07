@@ -2433,6 +2433,28 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.charAt.</message>
+    <lineContent>while (cleanIndex &lt; cleanLen &amp;&amp; clean.charAt(cleanIndex) == &apos; &apos;) {</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of String.substring.</message>
+    <lineContent>.append(clean.substring(cleanIndex))</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter arg1 of String.substring.</message>
     <lineContent>fileNameString.length() - extensionLength)</lineContent>
     <details>
@@ -2449,6 +2471,61 @@
     <details>
       found   : int
       required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg1 of StringBuilder.append.</message>
+    <lineContent>.append(clean, cleanIndex, actualBreak);</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg2 of StringBuilder.append.</message>
+    <lineContent>.append(clean, cleanIndex, actualBreak);</lineContent>
+    <details>
+      found   : int
+      required: @LTEqLengthOf(&quot;clean&quot;) int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg2 of StringBuilder.append.</message>
+    <lineContent>.append(clean, cleanIndex, actualBreak);</lineContent>
+    <details>
+      found   : int
+      required: @NonNegative int
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>array.access.unsafe.high.constant</specifier>
+    <message>Potentially unsafe array access: the constant index 0 could be larger than the array&apos;s bound</message>
+    <lineContent>final String simpleName = moduleInfo[0];</lineContent>
+    <details>
+      found   : String []
+      required: @MinLen(1) -- an array guaranteed to have at least 1 elements
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>array.access.unsafe.high.constant</specifier>
+    <message>Potentially unsafe array access: the constant index 1 could be larger than the array&apos;s bound</message>
+    <lineContent>final String packageName = moduleInfo[1];</lineContent>
+    <details>
+      found   : String []
+      required: @MinLen(2) -- an array guaranteed to have at least 2 elements
     </details>
   </checkerFrameworkError>
 
