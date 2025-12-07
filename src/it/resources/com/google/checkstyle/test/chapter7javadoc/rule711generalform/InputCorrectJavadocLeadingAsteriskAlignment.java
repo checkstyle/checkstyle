@@ -20,8 +20,9 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
   /** */ // violation "Summary javadoc is missing."
   private String str1;
 
+  // violation 2 lines below "Javadoc line should start with leading asterisk."
   /**
-    No leading asterisk present. False negative until #17778, Subproblem 2.
+    No leading asterisk present.
    */
   public InputCorrectJavadocLeadingAsteriskAlignment() {}
 
@@ -49,7 +50,8 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    */
   private void foo() {}
 
-  /** Opening tag should be alone on line. // False negative until #17778, Subproblem 1.
+  // violation below "Javadoc content should start from the next line."
+  /** Opening tag should be alone on line.
    * This method does nothing.
    */
   private void foo2() {}
@@ -57,6 +59,7 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
   /**
    * Javadoc for foo3.
    Closing tag should be alone on line. */ // False negative until #17778, Subproblem 3.
+  // violation above "Javadoc line should start with leading asterisk."
   private void foo3() {
     // foo2 code goes here
   }
@@ -66,19 +69,20 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
    * */ // False negative until #17778, Subproblem 3.
   private enum CorrectJavadocEnum {
     // violation 2 lines below "Summary javadoc is missing."
-    // False negative until #17778, Subproblem 2.
+    // violation 2 lines below "Javadoc line should start with leading asterisk."
     /**
 
      */
     ONE,
 
-    // False negative until #17778, Subproblem 2.
+    // violation 2 lines below "Javadoc line should start with leading asterisk."
     /**
      Not allowed. No leading asterisk present.
      */
     TWO,
 
-    // False negative until #17778, Subproblem 1 & 2.
+    // violation 2 lines below "Javadoc content should start from the next line."
+    // violation 2 lines below "Javadoc line should start with leading asterisk."
     /** Not allowed. Opening javadoc tag should be alone on line.
 
      */
@@ -89,7 +93,8 @@ public class InputCorrectJavadocLeadingAsteriskAlignment {
      * Not allowed. Closing javadoc tag should be alone on line. */
     FOUR,
 
-    // violation below "Summary javadoc is missing."
+    // violation 2 lines below "Summary javadoc is missing."
+    // violation 2 lines below "Javadoc line should start with leading asterisk."
     /**
 
      */
