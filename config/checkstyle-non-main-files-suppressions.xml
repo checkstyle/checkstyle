@@ -323,17 +323,69 @@
   <suppress id="propertiesMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
 
-  <!-- no since in module by design -->
+  <!-- Index templates don't need since macro by design -->
+  <suppress id="sinceMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="sinceMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Root checks template doesn't need since macro by design -->
   <suppress id="sinceMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
-  <!-- no description in module by design -->
+  <!-- Category overview pages don't need since macro by design -->
+  <suppress id="sinceMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+
+  <!-- Index templates don't need description macro by design -->
+  <suppress id="descriptionMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="descriptionMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Root checks template doesn't need description macro by design -->
   <suppress id="descriptionMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
-  <!-- no example in module by design -->
+  <!-- Category overview pages don't need description macro by design -->
+  <suppress id="descriptionMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+
+  <!-- Index templates don't need example macro by design -->
+  <suppress id="exampleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="exampleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Root checks template doesn't need example macro by design -->
   <suppress id="exampleMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
-  <!-- no parent in module by design -->
+  <!-- Category overview pages don't need example macro by design -->
+  <suppress id="exampleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+
+  <!-- Index templates don't need parent module macro by design -->
+  <suppress id="parentModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="parentModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Root checks template doesn't need parent module macro by design -->
   <suppress id="parentModuleMacroMustExist"
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
+  <!-- Category overview pages don't need parent module macro by design -->
+  <suppress id="parentModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
 
+  <!-- Index templates don't need properties macro by design -->
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Category overview pages don't need properties macro by design -->
+  <suppress id="propertiesMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
+
+  <!-- Index templates don't need violation messages macro by design -->
+  <suppress id="violationMessagesModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]index\.xml\.template"/>
+  <suppress id="violationMessagesModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+[\\/]index\.xml\.template"/>
+  <!-- Category overview pages don't need violation messages macro by design -->
+  <suppress id="violationMessagesModuleMacroMustExist"
+            files="src[\\/]site[\\/]xdoc[\\/]checks[\\/][a-z]+\.xml"/>
 </suppressions>
