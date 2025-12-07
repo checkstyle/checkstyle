@@ -128,21 +128,23 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.INDEX_OP,
+            TokenTypes.LBRACK,
+            TokenTypes.RBRACK,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        // final int type = ast.getType();
+        final int type = ast.getType();
 
-        // if (type == TokenTypes.LBRACK) {
-        //     processLeftBracket(ast, line);
-        //     return;
-        // } else if (type == TokenTypes.RBRACK) {
-        //     processRightBracket(ast, line);
-        //     return;
-        // }
+        if (type == TokenTypes.LBRACK) {
+            processLeftBracket(ast, line);
+            return;
+        } else if (type == TokenTypes.RBRACK) {
+            processRightBracket(ast, line);
+            return;
+        }
 
         final DetailAST leftBracket = ast.findFirstToken(TokenTypes.LBRACK);
         final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
