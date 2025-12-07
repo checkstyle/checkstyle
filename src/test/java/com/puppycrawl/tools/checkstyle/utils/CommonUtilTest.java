@@ -36,17 +36,22 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Dictionary;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Project;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
@@ -54,6 +59,8 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     /** After appending to path produces equivalent, but denormalized path. */
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -600,6 +607,52 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                     .hasMessageThat()
                             .isEqualTo("Unable to find: " + fileName);
         }
+    }
+
+    @Test
+    public void testBasedirPathMismatchExceptionMessage() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+        antTask.setConfig(getPath("InputCommonUtilTestConfigBasedirMismatch.xml"));
+
+        final File testFile = Files.createFile(
+            temporaryFolder.toPath().resolve("TestBasedirMismatch.java"))
+            .toFile();
+
+        antTask.setFile(testFile);
+
+        final BuildException ex = getExpectedThrowable(
+            BuildException.class,
+            antTask::execute,
+            "BuildException is expected");
+
+        final IllegalStateException relativizeException = findRelativizePathException(ex);
+        final String message = relativizeException.getMessage();
+
+        assertWithMessage("Exception message should mention failed relativization")
+            .that(message)
+            .contains("Failed to relativize path");
+
+        assertWithMessage("Exception message should mention base directory")
+            .that(message)
+            .contains("base directory");
+
+        assertWithMessage("Exception message should contain the file path")
+            .that(message)
+            .contains(testFile.getAbsolutePath());
+    }
+
+    private static IllegalStateException findRelativizePathException(Throwable throwable) {
+        Throwable current = throwable;
+        while (current != null) {
+            if (current instanceof IllegalStateException
+                    && current.getCause() instanceof IllegalArgumentException) {
+                return (IllegalStateException) current;
+            }
+            current = current.getCause();
+        }
+        throw new AssertionError(
+            "IllegalStateException from CommonUtil.relativizePath not found in cause chain");
     }
 
     private static final class TestCloseable implements Closeable {
