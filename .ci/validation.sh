@@ -140,7 +140,7 @@ test)
   echo "Listing all contents of the local maven repo":
   ls -R "$MAVEN_CACHE_FOLDER" || echo "Cannot list maven cache folder"
   echo "Testing"
-  ./mvnw -e clean integration-test failsafe:verify \
+  ./mvnw -e -o clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
