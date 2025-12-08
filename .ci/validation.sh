@@ -133,8 +133,14 @@ pr-age)
   ;;
 
 test)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-  -DargLine='-Xms1g -Xmx2g'
+  echo "Getting repo_path"
+  repo_path="/home/vsts/work/1/.m2/repository"
+  echo "repo_path=${repo_path}"
+  echo "Checking contents of repo_path"
+  ls -ld "$repo_path" || echo "repo_path does not exist (yet)"
+  echo "Testing"
+  ./mvnw -e clean integration-test failsafe:verify \
+    -Dsurefire.options='-Xms1g -Xmx2g'
   ;;
 
 test-de)
