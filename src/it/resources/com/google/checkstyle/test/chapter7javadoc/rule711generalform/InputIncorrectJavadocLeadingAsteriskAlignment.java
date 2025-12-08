@@ -59,8 +59,8 @@ public class InputIncorrectJavadocLeadingAsteriskAlignment {
     * Inner Class. */
   // violation above 'Leading asterisk has .* indentation .* 5, expected is 4.'
   private static class Inner {
-    // No leading asterisk present. False-negative until #17778, Subproblem 2
-    // violation below "Summary javadoc is missing."
+    // violation 2 lines below "Summary javadoc is missing."
+    // violation 2 lines below "Javadoc line should start with leading asterisk."
     /**
 
         */
