@@ -133,7 +133,24 @@ pr-age)
   ;;
 
 test)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  echo "MAVEN_OPTS: $MAVEN_OPTS"
+  echo "SKIP_CACHE: $SKIP_CACHE"
+  echo "Checking if Maven cache directory exists:"
+  if [ -d "$MAVEN_CACHE_FOLDER" ]; then
+    echo "Cache directory exists: $MAVEN_CACHE_FOLDER"
+  else
+    echo "Cache directory does NOT exist."
+  fi
+  echo "Checking which local repo Maven is using:"
+  ./mvnw -q help:evaluate -Dexpression=settings.localRepository -DforceStdout
+  echo "Listing contents of Maven cache directory:"
+  ls -la /home/vsts/.m2 || true
+  ls -la /home/vsts/.m2/repository || true
+  ls -la /home/vsts/.m2/wrappers || true
+  echo "Listing first few files in Maven cache directory recursively:"
+  ls -R "$MAVEN_CACHE_FOLDER" | head -c 500 || true
+  echo "Testing"
+  ./mvnw -e clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
