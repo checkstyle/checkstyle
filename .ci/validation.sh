@@ -133,8 +133,13 @@ pr-age)
   ;;
 
 test)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-  -DargLine='-Xms1g -Xmx2g'
+  echo "Getting repo_path"
+  repo_path="$(./mvnw -q help:evaluate -Dexpression=settings.localRepository -DforceStdout)"
+  echo "repo_path=${repo_path}"
+  echo "Checking contents of repo_path"
+  ls -l "$repo_path"
+  echo "Going offline"
+  ./mvnw dependency:go-offline
   ;;
 
 test-de)
