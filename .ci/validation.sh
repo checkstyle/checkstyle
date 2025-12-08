@@ -139,8 +139,11 @@ test)
   ./mvnw -q help:evaluate -Dexpression=settings.localRepository -DforceStdout
   echo "Listing all contents of the local maven repo":
   ls -R "$MAVEN_CACHE_FOLDER" || echo "Cannot list maven cache folder"
+  echo "Last updated:"
+  cat "/home/vsts/work/1/.m2/repository/org/apache/maven/plugins/maven-antrun-plugin/3.2.0/maven-antrun-plugin-3.2.0.jar.lastUpdated"
+  cat "/home/vsts/work/1/.m2/repository/org/apache/maven/plugins/maven-antrun-plugin/3.2.0/maven-antrun-plugin-3.2.0.pom.lastUpdated"
   echo "Testing"
-  ./mvnw -e clean integration-test failsafe:verify \
+  ./mvnw -e -o clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
