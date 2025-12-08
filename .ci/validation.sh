@@ -133,7 +133,7 @@ pr-age)
   ;;
 
 test)
-  ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
+  ./mvnw -e clean integration-test failsafe:verify \
   -DargLine='-Xms1g -Xmx2g'
   ;;
 
