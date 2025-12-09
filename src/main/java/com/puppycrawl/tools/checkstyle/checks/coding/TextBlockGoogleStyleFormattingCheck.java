@@ -165,8 +165,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     private static boolean quotesArePrecededWithComma(DetailAST openingQuotes) {
         final DetailAST expression = openingQuotes.getParent();
-        return expression.getType() == TokenTypes.EXPR
-                && expression.getPreviousSibling() != null
+        return expression.getPreviousSibling() != null
                 && TokenUtil.areOnSameLine(openingQuotes, expression.getPreviousSibling());
     }
 
@@ -179,10 +178,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
     private static boolean closingQuotesAreAloneOnTheLine(DetailAST closingQuotes) {
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
-        int index = text.length() - 1;
-        while (text.charAt(index) == ' ') {
-            index--;
-        }
+        final int index = text.length() - 1;
         return Character.isWhitespace(text.charAt(index));
     }
 }
