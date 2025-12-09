@@ -108,10 +108,10 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Open square bracket literal. */
-    private static final String OPEN_BRACKET = "[";
+    private static final String LEFT_BRACKET = "[";
 
     /** Close square bracket literal. */
-    private static final String CLOSE_BRACKET = "]";
+    private static final String RIGHT_BRACKET = "]";
 
     @Override
     public int[] getDefaultTokens() {
@@ -128,8 +128,6 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.ARRAY_DECLARATOR,
             TokenTypes.INDEX_OP,
-            TokenTypes.LBRACK,
-            TokenTypes.RBRACK,
         };
     }
 
@@ -138,30 +136,26 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
         final int type = ast.getType();
 
-        if (type == TokenTypes.LBRACK) {
+        if (type == TokenTypes.ARRAY_DECLARATOR || type == TokenTypes.INDEX_OP) {
+            // For ARRAY_DECLARATOR and INDEX_OP, the token itself represents the '['
+            // So we check whitespace BEFORE the token (which is where '[' appears)
             processLeftBracket(ast, line);
-            return;
-        } else if (type == TokenTypes.RBRACK) {
-            processRightBracket(ast, line);
-            return;
-        }
-
-        final DetailAST leftBracket = ast.findFirstToken(TokenTypes.LBRACK);
-        final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
-
-        if (leftBracket != null) {
-            processLeftBracket(leftBracket, line);
-        }
-
-        if (rightBracket != null) {
-            processRightBracket(rightBracket, line);
+            
+            // Find the RBRACK child and process it
+            final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
+            if (rightBracket != null) {
+                final int[] rightBracketLine = getLineCodePoints(rightBracket.getLineNo() - 1);
+                processRightBracket(rightBracket, rightBracketLine);
+            }
         }
     }
 
     /**
      * Checks the left square bracket for whitespace violations.
+     * For ARRAY_DECLARATOR and INDEX_OP tokens, this checks whitespace
+     * BEFORE and AFTER the token position (which represents the '[').
      *
-     * @param leftBracket the left bracket token
+     * @param leftBracket the ARRAY_DECLARATOR or INDEX_OP token (represents '[')
      * @param line the unicode code points array of the line
      */
     private void processLeftBracket(DetailAST leftBracket, int[] line) {
@@ -171,12 +165,12 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
 
         // Check if preceded by whitespace
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
-            log(leftBracket, MSG_WS_PRECEDED, OPEN_BRACKET);
+            log(leftBracket, MSG_WS_PRECEDED, LEFT_BRACKET);
         }
 
         // Check if followed by whitespace
         if (after < line.length && CommonUtil.isCodePointWhitespace(line, after)) {
-            log(leftBracket, MSG_WS_FOLLOWED, OPEN_BRACKET);
+            log(leftBracket, MSG_WS_FOLLOWED, LEFT_BRACKET);
         }
     }
 
@@ -193,23 +187,25 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
 
         // Check if preceded by whitespace
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
-            log(rightBracket, MSG_WS_PRECEDED, CLOSE_BRACKET);
+            log(rightBracket, MSG_WS_PRECEDED, RIGHT_BRACKET);
         }
 
         // Check if it should be followed by whitespace
         if (after < line.length) {
-            final char charAfter = Character.toChars(line[after])[0];
-            final boolean hasWhitespace = Character.isWhitespace(charAfter);
-            final boolean isValidWithoutWhitespace =
-                isCharacterValidAfterRightBracket(charAfter, line, after);
+            final boolean hasWhitespace = CommonUtil.isCodePointWhitespace(line, after);
+            final int charIdxToCheck = hasWhitespace ? after + 1 : after;
+            
+            if (charIdxToCheck < line.length) {
+                final int codePoint = line[charIdxToCheck];
 
-            // If character is valid without whitespace but has it, report violation
-            if (isValidWithoutWhitespace && hasWhitespace) {
-                log(rightBracket, MSG_WS_FOLLOWED, CLOSE_BRACKET);
-            }
-            // If character requires whitespace but doesn't have it, report violation
-            else if (!isValidWithoutWhitespace && !hasWhitespace) {
-                log(rightBracket, MSG_WS_NOT_FOLLOWED, CLOSE_BRACKET);
+                final boolean isValidWithoutWhitespace =
+                    isCharacterValidAfterRightBracket(codePoint, line, charIdxToCheck);
+
+                if (hasWhitespace && isValidWithoutWhitespace) {
+                    log(rightBracket, MSG_WS_FOLLOWED, RIGHT_BRACKET);
+                } else if (!hasWhitespace && !isValidWithoutWhitespace) {
+                    log(rightBracket, MSG_WS_NOT_FOLLOWED, RIGHT_BRACKET);
+                }
             }
         }
     }
@@ -218,21 +214,27 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * Checks whether the given character is valid to be right after a right bracket
      * without requiring whitespace.
      *
-     * @param charAfter character to check
+     * @param codePoint code point to check
      * @param line the unicode code points array of the line
-     * @param position the position of charAfter in the line
+     * @param position the position of the code point in the line
      * @return true if the character is valid after ']' without whitespace
      */
-    private static boolean isCharacterValidAfterRightBracket(char charAfter, int[] line,
+    private static boolean isCharacterValidAfterRightBracket(int codePoint, int[] line,
                                                                int position) {
-        if (charAfter == '['     // another bracket: int[][]
-            || charAfter == ']'  // closing bracket: x[arr[i]]
-            || charAfter == '.'  // member access: arr[i].length
-            || charAfter == ','  // comma: arr[i], arr[j]
-            || charAfter == ';'  // semicolon: arr[i];
-            || charAfter == ')'  // right paren: (arr[i])
-            || charAfter == '}'  // right brace: {arr[i]}
-            || charAfter == ':') { // colon: for (int x : arr[i])
+        if (!Character.isBmpCodePoint(codePoint)) {
+            return false;
+        }
+
+        final char charAfter = (char) codePoint;
+
+        // Characters that are always valid without whitespace after ']'
+        if (charAfter == '['        // another bracket: int[][]
+            || charAfter == ']'     // closing bracket: x[arr[i]]
+            || charAfter == '.'     // member access: arr[i].length
+            || charAfter == ','     // comma: arr[i], arr[j]
+            || charAfter == ';'     // semicolon: arr[i];
+            || charAfter == ')'     // right paren: (arr[i])
+            || charAfter == '}') {  // right brace: {arr[i]}
             return true;
         }
 
@@ -240,13 +242,14 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         if (charAfter == '+' || charAfter == '-') {
             final int nextPosition = position + 1;
             if (nextPosition < line.length) {
-                final char nextChar = Character.toChars(line[nextPosition])[0];
-                // If followed by the same operator, it's a postfix operator
-                if (nextChar == charAfter) {
-                    return true;
+                final int nextCodePoint = line[nextPosition];
+                if (Character.isBmpCodePoint(nextCodePoint)) {
+                    final char nextChar = (char) nextCodePoint;
+                    if (nextChar == charAfter) {
+                        return true;
+                    }
                 }
             }
-            // Single + or - is a binary operator, requires whitespace
             return false;
         }
 
