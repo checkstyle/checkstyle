@@ -242,6 +242,111 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
     public void innerMethod2() {} // NOT counted towards Example3
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to use separate maximums for private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPrivate" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example1
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example1
+    public void innerMethod2() {} // NOT counted towards Example1
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to use separate maximums for package-private methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPackage" value="0"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </code></pre></div><hr class="example-separator"/>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 { // violation, 'Number of package methods is 1 (max allowed is 0)'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example1
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example1
+    public void innerMethod2() {} // NOT counted towards Example1
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to use separate maximums for protected methods:
+        </p>
+<div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxProtected" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </code></pre></div><hr class="example-separator"/>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 { // no violation, 'there are no protected methods in this class'
+
+  public void outerMethod1(int i) {}
+  public void outerMethod2() {}
+  public void outerMethod3(String str) {}
+
+  private void outerMethod4() {
+    Runnable r = (new Runnable() {
+      public void run() {} // NOT counted towards Example1
+    });
+  }
+
+  private void outerMethod5(int i) {}
+  void outerMethod6(int i, int j) {}
+
+  public static class InnerExample{
+    public void innerMethod1() {} // NOT counted towards Example1
+    public void innerMethod2() {} // NOT counted towards Example1
+  }
+}
 </code></pre></div>
       </subsection>
 
