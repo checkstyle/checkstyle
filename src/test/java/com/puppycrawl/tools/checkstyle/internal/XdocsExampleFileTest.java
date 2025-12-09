@@ -67,7 +67,6 @@ public class XdocsExampleFileTest {
                     "arrayInitIndent",
                     "braceAdjustment"
             )),
-            Map.entry("MethodCountCheck", Set.of("maxPrivate", "maxPackage", "maxProtected")),
             Map.entry("ClassMemberImpliedModifierCheck", Set.of(
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
