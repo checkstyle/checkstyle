@@ -210,6 +210,44 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
+no-error-kafka)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  checkout_from "https://github.com/apache/kafka.git"
+  cd .ci-temp/kafka/
+  cat >> customConfig.gradle<< EOF
+allprojects {
+    repositories {
+        mavenLocal()
+    }
+    gradle.projectsEvaluated {
+        tasks.withType(Checkstyle) {
+            classpath = files()
+            maxHeapSize = "512m"
+        }
+    }
+}
+EOF
+  mapfile -t tasks < <(
+    ./gradlew checkstyleMain checkstyleTest \
+      --task-graph \
+      -PcheckstyleVersion="${CS_POM_VERSION}" \
+      -I customConfig.gradle \
+      | grep -E 'checkstyle(Main|Test)' \
+      | grep -Eo ':(.+:)+(checkstyleMain|checkstyleTest)'
+  )
+  for task in "${tasks[@]}"
+  do
+    ./gradlew "${task}" \
+      -PcheckstyleVersion="${CS_POM_VERSION}" \
+      -I customConfig.gradle || true
+  done
+  cd ..
+  removeFolderWithProtectedFiles kafka
+  ;;
+
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
