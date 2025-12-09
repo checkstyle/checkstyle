@@ -223,15 +223,27 @@ allprojects {
         mavenLocal()
     }
     gradle.projectsEvaluated {
-        tasks.withType(Checkstyle).configureEach { checkstyleTask ->
-            checkstyleTask.classpath = files()
+        tasks.withType(Checkstyle) {
+            classpath = files()
+            maxHeapSize = "512m"
         }
     }
 }
 EOF
-  ./gradlew checkstyleMain checkstyleTest \
-    -PcheckstyleVersion="${CS_POM_VERSION}" \
-    -I customConfig.gradle
+  mapfile -t tasks < <(
+    ./gradlew checkstyleMain checkstyleTest \
+      --task-graph \
+      -PcheckstyleVersion="${CS_POM_VERSION}" \
+      -I customConfig.gradle \
+      | grep -E 'checkstyle(Main|Test)' \
+      | grep -Eo ':(.+:)+(checkstyleMain|checkstyleTest)'
+  )
+  for task in "${tasks[@]}"
+  do
+    ./gradlew "${task}" \
+      -PcheckstyleVersion="${CS_POM_VERSION}" \
+      -I customConfig.gradle || true
+  done
   cd ..
   removeFolderWithProtectedFiles kafka
   ;;
