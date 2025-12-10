@@ -4619,7 +4619,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses</message>
+    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses, illegalModules</message>
     <lineContent>public IllegalImportCheck() {</lineContent>
   </checkerFrameworkError>
 
@@ -8870,6 +8870,17 @@
     <details>
       type of expression: @Initialized @Nullable String
       method return type: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Pattern.matcher.</message>
+    <lineContent>final String cleanedUrl = SPACE_PATTERN.matcher(originalUrl).replaceAll(&quot;&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
     </details>
   </checkerFrameworkError>
 

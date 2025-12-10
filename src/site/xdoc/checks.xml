@@ -115,7 +115,8 @@
               </a>
             </td>
             <td>
-              Checks the order of javadoc block-tags or javadoc tags.
+              Checks the order of <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+              javadoc block-tags or javadoc tags</a>.
             </td>
           </tr>
           <tr>
@@ -135,7 +136,8 @@
               </a>
             </td>
             <td>
-              Restricts using Unicode escapes (such as &#92;u221e).
+              Restricts using <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
+              Unicode escapes</a> (such as &#92;u221e).
             </td>
           </tr>
           <tr>
@@ -321,7 +323,8 @@
             </td>
             <td>
               Checks that the parts of a class, record, or interface declaration appear in the order
-              suggested by the Code Conventions for the Java Programming Language.
+              suggested by the <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+              Code Conventions for the Java Programming Language</a>.
             </td>
           </tr>
           <tr>
@@ -604,7 +607,7 @@
               </a>
             </td>
             <td>
-              Checks for imports from a set of illegal packages.
+              Checks for imports from a set of illegal packages and modules.
             </td>
           </tr>
           <tr>
@@ -769,8 +772,9 @@
               </a>
             </td>
             <td>
-              Checks that a javadoc block tag appears only at the beginning of a line, ignoring
-              leading asterisks and white space.
+              Checks that a <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
+              javadoc block tag</a> appears only at the beginning of a line, ignoring leading
+              asterisks and white space.
             </td>
           </tr>
           <tr>
@@ -791,7 +795,8 @@
               </a>
             </td>
             <td>
-              Checks the alignment of leading asterisks in a Javadoc comment.
+              Checks the alignment of <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+              leading asterisks</a> in a Javadoc comment.
             </td>
           </tr>
           <tr>
@@ -811,7 +816,8 @@
               </a>
             </td>
             <td>
-              Checks if the javadoc has leading asterisks on each line.
+              Checks if the javadoc has <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+              leading asterisks</a> on each line.
             </td>
           </tr>
           <tr>
@@ -952,8 +958,9 @@
               </a>
             </td>
             <td>
-              Checks that there are no &quot;magic numbers&quot; where a magic number is a numeric
-              literal that is not defined as a constant.
+              Checks that there are no <a href="https://en.wikipedia.org/wiki/Magic_number_%28programming%29">
+              &quot;magic numbers&quot;</a> where a magic number is a numeric literal that is not
+              defined as a constant.
             </td>
           </tr>
           <tr>
@@ -1131,8 +1138,9 @@
               </a>
             </td>
             <td>
-              Checks that the order of modifiers conforms to the suggestions in the Java Language
-              specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
+              Checks that the order of modifiers conforms to the suggestions in the <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
+              Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">
+              9.4</a>.
             </td>
           </tr>
           <tr>
@@ -1142,8 +1150,8 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against multiple header files that contain a
-              pattern for each line of the source header.
+              Checks the header of a source file against multiple header files that contain a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
+              pattern</a> for each line of the source header.
             </td>
           </tr>
           <tr>
@@ -1366,7 +1374,8 @@
               </a>
             </td>
             <td>
-              Checks the policy on how to wrap lines on operators.
+              Checks the policy on how to wrap lines on <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">
+              operators</a>.
             </td>
           </tr>
           <tr>
@@ -1519,7 +1528,8 @@
               </a>
             </td>
             <td>
-              Checks the number of record components in the header of a record definition.
+              Checks the number of record components in the <a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1">
+              header</a> of a record definition.
             </td>
           </tr>
           <tr>
@@ -1570,8 +1580,8 @@
               </a>
             </td>
             <td>
-              Checks the header of a source file against a header that contains a pattern for each
-              line of the source header.
+              Checks the header of a source file against a header that contains a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
+              pattern</a> for each line of the source header.
             </td>
           </tr>
           <tr>
@@ -1745,8 +1755,8 @@
               </a>
             </td>
             <td>
-              Checks that Javadoc summary sentence does not contain phrases that are not recommended
-              to use.
+              Checks that <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
+              Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
             </td>
           </tr>
           <tr>
