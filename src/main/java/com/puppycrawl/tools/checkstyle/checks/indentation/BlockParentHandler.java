@@ -131,7 +131,14 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     protected DetailAST getRightCurly() {
         final DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
-        return slist.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST result;
+        if (slist == null) {
+            result = null;
+        }
+        else {
+            result = slist.findFirstToken(TokenTypes.RCURLY);
+        }
+        return result;
     }
 
     /**
@@ -201,7 +208,15 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return the non-list child element
      */
     protected DetailAST getNonListChild() {
-        return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        final DetailAST result;
+        if (rparen == null) {
+            result = null;
+        }
+        else {
+            result = rparen.getNextSibling();
+        }
+        return result;
     }
 
     /**
@@ -264,7 +279,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         else {
             // NOTE: switch statements usually don't have curlies
             if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
-                checkChildren(listChild,
+                checkChildrenWithReturnHandling(listChild,
                         getCheckedChildren(),
                         getChildrenExpectedIndent(),
                         true,
@@ -314,6 +329,134 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
+    }
+
+    /**
+     * Check the indent level of the children of the specified parent
+     * expression, with special handling for return statements.
+     *
+     * @param parentNode         the parent whose children we are checking
+     * @param tokenTypes         the token types to check
+     * @param startIndent        the starting indent level
+     * @param firstLineMatches   whether or not the first line needs to match
+     * @param allowNesting       whether or not nested children are allowed
+     */
+    private void checkChildrenWithReturnHandling(DetailAST parentNode,
+                                       int[] tokenTypes,
+                                       IndentLevel startIndent,
+                                       boolean firstLineMatches,
+                                       boolean allowNesting) {
+        java.util.Arrays.sort(tokenTypes);
+        for (DetailAST child = parentNode.getFirstChild();
+                child != null;
+                child = child.getNextSibling()) {
+            if (java.util.Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
+                // Special handling for return statements with line-wrapped expressions
+                // Skip checkExpressionSubtree for return statements with multi-line expressions
+                // to avoid incorrect error messages
+                if (child.getType() == TokenTypes.LITERAL_RETURN) {
+                    final DetailAST expr = child.findFirstToken(TokenTypes.EXPR);
+                    if (expr != null) {
+                        final int returnLine = child.getLineNo();
+                        final int exprLastLine = getLastLine(expr);
+                        if (exprLastLine > returnLine) {
+                            // Multi-line expression - use our special handling
+                            checkReturnStatementExpression(child);
+                        }
+                        else {
+                            // Single-line expression - use normal check
+                            checkExpressionSubtree(child, startIndent,
+                                firstLineMatches, allowNesting);
+                        }
+                    }
+                    else {
+                        // No expression - use normal check
+                        checkExpressionSubtree(child, startIndent,
+                            firstLineMatches, allowNesting);
+                    }
+                }
+                else {
+                    checkExpressionSubtree(child, startIndent,
+                        firstLineMatches, allowNesting);
+                }
+            }
+        }
+    }
+
+    /**
+     * Check indentation for return statement expressions that span multiple lines.
+     *
+     * @param returnAst          the return statement AST
+     */
+    private void checkReturnStatementExpression(DetailAST returnAst) {
+        final DetailAST expr = returnAst.findFirstToken(TokenTypes.EXPR);
+        if (expr != null) {
+            final int returnLine = returnAst.getLineNo();
+            final int exprLastLine = getLastLine(expr);
+            // If the expression spans multiple lines, check line-wrapping indentation
+            if (exprLastLine > returnLine) {
+                final int returnIndent = getLineStart(returnAst);
+                // Get the last token of the expression to use as the end point
+                final DetailAST lastToken = getLastToken(expr);
+                // Pass returnAst as first node and lastToken as last node
+                // This will collect all nodes from the return statement through the expression
+                // Use ignoreFirstLine=true to skip checking the return line itself
+                checkWrappingIndentation(returnAst, lastToken,
+                        getLineWrappingIndent(), returnIndent, true);
+            }
+        }
+    }
+
+    /**
+     * Get the last token for given expression.
+     *
+     * @param ast      the expression to find the last token for
+     * @return          the last token of expression
+     */
+    private static DetailAST getLastToken(DetailAST ast) {
+        DetailAST last = ast;
+        DetailAST curNode = ast;
+        while (curNode != null) {
+            if (curNode.getLineNo() > last.getLineNo()
+                    || curNode.getLineNo() == last.getLineNo()
+                    && curNode.getColumnNo() > last.getColumnNo()) {
+                last = curNode;
+            }
+            DetailAST toVisit = curNode.getFirstChild();
+            while (toVisit == null && curNode != ast) {
+                toVisit = curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
+        return last;
+    }
+
+    /**
+     * Get the last line number for given expression.
+     *
+     * @param ast      the expression to find the last line for
+     * @return          the last line of expression
+     */
+    private static int getLastLine(DetailAST ast) {
+        int lastLine = ast.getLineNo();
+        DetailAST curNode = ast;
+        while (curNode != null) {
+            if (curNode.getLineNo() > lastLine) {
+                lastLine = curNode.getLineNo();
+            }
+            DetailAST toVisit = curNode.getFirstChild();
+            while (toVisit == null && curNode != ast) {
+                toVisit = curNode.getNextSibling();
+                if (toVisit == null) {
+                    curNode = curNode.getParent();
+                }
+            }
+            curNode = toVisit;
+        }
+        return lastLine;
     }
 
 }
