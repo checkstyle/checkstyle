@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
 
 import org.junit.jupiter.api.Test;
@@ -225,6 +226,61 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParser(
                 getPath("InputMissingOverrideGoodOverrideJava5.java"), expected);
+    }
+
+    /**
+     * This tests that record accessor methods without @Override are correctly flagged.
+     */
+    @Test
+    public void testBadOverrideFromRecord() throws Exception {
+
+        final String[] expected = {
+            "16:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD),
+            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD),
+            "40:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD),
+            "45:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingOverrideRecordAccessor.java"), expected);
+    }
+
+    /**
+     * This tests that record accessor methods with proper @Override are not flagged.
+     */
+    @Test
+    public void testGoodOverrideFromRecord() throws Exception {
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputMissingOverrideRecordAccessorGood.java"), expected);
+    }
+
+    /**
+     * This tests that record accessor methods with inheritDoc tag are still flagged
+     * even with javaFiveCompatibility=true, since records require Java 14+.
+     */
+    @Test
+    public void testRecordAccessorWithJavaFiveCompatibility() throws Exception {
+        final String[] expected = {
+            "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingOverrideRecordAccessorJava5.java"), expected);
+    }
+
+    /**
+     * This tests that record accessor methods implementing an interface are still flagged
+     * with javaFiveCompatibility=true and not skipped by the Java 5 compatibility logic.
+     */
+    @Test
+    public void testRecordImplementsInterfaceWithJavaFiveCompatibility() throws Exception {
+        final String[] expected = {
+            "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+        verifyWithInlineConfigParser(
+            getPath("InputMissingOverrideRecordImplementsJava5.java"), expected);
     }
 
     @Test
