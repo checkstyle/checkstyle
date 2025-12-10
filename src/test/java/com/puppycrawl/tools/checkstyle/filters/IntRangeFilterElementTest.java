@@ -86,7 +86,7 @@ public class IntRangeFilterElementTest {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilterElement.class)
                 .usingGetClass().report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

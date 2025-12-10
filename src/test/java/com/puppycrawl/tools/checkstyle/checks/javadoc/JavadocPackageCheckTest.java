@@ -123,7 +123,7 @@ public class JavadocPackageCheckTest
             assertWithMessage("CheckstyleException expected to be thrown").fail();
         }
         catch (CheckstyleException exc) {
-            assertWithMessage("Invalid exception message. Expected: " + expectedExceptionMessage)
+            assertWithMessage("Invalid exception message. Expected: %s", expectedExceptionMessage)
                 .that(exc.getMessage())
                 .isEqualTo(expectedExceptionMessage);
         }

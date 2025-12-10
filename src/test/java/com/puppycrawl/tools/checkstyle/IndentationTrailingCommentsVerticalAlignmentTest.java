@@ -91,8 +91,9 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                         expectedStartIndex = actualStartIndex;
                     }
                     else {
-                        assertWithMessage("Trailing comment alignment mismatch in file: "
-                                + testFile + " on line " + (idx + 1))
+                        assertWithMessage(
+                                "Trailing comment alignment mismatch in file: %s on line %s",
+                                testFile, idx + 1)
                                 .that(actualStartIndex)
                                 .isEqualTo(expectedStartIndex);
                     }

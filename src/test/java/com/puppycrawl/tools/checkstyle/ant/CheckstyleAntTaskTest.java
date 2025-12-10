@@ -974,8 +974,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final long actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
 
-        assertWithMessage("Logged time in '" + expectedMsg + "' "
-                              + "must be less than the testing time")
+        assertWithMessage("Logged time in '%s' must be less than the testing time", expectedMsg)
             .that(actualTime)
             .isAtMost(testingTime);
     }
