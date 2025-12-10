@@ -131,20 +131,13 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int type = ast.getType();
-
-        if (type == TokenTypes.ARRAY_DECLARATOR || type == TokenTypes.INDEX_OP) {
-            // For ARRAY_DECLARATOR and INDEX_OP, the token itself represents the '['
-            // So we check whitespace BEFORE the token (which is where '[' appears)
-            processLeftBracket(ast, line);
-            
-            // Find the RBRACK child and process it
-            final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
-            if (rightBracket != null) {
-                final int[] rightBracketLine = getLineCodePoints(rightBracket.getLineNo() - 1);
-                processRightBracket(rightBracket, rightBracketLine);
-            }
-        }
+        
+        processLeftBracket(ast, line);
+        
+        // Find the RBRACK child and process it
+        final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
+        final int[] rightBracketLine = getLineCodePoints(rightBracket.getLineNo() - 1);
+        processRightBracket(rightBracket, rightBracketLine);
     }
 
     /**
@@ -234,12 +227,10 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         // Check for postfix ++ or --
         if (charAfter == '+' || charAfter == '-') {
             final int nextPosition = position + 1;
-            if (nextPosition < line.length) {
-                final int nextCodePoint = line[nextPosition];
-                final char nextChar = (char) nextCodePoint;
-                if (nextChar == charAfter) {
-                    return true;
-                }
+            final int nextCodePoint = line[nextPosition];
+            final char nextChar = (char) nextCodePoint;
+            if (nextChar == charAfter) {
+                return true;
             }
             return false;
         }
