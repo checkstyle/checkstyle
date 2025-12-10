@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class InputLocalVariableNameOneCharVarName {
-  /** some javadoc. */
+  /** Some javadoc. */
   public void fooMethod() {
     for (int i = 1; i < 10; i++) {
       // some code

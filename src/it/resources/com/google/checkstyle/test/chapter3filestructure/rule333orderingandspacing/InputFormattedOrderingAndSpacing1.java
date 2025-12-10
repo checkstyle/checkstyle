@@ -14,7 +14,7 @@ import javax.swing.*; // violation 'Using the '.*' form of import should be avoi
 
 /** Some javadoc. */
 public class InputFormattedOrderingAndSpacing1 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     // Use of static imports
     try {

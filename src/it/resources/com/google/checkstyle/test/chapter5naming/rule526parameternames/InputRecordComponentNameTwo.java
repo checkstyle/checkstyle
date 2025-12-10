@@ -3,7 +3,7 @@
 package com.google.checkstyle.test.chapter5naming.rule526parameternames;
 
 /**
- * some javadoc.
+ * Some javadoc.
  * Config:
  * format = "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"
  *

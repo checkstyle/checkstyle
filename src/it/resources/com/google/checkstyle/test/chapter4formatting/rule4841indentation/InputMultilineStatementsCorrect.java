@@ -2,10 +2,10 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some class. */
+/** Some class. */
 public class InputMultilineStatementsCorrect {
 
-  /** some test method. */
+  /** Some test method. */
   public void test1() {
     try {
       System.out.println("try0");

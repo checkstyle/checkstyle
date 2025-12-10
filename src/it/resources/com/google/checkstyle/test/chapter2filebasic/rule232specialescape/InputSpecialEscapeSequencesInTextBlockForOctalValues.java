@@ -40,7 +40,7 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void methodWithLiterals() {
     final String ref =
         """
