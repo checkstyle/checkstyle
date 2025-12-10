@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputCommentsIndentationInEmptyBlock {
 
   private void foo1() {
@@ -61,7 +61,7 @@ public class InputCommentsIndentationInEmptyBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo6() {
     try {
       /* foo */
@@ -71,7 +71,7 @@ public class InputCommentsIndentationInEmptyBlock {
     // violation 2 lines above '.* indentation should be the same level as line 70.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo7() {
     try {
       /* foo */

@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule489textblocks;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputTextBlocksGeneralForm {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static String textFun() {
 
     // opening quotes should be on new line below, ok until #17223
@@ -31,7 +31,7 @@ public class InputTextBlocksGeneralForm {
     // not vertically aligned with opening quotes above, ok until #17223
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String textFun2() {
 
     final String simpleScript2 =
@@ -58,7 +58,7 @@ public class InputTextBlocksGeneralForm {
     //   'not vertically aligned with opening quotes'
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String textFun3() {
 
     String s =
@@ -78,15 +78,15 @@ public class InputTextBlocksGeneralForm {
         """.charAt(0) + getName();
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data) {}
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data, int length) {}
 
 }

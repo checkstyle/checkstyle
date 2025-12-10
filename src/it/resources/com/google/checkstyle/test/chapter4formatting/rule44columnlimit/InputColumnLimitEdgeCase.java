@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputColumnLimitEdgeCase {
   void testMethod1() {
     String s3 =
@@ -19,7 +19,7 @@ public class InputColumnLimitEdgeCase {
         """;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   String getSampleTest() {
     return "String";
   }

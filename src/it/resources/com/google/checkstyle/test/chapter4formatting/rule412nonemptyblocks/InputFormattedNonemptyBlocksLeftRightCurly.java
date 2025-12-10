@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
 class InputFormattedNonemptyBlocksLeftRightCurly {
   /**
-   * summary.
+   * Summary.
    *
    * @return helper func *
    */
@@ -145,7 +145,7 @@ class WithArraysLeft2 {
 // violation below 'Top-level class InputRightCurlyOther22 has to reside in its own source file.'
 class InputRightCurlyOther22 {
   /**
-   * summary.
+   * Summary.
    *
    * @see test method *
    */
@@ -196,7 +196,7 @@ class InputRightCurlyOther22 {
     int x = 1;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public enum GreetingsEnum {
     HELLO,
     GOODBYE
