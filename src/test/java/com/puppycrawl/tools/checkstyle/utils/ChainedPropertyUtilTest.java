@@ -86,13 +86,12 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
         final Properties properties = loadProperties(propertiesFile);
         final String expected =
             ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE + "[property.not.found]";
-        final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
             getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
-        assertWithMessage(message)
+        assertWithMessage("Undefined property reference expected.")
             .that(exception)
             .hasMessageThat()
             .isEqualTo(expected);
@@ -104,13 +103,12 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
             new File(getPath("InputChainedPropertyUtilRecursiveUnresolvable.properties"));
         final Properties properties = loadProperties(propertiesFile);
         final String expected = ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE;
-        final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
             getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
-        assertWithMessage(message)
+        assertWithMessage("Undefined property reference expected.")
             .that(exception)
             .hasMessageThat()
             .contains(expected);

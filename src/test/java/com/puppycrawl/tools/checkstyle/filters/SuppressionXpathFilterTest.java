@@ -142,7 +142,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 .usingGetClass()
                 .withIgnoredFields("file", "optional", "configuration")
                 .suppress(Warning.NONFINAL_FIELDS).report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

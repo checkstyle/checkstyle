@@ -526,17 +526,17 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
                 getPackageLocation() + "/InputCommonUtilTest_resource.txt";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertWithMessage("URI is null for: " + filename)
+        assertWithMessage("URI is null for: %s", filename)
             .that(uri)
             .isNotNull();
         final String uriRelativeToPackage =
                 "com/puppycrawl/tools/checkstyle/utils/"
                         + getPackageLocation() + "/InputCommonUtilTest_resource.txt";
-        assertWithMessage("URI is relative to package " + uriRelativeToPackage)
+        assertWithMessage("URI is relative to package %s", uriRelativeToPackage)
             .that(uri.toASCIIString())
             .doesNotContain(uriRelativeToPackage);
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
-        assertWithMessage("Content mismatches for: " + uri.toASCIIString())
+        assertWithMessage("Content mismatches for: %s", uri.toASCIIString())
             .that(content)
             .startsWith("good");
     }

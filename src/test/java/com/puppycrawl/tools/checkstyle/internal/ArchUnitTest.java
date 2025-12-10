@@ -147,7 +147,7 @@ public class ArchUnitTest {
                 .noneMatch(description::startsWith);
         });
 
-        assertWithMessage("api package: " + classShouldNotDependOnUtilPackages.getDescription())
+        assertWithMessage("api package: %s", classShouldNotDependOnUtilPackages.getDescription())
             .that(filtered.getFailureReport().getDetails())
             .isEmpty();
     }
