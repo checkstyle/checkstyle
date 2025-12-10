@@ -206,6 +206,22 @@ public class InputArrayBracketNoWhitespaceDefault {
         }
     }
 
+    // ========== TESTS FOR MUTILINE ARRAY ACCESS (NOT EXPECTING VIOLATIONS) ==========
+
+    void testMultilineArrayAccess() {
+        int[] arr = new int
+[5];
+
+        int z = arr[1
+];
+        int a = arr[
+        1];
+        int b = arr[0]
+        ;
+        int x[] 
+        ;
+    }
+
     // ========== RIGHT BRACKET FOLLOWED BY POSTFIX OPERATORS ==========
 
     void testPostfixOperators() {
