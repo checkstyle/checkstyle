@@ -210,6 +210,30 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
+no-error-kafka)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo "CS_version: ${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  echo "Checkout target sources ..."
+  # until https://github.com/checkstyle/checkstyle/issues/18272
+  checkout_from "https://github.com/dejan2609/kafka.git"
+  cd .ci-temp/kafka/
+  git fetch --depth 1 origin KAFKA-19809:KAFKA-19809
+  git checkout KAFKA-19809
+  cat >> customConfig.gradle<< EOF
+allprojects {
+    repositories {
+        mavenLocal()
+    }
+}
+EOF
+  ./gradlew checkstyleMain checkstyleTest \
+    -I customConfig.gradle \
+    -PcheckstyleVersion="${CS_POM_VERSION}"
+  cd ..
+  removeFolderWithProtectedFiles kafka
+  ;;
+
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"

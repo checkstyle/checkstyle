@@ -22,6 +22,7 @@ aggregators
 allchecks
 allclasses
 allowlegacy
+allprojects
 alot
 alundblad
 amazonaws
@@ -282,6 +283,7 @@ defau
 defaultcomeslast
 defaultlabelpresence
 defaultlogger
+dejan
 delims
 DENORMALIZER
 Depedency
