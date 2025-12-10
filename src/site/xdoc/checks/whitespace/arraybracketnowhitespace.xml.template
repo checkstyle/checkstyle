@@ -18,15 +18,6 @@
         </macro>
       </subsection>
 
-      <subsection name="Properties" id="ArrayBracketNoWhitespace_Properties">
-        <div class="wrapper">
-          <macro name="properties">
-            <param name="modulePath"
-                   value="src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ArrayBracketNoWhitespaceCheck.java"/>
-          </macro>
-        </div>
-      </subsection>
-
       <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">
         <p id="Example1-config">
           To configure the check:
