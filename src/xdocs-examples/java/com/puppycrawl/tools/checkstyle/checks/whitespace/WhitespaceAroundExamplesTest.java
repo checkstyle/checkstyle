@@ -157,4 +157,13 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
+
+    @Test
+    public void testExample11() throws Exception {
+        final String[] expected =
+                com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+    }
+
 }
