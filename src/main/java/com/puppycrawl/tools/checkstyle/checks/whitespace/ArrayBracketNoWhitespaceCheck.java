@@ -130,14 +130,11 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        
-        processLeftBracket(ast, line);
-        
+        processLeftBracket(ast);
+
         // Find the RBRACK child and process it
         final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
-        final int[] rightBracketLine = getLineCodePoints(rightBracket.getLineNo() - 1);
-        processRightBracket(rightBracket, rightBracketLine);
+        processRightBracket(rightBracket);
     }
 
     /**
@@ -146,9 +143,9 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * BEFORE and AFTER the token position (which represents the '[').
      *
      * @param leftBracket the ARRAY_DECLARATOR or INDEX_OP token (represents '[')
-     * @param line the unicode code points array of the line
      */
-    private void processLeftBracket(DetailAST leftBracket, int[] line) {
+    private void processLeftBracket(DetailAST leftBracket) {
+        final int[] line = getLineCodePoints(leftBracket.getLineNo() - 1);
         final int columnNo = leftBracket.getColumnNo();
         final int before = columnNo - 1;
         final int after = columnNo + 1;
@@ -168,9 +165,9 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * Checks the right square bracket for whitespace violations.
      *
      * @param rightBracket the right bracket token
-     * @param line the unicode code points array of the line
      */
-    private void processRightBracket(DetailAST rightBracket, int[] line) {
+    private void processRightBracket(DetailAST rightBracket) {
+        final int[] line = getLineCodePoints(rightBracket.getLineNo() - 1);
         final int columnNo = rightBracket.getColumnNo();
         final int before = columnNo - 1;
         final int after = columnNo + 1;
@@ -183,8 +180,14 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         // Check if it should be followed by whitespace
         if (after < line.length) {
             final boolean hasWhitespace = CommonUtil.isCodePointWhitespace(line, after);
-            final int charIdxToCheck = hasWhitespace ? after + 1 : after;
-            
+            final int charIdxToCheck;
+            if (hasWhitespace) {
+                charIdxToCheck = after + 1;
+            }
+            else {
+                charIdxToCheck = after;
+            }
+
             if (charIdxToCheck < line.length) {
                 final int codePoint = line[charIdxToCheck];
 
@@ -193,7 +196,8 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
 
                 if (hasWhitespace && isValidWithoutWhitespace) {
                     log(rightBracket, MSG_WS_FOLLOWED, RIGHT_BRACKET);
-                } else if (!hasWhitespace && !isValidWithoutWhitespace) {
+                }
+                else if (!hasWhitespace && !isValidWithoutWhitespace) {
                     log(rightBracket, MSG_WS_NOT_FOLLOWED, RIGHT_BRACKET);
                 }
             }
@@ -213,29 +217,48 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
                                                                int position) {
         final char charAfter = (char) codePoint;
 
-        // Characters that are always valid without whitespace after ']'
-        if (charAfter == '['        // another bracket: int[][]
-            || charAfter == ']'     // closing bracket: x[arr[i]]
-            || charAfter == '.'     // member access: arr[i].length
-            || charAfter == ','     // comma: arr[i], arr[j]
-            || charAfter == ';'     // semicolon: arr[i];
-            || charAfter == ')'     // right paren: (arr[i])
-            || charAfter == '}') {  // right brace: {arr[i]}
-            return true;
-        }
+        return isAlwaysValidCharAfterRightBracket(charAfter)
+            || isMethodRefereceOrPostfixOperator(charAfter, line, position);
+    }
 
-        // Check for postfix ++ or --
-        if (charAfter == '+' || charAfter == '-') {
+    /**
+     * Checks if the character after ']' is always allowed without whitespace.
+     *
+     * @param charAfter the character to check
+     * @return true if always allowed without whitespace
+     */
+    private static boolean isAlwaysValidCharAfterRightBracket(char charAfter) {
+        return charAfter == '['
+            || charAfter == ']'
+            || charAfter == '.'
+            || charAfter == ','
+            || charAfter == ';'
+            || charAfter == ')';
+    }
+
+    /**
+     * Checks if the character after ']' starts a valid postfix operator (++ or --)
+     * or method reference operator (::).
+     *
+     * @param charAfter the character to check
+     * @param line the unicode code points array of the line
+     * @param position the position of the code point in the line
+     * @return true if a valid postfix operator exists
+     */
+    private static boolean isMethodRefereceOrPostfixOperator(
+        char charAfter, int[] line, int position) {
+        boolean isMethodRefereceOrPostfixOperator = false;
+        if (charAfter == '+' || charAfter == '-' || charAfter == ':') {
             final int nextPosition = position + 1;
             final int nextCodePoint = line[nextPosition];
             final char nextChar = (char) nextCodePoint;
+
             if (nextChar == charAfter) {
-                return true;
+                isMethodRefereceOrPostfixOperator = true;
             }
-            return false;
         }
 
-        return false;
+        return isMethodRefereceOrPostfixOperator;
     }
 
 }
