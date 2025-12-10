@@ -295,7 +295,7 @@ public class InputArrayBracketNoWhitespaceDefault {
         int[] arr2 = {arr[0], arr[1]};
 
         // wrong cases: space before }
-        int[] arr3 = {arr[0] , arr[1]}; // violation ''\]' is followed by whitespace.'
+        int[] arr3 = {arr[0], arr[1] }; // violation ''\]' is followed by whitespace.'
 
         // Nested brackets - correct
         int[][] matrix = new int[5][5];
