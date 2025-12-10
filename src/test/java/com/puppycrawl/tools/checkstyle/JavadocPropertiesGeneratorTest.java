@@ -263,7 +263,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .that(systemOut.getCapturedData())
             .isEqualTo("");
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '" + DESTFILE + "' must be empty")
+        assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
     }
@@ -280,7 +280,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             .that(systemOut.getCapturedData())
             .isEqualTo("");
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '" + DESTFILE + "' must be empty")
+        assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
     }
@@ -310,7 +310,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                     .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '" + DESTFILE + "' must be empty")
+        assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
     }
@@ -328,7 +328,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 .isEqualTo("Unsupported inline tag LINK_INLINE_TAG");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '" + DESTFILE + "' must be empty")
+        assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
     }
@@ -346,7 +346,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 .isEqualTo("Unsupported child in the inline tag NEWLINE");
         }
         final long size = FileUtils.sizeOf(DESTFILE);
-        assertWithMessage("File '" + DESTFILE + "' must be empty")
+        assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
     }

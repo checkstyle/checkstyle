@@ -169,7 +169,7 @@ public class AllTestsTest {
                 final boolean skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
 
                 if (!skipFileNaming) {
-                    assertWithMessage("Resource must start with 'Input' or 'Expected': " + path)
+                    assertWithMessage("Resource must start with 'Input' or 'Expected': %s", path)
                             .that(fileName.startsWith("Input") || fileName.startsWith("Expected"))
                             .isTrue();
 
@@ -217,7 +217,7 @@ public class AllTestsTest {
 
         assertWithMessage("Resource must be named after a Test like 'InputMyCustomCase.java' "
                 + "and be in the sub-package of the test like 'mycustom' "
-                + "for test 'MyCustomCheckTest': " + path)
+                + "for test 'MyCustomCheckTest': %s", path)
                 .that(found)
                 .isTrue();
     }
@@ -257,7 +257,7 @@ public class AllTestsTest {
                     final List<String> classes = allTests.get(packge);
 
                     assertWithMessage("Test must be named after a production class "
-                               + "and must be in the same package of the production class: " + path)
+                        + "and must be in the same package of the production class: %s", path)
                             .that(classes)
                             .contains(fileName);
                 }
