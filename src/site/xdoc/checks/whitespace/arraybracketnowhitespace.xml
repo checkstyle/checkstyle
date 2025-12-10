@@ -81,20 +81,21 @@
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-    int array1[] ; // violation, space before ;
-    int array2[ ] = new int[ 5 ]; // 3 violations, space in [] and before ;
-    int[] array3 = new int[5 ]; // violation, space before ]
-    int array4 [] = new int [ 5 ] ; // 5 violations, space after variable name, in all []
-    int array5
-      [ ]
-      =
-      new int
-      [ 1 ] ; // violations, space in []
-    void method1(int param[ ]) { // violation, space in []
-    }
-    void method2() {
-        int arr [  ] = { 1, 2, 3 }; // violations, spaces in []
-    }
+  int array1[] ; // violation, space before ;
+  int array2[ ] = new int[ 5 ]; // 3 violations, space in [] and before ;
+  int[] array3 = new int[5 ]; // violation, space before ]
+  int array4 [] = new int [ 5 ] ;
+  // 5 violations, space after variable name, in all []
+  int array5
+    [ ]
+    =
+    new int
+    [ 1 ] ; // violations, space in []
+  void method1(int param[ ]) { // violation, space in []
+  }
+  void method2() {
+    int arr [  ] = { 1, 2, 3 }; // violations, spaces in []
+  }
 }
 </code></pre></div>
         <hr class="example-separator"/>
@@ -103,14 +104,14 @@ class Example1 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
-    int[] array1;
-    int[] array2 = new int[5];
-    int[] array3 = new int[]{1, 2, 3};
-    void method1(int[] param) {
-    }
-    void method2() {
-        int[] arr = { 1, 2, 3 };
-    }
+  int[] array1;
+  int[] array2 = new int[5];
+  int[] array3 = new int[]{1, 2, 3};
+  void method1(int[] param) {
+  }
+  void method2() {
+    int[] arr = { 1, 2, 3 };
+  }
 }
 </code></pre></div>
       </subsection>
