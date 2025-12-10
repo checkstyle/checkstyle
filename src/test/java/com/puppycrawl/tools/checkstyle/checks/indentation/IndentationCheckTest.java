@@ -369,6 +369,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturnStatementLineWrapping() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "10:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "11:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "18:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "19:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "20:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "25:25: " + getCheckMessage(MSG_ERROR, ".", 24, 16),
+            "26:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "33:25: " + getCheckMessage(MSG_ERROR, ".", 24, 16),
+            "34:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationReturnStatementLineWrapping.java"),
+                expected);
+    }
+
+    @Test
     public void testDifficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
