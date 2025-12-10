@@ -711,9 +711,29 @@ public final class JavadocCommentsTokenTypes {
     public static final int SYSTEM_PROPERTY_INLINE_TAG =
             JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG;
 
-    /**
-     * {@code {@literal}} inline tag.
-     */
+        /**
+         * {@code @literal} Javadoc inline tag.
+         *
+         * <p><b>Example:</b></p>
+         * <pre>{@code
+         * *  Example of literal inline tag {@literal <String>}
+         * }</pre>
+         *
+         * <p><b>Tree:</b></p>
+         * <pre>{@code
+         * JAVADOC_CONTENT -> JAVADOC_CONTENT
+         * |--LEADING_ASTERISK -> *
+         * |--TEXT ->  Example of literal inline tag 
+         * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+         *     `--LITERAL_INLINE_TAG -> LITERAL_INLINE_TAG
+         *         |--JAVADOC_INLINE_TAG_START -> {@
+         *         |--TAG_NAME -> literal
+         *         |--TEXT ->  <String>
+         *         `--JAVADOC_INLINE_TAG_END -> }
+         * }</pre>
+         *
+         * @see #JAVADOC_INLINE_TAG
+        */
     public static final int LITERAL_INLINE_TAG = JavadocCommentsLexer.LITERAL_INLINE_TAG;
 
     /**
