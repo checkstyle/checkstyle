@@ -807,7 +807,6 @@
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
             <exclusionPattern>java/io/File.*</exclusionPattern>
-            <exclusionPattern>java/nio/file/Paths.get:.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
