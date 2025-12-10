@@ -84,7 +84,7 @@ public class PackageObjectFactoryTest {
     public void testCtorNullLoaderException1() {
         try {
             final Object test = new PackageObjectFactory(new HashSet<>(), null);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -97,7 +97,7 @@ public class PackageObjectFactoryTest {
     public void testCtorNullLoaderException2() {
         try {
             final Object test = new PackageObjectFactory("test", null);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -111,7 +111,7 @@ public class PackageObjectFactoryTest {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
             final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -125,7 +125,7 @@ public class PackageObjectFactoryTest {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         try {
             final Object test = new PackageObjectFactory((String) null, classLoader);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -140,7 +140,7 @@ public class PackageObjectFactoryTest {
         try {
             final Object test = new PackageObjectFactory(Collections.singleton(null), classLoader,
                     TRY_IN_ALL_REGISTERED_PACKAGES);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")

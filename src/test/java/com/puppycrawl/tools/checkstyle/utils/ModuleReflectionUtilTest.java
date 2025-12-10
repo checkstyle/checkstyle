@@ -223,7 +223,7 @@ public class ModuleReflectionUtilTest {
      */
     private abstract static class AbstractInvalidClass extends AbstractAutomaticBean {
 
-        public abstract void method();
+        abstract void method();
 
     }
 
