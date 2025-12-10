@@ -173,7 +173,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             final List<Path> javaPaths = javaPathsStream.filter(Files::isRegularFile).toList();
 
             for (Path path : javaPaths) {
-                assertWithMessage(path + " is not a regular file")
+                assertWithMessage("%s is not a regular file", path)
                         .that(Files.isRegularFile(path))
                         .isTrue();
                 final String filename = path.toFile().getName();
@@ -183,19 +183,19 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
                 final Matcher matcher = pattern.matcher(filename);
                 assertWithMessage(
-                            "Invalid test file: " + filename + ", expected pattern: " + pattern)
+                            "Invalid test file: %s, expected pattern: %s", filename, pattern)
                         .that(matcher.matches())
                         .isTrue();
 
                 final String check = matcher.group(1);
-                assertWithMessage("Unknown check '" + check + "' in test file: " + filename)
+                assertWithMessage("Unknown check '%s' in test file: %s", check, filename)
                         .that(SIMPLE_CHECK_NAMES)
                         .contains(check);
 
                 assertWithMessage(
-                            "Check '" + check + "' is now compatible with SuppressionXpathFilter."
+                            "Check '%s' is now compatible with SuppressionXpathFilter."
                                 + " Please update the todo list in"
-                                + " XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
+                                + " XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES", check)
                         .that(INCOMPATIBLE_CHECK_NAMES.contains(check))
                         .isFalse();
                 compatibleChecks.add(check);
@@ -211,8 +211,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(compatibleChecks);
         allChecks.removeAll(INTERNAL_MODULES);
 
-        assertWithMessage("XpathRegressionTest is missing for [" + String.join(", ", allChecks)
-                + "]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter")
+        assertWithMessage("XpathRegressionTest is missing for [%s]. Please add them to src/it/java/org/checkstyle/suppressionxpathfilter", String.join(", ", allChecks))
                         .that(allChecks)
                         .isEmpty();
     }
@@ -225,11 +224,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
             for (Path dir : dirs) {
                 // input directory must be named in lower case
-                assertWithMessage(dir + " is not a directory")
+                assertWithMessage("%s is not a directory", dir)
                         .that(Files.isDirectory(dir))
                         .isTrue();
                 final String dirName = dir.toFile().getName();
-                assertWithMessage("Invalid directory name: " + dirName)
+                assertWithMessage("Invalid directory name: %s", dirName)
                         .that(ALLOWED_DIRECTORY_AND_CHECKS.containsKey(dirName)
                             || isDirNameModuleCategoryName(dirName, testDirs))
                         .isTrue();
@@ -237,8 +236,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 // input directory must be connected to an existing test
                 final String check = ALLOWED_DIRECTORY_AND_CHECKS.get(dirName);
                 final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertWithMessage("Input directory '" + dir
-                            + "' is not connected to Java test case: " + javaPath)
+                assertWithMessage("Input directory '%s' is not connected to Java test case: %s", dir, javaPath)
                         .that(Files.exists(javaPath)
                             || isDirNameModuleCategoryName(dirName, testDirs))
                         .isTrue();
@@ -263,14 +261,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
                     assertWithMessage(
-                              "Invalid input file '" + inputPath
-                              + "', expected pattern:" + pattern)
+                              "Invalid input file '%s', expected pattern:%s", inputPath, pattern)
                             .that(matcher.matches())
                             .isTrue();
 
                     final String remaining = matcher.group(1);
-                    assertWithMessage("Check name '" + check
-                                + "' should be included in input file: " + inputPath)
+                    assertWithMessage("Check name '%s' should be included in input file: %s", check, inputPath)
                             .that(remaining)
                             .startsWith(check);
                 }
