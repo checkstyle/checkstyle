@@ -60,26 +60,9 @@
           <code>ws.notFollowed</code>
         </li>
         <li>
-          <code>ws.notPreceded</code>
-        </li>
-        <li>
           <code>ws.preceded</code>
         </li>
         </ul>
-      </subsection>
-
-      <subsection name="Properties" id="ArrayBracketNoWhitespace_Properties">
-        <div class="wrapper">
-          <table>
-            <tr>
-              <th>name</th>
-              <th>description</th>
-              <th>type</th>
-              <th>default value</th>
-              <th>since</th>
-            </tr>
-          </table>
-        </div>
       </subsection>
 
       <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">

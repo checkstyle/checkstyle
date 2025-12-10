@@ -77,9 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code ws.notFollowed}
  * </li>
  * <li>
- * {@code ws.notPreceded}
- * </li>
- * <li>
  * {@code ws.preceded}
  * </li>
  * </ul>
@@ -221,10 +218,6 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      */
     private static boolean isCharacterValidAfterRightBracket(int codePoint, int[] line,
                                                                int position) {
-        if (!Character.isBmpCodePoint(codePoint)) {
-            return false;
-        }
-
         final char charAfter = (char) codePoint;
 
         // Characters that are always valid without whitespace after ']'
@@ -243,11 +236,9 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
             final int nextPosition = position + 1;
             if (nextPosition < line.length) {
                 final int nextCodePoint = line[nextPosition];
-                if (Character.isBmpCodePoint(nextCodePoint)) {
-                    final char nextChar = (char) nextCodePoint;
-                    if (nextChar == charAfter) {
-                        return true;
-                    }
+                final char nextChar = (char) nextCodePoint;
+                if (nextChar == charAfter) {
+                    return true;
                 }
             }
             return false;
