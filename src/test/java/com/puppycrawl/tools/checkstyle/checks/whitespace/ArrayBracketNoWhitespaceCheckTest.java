@@ -105,7 +105,7 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
             "289:23: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "290:33: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "291:21: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "298:28: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "298:36: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "305:32: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "305:34: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
             "309:40: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),

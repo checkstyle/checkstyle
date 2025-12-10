@@ -55,9 +55,6 @@
  &lt;code&gt;ws.notFollowed&lt;/code&gt;
  &lt;/li&gt;
  &lt;li&gt;
- &lt;code&gt;ws.notPreceded&lt;/code&gt;
- &lt;/li&gt;
- &lt;li&gt;
  &lt;code&gt;ws.preceded&lt;/code&gt;
  &lt;/li&gt;
  &lt;/ul&gt;</description>
