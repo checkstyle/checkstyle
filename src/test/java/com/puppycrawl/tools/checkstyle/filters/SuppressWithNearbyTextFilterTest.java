@@ -490,7 +490,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
         try {
             filter.accept(auditEvent);
-            assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
+            assertWithMessage("%s is expected", IllegalStateException.class.getSimpleName()).fail();
         }
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")

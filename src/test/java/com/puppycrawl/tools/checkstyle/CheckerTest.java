@@ -1645,12 +1645,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = "[ERROR] " + path + ":" + expected[i];
-                assertWithMessage("error message " + i)
+                assertWithMessage("error message %s", i)
                         .that(actual.get(i))
                         .isEqualTo(expectedResult);
             }
 
-            assertWithMessage("unexpected output: " + lnr.readLine())
+            assertWithMessage("unexpected output: %s", lnr.readLine())
                     .that(errs)
                     .isEqualTo(expected.length);
         }

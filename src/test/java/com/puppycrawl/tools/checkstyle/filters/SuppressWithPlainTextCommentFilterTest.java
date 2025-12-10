@@ -361,7 +361,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(suppressionClass).usingGetClass()
                 .report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }
@@ -615,7 +615,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
 
         try {
             filter.accept(auditEvent);
-            assertWithMessage(IllegalStateException.class.getSimpleName() + " is expected").fail();
+            assertWithMessage("%s is expected", IllegalStateException.class.getSimpleName()).fail();
         }
         catch (IllegalStateException exc) {
             assertWithMessage("Invalid exception message")

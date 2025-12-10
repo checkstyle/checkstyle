@@ -85,7 +85,7 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
-        assertWithMessage("Invalid name resolved: " + actual)
+        assertWithMessage("Invalid name resolved: %s", actual)
                 .that(actual)
                 .isEqualTo(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
     }
