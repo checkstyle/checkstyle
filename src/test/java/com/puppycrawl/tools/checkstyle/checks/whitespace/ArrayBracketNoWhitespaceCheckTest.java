@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_PRECEDED;
+import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,48 +83,48 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
             "179:28: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "195:22: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
             "205:28: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "221:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "222:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "223:22: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "224:22: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "231:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "232:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "252:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "253:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "254:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "255:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "256:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "257:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "258:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "259:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "260:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "270:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "271:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "272:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "273:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "274:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "289:23: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "290:33: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "291:21: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "298:36: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "305:32: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "305:34: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
-            "309:40: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "309:42: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
-            "335:29: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "335:31: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
-            "335:63: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
-            "335:65: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
-            "346:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
-            "358:30: " + getCheckMessage(MSG_WS_PRECEDED, "["),
-            "359:29: " + getCheckMessage(MSG_WS_FOLLOWED, "["),
-            "359:31: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
-            "373:25: " + getCheckMessage(MSG_WS_PRECEDED, "["),
-            "374:17: " + getCheckMessage(MSG_WS_PRECEDED, "["),
-            "388:25: " + getCheckMessage(MSG_WS_PRECEDED, "["),
-            "389:24: " + getCheckMessage(MSG_WS_FOLLOWED, "["),
-            "400:32: " + getCheckMessage(MSG_WS_PRECEDED, "["),
-            "401:35: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "237:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "238:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "239:22: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "240:22: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "247:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "248:14: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "268:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "269:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "270:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "271:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "272:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "273:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "274:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "275:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "276:27: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "286:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "287:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "288:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "289:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "290:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "305:23: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "306:33: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "307:21: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "314:36: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "321:32: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "321:34: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
+            "325:40: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "325:42: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
+            "351:29: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "351:31: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
+            "351:63: " + getCheckMessage(MSG_WS_FOLLOWED, "]"),
+            "351:65: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
+            "362:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "]"),
+            "374:30: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "375:29: " + getCheckMessage(MSG_WS_FOLLOWED, "["),
+            "375:31: " + getCheckMessage(MSG_WS_PRECEDED, "]"),
+            "389:25: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "390:17: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "404:25: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "405:24: " + getCheckMessage(MSG_WS_FOLLOWED, "["),
+            "416:32: " + getCheckMessage(MSG_WS_PRECEDED, "["),
+            "417:35: " + getCheckMessage(MSG_WS_PRECEDED, "["),
         };
         verifyWithInlineConfigParser(
             getPath("InputArrayBracketNoWhitespaceDefault.java"), expected);
@@ -197,5 +198,17 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
         };
         verifyWithInlineConfigParser(
             getPath("InputArrayBracketNoWhitespaceDeclarations.java"), expected);
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final ArrayBracketNoWhitespaceCheck check = new ArrayBracketNoWhitespaceCheck();
+        assertArrayEquals(check.getRequiredTokens(), check.getAcceptableTokens());
+    }
+
+    @Test
+    public void testGetDefaultTokens() {
+        final ArrayBracketNoWhitespaceCheck check = new ArrayBracketNoWhitespaceCheck();
+        assertArrayEquals(check.getRequiredTokens(), check.getDefaultTokens());
     }
 }
