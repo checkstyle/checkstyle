@@ -1116,7 +1116,35 @@ public final class JavadocCommentsTokenTypes {
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
     /**
-     * Value assigned to an attribute.
+     * {@code ATTRIBUTE_VALUE} Value assigned to an attribute.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <a href="example">text</a>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> a
+     * |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |       |--TEXT ->
+     * |   |       |--TAG_ATTR_NAME -> href
+     * |   |       |--EQUALS -> =
+     * |   |       `--ATTRIBUTE_VALUE -> "example"
+     * |   `--TAG_CLOSE -> >
+     * |--HTML_CONTENT -> HTML_CONTENT
+     * |   `--TEXT -> text
+     * `--HTML_TAG_END -> HTML_TAG_END
+     * |--TAG_OPEN -> <
+     * |--TAG_SLASH -> /
+     * |--TAG_NAME -> a
+     * `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTE
+     * @see #TAG_ATTR_NAME
      */
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
 
