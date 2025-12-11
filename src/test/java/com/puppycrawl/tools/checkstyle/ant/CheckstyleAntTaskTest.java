@@ -1029,6 +1029,23 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isGreaterThan(0L);
     }
 
+    @Test
+    public void testExceptionMessageContainsFileList() throws Exception {
+        final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
+        antTask.setConfig(getPath(CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final File file = new File(getPath(FLAWLESS_INPUT));
+        antTask.setFile(file);
+
+        final BuildException ex = getExpectedThrowable(
+                BuildException.class, antTask::execute, "BuildException is expected");
+
+        assertWithMessage("Exception message must contain the file name")
+                .that(ex.getMessage())
+                .contains(file.getName());
+    }
+
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setTofile(outputFile);
