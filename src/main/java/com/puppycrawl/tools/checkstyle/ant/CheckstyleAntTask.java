@@ -350,7 +350,7 @@ public class CheckstyleAntTask extends Task {
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
         catch (CheckstyleException exc) {
-            throw new BuildException("Unable to process files: " + files, exc);
+            throw new BuildException("Unable to process files: ", exc);
         }
         final int numWarnings = warningCounter.getCount();
         final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
