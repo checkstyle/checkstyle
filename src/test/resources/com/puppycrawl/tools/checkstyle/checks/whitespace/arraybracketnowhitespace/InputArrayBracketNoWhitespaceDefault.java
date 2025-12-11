@@ -5,6 +5,7 @@ ArrayBracketNoWhitespace
 package com.puppycrawl.tools.checkstyle.checks.whitespace.arraybracketnowhitespace;
 
 import java.util.function.IntUnaryOperator;
+import java.util.function.IntFunction;
 
 public class InputArrayBracketNoWhitespaceDefault {
     int[] good; int bad []; // violation ''\[' is preceded with whitespace.'
@@ -41,6 +42,7 @@ public class InputArrayBracketNoWhitespaceDefault {
         // 2 violations above:
         // ''\]' is followed by whitespace.'
         // ''\[' is preceded with whitespace.'
+        int[] arr = {1, 2};
         int x = m[arr[0] ][arr[0]];
         // 2 violations above:
         // ''\]' is followed by whitespace.'
@@ -99,7 +101,7 @@ public class InputArrayBracketNoWhitespaceDefault {
         int result7 = arr[0]<<2;
         int result8 = arr[0] <<2; // violation ''\]' is followed by whitespace.'
 
-        int result9 = arr[0]< 2; // violation ''\]' is not followed by whitespace'
+        boolean result9 = arr[0]< 2; // violation ''\]' is not followed by whitespace'
     }
 
     void testArrayInit() {
