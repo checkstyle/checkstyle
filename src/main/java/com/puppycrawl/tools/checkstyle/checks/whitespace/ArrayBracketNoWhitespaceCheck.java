@@ -140,7 +140,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     /**
      * Checks the left square bracket for whitespace violations.
      * For ARRAY_DECLARATOR and INDEX_OP tokens, this checks whitespace
-     * BEFORE and AFTER the token position (which represents the '[').
+     * BEFORE and AFTER the token position (which represents the {@code [}).
      *
      * @param leftBracket the ARRAY_DECLARATOR or INDEX_OP token (represents '[')
      */
@@ -211,7 +211,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * @param codePoint code point to check
      * @param line the unicode code points array of the line
      * @param position the position of the code point in the line
-     * @return true if the character is valid after ']' without whitespace
+     * @return true if the character is valid after {@code ]} without whitespace
      */
     private static boolean isCharacterValidAfterRightBracket(int codePoint, int[] line,
                                                                int position) {
@@ -223,7 +223,7 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the character after ']' is always allowed without whitespace.
+     * Checks if the character after {@code ]} is always allowed without whitespace.
      *
      * @param charAfter the character to check
      * @return true if always allowed without whitespace
@@ -238,8 +238,8 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the character after ']' starts a valid postfix operator (++ or --)
-     * or method reference operator (::).
+     * Checks if the character after {@code ]} starts a valid postfix operator (++ or --)
+     * or method reference operator ({@code ::}).
      *
      * @param charAfter the character to check
      * @param line the unicode code points array of the line
@@ -263,8 +263,8 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if the character after ']' is an angle bracket (>)
-     * or a shift operator (<< or >>).
+     * Checks if the character after {@code ]} is an angle bracket ({@code >})
+     * or a shift operator ({@code <<} or {@code >>}).
      *
      * @param charAfter the character to check
      * @param line the unicode code points array of the line
@@ -276,11 +276,11 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         if (charAfter == '>' || charAfter == '<') {
             final int nextPosition = position + 1;
             final char nextChar = (char) line[nextPosition];
-            // Accept >> or << (shift operators)
+            // Accept shift operators
             if (nextChar == charAfter) {
                 result = true;
             }
-            // Accept single > (angle bracket), but NOT if it's followed by '=' (>=, <=)
+            // Accept single angle bracket, but NOT if it's followed by '='
             else if (nextChar != '=' && charAfter == '>') {
                 result = true;
             }
