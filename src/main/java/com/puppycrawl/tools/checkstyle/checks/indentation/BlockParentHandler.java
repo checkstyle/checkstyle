@@ -334,12 +334,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indent level of the children of the specified parent
      * expression, with special handling for return statements.
-     *
-     * @param parentNode         the parent whose children we are checking
-     * @param tokenTypes         the token types to check
-     * @param startIndent        the starting indent level
-     * @param firstLineMatches   whether or not the first line needs to match
-     * @param allowNesting       whether or not nested children are allowed
      */
     private void checkChildrenWithReturnHandling(DetailAST parentNode,
                                        int[] tokenTypes,
@@ -362,10 +356,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * Try to check line wrapping for a return statement with simple expressions.
-     *
-     * @param child the child node to check
-     * @param startIndent the starting indent level
-     * @return true if special handling was applied, false otherwise
      */
     private boolean tryCheckReturnStatementLineWrapping(DetailAST child,
                                                         IndentLevel startIndent) {
@@ -385,11 +375,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * Check line wrapping for a multi-line return expression.
-     *
-     * @param returnAst the return statement node
-     * @param expr the expression node
-     * @param startIndent the starting indent level
-     * @return true if special handling was applied, false otherwise
      */
     private boolean checkMultiLineReturnExpression(DetailAST returnAst,
                                                    DetailAST expr,
@@ -426,9 +411,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * Get the last line number for the given AST node and all its descendants.
-     *
-     * @param ast the AST node to examine
-     * @return the last line number
      */
     private static int getLastLineOfAst(DetailAST ast) {
         int lastLine = ast.getLineNo();
