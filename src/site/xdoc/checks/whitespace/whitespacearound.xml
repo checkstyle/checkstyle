@@ -628,6 +628,28 @@ class Example10 {
     }
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example11-config">
+          To configure the check to allow empty switch block statements:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="WhitespaceAround"&gt;
+      &lt;property name="allowEmptySwitchBlockStatements" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example11-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example11 {
+  void method(int value) {
+    // allowed: empty switch block when allowEmptySwitchBlockStatements is true
+    switch (value) {
+    }
+  }
+}
 </code></pre></div>
       </subsection>
 
