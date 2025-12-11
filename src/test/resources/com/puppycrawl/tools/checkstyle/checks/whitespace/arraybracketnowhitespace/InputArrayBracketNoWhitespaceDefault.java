@@ -20,6 +20,7 @@ public class InputArrayBracketNoWhitespaceDefault {
     }
 
     void testArrayAccess() {
+        int[] arr = new int[1];
         int a = arr[0] ; // violation ''\]' is followed by whitespace.'
         int b = arr [0]; // violation ''\[' is preceded with whitespace.'
         int c = arr[ 0]; // violation ''\[' is followed by whitespace.'
@@ -40,19 +41,23 @@ public class InputArrayBracketNoWhitespaceDefault {
         // 2 violations above:
         // ''\]' is followed by whitespace.'
         // ''\[' is preceded with whitespace.'
+        int x = m[arr[0] ][arr[0]];
+        // 2 violations above:
+        // ''\]' is followed by whitespace.'
+        // ''\]' is preceded with whitespace.'
     }
 
     void testMultiline() {
         int[] arr = new int
 [5];
-
         int z = arr[1
 ];
         int a = arr[
         1];
         int b = arr[0]
         ;
-
+        // Intentional trailing whitespace below
+        // to test edge case handling in ArrayBracketNoWhitespaceCheck.
         int x[] 
         ;
     }
@@ -77,20 +82,24 @@ public class InputArrayBracketNoWhitespaceDefault {
     }
 
     void testColonWhitespace() {
-        int[][] arr = {{1, 2, 3}};
-        Runnable r = arr[]::clone;
-        Runnable r2 = arr[0] ::clone; // violation ''\]' is followed by whitespace.'
+        IntFunction<int[]> f1 = int[]::new;
+        IntFunction<int[] > f2 = int[]::new; // violation ''\]' is followed by whitespace.'
+        IntFunction<int[]> f3 = int[] ::new; // violation ''\]' is followed by whitespace.'
     }
 
-    void testComplex() {
-        int[] arr = {1};
-        int[][] m = new int[1][1];
-        IntUnaryOperator op = i -> arr[i] * 2;
-        IntUnaryOperator op2 = i -> arr[i]* 2; // violation ''\]' is not followed by whitespace.'
-        int x = m[arr[0] ][arr[0]];
-        // 2 violations above:
-        // ''\]' is followed by whitespace.'
-        // ''\]' is preceded with whitespace.'
+    void testAngleBracket() {
+        int[] arr = new int[5];
+        boolean result1 = arr[0]>=0; // violation ''\]' is not followed by whitespace.'
+        boolean result2 = arr[0] >= 0;
+        boolean result3 = arr[0]<=0; // violation ''\]' is not followed by whitespace.'
+        boolean result4 = arr[0] <= 0;
+
+        int result5 = arr[0]>>2;
+        int result6 = arr[0] >>2; // violation ''\]' is followed by whitespace.'
+        int result7 = arr[0]<<2;
+        int result8 = arr[0] <<2; // violation ''\]' is followed by whitespace.'
+
+        int result9 = arr[0]< 2; // violation ''\]' is not followed by whitespace'
     }
 
     void testArrayInit() {
