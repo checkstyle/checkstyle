@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4862todocomments;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputTodoCommentAllVariants {
 
   void myFunc1(int i) {

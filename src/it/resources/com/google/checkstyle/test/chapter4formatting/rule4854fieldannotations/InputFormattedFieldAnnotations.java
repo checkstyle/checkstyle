@@ -17,16 +17,16 @@ public class InputFormattedFieldAnnotations {
     int x();
   }
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2 String name = "Zops";
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2 int age = 19;
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1 @SomeAnnotation2 String favLanguage = "Java";
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation3(x = 90)
   String favPet = "Dog";
@@ -37,16 +37,16 @@ public class InputFormattedFieldAnnotations {
   @SomeAnnotation3(x = 0)
   float pi = 3.14f;
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation3(x = 14)
   List<String> list = new ArrayList<>();
 
-  /** testing. */
+  /** Testing. */
   @SuppressWarnings("bla")
   InputFormattedFieldAnnotations obj = new InputFormattedFieldAnnotations();
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   void test1() {}

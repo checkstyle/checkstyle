@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Optional;
 
-/** some data. */
+/** Some data. */
 public class InputNewKeywordChildren {
 
   static {
@@ -28,7 +28,7 @@ public class InputNewKeywordChildren {
     }
   }
 
-  /** some data. */
+  /** Some data. */
   public Object foo() {
     return Optional.empty()
         .orElseThrow(
@@ -39,7 +39,7 @@ new IllegalArgumentException(
     // violation above '.* incorrect indentation level 0, expected level should be one .* 18, 20'
   }
 
-  /** some data. */
+  /** Some data. */
   public Object foo1() {
     return Optional.empty()
         .orElseThrow(
@@ -49,7 +49,7 @@ new IllegalArgumentException(
     // violation above '.* incorrect indentation level 0, expected .* 18, 20.'
   }
 
-  /** some data. */
+  /** Some data. */
   public void foo2() throws IOException {
     BufferedReader bf =
         new BufferedReader(
@@ -58,7 +58,7 @@ new IllegalArgumentException(
             });
   }
 
-  /** some data. */
+  /** Some data. */
   public Object foo4(int data) {
     return Optional.empty()
         .orElseThrow(
@@ -66,7 +66,7 @@ new IllegalArgumentException(
                 "something wrong 1, something wrong 2, something wrong 3"));
   }
 
-  /** some data. */
+  /** Some data. */
   public Object foo5(int data) {
     return Optional.empty()
         .orElseThrow(
@@ -75,7 +75,7 @@ new IllegalArgumentException(
     // violation above '.* incorrect indentation level 8, expected .* 16.'
   }
 
-  /** some data. */
+  /** Some data. */
   public void createExpressionIssue(Object invocation, String toBeRemovedExpression) {
     throw new IllegalArgumentException("The expression " + toBeRemovedExpression
         + ", which creates argument of the invocation " + invocation + " cannot be removed."
