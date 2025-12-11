@@ -369,6 +369,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturnStatementLineWrapping() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "10:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "11:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "18:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "19:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "20:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "25:25: " + getCheckMessage(MSG_ERROR, ".", 24, 16),
+            "26:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            // Note: Lines 33-34 (method chain in return statement) are not currently detected
+            // because METHOD_CALL has complex indentation rules that require further work
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationReturnStatementLineWrapping.java"),
+                expected);
+    }
+
+    @Test
     public void testDifficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1965,10 +1993,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationMultilineStatements.java");
 
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "23:7: " + getCheckMessage(MSG_ERROR, "&&", 6, 8),
             "39:7: " + getCheckMessage(MSG_ERROR, 0, 6, 8),
             "40:7: " + getCheckMessage(MSG_ERROR, 1, 6, 8),
-            "65:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "65:7: " + getCheckMessage(MSG_ERROR, "\"\"\"", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
