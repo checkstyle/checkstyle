@@ -601,8 +601,8 @@
                        BSR_ASSIGN, BXOR_ASSIGN, DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN,
                        SL_ASSIGN, SR_ASSIGN, STAR_ASSIGN, LAMBDA, TEXT_BLOCK_LITERAL_BEGIN, LAND,
                        LOR, LITERAL_INSTANCEOF, GT, LT, GE, LE, EQUAL, NOT_EQUAL, UNARY_MINUS,
-                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, BOR, BXOR, BAND,
-                       QUESTION"/>
+                       UNARY_PLUS, INC, DEC, LNOT, BNOT, POST_INC, POST_DEC, DOT, INDEX_OP,
+                       LITERAL_NEW, BOR, BXOR, BAND, QUESTION"/>
     </module>
     <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
     <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
