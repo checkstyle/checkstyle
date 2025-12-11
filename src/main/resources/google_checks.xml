@@ -64,6 +64,11 @@
     <property name="offCommentFormat" value='^.*"""\s*$'/>
     <property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/>
   </module>
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="checkFormat" value="IndentationCheck"/>
+    <property name="offCommentFormat" value='^""".?'/>
+    <property name="onCommentFormat" value='.'/>
+  </module>
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
     <module name="MatchXpath">
