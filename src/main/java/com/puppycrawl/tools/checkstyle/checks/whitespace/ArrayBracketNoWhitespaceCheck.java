@@ -218,7 +218,8 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
         final char charAfter = (char) codePoint;
 
         return isAlwaysValidCharAfterRightBracket(charAfter)
-            || isMethodRefereceOrPostfixOperator(charAfter, line, position);
+            || isMethodReferenceOrPostfixOperator(charAfter, line, position)
+            || isAngleBracketOrShiftOperator(charAfter, line, position);
     }
 
     /**
@@ -243,22 +244,47 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * @param charAfter the character to check
      * @param line the unicode code points array of the line
      * @param position the position of the code point in the line
-     * @return true if a valid postfix operator exists
+     * @return true if a valid method reference or postfix operator exists
      */
-    private static boolean isMethodRefereceOrPostfixOperator(
+    private static boolean isMethodReferenceOrPostfixOperator(
         char charAfter, int[] line, int position) {
-        boolean isMethodRefereceOrPostfixOperator = false;
+        boolean isMethodReferenceOrPostfixOperator = false;
         if (charAfter == '+' || charAfter == '-' || charAfter == ':') {
             final int nextPosition = position + 1;
             final int nextCodePoint = line[nextPosition];
             final char nextChar = (char) nextCodePoint;
 
             if (nextChar == charAfter) {
-                isMethodRefereceOrPostfixOperator = true;
+                isMethodReferenceOrPostfixOperator = true;
             }
         }
 
-        return isMethodRefereceOrPostfixOperator;
+        return isMethodReferenceOrPostfixOperator;
     }
 
+    /**
+     * Checks if the character after ']' is an angle bracket (>)
+     * or a shift operator (<< or >>).
+     *
+     * @param charAfter the character to check
+     * @param line the unicode code points array of the line
+     * @param position the position of the code point in the line
+     * @return true if a valid angle bracket or shift operator exists
+     */
+    private static boolean isAngleBracketOrShiftOperator(char charAfter, int[] line, int position) {
+        boolean result = false;
+        if (charAfter == '>' || charAfter == '<') {
+            final int nextPosition = position + 1;
+            final char nextChar = (char) line[nextPosition];
+            // Accept >> or << (shift operators)
+            if (nextChar == charAfter) {
+                result = true;
+            }
+            // Accept single > (angle bracket), but NOT if it's followed by '=' (>=, <=)
+            else if (nextChar != '=' && charAfter == '>') {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
