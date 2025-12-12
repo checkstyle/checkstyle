@@ -28,4 +28,15 @@ public class InputLambdaParameterName {
 
   BiFunction<String, String, Integer> goodNamedParameters =
       (first, second) -> (first + second).length();
+
+  BiFunction<String, String, String> unnamedParam = (first, _) -> first;
+
+  BiFunction<String, String, String> underscoreStart =
+      (first, _second) -> first; // violation 'Lambda parameter name '_second' must match pattern'
+
+  BiFunction<String, String, String> underscoreMiddle =
+      (first, sec_ond) -> first; // violation 'Lambda parameter name 'sec_ond' must match pattern'
+
+  BiFunction<String, String, String> underscoreEnd =
+      (first, second_) -> first; // violation 'Lambda parameter name 'second_' must match pattern'
 }
