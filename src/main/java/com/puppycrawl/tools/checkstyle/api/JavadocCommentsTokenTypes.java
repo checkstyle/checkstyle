@@ -713,6 +713,23 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@literal}} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@literal @Override}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LITERAL_INLINE_TAG -> LITERAL_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> literal
+     *         |--TEXT ->  @Override
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int LITERAL_INLINE_TAG = JavadocCommentsLexer.LITERAL_INLINE_TAG;
 
