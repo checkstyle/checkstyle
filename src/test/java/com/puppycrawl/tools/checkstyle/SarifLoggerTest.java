@@ -515,6 +515,65 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
     }
 
+    @Test
+    public void testRenderSeverityLevelAllLevels() throws IOException {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        logger.auditStarted(null);
+
+        // Test all severity levels to kill switch mutation
+        final Violation errorViolation =
+                new Violation(1, 1, "messages.properties", "ruleId", null, SeverityLevel.ERROR,
+                        null, getClass(), "error message");
+        final Violation warningViolation =
+                new Violation(1, 1, "messages.properties", "ruleId", null, SeverityLevel.WARNING,
+                        null, getClass(), "warning message");
+        final Violation infoViolation =
+                new Violation(1, 1, "messages.properties", "ruleId", null, SeverityLevel.INFO,
+                        null, getClass(), "info message");
+        final Violation ignoreViolation =
+                new Violation(1, 1, "messages.properties", "ruleId", null, SeverityLevel.IGNORE,
+                        null, getClass(), "ignore message");
+
+        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", errorViolation);
+        final AuditEvent warningEvent = new AuditEvent(this, "Test.java", warningViolation);
+        final AuditEvent infoEvent = new AuditEvent(this, "Test.java", infoViolation);
+        final AuditEvent ignoreEvent = new AuditEvent(this, "Test.java", ignoreViolation);
+
+        logger.fileStarted(errorEvent);
+        logger.addError(errorEvent);
+        logger.fileFinished(errorEvent);
+
+        logger.fileStarted(warningEvent);
+        logger.addError(warningEvent);
+        logger.fileFinished(warningEvent);
+
+        logger.fileStarted(infoEvent);
+        logger.addError(infoEvent);
+        logger.fileFinished(infoEvent);
+
+        logger.fileStarted(ignoreEvent);
+        logger.addError(ignoreEvent);
+        logger.fileFinished(ignoreEvent);
+
+        logger.auditFinished(null);
+
+        final String output = outStream.toString(StandardCharsets.UTF_8);
+        // Test all severity levels to kill switch mutation
+        // JSON format uses spaces, so we check for "level": "value"
+        assertWithMessage("Output should contain error severity")
+                .that(output)
+                .contains("\"level\": \"error\"");
+        assertWithMessage("Output should contain warning severity")
+                .that(output)
+                .contains("\"level\": \"warning\"");
+        assertWithMessage("Output should contain note severity (for INFO)")
+                .that(output)
+                .contains("\"level\": \"note\"");
+        assertWithMessage("Output should contain none severity (for IGNORE)")
+                .that(output)
+                .contains("\"level\": \"none\"");
+    }
+
     private static void verifyContent(
             String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream) throws IOException {
