@@ -28,4 +28,6 @@ public class InputLambdaParameterName {
 
   BiFunction<String, String, Integer> goodNamedParameters =
       (first, second) -> (first + second).length();
+
+  BiFunction<String, String, String> unnamedParam = (first, _) -> first;
 }
