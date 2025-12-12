@@ -331,7 +331,7 @@ public final class SiteUtil {
      */
     private static PackageObjectFactory getPackageObjectFactory() throws MacroExecutionException {
         try {
-            final ClassLoader cl = ViolationMessagesMacro.class.getClassLoader();
+            final ClassLoader cl = SiteUtil.class.getClassLoader();
             final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
             return new PackageObjectFactory(packageNames, cl);
         }
@@ -483,7 +483,7 @@ public final class SiteUtil {
             throws MacroExecutionException {
         // lazy initialization
         if (SUPER_CLASS_PROPERTIES_JAVADOCS.isEmpty()) {
-            processSuperclasses();
+            processSuperclasses(MODULE_SUPER_CLASS_PATHS);
         }
 
         processModule(moduleName, modulePath);
@@ -534,10 +534,12 @@ public final class SiteUtil {
     /**
      * Collect the properties setters javadocs of the superclasses.
      *
+     * @param superClassPaths Path list to super classes.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    private static void processSuperclasses() throws MacroExecutionException {
-        for (Path superclassPath : MODULE_SUPER_CLASS_PATHS) {
+    public static void processSuperclasses(List<Path> superClassPaths)
+            throws MacroExecutionException {
+        for (Path superclassPath : superClassPaths) {
             final Path fileNamePath = superclassPath.getFileName();
             if (fileNamePath == null) {
                 throw new MacroExecutionException("Invalid superclass path: " + superclassPath);
