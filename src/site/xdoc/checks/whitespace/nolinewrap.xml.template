@@ -93,7 +93,6 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/whitespace/nolinewrap/Example5.java"/>
           <param name="type" value="code"/>
         </macro>
-       
       </subsection>
 
       <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">
