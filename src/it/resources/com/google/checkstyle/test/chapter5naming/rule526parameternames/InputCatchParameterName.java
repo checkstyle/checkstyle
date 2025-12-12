@@ -94,5 +94,26 @@ public class InputCatchParameterName {
       /* foo */
     } catch (Exception Ex) { // violation 'Catch parameter name 'Ex' must match pattern'
     }
+
+    try {
+      /* foo */
+    } catch (Exception _) {
+      // handle
+    }
+
+    try {
+      /* foo */
+    } catch (Exception _ex) { // violation 'Catch parameter name '_ex' must match pattern'
+    }
+
+    try {
+      /* foo */
+    } catch (Exception e_x) { // violation 'Catch parameter name 'e_x' must match pattern'
+    }
+
+    try {
+      /* foo */
+    } catch (Exception ex_) { // violation 'Catch parameter name 'ex_' must match pattern'
+    }
   }
 }
