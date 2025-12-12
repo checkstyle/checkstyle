@@ -73,6 +73,8 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/2629 -->
   <suppress checks="Indent"
     files="nolinewrap[\\/]Example5.java"/>
+  <suppress checks="Indent"
+    files="nolinewrap[\\/]Example6.java"/>
 
   <!-- Check applies to resources-noncompilable files.  -->
   <suppress id="presenceOfCompilationComment" files="resources[\\/].*"/>
