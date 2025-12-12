@@ -25,3 +25,17 @@ jobs:
 
       - name: Run Checkstyle on Apache Kafka
         run: ./.ci/validation.sh no-error-kafka
+
+  no-error-trino:
+    if: github.repository == 'checkstyle/checkstyle'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 23
+
+      - name: Run Checkstyle on Trino
+        run: ./.ci/validation.sh no-error-trino
