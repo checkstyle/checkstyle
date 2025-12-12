@@ -419,7 +419,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>7.4.0.202509020913-r</version>
+      <version>7.5.0.202512021534-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
