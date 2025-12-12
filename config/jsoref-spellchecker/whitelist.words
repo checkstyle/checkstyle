@@ -292,6 +292,7 @@ descendanttoken
 descr
 Deserializable
 designforextension
+dest
 destfile
 Destructuring
 detailast
@@ -543,7 +544,6 @@ Haml
 hardcoded
 hashcode
 hashtable
-HASHTAG
 hazelcast
 hbase
 hcoles
@@ -1387,7 +1387,6 @@ timezone
 TKN
 Tls
 tmp
-tmpdir
 tngtech
 toc
 todo
