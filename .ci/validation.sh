@@ -215,11 +215,8 @@ no-error-kafka)
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  # until https://github.com/checkstyle/checkstyle/issues/18272
-  checkout_from "https://github.com/dejan2609/kafka.git"
+  checkout_from "https://github.com/apache/kafka.git"
   cd .ci-temp/kafka/
-  git fetch --depth 1 origin KAFKA-19809:KAFKA-19809
-  git checkout KAFKA-19809
   cat >> customConfig.gradle<< EOF
 allprojects {
     repositories {
