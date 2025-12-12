@@ -885,6 +885,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.SeparatorWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("SingleSpaceSeparatorCheck",
                 BASE_PACKAGE + ".checks.whitespace.SingleSpaceSeparatorCheck");
+        NAME_TO_FULL_MODULE_NAME.put("TypeBodyPaddingCheck",
+                BASE_PACKAGE + ".checks.whitespace.TypeBodyPaddingCheck");
         NAME_TO_FULL_MODULE_NAME.put("TypecastParenPadCheck",
                 BASE_PACKAGE + ".checks.whitespace.TypecastParenPadCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhitespaceAfterCheck",
