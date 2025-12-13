@@ -2,9 +2,9 @@ package com.google.checkstyle.test.chapter5naming.rule528typevariablenames;
 
 import java.io.Serializable;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputInterfaceTypeParameterName<T> {
-  /** some javadoc. */
+  /** Some javadoc. */
   public <TT> void foo() {}
 
   <T> void foo(int i) {}

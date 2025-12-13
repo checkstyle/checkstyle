@@ -15,21 +15,21 @@ class InputFormattedWhitespaceAroundBasic {
   /** Should be ok. */
   private final int var3 = 1;
 
-  /** skip blank lines between comment and code, should be ok. */
+  /** Skip blank lines between comment and code, should be ok. */
   private final int var4 = 1;
 
   int xyz; // multiple space between content and double slash.
   int abc; //       multiple space between double slash and comment's text.
   int pqr; //     testing both.
 
-  /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
+  /** Bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
   private int test;
 
   private int i4;
   private int i5;
   private int i6;
 
-  /** method. */
+  /** Method. */
   void method1() {
     final int a = 1;
     int b = 1;
@@ -40,7 +40,7 @@ class InputFormattedWhitespaceAroundBasic {
     b = ++b - --b;
   }
 
-  /** method. */
+  /** Method. */
   void method2() {
     synchronized (this) {
     }
@@ -51,7 +51,7 @@ class InputFormattedWhitespaceAroundBasic {
     }
   }
 
-  /** test WS after void return. */
+  /** Test WS after void return. */
   private void fastExit() {
     boolean complicatedStuffNeeded = true;
     if (!complicatedStuffNeeded) {
@@ -62,7 +62,7 @@ class InputFormattedWhitespaceAroundBasic {
   }
 
   /**
-   * test WS after non void return.
+   * Test WS after non void return.
    *
    * @return 2
    */
@@ -74,7 +74,7 @@ class InputFormattedWhitespaceAroundBasic {
     }
   }
 
-  /** test casts. */
+  /** Test casts. */
   private void testCasts() {
     Object o = (Object) new Object();
     o = (Object) o;
@@ -82,25 +82,25 @@ class InputFormattedWhitespaceAroundBasic {
     o = (Object) o;
   }
 
-  /** test questions. */
+  /** Test questions. */
   private void testQuestions() {
 
     boolean b = (1 == 2) ? false : true;
   }
 
-  /** star test. */
+  /** Star test. */
   private void starTest() {
     int x = 2 * 3 * 4;
   }
 
-  /** boolean test. */
+  /** Boolean test. */
   private void boolTest() {
     boolean a = true;
     boolean x = !a;
     int z = ~1 + ~2;
   }
 
-  /** division test. */
+  /** Division test. */
   private void divTest() {
     int a = 4 % 2;
     int b = 4 % 2;
@@ -112,7 +112,7 @@ class InputFormattedWhitespaceAroundBasic {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @return dot test *
    */
@@ -124,7 +124,7 @@ class InputFormattedWhitespaceAroundBasic {
     return o.toString();
   }
 
-  /** assert statement test. */
+  /** Assert statement test. */
   public void assertTest() {
 
     assert true;
@@ -141,7 +141,7 @@ class InputFormattedWhitespaceAroundBasic {
     assert true : "Whups";
   }
 
-  /** another check. */
+  /** Another check. */
   void donBradman(Runnable run) {
     donBradman(
         new Runnable() {
@@ -154,13 +154,13 @@ class InputFormattedWhitespaceAroundBasic {
         };
   }
 
-  /** rfe 521323, detect whitespace before ';'. */
+  /** Rfe 521323, detect whitespace before ';'. */
   void rfe521323() {
     doStuff();
     for (int i = 0; i < 5; i++) {}
   }
 
-  /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
+  /** Bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class). */
   void bug806243() {
     Object o =
         new InputFormattedWhitespaceAroundBasic() {

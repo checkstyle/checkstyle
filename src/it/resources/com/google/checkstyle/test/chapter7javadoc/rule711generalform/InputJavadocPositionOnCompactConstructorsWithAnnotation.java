@@ -54,7 +54,7 @@ public class InputJavadocPositionOnCompactConstructorsWithAnnotation {
      */
     @SizeType(max = 2)
     public MyRecord {}
-    /** invalid javadoc.*/
+    /** Invalid javadoc.*/
     // violation above 'Javadoc comment is placed in the wrong location.'
   }
 }

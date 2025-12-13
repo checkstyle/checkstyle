@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputTryCatchIfElse2 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     boolean after = false;
 

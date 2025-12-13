@@ -35,7 +35,7 @@ class InputNonEmptyAtclauseDescription {
   // violation 9 lines below 'At-clause should have a non-empty description.'
   // violation 9 lines below 'At-clause should have a non-empty description.'
   /**
-   * some javadoc.
+   * Some javadoc.
    *
    * @param a
    * @param b
@@ -54,7 +54,7 @@ class InputNonEmptyAtclauseDescription {
   // violation 8 lines below 'At-clause should have a non-empty description.'
   // violation 8 lines below 'At-clause should have a non-empty description.'
   /**
-   * some javadoc.
+   * Some javadoc.
    *
    * @param a
    * @param b

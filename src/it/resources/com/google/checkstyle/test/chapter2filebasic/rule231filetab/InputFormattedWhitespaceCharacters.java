@@ -25,7 +25,7 @@ final class InputFormattedWhitespaceCharacters {
   // tabs that count as one char because of their position ->	<-   ->	<-
   // violation above 'Line contains a tab character.'
 
-  /** some lines to test the column after tabs. */
+  /** Some lines to test the column after tabs. */
   void violateColumnAfterTabs() {
     // with tab-width 8 all statements below start at the same column,
     // with different combinations of ' ' and '\t' before the statement

@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputTextBlockColumnLimit {
   // violation below 'Opening quotes (""") of text-block must be on the new line'
   static final String SAMPLE = """
@@ -10,7 +10,7 @@ public class InputTextBlockColumnLimit {
       """;
   // violation above 'Text-block quotes are not vertically aligned'
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void main(String[] args) {
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     String textBlock = """

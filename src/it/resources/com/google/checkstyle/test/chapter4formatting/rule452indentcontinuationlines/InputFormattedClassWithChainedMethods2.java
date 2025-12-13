@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule452indentcontinuationlines;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedClassWithChainedMethods2 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedClassWithChainedMethods2() {
 
     String someString = "";
@@ -12,13 +12,13 @@ public class InputFormattedClassWithChainedMethods2 {
     doNothing(someString.concat("zyx").concat("255, 254, 253"));
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     InputFormattedClassWithChainedMethods2 classWithChainedMethodsCorrect =
         new InputFormattedClassWithChainedMethods2();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String doNothing(String something) {
     return something;
   }

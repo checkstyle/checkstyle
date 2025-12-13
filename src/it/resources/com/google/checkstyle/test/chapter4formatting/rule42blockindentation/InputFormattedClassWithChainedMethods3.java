@@ -1,8 +1,8 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedClassWithChainedMethods3 {
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputFormattedClassWithChainedMethods3() {
 
     String someString = "";
@@ -12,13 +12,13 @@ public class InputFormattedClassWithChainedMethods3 {
     doNothing(someString.concat("zyx").concat("255, 254, 253"));
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     InputFormattedClassWithChainedMethods3 classWithChainedMethodsCorrect =
         new InputFormattedClassWithChainedMethods3();
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String doNothing(String something) {
     return something;
   }

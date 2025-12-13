@@ -6,11 +6,11 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedWhitespaceAfterDoubleSlashes {
   String googleCheck = "Google"; // google
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public void foo1() {
     int pro1 = 0; // the main variable
 

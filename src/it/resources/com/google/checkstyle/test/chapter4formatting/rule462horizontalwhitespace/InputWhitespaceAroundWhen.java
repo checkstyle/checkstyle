@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 class InputWhitespaceAroundWhen {
 
-  /** method. */
+  /** Method. */
   void test(Object o) {
     switch (o) {
       case Integer i when(i == 0) ->
@@ -55,7 +55,7 @@ class InputWhitespaceAroundWhen {
     }
   }
 
-  /** method. */
+  /** Method. */
   void test2(Object o) {
 
     switch (o) {

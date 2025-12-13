@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock instance =
@@ -20,7 +20,7 @@ public class InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
   record Record() {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String... args) {
 
     boolean b = System.currentTimeMillis() < 0;

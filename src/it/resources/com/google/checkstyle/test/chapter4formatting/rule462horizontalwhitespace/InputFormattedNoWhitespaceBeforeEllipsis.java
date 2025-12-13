@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedNoWhitespaceBeforeEllipsis {
 
   @Target(ElementType.TYPE_USE)
@@ -23,28 +23,28 @@ public class InputFormattedNoWhitespaceBeforeEllipsis {
   // @NonNull int @NonNull ... field3; // non-compilable
   // @NonNull int @NonNull... field4; // non-compilable
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test1(String... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test2(String... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test3(String @NonNull ... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test4(String @NonNull ... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test5(String[]... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test6(String[]... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test7(String @NonNull []... param) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   void test8(String @NonNull []... param) {}
 
   void test9(String @Size(max = 10) ... names) {}

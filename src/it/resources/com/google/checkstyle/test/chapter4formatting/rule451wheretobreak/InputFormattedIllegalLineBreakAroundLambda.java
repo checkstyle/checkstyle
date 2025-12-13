@@ -2,7 +2,7 @@ package com.google.checkstyle.test.chapter4formatting.rule451wheretobreak;
 
 import java.util.ArrayList;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedIllegalLineBreakAroundLambda {
 
   private interface MyLambdaInterface {
@@ -61,7 +61,7 @@ public class InputFormattedIllegalLineBreakAroundLambda {
         };
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public enum TransactionStatus {
     NotValidTryAgain,
     ErrorInProcessingTryAgain,

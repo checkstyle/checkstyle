@@ -10,16 +10,16 @@ public class InputFormattedMethodsAndConstructorsAnnotations {
 
   // ********testing methods.***********
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   void test1() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   void test2() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   void test3() {}
@@ -33,16 +33,16 @@ public class InputFormattedMethodsAndConstructorsAnnotations {
 
   // ********testing constructors.*********
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   InputFormattedMethodsAndConstructorsAnnotations() {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   InputFormattedMethodsAndConstructorsAnnotations(float f) {}
 
-  /** testing. */
+  /** Testing. */
   @SomeAnnotation1
   @SomeAnnotation2
   InputFormattedMethodsAndConstructorsAnnotations(int x) {}

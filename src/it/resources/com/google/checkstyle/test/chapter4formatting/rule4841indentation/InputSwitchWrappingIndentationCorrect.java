@@ -4,7 +4,7 @@ package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 import java.util.List;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputSwitchWrappingIndentationCorrect {
   String testMethod1(int i) {
     String name = "";

@@ -1,12 +1,12 @@
 package com.google.checkstyle.test.chapter4formatting.rule42blockindentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputClassWithChainedMethods3 {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputClassWithChainedMethods3(Object... params) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static void main(String[] args) {
     new InputClassWithChainedMethods3()
         .getInstance("string_one")
@@ -24,12 +24,12 @@ public class InputClassWithChainedMethods3 {
     // violation 2 lines above ''new' has incorrect indentation level 4, expected .* 8.'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String doNothing(String something, String... uselessParams) {
     return something;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public InputClassWithChainedMethods3 getInstance(String... uselessParams) {
     return this;
   }

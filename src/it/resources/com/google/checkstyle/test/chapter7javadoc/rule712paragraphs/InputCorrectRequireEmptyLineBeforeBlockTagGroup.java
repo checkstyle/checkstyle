@@ -28,7 +28,7 @@ class InputCorrectRequireEmptyLineBeforeBlockTagGroup {
   }
 
   /**
-   * summary.
+   * Summary.
    *
    * @return this only has a tag.
    */

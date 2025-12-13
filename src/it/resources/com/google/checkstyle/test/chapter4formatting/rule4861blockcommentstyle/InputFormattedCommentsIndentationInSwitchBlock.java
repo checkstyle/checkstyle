@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4861blockcommentstyle;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedCommentsIndentationInSwitchBlock {
 
   private static void fooSwitch() {
@@ -124,7 +124,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void fooDotInCaseBlock() {
     int i = 0;
     String s = "";
@@ -166,7 +166,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
         ;
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo2() {
     int a = 1;
     switch (a) {
@@ -176,7 +176,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo3() {
     int a = 1;
     switch (a) {
@@ -187,7 +187,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo4() {
     int a = 1;
     switch (a) {
@@ -199,7 +199,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo5() {
     int a = 1;
     switch (a) {
@@ -211,7 +211,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo6() {
     int a = 1;
     switch (a) {
@@ -223,7 +223,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo7() {
     int a = 2;
     String s = "";
@@ -255,7 +255,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo8() {
     int a = 2;
     String s = "";
@@ -283,7 +283,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo9() {
     int a = 5;
     switch (a) {
@@ -294,7 +294,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo10() {
     int a = 5;
     switch (a) {
@@ -304,7 +304,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo11() {
     int a = 5;
     switch (a) {
@@ -315,7 +315,7 @@ public class InputFormattedCommentsIndentationInSwitchBlock {
     }
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void foo12() {
     int a = 5;
     switch (a) {

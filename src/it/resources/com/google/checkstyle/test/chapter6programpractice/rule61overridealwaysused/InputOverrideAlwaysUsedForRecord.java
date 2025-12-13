@@ -2,10 +2,10 @@ package com.google.checkstyle.test.chapter6programpractice.rule61overridealwaysu
 
 import java.util.Locale;
 
-/** some javadoc. */
+/** Some javadoc. */
 public record InputOverrideAlwaysUsedForRecord(String name, int age) {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public String name() { // false-negative, ok until #17561
     return name.toUpperCase(Locale.ROOT);
   }

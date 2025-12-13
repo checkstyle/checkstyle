@@ -3,7 +3,7 @@ package com.google.checkstyle.test.chapter4formatting.rule412nonemptyblocks;
 class InputNonemptyBlocksLeftRightCurly
   { // violation ''{' at column 3 should be on the previous line.'
     /**
-     * summary.
+     * Summary.
      *
      * @return helper func *
      */
@@ -155,7 +155,7 @@ class WithArraysLeft { // ok
 class InputRightCurlyOther2
   { // violation ''{' at column 3 should be on the previous line.'
     /**
-     * summary.
+     * Summary.
      *
      * @see test method *
      */
@@ -220,7 +220,7 @@ class InputRightCurlyOther2
       int x = 1;
     } // ok
 
-    /** some javadoc. */
+    /** Some javadoc. */
     public enum GreetingsEnum
     { // violation ''{' at column 5 should be on the previous line.'
       HELLO,

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputWhitespaceAroundArrow {
   static {
     // violation below ''->' is not preceded with whitespace.'
@@ -28,7 +28,7 @@ public class InputWhitespaceAroundArrow {
     }
   }
 
-  /** method. */
+  /** Method. */
   void test(Object o, Object o2, int y) {
     switch (o) {
       case String s when (
@@ -102,18 +102,18 @@ public class InputWhitespaceAroundArrow {
     //     'WhitespaceAround: '->' is not followed by whitespace. .*'
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   record Point(int x, int y) {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public interface Predicate {
-    /** some javadoc. */
+    /** Some javadoc. */
     boolean test(Object value);
   }
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public interface VoidPredicate {
-    /** some javadoc. */
+    /** Some javadoc. */
     public boolean get();
   }
 }

@@ -1,9 +1,9 @@
 package com.google.checkstyle.test.chapter4formatting.rule489textblocks;
 
-/** somejavadoc. */
+/** Somejavadoc. */
 public class InputFormattedTextBlocksGeneralForm {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public static String textFun() {
 
     final String simpleScript =
@@ -29,7 +29,7 @@ public class InputFormattedTextBlocksGeneralForm {
     // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String textFun2() {
 
     final String simpleScript2 =
@@ -50,7 +50,7 @@ public class InputFormattedTextBlocksGeneralForm {
     // violation above 'incorrect indentation level 4, expected level should be 8.'
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String textFun3() {
 
     String s =
@@ -74,14 +74,14 @@ public class InputFormattedTextBlocksGeneralForm {
         + getName();
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public String getName() {
     return "name";
   }
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data) {}
 
-  /** somejavadoc. */
+  /** Somejavadoc. */
   public static void getData(String data, int length) {}
 }
