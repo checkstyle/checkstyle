@@ -367,14 +367,14 @@ public class CustomImportOrderCheck extends AbstractCheck {
         String previousImportFromCurrentGroup = null;
 
         for (ImportDetails importObject : importToGroupList) {
-            final String importGroup = importObject.getImportGroup();
-            final String fullImportIdent = importObject.getImportFullPath();
+            final String importGroup = importObject.importGroup();
+            final String fullImportIdent = importObject.importFullPath();
 
             if (importGroup.equals(currentGroup)) {
                 validateExtraEmptyLine(previousImportObjectFromCurrentGroup,
                         importObject, fullImportIdent);
                 if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {
-                    log(importObject.getImportAST(), MSG_LEX,
+                    log(importObject.importAST(), MSG_LEX,
                             fullImportIdent, previousImportFromCurrentGroup);
                 }
                 else {
@@ -394,13 +394,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
-                        logWrongImportGroupOrder(importObject.getImportAST(),
+                        logWrongImportGroupOrder(importObject.importAST(),
                                 importGroup, nextGroup, fullImportIdent);
                     }
                     previousImportObjectFromCurrentGroup = importObject;
                 }
                 else {
-                    logWrongImportGroupOrder(importObject.getImportAST(),
+                    logWrongImportGroupOrder(importObject.importAST(),
                             importGroup, currentGroup, fullImportIdent);
                 }
             }
@@ -417,7 +417,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private void validateMissedEmptyLine(ImportDetails previousImport,
                                          ImportDetails importObject, String fullImportIdent) {
         if (isEmptyLineMissed(previousImport, importObject)) {
-            log(importObject.getImportAST(), MSG_LINE_SEPARATOR, fullImportIdent);
+            log(importObject.importAST(), MSG_LINE_SEPARATOR, fullImportIdent);
         }
     }
 
@@ -431,7 +431,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private void validateExtraEmptyLine(ImportDetails previousImport,
                                         ImportDetails importObject, String fullImportIdent) {
         if (isSeparatedByExtraEmptyLine(previousImport, importObject)) {
-            log(importObject.getImportAST(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
+            log(importObject.importAST(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
         }
     }
 
@@ -443,8 +443,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
      */
     private String getFirstGroup() {
         final ImportDetails firstImport = importToGroupList.get(0);
-        return getImportGroup(firstImport.isStaticImport(),
-                firstImport.getImportFullPath());
+        return getImportGroup(firstImport.staticImport(),
+                firstImport.importFullPath());
     }
 
     /**
@@ -556,7 +556,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private boolean hasAnyImportInCurrentGroup(String currentGroup) {
         boolean result = false;
         for (ImportDetails currentImport : importToGroupList) {
-            if (currentGroup.equals(currentImport.getImportGroup())) {
+            if (currentGroup.equals(currentImport.importGroup())) {
                 result = true;
                 break;
             }
@@ -776,49 +776,17 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /**
      * Contains import attributes as line number, import full path, import
      * group.
+     *
+     * @param importFullPath import full path
+     * @param importGroup import group
+     * @param staticImport if import is static
+     * @param importAST import AST
      */
-    private static final class ImportDetails {
-
-        /** Import full path. */
-        private final String importFullPath;
-
-        /** Import group. */
-        private final String importGroup;
-
-        /** Is static import. */
-        private final boolean staticImport;
-
-        /** Import AST. */
-        private final DetailAST importAST;
-
-        /**
-         * Initialise importFullPath, importGroup, staticImport, importAST.
-         *
-         * @param importFullPath
-         *        import full path.
-         * @param importGroup
-         *        import group.
-         * @param staticImport
-         *        if import is static.
-         * @param importAST
-         *        import ast
-         */
-        private ImportDetails(String importFullPath, String importGroup, boolean staticImport,
-                                    DetailAST importAST) {
-            this.importFullPath = importFullPath;
-            this.importGroup = importGroup;
-            this.staticImport = staticImport;
-            this.importAST = importAST;
-        }
-
-        /**
-         * Get import full path variable.
-         *
-         * @return import full path variable.
-         */
-        public String getImportFullPath() {
-            return importFullPath;
-        }
+    private record ImportDetails(
+            String importFullPath,
+            String importGroup,
+            boolean staticImport,
+            DetailAST importAST) {
 
         /**
          * Get import start line number from ast.
@@ -842,34 +810,6 @@ public class CustomImportOrderCheck extends AbstractCheck {
         public int getEndLineNumber() {
             return importAST.getLastChild().getLineNo();
         }
-
-        /**
-         * Get import group.
-         *
-         * @return import group.
-         */
-        public String getImportGroup() {
-            return importGroup;
-        }
-
-        /**
-         * Checks if import is static.
-         *
-         * @return true, if import is static.
-         */
-        public boolean isStaticImport() {
-            return staticImport;
-        }
-
-        /**
-         * Get import ast.
-         *
-         * @return import ast.
-         */
-        public DetailAST getImportAST() {
-            return importAST;
-        }
-
     }
 
     /**

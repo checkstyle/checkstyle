@@ -347,7 +347,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                 switch (parentNode.getType()) {
                     case TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.ENUM_DEF,
-                         TokenTypes.ENUM_CONSTANT_DEF -> {
+                         TokenTypes.ENUM_CONSTANT_DEF, TokenTypes.RECORD_DEF -> {
                         // ignore
                     }
                     case TokenTypes.METHOD_DEF -> visitMethod(ast, parentNode);
