@@ -26,32 +26,21 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 /**
  * Raw {@code TreeWalker} event for audit.
  *
+ * @param fileContents contents of the file associated with the event
+ * @param fileName file associated with the event
+ * @param violation the actual violation
+ * @param rootAst root AST element {@link DetailAST} of the file
  */
-public class TreeWalkerAuditEvent {
-
-    /** Filename event associated with. **/
-    private final String fileName;
-    /** The file contents. */
-    private final FileContents fileContents;
-    /** Violation associated with the event. **/
-    private final Violation violation;
-    /** Root ast element. **/
-    private final DetailAST rootAst;
+public record TreeWalkerAuditEvent(FileContents fileContents,
+                                  String fileName,
+                                  Violation violation,
+                                  DetailAST rootAst) {
 
     /**
      * Creates a new {@code TreeWalkerAuditEvent} instance.
-     *
-     * @param fileContents contents of the file associated with the event
-     * @param fileName file associated with the event
-     * @param violation the actual violation
-     * @param rootAst root AST element {@link DetailAST} of the file
      */
-    public TreeWalkerAuditEvent(FileContents fileContents, String fileName,
-                                Violation violation, DetailAST rootAst) {
-        this.fileContents = fileContents;
-        this.fileName = fileName;
-        this.violation = violation;
-        this.rootAst = rootAst;
+    public TreeWalkerAuditEvent {
+        // compact canonical constructor keeps previous parameter ordering/API contract
     }
 
     /**
