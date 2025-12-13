@@ -86,10 +86,7 @@ blocks:
           matrix:
             - env_var: CMD
               values:
-                - "true"
-                # until https://github.com/checkstyle/checkstyle/issues/9248
-                # - ./mvnw -e clean install -Pno-validations
-                #    && .ci/validation.sh no-violation-test-configurate
+                - .ci/validation.sh no-violation-test-configurate
           commands:
             - echo "eval of CMD is starting";
             - echo "CMD=$CMD";
