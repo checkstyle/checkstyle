@@ -6750,5 +6750,4 @@ public final class TokenTypes {
     /** Prevent instantiation. */
     private TokenTypes() {
     }
-
 }
