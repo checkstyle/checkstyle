@@ -331,7 +331,7 @@ public final class SiteUtil {
      */
     private static PackageObjectFactory getPackageObjectFactory() throws MacroExecutionException {
         try {
-            final ClassLoader cl = ViolationMessagesMacro.class.getClassLoader();
+            final ClassLoader cl = SiteUtil.class.getClassLoader();
             final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
             return new PackageObjectFactory(packageNames, cl);
         }
