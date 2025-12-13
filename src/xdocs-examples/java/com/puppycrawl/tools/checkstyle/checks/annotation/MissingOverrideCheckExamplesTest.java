@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation;
 
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE;
+import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck.MSG_KEY_TAG_NOT_VALID_ON;
 
 import org.junit.jupiter.api.Test;
@@ -51,5 +52,13 @@ public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTest
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE_RECORD),
+        };
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }

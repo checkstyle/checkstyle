@@ -54,6 +54,19 @@
             <param name="path"
                    value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example2.java"/>
             <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check to detect missing <code>@Override</code> on
+          <code>record accessors</code>:
+        </p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
+            <param name="type" value="config"/>
+        </macro>
+        <p id="Example3-code">Example:</p>
+        <macro name="example">
+            <param name="path" value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
+            <param name="type" value="code"/>
         </macro>
       </subsection>
 
