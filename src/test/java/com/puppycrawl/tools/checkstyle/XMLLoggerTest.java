@@ -78,7 +78,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
-            assertWithMessage("\"" + encoding[0] + "\"")
+            assertWithMessage("\"%s\"", encoding[0])
                 .that(encoded)
                 .isEqualTo(encoding[1]);
         }
@@ -102,7 +102,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "&amp;",
         };
         for (String reference : references) {
-            assertWithMessage("reference: " + reference)
+            assertWithMessage("reference: %s", reference)
                     .that(XMLLogger.isReference(reference))
                     .isTrue();
         }
@@ -118,7 +118,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "ref",
         };
         for (String noReference : noReferences) {
-            assertWithMessage("no reference: " + noReference)
+            assertWithMessage("no reference: %s", noReference)
                     .that(XMLLogger.isReference(noReference))
                     .isFalse();
         }

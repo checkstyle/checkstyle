@@ -132,7 +132,7 @@ public class SuppressionXpathSingleFilterTest
             final Object test = createSuppressionXpathSingleFilter(
                     "InputSuppressionXpathSingleFilterComplexQuery", "Test",
                     null, null, xpath);
-            assertWithMessage("Exception was expected but got " + test).fail();
+            assertWithMessage("Exception was expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Unexpected xpath query")

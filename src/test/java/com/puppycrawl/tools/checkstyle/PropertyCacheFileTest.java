@@ -75,7 +75,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testCtor() {
         try {
             final Object test = new PropertyCacheFile(null, "");
-            assertWithMessage("exception expected but got " + test).fail();
+            assertWithMessage("exception expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -85,7 +85,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final Configuration config = new DefaultConfiguration("myName");
         try {
             final Object test = new PropertyCacheFile(config, null);
-            assertWithMessage("exception expected but got " + test).fail();
+            assertWithMessage("exception expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")

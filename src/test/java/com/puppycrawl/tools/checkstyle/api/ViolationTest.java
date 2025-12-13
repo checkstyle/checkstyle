@@ -36,7 +36,7 @@ public class ViolationTest {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(Violation.class)
                 .usingGetClass().report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

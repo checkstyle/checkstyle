@@ -50,7 +50,7 @@ public class XdocsMobileWrapperTest {
             final String fileName = file.getName();
 
             final String input = Files.readString(path);
-            assertWithMessage(fileName + ": input file cannot be empty")
+            assertWithMessage("%s: input file cannot be empty", fileName)
                     .that(input)
                     .isNotEmpty();
             final Document document = XmlUtil.getRawXml(fileName, input, input);

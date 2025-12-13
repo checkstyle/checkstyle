@@ -119,12 +119,11 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
                 .map(Method::getName)
                 .collect(Collectors.toUnmodifiableSet());
 
-        final String message = "Visit methods in 'JavaLanguageParserBaseVisitor' generated from "
-                + "production rules and labeled alternatives in 'JavaLanguageParser.g4' should "
-                + "be overridden in 'JavaAstVisitor' or be added to 'VISIT_METHODS_NOT_OVERRIDDEN' "
-                + "with comment explaining why.";
-
-        assertWithMessage(message)
+        assertWithMessage(
+                "Visit methods in 'JavaLanguageParserBaseVisitor' generated from production "
+                        + "rules and labeled alternatives in 'JavaLanguageParser.g4' should be "
+                        + "overridden in 'JavaAstVisitor' or be added to 'VISIT_METHODS_NOT_OVERRIDDEN' "
+                        + "with comment explaining why.")
                 .that(filteredVisitMethodNames)
                 .containsExactlyElementsIn(filteredBaseVisitMethodNames);
     }

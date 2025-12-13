@@ -96,7 +96,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"" + encoding[0] + "\"")
+            assertWithMessage("\"%s\"", encoding[0])
                 .that(encoded)
                 .isEqualTo(encoding[1]);
         }

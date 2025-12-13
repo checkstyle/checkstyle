@@ -52,7 +52,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertWithMessage("No suppressions should be loaded, but found: " + fc.getFilters().size())
+        assertWithMessage("No suppressions should be loaded, but found: %s", fc.getFilters().size())
             .that(fc.getFilters())
             .isEqualTo(fc2.getFilters());
     }
@@ -142,7 +142,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: " + messageStart)
+            assertWithMessage("Exception message should start with: %s", messageStart)
                     .that(exc.getMessage())
                     .startsWith("Unable to parse " + fn);
             assertWithMessage("Exception message should contain \"files\"")
@@ -163,7 +163,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException exc) {
             final String messageStart = "Unable to parse " + fn;
-            assertWithMessage("Exception message should start with: " + messageStart)
+            assertWithMessage("Exception message should start with: %s", messageStart)
                     .that(exc.getMessage())
                     .startsWith(messageStart);
             assertWithMessage("Exception message should contain \"checks\"")

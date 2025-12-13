@@ -357,7 +357,7 @@ public class SuppressWithNearbyCommentFilterTest
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(tag.getClass()).usingGetClass().report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

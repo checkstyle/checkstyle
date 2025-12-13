@@ -710,7 +710,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
             final DetailAST rootAST = JavaParser.parseFile(new File(fileName),
                     JavaParser.Options.WITHOUT_COMMENTS);
 
-            assertWithMessage("file must return a root node: " + fileName)
+            assertWithMessage("file must return a root node: %s", fileName)
                 .that(rootAST)
                 .isNotNull();
 

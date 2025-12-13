@@ -67,7 +67,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final File file = new File("any name");
         try {
             final Object test = new FileText(file, charsetName);
-            assertWithMessage("FileNotFoundException is expected but got " + test)
+            assertWithMessage("FileNotFoundException is expected but got %s", test)
                     .fail();
         }
         catch (FileNotFoundException exc) {

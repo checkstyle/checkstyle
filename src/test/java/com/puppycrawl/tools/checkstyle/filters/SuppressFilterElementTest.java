@@ -289,7 +289,7 @@ public class SuppressFilterElementTest {
                 .withIgnoredFields("columnFilter", "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

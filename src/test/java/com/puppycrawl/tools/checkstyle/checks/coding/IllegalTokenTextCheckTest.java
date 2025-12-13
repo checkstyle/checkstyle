@@ -181,9 +181,9 @@ public class IllegalTokenTextCheckTest
             TokenTypes.TEXT_BLOCK_CONTENT
         );
         for (int tokenType : allowedTokens) {
-            assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
-                    + " in this check as its text is a constant"
-                    + " (IllegalTokenCheck should be used for such cases).")
+            assertWithMessage("%s should not be allowed in this check as its text is a constant"
+                    + " (IllegalTokenCheck should be used for such cases).",
+                    TokenUtil.getTokenName(tokenType))
                             .that(tokenTypesWithMutableText)
                             .contains(tokenType);
         }

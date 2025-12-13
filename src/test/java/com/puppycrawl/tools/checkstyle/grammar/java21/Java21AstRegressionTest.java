@@ -82,18 +82,13 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
                         () -> JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS),
                         "Exception should be thrown due to parsing failure."
                 );
+        
 
-        final String incorrectThrowableCauseMessage =
-                "Cause of CheckstyleException should be IllegalStateException.";
-
-        assertWithMessage(incorrectThrowableCauseMessage)
+        assertWithMessage("Cause of CheckstyleException should be IllegalStateException.")
                 .that(throwable.getCause())
                 .isInstanceOf(IllegalStateException.class);
 
-        final String incorrectParsingFailureMessage =
-                "Message of IllegalStateException should contain the parsing failure.";
-
-        assertWithMessage(incorrectParsingFailureMessage)
+        assertWithMessage("Message of IllegalStateException should contain the parsing failure.")
                 .that(throwable.getCause().getMessage())
                 .contains("13:14: mismatched input '}\\n"
                         + "            ' expecting TEXT_BLOCK_LITERAL_END");
