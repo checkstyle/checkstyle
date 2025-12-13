@@ -31,8 +31,10 @@ public class InputIllegalTokenTextCheckCaseInSensitive
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\""; // violation
-        final String refCase = "<A hReF=\""; // violation
+        final String ref =
+            "<a href=\""; // violation 'Token text matches the illegal pattern .a href.'
+        final String refCase =
+            "<A hReF=\""; // violation 'Token text matches the illegal pattern .a href.'
     }
 
     public void methodWithLabels() {

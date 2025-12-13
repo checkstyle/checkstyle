@@ -2,7 +2,7 @@
 IllegalTokenText
 format = a href
 ignoreCase = (default)false
-message = (default)
+message = (null)
 tokens = STRING_LITERAL
 
 
@@ -31,7 +31,7 @@ public class InputIllegalTokenTextCheckDefaultCaseSensitive
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\""; // violation
+        final String ref = "<a href=\""; // violation 'Token text matches the illegal pattern .a href.'
         final String refCase = "<A hReF=\"";
     }
 

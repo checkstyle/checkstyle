@@ -31,7 +31,7 @@ public class InputIllegalTokenTextCheckNullMessageInStringLiteral
 
     public void methodWithLiterals()
     {
-        final String ref = "<a href=\""; // violation
+        final String ref = "<a href=\""; // violation 'Token text matches the illegal pattern 'a href''
         final String refCase = "<A hReF=\"";
     }
 

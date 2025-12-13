@@ -238,7 +238,6 @@ public final class InlineConfigParser {
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
             "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck",
