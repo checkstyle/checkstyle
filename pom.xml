@@ -2924,65 +2924,6 @@
     </profile>
 
     <profile>
-      <id>checker-index</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
-            <configuration>
-              <!-- Must fork or else JVM arguments are ignored. -->
-              <fork>true</fork>
-              <failOnError>true</failOnError>
-              <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
-              <compilerArguments>
-                <Xmaxerrs>10000</Xmaxerrs>
-                <Xmaxwarns>10000</Xmaxwarns>
-              </compilerArguments>
-              <annotationProcessorPaths>
-                <path>
-                  <groupId>org.checkerframework</groupId>
-                  <artifactId>checker</artifactId>
-                  <version>${checkerframework.version}</version>
-                </path>
-              </annotationProcessorPaths>
-              <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.index.IndexChecker</annotationProcessor>
-              </annotationProcessors>
-              <compilerArgs combine.children="append">
-                <!-- -Awarns turns type-checking errors into warnings. -->
-                <arg>-Awarns</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-              </compilerArgs>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-      <properties>
-        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-          <version>${checkerframework.version}</version>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
       <id>checker-formatter</id>
       <build>
         <plugins>

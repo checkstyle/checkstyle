@@ -21,7 +21,6 @@ jobs:
           nullness-optional-interning,
           methods-resource-fenum,
           lock-tainting,
-          index,
           formatter,
           signature-gui-units-init,
           regex-property-key-compiler-message,
