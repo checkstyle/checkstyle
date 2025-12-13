@@ -727,6 +727,27 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@systemProperty}} inline tag.
+     *
+     * <p>Such Javadoc tag is used to reference a system property.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * This method uses {@systemProperty user.home} system property.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  This method uses
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--SYSTEM_PROPERTY_INLINE_TAG -> SYSTEM_PROPERTY_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> systemProperty
+     * |       |--TEXT ->
+     * |       |--IDENTIFIER -> user.home
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT ->  system property.
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int SYSTEM_PROPERTY_INLINE_TAG =
             JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG;
