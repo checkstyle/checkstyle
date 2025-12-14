@@ -922,6 +922,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/misc/lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether the files have a specific line ending (LF or CRLF).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/sizes/linelength.html#LineLength">
                 LineLength
               </a>
