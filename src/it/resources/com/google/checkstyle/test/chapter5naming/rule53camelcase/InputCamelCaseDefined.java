@@ -9,13 +9,13 @@ class InputCamelCaseDefined {
   boolean supportsIpv6OnIos;
 
   void XmlHttpRequest() {}
-  // violation above 'Method name 'XmlHttpRequest' must match pattern'
+  // violation above 'Method name 'XmlHttpRequest' must be lowerCamelCase.*'
 
   void YouTubeImporter() {}
-  // violation above 'Method name 'YouTubeImporter' must match pattern'
+  // violation above 'Method name 'YouTubeImporter' must be lowerCamelCase.*'
 
   void YoutubeImporter() {}
-  // violation above 'Method name 'YoutubeImporter' must match pattern'
+  // violation above 'Method name 'YoutubeImporter' must be lowerCamelCase.*'
 
   class InnerGood {
 
@@ -26,13 +26,13 @@ class InputCamelCaseDefined {
     boolean supportsIpv6OnIos;
 
     void XmlHttpRequest() {}
-    // violation above 'Method name 'XmlHttpRequest' must match pattern'
+    // violation above 'Method name 'XmlHttpRequest' must be lowerCamelCase.*'
 
     void YouTubeImporter() {}
-    // violation above 'Method name 'YouTubeImporter' must match pattern'
+    // violation above 'Method name 'YouTubeImporter' must be lowerCamelCase.*'
 
     void YoutubeImporter() {}
-    // violation above 'Method name 'YoutubeImporter' must match pattern'
+    // violation above 'Method name 'YoutubeImporter' must be lowerCamelCase.*'
   }
 
   InputCamelCaseDefined anonymousGood =
@@ -45,13 +45,13 @@ class InputCamelCaseDefined {
             boolean supportsIpv6OnIos;
 
             void XmlHttpRequest() {}
-            // violation above 'Method name 'XmlHttpRequest' must match pattern'
+            // violation above, ''XmlHttpRequest' must be lowerCamelCase.*'
 
             void YouTubeImporter() {}
-            // violation above 'Method name 'YouTubeImporter' must match pattern'
+            // violation above, ''YouTubeImporter' must be lowerCamelCase.*'
 
             void YoutubeImporter() {}
-            // violation above 'Method name 'YoutubeImporter' must match pattern'
+            // violation above, ''YoutubeImporter' must be lowerCamelCase.*'
           };
 
   class AbbreviationsIncorrect {
@@ -65,7 +65,7 @@ class InputCamelCaseDefined {
     void XMLHTTPRequest() {}
     // 2 violations above:
     //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-    //  'Method name 'XMLHTTPRequest' must match pattern'
+    //  'Method name 'XMLHTTPRequest' must be lowerCamelCase.*'
 
     class InnerBad {
 
@@ -78,7 +78,7 @@ class InputCamelCaseDefined {
       void XMLHTTPRequest() {}
       // 2 violations above:
       //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-      //  'Method name 'XMLHTTPRequest' must match pattern'
+      //  'Method name 'XMLHTTPRequest' must be lowerCamelCase.*'
     }
 
     InputCamelCaseDefined anonymousBad =
@@ -93,7 +93,7 @@ class InputCamelCaseDefined {
               void XMLHTTPRequest() {}
               // 2 violations above:
               //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-              //  'Method name 'XMLHTTPRequest' must match pattern'
+              //  'Method name 'XMLHTTPRequest' must be lowerCamelCase.*'
             };
   }
 }
