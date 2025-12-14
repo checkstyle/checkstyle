@@ -22,3 +22,13 @@ src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquer
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
 src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingLfExpected2.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingLfExpected3.java eol=cr
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrlfExpected1.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrlfExpected3.java eol=cr
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrExpected1.java eol=cr
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCrExpected3.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCrlf.txt eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingOneLineCr.txt eol=cr
+/src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example2.java eol=crlf
+/src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example3.java eol=crlf
