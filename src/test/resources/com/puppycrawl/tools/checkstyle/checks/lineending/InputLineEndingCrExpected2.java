@@ -1,0 +1,7 @@
+package com.puppycrawl.tools.checkstyle.checks.lineending; // violation 'Expected line ending for file is CR, but LF is detected.'
+                                                           // violation 'Expected line ending for file is CR, but LF is detected.'
+public class InputLineEndingCrExpected2 {                  // violation 'Expected line ending for file is CR, but LF is detected.'
+    public void method() {                                 // violation 'Expected line ending for file is CR, but LF is detected.'
+        int a = 1;                                         // violation 'Expected line ending for file is CR, but LF is detected.'
+    }                                                      // violation 'Expected line ending for file is LF, but LF is detected.'
+}                                                          // violation 'Expected line ending for file is LF, but LF is detected.'
