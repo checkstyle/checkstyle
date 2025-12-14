@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck"
+             name="GoogleMethodName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that method names conform to the
+ &lt;a href=
+ "https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names"&gt;
+ Google Java Style Guide&lt;/a&gt; for method naming.
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ This check enforces Google's specific method naming requirements:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Method names must start with a lowercase letter and use uppercase letters
+ for word boundaries.&lt;/li&gt;
+ &lt;li&gt;Underscores may appear in JUnit test method names to separate logical
+ components.&lt;/li&gt;
+ &lt;li&gt;Underscores may be used to separate adjacent numbers (e.g., version
+ numbers like
+ &lt;code&gt;guava33_4_5&lt;/code&gt;), but NOT between letters and digits.&lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="google.method.name.format.regular"/>
+            <message-key key="google.method.name.format.test"/>
+            <message-key key="google.method.name.underscore.regular"/>
+            <message-key key="google.method.name.underscore.test"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
