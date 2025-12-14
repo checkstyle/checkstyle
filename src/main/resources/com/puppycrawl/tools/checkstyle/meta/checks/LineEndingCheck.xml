@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.LineEndingCheck"
+             name="LineEnding"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;div&gt;
+ Checks whether the files have a specific line ending (LF or CRLF).
+ &lt;/div&gt;
+
+ &lt;p&gt;
+ Files containing mixed line endings may produce multiple violations, one for
+ each line that does not match the configured line ending.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify the file extensions of the files to process.</description>
+            </property>
+            <property default-value="lf"
+                      name="lineEnding"
+                      type="com.puppycrawl.tools.checkstyle.checks.LineEndingOption">
+               <description>Set lineEnding.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unable.open"/>
+            <message-key key="wrong.line.end"/>
+            <message-key key="wrong.line.end.crlf"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
