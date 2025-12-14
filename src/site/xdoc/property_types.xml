@@ -601,6 +601,30 @@
       </div>
     </section>
 
+    <section name="LineEndingOption">
+      <p>
+        This type represents the policy for line returns. The
+        following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="line separator options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>crlf</code></td>
+            <td>Windows-style</td>
+          </tr>
+          <tr>
+            <td><code>lf</code></td>
+            <td>Unix-style</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
     <section name="LineSeparatorOption">
       <p>
         This type represents the policy for line returns. The
