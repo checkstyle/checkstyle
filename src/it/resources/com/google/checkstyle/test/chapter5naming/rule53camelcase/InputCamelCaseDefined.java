@@ -9,13 +9,13 @@ class InputCamelCaseDefined {
   boolean supportsIpv6OnIos;
 
   void XmlHttpRequest() {}
-  // violation above 'Method name 'XmlHttpRequest' must match pattern'
+  // violation above 'Method name 'XmlHttpRequest' is not valid per Google Java Style Guide.'
 
   void YouTubeImporter() {}
-  // violation above 'Method name 'YouTubeImporter' must match pattern'
+  // violation above 'Method name 'YouTubeImporter' is not valid per Google Java Style Guide.'
 
   void YoutubeImporter() {}
-  // violation above 'Method name 'YoutubeImporter' must match pattern'
+  // violation above 'Method name 'YoutubeImporter' is not valid per Google Java Style Guide.'
 
   class InnerGood {
 
@@ -26,13 +26,13 @@ class InputCamelCaseDefined {
     boolean supportsIpv6OnIos;
 
     void XmlHttpRequest() {}
-    // violation above 'Method name 'XmlHttpRequest' must match pattern'
+    // violation above 'Method name 'XmlHttpRequest' is not valid per Google Java Style Guide.'
 
     void YouTubeImporter() {}
-    // violation above 'Method name 'YouTubeImporter' must match pattern'
+    // violation above 'Method name 'YouTubeImporter' is not valid per Google Java Style Guide.'
 
     void YoutubeImporter() {}
-    // violation above 'Method name 'YoutubeImporter' must match pattern'
+    // violation above 'Method name 'YoutubeImporter' is not valid per Google Java Style Guide.'
   }
 
   InputCamelCaseDefined anonymousGood =
@@ -45,13 +45,13 @@ class InputCamelCaseDefined {
             boolean supportsIpv6OnIos;
 
             void XmlHttpRequest() {}
-            // violation above 'Method name 'XmlHttpRequest' must match pattern'
+            // violation above, ''XmlHttpRequest' is not valid per Google Java Style Guide.'
 
             void YouTubeImporter() {}
-            // violation above 'Method name 'YouTubeImporter' must match pattern'
+            // violation above, ''YouTubeImporter' is not valid per Google Java Style Guide.'
 
             void YoutubeImporter() {}
-            // violation above 'Method name 'YoutubeImporter' must match pattern'
+            // violation above, ''YoutubeImporter' is not valid per Google Java Style Guide.'
           };
 
   class AbbreviationsIncorrect {
@@ -65,7 +65,7 @@ class InputCamelCaseDefined {
     void XMLHTTPRequest() {}
     // 2 violations above:
     //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-    //  'Method name 'XMLHTTPRequest' must match pattern'
+    //  'Method name 'XMLHTTPRequest' is not valid per Google Java Style Guide.'
 
     class InnerBad {
 
@@ -78,7 +78,7 @@ class InputCamelCaseDefined {
       void XMLHTTPRequest() {}
       // 2 violations above:
       //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-      //  'Method name 'XMLHTTPRequest' must match pattern'
+      //  'Method name 'XMLHTTPRequest' is not valid per Google Java Style Guide.'
     }
 
     InputCamelCaseDefined anonymousBad =
@@ -93,7 +93,7 @@ class InputCamelCaseDefined {
               void XMLHTTPRequest() {}
               // 2 violations above:
               //  'XMLHTTPRequest.* more than '1' .* capital letters.'
-              //  'Method name 'XMLHTTPRequest' must match pattern'
+              //  'Method name 'XMLHTTPRequest' is not valid per Google Java Style Guide.'
             };
   }
 }

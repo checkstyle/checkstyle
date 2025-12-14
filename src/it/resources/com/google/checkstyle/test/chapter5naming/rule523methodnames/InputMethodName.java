@@ -14,59 +14,59 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class InputMethodName {
   void foo() {}
 
-  void Foo() {} // violation 'Method name 'Foo' must match pattern'
+  void Foo() {} // violation 'Method name 'Foo' is not valid per Google Java Style Guide.'
 
-  void fOo() {} // violation 'Method name 'fOo' must match pattern'
+  void fOo() {} // violation 'Method name 'fOo' is not valid per Google Java Style Guide.'
 
   void f0o() {}
 
-  void f$o() {} // violation 'Method name 'f\$o' must match pattern'
+  void f$o() {} // violation 'Method name 'f\$o' is not valid per Google Java Style Guide.'
 
-  void f_oo() {} // violation 'Method name 'f_oo' must match pattern'
+  void f_oo() {} // violation 'Method name 'f_oo' is not valid per Google Java Style Guide.'
 
-  void f() {} // violation 'Method name 'f' must match pattern'
+  void f() {} // violation 'Method name 'f' is not valid per Google Java Style Guide.'
 
-  void fO() {} // violation 'Method name 'fO' must match pattern'
+  void fO() {} // violation 'Method name 'fO' is not valid per Google Java Style Guide.'
 
   @Test
   void testing_foo() {
     class LocalFoo {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     }
 
     new Object() {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     };
   }
 
   void testing_foo(@FooTest String str) {
-    // violation above 'Method name 'testing_foo' must match pattern'
+    // violation above 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
     class LocalFoo {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     }
 
     new Object() {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     };
   }
 
-  @Test
-  void testing_Foo() {} // violation 'Method name 'testing_Foo' must match pattern'
+  @Test // violation below, 'Method name 'testing_Foo' is not valid per Google Java Style Guide.'
+  void testing_Foo() {}
 
-  @Test
-  void testing_fOo() {} // violation 'Method name 'testing_fOo' must match pattern'
+  @Test // violation below, 'Method name 'testing_fOo' is not valid per Google Java Style Guide.'
+  void testing_fOo() {}
 
   @Test
   void testingFoo() {}
@@ -74,76 +74,79 @@ public class InputMethodName {
   @Test
   void testingFoo_foo() {}
 
-  @Test
-  void testing_0123() {} // false-negative, _ between digit and letter
+  @Test // violation below, 'Method name 'testing_0123' is not valid per Google Java Style Guide.'
+  void testing_0123() {}
+
+  @Test // violation below, 'Method name 'testing_0123_' is not valid per Google Java Style Guide.'
+  void testing_0123_() {}
+
+  @Test // violation below, 'Method name 'testing__0123' is not valid per Google Java Style Guide.'
+  void testing__0123() {}
+
+  @Test // violation below, 'Method name 'testing__0123_' is not valid per Google Java Style Guide.'
+  void testing__0123_() {}
+
+  @Test // violation below, ''testing__0123__' is not valid per Google Java Style Guide.'
+  void testing__0123__() {}
+
+  @Test // violation below, 'Method name 'Testing_Foo' is not valid per Google Java Style Guide.'
+  void Testing_Foo() {}
+
+  @Test // violation below, 'Method name 't_esting' is not valid per Google Java Style Guide.'
+  void t_esting() {}
 
   @Test
-  void testing_0123_() {} // violation 'Method name 'testing_0123_' must match pattern'
+  void _testing() {} // violation 'Method name '_testing' is not valid per Google Java Style Guide.'
 
-  @Test
-  void testing__0123() {} // violation 'Method name 'testing__0123' must match pattern'
+  // violation below, 'Method name 'Testing_Foo2' is not valid per Google Java Style Guide.'
+  void Testing_Foo2() {}
 
-  @Test
-  void testing__0123_() {} // violation 'Method name 'testing__0123_' must match pattern'
+  @Test // violation below, 'Method name 'TestingFooBad' is not valid per Google Java Style Guide.'
+  void TestingFooBad() {}
 
-  @Test
-  void testing__0123__() {} // violation 'Method name 'testing__0123__' must match pattern'
+  @Test // violation below, 'Method name 'testing_foo_' is not valid per Google Java Style Guide.'
+  void testing_foo_() {}
 
-  @Test
-  void Testing_Foo() {} // violation 'Method name 'Testing_Foo' must match pattern'
+  @Test // violation below, 'Method name 'testing_Foo_' is not valid per Google Java Style Guide.'
+  void testing_Foo_() {}
 
-  @Test
-  void t_esting() {} // violation 'Method name 't_esting' must match pattern'
+  @Test // violation below, 'Method name 'testing__foo' is not valid per Google Java Style Guide.'
+  void testing__foo() {}
 
-  @Test
-  void _testing() {} // violation 'Method name '_testing' must match pattern'
+  @Test // violation below, 'Method name 'testing__Foo' is not valid per Google Java Style Guide.'
+  void testing__Foo() {}
 
-  void Testing_Foo2() {} // violation 'Method name 'Testing_Foo2' must match pattern'
+  @Test // violation below, 'Method name 'testing__foo_' is not valid per Google Java Style Guide.'
+  void testing__foo_() {}
 
-  @Test
-  void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
+  @Test // violation below, 'Method name 'testing__Foo_' is not valid per Google Java Style Guide.'
+  void testing__Foo_() {}
 
-  @Test
-  void testing_foo_() {} // violation 'Method name 'testing_foo_' must match pattern'
-
-  @Test
-  void testing_Foo_() {} // violation 'Method name 'testing_Foo_' must match pattern'
-
-  @Test
-  void testing__foo() {} // violation 'Method name 'testing__foo' must match pattern'
-
-  @Test
-  void testing__Foo() {} // violation 'Method name 'testing__Foo' must match pattern'
-
-  @Test
-  void testing__foo_() {} // violation 'Method name 'testing__foo_' must match pattern'
-
-  @Test
-  void testing__Foo_() {} // violation 'Method name 'testing__Foo_' must match pattern'
-
-  @Test
-  public void testing_123Foo() {} // violation 'Method name 'testing_123Foo' must match pattern'
+  @Test // violation below, 'Method name 'testing_123Foo' is not valid per Google Java Style Guide.'
+  public void testing_123Foo() {}
 
   // violation 2 lines below 'testing_123FOO' must contain no more than '1' consecutive capital'
   @Test
-  public void testing_123FOO() {} // violation 'Method name 'testing_123FOO' must match pattern'
+  public void testing_123FOO() {
+    // violation above, 'Method name 'testing_123FOO' is not valid per Google Java Style Guide.'
+  }
 
   // violation 2 lines below 'TESTING_123Foo' must contain no more than '1' consecutive capital'
-  @Test
-  public void TESTING_123Foo() {} // violation 'Method name 'TESTING_123Foo' must match pattern'
+  @Test // violation below, ''TESTING_123Foo' is not valid per Google Java Style Guide.'
+  public void TESTING_123Foo() {}
 
-  @Test
-  public void testing_Foo123() {} // violation 'Method name 'testing_Foo123' must match pattern'
+  @Test // violation below, 'Method name 'testing_Foo123' is not valid per Google Java Style Guide.'
+  public void testing_Foo123() {}
 
   // violation 2 lines below 'testing_FOO123' must contain no more than '1' consecutive capital'
-  @Test
-  public void testing_FOO123() {} // violation 'Method name 'testing_FOO123' must match pattern'
+  @Test // violation below, ''testing_FOO123' is not valid per Google Java Style Guide.'
+  public void testing_FOO123() {}
 
-  @Test
-  public void testing_Foo_123() {} // violation 'Method name 'testing_Foo_123' must match pattern'
+  @Test // violation below, ''testing_Foo_123' is not valid per Google Java Style Guide.'
+  public void testing_Foo_123() {}
 
-  @Test
-  public void testing_123_Foo() {} // violation 'Method name 'testing_123_Foo' must match pattern'
+  @Test // violation below, ''testing_123_Foo' is not valid per Google Java Style Guide.'
+  public void testing_123_Foo() {}
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
@@ -151,25 +154,29 @@ public class InputMethodName {
     class LocalFoo {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     }
 
     new Object() {
       void foo() {}
 
-      // violation below 'Method name 'testing_foo' must match pattern'
+      // violation below 'Method name 'testing_foo' is not valid per Google Java Style Guide.'
       void testing_foo() {}
     };
   }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_Foo1(String str) {} // violation 'Method name 'testing_Foo1' must match pattern'
+  void testing_Foo1(String str) {
+    // violation above, 'Method name 'testing_Foo1' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_fOo1(String str) {} // violation 'Method name 'testing_fOo1' must match pattern'
+  void testing_fOo1(String str) {
+    // violation above, 'Method name 'testing_fOo1' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
@@ -181,59 +188,75 @@ public class InputMethodName {
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_01231(String str) {} // false-negative, _ between digit and letter
+  void testing_01231(String str) {
+    // violation above, 'Method name 'testing_01231' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void Testing_Foo1(String str) {} // violation 'Method name 'Testing_Foo1' must match pattern'
+  void Testing_Foo1(String str) {
+    // violation above, 'Method name 'Testing_Foo1' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void t_esting1(String str) {} // violation 'Method name 't_esting1' must match pattern'
+  void t_esting1(String str) {
+    // violation above, 'Method name 't_esting1' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void _testing1(String str) {} // violation 'Method name '_testing1' must match pattern'
+  void _testing1(String str) {
+    // violation above, 'Method name '_testing1' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_124Foo() {} // violation 'Method name 'testing_124Foo' must match pattern'
+  void testing_124Foo() {} // violation ''testing_124Foo' is not valid per Google Java Style Guide.'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   // violation below ''testing_124FOO' must contain no more than '1''
-  void testing_124FOO() {} // violation 'Method name 'testing_124FOO' must match pattern'
+  void testing_124FOO() {} // violation ''testing_124FOO' is not valid per Google Java Style Guide.'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   // violation below 'TESTING_124Foo' must contain no more than '1' consecutive capital letters'
-  void TESTING_124Foo() {} // violation 'Method name 'TESTING_124Foo' must match pattern'
+  void TESTING_124Foo() {
+    // violation above, 'Method name 'TESTING_124Foo' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_Foo124() {} // violation 'Method name 'testing_Foo124' must match pattern'
+  void testing_Foo124() {} // violation ''testing_Foo124' is not valid per Google Java Style Guide.'
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
   // violation below 'testing_FOO124' must contain no more than '1' consecutive capital letters'
-  void testing_FOO124() {} // violation 'Method name 'testing_FOO124' must match pattern'
+  void testing_FOO124() {
+    // violation above, 'Method name 'testing_FOO124' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_Foo_124() {} // violation 'Method name 'testing_Foo_124' must match pattern'
+  void testing_Foo_124() {
+    // violation above, 'Method name 'testing_Foo_124' is not valid per Google Java Style Guide.'
+  }
 
   @ParameterizedTest
   @ValueSource(strings = {"racecar", "radar", "level", "madam", "noon"})
-  void testing_124_Foo() {} // violation 'Method name 'testing_124_Foo' must match pattern'
+  void testing_124_Foo() {
+    // violation above, 'Method name 'testing_124_Foo' is not valid per Google Java Style Guide.'
+  }
 
   @RepeatedTest(2)
   void testing_foo4() {}
 
   @RepeatedTest(2)
-  void testing_Foo2() {} // violation 'Method name 'testing_Foo2' must match pattern'
+  void testing_Foo2() {} // violation ''testing_Foo2' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
-  void testing_fOo2() {} // violation 'Method name 'testing_fOo2' must match pattern'
+  void testing_fOo2() {} // violation ''testing_fOo2' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
   void testingFoo2() {}
@@ -242,22 +265,24 @@ public class InputMethodName {
   void testingFoo_foo2() {}
 
   @RepeatedTest(2)
-  void testing_01232() {} // false-negative, _ between digit and letter
+  void testing_01232() {} // violation ''testing_01232' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
-  void Testing_Foo3() {} // violation 'Method name 'Testing_Foo3' must match pattern'
+  void Testing_Foo3() {} // violation ''Testing_Foo3' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
-  void t_esting2() {} // violation 'Method name 't_esting2' must match pattern'
+  void t_esting2() {} // violation ''t_esting2' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
-  void _testing2() {} // violation 'Method name '_testing2' must match pattern'
+  void _testing2() {} // violation ''_testing2' is not valid per Google Java Style Guide.'
 
   @RepeatedTest(2)
-  void TestingFooBad2() {} // violation 'Method name 'TestingFooBad2' must match pattern'
+  void TestingFooBad2() {} // violation ''TestingFooBad2' is not valid per Google Java Style Guide.'
 
   @BeforeAll
-  static void _testingFoooo() {} // violation 'Method name '_testingFoooo' must match pattern'
+  static void _testingFoooo() {
+    // violation above, 'Method name '_testingFoooo' is not valid per Google Java Style Guide.'
+  }
 
   @org.junit.jupiter.api.Test
   void testing_fq() {}
@@ -265,70 +290,79 @@ public class InputMethodName {
   class InnerFoo {
     void foo() {}
 
-    void Foo() {} // violation 'Method name 'Foo' must match pattern'
+    void Foo() {} // violation 'Method name 'Foo' is not valid per Google Java Style Guide.'
 
-    void fOo() {} // violation 'Method name 'fOo' must match pattern'
+    void fOo() {} // violation 'Method name 'fOo' is not valid per Google Java Style Guide.'
 
     void f0o() {}
 
-    void f$o() {} // violation 'Method name 'f\$o' must match pattern'
+    void f$o() {} // violation 'Method name 'f\$o' is not valid per Google Java Style Guide.'
 
-    void f_oo() {} // violation 'Method name 'f_oo' must match pattern'
+    void f_oo() {} // violation 'Method name 'f_oo' is not valid per Google Java Style Guide.'
 
-    void f() {} // violation 'Method name 'f' must match pattern'
+    void f() {} // violation 'Method name 'f' is not valid per Google Java Style Guide.'
 
-    void fO() {} // violation 'Method name 'fO' must match pattern'
+    void fO() {} // violation 'Method name 'fO' is not valid per Google Java Style Guide.'
 
-    void testing_foo() {} // violation 'Method name 'testing_foo' must match pattern'
+    void testing_foo() {} // violation ''testing_foo' is not valid per Google Java Style Guide.'
 
-    void testing_Foo() {} // violation 'Method name 'testing_Foo' must match pattern'
+    void testing_Foo() {
+      // violation above, 'Method name 'testing_Foo' is not valid per Google Java Style Guide.'
+    }
 
-    void testing_fOo() {} // violation 'Method name 'testing_fOo' must match pattern'
+    void testing_fOo() {
+      // violation above, 'Method name 'testing_fOo' is not valid per Google Java Style Guide.'
+    }
 
     void testingFoo() {}
 
-    void testingFoo_foo() {} // violation 'Method name 'testingFoo_foo' must match pattern'
+    void testingFoo_foo() {
+      // violation above, 'Method name 'testingFoo_foo' is not valid per Google Java Style Guide.'
+    }
 
-    void testing_0123() {} // false-negative, _ between digit and letter
+    void testing_0123() {
+      // violation above, 'Method name 'testing_0123' is not valid per Google Java Style Guide.'
+    }
 
-    void TestingFooBad() {} // violation 'Method name 'TestingFooBad' must match pattern'
+    void TestingFooBad() {}
+    // violation above, 'Method name 'TestingFooBad' is not valid per Google Java Style Guide.'
   }
 
   InnerFoo anon =
       new InnerFoo() {
         void foo() {}
 
-        void Foo() {} // violation 'Method name 'Foo' must match pattern'
+        void Foo() {} // violation 'Method name 'Foo' is not valid per Google Java Style Guide.'
 
-        void fOo() {} // violation 'Method name 'fOo' must match pattern'
+        void fOo() {} // violation 'Method name 'fOo' is not valid per Google Java Style Guide.'
 
         void f0o() {}
 
-        void f$o() {} // violation 'Method name 'f\$o' must match pattern'
+        void f$o() {} // violation 'Method name 'f\$o' is not valid per Google Java Style Guide.'
 
-        void f_oo() {} // violation 'Method name 'f_oo' must match pattern'
+        void f_oo() {} // violation 'Method name 'f_oo' is not valid per Google Java Style Guide.'
 
-        void f() {} // violation 'Method name 'f' must match pattern'
+        void f() {} // violation 'Method name 'f' is not valid per Google Java Style Guide.'
 
-        void fO() {} // violation 'Method name 'fO' must match pattern'
+        void fO() {} // violation 'Method name 'fO' is not valid per Google Java Style Guide.'
       };
 
   interface FooIn {
     void foo();
 
-    void Foo(); // violation 'Method name 'Foo' must match pattern'
+    void Foo(); // violation 'Method name 'Foo' is not valid per Google Java Style Guide.'
 
-    void fOo(); // violation 'Method name 'fOo' must match pattern'
+    void fOo(); // violation 'Method name 'fOo' is not valid per Google Java Style Guide.'
 
     void f0o();
 
-    void f$o(); // violation 'Method name 'f\$o' must match pattern'
+    void f$o(); // violation 'Method name 'f\$o' is not valid per Google Java Style Guide.'
 
-    void f_oo(); // violation 'Method name 'f_oo' must match pattern'
+    void f_oo(); // violation 'Method name 'f_oo' is not valid per Google Java Style Guide.'
 
-    void f(); // violation 'Method name 'f' must match pattern'
+    void f(); // violation 'Method name 'f' is not valid per Google Java Style Guide.'
 
-    void fO(); // violation 'Method name 'fO' must match pattern'
+    void fO(); // violation 'Method name 'fO' is not valid per Google Java Style Guide.'
   }
 
   @interface FooTest {}
