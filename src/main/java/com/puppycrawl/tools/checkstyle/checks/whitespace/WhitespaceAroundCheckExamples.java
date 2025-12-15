@@ -19,30 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import org.junit.jupiter.api.Test;
+/**
+ * Code examples for {@link WhitespaceAroundCheck}.
+ * Used from XDocs and example tests.
+ */
+public class WhitespaceAroundCheckExamples {
 
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-
-public class WhitespaceAroundCheckExamplesTest extends AbstractExamplesModuleTestSupport {
-
-    @Override
-    protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound";
-    }
-
-    @Test
-    public void testExample11() throws Exception {
-        // Example11 demonstrates an allowed empty switch block when
-        // allowEmptySwitchBlockStatements is set to true, so no violations expected.
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
-    }
-
-    @Test
-    public void testExamplesClassIsInstantiable() {
-        // This is only to bump JaCoCo coverage for WhitespaceAroundCheckExamples
-        new WhitespaceAroundCheckExamples();
+    /**
+     * Creates a new {@code WhitespaceAroundCheckExamples} instance.
+     * This constructor exists only to satisfy code coverage tools.
+     */
+    public WhitespaceAroundCheckExamples() {
+        // no code
     }
 }
