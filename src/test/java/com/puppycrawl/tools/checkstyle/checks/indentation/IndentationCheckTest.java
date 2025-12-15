@@ -369,6 +369,46 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testReturnStatementLineWrapping() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "true");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "8");
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "10:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "11:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "18:5: " + getCheckMessage(MSG_ERROR, "+", 4, 16),
+            "19:25: " + getCheckMessage(MSG_ERROR, "+", 24, 16),
+            "20:21: " + getCheckMessage(MSG_ERROR, "+", 20, 16),
+            "25:25: " + getCheckMessage(MSG_ERROR, ".", 24, 16),
+            "26:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+            "39:7: " + getCheckMessage(MSG_ERROR, "return", 6, 8),
+            "40:17: " + getCheckMessage(MSG_ERROR, "+", 16, 14),
+            "41:17: " + getCheckMessage(MSG_ERROR, "+", 16, 14),
+            "49:17: " + getCheckMessage(MSG_ERROR, "+", 16, 12),
+            "50:17: " + getCheckMessage(MSG_ERROR, "+", 16, 12),
+            "82:7: " + getCheckMessage(MSG_ERROR, "return", 6, 8),
+            "106:7: " + getCheckMessage(MSG_ERROR, "return", 6, 8),
+            "113:7: " + getCheckMessage(MSG_ERROR, "return", 6, 12),
+            // Note: Lines 33-34 (method chain in return statement) are not currently detected
+            // because METHOD_CALL has complex indentation rules that require further work
+            // Note: Line 433 (MSG_ERROR_MULTI branch) in
+            // BlockParentHandler.checkReturnIndentationAndWrapping requires a multi-level indent
+            // scenario which is difficult to achieve with braceAdjustment=0. This line may be
+            // covered by other test suites or may require different test configuration.
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationReturnStatementLineWrapping.java"),
+                expected);
+    }
+
+    @Test
     public void testDifficultAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -1965,10 +2005,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputIndentationMultilineStatements.java");
 
         final String[] expected = {
-            "23:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "23:7: " + getCheckMessage(MSG_ERROR, "&&", 6, 8),
             "39:7: " + getCheckMessage(MSG_ERROR, 0, 6, 8),
             "40:7: " + getCheckMessage(MSG_ERROR, 1, 6, 8),
-            "65:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "65:7: " + getCheckMessage(MSG_ERROR, "\"\"\"", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

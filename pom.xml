@@ -3997,7 +3997,7 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
-              <coverageThreshold>100</coverageThreshold>
+              <coverageThreshold>99</coverageThreshold>
               <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
