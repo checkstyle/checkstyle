@@ -20,11 +20,16 @@
    &lt;li&gt;
     Opening and closing quotes are vertically aligned.
    &lt;/li&gt;
+   &lt;li&gt;
+    Each line of text in the text block must be indented at
+    least as much as the opening and closing quotes.
+   &lt;/li&gt;
  &lt;/ol&gt;
  Note: Closing quotes can be followed by additional code on the same line.</description>
          <message-keys>
             <message-key key="textblock.format.close"/>
             <message-key key="textblock.format.open"/>
+            <message-key key="textblock.indentation"/>
             <message-key key="textblock.vertically.unaligned"/>
          </message-keys>
       </check>

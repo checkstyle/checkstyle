@@ -108,6 +108,8 @@
   <suppress id="noTrailingWhitespace"
     files="[\\/]InputRegexpSinglelineJavaTrailingComment10\.java"/>
   <suppress id="noTrailingWhitespace"
+    files="[\\/]InputTextBlockGoogleStyleFormatting10\.java"/>
+  <suppress id="noTrailingWhitespace"
             files="[\\/]javadocstyle[\\/]InputJavadocStyleTrailingSpace\.java"/>
   <suppress id="noTrailingWhitespace"
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
