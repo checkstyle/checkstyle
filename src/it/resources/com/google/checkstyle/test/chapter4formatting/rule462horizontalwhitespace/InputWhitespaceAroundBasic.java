@@ -138,6 +138,7 @@ class InputWhitespaceAroundBasic {
   /** Assert statement test. */
   public void assertTest() {
 
+    // violation below 'There is more than 1 empty line after this line.'
     assert true;
 
 
