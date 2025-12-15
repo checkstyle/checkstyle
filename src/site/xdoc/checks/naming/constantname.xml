@@ -148,7 +148,29 @@ class Example3 {
   final static int MYSELF = 100;
   protected final static int myselfConstant = 1;
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          The following configuration skips validation for private and package-private
+          constant fields:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ConstantName"&gt;
+      &lt;property name="applyToPrivate" value="false"/&gt;
+      &lt;property name="applyToPackage" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 {
+  public static final int PUBLIC_CONSTANT = 1;
+  private static final int privateConstant = 2; // ignored because applyToPrivate = false
+  static final int packageConstant = 3;         // ignored because applyToPackage = false
+}
+          </code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="ConstantName_Example_of_Usage">
