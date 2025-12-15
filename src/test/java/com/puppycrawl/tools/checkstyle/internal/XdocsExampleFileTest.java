@@ -119,8 +119,8 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-           assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
-                   .fail();
+            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+                    .fail();
         }
     }
 
