@@ -74,4 +74,14 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY, "_"),
+            "26:9: " + getCheckMessage(MSG_KEY, "result"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }
