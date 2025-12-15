@@ -2,7 +2,8 @@ package com.google.checkstyle.test.chapter4formatting.rule44columnlimit;
 
 /** Somejavadoc. */
 public class InputTextBlockColumnLimit {
-  // violation below 'Opening quotes (""") of text-block must be on the new line'
+  // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+  // violation 2 lines below 'Text block content indentation is less than the opening quotes'
   static final String SAMPLE = """
    locationId,label,regionId,regionLabel,vendorId,vendorLabel,address,address2,city,stateProvinceCode,zipCode,countryCode,latitude,longitude
    ST001,Station 001,ZONE1,Zone 1,CP1,Competitor 1,123 Street,Unit 2,Houston,TX,77033,US,29.761496813335178,-95.53049214204984
@@ -12,7 +13,8 @@ public class InputTextBlockColumnLimit {
 
   /** Somejavadoc. */
   public static void main(String[] args) {
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes'
     String textBlock = """
       This STRing will exceed the column limit of 100 but checktyle will not show many error because it is allowed
       Random String
@@ -27,7 +29,8 @@ public class InputTextBlockColumnLimit {
         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.
         """;
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes'
     String textblock3 = """
         Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.
         """;

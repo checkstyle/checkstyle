@@ -9,7 +9,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class InputTextBlockGoogleStyleFormatting1 {
 
     public String testFun1() {
-        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Text indentation is less than opening quotes indentation'
         // violation 6 lines below 'Text-block quotes are not vertically aligned'
         getData(
             """
@@ -20,7 +21,8 @@ public class InputTextBlockGoogleStyleFormatting1 {
             second string
             """
            // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
-           // violation 2 lines above 'Text-block quotes are not vertically aligned'
+           // violation 3 lines above 'Text indentation is less than opening quotes indentation'
+           // violation 3 lines above 'Text-block quotes are not vertically aligned'
         );
 
         return
@@ -43,7 +45,8 @@ public class InputTextBlockGoogleStyleFormatting1 {
               hello there1
               """, 0); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Text indentation is less than opening quotes indentation'
         String test1 = s
             + """
             very good

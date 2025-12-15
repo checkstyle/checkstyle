@@ -14,14 +14,17 @@ public class InputTextBlockGoogleStyleFormatting7 {
                                 </doc>
                                 """))
                         .toCharArray();
-        // violation 2 lines above 'Text-block quotes are not vertically aligned'
+        // violation 3 lines above 'Text indentation is less than opening quotes indentation'
+        // violation 3 lines above 'Text-block quotes are not vertically aligned'
 
         String ctx =
-            // violation below 'Opening quotes (""") of text-block must be on the new line'
+            // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+            // violation 2 lines below 'Text indentation is less than opening quotes indentation'
             getTestAppContext("""
                         <bean id='docBuilderFactory'
                         """ + // violation 'Text-block quotes are not vertically aligned'
-                    // violation below 'Opening quotes (""") of text-block must be on the new line'
+                    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+                    // violation 2 lines below 'Text indentation is less than opening quotes indentation'
                         getVi(new ObjectString("")) + """
                             <si-xml:xpath-splitter id='splitter'
                         """); // violation 'Text-block quotes are not vertically aligned'
@@ -56,7 +59,8 @@ public class InputTextBlockGoogleStyleFormatting7 {
     }
 
     public String testMethod3(String s1) {
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         String s2 = s1.isBlank() ? """
                 Mode 1
                 """ // violation 'Text-block quotes are not vertically aligned'
@@ -67,7 +71,8 @@ public class InputTextBlockGoogleStyleFormatting7 {
                 Default Mode
                 """;
         // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
-        // violation 2 lines above 'Text-block quotes are not vertically aligned'
+        // violation 3 lines above 'Text indentation is less than opening quotes indentation'
+        // violation 3 lines above 'Text-block quotes are not vertically aligned'
 
         return switch (s1) {
             // violation below 'Opening quotes (""") of text-block must be on the new line'
