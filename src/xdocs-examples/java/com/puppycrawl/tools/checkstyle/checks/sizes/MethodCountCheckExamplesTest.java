@@ -53,4 +53,13 @@ public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+                "16:1: " + getCheckMessage("too.many.privateMethods", 2, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
 }
