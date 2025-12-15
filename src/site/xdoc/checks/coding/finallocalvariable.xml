@@ -179,7 +179,7 @@ class Example3
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="FinalLocalVariable"&gt;
+    &lt;module name="FinalLocalVariableCheck"&gt;
       &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
       &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
     &lt;/module&gt;
