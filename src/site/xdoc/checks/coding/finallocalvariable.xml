@@ -86,6 +86,8 @@ class Example1
 {
   static int foo(int x, int y) {
     // ok, because PARAMETER_DEF is not configured in tokens
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
     return x+y;
   }
   public static void main (String []args) {
@@ -119,6 +121,8 @@ class Example2
     // 2 violations above:
     //  'Variable 'x' should be declared final'
     //  'Variable 'y' should be declared final'
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
     return x+y;
   }
   public static void main (String []args) {
@@ -160,6 +164,8 @@ class Example3
 {
   static int foo(int x, int y) {
     // ok, because PARAMETER_DEF is not configured in tokens
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
     return x+y;
   }
   public static void main (String []args) {
@@ -194,6 +200,44 @@ class Example4
     // 2 violations above:
     //  'Variable 'x' should be declared final'
     //  'Variable 'y' should be declared final'
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
+    return x+y;
+  }
+  public static void main (String []args) {
+    // violation above, 'Variable 'args' should be declared final'
+    // ok below, because validateEnhancedForLoopVariable is false by default
+    for (String i : args) {
+      System.out.println(i);
+    }
+    int result=foo(1,2); // violation, 'Variable 'result' should be declared final'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          An example of how to configure unnamed variables with parameter_def
+          and validate unnamed variables.
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="FinalLocalVariable"&gt;
+      &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+      &lt;property name="validateUnnamedVariables" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5
+{
+  static int foo(int x, int y) {
+    // 2 violations above:
+    //  'Variable 'x' should be declared final'
+    //  'Variable 'y' should be declared final'
+    int _  = 1; // violation, 'Variable '_' should be declared final'
+
     return x+y;
   }
   public static void main (String []args) {

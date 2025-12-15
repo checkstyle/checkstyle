@@ -18,6 +18,8 @@ class Example2
     // 2 violations above:
     //  'Variable 'x' should be declared final'
     //  'Variable 'y' should be declared final'
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
     return x+y;
   }
   public static void main (String []args) {

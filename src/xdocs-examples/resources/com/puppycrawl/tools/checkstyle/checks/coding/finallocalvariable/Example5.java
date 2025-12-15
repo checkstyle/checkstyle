@@ -1,29 +1,29 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="FinalLocalVariable"/>
+    <module name="FinalLocalVariable">
+      <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+      <property name="validateUnnamedVariables" value="true"/>
+    </module>
   </module>
 </module>
 */
 
-
-
-
-
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 // xdoc section -- start
-class Example1
+class Example5
 {
   static int foo(int x, int y) {
-    // ok, because PARAMETER_DEF is not configured in tokens
-    int _  = 1;
-    //ok above , validateUnnamedVariable is false by default
+    // 2 violations above:
+    //  'Variable 'x' should be declared final'
+    //  'Variable 'y' should be declared final'
+    int _  = 1; // violation, 'Variable '_' should be declared final'
+
     return x+y;
   }
   public static void main (String []args) {
-    // ok above, because PARAMETER_DEF is not configured in tokens
+    // violation above, 'Variable 'args' should be declared final'
     // ok below, because validateEnhancedForLoopVariable is false by default
     for (String i : args) {
       System.out.println(i);
