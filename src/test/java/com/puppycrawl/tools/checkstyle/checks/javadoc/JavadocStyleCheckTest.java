@@ -834,4 +834,19 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleAboveComments.java"),
                 expected);
     }
+
+    @Test
+    public void testJavadocStyleUnclosedTags() throws Exception {
+        // Test covers mutations in JavadocCommentsLexerUtil through realistic Javadoc inputs.
+        // This test verifies violations are reported on the correct lines.
+        final String[] expected = {
+            "25:10: " + getCheckMessage(MSG_UNCLOSED_HTML, "<span>Text in span."),
+            "35:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>Code text</pre>"),
+            "35:23: " + getCheckMessage(MSG_EXTRA_HTML, "</pre>"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocStyleUnclosedTags.java"),
+                expected);
+    }
 }
