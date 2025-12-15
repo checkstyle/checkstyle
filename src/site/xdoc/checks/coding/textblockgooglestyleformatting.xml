@@ -84,7 +84,8 @@ public class Example1 {
 public class Example2 {
 
   public String testMethod1() {
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
     final String simpleScript1Violate = """
         contents of the text block
       """; // violation 'Text-block quotes are not vertically aligned'
@@ -94,7 +95,8 @@ public class Example2 {
         """;
 
     final String simpleScript2Violate = simpleScript1Violate +
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
         simpleScript1Violate + """
         this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -105,7 +107,8 @@ public class Example2 {
             """;
 
     getData(
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
         1, """
            this is a multi-line message
            """);
@@ -115,7 +118,8 @@ public class Example2 {
            this is a multi-line message
            """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
     return """
         this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -202,6 +206,7 @@ public class Example4 {
         this is a multi-line message
         """);
 
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
     return
         """
     this is sample text
@@ -235,6 +240,11 @@ public class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.open%22">
               textblock.format.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.indentation%22">
+              textblock.indentation
             </a>
           </li>
           <li>
