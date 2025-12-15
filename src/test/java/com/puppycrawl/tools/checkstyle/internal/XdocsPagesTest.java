@@ -1012,7 +1012,7 @@ public class XdocsPagesTest {
                 fileName, sectionName)
                 .that(div.getNodeName())
                 .isEqualTo("div");
-            final String wrapperMessage = String.format(
+            final String wrapperMessage = String.format(Locale.ROOT,
                 "%s section '%s' subsection 'Properties'"
                     + " wrapping div for table needs the class 'wrapper'",
                 fileName, sectionName);

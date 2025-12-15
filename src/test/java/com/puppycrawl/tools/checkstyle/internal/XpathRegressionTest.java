@@ -211,7 +211,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(compatibleChecks);
         allChecks.removeAll(INTERNAL_MODULES);
 
-        final String format = String.format(
+        final String format = String.format(Locale.ROOT,
             "XpathRegressionTest is missing for [%s]."
                 + " Please add them to src/it/java/org/checkstyle/suppressionxpathfilter",
             String.join(", ", allChecks));
