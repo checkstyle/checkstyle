@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -31,6 +29,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -513,6 +512,25 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.auditFinished(null);
 
         verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
+    }
+
+    /**
+     * Tests that all severity levels (ERROR, WARNING, INFO, IGNORE) are correctly
+     * rendered in SARIF output to kill the switch statement mutation in renderSeverityLevel.
+     * This test uses realistic input with inline configuration rather than manual mocking
+     * to ensure proper integration testing.
+     *
+     * @throws Exception if an error occurs during verification
+     */
+    @Test
+    public void testRenderSeverityLevelAllLevels() throws Exception {
+        final String inputFile = "InputSarifLoggerAllSeverityLevels.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAllSeverityLevels.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     private static void verifyContent(
