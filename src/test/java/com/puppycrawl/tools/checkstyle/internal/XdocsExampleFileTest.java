@@ -22,20 +22,17 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
@@ -46,14 +43,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 public class XdocsExampleFileTest {
 
     private static final Set<String> COMMON_PROPERTIES = Set.of(
-        "severity",
-        "id",
-        "fileExtensions",
-        "tabWidth",
-        "fileContents",
-        "tokens",
-        "javadocTokens",
-        "violateExecutionOnNonTightHtml"
+            "severity",
+            "id",
+            "fileExtensions",
+            "tabWidth",
+            "fileContents",
+            "tokens",
+            "javadocTokens",
+            "violateExecutionOnNonTightHtml"
     );
 
     // This list is temporarily suppressed.
@@ -93,25 +90,25 @@ public class XdocsExampleFileTest {
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
-            XdocUtil.extractUsedPropertiesFromXdocsExamples();
+                XdocUtil.extractUsedPropertiesFromXdocsExamples();
         final List<String> failures = new ArrayList<>();
 
         for (Class<?> checkClass : CheckUtil.getCheckstyleChecks()) {
             final String checkSimpleName = checkClass.getSimpleName();
 
             final Set<String> definedProperties = Arrays.stream(
-                    PropertyUtils.getPropertyDescriptors(checkClass))
-                .filter(descriptor -> descriptor.getWriteMethod() != null)
-                .map(PropertyDescriptor::getName)
-                .filter(property -> !COMMON_PROPERTIES.contains(property))
-                .collect(Collectors.toUnmodifiableSet());
+                            PropertyUtils.getPropertyDescriptors(checkClass))
+                    .filter(descriptor -> descriptor.getWriteMethod() != null)
+                    .map(PropertyDescriptor::getName)
+                    .filter(property -> !COMMON_PROPERTIES.contains(property))
+                    .collect(Collectors.toUnmodifiableSet());
 
             final Set<String> usedProperties =
-                usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
+                    usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
 
             final Set<String> suppressedProps =
-                SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
-                    checkSimpleName, Collections.emptySet());
+                    SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
+                            checkSimpleName, Collections.emptySet());
 
             for (String property : definedProperties) {
                 if (!usedProperties.contains(property)
@@ -122,64 +119,41 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+            assertWithMessage("Xdocs are missing properties:\n"
+                    + String.join("\n", failures))
                     .fail();
         }
     }
 
     @Test
-    public void testAllExampleFilesAreReferencedInTestClasses() throws IOException {
-        final Path examplesRoot = Paths.get("src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
-        final List<String> failures = new ArrayList<>();
+    public void testWhitespaceAroundAllExamplesAreReferenced() throws Exception {
+        final Path examplesDir = Paths.get(
+            "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp"
+        );
 
-        Files.walk(examplesRoot)
-                .filter(path -> path.toString().endsWith("ExamplesTest.java"))
-                .forEach(testFile -> {
-                    try {
-                        final String testClassName = testFile.getFileName().toString()
-                                .replace(".java", "");
-                        final Set<String> referencedExamples = extractReferencedExamples(testFile);
-                        final Set<String> actualExamples = findExampleFiles(testFile.getParent());
+        final Path testFile = Paths.get(
+            "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks/whitespace/"
+                    + "WhitespaceAroundExamplesTest.java"
+        );
 
-                        for (String example : actualExamples) {
-                            if (!referencedExamples.contains(example)) {
-                                failures.add(String.format(
-                                        "Example file '%s' is not referenced in %s",
-                                        example, testClassName
-                                ));
-                            }
-                        }
-                    }
-                    catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-        if (!failures.isEmpty()) {
-            assertWithMessage("Example files not referenced in tests:\n" + String.join("\n", failures))
-                    .fail();
-        }
-    }
-
-    private static Set<String> extractReferencedExamples(Path testFile) throws IOException {
-        final String content = Files.readString(testFile);
-        final Pattern pattern = Pattern.compile("\"(Example(?:\\d+)?\\.java)\"");
-        final Matcher matcher = pattern.matcher(content);
-
-        final Set<String> examples = new HashSet<>();
-        while (matcher.find()) {
-            examples.add(matcher.group(1));
-        }
-        return examples;
-    }
-
-    private static Set<String> findExampleFiles(Path directory) throws IOException {
-        return Files.list(directory)
-                .filter(path -> {
-                    final String fileName = path.getFileName().toString();
-                    return fileName.matches("Example(?:\\d+)?\\.java");
-                })
+        final Set<String> exampleFiles;
+            try (Stream<Path> files = Files.list(examplesDir)) {
+                exampleFiles = files
                 .map(path -> path.getFileName().toString())
+                .filter(name -> name.matches("Example\\d+\\.java"))
                 .collect(Collectors.toSet());
+        }
+
+        final String testSource = Files.readString(testFile);
+
+        final List<String> missing = exampleFiles.stream()
+            .filter(example -> !testSource.contains("\"" + example + "\""))
+            .sorted()
+            .toList();
+
+        assertWithMessage(
+            "WhitespaceAroundExamplesTest is missing references to example files:\n"
+                + String.join("\n", missing)
+        ).that(missing).isEmpty();
     }
 }
