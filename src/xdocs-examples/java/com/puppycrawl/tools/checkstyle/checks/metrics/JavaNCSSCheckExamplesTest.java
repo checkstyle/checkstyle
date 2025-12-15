@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_RECORD;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,5 +67,14 @@ public class JavaNCSSCheckExamplesTest extends AbstractExamplesModuleTestSupport
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "24:3: " + getCheckMessage(MSG_RECORD, 6, 5),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
 }
