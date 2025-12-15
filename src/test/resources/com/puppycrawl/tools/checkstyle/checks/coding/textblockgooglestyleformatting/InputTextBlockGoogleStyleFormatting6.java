@@ -12,7 +12,8 @@ public class InputTextBlockGoogleStyleFormatting6 {
         String s = "abc";
         String p = "asd";
 
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
         if (s == """
                 a""" + "bc") {
         } // violation above 'Closing quotes (""") of text-block should not be preceded by non-whi'
@@ -25,11 +26,13 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 a""" + """
                 bc""" == s) {}
         // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
-        // 2 violations 2 lines above:
+        // violation 2 lines above 'Text block content indentation is less than the opening quotes indentation'
+        // 2 violations 3 lines above:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -37,14 +40,17 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 b""" + """
                 c""") != s) {}
         // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
-        // 2 violations 2 lines above:
+        // violation 2 lines above 'Text block content indentation is less than the opening quotes indentation'
+        // 2 violations 3 lines above:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
 
-        // violation 7 lines below 'Opening quotes (""") of text-block must be on the new line'
-        // violation 7 lines below 'Closing quotes (""") of text-block should not be preceded by'
+        // violation 9 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 9 lines below 'Text block content indentation is less than the opening quotes indentation'
+        // violation 8 lines below 'Closing quotes (""") of text-block should not be preceded by'
 
-        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 6 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 5 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -53,11 +59,13 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 b""" + """
                 c""") {}
         // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
-        // 2 violations 2 lines above:
+        // violation 2 lines above 'Text block content indentation is less than the opening quotes indentation'
+        // 2 violations 3 lines above:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -65,7 +73,8 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 asd""") != p) {
         }
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -73,7 +82,8 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 asd""")) {
         }
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -81,7 +91,8 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 p""" + p) {
         }
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'
@@ -89,7 +100,8 @@ public class InputTextBlockGoogleStyleFormatting6 {
                 p""" + p) {
         }
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text block content indentation is less than the opening quotes indentation'
         // 2 violations 4 lines below:
         //  'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //  'Text-block quotes are not vertically aligned'

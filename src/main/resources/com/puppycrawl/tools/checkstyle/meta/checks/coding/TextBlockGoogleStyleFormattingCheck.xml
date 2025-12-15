@@ -11,11 +11,14 @@
  &lt;a href="https://google.github.io/styleguide/javaguide.html#s4.8.9-text-blocks"&gt;
  Google Java Style Guide&lt;/a&gt;.
  &lt;/div&gt;
- This Check performs two validations:
+ This Check performs three validations:
  &lt;ol&gt;
    &lt;li&gt;
     It ensures that the opening and closing text-block quotes (&lt;code&gt;"""&lt;/code&gt;) each appear on their
     own line, with no other item preceding them.
+   &lt;/li&gt;
+   &lt;li&gt;
+    Text block content indentation is less than the opening quotes indentation.
    &lt;/li&gt;
    &lt;li&gt;
     Opening and closing quotes are vertically aligned.
@@ -25,6 +28,7 @@
          <message-keys>
             <message-key key="textblock.format.close"/>
             <message-key key="textblock.format.open"/>
+            <message-key key="textblock.indentation"/>
             <message-key key="textblock.vertically.unaligned"/>
          </message-keys>
       </check>
