@@ -97,3 +97,4 @@ src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentati
 src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation/InputSwitchWrappingIndentation.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule526parameternames/InputRecordComponentNameTwo.java
 src/it/resources/com/google/checkstyle/test/chapter5naming/rule527localvariablenames/InputPatternVariableNameEnhancedInstanceofTestDefault.java
+src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace/InputCorrectEmptyLineInsideClassMembers.java
