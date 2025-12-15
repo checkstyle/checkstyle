@@ -42,6 +42,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   <li>
  *    Opening and closing quotes are vertically aligned.
  *   </li>
+ *   <li>
+ *    Each line of text in the text block must be indented at
+ *    least as much as the opening and closing quotes.
+ *   </li>
  * </ol>
  * Note: Closing quotes can be followed by additional code on the same line.
  *
@@ -64,6 +68,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties" file.
      */
     public static final String MSG_VERTICALLY_UNALIGNED = "textblock.vertically.unaligned";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
 
     @Override
     public int[] getDefaultTokens() {
@@ -96,6 +105,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         if (!quotesAreVerticallyAligned(ast, closingQuotes)) {
             log(closingQuotes, MSG_VERTICALLY_UNALIGNED);
         }
+
+        if (!isContentIndentedProperly(ast)) {
+            log(ast.getFirstChild(), MSG_TEXT_BLOCK_CONTENT);
+        }
+
     }
 
     /**
@@ -184,5 +198,38 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             index--;
         }
         return Character.isWhitespace(text.charAt(index));
+    }
+
+    /**
+     * Determine if the Text Block content indentation is equal or less than
+     * opening quotes indentation.
+     *
+     * @param openingQuotes openingQuotes
+     * @return true if text-block content is properly indented.
+     */
+    private static boolean isContentIndentedProperly(DetailAST openingQuotes) {
+        final int quoteIndent = openingQuotes.getColumnNo();
+        final DetailAST textAst = openingQuotes.getFirstChild();
+        boolean result = true;
+
+        final String[] lines = textAst.getText().split("\n", -1);
+
+        for (String line : lines) {
+            if (line.isEmpty()) {
+                continue;
+            }
+
+            int indentation = 0;
+            while (indentation < line.length()
+                    && Character.isWhitespace(line.charAt(indentation))) {
+                indentation++;
+            }
+
+            if (indentation < quoteIndent) {
+                result = false;
+            }
+        }
+
+        return result;
     }
 }

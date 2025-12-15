@@ -113,6 +113,8 @@
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphCheck1\.java"/>
   <suppress id="noTrailingWhitespace"
             files="[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect4\.java"/>
+  <suppress id="noTrailingWhitespace"
+            files="[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting10\.java"/>
   
   <!-- Input file contains trailing whitespace to kill pitest mutation -->
   <suppress id="noTrailingWhitespace" 
@@ -244,6 +246,12 @@
   <!-- Until https://github.com/checkstyle/checkstyle/issues/11163 -->
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentation\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormatting2\.java"/>
+  <suppress checks="FileLength"
+    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingNotVerticallyAligned\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadoc\.java"/>
   <suppress checks="FileLength"
