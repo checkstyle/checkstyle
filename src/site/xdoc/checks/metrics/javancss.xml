@@ -215,6 +215,33 @@ class Example4 {
     System.out.println("m-2:Line 3");
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to set limit of non commented lines in record to 5:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavaNCSS"&gt;
+      &lt;property name="recordMaximum" value="5"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example5:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+package com.puppycrawl.tools.checkstyle.checks.metrics.javancss;
+
+// violation below, 'NCSS for this record is 6 (max allowed is 5)'
+record Example5(int x, int y) { // Statement 1
+
+  public Example5 { // Statement 2
+    System.out.println("Line 1"); // Statement 3
+    System.out.println("Line 2"); // Statement 4
+    System.out.println("Line 3"); // Statement 5
+    System.out.println("Line 4"); // Statement 6
+  }
+}
 </code></pre></div>
 
       </subsection>
