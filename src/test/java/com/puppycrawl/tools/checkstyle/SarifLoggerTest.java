@@ -515,6 +515,25 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
     }
 
+    /**
+     * Tests that all severity levels (ERROR, WARNING, INFO, IGNORE) are correctly
+     * rendered in SARIF output to kill the switch statement mutation in renderSeverityLevel.
+     * This test uses realistic input with inline configuration rather than manual mocking
+     * to ensure proper integration testing.
+     *
+     * @throws Exception if an error occurs during verification
+     */
+    @Test
+    public void testRenderSeverityLevelAllLevels() throws Exception {
+        final String inputFile = "InputSarifLoggerAllSeverityLevels.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAllSeverityLevels.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
     private static void verifyContent(
             String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream) throws IOException {
