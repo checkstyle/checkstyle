@@ -22,12 +22,19 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.PropertyUtils;
@@ -118,5 +125,61 @@ public class XdocsExampleFileTest {
             assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
                     .fail();
         }
+    }
+
+    @Test
+    public void testAllExampleFilesAreReferencedInTestClasses() throws IOException {
+        final Path examplesRoot = Paths.get("src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+        final List<String> failures = new ArrayList<>();
+
+        Files.walk(examplesRoot)
+                .filter(path -> path.toString().endsWith("ExamplesTest.java"))
+                .forEach(testFile -> {
+                    try {
+                        final String testClassName = testFile.getFileName().toString()
+                                .replace(".java", "");
+                        final Set<String> referencedExamples = extractReferencedExamples(testFile);
+                        final Set<String> actualExamples = findExampleFiles(testFile.getParent());
+
+                        for (String example : actualExamples) {
+                            if (!referencedExamples.contains(example)) {
+                                failures.add(String.format(
+                                        "Example file '%s' is not referenced in %s",
+                                        example, testClassName
+                                ));
+                            }
+                        }
+                    }
+                    catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+        if (!failures.isEmpty()) {
+            assertWithMessage("Example files not referenced in tests:\n" + String.join("\n", failures))
+                    .fail();
+        }
+    }
+
+    private static Set<String> extractReferencedExamples(Path testFile) throws IOException {
+        final String content = Files.readString(testFile);
+        final Pattern pattern = Pattern.compile("\"(Example(?:\\d+)?\\.java)\"");
+        final Matcher matcher = pattern.matcher(content);
+
+        final Set<String> examples = new HashSet<>();
+        while (matcher.find()) {
+            examples.add(matcher.group(1));
+        }
+        return examples;
+    }
+
+    private static Set<String> findExampleFiles(Path directory) throws IOException {
+        return Files.list(directory)
+                .filter(path -> {
+                    final String fileName = path.getFileName().toString();
+                    return fileName.matches("Example(?:\\d+)?\\.java");
+                })
+                .map(path -> path.getFileName().toString())
+                .collect(Collectors.toSet());
     }
 }
