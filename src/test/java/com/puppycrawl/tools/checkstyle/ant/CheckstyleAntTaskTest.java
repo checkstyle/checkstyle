@@ -1046,6 +1046,25 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .contains(file.getName());
     }
 
+    @Test
+    public void testAntProjectPropertyValueIsCopiedCorrectly() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+
+        final Project project = new Project();
+        project.setProperty("lineLength.severity", "ignore");
+        antTask.setProject(project);
+
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+
+        antTask.execute();
+
+        assertWithMessage("Failed to propagate Ant project property value correctly")
+                .that(TestRootModuleChecker.getProperty())
+                .isEqualTo("ignore");
+    }
+
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setTofile(outputFile);
