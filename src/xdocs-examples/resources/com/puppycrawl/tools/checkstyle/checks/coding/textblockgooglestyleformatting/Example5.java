@@ -8,28 +8,28 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformatting;
 
 // xdoc section -- start
-public class Example4 {
+public class Example5 {
 
   public String testMethod1() {
-
+    // violation 2 lines below 'Each line of text in the text block must be indented'
     final String simpleScriptViolate =
-      """
-          s
-           """; // violation 'text-block quotes are not vertically aligned'
+            """
+         s
+            """;
     final String simpleScriptCorrect =
       """
-          s
+      s
       """;
-
+    // violation 3 lines below 'Each line of text in the text block must be indented'
     getData(
       1,
         """
-        this is a multi-line message
-           """); // violation 'Text-block quotes are not vertically aligned'
+       this is a multi-line message
+        """);
     getData(
       1,
         """
-        this is a multi-line message
+            this is a multi-line message
         """);
 
     return
