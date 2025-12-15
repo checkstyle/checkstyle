@@ -208,6 +208,7 @@
                     COMPACT_CTOR_DEF"/>
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
       <property name="allowMultipleEmptyLines" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
     <module name="SeparatorWrap">
       <property name="id" value="SeparatorWrapDot"/>
