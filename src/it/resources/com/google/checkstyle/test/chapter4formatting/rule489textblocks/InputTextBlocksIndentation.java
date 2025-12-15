@@ -5,10 +5,11 @@ public class InputTextBlocksIndentation {
 
   /** Somejavadoc. */
   public void textIndentation1() {
+    // violation 3 lines below 'Text block content indentation is less than the opening quotes'
     String e1 =
         """
     content of the block. e1
-        """; // ok until #18227
+        """;
 
     String e2 =
         """
@@ -18,6 +19,7 @@ public class InputTextBlocksIndentation {
     // Expected indentation is the opening quotes on line 22 is 8,
     // but Indentation check is lenient when actual indentation is more
     // than expected indentation if `forceStrictCondition` is turned off.
+    // violation 3 lines below 'Text block content indentation is less than the opening quotes'
     String e3 =
           """
       content of the block. e1
@@ -26,6 +28,7 @@ public class InputTextBlocksIndentation {
     // Expected indentation is the opening quotes on line 30 is 8,
     // but Indentation check is lenient when actual indentation is more
     // than expected indentation if `forceStrictCondition` is turned off.
+    // violation 3 lines below 'Text block content indentation is less than the opening quotes'
     getData(
             """
         Indentation of Text-block
