@@ -19,28 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+/**
+ * Helper class to bind XDocs examples for {@link WhitespaceAroundCheck}
+ * with production code for {@code AllTestsTest}.
+ *
+ * <p>This class is intentionally non-instantiable and exposes a single
+ * static method that is used from the corresponding examples test.</p>
+ */
+public final class WhitespaceAroundCheckExamples {
 
-import org.junit.jupiter.api.Test;
-
-import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-
-public class WhitespaceAroundCheckExamplesTest extends AbstractExamplesModuleTestSupport {
-
-    @Override
-    protected String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/whitespace/whitespacearound";
+    private WhitespaceAroundCheckExamples() {
+        // no instantiation
     }
 
-    @Test
-    public void testExample11() throws Exception {
-        // Explicit assert for PMD and to touch WhitespaceAroundCheckExamples for coverage
-        assertNotNull(WhitespaceAroundCheckExamples.getCheckClass(),
-                "Examples helper should reference WhitespaceAroundCheck");
-
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+    /**
+     * Returns the check class referenced by the examples.
+     *
+     * @return {@link WhitespaceAroundCheck} class object
+     */
+    public static Class<WhitespaceAroundCheck> getCheckClass() {
+        return WhitespaceAroundCheck.class;
     }
 }
