@@ -295,7 +295,7 @@ public class SuppressionCommentFilterTest
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
         final EqualsVerifierReport ev = EqualsVerifier.forClass(tag.getClass())
                 .usingGetClass().report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

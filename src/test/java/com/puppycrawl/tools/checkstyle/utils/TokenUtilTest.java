@@ -67,7 +67,7 @@ public class TokenUtilTest {
             // The exception message may vary depending on the version of the JDK.
             // It will definitely contain the TokenUtil class name and the Integer class name.
             final String message = expected.getMessage();
-            assertWithMessage("Invalid exception message: " + message)
+            assertWithMessage("Invalid exception message: %s", message)
                     .that(message.startsWith("java.lang.IllegalAccessException: ")
                             && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
                             && message.contains("access a member of class java.lang.Integer"))

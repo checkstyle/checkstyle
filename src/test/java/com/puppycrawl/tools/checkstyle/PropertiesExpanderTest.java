@@ -31,7 +31,7 @@ public class PropertiesExpanderTest {
     public void testCtorException() {
         try {
             final Object test = new PropertiesExpander(null);
-            assertWithMessage("exception expected but got " + test).fail();
+            assertWithMessage("exception expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")

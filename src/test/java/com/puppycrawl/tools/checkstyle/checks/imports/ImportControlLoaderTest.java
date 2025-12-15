@@ -129,7 +129,7 @@ public class ImportControlLoaderTest {
             assertWithMessage("Invalid exception class")
                 .that(exc.getCause())
                 .isInstanceOf(CheckstyleException.class);
-            assertWithMessage("Invalid exception message: " + exc.getCause().getMessage())
+            assertWithMessage("Invalid exception message: %s", exc.getCause().getMessage())
                     .that(exc)
                     .hasCauseThat()
                     .hasMessageThat()
