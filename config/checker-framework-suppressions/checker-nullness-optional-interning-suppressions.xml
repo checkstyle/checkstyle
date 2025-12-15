@@ -4946,20 +4946,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.RPAREN)</message>
-    <lineContent>return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference slist</message>
-    <lineContent>return slist.findFirstToken(TokenTypes.RCURLY);</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
     <lineContent>if (nonList != nonListStartAst) {</lineContent>
