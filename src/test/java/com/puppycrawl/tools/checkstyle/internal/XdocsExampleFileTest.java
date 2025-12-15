@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
@@ -118,5 +122,37 @@ public class XdocsExampleFileTest {
             assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
                     .fail();
         }
+    }
+
+    @Test
+    public void testWhitespaceAroundAllExamplesAreReferenced() throws Exception {
+        final Path examplesDir = Paths.get(
+            "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp"
+        );
+
+        final Path testFile = Paths.get(
+            "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks/whitespace/"
+                    + "WhitespaceAroundExamplesTest.java"
+        );
+
+        final Set<String> exampleFiles;
+            try (Stream<Path> files = Files.list(examplesDir)) {
+                exampleFiles = files
+                .map(path -> path.getFileName().toString())
+                .filter(name -> name.matches("Example\\d+\\.java"))
+                .collect(Collectors.toSet());
+        }
+
+        final String testSource = Files.readString(testFile);
+
+        final List<String> missing = exampleFiles.stream()
+            .filter(example -> !testSource.contains("\"" + example + "\""))
+            .sorted()
+            .toList();
+
+        assertWithMessage(
+            "WhitespaceAroundExamplesTest is missing references to example files:\n"
+                + String.join("\n", missing)
+        ).that(missing).isEmpty();
     }
 }
