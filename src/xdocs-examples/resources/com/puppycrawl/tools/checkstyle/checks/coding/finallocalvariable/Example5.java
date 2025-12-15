@@ -3,22 +3,22 @@
   <module name="TreeWalker">
     <module name="FinalLocalVariable">
       <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
+      <property name="validateUnnamedVariables" value="true"/>
     </module>
   </module>
 </module>
 */
 
-
 package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
 
 // xdoc section -- start
-class Example2
+class Example5
 {
   static int foo(int x, int y) {
     // 2 violations above:
     // 'Variable 'x' should be declared final'
     // 'Variable 'y' should be declared final'
-    int _  = 1;
+    int _  = 1; // violation, 'Variable '_' should be declared final'
 
     return x+y;
   }
