@@ -43,14 +43,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 public class XdocsExampleFileTest {
 
     private static final Set<String> COMMON_PROPERTIES = Set.of(
-            "severity",
-            "id",
-            "fileExtensions",
-            "tabWidth",
-            "fileContents",
-            "tokens",
-            "javadocTokens",
-            "violateExecutionOnNonTightHtml"
+        "severity",
+        "id",
+        "fileExtensions",
+        "tabWidth",
+        "fileContents",
+        "tokens",
+        "javadocTokens",
+        "violateExecutionOnNonTightHtml"
     );
 
     // This list is temporarily suppressed.
@@ -90,25 +90,25 @@ public class XdocsExampleFileTest {
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
-                XdocUtil.extractUsedPropertiesFromXdocsExamples();
+            XdocUtil.extractUsedPropertiesFromXdocsExamples();
         final List<String> failures = new ArrayList<>();
 
         for (Class<?> checkClass : CheckUtil.getCheckstyleChecks()) {
             final String checkSimpleName = checkClass.getSimpleName();
 
             final Set<String> definedProperties = Arrays.stream(
-                            PropertyUtils.getPropertyDescriptors(checkClass))
-                    .filter(descriptor -> descriptor.getWriteMethod() != null)
-                    .map(PropertyDescriptor::getName)
-                    .filter(property -> !COMMON_PROPERTIES.contains(property))
-                    .collect(Collectors.toUnmodifiableSet());
+                    PropertyUtils.getPropertyDescriptors(checkClass))
+                .filter(descriptor -> descriptor.getWriteMethod() != null)
+                .map(PropertyDescriptor::getName)
+                .filter(property -> !COMMON_PROPERTIES.contains(property))
+                .collect(Collectors.toUnmodifiableSet());
 
             final Set<String> usedProperties =
-                    usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
+                usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
 
             final Set<String> suppressedProps =
-                    SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
-                            checkSimpleName, Collections.emptySet());
+                SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
+                    checkSimpleName, Collections.emptySet());
 
             for (String property : definedProperties) {
                 if (!usedProperties.contains(property)
@@ -119,9 +119,8 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Xdocs are missing properties:\n"
-                    + String.join("\n", failures))
-                    .fail();
+           assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+                   .fail();
         }
     }
 
