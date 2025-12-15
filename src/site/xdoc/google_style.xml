@@ -1977,12 +1977,12 @@
                         src="images/ban_red.png"
                         alt="" />
                   </span>
-                  As with section 5.2.4, it is impossible to automatically distinguish
-                  true constants from static final fields that are not constants.
-                  MemberName cannot verify that static final fields use lowerCamelCase
-                  when they are not constants (e.g., static final List&lt;String&gt; names).
+                  As with section 5.2.4, due to
+                  <a href="writingchecks.html#Limitations">limitations</a>,
                   Checkstyle cannot determine whether a static final field is semantically
-                  a constant or not.
+                  a constant or not. In other words, MemberName cannot verify that static
+                  final fields use lower case name when they are not constants (e.g.,
+                  static final List&lt;String&gt; names).
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames">
