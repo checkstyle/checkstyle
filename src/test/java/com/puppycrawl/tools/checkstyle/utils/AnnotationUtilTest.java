@@ -85,7 +85,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     public void testContainsAnnotationFalse() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
-        assertWithMessage("AnnotationUtil should not contain " + ast)
+        assertWithMessage("AnnotationUtil should not contain %s", ast)
                 .that(AnnotationUtil.containsAnnotation(ast))
                 .isFalse();
     }
@@ -97,7 +97,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         final DetailAstImpl ast2 = new DetailAstImpl();
         ast2.setType(TokenTypes.MODIFIERS);
         ast.addChild(ast2);
-        assertWithMessage("AnnotationUtil should not contain " + ast)
+        assertWithMessage("AnnotationUtil should not contain %s", ast)
                 .that(AnnotationUtil.containsAnnotation(ast))
                 .isFalse();
     }
@@ -112,7 +112,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         final DetailAstImpl ast3 = new DetailAstImpl();
         ast3.setType(TokenTypes.ANNOTATION);
         ast2.addChild(ast3);
-        assertWithMessage("AnnotationUtil should contain " + ast)
+        assertWithMessage("AnnotationUtil should contain %s", ast)
                 .that(AnnotationUtil.containsAnnotation(ast))
                 .isTrue();
     }
@@ -276,7 +276,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertWithMessage("Annotation should contain " + astForTest)
+        assertWithMessage("Annotation should contain %s", astForTest)
                 .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
                 .isTrue();
     }
@@ -301,7 +301,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertWithMessage("Annotation should not contain " + astForTest)
+        assertWithMessage("Annotation should not contain %s", astForTest)
                 .that(AnnotationUtil.containsAnnotation(astForTest, "AnnotationBad"))
                 .isFalse();
     }
@@ -329,7 +329,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         child.setNextSibling(annotations);
         astForTest.setFirstChild(child);
 
-        assertWithMessage("Annotation should contain " + astForTest)
+        assertWithMessage("Annotation should contain %s", astForTest)
                 .that(AnnotationUtil.containsAnnotation(astForTest, "Annotation"))
                 .isTrue();
     }
