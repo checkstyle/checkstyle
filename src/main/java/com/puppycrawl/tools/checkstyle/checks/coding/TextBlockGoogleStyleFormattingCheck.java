@@ -65,6 +65,11 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     public static final String MSG_VERTICALLY_UNALIGNED = "textblock.vertically.unaligned";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_TEXT_BLOCK_CONTENT = "textblock.indentation";
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -96,6 +101,12 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
         if (!quotesAreVerticallyAligned(ast, closingQuotes)) {
             log(closingQuotes, MSG_VERTICALLY_UNALIGNED);
         }
+
+        int indentationErrorLine = textBlockIsIndented(ast,closingQuotes);
+        if(indentationErrorLine != -1) {
+            log(indentationErrorLine, MSG_TEXT_BLOCK_CONTENT);
+        }
+
     }
 
     /**
@@ -183,5 +194,46 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
             index--;
         }
         return Character.isWhitespace(text.charAt(index));
+    }
+
+    /**
+     * Determine if the Text Block content indentation is equal or more than
+     * opening quotes indentation
+     *
+     * @param openingQuotes opening quotes
+     * @param closingQuotes closing quotes
+     * @return -1 if text bloc content indentation is eqal or more than opening quotes indentation
+     */
+    private static int textBlockIsIndented(DetailAST openingQuotes, DetailAST closingQuotes) {
+        final int quoteIndent = openingQuotes.getColumnNo();
+        final DetailAST textAst = openingQuotes.getFirstChild();
+        final String content = textAst.getText();
+
+        final String[] lines = content.split("\n", -1);
+        int currentLine = openingQuotes.getLineNo() + 1;
+
+
+        for(int i = 0;i < lines.length;i++) {
+            if (i == 0 && lines[i].isEmpty()) {
+                continue;
+            }
+
+            final String line = lines[i];
+
+            if(line.trim().isEmpty()) {
+                continue;
+            }
+
+            int indentation = 0;
+            while (indentation < line.length() && Character.isWhitespace(line.charAt(indentation))) {
+                indentation++;
+            }
+
+            if(indentation < quoteIndent) {
+                return currentLine;
+            }
+            currentLine++;
+        }
+        return -1;
     }
 }
