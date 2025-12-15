@@ -53,4 +53,31 @@ public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+                "14:1: " + getCheckMessage(MethodCountCheck.MSG_PRIVATE_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+                "14:1: " + getCheckMessage(MethodCountCheck.MSG_PACKAGE_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {
+                "14:1: " + getCheckMessage(MethodCountCheck.MSG_PROTECTED_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
 }
