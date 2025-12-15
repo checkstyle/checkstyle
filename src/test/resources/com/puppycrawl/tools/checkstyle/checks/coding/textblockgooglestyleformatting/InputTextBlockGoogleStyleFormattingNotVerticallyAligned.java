@@ -28,6 +28,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
                 """; // violation 'Text-block quotes are not vertically aligned'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith(
+                   // violation below 'Text is indented less than opening quotes indentation'
                     """
                 this is simple
             """); // violation 'Text-block quotes are not vertically aligned'
@@ -45,6 +46,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
     }
 
     public String textFun2() {
+        // violation 2 lines below 'Text is indented less than opening quotes indentation'
         final String simpleScript2 =
                 """
             this is sample text
@@ -60,8 +62,9 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
             1,
             """
          this is a multi-line message
-            """); // line above has less indentation than quotes, ok until
+            """); // violation 2 lines above 'Text is indented less than opening quotes indentation'
 
+        // violation 3 lines below 'Text is indented less than opening quotes indentation'
         getData(
             1,
                 """
@@ -93,6 +96,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
             second string
             """);
 
+        // violation 2 lines below 'Text is indented less than opening quotes indentation'
         getData(
                 """
             first string
@@ -105,6 +109,7 @@ public class InputTextBlockGoogleStyleFormattingNotVerticallyAligned {
 """
         );
 
+        // violation 2 lines below 'Text is indented less than opening quotes indentation'
         return
             """
            THE MULTI-LINE MESSAGE
