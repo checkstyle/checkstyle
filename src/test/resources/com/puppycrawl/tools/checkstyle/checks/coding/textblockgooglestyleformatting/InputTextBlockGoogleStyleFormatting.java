@@ -9,7 +9,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class InputTextBlockGoogleStyleFormatting {
 
     public static String textFun() {
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         final String simpleScript = """
             s
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -19,7 +20,8 @@ public class InputTextBlockGoogleStyleFormatting {
             this is simple test;
             """;
 
-        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Text indentation is less than opening quotes indentation'
         final String simpleScript2 = simpleScript +
                 simpleScript1 + """
                 this is simple script
@@ -31,19 +33,22 @@ public class InputTextBlockGoogleStyleFormatting {
             this is simple script
             """;
 
-        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Text indentation is less than opening quotes indentation'
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith("""
                 this is simple
                 """); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         getData("""
             Hello,
             This is a multi-line message.
             """); // violation 'Text-block quotes are not vertically aligned'
 
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         return """
             this is sample text
             """; // violation 'Text-block quotes are not vertically aligned'
@@ -79,7 +84,8 @@ public class InputTextBlockGoogleStyleFormatting {
             """
         );
 
-        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 3 lines below 'Text indentation is less than opening quotes indentation'
         getData(1,
             3, 5, 8, """
           some String""" // violation 'Closing quotes (""") of text-block should not be preceded'
@@ -93,7 +99,7 @@ public class InputTextBlockGoogleStyleFormatting {
         );
 
         // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
-        // violation 3 lines below 'Text-block quotes are not vertically aligned'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         getData("""
             first string
             """ + """
@@ -102,8 +108,11 @@ public class InputTextBlockGoogleStyleFormatting {
             """
             second string
             """
-            // violation 6 lines above'Opening quotes (""") of text-block must be on the new line'
-            // violation 5 lines above 'Text-block quotes are not vertically aligned'
+            // violation 6 lines above 'Text-block quotes are not vertically aligned'
+            // violation 7 lines above 'Opening quotes (""") of text-block must be on the new line'
+            // violation 7 lines above 'Text indentation is less than opening quotes indentation'
+            // violation 7 lines above 'Text-block quotes are not vertically aligned'
+
         );
     }
 
