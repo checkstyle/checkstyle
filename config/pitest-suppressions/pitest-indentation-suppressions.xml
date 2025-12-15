@@ -3,6 +3,15 @@
   <mutation unstable="false">
     <sourceFile>AbstractExpressionHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
+    <mutatedMethod>checkChildren</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to java/util/Arrays::sort</description>
+    <lineContent>Arrays.sort(tokenTypes);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AbstractExpressionHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
     <mutatedMethod>getFirstAstNode</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
@@ -16,6 +25,33 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
     <lineContent>if (toTest.getColumnNo() &lt; first.getColumnNo()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>checkChildrenWithReturnHandling</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (Arrays.binarySearch(tokenTypes, child.getType()) &gt;= 0) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>checkMultiLineReturnExpression</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler::checkMultiLineReturnExpression</description>
+    <lineContent>return false;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>BlockParentHandler.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.BlockParentHandler</mutatedClass>
+    <mutatedMethod>getLastLineOfAst</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (childLastLine &gt; lastLine) {</lineContent>
   </mutation>
 
   <mutation unstable="false">
