@@ -392,6 +392,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "39:7: " + getCheckMessage(MSG_ERROR, "return", 6, 8),
             "40:17: " + getCheckMessage(MSG_ERROR, "+", 16, 14),
             "41:17: " + getCheckMessage(MSG_ERROR, "+", 16, 14),
+            "126:17: " + getCheckMessage(MSG_ERROR, "+", 16, 12),
+            "127:17: " + getCheckMessage(MSG_ERROR, "+", 16, 12),
             // Note: Lines 33-34 (method chain in return statement) are not currently detected
             // because METHOD_CALL has complex indentation rules that require further work
         };

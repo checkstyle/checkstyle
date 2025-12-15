@@ -100,5 +100,30 @@ public class InputIndentationReturnStatementLineWrapping { //indent:0 exp:0
         return (1 + 2)                                     //indent:8 exp:8
                 * (3 + 4);                                 //indent:16 exp:16
     }                                                      //indent:4 exp:4
+
+    public static void returnVoid() {                      //indent:4 exp:4
+        return;                                            //indent:8 exp:8
+    }                                                      //indent:4 exp:4
+
+    public static int returnWithTernary() {                //indent:4 exp:4
+        return true                                        //indent:8 exp:8
+                ? 1                                        //indent:16 exp:16
+                : 2;                                       //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static String returnWithCast() {                //indent:4 exp:4
+        return (String)                                    //indent:8 exp:8
+                "test";                                    //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static int returnWithBitwise() {                //indent:4 exp:4
+        return 1                                           //indent:8 exp:8
+                &                                          //indent:16 exp:16
+                2;                                         //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static int returnNotOnStartOfLine() { return 1 //indent:4 exp:4
+                + 2                                        //indent:16 exp:12 warn
+                + 3; }                                     //indent:16 exp:12 warn
 }                                                          //indent:0 exp:0
 
