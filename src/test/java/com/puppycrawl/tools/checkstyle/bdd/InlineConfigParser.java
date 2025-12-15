@@ -398,6 +398,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck");
         MODULE_MAPPINGS.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
+        MODULE_MAPPINGS.put("GoogleMethodName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck");
         MODULE_MAPPINGS.put("ParameterName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck");
         MODULE_MAPPINGS.put("RegexpOnFilename",

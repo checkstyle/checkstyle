@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>GoogleMethodName</title>
+  </head>
+  <body>
+    <section name="GoogleMethodName">
+      <p>Since Checkstyle 12.3.1</p>
+      <subsection name="Description" id="GoogleMethodName_Description">
+        <div>
+          Checks that method names conform to the
+          <a href=
+          "https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names">
+          Google Java Style Guide</a> for method naming.
+        </div>
+
+        <p>
+          This check enforces Google's specific method naming requirements:
+        </p>
+        <ul>
+        <li>Method names must be in lowerCamelCase.</li>
+        <li>Underscores may appear in JUnit test method names to separate logical
+          components.</li>
+        <li>Underscores may be used to separate adjacent numbers (e.g., version
+          numbers like
+          <code>guava33_4_5</code>), but NOT between letters and digits.</li>
+        </ul>
+
+        <p>
+          This check has no configurable properties. It is specifically designed to
+          enforce Google Java Style and handles test method annotations internally.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="GoogleMethodName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="GoogleMethodName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+  public void fooBar() {}
+  public void guava33_4_5() {}
+  public void Foo() {}
+  // violation above, 'Method name 'Foo' is not valid per Google Java Style Guide'
+
+  public void gradle_9_5_1() {}
+  // violation above, ''gradle_9_5_1' is not valid per Google Java Style Guide.'
+
+  @Test
+  public void login_fails() {}
+
+  @Test
+  public void login_Fails() {}
+  // violation above, ''login_Fails' is not valid per Google Java Style Guide.'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="GoogleMethodName_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GoogleMethodName">
+            Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+GoogleMethodName">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="GoogleMethodName_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22google.method.name%22">
+              google.method.name
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="GoogleMethodName_Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="GoogleMethodName_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
