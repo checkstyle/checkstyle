@@ -26,6 +26,10 @@
         <li>
           Opening and closing quotes are vertically aligned.
         </li>
+        <li>
+          Each line of text in the text block must be indented at
+          least as much as the opening and closing quotes.
+        </li>
         </ol>
           Note: Closing quotes can be followed by additional code on the same line.
       </subsection>
@@ -86,7 +90,7 @@ public class Example2 {
   public String testMethod1() {
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     final String simpleScript1Violate = """
-        contents of the text block
+                                         contents of the text block
       """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript1Correct =
         """
@@ -96,7 +100,7 @@ public class Example2 {
     final String simpleScript2Violate = simpleScript1Violate +
         // violation below 'quotes (""") of text-block must be on the new line'
         simpleScript1Violate + """
-        this is simple script
+                                this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
     final String simpleScript2Correct = simpleScript1Violate +
         simpleScript1Violate +
@@ -107,7 +111,7 @@ public class Example2 {
     getData(
         // violation below 'quotes (""") of text-block must be on the new line'
         1, """
-           this is a multi-line message
+            this is a multi-line message
            """);
     getData(
         1,
@@ -117,7 +121,7 @@ public class Example2 {
 
     // violation below 'Opening quotes (""") of text-block must be on the new line'
     return """
-        this is sample text
+            this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
   }
   public void getData(String text, int num) {}
@@ -204,7 +208,7 @@ public class Example4 {
 
     return
         """
-    this is sample text
+        this is sample text
       """; // violation 'text-block quotes are not vertically aligned'
   }
   public void getData(int num, String text) {}
@@ -235,6 +239,11 @@ public class Example4 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.format.open%22">
               textblock.format.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22textblock.indentation%22">
+              textblock.indentation
             </a>
           </li>
           <li>
