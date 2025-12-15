@@ -262,8 +262,7 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+            final String version = Objects.toString(null,
                     "");
 
             log("checkstyle version " + version, Project.MSG_VERBOSE);
@@ -427,7 +426,7 @@ public class CheckstyleAntTask extends Task {
             }
             catch (final IOException exc) {
                 throw new BuildException("Error loading Properties file '"
-                        + properties + "'", exc, getLocation());
+                        + properties + "'", exc);
             }
         }
 
