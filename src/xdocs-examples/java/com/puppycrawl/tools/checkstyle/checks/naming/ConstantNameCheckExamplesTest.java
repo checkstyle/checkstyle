@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import static com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck.MSG_INVALID_PATTERN;
 
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
@@ -71,4 +72,12 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }
