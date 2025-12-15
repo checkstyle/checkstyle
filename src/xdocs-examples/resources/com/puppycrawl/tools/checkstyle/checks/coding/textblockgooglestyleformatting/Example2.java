@@ -11,7 +11,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class Example2 {
 
   public String testMethod1() {
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text is indented less than opening quotes indentation'
     final String simpleScript1Violate = """
         contents of the text block
       """; // violation 'Text-block quotes are not vertically aligned'
@@ -21,7 +22,8 @@ public class Example2 {
         """;
 
     final String simpleScript2Violate = simpleScript1Violate +
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text is indented less than opening quotes indentation'
         simpleScript1Violate + """
         this is simple script
         """; // violation 'Text-block quotes are not vertically aligned'
@@ -32,7 +34,8 @@ public class Example2 {
             """;
 
     getData(
-        // violation below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text is indented less than opening quotes indentation'
         1, """
            this is a multi-line message
            """);
@@ -42,7 +45,8 @@ public class Example2 {
            this is a multi-line message
            """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text is indented less than opening quotes indentation'
     return """
         this is sample text
         """; // violation 'Text-block quotes are not vertically aligned'
