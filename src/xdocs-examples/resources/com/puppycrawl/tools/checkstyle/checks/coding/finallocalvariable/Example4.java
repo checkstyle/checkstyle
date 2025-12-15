@@ -1,7 +1,7 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="FinalLocalVariable">
+    <module name="FinalLocalVariableCheck">
       <property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/>
       <property name="validateEnhancedForLoopVariable" value="false"/>
     </module>
