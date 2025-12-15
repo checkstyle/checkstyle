@@ -56,5 +56,49 @@ public class InputIndentationReturnStatementLineWrapping { //indent:0 exp:0
                 * 2                                        //indent:16 exp:16
                 * 3;                                       //indent:16 exp:16
     }                                                      //indent:4 exp:4
+
+    public static Object returnNull() {                    //indent:4 exp:4
+        return null;                                       //indent:8 exp:8
+    }                                                      //indent:4 exp:4
+
+    public static int returnSimpleLiteral() {              //indent:4 exp:4
+        return 42;                                         //indent:8 exp:8
+    }                                                      //indent:4 exp:4
+
+    public static int returnWithSubtraction() {            //indent:4 exp:4
+        return 10                                          //indent:8 exp:8
+                - 5                                        //indent:16 exp:16
+                - 2;                                       //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static int returnWithDivision() {               //indent:4 exp:4
+        return 100                                         //indent:8 exp:8
+                / 10                                       //indent:16 exp:16
+                / 2;                                       //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static int returnWithMixedOperators() {         //indent:4 exp:4
+        return 1                                           //indent:8 exp:8
+                + 2                                        //indent:16 exp:16
+                * 3                                        //indent:16 exp:16
+                - 4;                                       //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static boolean returnWithComparison() {         //indent:4 exp:4
+        return 1                                           //indent:8 exp:8
+                <                                          //indent:16 exp:16
+                2;                                         //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static boolean returnWithLogicalOr() {          //indent:4 exp:4
+        return true                                        //indent:8 exp:8
+                ||                                         //indent:16 exp:16
+                false;                                     //indent:16 exp:16
+    }                                                      //indent:4 exp:4
+
+    public static int returnNestedExpression() {           //indent:4 exp:4
+        return (1 + 2)                                     //indent:8 exp:8
+                * (3 + 4);                                 //indent:16 exp:16
+    }                                                      //indent:4 exp:4
 }                                                          //indent:0 exp:0
 
