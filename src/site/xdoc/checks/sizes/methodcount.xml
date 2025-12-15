@@ -242,7 +242,37 @@ class Example3 { // violation, 'Number of public methods is 3 (max allowed is 2)
     public void innerMethod2() {} // NOT counted towards Example3
   }
 }
-</code></pre></div>
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To configure the check to use separate maximums for private, package-private,
+          and protected methods:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MethodCount"&gt;
+      &lt;property name="maxPrivate" value="1"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example4 { // violation, 'Number of private methods is 2 (max allowed is 1)'
+
+  public void publicMethod1() {}
+  public void publicMethod2() {}
+
+  private void privateMethod1() {}
+  private void privateMethod2() {}
+
+  void packageMethod1() {}
+  void packageMethod2() {}
+
+  protected void protectedMethod1() {}
+  protected void protectedMethod2() {}
+}
+</code></pre></div><hr class="example-separator"/>
       </subsection>
 
       <subsection name="Example of Usage" id="MethodCount_Example_of_Usage">
