@@ -22,7 +22,8 @@ public class InputFormattedTextBlocksGeneralForm {
         This is a multi-line message.
         """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes 
     return """
     this is sample text
     """; // violation 'Text-block quotes are not vertically aligned'
@@ -43,7 +44,8 @@ public class InputFormattedTextBlocksGeneralForm {
         This is a multi-line message.
         """);
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Text block content indentation is less than the opening quotes 
     return """
     THE MULTI-LINE MESSAGE
     """; // violation 'Text-block quotes are not vertically aligned'
@@ -65,7 +67,8 @@ public class InputFormattedTextBlocksGeneralForm {
         """,
         0);
 
-    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 3 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 3 lines below 'Text block content indentation is less than the opening quotes 
     return s
         + """
         very good
