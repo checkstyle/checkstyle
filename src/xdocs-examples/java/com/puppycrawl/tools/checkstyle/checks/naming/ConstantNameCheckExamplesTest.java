@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck.MS
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     private static final String DEFAULT_PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
@@ -71,4 +72,12 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }
