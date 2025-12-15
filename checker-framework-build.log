@@ -1,0 +1,346 @@
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 1 modules
+[INFO] Installing Central Publishing features
+[WARNING] The requested profile "checker-framework-checker-on-jdk11" could not be activated because it does not exist.
+[INFO] 
+[INFO] ------------------< com.puppycrawl.tools:checkstyle >-------------------
+[INFO] Building checkstyle 12.3.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading from nexus-codehaus-snapshot: https://oss.sonatype.org/content/repositories/codehaus-snapshots/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.pom
+Downloading from central: https://repo.maven.apache.org/maven2/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.pom
+Progress (1): 766 BProgress (1): 1.9 kBProgress (1): 5.4 kBProgress (1): 8.4 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.pom (8.4 kB at 19 kB/s)
+Downloading from nexus-codehaus-snapshot: https://oss.sonatype.org/content/repositories/codehaus-snapshots/com/groupon/api/api-parent-pom/1.0.11/api-parent-pom-1.0.11.pom
+Downloading from central: https://repo.maven.apache.org/maven2/com/groupon/api/api-parent-pom/1.0.11/api-parent-pom-1.0.11.pom
+Progress (1): 856 BProgress (1): 3.2 kBProgress (1): 5.2 kBProgress (1): 9.8 kBProgress (1): 13 kB Progress (1): 16 kBProgress (1): 18 kB                   Downloaded from central: https://repo.maven.apache.org/maven2/com/groupon/api/api-parent-pom/1.0.11/api-parent-pom-1.0.11.pom (18 kB at 263 kB/s)
+Downloading from nexus-codehaus-snapshot: https://oss.sonatype.org/content/repositories/codehaus-snapshots/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.jar
+Downloading from central: https://repo.maven.apache.org/maven2/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.jar
+Progress (1): 0.9/18 kBProgress (1): 2.3/18 kBProgress (1): 3.6/18 kBProgress (1): 5.0/18 kBProgress (1): 6.4/18 kBProgress (1): 7.7/18 kBProgress (1): 8.2/18 kBProgress (1): 9.6/18 kBProgress (1): 11/18 kB Progress (1): 12/18 kBProgress (1): 14/18 kBProgress (1): 15/18 kBProgress (1): 16/18 kBProgress (1): 18/18 kBProgress (1): 18 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/com/groupon/maven/plugin/json/json-schema-validator/1.2.0/json-schema-validator-1.2.0.jar (18 kB at 262 kB/s)
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ checkstyle ---
+[INFO] Deleting /Users/pratyksh/Desktop/pg-checkstyle/target
+[INFO] 
+[INFO] --- tidy:1.4.0:check (validate) @ checkstyle ---
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-maven) @ checkstyle ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-versions) @ checkstyle ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- xml:1.2.0:check-format (default) @ checkstyle ---
+[INFO] 
+[INFO] --- antlr4:4.13.2:antlr4 (default) @ checkstyle ---
+[INFO] ANTLR 4: Processing source directory /Users/pratyksh/Desktop/pg-checkstyle/src/main/resources
+[INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsLexer.g4
+[INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/javadoc/JavadocCommentsParser.g4
+[INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageLexer.g4
+[INFO] Processing grammar: com/puppycrawl/tools/checkstyle/grammar/java/JavaLanguageParser.g4
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (add-source) @ checkstyle ---
+[INFO] Source directory: /Users/pratyksh/Desktop/pg-checkstyle/target/generated-sources/antlr added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ checkstyle ---
+[INFO] Copying 401 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-test-source) @ checkstyle ---
+[INFO] Skipping plugin execution!
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-it-test-source) @ checkstyle ---
+[INFO] Test Source directory: /Users/pratyksh/Desktop/pg-checkstyle/src/it/java added.
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-it-test-resource) @ checkstyle ---
+[INFO] Skipping plugin execution!
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-source) @ checkstyle ---
+[INFO] Test Source directory: /Users/pratyksh/Desktop/pg-checkstyle/src/xdocs-examples/java added.
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-test-source (add-xdocs-examples-resource) @ checkstyle ---
+[INFO] Skipping plugin execution!
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ checkstyle ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 472 source files with javac [debug release 17] to target/classes
+[INFO] /Users/pratyksh/Desktop/pg-checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Some input files use or override a deprecated API.
+[INFO] /Users/pratyksh/Desktop/pg-checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/DefaultConfiguration.java: Recompile with -Xlint:deprecation for details.
+[INFO] /Users/pratyksh/Desktop/pg-checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: /Users/pratyksh/Desktop/pg-checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java uses unchecked or unsafe operations.
+[INFO] /Users/pratyksh/Desktop/pg-checkstyle/src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- plexus-component-metadata:2.2.0:generate-metadata (default) @ checkstyle ---
+[INFO] Discovered 10 component descriptor(s)
+[INFO] 
+[INFO] --- exec:3.6.2:java (default) @ checkstyle ---
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ checkstyle ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ checkstyle ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- jacoco:0.8.14:instrument (default-instrument) @ checkstyle ---
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ checkstyle ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- xml:1.2.0:validate (default) @ checkstyle ---
+[INFO] 
+[INFO] --- jacoco:0.8.14:restore-instrumented-classes (default-restore-instrumented-classes) @ checkstyle ---
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ checkstyle ---
+[INFO] Building jar: /Users/pratyksh/Desktop/pg-checkstyle/target/checkstyle-12.3.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- jar:3.5.0:test-jar (default) @ checkstyle ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> source:3.4.0:test-jar (attach-sources) > generate-sources @ checkstyle >>>
+[INFO] 
+[INFO] --- tidy:1.4.0:check (validate) @ checkstyle ---
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-maven) @ checkstyle ---
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-versions) @ checkstyle ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- xml:1.2.0:check-format (default) @ checkstyle ---
+[INFO] 
+[INFO] --- antlr4:4.13.2:antlr4 (default) @ checkstyle ---
+[INFO] No grammars to process
+[INFO] ANTLR 4: Processing source directory /Users/pratyksh/Desktop/pg-checkstyle/src/main/resources
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (add-source) @ checkstyle ---
+[INFO] Source directory: /Users/pratyksh/Desktop/pg-checkstyle/target/generated-sources/antlr added.
+[INFO] 
+[INFO] <<< source:3.4.0:test-jar (attach-sources) < generate-sources @ checkstyle <<<
+[INFO] 
+[INFO] 
+[INFO] --- source:3.4.0:test-jar (attach-sources) @ checkstyle ---
+[INFO] Building jar: /Users/pratyksh/Desktop/pg-checkstyle/target/checkstyle-12.3.0-SNAPSHOT-test-sources.jar
+[INFO] 
+[INFO] >>> source:3.4.0:jar (attach-sources) > generate-sources @ checkstyle >>>
+[INFO] 
+[INFO] --- tidy:1.4.0:check (validate) @ checkstyle ---
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-maven) @ checkstyle ---
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (enforce-versions) @ checkstyle ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- xml:1.2.0:check-format (default) @ checkstyle ---
+[INFO] 
+[INFO] --- antlr4:4.13.2:antlr4 (default) @ checkstyle ---
+[INFO] No grammars to process
+[INFO] ANTLR 4: Processing source directory /Users/pratyksh/Desktop/pg-checkstyle/src/main/resources
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (add-source) @ checkstyle ---
+[INFO] Source directory: /Users/pratyksh/Desktop/pg-checkstyle/target/generated-sources/antlr added.
+[INFO] 
+[INFO] <<< source:3.4.0:jar (attach-sources) < generate-sources @ checkstyle <<<
+[INFO] 
+[INFO] 
+[INFO] --- source:3.4.0:jar (attach-sources) @ checkstyle ---
+[INFO] Building jar: /Users/pratyksh/Desktop/pg-checkstyle/target/checkstyle-12.3.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.5.4:integration-test (integration-test) @ checkstyle ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- modernizer:3.2.0:modernizer (modernizer) @ checkstyle ---
+[INFO] 
+[INFO] --- jacoco:0.8.14:check (default-check) @ checkstyle ---
+[INFO] Skipping JaCoCo execution due to missing execution data file:/Users/pratyksh/Desktop/pg-checkstyle/target/jacoco.exec
+[INFO] 
+[INFO] --- failsafe:3.5.4:verify (verify) @ checkstyle ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- antrun:3.2.0:run (ant-phase-verify) @ checkstyle ---
+[INFO] Executing tasks
+[INFO]      [echo] Checkstyle started (checkstyle-checks.xml): 15/12/2025 03:30:13 pm
+[INFO] Reflections took 51 ms to scan 1 urls, producing 208 keys and 208 values
+[INFO] [checkstyle] Running Checkstyle  on 2269 files
+[INFO]      [echo] Checkstyle finished (checkstyle-checks.xml): 15/12/2025 03:31:12 pm
+[INFO]      [echo] Checkstyle started (checkstyle-non-main-files-checks.xml): 15/12/2025 03:30:13 pm
+[INFO] [checkstyle] Running Checkstyle  on 5101 files
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:5: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:96: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:97: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:98: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:99: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:119: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:149: Line should not be longer than 100 symbols [lineLength]
+[ERROR] [checkstyle] [ERROR] /Users/pratyksh/Desktop/pg-checkstyle/checker-framework-build.log:173: Line should not be longer than 100 symbols [lineLength]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:05 min
+[INFO] Finished at: 2025-12-15T15:31:24+05:30
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "checker-framework-checker-on-jdk11" could not be activated because it does not exist.
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:3.2.0:run (ant-phase-verify) on project checkstyle: An Ant BuildException has occurred: The following error occurred while executing this line:
+[ERROR] /Users/pratyksh/Desktop/pg-checkstyle/config/ant-phase-verify.xml:74: Got 8 errors (max allowed: 0) and 0 warnings.
+[ERROR] around Ant part ...<ant antfile="config/ant-phase-verify.xml" />... @ 7:50 in /Users/pratyksh/Desktop/pg-checkstyle/target/antrun/build-main.xml
+[ERROR] -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.apache.maven.plugins:maven-antrun-plugin:3.2.0:run (ant-phase-verify) on project checkstyle: An Ant BuildException has occurred: The following error occurred while executing this line:
+/Users/pratyksh/Desktop/pg-checkstyle/config/ant-phase-verify.xml:74: Got 8 errors (max allowed: 0) and 0 warnings.
+around Ant part ...<ant antfile="config/ant-phase-verify.xml" />... @ 7:50 in /Users/pratyksh/Desktop/pg-checkstyle/target/antrun/build-main.xml
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.maven.plugin.MojoExecutionException: An Ant BuildException has occurred: The following error occurred while executing this line:
+/Users/pratyksh/Desktop/pg-checkstyle/config/ant-phase-verify.xml:74: Got 8 errors (max allowed: 0) and 0 warnings.
+around Ant part ...<ant antfile="config/ant-phase-verify.xml" />... @ 7:50 in /Users/pratyksh/Desktop/pg-checkstyle/target/antrun/build-main.xml
+    at org.apache.maven.plugins.antrun.AntRunMojo.execute (AntRunMojo.java:310)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.tools.ant.BuildException: The following error occurred while executing this line:
+/Users/pratyksh/Desktop/pg-checkstyle/config/ant-phase-verify.xml:74: Got 8 errors (max allowed: 0) and 0 warnings.
+    at org.apache.tools.ant.ProjectHelper.addLocationToBuildException (ProjectHelper.java:582)
+    at org.apache.tools.ant.taskdefs.Ant.execute (Ant.java:440)
+    at org.apache.tools.ant.UnknownElement.execute (UnknownElement.java:299)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.apache.tools.ant.dispatch.DispatchUtils.execute (DispatchUtils.java:99)
+    at org.apache.tools.ant.Task.perform (Task.java:350)
+    at org.apache.tools.ant.Target.execute (Target.java:449)
+    at org.apache.tools.ant.Target.performTasks (Target.java:470)
+    at org.apache.tools.ant.Project.executeSortedTargets (Project.java:1401)
+    at org.apache.tools.ant.Project.executeTarget (Project.java:1374)
+    at org.apache.maven.plugins.antrun.AntRunMojo.execute (AntRunMojo.java:295)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.tools.ant.BuildException: Got 8 errors (max allowed: 0) and 0 warnings.
+    at com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask.processFiles (CheckstyleAntTask.java:368)
+    at com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask.realExecute (CheckstyleAntTask.java:311)
+    at com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask.execute (CheckstyleAntTask.java:282)
+    at org.apache.tools.ant.UnknownElement.execute (UnknownElement.java:299)
+    at jdk.internal.reflect.GeneratedMethodAccessor44.invoke (Unknown Source)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.apache.tools.ant.dispatch.DispatchUtils.execute (DispatchUtils.java:99)
+    at org.apache.tools.ant.Task.perform (Task.java:350)
+    at org.apache.tools.ant.Target.execute (Target.java:449)
+    at org.apache.tools.ant.Target.performTasks (Target.java:470)
+    at org.apache.tools.ant.Project.executeSortedTargets (Project.java:1401)
+    at org.apache.tools.ant.helper.SingleCheckExecutor.executeTargets (SingleCheckExecutor.java:36)
+    at org.apache.tools.ant.Project.executeTargets (Project.java:1264)
+    at org.apache.tools.ant.taskdefs.Ant.execute (Ant.java:437)
+    at org.apache.tools.ant.UnknownElement.execute (UnknownElement.java:299)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.apache.tools.ant.dispatch.DispatchUtils.execute (DispatchUtils.java:99)
+    at org.apache.tools.ant.Task.perform (Task.java:350)
+    at org.apache.tools.ant.Target.execute (Target.java:449)
+    at org.apache.tools.ant.Target.performTasks (Target.java:470)
+    at org.apache.tools.ant.Project.executeSortedTargets (Project.java:1401)
+    at org.apache.tools.ant.Project.executeTarget (Project.java:1374)
+    at org.apache.maven.plugins.antrun.AntRunMojo.execute (AntRunMojo.java:295)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:906)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:283)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:206)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 (Native Method)
+    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:77)
+    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke (Method.java:569)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[ERROR] 
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
