@@ -54,8 +54,13 @@ check-missing-pitests)
   #  https://github.com/checkstyle/checkstyle/issues/8761
   #  Coverage for site package is skipped
   #  until https://github.com/checkstyle/checkstyle/issues/13393
+  #  JavadocCommentsLexerUtil, JavadocCommentsParserUtil, and SimpleToken
+  #  are excluded from Pitest (aligned with JaCoCo exclusion)
   list=("com.puppycrawl.tools.checkstyle.meta.*"
-    "com.puppycrawl.tools.checkstyle.site.*" "${list[@]}")
+    "com.puppycrawl.tools.checkstyle.site.*"
+    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil"
+    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil"
+    "com.puppycrawl.tools.checkstyle.grammar.SimpleToken" "${list[@]}")
 
   CMD="find src/main/java -type f ! -name 'package-info.java'"
 
