@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     private static final String DEFAULT_PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
     @Override
@@ -71,4 +72,16 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "22:20: " + getCheckMessage(MSG_INVALID_PATTERN, "log", DEFAULT_PATTERN),
+            "24:20: " + getCheckMessage(MSG_INVALID_PATTERN, "logger", DEFAULT_PATTERN),
+            "29:30: " + getCheckMessage(MSG_INVALID_PATTERN, "myselfConstant", DEFAULT_PATTERN),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
 }
