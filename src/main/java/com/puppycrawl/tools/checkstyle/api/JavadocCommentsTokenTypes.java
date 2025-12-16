@@ -183,7 +183,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TEXT ->
      *         |--PARAMETER_NAME -> value
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The parameter of method.
+     *             `--TEXT ->  The parameter of method
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -211,7 +211,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> return
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The return of method.
+     *             `--TEXT ->  The return of method
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -242,7 +242,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TEXT ->
      *         |--IDENTIFIER -> IOException
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  if an I/O error occurs
+     *             `--TEXT -> if an I/O error occurs
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -273,7 +273,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--TEXT ->
      *         |--IDENTIFIER -> FileNotFoundException
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  when file is not found.
+     *             `--TEXT -> when file is not found
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -301,7 +301,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> since
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  1.0
+     *             `--TEXT -> 1.0
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -326,7 +326,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> version
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  value
+     *             `--TEXT -> value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -388,7 +388,7 @@ public final class JavadocCommentsTokenTypes {
      *         |--AT_SIGN -> @
      *         |--TAG_NAME -> hidden
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  value
+     *             `--TEXT -> value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
