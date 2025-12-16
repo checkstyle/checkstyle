@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -131,7 +133,14 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     protected DetailAST getRightCurly() {
         final DetailAST slist = getMainAst().findFirstToken(TokenTypes.SLIST);
-        return slist.findFirstToken(TokenTypes.RCURLY);
+        final DetailAST result;
+        if (slist == null) {
+            result = null;
+        }
+        else {
+            result = slist.findFirstToken(TokenTypes.RCURLY);
+        }
+        return result;
     }
 
     /**
@@ -201,7 +210,15 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      * @return the non-list child element
      */
     protected DetailAST getNonListChild() {
-        return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();
+        final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
+        final DetailAST result;
+        if (rparen == null) {
+            result = null;
+        }
+        else {
+            result = rparen.getNextSibling();
+        }
+        return result;
     }
 
     /**
@@ -264,7 +281,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         else {
             // NOTE: switch statements usually don't have curlies
             if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
-                checkChildren(listChild,
+                checkChildrenWithReturnHandling(listChild,
                         getCheckedChildren(),
                         getChildrenExpectedIndent(),
                         true,
@@ -314,6 +331,133 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
+    }
+
+    /**
+     * Check the indent level of the children of the specified parent
+     * expression, with special handling for return statements.
+     *
+     * @param parentNode         the parent whose children we are checking
+     * @param tokenTypes         the token types to check
+     * @param startIndent        the starting indent level
+     * @param firstLineMatches   whether or not the first line needs to match
+     * @param allowNesting       whether or not nested children are allowed
+     */
+    private void checkChildrenWithReturnHandling(DetailAST parentNode,
+                                       int[] tokenTypes,
+                                       IndentLevel startIndent,
+                                       boolean firstLineMatches,
+                                       boolean allowNesting) {
+        Arrays.sort(tokenTypes);
+        for (DetailAST child = parentNode.getFirstChild();
+                child != null;
+                child = child.getNextSibling()) {
+            if (Arrays.binarySearch(tokenTypes, child.getType()) >= 0) {
+                final boolean handled = tryCheckReturnStatementLineWrapping(
+                        child, startIndent);
+                if (!handled) {
+                    checkExpressionSubtree(child, startIndent, firstLineMatches, allowNesting);
+                }
+            }
+        }
+    }
+
+    /**
+     * Try to check line wrapping for a return statement with simple expressions.
+     *
+     * @param child the child node to check
+     * @param startIndent the starting indent level
+     * @return true if special handling was applied, false otherwise
+     */
+    private boolean tryCheckReturnStatementLineWrapping(DetailAST child,
+                                                        IndentLevel startIndent) {
+        boolean handled = false;
+        final boolean isReturn = child.getType() == TokenTypes.LITERAL_RETURN;
+
+        if (isReturn) {
+            final DetailAST expr = child.findFirstToken(TokenTypes.EXPR);
+            final boolean hasExpr = expr != null && expr.getFirstChild() != null;
+
+            if (hasExpr) {
+                handled = checkMultiLineReturnExpression(child, expr, startIndent);
+            }
+        }
+        return handled;
+    }
+
+    /**
+     * Check line wrapping for a multi-line return expression.
+     *
+     * @param returnAst the return statement node
+     * @param expr the expression node
+     * @param startIndent the starting indent level
+     * @return true if special handling was applied, false otherwise
+     */
+    private boolean checkMultiLineReturnExpression(DetailAST returnAst,
+                                                   DetailAST expr,
+                                                   IndentLevel startIndent) {
+        final int returnLine = returnAst.getLineNo();
+        final int exprLastLine = getLastLineOfAst(expr);
+        final boolean isMultiLine = exprLastLine > returnLine;
+
+        boolean result = false;
+        if (isMultiLine) {
+            final DetailAST exprContent = expr.getFirstChild();
+            if (exprContent != null) {
+                final int exprType = exprContent.getType();
+                final boolean hasOwnHandler =
+                        getIndentCheck().getHandlerFactory().isHandledType(exprType);
+
+                if (!hasOwnHandler) {
+                    checkReturnIndentationAndWrapping(returnAst, startIndent);
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Check indentation and line wrapping for a return statement.
+     *
+     * @param returnAst the return statement node
+     * @param startIndent the starting indent level
+     */
+    private void checkReturnIndentationAndWrapping(DetailAST returnAst,
+                                                    IndentLevel startIndent) {
+        // Check the return statement's own indentation
+        final int returnIndent = getLineStart(returnAst);
+        if (!startIndent.isAcceptable(returnIndent) && isOnStartOfLine(returnAst)) {
+            final String messageKey = startIndent.isMultiLevel()
+                    ? IndentationCheck.MSG_ERROR_MULTI
+                    : IndentationCheck.MSG_ERROR;
+            getIndentCheck().indentationLog(returnAst, messageKey,
+                    returnAst.getText(), returnIndent, startIndent);
+        }
+
+        // Check line wrapping from return statement to semicolon
+        final DetailAST semi = returnAst.findFirstToken(TokenTypes.SEMI);
+        if (semi != null) {
+            checkWrappingIndentation(returnAst, semi,
+                    getLineWrappingIndent(), returnIndent, true);
+        }
+    }
+
+    /**
+     * Get the last line number for the given AST node and all its descendants.
+     *
+     * @param ast the AST node to examine
+     * @return the last line number
+     */
+    private static int getLastLineOfAst(DetailAST ast) {
+        int lastLine = ast.getLineNo();
+        for (DetailAST child = ast.getFirstChild(); child != null; child = child.getNextSibling()) {
+            final int childLastLine = getLastLineOfAst(child);
+            if (childLastLine > lastLine) {
+                lastLine = childLastLine;
+            }
+        }
+        return lastLine;
     }
 
 }
