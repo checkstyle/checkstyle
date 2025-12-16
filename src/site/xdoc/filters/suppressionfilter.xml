@@ -196,6 +196,7 @@ public class Example1 {
   &lt;/module&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="EqualsAvoidNull"&gt;
+      &lt;property name="ignoreEqualsIgnoreCase" value="false"/&gt;
       &lt;property name="id" value="stringEqual"/&gt;
     &lt;/module&gt;
     &lt;module name="LineLength"&gt;
