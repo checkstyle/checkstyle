@@ -1,7 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="EqualsAvoidNull"/>
+    <module name="EqualsAvoidNull">
+      <property name="ignoreEqualsIgnoreCase" value="false"/>
+    </module>
   </module>
 </module>
 */

@@ -51,7 +51,9 @@
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="EqualsAvoidNull"/&gt;
+    &lt;module name="EqualsAvoidNull"&gt;
+      &lt;property name="ignoreEqualsIgnoreCase" value="false"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>

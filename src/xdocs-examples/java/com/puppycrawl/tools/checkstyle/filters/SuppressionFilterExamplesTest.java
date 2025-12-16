@@ -52,14 +52,14 @@ public class SuppressionFilterExamplesTest extends AbstractExamplesModuleTestSup
     public void testExample2() throws Exception {
 
         final String[] expectedWithoutFilter = {
-            "23: Line is longer than 80 characters (found 84).",
-            "30:22: String literal expressions should be on the left side of an equals comparison.",
-            "34:32: String literal expressions should be on the left side of "
+            "24: Line is longer than 80 characters (found 84).",
+            "31:22: String literal expressions should be on the left side of an equals comparison.",
+            "35:32: String literal expressions should be on the left side of "
                     + "an equalsIgnoreCase comparison.",
         };
 
         final String[] expectedWithFilter = {
-            "23: Line is longer than 80 characters (found 84).",
+            "24: Line is longer than 80 characters (found 84).",
         };
 
         verifyFilterWithInlineConfigParser(getPath("Example2.java"),
