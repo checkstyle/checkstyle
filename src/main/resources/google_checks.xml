@@ -435,19 +435,7 @@
                       RECORD_DEF, ANNOTATION_DEF"/>
       <property name="excludeScope" value="nothing"/>
     </module>
-    <module name="MethodName">
-      <property name="format"
-          value="^(?![a-z]$)(?![a-z][A-Z])[a-z][a-z0-9]*(?:[A-Z][a-z0-9]*)*(?:_[0-9]+)*$"/>
-      <message key="name.invalidPattern"
-             value="Method name ''{0}'' must match pattern ''{1}''."/>
-    </module>
-    <module name="SuppressionXpathSingleFilter">
-      <property name="checks" value="MethodName"/>
-      <property name="query" value="//METHOD_DEF[
-                                     ./MODIFIERS/ANNOTATION//IDENT[contains(@text, 'Test')]
-                                   ]/IDENT"/>
-      <property name="message" value="'[a-z][a-z0-9][a-zA-Z0-9]*(?:_[a-z][a-z0-9][a-zA-Z0-9]*)*'"/>
-    </module>
+    <module name="GoogleMethodName"/>
     <module name="SingleLineJavadoc"/>
     <module name="TodoComment">
       <property name="format" value="^[ \t]*(?!TODO:)(?i:TODO)\b:?"/>

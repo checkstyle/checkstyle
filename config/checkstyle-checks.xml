@@ -877,6 +877,7 @@
       <property name="format" value="^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$"/>
     </module>
     <module name="MethodName"/>
+    <module name="GoogleMethodName"/>
     <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName">
