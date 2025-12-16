@@ -5448,7 +5448,7 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.25.0</version>
+            <version>6.26.0</version>
             <configuration>
               <exportDatatables>true</exportDatatables>
               <skipMavenParsing>true</skipMavenParsing>
