@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.ArrayBracketNoWhitespaceCheck.MSG_WS_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -114,14 +114,16 @@ public class ArrayBracketNoWhitespaceCheckTest extends AbstractModuleTestSupport
     @Test
     public void testGetAcceptableTokens() {
         final ArrayBracketNoWhitespaceCheck check = new ArrayBracketNoWhitespaceCheck();
-        assertArrayEquals("Acceptable tokens and required tokens must match",
-            check.getRequiredTokens(), check.getAcceptableTokens());
+        assertWithMessage("Acceptable tokens and required tokens must match")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getAcceptableTokens());
     }
 
     @Test
     public void testGetDefaultTokens() {
         final ArrayBracketNoWhitespaceCheck check = new ArrayBracketNoWhitespaceCheck();
-        assertArrayEquals("Default tokens and required tokens must match",
-            check.getRequiredTokens(), check.getDefaultTokens());
+        assertWithMessage("Default tokens and required tokens must match")
+            .that(check.getRequiredTokens())
+            .isEqualTo(check.getDefaultTokens());
     }
 }

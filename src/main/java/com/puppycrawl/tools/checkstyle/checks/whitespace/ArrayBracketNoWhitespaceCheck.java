@@ -147,15 +147,15 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     private void processLeftBracket(DetailAST leftBracket) {
         final int[] line = getLineCodePoints(leftBracket.getLineNo() - 1);
         final int columnNo = leftBracket.getColumnNo();
-        final int before = columnNo - 1;
-        final int after = columnNo + 1;
 
         // Check if preceded by whitespace
+        final int before = columnNo - 1;
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
             log(leftBracket, MSG_WS_PRECEDED, LEFT_BRACKET);
         }
 
         // Check if followed by whitespace
+        final int after = columnNo + 1;
         if (after < line.length && CommonUtil.isCodePointWhitespace(line, after)) {
             log(leftBracket, MSG_WS_FOLLOWED, LEFT_BRACKET);
         }
@@ -169,15 +169,15 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     private void processRightBracket(DetailAST rightBracket) {
         final int[] line = getLineCodePoints(rightBracket.getLineNo() - 1);
         final int columnNo = rightBracket.getColumnNo();
-        final int before = columnNo - 1;
-        final int after = columnNo + 1;
 
         // Check if preceded by whitespace
+        final int before = columnNo - 1;
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
             log(rightBracket, MSG_WS_PRECEDED, RIGHT_BRACKET);
         }
 
         // Check if it should be followed by whitespace
+        final int after = columnNo + 1;
         if (after < line.length) {
             final boolean hasWhitespace = CommonUtil.isCodePointWhitespace(line, after);
             final int charIdxToCheck;
@@ -215,46 +215,43 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      */
     private static boolean isCharacterValidAfterRightBracket(int codePoint, int[] line,
                                                                int position) {
-        final char charAfter = (char) codePoint;
-
-        return isAlwaysValidCharAfterRightBracket(charAfter)
-            || isMethodReferenceOrPostfixOperator(charAfter, line, position)
-            || isAngleBracketOrShiftOperator(charAfter, line, position);
+        return isAlwaysValidCharAfterRightBracket(codePoint)
+            || isMethodReferenceOrPostfixOperator(codePoint, line, position)
+            || isAngleBracketOrShiftOperator(codePoint, line, position);
     }
 
     /**
      * Checks if the character after {@code ]} is always allowed without whitespace.
      *
-     * @param charAfter the character to check
+     * @param codePoint code point to check
      * @return true if always allowed without whitespace
      */
-    private static boolean isAlwaysValidCharAfterRightBracket(char charAfter) {
-        return charAfter == '['
-            || charAfter == ']'
-            || charAfter == '.'
-            || charAfter == ','
-            || charAfter == ';'
-            || charAfter == ')';
+    private static boolean isAlwaysValidCharAfterRightBracket(int codePoint) {
+        return codePoint == '['
+            || codePoint == ']'
+            || codePoint == '.'
+            || codePoint == ','
+            || codePoint == ';'
+            || codePoint == ')';
     }
 
     /**
      * Checks if the character after {@code ]} starts a valid postfix operator (++ or --)
      * or method reference operator ({@code ::}).
      *
-     * @param charAfter the character to check
+     * @param codePoint code point to check
      * @param line the unicode code points array of the line
      * @param position the position of the code point in the line
      * @return true if a valid method reference or postfix operator exists
      */
     private static boolean isMethodReferenceOrPostfixOperator(
-        char charAfter, int[] line, int position) {
+        int codePoint, int[] line, int position) {
         boolean isMethodReferenceOrPostfixOperator = false;
-        if (charAfter == '+' || charAfter == '-' || charAfter == ':') {
+        if (codePoint == '+' || codePoint == '-' || codePoint == ':') {
             final int nextPosition = position + 1;
             final int nextCodePoint = line[nextPosition];
-            final char nextChar = (char) nextCodePoint;
 
-            if (nextChar == charAfter) {
+            if (nextCodePoint == codePoint) {
                 isMethodReferenceOrPostfixOperator = true;
             }
         }
@@ -266,22 +263,21 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * Checks if the character after {@code ]} is an angle bracket ({@code >})
      * or a shift operator ({@code <<} or {@code >>}).
      *
-     * @param charAfter the character to check
+     * @param codePoint code point to check
      * @param line the unicode code points array of the line
      * @param position the position of the code point in the line
      * @return true if a valid angle bracket or shift operator exists
      */
-    private static boolean isAngleBracketOrShiftOperator(char charAfter, int[] line, int position) {
+    private static boolean isAngleBracketOrShiftOperator(int codePoint, int[] line, int position) {
         boolean result = false;
-        if (charAfter == '>' || charAfter == '<') {
-            final int nextPosition = position + 1;
-            final char nextChar = (char) line[nextPosition];
+        if (codePoint == '>' || codePoint == '<') {
+            final int nextCodePoint = line[position + 1];
             // Accept shift operators
-            if (nextChar == charAfter) {
+            if (nextCodePoint == codePoint) {
                 result = true;
             }
             // Accept single angle bracket, but NOT if it's followed by '='
-            else if (nextChar != '=' && charAfter == '>') {
+            else if (nextCodePoint != '=' && codePoint == '>') {
                 result = true;
             }
         }
