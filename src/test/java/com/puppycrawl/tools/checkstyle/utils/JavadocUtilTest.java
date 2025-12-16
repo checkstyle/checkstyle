@@ -370,29 +370,29 @@ public class JavadocUtilTest {
 
     private static void assertTag(String message, InvalidJavadocTag expected,
             InvalidJavadocTag actual) {
-        assertWithMessage(message + " line")
+        assertWithMessage("%s line", message)
             .that(actual.getLine())
             .isEqualTo(expected.getLine());
-        assertWithMessage(message + " column")
+        assertWithMessage("%s column", message)
             .that(actual.getCol())
             .isEqualTo(expected.getCol());
-        assertWithMessage(message + " name")
+        assertWithMessage("%s name", message)
             .that(actual.getName())
             .isEqualTo(expected.getName());
     }
 
     private static void assertTag(String message, JavadocTag expected,
             JavadocTag actual) {
-        assertWithMessage(message + " line")
+        assertWithMessage("%s line", message)
             .that(actual.getLineNo())
             .isEqualTo(expected.getLineNo());
-        assertWithMessage(message + " column")
+        assertWithMessage("%s column", message)
             .that(actual.getColumnNo())
             .isEqualTo(expected.getColumnNo());
-        assertWithMessage(message + " first arg")
+        assertWithMessage("%s first arg", message)
             .that(actual.getFirstArg())
             .isEqualTo(expected.getFirstArg());
-        assertWithMessage(message + " tag name")
+        assertWithMessage("%s tag name", message)
             .that(actual.getTagName())
             .isEqualTo(expected.getTagName());
     }
