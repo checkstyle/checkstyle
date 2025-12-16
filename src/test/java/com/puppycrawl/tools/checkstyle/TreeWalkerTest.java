@@ -19,13 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-
 import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -46,11 +39,16 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import static org.mockito.ArgumentMatchers.any;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 import org.mockito.internal.util.Checks;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -58,6 +56,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
@@ -66,6 +65,7 @@ import com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassCheck;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck;
+import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ParameterNameCheck;
@@ -137,6 +137,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                      throw new CheckstyleException("No audit events expected");
                  })) {
             verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);
+            assertWithMessage("No TreeWalkerAuditEvent should be constructed")
+                    .that(mocked.constructed())
+                    .isEmpty();
         }
     }
 
@@ -802,6 +805,172 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    /**
+     * Test to ensure that the default value of javaParseExceptionSeverity is ERROR.
+     * This test kills the MemberVariableMutator mutation that removes the assignment
+     * of SeverityLevel.ERROR to javaParseExceptionSeverity.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testJavaParseExceptionSeverityDefaultIsError() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final SeverityLevel severity = TestUtil.getInternalState(treeWalker,
+                "javaParseExceptionSeverity", SeverityLevel.class);
+        assertWithMessage("Default javaParseExceptionSeverity should be ERROR")
+                .that(severity)
+                .isEqualTo(SeverityLevel.ERROR);
+    }
+
+    /**
+     * Test to ensure that checks with the same class name but different IDs
+     * are sorted correctly by ID. This test kills the NakedReceiverMutator mutation
+     * that removes the thenComparing call in createNewCheckSortedSet.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithDifferentIds() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
+        treeWalker.configure(config);
+        treeWalker.finishLocalSetup();
+
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        // Create two checks of the same type with different IDs
+        final DefaultConfiguration check1Config = createModuleConfig(EmptyStatementCheck.class);
+        check1Config.addProperty("id", "check1");
+        treeWalker.setupChild(check1Config);
+
+        final DefaultConfiguration check2Config = createModuleConfig(EmptyStatementCheck.class);
+        check2Config.addProperty("id", "check2");
+        treeWalker.setupChild(check2Config);
+
+        @SuppressWarnings("unchecked")
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker, "ordinaryChecks",
+                        Set.class);
+
+        // Convert to list to check order
+        final List<AbstractCheck> checkList = new ArrayList<>(ordinaryChecks);
+        assertWithMessage("Should have 2 checks")
+                .that(checkList)
+                .hasSize(2);
+
+        // Verify that checks are sorted by ID
+        assertWithMessage("First check should have id 'check1'")
+                .that(checkList.get(0).getId())
+                .isEqualTo("check1");
+        assertWithMessage("Second check should have id 'check2'")
+                .that(checkList.get(1).getId())
+                .isEqualTo("check2");
+    }
+
+    /**
+     * Test to ensure that checks with null IDs are handled correctly in sorting.
+     * This test kills the NonVoidMethodCallMutator mutation that removes the
+     * naturalOrder call in createNewCheckSortedSet.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithNullIds() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
+        treeWalker.configure(config);
+        treeWalker.finishLocalSetup();
+
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        // Create two checks of the same type, one with ID and one without (null ID)
+        final DefaultConfiguration check1Config = createModuleConfig(EmptyStatementCheck.class);
+        check1Config.addProperty("id", "checkWithId");
+        treeWalker.setupChild(check1Config);
+
+        final DefaultConfiguration check2Config = createModuleConfig(EmptyStatementCheck.class);
+        // No ID set, so it will be null
+        treeWalker.setupChild(check2Config);
+
+        @SuppressWarnings("unchecked")
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker, "ordinaryChecks",
+                        Set.class);
+
+        // Convert to list to check order
+        final List<AbstractCheck> checkList = new ArrayList<>(ordinaryChecks);
+        assertWithMessage("Should have 2 checks")
+                .that(checkList)
+                .hasSize(2);
+
+        // Verify that the check with non-null ID comes first (nullsLast behavior)
+        assertWithMessage("First check should have id 'checkWithId'")
+                .that(checkList.get(0).getId())
+                .isEqualTo("checkWithId");
+        assertWithMessage("Second check should have null id")
+                .that(checkList.get(1).getId())
+                .isNull();
+    }
+
+    /**
+     * Test to ensure that checks with different non-null IDs are sorted using natural order.
+     * This test kills the NonVoidMethodCallMutator mutation that removes the
+     * naturalOrder call inside nullsLast in createNewCheckSortedSet.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithNonNullIdsNaturalOrder() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
+        treeWalker.configure(config);
+        treeWalker.finishLocalSetup();
+
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        // Create three checks of the same type with different IDs
+        // to ensure natural ordering is used
+        final DefaultConfiguration check1Config = createModuleConfig(EmptyStatementCheck.class);
+        check1Config.addProperty("id", "zebra");
+        treeWalker.setupChild(check1Config);
+
+        final DefaultConfiguration check2Config = createModuleConfig(EmptyStatementCheck.class);
+        check2Config.addProperty("id", "alpha");
+        treeWalker.setupChild(check2Config);
+
+        final DefaultConfiguration check3Config = createModuleConfig(EmptyStatementCheck.class);
+        check3Config.addProperty("id", "beta");
+        treeWalker.setupChild(check3Config);
+
+        @SuppressWarnings("unchecked")
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker, "ordinaryChecks",
+                        Set.class);
+
+        // Convert to list to check order
+        final List<AbstractCheck> checkList = new ArrayList<>(ordinaryChecks);
+        assertWithMessage("Should have 3 checks")
+                .that(checkList)
+                .hasSize(3);
+
+        // Verify that checks are sorted by ID in natural (alphabetical) order
+        assertWithMessage("First check should have id 'alpha'")
+                .that(checkList.get(0).getId())
+                .isEqualTo("alpha");
+        assertWithMessage("Second check should have id 'beta'")
+                .that(checkList.get(1).getId())
+                .isEqualTo("beta");
+        assertWithMessage("Third check should have id 'zebra'")
+                .that(checkList.get(2).getId())
+                .isEqualTo("zebra");
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
