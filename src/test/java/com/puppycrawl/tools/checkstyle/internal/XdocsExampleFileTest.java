@@ -59,7 +59,6 @@ public class XdocsExampleFileTest {
             Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
             Map.entry("FinalLocalVariableCheck", Set.of("validateUnnamedVariables")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
-            Map.entry("IllegalTokenTextCheck", Set.of("message")),
             Map.entry("IndentationCheck", Set.of(
                     "basicOffset",
                     "lineWrappingIndentation",

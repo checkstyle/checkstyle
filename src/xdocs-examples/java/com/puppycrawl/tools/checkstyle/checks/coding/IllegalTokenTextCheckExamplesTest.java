@@ -32,13 +32,13 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
     }
 
     @Test
-    public void testExample1() throws Exception {
-        final String[] expected = {
-            "17:20: " + getCheckMessage(MSG_KEY, "a href"),
-        };
-
-        verifyWithInlineConfigParser(getPath("Example1.java"), expected);
-    }
+final void testExample1() throws Exception {
+    final String[] expected = {
+        // Change the expected message to match your custom 'message' property
+        "18:20: Avoid using a href string literal", 
+    };
+    verifyWithInlineConfigParser(getPath("Example1.java"), expected);
+}
 
     @Test
     public void testExample2() throws Exception {
