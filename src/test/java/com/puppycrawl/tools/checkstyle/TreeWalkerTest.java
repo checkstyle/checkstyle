@@ -215,7 +215,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
 
             final Matcher errorMsgMatcher = expected.matcher(errorMsg);
-            assertWithMessage("Failure for: " + errorMsg)
+            assertWithMessage("Failure for: %s", errorMsg)
                     .that(errorMsgMatcher.matches())
                     .isTrue();
         }

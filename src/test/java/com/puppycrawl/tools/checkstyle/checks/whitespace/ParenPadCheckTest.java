@@ -562,7 +562,7 @@ public class ParenPadCheckTest
 
         for (int token : check.getAcceptableTokens()) {
             ast.setType(token);
-            assertWithMessage(message + TokenUtil.getTokenName(token))
+            assertWithMessage("%s%s", message, TokenUtil.getTokenName(token))
                     .that(TestUtil.invokeMethod(check, "isAcceptableToken", Boolean.class, ast))
                     .isTrue();
         }

@@ -135,7 +135,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement(
                     ".*", "e[l", ".*", "moduleId", "query");
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Failed to initialise regular expression")
@@ -150,7 +150,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
         try {
             final Object test = new XpathFilterElement("InputXpathFilterElementSuppressByXpath",
                     "Test", null, null, xpath);
-            assertWithMessage("Exception is expected but got " + test).fail();
+            assertWithMessage("Exception is expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Message should be: Incorrect xpath query")
@@ -353,7 +353,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
                 .usingGetClass()
                 .withIgnoredFields("xpathExpression", "isEmptyConfig")
                 .report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }

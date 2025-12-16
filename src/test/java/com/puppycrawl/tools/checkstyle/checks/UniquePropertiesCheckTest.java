@@ -135,15 +135,15 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
-        assertWithMessage("Wrong messages count: " + violations.size())
+        assertWithMessage("Wrong messages count: %s", violations.size())
             .that(violations)
             .hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
-        assertWithMessage("violation key '" + retrievedMessage + "' is not valid")
+        assertWithMessage("violation key '%s' is not valid", retrievedMessage)
             .that(retrievedMessage)
             .isEqualTo("unable.open.cause");
-        assertWithMessage("violation '" + violation.getViolation() + "' is not valid")
+        assertWithMessage("violation '%s' is not valid", violation.getViolation())
             .that(getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)))
             .isEqualTo(violation.getViolation());
     }

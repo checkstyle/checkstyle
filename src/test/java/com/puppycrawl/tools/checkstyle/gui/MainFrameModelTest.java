@@ -181,7 +181,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
             .hasSize(expectedLines);
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
-        assertWithMessage("Invalid model text: " + model.getText())
+        assertWithMessage("Invalid model text: %s", model.getText())
                 .that(model.getText())
                 .contains(testDataFileNameWithoutPostfix);
 
