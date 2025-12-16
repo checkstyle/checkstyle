@@ -22,6 +22,9 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,6 +34,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -125,34 +129,75 @@ public class XdocsExampleFileTest {
     }
 
     @Test
-    public void testWhitespaceAroundAllExamplesAreReferenced() throws Exception {
-        final Path examplesDir = Paths.get(
-            "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/regexp/regexp"
-        );
+    public void testAllXdocsExamplesAreReferencedInExampleTests() throws Exception {
+        final Path exampleRoot = Paths.get(
+                "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks");
 
-        final Path testFile = Paths.get(
-            "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks/whitespace/"
-                    + "WhitespaceAroundExamplesTest.java"
-        );
+        final Path testRoot = Paths.get(
+                "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
 
-        final Set<String> exampleFiles;
-            try (Stream<Path> files = Files.list(examplesDir)) {
-                exampleFiles = files
-                .map(path -> path.getFileName().toString())
-                .filter(name -> name.matches("Example\\d+\\.java"))
+        assertWithMessage("xdocs examples directory not found: " + exampleRoot)
+                .that(Files.exists(exampleRoot))
+                .isTrue();
+        assertWithMessage("xdocs tests directory not found: " + testRoot)
+                .that(Files.exists(testRoot))
+                .isTrue();
+
+        final Set<String> allExamples = collectExampleFiles(exampleRoot);
+
+        final Set<String> quotedExamples = allExamples.stream()
+                .map(name -> "\"" + name + "\"")
                 .collect(Collectors.toSet());
-        }
 
-        final String testSource = Files.readString(testFile);
+        final Set<String> referencedExamples = collectReferencedExamples(testRoot, quotedExamples);
 
-        final List<String> missing = exampleFiles.stream()
-            .filter(example -> !testSource.contains("\"" + example + "\""))
-            .sorted()
-            .toList();
+        final Set<String> missing = new TreeSet<>(allExamples);
+        missing.removeAll(referencedExamples);
 
         assertWithMessage(
-            "WhitespaceAroundExamplesTest is missing references to example files:\n"
-                + String.join("\n", missing)
-        ).that(missing).isEmpty();
+                "Some xdocs examples are not referenced in any *ExamplesTest.java:\n"
+                        + String.join("\n", missing))
+                .that(missing)
+                .isEmpty();
+    }
+
+    private static Set<String> collectExampleFiles(Path exampleRoot) throws IOException {
+        try (Stream<Path> paths = Files.walk(exampleRoot)) {
+            return paths.filter(Files::isRegularFile)
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .filter(name -> name.matches("Example\\d+\\.java"))
+                    .collect(Collectors.toCollection(TreeSet::new));
+        }
+    }
+
+    private static Set<String> collectReferencedExamples(
+            Path testRoot, Set<String> quotedExamples) throws IOException {
+        final Set<String> referenced = new TreeSet<>();
+        try (Stream<Path> paths = Files.walk(testRoot)) {
+            paths.filter(Files::isRegularFile)
+                    .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
+                    .forEach(path -> readReferencesFromTestFile(path, quotedExamples, referenced));
+        }
+        return referenced;
+    }
+
+    private static void readReferencesFromTestFile(
+            Path testFile, Set<String> quotedExamples, Set<String> referenced) {
+        try (Stream<String> lines = Files.lines(testFile, StandardCharsets.UTF_8)) {
+            lines.forEach(line -> addReferencedExamples(line, quotedExamples, referenced));
+        }
+        catch (IOException exception) {
+            throw new UncheckedIOException(exception);
+        }
+    }
+
+    private static void addReferencedExamples(
+            String line, Set<String> quotedExamples, Set<String> referenced) {
+        for (String quoted : quotedExamples) {
+            if (line.contains(quoted)) {
+                referenced.add(quoted.substring(1, quoted.length() - 1));
+            }
+        }
     }
 }
