@@ -58,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
@@ -183,6 +184,21 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
             verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);
         }
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverityDefaultAndSetter() {
+        final TreeWalker treeWalker = new TreeWalker();
+
+        assertWithMessage("Default javaParseExceptionSeverity must be ERROR")
+                .that(treeWalker.getJavaParseExceptionSeverity())
+                .isEqualTo(SeverityLevel.ERROR);
+
+        treeWalker.setJavaParseExceptionSeverity(SeverityLevel.IGNORE);
+
+        assertWithMessage("Setter must update javaParseExceptionSeverity")
+                .that(treeWalker.getJavaParseExceptionSeverity())
+                .isEqualTo(SeverityLevel.IGNORE);
     }
 
     @Test
@@ -964,5 +980,4 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
 
     }
-
 }
