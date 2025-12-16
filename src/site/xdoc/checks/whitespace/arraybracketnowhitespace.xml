@@ -11,11 +11,58 @@
       <subsection name="Description" id="ArrayBracketNoWhitespace_Description">
         <div>
           Checks that the whitespace around square-bracket tokens <code>[</code> and <code>]</code>
-          follows the typical Java convention for array declarations, array creation, and array indexing.
-          This check ensures that the opening square bracket <code>[</code> is <b>not</b> preceded or followed by whitespace,
-          and the closing square bracket <code>]</code> is <b>not</b> preceded by whitespace.
-          For the closing square bracket <code>]</code>, whitespace is required after it unless the next character is another bracket, a dot, a postfix operator, comma, semicolon, or a closing construct.
+          follows the typical Java convention for array declarations, array creation,
+          and array indexing.
         </div>
+
+        <p>
+          Whitespace is defined by implementation of
+          {@link Character#isWhitespace(char)}.
+        </p>
+
+        <p>
+          Left square bracket ("<code>[</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace when preceded by a
+          <code>TYPE</code> or <code>IDENT</code> in array declarations or array access</li>
+        <li>must not be followed with whitespace</li>
+        </ul>
+
+        <p>
+          Right square bracket ("<code>]</code>"):
+        </p>
+        <ul>
+        <li>must not be preceded with whitespace</li>
+        <li>must be followed with whitespace in all cases, except when followed by:
+        <ul>
+        <li>another bracket: <code>[][]</code></li>
+        <li>a dot for member access: <code>arr[i].length</code></li>
+        <li>a comma or semicolon: <code>arr[i],</code> or <code>arr[i];</code></li>
+        <li>postfix operators: <code>arr[i]++</code> or <code>arr[i]--</code></li>
+        <li>a right parenthesis or another closing construct: <code>(arr[i])</code></li>
+        </ul>
+        </li>
+        </ul>
+
+        <p>
+          Parent is <code>com.puppycrawl.tools.checkstyle.TreeWalker</code>
+        </p>
+
+        <p>
+          Violation Message Keys:
+        </p>
+        <ul>
+        <li>
+          <code>ws.followed</code>
+        </li>
+        <li>
+          <code>ws.notFollowed</code>
+        </li>
+        <li>
+          <code>ws.preceded</code>
+        </li>
+        </ul>
       </subsection>
 
       <subsection name="Examples" id="ArrayBracketNoWhitespace_Examples">
@@ -23,25 +70,48 @@
           To configure the check:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name=&quot;Checker&quot;&gt;
-  &lt;module name=&quot;TreeWalker&quot;&gt;
-    &lt;module name=&quot;ArrayBracketNoWhitespace&quot;/&gt;
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="ArrayBracketNoWhitespace"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example1-code">Example:</p>
+        <p id="Example1-code">
+          Examples with incorrect array bracket whitespace:
+        </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
-  int [] values; // violation: '[' is preceded with whitespace
-  int[] counts = values [0]; // violation: '[' is preceded with whitespace
-  int[] offsets = values[ 0]; // violation: '[' is followed by whitespace
-  int bad = values[0] .length; // violation: ']' is followed with whitespace
-  int total = values[0]+1; // violation: ']' is not followed by whitespace
-
-  int[] okValues = values[0];
-  int[][] data = new int[2][3];
-  int size = values[0].length;
-  int next = values[0] + 1;
+  int array1[] ; // violation, space before ;
+  int array2[ ] = new int[ 5 ]; // 3 violations, space in [] and before ;
+  int[] array3 = new int[5 ]; // violation, space before ]
+  int array4 [] = new int [ 5 ] ;
+  // 5 violations, space after variable name, in all []
+  int array5
+    [ ]
+    =
+    new int
+    [ 1 ] ; // violations, space in []
+  void method1(int param[ ]) { // violation, space in []
+  }
+  void method2() {
+    int arr [  ] = { 1, 2, 3 }; // violations, spaces in []
+  }
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-code">
+          Examples without violations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example2 {
+  int[] array1;
+  int[] array2 = new int[5];
+  int[] array3 = new int[]{1, 2, 3};
+  void method1(int[] param) {
+  }
+  void method2() {
+    int[] arr = { 1, 2, 3 };
+  }
 }
 </code></pre></div>
       </subsection>
@@ -56,7 +126,7 @@ class Example1 {
       </subsection>
 
       <subsection name="Violation Messages" id="ArrayBracketNoWhitespace_Violation_Messages">
-        <ul>
+      <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.followed%22">
               ws.followed

@@ -77,9 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code ws.notFollowed}
  * </li>
  * <li>
- * {@code ws.notPreceded}
- * </li>
- * <li>
  * {@code ws.preceded}
  * </li>
  * </ul>
@@ -108,10 +105,10 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
     public static final String MSG_WS_NOT_FOLLOWED = "ws.notFollowed";
 
     /** Open square bracket literal. */
-    private static final String OPEN_BRACKET = "[";
+    private static final String LEFT_BRACKET = "[";
 
     /** Close square bracket literal. */
-    private static final String CLOSE_BRACKET = "]";
+    private static final String RIGHT_BRACKET = "]";
 
     @Override
     public int[] getDefaultTokens() {
@@ -133,125 +130,76 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final DetailAST leftBracket = ast.findFirstToken(TokenTypes.LBRACK);
+        processLeftBracket(ast);
+
+        // Find the RBRACK child and process it
         final DetailAST rightBracket = ast.findFirstToken(TokenTypes.RBRACK);
-
-        if (leftBracket != null) {
-            processLeftBracket(ast, leftBracket, line);
-        }
-
-        if (rightBracket != null) {
-            processRightBracket(rightBracket, line);
-        }
+        processRightBracket(rightBracket);
     }
 
     /**
      * Checks the left square bracket for whitespace violations.
+     * For ARRAY_DECLARATOR and INDEX_OP tokens, this checks whitespace
+     * BEFORE and AFTER the token position (which represents the {@code [}).
      *
-     * @param ast the parent AST node
-     * @param leftBracket the left bracket token
-     * @param line the unicode code points array of the line
+     * @param leftBracket the ARRAY_DECLARATOR or INDEX_OP token (represents '[')
      */
-    private void processLeftBracket(DetailAST ast, DetailAST leftBracket, int[] line) {
+    private void processLeftBracket(DetailAST leftBracket) {
+        final int[] line = getLineCodePoints(leftBracket.getLineNo() - 1);
         final int columnNo = leftBracket.getColumnNo();
-        final int before = columnNo - 1;
-        final int after = columnNo + 1;
 
-        // Check if preceded by whitespace (only for TYPE or IDENT contexts)
+        // Check if preceded by whitespace
+        final int before = columnNo - 1;
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
-            if (shouldCheckLeftBracketPrecededByWhitespace(ast)) {
-                log(leftBracket, MSG_WS_PRECEDED, OPEN_BRACKET);
-            }
+            log(leftBracket, MSG_WS_PRECEDED, LEFT_BRACKET);
         }
 
         // Check if followed by whitespace
+        final int after = columnNo + 1;
         if (after < line.length && CommonUtil.isCodePointWhitespace(line, after)) {
-            log(leftBracket, MSG_WS_FOLLOWED, OPEN_BRACKET);
+            log(leftBracket, MSG_WS_FOLLOWED, LEFT_BRACKET);
         }
-    }
-
-    /**
-     * Determines if we should check for whitespace before the left bracket.
-     * Only checks when the bracket is preceded by TYPE or IDENT tokens.
-     *
-     * @param ast the parent AST node (ARRAY_DECLARATOR or INDEX_OP)
-     * @return true if we should check for preceding whitespace
-     */
-    private static boolean shouldCheckLeftBracketPrecededByWhitespace(DetailAST ast) {
-        if (ast.getType() == TokenTypes.INDEX_OP) {
-            // For INDEX_OP, the first child should be the expression being indexed
-            final DetailAST firstChild = ast.getFirstChild();
-            return firstChild != null
-                && (firstChild.getType() == TokenTypes.IDENT
-                    || isTypeToken(firstChild));
-        }
-        else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-            // For ARRAY_DECLARATOR, check the previous sibling or parent context
-            final DetailAST parent = ast.getParent();
-            if (parent != null) {
-                final DetailAST previousSibling = ast.getPreviousSibling();
-                if (previousSibling != null) {
-                    return previousSibling.getType() == TokenTypes.IDENT
-                        || isTypeToken(previousSibling);
-                }
-                // Check if parent is TYPE or has TYPE/IDENT
-                return parent.getType() == TokenTypes.TYPE
-                    || parent.getType() == TokenTypes.IDENT
-                    || isTypeToken(parent);
-            }
-        }
-        return true; // Default to checking
-    }
-
-    /**
-     * Checks if the given AST represents a type token.
-     *
-     * @param ast the AST to check
-     * @return true if the AST is a type-related token
-     */
-    private static boolean isTypeToken(DetailAST ast) {
-        return ast.getType() == TokenTypes.TYPE
-            || ast.getType() == TokenTypes.LITERAL_INT
-            || ast.getType() == TokenTypes.LITERAL_BOOLEAN
-            || ast.getType() == TokenTypes.LITERAL_BYTE
-            || ast.getType() == TokenTypes.LITERAL_CHAR
-            || ast.getType() == TokenTypes.LITERAL_SHORT
-            || ast.getType() == TokenTypes.LITERAL_LONG
-            || ast.getType() == TokenTypes.LITERAL_FLOAT
-            || ast.getType() == TokenTypes.LITERAL_DOUBLE;
     }
 
     /**
      * Checks the right square bracket for whitespace violations.
      *
      * @param rightBracket the right bracket token
-     * @param line the unicode code points array of the line
      */
-    private void processRightBracket(DetailAST rightBracket, int[] line) {
+    private void processRightBracket(DetailAST rightBracket) {
+        final int[] line = getLineCodePoints(rightBracket.getLineNo() - 1);
         final int columnNo = rightBracket.getColumnNo();
-        final int before = columnNo - 1;
-        final int after = columnNo + 1;
 
         // Check if preceded by whitespace
+        final int before = columnNo - 1;
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)) {
-            log(rightBracket, MSG_WS_PRECEDED, CLOSE_BRACKET);
+            log(rightBracket, MSG_WS_PRECEDED, RIGHT_BRACKET);
         }
 
         // Check if it should be followed by whitespace
+        final int after = columnNo + 1;
         if (after < line.length) {
-            final char charAfter = Character.toChars(line[after])[0];
-            final boolean hasWhitespace = Character.isWhitespace(charAfter);
-            final boolean isValidWithoutWhitespace =
-                isCharacterValidAfterRightBracket(charAfter, line, after);
-
-            // If character requires whitespace but doesn't have it, report violation
-            if (!isValidWithoutWhitespace && !hasWhitespace) {
-                log(rightBracket, MSG_WS_NOT_FOLLOWED, CLOSE_BRACKET);
+            final boolean hasWhitespace = CommonUtil.isCodePointWhitespace(line, after);
+            final int charIdxToCheck;
+            if (hasWhitespace) {
+                charIdxToCheck = after + 1;
             }
-            // If character is valid without whitespace but has it, report violation
-            else if (isValidWithoutWhitespace && hasWhitespace) {
-                log(rightBracket, MSG_WS_FOLLOWED, CLOSE_BRACKET);
+            else {
+                charIdxToCheck = after;
+            }
+
+            if (charIdxToCheck < line.length) {
+                final int codePoint = line[charIdxToCheck];
+
+                final boolean isValidWithoutWhitespace =
+                    isCharacterValidAfterRightBracket(codePoint, line, charIdxToCheck);
+
+                if (hasWhitespace && isValidWithoutWhitespace) {
+                    log(rightBracket, MSG_WS_FOLLOWED, RIGHT_BRACKET);
+                }
+                else if (!hasWhitespace && !isValidWithoutWhitespace) {
+                    log(rightBracket, MSG_WS_NOT_FOLLOWED, RIGHT_BRACKET);
+                }
             }
         }
     }
@@ -260,39 +208,79 @@ public class ArrayBracketNoWhitespaceCheck extends AbstractCheck {
      * Checks whether the given character is valid to be right after a right bracket
      * without requiring whitespace.
      *
-     * @param charAfter character to check
+     * @param codePoint code point to check
      * @param line the unicode code points array of the line
-     * @param position the position of charAfter in the line
-     * @return true if the character is valid after ']' without whitespace
+     * @param position the position of the code point in the line
+     * @return true if the character is valid after {@code ]} without whitespace
      */
-    private static boolean isCharacterValidAfterRightBracket(char charAfter, int[] line,
+    private static boolean isCharacterValidAfterRightBracket(int codePoint, int[] line,
                                                                int position) {
-        if (charAfter == '['     // another bracket: int[][]
-            || charAfter == ']'  // closing bracket: x[arr[i]]
-            || charAfter == '.'  // member access: arr[i].length
-            || charAfter == ','  // comma: arr[i], arr[j]
-            || charAfter == ';'  // semicolon: arr[i];
-            || charAfter == ')'  // right paren: (arr[i])
-            || charAfter == '}'  // right brace: {arr[i]}
-            || charAfter == ':') { // colon: for (int x : arr[i])
-            return true;
-        }
-
-        // Check for postfix ++ or --
-        if (charAfter == '+' || charAfter == '-') {
-            final int nextPosition = position + 1;
-            if (nextPosition < line.length) {
-                final char nextChar = Character.toChars(line[nextPosition])[0];
-                // If followed by the same operator, it's a postfix operator
-                if (nextChar == charAfter) {
-                    return true;
-                }
-            }
-            // Single + or - is a binary operator, requires whitespace
-            return false;
-        }
-
-        return false;
+        return isAlwaysValidCharAfterRightBracket(codePoint)
+            || isMethodReferenceOrPostfixOperator(codePoint, line, position)
+            || isAngleBracketOrShiftOperator(codePoint, line, position);
     }
 
+    /**
+     * Checks if the character after {@code ]} is always allowed without whitespace.
+     *
+     * @param codePoint code point to check
+     * @return true if always allowed without whitespace
+     */
+    private static boolean isAlwaysValidCharAfterRightBracket(int codePoint) {
+        return codePoint == '['
+            || codePoint == ']'
+            || codePoint == '.'
+            || codePoint == ','
+            || codePoint == ';'
+            || codePoint == ')';
+    }
+
+    /**
+     * Checks if the character after {@code ]} starts a valid postfix operator (++ or --)
+     * or method reference operator ({@code ::}).
+     *
+     * @param codePoint code point to check
+     * @param line the unicode code points array of the line
+     * @param position the position of the code point in the line
+     * @return true if a valid method reference or postfix operator exists
+     */
+    private static boolean isMethodReferenceOrPostfixOperator(
+        int codePoint, int[] line, int position) {
+        boolean isMethodReferenceOrPostfixOperator = false;
+        if (codePoint == '+' || codePoint == '-' || codePoint == ':') {
+            final int nextPosition = position + 1;
+            final int nextCodePoint = line[nextPosition];
+
+            if (nextCodePoint == codePoint) {
+                isMethodReferenceOrPostfixOperator = true;
+            }
+        }
+
+        return isMethodReferenceOrPostfixOperator;
+    }
+
+    /**
+     * Checks if the character after {@code ]} is an angle bracket ({@code >})
+     * or a shift operator ({@code <<} or {@code >>}).
+     *
+     * @param codePoint code point to check
+     * @param line the unicode code points array of the line
+     * @param position the position of the code point in the line
+     * @return true if a valid angle bracket or shift operator exists
+     */
+    private static boolean isAngleBracketOrShiftOperator(int codePoint, int[] line, int position) {
+        boolean result = false;
+        if (codePoint == '>' || codePoint == '<') {
+            final int nextCodePoint = line[position + 1];
+            // Accept shift operators
+            if (nextCodePoint == codePoint) {
+                result = true;
+            }
+            // Accept single angle bracket, but NOT if it's followed by '='
+            else if (nextCodePoint != '=' && codePoint == '>') {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
