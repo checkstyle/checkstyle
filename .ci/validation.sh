@@ -277,8 +277,11 @@ no-violation-test-configurate)
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  checkout_from "https://github.com/SpongePowered/Configurate.git"
+  # until https://github.com/checkstyle/checkstyle/issues/18327
+  checkout_from "https://github.com/stoyanK7/Configurate.git"
   cd .ci-temp/Configurate
+  git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
+  git checkout major-checkstyle-12
   ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
   cd ..
   removeFolderWithProtectedFiles Configurate
