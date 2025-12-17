@@ -242,22 +242,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #IDENTIFIER}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @exception FileNotFoundException when file is not found.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> exception
-     *    |--TEXT ->
-     *    |--IDENTIFIER -> FileNotFoundException
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT -> when file is not found.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> exception
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> FileNotFoundException
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  when file is not found.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
