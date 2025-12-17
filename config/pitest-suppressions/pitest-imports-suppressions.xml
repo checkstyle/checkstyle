@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>ImportControlCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck</mutatedClass>
-    <mutatedMethod>setFile</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new IllegalArgumentException(UNABLE_TO_LOAD + uri, exc);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportControlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>load</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;unable to read &quot; + uri, exc);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportControlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>loadUri</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;syntax error in url &quot; + uri, exc);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ImportControlLoader.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader</mutatedClass>
-    <mutatedMethod>loadUri</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>throw new CheckstyleException(&quot;unable to find &quot; + uri, exc);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>ImportOrderCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck</mutatedClass>
     <mutatedMethod>visitToken</mutatedMethod>
