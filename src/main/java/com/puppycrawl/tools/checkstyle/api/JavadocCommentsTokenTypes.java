@@ -379,12 +379,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--USES_BLOCK_TAG -> USES_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> uses
-     *    |--TEXT ->
-     *    `--IDENTIFIER -> com.example.app.MyService
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--USES_BLOCK_TAG -> USES_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> uses
+     *         |--TEXT ->
+     *         `--IDENTIFIER -> com.example.app.MyService
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
