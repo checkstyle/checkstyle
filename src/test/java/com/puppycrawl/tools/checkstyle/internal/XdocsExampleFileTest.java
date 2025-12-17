@@ -19,16 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
@@ -115,8 +124,81 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+            assertWithMessage("Xdocs are missing properties:\n %s", String.join("\n", failures))
                     .fail();
+        }
+    }
+
+    @Test
+    public void testAllXdocsExamplesAreReferencedInExampleTests() throws Exception {
+        final Path exampleRoot = Paths.get(
+                "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks");
+
+        final Path testRoot = Paths.get(
+                "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+
+        assertWithMessage("xdocs examples directory not found: %s", exampleRoot)
+                .that(Files.exists(exampleRoot))
+                .isTrue();
+        assertWithMessage("xdocs tests directory not found: %s", testRoot)
+                .that(Files.exists(testRoot))
+                .isTrue();
+
+        final Set<String> allExamples = collectExampleFiles(exampleRoot);
+
+        final Set<String> quotedExamples = allExamples.stream()
+                .map(name -> "\"" + name + "\"")
+                .collect(toImmutableSet());
+
+        final Set<String> referencedExamples = collectReferencedExamples(testRoot, quotedExamples);
+
+        final Set<String> missing = new TreeSet<>(allExamples);
+        missing.removeAll(referencedExamples);
+
+        assertWithMessage(
+                "Some xdocs examples are not referenced in *ExamplesTest.java:\n %s",
+                        String.join("\n", missing))
+                .that(missing)
+                .isEmpty();
+    }
+
+    private static Set<String> collectExampleFiles(Path exampleRoot) throws IOException {
+        try (Stream<Path> paths = Files.walk(exampleRoot)) {
+            return paths.filter(Files::isRegularFile)
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .filter(name -> name.matches("Example\\d+\\.java"))
+                    .collect(Collectors.toCollection(TreeSet::new));
+        }
+    }
+
+    private static Set<String> collectReferencedExamples(
+            Path testRoot, Set<String> quotedExamples) throws IOException {
+        final Set<String> referenced = new TreeSet<>();
+        try (Stream<Path> paths = Files.walk(testRoot)) {
+            paths.filter(Files::isRegularFile)
+                    .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
+                    .forEach(path -> readReferencesFromTestFile(path, quotedExamples, referenced));
+        }
+        return referenced;
+    }
+
+    private static void readReferencesFromTestFile(
+            Path testFile, Set<String> quotedExamples, Set<String> referenced) {
+        try (Stream<String> lines = Files.lines(testFile, StandardCharsets.UTF_8)) {
+            lines.forEach(line -> addReferencedExamples(line, quotedExamples, referenced));
+        }
+        catch (IOException exception) {
+            throw new UncheckedIOException(exception);
+        }
+    }
+
+    private static void addReferencedExamples(
+            String line, Set<String> quotedExamples, Set<String> referenced) {
+        for (String quoted : quotedExamples) {
+            if (line.contains(quoted)) {
+                referenced.add(quoted.substring(1, quoted.length() - 1));
+            }
         }
     }
 }
