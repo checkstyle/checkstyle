@@ -191,19 +191,23 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @return The return of method.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> return
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  The return of method.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> return
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The return of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
