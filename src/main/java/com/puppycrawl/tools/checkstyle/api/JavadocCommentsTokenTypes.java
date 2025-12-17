@@ -457,12 +457,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> serialData
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  data description value
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> serialData
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  data description value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
