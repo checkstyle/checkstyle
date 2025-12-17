@@ -697,7 +697,8 @@ public class Example7 extends TreeSet {
     java.util.TreeSet treeset;
   }
 
-  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {
+  }
 
   public HashMap&lt;String, String&gt; function1() {
     return null;
@@ -711,7 +712,8 @@ public class Example7 extends TreeSet {
     return null;
   }
 
-  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {
+  }
 
   public &lt;T extends java.util.Optional&gt; void method(T t) {
     Optional&lt;T&gt; i;
@@ -723,14 +725,19 @@ public class Example7 extends TreeSet {
 
   }
 
-  class B extends Gitter {}
-  class C extends Github {}
+  class B extends Gitter {
+  }
+
+  class C extends Github {
+  }
+
   // violation below 'Usage of type 'Optional' is not allowed'
   public Optional&lt;String&gt; field2;
   protected String field3;
   Optional&lt;String&gt; field4; // violation, 'Usage of type 'Optional' is not allowed'
 
-  private void method(List&lt;Foo&gt; list, Boolean value) {}
+  private void method(List&lt;Foo&gt; list, Boolean value) {
+  }
 
   void foo() {
     Optional&lt;String&gt; i;
@@ -758,7 +765,7 @@ public class Example7 extends TreeSet {
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="IllegalType"&gt;
-      &lt;property name="illegalClassNames" value="var"/&gt;
+      &lt;property name="illegalClassNames" value="var, java.util.Optional, java.util.AbstractSet"/&gt;
       &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
       &lt;property name="id" value="IllegalTypeVarAsField"/&gt;
     &lt;/module&gt;
@@ -779,7 +786,8 @@ public class Example8 extends TreeSet {
     java.util.TreeSet treeset;
   }
 
-  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {}
+  public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {
+  }
 
   public HashMap&lt;String, String&gt; function1() {
     return null;
@@ -793,7 +801,8 @@ public class Example8 extends TreeSet {
     return null;
   }
 
-  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {}
+  public &lt;T extends Boolean, U extends Serializable&gt; void typeParam(T a) {
+  }
 
   public &lt;T extends java.util.Optional&gt; void method(T t) {
     Optional&lt;T&gt; i;
@@ -805,14 +814,18 @@ public class Example8 extends TreeSet {
 
   }
 
-  class B extends Gitter {}
-  class C extends Github {}
-  // violation below 'Usage of type 'Optional' is not allowed'
+  class B extends Gitter {
+  }
+
+  class C extends Github {
+  }
+
   public Optional&lt;String&gt; field2;
   protected String field3;
-  Optional&lt;String&gt; field4; // violation, 'Usage of type 'Optional' is not allowed'
+  Optional&lt;String&gt; field4;
 
-  private void method(List&lt;Foo&gt; list, Boolean value) {}
+  private void method(List&lt;Foo&gt; list, Boolean value) {
+  }
 
   void foo() {
     Optional&lt;String&gt; i;
@@ -823,7 +836,7 @@ public class Example8 extends TreeSet {
   public void var() {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
-  // violation below 'Usage of type 'AbstractSet' is not allowed'
+
   public AbstractSet&lt;String&gt; function4() {
     return null;
   }

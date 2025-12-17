@@ -35,8 +35,8 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13: " + getCheckMessage(MSG_KEY, 80, 84),
-            "21: " + getCheckMessage(MSG_KEY, 80, 92),
+                "13: " + getCheckMessage(MSG_KEY, 80, 84),
+                "21: " + getCheckMessage(MSG_KEY, 80, 92),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -51,8 +51,8 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY, 80, 83),
-            "23: " + getCheckMessage(MSG_KEY, 80, 92),
+                "11: " + getCheckMessage(MSG_KEY, 80, 83),
+                "23: " + getCheckMessage(MSG_KEY, 80, 92),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -67,11 +67,17 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY, 60, 64),
-            "17: " + getCheckMessage(MSG_KEY, 60, 84),
-            "25: " + getCheckMessage(MSG_KEY, 60, 92),
+                "11: " + getCheckMessage(MSG_KEY, 60, 64),
+                "17: " + getCheckMessage(MSG_KEY, 60, 84),
+                "25: " + getCheckMessage(MSG_KEY, 60, 92),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }

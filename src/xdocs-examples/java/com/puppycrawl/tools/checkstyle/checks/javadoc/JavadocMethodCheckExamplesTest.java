@@ -36,11 +36,11 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "14:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
-            "17: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "17:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "25: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "30:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "14:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+                "17: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+                "17:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "25: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+                "30:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -49,7 +49,7 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+                "20: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -64,9 +64,9 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
-            "19:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "32:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+                "19:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "32:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
@@ -75,10 +75,10 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample5() throws Exception {
         final String[] expected = {
-            "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
-            "19: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
-            "19:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
-            "32:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+                "19: " + getCheckMessage(MSG_RETURN_EXPECTED, "@return"),
+                "19:21: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
+                "32:15: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "p1"),
         };
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
@@ -87,7 +87,7 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample6() throws Exception {
         final String[] expected = {
-            "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
+                "16:16: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "x"),
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
@@ -96,12 +96,18 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "31:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
-            "64:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
-            "67:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
-            "80:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+                "31:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
+                "64:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+                "67:17: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+                "80:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
         };
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 }

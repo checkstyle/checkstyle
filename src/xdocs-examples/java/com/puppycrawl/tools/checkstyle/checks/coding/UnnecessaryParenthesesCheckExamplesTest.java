@@ -38,17 +38,17 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:18: " + getCheckMessage(MSG_ASSIGN),
-            "19:13: " + getCheckMessage(MSG_IDENT, "square"),
-            "25:19: " + getCheckMessage(MSG_LITERAL, "0"),
-            "27:15: " + getCheckMessage(MSG_ASSIGN),
-            "28:20: " + getCheckMessage(MSG_ASSIGN),
-            "28:24: " + getCheckMessage(MSG_IDENT, "square"),
-            "36:21: " + getCheckMessage(MSG_LAMBDA),
-            "44:9: " + getCheckMessage(MSG_EXPR),
-            "44:31: " + getCheckMessage(MSG_EXPR),
-            "44:53: " + getCheckMessage(MSG_EXPR),
-            "48:9: " + getCheckMessage(MSG_EXPR),
+                "17:18: " + getCheckMessage(MSG_ASSIGN),
+                "19:13: " + getCheckMessage(MSG_IDENT, "square"),
+                "25:19: " + getCheckMessage(MSG_LITERAL, "0"),
+                "27:15: " + getCheckMessage(MSG_ASSIGN),
+                "28:20: " + getCheckMessage(MSG_ASSIGN),
+                "28:24: " + getCheckMessage(MSG_IDENT, "square"),
+                "36:21: " + getCheckMessage(MSG_LAMBDA),
+                "44:9: " + getCheckMessage(MSG_EXPR),
+                "44:31: " + getCheckMessage(MSG_EXPR),
+                "44:53: " + getCheckMessage(MSG_EXPR),
+                "48:9: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }
@@ -56,9 +56,18 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "18:18: " + getCheckMessage(MSG_EXPR),
-            "26:19: " + getCheckMessage(MSG_EXPR),
+                "18:18: " + getCheckMessage(MSG_EXPR),
+                "26:19: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+                "17:13: " + getCheckMessage(MSG_EXPR),
+                "19:22: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 }
