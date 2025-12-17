@@ -74,4 +74,10 @@ public class LineLengthCheckExamplesTest extends AbstractExamplesModuleTestSuppo
 
         verifyWithInlineConfigParser(getPath("Example5.java"), expected);
     }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
 }

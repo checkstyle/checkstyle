@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.design.OneTopLevelClassChec
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
@@ -47,6 +48,12 @@ public class OneTopLevelClassCheckExamplesTest extends AbstractExamplesModuleTes
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
+    }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
     }
 
 }
