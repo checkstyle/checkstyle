@@ -45,7 +45,7 @@ public enum LineSeparatorOption {
     LF_CR_CRLF("#"),
 
     /** System default line separators. **/
-    SYSTEM(System.getProperty("line.separator"));
+    SYSTEM(System.lineSeparator());
 
     /** The line separator representation. */
     private final byte[] lineSeparator;
