@@ -396,8 +396,8 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #IDENTIFIER}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
@@ -405,14 +405,17 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> provides
-     *    |--TEXT ->
-     *    |--IDENTIFIER -> com.example.MyService
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  with com.example.MyServiceImpl
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> provides
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> com.example.MyService
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  with com.example.MyServiceImpl
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
