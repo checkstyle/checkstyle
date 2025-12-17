@@ -123,15 +123,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> author
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  name.
+     * AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> author
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  name.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -151,15 +147,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> deprecated
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  deprecated text.
+     * DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> deprecated
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  deprecated text.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -180,17 +172,13 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> param
-     *         |--TEXT ->
-     *         |--PARAMETER_NAME -> value
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The parameter of method.
+     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> param
+     *     |--TEXT ->
+     *     |--PARAMETER_NAME -> value
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The parameter of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -210,15 +198,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> return
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The return of method.
+     * RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> return
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The return of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -239,17 +223,13 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> throws
-     *         |--TEXT ->
-     *         |--IDENTIFIER -> IOException
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  if an I/O error occurs
+     * THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> throws
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> IOException
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  if an I/O error occurs
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -270,17 +250,13 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> exception
-     *         |--TEXT ->
-     *         |--IDENTIFIER -> FileNotFoundException
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  when file is not found.
+     * EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> exception
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> FileNotFoundException
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  when file is not found.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -300,15 +276,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> since
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  1.0
+     * SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> since
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  1.0
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -325,15 +297,10 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> version
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  value
+     * VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> version
+     *     `--TEXT ->  value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -355,19 +322,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> see
-     *         |--TEXT ->
-     *         `--REFERENCE -> REFERENCE
-     *             |--IDENTIFIER -> SomeClass
-     *             |--HASH -> #
-     *             `--MEMBER_REFERENCE -> MEMBER_REFERENCE
-     *                 `--IDENTIFIER -> Field
+     * SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> see
+     *     |--TEXT ->
+     *     `--REFERENCE -> REFERENCE
+     *         |--IDENTIFIER -> SomeClass
+     *         |--HASH -> #
+     *         `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *             `--IDENTIFIER -> Field
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -387,15 +350,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--HIDDEN_BLOCK_TAG -> HIDDEN_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> hidden
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  value
+     * HIDDEN_BLOCK_TAG -> HIDDEN_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> hidden
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -415,15 +374,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--USES_BLOCK_TAG -> USES_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> uses
-     *         |--TEXT ->
-     *         `--IDENTIFIER -> com.example.app.MyService
+     * USES_BLOCK_TAG -> USES_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> uses
+     *     |--TEXT ->
+     *     `--IDENTIFIER -> com.example.app.MyService
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -444,17 +399,13 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> provides
-     *         |--TEXT ->
-     *         |--IDENTIFIER -> com.example.MyService
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  with com.example.MyServiceImpl
+     * PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> provides
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> com.example.MyService
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  with com.example.MyServiceImpl
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -474,15 +425,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> serial
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  include
+     * SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> serial
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  include
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -502,15 +449,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> serialData
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  data description value
+     * SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> serialData
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  data description value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -532,19 +475,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> serialField
-     *         |--TEXT ->
-     *         |--IDENTIFIER -> name
-     *         |--TEXT ->
-     *         |--FIELD_TYPE -> String
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The person's full name.
+     * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> serialField
+     *     |--TEXT ->
+     *     |--IDENTIFIER -> name
+     *     |--TEXT ->
+     *     |--FIELD_TYPE -> String
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  The person's full name.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -562,15 +501,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
-     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     *     `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
-     *         |--AT_SIGN -> @
-     *         |--TAG_NAME -> mycustomtag
-     *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  This is a custom block tag.
+     * CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *     |--AT_SIGN -> @
+     *     |--TAG_NAME -> mycustomtag
+     *     `--DESCRIPTION -> DESCRIPTION
+     *         `--TEXT ->  This is a custom block tag.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
