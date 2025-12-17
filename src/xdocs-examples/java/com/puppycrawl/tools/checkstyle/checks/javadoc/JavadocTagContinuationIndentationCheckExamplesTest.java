@@ -37,7 +37,7 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_KEY, 4),
+                "27: " + getCheckMessage(MSG_KEY, 4),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -52,10 +52,22 @@ public class JavadocTagContinuationIndentationCheckExamplesTest
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
-            "29: " + getCheckMessage(MSG_KEY, 4),
+                "14: " + getCheckMessage(MSG_KEY_UNCLOSED_HTML_TAG, "p"),
+                "29: " + getCheckMessage(MSG_KEY, 4),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+                "29: " + getCheckMessage(MSG_KEY, 4),
+                "30: " + getCheckMessage(MSG_KEY, 4),
+                "31: " + getCheckMessage(MSG_KEY, 4),
+                "32: " + getCheckMessage(MSG_KEY, 4),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
 }

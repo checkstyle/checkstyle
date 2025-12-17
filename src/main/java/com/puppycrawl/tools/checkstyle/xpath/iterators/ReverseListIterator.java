@@ -48,8 +48,7 @@ public class ReverseListIterator implements AxisIterator {
         if (items == null) {
             this.items = null;
             index = -1;
-        }
-        else {
+        } else {
             this.items = new ArrayList<>(items);
             index = items.size() - 1;
         }
@@ -65,8 +64,7 @@ public class ReverseListIterator implements AxisIterator {
         final NodeInfo result;
         if (index == -1) {
             result = null;
-        }
-        else {
+        } else {
             result = items.get(index);
             index--;
         }

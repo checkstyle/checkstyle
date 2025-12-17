@@ -62,7 +62,7 @@ class ViolationExample2 { // violation, "has to reside in its own source file."
           An example of code without violations:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-public class Example3 { // OK, only one top-level class
+public class Example3 { // ok, only one top-level class
   // methods
 }
 </code></pre></div>

@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="IllegalType">
-      <property name="illegalClassNames" value="var"/>
+      <property name="illegalClassNames" value="var, java.util.Optional, java.util.AbstractSet"/>
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="id" value="IllegalTypeVarAsField"/>
     </module>
@@ -29,7 +29,8 @@ public class Example8 extends TreeSet {
     java.util.TreeSet treeset;
   }
 
-  public <T extends java.util.HashSet> void typeParam(T t) {}
+  public <T extends java.util.HashSet> void typeParam(T t) {
+  }
 
   public HashMap<String, String> function1() {
     return null;
@@ -43,7 +44,8 @@ public class Example8 extends TreeSet {
     return null;
   }
 
-  public <T extends Boolean, U extends Serializable> void typeParam(T a) {}
+  public <T extends Boolean, U extends Serializable> void typeParam(T a) {
+  }
 
   public <T extends java.util.Optional> void method(T t) {
     Optional<T> i;
@@ -55,14 +57,18 @@ public class Example8 extends TreeSet {
 
   }
 
-  class B extends Gitter {}
-  class C extends Github {}
-  // violation below 'Usage of type 'Optional' is not allowed'
+  class B extends Gitter {
+  }
+
+  class C extends Github {
+  }
+
   public Optional<String> field2;
   protected String field3;
-  Optional<String> field4; // violation, 'Usage of type 'Optional' is not allowed'
+  Optional<String> field4;
 
-  private void method(List<Foo> list, Boolean value) {}
+  private void method(List<Foo> list, Boolean value) {
+  }
 
   void foo() {
     Optional<String> i;
@@ -73,7 +79,7 @@ public class Example8 extends TreeSet {
   public void var() {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
-  // violation below 'Usage of type 'AbstractSet' is not allowed'
+
   public AbstractSet<String> function4() {
     return null;
   }

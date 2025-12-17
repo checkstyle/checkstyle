@@ -17,7 +17,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 // xdoc section -- start
@@ -33,7 +33,8 @@ public class Example7 extends TreeSet {
     java.util.TreeSet treeset;
   }
 
-  public <T extends java.util.HashSet> void typeParam(T t) {}
+  public <T extends java.util.HashSet> void typeParam(T t) {
+  }
 
   public HashMap<String, String> function1() {
     return null;
@@ -47,7 +48,8 @@ public class Example7 extends TreeSet {
     return null;
   }
 
-  public <T extends Boolean, U extends Serializable> void typeParam(T a) {}
+  public <T extends Boolean, U extends Serializable> void typeParam(T a) {
+  }
 
   public <T extends java.util.Optional> void method(T t) {
     Optional<T> i;
@@ -59,14 +61,19 @@ public class Example7 extends TreeSet {
 
   }
 
-  class B extends Gitter {}
-  class C extends Github {}
+  class B extends Gitter {
+  }
+
+  class C extends Github {
+  }
+
   // violation below 'Usage of type 'Optional' is not allowed'
   public Optional<String> field2;
   protected String field3;
   Optional<String> field4; // violation, 'Usage of type 'Optional' is not allowed'
 
-  private void method(List<Foo> list, Boolean value) {}
+  private void method(List<Foo> list, Boolean value) {
+  }
 
   void foo() {
     Optional<String> i;

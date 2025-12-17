@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
 
@@ -39,15 +38,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 public class XdocsExampleFileTest {
 
     private static final Set<String> COMMON_PROPERTIES = Set.of(
-        "severity",
-        "id",
-        "fileExtensions",
-        "tabWidth",
-        "fileContents",
-        "tokens",
-        "javadocTokens",
-        "violateExecutionOnNonTightHtml"
-    );
+            "severity",
+            "id",
+            "fileExtensions",
+            "tabWidth",
+            "fileContents",
+            "tokens",
+            "javadocTokens",
+            "violateExecutionOnNonTightHtml");
 
     // This list is temporarily suppressed.
     // Until: https://github.com/checkstyle/checkstyle/issues/17449
@@ -65,28 +63,23 @@ public class XdocsExampleFileTest {
                     "lineWrappingIndentation",
                     "throwsIndent",
                     "arrayInitIndent",
-                    "braceAdjustment"
-            )),
+                    "braceAdjustment")),
             Map.entry("MethodCountCheck", Set.of("maxPrivate", "maxPackage", "maxProtected")),
             Map.entry("ClassMemberImpliedModifierCheck", Set.of(
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
-                    "violateImpliedStaticOnNestedInterface"
-            )),
+                    "violateImpliedStaticOnNestedInterface")),
             Map.entry("DescendantTokenCheck", Set.of("minimumMessage")),
             Map.entry("InterfaceMemberImpliedModifierCheck", Set.of(
                     "violateImpliedFinalField",
                     "violateImpliedPublicField",
                     "violateImpliedStaticField",
                     "violateImpliedPublicMethod",
-                    "violateImpliedAbstractMethod"
-            ))
-    );
+                    "violateImpliedAbstractMethod")));
 
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
-        final Map<String, Set<String>> usedPropertiesByCheck =
-            XdocUtil.extractUsedPropertiesFromXdocsExamples();
+        final Map<String, Set<String>> usedPropertiesByCheck = XdocUtil.extractUsedPropertiesFromXdocsExamples();
         final List<String> failures = new ArrayList<>();
 
         for (Class<?> checkClass : CheckUtil.getCheckstyleChecks()) {
@@ -94,16 +87,15 @@ public class XdocsExampleFileTest {
 
             final Set<String> definedProperties = Arrays.stream(
                     PropertyUtils.getPropertyDescriptors(checkClass))
-                .filter(descriptor -> descriptor.getWriteMethod() != null)
-                .map(PropertyDescriptor::getName)
-                .filter(property -> !COMMON_PROPERTIES.contains(property))
-                .collect(Collectors.toUnmodifiableSet());
+                    .filter(descriptor -> descriptor.getWriteMethod() != null)
+                    .map(PropertyDescriptor::getName)
+                    .filter(property -> !COMMON_PROPERTIES.contains(property))
+                    .collect(Collectors.toUnmodifiableSet());
 
-            final Set<String> usedProperties =
-                usedPropertiesByCheck.getOrDefault(checkSimpleName, Collections.emptySet());
+            final Set<String> usedProperties = usedPropertiesByCheck.getOrDefault(checkSimpleName,
+                    Collections.emptySet());
 
-            final Set<String> suppressedProps =
-                SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
+            final Set<String> suppressedProps = SUPPRESSED_PROPERTIES_BY_CHECK.getOrDefault(
                     checkSimpleName, Collections.emptySet());
 
             for (String property : definedProperties) {
