@@ -272,16 +272,17 @@ no-error-hazelcast)
   removeFolderWithProtectedFiles hazelcast
   ;;
 
-no-violation-test-configurate)
+no-error-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  mkdir -p .ci-temp
-  cd .ci-temp
-  git clone https://github.com/SpongePowered/Configurate.git
-  cd Configurate
-  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" -x test check
+  # until https://github.com/checkstyle/checkstyle/issues/18327
+  checkout_from "https://github.com/stoyanK7/Configurate.git"
+  cd .ci-temp/Configurate
+  git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
+  git checkout major-checkstyle-12
+  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
   cd ..
   removeFolderWithProtectedFiles Configurate
   ;;
