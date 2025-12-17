@@ -107,6 +107,8 @@ public final class SiteUtil {
     /** The path to the JavadocTokenTypes.html file. */
     public static final String PATH_TO_JAVADOC_TOKEN_TYPES =
             "apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html";
+    /** Path to xdoc template directories. */
+    public static final String PATH_TO_XDOC_TEMPLATES = "src/site/xdoc";
     /** The string of JavaDoc module marking 'Since version'. */
     public static final String SINCE_VERSION = "Since version";
     /** The 'Check' pattern at the end of string. */
@@ -331,7 +333,7 @@ public final class SiteUtil {
      */
     private static PackageObjectFactory getPackageObjectFactory() throws MacroExecutionException {
         try {
-            final ClassLoader cl = ViolationMessagesMacro.class.getClassLoader();
+            final ClassLoader cl = SiteUtil.class.getClassLoader();
             final Set<String> packageNames = PackageNamesLoader.getPackageNames(cl);
             return new PackageObjectFactory(packageNames, cl);
         }
@@ -359,13 +361,15 @@ public final class SiteUtil {
      * template cannot be found.
      *
      * @param moduleName the module whose template we are looking for.
+     * @param pathToTemplates path to xdoc templates directories.
      * @return path to the template.
      * @throws MacroExecutionException if the template cannot be found.
      */
-    public static Path getTemplatePath(String moduleName) throws MacroExecutionException {
+    public static Path getTemplatePath(String moduleName, String pathToTemplates)
+            throws MacroExecutionException {
         final String fileNamePattern = ".*[\\\\/]"
                 + moduleName.toLowerCase(Locale.ROOT) + "\\..*";
-        return getXdocsTemplatesFilePaths()
+        return getXdocsTemplatesFilePaths(pathToTemplates)
             .stream()
             .filter(path -> path.toString().matches(fileNamePattern))
             .findFirst()
@@ -377,11 +381,13 @@ public final class SiteUtil {
      * This method will be changed to gather .xml once
      * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
      *
+     * @param pathToTemplates path to xdoc templates
      * @return a set of xdocs template file paths.
      * @throws MacroExecutionException if an I/O error occurs.
      */
-    public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
-        final Path directory = Path.of("src/site/xdoc");
+    public static Set<Path> getXdocsTemplatesFilePaths(String pathToTemplates)
+            throws MacroExecutionException {
+        final Path directory = Path.of(pathToTemplates);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
                 (path, attr) -> {
                     return attr.isRegularFile()
@@ -483,7 +489,7 @@ public final class SiteUtil {
             throws MacroExecutionException {
         // lazy initialization
         if (SUPER_CLASS_PROPERTIES_JAVADOCS.isEmpty()) {
-            processSuperclasses();
+            processSuperclasses(MODULE_SUPER_CLASS_PATHS);
         }
 
         processModule(moduleName, modulePath);
@@ -534,10 +540,12 @@ public final class SiteUtil {
     /**
      * Collect the properties setters javadocs of the superclasses.
      *
+     * @param superClassPaths Path list to super classes.
      * @throws MacroExecutionException if an error occurs during processing.
      */
-    private static void processSuperclasses() throws MacroExecutionException {
-        for (Path superclassPath : MODULE_SUPER_CLASS_PATHS) {
+    public static void processSuperclasses(List<Path> superClassPaths)
+            throws MacroExecutionException {
+        for (Path superclassPath : superClassPaths) {
             final Path fileNamePath = superclassPath.getFileName();
             if (fileNamePath == null) {
                 throw new MacroExecutionException("Invalid superclass path: " + superclassPath);
@@ -694,11 +702,12 @@ public final class SiteUtil {
      * @param propertyName the name of the property.
      * @param javadoc the Javadoc of the property setter method.
      * @param moduleName the name of the module.
+     * @param pathToTemplates path to xdoc templates directories.
      * @return the description of the property.
      * @throws MacroExecutionException if the description could not be extracted.
      */
     public static String getPropertyDescriptionForXdoc(
-            String propertyName, DetailNode javadoc, String moduleName)
+            String propertyName, DetailNode javadoc, String moduleName, String pathToTemplates)
             throws MacroExecutionException {
         final String description;
         if (TOKENS.equals(propertyName)) {
@@ -709,7 +718,7 @@ public final class SiteUtil {
         }
         else {
             final String descriptionString = SETTER_PATTERN.matcher(
-                    getDescriptionFromJavadocForXdoc(javadoc, moduleName))
+                    getDescriptionFromJavadocForXdoc(javadoc, moduleName, pathToTemplates))
                     .replaceFirst("");
 
             final String firstLetterCapitalized = descriptionString.substring(0, 1)
@@ -1240,12 +1249,15 @@ public final class SiteUtil {
      *
      * @param moduleName the name of the module.
      * @param document the path of the document.
+     * @param pathToTemplates path to xdoc templates directories.
      * @return relative link to the document.
      * @throws MacroExecutionException if link to the document cannot be constructed.
      */
-    public static String getLinkToDocument(String moduleName, String document)
+    public static String getLinkToDocument(String moduleName, String document,
+                                           String pathToTemplates)
             throws MacroExecutionException {
-        final Path templatePath = getTemplatePath(FINAL_CHECK.matcher(moduleName).replaceAll(""));
+        final Path templatePath = getTemplatePath(FINAL_CHECK.matcher(moduleName).replaceAll(""),
+            pathToTemplates);
         if (templatePath == null) {
             throw new MacroExecutionException(
                     String.format(Locale.ROOT,
@@ -1265,14 +1277,15 @@ public final class SiteUtil {
     /**
      * Get all templates whose content contains properties macro.
      *
+     * @param pathToTemplates path to xdoc templates directories.
      * @return templates whose content contains properties macro.
      * @throws CheckstyleException if file could not be read.
      * @throws MacroExecutionException if template file is not found.
      */
-    public static List<Path> getTemplatesThatContainPropertiesMacro()
+    public static List<Path> getTemplatesThatContainPropertiesMacro(String pathToTemplates)
             throws CheckstyleException, MacroExecutionException {
         final List<Path> result = new ArrayList<>();
-        final Set<Path> templatesPaths = getXdocsTemplatesFilePaths();
+        final Set<Path> templatesPaths = getXdocsTemplatesFilePaths(pathToTemplates);
         for (Path templatePath: templatesPaths) {
             final String content = getFileContents(templatePath);
             final String propertiesMacroDefinition = "<macro name=\"properties\"";
@@ -1321,13 +1334,15 @@ public final class SiteUtil {
      *
      * @param javadoc the Javadoc to extract the description from.
      * @param moduleName the name of the module.
+     * @param pathToTemplates path to xdoc templates directories.
      * @return the description of the setter.
      * @throws MacroExecutionException if the description could not be extracted.
      */
     // -@cs[NPathComplexity] Splitting would not make the code more readable
     // -@cs[CyclomaticComplexity] Splitting would not make the code more readable.
     // -@cs[ExecutableStatementCount] Splitting would not make the code more readable.
-    private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
+    private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName,
+                                                           String pathToTemplates)
             throws MacroExecutionException {
         boolean isInCodeLiteral = false;
         boolean isInHtmlElement = false;
@@ -1346,7 +1361,8 @@ public final class SiteUtil {
                      == JavadocCommentsTokenTypes.ATTRIBUTE_VALUE) {
                 final String href = node.getText();
                 if (href.contains(CHECKSTYLE_ORG_URL)) {
-                    DescriptionExtractor.handleInternalLink(description, moduleName, href);
+                    DescriptionExtractor.handleInternalLink(description, moduleName, href,
+                        pathToTemplates);
                 }
                 else {
                     description.append(href);
@@ -1488,18 +1504,20 @@ public final class SiteUtil {
          *
          * @param description the description to append the relative link to.
          * @param moduleName the name of the module.
+         * @param pathToTemplates path to xdoc templates directories.
          * @param value the href value.
          * @throws MacroExecutionException if the relative link could not be created.
          */
         private static void handleInternalLink(StringBuilder description,
-                                               String moduleName, String value)
+                                               String moduleName, String value,
+                                               String pathToTemplates)
                 throws MacroExecutionException {
             String href = value;
             href = href.replace(CHECKSTYLE_ORG_URL, "");
             // Remove first and last characters, they are always double quotes
             href = href.substring(1, href.length() - 1);
 
-            final String relativeHref = getLinkToDocument(moduleName, href);
+            final String relativeHref = getLinkToDocument(moduleName, href, pathToTemplates);
             final char doubleQuote = '\"';
             description.append(doubleQuote).append(relativeHref).append(doubleQuote);
         }
