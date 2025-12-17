@@ -155,7 +155,7 @@ public class XdocsExampleFileTest {
         missing.removeAll(referencedExamples);
 
         assertWithMessage(
-                "Some xdocs examples are not referenced in *ExamplesTest.java:\n %s",
+                "Some xdocs examples are not referenced in any *ExamplesTest.java:\n %s",
                         String.join("\n", missing))
                 .that(missing)
                 .isEmpty();
