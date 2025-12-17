@@ -121,6 +121,25 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
     }
 
     @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "73:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+            "75:3: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "74:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
+
+    @Test
     public void testExample9() throws Exception {
         final String[] expected = {
             "20:31: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "TreeSet"),

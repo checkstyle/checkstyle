@@ -807,10 +807,10 @@ public class Example8 extends TreeSet {
 
   class B extends Gitter {}
   class C extends Github {}
-  // violation below 'Usage of type 'Optional' is not allowed'
+
   public Optional&lt;String&gt; field2;
   protected String field3;
-  Optional&lt;String&gt; field4; // violation, 'Usage of type 'Optional' is not allowed'
+  Optional&lt;String&gt; field4;
 
   private void method(List&lt;Foo&gt; list, Boolean value) {}
 
@@ -823,7 +823,7 @@ public class Example8 extends TreeSet {
   public void var() {
     var message = "Hello, World!";
   } // violation above 'Usage of type 'var' is not allowed'
-  // violation below 'Usage of type 'AbstractSet' is not allowed'
+
   public AbstractSet&lt;String&gt; function4() {
     return null;
   }

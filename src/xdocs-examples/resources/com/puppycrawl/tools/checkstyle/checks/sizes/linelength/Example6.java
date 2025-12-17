@@ -1,9 +1,9 @@
 /*xml
 <module name="Checker">
   <module name="LineLength">
-    <property name="max" value="70"/>
+    <property name="max" value="100"/>
   </module>
-  <module name="SuppressWithPlainTextCommentFilter">
+  <module name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter">
     <property name="checkFormat" value="LineLength"/>
     <property name="offCommentFormat" value='^.*"""$'/>
     <property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/>

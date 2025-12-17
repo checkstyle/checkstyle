@@ -104,4 +104,10 @@ public class JavadocMethodCheckExamplesTest extends AbstractExamplesModuleTestSu
 
         verifyWithInlineConfigParser(getPath("Example7.java"), expected);
     }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
+    }
 }
