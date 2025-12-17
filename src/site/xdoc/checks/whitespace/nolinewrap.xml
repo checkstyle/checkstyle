@@ -26,6 +26,13 @@
               <th>since</th>
             </tr>
             <tr>
+              <td><a id="skipAnnotations"/><a href="#skipAnnotations">skipAnnotations</a></td>
+              <td>Specify whether to skip annotations to be part of target token.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>12.4.0</td>
+            </tr>
+            <tr>
               <td><a id="tokens"/><a href="#tokens">tokens</a></td>
               <td>tokens to check</td>
               <td>subset of tokens
@@ -164,6 +171,7 @@ import static java.math.BigInteger.ZERO;
 class // violation 'should not be line-wrapped'
   Example5 {
 
+  @Deprecated
   public Example5() {
   }
 
@@ -177,6 +185,50 @@ class // violation 'should not be line-wrapped'
       Bar() {
     }
 
+    @Deprecated
+    public void fun() {
+    }
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to force no line-wrapping annotations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="NoLineWrap"&gt;
+      &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
+      &lt;property name="skipAnnotations" value="false"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import static java.math.BigInteger.ZERO;
+
+class // violation 'should not be line-wrapped'
+  Example6 {
+
+  @Deprecated // violation 'should not be line-wrapped'
+  public Example6() {
+  }
+
+  public static void // violation 'should not be line-wrapped'
+    doSomething() {
+  }
+
+  class Bar {
+
+    public // violation 'should not be line-wrapped'
+      Bar() {
+    }
+
+    @Deprecated // violation 'should not be line-wrapped'
     public void fun() {
     }
   }
