@@ -12,7 +12,8 @@ public class InputTextBlockGoogleStyleFormatting2 {
         // violation below 'Opening quotes (""") of text-block must be on the new line'
         final String simpleScript = """
             s""";
-        // 2 violations above:
+        // 3 violations above:
+        //   'Text block content indentation is less than the opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'
         //   'Text-block quotes are not vertically aligned'
 
@@ -27,7 +28,8 @@ public class InputTextBlockGoogleStyleFormatting2 {
         final String simpleScript2 = simpleScript +
                 simpleScript1 + """
                 this is simple script""";
-        // 2 violations above
+        // 3 violations above
+        //   'Text block content indentation is less than the opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'
         //   'Text-block quotes are not vertically aligned'
 
@@ -43,11 +45,13 @@ public class InputTextBlockGoogleStyleFormatting2 {
         final String simpleScript4 = simpleScript +
             simpleScript3.endsWith("""
                 this is simple""");
-        // 2 violations above:
+        // 3 violations above:
+        //   'Text block content indentation is less than the opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'
         //   'Text-block quotes are not vertically aligned'
 
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text block content indentation is less than the opening quotes indentation'
         getData("""
             Hello,
             This is a multi-line message.""");
@@ -58,7 +62,8 @@ public class InputTextBlockGoogleStyleFormatting2 {
         // violation below 'Opening quotes (""") of text-block must be on the new line.'
         return """
             this is sample text""";
-        // 2 violations above:
+        // 3 violations above:
+        //   'Text block content indentation is less than the opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace character'
         //   'Text-block quotes are not vertically aligned'
     }
@@ -83,7 +88,8 @@ public class InputTextBlockGoogleStyleFormatting2 {
         getData(
             1, """
             this is a multi-line message""");
-        // 2 violations above:
+        // 3 violations above:
+        //   'Text block content indentation is less than the opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'
         //   'Text-block quotes are not vertically aligned'
 

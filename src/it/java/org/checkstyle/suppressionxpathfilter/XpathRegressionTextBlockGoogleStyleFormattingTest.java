@@ -46,8 +46,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
             createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "8:13: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
+            "7:13: " + getCheckMessage(CLASS,
+                TextBlockGoogleStyleFormattingCheck.MSG_TEXT_BLOCK_CONTENT),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -72,8 +72,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "15:13: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
+            "13:13: " + getCheckMessage(CLASS,
+                TextBlockGoogleStyleFormattingCheck.MSG_TEXT_BLOCK_CONTENT),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -99,8 +99,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR),
+            "8:2: " + getCheckMessage(CLASS,
+                TextBlockGoogleStyleFormattingCheck.MSG_TEXT_BLOCK_CONTENT),
         };
 
         final List<String> expectedXpathQueries = List.of(
