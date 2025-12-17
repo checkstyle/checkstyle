@@ -164,22 +164,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #PARAMETER_NAME}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #PARAMETER_NAME}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @param value The parameter of method.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> param
-     *    |--TEXT ->
-     *    |--PARAMETER_NAME -> value
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  The parameter of method.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> param
+     *         |--TEXT ->
+     *         |--PARAMETER_NAME -> value
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The parameter of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
