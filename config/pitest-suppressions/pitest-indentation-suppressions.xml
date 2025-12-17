@@ -125,22 +125,4 @@
     <description>changed conditional boundary</description>
     <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
   </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SynchronizedHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
-    <mutatedMethod>checkIndentation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkSynchronizedExpr</description>
-    <lineContent>checkSynchronizedExpr();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SynchronizedHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
-    <mutatedMethod>checkSynchronizedExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkExpressionSubtree</description>
-    <lineContent>checkExpressionSubtree(syncAst, expected, false, false);</lineContent>
-  </mutation>
 </suppressedMutations>
