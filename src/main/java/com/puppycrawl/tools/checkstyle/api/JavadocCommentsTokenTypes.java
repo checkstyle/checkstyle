@@ -215,22 +215,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER} - the exception class</li>
-     *  <li>{@link #DESCRIPTION} - description</li>
+     *   <li>{@link #IDENTIFIER} - the exception class</li>
+     *   <li>{@link #DESCRIPTION} - description</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @throws IOException if an I/O error occurs}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> throws
-     *     |--TEXT ->
-     *     |--IDENTIFIER -> IOException
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  if an I/O error occurs
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> throws
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> IOException
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  if an I/O error occurs
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
