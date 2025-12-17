@@ -315,9 +315,9 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have three children:</p>
      * <ol>
-     *  <li>{@link #REFERENCE}</li>
-     *  <li>{@link #DESCRIPTION}</li>
-     *  <li>{@link #HTML_ELEMENT}</li>
+     *   <li>{@link #REFERENCE}</li>
+     *   <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #HTML_ELEMENT}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
@@ -325,16 +325,19 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> see
-     *     |--TEXT ->
-     *     `--REFERENCE -> REFERENCE
-     *         |--IDENTIFIER -> SomeClass
-     *         |--HASH -> #
-     *         `--MEMBER_REFERENCE -> MEMBER_REFERENCE
-     *             `--IDENTIFIER -> Field
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> see
+     *         |--TEXT ->
+     *         `--REFERENCE -> REFERENCE
+     *             |--IDENTIFIER -> SomeClass
+     *             |--HASH -> #
+     *             `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *                 `--IDENTIFIER -> Field
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
