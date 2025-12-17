@@ -61,4 +61,13 @@ public class UnnecessaryParenthesesCheckExamplesTest extends AbstractExamplesMod
         };
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
     }
+
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_EXPR),
+            "19:22: " + getCheckMessage(MSG_EXPR),
+        };
+        verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
 }
