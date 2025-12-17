@@ -508,15 +508,18 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @mycustomtag This is a custom block tag.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> customBlock
-     *     |--TEXT ->
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  This is a custom block tag.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> mycustomtag
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  This is a custom block tag.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
