@@ -19,13 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
 import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -34,7 +31,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -91,6 +89,10 @@ public class XdocsExampleFileTest {
             ))
     );
 
+    private static final Pattern TEST_PACKAGE_LOCATION_PATTERN =
+        Pattern.compile("getPackageLocation\\(\\)\\s*\\{\\s*return\\s*\"([^\"]+)\"");
+    private static final String EXAMPLE_FILE_PATTERN = "Example\\d+\\.java";
+
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
@@ -129,75 +131,89 @@ public class XdocsExampleFileTest {
     }
 
     @Test
-    public void testAllXdocsExamplesAreReferencedInExampleTests() throws Exception {
-        final Path exampleRoot = Path.of(
-                "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks");
+    public void verifyAllExampleFilesAreTested() throws IOException {
+        final Path exampleResourcesRoot = Path.of("src/xdocs-examples/resources");
+        final Path exampleTestsRoot = Path.of(
+            "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
 
-        final Path testRoot = Path.of(
-                "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+        final List<String> untestedExamples = new ArrayList<>();
 
-        assertWithMessage("xdocs examples directory not found: %s", exampleRoot)
-                .that(Files.exists(exampleRoot))
-                .isTrue();
-        assertWithMessage("xdocs tests directory not found: %s", testRoot)
-                .that(Files.exists(testRoot))
-                .isTrue();
+        processAllTestFiles(exampleTestsRoot, exampleResourcesRoot, untestedExamples);
 
-        final Set<String> allExamples = collectExampleFiles(exampleRoot);
-
-        final Set<String> quotedExamples = allExamples.stream()
-                .map(name -> "\"" + name + "\"")
-                .collect(toImmutableSet());
-
-        final Set<String> referencedExamples = collectReferencedExamples(testRoot, quotedExamples);
-
-        final Set<String> missing = new TreeSet<>(allExamples);
-        missing.removeAll(referencedExamples);
-
-        assertWithMessage(
-                "Some xdocs examples are not referenced in any *ExamplesTest.java:\n %s",
-                        String.join("\n", missing))
-                .that(missing)
-                .isEmpty();
-    }
-
-    private static Set<String> collectExampleFiles(Path exampleRoot) throws IOException {
-        try (Stream<Path> paths = Files.walk(exampleRoot)) {
-            return paths.filter(Files::isRegularFile)
-                    .map(Path::getFileName)
-                    .map(Path::toString)
-                    .filter(name -> name.matches("Example\\d+\\.java"))
-                    .collect(Collectors.toCollection(TreeSet::new));
+        if (!untestedExamples.isEmpty()) {
+            assertWithMessage("Example files without corresponding test methods:\n%s",
+                    String.join("\n", untestedExamples))
+                .fail();
         }
     }
 
-    private static Set<String> collectReferencedExamples(
-            Path testRoot, Set<String> quotedExamples) throws IOException {
-        final Set<String> referenced = new TreeSet<>();
-        try (Stream<Path> paths = Files.walk(testRoot)) {
-            paths.filter(Files::isRegularFile)
-                    .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
-                    .forEach(path -> readReferencesFromTestFile(path, quotedExamples, referenced));
-        }
-        return referenced;
-    }
+    private static void processAllTestFiles(
+            Path testsDirectory,
+            Path resourcesRoot,
+            List<String> untestedExamples) throws IOException {
 
-    private static void readReferencesFromTestFile(
-            Path testFile, Set<String> quotedExamples, Set<String> referenced) {
-        try (Stream<String> lines = Files.lines(testFile, StandardCharsets.UTF_8)) {
-            lines.forEach(line -> addReferencedExamples(line, quotedExamples, referenced));
-        }
-        catch (IOException exception) {
-            throw new UncheckedIOException(exception);
+        try (Stream<Path> testFilesStream = Files.walk(testsDirectory)) {
+            testFilesStream
+                .filter(Files::isRegularFile)
+                .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
+                .forEach(testFile ->
+                    findUntestedExamplesInTestFile(testFile, resourcesRoot, untestedExamples)
+                );
         }
     }
 
-    private static void addReferencedExamples(
-            String line, Set<String> quotedExamples, Set<String> referenced) {
-        for (String quoted : quotedExamples) {
-            if (line.contains(quoted)) {
-                referenced.add(quoted.substring(1, quoted.length() - 1));
+    private static void findUntestedExamplesInTestFile(
+            Path testFilePath,
+            Path resourcesRoot,
+            List<String> untestedExamples) {
+
+        try {
+            final String testFileContent = Files.readString(testFilePath);
+            final Matcher matcher = TEST_PACKAGE_LOCATION_PATTERN.matcher(testFileContent);
+
+            if (matcher.find()) {
+                final String exampleDirectoryPath = matcher.group(1);
+                final Path exampleDirectory = resourcesRoot.resolve(exampleDirectoryPath);
+
+                if (Files.isDirectory(exampleDirectory)) {
+                    checkExampleCoverage(testFilePath, testFileContent,
+                                       exampleDirectory, untestedExamples);
+                }
             }
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                "Failed to process test file: " + testFilePath, exception);
         }
+    }
+
+    private static void checkExampleCoverage(
+            Path testFilePath,
+            String testFileContent,
+            Path exampleDirectory,
+            List<String> untestedExamples) throws IOException {
+
+        try (Stream<Path> exampleFiles = Files.list(exampleDirectory)) {
+            exampleFiles
+                .filter(Files::isRegularFile)
+                .filter(XdocsExampleFileTest::isValidExampleFile)
+                .filter(exampleFile -> !isExampleReferencedInTest(exampleFile, testFileContent))
+                .forEach(exampleFile ->
+                    untestedExamples.add(formatMissingTestMessage(exampleFile, testFilePath))
+                );
+        }
+    }
+
+    private static boolean isValidExampleFile(Path file) {
+        return file.getFileName().toString().matches(EXAMPLE_FILE_PATTERN);
+    }
+
+    private static boolean isExampleReferencedInTest(Path exampleFile, String testFileContent) {
+        final String fileName = exampleFile.getFileName().toString();
+        return testFileContent.contains("\"" + fileName + "\"");
+    }
+
+    private static String formatMissingTestMessage(Path exampleFile, Path testFilePath) {
+        return String.format("Missing test for '%s' in %s",
+            exampleFile.getFileName(), testFilePath.getFileName());
     }
 }
