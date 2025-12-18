@@ -156,7 +156,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
                 })) {
             openFileButton.doClick();
 
-            final FileFilter fileFilter = mocked.constructed().get(0).getFileFilter();
+            final FileFilter fileFilter = mocked.constructed().getFirst().getFileFilter();
             assertWithMessage("The file should be accepted")
                     .that(fileFilter.accept(new File(TEST_FILE_NAME)))
                     .isTrue();
