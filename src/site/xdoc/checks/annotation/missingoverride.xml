@@ -152,39 +152,44 @@ class E {
   };
 }
 </code></pre></div><hr class="example-separator"/>
-<p id="Example3-config">
-  Additional example showing when <code>@Override</code> is not required:
-</p>
-<div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+        <p id="Example3-config">
+            Additional example showing when <code>@Override</code>
+            is not required:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
     &lt;module name="MissingOverride"/&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-<p id="Example3-code">Example:</p>
-<div class="wrapper"><pre class="prettyprint"><code class="language-java">
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 extends ParentClass3 {
 
-    // No javadoc, no @Override needed
-    public void test1() {
-    }
+  // No javadoc, no @Override needed
+  public void test1() {
 
-    // Javadoc present but no {@inheritDoc}, no @Override needed
-    /**
-     * This is a sample javadoc.
-     */
-    public void test2() {
-    }
+  }
 
-    /** {@inheritDoc} */
-    @Override
-    public void test3() {
-    }
+  // Javadoc present but no {@inheritDoc}, no @Override needed
+  /**
+  * This is a sample javadoc.
+  */
+  public void test2() {
 
-    /** {@inheritDoc} */
-    public void test4() { // violation, '@inheritDoc' tag requires @Override annotation
-    }
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public void test3() {
+
+  }
+
+  /** {@inheritDoc} */
+  public void test4() { // violation, '@inheritDoc' tag requires @Override annotation
+
+  }
 }
 </code></pre></div>
       </subsection>

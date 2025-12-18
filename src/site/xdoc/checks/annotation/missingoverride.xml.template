@@ -61,13 +61,13 @@
         </p>
         <macro name="example">
             <param name="path"
-                value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
             <param name="type" value="config"/>
         </macro>
         <p id="Example3-code">Example:</p>
         <macro name="example">
             <param name="path"
-                value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
+                   value="/resources/com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride/Example3.java"/>
             <param name="type" value="code"/>
         </macro>
       </subsection>
