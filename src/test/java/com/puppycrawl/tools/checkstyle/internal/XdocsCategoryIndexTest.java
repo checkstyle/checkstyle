@@ -374,7 +374,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
                                        Map<String, CheckIndexInfo> indexedChecks) {
         final List<Element> cellElements = getChildrenElementsByTagName(rowElement, "td");
         if (cellElements.size() >= 2) {
-            final Element nameCell = cellElements.get(0);
+            final Element nameCell = cellElements.getFirst();
             final Element descCell = cellElements.get(1);
 
             getFirstChildElementByTagName(nameCell, "a").ifPresent(anchorElement -> {
