@@ -80,9 +80,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * TreeWalkerTest.
  *
- * @noinspection ClassWithTooManyDependencies because we are less strict with tests.
+ * @noinspection ClassWithTooManyDependencies because we are less strict with
+ *               tests.
  * @noinspectionreason ClassWithTooManyDependencies - complex tests require a
- *      large number of imports
+ *                     large number of imports
  */
 public class TreeWalkerTest extends AbstractModuleTestSupport {
 
@@ -98,7 +99,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testProperFileExtension() throws Exception {
         final String path = getPath("InputTreeWalkerProperFileExtension.java");
         final String[] expected = {
-            "10:27: " + getCheckMessage(ConstantNameCheck.class,
+                "10:27: " + getCheckMessage(ConstantNameCheck.class,
                         MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"),
         };
         verifyWithInlineConfigParserTwice(path, expected);
@@ -107,48 +108,59 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     /**
      * This test is needed for 100% coverage.
      * The Pitest reports some conditions as redundant, for example:
+     * 
      * <pre>
-     *     if (!collection.isEmpty()) { // This may be omitted.
-     *         Object value = doSomeHardJob();
-     *         for (Item item : collection) {
-     *             item.accept(value);
-     *         }
+     * if (!collection.isEmpty()) { // This may be omitted.
+     *     Object value = doSomeHardJob();
+     *     for (Item item : collection) {
+     *         item.accept(value);
      *     }
+     * }
      * </pre>
+     * 
      * But we really want to avoid calls to {@code doSomeHardJob} method.
      * To make this condition mandatory, we need to broke one branch.
      * In this case, mocking {@code TreeWalkerAuditEvent} will cause
      * {@code getFilteredViolations} to fail. This prevents the condition
+     * 
      * <pre>
      *     if (filters.isEmpty())
      * </pre>
-     * in {@link TreeWalker#processFiltered(File, FileText)} to survive with Pitest mutations.
+     * 
+     * in {@link TreeWalker#processFiltered(File, FileText)} to survive with Pitest
+     * mutations.
      *
      * @throws Exception if an error occurs
      */
     @Test
     public void testNoAuditEventsWithoutFilters() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
-                    OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
+                "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                        OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
         try (MockedConstruction<TreeWalkerAuditEvent> mocked =
-                 Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
-                     throw new CheckstyleException("No audit events expected");
-                 })) {
+                Mockito.mockConstruction(TreeWalkerAuditEvent.class,
+                (mock, context) -> {
+                    throw new CheckstyleException("No audit events expected");
+                })) {
             verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);
+            assertWithMessage("No TreeWalkerAuditEvent should be constructed")
+                    .that(mocked.constructed())
+                    .isEmpty();
         }
     }
 
     /**
-     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic} is used to
-     * ensure that the {@code if (!ordinaryChecks.isEmpty())} condition cannot be removed.
+     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic}
+     * is used to
+     * ensure that the {@code if (!ordinaryChecks.isEmpty())} condition cannot be
+     * removed.
      */
     @Test
     public void testConditionRequiredWithoutOrdinaryChecks() throws Exception {
         final String[] expected = {
-            "7:5: " + getCheckMessage(JavadocParagraphCheck.class,
-                    JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
+                "7:5: " + getCheckMessage(JavadocParagraphCheck.class,
+                        JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH),
         };
         final String path = getPath("InputTreeWalkerJavadoc.java");
         final DetailAST mockAst = mock();
@@ -166,17 +178,19 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     /**
-     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic} is used to
-     * ensure that the {@code if (!commentChecks.isEmpty())} condition cannot be removed.
+     * This test is needed for 100% coverage. The method {@link Mockito#mockStatic}
+     * is used to
+     * ensure that the {@code if (!commentChecks.isEmpty())} condition cannot be
+     * removed.
      */
     @Test
     public void testConditionRequiredWithoutCommentChecks() throws Exception {
         final String[] expected = {
-            "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
-                    OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
+                "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
+                        OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
         try (MockedStatic<JavaParser> parser =
-                     Mockito.mockStatic(JavaParser.class, CALLS_REAL_METHODS)) {
+                Mockito.mockStatic(JavaParser.class, CALLS_REAL_METHODS)) {
             // Ensure that there is no calls to walk(..., AstState.WITH_COMMENTS)
             parser.when(() -> JavaParser.appendHiddenCommentNodes(any(DetailAST.class)))
                     .thenThrow(IllegalStateException.class);
@@ -198,21 +212,19 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptableTokens()
             throws Exception {
-        final DefaultConfiguration checkConfig =
-            createModuleConfig(HiddenFieldCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
         checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
         try {
             execute(checkConfig, getPath("InputTreeWalker.java"));
             assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exc) {
+        } catch (CheckstyleException exc) {
             final String errorMsg = exc.getMessage();
             final Pattern expected = Pattern.compile(Pattern.quote("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.TreeWalker - Token ")
                     + "\"(ENUM_DEF|CLASS_DEF|METHOD_DEF|IMPORT)\""
                     + Pattern.quote(" was not found in Acceptable tokens list in check"
-                    + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
+                            + " com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"));
 
             final Matcher errorMsgMatcher = expected.matcher(errorMsg);
             assertWithMessage("Failure for: %s", errorMsg)
@@ -243,8 +255,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             final File filePath = new File(temporaryFolder, uniqueFileName);
             execute(createTreeWalkerConfig(checkConfig), filePath.toString());
             assertWithMessage("CheckstyleException is expected").fail();
-        }
-        catch (CheckstyleException exception) {
+        } catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
                     .that(exception.getMessage())
                     .contains("TreeWalker is not allowed as a parent of");
@@ -262,13 +273,12 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             treeWalker.setupChild(config);
             assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
+        } catch (CheckstyleException exc) {
             assertWithMessage("Error message is not expected")
-                .that(exc.getMessage())
-                .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
-                    + "Please review 'Parent Module' section for this Check in "
-                    + "web documentation if Check is standard.");
+                    .that(exc.getMessage())
+                    .isEqualTo("TreeWalker is not allowed as a parent of java.lang.String "
+                            + "Please review 'Parent Module' section for this Check in "
+                            + "web documentation if Check is standard.");
         }
     }
 
@@ -281,13 +291,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final int tabWidth = TestUtil.getInternalState(treeWalker, "tabWidth", Integer.class);
         assertWithMessage("Invalid setter result")
-            .that(tabWidth)
-            .isEqualTo(1);
+                .that(tabWidth)
+                .isEqualTo(1);
         final Object configuration = TestUtil.getInternalState(treeWalker, "configuration",
                 Object.class);
         assertWithMessage("Invalid configuration")
-            .that(configuration)
-            .isEqualTo(config);
+                .that(configuration)
+                .isEqualTo(config);
     }
 
     @Test
@@ -299,8 +309,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             execute(checkConfig, pathToEmptyFile.toString());
             assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exc) {
+        } catch (CheckstyleException exc) {
             assertWithMessage("Error message is unexpected")
                     .that(exc.getMessage())
                     .isEqualTo("cannot initialize module com.puppycrawl.tools.checkstyle."
@@ -318,25 +327,23 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testProcessNonJavaFiles() throws Exception {
         final TreeWalker treeWalker = new TreeWalker();
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.configure(new DefaultConfiguration("default config"));
         final DefaultConfiguration childConfig = createModuleConfig(JavadocParagraphCheck.class);
         treeWalker.setupChild(childConfig);
         final File file = new File("input.java");
-        final List<String> lines =
-            new ArrayList<>(Arrays.asList("package com.puppycrawl.tools.checkstyle;", "",
+        final List<String> lines = new ArrayList<>(Arrays.asList("package com.puppycrawl.tools.checkstyle;", "",
                 "error public class InputTreeWalkerFileWithViolation {}"));
         final FileText fileText = new FileText(file, lines);
         treeWalker.setFileContents(new FileContents(fileText));
         try {
             treeWalker.processFiltered(file, fileText);
             assertWithMessage("Exception expected").fail();
-        }
-        catch (CheckstyleException exc) {
+        } catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception message")
-                .that(exc.getMessage())
-                .isEqualTo("IllegalStateException occurred while parsing file input.java.");
+                    .that(exc.getMessage())
+                    .isEqualTo("IllegalStateException occurred while parsing file input.java.");
         }
     }
 
@@ -351,8 +358,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Collection<Checks> checks =
                 TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
-            .that(checks)
-            .isEmpty();
+                .that(checks)
+                .isEmpty();
     }
 
     @Test
@@ -367,7 +374,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createModuleConfig(TypeNameCheck.class));
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setupChild(createModuleConfig(TypeNameCheck.class));
         final File file = new File(temporaryFolder, "file.java");
@@ -378,8 +385,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             treeWalker.processFiltered(file, fileText);
             assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
+        } catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
                     .that(exception.getMessage())
                     .contains("occurred while parsing file");
@@ -391,7 +397,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final TreeWalker treeWalker = new TreeWalker();
         treeWalker.configure(createModuleConfig(TypeNameCheck.class));
         final PackageObjectFactory factory = new PackageObjectFactory(
-            new HashSet<>(), Thread.currentThread().getContextClassLoader());
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
         treeWalker.setModuleFactory(factory);
         treeWalker.setupChild(createModuleConfig(TypeNameCheck.class));
         final File file = new File(temporaryFolder, "file.java");
@@ -402,8 +408,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             treeWalker.processFiltered(file, fileText);
             assertWithMessage("Exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
+        } catch (CheckstyleException exception) {
             assertWithMessage("Error message is unexpected")
                     .that(exception.getMessage())
                     .contains("IllegalStateException occurred while parsing file");
@@ -414,8 +419,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testRequiredTokenIsEmptyIntArray() throws Exception {
         final File file = new File(temporaryFolder, "file.java");
         try (Writer writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-            final String configComment =
-                    """
+            final String configComment = """
                     /*
                     com.puppycrawl.tools.checkstyle.TreeWalkerTest\
                     $RequiredTokenIsEmptyIntArray
@@ -442,8 +446,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Collection<Checks> checks =
                 TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
-            .that(checks)
-            .isEmpty();
+                .that(checks)
+                .isEmpty();
     }
 
     @Test
@@ -465,8 +469,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             treeWalker.processFiltered(file, fileText);
             assertWithMessage("file is not compilable, exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
+        } catch (CheckstyleException exception) {
             final String message = "IllegalStateException occurred while parsing file";
             assertWithMessage("Error message is unexpected")
                     .that(exception.getMessage())
@@ -494,18 +497,18 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 "tabWidth", Integer.class);
 
         assertWithMessage("expected tab width")
-            .that(tabWidth)
-            .isEqualTo(99);
+                .that(tabWidth)
+                .isEqualTo(99);
     }
 
     @Test
     public void testBehaviourWithChecksAndFilters() throws Exception {
 
         final String[] expected = {
-            "17:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
-                    "^[a-z][a-zA-Z0-9]*$"),
-            "12:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
-                    "^[a-z][a-zA-Z0-9]*$"),
+                "17:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "P",
+                        "^[a-z][a-zA-Z0-9]*$"),
+                "12:17: " + getCheckMessage(MemberNameCheck.class, "name.invalidPattern", "I",
+                        "^[a-z][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParserTwice(
@@ -517,8 +520,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOrder() throws Exception {
 
         final String[] expected = {
-            "13:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
-            "13:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
+                "13:9: " + getCheckMessage(WhitespaceAfterCheck.class, "ws.notFollowed", "if"),
+                "13:9: " + getCheckMessage(WhitespaceAroundCheck.class, "ws.notFollowed", "if"),
         };
 
         verifyWithInlineConfigParserTwice(
@@ -530,10 +533,10 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testMultiCheckOfSameTypeNoIdResultsInOrderingByHash() throws Exception {
 
         final String[] expected = {
-            "15:28: " + getCheckMessage(ParameterNameCheck.class,
-                    "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
-            "17:25: " + getCheckMessage(ParameterNameCheck.class,
-                    "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
+                "15:28: " + getCheckMessage(ParameterNameCheck.class,
+                        "name.invalidPattern", "V2", "^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"),
+                "17:25: " + getCheckMessage(ParameterNameCheck.class,
+                        "name.invalidPattern", "b", "^[a-z][a-z0-9][a-zA-Z0-9]*$"),
         };
 
         verifyWithInlineConfigParserTwice(
@@ -551,17 +554,16 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Context context = TestUtil.getInternalState(treeWalker, "childContext",
                 Context.class);
         assertWithMessage("Severity differs from expected")
-            .that(context.get("severity"))
-            .isEqualTo("error");
+                .that(context.get("severity"))
+                .isEqualTo("error");
         assertWithMessage("Tab width differs from expected")
-            .that(context.get("tabWidth"))
-            .isEqualTo(String.valueOf(100));
+                .that(context.get("tabWidth"))
+                .isEqualTo(String.valueOf(100));
     }
 
     @Test
     public void testCheckInitIsCalledInTreeWalker() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VerifyInitCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(VerifyInitCheck.class);
         final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
         final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
@@ -573,8 +575,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testCheckDestroyIsCalledInTreeWalker() throws Exception {
         VerifyDestroyCheck.resetDestroyWasCalled();
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(VerifyDestroyCheck.class);
+        final DefaultConfiguration checkConfig = createModuleConfig(VerifyDestroyCheck.class);
         final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
         final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
@@ -678,8 +679,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         try {
             checker.process(files);
             assertWithMessage("exception is expected").fail();
-        }
-        catch (CheckstyleException exception) {
+        } catch (CheckstyleException exception) {
             assertWithMessage("wrong order of Check executions")
                     .that(exception.getCause().getMessage())
                     .isEqualTo(AaCheck.class.toString());
@@ -694,9 +694,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         config.addChild(createModuleConfig(ConstantNameCheck.class));
 
         final File[] files = {
-            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
-            new File(getPath("InputTreeWalkerProperFileExtension.java")),
-            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException2.java")),
+                new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+                new File(getPath("InputTreeWalkerProperFileExtension.java")),
+                new File(getNonCompilablePath("InputTreeWalkerSkipParsingException2.java")),
         };
 
         final Checker checker = createChecker(config);
@@ -704,14 +704,15 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
                 Collections.singletonList(
                         "10:27: " + getCheckMessage(ConstantNameCheck.class,
-                        MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
+                                MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
         verify(checker, files, expectedViolation);
     }
 
     /**
      * This test method is not using the regular {@code verify} methods
      * because it is testing the behavior of {@code TreeWalker} when it should
-     * not skip files with parse exception. Instead, it should throw {@code exception}.
+     * not skip files with parse exception. Instead, it should throw
+     * {@code exception}.
      * The test verifies this behavior by attempting to process files
      * that are known to cause a Java parse exception and asserting that
      * the expected {@code exception} is indeed thrown.
@@ -724,9 +725,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         config.addChild(createModuleConfig(ConstantNameCheck.class));
 
         final String[] files = {
-            getNonCompilablePath("InputTreeWalkerSkipParsingException2.java"),
-            getPath("InputTreeWalkerProperFileExtension.java"),
-            getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+                getNonCompilablePath("InputTreeWalkerSkipParsingException2.java"),
+                getPath("InputTreeWalkerProperFileExtension.java"),
+                getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
         };
         final Exception ex = TestUtil.getExpectedThrowable(CheckstyleException.class,
                 () -> execute(config, files),
@@ -738,21 +739,19 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSkipFileOnJavaParseExceptionConfigSeverityIgnore() throws Exception {
-        final String path =
-                getNonCompilablePath(
-                        "InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java");
+        final String path = getNonCompilablePath(
+                "InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineXmlConfig(path, expected);
     }
 
     @Test
     public void testSkipFileOnJavaParseExceptionConfigSeverityDefault() throws Exception {
-        final String path =
-                getNonCompilablePath(
-                        "InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java");
+        final String path = getNonCompilablePath(
+                "InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java");
         final String[] expected = {
-            "1: " + getCheckMessage(TreeWalker.PARSE_EXCEPTION_MSG, "IllegalStateException")
-                  + " occurred while parsing file " + path + ".",
+                "1: " + getCheckMessage(TreeWalker.PARSE_EXCEPTION_MSG, "IllegalStateException")
+                        + " occurred while parsing file " + path + ".",
         };
         verifyWithInlineXmlConfig(path, expected);
     }
@@ -767,9 +766,9 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(config);
 
         final File[] files = {
-            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
-            new File(getPath("InputTreeWalkerProperFileExtension.java")),
-            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException2.java")),
+                new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+                new File(getPath("InputTreeWalkerProperFileExtension.java")),
+                new File(getNonCompilablePath("InputTreeWalkerSkipParsingException2.java")),
         };
         final Map<String, List<String>> expectedViolation = new HashMap<>();
         expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
@@ -787,8 +786,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(config);
 
         final File[] files = {
-            new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
-            new File(getPath("InputTreeWalkerProperFileExtension.java")),
+                new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")),
+                new File(getPath("InputTreeWalkerProperFileExtension.java")),
         };
 
         final Map<String, List<String>> expectedViolation = new HashMap<>();
@@ -804,6 +803,179 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checker, files, expectedViolation);
     }
 
+    /**
+     * Test to ensure that the default value of javaParseExceptionSeverity is ERROR.
+     * This test kills the MemberVariableMutator mutation that removes the
+     * assignment
+     * of SeverityLevel.ERROR to javaParseExceptionSeverity.
+     *
+     * <p>
+     * This test uses the verify method instead of pure unit testing to validate
+     * that when javaParseExceptionSeverity is not explicitly configured (default
+     * value),
+     * parse exceptions are reported with ERROR severity.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testJavaParseExceptionSeverityDefaultIsError() throws Exception {
+        final String path = getNonCompilablePath(
+                "InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java");
+        final String[] expected = {
+                "1: " + getCheckMessage(TreeWalker.PARSE_EXCEPTION_MSG, "IllegalStateException")
+                        + " occurred while parsing file " + path + ".",
+        };
+        verifyWithInlineXmlConfig(path, expected);
+    }
+
+    /**
+     * Test to ensure that checks with the same class name but different IDs
+     * are sorted correctly by ID. This test kills the NakedReceiverMutator mutation
+     * that removes the thenComparing call in createNewCheckSortedSet.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithDifferentIds() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
+        treeWalker.configure(config);
+        treeWalker.finishLocalSetup();
+
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        // Create two checks of the same type with different IDs
+        final DefaultConfiguration check1Config = createModuleConfig(EmptyStatementCheck.class);
+        check1Config.addProperty("id", "check1");
+        treeWalker.setupChild(check1Config);
+
+        final DefaultConfiguration check2Config = createModuleConfig(EmptyStatementCheck.class);
+        check2Config.addProperty("id", "check2");
+        treeWalker.setupChild(check2Config);
+
+        @SuppressWarnings("unchecked")
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
+                "ordinaryChecks",
+                Set.class);
+
+        // Convert to list to check order
+        final List<AbstractCheck> checkList = new ArrayList<>(ordinaryChecks);
+        assertWithMessage("Should have 2 checks")
+                .that(checkList)
+                .hasSize(2);
+
+        // Verify that checks are sorted by ID
+        assertWithMessage("First check should have id 'check1'")
+                .that(checkList.get(0).getId())
+                .isEqualTo("check1");
+        assertWithMessage("Second check should have id 'check2'")
+                .that(checkList.get(1).getId())
+                .isEqualTo("check2");
+    }
+
+    /**
+     * Test to ensure that checks with null IDs are handled correctly in sorting.
+     * This test kills the NonVoidMethodCallMutator mutation that removes the
+     * naturalOrder call in createNewCheckSortedSet.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithNullIds() throws Exception {
+        final TreeWalker treeWalker = new TreeWalker();
+        final DefaultConfiguration config = new DefaultConfiguration("default config");
+        treeWalker.configure(config);
+        treeWalker.finishLocalSetup();
+
+        final PackageObjectFactory factory = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        treeWalker.setModuleFactory(factory);
+
+        // Create two checks of the same type, one with ID and one without (null ID)
+        final DefaultConfiguration check1Config = createModuleConfig(EmptyStatementCheck.class);
+        check1Config.addProperty("id", "checkWithId");
+        treeWalker.setupChild(check1Config);
+
+        final DefaultConfiguration check2Config = createModuleConfig(EmptyStatementCheck.class);
+        // No ID set, so it will be null
+        treeWalker.setupChild(check2Config);
+
+        @SuppressWarnings("unchecked")
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
+                "ordinaryChecks",
+                Set.class);
+
+        // Convert to list to check order
+        final List<AbstractCheck> checkList = new ArrayList<>(ordinaryChecks);
+        assertWithMessage("Should have 2 checks")
+                .that(checkList)
+                .hasSize(2);
+
+        // Verify that the check with non-null ID comes first (nullsLast behavior)
+        assertWithMessage("First check should have id 'checkWithId'")
+                .that(checkList.get(0).getId())
+                .isEqualTo("checkWithId");
+        assertWithMessage("Second check should have null id")
+                .that(checkList.get(1).getId())
+                .isNull();
+    }
+
+    /**
+     * Test to ensure that checks with different non-null IDs are sorted using
+     * natural order.
+     * This test kills the NonVoidMethodCallMutator mutation that removes the
+     * naturalOrder call inside nullsLast in createNewCheckSortedSet.
+     *
+     * <p>
+     * This test uses the verify method pattern by creating checks with IDs in
+     * non-alphabetical order ("zebra", "alpha", "beta") that throw exceptions when
+     * executed.
+     * If natural ordering is working correctly, the check with ID "alpha" should
+     * execute
+     * first and throw its exception, proving that checks are sorted alphabetically
+     * by ID.
+     *
+     * @throws Exception if an error occurs
+     */
+    @Test
+    public void testCheckSortingWithNonNullIdsNaturalOrder() throws Exception {
+        // Create three checks of the SAME class with IDs in non-alphabetical order
+        // This ensures they are sorted by ID (natural order) not by class name
+        final DefaultConfiguration zebraCheck = createModuleConfig(AaCheck.class);
+        zebraCheck.addProperty("id", "zebra");
+
+        final DefaultConfiguration alphaCheck = createModuleConfig(AaCheck.class);
+        alphaCheck.addProperty("id", "alpha");
+
+        final DefaultConfiguration betaCheck = createModuleConfig(AaCheck.class);
+        betaCheck.addProperty("id", "beta");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        // Add in non-alphabetical order to ensure sorting happens
+        treeWalkerConfig.addChild(zebraCheck);
+        treeWalkerConfig.addChild(alphaCheck);
+        treeWalkerConfig.addChild(betaCheck);
+
+        final List<File> files = Collections.singletonList(
+                new File(getPath("InputTreeWalker2.java")));
+        final Checker checker = createChecker(treeWalkerConfig);
+
+        try {
+            checker.process(files);
+            assertWithMessage("exception is expected").fail();
+        } catch (CheckstyleException exception) {
+            // If natural ordering works, "alpha" check should execute first
+            // since all checks are the same class (AaCheck) and sorted by ID
+            assertWithMessage("Checks should be sorted by ID in natural (alphabetical) order")
+                    .that(exception.getCause().getMessage())
+                    .isEqualTo(AaCheck.class.toString());
+        }
+    }
+
     public static class BadJavaDocCheck extends AbstractCheck {
 
         @Override
@@ -813,7 +985,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.SINGLE_LINE_COMMENT};
+            return new int[] { TokenTypes.SINGLE_LINE_COMMENT };
         }
 
         @Override
@@ -955,7 +1127,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.ANNOTATION};
+            return new int[] { TokenTypes.ANNOTATION };
         }
 
         @Override
