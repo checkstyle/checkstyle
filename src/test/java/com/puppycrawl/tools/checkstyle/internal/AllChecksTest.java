@@ -271,7 +271,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 .map(moduleName -> {
                     final List<String> packageTokens = Splitter
                             .on(".").splitToList(moduleName);
-                    return packageTokens.get(packageTokens.size() - 1);
+                    return packageTokens.getLast();
                 })
                 .collect(Collectors.toUnmodifiableSet());
     }
