@@ -298,33 +298,34 @@ public final class Main {
         // create config helper object
         if (options.printAst) {
             // print AST
-            final File file = filesToProcess.get(0);
+            final File file = filesToProcess.getFirst();
             final String stringAst = AstTreeStringPrinter.printFileAst(file,
                     JavaParser.Options.WITHOUT_COMMENTS);
             System.out.print(stringAst);
         }
         else if (Objects.nonNull(options.xpath)) {
-            final String branch = XpathUtil.printXpathBranch(options.xpath, filesToProcess.get(0));
+            final String branch =
+                    XpathUtil.printXpathBranch(options.xpath, filesToProcess.getFirst());
             System.out.print(branch);
         }
         else if (options.printAstWithComments) {
-            final File file = filesToProcess.get(0);
+            final File file = filesToProcess.getFirst();
             final String stringAst = AstTreeStringPrinter.printFileAst(file,
                     JavaParser.Options.WITH_COMMENTS);
             System.out.print(stringAst);
         }
         else if (options.printJavadocTree) {
-            final File file = filesToProcess.get(0);
+            final File file = filesToProcess.getFirst();
             final String stringAst = DetailNodeTreeStringPrinter.printFileAst(file);
             System.out.print(stringAst);
         }
         else if (options.printTreeWithJavadoc) {
-            final File file = filesToProcess.get(0);
+            final File file = filesToProcess.getFirst();
             final String stringAst = AstTreeStringPrinter.printJavaAndJavadocTree(file);
             System.out.print(stringAst);
         }
         else if (hasSuppressionLineColumnNumber) {
-            final File file = filesToProcess.get(0);
+            final File file = filesToProcess.getFirst();
             final String stringSuppressions =
                     SuppressionsStringPrinter.printSuppressions(file,
                             options.suppressionLineColumnNumber, options.tabWidth);
