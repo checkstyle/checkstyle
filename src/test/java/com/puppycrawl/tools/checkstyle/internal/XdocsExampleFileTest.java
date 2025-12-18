@@ -155,9 +155,9 @@ public class XdocsExampleFileTest {
             testFilesStream
                 .filter(Files::isRegularFile)
                 .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
-                .forEach(testFile ->
-                    findUntestedExamplesInTestFile(testFile, resourcesRoot, untestedExamples)
-                );
+                .forEach(testFile -> {
+                    findUntestedExamplesInTestFile(testFile, resourcesRoot, untestedExamples);
+                });
         }
     }
 
@@ -179,7 +179,8 @@ public class XdocsExampleFileTest {
                                        exampleDirectory, untestedExamples);
                 }
             }
-        } catch (IOException exception) {
+        }
+        catch (IOException exception) {
             throw new IllegalStateException(
                 "Failed to process test file: " + testFilePath, exception);
         }
@@ -196,9 +197,9 @@ public class XdocsExampleFileTest {
                 .filter(Files::isRegularFile)
                 .filter(XdocsExampleFileTest::isValidExampleFile)
                 .filter(exampleFile -> !isExampleReferencedInTest(exampleFile, testFileContent))
-                .forEach(exampleFile ->
-                    untestedExamples.add(formatMissingTestMessage(exampleFile, testFilePath))
-                );
+                .forEach(exampleFile -> {
+                    untestedExamples.add(formatMissingTestMessage(exampleFile, testFilePath));
+                });
         }
     }
 
@@ -212,7 +213,7 @@ public class XdocsExampleFileTest {
     }
 
     private static String formatMissingTestMessage(Path exampleFile, Path testFilePath) {
-        return String.format("Missing test for '%s' in %s",
-            exampleFile.getFileName(), testFilePath.getFileName());
+        return "Missing test for '%s' in %s".formatted(
+                exampleFile.getFileName(), testFilePath.getFileName());
     }
 }
