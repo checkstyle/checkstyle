@@ -22,13 +22,19 @@ package com.puppycrawl.tools.checkstyle.internal;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
@@ -114,8 +120,67 @@ public class XdocsExampleFileTest {
             }
         }
         if (!failures.isEmpty()) {
-            assertWithMessage("Xdocs are missing properties:\n" + String.join("\n", failures))
+            assertWithMessage("Xdocs are missing properties:\n %s", String.join("\n", failures))
                     .fail();
         }
+    }
+
+    @Test
+    public void testAllXdocsExamplesAreReferencedInExampleTests() throws Exception {
+        final Path examplesResourceRoot = Path.of("src/xdocs-examples/resources");
+        final Path examplesTestRoot = Path.of(
+            "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+        final List<String> failures = new ArrayList<>();
+
+        try (Stream<Path> testFiles = Files.walk(examplesTestRoot)) {
+            testFiles
+                .filter(path -> path.toString().endsWith("ExamplesTest.java"))
+                .forEach(testFile -> {
+                    try {
+                        validateExampleFiles(testFile, examplesResourceRoot, failures);
+                    }
+                    catch (IOException exception) {
+                        throw new IllegalStateException(
+                                "Error processing: " + testFile, exception);
+                    }
+                });
+        }
+
+        if (!failures.isEmpty()) {
+            assertWithMessage("Example files are missing corresponding test methods:\n"
+                    + String.join("\n", failures))
+                    .fail();
+        }
+    }
+
+    private static void validateExampleFiles(Path testFile, Path examplesResourceRoot,
+        List<String> failures) throws IOException {
+        final String testContent = Files.readString(testFile);
+        final Pattern packagePattern = Pattern.compile(
+            "getPackageLocation\\(\\)\\s*\\{\\s*return\\s*\"([^\"]+)\"");
+        final Matcher packageMatcher = packagePattern.matcher(testContent);
+
+            if (packageMatcher.find()) {
+                final String packageLocation = packageMatcher.group(1);
+                final Path exampleDir = examplesResourceRoot.resolve(packageLocation);
+
+                if (Files.exists(exampleDir) && Files.isDirectory(exampleDir)) {
+                    try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
+                        exampleFiles
+                                .filter(path -> path.getFileName().toString()
+                                        .matches("Example\\d+\\.java"))
+                                .forEach(exampleFile -> {
+                                    final String fileName = exampleFile.getFileName().toString();
+                                    if (!testContent.contains("\"" + fileName + "\"")) {
+                                        failures.add("Missing test for " + fileName + " in "
+                                                + testFile.getFileName());
+                                    }
+                                });
+                    }
+                }
+            } else {
+                failures.add("Test file is missing getPackageLocation() method: "
+                        + testFile.getFileName());
+            }
     }
 }
