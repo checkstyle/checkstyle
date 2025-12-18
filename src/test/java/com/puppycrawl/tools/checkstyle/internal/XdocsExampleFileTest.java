@@ -55,7 +55,6 @@ public class XdocsExampleFileTest {
             Map.entry("MissingJavadocTypeCheck", Set.of("skipAnnotations")),
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat", "checkEmptyJavadoc")),
             Map.entry("ConstantNameCheck", Set.of("applyToPackage", "applyToPrivate")),
-            Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
             Map.entry("FinalLocalVariableCheck", Set.of("validateUnnamedVariables")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
             Map.entry("IllegalTokenTextCheck", Set.of("message")),
