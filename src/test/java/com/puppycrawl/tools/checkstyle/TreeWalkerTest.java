@@ -138,7 +138,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                         OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
-        try (MockedConstruction<TreeWalkerAuditEvent> mocked = Mockito.mockConstruction(TreeWalkerAuditEvent.class,
+        try (MockedConstruction<TreeWalkerAuditEvent> mocked =
+                Mockito.mockConstruction(TreeWalkerAuditEvent.class,
                 (mock, context) -> {
                     throw new CheckstyleException("No audit events expected");
                 })) {
@@ -188,7 +189,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                 "10:1: " + getCheckMessage(OneTopLevelClassCheck.class,
                         OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
-        try (MockedStatic<JavaParser> parser = Mockito.mockStatic(JavaParser.class, CALLS_REAL_METHODS)) {
+        try (MockedStatic<JavaParser> parser =
+                Mockito.mockStatic(JavaParser.class, CALLS_REAL_METHODS)) {
             // Ensure that there is no calls to walk(..., AstState.WITH_COMMENTS)
             parser.when(() -> JavaParser.appendHiddenCommentNodes(any(DetailAST.class)))
                     .thenThrow(IllegalStateException.class);
@@ -353,7 +355,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File file = new File(getPath("InputTreeWalkerNotJava.xml"));
         final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
         treeWalker.processFiltered(file, fileText);
-        final Collection<Checks> checks = TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
+        final Collection<Checks> checks =
+                TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
                 .that(checks)
                 .isEmpty();
@@ -440,7 +443,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, new ArrayList<>());
 
         treeWalker.processFiltered(file, fileText);
-        final Collection<Checks> checks = TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
+        final Collection<Checks> checks =
+                TestUtil.getInternalStateCollectionChecks(treeWalker, "ordinaryChecks");
         assertWithMessage("No checks -> No parsing")
                 .that(checks)
                 .isEmpty();
@@ -487,7 +491,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         treeWalker.setupChild(config);
 
-        final Set<TreeWalkerFilter> filters = TestUtil.getInternalStateSetTreeWalkerFilter(treeWalker, "filters");
+        final Set<TreeWalkerFilter> filters =
+                TestUtil.getInternalStateSetTreeWalkerFilter(treeWalker, "filters");
         final int tabWidth = TestUtil.getInternalState(filters.iterator().next(),
                 "tabWidth", Integer.class);
 
@@ -582,7 +587,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testCommentCheckDestroyIsCalledInTreeWalker() throws Exception {
         VerifyDestroyCheck.resetDestroyWasCalled();
-        final DefaultConfiguration checkConfig = createModuleConfig(VerifyDestroyCommentCheck.class);
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(VerifyDestroyCommentCheck.class);
         final String uniqueFileName = "file_" + UUID.randomUUID() + ".pdf";
         final File file = new File(temporaryFolder, uniqueFileName);
         execute(checkConfig, file.getPath());
@@ -628,7 +634,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testExternalResourceFiltersWithNoExternalResource() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyStatementCheck.class);
-        final DefaultConfiguration filterConfig = createModuleConfig(SuppressWithNearbyCommentFilter.class);
+        final DefaultConfiguration filterConfig =
+                createModuleConfig(SuppressWithNearbyCommentFilter.class);
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(checkConfig);
         treeWalkerConfig.addChild(filterConfig);
@@ -665,7 +672,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(configuration2);
         treeWalkerConfig.addChild(configuration1);
 
-        final List<File> files = Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
+        final List<File> files =
+                Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
         final Checker checker = createChecker(treeWalkerConfig);
 
         try {
@@ -848,7 +856,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setupChild(check2Config);
 
         @SuppressWarnings("unchecked")
-        final Set<AbstractCheck> ordinaryChecks = (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
                 "ordinaryChecks",
                 Set.class);
 
@@ -895,7 +904,8 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setupChild(check2Config);
 
         @SuppressWarnings("unchecked")
-        final Set<AbstractCheck> ordinaryChecks = (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
+        final Set<AbstractCheck> ordinaryChecks =
+                (Set<AbstractCheck>) TestUtil.getInternalState(treeWalker,
                 "ordinaryChecks",
                 Set.class);
 
