@@ -130,8 +130,8 @@ public final class XmlMetaReader {
             final DocumentBuilder builder = factory.newDocumentBuilder();
             final Document document = builder.parse(moduleMetadataStream);
             final Element root = document.getDocumentElement();
-            final Element element = getDirectChildsByTag(root, "module").get(0);
-            final Element module = getDirectChildsByTag(element, moduleType.getLabel()).get(0);
+            final Element element = getDirectChildsByTag(root, "module").getFirst();
+            final Element module = getDirectChildsByTag(element, moduleType.getLabel()).getFirst();
             result = new ModuleDetails();
 
             result.setModuleType(moduleType);
@@ -150,12 +150,12 @@ public final class XmlMetaReader {
         moduleDetails.setName(getAttributeValue(mod, XML_TAG_NAME));
         moduleDetails.setFullQualifiedName(getAttributeValue(mod, "fully-qualified-name"));
         moduleDetails.setParent(getAttributeValue(mod, "parent"));
-        moduleDetails.setDescription(getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).get(0)
+        moduleDetails.setDescription(getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).getFirst()
                 .getFirstChild().getNodeValue());
         final List<Element> properties = getDirectChildsByTag(mod, "properties");
         if (!properties.isEmpty()) {
             final List<ModulePropertyDetails> modulePropertyDetailsList =
-                    createProperties(properties.get(0));
+                    createProperties(properties.getFirst());
             moduleDetails.addToProperties(modulePropertyDetailsList);
         }
         final List<String> messageKeys =
@@ -189,8 +189,9 @@ public final class XmlMetaReader {
             if (prop.hasAttribute(validationTypeTag)) {
                 propertyDetails.setValidationType(getAttributeValue(prop, validationTypeTag));
             }
-            propertyDetails.setDescription(getDirectChildsByTag(prop, XML_TAG_DESCRIPTION)
-                    .get(0).getFirstChild().getNodeValue());
+            propertyDetails.setDescription(
+                    getDirectChildsByTag(prop, XML_TAG_DESCRIPTION)
+                            .getFirst().getFirstChild().getNodeValue());
             result.add(propertyDetails);
         }
         return result;
@@ -210,7 +211,7 @@ public final class XmlMetaReader {
         final List<Element> children = getDirectChildsByTag(element, listParent);
         List<String> result = null;
         if (!children.isEmpty()) {
-            final NodeList nodeList = children.get(0).getElementsByTagName(listOption);
+            final NodeList nodeList = children.getFirst().getElementsByTagName(listOption);
             final int nodeListLength = nodeList.getLength();
             final List<String> listContent = new ArrayList<>(nodeListLength);
             for (int j = 0; j < nodeListLength; j++) {
