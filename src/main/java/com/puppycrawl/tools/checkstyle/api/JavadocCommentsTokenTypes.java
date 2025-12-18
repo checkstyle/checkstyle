@@ -35,7 +35,6 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Tree for example:</b></p>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK -> *
@@ -60,7 +59,6 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * --BLOCK_COMMENT_BEGIN -> /**
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
-     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--NEWLINE -> \r\n
      *    |       |--LEADING_ASTERISK ->  *
      *    |       |--TEXT ->  This is a Javadoc line.
@@ -1651,7 +1649,6 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \r\n
      * |--LEADING_ASTERISK ->  *
