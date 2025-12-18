@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -213,7 +214,7 @@ public class XdocsExampleFileTest {
     }
 
     private static String formatMissingTestMessage(Path exampleFile, Path testFilePath) {
-        return "Missing test for '%s' in %s".formatted(
+        return String.format(Locale.ROOT, "Missing test for '%s' in %s",
                 exampleFile.getFileName(), testFilePath.getFileName());
     }
 }
