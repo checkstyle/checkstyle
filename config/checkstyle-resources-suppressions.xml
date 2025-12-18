@@ -272,8 +272,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeJavadoc_3\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineDefault\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect2\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect\.java"/>
