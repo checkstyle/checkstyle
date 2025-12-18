@@ -1,6 +1,6 @@
-/* // violation
+/*
 IllegalTokenText
-format = a href
+format = a\ href
 ignoreCase = (default)false
 message = (null)
 tokens = COMMENT_CONTENT
@@ -41,8 +41,8 @@ public class InputIllegalTokenTextCheckCommentToken
             anotherLabel: // some comment href
             do {
                 continue anotherLabel;
-            } while (false); // violation below
-            break label; // a href
+            } while (false); // violation 'Token text matches the illegal pattern .a href.'
+            break label;
         }
     }
 }

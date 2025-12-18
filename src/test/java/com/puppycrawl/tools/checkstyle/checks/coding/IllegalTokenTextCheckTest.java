@@ -55,8 +55,8 @@ public class IllegalTokenTextCheckTest
     public void testIllegalTokenTextCheckCaseInSensitive()
             throws Exception {
         final String[] expected = {
-            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
-            "35:32: " + getCheckMessage(MSG_KEY, "a href"),
+            "35:13: " + getCheckMessage(MSG_KEY, "a href"),
+            "37:13: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextCheckCaseInSensitive.java"), expected);
@@ -67,7 +67,7 @@ public class IllegalTokenTextCheckTest
             throws Exception {
 
         final String[] expected = {
-            "34:28: " + "My custom message",
+            "34:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextCheckCustomMessageInStringLiteral.java"), expected);
@@ -92,8 +92,10 @@ public class IllegalTokenTextCheckTest
             "19:32: " + getCheckMessage(MSG_KEY, "a href"),
             "31:37: " + getCheckMessage(MSG_KEY, "a href"),
             "36:37: " + getCheckMessage(MSG_KEY, "a href"),
-            "42:54: " + getCheckMessage(MSG_KEY, "a href"),
+            "41:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "43:29: " + getCheckMessage(MSG_KEY, "a href"),
         };
+
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTextBlocks.java"), expected);
     }
@@ -102,13 +104,15 @@ public class IllegalTokenTextCheckTest
     public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
 
         final String[] expected = {
-            "16:28: " + getCheckMessage(MSG_KEY, "\""),
-            "17:33: " + getCheckMessage(MSG_KEY, "\""),
-            "19:32: " + getCheckMessage(MSG_KEY, "\""),
-            "21:36: " + getCheckMessage(MSG_KEY, "\""),
-            "31:37: " + getCheckMessage(MSG_KEY, "\""),
-            "36:37: " + getCheckMessage(MSG_KEY, "\""),
-            "42:42: " + getCheckMessage(MSG_KEY, "\""),
+            "17:17: " + getCheckMessage(MSG_KEY, "\""),
+            "19:17: " + getCheckMessage(MSG_KEY, "\""),
+            "21:32: " + getCheckMessage(MSG_KEY, "\""),
+            "23:36: " + getCheckMessage(MSG_KEY, "\""),
+            "33:37: " + getCheckMessage(MSG_KEY, "\""),
+            "38:37: " + getCheckMessage(MSG_KEY, "\""),
+            "43:28: " + getCheckMessage(MSG_KEY, "\""),
+            "45:17: " + getCheckMessage(MSG_KEY, "\""),
+            "46:20: " + getCheckMessage(MSG_KEY, "\""),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
@@ -136,8 +140,7 @@ public class IllegalTokenTextCheckTest
             throws Exception {
 
         final String[] expected = {
-            "1:3: " + getCheckMessage(MSG_KEY, "a href"),
-            "45:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "44:32: " + getCheckMessage(MSG_KEY, "a href"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputIllegalTokenTextCheckCommentToken.java"), expected);
