@@ -1,9 +1,10 @@
 /*xml
 <module name="Checker">
   <module name="LineLength">
-    <property name="max" value="100"/>
+    <property name="max" value="83"/>
   </module>
-  <module name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter">
+  <module name=
+    "com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter">
     <property name="checkFormat" value="LineLength"/>
     <property name="offCommentFormat" value='^.*"""$'/>
     <property name="onCommentFormat" value='^\s*"""\s*(?:[,;]|.+)$'/>
@@ -14,13 +15,13 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.linelength;
 
 public class Example6 {
-  void testMethod() {
+  void testMethod() {// ok, the violation is suppressed
     String str1 = """
-        This is a very really long string that exceeds the limit but no error....
+        This is a very really long string that exceeds the limit but no error...........
         """;
     String str2 =
         """
-        This is a very really long string that exceeds the limit but no error.....
+        This is a very really long string that exceeds the limit but no error...........
         """;
   }
 }
