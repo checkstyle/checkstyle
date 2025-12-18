@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -89,10 +88,6 @@ public class XdocsExampleFileTest {
             ))
     );
 
-    private static final Pattern TEST_PACKAGE_LOCATION_PATTERN =
-        Pattern.compile("getPackageLocation\\(\\)\\s*\\{\\s*return\\s*\"([^\"]+)\"");
-    private static final String EXAMPLE_FILE_PATTERN = "Example\\d+\\.java";
-
     @Test
     public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
@@ -131,90 +126,61 @@ public class XdocsExampleFileTest {
     }
 
     @Test
-    public void verifyAllExampleFilesAreTested() throws IOException {
-        final Path exampleResourcesRoot = Path.of("src/xdocs-examples/resources");
-        final Path exampleTestsRoot = Path.of(
+    public void testAllXdocsExamplesAreReferencedInExampleTests() throws Exception {
+        final Path examplesResourceRoot = Path.of("src/xdocs-examples/resources");
+        final Path examplesTestRoot = Path.of(
             "src/xdocs-examples/java/com/puppycrawl/tools/checkstyle/checks");
+        final List<String> failures = new ArrayList<>();
 
-        final List<String> untestedExamples = new ArrayList<>();
-
-        processAllTestFiles(exampleTestsRoot, exampleResourcesRoot, untestedExamples);
-
-        if (!untestedExamples.isEmpty()) {
-            assertWithMessage("Example files without corresponding test methods:\n%s",
-                    String.join("\n", untestedExamples))
-                .fail();
-        }
-    }
-
-    private static void processAllTestFiles(
-            Path testsDirectory,
-            Path resourcesRoot,
-            List<String> untestedExamples) throws IOException {
-
-        try (Stream<Path> testFilesStream = Files.walk(testsDirectory)) {
-            testFilesStream
-                .filter(Files::isRegularFile)
-                .filter(path -> path.getFileName().toString().endsWith("ExamplesTest.java"))
+        try (Stream<Path> testFiles = Files.walk(examplesTestRoot)) {
+            testFiles
+                .filter(path -> path.toString().endsWith("ExamplesTest.java"))
                 .forEach(testFile -> {
-                    findUntestedExamplesInTestFile(testFile, resourcesRoot, untestedExamples);
+                    try {
+                        validateExampleFiles(testFile, examplesResourceRoot, failures);
+                    }
+                    catch (IOException exception) {
+                        throw new IllegalStateException(
+                                "Error processing: " + testFile, exception);
+                    }
                 });
+        }
+
+        if (!failures.isEmpty()) {
+            assertWithMessage("Example files are missing corresponding test methods:\n"
+                    + String.join("\n", failures))
+                    .fail();
         }
     }
 
-    private static void findUntestedExamplesInTestFile(
-            Path testFilePath,
-            Path resourcesRoot,
-            List<String> untestedExamples) {
+    private static void validateExampleFiles(Path testFile, Path examplesResourceRoot,
+        List<String> failures) throws IOException {
+        final String testContent = Files.readString(testFile);
+        final Pattern packagePattern = Pattern.compile(
+            "getPackageLocation\\(\\)\\s*\\{\\s*return\\s*\"([^\"]+)\"");
+        final Matcher packageMatcher = packagePattern.matcher(testContent);
 
-        try {
-            final String testFileContent = Files.readString(testFilePath);
-            final Matcher matcher = TEST_PACKAGE_LOCATION_PATTERN.matcher(testFileContent);
+            if (packageMatcher.find()) {
+                final String packageLocation = packageMatcher.group(1);
+                final Path exampleDir = examplesResourceRoot.resolve(packageLocation);
 
-            if (matcher.find()) {
-                final String exampleDirectoryPath = matcher.group(1);
-                final Path exampleDirectory = resourcesRoot.resolve(exampleDirectoryPath);
-
-                if (Files.isDirectory(exampleDirectory)) {
-                    checkExampleCoverage(testFilePath, testFileContent,
-                                       exampleDirectory, untestedExamples);
+                if (Files.exists(exampleDir) && Files.isDirectory(exampleDir)) {
+                    try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
+                        exampleFiles
+                                .filter(path -> path.getFileName().toString()
+                                        .matches("Example\\d+\\.java"))
+                                .forEach(exampleFile -> {
+                                    final String fileName = exampleFile.getFileName().toString();
+                                    if (!testContent.contains("\"" + fileName + "\"")) {
+                                        failures.add("Missing test for " + fileName + " in "
+                                                + testFile.getFileName());
+                                    }
+                                });
+                    }
                 }
+            } else {
+                failures.add("Test file is missing getPackageLocation() method: "
+                        + testFile.getFileName());
             }
-        }
-        catch (IOException exception) {
-            throw new IllegalStateException(
-                "Failed to process test file: " + testFilePath, exception);
-        }
-    }
-
-    private static void checkExampleCoverage(
-            Path testFilePath,
-            String testFileContent,
-            Path exampleDirectory,
-            List<String> untestedExamples) throws IOException {
-
-        try (Stream<Path> exampleFiles = Files.list(exampleDirectory)) {
-            exampleFiles
-                .filter(Files::isRegularFile)
-                .filter(XdocsExampleFileTest::isValidExampleFile)
-                .filter(exampleFile -> !isExampleReferencedInTest(exampleFile, testFileContent))
-                .forEach(exampleFile -> {
-                    untestedExamples.add(formatMissingTestMessage(exampleFile, testFilePath));
-                });
-        }
-    }
-
-    private static boolean isValidExampleFile(Path file) {
-        return file.getFileName().toString().matches(EXAMPLE_FILE_PATTERN);
-    }
-
-    private static boolean isExampleReferencedInTest(Path exampleFile, String testFileContent) {
-        final String fileName = exampleFile.getFileName().toString();
-        return testFileContent.contains("\"" + fileName + "\"");
-    }
-
-    private static String formatMissingTestMessage(Path exampleFile, Path testFilePath) {
-        return String.format(Locale.ROOT, "Missing test for '%s' in %s",
-                exampleFile.getFileName(), testFilePath.getFileName());
     }
 }
