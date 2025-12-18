@@ -361,7 +361,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
-            final boolean surrounded = isSurrounded(ast);
+            final boolean surrounded = isSurrounded(getSelfOrParentMethodCall(ast));
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
                 parentToSkip = ast.getParent();
@@ -404,6 +404,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
 
         // shouldn't process assign in annotation pairs
+        DetailAST selfOrParentMethodCall = getSelfOrParentMethodCall(ast);
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             if (type == TokenTypes.EXPR) {
@@ -412,14 +413,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
-                DetailAST inParentheses = ast;
-                if (ast.getParent().getType() == TokenTypes.METHOD_CALL) {
-                    inParentheses = ast.getParent();
-                }
-                log(inParentheses.getPreviousSibling(), MSG_EXPR);
+            else if ((isSurrounded(selfOrParentMethodCall) || isSurrounded(ast)) && unnecessaryParenAroundOperators(ast)) {
+                log(selfOrParentMethodCall.getPreviousSibling(), MSG_EXPR);
             }
         }
+    }
+
+    private DetailAST getSelfOrParentMethodCall(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.METHOD_CALL
+            ? ast.getParent() : ast;
     }
 
     /**
@@ -432,14 +434,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
-        final DetailAST parent = ast.getParent();
-        final boolean isPreviousSiblingLeftParenthesis = prev != null
-                && prev.getType() == TokenTypes.LPAREN;
-        final boolean isMethodCallWithUnnecessaryParenthesis =
-                parent.getType() == TokenTypes.METHOD_CALL
-                && parent.getPreviousSibling() != null
-                && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
-        return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
+        return prev != null && prev.getType() == TokenTypes.LPAREN;
     }
 
     /**
