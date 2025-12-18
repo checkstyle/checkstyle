@@ -150,7 +150,7 @@ public class MultiFileRegexpHeaderCheck
                     .toList();
 
             if (matchResult.stream().noneMatch(MatchResult::isMatching)) {
-                final MatchResult mismatch = matchResult.get(0);
+                final MatchResult mismatch = matchResult.getFirst();
                 final String allConfiguredHeaderPaths = getConfiguredHeaderPaths();
                 log(mismatch.lineNumber(), mismatch.messageKey(),
                         mismatch.messageArg(), allConfiguredHeaderPaths);
