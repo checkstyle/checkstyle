@@ -43,3 +43,4 @@ class Example3 extends ParentClass3 {
   }
 }
 // xdoc section -- end
+
