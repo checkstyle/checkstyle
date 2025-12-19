@@ -355,7 +355,6 @@ public class IndentationCheck extends AbstractCheck {
         handlers.clear();
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
-        primordialHandler.checkIndentation();
         incorrectIndentationLines = new HashSet<>();
     }
 
