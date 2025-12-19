@@ -273,6 +273,7 @@
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
