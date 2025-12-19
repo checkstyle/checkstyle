@@ -19,8 +19,9 @@ public class InputTextBlockGoogleStyleFormatting4 {
 
     private static String testMethod(
         final long processInstanceKey) {
-            // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
-            // 2 violations 4 lines below:
+            // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+            // 3 violations 5 lines below:
+            //   'Text indentation is less than opening quotes indentation'
             //   'Closing quotes (""") of text-block should not be preceded by non-whitespace'
             //   'Text-block quotes are not vertically aligned'
             String concat = """
@@ -28,9 +29,11 @@ public class InputTextBlockGoogleStyleFormatting4 {
                 jumps over the lazy dog a href
                 """;
             // violation 3 lines above 'Opening quotes (""") of text-block must be on the new line'
-            // violation 2 lines above 'Text-block quotes are not vertically aligned'
+            // violation 3 lines above 'Text indentation is less than opening quotes indentation'
+            // violation 3 lines above 'Text-block quotes are not vertically aligned'
 
-            // violation below 'Opening quotes (""") of text-block must be on the new line'
+            // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+            // violation 2 lines below 'Text indentation is less than opening quotes indentation'
             return """
                 Expected to migrate process instance '%d' \
                 but a concurrent command was executed on the process instance. \
@@ -43,7 +46,8 @@ public class InputTextBlockGoogleStyleFormatting4 {
 
     private static String testMethod2() {
         String simplePropertyUpdateScript = "simplePUS";
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         return ("""
            def newInstance = params.instance;
            def existingInstance = ctx._source;
@@ -55,12 +59,14 @@ public class InputTextBlockGoogleStyleFormatting4 {
     private static String testMethod21() {
         String simpleProp = "simplePUS";
 
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         return """
             def newInstance = params.instance;
             def existingInstance = ctx._source;
             """ // violation 'Text-block quotes are not vertically aligned'
-            + simpleProp // violation below 'Opening quotes (""") of text-block must be on the new'
+            + simpleProp // violation 2 lines below 'Opening quotes (""") of text-block must be on the new'
+                // violation 2 lines below 'Text indentation is less than opening quotes indentation'
             + """
             if (existingInstance.startDate != null && existingInstance.endDate != null) {
               def dateFormatter = new SimpleDateFormat(params.dateFormatPattern);
@@ -72,7 +78,8 @@ public class InputTextBlockGoogleStyleFormatting4 {
     }
 
     private static String testMethod3() {
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         return """
             def flowNodesById = existingInstance.flowNodeInstances.stream()
             def newFlowNodes = params.instance.flowNodeInstances;
@@ -87,7 +94,8 @@ public class InputTextBlockGoogleStyleFormatting4 {
 
     private static String testMethod4() {
         String simpleProp = "simplePUS";
-        // violation below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 2 lines below 'Text indentation is less than opening quotes indentation'
         return """
             def incidentsById = existingInstance.incidents.stream()
         """ // violation 'Text-block quotes are not vertically aligned'

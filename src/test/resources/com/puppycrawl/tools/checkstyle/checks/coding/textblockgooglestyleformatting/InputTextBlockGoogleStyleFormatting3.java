@@ -10,10 +10,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 public class InputTextBlockGoogleStyleFormatting3 {
 
     private static String testMethod1() {
-        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
-        // violation 6 lines below 'Text-block quotes are not vertically aligned'
+        // violation 7 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 7 lines below 'Text indentation is less than opening quotes indentation'
+        // violation 7 lines below 'Text-block quotes are not vertically aligned'
 
-        // violation 4 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 5 lines below 'Text indentation is less than opening quotes indentation'
         // violation 4 lines below 'Closing quotes (""") of text-block should not be preceded by'
         getData("""
             first string
@@ -25,7 +27,8 @@ public class InputTextBlockGoogleStyleFormatting3 {
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace'
         //   'Text-block quotes are not vertically aligned'
 
-        // violation 6 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 7 lines below 'Opening quotes (""") of text-block must be on the new line'
+        // violation 7 lines below 'Text indentation is less than opening quotes indentation'
         // violation 6 lines below 'Closing quotes (""") of text-block should not be preceded by'
         // violation 5 lines below 'Text-block quotes are not vertically aligned'
         getData(
@@ -35,10 +38,9 @@ public class InputTextBlockGoogleStyleFormatting3 {
             some String""", """
             second string""");
         // violation 2 lines above 'Opening quotes (""") of text-block must be on the new line'
-
-        // 2 violations 3 lines above:
-        //   'Closing quotes (""") of text-block should not be preceded by non-whitespace charac'
-        //   'Text-block quotes are not vertically aligned'
+        // violation 2 lines above 'Text indentation is less than opening quotes indentation'
+        // violation 3 lines above 'Closing quotes (""") of text-block should not be preceded by'
+        // violation 4 lines above 'Text-block quotes are not vertically aligned'
 
         return
             """
@@ -67,7 +69,8 @@ public class InputTextBlockGoogleStyleFormatting3 {
         String test1 = s
             + """
             very good""".charAt(0) + getName();
-        // 2 violations above:
+        // 3 violations above:
+        //   'Text indentation is less than opening quotes indentation'
         //   'Closing quotes (""") of text-block should not be preceded by non-whitespace characte'
         //   'Text-block quotes are not vertically aligned'
 
