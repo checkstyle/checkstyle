@@ -63,7 +63,6 @@ public class XdocsExamplesAstConsistencyTest {
     // This list is temporarily suppressed.
     // Until: https://github.com/checkstyle/checkstyle/issues/XXXX
     private static final Set<String> SUPPRESSED_DIRECTORIES = Set.of(
-            "checks/annotation/annotationlocation",
             "checks/annotation/annotationonsameline",
             "checks/annotation/annotationusestyle",
             "checks/annotation/missingoverride",
