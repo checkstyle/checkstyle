@@ -4087,6 +4087,22 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    /**
+     * Pure unit test to satisfy line coverage for {@link PrimordialHandler#checkIndentation()}.
+     * The method has an empty implementation required by the abstract contract of
+     * {@link AbstractExpressionHandler}. A unit test is required as this method is not
+     * reachable through any integration test.
+     *
+     * @noinspection JUnitTestMethodWithNoAssertions
+     * @noinspectionreason JUnitTestMethodWithNoAssertions - method is empty, no assertion needed
+     */
+    @Test
+    public void testPrimordialHandlerCheckIndentation() {
+        final IndentationCheck check = new IndentationCheck();
+        final PrimordialHandler handler = new PrimordialHandler(check);
+        handler.checkIndentation();
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
