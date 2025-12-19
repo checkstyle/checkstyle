@@ -273,6 +273,7 @@
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
@@ -2689,7 +2690,7 @@
                   <goal>testCompile</goal>
                 </goals>
                 <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
