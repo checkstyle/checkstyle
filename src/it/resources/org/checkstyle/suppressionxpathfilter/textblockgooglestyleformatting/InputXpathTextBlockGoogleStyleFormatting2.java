@@ -7,11 +7,10 @@ public class InputXpathTextBlockGoogleStyleFormatting2 {
             """
             this is sample text
             """;
-
         getData(
                 """
-            Hello,
-            This is a multi-line message.
+                    Hello,
+                    This is a multi-line message.
             """ // warn
         );
 
