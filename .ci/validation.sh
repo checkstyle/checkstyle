@@ -253,8 +253,11 @@ no-violation-test-configurate)
   echo "Checkout target sources ..."
   mkdir -p .ci-temp
   cd .ci-temp
-  git clone https://github.com/SpongePowered/Configurate.git
-  cd Configurate
+
+  # Temporary fork is used because upstream SpongePowered/Configurate
+  # currently has checkstyle violations.
+  # Revert to upstream once the fix PR is merged.
+  git clone https://github.com/stoyanK7/Configurate.git  cd Configurate
   ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" -x test check
   cd ..
   removeFolderWithProtectedFiles Configurate
