@@ -216,6 +216,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.POST_DEC,
     };
 
+    /** Types of tokens with higher priority than unary operators. */
+    private static final int[] ARRAY_AND_FIELD_ACCESS = {
+        TokenTypes.INDEX_OP,
+        TokenTypes.DOT,
+        TokenTypes.LITERAL_NEW,
+    };
+
     /** Token types for bitwise binary operator. */
     private static final int[] BITWISE_BINARY_OPERATORS = {
         TokenTypes.BXOR,
@@ -275,6 +282,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BNOT,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
+            TokenTypes.INDEX_OP,
+            TokenTypes.DOT,
         };
     }
 
@@ -326,6 +335,9 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.BOR,
             TokenTypes.BAND,
             TokenTypes.QUESTION,
+            TokenTypes.INDEX_OP,
+            TokenTypes.DOT,
+            TokenTypes.LITERAL_NEW,
         };
     }
 
@@ -349,7 +361,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         }
         else if (parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final int type = ast.getType();
-            final boolean surrounded = isSurrounded(ast);
+            final boolean surrounded = isSurrounded(getSelfOrParentMethodCall(ast));
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
                 parentToSkip = ast.getParent();
@@ -392,6 +404,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
 
         // shouldn't process assign in annotation pairs
+        DetailAST selfOrParentMethodCall = getSelfOrParentMethodCall(ast);
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             if (type == TokenTypes.EXPR) {
@@ -400,10 +413,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (isSurrounded(ast) && unnecessaryParenAroundOperators(ast)) {
-                log(ast.getPreviousSibling(), MSG_EXPR);
+            else if (isSurrounded(selfOrParentMethodCall) && unnecessaryParenAroundOperators(ast)) {
+                log(selfOrParentMethodCall.getPreviousSibling(), MSG_EXPR);
             }
         }
+    }
+
+    private DetailAST getSelfOrParentMethodCall(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.METHOD_CALL
+            ? ast.getParent() : ast;
     }
 
     /**
@@ -416,14 +434,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isSurrounded(DetailAST ast) {
         final DetailAST prev = ast.getPreviousSibling();
-        final DetailAST parent = ast.getParent();
-        final boolean isPreviousSiblingLeftParenthesis = prev != null
-                && prev.getType() == TokenTypes.LPAREN;
-        final boolean isMethodCallWithUnnecessaryParenthesis =
-                parent.getType() == TokenTypes.METHOD_CALL
-                && parent.getPreviousSibling() != null
-                && parent.getPreviousSibling().getType() == TokenTypes.LPAREN;
-        return isPreviousSiblingLeftParenthesis || isMethodCallWithUnnecessaryParenthesis;
+        return prev != null && prev.getType() == TokenTypes.LPAREN;
     }
 
     /**
@@ -482,11 +493,26 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         else if (isBitwise) {
             hasUnnecessaryParentheses = checkBitwiseBinaryOperator(ast);
         }
+        else if (TokenUtil.isOfType(type, ARRAY_AND_FIELD_ACCESS)) {
+            hasUnnecessaryParentheses = isNotFirstArgOfTernary(ast);
+        }
         else {
             hasUnnecessaryParentheses = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
                     && isBitWiseBinaryOrConditionalOrRelationalOperator(ast.getParent().getType());
         }
         return hasUnnecessaryParentheses;
+    }
+
+    /**
+     * Check that an expression is not the first argument of a conditional ternary operator.
+     *
+     * @param ast expression
+     * @return whether the expression is not the first argument of a ternary operator
+     */
+    private static boolean isNotFirstArgOfTernary(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent.getParent().getType() != TokenTypes.QUESTION
+                || !parent.equals(parent.getParent().getFirstChild().getNextSibling());
     }
 
     /**
