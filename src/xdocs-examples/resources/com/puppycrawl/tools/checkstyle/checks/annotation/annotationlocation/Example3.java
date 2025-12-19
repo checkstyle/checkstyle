@@ -18,6 +18,10 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 import javax.annotation.Nonnull;
 import org.mockito.Mock;
 
+interface DataLoader {
+
+}
+
 // xdoc section -- start
 class Example3 {
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
