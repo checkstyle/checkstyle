@@ -160,6 +160,11 @@ public String getNameIfPresent() { ... }
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example1 {
+
+  interface DataLoader {
+
+  }
+
   @Nonnull
   private boolean field1; // ok
   @Override public int hashCode() { return 1; } // ok
@@ -194,6 +199,11 @@ class Example1 {
         <p id="Example2-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
+
+  interface DataLoader {
+
+  }
+
   @Nonnull
   private boolean field1;
   @Override public int hashCode() { return 1; } // ok
@@ -228,6 +238,11 @@ class Example2 {
         <p id="Example3-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example3 {
+
+  interface DataLoader {
+
+  }
+
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
   @Nonnull private boolean field1;
   // violation below, 'Annotation 'Override' should be alone on line.'
@@ -265,9 +280,14 @@ class Example3 {
         <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-  @NotNull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
+
+  interface DataLoader {
+
+  }
+
+  @Nonnull private boolean field1; // ok, as 'tokens' property set to METHOD_DEF only
   @Override public int hashCode() { return 1; }
-  @NotNull
+  @Nonnull
   private boolean field2;
   @Override
   public boolean equals(Object obj) { return true; }
@@ -276,7 +296,7 @@ class Example4 {
   @SuppressWarnings("deprecation") DataLoader loader;
   @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
-  @NotNull @Mock DataLoader loader2;
+  @Nonnull @Mock DataLoader loader2;
 }
 </code></pre></div>
       </subsection>
