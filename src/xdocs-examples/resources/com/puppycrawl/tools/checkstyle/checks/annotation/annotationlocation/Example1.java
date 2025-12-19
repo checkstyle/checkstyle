@@ -13,13 +13,14 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 import javax.annotation.Nonnull;
 import org.mockito.Mock;
 
-interface DataLoader {
-
-}
-
 
 // xdoc section -- start
 class Example1 {
+
+  interface DataLoader {
+
+  }
+
   @Nonnull
   private boolean field1; // ok
   @Override public int hashCode() { return 1; } // ok

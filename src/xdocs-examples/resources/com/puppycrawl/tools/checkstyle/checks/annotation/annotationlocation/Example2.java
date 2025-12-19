@@ -20,6 +20,11 @@ import org.mockito.Mock;
 
 // xdoc section -- start
 class Example2 {
+
+  interface DataLoader {
+
+  }
+
   @Nonnull
   private boolean field1;
   @Override public int hashCode() { return 1; } // ok
