@@ -20,6 +20,11 @@ import org.mockito.Mock;
 
 // xdoc section -- start
 class Example3 {
+
+  interface DataLoader {
+
+  }
+
   // violation below, 'Annotation 'Nonnull' should be alone on line.'
   @Nonnull private boolean field1;
   // violation below, 'Annotation 'Override' should be alone on line.'
