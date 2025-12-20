@@ -25,6 +25,7 @@
          <message-keys>
             <message-key key="textblock.format.close"/>
             <message-key key="textblock.format.open"/>
+            <message-key key="textblock.indentation"/>
             <message-key key="textblock.vertically.unaligned"/>
          </message-keys>
       </check>
