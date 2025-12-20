@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>LineEnding</title>
+  </head>
+  <body>
+    <section name="LineEnding">
+      <p>Since Checkstyle 12.3.0</p>
+      <subsection name="Description" id="LineEnding_Description">
+        <div>
+          Checks whether the files have a specific line ending (LF or CRLF).
+        </div>
+      </subsection>
+
+      <subsection name="Properties" id="LineEnding_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="fileExtensions"/><a href="#fileExtensions">fileExtensions</a></td>
+              <td>Specify the file extensions of the files to process.</td>
+              <td><a href="../../property_types.html#String.5B.5D">String[]</a></td>
+              <td><code>all files</code></td>
+              <td>12.3.0</td>
+            </tr>
+            <tr>
+              <td><a id="lineEnding"/><a href="#lineEnding">lineEnding</a></td>
+              <td>Set lineEnding.</td>
+              <td><a href="../../property_types.html#LineEndingOption">LineEndingOption</a></td>
+              <td><code>lf</code></td>
+              <td>12.3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="LineEnding_Examples">
+        <p id="Example1-config">
+          To configure the check to enforce LF (Unix-style) line endings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineEnding"/&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 { // ␊
+    public void method() { // ␊
+        int x = 1; // ␊
+    } // ␊
+} // ␊ // ok, file uses LF line endings.
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example2-config">
+          To configure the check to enforce CRLF (Windows-style) line endings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineEnding"&gt;
+    &lt;property name="lineEnding" value="crlf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 { // ␍␊
+    public void method() { // ␍␊
+        int x = 1; // ␍␊
+    } // ␍␊
+} // ␍␊ // ok, file uses CRLF line endings.
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example3-config">
+          To configure the check to enforce LF line endings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineEnding"&gt;
+    &lt;property name="lineEnding" value="crlf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example (file with CRLF line endings - violations):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {  // ␍␊ // violation 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
+    public void method() { // ␍␊ // violation 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
+        int x = 1; // ␍␊ // violation 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
+    } // ␍␊ // violation 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
+} // ␍␊ // violation 'Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected.'
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example4-config">
+          To configure the check to enforce CRLF line endings:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="LineEnding"&gt;
+    &lt;property name="lineEnding" value="crlf"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example4-code">Example (file with LF line endings - violations):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example4 { // ␊ // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+    public void method() { // ␊ // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+        int x = 1; // ␊ // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+    } // ␊ // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+} // ␊ // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="LineEnding_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineEnding">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="LineEnding_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open%22">
+              unable.open
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22wrong.line.end%22">
+              wrong.line.end
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22wrong.line.end.crlf%22">
+              wrong.line.end.crlf
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="LineEnding_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="LineEnding_Parent_Module">
+        <p>
+          <a href="../../config.html#Checker">Checker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
