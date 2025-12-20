@@ -5,7 +5,8 @@ public class InputXpathTextBlockGoogleStyleFormatting3 {
     public String textFun1() {
         final String simpleScriptViolation =
                     """
- this is sample text"""; // warn
+ this is sample text
+                    """; // warn
 
         getData(
                 """
