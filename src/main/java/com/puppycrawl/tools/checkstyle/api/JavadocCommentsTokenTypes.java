@@ -33,8 +33,16 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Root node of any Javadoc comment.
      *
-     * <p><b>Tree for example:</b></p>
+     * <p><b>Example:</b></p>
      * <pre>{@code
+     * /**
+     *  * 
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--LEADING_ASTERISK -> *
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK -> *
@@ -59,6 +67,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * --BLOCK_COMMENT_BEGIN -> /**
      *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
      *    |       |--NEWLINE -> \r\n
      *    |       |--LEADING_ASTERISK ->  *
      *    |       |--TEXT ->  This is a Javadoc line.
@@ -1584,18 +1593,11 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * |--TEXT -> /**
-     * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK ->  *
-     * |--TEXT ->
      * |--HTML_COMMENT -> HTML_COMMENT
      *     |--HTML_COMMENT_START -> <!--
      *     |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
      *     |   `--TEXT ->  Hello World!
      *     `--HTML_COMMENT_END -> -->
-     * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK ->  *
-     * |--TEXT -> /
      * }</pre>
      *
      * @see #HTML_COMMENT
