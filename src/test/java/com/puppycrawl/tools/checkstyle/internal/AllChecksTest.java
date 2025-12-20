@@ -235,6 +235,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // google prefers no spaces on one side or both for these tokens
                 "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
                 .collect(Collectors.toUnmodifiableSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAfter", Stream.of(
+                // these tokens are already validated by WhitespaceAround, having them
+                // in both checks causes duplicate violations
+                "LITERAL_IF", "LITERAL_ELSE", "LITERAL_RETURN", "LITERAL_WHILE",
+                "LITERAL_DO", "LITERAL_FOR", "LITERAL_FINALLY", "DO_WHILE",
+                "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_CATCH",
+                "LAMBDA", "LITERAL_WHEN")
+                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // numerical types should not be included
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG",
