@@ -73,6 +73,31 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Newline character in a Javadoc comment.
+     *
+     * <p>This node represents a line break (CR, LF, or CRLF) within a Javadoc comment.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * First line.
+     *  * Second line.
+     *  * /
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->  First line.
+     *     |--NEWLINE -> \r\n
+     *     |--LEADING_ASTERISK ->  *
+     *     |--TEXT ->  Second line.
+     *     |--NEWLINE -> \r\n
+     *     `--TEXT ->
+     * }</pre>
+     *
+     * @see #JAVADOC_CONTENT
      */
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
 
