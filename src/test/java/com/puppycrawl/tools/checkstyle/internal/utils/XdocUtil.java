@@ -25,6 +25,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -51,6 +52,23 @@ import org.xml.sax.SAXException;
 public final class XdocUtil {
 
     public static final String DIRECTORY_PATH = "src/site/xdoc";
+
+    private static final Pattern PACKAGE_LOCATION_PATTERN = Pattern.compile(
+            "getPackageLocation\\(\\)\\s*\\{\\s*return\\s*\"([^\"]+)\""
+    );
+
+    private static final Pattern VERIFY_PATTERN = Pattern.compile(
+            "(?:verifyWithInlineXmlConfig"
+                    + "|verifyWithInlineConfigParser"
+                    + "|verifyWithInlineConfigParserSeparateConfigAndTarget)"
+                    + "\\s*\\(\\s*(?:getPath|getNonCompilablePath)"
+                    + "\\s*\\(\\s*\"([^\"]*Example[^\"]+\\.java)\"\\s*\\)"
+    );
+
+    private static final Pattern CONFIG_PATTERN = Pattern.compile(
+            "(?:getPath|getNonCompilablePath)"
+                    + "\\s*\\(\\s*\"([^\"]*Example[^\"]+\\.java)\"\\s*\\)"
+    );
 
     private XdocUtil() {
     }
@@ -262,4 +280,194 @@ public final class XdocUtil {
 
         return result;
     }
+
+    public static Map<String, Set<String>> getAllXdocsExampleFilesByCheckDirectory()
+            throws IOException {
+
+        final List<Path> roots = List.of(
+                Path.of("src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks"),
+                Path.of("src/xdocs-examples/resources-noncompilable"
+                        + "/com/puppycrawl/tools/checkstyle/checks")
+        );
+
+        final Set<String> excludedDirs = Set.of(
+                "someImports",
+                "deeper",
+                "dao",
+                "gui",
+                "legacy",
+                "nonlegacy",
+                "legacywithboth",
+                "javadocleadingasteriskalign",
+                "nonemptyatclausedescription",
+                "hexliteralcase",
+                "ignore",
+                "filters",
+                "textblockgooglestyleformatting",
+                "nowhitespacebeforecasedefaultcolon",
+                "unnecessarysemicolonaftertypememberdeclaration",
+                "unnecessarysemicolonafteroutertypedeclaration",
+                "unnecessarysemicolonintrywithresources",
+                "javadocmissingwhitespaceafterasterisk"
+        );
+
+        final Map<String, Set<String>> examplesByCheckDir = new HashMap<>();
+
+        for (Path root : roots) {
+            collectExampleFiles(root, excludedDirs, examplesByCheckDir);
+        }
+
+        return examplesByCheckDir;
+    }
+
+    private static void collectExampleFiles(
+            Path root,
+            Set<String> excludedDirs,
+            Map<String, Set<String>> examplesByCheckDir)
+            throws IOException {
+
+        if (Files.exists(root)) {
+            try (Stream<Path> paths = Files.walk(root)) {
+                paths.filter(XdocUtil::isExampleJavaFile)
+                        .forEach(path -> {
+                            addExampleFile(path, excludedDirs, examplesByCheckDir);
+                        });
+            }
+        }
+    }
+
+    private static boolean isExampleJavaFile(Path path) {
+        final String fileName = path.getFileName().toString();
+
+        return fileName.startsWith("Example")
+                && fileName.endsWith(".java")
+                && !"package-info.java".equals(fileName);
+    }
+
+    private static void addExampleFile(
+            Path path,
+            Set<String> excludedDirs,
+            Map<String, Set<String>> examplesByCheckDir) {
+
+        final String checkDir =
+                path.getParent().getFileName().toString().toLowerCase(Locale.ROOT);
+
+        if (!excludedDirs.contains(checkDir)) {
+            final String fileName = path.getFileName().toString();
+
+            examplesByCheckDir
+                    .computeIfAbsent(checkDir, key -> new HashSet<>())
+                    .add(fileName);
+        }
+    }
+
+    public static Map<String, Set<String>> getTestedXdocsExampleFilesByCheckDirectory()
+            throws IOException {
+
+        final Path testRoot =
+                Path.of("src/xdocs-examples/java/com/puppycrawl/tools/checkstyle");
+
+        final Map<String, Set<String>> testedExamplesByCheckDir = new HashMap<>();
+
+        if (Files.exists(testRoot)) {
+            try (Stream<Path> paths = Files.walk(testRoot)) {
+                paths.filter(XdocUtil::isExamplesTestFile)
+                        .forEach(path -> {
+                            processExamplesTestFile(path, testedExamplesByCheckDir);
+                        });
+            }
+        }
+
+        return testedExamplesByCheckDir;
+    }
+
+    private static boolean isExamplesTestFile(Path path) {
+        return path.getFileName().toString().endsWith("ExamplesTest.java");
+    }
+
+    private static void processExamplesTestFile(
+            Path path,
+            Map<String, Set<String>> testedExamplesByCheckDir) {
+
+        try {
+            final String content = Files.readString(path);
+            final String checkDir = extractCheckDirectory(path, content);
+            final Set<String> testedFiles = extractTestedExampleFiles(content);
+
+            if (!testedFiles.isEmpty()) {
+                testedExamplesByCheckDir.put(checkDir, testedFiles);
+            }
+        }
+        catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Error reading test file: " + path, exception);
+        }
+    }
+
+    private static String extractCheckDirectory(Path path, String content) {
+        String result = null;
+
+        final Matcher matcher = PACKAGE_LOCATION_PATTERN.matcher(content);
+        if (matcher.find()) {
+            final String packagePath = matcher.group(1);
+            final String[] parts = packagePath.split("/");
+            result = parts[parts.length - 1].toLowerCase(Locale.ROOT);
+        }
+
+        if (result == null) {
+            result = deriveCheckDirFromFileName(path);
+        }
+
+        return result;
+    }
+
+    private static String deriveCheckDirFromFileName(Path path) {
+        String checkDir =
+                path.getFileName().toString().replace("ExamplesTest.java", "");
+
+        if (checkDir.endsWith("Check")) {
+            checkDir = checkDir.substring(0, checkDir.length() - 5);
+        }
+
+        return checkDir.toLowerCase(Locale.ROOT);
+    }
+
+    private static Set<String> extractTestedExampleFiles(String content) {
+        final Set<String> testedFiles = new HashSet<>();
+
+        collectExampleFilesFromPattern(
+                content, VERIFY_PATTERN, testedFiles);
+        collectExampleFilesFromPattern(
+                content, CONFIG_PATTERN, testedFiles);
+
+        return testedFiles;
+    }
+
+    private static void collectExampleFilesFromPattern(
+            String content,
+            Pattern pattern,
+            Set<String> testedFiles) {
+
+        final Matcher matcher = pattern.matcher(content);
+
+        while (matcher.find()) {
+            final String filePath = matcher.group(1);
+            final String fileName = extractFileName(filePath);
+
+            if (fileName.startsWith("Example")) {
+                testedFiles.add(fileName);
+            }
+        }
+    }
+
+    private static String extractFileName(String filePath) {
+        String result = filePath;
+
+        if (filePath.contains("/")) {
+            result = filePath.substring(filePath.lastIndexOf('/') + 1);
+        }
+
+        return result;
+    }
+
 }
