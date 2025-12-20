@@ -59,6 +59,10 @@
           See <a href="https://checkstyle.org/writingchecks.html#Limitations">limitations.</a>
         </li>
         </ul>
+
+          @noinspection JavadocReference
+          @noinspectionreason IntelliJ treats <code>{@link List}</code> in this example as a real reference,
+          but the import is intentionally omitted since it is an unused-import case.
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
@@ -77,6 +81,37 @@
               <td><a href="../../property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.4</td>
+            </tr>
+            <tr>
+              <td><a id="violateExecutionOnNonTightHtml"/><a href="#violateExecutionOnNonTightHtml">violateExecutionOnNonTightHtml</a></td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td><a id="javadocTokens"/><a href="#javadocTokens">javadocTokens</a></td>
+              <td>javadoc tokens to check</td>
+              <td>subset of javadoc tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#REFERENCE">
+                    REFERENCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#PARAMETER_TYPE">
+                    PARAMETER_TYPE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#REFERENCE">
+                    REFERENCE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#PARAMETER_TYPE">
+                    PARAMETER_TYPE</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/JavadocCommentsTokenTypes.html#THROWS_BLOCK_TAG">
+                    THROWS_BLOCK_TAG</a>
+                  .
+              </td>
+              <td>3.0</td>
             </tr>
           </table>
         </div>
@@ -185,6 +220,16 @@ class Example2{
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22import.unused%22">
               import.unused
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
             </a>
           </li>
         </ul>
