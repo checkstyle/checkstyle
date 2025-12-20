@@ -372,4 +372,15 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
         verifyWithInlineConfigParser(
                 getPath("InputTextBlockGoogleStyleFormatting10.java"), expected);
     }
+
+    @Test
+    public void testDefaultTextBlockFormatAnnotations() throws Exception {
+        final String[] expected = {
+            "59:27: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "66:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
+            "68:1: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputTextBlockGoogleStyleFormattingAnnotations.java"), expected);
+    }
 }
