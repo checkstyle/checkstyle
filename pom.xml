@@ -3215,7 +3215,9 @@
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck*
                 </param>
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.LineEndingCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.LineEndingOption*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck*</param>
@@ -3236,6 +3238,7 @@
                   com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheckTest
                 </param>
                 <param>com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.LineEndingCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheckTest</param>
