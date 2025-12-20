@@ -30,15 +30,9 @@ public class InputWhitespaceBeforeLeftCurlyOfEmptyBlock {
 
     for (int i = 1; i > 1; i++){} // ok until #17715
 
-    do{} while (b);
-    // 2 violations above:
-    //   ''do' is not followed by whitespace.'
-    //   'WhitespaceAround: 'do' is not followed by whitespace. *'
+    do{} while (b); // violation 'WhitespaceAround: 'do' is not followed by whitespace. *'
 
-    Runnable noop = () ->{};
-    // 2 violations above:
-    //   ''->' is not followed by whitespace.'
-    //   'WhitespaceAround: '->' is not followed by whitespace. *'
+    Runnable noop = () ->{}; // violation 'WhitespaceAround: '->' is not followed by whitespace. *'
   }
 
   static{} // ok until #17715
