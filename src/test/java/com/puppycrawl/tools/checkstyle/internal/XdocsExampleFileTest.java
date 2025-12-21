@@ -118,4 +118,40 @@ public class XdocsExampleFileTest {
                     .fail();
         }
     }
+
+    @Test
+    public void testAllXdocsExamplesAreTestedInXdocsExamplesTests() throws Exception {
+        final Map<String, Set<String>> allExamplesByCheckDir =
+                XdocUtil.getAllXdocsExampleFilesByCheckDirectory();
+
+        final Map<String, Set<String>> testedExamplesByCheckDir =
+                XdocUtil.getTestedXdocsExampleFilesByCheckDirectory();
+
+        final List<String> failures = new ArrayList<>();
+
+        for (Map.Entry<String, Set<String>> entry : allExamplesByCheckDir.entrySet()) {
+            final String checkDir = entry.getKey();
+            final Set<String> allExamples = entry.getValue();
+            final Set<String> testedExamples =
+                    testedExamplesByCheckDir.getOrDefault(checkDir, Collections.emptySet());
+
+            for (String exampleFile : allExamples) {
+                if (!testedExamples.contains(exampleFile)) {
+                    failures.add(
+                            "Xdoc example file '" + exampleFile
+                                    + "' in check directory '" + checkDir
+                                    + "' is not tested in xdocs-examples/java"
+                    );
+                }
+            }
+        }
+
+        if (!failures.isEmpty()) {
+            assertWithMessage(
+                    "The following xdoc example files are not referenced in any test:\n"
+                            + String.join("\n", failures)
+            ).fail();
+        }
+    }
+
 }
