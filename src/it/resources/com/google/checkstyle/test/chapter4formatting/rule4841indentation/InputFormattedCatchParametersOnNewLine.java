@@ -56,7 +56,8 @@ public class InputFormattedCatchParametersOnNewLine {
         s
         """;
 
-    // violation below 'Opening quotes (""") of text-block must be on the new line'
+    // violation 2 lines below 'Opening quotes (""") of text-block must be on the new line'
+    // violation below 'Text is indented less than opening quotes'
     return ("""
       def newInstance = params.instance;
       def existingInstance = ctx._source;

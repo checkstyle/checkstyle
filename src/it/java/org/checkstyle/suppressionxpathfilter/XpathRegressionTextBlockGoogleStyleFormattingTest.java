@@ -56,7 +56,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun']]"
                        + "/SLIST/VARIABLE_DEF[./IDENT[@text='simpleScript']]/ASSIGN/EXPR"
                        + "/TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
-                       + "[@text='\\n            s\\n            ']]/TEXT_BLOCK_LITERAL_END"
+                       + "[@text=' \\n                s\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -72,7 +72,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "15:13: " + getCheckMessage(CLASS,
+            "14:13: " + getCheckMessage(CLASS,
                 TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
@@ -82,7 +82,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun1']]/SLIST/EXPR"
                     + "/METHOD_CALL[./IDENT[@text='getData']]/ELIST/EXPR/"
                     + "TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
-                    + "[@text='\\n            Hello,\\n            This is a multi-line message"
+                    + "[@text='\\n                    Hello,"
+                    + "\\n                    This is a multi-line message"
                     + ".\\n            ']]/TEXT_BLOCK_LITERAL_END"
         );
 
@@ -99,8 +100,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                 createModuleConfig(CLASS);
 
         final String[] expectedViolation = {
-            "8:21: " + getCheckMessage(CLASS,
-                TextBlockGoogleStyleFormattingCheck.MSG_CLOSE_QUOTES_ERROR),
+            "9:20: " + getCheckMessage(CLASS,
+                    TextBlockGoogleStyleFormattingCheck.MSG_VERTICALLY_UNALIGNED),
         };
 
         final List<String> expectedXpathQueries = List.of(
@@ -109,7 +110,8 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
                       + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='textFun1']]/SLIST/VARIABLE_DEF"
                       + "[./IDENT[@text='simpleScriptViolation']]/ASSIGN/EXPR/"
                       + "TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
-                      + "[@text='\\n this is sample text']]/TEXT_BLOCK_LITERAL_END"
+                      + "[@text='\\n                        this is sample text\\n"
+                      + "                   ']]/TEXT_BLOCK_LITERAL_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
