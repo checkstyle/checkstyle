@@ -276,6 +276,19 @@ public final class TokenUtil {
     }
 
     /**
+     * Checks if the token type is an import type ({@code IMPORT},
+     * {@code STATIC_IMPORT}, {@code MODULE_IMPORT}).
+     *
+     * @param type the token type to check.
+     * @return true if token type is an import type.
+     */
+    public static boolean isImportType(int type) {
+        return type == TokenTypes.IMPORT
+                || type == TokenTypes.STATIC_IMPORT
+                || type == TokenTypes.MODULE_IMPORT;
+    }
+
+    /**
      * Determines if the token type belongs to the given types.
      *
      * @param type the Token Type to check
@@ -327,6 +340,17 @@ public final class TokenUtil {
      */
     public static boolean isRootNode(DetailAST ast) {
         return ast.getType() == TokenTypes.COMPILATION_UNIT;
+    }
+
+    /**
+     * Determines if given AST is a top-level node, i.e. if its parent
+     * is a root node ({@code COMPILATION_UNIT}).
+     *
+     * @param ast AST to check
+     * @return true if AST is a top-level node, false otherwise
+     */
+    public static boolean isTopLevelNode(DetailAST ast) {
+        return isRootNode(ast.getParent());
     }
 
     /**

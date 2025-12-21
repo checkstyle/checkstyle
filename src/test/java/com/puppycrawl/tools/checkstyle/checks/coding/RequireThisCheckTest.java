@@ -577,4 +577,22 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "20:16: " + getCheckMessage(MSG_VARIABLE, "base", ""),
+            "24:5: " + getCheckMessage(MSG_VARIABLE, "delta", ""),
+            "28:12: " + getCheckMessage(MSG_VARIABLE, "tag", ""),
+            "46:17: " + getCheckMessage(MSG_VARIABLE, "base", ""),
+            "47:14: " + getCheckMessage(MSG_METHOD, "compute", ""),
+            "48:5: " + getCheckMessage(MSG_METHOD, "bump", ""),
+            "52:5: " + getCheckMessage(MSG_VARIABLE, "delta", ""),
+            "55:18: " + getCheckMessage(MSG_METHOD, "format", ""),
+            "58:19: " + getCheckMessage(MSG_METHOD, "normalize", ""),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputRequireThisCompactSourceFile.java"),
+                expected);
+    }
+
 }

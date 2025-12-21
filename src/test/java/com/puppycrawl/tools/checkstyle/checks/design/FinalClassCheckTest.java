@@ -327,4 +327,16 @@ public class FinalClassCheckTest
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor3.java"),
                                      expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_KEY, "UtilityHolder"),
+            "33:1: " + getCheckMessage(MSG_KEY, "Outer"),
+            "36:5: " + getCheckMessage(MSG_KEY, "InnerCandidate"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputFinalClassCompactSourceFile.java"),
+                expected);
+    }
 }

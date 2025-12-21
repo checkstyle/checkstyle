@@ -741,4 +741,21 @@ public class EmptyLineSeparatorCheckTest
         );
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "19:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "VARIABLE_DEF"),
+            "20:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "24:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "METHOD_DEF"),
+            "25:18: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "30:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "INTERFACE_DEF"),
+            "33:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+            "36:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "RECORD_DEF"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputEmptyLineSeparatorCompactSourceFile.java"),
+                expected
+        );
+    }
+
 }

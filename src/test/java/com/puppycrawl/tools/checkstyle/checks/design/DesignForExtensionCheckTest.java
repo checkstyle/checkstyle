@@ -169,4 +169,12 @@ public class DesignForExtensionCheckTest
             expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputDesignForExtensionCompactSourceFile.java"),
+            expected);
+    }
+
 }

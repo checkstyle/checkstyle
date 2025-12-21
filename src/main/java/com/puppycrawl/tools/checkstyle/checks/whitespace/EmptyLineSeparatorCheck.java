@@ -357,7 +357,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if the token has not allowed multiple empty lines before.
      */
     private boolean hasMultipleLinesBefore(DetailAST ast) {
-        return (ast.getType() != TokenTypes.VARIABLE_DEF || isTypeField(ast))
+        return (ast.getType() != TokenTypes.VARIABLE_DEF
+                    || TokenUtil.isTopLevelNode(ast)
+                    || isTypeField(ast))
                 && hasNotAllowedTwoEmptyLinesBefore(ast);
     }
 
@@ -438,7 +440,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next Token
      */
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
-        if (isTypeField(ast) && !hasEmptyLineAfter(ast)
+        if ((TokenUtil.isTopLevelNode(ast) || isTypeField(ast))
+                && !hasEmptyLineAfter(ast)
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED,
                     nextToken.getText());
