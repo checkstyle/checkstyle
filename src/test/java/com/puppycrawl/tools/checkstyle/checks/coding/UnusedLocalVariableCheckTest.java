@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -580,5 +581,70 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
                 expected);
+    }
+
+    @Test
+    public void testGetBlockContainingLocalAnonInnerClass() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputUnusedLocalVariableLambdaAnonInner.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST fieldR = TestUtil.findTokenInAstByPredicate(root,
+                        ast -> ast.getType() == TokenTypes.VARIABLE_DEF
+                                && "r".equals(ast.findFirstToken(TokenTypes.IDENT).getText()))
+                .orElseThrow();
+        final DetailAST literalNew = TestUtil.findTokenInAstByPredicate(fieldR,
+                        ast -> ast.getType() == TokenTypes.LITERAL_NEW)
+                .orElseThrow();
+        final DetailAST expectedLambda = fieldR.findFirstToken(TokenTypes.ASSIGN)
+                .getFirstChild();
+
+        final Method method = UnusedLocalVariableCheck.class.getDeclaredMethod(
+                "getBlockContainingLocalAnonInnerClass", DetailAST.class);
+        method.setAccessible(true);
+
+        final DetailAST actualResult = (DetailAST) method.invoke(null, literalNew);
+
+        assertWithMessage("Should return the LAMBDA because no other parent tokens exist in ancestry")
+                .that(actualResult)
+                .isSameInstanceAs(expectedLambda);
+    }
+
+    @Test
+    public void testIsInsideLocalAnonInnerClass() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputUnusedLocalVariableLambdaAnonInner.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        final Method isInsideMethod = UnusedLocalVariableCheck.class.getDeclaredMethod(
+                "isInsideLocalAnonInnerClass", DetailAST.class);
+        isInsideMethod.setAccessible(true);
+
+        final DetailAST fieldObj = TestUtil.findTokenInAstByPredicate(root,
+                        ast -> ast.getType() == TokenTypes.VARIABLE_DEF
+                                && "fieldObj".equals(ast.findFirstToken(TokenTypes.IDENT).getText()))
+                .orElseThrow();
+        final DetailAST literalNewField = fieldObj.findFirstToken(TokenTypes.ASSIGN)
+                .findFirstToken(TokenTypes.EXPR)
+                .findFirstToken(TokenTypes.LITERAL_NEW);
+
+        final boolean resultFalse = (boolean) isInsideMethod.invoke(null, literalNewField);
+
+        assertWithMessage("Should be false for field initialization (no SLIST in ancestry)")
+                .that(resultFalse)
+                .isFalse();
+
+        final DetailAST localObj = TestUtil.findTokenInAstByPredicate(root,
+                        ast -> ast.getType() == TokenTypes.VARIABLE_DEF
+                                && "localObj".equals(ast.findFirstToken(TokenTypes.IDENT).getText()))
+                .orElseThrow();
+        final DetailAST literalNewLocal = localObj.findFirstToken(TokenTypes.ASSIGN)
+                .findFirstToken(TokenTypes.EXPR)
+                .findFirstToken(TokenTypes.LITERAL_NEW);
+
+        final boolean resultTrue = (boolean) isInsideMethod.invoke(null, literalNewLocal);
+
+        assertWithMessage("Should be true for local variable initialization (inside SLIST)")
+                .that(resultTrue)
+                .isTrue();
     }
 }
