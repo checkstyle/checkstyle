@@ -70,6 +70,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * InvalidJavadocPosition</a>.
  * </p>
  *
+ * <p>
+ * The property <code>allowSamelineMultipleAnnotations</code> has the
+ * dominant effect and allows both single and multiple annotations on
+ * the same line, regardless of whether they are parameterized or parameterless.
+ * </p>
+ *
  * @since 6.0
  */
 @StatelessCheck
