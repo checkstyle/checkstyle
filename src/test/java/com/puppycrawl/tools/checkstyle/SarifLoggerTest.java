@@ -239,20 +239,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorWithAbsoluteLinuxPath() throws IOException {
+    public void testAddErrorWithAbsoluteLinuxPath() throws Exception {
+        final String inputFile = "InputSarifLoggerAbsoluteLinuxPath.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAbsoluteLinuxPath.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "/home/someuser/Code/Test.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerAbsoluteLinuxPath.sarif"), outStream);
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
