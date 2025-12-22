@@ -66,6 +66,14 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInlineCorrectTwo() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocInlineCorrect2.java"), expected);
+    }
+
+    @Test
     public void testIncorrect() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
