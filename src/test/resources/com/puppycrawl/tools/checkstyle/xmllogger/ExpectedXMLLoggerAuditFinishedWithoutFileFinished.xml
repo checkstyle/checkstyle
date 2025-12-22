@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="">
+<file name="InputXMLLoggerAuditFinishedWithoutFileFinished.java">
+<error line="13" column="17" severity="error" message="Name &apos;Bad_Name&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+</file>
+</checkstyle>
