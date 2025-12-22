@@ -41,7 +41,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/design/visibilitymodifier";
     }
 

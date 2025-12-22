@@ -45,7 +45,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     private TreeTable treeTable;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/treetable";
     }
 

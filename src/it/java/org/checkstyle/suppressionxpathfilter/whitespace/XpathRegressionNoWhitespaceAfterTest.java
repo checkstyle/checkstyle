@@ -40,7 +40,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/whitespace/nowhitespaceafter";
     }
 

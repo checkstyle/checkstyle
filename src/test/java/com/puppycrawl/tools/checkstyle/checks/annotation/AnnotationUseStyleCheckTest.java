@@ -37,7 +37,7 @@ import de.thetaphi.forbiddenapis.SuppressForbidden;
 public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/annotationusestyle";
     }
 

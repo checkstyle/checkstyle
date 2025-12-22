@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.Comment;
 public class CommentsTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/comments";
     }
 

@@ -34,7 +34,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     private final String checkName = MissingOverrideCheck.class.getSimpleName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/annotation/missingoverride";
     }
 

@@ -39,7 +39,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/indentation/commentsindentation";
     }
 

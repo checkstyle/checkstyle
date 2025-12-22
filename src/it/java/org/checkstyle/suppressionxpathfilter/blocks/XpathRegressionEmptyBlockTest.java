@@ -34,7 +34,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     private final String checkName = EmptyBlockCheck.class.getSimpleName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/blocks/emptyblock";
     }
 

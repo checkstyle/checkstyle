@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/packagenamesloader";
     }
 

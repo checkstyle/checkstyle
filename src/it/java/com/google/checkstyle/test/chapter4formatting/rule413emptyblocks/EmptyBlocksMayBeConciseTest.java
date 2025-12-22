@@ -26,7 +26,7 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule413emptyblocks";
     }
 

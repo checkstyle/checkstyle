@@ -33,7 +33,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     private static final String EOL = System.getProperty("line.separator");
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/suppressionsstringprinter";
     }
 

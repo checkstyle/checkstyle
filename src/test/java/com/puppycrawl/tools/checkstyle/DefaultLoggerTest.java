@@ -46,7 +46,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/defaultlogger";
     }
 

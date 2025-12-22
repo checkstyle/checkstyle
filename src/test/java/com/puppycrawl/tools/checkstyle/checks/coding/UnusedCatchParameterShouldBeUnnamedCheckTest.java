@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/unusedcatchparametershouldbeunnamed";
     }
 

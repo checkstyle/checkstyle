@@ -40,7 +40,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/naming/catchparametername";
     }
 

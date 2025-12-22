@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/asttreestringprinter";
     }
 

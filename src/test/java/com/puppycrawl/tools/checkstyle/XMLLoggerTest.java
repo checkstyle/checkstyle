@@ -51,7 +51,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         new CloseAndFlushTestByteArrayOutputStream();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xmllogger";
     }
 

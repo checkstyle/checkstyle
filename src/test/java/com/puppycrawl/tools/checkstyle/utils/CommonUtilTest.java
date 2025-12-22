@@ -56,7 +56,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     private static final String PATH_DENORMALIZER = "/levelDown/.././";
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/utils/commonutil";
     }
 
