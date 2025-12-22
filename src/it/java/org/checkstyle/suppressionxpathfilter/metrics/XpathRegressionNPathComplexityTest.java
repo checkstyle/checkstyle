@@ -41,7 +41,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/metrics/npathcomplexity";
     }
 

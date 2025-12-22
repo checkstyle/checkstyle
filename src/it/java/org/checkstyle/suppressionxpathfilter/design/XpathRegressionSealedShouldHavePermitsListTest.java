@@ -39,7 +39,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/design/sealedshouldhavepermitslist";
     }
 

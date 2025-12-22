@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class Java21AstRegressionTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/java21";
     }
 

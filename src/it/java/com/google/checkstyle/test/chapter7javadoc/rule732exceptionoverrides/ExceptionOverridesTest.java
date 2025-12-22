@@ -26,7 +26,7 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 public class ExceptionOverridesTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter7javadoc/rule732exceptionoverrides";
     }
 

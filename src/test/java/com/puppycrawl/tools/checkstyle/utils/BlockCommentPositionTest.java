@@ -122,7 +122,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/utils/blockcommentposition";
     }
 

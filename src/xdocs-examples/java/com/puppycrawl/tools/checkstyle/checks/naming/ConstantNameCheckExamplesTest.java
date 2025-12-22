@@ -29,7 +29,7 @@ public class ConstantNameCheckExamplesTest extends AbstractExamplesModuleTestSup
     private static final String DEFAULT_PATTERN = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/constantname";
     }
 

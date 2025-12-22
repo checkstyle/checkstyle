@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
 public class MainTest extends AbstractGuiTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/main";
     }
 

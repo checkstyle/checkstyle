@@ -28,7 +28,7 @@ import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
 public class MultipleVariableDeclarationsTest extends AbstractSunModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/sun/checkstyle/test/chapter6declarations/rule61numberperline";
     }
 

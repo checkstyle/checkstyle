@@ -38,7 +38,7 @@ public class RegexpSinglelineCheckTest extends AbstractModuleTestSupport {
     private static final String[] EMPTY = {};
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpsingleline";
     }
 

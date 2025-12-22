@@ -59,7 +59,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/translation";
     }
 

@@ -40,7 +40,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/naming/classtypeparametername";
     }
 

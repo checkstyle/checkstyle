@@ -39,7 +39,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/javadoc/invalidjavadocposition";
     }
 
