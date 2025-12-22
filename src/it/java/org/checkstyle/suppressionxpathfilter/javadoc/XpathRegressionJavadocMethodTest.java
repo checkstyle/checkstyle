@@ -43,7 +43,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/javadoc/javadocmethod";
     }
 

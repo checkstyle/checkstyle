@@ -41,7 +41,7 @@ public class XpathRegressionAvoidStaticImportTest
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/imports/avoidstaticimport";
     }
 

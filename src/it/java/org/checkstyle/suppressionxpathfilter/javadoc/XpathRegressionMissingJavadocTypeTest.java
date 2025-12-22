@@ -39,7 +39,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/javadoc/missingjavadoctype";
     }
 

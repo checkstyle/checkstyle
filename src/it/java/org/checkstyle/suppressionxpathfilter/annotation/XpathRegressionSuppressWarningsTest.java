@@ -35,7 +35,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     private final String checkName = SuppressWarningsCheck.class.getSimpleName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/annotation/suppresswarnings";
     }
 

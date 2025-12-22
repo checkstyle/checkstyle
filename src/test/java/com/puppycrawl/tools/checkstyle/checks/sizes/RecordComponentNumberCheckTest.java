@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/recordcomponentnumber";
     }
 

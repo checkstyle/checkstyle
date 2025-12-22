@@ -28,7 +28,7 @@ import com.sun.checkstyle.test.base.AbstractSunModuleTestSupport;
 public class InvalidJavadocPositionTest extends AbstractSunModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/sun/checkstyle/test/chapter5comments/rule52documentationcomments";
     }
 

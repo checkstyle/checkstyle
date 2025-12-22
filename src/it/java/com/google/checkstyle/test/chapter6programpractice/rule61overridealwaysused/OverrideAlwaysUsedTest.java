@@ -27,7 +27,7 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter6programpractice/rule61overridealwaysused";
     }
 

@@ -31,7 +31,7 @@ public class CatchParameterNameCheckExamplesTest extends AbstractExamplesModuleT
     private static final String CATCH_PARAM_NAME_PATTERN_2 = "^[a-z][a-zA-Z0-9]+$";
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/catchparametername";
     }
 

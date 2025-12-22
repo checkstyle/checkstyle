@@ -39,7 +39,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/modifier/classmemberimpliedmodifier";
     }
 

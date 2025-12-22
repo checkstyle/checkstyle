@@ -40,7 +40,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/naming/recordtypeparametername";
     }
 

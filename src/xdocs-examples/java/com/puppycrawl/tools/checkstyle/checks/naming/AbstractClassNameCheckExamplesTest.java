@@ -30,7 +30,7 @@ public class AbstractClassNameCheckExamplesTest extends AbstractExamplesModuleTe
     private static final String DEFAULT_PATTERN = "^Abstract.+$";
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/abstractclassname";
     }
 

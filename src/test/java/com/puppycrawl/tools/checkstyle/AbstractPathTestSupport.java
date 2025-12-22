@@ -43,7 +43,7 @@ public abstract class AbstractPathTestSupport {
      *
      * @return path for the package name for the file.
      */
-    protected abstract String getPackageLocation();
+    public abstract String getPackageLocation();
 
     /**
      * Sets the English locale for all tests.

@@ -43,7 +43,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     private static RootNode rootNode;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xpath/xpathmapper";
     }
 

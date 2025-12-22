@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/utils/checkutil";
     }
 

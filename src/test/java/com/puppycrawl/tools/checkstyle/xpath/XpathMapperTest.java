@@ -36,7 +36,7 @@ import net.sf.saxon.om.NodeInfo;
 public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xpath/xpathmapper";
     }
 

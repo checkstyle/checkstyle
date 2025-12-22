@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SeverityMatchFilterExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/severitymatchfilter";
     }
 

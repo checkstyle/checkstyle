@@ -41,7 +41,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     private DetailAST tree;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/parsetreetablepresentation";
     }
 

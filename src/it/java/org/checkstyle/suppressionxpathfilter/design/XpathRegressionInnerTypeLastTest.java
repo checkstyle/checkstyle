@@ -41,7 +41,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/design/innertypelast";
     }
 

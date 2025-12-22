@@ -39,7 +39,7 @@ public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/nestedifdepth";
     }
 

@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/detailnodetreestringprinter";
     }
 

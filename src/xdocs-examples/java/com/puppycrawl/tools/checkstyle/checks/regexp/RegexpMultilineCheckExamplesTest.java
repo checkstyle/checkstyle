@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class RegexpMultilineCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/regexp/regexpmultiline";
     }
 

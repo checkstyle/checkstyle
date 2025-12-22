@@ -30,7 +30,7 @@ public class AbbreviationAsWordInNameExamplesTest extends AbstractExamplesModule
     private static final int DEFAULT_EXPECTED_CAPITAL_COUNT = 4;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/naming/abbreviationaswordinname";
     }
 

@@ -138,7 +138,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter";
     }
 

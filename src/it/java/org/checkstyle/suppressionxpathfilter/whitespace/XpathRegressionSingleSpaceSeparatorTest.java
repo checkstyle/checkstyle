@@ -39,7 +39,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/whitespace/singlespaceseparator";
     }
 
