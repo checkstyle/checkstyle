@@ -29,7 +29,7 @@ public class LambdaBodyLengthExamplesTest extends AbstractExamplesModuleTestSupp
     private static final int DEFAULT_MAX = 10;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/lambdabodylength";
     }
 

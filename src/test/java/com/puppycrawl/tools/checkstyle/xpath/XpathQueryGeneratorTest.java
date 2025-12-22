@@ -48,7 +48,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     private static FileText fileText;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator";
     }
 

@@ -49,7 +49,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/importcontrol";
     }
 

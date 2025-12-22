@@ -46,7 +46,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
     );
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return null;
     }
 

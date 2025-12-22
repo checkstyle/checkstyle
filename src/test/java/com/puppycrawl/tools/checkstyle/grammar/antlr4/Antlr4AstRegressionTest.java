@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar/antlr4";
     }
 

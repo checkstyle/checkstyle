@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/checks/imports/importorder";
     }
 

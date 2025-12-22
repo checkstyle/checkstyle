@@ -39,7 +39,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/metrics/classdataabstractioncoupling";
     }
 

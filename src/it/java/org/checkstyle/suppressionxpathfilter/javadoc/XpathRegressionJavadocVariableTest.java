@@ -39,7 +39,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/javadoc/javadocvariable";
     }
 

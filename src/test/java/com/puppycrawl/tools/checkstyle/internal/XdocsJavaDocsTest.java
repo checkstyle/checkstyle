@@ -69,7 +69,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static Path currentXdocPath;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com.puppycrawl.tools.checkstyle.internal";
     }
 

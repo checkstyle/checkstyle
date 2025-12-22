@@ -67,7 +67,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     private static final Path XDOC_CHECKS_DIR = Path.of("src", "site", "xdoc", "checks");
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com.puppycrawl.tools.checkstyle.internal";
     }
 
