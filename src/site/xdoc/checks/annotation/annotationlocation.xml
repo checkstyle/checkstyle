@@ -53,6 +53,7 @@ public String getNameIfPresent() { ... }
           <a href="https://checkstyle.org/checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
           InvalidJavadocPosition</a>.
         </p>
+
         <p>
           The property <code>allowSamelineMultipleAnnotations</code> has the
           dominant effect and allows both single and multiple annotations on
