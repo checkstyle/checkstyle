@@ -350,21 +350,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAuditFinishedWithoutFileFinished() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
-        logger.fileStarted(fileStartedEvent);
-
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                        getClass(), null);
-        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", violation);
-        logger.addError(errorEvent);
-
-        logger.fileFinished(errorEvent);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+        final String inputFile = "InputXMLLoggerAuditFinishedWithoutFileFinished.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerAuditFinishedWithoutFileFinished.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
