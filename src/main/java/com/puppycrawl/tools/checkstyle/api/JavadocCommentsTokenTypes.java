@@ -923,12 +923,12 @@ public final class JavadocCommentsTokenTypes {
      * {@code @custom} inline tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@custom inline tag}}</pre>
+     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}}</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * |--LEADING_ASTERISK -> *
-     * |--TEXT ->
+     * |--TEXT -> Example showing
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      *     `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
      *         |--JAVADOC_INLINE_TAG_START -> { @
