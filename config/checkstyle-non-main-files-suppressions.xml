@@ -186,6 +186,8 @@
              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
   <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
+  <suppress id="noEmptyFile"
+             files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineEndingEmptyLines\.txt"/>
 
   <!-- not a curl command but a text replacement -->
   <suppress id="properCurlCommand" files=".ci[\\/]validation\.sh"/>
