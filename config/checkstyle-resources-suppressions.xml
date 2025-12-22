@@ -322,8 +322,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength2\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic7\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic\.java"/>

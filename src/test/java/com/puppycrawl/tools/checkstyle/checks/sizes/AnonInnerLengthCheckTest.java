@@ -59,12 +59,22 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
-            "53:35: " + getCheckMessage(MSG_KEY, 21, 20),
+            "52:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnonInnerLength.java"), expected);
+                getPath("InputAnonInnerLengthPartOne.java"), expected);
+    }
+
+    @Test
+    public void testDefaultTwo() throws Exception {
+        final String[] expected = {
+            "21:35: " + getCheckMessage(MSG_KEY, 21, 20),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLengthPartTwo.java"), expected);
     }
 
     @Test
