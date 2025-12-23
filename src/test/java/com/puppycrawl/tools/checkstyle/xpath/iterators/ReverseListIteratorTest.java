@@ -60,6 +60,24 @@ public class ReverseListIteratorTest {
         }
     }
 
+    @Test
+    public void testItemsFieldNullAssignment() {
+        // First create iterator with list containing null element
+        final List<AbstractNode> nodes = Arrays.asList(new TestNode(), new TestNode());
+        try (ReverseListIterator iteratorWithItems = new ReverseListIterator(nodes)) {
+            assertWithMessage("Node should not be null")
+                    .that(iteratorWithItems.getItems())
+                    .isNotNull();
+        }
+
+        // Then create iterator with null parameter - THIS kills the mutation
+        try (ReverseListIterator iteratorWithNull = new ReverseListIterator(null)) {
+            assertWithMessage("Node should be null")
+                    .that(iteratorWithNull.getItems())
+                    .isNull();
+        }
+    }
+
     private static final class TestNode extends AbstractNode {
 
         private TestNode() {
