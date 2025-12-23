@@ -581,4 +581,23 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
                 expected);
     }
+
+    @Test
+    public void testUnusedLocalVariableLambdaAnonInner() throws Exception {
+        final String[] expected = {
+            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "usedVar"),
+            "17:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "19:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInAnon"),
+            "25:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "27:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInField"),
+            "33:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "outerUsed"),
+            "34:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+            "35:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "lambdaVar"),
+            "36:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+            "38:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anonVar"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableLambdaAnonInner.java"),
+                expected);
+    }
 }
