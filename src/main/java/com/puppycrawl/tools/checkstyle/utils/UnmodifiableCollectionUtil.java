@@ -54,6 +54,26 @@ public final class UnmodifiableCollectionUtil {
     }
 
     /**
+     * Creates an unmodifiable list from the provided collection.
+     * If the collection is null, returns an empty unmodifiable list.
+     *
+     * @param collection the collection to create an unmodifiable list from
+     * @param <T> the type of elements in the list
+     * @return an unmodifiable list containing the elements from the provided collection,
+     *         or an empty list if the collection is null
+     */
+    public static <T> List<T> unmodifiableList(Collection<? extends T> collection) {
+        final List<T> result;
+        if (collection == null) {
+            result = Collections.emptyList();
+        }
+        else {
+            result = List.copyOf(collection);
+        }
+        return result;
+    }
+
+    /**
      * Returns an unmodifiable view of a List containing elements of a specific type.
      *
      * @param items The List of items to make unmodifiable.
