@@ -72,4 +72,20 @@ public class ReverseListIterator implements AxisIterator {
         }
         return result;
     }
+
+    /**
+     * Get the items list. Package-private for testing purposes.
+     *
+     * @return the items list, or null if no items.
+     */
+    /* package */ List<? extends NodeInfo> getItems() {
+        final List<? extends NodeInfo> result;
+        if (items == null) {
+            result = null;
+        }
+        else {
+            result = new ArrayList<>(items);
+        }
+        return result;
+    }
 }
