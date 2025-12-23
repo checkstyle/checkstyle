@@ -33,7 +33,7 @@ public class ReverseListIterator implements AxisIterator {
     /**
      * List of nodes.
      */
-    private final List<? extends NodeInfo> items;
+    private List<? extends NodeInfo> items;
     /**
      * Current index.
      */
@@ -46,7 +46,6 @@ public class ReverseListIterator implements AxisIterator {
      */
     public ReverseListIterator(Collection<? extends NodeInfo> items) {
         if (items == null) {
-            this.items = null;
             index = -1;
         }
         else {
