@@ -585,10 +585,16 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testUnusedLocalVariableLambdaAnonInner() throws Exception {
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
-            "13:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInLambda"),
-            "15:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
-            "17:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInAnon"),
+                "19:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "usedVar"),
+                "20:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+                "22:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInAnon"),
+                "29:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+                "31:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "unusedInFieldLambdaAnon"),
+                "38:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "outerUsed"),
+                "39:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+                "40:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "lambdaVar"),
+                "41:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "o"),
+                "43:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "anonVar"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableLambdaAnonInner.java"),
