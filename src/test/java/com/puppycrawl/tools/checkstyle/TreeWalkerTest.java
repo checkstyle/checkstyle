@@ -687,6 +687,37 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCreateNewCheckSortedSetOrdersByIdBeforeHashCode() throws Exception {
+        TestCheck.clearExecutionOrder();
+
+        // Create two checks of same class with IDs where:
+        // - ID "alpha" < "beta" alphabetically
+        // - hashCode beta(1) < alpha(2) - opposite order!
+        final DefaultConfiguration config1 = createModuleConfig(TestCheck.class);
+        config1.addProperty("id", "alpha");
+
+        final DefaultConfiguration config2 = createModuleConfig(TestCheck.class);
+        config2.addProperty("id", "beta");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        // Add in reverse alphabetical order - beta first, then alpha
+        treeWalkerConfig.addChild(config2);
+        treeWalkerConfig.addChild(config1);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(createChecker(treeWalkerConfig), getPath("InputTreeWalker2.java"), expected);
+
+        final List<String> executionOrder = TestCheck.getExecutionOrder();
+        // With proper sorting (by ID, not hashCode):
+        // "alpha" < "beta" alphabetically, so alpha executes first
+        // Without proper sorting: beta(hash=1) < alpha(hash=2), so beta executes first
+        assertWithMessage("Checks should be sorted by ID (alpha before beta), not by hashCode")
+                .that(executionOrder)
+                .containsExactly("alpha", "beta")
+                .inOrder();
+    }
+
+    @Test
     public void testSkipFileOnJavaParseExceptionTrue() throws Exception {
         final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
         config.addProperty("skipFileOnJavaParseException", "true");
@@ -963,6 +994,82 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             return CommonUtil.EMPTY_INT_ARRAY;
         }
 
+    }
+
+    /**
+     * Test check with controllable ID and hashCode for deterministic sorting tests.
+     * Tracks execution order to verify sorting.
+     */
+    public static class TestCheck extends AbstractCheck {
+        private static final List<String> EXECUTION_ORDER = new ArrayList<>();
+
+        @Override
+        public void beginTree(DetailAST rootAST) {
+            EXECUTION_ORDER.add(getId());
+        }
+
+        @Override
+        public int hashCode() {
+            // Use hash based on ID for deterministic testing
+            // IDs are set via configuration, compute hash from them
+            final String id = getId();
+            final int result;
+            if ("alpha".equals(id)) {
+                result = 2;
+            }
+            else if ("beta".equals(id)) {
+                result = 1;
+            }
+            else {
+                result = 0;
+            }
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            final TestCheck other = (TestCheck) obj;
+            return hashCode() == other.hashCode();
+        }
+
+        @Override
+        public int[] getDefaultTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+        /**
+         * Clears the execution order tracking list.
+         * Used to reset state between tests.
+         */
+        /* package */ static void clearExecutionOrder() {
+            EXECUTION_ORDER.clear();
+        }
+
+        /**
+         * Gets a copy of the execution order list.
+         * Used by tests to verify check execution order.
+         *
+         * @return copy of execution order list
+         */
+        /* package */ static List<String> getExecutionOrder() {
+            return new ArrayList<>(EXECUTION_ORDER);
+        }
     }
 
 }
