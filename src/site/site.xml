@@ -290,6 +290,7 @@
           <item name="CatchParameterName" href="checks/naming/catchparametername.html"/>
           <item name="ClassTypeParameterName" href="checks/naming/classtypeparametername.html"/>
           <item name="ConstantName" href="checks/naming/constantname.html"/>
+          <item name="GoogleMemberName" href="checks/naming/googlemembername.html"/>
           <item name="IllegalIdentifierName" href="checks/naming/illegalidentifiername.html"/>
           <item name="InterfaceTypeParameterName"
                 href="checks/naming/interfacetypeparametername.html"/>
