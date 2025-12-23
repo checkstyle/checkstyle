@@ -389,6 +389,8 @@ public final class InlineConfigParser {
                 "com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck");
         MODULE_MAPPINGS.put("MemberName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck");
+        MODULE_MAPPINGS.put("GoogleNonConstantFieldName",
+                "com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck");
         MODULE_MAPPINGS.put("MethodName",
                 "com.puppycrawl.tools.checkstyle.checks.naming.MethodNameCheck");
         MODULE_MAPPINGS.put("ParameterName",
