@@ -1,0 +1,158 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code and other text files for adherence to a set of rules.
+// Copyright (C) 2001-2026 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.checks.naming;
+
+import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.checks.naming.GoogleNonConstantFieldNameCheck.MSG_KEY_INVALID_FORMAT;
+
+import org.junit.jupiter.api.Test;
+
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+public class GoogleNonConstantFieldNameCheckTest extends AbstractModuleTestSupport {
+
+    @Override
+    public String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/checks/naming/googlenonconstantfieldname";
+    }
+
+    @Test
+    public void testGetAcceptableTokens() {
+        final GoogleNonConstantFieldNameCheck checkObj = new GoogleNonConstantFieldNameCheck();
+        final int[] expected = {TokenTypes.VARIABLE_DEF};
+        assertWithMessage("Default acceptable tokens are invalid")
+            .that(checkObj.getAcceptableTokens())
+            .isEqualTo(expected);
+    }
+
+    @Test
+    public void testNonConstantFieldNameValid() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameValid.java"), expected);
+    }
+
+    @Test
+    public void testNonConstantFieldNameInvalid() throws Exception {
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Foo"),
+            "13:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f"),
+            "15:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_bar"),
+            "17:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_Bar"),
+            "19:16: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo__bar"),
+            "22:19: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "gradle_9_5_1"),
+            "25:15: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "jdk_9_0_392"),
+            "28:25: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "guava_33_4_5"),
+            "31:17: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "a_1"),
+            "34:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "guava33_4_5_"),
+            "37:23: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "guava33__4_5"),
+            "40:22: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "guava33_4_a"),
+            "43:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "_foo"),
+            "45:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_"),
+            "47:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "__foo"),
+            "49:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "FOO"),
+            "51:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f$bar"),
+            "54:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "FO"),
+            "56:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "mField"),
+            "58:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "pValue"),
+            "61:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "sInstance"),
+            "64:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "bFlag"),
+            "67:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "nCount"),
+            "70:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "iIndex"),
+            "73:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "a"),
+            "75:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "x"),
+            "77:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "z"),
+            "79:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "aB"),
+            "81:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "xY"),
+            "83:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "zA"),
+            "85:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "FooBar"),
+            "88:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "XMLParser"),
+            "91:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "HTTPClient"),
+            "94:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_1bar"),
+            "97:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo1_bar"),
+            "100:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_bar_baz"),
+            "103:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo$bar"),
+            "106:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "$foo"),
+            "109:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "bar$"),
+            "112:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo_1_a"),
+            "115:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "foo1__2"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameInvalid.java"), expected);
+    }
+
+    @Test
+    public void testStaticFieldNameSkipped() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameStaticSkipped.java"), expected);
+    }
+
+    @Test
+    public void testLocalVariablesSkipped() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameLocalVariablesSkipped.java"),
+                expected);
+    }
+
+    @Test
+    public void testInterfaceAndAnnotationSkipped() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameInterfaceAnnotationSkipped.java"),
+                expected);
+    }
+
+    @Test
+    public void testInnerClasses() throws Exception {
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Inner_Bad"),
+            "19:17: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Nested_Bad"),
+            "28:13: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Static_Bad"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameInnerClasses.java"), expected);
+    }
+
+    @Test
+    public void testStaticFinalFieldNameSkipped() throws Exception {
+        final String[] expected = {};
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameStaticFinalSkipped.java"), expected);
+    }
+
+    @Test
+    public void testNonConstantFieldNameMixedModifiers() throws Exception {
+        final String[] expected = {
+            "25:15: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Final_Instance"),
+            "28:22: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Public_Final"),
+            "31:23: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "mPrivateFinal"),
+            "34:25: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "f"),
+            "42:9: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Instance_Bad"),
+            "45:16: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "Public_Bad"),
+            "48:17: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "mField"),
+            "51:19: " + getCheckMessage(MSG_KEY_INVALID_FORMAT, "a"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputGoogleNonConstantFieldNameMixedModifiers.java"), expected);
+    }
+}
