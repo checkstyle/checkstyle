@@ -167,5 +167,9 @@
   <!-- Example must show PackageDeclaration violations -->
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
-
+  <!-- Can't add violations to another lines because of design of the check. -->
+  <suppress checks="LineLength"
+            files="src[\\/]xdocs-examples[\\/]resources[\\/].*[\\/]lineending/Example3.java"/>
+  <suppress checks="LineLength"
+            files="src[\\/]xdocs-examples[\\/]resources[\\/].*[\\/]lineending/Example4.java"/>
 </suppressions>
