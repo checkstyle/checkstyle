@@ -687,6 +687,75 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testOrderOfCheckExecutionByIdNaturalOrder() {
+        // Create two checks of the same type with IDs that differ lexicographically
+        // ID "a" should come before "z" in natural order
+        final DefaultConfiguration configuration1 = createModuleConfig(IdAwareCheck.class);
+        configuration1.addProperty("id", "z");
+
+        final DefaultConfiguration configuration2 = createModuleConfig(IdAwareCheck.class);
+        configuration2.addProperty("id", "a");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        // Add in reverse order to verify sorting works - z first, then a
+        treeWalkerConfig.addChild(configuration1);
+        treeWalkerConfig.addChild(configuration2);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Exception ex = TestUtil.getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    verify(createChecker(treeWalkerConfig), getPath("InputTreeWalker2.java"),
+                            expected);
+                },
+                "Exception is expected");
+
+        // Both checks have the same class name (IdAwareCheck), so they are sorted by ID
+        // "a" comes before "z" in natural order, so the check with id "a" executes first
+        // Without naturalOrder(), the ordering would be different (likely by hashCode)
+        assertWithMessage("wrong order of Check executions - checks should be ordered by ID")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("a");
+    }
+
+    @Test
+    public void testOrderOfCheckExecutionWithIdSorting() {
+        // Create two checks with same class but null IDs
+        // They would be sorted by hashCode if thenComparing is removed
+        // But with thenComparing, nulls are handled consistently
+        final DefaultConfiguration config1 = createModuleConfig(IdAwareCheck.class);
+        config1.addProperty("id", "z");
+
+        final DefaultConfiguration config2 = createModuleConfig(IdAwareCheck.class);
+        config2.addProperty("id", "a");
+
+        final DefaultConfiguration config3 = createModuleConfig(IdAwareCheck.class);
+        config3.addProperty("id", "m");
+
+        final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
+        // Add in mixed order
+        treeWalkerConfig.addChild(config3);
+        treeWalkerConfig.addChild(config1);
+        treeWalkerConfig.addChild(config2);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Exception ex = TestUtil.getExpectedThrowable(CheckstyleException.class,
+                () -> {
+                    verify(createChecker(treeWalkerConfig), getPath("InputTreeWalker2.java"),
+                            expected);
+                },
+                "Exception is expected");
+
+        // With thenComparing by ID: sorted as "a", "m", "z"
+        // Without thenComparing (NakedReceiverMutator): sorted by hashCode only
+        // The first check to execute must be "a" (alphabetically first)
+        assertWithMessage("Checks should be sorted by ID, not just by class name and hashCode")
+                .that(ex.getCause().getMessage())
+                .isEqualTo("a");
+    }
+
+    @Test
     public void testSkipFileOnJavaParseExceptionTrue() throws Exception {
         final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
         config.addProperty("skipFileOnJavaParseException", "true");
@@ -961,6 +1030,35 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         @Override
         public int[] getAcceptableTokens() {
             return CommonUtil.EMPTY_INT_ARRAY;
+        }
+
+    }
+
+    /**
+     * Check that throws exception with its ID in the message.
+     * Used to verify that checks are sorted by ID using natural order.
+     */
+    public static class IdAwareCheck extends AbstractCheck {
+
+        @Override
+        public int[] getDefaultTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getAcceptableTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] getRequiredTokens() {
+            return new int[0];
+        }
+
+        @Override
+        public void beginTree(DetailAST rootAST) {
+            // Throw exception with the check's ID so we can verify execution order
+            throw new IllegalStateException(getId());
         }
 
     }
