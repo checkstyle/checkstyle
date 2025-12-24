@@ -73,4 +73,25 @@ public class FollowingIteratorTest {
                     .isNull();
         }
     }
+
+    @Test
+    public void testSiblingEnumIsClearedOnExhaustion() throws Exception {
+        final NodeInfo startNode = findNode("CLASS_DEF");
+
+        try (FollowingIterator iterator = new FollowingIterator(startNode)) {
+            NodeInfo node = iterator.next();
+            while (node != null) {
+                node = iterator.next();
+            }
+
+            final java.lang.reflect.Field field =
+                FollowingIterator.class.getDeclaredField("siblingEnum");
+            field.setAccessible(true);
+            final Object siblingEnum = field.get(iterator);
+
+            assertWithMessage("siblingEnum member variable should be null after exhaustion")
+                    .that(siblingEnum)
+                    .isNull();
+        }
+    }
 }
