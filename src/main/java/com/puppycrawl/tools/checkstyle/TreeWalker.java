@@ -87,7 +87,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     private boolean skipFileOnJavaParseException;
 
     /** Specify severity Level to log Java parsing exceptions when they are skipped. */
-    private SeverityLevel javaParseExceptionSeverity = SeverityLevel.ERROR;
+    private SeverityLevel javaParseExceptionSeverity;
 
     /**
      * Creates a new {@code TreeWalker} instance.
