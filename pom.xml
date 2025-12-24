@@ -3070,7 +3070,8 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor>
+          <!-- RegexChecker disabled, runtime exceptions are sufficient, see https://github.com/checkstyle/checkstyle/issues/12567 -->
+          <!-- <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor> -->
                 <annotationProcessor>org.checkerframework.checker.propkey.PropertyKeyChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.compilermsgs.CompilerMessagesChecker</annotationProcessor>
               </annotationProcessors>

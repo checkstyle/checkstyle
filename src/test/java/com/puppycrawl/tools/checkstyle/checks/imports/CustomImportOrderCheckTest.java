@@ -49,7 +49,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     private static final String SPECIAL = CustomImportOrderCheck.SPECIAL_IMPORTS_RULE_GROUP;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/imports/customimportorder";
     }
 

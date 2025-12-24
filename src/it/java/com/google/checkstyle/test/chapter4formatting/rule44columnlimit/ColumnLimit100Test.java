@@ -26,7 +26,7 @@ import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule44columnlimit";
     }
 

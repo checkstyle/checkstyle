@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class SeparatorWrapExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/separatorwrap";
     }
 

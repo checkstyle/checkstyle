@@ -40,7 +40,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/avoiddoublebraceinitialization";
     }
 

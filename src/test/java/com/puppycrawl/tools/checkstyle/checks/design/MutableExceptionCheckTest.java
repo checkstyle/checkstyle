@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/design/mutableexception";
     }
 

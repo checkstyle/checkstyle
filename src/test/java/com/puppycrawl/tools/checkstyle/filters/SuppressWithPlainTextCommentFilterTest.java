@@ -61,7 +61,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppresswithplaintextcommentfilter";
     }
 

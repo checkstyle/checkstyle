@@ -57,7 +57,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
     private MainFrame mainFrame;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/gui/mainframe";
     }
 

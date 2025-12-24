@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/"
             + "unnecessarysemicoloninenumeration";
     }

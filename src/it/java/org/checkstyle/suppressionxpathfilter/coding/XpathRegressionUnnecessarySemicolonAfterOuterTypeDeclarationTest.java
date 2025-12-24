@@ -41,7 +41,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/"
             + "unnecessarysemicolonafteroutertypedeclaration";
     }

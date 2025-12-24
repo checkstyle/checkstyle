@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 public class BeforeExecutionExclusionFileFilterExamplesTest
         extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filefilters/beforeexecutionexclusionfilefilter";
     }
 

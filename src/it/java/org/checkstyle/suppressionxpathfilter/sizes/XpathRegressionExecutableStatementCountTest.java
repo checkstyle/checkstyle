@@ -39,7 +39,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/sizes/executablestatementcount";
     }
 

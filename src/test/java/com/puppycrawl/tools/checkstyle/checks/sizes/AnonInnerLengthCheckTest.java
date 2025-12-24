@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/anoninnerlength";
     }
 
@@ -78,13 +78,21 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonDefault() throws Exception {
+    public void testNonDefaultOne() throws Exception {
         final String[] expected = {
-            "54:35: " + getCheckMessage(MSG_KEY, 21, 6),
-            "79:35: " + getCheckMessage(MSG_KEY, 20, 6),
+            "52:35: " + getCheckMessage(MSG_KEY, 21, 6),
         };
         verifyWithInlineConfigParser(
-                getPath("InputAnonInnerLength2.java"), expected);
+                getPath("InputAnonInnerLength2PartOne.java"), expected);
+    }
+
+    @Test
+    public void testNonDefaultTwo() throws Exception {
+        final String[] expected = {
+            "22:35: " + getCheckMessage(MSG_KEY, 20, 6),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputAnonInnerLength2PartTwo.java"), expected);
     }
 
 }

@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class JavaParserTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/javaparser";
     }
 
