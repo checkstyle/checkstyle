@@ -186,6 +186,36 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavaParseExceptionSeverityDefaultIsError() throws Exception {
+        final DefaultConfiguration treeWalkerConfig =
+                createModuleConfig(TreeWalker.class);
+        treeWalkerConfig.addProperty("skipFileOnJavaParseException", "true");
+
+        treeWalkerConfig.addChild(
+                createModuleConfig(NoCodeInFileCheck.class));
+
+        final Checker checker = createChecker(treeWalkerConfig);
+
+        final File[] files = {
+            new File(getNonCompilablePath(
+                    "InputTreeWalkerSkipParsingException.java")),
+        };
+
+        final Map<String, List<String>> expectedViolations = new HashMap<>();
+        expectedViolations.put(
+                getNonCompilablePath("InputTreeWalkerSkipParsingException.java"),
+                List.of(
+                    "1: Java specific (TreeWalker-based) modules are skipped due to an "
+                        + "exception during parsing - IllegalStateException "
+                        + "occurred while parsing file "
+                        + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."
+                )
+        );
+
+        verify(checker, files, expectedViolations);
+    }
+
+    @Test
     public void testImproperFileExtension() throws Exception {
         final String regularFilePath = getPath("InputTreeWalkerImproperFileExtension.java");
         final File originalFile = new File(regularFilePath);
@@ -964,5 +994,4 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
 
     }
-
 }
