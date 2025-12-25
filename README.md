@@ -174,8 +174,8 @@ Checkstyle uses libraries:
 [semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
 [semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
 
-[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
-[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+[azure]:https://dev.azure.com/checkstyle/checkstyle/_build/latest?definitionId=1&branchName=master
+[azure img]:https://dev.azure.com/checkstyle/checkstyle/_apis/build/status/checkstyle.checkstyle?branchName=master
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg
