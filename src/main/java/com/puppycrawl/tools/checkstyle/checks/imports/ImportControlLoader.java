@@ -82,6 +82,14 @@ public final class ImportControlLoader extends XmlLoader {
     private static final String DTD_PUBLIC_CS_ID_1_4 =
         "-//Checkstyle//DTD ImportControl Configuration 1.4//EN";
 
+    /** The public ID for the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_5 =
+        "-//Puppy Crawl//DTD Import Control 1.5//EN";
+
+    /** The new public ID for version 1_5 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_5 =
+        "-//Checkstyle//DTD ImportControl Configuration 1.5//EN";
+
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_0 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_0.dtd";
@@ -101,6 +109,10 @@ public final class ImportControlLoader extends XmlLoader {
     /** The resource for the configuration dtd. */
     private static final String DTD_RESOURCE_NAME_1_4 =
         "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_4.dtd";
+
+    /** The resource for the configuration dtd. */
+    private static final String DTD_RESOURCE_NAME_1_5 =
+        "com/puppycrawl/tools/checkstyle/checks/imports/import_control_1_5.dtd";
 
     /** The map to look up the resource name by the id. */
     private static final Map<String, String> DTD_RESOURCE_BY_ID = new HashMap<>();
@@ -138,11 +150,13 @@ public final class ImportControlLoader extends XmlLoader {
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_ID_1_5, DTD_RESOURCE_NAME_1_5);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_0, DTD_RESOURCE_NAME_1_0);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_1, DTD_RESOURCE_NAME_1_1);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_2, DTD_RESOURCE_NAME_1_2);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_3, DTD_RESOURCE_NAME_1_3);
         DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_4, DTD_RESOURCE_NAME_1_4);
+        DTD_RESOURCE_BY_ID.put(DTD_PUBLIC_CS_ID_1_5, DTD_RESOURCE_NAME_1_5);
     }
 
     /**
@@ -210,9 +224,14 @@ public final class ImportControlLoader extends XmlLoader {
         final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
         final boolean isLocalOnly = attributes.getValue("local-only") != null;
         final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
+        final String module = attributes.getValue("module");
         final boolean regex = containsRegexAttribute(attributes);
         final AbstractImportRule rule;
-        if (pkg == null) {
+
+        if (module != null) {
+            rule = new ModuleImportRule(isAllow, isLocalOnly, module, regex);
+        }
+        else if (pkg == null) {
             // handle class names which can be normal class names or regular
             // expressions
             final String clazz = safeGet(attributes, "class");
