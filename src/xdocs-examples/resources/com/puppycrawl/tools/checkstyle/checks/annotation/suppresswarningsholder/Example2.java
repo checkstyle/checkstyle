@@ -14,7 +14,7 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarningsholder;
 
 // xdoc section -- start
-class Example2 {
+public class Example2 {
   // violation below, 'More than 7 parameters (found 8)'
   public void needsLotsOfParameters (int a,
     int b, int c, int d, int e, int f, int g, int h) {
