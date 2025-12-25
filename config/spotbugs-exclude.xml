@@ -431,16 +431,6 @@
   <!-- until https://github.com/checkstyle/checkstyle/issues/17720 -->
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
-    <Field name="tabWidth" />
-    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck$ScopeState" />
-    <Field name="currentScopeState" />
-    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
-  </Match>
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
     <Field name="suppressionLineColumnNumber" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
   </Match>
