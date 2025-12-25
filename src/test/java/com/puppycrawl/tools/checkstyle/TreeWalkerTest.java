@@ -52,12 +52,15 @@ import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck;
@@ -833,6 +836,74 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverityCustom() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(TreeWalker.class);
+        config.addProperty("skipFileOnJavaParseException", "true");
+        config.addChild(createModuleConfig(NoCodeInFileCheck.class));
+
+        final Checker checker = createChecker(config);
+
+        final List<AuditEvent> events = new ArrayList<>();
+
+        final List<File> file =
+            List.of(new File(getNonCompilablePath("InputTreeWalkerSkipParsingException.java")));
+        checker.addListener(new AuditListenerAdapter() {
+            @Override
+            public void addError(AuditEvent event) {
+                events.add(event);
+            }
+        });
+        checker.process(file);
+
+        assertWithMessage("Expected exactly one parsing error")
+                .that(events)
+                .hasSize(1);
+        final AuditEvent event = events.get(0);
+
+        assertWithMessage("Severity must not be null")
+                .that(event.getSeverityLevel())
+                .isNotNull();
+
+        assertWithMessage("Default severity must be ERROR")
+                .that(event.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
+    }
+
+    private static class AuditListenerAdapter implements AuditListener {
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            // Empty
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            // Empty
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            // Empty
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            // Empty
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            // Empty
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            // Empty
+        }
+
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
