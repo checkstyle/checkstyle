@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -243,7 +244,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
         final boolean result;
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
-            if (isInterfaceDeclaration(ast)) {
+            if (!TokenUtil.isTopLevelNode(ast) && isInterfaceDeclaration(ast)) {
                 // field declarations in interface are static/final
                 result = ignoreStaticFinal;
             }

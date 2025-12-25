@@ -178,6 +178,7 @@ public class RequireThisCheck extends AbstractCheck {
     @Override
     public int[] getRequiredTokens() {
         return new int[] {
+            TokenTypes.COMPILATION_UNIT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -222,9 +223,10 @@ public class RequireThisCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
             case TokenTypes.IDENT -> processIdent(ast);
-            case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
-                 TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF ->
+            case TokenTypes.COMPILATION_UNIT, TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST,
+                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR,
+                 TokenTypes.RECORD_DEF ->
                 current.push(frames.get(ast));
             case TokenTypes.LITERAL_TRY -> {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
@@ -240,9 +242,9 @@ public class RequireThisCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
-                 TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR,
+            case TokenTypes.COMPILATION_UNIT, TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST,
+                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF, TokenTypes.LITERAL_FOR,
                  TokenTypes.RECORD_DEF -> current.pop();
             case TokenTypes.LITERAL_TRY -> {
                 if (current.peek().getType() == FrameType.TRY_WITH_RESOURCES_FRAME) {
@@ -319,12 +321,11 @@ public class RequireThisCheck extends AbstractCheck {
      *         'this' and null otherwise.
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
-        final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
         final boolean typeName = parentType == TokenTypes.TYPE
                 || parentType == TokenTypes.LITERAL_NEW;
         AbstractFrame frame = null;
 
-        if (!importOrPackage
+        if (!isInImportOrPackage(ast)
                 && !typeName
                 && !isDeclarationToken(parentType)
                 && !isLambdaParameter(ast)) {
@@ -335,6 +336,26 @@ public class RequireThisCheck extends AbstractCheck {
             }
         }
         return frame;
+    }
+
+    /**
+     * Checks whether given node is in an import or package definition.
+     *
+     * @param ast The node to check
+     * @return true if node is in an import or package definition, false otherwise
+     */
+    private static boolean isInImportOrPackage(DetailAST ast) {
+        boolean isInImportOrPackage = false;
+        DetailAST parent = ast;
+        while (parent != null) {
+            if (TokenUtil.isImportType(parent.getType())
+                    || parent.getType() == TokenTypes.PACKAGE_DEF) {
+                isInImportOrPackage = true;
+                break;
+            }
+            parent = parent.getParent();
+        }
+        return isInImportOrPackage;
     }
 
     /**
@@ -387,6 +408,8 @@ public class RequireThisCheck extends AbstractCheck {
                     frame.addIdent(resourceIdent);
                 }
             }
+
+            case TokenTypes.COMPILATION_UNIT -> frameStack.addFirst(new CompilationUnitFrame());
 
             case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
                  TokenTypes.ANNOTATION_DEF, TokenTypes.RECORD_DEF -> {
@@ -488,10 +511,10 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private void endCollectingDeclarations(Queue<AbstractFrame> frameStack, DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
-                 TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST, TokenTypes.METHOD_DEF,
-                 TokenTypes.CTOR_DEF, TokenTypes.LITERAL_CATCH, TokenTypes.LITERAL_FOR,
-                 TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF ->
+            case TokenTypes.COMPILATION_UNIT, TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ENUM_DEF, TokenTypes.ANNOTATION_DEF, TokenTypes.SLIST,
+                 TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF, TokenTypes.LITERAL_CATCH,
+                 TokenTypes.LITERAL_FOR, TokenTypes.RECORD_DEF, TokenTypes.COMPACT_CTOR_DEF ->
                 frames.put(ast, frameStack.poll());
 
             case TokenTypes.LITERAL_NEW -> {
@@ -1583,6 +1606,24 @@ public class RequireThisCheck extends AbstractCheck {
             return FrameType.TRY_WITH_RESOURCES_FRAME;
         }
 
+    }
+
+    /**
+     * A frame initiated at compilation unit root level. There can only be one such frame.
+     */
+    private static class CompilationUnitFrame extends ClassFrame {
+
+        /**
+         * Creates compilation unit frame.
+         */
+        protected CompilationUnitFrame() {
+            super(null, null);
+        }
+
+        @Override
+        protected String getFrameName() {
+            return "CompilationUnit";
+        }
     }
 
 }

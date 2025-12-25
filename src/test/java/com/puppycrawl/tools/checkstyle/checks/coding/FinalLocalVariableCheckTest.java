@@ -449,4 +449,22 @@ public class FinalLocalVariableCheckTest
             getPath("InputFinalLocalVariableInterface.java"),
             expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "14:13: " + getCheckMessage(MSG_KEY, "left"),
+            "14:23: " + getCheckMessage(MSG_KEY, "right"),
+            "18:9: " + getCheckMessage(MSG_KEY, "base"),
+            "25:14: " + getCheckMessage(MSG_KEY, "args"),
+            "28:17: " + getCheckMessage(MSG_KEY, "s"),
+            "32:12: " + getCheckMessage(MSG_KEY, "report"),
+            "35:12: " + getCheckMessage(MSG_KEY, "_"),
+            "36:9: " + getCheckMessage(MSG_KEY, "result"),
+            "39:14: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+            getNonCompilablePath("InputFinalLocalVariableCompactSourceFile.java"),
+            expected);
+    }
 }

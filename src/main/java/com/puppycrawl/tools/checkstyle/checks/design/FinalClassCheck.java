@@ -149,7 +149,8 @@ public class FinalClassCheck
 
             case TokenTypes.LITERAL_NEW -> {
                 if (ast.getFirstChild() != null
-                        && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                        && ast.getLastChild().getType() == TokenTypes.OBJBLOCK
+                        && !typeDeclarations.isEmpty()) {
                     anonInnerClassToOuterTypeDecl
                         .put(ast, typeDeclarations.peek().getQualifiedName());
                 }

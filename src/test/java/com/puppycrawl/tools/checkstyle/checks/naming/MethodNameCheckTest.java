@@ -234,4 +234,24 @@ public class MethodNameCheckTest
                 getPath("InputMethodNameProperties.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "25:6: " + getCheckMessage(MSG_INVALID_PATTERN, "Helper", "^[a-z][a-zA-Z0-9]*$"),
+            "29:6: " + getCheckMessage(MSG_INVALID_PATTERN, "h$elper", "^[a-z][a-zA-Z0-9]*$"),
+            "31:6: " + getCheckMessage(MSG_INVALID_PATTERN, "h_elper", "^[a-z][a-zA-Z0-9]*$"),
+            "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "lo_cal", "^[a-z][a-zA-Z0-9]*$"),
+            "43:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Anon", "^[a-z][a-zA-Z0-9]*$"),
+            "45:10: " + getCheckMessage(MSG_INVALID_PATTERN, "an_on", "^[a-z][a-zA-Z0-9]*$"),
+            "52:8: " + getCheckMessage(MSG_INVALID_PATTERN, "BadName", "^[a-z][a-zA-Z0-9]*$"),
+            "66:8: " + getCheckMessage(MSG_INVALID_PATTERN, "NotOk", "^[a-z][a-zA-Z0-9]*$"),
+            "72:6: " + getCheckMessage(MSG_INVALID_PATTERN, "tagged_Method",
+                    "^[a-z][a-zA-Z0-9]*$"),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMethodNameCompactSourceFile.java"),
+                expected);
+    }
+
 }

@@ -215,7 +215,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isVariableInForInit(ast)
                         && shouldCheckEnhancedForLoopVariable(ast)
-                        && shouldCheckUnnamedVariable(ast)) {
+                        && shouldCheckUnnamedVariable(ast)
+                        && !scopeStack.isEmpty()) {
                     insertVariable(ast);
                 }
             }
