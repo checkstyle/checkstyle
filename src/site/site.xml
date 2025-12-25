@@ -341,6 +341,7 @@
           <item name="ParenPad" href="checks/whitespace/parenpad.html"/>
           <item name="SeparatorWrap" href="checks/whitespace/separatorwrap.html"/>
           <item name="SingleSpaceSeparator" href="checks/whitespace/singlespaceseparator.html"/>
+          <item name="TypeBodyPadding" href="checks/whitespace/typebodypadding.html"/>
           <item name="TypecastParenPad" href="checks/whitespace/typecastparenpad.html"/>
           <item name="WhitespaceAfter" href="checks/whitespace/whitespaceafter.html"/>
           <item name="WhitespaceAround" href="checks/whitespace/whitespacearound.html"/>

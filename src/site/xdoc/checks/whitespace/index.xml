@@ -159,6 +159,16 @@
           </tr>
           <tr>
             <td>
+              <a href="typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              Checks the padding policy for type bodies.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="typecastparenpad.html#TypecastParenPad">
                 TypecastParenPad
               </a>
