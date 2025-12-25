@@ -79,7 +79,7 @@
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
   <!-- they are aggregators of logic, usage a several of classes is ok -->
   <suppress checks="ClassDataAbstractionCoupling"
-             files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser|ElementNode|SarifLogger)\.java"/>
+             files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser|ElementNode|SarifLogger|ImportControlLoader)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
