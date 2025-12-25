@@ -217,4 +217,32 @@ public class ImportControlCheckExamplesTest extends AbstractExamplesModuleTestSu
         verifyWithInlineXmlConfig(getPath("Example12.java"), expected);
     }
 
+    @Test
+    public void testExample13() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.logging"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example13.java"), expected);
+    }
+
+    @Test
+    public void testExample14() throws Exception {
+        final String[] expected = {
+            "16:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.sql"),
+            "17:1: " + getCheckMessage(
+                    ImportControlCheck.MSG_DISALLOWED, "java.xml"),
+        };
+
+        System.setProperty("config.folder", "src/xdocs-examples/resources/"
+            + getPackageLocation());
+        verifyWithInlineXmlConfig(getNonCompilablePath("Example14.java"), expected);
+    }
+
 }
