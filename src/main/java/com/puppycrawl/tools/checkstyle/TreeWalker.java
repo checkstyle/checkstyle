@@ -127,6 +127,16 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         this.javaParseExceptionSeverity = javaParseExceptionSeverity;
     }
 
+    /**
+     * Gets the severity level to log Java parsing exceptions when they are skipped.
+     *
+     * @return severity level to log parsing exceptions when they are skipped.
+     * @since 12.3.1
+     */
+    public SeverityLevel getJavaParseExceptionSeverity() {
+        return javaParseExceptionSeverity;
+    }
+
     @Override
     public void finishLocalSetup() {
         final DefaultContext checkContext = new DefaultContext();
