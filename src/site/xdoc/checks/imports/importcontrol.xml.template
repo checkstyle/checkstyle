@@ -404,6 +404,32 @@
           <param name="type" value="code"/>
         </macro><hr class="example-separator"/>
 
+        <p id="Example13-config">
+          To configure the check using an import control file called
+          "${config.folder}/import-control13.xml" for module imports (Java 25+):
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="import-control13-raw">
+          Import control configuration:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/import-control13.xml"/>
+          <param name="type" value="raw"/>
+        </macro>
+        <p id="Example13-code">
+          Results:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources-noncompilable/com/puppycrawl/tools/checkstyle/checks/imports/importcontrol/Example13.java"/>
+          <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
         <h4 id="regex-notes">Notes on regular expressions</h4>
         <p>
           Regular expressions in import rules have to match either Java packages or
@@ -472,6 +498,23 @@
   &lt;allow class="java.util.Map.*" regex="true" /&gt;
 &lt;/import-control&gt;
         </code></pre></div>
+        <h4 id="module-import-notes">Notes on module imports</h4>
+        <p>
+          Java 25 introduced module imports (<code>import module</code>). The check supports
+          controlling module imports using the <code>module</code> attribute in allow/disallow
+          rules:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;import-control pkg="com.example"&gt;
+    &lt;allow module="java.base"/&gt;
+    &lt;disallow module="java.sql"/&gt;
+    &lt;disallow module="java\.logging" regex="true"/&gt;
+&lt;/import-control&gt;
+        </code></pre></div>
+        <p>
+          The <code>module</code> attribute supports both exact module names and regular expressions
+          (when <code>regex="true"</code> is specified).
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="ImportControl_Example_of_Usage">
