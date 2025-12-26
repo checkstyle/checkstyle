@@ -46,7 +46,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathOne.java"));
 
@@ -72,7 +72,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathTwo.java"));
 
@@ -97,7 +97,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedQuoteString() throws Exception {
+    public void testEncodedQuoteString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedQuoteString.java"));
 
@@ -126,7 +126,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedLessString() throws Exception {
+    public void testEncodedLessString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedLessString.java"));
 
@@ -155,7 +155,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedNewLineString() throws Exception {
+    public void testEncodedNewLineString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedNewLineString.java"));
 
@@ -184,7 +184,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void greaterString() throws Exception {
+    public void testGreaterString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedGreaterString.java"));
 
@@ -213,7 +213,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedAmpString() throws Exception {
+    public void testEncodedAmpString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedAmpString.java"));
 
@@ -242,7 +242,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedAposString() throws Exception {
+    public void testEncodedAposString() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedAposString.java"));
 
@@ -271,7 +271,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedCarriageString() throws Exception {
+    public void testEncodedCarriageString() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathMatchXpathEncodedCarriageString.java"));
 
@@ -300,7 +300,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedAmpersandChars() throws Exception {
+    public void testEncodedAmpersandChars() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedAmpChar.java"));
 
@@ -329,7 +329,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedQuoteChar() throws Exception {
+    public void testEncodedQuoteChar() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedQuoteChar.java"));
 
@@ -358,7 +358,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedLessChar() throws Exception {
+    public void testEncodedLessChar() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedLessChar.java"));
 
@@ -387,7 +387,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedAposChar() throws Exception {
+    public void testEncodedAposChar() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedAposChar.java"));
 
@@ -416,7 +416,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void encodedGreaterChar() throws Exception {
+    public void testEncodedGreaterChar() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathEncodedGreaterChar.java"));
 
@@ -447,7 +447,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void following() throws Exception {
+    public void testFollowing() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMatchXpathThree.java"));
 

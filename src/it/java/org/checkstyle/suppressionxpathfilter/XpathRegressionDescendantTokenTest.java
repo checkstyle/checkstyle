@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.DescendantTokenCheck;
 
-class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
+public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
 
     private final String checkName = DescendantTokenCheck.class.getSimpleName();
 
@@ -37,7 +37,7 @@ class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void switchNoDefault() throws Exception {
+    public void testSwitchNoDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenSwitchNoDefault.java"));
 
@@ -65,7 +65,7 @@ class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void switchTooManyCases() throws Exception {
+    public void testSwitchTooManyCases() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenSwitchTooManyCases.java"));
 
@@ -94,7 +94,7 @@ class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void nestedSwitch() throws Exception {
+    public void testNestedSwitch() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenNestedSwitch.java"));
 

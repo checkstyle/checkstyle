@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.UpperEllCheck;
 
-class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
+public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
 
     private final String checkName = UpperEllCheck.class.getSimpleName();
 
@@ -38,7 +38,7 @@ class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void upperEllOne() throws Exception {
+    public void testUpperEllOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUpperEllOne.java"));
 
@@ -65,7 +65,7 @@ class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void upperEllTwo() throws Exception {
+    public void testUpperEllTwo() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathUpperEllTwo.java"));
 

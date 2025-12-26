@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 
 import net.sf.saxon.om.NodeInfo;
 
-class PrecedingIteratorTest {
+public class PrecedingIteratorTest {
 
     @Test
-    void precedingNodes() {
+    public void testPrecedingNodes() {
         final NodeInfo startNode = findNode("SLIST");
 
         try (PrecedingIterator iterator = new PrecedingIterator(startNode)) {
@@ -70,7 +70,7 @@ class PrecedingIteratorTest {
     }
 
     @Test
-    void noParent() {
+    public void testNoParent() {
         final NodeInfo startNode = findNode("ROOT");
 
         try (PrecedingIterator iterator = new PrecedingIterator(startNode)) {
@@ -81,7 +81,7 @@ class PrecedingIteratorTest {
     }
 
     @Test
-    void reverseOrderOfDescendants() {
+    public void testReverseOrderOfDescendants() {
         final NodeInfo startNode = findNode("RCURLY");
 
         try (PrecedingIterator iterator = new PrecedingIterator(startNode)) {
@@ -122,7 +122,7 @@ class PrecedingIteratorTest {
     }
 
     @Test
-    void noSibling() {
+    public void testNoSibling() {
         final NodeInfo startNode = findNode("ANNOTATIONS");
 
         try (PrecedingIterator iterator = new PrecedingIterator(startNode)) {

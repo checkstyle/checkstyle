@@ -45,7 +45,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
     }
 
     @Test
-    void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTrailingCommaLinear.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
     }
 
     @Test
-    void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTrailingCommaMatrix.java"));
 

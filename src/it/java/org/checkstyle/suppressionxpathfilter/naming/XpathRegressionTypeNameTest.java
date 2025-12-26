@@ -45,7 +45,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTypeNameDefault.java"));
 
@@ -69,7 +69,7 @@ public class XpathRegressionTypeNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void interfaceDef() throws Exception {
+    public void testInterfaceDef() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTypeNameInterfaceDef.java"));
 

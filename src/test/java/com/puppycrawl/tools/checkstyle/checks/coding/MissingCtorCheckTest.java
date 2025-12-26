@@ -34,7 +34,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void missingCtorEmptyClass() throws Exception {
+    public void testMissingCtorEmptyClass() throws Exception {
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
@@ -46,7 +46,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final MissingCtorCheck check = new MissingCtorCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -60,7 +60,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void missingCtorNestedClasses() throws Exception {
+    public void testMissingCtorNestedClasses() throws Exception {
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),

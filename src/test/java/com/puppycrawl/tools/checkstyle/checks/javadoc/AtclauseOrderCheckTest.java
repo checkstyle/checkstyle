@@ -36,7 +36,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -45,7 +45,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -54,7 +54,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void correct1() throws Exception {
+    public void testCorrect1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -62,7 +62,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void correct2() throws Exception {
+    public void testCorrect2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -70,7 +70,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void correct3() throws Exception {
+    public void testCorrect3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -78,7 +78,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void correct4() throws Exception {
+    public void testCorrect4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -86,7 +86,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect1() throws Exception {
+    public void testIncorrect1() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -110,7 +110,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect2() throws Exception {
+    public void testIncorrect2() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -134,7 +134,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect3() throws Exception {
+    public void testIncorrect3() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -152,7 +152,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect4() throws Exception {
+    public void testIncorrect4() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -177,7 +177,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrectCustom1() throws Exception {
+    public void testIncorrectCustom1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -185,7 +185,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrectCustom2() throws Exception {
+    public void testIncorrectCustom2() throws Exception {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
@@ -196,7 +196,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrectCustom3() throws Exception {
+    public void testIncorrectCustom3() throws Exception {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
@@ -207,7 +207,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrectCustom4() throws Exception {
+    public void testIncorrectCustom4() throws Exception {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
@@ -218,7 +218,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void packageInfo() throws Exception {
+    public void testPackageInfo() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -226,7 +226,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclauseOrderRecords() throws Exception {
+    public void testAtclauseOrderRecords() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception,"
             + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
 
@@ -245,7 +245,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void methodReturningArrayType() throws Exception {
+    public void testMethodReturningArrayType() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -258,7 +258,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclauseOrderLotsOfRecords1() throws Exception {
+    public void testAtclauseOrderLotsOfRecords1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -266,7 +266,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclauseOrderLotsOfRecords2() throws Exception {
+    public void testAtclauseOrderLotsOfRecords2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -274,7 +274,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclauseOrderLotsOfRecords3() throws Exception {
+    public void testAtclauseOrderLotsOfRecords3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -282,7 +282,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclauseOrderLotsOfRecords4() throws Exception {
+    public void testAtclauseOrderLotsOfRecords4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -290,7 +290,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void atclause() throws Exception {
+    public void testAtclause() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
         final String[] expected = {
@@ -322,7 +322,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void newArrayDeclaratorStructure() throws Exception {
+    public void testNewArrayDeclaratorStructure() throws Exception {
         final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
                 + " @since, @serial, @serialField, @serialData, @deprecated]";
 
@@ -339,7 +339,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void trim() throws Exception {
+    public void testTrim() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAtclauseOrder1.java"),

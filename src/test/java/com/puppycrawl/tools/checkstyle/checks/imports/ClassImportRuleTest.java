@@ -23,10 +23,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
-class ClassImportRuleTest {
+public class ClassImportRuleTest {
 
     @Test
-    void classImportRule() {
+    public void testClassImportRule() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", false);
         assertWithMessage("Class import rule should not be null")
             .that(rule)
@@ -52,7 +52,7 @@ class ClassImportRuleTest {
     }
 
     @Test
-    void classImportRuleRegexpSimple() {
+    public void testClassImportRuleRegexpSimple() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", true);
         assertWithMessage("Class import rule should not be null")
             .that(rule)
@@ -78,7 +78,7 @@ class ClassImportRuleTest {
     }
 
     @Test
-    void classImportRuleRegexp() {
+    public void testClassImportRuleRegexp() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pk[gx]\\.a", true);
         assertWithMessage("Class import rule should not be null")
             .that(rule)

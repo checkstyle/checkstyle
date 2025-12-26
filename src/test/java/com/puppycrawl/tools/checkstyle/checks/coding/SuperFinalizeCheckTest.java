@@ -34,7 +34,7 @@ public class SuperFinalizeCheckTest
     }
 
     @Test
-    void it() throws Exception {
+    public void testIt() throws Exception {
         final String[] expected = {
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "41:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
@@ -45,7 +45,7 @@ public class SuperFinalizeCheckTest
     }
 
     @Test
-    void methodReference() throws Exception {
+    public void testMethodReference() throws Exception {
         final String[] expected = {
             "23:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };

@@ -46,7 +46,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathLambdaParameterNameDefault.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    void nonDefaultPattern() throws Exception {
+    public void testNonDefaultPattern() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathLambdaParameterNameNonDefaultPattern.java"));
 

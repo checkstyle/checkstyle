@@ -27,17 +27,17 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-class InlineTagUtilTest {
+public class InlineTagUtilTest {
 
     @Test
-    void hasPrivateConstructor() throws Exception {
+    public void testHasPrivateConstructor() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class))
                 .isTrue();
     }
 
     @Test
-    void testExtractInlineTags() {
+    public void testExtractInlineTags() {
         final String[] text = {
             "/** @see elsewhere ",
             " * {@link List }, {@link List link text }",
@@ -57,7 +57,7 @@ class InlineTagUtilTest {
     }
 
     @Test
-    void multiLineLinkTag() {
+    public void testMultiLineLinkTag() {
         final String[] text = {
             "/**",
             " * {@link foo",
@@ -73,7 +73,7 @@ class InlineTagUtilTest {
     }
 
     @Test
-    void collapseWhitespace() {
+    public void testCollapseWhitespace() {
         final String[] text = {
             "/**",
             " * {@code     foo\t\t   bar   baz\t    }",
@@ -88,7 +88,7 @@ class InlineTagUtilTest {
     }
 
     @Test
-    void extractInlineTags() {
+    public void extractInlineTags() {
         final String[] source = {
             "  {@link foo}",
         };
@@ -104,7 +104,7 @@ class InlineTagUtilTest {
     }
 
     @Test
-    void badInputExtractInlineTagsLineFeed() {
+    public void testBadInputExtractInlineTagsLineFeed() {
         try {
             InlineTagUtil.extractInlineTags("abc\ndef");
             assertWithMessage("IllegalArgumentException expected").fail();
@@ -117,7 +117,7 @@ class InlineTagUtilTest {
     }
 
     @Test
-    void badInputExtractInlineTagsCarriageReturn() {
+    public void testBadInputExtractInlineTagsCarriageReturn() {
         try {
             InlineTagUtil.extractInlineTags("abc\rdef");
             assertWithMessage("IllegalArgumentException expected").fail();

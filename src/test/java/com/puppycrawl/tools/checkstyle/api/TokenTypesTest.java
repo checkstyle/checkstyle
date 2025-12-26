@@ -33,10 +33,10 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
-class TokenTypesTest {
+public class TokenTypesTest {
 
     @Test
-    void allTokenTypesHasDescription() {
+    public void testAllTokenTypesHasDescription() {
         final String tokenTypes = "com.puppycrawl.tools.checkstyle.api.tokentypes";
         final ResourceBundle bundle = ResourceBundle.getBundle(tokenTypes, Locale.ROOT);
 
@@ -51,7 +51,7 @@ class TokenTypesTest {
     }
 
     @Test
-    void allDescriptionsEndsWithPeriod() {
+    public void testAllDescriptionsEndsWithPeriod() {
         final Set<String> badDescriptions = Arrays.stream(TokenUtil.getAllTokenIds())
             .mapToObj(TokenUtil::getTokenName)
             .filter(name -> name.charAt(0) != '$')
@@ -64,7 +64,7 @@ class TokenTypesTest {
     }
 
     @Test
-    void getShortDescription() {
+    public void testGetShortDescription() {
         assertWithMessage("short description for EQUAL")
                 .that(TokenUtil.getShortDescription("EQUAL"))
                 .isEqualTo("The <code>==</code> (equal) operator.");
@@ -91,7 +91,7 @@ class TokenTypesTest {
     }
 
     @Test
-    void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(TokenTypes.class))
                 .isTrue();

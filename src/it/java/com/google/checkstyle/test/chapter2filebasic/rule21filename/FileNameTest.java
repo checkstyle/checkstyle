@@ -31,17 +31,17 @@ public class FileNameTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void outerTypeFilename1() throws Exception {
+    public void testOuterTypeFilename1() throws Exception {
         verifyWithWholeConfig(getPath("InputFileName1.java"));
     }
 
     @Test
-    void outerTypeFilename2() throws Exception {
+    public void testOuterTypeFilename2() throws Exception {
         verifyWithWholeConfig(getPath("InputFileName2.java"));
     }
 
     @Test
-    void outerTypeFilename3() throws Exception {
+    public void testOuterTypeFilename3() throws Exception {
         verifyWithWholeConfig(getPath("InputFileName3.java"));
     }
 

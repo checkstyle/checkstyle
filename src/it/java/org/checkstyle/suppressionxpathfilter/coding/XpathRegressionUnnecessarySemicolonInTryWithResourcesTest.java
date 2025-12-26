@@ -47,7 +47,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathUnnecessarySemicolonInTryWithResourcesDefault.java"));
         final DefaultConfiguration moduleConfig =
@@ -66,7 +66,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     }
 
     @Test
-    void noBrace() throws Exception {
+    public void testNoBrace() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace.java"
         ));

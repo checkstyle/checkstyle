@@ -35,7 +35,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final IllegalImportCheck checkObj = new IllegalImportCheck();
         final int[] expected = {
             TokenTypes.IMPORT,
@@ -48,7 +48,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withSupplied()
+    public void testWithSupplied()
             throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -60,7 +60,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withDefault()
+    public void testWithDefault()
             throws Exception {
         final String[] expected = {};
         verifyWithInlineConfigParser(
@@ -68,7 +68,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void customSunPackageWithRegexp()
+    public void testCustomSunPackageWithRegexp()
             throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
@@ -78,7 +78,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final IllegalImportCheck testCheckObject =
                 new IllegalImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
@@ -94,7 +94,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalClasses()
+    public void testIllegalClasses()
             throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
@@ -106,7 +106,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalClassesStarImport()
+    public void testIllegalClassesStarImport()
             throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -118,7 +118,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalPackagesRegularExpression()
+    public void testIllegalPackagesRegularExpression()
             throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -134,7 +134,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalClassesRegularExpression()
+    public void testIllegalClassesRegularExpression()
             throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -146,7 +146,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalPackagesAndClassesRegularExpression()
+    public void testIllegalPackagesAndClassesRegularExpression()
             throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -166,7 +166,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalModulesNoRegex() throws Exception {
+    public void testIllegalModulesNoRegex() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "java.base"),
             "17:1: " + getCheckMessage(MSG_KEY, "java.logging"),
@@ -177,7 +177,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalModulesWithRegex() throws Exception {
+    public void testIllegalModulesWithRegex() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "java.base"),
             "17:1: " + getCheckMessage(MSG_KEY, "java.logging"),

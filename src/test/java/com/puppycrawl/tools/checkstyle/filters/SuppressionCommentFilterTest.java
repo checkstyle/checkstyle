@@ -112,7 +112,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void none() throws Exception {
+    public void testNone() throws Exception {
         final String[] messages = {
             "35:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -170,7 +170,7 @@ public class SuppressionCommentFilterTest
 
     // Suppress all checks between default comments
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] suppressed = {
             "48:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -189,7 +189,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void checkC() throws Exception {
+    public void testCheckC() throws Exception {
         final String[] suppressed = {
             "75:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -203,7 +203,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void checkCpp() throws Exception {
+    public void testCheckCpp() throws Exception {
         final String[] suppressed = {
             "48:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -216,7 +216,7 @@ public class SuppressionCommentFilterTest
 
     // Suppress all checks between CS_OFF and CS_ON
     @Test
-    void offFormat() throws Exception {
+    public void testOffFormat() throws Exception {
         final String[] suppressed = {
             "64:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -237,7 +237,7 @@ public class SuppressionCommentFilterTest
     // Test suppression of checks of only one type
     //  Suppress only ConstantNameCheck between CS_OFF and CS_ON
     @Test
-    void offFormatCheck() throws Exception {
+    public void testOffFormatCheck() throws Exception {
         final String[] suppressed = {
             "71:30: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -247,7 +247,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void argumentSuppression() throws Exception {
+    public void testArgumentSuppression() throws Exception {
         final String[] suppressed = {
             "110:11: "
                 + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "Exception"),
@@ -256,7 +256,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void expansion() throws Exception {
+    public void testExpansion() throws Exception {
         final String[] suppressed = {
             "54:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -272,7 +272,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void message() throws Exception {
+    public void testMessage() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser("InputSuppressionCommentFilter9.java", suppressed);
     }
@@ -291,7 +291,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void equalsAndHashCodeOfTagClass() {
+    public void testEqualsAndHashCodeOfTagClass() {
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
         final EqualsVerifierReport ev = EqualsVerifier.forClass(tag.getClass())
                 .usingGetClass().report();
@@ -301,7 +301,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void toStringOfTagClass() {
+    public void testToStringOfTagClass() {
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
@@ -310,7 +310,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void toStringOfTagClassWithMessage() {
+    public void testToStringOfTagClassWithMessage() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         filter.setMessageFormat(".*");
         final Object tag =
@@ -322,7 +322,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void compareToOfTagClass() {
+    public void testCompareToOfTagClass() {
         final List<Comparable<Object>> tags1 =
                 getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF", " //CHECKSTYLE:ON");
         final Comparable<Object> tag1 = tags1.get(0);
@@ -355,7 +355,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void invalidCheckFormat() throws Exception {
+    public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -380,7 +380,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void invalidMessageFormat() throws Exception {
+    public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -405,7 +405,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void acceptNullViolation() {
+    public void testAcceptNullViolation() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
@@ -421,7 +421,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void acceptNullFileContents() {
+    public void testAcceptNullFileContents() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
@@ -432,7 +432,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void suppressByCheck() throws Exception {
+    public void testSuppressByCheck() throws Exception {
         final String[] suppressedViolation = {
             "42:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -467,7 +467,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void suppressById() throws Exception {
+    public void testSuppressById() throws Exception {
         final String[] suppressedViolation = {
             "42:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -502,7 +502,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void suppressByCheckAndId() throws Exception {
+    public void testSuppressByCheckAndId() throws Exception {
         final String[] suppressedViolation = {
             "42:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -537,7 +537,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void suppressByIdAndMessage() throws Exception {
+    public void testSuppressByIdAndMessage() throws Exception {
         final String[] suppressedViolation = {
             "54:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -569,7 +569,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void suppressByCheckAndMessage() throws Exception {
+    public void testSuppressByCheckAndMessage() throws Exception {
         final String[] suppressedViolation = {
             "54:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -601,7 +601,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void findNearestMatchDontAllowSameColumn() {
+    public void testFindNearestMatchDontAllowSameColumn() {
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
@@ -615,7 +615,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void tagsAreClearedEachRun() {
+    public void testTagsAreClearedEachRun() {
         final SuppressionCommentFilter suppressionCommentFilter = new SuppressionCommentFilter();
         final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,
                 "filename1", "//CHECKSTYLE:OFF", "line2");
@@ -659,7 +659,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    void cachingByFileContentsInstance() throws Exception {
+    public void testCachingByFileContentsInstance() throws Exception {
 
         final File file = new File(getPath("InputSuppressionCommentFilterSuppressById6.java"));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);

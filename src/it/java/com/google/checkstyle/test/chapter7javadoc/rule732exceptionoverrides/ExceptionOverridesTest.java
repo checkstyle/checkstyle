@@ -31,7 +31,7 @@ public class ExceptionOverridesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void bothModules() throws Exception {
+    public void testBothModules() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 

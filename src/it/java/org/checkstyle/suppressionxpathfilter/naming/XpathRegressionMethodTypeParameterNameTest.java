@@ -46,7 +46,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    void test1() throws Exception {
+    public void test1() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodTypeParameterNameDefault.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    void test2() throws Exception {
+    public void test2() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodTypeParameterNameInner.java"));
 
@@ -103,7 +103,7 @@ public class XpathRegressionMethodTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    void test3() throws Exception {
+    public void test3() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodTypeParameterNameLowercase.java"));
 

@@ -45,7 +45,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath("InputXpathSuperFinalizeNoFinalize.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
 
@@ -63,7 +63,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void innerClass() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess =
                             new File(getPath("InputXpathSuperFinalizeInnerClass.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);
@@ -82,7 +82,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void anonymousClass() throws Exception {
+    public void testAnonymousClass() throws Exception {
         final File fileToProcess =
                             new File(getPath("InputXpathSuperFinalizeAnonymousClass.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(SuperFinalizeCheck.class);

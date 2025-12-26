@@ -36,7 +36,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.BLOCK_COMMENT_BEGIN, };
@@ -46,7 +46,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
         final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.BLOCK_COMMENT_BEGIN, };
@@ -56,7 +56,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaults() throws Exception {
+    public void testDefaults() throws Exception {
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -72,7 +72,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void legalComment() throws Exception {
+    public void testLegalComment() throws Exception {
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY),
             "17:12: " + getCheckMessage(MSG_KEY),
@@ -87,7 +87,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void format() throws Exception {
+    public void testFormat() throws Exception {
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY),
             "12:12: " + getCheckMessage(MSG_KEY),
@@ -113,7 +113,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void legalCommentWithNoPrecedingWhitespace() throws Exception {
+    public void testLegalCommentWithNoPrecedingWhitespace() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -121,7 +121,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withEmoji() throws Exception {
+    public void testWithEmoji() throws Exception {
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_KEY),
             "15:27: " + getCheckMessage(MSG_KEY),

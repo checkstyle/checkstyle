@@ -31,49 +31,49 @@ public class Java17AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void patternsInSwitch() throws Exception {
+    public void testPatternsInSwitch() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternsInSwitch.txt"),
                 getPath("InputAntlr4AstRegressionPatternsInSwitch.java"));
     }
 
     @Test
-    void patternsInIfStatement() throws Exception {
+    public void testPatternsInIfStatement() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternsInIfStatement.txt"),
                 getPath("InputAntlr4AstRegressionPatternsInIfStatement.java"));
     }
 
     @Test
-    void patternsInWhile() throws Exception {
+    public void testPatternsInWhile() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternsInWhile.txt"),
                 getPath("InputAntlr4AstRegressionPatternsInWhile.java"));
     }
 
     @Test
-    void patternsInTernary() throws Exception {
+    public void testPatternsInTernary() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternsInTernary.txt"),
                 getPath("InputAntlr4AstRegressionPatternsInTernary.java"));
     }
 
     @Test
-    void patternsInFor() throws Exception {
+    public void testPatternsInFor() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternsInFor.txt"),
                 getPath("InputAntlr4AstRegressionPatternsInFor.java"));
     }
 
     @Test
-    void patternMatchingInSwitch() throws Exception {
+    public void testPatternMatchingInSwitch() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPatternMatchingInSwitch.txt"),
                 getPath("InputAntlr4AstRegressionPatternMatchingInSwitch.java"));
     }
 
     @Test
-    void caseDefault() throws Exception {
+    public void testCaseDefault() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCaseDefault.txt"),
                 getPath("InputAntlr4AstRegressionCaseDefault.java"));
     }
 
     @Test
-    void noLongerSupportedByJava() throws Exception {
+    public void testNoLongerSupportedByJava() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedAntlr4AstRegressionNoLongerSupportedByJava.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionNoLongerSupportedByJava.java"));
     }

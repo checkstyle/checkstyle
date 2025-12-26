@@ -36,7 +36,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void skipIfLastAndSharedWithCaseOne() throws Exception {
+    public void testSkipIfLastAndSharedWithCaseOne() throws Exception {
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
@@ -53,7 +53,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void skipIfLastAndSharedWithCaseTwo() throws Exception {
+    public void testSkipIfLastAndSharedWithCaseTwo() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY),
         };
@@ -64,7 +64,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultOne() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
             "31:9: " + getCheckMessage(MSG_KEY),
             "38:24: " + getCheckMessage(MSG_KEY),
@@ -85,7 +85,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultTwo() throws Exception {
+    public void testDefaultTwo() throws Exception {
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_KEY),
             "26:13: " + getCheckMessage(MSG_KEY),
@@ -96,7 +96,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultMethodsInJava8()
+    public void testDefaultMethodsInJava8()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -105,7 +105,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultComesLastSwitchExpressions() throws Exception {
+    public void testDefaultComesLastSwitchExpressions() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY),
             "32:13: " + getCheckMessage(MSG_KEY),
@@ -117,7 +117,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
+    public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
 
         final String[] expected = {
             "33:13: " + getCheckMessage(MSG_KEY),
@@ -129,7 +129,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final DefaultComesLastCheck check = new DefaultComesLastCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())
@@ -143,7 +143,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultMethodsInJava8Interface2()
+    public void testDefaultMethodsInJava8Interface2()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

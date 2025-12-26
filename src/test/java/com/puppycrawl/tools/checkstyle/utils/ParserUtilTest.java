@@ -27,17 +27,17 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-class ParserUtilTest {
+public class ParserUtilTest {
 
     @Test
-    void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(ParserUtil.class))
                 .isTrue();
     }
 
     @Test
-    void creationOfFakeCommentBlock() {
+    public void testCreationOfFakeCommentBlock() {
         final DetailAST testCommentBlock =
             ParserUtil.createBlockCommentNode("test_comment");
         assertWithMessage("Invalid token type")

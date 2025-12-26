@@ -35,7 +35,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
 
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -50,7 +50,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void customizedDepth() throws Exception {
+    public void testCustomizedDepth() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -59,7 +59,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void insideCaseBody() throws Exception {
+    public void testInsideCaseBody() throws Exception {
 
         final String[] expected = {
             "18:25: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -70,7 +70,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final NestedIfDepthCheck check = new NestedIfDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

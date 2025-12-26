@@ -31,22 +31,22 @@ public class TypeVariableNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void methodDefault() throws Exception {
+    public void testMethodDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodTypeParameterName.java"));
     }
 
     @Test
-    void classDefault() throws Exception {
+    public void testClassDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputClassTypeParameterName.java"));
     }
 
     @Test
-    void interfaceDefault() throws Exception {
+    public void testInterfaceDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputInterfaceTypeParameterName.java"));
     }
 
     @Test
-    void recordDefault() throws Exception {
+    public void testRecordDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputRecordTypeParameterNameOne.java"));
     }
 }

@@ -132,7 +132,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @BeforeEach
-    void setUp() throws Exception {
+    public void setUp() throws Exception {
         javaDir = Path.of("src/it/java/" + getPackageLocation());
         inputDir = Path.of(getPath(""));
     }
@@ -148,7 +148,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void validateIncompatibleJavadocCheckNames() throws Exception {
+    public void validateIncompatibleJavadocCheckNames() throws IOException {
         // subclasses of AbstractJavadocCheck
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()
@@ -166,7 +166,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void validateIntegrationTestClassNames() throws Exception {
+    public void validateIntegrationTestClassNames() throws Exception {
         final Set<String> compatibleChecks = new HashSet<>();
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
         try (Stream<Path> javaPathsStream = Files.walk(Path.of(javaDir.toString()))) {
@@ -221,7 +221,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void validateInputFiles() throws Exception {
+    public void validateInputFiles() throws Exception {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir, IS_DIRECTORY);
              Stream<Path> testPathsStream = Files.walk(Path.of(javaDir.toString()))) {
             final List<Path> testDirs = testPathsStream.filter(Files::isDirectory).toList();

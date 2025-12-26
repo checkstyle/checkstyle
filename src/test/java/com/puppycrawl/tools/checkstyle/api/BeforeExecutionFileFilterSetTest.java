@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.filefilters.BeforeExecutionExclusionFileFilter;
 
-class BeforeExecutionFileFilterSetTest {
+public class BeforeExecutionFileFilterSetTest {
 
     @Test
-    void removeFilters() {
+    public void testRemoveFilters() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filterSet.addBeforeExecutionFileFilter(filter);
@@ -43,7 +43,7 @@ class BeforeExecutionFileFilterSetTest {
     }
 
     @Test
-    void accept() {
+    public void testAccept() {
         final String fileName = "BAD";
         final BeforeExecutionExclusionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filter.setFileNamePattern(Pattern.compile(fileName));
@@ -56,7 +56,7 @@ class BeforeExecutionFileFilterSetTest {
     }
 
     @Test
-    void reject() {
+    public void testReject() {
         final String fileName = "Test";
         final BeforeExecutionExclusionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filter.setFileNamePattern(Pattern.compile(fileName));
@@ -69,7 +69,7 @@ class BeforeExecutionFileFilterSetTest {
     }
 
     @Test
-    void getFilters2() {
+    public void testGetFilters2() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
         assertWithMessage("size is the same")
@@ -78,7 +78,7 @@ class BeforeExecutionFileFilterSetTest {
     }
 
     @Test
-    void toString2() {
+    public void testToString2() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
         assertWithMessage("size is the same")
@@ -87,7 +87,7 @@ class BeforeExecutionFileFilterSetTest {
     }
 
     @Test
-    void clear() {
+    public void testClear() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
 
@@ -108,7 +108,7 @@ class BeforeExecutionFileFilterSetTest {
       done for the time being
     */
     @Test
-    void unmodifiableSet() {
+    public void testUnmodifiableSet() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filterSet.addBeforeExecutionFileFilter(filter);
@@ -126,7 +126,7 @@ class BeforeExecutionFileFilterSetTest {
       useful for third party integrations.
     */
     @Test
-    void emptyToString() {
+    public void testEmptyToString() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         assertWithMessage("toString() result shouldn't be an empty string")
                 .that(filterSet.toString())

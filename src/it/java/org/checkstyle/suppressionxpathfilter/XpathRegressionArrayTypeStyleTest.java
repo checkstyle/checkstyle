@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck;
 
-class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport {
+public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport {
 
     @Override
     protected String getCheckName() {
@@ -36,7 +36,7 @@ class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void variable() throws Exception {
+    public void testVariable() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTypeStyleVariable.java"));
 
@@ -59,7 +59,7 @@ class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void methodDef() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
 

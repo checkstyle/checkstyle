@@ -37,7 +37,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final HideUtilityClassConstructorCheck checkObj =
             new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
@@ -47,7 +47,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void utilClass() throws Exception {
+    public void testUtilClass() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -57,7 +57,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void utilClassPublicCtor() throws Exception {
+    public void testUtilClassPublicCtor() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -66,7 +66,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void utilClassPrivateCtor() throws Exception {
+    public void testUtilClassPrivateCtor() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorPrivate.java"), expected);
@@ -74,7 +74,7 @@ public class HideUtilityClassConstructorCheckTest
 
     /** Non-static methods - always OK. */
     @Test
-    void nonUtilClass() throws Exception {
+    public void testNonUtilClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorDesignForExtension.java"),
@@ -82,7 +82,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void derivedNonUtilClass() throws Exception {
+    public void testDerivedNonUtilClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorNonUtilityClass.java"),
@@ -90,7 +90,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void onlyNonStaticFieldNonUtilClass() throws Exception {
+    public void testOnlyNonStaticFieldNonUtilClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorRegression.java"),
@@ -98,7 +98,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void emptyAbstractClass() throws Exception {
+    public void testEmptyAbstractClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorAbstractSerializable.java"),
@@ -106,7 +106,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void emptyAbstractClass2() throws Exception {
+    public void testEmptyAbstractClass2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorAbstract.java"),
@@ -114,7 +114,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void emptyClassWithOnlyPrivateFields() throws Exception {
+    public void testEmptyClassWithOnlyPrivateFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructorSerializable.java"),
@@ -122,7 +122,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void classWithStaticInnerClass() throws Exception {
+    public void testClassWithStaticInnerClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath(
@@ -131,14 +131,14 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void protectedCtor() throws Exception {
+    public void testProtectedCtor() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputHideUtilityClassConstructor.java"), expected);
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final HideUtilityClassConstructorCheck obj = new HideUtilityClassConstructorCheck();
         final int[] expected = {TokenTypes.CLASS_DEF};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -147,7 +147,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void ignoreAnnotatedBy() throws Exception {
+    public void testIgnoreAnnotatedBy() throws Exception {
         final String[] expected = {
             "30:1: " + getCheckMessage(MSG_KEY),
         };
@@ -158,7 +158,7 @@ public class HideUtilityClassConstructorCheckTest
     }
 
     @Test
-    void ignoreAnnotatedByFullQualifier() throws Exception {
+    public void testIgnoreAnnotatedByFullQualifier() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };

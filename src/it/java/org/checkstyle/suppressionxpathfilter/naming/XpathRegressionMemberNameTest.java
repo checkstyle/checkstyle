@@ -45,7 +45,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMemberNameDefault.java"));
 
@@ -69,7 +69,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void ignoreProtected() throws Exception {
+    public void testIgnoreProtected() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMemberNameIgnoreProtected.java"));
 

@@ -43,7 +43,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    void leftCurlyOptionValueOf() {
+    public void testLeftCurlyOptionValueOf() {
         final LeftCurlyOption option = LeftCurlyOption.valueOf("NL");
         assertWithMessage("Invalid valueOf result")
             .that(option)
@@ -51,7 +51,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final LeftCurlyCheck checkObj = new LeftCurlyCheck();
         assertWithMessage("LeftCurlyCheck#getRequiredTokens should return empty array by default")
             .that(checkObj.getRequiredTokens())
@@ -59,7 +59,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -72,7 +72,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nl() throws Exception {
+    public void testNl() throws Exception {
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
             "40:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
@@ -90,7 +90,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nlow() throws Exception {
+    public void testNlow() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -110,7 +110,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void default2() throws Exception {
+    public void testDefault2() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -133,7 +133,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void newline2() throws Exception {
+    public void testNewline2() throws Exception {
         final String[] expected = {
             "19:44: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 44),
             "26:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
@@ -149,7 +149,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void default3() throws Exception {
+    public void testDefault3() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -183,7 +183,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void newline3() throws Exception {
+    public void testNewline3() throws Exception {
         final String[] expected = {
             "31:33: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 33),
             "96:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
@@ -197,7 +197,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void missingBraces() throws Exception {
+    public void testMissingBraces() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "20:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -212,7 +212,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultWithAnnotations() throws Exception {
+    public void testDefaultWithAnnotations() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -226,7 +226,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nlWithAnnotations() throws Exception {
+    public void testNlWithAnnotations() throws Exception {
         final String[] expected = {
             "48:55: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 55),
             "51:41: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 41),
@@ -238,7 +238,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nlowWithAnnotations() throws Exception {
+    public void testNlowWithAnnotations() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "27:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -252,7 +252,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lineBreakAfter() throws Exception {
+    public void testLineBreakAfter() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "25:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -276,7 +276,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void ignoreEnumsOptionTrue() throws Exception {
+    public void testIgnoreEnumsOptionTrue() throws Exception {
         final String[] expectedWhileTrue = {
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
         };
@@ -285,7 +285,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void ignoreEnumsOptionFalse() throws Exception {
+    public void testIgnoreEnumsOptionFalse() throws Exception {
         final String[] expectedWhileFalse = {
             "17:17: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 17),
             "21:44: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 44),
@@ -295,7 +295,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultLambda() throws Exception {
+    public void testDefaultLambda() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 1),
             "24:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
@@ -307,7 +307,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void newLineOptionWithLambda() throws Exception {
+    public void testNewLineOptionWithLambda() throws Exception {
         final String[] expected = {
             "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
             "24:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
@@ -318,7 +318,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void eolSwitch() throws Exception {
+    public void testEolSwitch() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
             "26:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
@@ -331,7 +331,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nlSwitch() throws Exception {
+    public void testNlSwitch() throws Exception {
         final String[] expected = {
             "24:21: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 21),
             "56:14: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 14),
@@ -341,7 +341,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nlowSwitch() throws Exception {
+    public void testNlowSwitch() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
         };
@@ -350,7 +350,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void leftCurlySwitchExpressions() throws Exception {
+    public void testLeftCurlySwitchExpressions() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "22:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
@@ -368,7 +368,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void leftCurlySwitchExpressionsNewLine() throws Exception {
+    public void testLeftCurlySwitchExpressionsNewLine() throws Exception {
 
         final String[] expected = {
             "17:57: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 57),
@@ -382,7 +382,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final LeftCurlyCheck check = new LeftCurlyCheck();
         final int[] actual = check.getAcceptableTokens();
         final int[] expected = {
@@ -417,14 +417,14 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void firstLine() throws Exception {
+    public void testFirstLine() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyTestFirstLine.java"), expected);
     }
 
     @Test
-    void coverageIncrease() throws Exception {
+    public void testCoverageIncrease() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -441,7 +441,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void leftCurlyRecordsAndCompactCtors() throws Exception {
+    public void testLeftCurlyRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "24:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
@@ -455,7 +455,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void leftCurlyWithEmoji() throws Exception {
+    public void testLeftCurlyWithEmoji() throws Exception {
         final String[] expected = {
             "17:32: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 32),
             "37:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
@@ -473,7 +473,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void leftCurlyWithEmojiNewLine() throws Exception {
+    public void testLeftCurlyWithEmojiNewLine() throws Exception {
         final String[] expected = {
             "18:32: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 32),
             "20:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
@@ -493,7 +493,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -513,7 +513,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "13:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
             "20:16: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 16),
@@ -523,7 +523,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void forEnumConstantDef() throws Exception {
+    public void testForEnumConstantDef() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "19:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
@@ -533,7 +533,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void commentBeforeLeftCurly() throws Exception {
+    public void commentBeforeLeftCurly() throws Exception {
         final String[] expected = {
             "32:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
         };
@@ -542,7 +542,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void commentBeforeLeftCurly2() throws Exception {
+    public void commentBeforeLeftCurly2() throws Exception {
         final String[] expected = {
             "54:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
             "66:29: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 29),

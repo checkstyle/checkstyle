@@ -44,7 +44,7 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalImportDefault.java"));
         final DefaultConfiguration moduleConfig =
@@ -63,7 +63,7 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void testStatic() throws Exception {
+    public void testStatic() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalImportStatic.java"));
         final DefaultConfiguration moduleConfig =

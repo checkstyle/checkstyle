@@ -45,7 +45,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     }
 
     @Test
-    void classFields() throws Exception {
+    public void testClassFields() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathAvoidDoubleBraceInitializationClassFields.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
     }
 
     @Test
-    void methodDef() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathAvoidDoubleBraceInitializationMethodDef.java"));
 

@@ -24,7 +24,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class FileImportControlTest {
+public class FileImportControlTest {
 
     private final PkgImportControl root = new PkgImportControl("com.kazgroup.courtlink",
             false, MismatchStrategy.DISALLOWED);
@@ -35,7 +35,7 @@ class FileImportControlTest {
             true);
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         root.addChild(fileNode);
         root.addChild(fileRegexpNode);
 
@@ -48,7 +48,7 @@ class FileImportControlTest {
     }
 
     @Test
-    void locateFinest() {
+    public void testLocateFinest() {
         assertWithMessage("Unexpected response")
             .that(root.locateFinest("com.kazgroup.courtlink.domain", "Random"))
             .isEqualTo(root);

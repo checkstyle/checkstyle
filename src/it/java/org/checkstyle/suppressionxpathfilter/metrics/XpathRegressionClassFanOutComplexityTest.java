@@ -43,7 +43,7 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     }
 
     @Test
-    void inClass() throws Exception {
+    public void testInClass() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathClassFanOutComplexityClass.java")
         );
@@ -69,7 +69,7 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     }
 
     @Test
-    void inInterface() throws Exception {
+    public void testInInterface() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathClassFanOutComplexityInterface.java")
         );
@@ -94,7 +94,7 @@ public class XpathRegressionClassFanOutComplexityTest extends AbstractXpathTestS
     }
 
     @Test
-    void inEnum() throws Exception {
+    public void testInEnum() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathClassFanOutComplexityEnum.java")
         );

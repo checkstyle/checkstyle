@@ -34,7 +34,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void correctJavadoc() throws Exception {
+    public void testCorrectJavadoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String filePath = getPath("InputJavadocLeadingAsteriskAlignCorrect.java");
@@ -42,7 +42,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void incorrectJavadoc() throws Exception {
+    public void testIncorrectJavadoc() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 1, 2),
             "17:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
@@ -66,7 +66,7 @@ public class JavadocLeadingAsteriskAlignCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void tabs() throws Exception {
+    public void testTabs() throws Exception {
         final String[] expected = {
             "49:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 4),
             "60:5: " + getCheckMessage(JavadocLeadingAsteriskAlignCheck.class, MSG_KEY, 5, 6),

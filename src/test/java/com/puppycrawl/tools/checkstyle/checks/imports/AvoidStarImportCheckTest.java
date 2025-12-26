@@ -36,7 +36,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void defaultOperation()
+    public void testDefaultOperation()
             throws Exception {
         final String[] expected = {
             "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -52,7 +52,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void excludes()
+    public void testExcludes()
             throws Exception {
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
@@ -64,7 +64,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void allowClassImports() throws Exception {
+    public void testAllowClassImports() throws Exception {
         // allow all class star imports
         final String[] expected2 = {
             "28:42: " + getCheckMessage(MSG_KEY, "javax.swing.WindowConstants.*"),
@@ -75,7 +75,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void allowStaticMemberImports() throws Exception {
+    public void testAllowStaticMemberImports() throws Exception {
         // allow all static star imports
         final String[] expected2 = {
             "12:15: " + getCheckMessage(MSG_KEY, "java.io.*"),
@@ -86,7 +86,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
@@ -97,7 +97,7 @@ public class AvoidStarImportCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AvoidStarImportCheck testCheckObject =
                 new AvoidStarImportCheck();
         final int[] actual = testCheckObject.getRequiredTokens();

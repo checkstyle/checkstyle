@@ -43,7 +43,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    void empty() throws Exception {
+    public void testEmpty() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathAvoidNestedBlocksEmpty.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    void variableAssignment() throws Exception {
+    public void testVariableAssignment() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathAvoidNestedBlocksVariable.java"));
 
@@ -89,7 +89,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    void switchAllowInSwitchCaseFalse() throws Exception {
+    public void testSwitchAllowInSwitchCaseFalse() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAvoidNestedBlocksNotAllowedInSwitchCase.java"));
 
@@ -117,7 +117,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    void switchAllowInSwitchCaseTrue() throws Exception {
+    public void testSwitchAllowInSwitchCaseTrue() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathAvoidNestedBlocksAllowedInSwitchCase.java"));
 
@@ -142,7 +142,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    void switchWithBreakOutside() throws Exception {
+    public void testSwitchWithBreakOutside() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathAvoidNestedBlocksBreakOutside.java"));
 

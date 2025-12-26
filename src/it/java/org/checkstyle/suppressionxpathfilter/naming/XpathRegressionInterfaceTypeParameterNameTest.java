@@ -45,7 +45,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     }
 
     @Test
-    void insideClass() throws Exception {
+    public void testInsideClass() throws Exception {
         final File fileToCheck =
                 new File(getPath(
                 "InputXpathInterfaceTypeParameterNameInsideClass.java"
@@ -79,7 +79,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     }
 
     @Test
-    void insideInnerClass() throws Exception {
+    public void testInsideInnerClass() throws Exception {
         final File fileToCheck =
                 new File(getPath(
                 "InputXpathInterfaceTypeParameterNameInsideInnerClass.java"
@@ -116,7 +116,7 @@ public class XpathRegressionInterfaceTypeParameterNameTest extends AbstractXpath
     }
 
     @Test
-    void topLevelPublic() throws Exception {
+    public void testTopLevelPublic() throws Exception {
         final File fileToCheck =
                 new File(getPath(
                         "InputXpathInterfaceTypeParameterNameTopLevelPublic.java"

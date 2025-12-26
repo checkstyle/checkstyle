@@ -46,7 +46,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
     }
 
     @Test
-    void simple() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathUnnecessarySemicolonInEnumerationSimple.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
     }
 
     @Test
-    void all() throws Exception {
+    public void testAll() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonInEnumerationAll.java"
         ));

@@ -83,14 +83,14 @@ public class SuppressWarningsFilterTest
     }
 
     @Test
-    void none() throws Exception {
+    public void testNone() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(
             getPath("InputSuppressWarningsFilterWithoutFilter.java"), suppressed);
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] suppressed = {
             "56:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -114,7 +114,7 @@ public class SuppressWarningsFilterTest
     }
 
     @Test
-    void suppressById() throws Exception {
+    public void testSuppressById() throws Exception {
         final String[] suppressedViolationMessages = {
             "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,

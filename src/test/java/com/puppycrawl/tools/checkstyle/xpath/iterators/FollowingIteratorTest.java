@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 
 import net.sf.saxon.om.NodeInfo;
 
-class FollowingIteratorTest {
+public class FollowingIteratorTest {
 
     @Test
-    void followingSibling() {
+    public void testFollowingSibling() {
         final NodeInfo startNode = findNode("ANNOTATIONS");
 
         try (FollowingIterator iterator = new FollowingIterator(startNode)) {
@@ -64,7 +64,7 @@ class FollowingIteratorTest {
     }
 
     @Test
-    void noSibling() {
+    public void testNoSibling() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (FollowingIterator iterator = new FollowingIterator(startNode)) {

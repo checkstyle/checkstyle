@@ -44,7 +44,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void test() throws Exception {
+    public void test() throws Exception {
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 39, 2),
@@ -67,7 +67,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalToMax() throws Exception {
+    public void testEqualToMax() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -76,14 +76,14 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultConfiguration() throws Exception {
+    public void testDefaultConfiguration() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavaNCSS3.java"), expected);
     }
 
     @Test
-    void recordsAndCompactCtors() throws Exception {
+    public void testRecordsAndCompactCtors() throws Exception {
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_FILE, 89, 2),
@@ -107,7 +107,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void forMutation() throws Exception {
+    public void testForMutation() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_CLASS, 84, 80),
             "16:5: " + getCheckMessage(MSG_CLASS, 83, 80),
@@ -118,7 +118,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void recordMax() throws Exception {
+    public void testRecordMax() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_CLASS, 152, 80),
             "15:5: " + getCheckMessage(MSG_RECORD, 151, 150),
@@ -130,7 +130,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -174,7 +174,7 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getRequiredTokens();
         final int[] expected = {

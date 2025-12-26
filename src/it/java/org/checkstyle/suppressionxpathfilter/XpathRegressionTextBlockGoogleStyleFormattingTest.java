@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck;
 
-class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTestSupport {
+public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTestSupport {
 
     private static final Class<TextBlockGoogleStyleFormattingCheck> CLASS =
             TextBlockGoogleStyleFormattingCheck.class;
@@ -38,7 +38,7 @@ class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTes
     }
 
     @Test
-    void textBlocksFormatNotVerticallyAligned() throws Exception {
+    public void testTextBlocksFormatNotVerticallyAligned() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting.java"));
 
@@ -64,7 +64,7 @@ class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTes
     }
 
     @Test
-    void textBlocksFormatNotVerticallyAlignedInMethodCall() throws Exception {
+    public void testTextBlocksFormatNotVerticallyAlignedInMethodCall() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting2.java"));
 
@@ -91,7 +91,7 @@ class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractXpathTes
     }
 
     @Test
-    void textBlocksFormatClosingQuotesNotOnNewLine() throws Exception {
+    public void testTextBlocksFormatClosingQuotesNotOnNewLine() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting3.java"));
 

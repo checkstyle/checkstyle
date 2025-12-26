@@ -41,7 +41,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isProperUtilsClass() {
+    public void testIsProperUtilsClass() {
         try {
             instantiate(AnnotationUtil.class);
             assertWithMessage("Exception is expected").fail();
@@ -56,7 +56,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationNull() {
+    public void testContainsAnnotationNull() {
         try {
             AnnotationUtil.containsAnnotation(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -69,7 +69,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationNull2() {
+    public void testContainsAnnotationNull2() {
         try {
             AnnotationUtil.containsAnnotation(null, "");
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -82,7 +82,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationFalse() {
+    public void testContainsAnnotationFalse() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
         assertWithMessage("AnnotationUtil should not contain %s", ast)
@@ -91,7 +91,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationFalse2() {
+    public void testContainsAnnotationFalse2() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
         final DetailAstImpl ast2 = new DetailAstImpl();
@@ -103,7 +103,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationTrue() {
+    public void testContainsAnnotationTrue() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(1);
         final DetailAstImpl ast2 = new DetailAstImpl();
@@ -118,7 +118,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationHolderNull() {
+    public void testAnnotationHolderNull() {
         try {
             AnnotationUtil.getAnnotationHolder(null);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -131,7 +131,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationNull() {
+    public void testAnnotationNull() {
         try {
             AnnotationUtil.getAnnotation(null, null);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -144,7 +144,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationNull2() {
+    public void testAnnotationNull2() {
         try {
             AnnotationUtil.getAnnotation(new DetailAstImpl(), null);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -157,7 +157,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationEmpty() {
+    public void testAnnotationEmpty() {
         try {
             AnnotationUtil.getAnnotation(new DetailAstImpl(), "");
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -170,7 +170,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationWithNull() {
+    public void testContainsAnnotationWithNull() {
         try {
             AnnotationUtil.getAnnotation(null, "");
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -183,7 +183,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationListWithNullAst() {
+    public void testContainsAnnotationListWithNullAst() {
         try {
             AnnotationUtil.containsAnnotation(null, Set.of("Override"));
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -196,7 +196,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationListWithNullList() {
+    public void testContainsAnnotationListWithNullList() {
         final DetailAST ast = new DetailAstImpl();
         final Set<String> annotations = null;
         try {
@@ -211,7 +211,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationListWithEmptyList() {
+    public void testContainsAnnotationListWithEmptyList() {
         final DetailAST ast = new DetailAstImpl();
         final Set<String> annotations = Set.of();
         final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
@@ -221,7 +221,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationListWithNoAnnotationNode() {
+    public void testContainsAnnotationListWithNoAnnotationNode() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl modifiersAst = new DetailAstImpl();
         modifiersAst.setType(TokenTypes.MODIFIERS);
@@ -234,7 +234,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationListWithNoMatchingAnnotation() {
+    public void testContainsAnnotationListWithNoMatchingAnnotation() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl modifiersAst = create(
                 TokenTypes.MODIFIERS,
@@ -257,7 +257,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotation() {
+    public void testContainsAnnotation() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
         final DetailAstImpl child = new DetailAstImpl();
@@ -282,7 +282,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationWithStringFalse() {
+    public void testContainsAnnotationWithStringFalse() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
         final DetailAstImpl child = new DetailAstImpl();
@@ -307,7 +307,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void containsAnnotationWithComment() {
+    public void testContainsAnnotationWithComment() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(TokenTypes.PACKAGE_DEF);
         final DetailAstImpl child = new DetailAstImpl();
@@ -335,7 +335,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void compactNoUnchecked() throws Exception {
+    public void testCompactNoUnchecked() throws Exception {
 
         final String[] expected = {
             "16:20: " + getCheckMessage(SuppressWarningsCheck.class,
@@ -355,7 +355,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void valuePairAnnotation() throws Exception {
+    public void testValuePairAnnotation() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

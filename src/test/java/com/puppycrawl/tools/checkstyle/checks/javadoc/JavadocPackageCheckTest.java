@@ -42,7 +42,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void missing() throws Exception {
+    public void testMissing() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -52,7 +52,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void missingWithAllowLegacy() throws Exception {
+    public void testMissingWithAllowLegacy() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -62,7 +62,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void withMultipleFiles() throws Exception {
+    public void testWithMultipleFiles() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -71,7 +71,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void both() throws Exception {
+    public void testBoth() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_LEGACY_PACKAGE_HTML),
         };
@@ -81,7 +81,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void htmlDisallowed() throws Exception {
+    public void testHtmlDisallowed() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_PACKAGE_INFO),
         };
@@ -91,7 +91,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void htmlAllowed() throws Exception {
+    public void testHtmlAllowed() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
@@ -100,7 +100,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("annotation"
@@ -112,7 +112,7 @@ public class JavadocPackageCheckTest
      * to reproduce exception with invalid canonical path.
      */
     @Test
-    void checkstyleExceptionIfFailedToGetCanonicalPathToFile() {
+    public void testCheckstyleExceptionIfFailedToGetCanonicalPathToFile() {
         final JavadocPackageCheck check = new JavadocPackageCheck();
         final File fileWithInvalidPath = new File("\u0000\u0000\u0000");
         final FileText mockFileText = new FileText(fileWithInvalidPath, Collections.emptyList());
@@ -130,7 +130,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void nonJava() throws Exception {
+    public void testNonJava() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputJavadocPackageNotJava.txt"),
@@ -138,7 +138,7 @@ public class JavadocPackageCheckTest
     }
 
     @Test
-    void withFileWithoutParent() throws Exception {
+    public void testWithFileWithoutParent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("annotation" + File.separator + "package-info.java"),

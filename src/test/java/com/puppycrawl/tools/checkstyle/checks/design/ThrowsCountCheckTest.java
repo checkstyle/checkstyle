@@ -37,7 +37,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void throwsCountDefault() throws Exception {
+    public void testThrowsCountDefault() throws Exception {
 
         final String[] expected = {
             "26:20: " + getCheckMessage(MSG_KEY, 5, 4),
@@ -51,7 +51,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void throwsCountCustomMaxCount() throws Exception {
+    public void testThrowsCountCustomMaxCount() throws Exception {
 
         final String[] expected = {
             "36:20: " + getCheckMessage(MSG_KEY, 6, 5),
@@ -62,7 +62,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -71,7 +71,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
         assertWithMessage("Default required tokens are invalid")
@@ -80,7 +80,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void wrongTokenType() {
+    public void testWrongTokenType() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CLASS_DEF, "class"));
@@ -96,7 +96,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void throwsCountNotIgnorePrivateMethods() throws Exception {
+    public void testThrowsCountNotIgnorePrivateMethods() throws Exception {
         final String[] expected = {
             "26:20: " + getCheckMessage(MSG_KEY, 5, 4),
             "32:20: " + getCheckMessage(MSG_KEY, 5, 4),
@@ -109,7 +109,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void throwsCountMethodWithAnnotation() throws Exception {
+    public void testThrowsCountMethodWithAnnotation() throws Exception {
         final String[] expected = {
             "27:26: " + getCheckMessage(MSG_KEY, 5, 4),
         };
@@ -118,7 +118,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void throwsCountMaxAllowZero() throws Exception {
+    public void testThrowsCountMaxAllowZero() throws Exception {
         final String[] expected = {
             "17:20: " + getCheckMessage(MSG_KEY, 1, 0),
             "21:20: " + getCheckMessage(MSG_KEY, 1, 0),

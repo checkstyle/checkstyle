@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-class IntRangeFilterElementTest {
+public class IntRangeFilterElementTest {
 
     @Test
-    void decide() {
+    public void testDecide() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 10);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -49,7 +49,7 @@ class IntRangeFilterElementTest {
     }
 
     @Test
-    void decideSingle() {
+    public void testDecideSingle() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 0);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -63,7 +63,7 @@ class IntRangeFilterElementTest {
     }
 
     @Test
-    void decideEmpty() {
+    public void testDecideEmpty() {
         final IntFilterElement filter = new IntRangeFilterElement(10, 0);
         assertWithMessage("out")
                 .that(filter.accept(-1))
@@ -83,7 +83,7 @@ class IntRangeFilterElementTest {
     }
 
     @Test
-    void equalsAndHashCode() {
+    public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilterElement.class)
                 .usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -92,7 +92,7 @@ class IntRangeFilterElementTest {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         final IntFilterElement filter = new IntRangeFilterElement(1, 2);
         assertWithMessage("toString output")
                 .that(filter.toString())

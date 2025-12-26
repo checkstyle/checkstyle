@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck;
 
-class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
+public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
 
     private final String checkName = FinalParametersCheck.class.getSimpleName();
 
@@ -37,7 +37,7 @@ class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void method() throws Exception {
+    public void testMethod() throws Exception {
         final File fileToProcess =
                   new File(getPath("InputXpathFinalParametersMethod.java"));
 
@@ -80,7 +80,7 @@ class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void ctor() throws Exception {
+    public void testCtor() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFinalParametersCtor.java"));
 
@@ -130,7 +130,7 @@ class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void anonymous() throws Exception {
+    public void testAnonymous() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFinalParametersAnonymous.java"));
 

@@ -35,7 +35,7 @@ public class NoCloneCheckTest
     }
 
     @Test
-    void hasClone()
+    public void testHasClone()
             throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
@@ -51,7 +51,7 @@ public class NoCloneCheckTest
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final NoCloneCheck check = new NoCloneCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

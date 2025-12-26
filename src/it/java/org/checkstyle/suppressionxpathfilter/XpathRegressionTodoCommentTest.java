@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
 
-class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
+public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     private final String checkName = TodoCommentCheck.class.getSimpleName();
 
     @Override
@@ -39,7 +39,7 @@ class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void singleLine() throws Exception {
+    public void testSingleLine() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTodoCommentSingleLine.java"));
 
@@ -61,7 +61,7 @@ class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void block() throws Exception {
+    public void testBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTodoCommentBlock.java"));
 

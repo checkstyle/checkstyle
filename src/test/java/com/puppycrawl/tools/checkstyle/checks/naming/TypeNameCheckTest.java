@@ -36,7 +36,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void specified()
+    public void testSpecified()
             throws Exception {
         final String[] expected = {
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -47,7 +47,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void testDefault()
+    public void testDefault()
             throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -64,7 +64,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void classSpecific()
+    public void testClassSpecific()
             throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -75,7 +75,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void interfaceSpecific()
+    public void testInterfaceSpecific()
             throws Exception {
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -86,7 +86,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void enumSpecific()
+    public void testEnumSpecific()
             throws Exception {
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -97,7 +97,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void annotationSpecific()
+    public void testAnnotationSpecific()
             throws Exception {
         final String[] expected = {
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -108,7 +108,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void typeNameRecords() throws Exception {
+    public void testTypeNameRecords() throws Exception {
 
         final String[] expected = {
             "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
@@ -122,7 +122,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    void applyPropertiesSetters() throws Exception {
+    public void testApplyPropertiesSetters() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

@@ -35,7 +35,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final int[] expected = {
             TokenTypes.BLOCK_COMMENT_BEGIN,
         };
@@ -48,7 +48,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final int[] expected = {
             TokenTypes.BLOCK_COMMENT_BEGIN,
         };
@@ -61,7 +61,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "7:9: " + getCheckMessage(MSG_KEY),
             "10:1: " + getCheckMessage(MSG_KEY),
@@ -95,7 +95,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void packageInfo() throws Exception {
+    public void testPackageInfo() throws Exception {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
@@ -104,7 +104,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void packageInfoComment() throws Exception {
+    public void testPackageInfoComment() throws Exception {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_KEY),
         };
@@ -113,7 +113,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void invalidJavadocPositionOnCompactConstructors() throws Exception {
+    public void testInvalidJavadocPositionOnCompactConstructors() throws Exception {
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY),
             "54:9: " + getCheckMessage(MSG_KEY),
@@ -125,7 +125,7 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void invalidJavadocPositionOnCompactConstructorsWithAnnotation() throws Exception {
+    public void testInvalidJavadocPositionOnCompactConstructorsWithAnnotation() throws Exception {
         final String[] expected = {
             "47:9: " + getCheckMessage(MSG_KEY),
         };

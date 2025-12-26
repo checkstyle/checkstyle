@@ -33,7 +33,7 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY, 19),
             "28:5: " + getCheckMessage(MSG_KEY, 19),
@@ -48,7 +48,7 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     }
 
     @Test
-    void constructorsDeclarationGroupingInner() throws Exception {
+    public void testConstructorsDeclarationGroupingInner() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_KEY, 25),
             "34:9: " + getCheckMessage(MSG_KEY, 25),
@@ -61,7 +61,7 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     }
 
     @Test
-    void constructorsDeclarationGroupingRecords() throws Exception {
+    public void testConstructorsDeclarationGroupingRecords() throws Exception {
 
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, 12),
@@ -76,7 +76,7 @@ public class ConstructorsDeclarationGroupingCheckTest extends AbstractModuleTest
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final ConstructorsDeclarationGroupingCheck check =
                 new ConstructorsDeclarationGroupingCheck();
         assertWithMessage("Acceptable tokens should not be null")

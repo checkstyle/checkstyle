@@ -35,7 +35,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsWithDefault() throws Exception {
+    public void testEqualsWithDefault() throws Exception {
 
         final String[] expected = {
             "44:27: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
@@ -99,7 +99,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsWithoutEqualsIgnoreCase() throws Exception {
+    public void testEqualsWithoutEqualsIgnoreCase() throws Exception {
 
         final String[] expected = {
             "245:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -151,7 +151,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsOnTheSameLine() throws Exception {
+    public void testEqualsOnTheSameLine() throws Exception {
 
         final String[] expected = {
             "14:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -162,7 +162,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsNested() throws Exception {
+    public void testEqualsNested() throws Exception {
 
         final String[] expected = {
             "25:34: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
@@ -179,7 +179,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsSuperClass() throws Exception {
+    public void testEqualsSuperClass() throws Exception {
 
         final String[] expected = {
             "23:35: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -189,7 +189,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void inputEqualsAvoidNullEnhancedInstanceof() throws Exception {
+    public void testInputEqualsAvoidNullEnhancedInstanceof() throws Exception {
 
         final String[] expected = {
             "15:45: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -205,7 +205,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void misc() throws Exception {
+    public void testMisc() throws Exception {
 
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -215,7 +215,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void recordsAndCompactCtors() throws Exception {
+    public void testRecordsAndCompactCtors() throws Exception {
 
         final String[] expected = {
             "15:23: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -230,7 +230,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalsAvoidNullTextBlocks() throws Exception {
+    public void testEqualsAvoidNullTextBlocks() throws Exception {
 
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -245,7 +245,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())
@@ -259,7 +259,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalAvoidNull() throws Exception {
+    public void testEqualAvoidNull() throws Exception {
         final String[] expected = {
             "13:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "14:17: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
@@ -272,7 +272,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void equalAvoidNullRecordPattern() throws Exception {
+    public void testEqualAvoidNullRecordPattern() throws Exception {
         final String[] expected = {
             "22:40: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
             "29:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),

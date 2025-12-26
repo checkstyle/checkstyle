@@ -35,7 +35,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "15:53: " + getCheckMessage(MSG_KEY),
             "20:40: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final AvoidDoubleBraceInitializationCheck check =
             new AvoidDoubleBraceInitializationCheck();
         final int[] expected = {

@@ -44,7 +44,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalCatchOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionIllegalCatchTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalCatchTwo.java"));
 

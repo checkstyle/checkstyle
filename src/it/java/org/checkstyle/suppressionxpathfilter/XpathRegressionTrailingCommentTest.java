@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck;
 
-class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
+public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
     private final String checkName = TrailingCommentCheck.class.getSimpleName();
 
     @Override
@@ -37,7 +37,7 @@ class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void singleLine() throws Exception {
+    public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathTrailingCommentSingleLine.java"));
 
@@ -61,7 +61,7 @@ class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void block() throws Exception {
+    public void testBlock() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathTrailingCommentBlock.java"));
 

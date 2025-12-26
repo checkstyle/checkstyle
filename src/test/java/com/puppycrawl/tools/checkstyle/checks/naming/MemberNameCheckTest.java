@@ -37,7 +37,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final MemberNameCheck checkObj = new MemberNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -46,7 +46,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void specifiedOne()
+    public void testSpecifiedOne()
             throws Exception {
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
@@ -59,7 +59,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void specifiedTwo()
+    public void testSpecifiedTwo()
             throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -68,7 +68,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void specifiedThree()
+    public void testSpecifiedThree()
             throws Exception {
 
         final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
@@ -81,7 +81,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void innerClass()
+    public void testInnerClass()
             throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
@@ -94,7 +94,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void defaults() throws Exception {
+    public void testDefaults() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -109,7 +109,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void underlined() throws Exception {
+    public void testUnderlined() throws Exception {
 
         final String pattern = "^_[a-z]*$";
 
@@ -124,7 +124,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void publicOnly() throws Exception {
+    public void testPublicOnly() throws Exception {
 
         final String pattern = "^_[a-z]*$";
 
@@ -136,7 +136,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void protectedOnly() throws Exception {
+    public void testProtectedOnly() throws Exception {
 
         final String pattern = "^_[a-z]*$";
 
@@ -148,7 +148,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void packageOnly() throws Exception {
+    public void testPackageOnly() throws Exception {
 
         final String pattern = "^_[a-z]*$";
 
@@ -160,7 +160,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void privateOnly() throws Exception {
+    public void testPrivateOnly() throws Exception {
 
         final String pattern = "^_[a-z]*$";
 
@@ -172,7 +172,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void notPrivate() throws Exception {
+    public void testNotPrivate() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -186,7 +186,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void memberNameExtended() throws Exception {
+    public void memberNameExtended() throws Exception {
 
         final String pattern = "^[a-z][a-z0-9][a-zA-Z0-9]*$";
 
@@ -229,7 +229,7 @@ public class MemberNameCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final MemberNameCheck memberNameCheckObj = new MemberNameCheck();
         final int[] actual = memberNameCheckObj.getAcceptableTokens();
         final int[] expected = {

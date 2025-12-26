@@ -45,7 +45,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
     }
 
     @Test
-    void simple() throws Exception {
+    public void testSimple() throws Exception {
         final String fileName = "InputXpathSimplifyBooleanExpressionSimple.java";
         final File fileToProcess = new File(getPath(fileName));
 
@@ -69,7 +69,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
     }
 
     @Test
-    void anonymous() throws Exception {
+    public void testAnonymous() throws Exception {
         final String fileName =
                 "InputXpathSimplifyBooleanExpressionAnonymous.java";
         final File fileToProcess = new File(getPath(fileName));
@@ -96,7 +96,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
     }
 
     @Test
-    void testInterface() throws Exception {
+    public void testInterface() throws Exception {
         final String fileName =
                 "InputXpathSimplifyBooleanExpressionInterface.java";
         final File fileToProcess = new File(getPath(fileName));

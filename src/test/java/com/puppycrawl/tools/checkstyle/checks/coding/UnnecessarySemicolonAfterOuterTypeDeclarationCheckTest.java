@@ -38,7 +38,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
 
         final String[] expected = {
             "28:2: " + getCheckMessage(MSG_SEMI),
@@ -53,7 +53,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
     }
 
     @Test
-    void unnecessarySemicolonAfterOuterTypeDeclarationRecords() throws Exception {
+    public void testUnnecessarySemicolonAfterOuterTypeDeclarationRecords() throws Exception {
 
         final String[] expected = {
             "17:2: " + getCheckMessage(MSG_SEMI),
@@ -66,7 +66,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
     }
 
     @Test
-    void tokens() {
+    public void testTokens() {
         final UnnecessarySemicolonAfterOuterTypeDeclarationCheck check =
             new UnnecessarySemicolonAfterOuterTypeDeclarationCheck();
         final int[] expected = {

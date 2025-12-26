@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 
 import net.sf.saxon.om.NodeInfo;
 
-class ReverseDescendantIteratorTest {
+public class ReverseDescendantIteratorTest {
 
     @Test
-    void correctOrder() {
+    public void testCorrectOrder() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (ReverseDescendantIterator iterator = new ReverseDescendantIterator(startNode)) {

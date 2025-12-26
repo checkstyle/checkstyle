@@ -45,7 +45,7 @@ public class SuperCloneCheckTest
     }
 
     @Test
-    void it() throws Exception {
+    public void testIt() throws Exception {
         final String[] expected = {
             "33:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "41:19: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
@@ -56,7 +56,7 @@ public class SuperCloneCheckTest
     }
 
     @Test
-    void anotherInputFile() throws Exception {
+    public void testAnotherInputFile() throws Exception {
         final String[] expected = {
             "14:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "48:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
@@ -66,14 +66,14 @@ public class SuperCloneCheckTest
     }
 
     @Test
-    void methodReference() throws Exception {
+    public void testMethodReference() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputSuperCloneMethodReference.java"), expected);
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final SuperCloneCheck check = new SuperCloneCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -95,7 +95,7 @@ public class SuperCloneCheckTest
      */
     @SuppressWarnings("unchecked")
     @Test
-    void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final AbstractSuperCheck check = new SuperCloneCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
             JavaParser.parseFile(new File(getPath("InputSuperCloneWithoutWarnings.java")),

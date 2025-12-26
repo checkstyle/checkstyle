@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
+public class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
 
     /** OS specific line separator. */
     private static final String EOL = System.getProperty("line.separator");
@@ -76,7 +76,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      * which is not possible to get from the CLI run test.
      */
     @Test
-    void fileStarted() {
+    public void testFileStarted() {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(
@@ -94,7 +94,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      * Verifies the fileFinished method separately to give empty output.
      */
     @Test
-    void fileFinished() {
+    public void testFileFinished() {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
@@ -115,7 +115,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      *     in {@link ChecksAndFilesSuppressionFileGeneratorAuditListener}.
      */
     @Test
-    void addException() {
+    public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener logger =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
@@ -142,7 +142,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      * which is not supported by OutputStreams uses in 'Main.java'.
      */
     @Test
-    void closeStream() {
+    public void testCloseStream() {
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(outStream,
                 OutputStreamOptions.CLOSE);
@@ -159,7 +159,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      * Verifies the close count through {@link CloseAndFlushTestByteArrayOutputStream}.
      */
     @Test
-    void noCloseStream() {
+    public void testNoCloseStream() {
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(outStream,
                         OutputStreamOptions.NONE);
@@ -173,7 +173,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     }
 
     @Test
-    void correctOne() {
+    public void testCorrectOne() {
         final AuditEvent event1 = createAuditEvent(
                 "InputChecksAndFilesSuppressionFileGeneratorAuditListener.java", FIRST_MESSAGE);
         final AuditEvent event2 = createAuditEvent(
@@ -197,7 +197,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     }
 
     @Test
-    void correctTwo() {
+    public void testCorrectTwo() {
         final AuditEvent event1 = createAuditEvent(
                 "InputChecksAndFilesSuppressionFileGeneratorAuditListener.java",
                 5, 5, JavadocVariableCheck.class);
@@ -223,7 +223,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     }
 
     @Test
-    void fileNameNullCase() {
+    public void testFileNameNullCase() {
         final AuditEvent event1 = new AuditEvent(this, "/", FIRST_MESSAGE);
 
         final String expected = SUPPRESSION_XML_HEADER
@@ -237,7 +237,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
      * Verifies the finishLocalSetup method separately to give empty output.
      */
     @Test
-    void finishLocalSetup() {
+    public void testFinishLocalSetup() {
         final OutputStream out = new ByteArrayOutputStream();
         final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =
                 new ChecksAndFilesSuppressionFileGeneratorAuditListener(out,
@@ -253,7 +253,7 @@ class ChecksAndFilesSuppressionFileGeneratorAuditListenerTest {
     }
 
     @Test
-    void nullOutputStreamOptions() {
+    public void testNullOutputStreamOptions() {
         final OutputStream out = new ByteArrayOutputStream();
         try {
             final ChecksAndFilesSuppressionFileGeneratorAuditListener listener =

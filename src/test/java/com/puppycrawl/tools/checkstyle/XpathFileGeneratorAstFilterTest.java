@@ -37,10 +37,10 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-class XpathFileGeneratorAstFilterTest {
+public class XpathFileGeneratorAstFilterTest {
 
     @Test
-    void acceptNoToken() {
+    public void testAcceptNoToken() {
         final Violation violation = new Violation(0, 0, 0, null, null, null, null,
                 null, XpathFileGeneratorAstFilterTest.class, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(null, null, violation, null);
@@ -59,7 +59,7 @@ class XpathFileGeneratorAstFilterTest {
     }
 
     @Test
-    void test() throws Exception {
+    public void test() throws Exception {
         final Violation violation = new Violation(3, 47, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
                 null);
@@ -82,7 +82,7 @@ class XpathFileGeneratorAstFilterTest {
     }
 
     @Test
-    void noXpathQuery() throws Exception {
+    public void testNoXpathQuery() throws Exception {
         final Violation violation = new Violation(10, 10, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
                 null);
@@ -104,7 +104,7 @@ class XpathFileGeneratorAstFilterTest {
     }
 
     @Test
-    void tabWidth() throws Exception {
+    public void testTabWidth() throws Exception {
         final Violation violation = new Violation(6, 7, TokenTypes.LITERAL_RETURN,
                 "messages.properties", null, null, SeverityLevel.ERROR, null,
                 XpathFileGeneratorAstFilterTest.class, null);
@@ -137,7 +137,7 @@ class XpathFileGeneratorAstFilterTest {
      */
     @SuppressWarnings("unchecked")
     @Test
-    void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final Violation violation = new Violation(3, 47, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
                 null);

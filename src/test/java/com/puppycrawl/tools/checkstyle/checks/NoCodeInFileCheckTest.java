@@ -36,7 +36,7 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final NoCodeInFileCheck checkObj = new NoCodeInFileCheck();
         assertWithMessage("Required tokens array is not empty")
                 .that(checkObj.getRequiredTokens())
@@ -44,7 +44,7 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final NoCodeInFileCheck checkObj = new NoCodeInFileCheck();
         assertWithMessage("Acceptable tokens array is not empty")
                 .that(checkObj.getAcceptableTokens())
@@ -52,7 +52,7 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void blank() throws Exception {
+    public void testBlank() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
@@ -61,7 +61,7 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void singleLineComment() throws Exception {
+    public void testSingleLineComment() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoCodeInFileCheck.class);
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
@@ -70,7 +70,7 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void multiLineComment() throws Exception {
+    public void testMultiLineComment() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };
@@ -79,14 +79,14 @@ public class NoCodeInFileCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileContainingCode() throws Exception {
+    public void testFileContainingCode() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputNoCodeInFile4.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    void bothSingleLineAndMultiLineComment() throws Exception {
+    public void testBothSingleLineAndMultiLineComment() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY_NO_CODE),
         };

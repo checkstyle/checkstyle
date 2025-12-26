@@ -44,7 +44,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
     }
 
     @Test
-    void test1() throws Exception {
+    public void test1() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUnnecessaryNullCheckWithInstanceOf.java"));
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
     }
 
     @Test
-    void test2() throws Exception {
+    public void test2() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                     "InputXpathUnnecessaryNullCheckWithInstanceOfAnonymous.java"));
@@ -88,7 +88,7 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
     }
 
     @Test
-    void test3() throws Exception {
+    public void test3() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                     "InputXpathUnnecessaryNullCheckWithInstanceOfInterface.java"));

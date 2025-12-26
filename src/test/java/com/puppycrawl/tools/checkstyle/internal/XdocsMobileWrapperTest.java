@@ -34,7 +34,7 @@ import org.w3c.dom.NodeList;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
-class XdocsMobileWrapperTest {
+public class XdocsMobileWrapperTest {
 
     private static final Set<String> NODES_TO_WRAP = Set.of(
         "pre",
@@ -44,7 +44,7 @@ class XdocsMobileWrapperTest {
     );
 
     @Test
-    void allCheckSectionMobileWrapper() throws Exception {
+    public void testAllCheckSectionMobileWrapper() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final File file = path.toFile();
             final String fileName = file.getName();

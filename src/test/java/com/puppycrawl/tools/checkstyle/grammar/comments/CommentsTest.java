@@ -35,33 +35,33 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void compareExpectedTreeWithInput1() throws Exception {
+    public void testCompareExpectedTreeWithInput1() throws Exception {
         verifyAst(getPath("InputComments1Ast.txt"), getPath("InputComments1.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void compareExpectedTreeWithInput2() throws Exception {
+    public void testCompareExpectedTreeWithInput2() throws Exception {
         verifyAst(getPath("InputComments2Ast.txt"), getPath("InputComments2.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void inputFullOfBlockComments() throws Exception {
+    public void testInputFullOfBlockComments() throws Exception {
         verifyAst(getPath("InputFullOfBlockCommentsAst.txt"),
                     getPath("InputFullOfBlockComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void inputFullOfSinglelineComments() throws Exception {
+    public void testInputFullOfSinglelineComments() throws Exception {
         verifyAst(getPath("InputFullOfSinglelineCommentsAst.txt"),
                     getPath("InputFullOfSinglelineComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
         assertWithMessage("Invalid toString result")
             .that(comment.toString())
@@ -70,7 +70,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void getCommentMeasures() {
+    public void testGetCommentMeasures() {
         final String[] commentText = {"/**",
             "     * Creates new instance.",
             "     * @param text the lines that make up the comment.",
@@ -95,7 +95,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void intersects() {
+    public void testIntersects() {
         final String[] commentText = {"// compute a single number for start and end",
             "// to simplify conditional logic"};
         final Comment comment = new Comment(commentText, 9, 89, 53);

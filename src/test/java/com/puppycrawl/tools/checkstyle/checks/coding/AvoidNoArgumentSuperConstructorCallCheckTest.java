@@ -36,7 +36,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
 
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_CTOR),
@@ -50,7 +50,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
-    void tokens() {
+    public void testTokens() {
         final AvoidNoArgumentSuperConstructorCallCheck check =
             new AvoidNoArgumentSuperConstructorCallCheck();
         final int[] expected = {

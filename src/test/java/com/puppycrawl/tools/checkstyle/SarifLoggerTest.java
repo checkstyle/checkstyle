@@ -78,7 +78,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void escape() {
+    public void testEscape() {
         final String[][] encodings = {
             {"\"", "\\\""},
             {"\\", "\\\\"},
@@ -103,7 +103,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void singleError() throws Exception {
+    public void testSingleError() throws Exception {
         final String inputFile = "InputSarifLoggerSingleError.java";
         final String expectedReportFile = "ExpectedSarifLoggerSingleError.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -114,7 +114,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorAtColumn1() throws Exception {
+    public void testAddErrorAtColumn1() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         final String inputFile = "InputSarifLoggerSingleErrorColumn1.java";
@@ -124,7 +124,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorAtColumn0() throws Exception {
+    public void testAddErrorAtColumn0() throws Exception {
         final String inputFile = "InputSarifLoggerErrorColumn0.java";
         final String expectedReportFile = "ExpectedSarifLoggerSingleErrorColumn0.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -135,7 +135,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithWarningLevel() throws Exception {
+    public void testAddErrorWithWarningLevel() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         final String inputFile = "InputSarifLoggerSingleWarning.java";
@@ -145,7 +145,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void doubleError() throws Exception {
+     public void testDoubleError() throws Exception {
         final String inputFile = "InputSarifLoggerDoubleError.java";
         final String expectedReportFile = "ExpectedSarifLoggerDoubleError.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -156,7 +156,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addException() throws Exception {
+    public void testAddException() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -173,7 +173,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addExceptions() throws Exception {
+    public void testAddExceptions() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -198,7 +198,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lineOnly() throws Exception {
+    public void testLineOnly() throws Exception {
         final String inputFile = "InputSarifLoggerLineOnly.java";
         final String expectedReportFile = "ExpectedSarifLoggerLineOnly.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -210,7 +210,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void empty() throws Exception {
+    public void testEmpty() throws Exception {
         final String inputFile = "InputSarifLoggerEmpty.java";
         final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -222,7 +222,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithSpaceInPath() throws Exception {
+    public void testAddErrorWithSpaceInPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -239,7 +239,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithAbsoluteLinuxPath() throws Exception {
+    public void testAddErrorWithAbsoluteLinuxPath() throws Exception {
         final String inputFile = "InputSarifLoggerAbsoluteLinuxPath.java";
         final String expectedReportFile = "ExpectedSarifLoggerAbsoluteLinuxPath.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -249,7 +249,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithRelativeLinuxPath() throws Exception {
+    public void testAddErrorWithRelativeLinuxPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -266,7 +266,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithAbsoluteWindowsPath() throws Exception {
+    public void testAddErrorWithAbsoluteWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -284,7 +284,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void addErrorWithRelativeWindowsPath() throws Exception {
+    public void testAddErrorWithRelativeWindowsPath() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -304,7 +304,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    void ctorWithTwoParametersCloseStreamOptions() throws Exception {
+    public void testCtorWithTwoParametersCloseStreamOptions() throws IOException {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final SarifLogger logger = new SarifLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
@@ -319,7 +319,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    void ctorWithTwoParametersNoneStreamOptions() throws Exception {
+    public void testCtorWithTwoParametersNoneStreamOptions() throws IOException {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final SarifLogger logger = new SarifLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
@@ -331,7 +331,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nullOutputStreamOptions() {
+    public void testNullOutputStreamOptions() {
         try {
             final SarifLogger logger = new SarifLogger(outStream, (OutputStreamOptions) null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
@@ -348,7 +348,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void closeStream() throws Exception {
+    public void testCloseStream() throws Exception {
         final String inputFile = "InputSarifLoggerEmpty.java";
         final String expectedReportFile = "ExpectedSarifLoggerEmpty.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -363,7 +363,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void noCloseStream() throws Exception {
+    public void testNoCloseStream() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.NONE);
         logger.auditStarted(null);
@@ -381,7 +381,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void finishLocalSetup() throws Exception {
+    public void testFinishLocalSetup() throws IOException {
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
         logger.finishLocalSetup();
@@ -393,7 +393,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void readResourceWithInvalidName() {
+    public void testReadResourceWithInvalidName() {
         try {
             SarifLogger.readResource("random");
             assertWithMessage("Exception expected").fail();
@@ -406,7 +406,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void multipleRules() throws Exception {
+    public void testMultipleRules() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleRules.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleRules.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -417,7 +417,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void moduleIdSuffix() throws Exception {
+    public void testModuleIdSuffix() throws Exception {
         final String inputFile = "InputSarifLoggerModuleId.java";
         final String expectedReportFile = "ExpectedSarifLoggerModuleId.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -428,7 +428,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void multipleMessageStrings() throws Exception {
+    public void testMultipleMessageStrings() throws Exception {
         final String inputFile = "InputSarifLoggerMultipleMessages.java";
         final String expectedReportFile = "ExpectedSarifLoggerMultipleMessages.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -439,7 +439,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void escapedMessageText() throws Exception {
+    public void testEscapedMessageText() throws Exception {
         final String inputFile = "InputSarifLoggerEscapedMessage.java";
         final String expectedReportFile = "ExpectedSarifLoggerEscapedMessage.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
@@ -456,7 +456,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      * all are on the classpath during testing.
      */
     @Test
-    void getMessagesWithClassNotFoundException() throws Exception {
+    public void testGetMessagesWithClassNotFoundException() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
 
         final ModuleDetails fakeModule = new ModuleDetails();
@@ -485,7 +485,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      * cannot be used as all have proper resource bundles during testing.
      */
     @Test
-    void getMessagesWithMissingResourceException() throws Exception {
+    public void testGetMessagesWithMissingResourceException() throws Exception {
         final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
 
         final ModuleDetails fakeModule = new ModuleDetails();
@@ -517,7 +517,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
      * @throws Exception if an error occurs during verification
      */
     @Test
-    void renderSeverityLevelAllLevels() throws Exception {
+    public void testRenderSeverityLevelAllLevels() throws Exception {
         final String inputFile = "InputSarifLoggerAllSeverityLevels.java";
         final String expectedReportFile = "ExpectedSarifLoggerAllSeverityLevels.sarif";
         final SarifLogger logger = new SarifLogger(outStream,

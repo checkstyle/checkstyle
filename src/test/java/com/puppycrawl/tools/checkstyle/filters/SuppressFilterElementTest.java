@@ -31,17 +31,17 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
 
-class SuppressFilterElementTest {
+public class SuppressFilterElementTest {
 
     private SuppressFilterElement filter;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         filter = new SuppressFilterElement("Test", "Test", null, null, null, null);
     }
 
     @Test
-    void decideDefault() {
+    public void testDecideDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertWithMessage(ev.getFileName())
                 .that(filter.accept(ev))
@@ -49,7 +49,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideViolation() {
+    public void testDecideViolation() {
         final Violation violation =
             new Violation(1, 0, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -60,7 +60,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByMessage() {
+    public void testDecideByMessage() {
         final Violation violation =
             new Violation(1, 0, "", "", null, null, getClass(), "Test");
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -77,7 +77,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByLine() {
+    public void testDecideByLine() {
         final Violation violation =
             new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -100,7 +100,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByColumn() {
+    public void testDecideByColumn() {
         final Violation violation =
             new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -119,7 +119,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingFileNameNull() {
+    public void testDecideByFileNameAndModuleMatchingFileNameNull() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
@@ -129,7 +129,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingMessageNull() {
+    public void testDecideByFileNameAndModuleMatchingMessageNull() {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
         assertWithMessage("Filter should accept valid event")
                 .that(filter.accept(ev))
@@ -137,7 +137,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingModuleNull() {
+    public void testDecideByFileNameAndModuleMatchingModuleNull() {
         final Violation violation =
                 new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -147,7 +147,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingModuleEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleEqual() {
         final Violation violation =
                 new Violation(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
@@ -160,7 +160,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingModuleNotEqual() {
+    public void testDecideByFileNameAndModuleMatchingModuleNotEqual() {
         final Violation message =
                 new Violation(10, 10, "", "", null, "TheirModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -173,7 +173,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingRegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpNotMatch() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
@@ -183,7 +183,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingRegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingRegExpMatch() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
@@ -195,7 +195,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingCheckRegExpNotMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpNotMatch() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -207,7 +207,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndModuleMatchingCheckRegExpMatch() {
+    public void testDecideByFileNameAndModuleMatchingCheckRegExpMatch() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -220,7 +220,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void decideByFileNameAndSourceNameCheckRegExpNotMatch() {
+    public void testDecideByFileNameAndSourceNameCheckRegExpNotMatch() {
         final Violation message =
                 new Violation(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
@@ -234,7 +234,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void equals() {
+    public void testEquals() {
         // filterBased is used instead of filter field only to satisfy IntelliJ IDEA Inspection
         // Inspection "Arguments to assertEquals() in wrong order "
         final SuppressFilterElement filterBased =
@@ -283,7 +283,7 @@ class SuppressFilterElementTest {
     }
 
     @Test
-    void equalsAndHashCode() {
+    public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressFilterElement.class)
                 .usingGetClass()
                 .withIgnoredFields("columnFilter", "lineFilter")

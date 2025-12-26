@@ -37,7 +37,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final JavadocTagContinuationIndentationCheck checkObj =
             new JavadocTagContinuationIndentationCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
@@ -47,7 +47,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void fp() throws Exception {
+    public void testFp() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTagContinuationIndentationGuavaFalsePositive.java"),
@@ -55,7 +55,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void check() throws Exception {
+    public void testCheck() throws Exception {
         final String[] expected = {
             "55: " + getCheckMessage(MSG_KEY, 4),
             "117: " + getCheckMessage(MSG_KEY, 4),
@@ -78,7 +78,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void checkWithOffset3() throws Exception {
+    public void testCheckWithOffset3() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 3),
             "27: " + getCheckMessage(MSG_KEY, 3),
@@ -89,7 +89,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void checkWithDescription() throws Exception {
+    public void testCheckWithDescription() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 4),
             "17: " + getCheckMessage(MSG_KEY, 4),
@@ -106,7 +106,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void blockTag() throws Exception {
+    public void testBlockTag() throws Exception {
         final String[] expected = {
             "21: " + getCheckMessage(MSG_KEY, 4),
             "32: " + getCheckMessage(MSG_KEY, 4),
@@ -137,7 +137,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void continuationIndentation() throws Exception {
+    public void testContinuationIndentation() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_KEY, 4),
         };
@@ -147,7 +147,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void javadocTagContinuationIndentationCheck1() throws Exception {
+    public void testJavadocTagContinuationIndentationCheck1() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY, 4),
         };
@@ -157,7 +157,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void javadocTagContinuationIndentationCheckHtml() throws Exception {
+    public void testJavadocTagContinuationIndentationCheckHtml() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 4),
             "18: " + getCheckMessage(MSG_KEY, 4),
@@ -179,7 +179,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void javadocTagContinuationIndentationCheckPreTag() throws Exception {
+    public void testJavadocTagContinuationIndentationCheckPreTag() throws Exception {
         final String[] expected = {
             "91: " + getCheckMessage(MSG_KEY, 4),
             "100: " + getCheckMessage(MSG_KEY, 4),
@@ -191,7 +191,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void javadocTagContinuationIndentationCheckPreTag2() throws Exception {
+    public void testJavadocTagContinuationIndentationCheckPreTag2() throws Exception {
         final String[] expected = {
             "32: " + getCheckMessage(MSG_KEY, 4),
             "33: " + getCheckMessage(MSG_KEY, 4),
@@ -215,7 +215,7 @@ public class JavadocTagContinuationIndentationCheckTest
     }
 
     @Test
-    void javadocTagContinuationIndentationCheckPreTag3() throws Exception {
+    public void testJavadocTagContinuationIndentationCheckPreTag3() throws Exception {
         final String[] expected = {
             "34: " + getCheckMessage(MSG_KEY, 4),
             "35: " + getCheckMessage(MSG_KEY, 4),

@@ -44,7 +44,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     }
 
     @Test
-    void simple() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathMissingNullCaseInSwitchSimple.java"));
@@ -65,7 +65,7 @@ public class XpathRegressionMissingNullCaseInSwitchTest
     }
 
     @Test
-    void nestedExpression() throws Exception {
+    public void testNestedExpression() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMissingNullCaseInSwitchNested.java"));
 

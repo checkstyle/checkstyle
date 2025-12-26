@@ -41,7 +41,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final NoFinalizerCheck noFinalizerCheck =
                 new NoFinalizerCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
@@ -52,7 +52,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    void hasFinalizer()
+    public void testHasFinalizer()
             throws Exception {
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
@@ -62,7 +62,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    void hasNoFinalizer()
+    public void testHasNoFinalizer()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -70,7 +70,7 @@ public class NoFinalizerCheckTest
     }
 
     @Test
-    void hasNoFinalizerTryWithResource()
+    public void testHasNoFinalizerTryWithResource()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

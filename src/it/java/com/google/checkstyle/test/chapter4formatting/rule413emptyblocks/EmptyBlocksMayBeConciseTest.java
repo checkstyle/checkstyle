@@ -31,42 +31,42 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     }
 
     @Test
-    void emptyBlocksAndCatchBlocks() throws Exception {
+    public void testEmptyBlocksAndCatchBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocks.java"));
     }
 
     @Test
-    void emptyBlocksAndCatchBlocksFormatted() throws Exception {
+    public void testEmptyBlocksAndCatchBlocksFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedEmptyBlocksAndCatchBlocks.java"));
     }
 
     @Test
-    void emptyFinallyBlocks() throws Exception {
+    public void testEmptyFinallyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
     }
 
     @Test
-    void emptyCatchBlockNoViolations() throws Exception {
+    public void testEmptyCatchBlockNoViolations() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java"));
     }
 
     @Test
-    void emptyCatchBlockViolationsByComment() throws Exception {
+    public void testEmptyCatchBlockViolationsByComment() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByComment.java"));
     }
 
     @Test
-    void emptyCatchBlockViolationsByVariableName() throws Exception {
+    public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
     }
 
     @Test
-    void emptyCatchEmptyComment() throws Exception {
+    public void testEmptyCatchEmptyComment() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchEmptyComment.java"));
     }
 
     @Test
-    void formattedEmptyCatchEmptyComment() throws Exception {
+    public void testFormattedEmptyCatchEmptyComment() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedEmptyCatchEmptyComment.java"));
     }
 }

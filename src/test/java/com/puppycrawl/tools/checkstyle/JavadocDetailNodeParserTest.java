@@ -37,7 +37,7 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void parseJavadocAsDetailNode() throws Exception {
+    public void testParseJavadocAsDetailNode() throws Exception {
         final DetailAST ast = JavaParser.parseFile(
             new File(getPath("InputJavadocDetailNodeParser.java")),
             JavaParser.Options.WITH_COMMENTS)

@@ -35,7 +35,7 @@ public class SimplifyBooleanExpressionCheckTest
     }
 
     @Test
-    void it() throws Exception {
+    public void testIt() throws Exception {
         final String[] expected = {
             "22:18: " + getCheckMessage(MSG_KEY),
             "43:36: " + getCheckMessage(MSG_KEY),
@@ -56,7 +56,7 @@ public class SimplifyBooleanExpressionCheckTest
     }
 
     @Test
-    void whenExpression() throws Exception {
+    public void testWhenExpression() throws Exception {
         final String[] expected = {
             "13:41: " + getCheckMessage(MSG_KEY),
             "16:41: " + getCheckMessage(MSG_KEY),
@@ -69,7 +69,7 @@ public class SimplifyBooleanExpressionCheckTest
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final SimplifyBooleanExpressionCheck check = new SimplifyBooleanExpressionCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

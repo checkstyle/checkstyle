@@ -32,7 +32,7 @@ public class PackageStatementTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void packageStatement() throws Exception {
+    public void testPackageStatement() throws Exception {
         verifyWithWholeConfig(getPath("InputPackageStatementLongName.java"));
     }
 }

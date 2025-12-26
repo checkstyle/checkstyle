@@ -31,17 +31,17 @@ public class SourceFileStructureTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void emptyLineSeparator() throws Exception {
+    public void testEmptyLineSeparator() throws Exception {
         verifyWithWholeConfig(getPath("InputSourceFileStructure.java"));
     }
 
     @Test
-    void emptyLineSeparatorFormatted() throws Exception {
+    public void testEmptyLineSeparatorFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSourceFileStructure.java"));
     }
 
     @Test
-    void emptyLineSeparatorPackageInfo() throws Exception {
+    public void testEmptyLineSeparatorPackageInfo() throws Exception {
         verifyWithWholeConfig(getPath("package-info.java"));
     }
 }

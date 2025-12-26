@@ -57,7 +57,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 
-class ImmutabilityTest {
+public class ImmutabilityTest {
 
     /**
      * Immutable types canonical names.
@@ -114,7 +114,7 @@ class ImmutabilityTest {
     );
 
     /**
-     * List of fields not following {@link #utilClassesImmutability()} rule.
+     * List of fields not following {@link #testUtilClassesImmutability()} rule.
      */
     private static final Set<String> SUPPRESSED_FIELDS_IN_UTIL_CLASSES = Set.of(
         "com.puppycrawl.tools.checkstyle.utils.TokenUtil.TOKEN_IDS",
@@ -122,7 +122,7 @@ class ImmutabilityTest {
     );
 
     /**
-     * List of fields not following {@link #fieldsInStatelessChecksShouldBeImmutable()} rule.
+     * List of fields not following {@link #testFieldsInStatelessChecksShouldBeImmutable()} rule.
      */
     private static final Set<String> SUPPRESSED_FIELDS_IN_MODULES = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck.primitiveDataTypes",
@@ -157,7 +157,7 @@ class ImmutabilityTest {
 
     /**
      * List of classes not following
-     * {@link #classesWithImmutableFieldsShouldBeStateless()} rule.
+     * {@link #testClassesWithImmutableFieldsShouldBeStateless()} rule.
      */
     private static final Set<String> SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck",
@@ -184,7 +184,7 @@ class ImmutabilityTest {
     );
 
     /**
-     * List of classes not following {@link #classesWithMutableFieldsShouldBeStateful()} rule.
+     * List of classes not following {@link #testClassesWithMutableFieldsShouldBeStateful()} rule.
      */
     private static final Set<String> SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck"
@@ -226,7 +226,7 @@ class ImmutabilityTest {
      * Test to ensure that fields in util classes are immutable.
      */
     @Test
-    void utilClassesImmutability() {
+    public void testUtilClassesImmutability() {
         final JavaClasses utilClasses = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .importPackages("com.puppycrawl.tools.checkstyle.utils",
@@ -253,7 +253,7 @@ class ImmutabilityTest {
      * Test to ensure modules annotated with {@link StatelessCheck} contain immutable fields.
      */
     @Test
-    void fieldsInStatelessChecksShouldBeImmutable() {
+    public void testFieldsInStatelessChecksShouldBeImmutable() {
         final DescribedPredicate<JavaField> moduleProperties = new ModulePropertyPredicate();
 
         final ArchCondition<JavaField> beSuppressedField = new SuppressionArchCondition<>(
@@ -278,7 +278,7 @@ class ImmutabilityTest {
      * Test to ensure classes with immutable fields are annotated with {@link StatelessCheck}.
      */
     @Test
-    void classesWithImmutableFieldsShouldBeStateless() {
+    public void testClassesWithImmutableFieldsShouldBeStateless() {
         final ArchCondition<JavaClass> beSuppressedClass = new SuppressionArchCondition<>(
             SUPPRESSED_CLASSES_FOR_STATELESS_CHECK_RULE, "be suppressed");
 
@@ -298,7 +298,7 @@ class ImmutabilityTest {
      * {@link GlobalStatefulCheck}.
      */
     @Test
-    void classesWithMutableFieldsShouldBeStateful() {
+    public void testClassesWithMutableFieldsShouldBeStateful() {
         final ArchCondition<JavaClass> beSuppressedClass = new SuppressionArchCondition<>(
             SUPPRESSED_CLASSES_FOR_STATEFUL_CHECK_RULE, "be suppressed");
 

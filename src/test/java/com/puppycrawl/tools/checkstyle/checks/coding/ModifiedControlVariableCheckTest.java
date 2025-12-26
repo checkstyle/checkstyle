@@ -46,7 +46,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void modifiedControlVariable() throws Exception {
+    public void testModifiedControlVariable() throws Exception {
         final String[] expected = {
             "17:14: " + getCheckMessage(MSG_KEY, "i"),
             "20:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -63,7 +63,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void enhancedForLoopVariableTrue() throws Exception {
+    public void testEnhancedForLoopVariableTrue() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -72,7 +72,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void enhancedForLoopVariableFalse() throws Exception {
+    public void testEnhancedForLoopVariableFalse() throws Exception {
 
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_KEY, "line"),
@@ -83,7 +83,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void enhancedForLoopVariable2() throws Exception {
+    public void testEnhancedForLoopVariable2() throws Exception {
 
         final String[] expected = {
             "21:18: " + getCheckMessage(MSG_KEY, "i"),
@@ -94,7 +94,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -108,7 +108,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void improperToken() {
+    public void testImproperToken() {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
 
         final DetailAstImpl classDefAst = new DetailAstImpl();
@@ -139,7 +139,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void variousAssignments() throws Exception {
+    public void testVariousAssignments() throws Exception {
         final String[] expected = {
             "14:15: " + getCheckMessage(MSG_KEY, "i"),
             "15:15: " + getCheckMessage(MSG_KEY, "k"),
@@ -170,7 +170,7 @@ public class ModifiedControlVariableCheckTest
     }
 
     @Test
-    void recordDecompositionInEnhancedForLoop() throws Exception {
+    public void testRecordDecompositionInEnhancedForLoop() throws Exception {
         final String[] expected = {
             "32:15: " + getCheckMessage(MSG_KEY, "p"),
         };
@@ -188,7 +188,7 @@ public class ModifiedControlVariableCheckTest
      */
     @SuppressWarnings("unchecked")
     @Test
-    void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final ModifiedControlVariableCheck check = new ModifiedControlVariableCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
             JavaParser.parseFile(

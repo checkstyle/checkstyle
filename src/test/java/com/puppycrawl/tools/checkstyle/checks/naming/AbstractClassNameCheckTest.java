@@ -36,7 +36,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalAbstractClassName() throws Exception {
+    public void testIllegalAbstractClassName() throws Exception {
 
         final String pattern = "^Abstract.+$";
 
@@ -54,7 +54,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void customFormat() throws Exception {
+    public void testCustomFormat() throws Exception {
 
         final String[] expected = {
             "13:1: "
@@ -71,7 +71,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalClassType() throws Exception {
+    public void testIllegalClassType() throws Exception {
 
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClassType"),
@@ -83,7 +83,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allVariants() throws Exception {
+    public void testAllVariants() throws Exception {
 
         final String pattern = "^Abstract.+$";
 
@@ -104,7 +104,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void falsePositive() throws Exception {
+    public void testFalsePositive() throws Exception {
         final String pattern = "^Abstract.+$";
         final String[] expected = {
             "13:1: "
@@ -122,7 +122,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
         final int[] actual = classNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -134,7 +134,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AbstractClassNameCheck classNameCheckObj = new AbstractClassNameCheck();
         final int[] actual = classNameCheckObj.getRequiredTokens();
         final int[] expected = {

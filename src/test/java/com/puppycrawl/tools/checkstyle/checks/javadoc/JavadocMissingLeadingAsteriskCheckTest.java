@@ -36,7 +36,7 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final JavadocMissingLeadingAsteriskCheck checkObj =
             new JavadocMissingLeadingAsteriskCheck();
         final int[] expected = {
@@ -48,14 +48,14 @@ public class JavadocMissingLeadingAsteriskCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void correct() throws Exception {
+    public void testCorrect() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocMissingLeadingAsteriskCorrect.java"), expected);
     }
 
     @Test
-    void incorrect() throws Exception {
+    public void testIncorrect() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_MISSING_ASTERISK),
             "18: " + getCheckMessage(MSG_MISSING_ASTERISK),

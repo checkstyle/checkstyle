@@ -31,32 +31,32 @@ public class ColumnLimit100Test extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void lineLength() throws Exception {
+    public void testLineLength() throws Exception {
         verifyWithWholeConfig(getPath("InputColumnLimit.java"));
     }
 
     @Test
-    void lineLengthFormatted() throws Exception {
+    public void testLineLengthFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedColumnLimit.java"));
     }
 
     @Test
-    void textBlockLineLimit() throws Exception {
+    public void testTextBlockLineLimit() throws Exception {
         verifyWithWholeConfig(getPath("InputTextBlockColumnLimit.java"));
     }
 
     @Test
-    void formattedTextBlockLineLimit() throws Exception {
+    public void testFormattedTextBlockLineLimit() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTextBlockColumnLimit.java"));
     }
 
     @Test
-    void textBlockLineLimitEdgeCase() throws Exception {
+    public void testTextBlockLineLimitEdgeCase() throws Exception {
         verifyWithWholeConfig(getPath("InputColumnLimitEdgeCase.java"));
     }
 
     @Test
-    void formattedTextBlockLineLimitEdgeCase() throws Exception {
+    public void testFormattedTextBlockLineLimitEdgeCase() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedColumnLimitEdgeCase.java"));
     }
 }

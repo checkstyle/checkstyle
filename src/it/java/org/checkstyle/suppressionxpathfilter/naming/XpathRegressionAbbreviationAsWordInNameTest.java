@@ -44,7 +44,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameAnnotation.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void annotationField() throws Exception {
+    public void testAnnotationField() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameAnnotationField.java"));
 
@@ -90,7 +90,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void testClass() throws Exception {
+    public void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameClass.java"));
 
@@ -113,7 +113,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void testEnum() throws Exception {
+    public void testEnum() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameEnum.java"));
 
@@ -136,7 +136,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void field() throws Exception {
+    public void testField() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameField.java"));
 
@@ -159,7 +159,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void testInterface() throws Exception {
+    public void testInterface() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameInterface.java"));
 
@@ -182,7 +182,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void method() throws Exception {
+    public void testMethod() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameMethod.java"));
 
@@ -205,7 +205,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void parameter() throws Exception {
+    public void testParameter() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameParameter.java"));
 
@@ -229,7 +229,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    void variable() throws Exception {
+    public void testVariable() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameVariable.java"));
 

@@ -39,7 +39,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
      * This tests a package annotation that is in the package-info.java file.
      */
     @Test
-    void goodPackageAnnotation() throws Exception {
+    public void testGoodPackageAnnotation() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -48,7 +48,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
@@ -58,7 +58,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void noPackageAnnotation() throws Exception {
+    public void testNoPackageAnnotation() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -67,7 +67,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void badPackageAnnotation() throws Exception {
+    public void testBadPackageAnnotation() throws Exception {
 
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),

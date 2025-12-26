@@ -45,7 +45,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    void nonEmptyCase() throws Exception {
+    public void testNonEmptyCase() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDefaultComesLastNonEmptyCase.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    void emptyCase() throws Exception {
+    public void testEmptyCase() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDefaultComesLastEmptyCase.java"));
 

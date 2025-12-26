@@ -56,7 +56,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    void lineSeparatorOptionValueOf() {
+    public void testLineSeparatorOptionValueOf() {
         final LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
         assertWithMessage("Invalid valueOf result")
             .that(option)
@@ -67,7 +67,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      * Tests the ordinal work of a check.
      */
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "general.exception", 2),
@@ -88,7 +88,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      * @noinspectionreason JavadocReference - reference is required to specify method under test
      */
     @Test
-    void notFoundKey() throws Exception {
+    public void testNotFoundKey() throws Exception {
         final List<String> testStrings = new ArrayList<>(3);
         testStrings.add("");
         testStrings.add("0 = 0");
@@ -106,7 +106,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void duplicatedProperty() throws Exception {
+    public void testDuplicatedProperty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = {
             "2: " + getCheckMessage(MSG_KEY, "key", 2),
@@ -115,7 +115,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void shouldNotProcessFilesWithWrongFileExtension() throws Exception {
+    public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputUniqueProperties.txt"), expected);
@@ -125,7 +125,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
      * Tests IO exception, that can occur during reading of properties file.
      */
     @Test
-    void ioException() throws Exception {
+    public void testIoException() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UniquePropertiesCheck.class);
         final UniquePropertiesCheck check = new UniquePropertiesCheck();
         check.configure(checkConfig);
@@ -149,7 +149,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void wrongKeyTypeInProperties() throws Exception {
+    public void testWrongKeyTypeInProperties() throws Exception {
         final Class<?> uniquePropertiesClass = Class
                 .forName("com.puppycrawl.tools.checkstyle.checks."
                     + "UniquePropertiesCheck$UniqueProperties");

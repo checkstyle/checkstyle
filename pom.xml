@@ -639,7 +639,6 @@
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
-              <exclusion>**AbstractCheckTest.java</exclusion>
               <exclusion>**resources-noncompilable**</exclusion>
               <exclusion>**src/it/resources**</exclusion>
               <exclusion>**src/test/resources**</exclusion>
@@ -673,6 +672,11 @@
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-rewrite</artifactId>
               <version>0.17.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-third-party</artifactId>
+              <version>0.32.1</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>

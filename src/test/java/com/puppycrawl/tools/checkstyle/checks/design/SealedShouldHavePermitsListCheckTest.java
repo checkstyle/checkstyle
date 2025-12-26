@@ -35,7 +35,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final SealedShouldHavePermitsListCheck checkObj = new SealedShouldHavePermitsListCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -50,7 +50,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void innerSealedClass() throws Exception {
+    public void testInnerSealedClass() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY),
             "15:5: " + getCheckMessage(MSG_KEY),
@@ -61,7 +61,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void innerSealedInterface() throws Exception {
+    public void testInnerSealedInterface() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY),
         };
@@ -71,7 +71,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void topLevelSealedClass() throws Exception {
+    public void testTopLevelSealedClass() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -81,7 +81,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void topLevelSealedInterface() throws Exception {
+    public void testTopLevelSealedInterface() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -92,7 +92,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    void jepExample() throws Exception {
+    public void testJepExample() throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),
             "24:1: " + getCheckMessage(MSG_KEY),

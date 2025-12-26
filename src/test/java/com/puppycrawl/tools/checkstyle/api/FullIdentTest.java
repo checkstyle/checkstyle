@@ -41,7 +41,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testToString() {
+    public void testToString() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.LITERAL_NEW);
         ast.setColumnNo(14);
@@ -71,7 +71,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void createFullIdentBelow() {
+    public void testCreateFullIdentBelow() {
         final DetailAST ast = new DetailAstImpl();
 
         final FullIdent indent = FullIdent.createFullIdentBelow(ast);
@@ -81,7 +81,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getDetailAst() throws Exception {
+    public void testGetDetailAst() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -95,7 +95,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nonValidCoordinatesWithNegative() {
+    public void testNonValidCoordinatesWithNegative() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(14, 15);
         assertWithMessage("Invalid full indent")
                 .that(fullIdent.toString())
@@ -103,7 +103,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void nonValidCoordinatesWithZero() {
+    public void testNonValidCoordinatesWithZero() {
         final FullIdent fullIdent = prepareFullIdentWithCoordinates(0, 0);
         assertWithMessage("Invalid full indent")
                 .that(fullIdent.toString())
@@ -111,7 +111,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withArrayCreateFullIdentWithArrayDeclare() throws Exception {
+    public void testWithArrayCreateFullIdentWithArrayDeclare() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentTestArrayType.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -129,7 +129,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fullIdentAnnotation() throws Exception {
+    public void testFullIdentAnnotation() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentAnnotation.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -156,7 +156,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fullIdentArrayInit() throws Exception {
+    public void testFullIdentArrayInit() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentArrayInit.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -212,7 +212,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void returnNoAnnotation() throws Exception {
+    public void testReturnNoAnnotation() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getNonCompilablePath("InputFullIdentReturnNoAnnotation.java"))
                         .getAbsoluteFile(),
@@ -227,7 +227,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fullyQualifiedStringArray() throws Exception {
+    public void testFullyQualifiedStringArray() throws Exception {
         final FileText testFileText = new FileText(
                 new File(getPath("InputFullIdentFullyQualifiedStringArray.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -246,7 +246,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void createFullIdentBelow2() throws Exception {
+    public void testCreateFullIdentBelow2() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(ImportOrderCheck.class,
                     MSG_ORDERING, "java.util.HashMap"),
@@ -257,7 +257,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void literalNewCondition() throws Exception {
+    public void testLiteralNewCondition() throws Exception {
         final String[] expected = {
             "11:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     UnusedLocalVariableCheck.MSG_UNUSED_LOCAL_VARIABLE, "j"),

@@ -31,7 +31,7 @@ public class DeclaredWhenNeededTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void variableDeclarationUsageDistance() throws Exception {
+    public void testVariableDeclarationUsageDistance() throws Exception {
         verifyWithWholeConfig(getPath("InputDeclaredWhenNeeded.java"));
     }
 

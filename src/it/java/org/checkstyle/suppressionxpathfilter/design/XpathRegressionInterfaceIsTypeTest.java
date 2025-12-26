@@ -44,7 +44,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     }
 
     @Test
-    void allowMarker() throws Exception {
+    public void testAllowMarker() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathInterfaceIsTypeAllowMarker.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
     }
 
     @Test
-    void allowMarkerFalse() throws Exception {
+    public void testAllowMarkerFalse() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathInterfaceIsType.java"));
 

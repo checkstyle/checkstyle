@@ -36,7 +36,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final LambdaBodyLengthCheck checkObj = new LambdaBodyLengthCheck();
         final int[] expected = {TokenTypes.LAMBDA};
         assertWithMessage("Default required tokens are invalid")
@@ -45,7 +45,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final LambdaBodyLengthCheck lambdaBodyLengthCheckObj =
                 new LambdaBodyLengthCheck();
         final int[] actual = lambdaBodyLengthCheckObj.getAcceptableTokens();
@@ -57,7 +57,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 12, 10),
             "29:27: " + getCheckMessage(MSG_KEY, 12, 10),
@@ -71,14 +71,14 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultSwitchExpressions() throws Exception {
+    public void testDefaultSwitchExpressions() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputLambdaBodyLengthSwitchExps.java"), expected);
     }
 
     @Test
-    void maxLimitIsDifferent() throws Exception {
+    public void testMaxLimitIsDifferent() throws Exception {
         final String[] expected = {
             "16:27: " + getCheckMessage(MSG_KEY, 4, 3),
             "21:27: " + getCheckMessage(MSG_KEY, 4, 3),

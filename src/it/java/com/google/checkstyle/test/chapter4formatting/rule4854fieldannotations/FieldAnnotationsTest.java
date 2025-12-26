@@ -30,12 +30,12 @@ public class FieldAnnotationsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void annotations() throws Exception {
+    public void testAnnotations() throws Exception {
         verifyWithWholeConfig(getPath("InputFieldAnnotations.java"));
     }
 
     @Test
-    void annotationsFormatted() throws Exception {
+    public void testAnnotationsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedFieldAnnotations.java"));
     }
 }

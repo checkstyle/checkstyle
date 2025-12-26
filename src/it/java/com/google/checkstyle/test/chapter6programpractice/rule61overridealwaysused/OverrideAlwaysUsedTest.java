@@ -32,7 +32,7 @@ class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void overrideAlwaysUsedForRecord() throws Exception {
+    public void testOverrideAlwaysUsedForRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecord.java"));
     }
 }

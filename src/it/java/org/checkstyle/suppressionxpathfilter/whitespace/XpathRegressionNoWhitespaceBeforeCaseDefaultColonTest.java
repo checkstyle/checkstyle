@@ -46,7 +46,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathNoWhitespaceBeforeCaseDefaultColonOne.java"));
@@ -70,7 +70,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathNoWhitespaceBeforeCaseDefaultColonTwo.java"));
@@ -95,7 +95,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    void three() throws Exception {
+    public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathNoWhitespaceBeforeCaseDefaultColonThree.java"));
@@ -120,7 +120,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
     }
 
     @Test
-    void four() throws Exception {
+    public void testFour() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathNoWhitespaceBeforeCaseDefaultColonFour.java"));

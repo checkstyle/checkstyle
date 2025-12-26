@@ -41,7 +41,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultNoPackage() throws Exception {
+    public void testDefaultNoPackage() throws Exception {
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISSING),
@@ -52,7 +52,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultWithPackage() throws Exception {
+    public void testDefaultWithPackage() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -61,7 +61,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void onFileWithCommentOnly() throws Exception {
+    public void testOnFileWithCommentOnly() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -70,7 +70,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileForDiffDirectoryMismatch() throws Exception {
+    public void testFileForDiffDirectoryMismatch() throws Exception {
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -81,7 +81,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileForDirectoryMismatchAtParent() throws Exception {
+    public void testFileForDirectoryMismatchAtParent() throws Exception {
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -93,7 +93,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileForDirectoryMismatchAtSubpackage() throws Exception {
+    public void testFileForDirectoryMismatchAtSubpackage() throws Exception {
 
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY_MISMATCH),
@@ -105,7 +105,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileIgnoreDiffDirectoryMismatch() throws Exception {
+    public void testFileIgnoreDiffDirectoryMismatch() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -114,7 +114,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileIgnoreDirectoryMismatchAtParent() throws Exception {
+    public void testFileIgnoreDirectoryMismatchAtParent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -123,7 +123,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
+    public void testFileIgnoreDirectoryMismatchAtSubpackage() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -132,7 +132,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void noPackage() throws Exception {
+    public void testNoPackage() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY_MISSING),
         };
@@ -144,7 +144,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
     @SuppressForbidden
     @Test
-    void emptyFile() throws Exception {
+    public void testEmptyFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -154,7 +154,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final PackageDeclarationCheck check = new PackageDeclarationCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -168,7 +168,7 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void beginTreeClear() throws Exception {
+    public void testBeginTreeClear() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(PackageDeclarationCheck.class);
         final String[] expected = {

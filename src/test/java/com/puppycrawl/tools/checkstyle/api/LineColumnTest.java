@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-class LineColumnTest {
+public class LineColumnTest {
 
     @Test
-    void compareToBothEqual() {
+    public void testCompareToBothEqual() {
         final int actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));
         assertWithMessage("Invalid LineColumn comparing result")
                 .that(actual)
@@ -37,7 +37,7 @@ class LineColumnTest {
     }
 
     @Test
-    void compareToFirstLarger() {
+    public void testCompareToFirstLarger() {
         final LineColumn lineColumn = new LineColumn(0, 0);
 
         final int line1column0 = new LineColumn(1, 0).compareTo(lineColumn);
@@ -51,7 +51,7 @@ class LineColumnTest {
     }
 
     @Test
-    void compareToFirstSmaller() {
+    public void testCompareToFirstSmaller() {
         final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
         final int line1Column0 = lineColumn.compareTo(new LineColumn(1, 0));
@@ -65,7 +65,7 @@ class LineColumnTest {
     }
 
     @Test
-    void equalsAndHashCode() {
+    public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(LineColumn.class).usingGetClass()
                 .report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -74,7 +74,7 @@ class LineColumnTest {
     }
 
     @Test
-    void getters() {
+    public void testGetters() {
         final LineColumn lineColumn = new LineColumn(2, 3);
 
         assertWithMessage("Invalid LineColumn comparison result")

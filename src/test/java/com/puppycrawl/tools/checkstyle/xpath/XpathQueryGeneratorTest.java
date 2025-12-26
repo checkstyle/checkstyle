@@ -53,7 +53,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @BeforeEach
-    void init() throws Exception {
+    public void init() throws Exception {
         final File file = new File(getPath("InputXpathQueryGenerator.java"));
         fileText = new FileText(file,
                 StandardCharsets.UTF_8.name());
@@ -61,7 +61,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void classDef() {
+    public void testClassDef() {
         final int lineNumber = 12;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -78,7 +78,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void methodDef() {
+    public void testMethodDef() {
         final int lineNumber = 45;
         final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -97,7 +97,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void variableDef() {
+    public void testVariableDef() {
         final int lineNumber = 53;
         final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -126,7 +126,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lcurly() {
+    public void testLcurly() {
         final int lineNumber = 37;
         final int columnNumber = 20;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -141,7 +141,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void rcurly() {
+    public void testRcurly() {
         final int lineNumber = 25;
         final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -156,7 +156,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void expr() {
+    public void testExpr() {
         final int lineNumber = 17;
         final int columnNumber = 50;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -173,7 +173,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lparen() {
+    public void testLparen() {
         final int lineNumber = 45;
         final int columnNumber = 31;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -188,7 +188,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void empty() {
+    public void testEmpty() {
         final int lineNumber = 300;
         final int columnNumber = 300;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -200,7 +200,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testPackage() {
+    public void testPackage() {
         final int lineNumber = 2;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -215,7 +215,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testImport() {
+    public void testImport() {
         final int lineNumber = 5;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -229,7 +229,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void methodParams() {
+    public void testMethodParams() {
         final int lineNumber = 72;
         final int columnNumber = 30;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -260,7 +260,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testSwitch() {
+    public void testSwitch() {
         final int lineNumber = 37;
         final int columnNumber = 9;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -275,7 +275,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void switchCase() {
+    public void testSwitchCase() {
         final int lineNumber = 38;
         final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -294,7 +294,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void variableStringLiteral() {
+    public void testVariableStringLiteral() {
         final int lineNumber = 47;
         final int columnNumber = 26;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -315,7 +315,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void comma() {
+    public void testComma() {
         final int lineNumber = 66;
         final int columnNumber = 36;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -331,7 +331,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void literalVoid() {
+    public void testLiteralVoid() {
         final int lineNumber = 65;
         final int columnNumber = 12;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -348,7 +348,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void firstImport() {
+    public void testFirstImport() {
         final int lineNumber = 4;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -362,7 +362,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lastImport() {
+    public void testLastImport() {
         final int lineNumber = 8;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -376,7 +376,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void importByText() {
+    public void testImportByText() {
         final int lineNumber = 4;
         final int columnNumber = 8;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -390,7 +390,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void ident() {
+    public void testIdent() {
         final int lineNumber = 12;
         final int columnNumber = 14;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -404,7 +404,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tabWidthBeforeMethodDef() throws Exception {
+    public void testTabWidthBeforeMethodDef() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
@@ -433,7 +433,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tabWidthAfterVoidLiteral() throws Exception {
+    public void testTabWidthAfterVoidLiteral() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
@@ -459,7 +459,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tabWidthBeforeSlist() throws Exception {
+    public void testTabWidthBeforeSlist() throws Exception {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -481,7 +481,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tabWidthEndOfLine() throws Exception {
+    public void testTabWidthEndOfLine() throws Exception {
         final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -502,7 +502,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void classDefWithTokenType() {
+    public void testClassDefWithTokenType() {
         final int lineNumber = 12;
         final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
@@ -516,7 +516,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void constructorWithTreeWalkerAuditEvent() {
+    public void testConstructorWithTreeWalkerAuditEvent() {
         final Violation violation = new Violation(12, 1, "messages.properties", null,
                 null, null, null, null, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(new FileContents(fileText),
@@ -535,7 +535,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void escapeCharacters() throws Exception {
+    public void testEscapeCharacters() throws Exception {
         final File testFile = new File(getPath("InputXpathQueryGeneratorEscapeCharacters.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
@@ -585,7 +585,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void textBlocks() throws Exception {
+    public void testTextBlocks() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlock.java"));
         final FileText testFileText = new FileText(testFile,
@@ -612,7 +612,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void textBlocksWithNewLine() throws Exception {
+    public void testTextBlocksWithNewLine() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockNewLine.java"));
         final FileText testFileText = new FileText(testFile,
@@ -639,7 +639,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void textBlocksWithNewCrlf() throws Exception {
+    public void testTextBlocksWithNewCrlf() throws Exception {
         final File testFile = new File(getPath(
                 "InputXpathQueryGeneratorTextBlockCrlf.java"));
         final FileText testFileText = new FileText(testFile,
@@ -667,7 +667,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void xpath() throws Exception {
+    public void testXpath() throws Exception {
         final File testFile =
                 new File(getPath("InputXpathQueryGenerator2.java"));
         final FileText testFileText = new FileText(testFile,
@@ -692,7 +692,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void xpath2() throws Exception {
+    public void testXpath2() throws Exception {
         final File testFile =
                 new File(getPath("InputXpathQueryGenerator3.java"));
         final FileText testFileText = new FileText(testFile,
@@ -716,7 +716,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void xpath3() throws Exception {
+    public void testXpath3() throws Exception {
         final File testFile =
                 new File(getPath("InputXpathQueryGenerator4.java"));
         final FileText testFileText = new FileText(testFile,

@@ -40,7 +40,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
 
         final String[] expected = {
             "30:12: " + getCheckMessage(MSG_SEMI),
@@ -61,7 +61,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
-    void tokensNotNull() {
+    public void testTokensNotNull() {
         final UnnecessarySemicolonInEnumerationCheck check =
                 new UnnecessarySemicolonInEnumerationCheck();
         final int[] expected = {

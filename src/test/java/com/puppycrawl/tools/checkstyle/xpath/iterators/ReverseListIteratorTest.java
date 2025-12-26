@@ -32,10 +32,10 @@ import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import net.sf.saxon.om.NamespaceUri;
 import net.sf.saxon.om.NodeInfo;
 
-class ReverseListIteratorTest {
+public class ReverseListIteratorTest {
 
     @Test
-    void correctOrder() {
+    public void testCorrectOrder() {
         final List<AbstractNode> nodes = Arrays.asList(new TestNode(), new TestNode(),
                 new TestNode());
 
@@ -52,7 +52,7 @@ class ReverseListIteratorTest {
     }
 
     @Test
-    void nullList() {
+    public void testNullList() {
         try (ReverseListIterator iterator = new ReverseListIterator(null)) {
             assertWithMessage("Node should be null")
                     .that(iterator.next())

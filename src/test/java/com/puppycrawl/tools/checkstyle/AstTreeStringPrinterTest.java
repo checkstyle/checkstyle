@@ -42,14 +42,14 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class))
                 .isTrue();
     }
 
     @Test
-    void parseFileThrowable() throws Exception {
+    public void testParseFileThrowable() throws Exception {
         final File input = new File(getNonCompilablePath("InputAstTreeStringPrinter.java"));
         try {
             AstTreeStringPrinter.printFileAst(input, JavaParser.Options.WITHOUT_COMMENTS);
@@ -66,14 +66,14 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void parseFile() throws Exception {
+    public void testParseFile() throws Exception {
         verifyAst(getPath("ExpectedAstTreeStringPrinter.txt"),
                 getPath("InputAstTreeStringPrinterComments.java"),
                 JavaParser.Options.WITHOUT_COMMENTS);
     }
 
     @Test
-    void printBranch() throws Exception {
+    public void testPrintBranch() throws Exception {
         final DetailAST ast = JavaParser.parseFile(
             new File(getPath("InputAstTreeStringPrinterPrintBranch.java")),
             JavaParser.Options.WITH_COMMENTS);
@@ -91,7 +91,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void printAst() throws Exception {
+    public void testPrintAst() throws Exception {
         final FileText text = new FileText(
                 new File(getPath("InputAstTreeStringPrinterComments.java")).getAbsoluteFile(),
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
@@ -106,26 +106,26 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void parseFileWithComments() throws Exception {
+    public void testParseFileWithComments() throws Exception {
         verifyAst(getPath("ExpectedAstTreeStringPrinterComments.txt"),
                 getPath("InputAstTreeStringPrinterComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void parseFileWithJavadoc1() throws Exception {
+    public void testParseFileWithJavadoc1() throws Exception {
         verifyJavaAndJavadocAst(getPath("ExpectedAstTreeStringPrinterJavadoc.txt"),
                 getPath("InputAstTreeStringPrinterJavadoc.java"));
     }
 
     @Test
-    void parseFileWithJavadoc2() throws Exception {
+    public void testParseFileWithJavadoc2() throws Exception {
         verifyJavaAndJavadocAst(getPath("ExpectedAstTreeStringPrinterJavaAndJavadoc.txt"),
                 getPath("InputAstTreeStringPrinterJavaAndJavadoc.java"));
     }
 
     @Test
-    void parseFileWithJavadoc3() throws Exception {
+    public void testParseFileWithJavadoc3() throws Exception {
         verifyJavaAndJavadocAst(
                 getPath("ExpectedAstTreeStringPrinterAttributesAndMethodsJavadoc.txt"),
                 getPath("InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java")
@@ -133,34 +133,34 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void javadocPosition() throws Exception {
+    public void testJavadocPosition() throws Exception {
         verifyJavaAndJavadocAst(getPath("ExpectedAstTreeStringPrinterJavadocPosition.txt"),
                 getPath("InputAstTreeStringPrinterJavadocPosition.java"));
     }
 
     @Test
-    void astTreeBlockComments() throws Exception {
+    public void testAstTreeBlockComments() throws Exception {
         verifyAst(getPath("ExpectedAstTreeStringPrinterFullOfBlockComments.txt"),
                 getPath("InputAstTreeStringPrinterFullOfBlockComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void astTreeBlockCommentsCarriageReturn() throws Exception {
+    public void testAstTreeBlockCommentsCarriageReturn() throws Exception {
         verifyAst(getPath("ExpectedAstTreeStringPrinterFullOfBlockCommentsCR.txt"),
                 getPath("InputAstTreeStringPrinterFullOfBlockCommentsCR.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void astTreeSingleLineComments() throws Exception {
+    public void testAstTreeSingleLineComments() throws Exception {
         verifyAst(getPath("ExpectedAstTreeStringPrinterFullOfSinglelineComments.txt"),
                 getPath("InputAstTreeStringPrinterFullOfSinglelineComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    void textBlocksEscapesAreOneChar() throws Exception {
+    public void testTextBlocksEscapesAreOneChar() throws Exception {
         final String inputFilename = "InputAstTreeStringPrinterTextBlocksEscapesAreOneChar.java";
         final DetailAST ast = JavaParser.parseFile(
                 new File(getPath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS)

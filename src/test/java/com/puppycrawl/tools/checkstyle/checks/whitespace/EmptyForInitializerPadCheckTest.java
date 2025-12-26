@@ -40,7 +40,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
         final int[] expected = {TokenTypes.FOR_INIT};
         assertWithMessage("Default required tokens are invalid")
@@ -49,7 +49,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
@@ -58,7 +58,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void spaceOption() throws Exception {
+    public void testSpaceOption() throws Exception {
         final String[] expected = {
             "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
@@ -67,7 +67,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final EmptyForInitializerPadCheck emptyForInitializerPadCheckObj =
             new EmptyForInitializerPadCheck();
         final int[] actual = emptyForInitializerPadCheckObj.getAcceptableTokens();
@@ -84,7 +84,7 @@ public class EmptyForInitializerPadCheckTest
      * valueOf() is uncovered.
      */
     @Test
-    void padOptionValueOf() {
+    public void testPadOptionValueOf() {
         final PadOption option = PadOption.valueOf("NOSPACE");
         assertWithMessage("Result of valueOf is invalid")
             .that(option)
@@ -96,7 +96,7 @@ public class EmptyForInitializerPadCheckTest
      * valueOf() is uncovered.
      */
     @Test
-    void wrapOptionValueOf() {
+    public void testWrapOptionValueOf() {
         final WrapOption option = WrapOption.valueOf("EOL");
         assertWithMessage("Result of valueOf is invalid")
             .that(option)
@@ -104,7 +104,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void withEmoji() throws Exception {
+    public void testWithEmoji() throws Exception {
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
             "28:25: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
@@ -114,7 +114,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         checkConfig.addProperty("option", "invalid_option");
@@ -137,7 +137,7 @@ public class EmptyForInitializerPadCheckTest
     }
 
     @Test
-    void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "15:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };

@@ -37,7 +37,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -46,7 +46,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    void specified()
+    public void testSpecified()
             throws Exception {
 
         final String pattern = "^s[A-Z][a-zA-Z0-9]*$";
@@ -59,7 +59,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    void accessTuning()
+    public void testAccessTuning()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -67,7 +67,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    void interfaceOrAnnotationBlock()
+    public void testInterfaceOrAnnotationBlock()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -75,7 +75,7 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final StaticVariableNameCheck staticVariableNameCheckObj = new StaticVariableNameCheck();
         final int[] actual = staticVariableNameCheckObj.getAcceptableTokens();
         final int[] expected = {

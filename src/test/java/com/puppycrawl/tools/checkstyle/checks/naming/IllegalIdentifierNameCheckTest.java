@@ -36,7 +36,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final IllegalIdentifierNameCheck illegalIdentifierNameCheck =
             new IllegalIdentifierNameCheck();
         final int[] expected = {
@@ -61,7 +61,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final IllegalIdentifierNameCheck illegalIdentifierNameCheck =
             new IllegalIdentifierNameCheck();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
@@ -72,7 +72,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameDefault() throws Exception {
+    public void testIllegalIdentifierNameDefault() throws Exception {
 
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
@@ -87,7 +87,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameOpenTransitive() throws Exception {
+    public void testIllegalIdentifierNameOpenTransitive() throws Exception {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|open|transitive)$).+$";
 
         final String[] expected = {
@@ -111,7 +111,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameParameterReceiver() throws Exception {
+    public void testIllegalIdentifierNameParameterReceiver() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -121,7 +121,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameUnderscore() throws Exception {
+    public void testIllegalIdentifierNameUnderscore() throws Exception {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
@@ -132,7 +132,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameLambda() throws Exception {
+    public void testIllegalIdentifierNameLambda() throws Exception {
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {
@@ -146,7 +146,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameUnnamedVariable() throws Exception {
+    public void testIllegalIdentifierNameUnnamedVariable() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -155,7 +155,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void illegalIdentifierNameRecordPattern() throws Exception {
+    public void testIllegalIdentifierNameRecordPattern() throws Exception {
         final String format = "^(?!var$|\\S*\\$)\\S+$";
 
         final String[] expected = {

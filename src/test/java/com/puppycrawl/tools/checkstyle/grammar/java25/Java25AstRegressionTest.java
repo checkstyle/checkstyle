@@ -31,14 +31,14 @@ public class Java25AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void importModuleCustom() throws Exception {
+    public void testImportModuleCustom() throws Exception {
         verifyAst(
                 getNonCompilablePath("ExpectedImportModuleCustom.txt"),
                 getNonCompilablePath("InputImportModuleCustom.java"));
     }
 
     @Test
-    void importModuleJavaBase() throws Exception {
+    public void testImportModuleJavaBase() throws Exception {
         verifyAst(
                 getNonCompilablePath("ExpectedImportModuleJavaBase.txt"),
                 getNonCompilablePath("InputImportModuleJavaBase.java"));

@@ -25,10 +25,10 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
-class JavadocNodeImplTest {
+public class JavadocNodeImplTest {
 
     @Test
-    void testToString() {
+    public void testToString() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setType(JavadocCommentsTokenTypes.EQUALS);
         javadocNode.setLineNumber(1);
@@ -43,7 +43,7 @@ class JavadocNodeImplTest {
     }
 
     @Test
-    void getColumnNumber() {
+    public void testGetColumnNumber() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setColumnNumber(1);
 
@@ -55,7 +55,7 @@ class JavadocNodeImplTest {
     }
 
     @Test
-    void setNextSibling() {
+    public void testSetNextSibling() {
         final JavadocNodeImpl root = new JavadocNodeImpl();
         final JavadocNodeImpl firstChild = new JavadocNodeImpl();
         final JavadocNodeImpl secondChild = new JavadocNodeImpl();

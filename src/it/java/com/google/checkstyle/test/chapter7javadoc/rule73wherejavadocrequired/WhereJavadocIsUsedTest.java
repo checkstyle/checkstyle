@@ -31,27 +31,27 @@ public class WhereJavadocIsUsedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void missingJavadocTypeIncorrect() throws Exception {
+    public void testMissingJavadocTypeIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputMissingJavadocTypeIncorrect.java"));
     }
 
     @Test
-    void missingJavadocTypeCorrect() throws Exception {
+    public void testMissingJavadocTypeCorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputMissingJavadocTypeCorrect.java"));
     }
 
     @Test
-    void javadocMethodAndMissingJavadocMethod() throws Exception {
+    public void testJavadocMethodAndMissingJavadocMethod() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocMethodAndMissingJavadocMethod.java"));
     }
 
     @Test
-    void javadocTypeOnRecord() throws Exception {
+    public void testJavadocTypeOnRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocTypeOnRecord.java"));
     }
 
     @Test
-    void javadocTypeOnRecord2() throws Exception {
+    public void testJavadocTypeOnRecord2() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocTypeOnRecord2.java"));
     }
 }

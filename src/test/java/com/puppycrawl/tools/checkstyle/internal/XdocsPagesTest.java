@@ -280,12 +280,12 @@ public class XdocsPagesTest {
      * @throws Exception if something goes wrong
      */
     @BeforeAll
-    static void generateXdocContent() throws Exception {
+    public static void generateXdocContent() throws Exception {
         XdocGenerator.generateXdocContent(temporaryFolder);
     }
 
     @Test
-    void allChecksPresentOnAvailableChecksPage() throws Exception {
+    public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = Files.readString(AVAILABLE_CHECKS_PATH);
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
@@ -310,7 +310,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allConfigsHaveLinkInSite() throws Exception {
+    public void testAllConfigsHaveLinkInSite() throws Exception {
         final String siteContent = Files.readString(SITE_PATH);
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
@@ -334,7 +334,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allModulesPageInSyncWithModuleSummaries() throws Exception {
+    public void testAllModulesPageInSyncWithModuleSummaries() throws Exception {
         validateModulesSyncWithTheirSummaries(AVAILABLE_CHECKS_PATH,
             (Path path) -> {
                 final String fileName = path.getFileName().toString();
@@ -399,7 +399,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void categoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
+    public void testCategoryIndexPageTableInSyncWithAllChecksPageTable() throws Exception {
         final Map<String, String> summaries = readSummaries(AVAILABLE_CHECKS_PATH);
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
@@ -430,7 +430,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allFiltersIndexPageTable() throws Exception {
+    public void testAllFiltersIndexPageTable() throws Exception {
         validateFilterTypeIndexPage(AVAILABLE_FILTERS_PATH);
         validateFilterTypeIndexPage(AVAILABLE_FILE_FILTERS_PATH);
     }
@@ -486,7 +486,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void alphabetOrderInNames() throws Exception {
+    public void testAlphabetOrderInNames() throws Exception {
         final NodeList nodes = getTagSourcesNode(SITE_PATH, "item");
 
         for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
@@ -545,7 +545,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void alphabetOrderAtIndexPages() throws Exception {
+    public void testAlphabetOrderAtIndexPages() throws Exception {
         final Path allChecks = Path.of("src/site/xdoc/checks.xml");
         validateOrder(allChecks, "Check");
 
@@ -644,7 +644,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allSubSections() throws Exception {
+    public void testAllSubSections() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String fileName = path.getFileName().toString();
             final NodeList subSections = getTagSourcesNode(path, "subsection");
@@ -696,7 +696,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allXmlExamples() throws Exception {
+    public void testAllXmlExamples() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final String fileName = path.getFileName().toString();
             final NodeList sources = getTagSourcesNode(path, "source");
@@ -806,7 +806,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allCheckSections() throws Exception {
+    public void testAllCheckSections() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
@@ -856,7 +856,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allCheckSectionsEx() throws Exception {
+    public void testAllCheckSectionsEx() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
 
         final Path path = Path.of(XdocUtil.DIRECTORY_PATH + "/config.xml");
@@ -1863,7 +1863,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allStyleRules() throws Exception {
+    public void testAllStyleRules() throws Exception {
         for (Path path : XdocUtil.getXdocsStyleFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
             final String styleName = fileName.substring(0, fileName.lastIndexOf('_'));
@@ -2241,7 +2241,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
+    public void testAllExampleMacrosHaveParagraphWithIdBeforeThem() throws Exception {
         for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
             final String fileName = path.getFileName().toString();
             final NodeList sources = getTagSourcesNode(path, "macro");
@@ -2323,7 +2323,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void validateExampleSectionSeparation() throws Exception {
+    public void validateExampleSectionSeparation() throws Exception {
         final List<Path> templates = collectAllXmlTemplatesUnderSrcSite();
 
         for (final Path template : templates) {
@@ -2404,7 +2404,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allOldReleaseNotesHaveRedirectInCheckstyleJs() throws Exception {
+    public void testAllOldReleaseNotesHaveRedirectInCheckstyleJs() throws Exception {
         final String checkstyleJsContent = Files.readString(CHECKSTYLE_JS_PATH);
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             if (!path.toString().contains("releasenotes_old_")) {
@@ -2426,7 +2426,7 @@ public class XdocsPagesTest {
     }
 
     @Test
-    void allXdocsModulesTemplatesHaveSinceMacroAtTheBeginning() throws Exception {
+    public void testAllXdocsModulesTemplatesHaveSinceMacroAtTheBeginning() throws Exception {
         for (Path path : XdocUtil.getXdocsTemplatesFilePaths()) {
             final String fileName = path.getFileName().toString();
 

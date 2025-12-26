@@ -40,7 +40,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
         assertWithMessage("Default required tokens are invalid")
@@ -49,7 +49,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void correct() throws Exception {
+    public void testCorrect() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -57,7 +57,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect() throws Exception {
+    public void testIncorrect() throws Exception {
         final String[] expected = {
             "14:4: " + getCheckMessage(MSG_LINE_BEFORE),
             "15:19: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -89,7 +89,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect2() throws Exception {
+    public void testIncorrect2() throws Exception {
         final String[] expected = {
             "14:4: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "h1"),
             "22:7: " + getCheckMessage(MSG_PRECEDED_BLOCK_TAG, "ul"),
@@ -105,7 +105,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allowNewlineParagraph() throws Exception {
+    public void testAllowNewlineParagraph() throws Exception {
         final String[] expected = {
             "16:4: " + getCheckMessage(MSG_MISPLACED_TAG),
             "16:4: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -146,7 +146,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allowNewlineParagraph2() throws Exception {
+    public void testAllowNewlineParagraph2() throws Exception {
         final String[] expected = {
             "16:12: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "17:11: " + getCheckMessage(MSG_TAG_AFTER),
@@ -161,7 +161,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allowNewlineParagraph3() throws Exception {
+    public void testAllowNewlineParagraph3() throws Exception {
         final String[] expected = {
             "42:8: " + getCheckMessage(MSG_MISPLACED_TAG),
             "46:8: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -174,7 +174,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void javadocParagraph() throws Exception {
+    public void testJavadocParagraph() throws Exception {
         final String[] expected = {
             "19:4: " + getCheckMessage(MSG_LINE_BEFORE),
             "28:7: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
@@ -189,7 +189,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void javadocParagraphOpenClosedTag() throws Exception {
+    public void testJavadocParagraphOpenClosedTag() throws Exception {
         final String[] expected = {
             "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
             "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -208,7 +208,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void javadocParagraphOpenClosedTag2() throws Exception {
+    public void testJavadocParagraphOpenClosedTag2() throws Exception {
         final String[] expected = {
             "14:4: " + getCheckMessage(MSG_MISPLACED_TAG),
             "21:7: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -232,7 +232,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void javadocParagraphOpenClosedTag3() throws Exception {
+    public void testJavadocParagraphOpenClosedTag3() throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_MISPLACED_TAG),
             "23:7: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -244,7 +244,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void incorrect3() throws Exception {
+    public void testIncorrect3() throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_MISPLACED_TAG),
             "23:7: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -256,7 +256,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void javadocParagraphNested() throws Exception {
+    public void testJavadocParagraphNested() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(

@@ -43,7 +43,7 @@ public class XpathRegressionWhenShouldBeUsedTest
     }
 
     @Test
-    void simple() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathWhenShouldBeUsedSimple.java"));
@@ -67,7 +67,7 @@ public class XpathRegressionWhenShouldBeUsedTest
     }
 
     @Test
-    void nested() throws Exception {
+    public void testNested() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathWhenShouldBeUsedNested.java"));

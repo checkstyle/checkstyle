@@ -151,7 +151,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AvoidEscapedUnicodeCharactersCheck checkObj =
             new AvoidEscapedUnicodeCharactersCheck();
         final int[] expected = {
@@ -165,7 +165,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -222,7 +222,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowEscapesForControlCharacterSet() throws Exception {
+    public void testAllowEscapesForControlCharacterSet() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -274,7 +274,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowByTailComment() throws Exception {
+    public void testAllowByTailComment() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "26:38: " + getCheckMessage(MSG_KEY),
@@ -310,7 +310,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowAllCharactersEscaped() throws Exception {
+    public void testAllowAllCharactersEscaped() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -344,7 +344,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowNonPrintableEscapesOne() throws Exception {
+    public void allowNonPrintableEscapesOne() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -364,7 +364,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowNonPrintableEscapesTwo() throws Exception {
+    public void allowNonPrintableEscapesTwo() throws Exception {
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -392,7 +392,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowByTailCommentWithEmoji() throws Exception {
+    public void testAllowByTailCommentWithEmoji() throws Exception {
         final String[] expected = {
             "15:24: " + getCheckMessage(MSG_KEY),
             "18:24: " + getCheckMessage(MSG_KEY),
@@ -407,7 +407,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void avoidEscapedUnicodeCharactersTextBlocksAllowByComment() throws Exception {
+    public void testAvoidEscapedUnicodeCharactersTextBlocksAllowByComment() throws Exception {
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_KEY),
             "20:30: " + getCheckMessage(MSG_KEY),
@@ -425,7 +425,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void avoidEscapedUnicodeCharactersTextBlocks() throws Exception {
+    public void testAvoidEscapedUnicodeCharactersTextBlocks() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_KEY),
             "19:30: " + getCheckMessage(MSG_KEY),
@@ -442,7 +442,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void avoidEscapedUnicodeCharactersEscapedS() throws Exception {
+    public void testAvoidEscapedUnicodeCharactersEscapedS() throws Exception {
         final String[] expected = {
             "17:21: " + getCheckMessage(MSG_KEY),
             "19:22: " + getCheckMessage(MSG_KEY),
@@ -457,7 +457,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
         final int[] expected = {
@@ -471,7 +471,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
-    void allowEscapesForControlCharacterSetForAllCharacters() throws Exception {
+    public void testAllowEscapesForControlCharacterSetForAllCharacters() throws Exception {
 
         final int indexOfStartLineInInputFile = 16;
         final String message = getCheckMessage(MSG_KEY);
@@ -496,7 +496,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
      * @throws Exception when code tested throws some exception
      */
     @Test
-    void countMatches() throws Exception {
+    public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int actual = TestUtil.invokeMethod(check, "countMatches", Integer.class,
                 Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
@@ -510,7 +510,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
      * This is very convenient for the sake of maintainability.
      */
     @Test
-    void nonPrintableCharsAreSorted() {
+    public void testNonPrintableCharsAreSorted() {
         String expression = TestUtil.getInternalStaticState(
                 AvoidEscapedUnicodeCharactersCheck.class,
                 "NON_PRINTABLE_CHARS", Pattern.class).pattern();

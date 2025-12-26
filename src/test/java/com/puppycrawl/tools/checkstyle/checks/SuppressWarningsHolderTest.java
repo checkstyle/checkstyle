@@ -59,7 +59,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @AfterEach
-    void cleanUp() {
+    public void cleanUp() {
         // clear cache that may have been set by tests
 
         new SuppressWarningsHolder().beginTree(null);
@@ -70,7 +70,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void get() {
+    public void testGet() {
         final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
         final int[] expected = {TokenTypes.ANNOTATION};
         assertWithMessage("Required token array differs from expected")
@@ -82,14 +82,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void onComplexAnnotations() throws Exception {
+    public void testOnComplexAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder.java"), expected);
     }
 
     @Test
-    void onComplexAnnotationsNonConstant() throws Exception {
+    public void testOnComplexAnnotationsNonConstant() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -97,14 +97,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void customAnnotation() throws Exception {
+    public void testCustomAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder5.java"), expected);
     }
 
     @Test
-    void all() throws Exception {
+    public void testAll() throws Exception {
         final String[] expected = {
             "21:23: "
                     + getCheckMessage(TypecastParenPadCheck.class,
@@ -115,7 +115,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getDefaultAlias() {
+    public void testGetDefaultAlias() {
         assertWithMessage("Default alias differs from expected")
             .that(SuppressWarningsHolder.getDefaultAlias("SomeName"))
             .isEqualTo("somename");
@@ -125,7 +125,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void setAliasListEmpty() {
+    public void testSetAliasListEmpty() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("");
         assertWithMessage("Empty alias list should not be set")
@@ -134,7 +134,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void setAliasListCorrect() {
+    public void testSetAliasListCorrect() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         holder.setAliasList("alias=value");
         assertWithMessage("Alias differs from expected")
@@ -143,7 +143,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void setAliasListWrong() {
+    public void testSetAliasListWrong() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
         try {
@@ -158,14 +158,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasCombo() throws Exception {
+    public void testAliasCombo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineXmlConfig(getPath("InputSuppressWarningsHolderAlias3.java"), expected);
     }
 
     @Test
-    void isSuppressed() throws Exception {
+    public void testIsSuppressed() throws Exception {
         populateHolder("MockEntry", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 10);
 
@@ -175,7 +175,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedByName() throws Exception {
+    public void testIsSuppressedByName() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         final AuditEvent event = createAuditEvent("id", 110, 10);
@@ -187,7 +187,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedByModuleId() throws Exception {
+    public void testIsSuppressedByModuleId() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 350);
 
@@ -197,7 +197,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedAfterEventEnd() throws Exception {
+    public void testIsSuppressedAfterEventEnd() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 350, 352);
 
@@ -207,7 +207,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedAfterEventEnd2() throws Exception {
+    public void testIsSuppressedAfterEventEnd2() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 400, 10);
 
@@ -217,7 +217,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedAfterEventStart() throws Exception {
+    public void testIsSuppressedAfterEventStart() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 100);
 
@@ -227,7 +227,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedAfterEventStart2() throws Exception {
+    public void testIsSuppressedAfterEventStart2() throws Exception {
         populateHolder("check", 100, 100, 350, 350);
         final AuditEvent event = createAuditEvent("check", 100, 0);
 
@@ -237,7 +237,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void isSuppressedWithAllArgument() throws Exception {
+    public void testIsSuppressedWithAllArgument() throws Exception {
         populateHolder("all", 100, 100, 350, 350);
 
         final Checker source = new Checker();
@@ -267,21 +267,21 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationInTry() throws Exception {
+    public void testAnnotationInTry() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder2.java"), expected);
     }
 
     @Test
-    void emptyAnnotation() throws Exception {
+    public void testEmptyAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder3.java"), expected);
     }
 
     @Test
-    void getAllAnnotationValuesWrongArg() {
+    public void testGetAllAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
         final DetailAstImpl methodDef = new DetailAstImpl();
@@ -315,7 +315,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAnnotationValuesWrongArg() {
+    public void testGetAnnotationValuesWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
         final DetailAstImpl methodDef = new DetailAstImpl();
@@ -343,7 +343,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAnnotationTargetWrongArg() {
+    public void testGetAnnotationTargetWrongArg() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
 
         final DetailAstImpl methodDef = new DetailAstImpl();
@@ -375,7 +375,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void astWithoutChildren() {
+    public void testAstWithoutChildren() {
         final SuppressWarningsHolder holder = new SuppressWarningsHolder();
         final DetailAstImpl methodDef = new DetailAstImpl();
         methodDef.setType(TokenTypes.METHOD_DEF);
@@ -392,14 +392,14 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationWithFullName() throws Exception {
+    public void testAnnotationWithFullName() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder4.java"), expected);
     }
 
     @Test
-    void suppressWarningsAsAnnotationProperty() throws Exception {
+    public void testSuppressWarningsAsAnnotationProperty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(getPath("InputSuppressWarningsHolder7.java"), expected);
@@ -407,7 +407,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     @SuppressWarnings("unchecked")
     @Test
-    void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
 
         final Optional<DetailAST> annotationDef = TestUtil.findTokenInAstByPredicate(
@@ -449,7 +449,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void suppressWarningsTextBlocks() throws Exception {
+    public void testSuppressWarningsTextBlocks() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -467,7 +467,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withAndWithoutCheckSuffixDifferentCases() throws Exception {
+    public void testWithAndWithoutCheckSuffixDifferentCases() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "16:30: " + getCheckMessage(ConstantNameCheck.class,
@@ -480,7 +480,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList() throws Exception {
+    public void testAliasList() throws Exception {
         final String[] expected = {
             "16:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
@@ -493,7 +493,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList2() throws Exception {
+    public void testAliasList2() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "16:29: " + getCheckMessage(ConstantNameCheck.class,
@@ -508,7 +508,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList3() throws Exception {
+    public void testAliasList3() throws Exception {
         final String[] expected = {
             "16:17: " + getCheckMessage(ParameterNumberCheck.class,
                     ParameterNumberCheck.MSG_KEY, 7, 8),
@@ -522,7 +522,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList4() throws Exception {
+    public void testAliasList4() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "16:30: " + getCheckMessage(ConstantNameCheck.class,
@@ -537,7 +537,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList5() throws Exception {
+    public void testAliasList5() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 80, 83),
             "28: " + getCheckMessage(LineLengthCheck.class, MSG_KEY, 75, 96),
@@ -552,7 +552,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void aliasList6() throws Exception {
+    public void testAliasList6() throws Exception {
         final String pattern1 = "^[a-z][a-zA-Z0-9]*$";
         final String pattern2 = "^[A-Z][a-zA-Z0-9]*$";
 
@@ -585,7 +585,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void ident() throws Exception {
+    public void testIdent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputSuppressWarningsHolder1.java"),
@@ -593,7 +593,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void ident2() throws Exception {
+    public void testIdent2() throws Exception {
         final String[] expected = {
             "37:9: " + getCheckMessage(UnusedLocalVariableCheck.class,
                     MSG_UNUSED_LOCAL_VARIABLE, "a"),
@@ -606,7 +606,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void test3() throws Exception {
+    public void test3() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {

@@ -44,7 +44,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    void noWhitespaceBefore() throws Exception {
+    public void testNoWhitespaceBefore() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathNoWhitespaceBefore.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    void tokens() throws Exception {
+    public void testTokens() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathNoWhitespaceBeforeTokens.java"));
 
@@ -93,7 +93,7 @@ public class XpathRegressionNoWhitespaceBeforeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    void allowLineBreaks() throws Exception {
+    public void testAllowLineBreaks() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathNoWhitespaceBeforeLineBreaks.java"));
 

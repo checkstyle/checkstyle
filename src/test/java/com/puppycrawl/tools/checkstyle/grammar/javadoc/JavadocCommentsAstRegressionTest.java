@@ -45,217 +45,217 @@ public class JavadocCommentsAstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void emptyJavadoc() throws Exception {
+    public void testEmptyJavadoc() throws Exception {
         verifyJavadocTree(getPath("ExpectedEmptyJavadoc.txt"),
                 getPath("InputEmptyJavadoc.javadoc"));
     }
 
     @Test
-    void emptyJavadocWithTabs() throws Exception {
+    public void testEmptyJavadocWithTabs() throws Exception {
         verifyJavadocTree(getPath("ExpectedEmptyJavadocWithTabs.txt"),
                 getPath("InputEmptyJavadocWithTabs.javadoc"));
     }
 
     @Test
-    void emptyJavadocStartsWithNewline() throws Exception {
+    public void testEmptyJavadocStartsWithNewline() throws Exception {
         verifyJavadocTree(getPath("ExpectedEmptyJavadocStartsWithNewline.txt"),
                 getPath("InputEmptyJavadocStartsWithNewline.javadoc"));
     }
 
     @Test
-    void simpleJavadocWithText() throws Exception {
+    public void testSimpleJavadocWithText() throws Exception {
         verifyJavadocTree(getPath("ExpectedSimpleJavadocWithText.txt"),
                 getPath("InputSimpleJavadocWithText.javadoc"));
     }
 
     @Test
-    void simpleJavadocWithText2() throws Exception {
+    public void testSimpleJavadocWithText2() throws Exception {
         verifyJavadocTree(getPath("ExpectedSimpleJavadocWithText2.txt"),
                 getPath("InputSimpleJavadocWithText2.javadoc"));
     }
 
     @Test
-    void authorTag() throws Exception {
+    public void testAuthorTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedAuthorTag.txt"),
                 getBlockTagsPath("InputAuthorTags.javadoc"));
     }
 
     @Test
-    void deprecatedTag() throws Exception {
+    public void testDeprecatedTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedDeprecatedTag.txt"),
                 getBlockTagsPath("InputDeprecatedTag.javadoc"));
     }
 
     @Test
-    void returnTag() throws Exception {
+    public void testReturnTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedReturnTag.txt"),
                 getBlockTagsPath("InputReturnTag.javadoc"));
     }
 
     @Test
-    void paramTag() throws Exception {
+    public void testParamTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedParamTag.txt"),
                 getBlockTagsPath("InputParamTag.javadoc"));
     }
 
     @Test
-    void throwsAndExceptionTag() throws Exception {
+    public void testThrowsAndExceptionTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedThrowsAndExceptionTag.txt"),
                 getBlockTagsPath("InputThrowsAndExceptionTag.javadoc"));
     }
 
     @Test
-    void sinceAndVersionTag() throws Exception {
+    public void testSinceAndVersionTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedSinceAndVersionTag.txt"),
                 getBlockTagsPath("InputSinceAndVersionTag.javadoc"));
     }
 
     @Test
-    void seeTag() throws Exception {
+    public void testSeeTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedSeeTag.txt"),
                 getBlockTagsPath("InputSeeTag.javadoc"));
     }
 
     @Test
-    void hiddenAndUsesAndProvidesTag() throws Exception {
+    public void testHiddenAndUsesAndProvidesTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedHiddenAndUsesAndProvidesTag.txt"),
                 getBlockTagsPath("InputHiddenAndUsesAndProvidesTag.javadoc"));
     }
 
     @Test
-    void serialTags() throws Exception {
+    public void testSerialTags() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedSerialTags.txt"),
                 getBlockTagsPath("InputSerialTags.javadoc"));
     }
 
     @Test
-    void customBlockTag() throws Exception {
+    public void testCustomBlockTag() throws Exception {
         verifyJavadocTree(getBlockTagsPath("ExpectedCustomBlockTag.txt"),
                 getBlockTagsPath("InputCustomBlockTag.javadoc"));
     }
 
     @Test
-    void codeInlineTag() throws Exception {
+    public void testCodeInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedCodeInlineTag.txt"),
                 getInlineTagsPath("InputCodeInlineTag.javadoc"));
     }
 
     @Test
-    void linkInlineTag() throws Exception {
+    public void testLinkInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag.txt"),
                 getInlineTagsPath("InputLinkInlineTag.javadoc"));
     }
 
     @Test
-    void linkInlineTag2() throws Exception {
+    public void testLinkInlineTag2() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag2.txt"),
                 getInlineTagsPath("InputLinkInlineTag2.javadoc"));
     }
 
     @Test
-    void linkInlineTag3() throws Exception {
+    public void testLinkInlineTag3() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedLinkInlineTag3.txt"),
                 getInlineTagsPath("InputLinkInlineTag3.javadoc"));
     }
 
     @Test
-    void valueAndInheritDocInlineTag() throws Exception {
+    public void testValueAndInheritDocInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedValueAndInheritDocInlineTag.txt"),
                 getInlineTagsPath("InputValueAndInheritDocInlineTag.javadoc"));
     }
 
     @Test
-    void systemPropertyInlineTag() throws Exception {
+    public void testSystemPropertyInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedSystemPropertyTag.txt"),
                 getInlineTagsPath("InputSystemPropertyTag.javadoc"));
     }
 
     @Test
-    void literalAndCustomInlineTag() throws Exception {
+    public void testLiteralAndCustomInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedLiteralAndCustomInline.txt"),
                 getInlineTagsPath("InputLiteralAndCustomInline.javadoc"));
     }
 
     @Test
-    void returnAndIndexInlineTag() throws Exception {
+    public void testReturnAndIndexInlineTag() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedReturnAndIndexInlineTag.txt"),
                 getInlineTagsPath("InputReturnAndIndexInlineTag.javadoc"));
     }
 
     @Test
-    void snippetAttributeInline() throws Exception {
+    public void testSnippetAttributeInline() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedSnippetAttributeInlineTag.txt"),
                 getInlineTagsPath("InputSnippetAttributeInlineTag.javadoc"));
     }
 
     @Test
-    void snippetAttributeInline2() throws Exception {
+    public void testSnippetAttributeInline2() throws Exception {
         verifyJavadocTree(getInlineTagsPath("ExpectedSnippetAttributeInlineTag2.txt"),
                 getInlineTagsPath("InputSnippetAttributeInlineTag2.javadoc"));
     }
 
     @Test
-    void htmlElements() throws Exception {
+    public void testHtmlElements() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlElements.txt"),
                 getHtmlTagsPath("InputHtmlElements.javadoc"));
     }
 
     @Test
-    void htmlVoidTags() throws Exception {
+    public void testHtmlVoidTags() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlVoidTags.txt"),
                 getHtmlTagsPath("InputHtmlVoidTags.javadoc"));
     }
 
     @Test
-    void emptyHtmlContent() throws Exception {
+    public void testEmptyHtmlContent() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedEmptyHtmlContent.txt"),
                 getHtmlTagsPath("InputEmptyHtmlContent.javadoc"));
     }
 
     @Test
-    void nonTightTags1() throws Exception {
+    public void testNonTightTags1() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags1.txt"),
                 getHtmlTagsPath("InputNonTightTags1.javadoc"));
     }
 
     @Test
-    void nonTightTags2() throws Exception {
+    public void testNonTightTags2() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags2.txt"),
                 getHtmlTagsPath("InputNonTightTags2.javadoc"));
     }
 
     @Test
-    void nonTightTags3() throws Exception {
+    public void testNonTightTags3() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags3.txt"),
                 getHtmlTagsPath("InputNonTightTags3.javadoc"));
     }
 
     @Test
-    void nonTightTags4() throws Exception {
+    public void testNonTightTags4() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedNonTightTags4.txt"),
                 getHtmlTagsPath("InputNonTightTags4.javadoc"));
     }
 
     @Test
-    void javadocWithoutLeadingAsterisks() throws Exception {
+    public void testJavadocWithoutLeadingAsterisks() throws Exception {
         verifyJavadocTree(getPath("ExpectedJavadocWithoutLeadingAsterisk.txt"),
                 getPath("InputJavadocWithoutLeadingAsterisk.javadoc"));
     }
 
     @Test
-    void newlinesInHtmlAttributes() throws Exception {
+    public void testNewlinesInHtmlAttributes() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedNewlinesInHtmlAttributes.txt"),
                 getHtmlTagsPath("InputNewlinesInHtmlAttributes.javadoc"));
     }
 
     @Test
-    void crAsNewLine() throws Exception {
+    public void testCrAsNewLine() throws Exception {
         verifyJavadocTree(getPath("ExpectedCrAsNewline.txt"),
                 getPath("InputCrAsNewline.javadoc"));
     }
 
     @Test
-    void htmlComments() throws Exception {
+    public void testHtmlComments() throws Exception {
         verifyJavadocTree(getHtmlTagsPath("ExpectedHtmlComment.txt"),
                 getHtmlTagsPath("InputHtmlComment.javadoc"));
     }

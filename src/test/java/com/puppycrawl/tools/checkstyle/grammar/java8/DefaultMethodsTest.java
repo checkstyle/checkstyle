@@ -32,7 +32,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void canParse()
+    public void testCanParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -40,7 +40,7 @@ public class DefaultMethodsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testSwitch()
+    public void testSwitch()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

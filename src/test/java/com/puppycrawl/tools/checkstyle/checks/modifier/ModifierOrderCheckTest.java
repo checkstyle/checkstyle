@@ -38,7 +38,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final ModifierOrderCheck checkObj = new ModifierOrderCheck();
         final int[] expected = {TokenTypes.MODIFIERS};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void itOne() throws Exception {
+    public void testItOne() throws Exception {
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
             "19:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -61,7 +61,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void itTwo() throws Exception {
+    public void testItTwo() throws Exception {
         final String[] expected = {
 
             "15:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "final"),
@@ -72,7 +72,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void defaultMethods()
+    public void testDefaultMethods()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -80,7 +80,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void getDefaultTokens() {
+    public void testGetDefaultTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getDefaultTokens();
         final int[] expected = {TokenTypes.MODIFIERS};
@@ -104,7 +104,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.MODIFIERS};
@@ -128,7 +128,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void skipTypeAnnotationsOne() throws Exception {
+    public void testSkipTypeAnnotationsOne() throws Exception {
         final String[] expected = {
             "101:13: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@MethodAnnotation"),
         };
@@ -138,7 +138,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void skipTypeAnnotationsTwo() throws Exception {
+    public void testSkipTypeAnnotationsTwo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderTypeAnnotationsTwo.java"),
@@ -146,7 +146,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void annotationOnAnnotationDeclaration() throws Exception {
+    public void testAnnotationOnAnnotationDeclaration() throws Exception {
         final String[] expected = {
             "9:8: " + getCheckMessage(MSG_ANNOTATION_ORDER, "@InterfaceAnnotation"),
         };
@@ -155,7 +155,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void modifierOrderSealedAndNonSealed() throws Exception {
+    public void testModifierOrderSealedAndNonSealed() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
             "27:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
@@ -169,7 +169,7 @@ public class ModifierOrderCheckTest
     }
 
     @Test
-    void modifierOrderSealedAndNonSealedNoViolation() throws Exception {
+    public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputModifierOrderSealedAndNonSealedNoViolation.java"),

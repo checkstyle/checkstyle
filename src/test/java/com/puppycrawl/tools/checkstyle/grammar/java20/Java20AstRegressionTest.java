@@ -31,7 +31,7 @@ public class Java20AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void recordDecompositionEnhancedForLoop() throws Exception {
+    public void testRecordDecompositionEnhancedForLoop() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedJava20RecordDecompositionEnhancedForLoop.txt"),
@@ -40,7 +40,7 @@ public class Java20AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    void recordDecompositionEnhancedForLoopTricky() throws Exception {
+    public void testRecordDecompositionEnhancedForLoopTricky() throws Exception {
         verifyAst(
                 getNonCompilablePath(
                         "ExpectedJava20RecordDecompositionEnhancedForLoopTricky.txt"),

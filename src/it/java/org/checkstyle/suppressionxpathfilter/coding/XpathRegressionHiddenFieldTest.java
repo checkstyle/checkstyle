@@ -44,7 +44,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void lambdaExpInMethodCall() throws Exception {
+    public void testLambdaExpInMethodCall() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathHiddenFieldLambdaExpInMethodCall.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    void methodParam() throws Exception {
+    public void testMethodParam() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathHiddenFieldMethodParam.java"));
 

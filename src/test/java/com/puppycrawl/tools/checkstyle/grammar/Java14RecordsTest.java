@@ -32,7 +32,7 @@ public class Java14RecordsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void java14Records()
+    public void testJava14Records()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

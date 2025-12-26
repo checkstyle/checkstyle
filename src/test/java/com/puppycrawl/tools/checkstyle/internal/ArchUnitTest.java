@@ -34,7 +34,7 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.EvaluationResult;
 
-class ArchUnitTest {
+public class ArchUnitTest {
 
     /**
      * Suppression list containing violations from {@code classShouldNotDependOnUtilPackages}
@@ -94,7 +94,7 @@ class ArchUnitTest {
      * Archunit), eventually we need to make checkstyle's Check on this.
      */
     @Test
-    void nonProtectedCheckMethodsTest() {
+    public void nonProtectedCheckMethodsTest() {
         // This list contains methods which have been overridden and are set to ignore in this test.
         final String[] methodsWithOverrideAnnotation = {
             "processFiltered",
@@ -126,7 +126,7 @@ class ArchUnitTest {
      * "internal". Therefore classes in api should not depend on them.
      */
     @Test
-    void classesInApiDoNotDependOnClassesInUtil() {
+    public void testClassesInApiDoNotDependOnClassesInUtil() {
         final JavaClasses apiPackage = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .importPackages("com.puppycrawl.tools.checkstyle.api");

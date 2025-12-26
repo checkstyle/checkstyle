@@ -41,7 +41,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag.
      */
     @Test
-    void badOverrideFromObject() throws Exception {
+    public void testBadOverrideFromObject() throws Exception {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -60,7 +60,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
      */
     @Test
-    void badOverrideFromObjectJ5Compatible() throws Exception {
+    public void testBadOverrideFromObjectJ5Compatible() throws Exception {
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -78,7 +78,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag.
      */
     @Test
-    void badOverrideFromOther() throws Exception {
+    public void testBadOverrideFromOther() throws Exception {
         final String[] expected = {
             "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
             "33:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -101,7 +101,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    void badOverrideFromOtherJ5Compatible() throws Exception {
+    public void testBadOverrideFromOtherJ5Compatible() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -114,7 +114,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * for only including the inheritDoc tag.
      */
     @Test
-    void badAnnotationOverride() throws Exception {
+    public void testBadAnnotationOverride() throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
             "23:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -131,7 +131,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    void badAnnotationOverrideJ5Compatible() throws Exception {
+    public void testBadAnnotationOverrideJ5Compatible() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -142,7 +142,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * Tests that inheritDoc misuse is properly flagged or missing Javadocs do not cause a problem.
      */
     @Test
-    void notOverride() throws Exception {
+    public void testNotOverride() throws Exception {
         final String[] expected = {
             "15:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
             "20:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
@@ -157,7 +157,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag.
      */
     @Test
-    void goodOverrideFromObject() throws Exception {
+    public void testGoodOverrideFromObject() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -170,7 +170,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag even in Java 5 compatibility mode.
      */
     @Test
-    void goodOverrideFromObjectJ5Compatible() throws Exception {
+    public void testGoodOverrideFromObjectJ5Compatible() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -183,7 +183,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * flagged for only including the inheritDoc tag.
      */
     @Test
-    void goodOverrideFromOther() throws Exception {
+    public void testGoodOverrideFromOther() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -195,7 +195,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    void goodOverrideFromOtherJ5Compatible() throws Exception {
+    public void testGoodOverrideFromOtherJ5Compatible() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -208,7 +208,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * for only including the inheritDoc tag.
      */
     @Test
-    void goodAnnotationOverride() throws Exception {
+    public void testGoodAnnotationOverride() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -220,7 +220,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      * Java 5 compatibility mode.
      */
     @Test
-    void goodAnnotationOverrideJ5Compatible() throws Exception {
+    public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -228,7 +228,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final int[] expectedTokens = {TokenTypes.METHOD_DEF };
         final MissingOverrideCheck check = new MissingOverrideCheck();
         final int[] actual = check.getAcceptableTokens();

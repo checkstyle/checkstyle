@@ -42,7 +42,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     }
 
     @Test
-    void missingJavadocMethodCtor() throws Exception {
+    public void testMissingJavadocMethodCtor() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMissingJavadocMethodCtor.java")
         );
@@ -79,7 +79,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
     }
 
     @Test
-    void missingJavadocMethod() throws Exception {
+    public void testMissingJavadocMethod() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMissingJavadocMethod.java")
         );

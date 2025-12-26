@@ -38,7 +38,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final ParameterNameCheck checkObj = new ParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void testCatch()
+    public void testCatch()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -55,42 +55,42 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void parameterNameFields() throws Exception {
+    public void testParameterNameFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameFields.java"), expected);
     }
 
     @Test
-    void parameterNameMethods() throws Exception {
+    public void testParameterNameMethods() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameMethods.java"), expected);
     }
 
     @Test
-    void parameterNameMisc() throws Exception {
+    public void testParameterNameMisc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameMisc.java"), expected);
     }
 
     @Test
-    void parameterNameForEach() throws Exception {
+    public void testParameterNameForEach() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameForEach.java"), expected);
     }
 
     @Test
-    void parameterNameEnum() throws Exception {
+    public void testParameterNameEnum() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameEnum.java"), expected);
     }
 
     @Test
-    void whitespaceInAccessModifierProperty() throws Exception {
+    public void testWhitespaceInAccessModifierProperty() throws Exception {
         final String pattern = "^h$";
         final String[] expected = {
             "14:69: " + getCheckMessage(MSG_INVALID_PATTERN, "parameter1", pattern),
@@ -101,14 +101,14 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void parameterNameOneFields() throws Exception {
+    public void testParameterNameOneFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOneFields.java"), expected);
     }
 
     @Test
-    void parameterNameOneMethods() throws Exception {
+    public void testParameterNameOneMethods() throws Exception {
         final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
         final String[] expected = {
             "26:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
@@ -120,14 +120,14 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void parameterNameOneMisc() throws Exception {
+    public void testParameterNameOneMisc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOneMisc.java"), expected);
     }
 
     @Test
-    void parameterNameOneForEach() throws Exception {
+    public void testParameterNameOneForEach() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -135,14 +135,14 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void parameterNameOneEnum() throws Exception {
+    public void testParameterNameOneEnum() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameOneEnum.java"), expected);
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final ParameterNameCheck parameterNameCheckObj = new ParameterNameCheck();
         final int[] actual = parameterNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -154,7 +154,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void skipMethodsWithOverrideAnnotationTrue()
+    public void testSkipMethodsWithOverrideAnnotationTrue()
             throws Exception {
 
         final String pattern = "^h$";
@@ -173,7 +173,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void skipMethodsWithOverrideAnnotationFalse()
+    public void testSkipMethodsWithOverrideAnnotationFalse()
             throws Exception {
 
         final String pattern = "^h$";
@@ -193,7 +193,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void publicAccessModifier()
+    public void testPublicAccessModifier()
             throws Exception {
 
         final String pattern = "^h$";
@@ -211,7 +211,7 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void isOverriddenNoNullPointerException()
+    public void testIsOverriddenNoNullPointerException()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -219,28 +219,28 @@ public class ParameterNameCheckTest
     }
 
     @Test
-    void receiverParameter() throws Exception {
+    public void testReceiverParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameReceiver.java"), expected);
     }
 
     @Test
-    void lambdaParameterNoViolationAtAll() throws Exception {
+    public void testLambdaParameterNoViolationAtAll() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameLambda.java"), expected);
     }
 
     @Test
-    void whitespaceInConfig() throws Exception {
+    public void testWhitespaceInConfig() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterNameWhitespaceInConfig.java"), expected);
     }
 
     @Test
-    void setAccessModifiers() {
+    public void testSetAccessModifiers() {
         final AccessModifierOption[] input = {
             AccessModifierOption.PACKAGE,
         };

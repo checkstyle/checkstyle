@@ -38,7 +38,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final MethodNameCheck checkObj = new MethodNameCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void defaultOne()
+    public void testDefaultOne()
             throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -56,7 +56,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void defaultTwo()
+    public void testDefaultTwo()
             throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
@@ -69,7 +69,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void defaultThree()
+    public void testDefaultThree()
             throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -78,7 +78,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void methodEqClass() throws Exception {
+    public void testMethodEqClass() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -106,7 +106,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void methodEqClassAllow() throws Exception {
+    public void testMethodEqClassAllow() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -128,7 +128,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void accessTuning() throws Exception {
+    public void testAccessTuning() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -148,7 +148,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void forNpe() throws Exception {
+    public void testForNpe() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -157,7 +157,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void overriddenMethods() throws Exception {
+    public void testOverriddenMethods() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -171,7 +171,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void interfacesExcludePublic() throws Exception {
+    public void testInterfacesExcludePublic() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -185,7 +185,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void interfacesExcludePrivate() throws Exception {
+    public void testInterfacesExcludePrivate() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -201,7 +201,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final MethodNameCheck methodNameCheckObj = new MethodNameCheck();
         final int[] actual = methodNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -213,7 +213,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void recordInInterfaceBody() throws Exception {
+    public void testRecordInInterfaceBody() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -226,7 +226,7 @@ public class MethodNameCheckTest
     }
 
     @Test
-    void applyPropertiesSetters() throws Exception {
+    public void testApplyPropertiesSetters() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

@@ -38,7 +38,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final JavadocMissingWhitespaceAfterAsteriskCheck checkObj =
                 new JavadocMissingWhitespaceAfterAsteriskCheck();
         final int[] expected = {
@@ -51,7 +51,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     }
 
     @Test
-    void getRequiredJavadocTokens() {
+    public void testGetRequiredJavadocTokens() {
         final JavadocMissingWhitespaceAfterAsteriskCheck checkObj =
                 new JavadocMissingWhitespaceAfterAsteriskCheck();
         final int[] expected = {
@@ -64,7 +64,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     }
 
     @Test
-    void valid() throws Exception {
+    public void testValid() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -72,7 +72,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     }
 
     @Test
-    void validWithTabCharacter() throws Exception {
+    public void testValidWithTabCharacter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -80,7 +80,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
     }
 
     @Test
-    void invalid() throws Exception {
+    public void testInvalid() throws Exception {
         final String[] expected = {
             "10:4: " + getCheckMessage(MSG_KEY),
             "16:7: " + getCheckMessage(MSG_KEY),

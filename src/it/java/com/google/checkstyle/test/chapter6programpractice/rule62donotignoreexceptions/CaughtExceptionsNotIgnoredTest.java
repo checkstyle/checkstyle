@@ -31,7 +31,7 @@ public class CaughtExceptionsNotIgnoredTest extends AbstractGoogleModuleTestSupp
     }
 
     @Test
-    void emptyFinallyBlock() throws Exception {
+    public void testEmptyFinallyBlock() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyFinallyBlock.java"));
     }
 

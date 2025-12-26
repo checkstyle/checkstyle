@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  * @noinspectionreason ClassIndependentOfModule - architecture of test modules
  *      requires this structure
  */
-class GeneratedJavadocCommentsTokenTypesTest {
+public class GeneratedJavadocCommentsTokenTypesTest {
 
     private static final List<String> INTERNAL_TOKENS = List.of(
         "WS",
@@ -83,7 +83,7 @@ class GeneratedJavadocCommentsTokenTypesTest {
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"
      */
     @Test
-    void tokenNumbers() {
+    public void testTokenNumbers() {
         assertWithMessage(MSG)
             .that(JavadocCommentsLexer.JAVADOC)
             .isEqualTo(1);

@@ -49,7 +49,7 @@ public class GeneratedJava14LexerTest
     }
 
     @Test
-    void unexpectedChar() throws Exception {
+    public void testUnexpectedChar() throws Exception {
         // Encoding problems will occur if default encoding is not UTF-8
         Assumptions.assumeTrue(IS_UTF8, "Problems with encoding may occur");
 
@@ -62,7 +62,7 @@ public class GeneratedJava14LexerTest
     }
 
     @Test
-    void semicolonBetweenImports() throws Exception {
+    public void testSemicolonBetweenImports() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputSemicolonBetweenImports.java"), expected);

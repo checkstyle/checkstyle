@@ -37,7 +37,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         createModuleConfig(
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
@@ -61,7 +61,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     }
 
     @Test
-    void defaultNonCompilable() throws Exception {
+    public void testDefaultNonCompilable() throws Exception {
         createModuleConfig(
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
@@ -80,7 +80,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     }
 
     @Test
-    void acceptableTokenIsColon() {
+    public void testAcceptableTokenIsColon() {
         final NoWhitespaceBeforeCaseDefaultColonCheck check =
                 new NoWhitespaceBeforeCaseDefaultColonCheck();
         assertWithMessage("Acceptable token should be colon")
@@ -89,7 +89,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
     }
 
     @Test
-    void patternMatchingForSwitch() throws Exception {
+    public void testPatternMatchingForSwitch() throws Exception {
         final String[] expected = {
             "14:62: " + getCheckMessage(MSG_KEY, ":"),
             "16:21: " + getCheckMessage(MSG_KEY, ":"),

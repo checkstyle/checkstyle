@@ -274,7 +274,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allModulesWithDefaultConfiguration() throws Exception {
+    public void testAllModulesWithDefaultConfiguration() throws Exception {
         final String inputFilePath = getPath("InputAllChecksDefaultConfig.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -295,7 +295,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void defaultTokensAreSubsetOfAcceptableTokens() throws Exception {
+    public void testDefaultTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
                 final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
@@ -311,7 +311,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void requiredTokensAreSubsetOfAcceptableTokens() throws Exception {
+    public void testRequiredTokensAreSubsetOfAcceptableTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
                 final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
@@ -327,7 +327,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void requiredTokensAreSubsetOfDefaultTokens() throws Exception {
+    public void testRequiredTokensAreSubsetOfDefaultTokens() throws Exception {
         for (Class<?> check : CheckUtil.getCheckstyleChecks()) {
             if (AbstractCheck.class.isAssignableFrom(check)) {
                 final AbstractCheck testedCheck = (AbstractCheck) TestUtil.instantiate(check);
@@ -343,7 +343,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allModulesHaveMultiThreadAnnotation() throws Exception {
+    public void testAllModulesHaveMultiThreadAnnotation() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
             if (ModuleReflectionUtil.isRootModule(module)
                     || ModuleReflectionUtil.isFilterModule(module)
@@ -362,7 +362,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allModulesAreReferencedInConfigFile() throws Exception {
+    public void testAllModulesAreReferencedInConfigFile() throws Exception {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
@@ -376,7 +376,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
+    public void testAllCheckTokensAreReferencedInCheckstyleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("config/checkstyle-checks.xml");
 
@@ -385,7 +385,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckTokensAreReferencedInGoogleConfigFile() throws Exception {
+    public void testAllCheckTokensAreReferencedInGoogleConfigFile() throws Exception {
         final Configuration configuration = ConfigurationUtil
                 .loadConfiguration("src/main/resources/google_checks.xml");
 
@@ -488,7 +488,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckstyleModulesHaveXdocDocumentation() throws Exception {
+    public void testAllCheckstyleModulesHaveXdocDocumentation() throws Exception {
         final Set<String> checkstyleModulesNames = CheckUtil.getSimpleNames(CheckUtil
                 .getCheckstyleModules());
         final Set<String> modulesNamesWhichHaveXdocs = XdocUtil.getModulesNamesWhichHaveXdoc();
@@ -509,7 +509,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckstyleModulesInCheckstyleConfig() throws Exception {
+    public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
@@ -521,7 +521,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckstyleChecksHaveMessage() throws Exception {
+    public void testAllCheckstyleChecksHaveMessage() throws Exception {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
             final Set<Field> messages = CheckUtil.getCheckMessages(module, false);
@@ -542,7 +542,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void allCheckstyleMessages() throws Exception {
+    public void testAllCheckstyleMessages() throws Exception {
         final Map<String, List<String>> usedMessages = new TreeMap<>();
 
         // test validity of messages from modules

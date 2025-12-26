@@ -46,7 +46,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     }
 
     @Test
-    void method() throws Exception {
+    public void testMethod() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathNPathComplexityMethod.java"));
 
@@ -76,7 +76,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
     }
 
     @Test
-    void staticBlock() throws Exception {
+    public void testStaticBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathNPathComplexityStaticBlock.java"));
 

@@ -24,10 +24,10 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import org.junit.jupiter.api.Test;
 
-class CodePointUtilTest {
+public class CodePointUtilTest {
 
     @Test
-    void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(CodePointUtil.class))
                 .isTrue();

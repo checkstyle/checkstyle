@@ -46,7 +46,7 @@ public class XpathRegressionAvoidStarImportTest
     }
 
     @Test
-    void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidStarImportOne.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidStarImportTest
     }
 
     @Test
-    void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidStarImportTwo.java"));
 

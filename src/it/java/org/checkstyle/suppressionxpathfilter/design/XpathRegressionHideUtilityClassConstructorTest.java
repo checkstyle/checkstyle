@@ -46,7 +46,7 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
     }
 
     @Test
-    void defaultConstructor() throws Exception {
+    public void testDefaultConstructor() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathHideUtilityClassConstructorDefault.java"));
         final DefaultConfiguration moduleConfig =
@@ -68,7 +68,7 @@ public class XpathRegressionHideUtilityClassConstructorTest extends AbstractXpat
     }
 
     @Test
-    void publicConstructor() throws Exception {
+    public void testPublicConstructor() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathHideUtilityClassConstructorPublic.java"));
         final DefaultConfiguration moduleConfig =

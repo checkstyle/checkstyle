@@ -36,7 +36,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AnnotationOnSameLineCheck check = new AnnotationOnSameLineCheck();
         assertWithMessage(
                 "AnnotationOnSameLineCheck#getRequiredTokens should return empty array by default")
@@ -45,7 +45,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AnnotationOnSameLineCheck constantNameCheckObj = new AnnotationOnSameLineCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -73,7 +73,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLineCheckPublicMethodAndVariable() throws Exception {
+    public void testAnnotationOnSameLineCheckPublicMethodAndVariable() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
             "21:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
@@ -86,7 +86,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLineCheckTokensOnMethodAndVar() throws Exception {
+    public void testAnnotationOnSameLineCheckTokensOnMethodAndVar() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation3"),
             "21:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Annotation"),
@@ -99,7 +99,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLineCheckPrivateAndDeprecatedVar() throws Exception {
+    public void testAnnotationOnSameLineCheckPrivateAndDeprecatedVar() throws Exception {
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "25:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
@@ -111,7 +111,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLineCheckInterfaceAndEnum() throws Exception {
+    public void testAnnotationOnSameLineCheckInterfaceAndEnum() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
@@ -135,7 +135,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLineRecordsAndCompactCtors() throws Exception {
+    public void testAnnotationOnSameLineRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "NonNull1"),
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
@@ -153,7 +153,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLinePatternVariables() throws Exception {
+    public void testAnnotationOnSameLinePatternVariables() throws Exception {
         final String[] expected = {
             "37:8: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Deprecated"),
         };
@@ -163,7 +163,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLine() throws Exception {
+    public void testAnnotationOnSameLine() throws Exception {
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
@@ -176,7 +176,7 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void annotationOnSameLine2() throws Exception {
+    public void testAnnotationOnSameLine2() throws Exception {
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
             "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),

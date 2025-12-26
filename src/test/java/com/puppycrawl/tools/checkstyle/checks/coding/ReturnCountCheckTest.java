@@ -47,7 +47,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void testDefault() throws Exception {
+    public void testDefault() throws Exception {
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
             "40:5: " + getCheckMessage(MSG_KEY_VOID, 2, 1),
@@ -59,7 +59,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void format() throws Exception {
+    public void testFormat() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, 7, 2),
             "28:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
@@ -72,7 +72,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void methodsAndLambdas() throws Exception {
+    public void testMethodsAndLambdas() throws Exception {
         final String[] expected = {
             "25:55: " + getCheckMessage(MSG_KEY, 2, 1),
             "37:49: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -85,7 +85,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lambdasOnly() throws Exception {
+    public void testLambdasOnly() throws Exception {
         final String[] expected = {
             "43:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
@@ -94,7 +94,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void methodsOnly() throws Exception {
+    public void testMethodsOnly() throws Exception {
         final String[] expected = {
             "35:5: " + getCheckMessage(MSG_KEY, 3, 2),
             "42:5: " + getCheckMessage(MSG_KEY, 4, 2),
@@ -106,14 +106,14 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void withReturnOnlyAsTokens() throws Exception {
+    public void testWithReturnOnlyAsTokens() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputReturnCountLambda4.java"), expected);
     }
 
     @Test
-    void improperToken() {
+    public void testImproperToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
 
         final DetailAstImpl classDefAst = new DetailAstImpl();
@@ -137,7 +137,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void maxForVoid() throws Exception {
+    public void testMaxForVoid() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
             "18:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
@@ -158,7 +158,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressWarnings("unchecked")
     @Test
-    void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final ReturnCountCheck check = new ReturnCountCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
             JavaParser.parseFile(new File(getPath("InputReturnCountVoid.java")),
@@ -182,7 +182,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
      *
      */
     @Test
-    void improperVisitToken() {
+    public void testImproperVisitToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);
@@ -201,7 +201,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
      *
      */
     @Test
-    void improperLeaveToken() {
+    public void testImproperLeaveToken() {
         final ReturnCountCheck check = new ReturnCountCheck();
         final DetailAstImpl classDefAst = new DetailAstImpl();
         classDefAst.setType(TokenTypes.CLASS_DEF);

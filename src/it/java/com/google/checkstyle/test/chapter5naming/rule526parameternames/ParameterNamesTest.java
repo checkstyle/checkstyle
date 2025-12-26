@@ -31,27 +31,27 @@ public class ParameterNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void lambdaParameterName() throws Exception {
+    public void testLambdaParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaParameterName.java"));
     }
 
     @Test
-    void generalParameterName() throws Exception {
+    public void testGeneralParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputParameterName.java"));
     }
 
     @Test
-    void recordParameterName() throws Exception {
+    public void testRecordParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputRecordComponentNameTwo.java"));
     }
 
     @Test
-    void formattedRecordParameterName() throws Exception {
+    public void testFormattedRecordParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRecordComponentNameTwo.java"));
     }
 
     @Test
-    void catchParameterName() throws Exception {
+    public void testCatchParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputCatchParameterName.java"));
     }
 

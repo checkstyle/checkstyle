@@ -30,10 +30,10 @@ import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationOnSameLineChe
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-class ViolationTest {
+public class ViolationTest {
 
     @Test
-    void equalsAndHashCode() {
+    public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(Violation.class)
                 .usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -42,7 +42,7 @@ class ViolationTest {
     }
 
     @Test
-    void getSeverityLevel() {
+    public void testGetSeverityLevel() {
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid severity level")
@@ -51,7 +51,7 @@ class ViolationTest {
     }
 
     @Test
-    void getModuleId() {
+    public void testGetModuleId() {
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid module id")
@@ -60,7 +60,7 @@ class ViolationTest {
     }
 
     @Test
-    void getSourceName() {
+    public void testGetSourceName() {
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid source name")
@@ -70,7 +70,7 @@ class ViolationTest {
 
     @DefaultLocale("en")
     @Test
-    void messageInEnglish() {
+    public void testMessageInEnglish() {
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation")
@@ -80,7 +80,7 @@ class ViolationTest {
 
     @DefaultLocale("fr")
     @Test
-    void getKey() {
+    public void testGetKey() {
         final Violation violation = createSampleViolation();
 
         assertWithMessage("Invalid violation key")
@@ -89,7 +89,7 @@ class ViolationTest {
     }
 
     @Test
-    void tokenType() {
+    public void testTokenType() {
         final Violation violation1 = new Violation(1, 1, TokenTypes.CLASS_DEF,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                 getClass(), null);
@@ -106,7 +106,7 @@ class ViolationTest {
     }
 
     @Test
-    void getColumnCharIndex() {
+    public void testGetColumnCharIndex() {
         final Violation violation1 = new Violation(1, 1, 123,
                 TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
                 null, getClass(), null);
@@ -117,7 +117,7 @@ class ViolationTest {
     }
 
     @Test
-    void compareToWithDifferentModuleId() {
+    public void testCompareToWithDifferentModuleId() {
         final Violation message1 = createSampleViolationWithId("module1");
         final Violation message2 = createSampleViolationWithId("module2");
         final Violation messageNull = createSampleViolationWithId(null);
@@ -134,7 +134,7 @@ class ViolationTest {
     }
 
     @Test
-    void compareToWithDifferentClass() {
+    public void testCompareToWithDifferentClass() {
         final Violation message1 = createSampleViolationWithClass(AnnotationLocationCheck.class);
         final Violation message2 = createSampleViolationWithClass(AnnotationOnSameLineCheck.class);
         final Violation messageNull = createSampleViolationWithClass(null);
@@ -151,7 +151,7 @@ class ViolationTest {
     }
 
     @Test
-    void compareToWithDifferentLines() {
+    public void testCompareToWithDifferentLines() {
         final Violation message1 = createSampleViolationWithLine(1);
         final Violation message1a = createSampleViolationWithLine(1);
         final Violation message2 = createSampleViolationWithLine(2);
@@ -169,7 +169,7 @@ class ViolationTest {
     }
 
     @Test
-    void compareToWithDifferentColumns() {
+    public void testCompareToWithDifferentColumns() {
         final Violation message1 = createSampleViolationWithColumn(1);
         final Violation message1a = createSampleViolationWithColumn(1);
         final Violation message2 = createSampleViolationWithColumn(2);

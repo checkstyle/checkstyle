@@ -31,12 +31,12 @@ public class NoLineWrappingTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    void badLineWrap() throws Exception {
+    public void testBadLineWrap() throws Exception {
         verifyWithWholeConfig(getPath("InputNoLineWrapping.java"));
     }
 
     @Test
-    void badLineWrapFormatted() throws Exception {
+    public void testBadLineWrapFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoLineWrapping.java"));
     }
 
