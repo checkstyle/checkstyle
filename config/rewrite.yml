@@ -4,18 +4,15 @@ name: org.checkstyle.AllAutoFixes
 displayName: Auto Fixes
 description: List of auto fixes from different providers.
 recipeList:
-  - org.checkstyle.autofix.CheckstyleAutoFix:
-      violationReportPath: "target/cs_errors.xml"
-      configurationPath: "config/checkstyle-checks.xml"
-      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.RemoveTrailingWhitespace
   - org.openrewrite.java.migrate.UpgradeToJava17
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
-  - org.openrewrite.maven.BestPractices
+  - org.openrewrite.maven.UpdateMavenWrapper
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
   - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
@@ -36,6 +33,7 @@ recipeList:
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
   - org.openrewrite.staticanalysis.UnnecessaryReturnAsLastStatement
   - org.openrewrite.staticanalysis.UseLambdaForFunctionalInterface
+  - org.openrewrite.text.EndOfLineAtEndOfFile
   - tech.picnic.errorprone.refasterrules.BigDecimalRulesRecipes
   - tech.picnic.errorprone.refasterrules.CharSequenceRulesRecipes
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
