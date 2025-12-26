@@ -16,8 +16,9 @@ package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 public class InputUnnecessaryParenthesesConstructor {
 
     public void main() {
+        int length1 = new StringBuilder().length();
         // parentheses not needed, but used for extra clarity
-        int length = (new StringBuilder()).length();
+        int length2 = (new StringBuilder()).length();
     }
 
 }
