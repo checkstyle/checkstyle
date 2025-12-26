@@ -313,7 +313,7 @@ public final class PropertyCacheFile {
         final ByteArrayOutputStream content = new ByteArrayOutputStream();
 
         while (true) {
-            final int size = stream.read(BUFFER);
+            final var size = stream.read(BUFFER);
             if (size == -1) {
                 break;
             }
@@ -341,7 +341,7 @@ public final class PropertyCacheFile {
      * @return true if resource is changed.
      */
     private boolean isResourceChanged(ExternalResource resource) {
-        boolean changed = false;
+        var changed = false;
         if (isResourceLocationInCache(resource.location)) {
             final String contentHashSum = resource.contentHashSum;
             final String cachedHashSum = details.getProperty(resource.location);

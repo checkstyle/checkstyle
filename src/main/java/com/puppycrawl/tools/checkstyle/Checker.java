@@ -233,7 +233,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
         // It may also log!!!
         fileSetChecks.forEach(FileSetCheck::destroy);
 
-        final int errorCount = counter.getCount();
+        final var errorCount = counter.getCount();
         fireAuditFinished();
         return errorCount;
     }
@@ -288,7 +288,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
             final String filePath = file.getPath();
             try {
                 fileName = file.getAbsolutePath();
-                final long timestamp = file.lastModified();
+                final var timestamp = file.lastModified();
                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
                         || !acceptFileStarted(fileName)) {
                     continue;
@@ -404,7 +404,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     @Override
     public void fireErrors(String fileName, SortedSet<Violation> errors) {
         final String stripped = relativizePathWithCatch(fileName);
-        boolean hasNonFilteredViolations = false;
+        var hasNonFilteredViolations = false;
         for (final Violation element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
             if (filters.accept(event)) {
@@ -552,7 +552,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public final void setFileExtensions(String... extensions) {
         if (extensions != null) {
             fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
+            for (var i = 0; i < extensions.length; i++) {
                 final String extension = extensions[i];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
                     fileExtensions[i] = extension;

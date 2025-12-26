@@ -108,7 +108,7 @@ public class ParameterNumberCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        final int count = params.getChildCount(TokenTypes.PARAMETER_DEF);
+        final var count = params.getChildCount(TokenTypes.PARAMETER_DEF);
         if (count > max && !shouldIgnoreNumberOfParameters(ast)) {
             final DetailAST name = ast.findFirstToken(TokenTypes.IDENT);
             log(name, MSG_KEY, max, count);

@@ -81,7 +81,7 @@ public final class InterfaceIsTypeCheck
                 objBlock.findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST variableDef =
                 objBlock.findFirstToken(TokenTypes.VARIABLE_DEF);
-        final boolean methodRequired =
+        final var methodRequired =
                 !allowMarkerInterfaces || variableDef != null;
 
         if (methodDef == null && methodRequired) {

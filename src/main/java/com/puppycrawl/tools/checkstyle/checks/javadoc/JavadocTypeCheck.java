@@ -239,7 +239,7 @@ public class JavadocTypeCheck
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
-            final int lineNo = ast.getLineNo();
+            final var lineNo = ast.getLineNo();
             final TextBlock textBlock = contents.getJavadocBefore(lineNo);
             if (textBlock != null) {
                 final List<JavadocTag> tags = getJavadocTags(textBlock);
@@ -314,7 +314,7 @@ public class JavadocTypeCheck
     private void checkTag(DetailAST ast, Iterable<JavadocTag> tags, String tagName,
                           Pattern formatPattern) {
         if (formatPattern != null) {
-            boolean hasTag = false;
+            var hasTag = false;
             final String tagPrefix = "@";
 
             for (final JavadocTag tag :tags) {
@@ -343,7 +343,7 @@ public class JavadocTypeCheck
                                         Collection<JavadocTag> tags,
                                         String recordComponentName) {
 
-        final boolean found = tags
+        final var found = tags
             .stream()
             .filter(JavadocTag::isParamTag)
             .anyMatch(tag -> tag.getFirstArg().indexOf(recordComponentName) == 0);
@@ -367,7 +367,7 @@ public class JavadocTypeCheck
         final String typeParamNameWithBrackets =
             OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET;
 
-        final boolean found = tags
+        final var found = tags
             .stream()
             .filter(JavadocTag::isParamTag)
             .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
@@ -393,7 +393,7 @@ public class JavadocTypeCheck
         for (final JavadocTag tag: tags) {
             if (tag.isParamTag()) {
                 final String paramName = extractParamNameFromTag(tag);
-                final boolean found = typeParamNames.contains(paramName)
+                final var found = typeParamNames.contains(paramName)
                         || recordComponentNames.contains(paramName);
 
                 if (!found) {

@@ -98,7 +98,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
         for (Entry<String, Integer> duplication : properties
                 .getDuplicatedKeys().entrySet()) {
             final String keyName = duplication.getKey();
-            final int lineNumber = getLineNumber(fileText, keyName);
+            final var lineNumber = getLineNumber(fileText, keyName);
             // Number of occurrences is number of duplications + 1
             log(lineNumber, MSG_KEY, keyName, duplication.getValue() + 1);
         }
@@ -117,9 +117,9 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
      */
     private static int getLineNumber(FileText fileText, String keyName) {
         final Pattern keyPattern = getKeyPattern(keyName);
-        int lineNumber = 1;
+        var lineNumber = 1;
         final Matcher matcher = keyPattern.matcher("");
-        for (int index = 0; index < fileText.size(); index++) {
+        for (var index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);
             matcher.reset(line);
             if (matcher.matches()) {

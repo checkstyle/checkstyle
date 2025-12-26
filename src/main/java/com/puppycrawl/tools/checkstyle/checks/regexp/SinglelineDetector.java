@@ -65,8 +65,8 @@ class SinglelineDetector {
      */
     public void processLines(FileText fileText) {
         currentMatches = 0;
-        int lineNo = 0;
-        for (int index = 0; index < fileText.size(); index++) {
+        var lineNo = 0;
+        for (var index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);
             lineNo++;
             checkLine(lineNo, options.getPattern().matcher(line));
@@ -96,11 +96,11 @@ class SinglelineDetector {
      * @param matcher       the matcher to use
      */
     private void checkLine(int lineNo, Matcher matcher) {
-        int startPosition = 0;
+        var startPosition = 0;
         while (matcher.find(startPosition)) {
             // match is found, check for intersection with comment
-            final int startCol = matcher.start(0);
-            final int endCol = matcher.end(0);
+            final var startCol = matcher.start(0);
+            final var endCol = matcher.end(0);
             // Note that Matcher.end(int) returns the offset AFTER the
             // last matched character, but shouldSuppress()
             // needs column number of the last character.

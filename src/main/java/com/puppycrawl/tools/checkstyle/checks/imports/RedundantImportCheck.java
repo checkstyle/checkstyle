@@ -152,7 +152,7 @@ public class RedundantImportCheck
         // imports from unnamed package are not allowed:
         // https://docs.oracle.com/javase/specs/jls/se7/html/jls-7.html#jls-7.5
         // So '.' must be present in member name and we are not checking for it
-        final int index = importName.lastIndexOf('.');
+        final var index = importName.lastIndexOf('.');
         final String front = importName.substring(0, index);
         return pkg.equals(front);
     }

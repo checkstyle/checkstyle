@@ -173,7 +173,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
      * @return true if extended class name conforms to specified format
      */
     private boolean isExtendedClassNamedAsException(DetailAST ast) {
-        boolean result = false;
+        var result = false;
         final DetailAST extendsClause = ast.findFirstToken(TokenTypes.EXTENDS_CLAUSE);
         if (extendsClause != null) {
             DetailAST currentNode = extendsClause;

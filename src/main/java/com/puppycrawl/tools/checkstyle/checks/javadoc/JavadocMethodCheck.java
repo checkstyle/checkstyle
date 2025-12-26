@@ -363,11 +363,11 @@ public class JavadocMethodCheck extends AbstractCheck {
             else {
                 final Iterator<JavadocTag> it = tags.iterator();
                 // Check for inheritDoc
-                boolean hasInheritDocTag = false;
+                var hasInheritDocTag = false;
                 while (!hasInheritDocTag && it.hasNext()) {
                     hasInheritDocTag = it.next().isInheritDocTag();
                 }
-                final boolean reportExpectedTags = !hasInheritDocTag
+                final var reportExpectedTags = !hasInheritDocTag
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
                 // COMPACT_CTOR_DEF has no parameters
@@ -432,7 +432,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true if the construct has a short circuit tag.
      */
     private boolean hasShortCircuitTag(final DetailAST ast, final List<JavadocTag> tags) {
-        boolean result = true;
+        var result = true;
         // Check if it contains {@inheritDoc} tag
         if (tags.size() == 1
                 && tags.get(0).isInheritDocTag()) {
@@ -461,10 +461,10 @@ public class JavadocMethodCheck extends AbstractCheck {
         }
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = new ArrayList<>();
-        int currentLine = comment.getStartLineNo() - 1;
-        final int startColumnNumber = comment.getStartColNo();
+        var currentLine = comment.getStartLineNo() - 1;
+        final var startColumnNumber = comment.getStartColNo();
 
-        for (int i = 0; i < lines.length; i++) {
+        for (var i = 0; i < lines.length; i++) {
             currentLine++;
             final Matcher javadocArgMatcher =
                 MATCH_JAVADOC_ARG.matcher(lines[i]);
@@ -478,19 +478,19 @@ public class JavadocMethodCheck extends AbstractCheck {
                 MATCH_JAVADOC_NOARG_MULTILINE_START.matcher(lines[i]);
 
             if (javadocArgMatcher.find()) {
-                final int col = calculateTagColumn(javadocArgMatcher, i, startColumnNumber);
+                final var col = calculateTagColumn(javadocArgMatcher, i, startColumnNumber);
                 tags.add(new JavadocTag(currentLine, col, javadocArgMatcher.group(1),
                         javadocArgMatcher.group(2)));
             }
             else if (javadocArgMissingDescriptionMatcher.find()) {
-                final int col = calculateTagColumn(javadocArgMissingDescriptionMatcher, i,
+                final var col = calculateTagColumn(javadocArgMissingDescriptionMatcher, i,
                     startColumnNumber);
                 tags.add(new JavadocTag(currentLine, col,
                     javadocArgMissingDescriptionMatcher.group(1),
                     javadocArgMissingDescriptionMatcher.group(2)));
             }
             else if (javadocNoargMatcher.find()) {
-                final int col = calculateTagColumn(javadocNoargMatcher, i, startColumnNumber);
+                final var col = calculateTagColumn(javadocNoargMatcher, i, startColumnNumber);
                 tags.add(new JavadocTag(currentLine, col, javadocNoargMatcher.group(1)));
             }
             else if (noargCurlyMatcher.find()) {
@@ -513,7 +513,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static int calculateTagColumn(MatchResult javadocTagMatchResult,
             int lineNumber, int startColumnNumber) {
-        int col = javadocTagMatchResult.start(1) - 1;
+        var col = javadocTagMatchResult.start(1) - 1;
         if (lineNumber == 0) {
             col += startColumnNumber;
         }
@@ -531,7 +531,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     private static List<JavadocTag> getMultilineNoArgTags(final Matcher noargMultilineStart,
             final String[] lines, final int lineIndex, final int tagLine) {
-        int remIndex = lineIndex;
+        var remIndex = lineIndex;
         Matcher multilineCont;
 
         do {
@@ -544,7 +544,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         if (!NEXT_TAG.equals(lFin)
             && !END_JAVADOC.equals(lFin)) {
             final String param1 = noargMultilineStart.group(1);
-            final int col = noargMultilineStart.start(1) - 1;
+            final var col = noargMultilineStart.start(1) - 1;
 
             tags.add(new JavadocTag(tagLine, col, param1));
         }
@@ -753,7 +753,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             final String arg1 = tag.getFirstArg();
-            final boolean found = removeMatchingParam(params, arg1);
+            final var found = removeMatchingParam(params, arg1);
 
             if (!found) {
                 log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG,
@@ -795,7 +795,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             tagIt.remove();
 
             final String arg1 = tag.getFirstArg();
-            boolean found = removeMatchingParam(params, arg1);
+            var found = removeMatchingParam(params, arg1);
 
             if (arg1.endsWith(ELEMENT_END)) {
                 found = searchMatchingTypeParameter(typeParams,
@@ -839,7 +839,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             String requiredTypeName) {
         // Loop looking for matching type param
         final Iterator<DetailAST> typeParamsIt = typeParams.iterator();
-        boolean found = false;
+        var found = false;
         while (typeParamsIt.hasNext()) {
             final DetailAST typeParam = typeParamsIt.next();
             if (typeParam.findFirstToken(TokenTypes.IDENT).getText()
@@ -860,7 +860,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return true if parameter found and removed
      */
     private static boolean removeMatchingParam(Iterable<DetailAST> params, String paramName) {
-        boolean found = false;
+        var found = false;
         final Iterator<DetailAST> paramIt = params.iterator();
         while (paramIt.hasNext()) {
             final DetailAST param = paramIt.next();
@@ -885,7 +885,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     private void checkReturnTag(List<JavadocTag> tags, int lineNo,
         boolean reportExpectedTags) {
         // Loop over tags finding return tags. After the first one, report a violation
-        boolean found = false;
+        var found = false;
         final ListIterator<JavadocTag> it = tags.listIterator();
         while (it.hasNext()) {
             final JavadocTag javadocTag = it.next();

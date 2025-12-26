@@ -67,7 +67,7 @@ public class OneTopLevelClassCheck extends AbstractCheck {
     public void visitToken(DetailAST compilationUnit) {
         DetailAST currentNode = compilationUnit.getFirstChild();
 
-        boolean publicTypeFound = false;
+        var publicTypeFound = false;
         DetailAST firstType = null;
 
         while (currentNode != null) {

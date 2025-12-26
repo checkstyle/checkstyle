@@ -80,7 +80,7 @@ public class MethodDefHandler extends BlockParentHandler {
      */
     private static int getMethodDefLineStart(DetailAST mainAst) {
         // get first type position
-        int lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();
+        var lineStart = mainAst.findFirstToken(TokenTypes.IDENT).getLineNo();
 
         // check if there is a type before the indent
         final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);

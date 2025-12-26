@@ -165,13 +165,13 @@ public final class ImportControlLoader extends XmlLoader {
         if ("import-control".equals(qName)) {
             final String pkg = safeGet(attributes, PKG_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForImportControl(attributes);
-            final boolean regex = containsRegexAttribute(attributes);
+            final var regex = containsRegexAttribute(attributes);
             stack.push(new PkgImportControl(pkg, regex, strategyOnMismatch));
         }
         else if (SUBPACKAGE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
             final MismatchStrategy strategyOnMismatch = getStrategyForSubpackage(attributes);
-            final boolean regex = containsRegexAttribute(attributes);
+            final var regex = containsRegexAttribute(attributes);
             final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
             final AbstractImportControl importControl = new PkgImportControl(parentImportControl,
                     name, regex, strategyOnMismatch);
@@ -180,7 +180,7 @@ public final class ImportControlLoader extends XmlLoader {
         }
         else if (FILE_ELEMENT_NAME.equals(qName)) {
             final String name = safeGet(attributes, NAME_ATTRIBUTE_NAME);
-            final boolean regex = containsRegexAttribute(attributes);
+            final var regex = containsRegexAttribute(attributes);
             final PkgImportControl parentImportControl = (PkgImportControl) stack.peek();
             final AbstractImportControl importControl = new FileImportControl(parentImportControl,
                     name, regex);
@@ -207,10 +207,10 @@ public final class ImportControlLoader extends XmlLoader {
         // Need to handle either "pkg" or "class" attribute.
         // May have "exact-match" for "pkg"
         // May have "local-only"
-        final boolean isAllow = ALLOW_ELEMENT_NAME.equals(qName);
-        final boolean isLocalOnly = attributes.getValue("local-only") != null;
+        final var isAllow = ALLOW_ELEMENT_NAME.equals(qName);
+        final var isLocalOnly = attributes.getValue("local-only") != null;
         final String pkg = attributes.getValue(PKG_ATTRIBUTE_NAME);
-        final boolean regex = containsRegexAttribute(attributes);
+        final var regex = containsRegexAttribute(attributes);
         final AbstractImportRule rule;
         if (pkg == null) {
             // handle class names which can be normal class names or regular
@@ -219,7 +219,7 @@ public final class ImportControlLoader extends XmlLoader {
             rule = new ClassImportRule(isAllow, isLocalOnly, clazz, regex);
         }
         else {
-            final boolean exactMatch =
+            final var exactMatch =
                     attributes.getValue("exact-match") != null;
             rule = new PkgImportRule(isAllow, isLocalOnly, pkg, exactMatch, regex);
         }

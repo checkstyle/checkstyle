@@ -540,10 +540,10 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         // We mock getUriByFilename method of CommonUtil to guarantee that it will
         // throw CheckstyleException with the specific content.
         try (MockedStatic<CommonUtil> commonUtil = mockStatic(CommonUtil.class)) {
-            final int numberOfRuns = messages.size();
+            final var numberOfRuns = messages.size();
             final String[] configHashes = new String[numberOfRuns];
             final String[] externalResourceHashes = new String[numberOfRuns];
-            for (int i = 0; i < numberOfRuns; i++) {
+            for (var i = 0; i < numberOfRuns; i++) {
                 commonUtil.when(() -> CommonUtil.getUriByFilename(any(String.class)))
                         .thenThrow(new CheckstyleException(messages.get(i)));
                 final Configuration config = new DefaultConfiguration("myConfig");
@@ -581,7 +581,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid config hash")
                     .that(configHashes[0])
                     .isEqualTo(configHashes[1]);
-            final boolean sameException = messages.get(0).equals(messages.get(1));
+            final var sameException = messages.get(0).equals(messages.get(1));
             assertWithMessage("Invalid external resource hashes")
                     .that(externalResourceHashes[0].equals(externalResourceHashes[1]))
                     .isEqualTo(sameException);

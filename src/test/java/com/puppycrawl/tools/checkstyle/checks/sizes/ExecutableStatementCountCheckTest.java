@@ -172,7 +172,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testExecutableStatementCountRecords() throws Exception {
 
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, 3, max),
@@ -191,7 +191,7 @@ public class ExecutableStatementCountCheckTest
     @Test
     public void testExecutableStatementCountLambdas() throws Exception {
 
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "16:22: " + getCheckMessage(MSG_KEY, 6, max),

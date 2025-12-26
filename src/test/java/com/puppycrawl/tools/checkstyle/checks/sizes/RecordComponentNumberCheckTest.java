@@ -67,7 +67,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultOne() throws Exception {
 
-        final int max = 8;
+        final var max = 8;
 
         final String[] expected = {
             "57:5: " + getCheckMessage(MSG_KEY, 14, max),
@@ -84,7 +84,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultTwo() throws Exception {
 
-        final int max = 8;
+        final var max = 8;
 
         final String[] expected = {
             "38:3: " + getCheckMessage(MSG_KEY, 15, max),
@@ -98,7 +98,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordComponentNumberTopLevel1() throws Exception {
 
-        final int max = 8;
+        final var max = 8;
 
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_KEY, 15, max),
@@ -122,7 +122,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordComponentNumberMax1() throws Exception {
 
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "28:5: " + getCheckMessage(MSG_KEY, 2, max),
@@ -156,7 +156,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordComponentNumberPrivateModifierOne() throws Exception {
 
-        final int max = 8;
+        final var max = 8;
 
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_KEY, 14, max),
@@ -170,7 +170,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRecordComponentNumberPrivateModifierTwo() throws Exception {
 
-        final int max = 8;
+        final var max = 8;
 
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_KEY, 14, max),

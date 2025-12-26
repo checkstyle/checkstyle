@@ -108,7 +108,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIntegerOverflow() throws Exception {
 
-        final long largerThanMaxInt = 3_486_784_401L;
+        final var largerThanMaxInt = 3_486_784_401L;
 
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, largerThanMaxInt, 0),
@@ -193,7 +193,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNpathComplexityRecords() throws Exception {
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, 3, max),
@@ -209,7 +209,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNpathComplexitySwitchExpression() throws Exception {
 
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 5, max),

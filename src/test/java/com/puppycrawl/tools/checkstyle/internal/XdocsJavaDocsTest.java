@@ -100,7 +100,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
@@ -169,13 +169,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     // -@cs[CyclomaticComplexity] No simple way to split this apart.
     private static void appendNodeText(StringBuilder result, Node node) {
         final String name = transformXmlToJavaDocName(node.getNodeName());
-        final boolean list = "ol".equals(name) || "ul".equals(name);
-        final boolean newLineOpenBefore = list || "p".equals(name) || "pre".equals(name)
+        final var list = "ol".equals(name) || "ul".equals(name);
+        final var newLineOpenBefore = list || "p".equals(name) || "pre".equals(name)
                 || "li".equals(name);
-        final boolean newLineOpenAfter = newLineOpenBefore && !list;
-        final boolean newLineClose = newLineOpenAfter || list;
-        final boolean sanitize = "pre".equals(name);
-        final boolean changeToTag = "code".equals(name);
+        final var newLineOpenAfter = newLineOpenBefore && !list;
+        final var newLineClose = newLineOpenAfter || list;
+        final var sanitize = "pre".equals(name);
+        final var changeToTag = "code".equals(name);
 
         if (newLineOpenBefore) {
             result.append('\n');
@@ -228,7 +228,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             result = false;
         }
         else {
-            final char last = text.charAt(text.length() - 1);
+            final var last = text.charAt(text.length() - 1);
 
             result = (firstCharToAppend == '@'
                     || Character.getType(firstCharToAppend) == Character.DASH_PUNCTUATION
@@ -259,7 +259,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static String getAttributeText(String nodeName, NamedNodeMap attributes) {
         final StringBuilder result = new StringBuilder(20);
 
-        for (int i = 0; i < attributes.getLength(); i++) {
+        for (var i = 0; i < attributes.getLength(); i++) {
             result.append(' ');
 
             final Node attribute = attributes.item(i);
@@ -362,7 +362,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
         private static DetailAST getParent(DetailAST node) {
             DetailAST result = node.getParent();
-            int type = result.getType();
+            var type = result.getType();
 
             while (type == TokenTypes.MODIFIERS || type == TokenTypes.ANNOTATION) {
                 result = result.getParent();
@@ -413,16 +413,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
          * @return whether the AST represents a setter method.
          */
         private static boolean isSetterMethod(DetailAST ast) {
-            boolean setterMethod = false;
+            var setterMethod = false;
 
             if (ast.getType() == TokenTypes.METHOD_DEF) {
                 final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
                 final String name = type.getNextSibling().getText();
-                final boolean matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
-                final boolean voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;
+                final var matchesSetterFormat = SETTER_PATTERN.matcher(name).matches();
+                final var voidReturnType = type.findFirstToken(TokenTypes.LITERAL_VOID) != null;
 
                 final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-                final boolean singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
+                final var singleParam = params.getChildCount(TokenTypes.PARAMETER_DEF) == 1;
 
                 if (matchesSetterFormat && voidReturnType && singleParam) {
                     final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
@@ -452,7 +452,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static String makeFirstUpper(String str) {
-            final char ch = str.charAt(0);
+            final var ch = str.charAt(0);
             final String result;
 
             if (Character.isLowerCase(ch)) {

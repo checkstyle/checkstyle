@@ -109,7 +109,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
      */
     private static boolean isWhitespaceBeforeColonOfCase(DetailAST colonAst) {
         final DetailAST previousSibling = colonAst.getPreviousSibling();
-        int offset = 0;
+        var offset = 0;
         if (previousSibling.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             offset = 1;
         }

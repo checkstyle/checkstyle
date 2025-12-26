@@ -154,7 +154,7 @@ public class ParseTreeTablePresentation {
 
         if (parent instanceof DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
-            for (int nodeIndex = 0; nodeIndex < index; nodeIndex++) {
+            for (var nodeIndex = 0; nodeIndex < index; nodeIndex++) {
                 node = node.getNextSibling();
             }
             result = node;
@@ -173,7 +173,7 @@ public class ParseTreeTablePresentation {
      * @return the number of children of the node parent.
      */
     public int getChildCount(Object parent) {
-        int result = 0;
+        var result = 0;
 
         if (parent instanceof DetailNode parentNode) {
             DetailNode node = parentNode.getFirstChild();
@@ -230,8 +230,8 @@ public class ParseTreeTablePresentation {
      *     or don't belong to this tree model.
      */
     public int getIndexOfChild(Object parent, Object child) {
-        int index = -1;
-        for (int i = 0; i < getChildCount(parent); i++) {
+        var index = -1;
+        for (var i = 0; i < getChildCount(parent); i++) {
             if (getChild(parent, i).equals(child)) {
                 index = i;
                 break;
@@ -267,7 +267,7 @@ public class ParseTreeTablePresentation {
             result = getJavadocTree(parent.getParent());
         }
         else {
-            int currentIndex = 0;
+            var currentIndex = 0;
             DetailAST child = parent.getFirstChild();
             while (currentIndex < index) {
                 child = child.getNextSibling();

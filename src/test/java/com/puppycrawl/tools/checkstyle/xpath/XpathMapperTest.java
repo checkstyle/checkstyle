@@ -45,7 +45,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//METHOD_DEF/SLIST/*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        for (int i = 1; i < nodes.size(); i++) {
+        for (var i = 1; i < nodes.size(); i++) {
             final NodeInfo curr = nodes.get(i);
             final NodeInfo prev = nodes.get(i - 1);
 
@@ -1258,7 +1258,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
 
     private static DetailAST[] convertToArray(List<NodeInfo> nodes) {
         final DetailAST[] result = new DetailAST[nodes.size()];
-        for (int i = 0; i < nodes.size(); i++) {
+        for (var i = 0; i < nodes.size(); i++) {
             final ElementNode abstractNode = (ElementNode) nodes.get(i);
             result[i] = abstractNode.getUnderlyingNode();
         }

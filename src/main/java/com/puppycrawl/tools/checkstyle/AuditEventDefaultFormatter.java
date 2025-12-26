@@ -87,7 +87,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
      */
     private static StringBuilder initStringBuilderWithOptimalBuffer(AuditEvent event,
             String severityLevelName) {
-        final int bufLen = LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
+        final var bufLen = LENGTH_OF_ALL_SEPARATORS + event.getFileName().length()
             + event.getMessage().length() + severityLevelName.length()
             + getCheckShortName(event).length();
         return new StringBuilder(bufLen);
@@ -103,7 +103,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
         final String checkFullName = event.getSourceName();
         String checkShortName = checkFullName.substring(checkFullName.lastIndexOf('.') + 1);
         if (checkShortName.endsWith(SUFFIX)) {
-            final int endIndex = checkShortName.length() - SUFFIX.length();
+            final var endIndex = checkShortName.length() - SUFFIX.length();
             checkShortName = checkShortName.substring(0, endIndex);
         }
         return checkShortName;

@@ -84,8 +84,8 @@ public final class ParserUtil {
         final DetailAstImpl blockComment = new DetailAstImpl();
         blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, BLOCK_MULTIPLE_COMMENT_BEGIN);
 
-        final int tokenCharPositionInLine = token.getCharPositionInLine();
-        final int tokenLine = token.getLine();
+        final var tokenCharPositionInLine = token.getCharPositionInLine();
+        final var tokenLine = token.getLine();
         final String tokenText = token.getText();
 
         blockComment.setColumnNo(tokenCharPositionInLine);
@@ -122,9 +122,9 @@ public final class ParserUtil {
      */
     private static Map.Entry<Integer, Integer> countLinesColumns(
         String text, int initialLinesCnt, int initialColumnsCnt) {
-        int lines = initialLinesCnt;
-        int columns = initialColumnsCnt;
-        boolean foundCr = false;
+        var lines = initialLinesCnt;
+        var columns = initialColumnsCnt;
+        var foundCr = false;
         for (char c : text.toCharArray()) {
             if (c == '\n') {
                 foundCr = false;

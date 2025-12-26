@@ -193,8 +193,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         FilterSet filterSet = null;
 
         if (isUrlReachable(url)) {
-            int attemptCount = 0;
-            final int attemptLimit = 5;
+            var attemptCount = 0;
+            final var attemptLimit = 5;
 
             while (attemptCount <= attemptLimit) {
                 try {
@@ -218,7 +218,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     }
 
     private static boolean isUrlReachable(String url) {
-        boolean result = true;
+        var result = true;
         try {
             final URL verifiableUrl = new URL(url);
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();

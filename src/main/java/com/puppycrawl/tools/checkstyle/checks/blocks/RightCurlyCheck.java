@@ -264,7 +264,7 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return if the double brace initialization rcurly should be skipped over by the check
      */
     private static boolean skipDoubleBraceInstInit(Details details) {
-        boolean skipDoubleBraceInstInit = false;
+        var skipDoubleBraceInstInit = false;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken());
         if (tokenAfterNextToken != null) {
             final DetailAST rcurly = details.rcurly();
@@ -398,7 +398,7 @@ public class RightCurlyCheck extends AbstractCheck {
          */
         private static Details getDetailsForCase(DetailAST caseNode) {
             final DetailAST caseParent = caseNode.getParent();
-            final int parentType = caseParent.getType();
+            final var parentType = caseParent.getType();
             final Optional<DetailAST> lcurly;
             final DetailAST statementList;
 
@@ -430,7 +430,7 @@ public class RightCurlyCheck extends AbstractCheck {
          */
         private static boolean isSwitchExpression(DetailAST switchNode) {
             DetailAST currentNode = switchNode;
-            boolean ans = false;
+            var ans = false;
 
             while (currentNode != null) {
                 if (currentNode.getType() == TokenTypes.EXPR) {
@@ -450,7 +450,7 @@ public class RightCurlyCheck extends AbstractCheck {
         private static Details getDetailsForTryCatch(DetailAST ast) {
             final DetailAST lcurly;
             DetailAST nextToken;
-            final int tokenType = ast.getType();
+            final var tokenType = ast.getType();
             if (tokenType == TokenTypes.LITERAL_TRY) {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
                     lcurly = ast.getFirstChild().getNextSibling();
@@ -516,7 +516,7 @@ public class RightCurlyCheck extends AbstractCheck {
         private static Details getDetailsForOthers(DetailAST ast) {
             DetailAST rcurly = null;
             final DetailAST lcurly;
-            final int tokenType = ast.getType();
+            final var tokenType = ast.getType();
             if (isTokenWithNoChildSlist(tokenType)) {
                 final DetailAST child = ast.getLastChild();
                 lcurly = child;

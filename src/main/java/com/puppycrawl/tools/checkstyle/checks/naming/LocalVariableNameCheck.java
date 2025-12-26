@@ -92,7 +92,7 @@ public class LocalVariableNameCheck
         }
         else {
             final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final boolean isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
+            final var isFinal = modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
             result = !isFinal && ScopeUtil.isLocalVariableDef(ast);
         }
         return result;
@@ -105,7 +105,7 @@ public class LocalVariableNameCheck
      * @return true if a variable is the loop's one.
      */
     private static boolean isForLoopVariable(DetailAST variableDef) {
-        final int parentType = variableDef.getParent().getType();
+        final var parentType = variableDef.getParent().getType();
         return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }

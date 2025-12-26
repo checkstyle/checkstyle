@@ -88,7 +88,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
         final DetailAST defaultGroupAST = ast.getParent();
 
         // Switch rules are not subject to fall through.
-        final boolean isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
+        final var isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
 
         if (skipIfLastAndSharedWithCase && !isSwitchRule) {
             if (isNextSiblingOf(ast, TokenTypes.LITERAL_CASE)) {

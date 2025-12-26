@@ -207,7 +207,7 @@ public class RegexpOnFilenameCheck extends AbstractFileSetCheck {
         }
         else {
             // null pattern means 'match' applies to the folderPattern matching
-            final boolean useMatch = fileNamePattern != null || match;
+            final var useMatch = fileNamePattern != null || match;
             result = folderPattern.matcher(folderPath).find() == useMatch;
         }
 

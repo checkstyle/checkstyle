@@ -96,7 +96,7 @@ public abstract class AbstractSuperCheck
      * @return true if ast is a call to the super method for this check.
      */
     private boolean isSuperCall(DetailAST literalSuperAst) {
-        boolean superCall = false;
+        var superCall = false;
 
         if (!isSameNameMethod(literalSuperAst)) {
             final DetailAST parent = literalSuperAst.getParent();
@@ -115,7 +115,7 @@ public abstract class AbstractSuperCheck
      * @return true if super call in overriding method.
      */
     private boolean isSuperCallInOverridingMethod(DetailAST ast) {
-        boolean inOverridingMethod = false;
+        var inOverridingMethod = false;
         DetailAST dotAst = ast;
 
         while (dotAst.getType() != TokenTypes.CTOR_DEF
@@ -178,7 +178,7 @@ public abstract class AbstractSuperCheck
      * @return true if the method of ast is a method for this check.
      */
     private boolean isOverridingMethod(DetailAST ast) {
-        boolean overridingMethod = false;
+        var overridingMethod = false;
 
         if (ast.getType() == TokenTypes.METHOD_DEF
                 && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {

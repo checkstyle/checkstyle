@@ -75,7 +75,7 @@ public class NoFinalizerCheck extends AbstractCheck {
 
         if ("finalize".equals(name)) {
             final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean hasEmptyParamList =
+            final var hasEmptyParamList =
                 params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
 
             if (hasEmptyParamList) {

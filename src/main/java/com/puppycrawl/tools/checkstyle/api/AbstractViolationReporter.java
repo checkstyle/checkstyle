@@ -137,7 +137,7 @@ public abstract class AbstractViolationReporter
      */
     private static String getMessageBundle(final String className) {
         final String messageBundle;
-        final int endIndex = className.lastIndexOf('.');
+        final var endIndex = className.lastIndexOf('.');
         final String messages = "messages";
         if (endIndex == -1) {
             messageBundle = messages;

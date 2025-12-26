@@ -30,7 +30,7 @@ public class LineColumnTest {
 
     @Test
     public void testCompareToBothEqual() {
-        final int actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));
+        final var actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));
         assertWithMessage("Invalid LineColumn comparing result")
                 .that(actual)
                 .isEqualTo(0);
@@ -40,11 +40,11 @@ public class LineColumnTest {
     public void testCompareToFirstLarger() {
         final LineColumn lineColumn = new LineColumn(0, 0);
 
-        final int line1column0 = new LineColumn(1, 0).compareTo(lineColumn);
+        final var line1column0 = new LineColumn(1, 0).compareTo(lineColumn);
         assertWithMessage("Invalid LineColumn comparison result")
                 .that(line1column0)
                 .isEqualTo(1);
-        final int line2Column1 = new LineColumn(0, 1).compareTo(lineColumn);
+        final var line2Column1 = new LineColumn(0, 1).compareTo(lineColumn);
         assertWithMessage("Invalid LineColumn comparison result")
                 .that(line2Column1)
                 .isEqualTo(1);
@@ -54,11 +54,11 @@ public class LineColumnTest {
     public void testCompareToFirstSmaller() {
         final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
-        final int line1Column0 = lineColumn.compareTo(new LineColumn(1, 0));
+        final var line1Column0 = lineColumn.compareTo(new LineColumn(1, 0));
         assertWithMessage("Invalid LineColumn comparison result")
                 .that(line1Column0)
                 .isEqualTo(-1);
-        final int line0Column1 = lineColumn.compareTo(new LineColumn(0, 1));
+        final var line0Column1 = lineColumn.compareTo(new LineColumn(0, 1));
         assertWithMessage("Invalid LineColumn comparison result")
                 .that(line0Column1)
                 .isEqualTo(-1);

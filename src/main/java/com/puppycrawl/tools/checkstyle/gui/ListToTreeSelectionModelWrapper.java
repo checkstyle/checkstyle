@@ -99,12 +99,12 @@ final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
             try {
                 // This is way expensive, ListSelectionModel needs an
                 // enumerator for iterating.
-                final int min = listSelectionModel.getMinSelectionIndex();
-                final int max = listSelectionModel.getMaxSelectionIndex();
+                final var min = listSelectionModel.getMinSelectionIndex();
+                final var max = listSelectionModel.getMaxSelectionIndex();
 
                 clearSelection();
                 if (min != -1 && max != -1) {
-                    for (int counter = min; counter <= max; counter++) {
+                    for (var counter = min; counter <= max; counter++) {
                         updateSelectedPathIfRowIsSelected(counter);
                     }
                 }

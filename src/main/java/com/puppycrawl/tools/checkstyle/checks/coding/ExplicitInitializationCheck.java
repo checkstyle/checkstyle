@@ -113,7 +113,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
         final DetailAST exprStart =
                 assign.getFirstChild().getFirstChild();
         final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-        final int primitiveType = type.getFirstChild().getType();
+        final var primitiveType = type.getFirstChild().getType();
         if (primitiveType == TokenTypes.LITERAL_BOOLEAN
                 && exprStart.getType() == TokenTypes.LITERAL_FALSE) {
             log(ident, MSG_KEY, ident.getText(), "false");
@@ -145,7 +145,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      * @return true is that is a case that need to be skipped.
      */
     private static boolean isSkipCase(DetailAST ast) {
-        boolean skipCase = true;
+        var skipCase = true;
 
         // do not check local variables and
         // fields declared in interface/annotations
@@ -184,7 +184,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
      * @return true if given node contains numeric constant for zero.
      */
     private static boolean isZero(DetailAST expr) {
-        final int type = expr.getType();
+        final var type = expr.getType();
         return switch (type) {
             case TokenTypes.NUM_FLOAT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_INT,
                  TokenTypes.NUM_LONG -> {

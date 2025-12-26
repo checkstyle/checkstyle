@@ -131,7 +131,7 @@ public class TryHandler extends BlockParentHandler {
      */
     private void checkTryResources(final DetailAST resourcesSpecAst) {
         final DetailAST resourcesAst = resourcesSpecAst.findFirstToken(TokenTypes.RESOURCES);
-        final int indentation = getIndent().getFirstIndentLevel()
+        final var indentation = getIndent().getFirstIndentLevel()
             + getIndentCheck().getLineWrappingIndentation();
         final IndentLevel expectedResourceIndent = new IndentLevel(indentation);
 
@@ -173,7 +173,7 @@ public class TryHandler extends BlockParentHandler {
      * @return if the expression provided is try block's resource specification.
      */
     private static boolean isTryBlocksResourceSpecification(AbstractExpressionHandler expression) {
-        boolean isResourceSpecificationExpression = false;
+        var isResourceSpecificationExpression = false;
 
         DetailAST ast = expression.getMainAst();
 

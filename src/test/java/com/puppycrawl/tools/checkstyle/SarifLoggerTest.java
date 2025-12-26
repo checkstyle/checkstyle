@@ -308,7 +308,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final SarifLogger logger = new SarifLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+        final var closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 
         assertWithMessage("closeStream should be true")
                 .that(closeStream)
@@ -323,7 +323,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final SarifLogger logger = new SarifLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
-        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+        final var closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 
         assertWithMessage("closeStream should be false")
                 .that(closeStream)

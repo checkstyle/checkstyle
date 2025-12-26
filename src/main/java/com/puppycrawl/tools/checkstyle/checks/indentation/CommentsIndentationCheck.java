@@ -190,7 +190,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         while (previousSibling != null && isComment(previousSibling)) {
             previousSibling = previousSibling.getPreviousSibling();
         }
-        boolean isDistributed = false;
+        var isDistributed = false;
         if (previousSibling != null) {
             if (previousSibling.getType() == TokenTypes.SEMI
                     && isOnPreviousLineIgnoringComments(comment, previousSibling)) {
@@ -243,7 +243,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if the previous statement of a comment is a distributed return statement.
      */
     private static boolean isDistributedReturnStatement(DetailAST commentPreviousSibling) {
-        boolean isDistributed = false;
+        var isDistributed = false;
         if (commentPreviousSibling != null
                 && commentPreviousSibling.getType() == TokenTypes.LITERAL_RETURN) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
@@ -262,7 +262,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if the previous statement of a comment is a distributed throw statement.
      */
     private static boolean isDistributedThrowStatement(DetailAST commentPreviousSibling) {
-        boolean isDistributed = false;
+        var isDistributed = false;
         if (commentPreviousSibling != null
                 && commentPreviousSibling.getType() == TokenTypes.LITERAL_THROW) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
@@ -495,7 +495,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 }
             }
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
-                final int prevStmtLineNo = prevStmt.getLineNo();
+                final var prevStmtLineNo = prevStmt.getLineNo();
                 log(comment, getMessageKey(comment), prevStmtLineNo,
                         comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
@@ -511,7 +511,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private static boolean isCommentForMultiblock(DetailAST endBlockStmt) {
         final DetailAST nextBlock = endBlockStmt.getParent().getNextSibling();
-        final int endBlockLineNo = endBlockStmt.getLineNo();
+        final var endBlockLineNo = endBlockStmt.getLineNo();
         final DetailAST catchAst = endBlockStmt.getParent().getParent();
         final DetailAST finallyAst = catchAst.getNextSibling();
         return nextBlock != null && nextBlock.getLineNo() == endBlockLineNo
@@ -590,7 +590,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if the ast is a comment.
      */
     private static boolean isComment(DetailAST ast) {
-        final int astType = ast.getType();
+        final var astType = ast.getType();
         return astType == TokenTypes.SINGLE_LINE_COMMENT
             || astType == TokenTypes.BLOCK_COMMENT_BEGIN
             || astType == TokenTypes.COMMENT_CONTENT
@@ -707,7 +707,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private boolean isOnPreviousLineIgnoringComments(DetailAST currentStatement,
                                                      DetailAST checkedStatement) {
         DetailAST nextToken = getNextToken(checkedStatement);
-        int distanceAim = 1;
+        var distanceAim = 1;
         if (nextToken != null && isComment(nextToken)) {
             distanceAim += countEmptyLines(checkedStatement, currentStatement);
         }
@@ -752,10 +752,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return the number of empty lines between statements.
      */
     private int countEmptyLines(DetailAST startStatement, DetailAST endStatement) {
-        int emptyLinesNumber = 0;
+        var emptyLinesNumber = 0;
         final String[] lines = getLines();
-        final int endLineNo = endStatement.getLineNo();
-        for (int lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
+        final var endLineNo = endStatement.getLineNo();
+        for (var lineNo = startStatement.getLineNo(); lineNo < endLineNo; lineNo++) {
             if (CommonUtil.isBlank(lines[lineNo])) {
                 emptyLinesNumber++;
             }
@@ -908,7 +908,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private int getLineStart(int lineNo) {
         final char[] line = getLines()[lineNo - 1].toCharArray();
-        int lineStart = 0;
+        var lineStart = 0;
         while (Character.isWhitespace(line[lineStart])) {
             lineStart++;
         }
@@ -946,7 +946,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean isTrailingSingleLineComment(DetailAST singleLineComment) {
         final String targetSourceLine = getLine(singleLineComment.getLineNo() - 1);
-        final int commentColumnNo = singleLineComment.getColumnNo();
+        final var commentColumnNo = singleLineComment.getColumnNo();
         return !CommonUtil.hasWhitespaceBefore(commentColumnNo, targetSourceLine);
     }
 
@@ -965,7 +965,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private boolean isTrailingBlockComment(DetailAST blockComment) {
         final String commentLine = getLine(blockComment.getLineNo() - 1);
-        final int commentColumnNo = blockComment.getColumnNo();
+        final var commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
         return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);

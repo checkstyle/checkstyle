@@ -234,7 +234,7 @@ public abstract class AbstractExpressionHandler {
      * @return the start of the specified line
      */
     private int getLineStart(String line) {
-        int index = 0;
+        var index = 0;
         while (Character.isWhitespace(line.charAt(index))) {
             index++;
         }
@@ -250,7 +250,7 @@ public abstract class AbstractExpressionHandler {
      *         false otherwise
      */
     protected boolean shouldIncreaseIndent() {
-        boolean result = true;
+        var result = true;
         if (TokenUtil.isOfType(mainAst, TokenTypes.LITERAL_CATCH)) {
             final DetailAST parameterAst = mainAst.findFirstToken(TokenTypes.PARAMETER_DEF);
             result = !AnnotationUtil.containsAnnotation(parameterAst);
@@ -275,9 +275,9 @@ public abstract class AbstractExpressionHandler {
         if (!astSet.isEmpty()) {
             // check first line
             final DetailAST startLineAst = astSet.firstLine();
-            int startCol = expandedTabsColumnNo(startLineAst);
+            var startCol = expandedTabsColumnNo(startLineAst);
 
-            final int realStartCol =
+            final var realStartCol =
                 getLineStart(indentCheck.getLine(startLineAst.getLineNo() - 1));
 
             if (firstLineMatches && !allowNesting) {
@@ -312,7 +312,7 @@ public abstract class AbstractExpressionHandler {
         // doesn't start the line) then don't indent more, the first
         // indentation is absorbed by the nesting
         final DetailAST startLineAst = astSet.firstLine();
-        final int endLine = astSet.lastLine();
+        final var endLine = astSet.lastLine();
         IndentLevel level = indentLevel;
 
         if (shouldIncreaseIndent()
@@ -323,7 +323,7 @@ public abstract class AbstractExpressionHandler {
         }
 
         // check following lines
-        for (int index = startLineAst.getLineNo() + 1; index <= endLine; index++) {
+        for (var index = startLineAst.getLineNo() + 1; index <= endLine; index++) {
             final Integer col = astSet.getStartColumn(index);
             // startCol could be null if this line didn't have an
             // expression that was required to be checked (it could be
@@ -345,8 +345,8 @@ public abstract class AbstractExpressionHandler {
     private void checkLineIndent(DetailAST ast,
         IndentLevel indentLevel, boolean mustMatch) {
         final String line = indentCheck.getLine(ast.getLineNo() - 1);
-        final int start = getLineStart(line);
-        final int columnNumber = expandedTabsColumnNo(ast);
+        final var start = getLineStart(line);
+        final var columnNumber = expandedTabsColumnNo(ast);
         // if must match is set, it is a violation if the line start is not
         // at the correct indention level; otherwise, it is an only a
         // violation if this statement starts the line and it is less than
@@ -426,7 +426,7 @@ public abstract class AbstractExpressionHandler {
         boolean allowNesting
     ) {
         final DetailAstSet subtreeAst = new DetailAstSet(indentCheck);
-        final int firstLine = getFirstLine(tree);
+        final var firstLine = getFirstLine(tree);
         if (firstLineMatches && !allowNesting) {
             final DetailAST firstAst = getFirstAstNode(tree);
             subtreeAst.addAst(firstAst);
@@ -499,10 +499,10 @@ public abstract class AbstractExpressionHandler {
     protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
         if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
-            final int lineNum = tree.getLineNo();
+            final var lineNum = tree.getLineNo();
             final Integer colNum = astSet.getStartColumn(lineNum);
 
-            final int thisLineColumn = expandedTabsColumnNo(tree);
+            final var thisLineColumn = expandedTabsColumnNo(tree);
             if (colNum == null || thisLineColumn < colNum) {
                 astSet.addAst(tree);
             }
@@ -589,9 +589,9 @@ public abstract class AbstractExpressionHandler {
         if (rparen != null) {
             // the rcurly can either be at the correct indentation,
             // or not first on the line
-            final int rparenLevel = expandedTabsColumnNo(rparen);
+            final var rparenLevel = expandedTabsColumnNo(rparen);
             // or has <lparen level> + 1 indentation
-            final int lparenLevel = expandedTabsColumnNo(lparen);
+            final var lparenLevel = expandedTabsColumnNo(lparen);
 
             if (rparenLevel != lparenLevel + 1
                     && !getIndent().isAcceptable(rparenLevel)

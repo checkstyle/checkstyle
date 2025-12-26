@@ -237,7 +237,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return true if ast is a closing paren of a {@link TokenTypes#TYPECAST}.
      */
     private static boolean isInTypecast(DetailAST ast) {
-        boolean result = false;
+        var result = false;
         if (ast.getParent().getType() == TokenTypes.TYPECAST) {
             final DetailAST firstRparen = ast.getParent().findFirstToken(TokenTypes.RPAREN);
             if (TokenUtil.areOnSameLine(firstRparen, ast)
@@ -255,7 +255,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return whether a token follows an empty for iterator
      */
     private static boolean isFollowsEmptyForIterator(DetailAST ast) {
-        boolean result = false;
+        var result = false;
         final DetailAST parent = ast.getParent();
         // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
@@ -273,7 +273,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @return whether a token precedes an empty for initializer
      */
     private static boolean isPrecedingEmptyForInit(DetailAST ast) {
-        boolean result = false;
+        var result = false;
         final DetailAST parent = ast.getParent();
         // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {

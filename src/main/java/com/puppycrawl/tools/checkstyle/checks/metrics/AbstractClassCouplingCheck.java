@@ -246,7 +246,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         final FullIdent ident = FullIdent.createFullIdent(
             imp.getLastChild().getPreviousSibling());
         final String fullName = ident.getText();
-        final int lastDot = fullName.lastIndexOf(DOT);
+        final var lastDot = fullName.lastIndexOf(DOT);
         importedClassPackages.put(fullName.substring(lastDot + 1), fullName);
     }
 
@@ -438,9 +438,9 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
                 classNameWithPackage = getClassNameWithPackage(candidateClassName)
                     .orElse("");
             }
-            boolean isFromExcludedPackage = false;
+            var isFromExcludedPackage = false;
             if (classNameWithPackage.indexOf(DOT) != -1) {
-                final int lastDotIndex = classNameWithPackage.lastIndexOf(DOT);
+                final var lastDotIndex = classNameWithPackage.lastIndexOf(DOT);
                 final String candidatePackageName =
                     classNameWithPackage.substring(0, lastDotIndex);
                 isFromExcludedPackage = candidatePackageName.startsWith("java.lang")
@@ -467,7 +467,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @return true if we should not count this class.
          */
         private boolean isExcludedClassRegexp(String candidateClassName) {
-            boolean result = false;
+            var result = false;
             for (Pattern pattern : excludeClassesRegexps) {
                 if (pattern.matcher(candidateClassName).matches()) {
                     result = true;

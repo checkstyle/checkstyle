@@ -100,7 +100,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithRecords() throws Exception {
 
-        final int max = 1;
+        final var max = 1;
 
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, 2, max),

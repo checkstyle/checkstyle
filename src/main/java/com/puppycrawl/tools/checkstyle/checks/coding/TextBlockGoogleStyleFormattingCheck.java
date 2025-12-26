@@ -127,7 +127,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
      */
     private static boolean openingQuotesAreAloneOnTheLine(DetailAST openingQuotes) {
         DetailAST parent = openingQuotes;
-        boolean quotesAreNotPreceded = true;
+        var quotesAreNotPreceded = true;
         while (quotesAreNotPreceded || parent.getType() == TokenTypes.ELIST
                 || parent.getType() == TokenTypes.EXPR) {
 
@@ -179,7 +179,7 @@ public class TextBlockGoogleStyleFormattingCheck extends AbstractCheck {
     private static boolean closingQuotesAreAloneOnTheLine(DetailAST closingQuotes) {
         final DetailAST content = closingQuotes.getPreviousSibling();
         final String text = content.getText();
-        int index = text.length() - 1;
+        var index = text.length() - 1;
         while (text.charAt(index) == ' ') {
             index--;
         }

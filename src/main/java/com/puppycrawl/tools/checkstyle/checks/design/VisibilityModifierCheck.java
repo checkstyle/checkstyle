@@ -345,7 +345,7 @@ public class VisibilityModifierCheck
      * @param variableDef variable to check.
      */
     private void visitVariableDef(DetailAST variableDef) {
-        final boolean inInterfaceOrAnnotationBlock =
+        final var inInterfaceOrAnnotationBlock =
                 ScopeUtil.isInInterfaceOrAnnotationBlock(variableDef);
 
         if (!inInterfaceOrAnnotationBlock && !hasIgnoreAnnotation(variableDef)) {
@@ -407,7 +407,7 @@ public class VisibilityModifierCheck
      * @return true if it is star import
      */
     private static boolean isStarImport(DetailAST importAst) {
-        boolean result = false;
+        var result = false;
         DetailAST toVisit = importAst;
         while (toVisit != null) {
             toVisit = getNextSubTreeNode(toVisit, importAst);
@@ -427,7 +427,7 @@ public class VisibilityModifierCheck
      * @return true if variable has proper access modifier.
      */
     private boolean hasProperAccessModifier(DetailAST variableDef, String variableName) {
-        boolean result = true;
+        var result = true;
 
         final String variableScope = getVisibilityScope(variableDef);
 
@@ -539,10 +539,10 @@ public class VisibilityModifierCheck
      * @return true if field is immutable.
      */
     private boolean isImmutableField(DetailAST variableDef) {
-        boolean result = false;
+        var result = false;
         if (isFinalField(variableDef)) {
             final DetailAST type = variableDef.findFirstToken(TokenTypes.TYPE);
-            final boolean isCanonicalName = isCanonicalName(type);
+            final var isCanonicalName = isCanonicalName(type);
             final String typeName = getCanonicalName(type);
             if (immutableClassShortNames.contains(typeName)
                     || isCanonicalName && immutableClassCanonicalNames.contains(typeName)) {

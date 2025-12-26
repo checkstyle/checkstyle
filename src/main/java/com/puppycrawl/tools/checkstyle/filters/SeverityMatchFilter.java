@@ -85,7 +85,7 @@ public class SeverityMatchFilter
 
     @Override
     public boolean accept(AuditEvent event) {
-        final boolean severityMatches = severity == event.getSeverityLevel();
+        final var severityMatches = severity == event.getSeverityLevel();
         return acceptOnMatch == severityMatches;
     }
 

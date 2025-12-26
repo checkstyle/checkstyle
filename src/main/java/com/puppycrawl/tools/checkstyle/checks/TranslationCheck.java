@@ -230,7 +230,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
      * @return true if user specified language code is correct.
      */
     private static boolean isValidLanguageCode(final String userSpecifiedLanguageCode) {
-        boolean valid = false;
+        var valid = false;
         final Locale[] locales = Locale.getAvailableLocales();
         for (Locale locale : locales) {
             if (userSpecifiedLanguageCode.equals(locale.toString())) {
@@ -614,7 +614,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          * @return true if a resource bundle contains a file which name matches file name regexp.
          */
         public boolean containsFile(String fileNameRegexp) {
-            boolean containsFile = false;
+            var containsFile = false;
             for (File currentFile : files) {
                 if (Pattern.matches(fileNameRegexp, currentFile.getName())) {
                     containsFile = true;

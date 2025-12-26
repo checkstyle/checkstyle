@@ -138,8 +138,8 @@ class HtmlTag {
      * @return text of the tag
      */
     public String getText() {
-        final int startOfText = position;
-        final int endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());
+        final var startOfText = position;
+        final var endOfText = Math.min(startOfText + MAX_TEXT_LEN, text.length());
         return text.substring(startOfText, endOfText);
     }
 

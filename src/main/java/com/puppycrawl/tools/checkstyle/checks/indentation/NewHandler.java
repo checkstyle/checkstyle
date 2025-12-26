@@ -50,10 +50,10 @@ public class NewHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         // if new is on the line start and it is not the part of assignment.
         if (isOnStartOfLine(mainAst)) {
-            final int columnNo = expandedTabsColumnNo(mainAst);
+            final var columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            final boolean forceStrictCondition = getIndentCheck().isForceStrictCondition();
+            final var forceStrictCondition = getIndentCheck().isForceStrictCondition();
             if (forceStrictCondition && !level.isAcceptable(columnNo)
                 || !forceStrictCondition && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
@@ -84,9 +84,9 @@ public class NewHandler extends AbstractExpressionHandler {
      * @return true if nested new is present.
      */
     public boolean checkNestedNew(DetailAST expression) {
-        boolean result = false;
+        var result = false;
         if (expression != null && expression.getFirstChild() != null) {
-            final boolean isNestedNewPresent = expression.getFirstChild()
+            final var isNestedNewPresent = expression.getFirstChild()
                 .findFirstToken(TokenTypes.LITERAL_NEW) != null;
             if (!isNestedNewPresent) {
                 result = true;
@@ -115,7 +115,7 @@ public class NewHandler extends AbstractExpressionHandler {
         if (getLineStart(mainAst) == mainAst.getColumnNo()) {
             result = super.getIndentImpl();
 
-            final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
+            final var isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
                                         TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
 
             if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
