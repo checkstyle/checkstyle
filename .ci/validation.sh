@@ -144,52 +144,52 @@ test)
 
 test-de)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=de -Duser.country=DE -Xmx2g'
   ;;
 
 test-es)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=es -Duser.country=ES -Xmx2g'
   ;;
 
 test-fi)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=fi -Duser.country=FI -Xmx2g'
   ;;
 
 test-fr)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=fr -Duser.country=FR -Xmx2g'
   ;;
 
 test-zh)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=zh -Duser.country=CN -Xmx2g'
   ;;
 
 test-ja)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=ja -Duser.country=JP -Xmx2g'
   ;;
 
 test-pt)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=pt -Duser.country=PT -Xmx2g'
   ;;
 
 test-tr)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=tr -Duser.country=TR -Xmx2g'
   ;;
 
 test-ru)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=ru -Duser.country=RU -Xmx2g'
   ;;
 
 test-al)
   ./mvnw -e --no-transfer-progress clean integration-test failsafe:verify \
-    -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xms1g -Xmx2g'
+    -Dsurefire.options='-Duser.language=sq -Duser.country=AL -Xmx2g'
   ;;
 
 versions)
@@ -552,7 +552,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -1366,7 +1365,7 @@ spotless)
   ;;
 
 sanity)
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
+  export MAVEN_OPTS="-Xmx4g"
   echo "Sanity Check 🦢"
   echo "Cloning and building OpenRewrite recipes 📥"
   cd /tmp
