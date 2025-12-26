@@ -1,0 +1,7 @@
+package com.puppycrawl.tools.checkstyle.checks.lineending; // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+                                                           // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+public class InputLineEndingLF2 {                          // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+  public String getGreeting() {                            // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+    return "Hello";                                        // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+  }                                                        // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
+}                                                          // violation 'Expected line ending for file is CRLF(\\r\\n), but LF(\\n) is detected.'
