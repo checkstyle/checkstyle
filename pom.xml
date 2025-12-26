@@ -610,6 +610,16 @@
           <version>3.1.0</version>
           <configuration>
             <java>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <excludes>
+                <exclude>**/*.ci-temp*</exclude>
+                <exclude>src/**/resources-noncompilable/**</exclude>
+                <exclude>src/it/resources/**</exclude>
+                <exclude>src/test/resources/**</exclude>
+                <exclude>src/xdocs-examples/**</exclude>
+              </excludes>
               <endWithNewline />
               <forbidWildcardImports />
               <removeUnusedImports />
@@ -1937,19 +1947,19 @@
               </includes>
               <excludes>
                 <!-- git -->
-                <exclude>.git/**</exclude>
+                <exclude>.git/*</exclude>
                 <!-- hand crafted indentation  -->
-                <exclude>src/site/xdoc/**</exclude>
+                <exclude>src/site/xdoc/*</exclude>
                 <!-- Temporary files -->
-                <exclude>target/**</exclude>
-                <exclude>.ci-temp/**</exclude>
+                <exclude>target/*</exclude>
+                <exclude>.ci-temp/*</exclude>
                 <!-- Specially crafted test files -->
-                <exclude>src/test/resources/**</exclude>
-                <exclude>src/xdocs-examples/resources/**</exclude>
+                <exclude>src/test/resources/*</exclude>
+                <exclude>src/xdocs-examples/resources/*</exclude>
                 <!-- Generated files -->
                 <exclude>src/site/xdoc/releasenotes.xml</exclude>
                 <exclude>src/site/xdoc/releasenotes_old*.xml</exclude>
-                <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**</exclude>
+                <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/*</exclude>
               </excludes>
             </formatFileSet>
           </formatFileSets>
@@ -1957,17 +1967,17 @@
             <validationSet>
               <dir>config</dir>
               <excludes>
-                <exclude>archunit-store/**</exclude>
+                <exclude>archunit-store/*</exclude>
                 <exclude>codenarc-rules.groovy.txt</exclude>
-                <exclude>google-java-format/**</exclude>
+                <exclude>google-java-format/*</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
                 <exclude>java-regexp.header</exclude>
                 <exclude>java.header</exclude>
-                <exclude>jsoref-spellchecker/**</exclude>
+                <exclude>jsoref-spellchecker/*</exclude>
                 <exclude>markdownlint.rb</exclude>
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
-                <exclude>projects-to-test/**</exclude>
+                <exclude>projects-to-test/*</exclude>
                 <exclude>rewrite.yml</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
@@ -5505,17 +5515,6 @@
           <plugin>
             <groupId>org.openrewrite.maven</groupId>
             <artifactId>rewrite-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>spotless-autofix</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.diffplug.spotless</groupId>
-            <artifactId>spotless-maven-plugin</artifactId>
           </plugin>
         </plugins>
       </build>
