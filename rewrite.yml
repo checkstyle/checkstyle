@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: org.checkstyle.AllAutoFixes
+name: org.checkstyle.openrewrite.SanityCheck
 displayName: Auto Fixes
 description: List of auto fixes from different providers.
 recipeList:
