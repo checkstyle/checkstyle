@@ -67,12 +67,23 @@ public class XdocsExamplesAstConsistencyTest {
     private static final String XDOC_END_MARKER = "// xdoc section -- end";
 
     /**
+     * Examples that cannot be parsed as valid Java.
+     * These files are intentionally non-compilable for documentation purposes.
+     *
+     */
+    private static final Set<String> UNPARSEABLE_EXAMPLES = Set.of(
+            "checks/regexp/regexponfilename/Example1",
+            "checks/translation/Example1",
+            "filters/suppressionxpathsinglefilter/Example14"
+    );
+
+    /**
      * Examples that have independent code structure and should not be compared.
      * These represent different use cases or configurations with different code.
      *
      * <p>Format: "directory/ExampleN" where the example has unique code.
      *
-     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/XXXX">...</a>
+     * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/annotationonsameline/Example2",
@@ -338,22 +349,15 @@ public class XdocsExamplesAstConsistencyTest {
 
             builder.append("Found ")
                     .append(violations.size())
-                    .append(
-                            """
-                             example files with AST mismatches.
-
-                            """
-                );
+                    .append("example files with AST mismatches.\n\n");
 
             for (String violation : violations) {
                 builder.append(violation)
                         .append("\n\n");
             }
 
-            builder.append(
-                    """
-                    If these examples have different code intent, add them to SUPPRESSED_EXAMPLES:
-                    """);
+            builder.append("If these examples have different code intent, "
+                    + "add them to INDEPENDENT_EXAMPLES:\n");
 
             for (String violation : violations) {
                 final String pattern = extractIndependentPattern(violation);
@@ -416,6 +420,19 @@ public class XdocsExamplesAstConsistencyTest {
         }
 
         return result;
+    }
+
+    /**
+     * Checks if a specific example is marked as unparseable.
+     *
+     * @param relativePath the relative directory path
+     * @param exampleFileName the example filename (e.g., "Example1.java")
+     * @return true if this example cannot be parsed
+     */
+    private static boolean isExampleUnparseable(String relativePath, String exampleFileName) {
+        final String exampleName = exampleFileName.replace(".java", "");
+        final String fullPath = relativePath + "/" + exampleName;
+        return UNPARSEABLE_EXAMPLES.contains(fullPath);
     }
 
     /**
@@ -483,18 +500,15 @@ public class XdocsExamplesAstConsistencyTest {
      * @return true if the directory contains 2 or more Example*.java files
      */
     private static boolean containsMultipleExamples(Path dir) {
-        boolean result = false;
-
         try (Stream<Path> pathStream = Files.list(dir)) {
-            result = pathStream
+            return pathStream
                     .filter(path -> path.getFileName().toString().matches("Example\\d+\\.java"))
                     .count() > 1;
         }
-        catch (IOException ignored) {
-            // result already set to false
+        catch (IOException exception) {
+            throw new IllegalStateException("Failed to list files in directory: " + dir,
+                    exception);
         }
-
-        return result;
     }
 
     /**
@@ -502,21 +516,14 @@ public class XdocsExamplesAstConsistencyTest {
      *
      * @param dir the directory containing example files
      * @return list of violation messages for mismatches
+     * @throws IOException if an I/O error occurs
      */
-    private static List<String> checkExamplesInDirectory(Path dir) {
+    private static List<String> checkExamplesInDirectory(Path dir) throws IOException {
         final List<String> violations = new ArrayList<>();
+        final List<Path> examples = getExampleFiles(dir);
 
-        try {
-            final List<Path> examples = getExampleFiles(dir);
-
-            if (!examples.isEmpty()) {
-                violations.addAll(compareExamples(dir, examples));
-            }
-        }
-        catch (IOException exception) {
-            final String relativePath = getRelativePath(dir);
-            violations.add("Directory: " + relativePath + "\n"
-                    + "Error: " + exception.getMessage());
+        if (!examples.isEmpty()) {
+            violations.addAll(compareExamples(dir, examples));
         }
 
         return violations;
@@ -670,30 +677,36 @@ public class XdocsExamplesAstConsistencyTest {
                                                Path reference,
                                                StructuralAstNode referenceAst)
             throws IOException {
-        String result;
         final String exampleXdocSection = extractXdocSection(example);
+        final String relativePath = getRelativePath(dir);
+        final String exampleFileName = example.getFileName().toString();
 
+        DetailAST exampleDetailAst = null;
         try {
-            final DetailAST exampleDetailAst = parseContent(exampleXdocSection);
-            if (exampleDetailAst == null) {
+            exampleDetailAst = parseContent(exampleXdocSection);
+        }
+        catch (CheckstyleException exception) {
+            if (!isExampleUnparseable(relativePath, exampleFileName)) {
+                throw new IllegalStateException(
+                        "Failed to parse example: " + example, exception);
+            }
+        }
+
+        final String result;
+        if (exampleDetailAst == null) {
+            result = null;
+        }
+        else {
+            final StructuralAstNode ast = toStructuralAst(exampleDetailAst);
+
+            if (referenceAst.equals(ast)) {
                 result = null;
             }
             else {
-                final StructuralAstNode ast = toStructuralAst(exampleDetailAst);
-
-                if (referenceAst.equals(ast)) {
-                    result = null;
-                }
-                else {
-                    final String relativePath = getRelativePath(dir);
-                    result = "Directory: " + relativePath + "\n"
-                            + "Reference: " + reference.getFileName() + "\n"
-                            + "Mismatch:  " + example.getFileName();
-                }
+                result = "Directory: " + relativePath + "\n"
+                        + "Reference: " + reference.getFileName() + "\n"
+                        + "Mismatch:  " + example.getFileName();
             }
-        }
-        catch (CheckstyleException exception) {
-            result = null;
         }
 
         return result;
