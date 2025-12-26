@@ -188,9 +188,9 @@
   </mailingLists>
 
   <scm>
-    <connection>scm:git:git@github.com:Pankraz76/checkstyle.git</connection>
-    <developerConnection>scm:git:git@github.com:Pankraz76/checkstyle.git</developerConnection>
-    <url>https://github.com/Pankraz76/checkstyle</url>
+    <connection>scm:git:git@github.com:checkstyle/checkstyle.git</connection>
+    <developerConnection>scm:git:git@github.com:checkstyle/checkstyle.git</developerConnection>
+    <url>https://github.com/checkstyle/checkstyle</url>
   </scm>
   <issueManagement>
     <system>GitHub Issues</system>
