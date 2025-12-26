@@ -552,7 +552,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -1365,30 +1364,27 @@ spotless)
   ./mvnw -e --no-transfer-progress clean spotless:check -P spotless-autofix
   ;;
 
-openrewrite-recipes)
-  echo "Cloning and building OpenRewrite recipes..."
+sanity)
+  export MAVEN_OPTS="-Xmx4g"
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
+  echo "Sanity Check 🕊️"
+  echo "Cloning and building OpenRewrite recipes 📥"
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   mvn -e --no-transfer-progress clean install -DskipTests
-
   cd "$PROJECT_ROOT"
-
-  echo "Running Checkstyle validation to get report for openrewrite..."
+  echo "Run Checkstyle validation to get report for openrewrite ☑️"
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
-  echo "Running OpenRewrite recipes..."
+  echo "Run OpenRewrite recipes ☑️"
   ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-    rewrite:run -P checkstyle-autofix
-
-  echo "Checking for uncommitted changes..."
+    clean rewrite:run -P checkstyle-autofix
+  echo "Checking for uncommitted changes 📋"
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
   rm -rf /tmp/checkstyle-openrewrite-recipes
+  echo "Complete ✅"
   ;;
 
 *)
