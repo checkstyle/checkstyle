@@ -103,7 +103,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--AT_SIGN -> @
      * |       |--TAG_NAME -> author
      * |       `--DESCRIPTION -> DESCRIPTION
-     * |           |--TEXT ->  MyName
+     * |           |--TEXT ->  name
      * |           |--NEWLINE -> \r\n
      * |           |--LEADING_ASTERISK ->  *
      * |           |--TEXT -> /
