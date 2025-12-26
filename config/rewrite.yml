@@ -9,12 +9,8 @@ recipeList:
 #      configurationPath: "config/checkstyle-checks.xml"
 #      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
-  # - org.openrewrite.java.migrate.lang.var.UseVarForGenericsConstructors
-  - org.openrewrite.java.migrate.lang.var.UseVarForPrimitive
   # - org.openrewrite.staticanalysis.NoDoubleBraceInitialization fixme: important!
   # - org.openrewrite.gradle.UpdateGradleWrapper
-  # - org.openrewrite.java.migrate.lang.var.UseVarForGenericMethodInvocations # bug
-  # - org.openrewrite.java.migrate.lang.var.UseVarForObject # bug
   # - org.openrewrite.java.testing.junit.JupiterBestPractices
   # - org.openrewrite.java.testing.junit5.CleanupAssertions
   - org.openrewrite.java.format.NormalizeFormat
