@@ -1362,7 +1362,7 @@ sevntu)
   ;;
 
 spotless)
-  ./mvnw -e --no-transfer-progress clean spotless:check -P spotless-autofix
+  ./mvnw -e --no-transfer-progress clean spotless:check
   ;;
 
 openrewrite-recipes)
@@ -1382,8 +1382,7 @@ openrewrite-recipes)
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
   echo "Running OpenRewrite recipes..."
-  ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO \
-    rewrite:run -P checkstyle-autofix
+  ./mvnw -e --no-transfer-progress -Drewrite.recipeChangeLogLevel=INFO rewrite:run
 
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
