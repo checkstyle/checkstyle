@@ -625,7 +625,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             .that(actualViolations.keySet())
             .isEqualTo(realExpectedViolations.keySet());
 
-        realExpectedViolations.forEach((fileName, violationList) -> {
+        realExpectedViolations.forEach((String fileName, List<String> violationList) -> {
             assertWithMessage("Violations for %s differ.", fileName)
                 .that(actualViolations.get(fileName))
                 .containsExactlyElementsIn(violationList);
@@ -786,7 +786,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 toLfLineEnding(outputStream.toString(StandardCharsets.UTF_8));
 
         final String cleanedActualContent = rawActualContent.lines()
-                .filter(line -> {
+                .filter((String line) -> {
                     return line.startsWith("[")
                             || line.contains("Starting audit...")
                             || line.contains("Audit done.");

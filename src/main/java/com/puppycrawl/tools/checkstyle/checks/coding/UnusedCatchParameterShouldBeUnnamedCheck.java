@@ -130,7 +130,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheck extends AbstractCheck {
                             .filter(parameter -> !parameter.isUsed())
                             .filter(parameter -> !"_".equals(parameter.getName()));
 
-            unusedCatchParameter.ifPresent(parameter -> {
+            unusedCatchParameter.ifPresent((UnusedCatchParameterShouldBeUnnamedCheck.CatchParameterDetails parameter) -> {
                 log(parameter.getParameterDefinition(),
                         MSG_UNUSED_CATCH_PARAMETER,
                         parameter.getName());

@@ -381,7 +381,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 child::addPreviousSibling,
                 child::addNextSibling,
                 child::addChild,
-            ast -> {
+            (DetailAstImpl ast) -> {
                 try {
                     TestUtil.invokeVoidMethod(child, "setParent", ast);
                 }
@@ -770,7 +770,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     private static List<File> getAllFiles(File dir) {
         final List<File> result = new ArrayList<>();
 
-        dir.listFiles(file -> {
+        dir.listFiles((File file) -> {
             if (file.isDirectory()) {
                 result.addAll(getAllFiles(file));
             }

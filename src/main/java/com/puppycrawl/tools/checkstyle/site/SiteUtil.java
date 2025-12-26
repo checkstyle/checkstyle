@@ -31,6 +31,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -383,7 +384,7 @@ public final class SiteUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws MacroExecutionException {
         final Path directory = Path.of("src/site/xdoc");
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (path, attr) -> {
+                (Path path, BasicFileAttributes attr) -> {
                     return attr.isRegularFile()
                             && path.toString().endsWith(TEMPLATE_FILE_EXTENSION);
                 })) {
@@ -445,7 +446,7 @@ public final class SiteUtil {
     public static Set<String> getPropertiesForDocumentation(Class<?> clss, Object instance) {
         final Set<String> properties =
                 getProperties(clss).stream()
-                    .filter(prop -> {
+                    .filter((String prop) -> {
                         return !isGlobalProperty(clss, prop) && !isUndocumentedProperty(clss, prop);
                     })
                     .collect(Collectors.toCollection(HashSet::new));
@@ -493,7 +494,7 @@ public final class SiteUtil {
         final Map<String, DetailNode> propertiesJavadocs =
             new LinkedHashMap<>(unmodifiablePropertiesJavadocs);
 
-        properties.forEach(property -> {
+        properties.forEach((String property) -> {
             final DetailNode superClassPropertyJavadoc =
                     SUPER_CLASS_PROPERTIES_JAVADOCS.get(property);
             if (superClassPropertyJavadoc != null) {
@@ -777,7 +778,7 @@ public final class SiteUtil {
 
         return propertyJavadocTag
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
+            .map((DetailNode description) -> {
                 return JavadocUtil.findFirstToken(description, JavadocCommentsTokenTypes.TEXT);
             })
             .map(DetailNode::getText)
@@ -836,7 +837,7 @@ public final class SiteUtil {
         final DetailNode sinceJavadocTag = getSinceJavadocTag(javadoc);
         return Optional.ofNullable(sinceJavadocTag)
             .map(tag -> JavadocUtil.findFirstToken(tag, JavadocCommentsTokenTypes.DESCRIPTION))
-            .map(description -> {
+            .map((DetailNode description) -> {
                 return JavadocUtil.findFirstToken(
                         description, JavadocCommentsTokenTypes.TEXT);
             })

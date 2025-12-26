@@ -99,7 +99,7 @@ public final class TestUtil {
             .flatMap(cls -> Arrays.stream(cls.getDeclaredFields()))
             .filter(field -> fieldName.equals(field.getName()))
             .findFirst()
-            .map(field -> {
+            .map((Field field) -> {
                 field.setAccessible(true);
                 return field;
             })
@@ -122,7 +122,7 @@ public final class TestUtil {
                                                  int parameters) {
         final Stream<Method> methods = Stream.<Class<?>>iterate(clss, Class::getSuperclass)
                 .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
-                .filter(method -> {
+                .filter((Method method) -> {
                     return methodName.equals(method.getName());
                 });
 
@@ -145,11 +145,11 @@ public final class TestUtil {
      */
     private static <T extends java.lang.reflect.Executable> T getMatchingExecutable(
             Stream<T> execs, int parameters, Supplier<String> exceptionMessage) {
-        return execs.filter(method -> {
+        return execs.filter((T method) -> {
             return parameters == method.getParameterCount();
         })
         .findFirst()
-        .map(method -> {
+        .map((T method) -> {
             method.setAccessible(true);
             return method;
         })

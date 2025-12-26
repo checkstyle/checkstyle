@@ -380,7 +380,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private void updateAllUninitializedVariables() {
         final boolean hasSomeScopes = !currentScopeAssignedVariables.isEmpty();
         if (hasSomeScopes) {
-            scopeStack.forEach(scopeData -> {
+            scopeStack.forEach((FinalLocalVariableCheck.ScopeData scopeData) -> {
                 updateUninitializedVariables(scopeData.prevScopeUninitializedVariables);
             });
         }

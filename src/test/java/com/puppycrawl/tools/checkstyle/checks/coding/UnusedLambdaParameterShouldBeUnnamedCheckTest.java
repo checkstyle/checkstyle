@@ -141,7 +141,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
                         literalCatch.orElseThrow(),
                         "lambdaParameters",
-                        lambdaParameters -> {
+                        (Object lambdaParameters) -> {
                             return ((Collection<?>) lambdaParameters).isEmpty();
                         }))
                 .isTrue();

@@ -357,7 +357,7 @@ public class XpathQueryGenerator {
     private static String encode(String value) {
         final StringBuilder sb = new StringBuilder(256);
         value.codePoints().forEach(
-            chr -> {
+            (int chr) -> {
                 sb.append(encodeCharacter(Character.toChars(chr)[0]));
             }
         );

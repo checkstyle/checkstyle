@@ -934,7 +934,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         // the user has chosen to suppress these problems
         if (validateThrows && reportExpectedTags) {
             throwsList.stream().filter(exceptionInfo -> !exceptionInfo.isFound())
-                .forEach(exceptionInfo -> {
+                .forEach((JavadocMethodCheck.ExceptionInfo exceptionInfo) -> {
                     final Token token = exceptionInfo.getName();
                     log(exceptionInfo.getAst(),
                         MSG_EXPECTED_TAG,

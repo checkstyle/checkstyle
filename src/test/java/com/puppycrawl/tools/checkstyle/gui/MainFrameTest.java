@@ -44,6 +44,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
+import org.mockito.MockedConstruction.Context;
 import org.mockito.MockedStatic;
 
 import com.puppycrawl.tools.checkstyle.AbstractGuiTestSupport;
@@ -129,7 +130,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
                 "openFileButton", JButton.class);
         final File testFile = new File(getPath(TEST_FILE_NAME));
         try (MockedConstruction<JFileChooser> mocked = mockConstruction(
-                JFileChooser.class, (mock, context) -> {
+                JFileChooser.class, (JFileChooser mock, MockedConstruction.Context context) -> {
                     when(mock.showOpenDialog(mainFrame)).thenReturn(JFileChooser.APPROVE_OPTION);
                     when(mock.getSelectedFile()).thenReturn(testFile);
                 })) {
@@ -149,7 +150,7 @@ public class MainFrameTest extends AbstractGuiTestSupport {
         final JButton openFileButton = findComponentByName(mainFrame,
                 "openFileButton", JButton.class);
         try (MockedConstruction<JFileChooser> mocked = mockConstruction(
-                JFileChooser.class, (mock, context) -> {
+                JFileChooser.class, (JFileChooser mock, MockedConstruction.Context context) -> {
                     when(mock.showOpenDialog(mainFrame)).thenReturn(JFileChooser.CANCEL_OPTION);
                     when(mock.getFileFilter()).thenCallRealMethod();
                     doCallRealMethod().when(mock).setFileFilter(any(FileFilter.class));

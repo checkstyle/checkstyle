@@ -283,7 +283,7 @@ public class SuppressWarningsHolder
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
         if ("SuppressWarnings".equals(identifier)) {
-            getAnnotationTarget(ast).ifPresent(targetAST -> {
+            getAnnotationTarget(ast).ifPresent((DetailAST targetAST) -> {
                 addSuppressions(getAllAnnotationValues(ast), targetAST);
             });
         }

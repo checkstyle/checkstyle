@@ -114,7 +114,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
             final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
             if (parameters != null) {
                 // we have multiple lambda parameters
-                TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, parameter -> {
+                TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, (DetailAST parameter) -> {
                     final DetailAST identifierAst = parameter.findFirstToken(TokenTypes.IDENT);
                     final LambdaParameterDetails lambdaParameter =
                             new LambdaParameterDetails(ast, identifierAst);
@@ -147,7 +147,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheck extends AbstractCheck {
                             .filter(parameter -> !parameter.isUsed())
                             .filter(parameter -> !"_".equals(parameter.getName()));
 
-            unusedLambdaParameter.ifPresent(parameter -> {
+            unusedLambdaParameter.ifPresent((UnusedLambdaParameterShouldBeUnnamedCheck.LambdaParameterDetails parameter) -> {
                 log(parameter.getIdentifierAst(),
                         MSG_UNUSED_LAMBDA_PARAMETER,
                         parameter.getName());

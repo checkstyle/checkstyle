@@ -152,9 +152,9 @@ public class EqualsHashCodeCheck
     @Override
     public void finishTree(DetailAST rootAST) {
         objBlockWithEquals
-            .entrySet().stream().filter(detailASTDetailASTEntry -> {
+            .entrySet().stream().filter((Map.Entry<DetailAST,DetailAST> detailASTDetailASTEntry) -> {
                 return objBlockWithHashCode.remove(detailASTDetailASTEntry.getKey()) == null;
-            }).forEach(detailASTDetailASTEntry -> {
+            }).forEach((Map.Entry<DetailAST,DetailAST> detailASTDetailASTEntry) -> {
                 final DetailAST equalsAST = detailASTDetailASTEntry.getValue();
                 log(equalsAST, MSG_KEY_HASHCODE);
             });

@@ -80,7 +80,7 @@ public final class CheckUtil {
      * @return a set of simple names.
      */
     public static Set<String> getSimpleNames(Set<Class<?>> checks) {
-        return checks.stream().map(check -> {
+        return checks.stream().map((Class<?> check) -> {
             String name = check.getSimpleName();
 
             if (name.endsWith("Check")) {

@@ -282,7 +282,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     private List<String> generateMessageStrings(ModuleDetails module) {
         final Map<String, String> messages = getMessages(module);
         return module.getViolationMessageKeys().stream()
-                .filter(messages::containsKey).map(key -> {
+                .filter(messages::containsKey).map((String key) -> {
                     final String message = messages.get(key);
                     return messageStrings
                             .replace("${key}", key)

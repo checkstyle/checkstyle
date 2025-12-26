@@ -137,7 +137,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if switch block contains a pattern case label element
      */
     private static boolean containsPatternCaseLabelElement(DetailAST detailAst) {
-        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
+        return TokenUtil.findFirstTokenByPredicate(detailAst, (DetailAST ast) -> {
             return ast.getFirstChild() != null
                     && (ast.getFirstChild().findFirstToken(TokenTypes.PATTERN_VARIABLE_DEF) != null
                     || ast.getFirstChild().findFirstToken(TokenTypes.RECORD_PATTERN_DEF) != null);
@@ -151,7 +151,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return true if switch block contains null case label
      */
     private static boolean containsNullCaseLabelElement(DetailAST detailAst) {
-        return TokenUtil.findFirstTokenByPredicate(detailAst, ast -> {
+        return TokenUtil.findFirstTokenByPredicate(detailAst, (DetailAST ast) -> {
             return ast.getFirstChild() != null
                      && hasNullCaseLabel(ast.getFirstChild());
         }).isPresent();
@@ -174,7 +174,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
      * @return returnValue the ast of null label
      */
     private static boolean hasNullCaseLabel(DetailAST detailAST) {
-        return TokenUtil.findFirstTokenByPredicate(detailAST.getParent(), ast -> {
+        return TokenUtil.findFirstTokenByPredicate(detailAST.getParent(), (DetailAST ast) -> {
             final DetailAST expr = ast.findFirstToken(TokenTypes.EXPR);
             return expr != null && expr.findFirstToken(TokenTypes.LITERAL_NULL) != null;
         }).isPresent();

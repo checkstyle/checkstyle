@@ -1030,7 +1030,7 @@ public class RequireThisCheck extends AbstractCheck {
             }
             else {
                 isLambdaParameter = TokenUtil.findFirstTokenByPredicate(lambdaParameters,
-                    paramDef -> {
+                    (DetailAST paramDef) -> {
                         final DetailAST param = paramDef.findFirstToken(TokenTypes.IDENT);
                         return param != null && param.getText().equals(ast.getText());
                     }).isPresent();

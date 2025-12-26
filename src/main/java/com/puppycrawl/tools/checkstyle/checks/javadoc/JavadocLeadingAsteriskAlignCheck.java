@@ -106,10 +106,10 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
             leadingAsteriskColumnNumber
                     .map(columnNumber -> expandedTabs(ast.getText(), columnNumber))
-                    .filter(columnNumber -> {
+                    .filter((Integer columnNumber) -> {
                         return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
                     })
-                    .ifPresent(columnNumber -> {
+                    .ifPresent((Integer columnNumber) -> {
                         logViolation(ast.getLineNumber(),
                                 columnNumber,
                                 expectedColumnNumberTabsExpanded);
@@ -126,10 +126,10 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
 
         endingBlockColumnNumber
                 .map(columnNumber -> expandedTabs(lastLine, columnNumber))
-                .filter(columnNumber -> {
+                .filter((Integer columnNumber) -> {
                     return !hasValidAlignment(expectedColumnNumberTabsExpanded, columnNumber);
                 })
-                .ifPresent(columnNumber -> {
+                .ifPresent((Integer columnNumber) -> {
                     logViolation(javadocEndToken.getLineNo(),
                             columnNumber,
                             expectedColumnNumberTabsExpanded);

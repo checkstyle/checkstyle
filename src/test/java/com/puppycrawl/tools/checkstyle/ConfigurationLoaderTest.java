@@ -34,6 +34,7 @@ import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
+import org.mockito.MockedConstruction.Context;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -726,7 +727,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testConfigWithIgnoreExceptionalAttributes() {
         try (MockedConstruction<DefaultConfiguration> mocked = mockConstruction(
-                DefaultConfiguration.class, (mock, context) -> {
+                DefaultConfiguration.class, (DefaultConfiguration mock, MockedConstruction.Context context) -> {
                     when(mock.getPropertyNames()).thenReturn(new String[] {"severity"});
                     when(mock.getName()).thenReturn("MemberName");
                     when(mock.getProperty("severity")).thenThrow(CheckstyleException.class);

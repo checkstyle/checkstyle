@@ -113,7 +113,7 @@ public final class AnnotationUtil {
         }
         boolean result = false;
         if (!annotations.isEmpty()) {
-            final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
+            final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, (DetailAST annotationNode) -> {
                 final String annotationFullIdent = getAnnotationFullIdent(annotationNode);
                 return annotations.contains(annotationFullIdent);
             });
@@ -220,7 +220,7 @@ public final class AnnotationUtil {
                     "the annotation is empty or spaces");
         }
 
-        return findFirstAnnotation(ast, annotationNode -> {
+        return findFirstAnnotation(ast, (DetailAST annotationNode) -> {
             final DetailAST firstChild = annotationNode.findFirstToken(TokenTypes.AT);
             final String name =
                     FullIdent.createFullIdent(firstChild.getNextSibling()).getText();

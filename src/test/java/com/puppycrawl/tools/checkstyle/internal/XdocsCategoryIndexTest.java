@@ -377,7 +377,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             final Element nameCell = cellElements.get(0);
             final Element descCell = cellElements.get(1);
 
-            getFirstChildElementByTagName(nameCell, "a").ifPresent(anchorElement -> {
+            getFirstChildElementByTagName(nameCell, "a").ifPresent((Element anchorElement) -> {
                 if (anchorElement.hasAttribute("href")) {
                     final String checkNameInIndex = anchorElement.getTextContent().trim();
                     final String href = anchorElement.getAttribute("href");
