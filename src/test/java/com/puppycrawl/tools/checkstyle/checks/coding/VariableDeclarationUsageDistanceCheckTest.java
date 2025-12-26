@@ -313,7 +313,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     @Test
     public void testVariableDeclarationUsageDistanceSwitchExpressions() throws Exception {
 
-        final var maxDistance = 1;
+        final int maxDistance = 1;
         final String[] expected = {
             "35:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
             "80:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
@@ -331,7 +331,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
     @Test
     public void testVariableDeclarationUsageDistanceSwitchExpressions2() throws Exception {
-        final var maxDistance = 1;
+        final int maxDistance = 1;
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY, "i", 2, maxDistance),
         };

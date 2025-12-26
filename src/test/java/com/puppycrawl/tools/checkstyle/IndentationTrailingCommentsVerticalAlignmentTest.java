@@ -68,22 +68,22 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         }
 
         final List<String> lines = Files.readAllLines(testFile);
-        var expectedStartIndex = -1;
+        int expectedStartIndex = -1;
 
-        for (var idx = 0; idx < lines.size(); idx++) {
+        for (int idx = 0; idx < lines.size(); idx++) {
             final String line = lines.get(idx);
             if (line.trim().startsWith("import ") || line.trim().startsWith("package ")) {
                 continue;
             }
-            final var commentStartIndex = line.indexOf("//indent:");
+            final int commentStartIndex = line.indexOf("//indent:");
             if (commentStartIndex > 0) {
                 final String codePart = line.substring(0, commentStartIndex);
                 if (!codePart.isBlank()) {
-                    var actualStartIndex =
+                    int actualStartIndex =
                         CommonUtil.lengthExpandedTabs(line, commentStartIndex, TAB_WIDTH);
 
                     // for unicode characters having supplementary code points
-                    final var extraWidth = codePart.codePoints().filter(
+                    final long extraWidth = codePart.codePoints().filter(
                         Character::isSupplementaryCodePoint).count();
                     actualStartIndex -= Math.toIntExact(extraWidth);
 

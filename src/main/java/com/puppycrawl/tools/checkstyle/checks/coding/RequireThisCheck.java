@@ -262,7 +262,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
-        var parentType = ast.getParent().getType();
+        int parentType = ast.getParent().getType();
         if (parentType == TokenTypes.EXPR
                 && ast.getParent().getParent().getParent().getType()
                     == TokenTypes.ANNOTATION_FIELD_DEF) {
@@ -284,7 +284,7 @@ public class RequireThisCheck extends AbstractCheck {
             default -> {
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
-                    final var canUseThis = !isInCompactConstructor(ast);
+                    final boolean canUseThis = !isInCompactConstructor(ast);
                     if (frame != null && canUseThis) {
                         logViolation(MSG_VARIABLE, ast, frame);
                     }
@@ -319,8 +319,8 @@ public class RequireThisCheck extends AbstractCheck {
      *         'this' and null otherwise.
      */
     private AbstractFrame getFieldWithoutThis(DetailAST ast, int parentType) {
-        final var importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
-        final var typeName = parentType == TokenTypes.TYPE
+        final boolean importOrPackage = ScopeUtil.getSurroundingScope(ast) == null;
+        final boolean typeName = parentType == TokenTypes.TYPE
                 || parentType == TokenTypes.LITERAL_NEW;
         AbstractFrame frame = null;
 
@@ -344,7 +344,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if ast is in a COMPACT_CTOR_DEF, false otherwise
      */
     private static boolean isInCompactConstructor(DetailAST ast) {
-        var isInCompactCtor = false;
+        boolean isInCompactCtor = false;
         DetailAST parent = ast;
         while (parent != null) {
             if (parent.getType() == TokenTypes.COMPACT_CTOR_DEF) {
@@ -604,7 +604,7 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST blockStartToken = definitionToken.findFirstToken(TokenTypes.SLIST);
         final DetailAST blockEndToken = getBlockEndToken(blockFrameNameIdent, blockStartToken);
 
-        var userDefinedArrangementOfThis = false;
+        boolean userDefinedArrangementOfThis = false;
 
         final Set<DetailAST> variableUsagesInsideBlock =
             getAllTokensWhichAreEqualToCurrent(definitionToken, ident,
@@ -675,7 +675,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return {@code true} if the {@code ast} was found.
      */
     private static boolean isAstInside(DetailAST tree, DetailAST ast) {
-        var result = false;
+        boolean result = false;
 
         if (isAstSimilar(tree, ast)) {
             result = true;
@@ -697,7 +697,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if field can be referenced from a static context.
      */
     private static boolean canBeReferencedFromStaticContext(DetailAST ident) {
-        var staticContext = false;
+        boolean staticContext = false;
 
         final DetailAST codeBlockDefinition = getCodeBlockDefinitionToken(ident);
         if (codeBlockDefinition != null) {
@@ -735,10 +735,10 @@ public class RequireThisCheck extends AbstractCheck {
      */
     private boolean canAssignValueToClassField(DetailAST ast) {
         final AbstractFrame fieldUsageFrame = findFrame(ast, false);
-        final var fieldUsageInConstructor = isInsideConstructorFrame(fieldUsageFrame);
+        final boolean fieldUsageInConstructor = isInsideConstructorFrame(fieldUsageFrame);
 
         final AbstractFrame declarationFrame = findFrame(ast, true);
-        final var finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
+        final boolean finalField = ((ClassFrame) declarationFrame).hasFinalField(ast);
 
         return fieldUsageInConstructor || !finalField;
     }
@@ -764,7 +764,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if an overlapping by method or constructor argument takes place.
      */
     private boolean isOverlappingByArgument(DetailAST ast) {
-        var overlapping = false;
+        boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         final DetailAST sibling = ast.getNextSibling();
         if (sibling != null && isAssignToken(parent.getType())) {
@@ -787,7 +787,7 @@ public class RequireThisCheck extends AbstractCheck {
      * @return true if an overlapping by local variable takes place.
      */
     private boolean isOverlappingByLocalVariable(DetailAST ast) {
-        var overlapping = false;
+        boolean overlapping = false;
         final DetailAST parent = ast.getParent();
         if (isAssignToken(parent.getType())) {
             final ClassFrame classFrame = (ClassFrame) findFrame(ast, true);
@@ -1179,7 +1179,7 @@ public class RequireThisCheck extends AbstractCheck {
          *         IDENT ast and it is declared in a proper position.
          */
         protected boolean containsFieldOrVariableDef(Set<DetailAST> set, DetailAST ident) {
-            var result = false;
+            boolean result = false;
             for (DetailAST ast: set) {
                 if (isProperDefinition(ident, ast)) {
                     result = true;
@@ -1356,7 +1356,7 @@ public class RequireThisCheck extends AbstractCheck {
          * @return true if given instance member has final modifier.
          */
         public boolean hasFinalField(final DetailAST instanceMember) {
-            var result = false;
+            boolean result = false;
             for (DetailAST member : instanceMembers) {
                 final DetailAST parent = member.getParent();
                 if (parent.getType() == TokenTypes.RECORD_COMPONENT_DEF) {
@@ -1364,7 +1364,7 @@ public class RequireThisCheck extends AbstractCheck {
                 }
                 else {
                     final DetailAST mods = parent.findFirstToken(TokenTypes.MODIFIERS);
-                    final var finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
+                    final boolean finalMod = mods.findFirstToken(TokenTypes.FINAL) != null;
                     if (finalMod && isAstSimilar(member, instanceMember)) {
                         result = true;
                     }
@@ -1420,7 +1420,7 @@ public class RequireThisCheck extends AbstractCheck {
          *     same name and number of parameters.
          */
         private static boolean containsMethodDef(Set<DetailAST> set, DetailAST ident) {
-            var result = false;
+            boolean result = false;
             for (DetailAST ast: set) {
                 if (isSimilarSignature(ident, ast)) {
                     result = true;
@@ -1439,12 +1439,12 @@ public class RequireThisCheck extends AbstractCheck {
          *     as the method call.
          */
         private static boolean isSimilarSignature(DetailAST ident, DetailAST ast) {
-            var result = false;
+            boolean result = false;
             final DetailAST elistToken = ident.getParent().findFirstToken(TokenTypes.ELIST);
             if (elistToken != null && ident.getText().equals(ast.getText())) {
-                final var paramsNumber =
+                final int paramsNumber =
                     ast.getParent().findFirstToken(TokenTypes.PARAMETERS).getChildCount();
-                final var argsNumber = elistToken.getChildCount();
+                final int argsNumber = elistToken.getChildCount();
                 result = paramsNumber == argsNumber;
             }
             return result;

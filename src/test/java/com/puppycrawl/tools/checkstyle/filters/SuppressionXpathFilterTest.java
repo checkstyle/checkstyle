@@ -82,7 +82,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     public void testNonExistentSuppressionFileWithFalseOptional() throws Exception {
         final String fileName = getPath("non_existent_suppression_file.xml");
         try {
-            final var optional = false;
+            final boolean optional = false;
             createSuppressionXpathFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
@@ -97,7 +97,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     public void testExistingInvalidSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionXpathFilterInvalidFile.xml");
         try {
-            final var optional = true;
+            final boolean optional = true;
             createSuppressionXpathFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
@@ -149,7 +149,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExternalResource() throws Exception {
-        final var optional = false;
+        final boolean optional = false;
         final String fileName = getPath("InputSuppressionXpathFilterIdAndQuery.xml");
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
         final Set<String> expected = Collections.singleton(fileName);
@@ -221,7 +221,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testXpathSuppression() throws Exception {
-        for (var test = 1; test <= 4; test++) {
+        for (int test = 1; test <= 4; test++) {
 
             final String[] expected = {
                 "20:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,

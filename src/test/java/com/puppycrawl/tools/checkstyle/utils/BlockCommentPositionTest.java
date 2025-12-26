@@ -76,7 +76,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
         for (BlockCommentPositionTestMetadata metadata : metadataList) {
             final DetailAST ast = JavaParser.parseFile(new File(getPath(metadata.getFileName())),
                 JavaParser.Options.WITH_COMMENTS);
-            final var matches = getJavadocsCount(ast, metadata.getAssertion());
+            final int matches = getJavadocsCount(ast, metadata.getAssertion());
             assertWithMessage("Invalid javadoc count")
                     .that(matches)
                     .isEqualTo(metadata.getMatchesNum());
@@ -96,7 +96,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
             final DetailAST ast = JavaParser.parseFile(
                 new File(getPath(metadata.getFileName())),
                     JavaParser.Options.WITH_COMMENTS);
-            final var matches = getJavadocsCount(ast, metadata.getAssertion());
+            final int matches = getJavadocsCount(ast, metadata.getAssertion());
             assertWithMessage("Invalid javadoc count")
                     .that(matches)
                     .isEqualTo(metadata.getMatchesNum());
@@ -105,7 +105,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
 
     private static int getJavadocsCount(DetailAST detailAST,
                                         Function<DetailAST, Boolean> assertion) {
-        var matchFound = 0;
+        int matchFound = 0;
         DetailAST node = detailAST;
         while (node != null) {
             if (node.getType() == TokenTypes.BLOCK_COMMENT_BEGIN

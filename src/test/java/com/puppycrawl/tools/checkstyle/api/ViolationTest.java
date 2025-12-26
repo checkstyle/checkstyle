@@ -162,7 +162,7 @@ public class ViolationTest {
         assertWithMessage("Invalid comparing result")
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
-        final var actual = message1.compareTo(message1a);
+        final int actual = message1.compareTo(message1a);
         assertWithMessage("Invalid comparing result")
             .that(actual)
             .isEqualTo(0);
@@ -180,7 +180,7 @@ public class ViolationTest {
         assertWithMessage("Invalid comparing result")
                 .that(message2.compareTo(message1) > 0)
                 .isTrue();
-        final var actual = message1.compareTo(message1a);
+        final int actual = message1.compareTo(message1a);
         assertWithMessage("Invalid comparing result")
             .that(actual)
             .isEqualTo(0);

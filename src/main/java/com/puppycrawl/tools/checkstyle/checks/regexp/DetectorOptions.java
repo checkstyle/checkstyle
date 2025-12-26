@@ -257,7 +257,7 @@ public final class DetectorOptions {
          * @return Pattern object.
          */
         private Pattern createPattern(String formatValue) {
-            var options = compileFlags;
+            int options = compileFlags;
             if (ignoreCase) {
                 options |= Pattern.CASE_INSENSITIVE;
             }

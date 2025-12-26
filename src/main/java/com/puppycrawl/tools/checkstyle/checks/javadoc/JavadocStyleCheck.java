@@ -215,7 +215,7 @@ public class JavadocStyleCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        var check = false;
+        boolean check = false;
 
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
             check = CheckUtil.isPackageInfo(getFilePath());
@@ -269,7 +269,7 @@ public class JavadocStyleCheck
      */
     private void checkFirstSentenceEnding(final DetailAST ast, TextBlock comment) {
         final String commentText = getCommentText(comment.getText());
-        final var hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
+        final boolean hasInLineReturnTag = Arrays.stream(SENTENCE_SEPARATOR.split(commentText))
                 .findFirst()
                 .map(INLINE_RETURN_TAG_PATTERN::matcher)
                 .filter(Matcher::find)
@@ -306,7 +306,7 @@ public class JavadocStyleCheck
     private static String getCommentText(String... comments) {
         final StringBuilder builder = new StringBuilder(1024);
         for (final String line : comments) {
-            final var textStart = findTextStart(line);
+            final int textStart = findTextStart(line);
 
             if (textStart != -1) {
                 if (line.charAt(textStart) == '@') {
@@ -332,8 +332,8 @@ public class JavadocStyleCheck
      *         or -1 if not found.
      */
     private static int findTextStart(String line) {
-        var textStart = -1;
-        var index = 0;
+        int textStart = -1;
+        int index = 0;
         while (index < line.length()) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 if (line.regionMatches(index, "/**", 0, "/**".length())
@@ -356,7 +356,7 @@ public class JavadocStyleCheck
      * @param builder the StringBuilder to trim.
      */
     private static void trimTail(StringBuilder builder) {
-        var index = builder.length() - 1;
+        int index = builder.length() - 1;
         while (true) {
             if (Character.isWhitespace(builder.charAt(index))) {
                 builder.deleteCharAt(index);
@@ -392,7 +392,7 @@ public class JavadocStyleCheck
      */
     // -@cs[ReturnCount] Too complex to break apart.
     private void checkHtmlTags(final DetailAST ast, final TextBlock comment) {
-        final var lineNo = comment.getStartLineNo();
+        final int lineNo = comment.getStartLineNo();
         final Deque<HtmlTag> htmlStack = new ArrayDeque<>();
         final String[] text = comment.getText();
 
@@ -522,7 +522,7 @@ public class JavadocStyleCheck
      *         for the token.
      */
     private static boolean isExtraHtml(String token, Deque<HtmlTag> htmlStack) {
-        var isExtra = true;
+        boolean isExtra = true;
         for (final HtmlTag tag : htmlStack) {
             // Loop, looking for tags that are closed.
             // The loop is needed in case there are unclosed

@@ -96,7 +96,7 @@ class TagParser {
      * @param lineNo the source line number.
      */
     private void parseTags(String[] text, int lineNo) {
-        final var nLines = text.length;
+        final int nLines = text.length;
         Point position = new Point(0, 0);
         while (position.lineNo() < nLines) {
             // if this is html comment then skip it
@@ -125,11 +125,11 @@ class TagParser {
     private Point parseTag(String[] text, int lineNo, final int nLines, Point position) {
         // find end of tag
         final Point endTag = findChar(text, '>', position);
-        final var incompleteTag = endTag.lineNo() >= nLines;
+        final boolean incompleteTag = endTag.lineNo() >= nLines;
         // get tag id (one word)
         final String tagId = getTagId(text, position);
         // is this closed tag
-        final var closedTag =
+        final boolean closedTag =
                 endTag.lineNo() < nLines
                  && text[endTag.lineNo()]
                  .charAt(endTag.columnNo() - 1) == '/';
@@ -151,7 +151,7 @@ class TagParser {
      * @return {@code true} some HTML tag starts from given position.
      */
     private static boolean isTag(String[] javadocText, Point pos) {
-        final var column = pos.columnNo() + 1;
+        final int column = pos.columnNo() + 1;
         final String text = javadocText[pos.lineNo()];
 
         // Character.isJavaIdentifier... may not be a valid HTML
@@ -170,14 +170,14 @@ class TagParser {
      */
     private static String getTagId(String[] javadocText, Point tagStart) {
         String tagId = "";
-        var column = tagStart.columnNo() + 1;
+        int column = tagStart.columnNo() + 1;
         String text = javadocText[tagStart.lineNo()];
         if (column < text.length()) {
             if (text.charAt(column) == '/') {
                 column++;
             }
             text = text.substring(column);
-            var position = 0;
+            int position = 0;
 
             // Character.isJavaIdentifier... may not be a valid HTML
             // identifier but is valid for generics
@@ -246,8 +246,8 @@ class TagParser {
      * @return next point to be examined
      */
     private static Point getNextPoint(String[] text, Point from) {
-        var line = from.lineNo();
-        var column = from.columnNo() + 1;
+        int line = from.lineNo();
+        int column = from.columnNo() + 1;
         while (line < text.length && column >= text[line].length()) {
             // go to the next line
             line++;

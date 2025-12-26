@@ -50,15 +50,15 @@ class CsvFilterElement implements IntFilterElement {
         final StringTokenizer tokenizer = new StringTokenizer(pattern, ",");
         while (tokenizer.hasMoreTokens()) {
             final String token = tokenizer.nextToken().trim();
-            final var index = token.indexOf('-');
+            final int index = token.indexOf('-');
             if (index == -1) {
-                final var matchValue = Integer.parseInt(token);
+                final int matchValue = Integer.parseInt(token);
                 addFilter(new IntMatchFilterElement(matchValue));
             }
             else {
-                final var lowerBound =
+                final int lowerBound =
                     Integer.parseInt(token.substring(0, index));
-                final var upperBound =
+                final int upperBound =
                     Integer.parseInt(token.substring(index + 1));
                 addFilter(new IntRangeFilterElement(lowerBound, upperBound));
             }
@@ -91,7 +91,7 @@ class CsvFilterElement implements IntFilterElement {
      */
     @Override
     public boolean accept(int intValue) {
-        var result = false;
+        boolean result = false;
         for (IntFilterElement filter : getFilters()) {
             if (filter.accept(intValue)) {
                 result = true;

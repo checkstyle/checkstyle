@@ -59,7 +59,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testDefaultConfig() throws Exception {
-        final var expectedLineLength = 90;
+        final int expectedLineLength = 90;
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
         final String[] violationMessages = {
@@ -87,7 +87,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testNearbyTextPattern() throws Exception {
-        final var expectedLineLength = 90;
+        final int expectedLineLength = 90;
 
         final String[] violationMessages = {
             "15: " + getRegexpSinglelineCheckMessage(),
@@ -118,7 +118,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testCheckPattern() throws Exception {
-        final var expectedLineLength = 80;
+        final int expectedLineLength = 80;
 
         final String[] violationMessages = {
             "15: " + getRegexpSinglelineCheckMessage(),
@@ -140,7 +140,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testMessagePattern() throws Exception {
-        final var expectedLineLength = 90;
+        final int expectedLineLength = 90;
 
         final String[] violationMessages = {
             "15: " + getRegexpSinglelineCheckMessage(),
@@ -162,7 +162,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testIdPattern() throws Exception {
-        final var expectedLineLength = 80;
+        final int expectedLineLength = 80;
 
         final String[] violationMessages = {
             "16: " + getRegexpSinglelineCheckMessage(),
@@ -184,7 +184,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testLineRangePositive3() throws Exception {
-        final var expectedLineLength = 92;
+        final int expectedLineLength = 92;
 
         final String[] violationMessages = {
             "15: " + getRegexpSinglelineCheckMessage(),
@@ -216,7 +216,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testLineRangeNegative2() throws Exception {
-        final var expectedLineLength = 91;
+        final int expectedLineLength = 91;
 
         final String[] violationMessages = {
             "15: " + getRegexpSinglelineCheckMessage(),
@@ -247,7 +247,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testVariableCheckPatternAndLineRange() throws Exception {
-        final var expectedLineLength = 85;
+        final int expectedLineLength = 85;
 
         final String[] violationMessages = {
             "19: " + getLineLengthCheckMessage(expectedLineLength, 89),
@@ -276,7 +276,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testNearbyTextPatternAny() throws Exception {
-        final var expectedLineLength = 76;
+        final int expectedLineLength = 76;
 
         final String[] violationMessages = {
             "18: " + getLineLengthCheckMessage(expectedLineLength, 80),
@@ -312,7 +312,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
 
     @Test
     public void testNearbyTextPatternUrlLineLengthSuppression() throws Exception {
-        final var expectedLineLength = 90;
+        final int expectedLineLength = 90;
 
         final String[] violationMessages = {
             "32: " + getLineLengthCheckMessage(expectedLineLength, 98),
@@ -443,7 +443,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
                         Object.class, null)
         );
         suppressFilter.accept(auditEvent1);
-        final var deleted = tempFile.delete();
+        final boolean deleted = tempFile.delete();
         assertWithMessage("Temporary file should be deleted.")
                 .that(deleted).isTrue();
         final AuditEvent auditEvent2 = new AuditEvent(

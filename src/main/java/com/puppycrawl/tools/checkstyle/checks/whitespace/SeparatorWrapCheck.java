@@ -98,13 +98,13 @@ public class SeparatorWrapCheck
     @Override
     public void visitToken(DetailAST ast) {
         final String text = ast.getText();
-        final var colNo = ast.getColumnNo();
-        final var lineNo = ast.getLineNo();
+        final int colNo = ast.getColumnNo();
+        final int lineNo = ast.getLineNo();
         final int[] currentLine = getLineCodePoints(lineNo - 1);
-        final var isLineEmptyAfterToken = CodePointUtil.isBlank(
+        final boolean isLineEmptyAfterToken = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, colNo + text.length(), currentLine.length)
         );
-        final var isLineEmptyBeforeToken = CodePointUtil.isBlank(
+        final boolean isLineEmptyBeforeToken = CodePointUtil.isBlank(
                 Arrays.copyOfRange(currentLine, 0, colNo)
         );
 

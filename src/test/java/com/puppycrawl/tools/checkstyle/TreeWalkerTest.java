@@ -228,7 +228,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final File emptyFile = new File(temporaryFolder, uniqueFileName);
         emptyFile.createNewFile();
         execute(checkConfig, emptyFile.getPath());
-        final var fileSize = Files.size(emptyFile.toPath());
+        final long fileSize = Files.size(emptyFile.toPath());
         assertWithMessage("File should be empty")
                 .that(fileSize)
                 .isEqualTo(0);
@@ -279,7 +279,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalker.setTabWidth(1);
         treeWalker.configure(config);
 
-        final var tabWidth = TestUtil.getInternalState(treeWalker, "tabWidth", Integer.class);
+        final int tabWidth = TestUtil.getInternalState(treeWalker, "tabWidth", Integer.class);
         assertWithMessage("Invalid setter result")
             .that(tabWidth)
             .isEqualTo(1);
@@ -490,7 +490,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final Set<TreeWalkerFilter> filters =
                 TestUtil.getInternalStateSetTreeWalkerFilter(treeWalker, "filters");
-        final var tabWidth = TestUtil.getInternalState(filters.iterator().next(),
+        final int tabWidth = TestUtil.getInternalState(filters.iterator().next(),
                 "tabWidth", Integer.class);
 
         assertWithMessage("expected tab width")
@@ -648,7 +648,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         execute(checkerConfig, filePath.toString());
 
-        final var cacheSize = Files.size(cacheFile.toPath());
+        final long cacheSize = Files.size(cacheFile.toPath());
         assertWithMessage("cacheFile should not be empty")
                 .that(cacheSize)
                 .isNotEqualTo(0);

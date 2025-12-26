@@ -98,7 +98,7 @@ public abstract class AbstractElementNode extends AbstractNode {
      */
     @Override
     public int compareOrder(NodeInfo other) {
-        var result = 0;
+        int result = 0;
         if (other instanceof AbstractNode node) {
             result = Integer.compare(depth, node.getDepth());
             if (result == 0) {
@@ -125,8 +125,8 @@ public abstract class AbstractElementNode extends AbstractNode {
             child1 = child1.getParent();
             child2 = child2.getParent();
         }
-        final var index1 = ((AbstractElementNode) child1).indexAmongSiblings;
-        final var index2 = ((AbstractElementNode) child2).indexAmongSiblings;
+        final int index1 = ((AbstractElementNode) child1).indexAmongSiblings;
+        final int index2 = ((AbstractElementNode) child2).indexAmongSiblings;
         return Integer.compare(index1, index2);
     }
 

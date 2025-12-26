@@ -174,8 +174,8 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         final Matcher matcher =
                 LINE_COLUMN_NUMBER_REGEX.matcher(expectedViolations[0]);
         if (matcher.find()) {
-            final var violationLineNumber = Integer.parseInt(matcher.group(1));
-            final var violationColumnNumber = Integer.parseInt(matcher.group(2));
+            final int violationLineNumber = Integer.parseInt(matcher.group(1));
+            final int violationColumnNumber = Integer.parseInt(matcher.group(2));
             violation = new ViolationPosition(violationLineNumber, violationColumnNumber);
         }
         return violation;

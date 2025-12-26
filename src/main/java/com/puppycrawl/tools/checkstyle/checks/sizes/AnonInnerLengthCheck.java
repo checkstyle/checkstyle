@@ -75,7 +75,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
         if (openingBrace != null) {
             final DetailAST closingBrace =
                 openingBrace.findFirstToken(TokenTypes.RCURLY);
-            final var length =
+            final int length =
                 closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
             if (length > max) {
                 log(ast, MSG_KEY, length, max);

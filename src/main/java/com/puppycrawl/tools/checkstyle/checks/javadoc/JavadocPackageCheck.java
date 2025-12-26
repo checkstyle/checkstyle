@@ -97,7 +97,7 @@ public class JavadocPackageCheck extends AbstractFileSetCheck {
             throw new CheckstyleException(
                     "Exception while getting canonical path to file " + file.getPath(), exc);
         }
-        final var isDirChecked = !directoriesChecked.add(dir);
+        final boolean isDirChecked = !directoriesChecked.add(dir);
         if (!isDirChecked) {
             // Check for the preferred file.
             final Path packageInfo = Path.of(dir.getPath(), "package-info.java");

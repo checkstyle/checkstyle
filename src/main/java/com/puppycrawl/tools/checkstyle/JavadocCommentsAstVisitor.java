@@ -152,7 +152,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
         if (tag instanceof ParserRuleContext context) {
             final Token tagName = (Token) context.getChild(1).getPayload();
-            final var tokenType = tagName.getType();
+            final int tokenType = tagName.getType();
 
             final JavadocNodeImpl specificTagNode = switch (tokenType) {
                 case JavadocCommentsLexer.AUTHOR ->
@@ -282,7 +282,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
         if (tagContent instanceof ParserRuleContext context) {
             final Token tagName = (Token) context.getChild(0).getPayload();
-            final var tokenType = tagName.getType();
+            final int tokenType = tagName.getType();
 
             final JavadocNodeImpl specificTagNode = switch (tokenType) {
                 case JavadocCommentsLexer.CODE ->
@@ -636,10 +636,10 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
      * @param parent     the parent node to which hidden tokens are added
      */
     private void addHiddenTokensToTheLeft(Token token, JavadocNodeImpl parent) {
-        final var alreadyProcessed = !processedTokenIndices.add(token.getTokenIndex());
+        final boolean alreadyProcessed = !processedTokenIndices.add(token.getTokenIndex());
 
         if (!alreadyProcessed) {
-            final var tokenIndex = token.getTokenIndex();
+            final int tokenIndex = token.getTokenIndex();
             final List<Token> hiddenTokens = tokens.getHiddenTokensToLeft(tokenIndex);
             if (hiddenTokens != null) {
                 accumulator.flushTo(parent);

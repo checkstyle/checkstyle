@@ -366,7 +366,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * @param annotation the annotation token
      */
     private void checkExpandedStyle(final DetailAST annotation) {
-        final var valuePairCount =
+        final int valuePairCount =
             annotation.getChildCount(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
         if (valuePairCount == 0 && hasArguments(annotation)) {
@@ -391,7 +391,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * @param annotation the annotation token
      */
     private void checkCompactStyle(final DetailAST annotation) {
-        final var valuePairCount =
+        final int valuePairCount =
             annotation.getChildCount(
                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 

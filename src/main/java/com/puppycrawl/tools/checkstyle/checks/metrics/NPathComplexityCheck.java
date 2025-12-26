@@ -237,13 +237,13 @@ public final class NPathComplexityCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHEN -> visitWhenExpression(ast, 1);
 
             case TokenTypes.CASE_GROUP -> {
-                final var caseNumber = countCaseTokens(ast);
+                final int caseNumber = countCaseTokens(ast);
                 branchVisited = true;
                 pushValue(caseNumber);
             }
 
             case TokenTypes.SWITCH_RULE -> {
-                final var caseConstantNumber = countCaseConstants(ast);
+                final int caseConstantNumber = countCaseConstants(ast);
                 branchVisited = true;
                 pushValue(caseConstantNumber);
             }
@@ -318,7 +318,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param basicBranchingFactor default number of branches added.
      */
     private void visitConditional(DetailAST ast, int basicBranchingFactor) {
-        var expressionValue = basicBranchingFactor;
+        int expressionValue = basicBranchingFactor;
         DetailAST bracketed;
         for (bracketed = ast.findFirstToken(TokenTypes.LPAREN);
                 bracketed.getType() != TokenTypes.RPAREN;
@@ -337,7 +337,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param basicBranchingFactor default number of branches added.
      */
     private void visitWhenExpression(DetailAST ast, int basicBranchingFactor) {
-        final var expressionValue = basicBranchingFactor + countConditionalOperators(ast);
+        final int expressionValue = basicBranchingFactor + countConditionalOperators(ast);
         processingTokenEnd.setToken(getLastToken(ast));
         pushValue(expressionValue);
     }
@@ -350,11 +350,11 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @param basicBranchingFactor number of branches inherently added by this token.
      */
     private void visitUnitaryOperator(DetailAST ast, int basicBranchingFactor) {
-        final var isAfter = processingTokenEnd.isAfter(ast);
+        final boolean isAfter = processingTokenEnd.isAfter(ast);
         afterValues.push(isAfter);
         if (!isAfter) {
             processingTokenEnd.setToken(getLastToken(ast));
-            final var expressionValue = basicBranchingFactor + countConditionalOperators(ast);
+            final int expressionValue = basicBranchingFactor + countConditionalOperators(ast);
             pushValue(expressionValue);
         }
     }
@@ -441,7 +441,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return pair of head values from both of the stacks.
      */
     private Values popValue() {
-        final var expressionValue = expressionValues.pop();
+        final int expressionValue = expressionValues.pop();
         return new Values(rangeValues.pop(), BigInteger.valueOf(expressionValue));
     }
 
@@ -464,10 +464,10 @@ public final class NPathComplexityCheck extends AbstractCheck {
      *     Java Language Specification, &sect;15.25</a>
      */
     private static int countConditionalOperators(DetailAST ast) {
-        var number = 0;
+        int number = 0;
         for (DetailAST child = ast.getFirstChild(); child != null;
                 child = child.getNextSibling()) {
-            final var type = child.getType();
+            final int type = child.getType();
             if (type == TokenTypes.LOR || type == TokenTypes.LAND) {
                 number++;
             }
@@ -504,7 +504,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return number of case tokens.
      */
     private static int countCaseTokens(DetailAST ast) {
-        var counter = 0;
+        int counter = 0;
         for (DetailAST iterator = ast.getFirstChild(); iterator != null;
                 iterator = iterator.getNextSibling()) {
             if (iterator.getType() == TokenTypes.LITERAL_CASE) {
@@ -521,7 +521,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * @return number of case constant tokens.
      */
     private static int countCaseConstants(DetailAST ast) {
-        var counter = 0;
+        int counter = 0;
         final DetailAST literalCase = ast.getFirstChild();
 
         for (DetailAST node = literalCase.getFirstChild(); node != null;
@@ -571,8 +571,8 @@ public final class NPathComplexityCheck extends AbstractCheck {
          * @return true, if saved coordinates located after given token.
          */
         public boolean isAfter(DetailAST ast) {
-            final var lineNo = ast.getLineNo();
-            final var columnNo = ast.getColumnNo();
+            final int lineNo = ast.getLineNo();
+            final int columnNo = ast.getColumnNo();
             return lineNo <= endLineNo
                 && (lineNo != endLineNo
                 || columnNo <= endColumnNo);

@@ -211,7 +211,7 @@ public class CommitValidationTest {
         final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();
-            final var error = validateCommitMessage(commitMessage);
+            final int error = validateCommitMessage(commitMessage);
 
             if (error != 0) {
                 final String commitId = commit.getId().getName();
@@ -338,7 +338,7 @@ public class CommitValidationTest {
             final String lastCommitAuthor = lastCommit.getAuthorIdent().getName();
             commits.add(lastCommit);
 
-            var wasLastCheckedCommitAuthorSameAsLastCommit = true;
+            boolean wasLastCheckedCommitAuthorSameAsLastCommit = true;
             while (wasLastCheckedCommitAuthorSameAsLastCommit
                     && previousCommitsIterator.hasNext()) {
                 final RevCommit currentCommit = previousCommitsIterator.next();

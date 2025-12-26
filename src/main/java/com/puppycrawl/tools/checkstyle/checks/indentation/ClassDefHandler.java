@@ -74,7 +74,7 @@ public class ClassDefHandler extends BlockParentHandler {
         else {
             if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
                 final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
-                final var lineStart = getLineStart(ident);
+                final int lineStart = getLineStart(ident);
                 if (!getIndent().isAcceptable(lineStart)) {
                     logError(ident, "ident", lineStart);
                 }
@@ -112,7 +112,7 @@ public class ClassDefHandler extends BlockParentHandler {
      * @return handler name for this class.
      */
     private static String getHandlerName(DetailAST ast) {
-        final var tokenType = ast.getType();
+        final int tokenType = ast.getType();
 
         return switch (tokenType) {
             case TokenTypes.CLASS_DEF -> "class def";

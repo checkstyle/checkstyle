@@ -77,7 +77,7 @@ public class PackageAnnotationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final var containsAnnotation =
+        final boolean containsAnnotation =
             AnnotationUtil.containsAnnotation(ast);
 
         if (containsAnnotation && !CheckUtil.isPackageInfo(getFilePath())) {

@@ -235,7 +235,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testPattern() {
-        final var result = CommonUtil.isPatternValid("someValidPattern");
+        final boolean result = CommonUtil.isPatternValid("someValidPattern");
         assertWithMessage("Should return true when pattern is valid")
                 .that(result)
                 .isTrue();
@@ -243,7 +243,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testInvalidPattern() {
-        final var result = CommonUtil.isPatternValid("some[invalidPattern");
+        final boolean result = CommonUtil.isPatternValid("some[invalidPattern");
         assertWithMessage("Should return false when pattern is invalid")
                 .that(result)
                 .isFalse();

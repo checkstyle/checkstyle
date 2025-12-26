@@ -87,10 +87,10 @@ public abstract class AbstractParenPadCheck
      */
     protected void processLeft(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final var after = ast.getColumnNo() + 1;
+        final int after = ast.getColumnNo() + 1;
 
         if (after < line.length) {
-            final var hasWhitespaceAfter =
+            final boolean hasWhitespaceAfter =
                     CommonUtil.isCodePointWhitespace(line, after);
             if (option == PadOption.NOSPACE && hasWhitespaceAfter) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
@@ -108,10 +108,10 @@ public abstract class AbstractParenPadCheck
      * @param ast the token representing a right parentheses
      */
     protected void processRight(DetailAST ast) {
-        final var before = ast.getColumnNo() - 1;
+        final int before = ast.getColumnNo() - 1;
         if (before >= 0) {
             final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-            final var hasPrecedingWhitespace =
+            final boolean hasPrecedingWhitespace =
                     CommonUtil.isCodePointWhitespace(line, before);
 
             if (option == PadOption.NOSPACE && hasPrecedingWhitespace

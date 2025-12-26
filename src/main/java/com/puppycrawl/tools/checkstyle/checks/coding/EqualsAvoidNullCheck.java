@@ -144,7 +144,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW -> processLiteralNew(ast);
 
             case TokenTypes.OBJBLOCK -> {
-                final var parentType = ast.getParent().getType();
+                final int parentType = ast.getParent().getType();
                 if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
                     processFrame(ast);
                 }
@@ -162,7 +162,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             case TokenTypes.LITERAL_NEW -> leaveLiteralNew(ast);
 
             case TokenTypes.OBJBLOCK -> {
-                final var parentType = ast.getParent().getType();
+                final int parentType = ast.getParent().getType();
                 if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
                     currentFrame = currentFrame.getParent();
                 }
@@ -218,7 +218,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private void processFrame(DetailAST ast) {
         final FieldFrame frame = new FieldFrame(currentFrame);
-        final var astType = ast.getType();
+        final int astType = ast.getType();
         if (astTypeIsClassOrEnumOrRecordDef(astType)) {
             frame.setClassOrEnumOrRecordDef(true);
             frame.setFrameName(ast.findFirstToken(TokenTypes.IDENT).getText());
@@ -329,7 +329,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         DetailAST arg = expr.getFirstChild();
         arg = skipVariableAssign(arg);
 
-        var argIsNotNull = false;
+        boolean argIsNotNull = false;
         if (arg.getType() == TokenTypes.PLUS) {
             DetailAST child = arg.getFirstChild();
             while (child != null
@@ -396,7 +396,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      * @return true if the field or the variable is of String type.
      */
     private boolean isStringFieldOrVariable(DetailAST objCalledOn) {
-        var result = false;
+        boolean result = false;
         final String name = objCalledOn.getText();
         FieldFrame frame = currentFrame;
         while (frame != null) {
@@ -433,7 +433,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private boolean isStringFieldOrVariableFromClass(DetailAST objCalledOn,
             final String className) {
-        var result = false;
+        boolean result = false;
         final String name = objCalledOn.getText();
         FieldFrame frame = currentFrame;
         while (frame != null) {

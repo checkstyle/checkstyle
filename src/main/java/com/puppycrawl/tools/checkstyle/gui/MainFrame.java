@@ -145,7 +145,7 @@ public class MainFrame extends JFrame {
         });
 
         final JLabel modesLabel = new JLabel("Modes:", SwingConstants.RIGHT);
-        final var leftIndentation = 10;
+        final int leftIndentation = 10;
         modesLabel.setBorder(BorderFactory.createEmptyBorder(0, leftIndentation, 0, 0));
         modesLabel.setDisplayedMnemonic(KeyEvent.VK_M);
         modesLabel.setLabelFor(modesCombobox);
@@ -226,7 +226,7 @@ public class MainFrame extends JFrame {
             final FileFilter filter = new JavaFileFilter();
             fileChooser.setFileFilter(filter);
 
-            final var returnCode = fileChooser.showOpenDialog(MainFrame.this);
+            final int returnCode = fileChooser.showOpenDialog(MainFrame.this);
             if (returnCode == JFileChooser.APPROVE_OPTION) {
                 final File file = fileChooser.getSelectedFile();
                 openFile(file);

@@ -90,7 +90,7 @@ public class CyclomaticComplexityCheckTest
     @Test
     public void testCyclomaticComplexityRecords() throws Exception {
 
-        final var max = 0;
+        final int max = 0;
 
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY, 11, max),

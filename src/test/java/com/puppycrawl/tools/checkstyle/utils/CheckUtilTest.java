@@ -63,7 +63,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParseDoubleWithIncorrectToken() {
-        final var parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
+        final double parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
         assertWithMessage("Invalid parse result")
             .that(parsedDouble)
             .isEqualTo(Double.NaN);
@@ -448,7 +448,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackageInfo() {
-        final var result = CheckUtil.isPackageInfo("/");
+        final boolean result = CheckUtil.isPackageInfo("/");
 
         assertWithMessage("Expected isPackageInfo() to return false for ('/')")
                 .that(result)

@@ -63,7 +63,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
     @Test
     public void testChildCount() {
-        final var childCount = new ParseTreeTablePresentation(null).getChildCount(tree);
+        final int childCount = new ParseTreeTablePresentation(null).getChildCount(tree);
         assertWithMessage("Invalid child count")
             .that(childCount)
             .isEqualTo(5);
@@ -73,7 +73,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     public void testChildCountInJavaAndJavadocMode() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
-        final var childCount = parseTree.getChildCount(tree);
+        final int childCount = parseTree.getChildCount(tree);
         assertWithMessage("Invalid child count")
             .that(childCount)
             .isEqualTo(5);
@@ -85,7 +85,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(child)
                 .isInstanceOf(DetailAST.class);
-        final var type = ((DetailAST) child).getType();
+        final int type = ((DetailAST) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(TokenTypes.BLOCK_COMMENT_BEGIN);
@@ -99,7 +99,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(child)
                 .isInstanceOf(DetailAST.class);
-        final var type = ((DetailAST) child).getType();
+        final int type = ((DetailAST) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(TokenTypes.BLOCK_COMMENT_BEGIN);
@@ -110,7 +110,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
-        final var javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
+        final int javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(javadocCommentChildCount)
             .isEqualTo(0);
@@ -122,7 +122,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
                 .getPreviousSibling().getLastChild().getFirstChild().getFirstChild();
-        final var commentChildCount = parseTree.getChildCount(commentContentNode);
+        final int commentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(commentChildCount)
             .isEqualTo(0);
@@ -144,12 +144,12 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     public void testJavadocCommentChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
-        final var commentChildCount = parseTree.getChildCount(commentContentNode);
+        final int commentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(commentChildCount)
             .isEqualTo(0);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
-        final var javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
+        final int javadocCommentChildCount = parseTree.getChildCount(commentContentNode);
         assertWithMessage("Invalid child count")
             .that(javadocCommentChildCount)
             .isEqualTo(1);
@@ -164,7 +164,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(child)
                 .isInstanceOf(DetailNode.class);
-        final var type = ((DetailNode) child).getType();
+        final int type = ((DetailNode) child).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
@@ -173,7 +173,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(childSame)
                 .isInstanceOf(DetailNode.class);
-        final var sameType = ((DetailNode) childSame).getType();
+        final int sameType = ((DetailNode) childSame).getType();
         assertWithMessage("Invalid child token type")
             .that(sameType)
             .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
@@ -188,11 +188,11 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(javadoc)
                 .isInstanceOf(DetailNode.class);
-        final var type = ((DetailNode) javadoc).getType();
+        final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
-        final var javadocChildCount = parseTree.getChildCount(javadoc);
+        final int javadocChildCount = parseTree.getChildCount(javadoc);
         assertWithMessage("Invalid child count")
             .that(javadocChildCount)
             .isEqualTo(4);
@@ -207,7 +207,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(javadoc)
                 .isInstanceOf(DetailNode.class);
-        final var type = ((DetailNode) javadoc).getType();
+        final int type = ((DetailNode) javadoc).getType();
         assertWithMessage("Invalid child token type")
             .that(type)
             .isEqualTo(JavadocCommentsTokenTypes.JAVADOC_CONTENT);
@@ -215,7 +215,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid child type")
                 .that(javadocChild)
                 .isInstanceOf(DetailNode.class);
-        final var childType = ((DetailNode) javadocChild).getType();
+        final int childType = ((DetailNode) javadocChild).getType();
         assertWithMessage("Invalid child token type")
             .that(childType)
             .isEqualTo(JavadocCommentsTokenTypes.TEXT);
@@ -228,9 +228,9 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             .that(ithChild)
             .isNotNull();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
-        var index = 0;
+        int index = 0;
         while (ithChild != null) {
-            final var indexOfChild = parseTree.getIndexOfChild(tree, ithChild);
+            final int indexOfChild = parseTree.getIndexOfChild(tree, ithChild);
             assertWithMessage("Invalid child index")
                 .that(indexOfChild)
                 .isEqualTo(index);
@@ -238,7 +238,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
             index++;
         }
 
-        final var indexOfChild = parseTree.getIndexOfChild(tree, new DetailAstImpl());
+        final int indexOfChild = parseTree.getIndexOfChild(tree, new DetailAstImpl());
         assertWithMessage("Invalid child index")
             .that(indexOfChild)
             .isEqualTo(-1);
@@ -273,8 +273,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         final Object treeModel = parseTree.getValueAt(node, 0);
         final String type = (String) parseTree.getValueAt(node, 1);
-        final var line = (int) parseTree.getValueAt(node, 2);
-        final var column = (int) parseTree.getValueAt(node, 3);
+        final int line = (int) parseTree.getValueAt(node, 2);
+        final int column = (int) parseTree.getValueAt(node, 3);
         final String text = (String) parseTree.getValueAt(node, 4);
 
         assertWithMessage("Node should be an Identifier")
@@ -310,7 +310,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         assertWithMessage("Comment node cannot be null")
             .that(commentContentNode)
             .isNotNull();
-        final var nodeType = commentContentNode.getType();
+        final int nodeType = commentContentNode.getType();
         assertWithMessage("Comment node should be a comment type")
                 .that(TokenUtil.isCommentType(nodeType))
                 .isTrue();
@@ -330,8 +330,8 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
 
         final Object treeModel = parseTree.getValueAt(child, 0);
         final String type = (String) parseTree.getValueAt(child, 1);
-        final var line = (int) parseTree.getValueAt(child, 2);
-        final var column = (int) parseTree.getValueAt(child, 3);
+        final int line = (int) parseTree.getValueAt(child, 2);
+        final int column = (int) parseTree.getValueAt(child, 3);
         final String text = (String) parseTree.getValueAt(child, 4);
         final String expectedText = "JAVADOC_CONTENT";
 

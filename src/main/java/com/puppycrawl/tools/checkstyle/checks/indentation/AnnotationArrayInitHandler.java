@@ -64,7 +64,7 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel curlyIndent() {
-        var offset = 0;
+        int offset = 0;
 
         final DetailAST lcurly = getLeftCurly();
         if (isOnStartOfLine(lcurly)) {
@@ -97,9 +97,9 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
 
         final DetailAST leftCurly = getLeftCurly();
-        final var firstLine = getFirstLine(getListChild());
-        final var lcurlyPos = expandedTabsColumnNo(leftCurly);
-        final var firstChildPos =
+        final int firstLine = getFirstLine(getListChild());
+        final int lcurlyPos = expandedTabsColumnNo(leftCurly);
+        final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
 
         // the code is written with old style where curlies are given their own line,
@@ -130,9 +130,9 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
      *         such char doesn't exist.
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
-        var realColumnNo = columnNo + 1;
+        int realColumnNo = columnNo + 1;
         final String line = getIndentCheck().getLines()[lineNo - 1];
-        final var lineLength = line.length();
+        final int lineLength = line.length();
         while (realColumnNo < lineLength
             && Character.isWhitespace(line.charAt(realColumnNo))) {
             realColumnNo++;

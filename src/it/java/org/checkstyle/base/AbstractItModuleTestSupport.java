@@ -216,7 +216,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * @return {@code true} if the ID is in the list.
      */
     private static boolean isIn(String find, String... list) {
-        var found = false;
+        boolean found = false;
 
         for (String item : list) {
             if (find.equals(item)) {
@@ -415,15 +415,15 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         Collections.addAll(theFiles, processedFiles);
         final List<Integer> theWarnings = new ArrayList<>();
         Collections.addAll(theWarnings, warnsExpected);
-        final var errs = checker.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(stream.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            var previousLineNumber = 0;
-            for (var index = 0; index < expected.length; index++) {
+            int previousLineNumber = 0;
+            for (int index = 0; index < expected.length; index++) {
                 final String expectedResult = messageFileName + ":" + expected[index];
                 final String actual = lnr.readLine();
                 assertWithMessage("Error message at position %s of 'expected' does "
@@ -434,7 +434,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
                 String parseInt = removeDeviceFromPathOnWindows(actual);
                 parseInt = parseInt.substring(parseInt.indexOf(':') + 1);
                 parseInt = parseInt.substring(0, parseInt.indexOf(':'));
-                final var lineNumber = Integer.parseInt(parseInt);
+                final int lineNumber = Integer.parseInt(parseInt);
                 assertWithMessage(
                         "input file is expected to have a warning comment on line number %s",
                         lineNumber)
@@ -542,7 +542,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
-        for (var index = 0; index < actualViolations.size(); index++) {
+        for (int index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
                     .matches(testInputViolations.get(index).toRegex());
@@ -615,7 +615,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected Integer[] getLinesWithWarn(String fileName) throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Path.of(fileName))) {
-            var lineNumber = 1;
+            int lineNumber = 1;
             while (true) {
                 final String line = br.readLine();
                 if (line == null) {

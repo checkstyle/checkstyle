@@ -267,8 +267,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return true if there is a modifier to be ignored
      */
     private boolean hasIgnoredModifiers(DetailAST modifiers) {
-        final var isStatic = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
-        final var isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+        final boolean isStatic = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
         final boolean result;
         if (isStatic && isFinal) {
             result = ignoreStaticFinal;
@@ -287,7 +287,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *     or @interface definition.
      */
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
-        var result = false;
+        boolean result = false;
         final DetailAST astBlock = variableDefAst.getParent();
         final DetailAST astParent2 = astBlock.getParent();
 
@@ -307,7 +307,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return true if method has "@Override" annotation.
      */
     private static boolean hasOverrideAnnotation(DetailAST methodModifiersAST) {
-        var result = false;
+        boolean result = false;
         for (DetailAST child : getChildren(methodModifiersAST)) {
             final DetailAST annotationIdent = child.findFirstToken(TokenTypes.IDENT);
 
@@ -328,12 +328,12 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      *         separate String.
      */
     private String getDisallowedAbbreviation(String str) {
-        var beginIndex = 0;
-        var abbrStarted = false;
+        int beginIndex = 0;
+        boolean abbrStarted = false;
         String result = null;
 
-        for (var index = 0; index < str.length(); index++) {
-            final var symbol = str.charAt(index);
+        for (int index = 0; index < str.length(); index++) {
+            final char symbol = str.charAt(index);
 
             if (Character.isUpperCase(symbol)) {
                 if (!abbrStarted) {
@@ -363,7 +363,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         }
         // if abbreviation at the end of name (example: scaleX)
         if (abbrStarted) {
-            final var endIndex = str.length() - 1;
+            final int endIndex = str.length() - 1;
             result = getAbbreviationIfIllegal(str, beginIndex, endIndex, allowedAbbreviationLength);
         }
         return result;
@@ -383,7 +383,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     private String getAbbreviationIfIllegal(String str, int beginIndex, int endIndex,
                                             int allowedLength) {
         String result = null;
-        final var abbrLength = endIndex - beginIndex;
+        final int abbrLength = endIndex - beginIndex;
         if (abbrLength > allowedLength) {
             final String abbr = getAbbreviation(str, beginIndex, endIndex);
             if (!allowedAbbreviations.contains(abbr)) {

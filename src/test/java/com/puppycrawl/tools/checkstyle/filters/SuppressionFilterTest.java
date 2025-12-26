@@ -55,7 +55,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testAccept() throws Exception {
         final String fileName = getPath("InputSuppressionFilterNone.xml");
-        final var optional = false;
+        final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
@@ -68,7 +68,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptFalse() throws Exception {
         final String fileName = getPath("InputSuppressionFilterSuppress.xml");
-        final var optional = false;
+        final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final Violation message = new Violation(1, 1, null, "msg", null,
@@ -83,7 +83,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testAcceptOnNullFile() throws CheckstyleException {
         final String fileName = null;
-        final var optional = false;
+        final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyJava.java", null);
@@ -96,7 +96,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     public void testNonExistentSuppressionFileWithFalseOptional() {
         final String fileName = "non_existent_suppression_file.xml";
         try {
-            final var optional = false;
+            final boolean optional = false;
             createSuppressionFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
@@ -111,7 +111,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     public void testExistingInvalidSuppressionFileWithTrueOptional() throws IOException {
         final String fileName = getPath("InputSuppressionFilterInvalidFile.xml");
         try {
-            final var optional = true;
+            final boolean optional = true;
             createSuppressionFilter(fileName, optional);
             assertWithMessage("Exception is expected").fail();
         }
@@ -126,7 +126,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testExistingSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionFilterNone.xml");
-        final var optional = true;
+        final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
@@ -139,7 +139,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = "non_existent_suppression_file.xml";
-        final var optional = true;
+        final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
@@ -153,7 +153,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     public void testNonExistentSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
                 "https://checkstyle.org/non_existent_suppression.xml";
-        final var optional = true;
+        final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
         final AuditEvent ev = new AuditEvent(this, "AnyFile.java", null);
@@ -224,11 +224,11 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     private static boolean isConnectionAvailableAndStable(String url) throws Exception {
-        var available = false;
+        boolean available = false;
 
         if (isUrlReachable(url)) {
-            final var attemptLimit = 5;
-            var attemptCount = 0;
+            final int attemptLimit = 5;
+            int attemptCount = 0;
 
             while (attemptCount <= attemptLimit) {
                 try (InputStream stream = new URL(url).openStream()) {
@@ -254,7 +254,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     private static boolean isUrlReachable(String url) {
-        var result = true;
+        boolean result = true;
         try {
             final URL verifiableUrl = new URL(url);
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
@@ -277,7 +277,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
 
     @Test
     public void testXpathSuppression() throws Exception {
-        for (var test = 1; test <= 6; test++) {
+        for (int test = 1; test <= 6; test++) {
             final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
             final String[] expected = {
                 "19:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,

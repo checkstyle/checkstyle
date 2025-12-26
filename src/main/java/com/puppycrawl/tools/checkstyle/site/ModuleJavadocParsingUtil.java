@@ -116,7 +116,7 @@ public final class ModuleJavadocParsingUtil {
         sink.rawText(javadocPortionLinesSplit[0]);
         String lastHtmlTag = javadocPortionLinesSplit[0];
 
-        for (var index = 1; index < javadocPortionLinesSplit.length; index++) {
+        for (int index = 1; index < javadocPortionLinesSplit.length; index++) {
             final String currentLine = javadocPortionLinesSplit[index].trim();
             final String processedLine;
 
@@ -151,7 +151,7 @@ public final class ModuleJavadocParsingUtil {
      * @return whether given line starts with HTML text-formatting tag.
      */
     public static boolean startsWithTextFormattingHtmlTag(String line) {
-        var result = false;
+        boolean result = false;
 
         for (String tag : HTML_TEXT_FORMAT_TAGS) {
             if (line.startsWith(tag)) {
@@ -223,7 +223,7 @@ public final class ModuleJavadocParsingUtil {
 
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.HTML_ELEMENT) {
-                var found = false;
+                boolean found = false;
                 if (JavadocUtil.isTag(node, "ul")) {
                     final DetailNode htmlContentNode = JavadocUtil.findFirstToken(
                         node, JavadocCommentsTokenTypes.HTML_CONTENT);
@@ -310,7 +310,7 @@ public final class ModuleJavadocParsingUtil {
      * @return true if property is to contain tokens, false otherwise.
      */
     public static boolean isPropertySpecialTokenProp(Field propertyField) {
-        var result = false;
+        boolean result = false;
 
         if (propertyField != null) {
             final XdocsPropertyType fieldXdocAnnotation =

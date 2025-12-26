@@ -747,7 +747,7 @@ public class GeneratedJavaTokenTypesTest {
         final Set<String> modeNames = Set.of(JavaLanguageLexer.modeNames);
         final Set<String> channelNames = Set.of(JavaLanguageLexer.channelNames);
 
-        final var tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
+        final int tokenCount = (int) Arrays.stream(JavaLanguageLexer.class.getDeclaredFields())
                 .filter(GeneratedJavaTokenTypesTest::isPublicStaticFinalInt)
                 .filter(field -> !modeNames.contains(field.getName()))
                 .filter(field -> !channelNames.contains(field.getName()))
@@ -779,9 +779,9 @@ public class GeneratedJavaTokenTypesTest {
 
         // Get the starting index of the sublist of tokens, or -1 if sublist
         // is not present.
-        final var lastIndexOfSublist =
+        final int lastIndexOfSublist =
                 Collections.lastIndexOfSubList(allTokenNames, INTERNAL_TOKENS);
-        final var expectedNumberOfUsedTokens = allTokenNames.size() - INTERNAL_TOKENS.size();
+        final int expectedNumberOfUsedTokens = allTokenNames.size() - INTERNAL_TOKENS.size();
 
         assertWithMessage("New tokens must be added to the 'tokens' block in the lexer grammar.")
                 .that(lastIndexOfSublist)
@@ -796,7 +796,7 @@ public class GeneratedJavaTokenTypesTest {
      */
     private static boolean isPublicStaticFinalInt(Field field) {
         final Class<?> fieldType = field.getType();
-        final var mods = field.getModifiers();
+        final int mods = field.getModifiers();
         return fieldType.equals(Integer.TYPE)
                 && Modifier.isPublic(mods)
                 && Modifier.isStatic(mods)

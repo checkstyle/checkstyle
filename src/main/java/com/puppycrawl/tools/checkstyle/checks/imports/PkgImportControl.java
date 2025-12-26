@@ -242,7 +242,7 @@ class PkgImportControl extends AbstractImportControl {
      * @return if it matches.
      */
     private boolean matchesAtFrontNoRegex(String pkg) {
-        final var length = fullPackageName.length();
+        final int length = fullPackageName.length();
         return pkg.startsWith(fullPackageName)
                 && (pkg.length() == length || pkg.charAt(length) == '.');
     }

@@ -147,7 +147,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
-        final var closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
 
         assertWithMessage("closeInfo should be true")
                 .that(closeInfo)
@@ -164,7 +164,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
-        final var closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
+        final boolean closeInfo = TestUtil.getInternalState(dl, "closeInfo", Boolean.class);
 
         assertWithMessage("closeInfo should be false")
                 .that(closeInfo)

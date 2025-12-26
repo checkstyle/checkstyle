@@ -173,9 +173,9 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      */
     private boolean isVerifiable(DetailAST emptyCatchAst, String commentContent) {
         final String variableName = getExceptionVariableName(emptyCatchAst);
-        final var isMatchingVariableName = exceptionVariableName
+        final boolean isMatchingVariableName = exceptionVariableName
                 .matcher(variableName).find();
-        final var isMatchingCommentContent = !commentContent.isEmpty()
+        final boolean isMatchingCommentContent = !commentContent.isEmpty()
                  && commentFormat.matcher(commentContent).find();
         return !isMatchingVariableName && !isMatchingCommentContent;
     }
@@ -187,7 +187,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
      * @return true if catch block is empty.
      */
     private static boolean isEmptyCatchBlock(DetailAST catchAst) {
-        var result = true;
+        boolean result = true;
         final DetailAST slistToken = catchAst.findFirstToken(TokenTypes.SLIST);
         DetailAST catchBlockStmt = slistToken.getFirstChild();
         while (catchBlockStmt.getType() != TokenTypes.RCURLY) {

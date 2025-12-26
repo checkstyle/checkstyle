@@ -206,7 +206,7 @@ public class IllegalImportCheck
      *         for illegal packages, illegal class names or illegal modules
      */
     private boolean isIllegalImportByRegularExpressions(String importText) {
-        var result = false;
+        boolean result = false;
         for (Pattern pattern : illegalPkgsRegexps) {
             if (pattern.matcher(importText).matches()) {
                 result = true;
@@ -236,7 +236,7 @@ public class IllegalImportCheck
      *         or module name
      */
     private boolean isIllegalImportLiteral(String importText) {
-        var result = false;
+        boolean result = false;
         for (String element : illegalPkgs) {
             if (importText.startsWith(element + ".")) {
                 result = true;

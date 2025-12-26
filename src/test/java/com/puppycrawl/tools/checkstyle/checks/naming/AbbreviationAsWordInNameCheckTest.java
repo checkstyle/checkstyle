@@ -35,7 +35,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testDefault() throws Exception {
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "24:16: " + getWarningMessage("FactoryWithBADNAme", expectedCapitalCount),
@@ -54,7 +54,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "22:16: " + getWarningMessage("FactoryWithBADNAme2", expectedCapitalCount),
@@ -69,7 +69,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "45:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -81,7 +81,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
         final String[] expected = {
             "45:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
             "50:11: " + getWarningMessage("WellNamedFACTORY", expectedCapitalCount),
@@ -93,7 +93,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNames() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
 
         final String[] expected = {
             "46:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -109,7 +109,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
 
         final String[] expected = {
             "48:15: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -127,7 +127,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithNoIgnoresPart2() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
 
         final String[] expected = {
             "43:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
@@ -140,7 +140,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
 
         final String[] expected = {
             "48:15: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -154,7 +154,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresPart2() throws Exception {
-        final var expectedCapitalCount = 6;
+        final int expectedCapitalCount = 6;
 
         final String[] expected = {
             "44:17: " + getWarningMessage("InnerClassOneVIOLATION", expectedCapitalCount),
@@ -167,7 +167,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -187,7 +187,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -207,7 +207,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticFinal() throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -229,7 +229,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinal() throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -258,7 +258,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinalPart2()
             throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:16: " + getWarningMessage("VALUEEEE", expectedCapitalCount),
@@ -277,7 +277,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresFinalKeepStaticFinal()
             throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -308,7 +308,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticKeepStaticFinal()
             throws Exception {
-        final var expectedCapitalCount = 5;
+        final int expectedCapitalCount = 5;
 
         final String[] expected = {
             "28:20: " + getWarningMessage("AbstractCLASSName", expectedCapitalCount),
@@ -339,7 +339,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testTypeNamesForThreePermittedCapitalLettersWithOverriddenMethod()
             throws Exception {
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "35:20: " + getWarningMessage("oveRRRRRrriddenMethod", expectedCapitalCount),
@@ -352,7 +352,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testOverriddenMethod()
             throws Exception {
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "21:16: " + getWarningMessage("serialNUMBER", expectedCapitalCount),
@@ -367,7 +367,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
 
     @Test
     public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
-        final var expectedCapitalCount = 1;
+        final int expectedCapitalCount = 1;
         final String[] expected = {
             "20:16: " + getWarningMessage("NonAAAAbstractClassName6", expectedCapitalCount),
             "23:16: " + getWarningMessage("FactoryWithBADNAme66", expectedCapitalCount),
@@ -400,7 +400,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     @Test
     public void testTypeNamesForZeroPermittedCapitalLetterPart2()
             throws Exception {
-        final var expectedCapitalCount = 1;
+        final int expectedCapitalCount = 1;
 
         final String[] expected = {
             "20:9: " + getWarningMessage("userID", expectedCapitalCount),
@@ -429,7 +429,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testAbbreviationAsWordInNameCheckEnhancedInstanceof()
             throws Exception {
 
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "25:36: " + getWarningMessage("STRING", expectedCapitalCount),
@@ -448,7 +448,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1()
             throws Exception {
 
-        final var expectedCapitalCount = 2;
+        final int expectedCapitalCount = 2;
 
         final String[] expected = {
             "25:36: " + getWarningMessage("STRING", expectedCapitalCount),
@@ -469,7 +469,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testAbbreviationAsWordInNameCheckRecords()
             throws Exception {
 
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "22:11: " + getWarningMessage("myCLASS", expectedCapitalCount),
@@ -499,7 +499,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     public void testAbbreviationAsWordInNameCheckRecordPatterns()
             throws Exception {
 
-        final var expectedCapitalCount = 4;
+        final int expectedCapitalCount = 4;
 
         final String[] expected = {
             "23:39: " + getWarningMessage("POINT", expectedCapitalCount),

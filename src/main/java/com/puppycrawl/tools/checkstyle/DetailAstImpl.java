@@ -194,7 +194,7 @@ public final class DetailAstImpl implements DetailAST {
 
     @Override
     public int getChildCount(int tokenType) {
-        var count = 0;
+        int count = 0;
         for (DetailAST ast = firstChild; ast != null; ast = ast.getNextSibling()) {
             if (ast.getType() == tokenType) {
                 count++;
@@ -252,7 +252,7 @@ public final class DetailAstImpl implements DetailAST {
 
     @Override
     public int getLineNo() {
-        var resultNo = -1;
+        int resultNo = -1;
 
         if (lineNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
@@ -281,7 +281,7 @@ public final class DetailAstImpl implements DetailAST {
 
     @Override
     public int getColumnNo() {
-        var resultNo = -1;
+        int resultNo = -1;
 
         if (columnNo == NOT_INITIALIZED) {
             // an inner AST that has been initialized
@@ -324,7 +324,7 @@ public final class DetailAstImpl implements DetailAST {
      * @return Column number if non-comment node exists, -1 otherwise.
      */
     private static int findColumnNo(DetailAST ast) {
-        var resultNo = -1;
+        int resultNo = -1;
         DetailAST node = ast;
         while (node != null) {
             // comment node can't be start of any java statement/definition
@@ -346,7 +346,7 @@ public final class DetailAstImpl implements DetailAST {
      * @return Line number if non-comment node exists, -1 otherwise.
      */
     private static int findLineNo(DetailAST ast) {
-        var resultNo = -1;
+        int resultNo = -1;
         DetailAST node = ast;
         while (node != null) {
             // comment node can't be start of any java statement/definition

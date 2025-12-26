@@ -183,7 +183,7 @@ public final class FileContents implements CommentListener {
         else {
             returnValue = new String[endLineNo - startLineNo + 1];
             returnValue[0] = line(startLineNo - 1).substring(startColNo);
-            for (var i = startLineNo; i < endLineNo; i++) {
+            for (int i = startLineNo; i < endLineNo; i++) {
                 returnValue[i - startLineNo + 1] = line(i);
             }
             returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0,
@@ -214,7 +214,7 @@ public final class FileContents implements CommentListener {
      **/
     public TextBlock getJavadocBefore(int lineNoBefore) {
         // Lines start at 1 to the callers perspective, so need to take off 2
-        var lineNo = lineNoBefore - 2;
+        int lineNo = lineNoBefore - 2;
 
         // skip blank lines and comments
         while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo)
@@ -251,9 +251,9 @@ public final class FileContents implements CommentListener {
      * @return {@code true} line is in block comment, {@code false} otherwise
      */
     private boolean isLineBlockComment(int lineNo, TextBlock comment) {
-        final var lineInSideBlockComment = lineNo >= comment.getStartLineNo()
+        final boolean lineInSideBlockComment = lineNo >= comment.getStartLineNo()
                 && lineNo <= comment.getEndLineNo();
-        var lineHasOnlyBlockComment = true;
+        boolean lineHasOnlyBlockComment = true;
         final String startLine = line(comment.getStartLineNo() - 1).trim();
         if (!startLine.startsWith("/*")) {
             lineHasOnlyBlockComment = false;
@@ -332,9 +332,9 @@ public final class FileContents implements CommentListener {
      */
     private boolean hasIntersectionWithSingleLineComment(int startLineNo, int startColNo,
             int endLineNo, int endColNo) {
-        var hasIntersection = false;
+        boolean hasIntersection = false;
         // Check CPP comments (line searching is possible)
-        for (var lineNumber = startLineNo; lineNumber <= endLineNo;
+        for (int lineNumber = startLineNo; lineNumber <= endLineNo;
              lineNumber++) {
             final TextBlock comment = cppComments.get(lineNumber);
             if (comment != null && comment.intersects(startLineNo, startColNo,

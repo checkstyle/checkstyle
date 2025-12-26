@@ -81,13 +81,13 @@ public abstract class AbstractAccessControlNameCheck
      * @return true if we should check such member.
      */
     protected boolean shouldCheckInScope(DetailAST modifiers) {
-        final var isProtected = modifiers
+        final boolean isProtected = modifiers
                 .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
-        final var isPrivate = modifiers
+        final boolean isPrivate = modifiers
                 .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
-        final var isPublic = isPublic(modifiers);
+        final boolean isPublic = isPublic(modifiers);
 
-        final var isPackage = !(isPublic || isProtected || isPrivate);
+        final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
         return applyToPublic && isPublic
                 || applyToProtected && isProtected

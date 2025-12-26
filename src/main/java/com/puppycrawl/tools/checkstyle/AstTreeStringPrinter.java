@@ -195,7 +195,7 @@ public final class AstTreeStringPrinter {
      * @return the indentation in String format.
      */
     private static String getIndentation(DetailAST ast) {
-        final var isLastChild = ast.getNextSibling() == null;
+        final boolean isLastChild = ast.getNextSibling() == null;
         DetailAST node = ast;
         final StringBuilder indentation = new StringBuilder(1024);
         while (node.getParent() != null) {

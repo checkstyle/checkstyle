@@ -89,11 +89,11 @@ public class Comment implements TextBlock {
                               int endLine, int endCol) {
         // compute a single number for start and end
         // to simplify conditional logic
-        final var multiplier = Integer.MAX_VALUE;
-        final var thisStart = startLineNo * multiplier + startColNo;
-        final var thisEnd = endLineNo * multiplier + endColNo;
-        final var inStart = startLine * multiplier + startCol;
-        final var inEnd = endLine * multiplier + endCol;
+        final long multiplier = Integer.MAX_VALUE;
+        final long thisStart = startLineNo * multiplier + startColNo;
+        final long thisEnd = endLineNo * multiplier + endColNo;
+        final long inStart = startLine * multiplier + startCol;
+        final long inEnd = endLine * multiplier + endCol;
 
         return thisEnd >= inStart && inEnd >= thisStart;
     }

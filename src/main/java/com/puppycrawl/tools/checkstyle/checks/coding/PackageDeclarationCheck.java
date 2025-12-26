@@ -129,7 +129,7 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      */
     private String getDirectoryName() {
         final String fileName = getFilePath();
-        final var lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
+        final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);
         return fileName.substring(0, lastSeparatorPos);
     }
 

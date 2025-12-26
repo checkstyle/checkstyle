@@ -267,7 +267,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return true if the node has a violation.
      */
     private boolean isViolation(DetailNode textNode) {
-        var result = false;
+        boolean result = false;
         final String text = textNode.getText();
         if (text.length() <= offset) {
             if (CommonUtil.isBlank(text)) {
@@ -296,7 +296,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return {@code true} if the node is inside a block tag, {@code false} otherwise
      */
     private static boolean isBlockDescription(DetailNode description) {
-        var isBlock = false;
+        boolean isBlock = false;
         DetailNode currentNode = description;
         while (currentNode != null) {
             if (currentNode.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
@@ -315,7 +315,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
      * @return true, if description node is a description of in-line tag.
      */
     private static boolean isInlineDescription(DetailNode description) {
-        var isInline = false;
+        boolean isInline = false;
         DetailNode currentNode = description;
         while (currentNode != null) {
             if (currentNode.getType() == JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG) {

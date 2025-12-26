@@ -520,7 +520,7 @@ public final class SiteUtil {
             Set<String> properties, String moduleName, Map<String, DetailNode> javadocs)
             throws MacroExecutionException {
         for (String property : properties) {
-            final var isDocumented = javadocs.containsKey(property)
+            final boolean isDocumented = javadocs.containsKey(property)
                    || SUPER_CLASS_PROPERTIES_JAVADOCS.containsKey(property)
                    || TOKENS.equals(property) || JAVADOC_TOKENS.equals(property);
             if (!isDocumented) {
@@ -948,7 +948,7 @@ public final class SiteUtil {
             result = removeSquareBrackets(Arrays.toString((double[]) value).replace(".0", ""));
         }
         else if (fieldClass == String[].class) {
-            final var preserveOrder = hasPreserveOrderAnnotation(field);
+            final boolean preserveOrder = hasPreserveOrderAnnotation(field);
             result = getStringArrayPropertyValue(value, preserveOrder);
         }
         else if (fieldClass == Pattern.class) {
@@ -1329,9 +1329,9 @@ public final class SiteUtil {
     // -@cs[ExecutableStatementCount] Splitting would not make the code more readable.
     private static String getDescriptionFromJavadocForXdoc(DetailNode javadoc, String moduleName)
             throws MacroExecutionException {
-        var isInCodeLiteral = false;
-        var isInHtmlElement = false;
-        var isInHrefAttribute = false;
+        boolean isInCodeLiteral = false;
+        boolean isInHtmlElement = false;
+        boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
         final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
         DetailNode node = descriptionNodes.get(0);
@@ -1500,7 +1500,7 @@ public final class SiteUtil {
             href = href.substring(1, href.length() - 1);
 
             final String relativeHref = getLinkToDocument(moduleName, href);
-            final var doubleQuote = '\"';
+            final char doubleQuote = '\"';
             description.append(doubleQuote).append(relativeHref).append(doubleQuote);
         }
     }

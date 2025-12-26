@@ -150,7 +150,7 @@ public class JavadocContentLocationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (isMultilineComment(ast) && JavadocUtil.isJavadocComment(ast)) {
             final String commentContent = JavadocUtil.getJavadocCommentContent(ast);
-            final var indexOfFirstNonBlankLine = findIndexOfFirstNonBlankLine(commentContent);
+            final int indexOfFirstNonBlankLine = findIndexOfFirstNonBlankLine(commentContent);
             if (indexOfFirstNonBlankLine >= 0) {
                 if (location == JavadocContentLocationOption.FIRST_LINE
                         && indexOfFirstNonBlankLine != 0) {
@@ -184,10 +184,10 @@ public class JavadocContentLocationCheck extends AbstractCheck {
      * @return the index of the first non-blank line or {@code -1} if all lines are blank
      */
     private static int findIndexOfFirstNonBlankLine(String commentContent) {
-        var lineNo = 0;
-        var noContent = true;
-        for (var i = 0; i < commentContent.length(); ++i) {
-            final var character = commentContent.charAt(i);
+        int lineNo = 0;
+        boolean noContent = true;
+        for (int i = 0; i < commentContent.length(); ++i) {
+            final char character = commentContent.charAt(i);
             if (character == '\n') {
                 ++lineNo;
             }

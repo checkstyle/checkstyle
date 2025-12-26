@@ -74,13 +74,13 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
                     throws IOException {
         final List<Integer> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName))) {
-            var lineNumber = 1;
+            int lineNumber = 1;
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (match.matches()) {
                     final String comment = match.group(1);
-                    final var indentInComment = getIndentFromComment(comment);
-                    final var actualIndent = getLineStart(line, tabWidth);
+                    final int indentInComment = getIndentFromComment(comment);
+                    final int actualIndent = getLineStart(line, tabWidth);
 
                     if (actualIndent != indentInComment) {
                         throw new IllegalStateException(String.format(Locale.ROOT,
@@ -149,8 +149,8 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      * @throws IllegalStateException if cannot determine that comment is consistent(default case).
      */
     private static boolean isCommentConsistent(String comment) {
-        final var indentInComment = getIndentFromComment(comment);
-        final var isWarnComment = isWarnComment(comment);
+        final int indentInComment = getIndentFromComment(comment);
+        final boolean isWarnComment = isWarnComment(comment);
         final CommentType type = getCommentType(comment);
         return switch (type) {
             case MULTILEVEL ->
@@ -178,7 +178,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
             int indentInComment, boolean isWarnComment) {
         final Matcher nonStrictLevelMatch = NON_STRICT_LEVEL_COMMENT_REGEX.matcher(comment);
         nonStrictLevelMatch.matches();
-        final var expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
+        final int expectedMinimalIndent = Integer.parseInt(nonStrictLevelMatch.group(1));
 
         return indentInComment >= expectedMinimalIndent && !isWarnComment
                 || indentInComment < expectedMinimalIndent && isWarnComment;
@@ -196,7 +196,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
             int indentInComment, boolean isWarnComment) {
         final Matcher singleLevelMatch = SINGLE_LEVEL_COMMENT_REGEX.matcher(comment);
         singleLevelMatch.matches();
-        final var expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
+        final int expectedLevel = Integer.parseInt(singleLevelMatch.group(1));
 
         return expectedLevel == indentInComment && !isWarnComment
                 || expectedLevel != indentInComment && isWarnComment;
@@ -216,7 +216,7 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
         multilevelMatch.matches();
         final String[] levels = multilevelMatch.group(1).split(",");
         final String indentInCommentStr = String.valueOf(indentInComment);
-        final var containsActualLevel =
+        final boolean containsActualLevel =
                 Arrays.asList(levels).contains(indentInCommentStr);
 
         return containsActualLevel && !isWarnComment
@@ -260,8 +260,8 @@ public abstract class AbstractIndentationTestSupport extends AbstractGoogleModul
      * @return starting position of given line.
      */
     private static int getLineStart(String line, final int tabWidth) {
-        var lineStart = 0;
-        for (var index = 0; index < line.length(); ++index) {
+        int lineStart = 0;
+        for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 lineStart = CommonUtil.lengthExpandedTabs(line, index, tabWidth);
                 break;

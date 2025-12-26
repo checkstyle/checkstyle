@@ -62,8 +62,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassDef() {
-        final var lineNumber = 12;
-        final var columnNumber = 1;
+        final int lineNumber = 12;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -79,8 +79,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodDef() {
-        final var lineNumber = 45;
-        final var columnNumber = 5;
+        final int lineNumber = 45;
+        final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -98,8 +98,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testVariableDef() {
-        final var lineNumber = 53;
-        final var columnNumber = 13;
+        final int lineNumber = 53;
+        final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -127,8 +127,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLcurly() {
-        final var lineNumber = 37;
-        final var columnNumber = 20;
+        final int lineNumber = 37;
+        final int columnNumber = 20;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -142,8 +142,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testRcurly() {
-        final var lineNumber = 25;
-        final var columnNumber = 5;
+        final int lineNumber = 25;
+        final int columnNumber = 5;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -157,8 +157,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testExpr() {
-        final var lineNumber = 17;
-        final var columnNumber = 50;
+        final int lineNumber = 17;
+        final int columnNumber = 50;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -174,8 +174,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLparen() {
-        final var lineNumber = 45;
-        final var columnNumber = 31;
+        final int lineNumber = 45;
+        final int columnNumber = 31;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -189,8 +189,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEmpty() {
-        final var lineNumber = 300;
-        final var columnNumber = 300;
+        final int lineNumber = 300;
+        final int columnNumber = 300;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -201,8 +201,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testPackage() {
-        final var lineNumber = 2;
-        final var columnNumber = 1;
+        final int lineNumber = 2;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -216,8 +216,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImport() {
-        final var lineNumber = 5;
-        final var columnNumber = 1;
+        final int lineNumber = 5;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -230,8 +230,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodParams() {
-        final var lineNumber = 72;
-        final var columnNumber = 30;
+        final int lineNumber = 72;
+        final int columnNumber = 30;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -261,8 +261,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSwitch() {
-        final var lineNumber = 37;
-        final var columnNumber = 9;
+        final int lineNumber = 37;
+        final int columnNumber = 9;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -276,8 +276,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testSwitchCase() {
-        final var lineNumber = 38;
-        final var columnNumber = 13;
+        final int lineNumber = 38;
+        final int columnNumber = 13;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -295,8 +295,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testVariableStringLiteral() {
-        final var lineNumber = 47;
-        final var columnNumber = 26;
+        final int lineNumber = 47;
+        final int columnNumber = 26;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -316,8 +316,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComma() {
-        final var lineNumber = 66;
-        final var columnNumber = 36;
+        final int lineNumber = 66;
+        final int columnNumber = 36;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -332,8 +332,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLiteralVoid() {
-        final var lineNumber = 65;
-        final var columnNumber = 12;
+        final int lineNumber = 65;
+        final int columnNumber = 12;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -349,8 +349,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testFirstImport() {
-        final var lineNumber = 4;
-        final var columnNumber = 1;
+        final int lineNumber = 4;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -363,8 +363,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testLastImport() {
-        final var lineNumber = 8;
-        final var columnNumber = 1;
+        final int lineNumber = 8;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -377,8 +377,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testImportByText() {
-        final var lineNumber = 4;
-        final var columnNumber = 8;
+        final int lineNumber = 4;
+        final int columnNumber = 8;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -391,8 +391,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIdent() {
-        final var lineNumber = 12;
-        final var columnNumber = 14;
+        final int lineNumber = 12;
+        final int columnNumber = 14;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -411,9 +411,9 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var lineNumber = 4;
-        final var columnNumber = 13;
-        final var tabWidth = 4;
+        final int lineNumber = 4;
+        final int columnNumber = 13;
+        final int tabWidth = 4;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -440,9 +440,9 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var lineNumber = 8;
-        final var columnNumber = 41;
-        final var tabWidth = 8;
+        final int lineNumber = 8;
+        final int columnNumber = 41;
+        final int tabWidth = 8;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -465,9 +465,9 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var lineNumber = 12;
-        final var columnNumber = 57;
-        final var tabWidth = 8;
+        final int lineNumber = 12;
+        final int columnNumber = 57;
+        final int tabWidth = 8;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -487,9 +487,9 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var lineNumber = 16;
-        final var columnNumber = 58;
-        final var tabWidth = 8;
+        final int lineNumber = 16;
+        final int columnNumber = 58;
+        final int tabWidth = 8;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -503,8 +503,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testClassDefWithTokenType() {
-        final var lineNumber = 12;
-        final var columnNumber = 1;
+        final int lineNumber = 12;
+        final int columnNumber = 1;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, TokenTypes.CLASS_DEF, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
@@ -541,10 +541,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumberOne = 4;
-        final var columnNumberOne = 22;
+        final int lineNumberOne = 4;
+        final int columnNumberOne = 22;
         final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst,
                 lineNumberOne, columnNumberOne, testFileText, tabWidth);
         final List<String> actualTestOne = queryGeneratorOne.generate();
@@ -564,8 +564,8 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
             .that(actualTestOne)
             .isEqualTo(expectedTestOne);
 
-        final var lineNumberTwo = 6;
-        final var columnNumberTwo = 22;
+        final int lineNumberTwo = 6;
+        final int columnNumberTwo = 22;
         final XpathQueryGenerator queryGeneratorTwo = new XpathQueryGenerator(detailAst,
                 lineNumberTwo, columnNumberTwo, testFileText, tabWidth);
         final List<String> actualTestTwo = queryGeneratorTwo.generate();
@@ -592,10 +592,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumber = 6;
-        final var columnNumber = 25;
+        final int lineNumber = 6;
+        final int columnNumber = 25;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -619,10 +619,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumber = 6;
-        final var columnNumber = 25;
+        final int lineNumber = 6;
+        final int columnNumber = 25;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -646,10 +646,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumber = 6;
-        final var columnNumber = 25;
+        final int lineNumber = 6;
+        final int columnNumber = 25;
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
@@ -674,10 +674,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumberOne = 7;
-        final var columnNumberOne = 12;
+        final int lineNumberOne = 7;
+        final int columnNumberOne = 12;
         final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst,
                 lineNumberOne, columnNumberOne, testFileText, tabWidth);
         final List<String> actualTestOne = queryGeneratorOne.generate();
@@ -699,10 +699,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumber3 = 13;
-        final var columnNumber3 = 21;
+        final int lineNumber3 = 13;
+        final int columnNumber3 = 21;
         final XpathQueryGenerator queryGenerator3 = new XpathQueryGenerator(detailAst,
                 lineNumber3, columnNumber3, testFileText, tabWidth);
         final List<String> actualTest3 = queryGenerator3.generate();
@@ -723,10 +723,10 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
-        final var tabWidth = 8;
+        final int tabWidth = 8;
 
-        final var lineNumber2 = 10;
-        final var columnNumber2 = 17;
+        final int lineNumber2 = 10;
+        final int columnNumber2 = 17;
         final XpathQueryGenerator queryGenerator2 = new XpathQueryGenerator(detailAst,
                 lineNumber2, columnNumber2, testFileText, tabWidth);
         final List<String> actualTest = queryGenerator2.generate();

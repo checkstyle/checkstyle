@@ -163,11 +163,11 @@ public class EmptyBlockCheck
         else {
             rcurlyAST = rightCurly;
         }
-        final var slistLineNo = slistAST.getLineNo();
-        final var slistColNo = slistAST.getColumnNo();
-        final var rcurlyLineNo = rcurlyAST.getLineNo();
-        final var rcurlyColNo = rcurlyAST.getColumnNo();
-        var returnValue = false;
+        final int slistLineNo = slistAST.getLineNo();
+        final int slistColNo = slistAST.getColumnNo();
+        final int rcurlyLineNo = rcurlyAST.getLineNo();
+        final int rcurlyColNo = rcurlyAST.getColumnNo();
+        boolean returnValue = false;
         if (slistLineNo == rcurlyLineNo) {
             // Handle braces on the same line
             final int[] txt = Arrays.copyOfRange(getLineCodePoints(slistLineNo - 1),
@@ -201,8 +201,8 @@ public class EmptyBlockCheck
      * @return true if lines contain only whitespaces
      */
     private boolean checkIsAllLinesAreWhitespace(int lineFrom, int lineTo) {
-        var result = true;
-        for (var i = lineFrom; i < lineTo - 1; i++) {
+        boolean result = true;
+        for (int i = lineFrom; i < lineTo - 1; i++) {
             if (!CodePointUtil.isBlank(getLineCodePoints(i))) {
                 result = false;
                 break;
@@ -219,7 +219,7 @@ public class EmptyBlockCheck
      */
     private static Optional<DetailAST> getLeftCurly(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        final var parentType = parent.getType();
+        final int parentType = parent.getType();
         final Optional<DetailAST> leftCurly;
 
         if (parentType == TokenTypes.SWITCH_RULE) {

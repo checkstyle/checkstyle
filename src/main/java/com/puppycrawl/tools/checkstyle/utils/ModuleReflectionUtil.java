@@ -86,7 +86,7 @@ public final class ModuleReflectionUtil {
      * @return true if the class has a default constructor.
      */
     private static boolean hasDefaultConstructor(Class<?> clazz) {
-        var result = false;
+        boolean result = false;
         for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
             if (constructor.getParameterCount() == 0) {
                 result = true;

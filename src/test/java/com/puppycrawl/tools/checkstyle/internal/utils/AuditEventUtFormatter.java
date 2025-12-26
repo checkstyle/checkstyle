@@ -37,7 +37,7 @@ public class AuditEventUtFormatter implements AuditEventFormatter {
         final String message = event.getMessage();
 
         // avoid StringBuffer.expandCapacity
-        final var bufLen = event.getFileName().length() + event.getMessage().length()
+        final int bufLen = event.getFileName().length() + event.getMessage().length()
             + LENGTH_OF_ALL_SEPARATORS;
         final StringBuilder sb = new StringBuilder(bufLen);
 

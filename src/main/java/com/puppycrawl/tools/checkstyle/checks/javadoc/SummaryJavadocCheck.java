@@ -205,7 +205,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if the {@code {@summary}} tag is defined first in the javadoc
      */
     private static boolean isDefinedFirst(DetailNode inlineTagNode) {
-        var isDefinedFirst = true;
+        boolean isDefinedFirst = true;
         DetailNode currentAst = inlineTagNode.getPreviousSibling();
         while (currentAst != null && isDefinedFirst) {
             switch (currentAst.getType()) {
@@ -235,7 +235,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if some text is present inside the HTML element
      */
     public static boolean isHtmlTagWithoutText(DetailNode node) {
-        var isEmpty = true;
+        boolean isEmpty = true;
         final DetailNode htmlContentToken =
              JavadocUtil.findFirstToken(node, JavadocCommentsTokenTypes.HTML_CONTENT);
 
@@ -283,7 +283,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final var isPeriodNotAtEnd =
+            final boolean isPeriodNotAtEnd =
                     summaryVisible.lastIndexOf(period) != summaryVisible.length() - 1;
             if (isPeriodNotAtEnd) {
                 log(inlineSummaryTag.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
@@ -369,7 +369,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static String trimExcessWhitespaces(String text) {
         final StringBuilder result = new StringBuilder(256);
-        var previousWhitespace = true;
+        boolean previousWhitespace = true;
 
         for (char letter : text.toCharArray()) {
             final char print;
@@ -399,7 +399,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if the javadoc starts with an {&#64;inheritDoc}.
      */
     private static boolean startsWithInheritDoc(DetailNode root) {
-        var found = false;
+        boolean found = false;
         DetailNode node = root.getFirstChild();
 
         while (node != null) {
@@ -525,10 +525,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      *     or empty Optional if no ending was found.
      */
     private static Optional<String> findSentenceEnding(String text, String period) {
-        var periodIndex = text.indexOf(period);
+        int periodIndex = text.indexOf(period);
         Optional<String> result = Optional.empty();
         while (periodIndex >= 0) {
-            final var afterPeriodIndex = periodIndex + period.length();
+            final int afterPeriodIndex = periodIndex + period.length();
 
             // Handle western period separately as it is only the end of a sentence if followed
             // by whitespace. Other period characters often include whitespace in the character.

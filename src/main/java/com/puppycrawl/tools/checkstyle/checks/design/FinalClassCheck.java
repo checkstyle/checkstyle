@@ -215,7 +215,7 @@ public class FinalClassCheck
     private static boolean shouldBeDeclaredAsFinal(ClassDesc classDesc) {
         final boolean shouldBeFinal;
 
-        final var skipClass = classDesc.isDeclaredAsFinal()
+        final boolean skipClass = classDesc.isDeclaredAsFinal()
                     || classDesc.isDeclaredAsAbstract()
                     || classDesc.isSuperClassOfAnonymousInnerClass()
                     || classDesc.isWithNestedSubclass();
@@ -376,16 +376,16 @@ public class FinalClassCheck
      */
     private static int getAnonSuperTypeMatchingCount(String patternTypeDeclaration,
                                                     String typeDeclarationToBeMatched) {
-        final var typeDeclarationToBeMatchedLength = typeDeclarationToBeMatched.length();
-        final var minLength = Math
+        final int typeDeclarationToBeMatchedLength = typeDeclarationToBeMatched.length();
+        final int minLength = Math
             .min(typeDeclarationToBeMatchedLength, patternTypeDeclaration.length());
-        final var packageSeparator = PACKAGE_SEPARATOR.charAt(0);
-        final var shouldCountBeUpdatedAtLastCharacter =
+        final char packageSeparator = PACKAGE_SEPARATOR.charAt(0);
+        final boolean shouldCountBeUpdatedAtLastCharacter =
             typeDeclarationToBeMatchedLength > minLength
                 && typeDeclarationToBeMatched.charAt(minLength) == packageSeparator;
 
-        var result = 0;
-        for (var idx = 0;
+        int result = 0;
+        for (int idx = 0;
              idx < minLength
                  && patternTypeDeclaration.charAt(idx) == typeDeclarationToBeMatched.charAt(idx);
              idx++) {

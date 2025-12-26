@@ -262,7 +262,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("");
-        final var size = FileUtils.sizeOf(DESTFILE);
+        final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
@@ -279,7 +279,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         assertWithMessage("Unexpected output log")
             .that(systemOut.getCapturedData())
             .isEqualTo("");
-        final var size = FileUtils.sizeOf(DESTFILE);
+        final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
@@ -309,7 +309,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                     .that(exc.getMessage())
                     .contains("mismatched input '<EOF>' expecting JAVADOC_INLINE_TAG_END");
         }
-        final var size = FileUtils.sizeOf(DESTFILE);
+        final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
@@ -327,7 +327,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 .that(exc.getMessage())
                 .isEqualTo("Unsupported inline tag LINK_INLINE_TAG");
         }
-        final var size = FileUtils.sizeOf(DESTFILE);
+        final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);
@@ -345,7 +345,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
                 .that(exc.getMessage())
                 .isEqualTo("Unsupported child in the inline tag NEWLINE");
         }
-        final var size = FileUtils.sizeOf(DESTFILE);
+        final long size = FileUtils.sizeOf(DESTFILE);
         assertWithMessage("File '%s' must be empty", DESTFILE)
             .that(size)
             .isEqualTo(0);

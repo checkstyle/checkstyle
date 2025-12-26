@@ -603,7 +603,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
-        final var length = children[0].getChildren().length;
+        final int length = children[0].getChildren().length;
         assertWithMessage("Invalid children count")
             .that(length)
             .isEqualTo(0);
@@ -618,7 +618,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
-        final var length = children[0].getChildren().length;
+        final int length = children[0].getChildren().length;
         assertWithMessage("Invalid children count")
             .that(length)
             .isEqualTo(0);
@@ -662,7 +662,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
-        final var length = children[0].getChildren().length;
+        final int length = children[0].getChildren().length;
         assertWithMessage("Invalid children count")
             .that(length)
             .isEqualTo(0);
@@ -676,7 +676,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         new PropertiesExpander(new Properties()), IgnoredModulesOptions.OMIT);
 
         final Configuration[] children = config.getChildren();
-        final var length = children[0].getChildren().length;
+        final int length = children[0].getChildren().length;
         assertWithMessage("Invalid children count")
             .that(length)
             .isEqualTo(0);
@@ -717,7 +717,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
                         ConfigurationLoader.IgnoredModulesOptions.EXECUTE);
 
         final Configuration[] children = configuration1.getChildren();
-        final var length = children[0].getChildren().length;
+        final int length = children[0].getChildren().length;
         assertWithMessage("Unexpected children size")
             .that(length)
             .isEqualTo(1);

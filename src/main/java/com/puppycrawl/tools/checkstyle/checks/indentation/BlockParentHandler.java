@@ -141,7 +141,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // the lcurly can either be at the correct indentation, or nested
         // with a previous expression
         final DetailAST lcurly = getLeftCurly();
-        final var lcurlyPos = expandedTabsColumnNo(lcurly);
+        final int lcurlyPos = expandedTabsColumnNo(lcurly);
 
         if (!curlyIndent().isAcceptable(lcurlyPos) && isOnStartOfLine(lcurly)) {
             logError(lcurly, "lcurly", lcurlyPos, curlyIndent());
@@ -187,7 +187,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     private void checkRightCurly() {
         final DetailAST rcurly = getRightCurly();
-        final var rcurlyPos = expandedTabsColumnNo(rcurly);
+        final int rcurlyPos = expandedTabsColumnNo(rcurly);
 
         if (!curlyIndent().isAcceptable(rcurlyPos)
                 && isOnStartOfLine(rcurly)) {

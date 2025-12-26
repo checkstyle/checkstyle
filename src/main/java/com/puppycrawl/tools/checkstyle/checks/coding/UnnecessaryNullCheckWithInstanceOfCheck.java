@@ -125,7 +125,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheck extends AbstractCheck {
      */
     private static boolean containsVariableDereference(DetailAST node, String variableName) {
 
-        var found = false;
+        boolean found = false;
 
         if (node.getType() == TokenTypes.DOT
             || node.getType() == TokenTypes.METHOD_CALL || node.getType() == TokenTypes.LAND) {

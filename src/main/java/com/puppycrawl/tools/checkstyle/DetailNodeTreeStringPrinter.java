@@ -133,7 +133,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return the indentation in String format.
      */
     private static String getIndentation(DetailNode node) {
-        final var isLastChild = node.getNextSibling() == null;
+        final boolean isLastChild = node.getNextSibling() == null;
         DetailNode currentNode = node;
         final StringBuilder indentation = new StringBuilder(1024);
         while (currentNode.getParent() != null) {

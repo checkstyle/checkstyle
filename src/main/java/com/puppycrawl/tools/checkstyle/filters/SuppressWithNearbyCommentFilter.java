@@ -219,7 +219,7 @@ public class SuppressWithNearbyCommentFilter
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
-        var accepted = true;
+        boolean accepted = true;
 
         if (event.getViolation() != null) {
             // Lazy update. If the first event for the current file, update file
@@ -244,7 +244,7 @@ public class SuppressWithNearbyCommentFilter
      * @return true if event matches any tag from {@link #tags}, false otherwise.
      */
     private boolean matchesTag(TreeWalkerAuditEvent event) {
-        var result = false;
+        boolean result = false;
         for (final Tag tag : tags) {
             if (tag.isMatch(event)) {
                 result = true;
@@ -279,10 +279,10 @@ public class SuppressWithNearbyCommentFilter
      */
     private void tagSuppressions(Collection<TextBlock> comments) {
         for (final TextBlock comment : comments) {
-            final var startLineNo = comment.getStartLineNo();
+            final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo);
-            for (var i = 1; i < text.length; i++) {
+            for (int i = 1; i < text.length; i++) {
                 tagCommentLine(text[i], startLineNo + i);
             }
         }
@@ -373,7 +373,7 @@ public class SuppressWithNearbyCommentFilter
                 format = CommonUtil.fillTemplateWithStringsByRegexp(
                         filter.influenceFormat, text, filter.commentFormat);
 
-                final var influence = parseInfluence(format, filter.influenceFormat, text);
+                final int influence = parseInfluence(format, filter.influenceFormat, text);
 
                 if (influence >= 1) {
                     firstLine = line;
@@ -453,7 +453,7 @@ public class SuppressWithNearbyCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(TreeWalkerAuditEvent event) {
-            final var line = event.getLine();
+            final int line = event.getLine();
             return line >= firstLine && line <= lastLine;
         }
 
@@ -475,7 +475,7 @@ public class SuppressWithNearbyCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
-            var match = true;
+            boolean match = true;
             if (tagIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
@@ -495,7 +495,7 @@ public class SuppressWithNearbyCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
-            var match = true;
+            boolean match = true;
             if (tagMessageRegexp != null) {
                 final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
                 match = messageMatcher.find();

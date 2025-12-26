@@ -126,7 +126,7 @@ public class FallThroughCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST nextGroup = ast.getNextSibling();
-        final var isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
+        final boolean isLastGroup = nextGroup.getType() != TokenTypes.CASE_GROUP;
         if (!isLastGroup || checkLastCaseGroup) {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
@@ -299,7 +299,7 @@ public class FallThroughCheck extends AbstractCheck {
     private boolean checkTry(final DetailAST ast, boolean useBreak,
                              boolean useContinue, Set<String> labels) {
         final DetailAST finalStmt = ast.getLastChild();
-        var isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
+        boolean isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
                 && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
                 useBreak, useContinue, labels);
 
@@ -338,7 +338,7 @@ public class FallThroughCheck extends AbstractCheck {
     private boolean checkSwitch(DetailAST literalSwitchAst,
                                 boolean useContinue, Set<String> labels) {
         DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
-        var isTerminated = caseGroup != null;
+        boolean isTerminated = caseGroup != null;
         while (isTerminated && caseGroup.getType() != TokenTypes.RCURLY) {
             final DetailAST caseBody =
                 caseGroup.findFirstToken(TokenTypes.SLIST);
@@ -410,9 +410,9 @@ public class FallThroughCheck extends AbstractCheck {
      */
     private boolean hasReliefComment(DetailAST ast) {
         final DetailAST nonCommentAst = getNextNonCommentAst(ast);
-        var result = false;
+        boolean result = false;
         if (nonCommentAst != null) {
-            final var prevLineNumber = nonCommentAst.getPreviousSibling().getLineNo();
+            final int prevLineNumber = nonCommentAst.getPreviousSibling().getLineNo();
             result = Stream.iterate(nonCommentAst.getPreviousSibling(),
                             Objects::nonNull,
                             DetailAST::getPreviousSibling)

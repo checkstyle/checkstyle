@@ -68,7 +68,7 @@ public class FilterSet
 
     @Override
     public boolean accept(AuditEvent event) {
-        var result = true;
+        boolean result = true;
         for (Filter filter : filters) {
             if (!filter.accept(event)) {
                 result = false;

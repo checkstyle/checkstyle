@@ -175,7 +175,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                 .that(model.isReloadActionEnabled())
                 .isTrue();
 
-        final var expectedLines = 19;
+        final int expectedLines = 19;
         assertWithMessage("Invalid lines to position")
             .that(model.getLinesToPosition())
             .hasSize(expectedLines);

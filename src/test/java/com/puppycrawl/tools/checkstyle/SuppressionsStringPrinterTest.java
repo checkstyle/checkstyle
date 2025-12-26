@@ -55,7 +55,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "3:1";
-        final var tabWidth = 2;
+        final int tabWidth = 2;
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
@@ -78,7 +78,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "5:13";
-        final var tabWidth = 4;
+        final int tabWidth = 4;
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
@@ -91,7 +91,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     public void testCustomTabWidthEmptyResult() throws Exception {
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "5:13";
-        final var tabWidth = 6;
+        final int tabWidth = 6;
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
         assertWithMessage("Invalid xpath queries")
@@ -103,7 +103,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     public void testInvalidLineAndColumnNumberParameter() throws Exception {
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String invalidLineAndColumnNumber = "abc-432";
-        final var tabWidth = 2;
+        final int tabWidth = 2;
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     invalidLineAndColumnNumber, tabWidth);
@@ -120,7 +120,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     public void testParseFileTextThrowable() throws Exception {
         final File input = new File(getNonCompilablePath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "2:3";
-        final var tabWidth = 2;
+        final int tabWidth = 2;
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     lineAndColumnNumber, tabWidth);

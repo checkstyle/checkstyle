@@ -114,8 +114,8 @@ public final class ChainedPropertyUtil {
      * @return property name
      */
     private static String getPropertyNameFromExpression(String variableExpression) {
-        final var propertyStartIndex = variableExpression.lastIndexOf('{') + 1;
-        final var propertyEndIndex = variableExpression.lastIndexOf('}');
+        final int propertyStartIndex = variableExpression.lastIndexOf('{') + 1;
+        final int propertyEndIndex = variableExpression.lastIndexOf('}');
         return variableExpression.substring(propertyStartIndex, propertyEndIndex);
     }
 

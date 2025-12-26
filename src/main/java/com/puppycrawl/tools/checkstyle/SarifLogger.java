@@ -300,7 +300,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
         final String fullQualifiedName = moduleDetails.getFullQualifiedName();
         final Map<String, String> result = new LinkedHashMap<>();
         try {
-            final var lastDot = fullQualifiedName.lastIndexOf('.');
+            final int lastDot = fullQualifiedName.lastIndexOf('.');
             final String packageName = fullQualifiedName.substring(0, lastDot);
             final String bundleName = packageName + ".messages";
             final Class<?> moduleClass = Class.forName(fullQualifiedName);
@@ -466,10 +466,10 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return the escaped value if necessary.
      */
     public static String escape(String value) {
-        final var length = value.length();
+        final int length = value.length();
         final StringBuilder sb = new StringBuilder(length);
-        for (var i = 0; i < length; i++) {
-            final var chr = value.charAt(i);
+        for (int i = 0; i < length; i++) {
+            final char chr = value.charAt(i);
             final String replacement = switch (chr) {
                 case '"' -> "\\\"";
                 case '\\' -> TWO_BACKSLASHES;
@@ -519,7 +519,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
                 throw new IOException("Cannot find the resource " + name);
             }
             final byte[] buffer = new byte[BUFFER_SIZE];
-            var length = 0;
+            int length = 0;
             while (length != -1) {
                 result.write(buffer, 0, length);
                 length = inputStream.read(buffer);

@@ -138,7 +138,7 @@ public class DescendantTokenCheck extends AbstractCheck {
         final String name = TokenUtil.getTokenName(ast.getType());
 
         for (int element : limitedTokens) {
-            final var tokenCount = counts[element - 1];
+            final int tokenCount = counts[element - 1];
             if (tokenCount < minimumNumber) {
                 final String descendantName = TokenUtil.getTokenName(element);
 
@@ -177,7 +177,7 @@ public class DescendantTokenCheck extends AbstractCheck {
         // name of this token
         final String name = TokenUtil.getTokenName(ast.getType());
 
-        var total = 0;
+        int total = 0;
         for (int element : limitedTokens) {
             total += counts[element - 1];
         }
@@ -211,13 +211,13 @@ public class DescendantTokenCheck extends AbstractCheck {
         if (depth <= maximumDepth) {
             // update count
             if (depth >= minimumDepth) {
-                final var type = ast.getType();
+                final int type = ast.getType();
                 if (type <= counts.length) {
                     counts[type - 1]++;
                 }
             }
             DetailAST child = ast.getFirstChild();
-            final var nextDepth = depth + 1;
+            final int nextDepth = depth + 1;
             while (child != null) {
                 countTokens(child, nextDepth);
                 child = child.getNextSibling();
@@ -234,8 +234,8 @@ public class DescendantTokenCheck extends AbstractCheck {
     public void setLimitedTokens(String... limitedTokensParam) {
         limitedTokens = new int[limitedTokensParam.length];
 
-        var maxToken = 0;
-        for (var i = 0; i < limitedTokensParam.length; i++) {
+        int maxToken = 0;
+        for (int i = 0; i < limitedTokensParam.length; i++) {
             limitedTokens[i] = TokenUtil.getTokenId(limitedTokensParam[i]);
             if (limitedTokens[i] >= maxToken + 1) {
                 maxToken = limitedTokens[i];

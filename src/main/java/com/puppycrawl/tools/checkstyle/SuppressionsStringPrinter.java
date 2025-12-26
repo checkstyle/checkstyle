@@ -75,8 +75,8 @@ public final class SuppressionsStringPrinter {
         final FileText fileText = new FileText(file, System.getProperty("file.encoding"));
         final DetailAST detailAST =
                 JavaParser.parseFileText(fileText, JavaParser.Options.WITH_COMMENTS);
-        final var lineNumber = Integer.parseInt(matcher.group(1));
-        final var columnNumber = Integer.parseInt(matcher.group(2));
+        final int lineNumber = Integer.parseInt(matcher.group(1));
+        final int columnNumber = Integer.parseInt(matcher.group(2));
         return generate(fileText, detailAST, lineNumber, columnNumber, tabWidth);
     }
 

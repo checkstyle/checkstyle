@@ -75,11 +75,11 @@ public final class CheckUtil {
      * @return true if ast defines an equals covariant.
      */
     public static boolean isEqualsMethod(DetailAST ast) {
-        var equalsMethod = false;
+        boolean equalsMethod = false;
 
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-            final var staticOrAbstract =
+            final boolean staticOrAbstract =
                     modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null
                     || modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
 
@@ -113,7 +113,7 @@ public final class CheckUtil {
             case TokenTypes.NUM_FLOAT, TokenTypes.NUM_DOUBLE -> Double.parseDouble(txt);
 
             case TokenTypes.NUM_INT, TokenTypes.NUM_LONG -> {
-                var radix = BASE_10;
+                int radix = BASE_10;
                 if (txt.startsWith("0x") || txt.startsWith("0X")) {
                     radix = BASE_16;
                     txt = txt.substring(2);
@@ -151,7 +151,7 @@ public final class CheckUtil {
         }
         final double result;
 
-        final var negative = txt.charAt(0) == '-';
+        final boolean negative = txt.charAt(0) == '-';
         if (type == TokenTypes.NUM_INT) {
             if (negative) {
                 result = Integer.parseInt(txt, radix);
@@ -270,7 +270,7 @@ public final class CheckUtil {
      * @return true if method is a not void one.
      */
     public static boolean isNonVoidMethod(DetailAST methodDefAst) {
-        var returnValue = false;
+        boolean returnValue = false;
         if (methodDefAst.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST typeAST = methodDefAst.findFirstToken(TokenTypes.TYPE);
             if (typeAST.findFirstToken(TokenTypes.LITERAL_VOID) == null) {
@@ -347,7 +347,7 @@ public final class CheckUtil {
         AccessModifierOption accessModifier = AccessModifierOption.PACKAGE;
         for (DetailAST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
-            final var tokenType = token.getType();
+            final int tokenType = token.getType();
             if (tokenType == TokenTypes.LITERAL_PUBLIC) {
                 accessModifier = AccessModifierOption.PUBLIC;
             }
@@ -372,7 +372,7 @@ public final class CheckUtil {
         for (DetailAST token = node;
              returnValue == null && !TokenUtil.isRootNode(token);
              token = token.getParent()) {
-            final var type = token.getType();
+            final int type = token.getType();
             if (type == TokenTypes.CLASS_DEF
                 || type == TokenTypes.INTERFACE_DEF
                 || type == TokenTypes.ANNOTATION_DEF
@@ -414,7 +414,7 @@ public final class CheckUtil {
             ALL_NEW_LINES.matcher(textBlockContent).replaceFirst("");
         final List<String> lines =
             Arrays.asList(ALL_NEW_LINES.split(contentWithInitialNewLineRemoved));
-        final var indent = getSmallestIndent(lines);
+        final int indent = getSmallestIndent(lines);
         final String suffix = "";
 
         return lines.stream()
@@ -431,7 +431,7 @@ public final class CheckUtil {
      * @return modified string with removed indent and trailing whitespace, or empty string.
      */
     private static String stripIndentAndTrailingWhitespaceFromLine(String line, int indent) {
-        final var lastNonWhitespace = lastIndexOfNonWhitespace(line);
+        final int lastNonWhitespace = lastIndexOfNonWhitespace(line);
         String returnString = "";
         if (lastNonWhitespace > 0) {
             returnString = line.substring(indent, lastNonWhitespace);
@@ -486,9 +486,9 @@ public final class CheckUtil {
      */
     public static int typeDeclarationNameMatchingCount(String patternClass,
                                                        String classToBeMatched) {
-        final var length = Math.min(classToBeMatched.length(), patternClass.length());
-        var result = 0;
-        for (var i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
+        final int length = Math.min(classToBeMatched.length(), patternClass.length());
+        int result = 0;
+        for (int i = 0; i < length && patternClass.charAt(i) == classToBeMatched.charAt(i); ++i) {
             if (patternClass.charAt(i) == PACKAGE_SEPARATOR) {
                 result = i;
             }

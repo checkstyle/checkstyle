@@ -129,7 +129,7 @@ public class HandlerFactory {
     public int[] getHandledTypes() {
         final Set<Integer> typeSet = typeHandlers.keySet();
         final int[] types = new int[typeSet.size()];
-        var index = 0;
+        int index = 0;
         for (final Integer val : typeSet) {
             types[index] = val;
             index++;

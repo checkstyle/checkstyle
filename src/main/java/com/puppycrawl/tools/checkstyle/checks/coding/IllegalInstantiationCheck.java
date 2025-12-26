@@ -297,7 +297,7 @@ public class IllegalInstantiationCheck
      * @return true if type is standard
      */
     private boolean isStandardClass(String className, String illegal) {
-        var isStandardClass = false;
+        boolean isStandardClass = false;
         // class from java.lang
         if (illegal.length() - JAVA_LANG.length() == className.length()
             && illegal.endsWith(className)
@@ -308,7 +308,7 @@ public class IllegalInstantiationCheck
             // the expression "new Boolean()" refers to that class,
             // not to java.lang.Boolean
 
-            final var isSameFile = classNames.contains(className);
+            final boolean isSameFile = classNames.contains(className);
 
             if (!isSameFile) {
                 isStandardClass = true;

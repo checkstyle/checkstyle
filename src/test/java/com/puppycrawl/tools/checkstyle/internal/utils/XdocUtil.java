@@ -167,7 +167,7 @@ public final class XdocUtil {
 
             final NodeList nodeList = document.getElementsByTagName("section");
 
-            for (var i = 0; i < nodeList.getLength(); i++) {
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 final Node currentNode = nodeList.item(i);
                 if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                     final Element module = (Element) currentNode;

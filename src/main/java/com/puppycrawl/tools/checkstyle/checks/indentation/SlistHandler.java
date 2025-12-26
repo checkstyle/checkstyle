@@ -114,7 +114,7 @@ public class SlistHandler extends BlockParentHandler {
      * @return true if it does, false otherwise
      */
     private boolean hasBlockParent() {
-        final var parentType = getMainAst().getParent().getType();
+        final int parentType = getMainAst().getParent().getType();
         return PARENT_TOKEN_TYPES.get(parentType);
     }
 

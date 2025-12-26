@@ -359,7 +359,7 @@ public class ImmutabilityTest {
          *         if it contains parameterized type
          */
         private static boolean isParameterizedTypeImmutable(JavaField javaField) {
-            var isParameterizedTypeImmutable = false;
+            boolean isParameterizedTypeImmutable = false;
             final JavaType javaType = javaField.getType();
 
             if (javaType instanceof JavaParameterizedType parameterizedType) {
@@ -401,7 +401,7 @@ public class ImmutabilityTest {
          * @return {@code true} if field is a module property
          */
         private static boolean isModuleProperty(JavaField javaField) {
-            var result = false;
+            boolean result = false;
             final JavaClass containingClass = javaField.getOwner();
             final ModuleDetails moduleDetails = MODULE_DETAILS_MAP.get(
                 containingClass.getFullName());

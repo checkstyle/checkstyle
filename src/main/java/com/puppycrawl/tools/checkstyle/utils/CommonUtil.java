@@ -119,14 +119,14 @@ public final class CommonUtil {
      * @return whether there is a match.
      */
     public static boolean matchesFileExtension(File file, String... fileExtensions) {
-        var result = false;
+        boolean result = false;
         if (fileExtensions == null || fileExtensions.length == 0) {
             result = true;
         }
         else {
             // normalize extensions so all of them have a leading dot
             final String[] withDotExtensions = new String[fileExtensions.length];
-            for (var i = 0; i < fileExtensions.length; i++) {
+            for (int i = 0; i < fileExtensions.length; i++) {
                 final String extension = fileExtensions[i];
                 if (extension.startsWith(EXTENSION_SEPARATOR)) {
                     withDotExtensions[i] = extension;
@@ -158,8 +158,8 @@ public final class CommonUtil {
      * @return whether there is only whitespace
      */
     public static boolean hasWhitespaceBefore(int index, String line) {
-        var result = true;
-        for (var i = 0; i < index; i++) {
+        boolean result = true;
+        for (int i = 0; i < index; i++) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 result = false;
                 break;
@@ -178,8 +178,8 @@ public final class CommonUtil {
      * @return the length of the string ignoring all trailing whitespace
      **/
     public static int lengthMinusTrailingWhitespace(String line) {
-        var len = line.length();
-        for (var i = len - 1; i >= 0; i--) {
+        int len = line.length();
+        for (int i = len - 1; i >= 0; i--) {
             if (!Character.isWhitespace(line.charAt(i))) {
                 break;
             }
@@ -204,8 +204,8 @@ public final class CommonUtil {
     public static int lengthExpandedTabs(String inputString,
             int toIdx,
             int tabWidth) {
-        var len = 0;
-        for (var idx = 0; idx < toIdx; idx++) {
+        int len = 0;
+        for (int idx = 0; idx < toIdx; idx++) {
             if (inputString.codePointAt(idx) == '\t') {
                 len = (len / tabWidth + 1) * tabWidth;
             }
@@ -224,7 +224,7 @@ public final class CommonUtil {
      * @return true if the pattern is valid false otherwise
      */
     public static boolean isPatternValid(String pattern) {
-        var isValid = true;
+        boolean isValid = true;
         try {
             Pattern.compile(pattern);
         }
@@ -242,7 +242,7 @@ public final class CommonUtil {
      * @return the base class name from a fully qualified name
      */
     public static String baseClassName(String type) {
-        final var index = type.lastIndexOf('.');
+        final int index = type.lastIndexOf('.');
         return type.substring(index + 1);
     }
 
@@ -469,7 +469,7 @@ public final class CommonUtil {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
-            for (var i = 0; i <= matcher.groupCount(); i++) {
+            for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
                 result = result.replaceAll("\\$" + i, matcher.group(i));
             }
@@ -487,7 +487,7 @@ public final class CommonUtil {
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
         final String fileName = new File(fullFilename).getName();
-        final var dotIndex = fileName.lastIndexOf('.');
+        final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {
             fileNameWithoutExtension = fileName;
@@ -510,7 +510,7 @@ public final class CommonUtil {
      */
     public static String getFileExtension(String fileNameWithExtension) {
         final String fileName = Path.of(fileNameWithExtension).toString();
-        final var dotIndex = fileName.lastIndexOf('.');
+        final int dotIndex = fileName.lastIndexOf('.');
         final String extension;
         if (dotIndex == -1) {
             extension = "";
@@ -528,9 +528,9 @@ public final class CommonUtil {
      * @return true when the given string contains valid identifier.
      */
     public static boolean isIdentifier(String str) {
-        var isIdentifier = !str.isEmpty();
+        boolean isIdentifier = !str.isEmpty();
 
-        for (var i = 0; isIdentifier && i < str.length(); i++) {
+        for (int i = 0; isIdentifier && i < str.length(); i++) {
             if (i == 0) {
                 isIdentifier = Character.isJavaIdentifierStart(str.charAt(0));
             }
@@ -549,7 +549,7 @@ public final class CommonUtil {
      * @return true when the given string contains valid name.
      */
     public static boolean isName(String str) {
-        var isName = false;
+        boolean isName = false;
 
         final String[] identifiers = str.split("\\.", -1);
         for (String identifier : identifiers) {
@@ -581,10 +581,10 @@ public final class CommonUtil {
      * @return the index of the first non-whitespace character.
      */
     public static int indexOfNonWhitespace(String value) {
-        final var length = value.length();
-        var left = 0;
+        final int length = value.length();
+        int left = 0;
         while (left < length) {
-            final var codePointAt = value.codePointAt(left);
+            final int codePointAt = value.codePointAt(left);
             if (!Character.isWhitespace(codePointAt)) {
                 break;
             }
@@ -606,7 +606,7 @@ public final class CommonUtil {
     public static boolean isCodePointWhitespace(int[] codePoints, int index) {
         //  We only need to check the first member of a surrogate pair to verify that
         //  it is not whitespace.
-        final var character = Character.toChars(codePoints[index])[0];
+        final char character = Character.toChars(codePoints[index])[0];
         return Character.isWhitespace(character);
     }
 

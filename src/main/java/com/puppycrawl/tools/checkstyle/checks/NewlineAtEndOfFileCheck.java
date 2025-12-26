@@ -170,7 +170,7 @@ public class NewlineAtEndOfFileCheck
     private static boolean endsWithNewline(RandomAccessFile file, LineSeparatorOption separator)
             throws IOException {
         final boolean result;
-        final var len = separator.length();
+        final int len = separator.length();
         if (file.length() == 0) {
             result = true;
         }
@@ -180,7 +180,7 @@ public class NewlineAtEndOfFileCheck
         else {
             file.seek(file.length() - len);
             final byte[] lastBytes = new byte[len];
-            final var readBytes = file.read(lastBytes);
+            final int readBytes = file.read(lastBytes);
             if (readBytes != len) {
                 throw new IOException("Unable to read " + len + " bytes, got "
                         + readBytes);

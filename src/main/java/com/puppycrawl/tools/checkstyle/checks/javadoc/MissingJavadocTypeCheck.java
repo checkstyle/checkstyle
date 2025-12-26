@@ -122,7 +122,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
-            final var lineNo = ast.getLineNo();
+            final int lineNo = ast.getLineNo();
             final TextBlock textBlock = contents.getJavadocBefore(lineNo);
             if (textBlock == null) {
                 log(ast, MSG_JAVADOC_MISSING);

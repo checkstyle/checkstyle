@@ -239,7 +239,7 @@ public class MainTest {
         LOG.setLevel(ORIGINAL_LOG_LEVEL);
 
         for (Handler handler : LOG.getHandlers()) {
-            var found = false;
+            boolean found = false;
 
             for (Handler savedHandler : HANDLERS) {
                 if (handler == savedHandler) {
@@ -831,10 +831,10 @@ public class MainTest {
                     new String[] {""}, null, getClass(), null);
             final String causeMessage = exc.getCause().getLocalizedMessage();
             final String violation = loadPropertiesMessage.getViolation();
-            final var samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
+            final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
                     .equals(violation
                             .substring(0, violation.indexOf(' ')));
-            final var sameSuffix =
+            final boolean sameSuffix =
                     causeMessage.substring(causeMessage.lastIndexOf(' '))
                     .equals(violation
                             .substring(violation.lastIndexOf(' ')));
@@ -855,7 +855,7 @@ public class MainTest {
                 {"InputMainComplexityOverflow", "1", "172"},
         };
 
-        final var allowedLength = 170;
+        final int allowedLength = 170;
         final String msgKey = "maxLen.file";
         final String bundle = "com.puppycrawl.tools.checkstyle.checks.sizes.messages";
 

@@ -157,7 +157,7 @@ public class ModifierOrderCheck
 
         // All modifiers are annotations, no problem
         if (modifier.getType() != TokenTypes.ANNOTATION) {
-            var index = 0;
+            int index = 0;
 
             while (modifier != null
                     && offendingModifier == null) {
@@ -211,10 +211,10 @@ public class ModifierOrderCheck
      * @return true if annotation on type takes place.
      */
     private static boolean isAnnotationOnType(DetailAST modifier) {
-        var annotationOnType = false;
+        boolean annotationOnType = false;
         final DetailAST modifiers = modifier.getParent();
         final DetailAST definition = modifiers.getParent();
-        final var definitionType = definition.getType();
+        final int definitionType = definition.getType();
         if (definitionType == TokenTypes.VARIABLE_DEF
                 || definitionType == TokenTypes.PARAMETER_DEF
                 || definitionType == TokenTypes.CTOR_DEF) {
@@ -222,7 +222,7 @@ public class ModifierOrderCheck
         }
         else if (definitionType == TokenTypes.METHOD_DEF) {
             final DetailAST typeToken = definition.findFirstToken(TokenTypes.TYPE);
-            final var methodReturnType = typeToken.getLastChild().getType();
+            final int methodReturnType = typeToken.getLastChild().getType();
             if (methodReturnType != TokenTypes.LITERAL_VOID) {
                 annotationOnType = true;
             }

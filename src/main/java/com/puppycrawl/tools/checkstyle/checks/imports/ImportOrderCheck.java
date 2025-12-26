@@ -359,11 +359,11 @@ public class ImportOrderCheck
         // using set of IF instead of SWITCH to analyze Enum options to satisfy coverage.
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (option == ImportOrderOption.TOP || option == ImportOrderOption.ABOVE) {
-            final var isStaticAndNotLastImport = isStatic && !lastImportStatic;
+            final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
             doVisitToken(ident, isStatic, isStaticAndNotLastImport, ast);
         }
         else if (option == ImportOrderOption.BOTTOM || option == ImportOrderOption.UNDER) {
-            final var isLastImportAndNonStatic = lastImportStatic && !isStatic;
+            final boolean isLastImportAndNonStatic = lastImportStatic && !isStatic;
             doVisitToken(ident, isStatic, isLastImportAndNonStatic, ast);
         }
         else if (option == ImportOrderOption.INFLOW) {
@@ -391,7 +391,7 @@ public class ImportOrderCheck
      */
     private void doVisitToken(FullIdent ident, boolean isStatic, boolean previous, DetailAST ast) {
         final String name = ident.getText();
-        final var groupIdx = getGroupNumber(isStatic && staticImportsApart, name);
+        final int groupIdx = getGroupNumber(isStatic && staticImportsApart, name);
 
         if (groupIdx > lastGroup) {
             if (!beforeFirstImport
@@ -421,7 +421,7 @@ public class ImportOrderCheck
      * @return true if imports groups should be separated.
      */
     private boolean needSeparator(boolean isStatic) {
-        final var typeImportSeparator = !isStatic && separated;
+        final boolean typeImportSeparator = !isStatic && separated;
         final boolean staticImportSeparator;
         if (staticImportsApart) {
             staticImportSeparator = isStatic && separatedStaticGroups;
@@ -429,7 +429,7 @@ public class ImportOrderCheck
         else {
             staticImportSeparator = separated;
         }
-        final var separatorBetween = isStatic != lastImportStatic
+        final boolean separatorBetween = isStatic != lastImportStatic
             && (separated || separatedStaticGroups);
 
         return typeImportSeparator || staticImportSeparator || separatorBetween;
@@ -444,7 +444,7 @@ public class ImportOrderCheck
      * @return true if imports group are separated internally.
      */
     private boolean isSeparatorInGroup(int groupIdx, boolean isStatic, int line) {
-        final var inSameGroup = groupIdx == lastGroup;
+        final boolean inSameGroup = groupIdx == lastGroup;
         return (inSameGroup || !needSeparator(isStatic)) && isSeparatorBeforeImport(line);
     }
 
@@ -476,7 +476,7 @@ public class ImportOrderCheck
                 }
             }
             else {
-                final var shouldFireError =
+                final boolean shouldFireError =
                     // previous non-static but current is static (above)
                     // or
                     // previous static but current is non-static (under)
@@ -585,7 +585,7 @@ public class ImportOrderCheck
      * @return import container name.
      */
     private static String getImportContainer(String qualifiedImportName) {
-        final var lastDotIndex = qualifiedImportName.lastIndexOf('.');
+        final int lastDotIndex = qualifiedImportName.lastIndexOf('.');
         return qualifiedImportName.substring(0, lastDotIndex);
     }
 
@@ -605,7 +605,7 @@ public class ImportOrderCheck
             patterns = groupsReg;
         }
 
-        var number = getGroupNumber(patterns, name);
+        int number = getGroupNumber(patterns, name);
 
         if (isStatic && option == ImportOrderOption.BOTTOM) {
             number += groups.length + 1;
@@ -624,13 +624,13 @@ public class ImportOrderCheck
      * @return group number for given import name.
      */
     private static int getGroupNumber(Pattern[] patterns, String name) {
-        var bestIndex = patterns.length;
-        var bestEnd = -1;
-        var bestPos = Integer.MAX_VALUE;
+        int bestIndex = patterns.length;
+        int bestEnd = -1;
+        int bestPos = Integer.MAX_VALUE;
 
         // find out what group this belongs in
         // loop over patterns and get index
-        for (var i = 0; i < patterns.length; i++) {
+        for (int i = 0; i < patterns.length; i++) {
             final Matcher matcher = patterns[i].matcher(name);
             if (matcher.find()) {
                 if (matcher.start() < bestPos) {
@@ -683,7 +683,7 @@ public class ImportOrderCheck
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
-        for (var i = 0; i < packageGroups.length; i++) {
+        for (int i = 0; i < packageGroups.length; i++) {
             String pkg = packageGroups[i];
             final Pattern grp;
 

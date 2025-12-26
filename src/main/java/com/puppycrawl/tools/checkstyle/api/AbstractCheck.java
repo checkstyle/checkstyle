@@ -242,7 +242,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     @Override
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
-        final var col = 1 + CommonUtil.lengthExpandedTabs(
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
         context.get().violations.add(
             new Violation(
@@ -272,7 +272,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         // from 1, that is why result of the method CommonUtil.lengthExpandedTabs
         // is increased by one.
 
-        final var col = 1 + CommonUtil.lengthExpandedTabs(
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
                 getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
         context.get().violations.add(
                 new Violation(

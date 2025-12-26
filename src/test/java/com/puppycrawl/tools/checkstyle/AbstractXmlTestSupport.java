@@ -86,7 +86,7 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
             BiPredicate<Node, Node> ordered, String... messages) throws Exception {
         String expectedContents = readFile(expectedOutputFile);
 
-        for (var i = 0; i < messages.length; i++) {
+        for (int i = 0; i < messages.length; i++) {
             expectedContents = expectedContents.replace("$" + i, messages[i]);
         }
 
@@ -229,7 +229,7 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     .that(actual)
                     .isNotNull();
 
-            for (var i = 0; i < expected.getLength(); i++) {
+            for (int i = 0; i < expected.getLength(); i++) {
                 verifyXmlAttribute(expected.item(i), actual.item(i), path);
             }
 

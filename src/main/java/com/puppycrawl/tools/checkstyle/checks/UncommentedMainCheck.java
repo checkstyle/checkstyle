@@ -224,12 +224,12 @@ public class UncommentedMainCheck
      * @return true if check passed, false otherwise
      */
     private static boolean checkParams(DetailAST method) {
-        var checkPassed = false;
+        boolean checkPassed = false;
         final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final var isArrayDeclaration =
+            final boolean isArrayDeclaration =
                 parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
             final Optional<DetailAST> varargs = Optional.ofNullable(
                 params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));

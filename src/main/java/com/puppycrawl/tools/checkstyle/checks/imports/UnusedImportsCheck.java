@@ -255,9 +255,9 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        final var parentType = parent.getType();
+        final int parentType = parent.getType();
 
-        final var isClassOrMethod = parentType == TokenTypes.DOT
+        final boolean isClassOrMethod = parentType == TokenTypes.DOT
                 || parentType == TokenTypes.METHOD_DEF || parentType == TokenTypes.METHOD_REF;
 
         if (TokenUtil.isTypeDeclaration(parentType)) {
@@ -276,12 +276,12 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static boolean isQualifiedIdentifier(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        final var parentType = parent.getType();
+        final int parentType = parent.getType();
 
-        final var isQualifiedIdent = parentType == TokenTypes.DOT
+        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
                 && !TokenUtil.isOfType(ast.getPreviousSibling(), TokenTypes.DOT)
                 && ast.getNextSibling() != null;
-        final var isQualifiedIdentFromMethodRef = parentType == TokenTypes.METHOD_REF
+        final boolean isQualifiedIdentFromMethodRef = parentType == TokenTypes.METHOD_REF
                 && ast.getNextSibling() != null;
         return isQualifiedIdent || isQualifiedIdentFromMethodRef;
     }
@@ -321,7 +321,7 @@ public class UnusedImportsCheck extends AbstractCheck {
     @SuppressWarnings("deprecation")
     private void collectReferencesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
-        final var lineNo = ast.getLineNo();
+        final int lineNo = ast.getLineNo();
         final TextBlock textBlock = contents.getJavadocBefore(lineNo);
         if (textBlock != null) {
             currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
@@ -416,7 +416,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static String topLevelType(String type) {
         final String topLevelType;
-        final var dotIndex = type.indexOf('.');
+        final int dotIndex = type.indexOf('.');
         if (dotIndex == -1) {
             topLevelType = type;
         }
@@ -438,8 +438,8 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private static boolean isMatchingTagType(JavadocTag tag,
                                              JavadocUtil.JavadocTagType javadocTagType) {
-        final var isInlineTag = tag.isInlineTag();
-        final var isBlockTagType = javadocTagType == JavadocUtil.JavadocTagType.BLOCK;
+        final boolean isInlineTag = tag.isInlineTag();
+        final boolean isBlockTagType = javadocTagType == JavadocUtil.JavadocTagType.BLOCK;
 
         return isBlockTagType != isInlineTag;
     }
@@ -453,7 +453,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     public static Optional<JavadocTag> bestTryToMatchReference(JavadocTag tag) {
         final String content = tag.getFirstArg();
-        final var referenceIndex = extractReferencePart(content);
+        final int referenceIndex = extractReferencePart(content);
         Optional<JavadocTag> validTag = Optional.empty();
 
         if (referenceIndex != -1) {
@@ -466,9 +466,9 @@ public class UnusedImportsCheck extends AbstractCheck {
             }
             final Matcher matcher = REFERENCE.matcher(referenceString);
             if (matcher.matches()) {
-                final var methodIndex = 3;
+                final int methodIndex = 3;
                 final String methodPart = matcher.group(methodIndex);
-                final var isValid = methodPart == null
+                final boolean isValid = methodPart == null
                         || METHOD.matcher(methodPart).matches();
                 if (isValid) {
                     validTag = Optional.of(tag);
@@ -486,10 +486,10 @@ public class UnusedImportsCheck extends AbstractCheck {
      *         or the index of the first space outside parentheses.
      */
     private static @IndexOrLow("#1")int extractReferencePart(String input) {
-        var parenthesesCount = 0;
-        var firstSpaceOutsideParens = -1;
-        for (var index = 0; index < input.length(); index++) {
-            final var currentCharacter = input.charAt(index);
+        int parenthesesCount = 0;
+        int firstSpaceOutsideParens = -1;
+        for (int index = 0; index < input.length(); index++) {
+            final char currentCharacter = input.charAt(index);
 
             if (currentCharacter == '(') {
                 parenthesesCount++;
@@ -503,7 +503,7 @@ public class UnusedImportsCheck extends AbstractCheck {
             }
         }
 
-        var methodIndex = -1;
+        int methodIndex = -1;
         if (parenthesesCount == 0) {
             if (firstSpaceOutsideParens == -1) {
                 methodIndex = 0;

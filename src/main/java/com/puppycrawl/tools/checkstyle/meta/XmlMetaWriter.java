@@ -164,7 +164,7 @@ public final class XmlMetaWriter {
                     .matcher(moduleDetails.getFullQualifiedName())
                     .replaceAll(fileSeparator);
             final String checkstyleString = "checkstyle";
-            final var indexOfCheckstyle =
+            final int indexOfCheckstyle =
                     moduleFilePath.indexOf(checkstyleString) + checkstyleString.length();
 
             modifiedPath = rootOutputPath + DEFAULT_FILE_SEPARATOR

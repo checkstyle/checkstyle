@@ -261,14 +261,14 @@ public class RegexpCheck extends AbstractCheck {
     @SuppressWarnings("deprecation")
     private void processRegexpMatches() {
         final Matcher matcher = format.matcher(getFileContents().getText().getFullText());
-        var errorCount = 0;
-        var matchCount = 0;
+        int errorCount = 0;
+        int matchCount = 0;
         final FileText text = getFileContents().getText();
         while (errorCount < errorLimit && matcher.find()) {
             final LineColumn start = text.lineColumn(matcher.start());
-            final var startLine = start.getLine();
+            final int startLine = start.getLine();
 
-            final var ignore = isIgnore(startLine, text, start, matcher);
+            final boolean ignore = isIgnore(startLine, text, start, matcher);
             if (!ignore) {
                 matchCount++;
                 if (illegalPattern || checkForDuplicates
@@ -303,12 +303,12 @@ public class RegexpCheck extends AbstractCheck {
         else {
             end = text.lineColumn(matcher.end() - 1);
         }
-        var ignore = false;
+        boolean ignore = false;
         if (ignoreComments) {
             final FileContents theFileContents = getFileContents();
-            final var startColumn = start.getColumn();
-            final var endLine = end.getLine();
-            final var endColumn = end.getColumn();
+            final int startColumn = start.getColumn();
+            final int endLine = end.getLine();
+            final int endColumn = end.getColumn();
             ignore = theFileContents.hasIntersectionWithComment(startLine,
                 startColumn, endLine, endColumn);
         }

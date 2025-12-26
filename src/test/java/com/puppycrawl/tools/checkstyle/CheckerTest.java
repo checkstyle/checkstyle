@@ -381,10 +381,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(createTempFile("junit").getPath());
-        final var counter = checker.process(files);
+        final int counter = checker.process(files);
 
         // comparing to 1 as there is only one legal file in input
-        final var numLegalFiles = 1;
+        final int numLegalFiles = 1;
         final PropertyCacheFile cache = TestUtil.getInternalState(checker,
                 "cacheFile", PropertyCacheFile.class);
         assertWithMessage("There were more legal files than expected")
@@ -421,10 +421,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final String[] fileExtensions = {"java", "xml", "properties"};
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(createTempFile("junit").getPath());
-        final var counter = checker.process(allIgnoredFiles);
+        final int counter = checker.process(allIgnoredFiles);
 
         // comparing to 0 as there is no legal file in input
-        final var numLegalFiles = 0;
+        final int numLegalFiles = 0;
         assertWithMessage("There were more legal files than expected")
             .that(counter)
             .isEqualTo(numLegalFiles);
@@ -678,7 +678,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         }
 
         // There should 2 objects in cache: processed file (file.java) and checker configuration.
-        final var expectedNumberOfObjectsInCache = 2;
+        final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Cache has unexpected size")
             .that(cache)
             .hasSize(expectedNumberOfObjectsInCache);
@@ -737,7 +737,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cash have changed it hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterClear.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
-        final var expectedNumberOfObjectsInCacheAfterSecondRun = 2;
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 2;
         assertWithMessage("Cache has changed number of items")
             .that(cacheAfterSecondRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
@@ -958,7 +958,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has changed its hash")
             .that(cacheHash)
             .isEqualTo(cacheAfterFirstRun.getProperty(PropertyCacheFile.CONFIG_HASH_KEY));
-        final var expectedNumberOfObjectsInCache = 2;
+        final int expectedNumberOfObjectsInCache = 2;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
             .hasSize(expectedNumberOfObjectsInCache);
@@ -1005,7 +1005,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
             cacheAfterFirstRun.load(reader);
         }
 
-        final var expectedNumberOfObjectsInCacheAfterFirstRun = 4;
+        final int expectedNumberOfObjectsInCacheAfterFirstRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterFirstRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterFirstRun);
@@ -1040,7 +1040,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertWithMessage("Cache has null as a resource key")
             .that(cacheAfterFirstRun.getProperty(firstExternalResourceKey))
             .isNotNull();
-        final var expectedNumberOfObjectsInCacheAfterSecondRun = 4;
+        final int expectedNumberOfObjectsInCacheAfterSecondRun = 4;
         assertWithMessage("Number of items in cache differs from expected")
             .that(cacheAfterSecondRun)
             .hasSize(expectedNumberOfObjectsInCacheAfterSecondRun);
@@ -1629,7 +1629,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         // super.verify does not work here, for we change the logger
         out.flush();
-        final var errs = checker.process(Collections.singletonList(new File(path)));
+        final int errs = checker.process(Collections.singletonList(new File(path)));
         try (ByteArrayInputStream inputStream =
                 new ByteArrayInputStream(out.toByteArray());
             LineNumberReader lnr = new LineNumberReader(
@@ -1643,7 +1643,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     .toList();
             Arrays.sort(expected);
 
-            for (var i = 0; i < expected.length; i++) {
+            for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = "[ERROR] " + path + ":" + expected[i];
                 assertWithMessage("error message %s", i)
                         .that(actual.get(i))
@@ -1926,7 +1926,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     + " The check does not require comment nodes but there were comment nodes"
                     + " in the AST.");
             }
-            final var childCount = ast.getChildCount();
+            final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.ENGLISH,
                     "AST node in no comment tree has wrong number of children. "
@@ -1935,12 +1935,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 log(ast, msg);
             }
             // count children where comment lives
-            var actualChildCount = 0;
+            int actualChildCount = 0;
             for (DetailAST child = ast.getFirstChild().getFirstChild(); child != null; child =
                     child.getNextSibling()) {
                 actualChildCount++;
             }
-            final var cacheChildCount = ast.getFirstChild().getChildCount();
+            final int cacheChildCount = ast.getFirstChild().getChildCount();
             if (cacheChildCount != actualChildCount) {
                 final String msg = String.format(Locale.ENGLISH,
                         "AST node with no comment has wrong number of children. "
@@ -1984,7 +1984,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                     TokenTypes.BLOCK_COMMENT_BEGIN) == null) {
                 log(ast, "Incorrect AST structure.");
             }
-            final var childCount = ast.getChildCount();
+            final int childCount = ast.getChildCount();
             if (childCount != METHOD_DEF_CHILD_COUNT) {
                 final String msg = String.format(Locale.ENGLISH,
                     "AST node in comment tree has wrong number of children. "
@@ -1993,12 +1993,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 log(ast, msg);
             }
             // count children where comment lives
-            var actualChildCount = 0;
+            int actualChildCount = 0;
             for (DetailAST child = ast.getFirstChild().getFirstChild(); child != null; child =
                     child.getNextSibling()) {
                 actualChildCount++;
             }
-            final var cacheChildCount = ast.getFirstChild().getChildCount();
+            final int cacheChildCount = ast.getFirstChild().getChildCount();
             if (cacheChildCount != actualChildCount) {
                 final String msg = String.format(Locale.ENGLISH,
                         "AST node with comment has wrong number of children. "

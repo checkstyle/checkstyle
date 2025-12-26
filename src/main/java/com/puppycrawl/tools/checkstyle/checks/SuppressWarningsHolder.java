@@ -102,12 +102,12 @@ public class SuppressWarningsHolder
      * @return the default alias for the given check
      */
     public static String getDefaultAlias(String sourceName) {
-        var endIndex = sourceName.length();
+        int endIndex = sourceName.length();
         final String sourceNameLower = sourceName.toLowerCase(Locale.ENGLISH);
         if (sourceNameLower.endsWith(CHECK_SUFFIX)) {
             endIndex -= CHECK_SUFFIX.length();
         }
-        final var startIndex = sourceNameLower.lastIndexOf('.') + 1;
+        final int startIndex = sourceNameLower.lastIndexOf('.') + 1;
         return sourceNameLower.substring(startIndex, endIndex);
     }
 
@@ -126,7 +126,7 @@ public class SuppressWarningsHolder
         // check alias for the CheckNameCheck
         String checkAlias = CHECK_ALIAS_MAP.get(checkName);
         if (checkAlias == null && checkName.endsWith(checkNameSuffix)) {
-            final var checkStartIndex = checkName.length() - checkNameSuffix.length();
+            final int checkStartIndex = checkName.length() - checkNameSuffix.length();
             final String checkNameWithoutSuffix = checkName.substring(0, checkStartIndex);
             // check alias for the CheckName
             checkAlias = CHECK_ALIAS_MAP.get(checkNameWithoutSuffix);
@@ -177,7 +177,7 @@ public class SuppressWarningsHolder
      */
     public void setAliasList(String... aliasList) {
         for (String sourceAlias : aliasList) {
-            final var index = sourceAlias.indexOf('=');
+            final int index = sourceAlias.indexOf('=');
             if (index > 0) {
                 registerAlias(sourceAlias.substring(0, index), sourceAlias
                     .substring(index + 1));
@@ -201,14 +201,14 @@ public class SuppressWarningsHolder
         final List<Entry> entries = ENTRIES.get();
         final String sourceName = event.getSourceName();
         final String checkAlias = getAlias(sourceName);
-        final var line = event.getLine();
-        final var column = event.getColumn();
-        var suppressed = false;
+        final int line = event.getLine();
+        final int column = event.getColumn();
+        boolean suppressed = false;
         for (Entry entry : entries) {
-            final var afterStart = isSuppressedAfterEventStart(line, column, entry);
-            final var beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
+            final boolean afterStart = isSuppressedAfterEventStart(line, column, entry);
+            final boolean beforeEnd = isSuppressedBeforeEventEnd(line, column, entry);
             final String checkName = entry.checkName();
-            final var nameMatches =
+            final boolean nameMatches =
                 ALL_WARNING_MATCHING_ID.equals(checkName)
                     || checkName.equalsIgnoreCase(checkAlias)
                     || getDefaultAlias(checkName).equalsIgnoreCase(checkAlias)
@@ -299,8 +299,8 @@ public class SuppressWarningsHolder
      */
     private static void addSuppressions(List<String> values, DetailAST targetAST) {
         // get text range of target
-        final var firstLine = targetAST.getLineNo();
-        final var firstColumn = targetAST.getColumnNo();
+        final int firstLine = targetAST.getLineNo();
+        final int firstColumn = targetAST.getColumnNo();
         final DetailAST nextAST = targetAST.getNextSibling();
         final int lastLine;
         final int lastColumn;
@@ -350,7 +350,7 @@ public class SuppressWarningsHolder
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
         if (lparenAST != null) {
             final DetailAST nextAST = lparenAST.getNextSibling();
-            final var nextType = nextAST.getType();
+            final int nextType = nextAST.getType();
             switch (nextType) {
                 case TokenTypes.EXPR:
                 case TokenTypes.ANNOTATION_ARRAY_INIT:
@@ -404,7 +404,7 @@ public class SuppressWarningsHolder
      */
     private static DetailAST getNthChild(DetailAST ast, int index) {
         DetailAST child = ast.getFirstChild();
-        for (var i = 0; i < index && child != null; ++i) {
+        for (int i = 0; i < index && child != null; ++i) {
             child = child.getNextSibling();
         }
         return child;

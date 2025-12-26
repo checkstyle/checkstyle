@@ -99,7 +99,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
 
-        final var max = 3;
+        final int max = 3;
 
         final String[] expected = {
             "16:12: " + getCheckMessage(MSG_KEY, 4, max),
@@ -136,7 +136,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     @Test
     public void testWhenExpression() throws Exception {
 
-        final var max = 0;
+        final int max = 0;
 
         final String[] expected = {
             "17:21: " + getCheckMessage(MSG_KEY, 6, max),

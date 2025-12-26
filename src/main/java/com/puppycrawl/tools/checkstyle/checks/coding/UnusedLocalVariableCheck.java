@@ -247,7 +247,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final var type = ast.getType();
+        final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variables);
         }
@@ -316,11 +316,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private static void visitIdentToken(DetailAST identAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parent = identAst.getParent();
-        final var isMethodReferenceMethodName = parent.getType() == TokenTypes.METHOD_REF
+        final boolean isMethodReferenceMethodName = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getFirstChild() != identAst;
-        final var isConstructorReference = parent.getType() == TokenTypes.METHOD_REF
+        final boolean isConstructorReference = parent.getType() == TokenTypes.METHOD_REF
                 && parent.getLastChild().getType() == TokenTypes.LITERAL_NEW;
-        final var isNestedClassInitialization =
+        final boolean isNestedClassInitialization =
                 TokenUtil.isOfType(identAst.getNextSibling(), TokenTypes.LITERAL_NEW)
                 && parent.getType() == TokenTypes.DOT;
 
@@ -374,7 +374,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @return true if variableDefAst is an instance variable in local anonymous inner class
      */
     private static boolean isInsideLocalAnonInnerClass(DetailAST literalNewAst) {
-        var result = false;
+        boolean result = false;
         final DetailAST lastChild = literalNewAst.getLastChild();
         if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
             DetailAST currentAst = literalNewAst;
@@ -469,7 +469,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static void addLocalVariables(DetailAST varDefAst, Deque<VariableDesc> variablesStack) {
         final DetailAST parentAst = varDefAst.getParent();
         final DetailAST grandParent = parentAst.getParent();
-        final var isInstanceVarInInnerClass =
+        final boolean isInstanceVarInInnerClass =
                 grandParent.getType() == TokenTypes.LITERAL_NEW
                 || grandParent.getType() == TokenTypes.CLASS_DEF;
         if (isInstanceVarInInnerClass
@@ -624,11 +624,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
     private static int calculateTypeDeclarationDistance(String outerTypeName,
                                                         TypeDeclDesc firstType,
                                                         TypeDeclDesc secondType) {
-        final var firstMatchCount =
+        final int firstMatchCount =
                 countMatchingQualifierChars(outerTypeName, firstType.getQualifiedName());
-        final var secondMatchCount =
+        final int secondMatchCount =
                 countMatchingQualifierChars(outerTypeName, secondType.getQualifiedName());
-        final var matchDistance = Integer.compare(secondMatchCount, firstMatchCount);
+        final int matchDistance = Integer.compare(secondMatchCount, firstMatchCount);
 
         final int distance;
         if (matchDistance == 0) {
@@ -660,15 +660,15 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private static int countMatchingQualifierChars(String pattern,
                                                    String candidate) {
-        final var typeDeclarationToBeMatchedLength = candidate.length();
-        final var minLength = Math
+        final int typeDeclarationToBeMatchedLength = candidate.length();
+        final int minLength = Math
                 .min(typeDeclarationToBeMatchedLength, pattern.length());
-        final var shouldCountBeUpdatedAtLastCharacter =
+        final boolean shouldCountBeUpdatedAtLastCharacter =
                 typeDeclarationToBeMatchedLength > minLength
                 && candidate.charAt(minLength) == PACKAGE_SEPARATOR.charAt(0);
 
-        var result = 0;
-        for (var idx = 0;
+        int result = 0;
+        for (int idx = 0;
              idx < minLength
                 && pattern.charAt(idx) == candidate.charAt(idx);
              idx++) {
@@ -726,7 +726,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param variablesStack stack of all the relevant variables in the scope
      */
     private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
-        final var type = ast.getType();
+        final int type = ast.getType();
         if (type == TokenTypes.DOT) {
             visitDotToken(ast, variablesStack);
         }

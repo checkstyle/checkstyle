@@ -43,7 +43,7 @@ public class PackageDefHandler extends AbstractExpressionHandler {
 
     @Override
     public void checkIndentation() {
-        final var columnNo = expandedTabsColumnNo(getMainAst());
+        final int columnNo = expandedTabsColumnNo(getMainAst());
 
         if (!getIndent().isAcceptable(columnNo) && isOnStartOfLine(getMainAst())) {
             logError(getMainAst(), "", columnNo);

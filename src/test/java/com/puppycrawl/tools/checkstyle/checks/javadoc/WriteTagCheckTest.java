@@ -208,7 +208,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         final Matcher matcher = severityPattern.matcher(output);
 
         // First log is just the normal tag one
-        final var firstMatchFound = matcher.find();
+        final boolean firstMatchFound = matcher.find();
         assertWithMessage("Severity level should be wrapped in a square bracket []")
                 .that(firstMatchFound)
                 .isTrue();
@@ -222,7 +222,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
 
         // Now we check for the second log which should log error  if
         // the previous log did not have an issue while resetting the original severity level
-        final var secondMatchFound = matcher.find();
+        final boolean secondMatchFound = matcher.find();
         assertWithMessage("Severity level should be wrapped in a square bracket []")
                 .that(secondMatchFound)
                 .isTrue();
@@ -312,14 +312,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         getStream().flush();
         final List<File> theFiles = new ArrayList<>();
         Collections.addAll(theFiles, processedFiles);
-        final var errs = checker.process(theFiles);
+        final int errs = checker.process(theFiles);
 
         // process each of the lines
         try (ByteArrayInputStream localStream =
                 new ByteArrayInputStream(getStream().toByteArray());
             LineNumberReader lnr = new LineNumberReader(
                 new InputStreamReader(localStream, StandardCharsets.UTF_8))) {
-            for (var i = 0; i < expected.length; i++) {
+            for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
                 final String actual = lnr.readLine();
                 assertWithMessage("error message %s", i)

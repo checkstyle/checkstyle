@@ -180,7 +180,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
         DetailAST currentStatement = ast;
         final DetailAST previousSibling = ast.getPreviousSibling();
-        final var isUnnecessarySemicolon = previousSibling == null
+        final boolean isUnnecessarySemicolon = previousSibling == null
             || previousSibling.getType() == TokenTypes.RESOURCES
             || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
         if (!isUnnecessarySemicolon) {
@@ -205,7 +205,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @param currentStatement current statement
      */
     private void checkLambda(DetailAST ast, DetailAST currentStatement) {
-        var countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
+        int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
         countOfSemiInCurrentLambda++;
         countOfSemiInLambda.push(countOfSemiInCurrentLambda);
         if (!inForHeader && countOfSemiInCurrentLambda > 1

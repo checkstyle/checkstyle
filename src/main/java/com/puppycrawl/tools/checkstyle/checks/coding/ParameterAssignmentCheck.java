@@ -106,7 +106,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final var type = ast.getType();
+        final int type = ast.getType();
         if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)) {
             visitMethodDef(ast);
         }
@@ -122,7 +122,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        final var type = ast.getType();
+        final int type = ast.getType();
         if (TokenUtil.isOfType(type, TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF)
                 || type == TokenTypes.LAMBDA
                 && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {

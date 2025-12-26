@@ -541,7 +541,7 @@ public class HiddenFieldCheckTest
 
         @Override
         public boolean test(Object frame) {
-            var result = frame != null;
+            boolean result = frame != null;
 
             // verify object is cleared
             if (result

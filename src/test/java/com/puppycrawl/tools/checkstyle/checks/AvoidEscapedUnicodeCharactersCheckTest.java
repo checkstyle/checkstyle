@@ -473,7 +473,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testAllowEscapesForControlCharacterSetForAllCharacters() throws Exception {
 
-        final var indexOfStartLineInInputFile = 16;
+        final int indexOfStartLineInInputFile = 16;
         final String message = getCheckMessage(MSG_KEY);
         final String[] expected = IntStream.rangeClosed(0, 0xFFFF)
                 .parallel()
@@ -498,7 +498,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     @Test
     public void testCountMatches() throws Exception {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
-        final var actual = TestUtil.invokeMethod(check, "countMatches", Integer.class,
+        final int actual = TestUtil.invokeMethod(check, "countMatches", Integer.class,
                 Pattern.compile("\\\\u[a-fA-F\\d]{4}"), "\\u1234");
         assertWithMessage("Unexpected matches count")
             .that(actual)
@@ -523,7 +523,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         }
 
         // Replacing duplications like "\\uF{3}9" with "\\uFFF9"
-        for (var i = 4; i > 1; i--) {
+        for (int i = 4; i > 1; i--) {
             final String regex = "([A-F])\\{" + i + "}";
             String replacement = "$1$1{" + (i - 1) + "}";
             if (i == 2) {
@@ -536,7 +536,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final List<String> expressionParts = Splitter.on("|").splitToList(expression);
         final Pattern unicodeCharPattern = Pattern.compile("^\\\\\\\\u[\\dA-F]{4}$");
         String lastChar = null;
-        for (var i = 0; i < expressionParts.size(); i++) {
+        for (int i = 0; i < expressionParts.size(); i++) {
             final String currentChar = expressionParts.get(i);
             final Matcher matcher = unicodeCharPattern.matcher(currentChar);
             if (!matcher.matches()) {

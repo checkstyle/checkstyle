@@ -145,7 +145,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
         DetailNode javadocTagSection =
                 JavadocUtil.findFirstToken(
                         javadocRoot, JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
-        var foundTag = false;
+        boolean foundTag = false;
         while (javadocTagSection != null) {
             if (!isTagIgnored(javadocTagSection)) {
                 foundTag = true;

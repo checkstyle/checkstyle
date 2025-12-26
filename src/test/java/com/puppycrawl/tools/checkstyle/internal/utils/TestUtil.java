@@ -81,7 +81,7 @@ public final class TestUtil {
     public static boolean isUtilsClassHasPrivateConstructor(final Class<?> utilClass)
             throws ReflectiveOperationException {
         final Constructor<?> constructor = utilClass.getDeclaredConstructor();
-        final var result = Modifier.isPrivate(constructor.getModifiers());
+        final boolean result = Modifier.isPrivate(constructor.getModifiers());
         constructor.setAccessible(true);
         constructor.newInstance();
         return result;
@@ -266,7 +266,7 @@ public final class TestUtil {
      * @return adjusted flush count
      */
     public static int adjustFlushCountForOutputStreamClose(int flushCount) {
-        var result = flushCount;
+        int result = flushCount;
         if (getJdkVersion() >= 13) {
             ++result;
         }

@@ -73,11 +73,11 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        var lineNum = 0;
-        for (var index = 0; index < fileText.size(); index++) {
+        int lineNum = 0;
+        for (int index = 0; index < fileText.size(); index++) {
             final String line = fileText.get(index);
             lineNum++;
-            final var tabPosition = line.indexOf('\t');
+            final int tabPosition = line.indexOf('\t');
             if (tabPosition != -1) {
                 if (eachLine) {
                     log(lineNum, tabPosition, MSG_CONTAINS_TAB);

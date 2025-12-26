@@ -57,13 +57,13 @@ public class CrAwareLexerSimulator extends LexerATNSimulator {
      */
     @Override
     public void consume(CharStream input) {
-        final var currentChar = input.LA(1);
+        final int currentChar = input.LA(1);
         if (currentChar == '\n') {
             line++;
             charPositionInLine = 0;
         }
         else if (currentChar == '\r') {
-            final var nextChar = input.LA(2);
+            final int nextChar = input.LA(2);
             if (nextChar != '\n') {
                 line++;
                 charPositionInLine = 0;

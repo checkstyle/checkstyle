@@ -203,23 +203,23 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         invokeSetParentMethod(firstLevelB, root);
 
-        final var childCountLevelB = firstLevelB.getChildCount(0);
+        final int childCountLevelB = firstLevelB.getChildCount(0);
         assertWithMessage("Invalid child count")
             .that(childCountLevelB)
             .isEqualTo(0);
-        final var childCountLevelA = firstLevelA.getChildCount(TokenTypes.EXPR);
+        final int childCountLevelA = firstLevelA.getChildCount(TokenTypes.EXPR);
         assertWithMessage("Invalid child count")
             .that(childCountLevelA)
             .isEqualTo(0);
-        final var identTypeCount = root.getChildCount(TokenTypes.IDENT);
+        final int identTypeCount = root.getChildCount(TokenTypes.IDENT);
         assertWithMessage("Invalid child count")
             .that(identTypeCount)
             .isEqualTo(1);
-        final var exprTypeCount = root.getChildCount(TokenTypes.EXPR);
+        final int exprTypeCount = root.getChildCount(TokenTypes.EXPR);
         assertWithMessage("Invalid child count")
             .that(exprTypeCount)
             .isEqualTo(1);
-        final var invalidTypeCount = root.getChildCount(0);
+        final int invalidTypeCount = root.getChildCount(0);
         assertWithMessage("Invalid child count")
             .that(invalidTypeCount)
             .isEqualTo(0);
@@ -432,11 +432,11 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         );
 
         for (Consumer<DetailAstImpl> method : clearChildCountCacheMethods) {
-            final var startCount = parent.getChildCount();
+            final int startCount = parent.getChildCount();
             method.accept(null);
-            final var intermediateCount = TestUtil.getInternalState(parent, "childCount",
+            final int intermediateCount = TestUtil.getInternalState(parent, "childCount",
                     Integer.class);
-            final var finishCount = parent.getChildCount();
+            final int finishCount = parent.getChildCount();
             assertWithMessage("Child count has changed")
                 .that(finishCount)
                 .isEqualTo(startCount);
@@ -445,10 +445,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                 .isEqualTo(Integer.MIN_VALUE);
         }
 
-        final var startCount = child.getChildCount();
+        final int startCount = child.getChildCount();
         child.addChild(null);
-        final var intermediateCount = TestUtil.getInternalState(child, "childCount", Integer.class);
-        final var finishCount = child.getChildCount();
+        final int intermediateCount = TestUtil.getInternalState(child, "childCount", Integer.class);
+        final int finishCount = child.getChildCount();
         assertWithMessage("Child count has changed")
             .that(finishCount)
             .isEqualTo(startCount);
@@ -690,7 +690,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                     */
                     """);
             bw.write("class C {\n");
-            for (var i = 0; i <= 30000; i++) {
+            for (int i = 0; i <= 30000; i++) {
                 bw.write("// " + i + "\n");
             }
             bw.write("}\n");

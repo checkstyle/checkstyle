@@ -630,7 +630,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
      */
     private static boolean isSubset(int[] array, int... arrayToCheckIn) {
         Arrays.sort(arrayToCheckIn);
-        var result = true;
+        boolean result = true;
         for (final int element : array) {
             if (Arrays.binarySearch(arrayToCheckIn, element) < 0) {
                 result = false;

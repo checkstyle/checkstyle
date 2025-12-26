@@ -284,7 +284,7 @@ public final class TokenUtil {
      * @return true if type matches one of the given types.
      */
     public static boolean isOfType(int type, int... types) {
-        var matching = false;
+        boolean matching = false;
         for (int tokenType : types) {
             if (tokenType == type) {
                 matching = true;
@@ -336,8 +336,8 @@ public final class TokenUtil {
      * @return true if tokenType is LITERAL_TRUE or LITERAL_FALSE
      */
     public static boolean isBooleanLiteralType(final int tokenType) {
-        final var isTrue = tokenType == TokenTypes.LITERAL_TRUE;
-        final var isFalse = tokenType == TokenTypes.LITERAL_FALSE;
+        final boolean isTrue = tokenType == TokenTypes.LITERAL_TRUE;
+        final boolean isFalse = tokenType == TokenTypes.LITERAL_FALSE;
         return isTrue || isFalse;
     }
 

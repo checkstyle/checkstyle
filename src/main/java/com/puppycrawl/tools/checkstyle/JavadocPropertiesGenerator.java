@@ -161,7 +161,7 @@ public final class JavadocPropertiesGenerator {
      * @return {@code true} if matches; {@code false} otherwise
      */
     private static boolean isPublicStaticFinalIntField(DetailAST ast) {
-        var result = ast.getType() == TokenTypes.VARIABLE_DEF;
+        boolean result = ast.getType() == TokenTypes.VARIABLE_DEF;
         if (result) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
             final DetailAST arrayDeclarator = type.getFirstChild().getNextSibling();
@@ -264,7 +264,7 @@ public final class JavadocPropertiesGenerator {
      */
     private static void formatInlineCodeTag(StringBuilder builder, DetailNode inlineTag)
             throws CheckstyleException {
-        final var tagType = inlineTag.getFirstChild().getType();
+        final int tagType = inlineTag.getFirstChild().getType();
 
         if (tagType != JavadocCommentsTokenTypes.LITERAL_INLINE_TAG
                 && tagType != JavadocCommentsTokenTypes.CODE_INLINE_TAG) {
@@ -272,7 +272,7 @@ public final class JavadocPropertiesGenerator {
                 + JavadocUtil.getTokenName(tagType));
         }
 
-        final var wrapWithCodeTag = tagType == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
+        final boolean wrapWithCodeTag = tagType == JavadocCommentsTokenTypes.CODE_INLINE_TAG;
 
         for (DetailNode node = inlineTag.getFirstChild().getFirstChild(); node != null;
                 node = node.getNextSibling()) {

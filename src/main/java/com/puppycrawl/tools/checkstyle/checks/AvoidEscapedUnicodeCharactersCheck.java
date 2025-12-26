@@ -293,9 +293,9 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true, if String literal contains Unicode control chars.
      */
     private static boolean isOnlyUnicodeValidChars(String literal, Pattern pattern) {
-        final var unicodeMatchesCounter =
+        final int unicodeMatchesCounter =
                 countMatches(UNICODE_REGEXP, literal);
-        final var unicodeValidMatchesCounter =
+        final int unicodeValidMatchesCounter =
                 countMatches(pattern, literal);
         return unicodeMatchesCounter - unicodeValidMatchesCounter == 0;
     }
@@ -307,14 +307,14 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
-        var lineNo = ast.getLineNo();
+        int lineNo = ast.getLineNo();
 
         // Since the trailing comment in the case of text blocks must follow the """ delimiter,
         // we need to look for it after TEXT_BLOCK_LITERAL_END.
         if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
             lineNo = ast.getNextSibling().getLineNo();
         }
-        var result = false;
+        boolean result = false;
         if (singlelineComments.containsKey(lineNo)) {
             result = true;
         }
@@ -350,7 +350,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return count of regexp matches.
      */
     private static int countMatches(Pattern pattern, String target) {
-        var matcherCounter = 0;
+        int matcherCounter = 0;
         final Matcher matcher = pattern.matcher(target);
         while (matcher.find()) {
             matcherCounter++;

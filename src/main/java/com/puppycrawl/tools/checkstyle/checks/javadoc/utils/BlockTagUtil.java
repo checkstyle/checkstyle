@@ -56,9 +56,9 @@ public final class BlockTagUtil {
     public static List<TagInfo> extractBlockTags(String... lines) {
         final List<TagInfo> tags = new ArrayList<>();
 
-        for (var i = 0; i < lines.length; i++) {
+        for (int i = 0; i < lines.length; i++) {
             // Starting lines of a comment have a different first line pattern.
-            final var isFirstLine = i == 0;
+            final boolean isFirstLine = i == 0;
             final Pattern pattern;
             if (isFirstLine) {
                 pattern = BLOCK_TAG_PATTERN_FIRST_LINE;
@@ -74,15 +74,15 @@ public final class BlockTagUtil {
                 final String tagName = tagMatcher.group(1);
 
                 // offset of one for the @ character
-                final var colNum = tagMatcher.start(1) - 1;
-                final var lineNum = i + 1;
+                final int colNum = tagMatcher.start(1) - 1;
+                final int lineNum = i + 1;
 
                 final String remainder = line.substring(tagMatcher.end(1));
                 String tagValue = remainder.trim();
 
                 // Handle the case where we're on the last line of a Javadoc comment.
                 if (tagValue.endsWith(JAVADOC_CLOSING_TAG)) {
-                    final var endIndex = tagValue.length() - JAVADOC_CLOSING_TAG.length();
+                    final int endIndex = tagValue.length() - JAVADOC_CLOSING_TAG.length();
                     tagValue = tagValue.substring(0, endIndex).trim();
                 }
 

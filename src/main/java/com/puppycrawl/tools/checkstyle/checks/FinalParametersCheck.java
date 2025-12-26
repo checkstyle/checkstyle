@@ -216,7 +216,7 @@ public class FinalParametersCheck extends AbstractCheck {
      * @return true if param has to be skipped.
      */
     private boolean isIgnoredPrimitiveParam(DetailAST paramDef) {
-        var result = false;
+        boolean result = false;
         if (ignorePrimitiveTypes) {
             final DetailAST type = paramDef.findFirstToken(TokenTypes.TYPE);
             final DetailAST parameterType = type.getFirstChild();

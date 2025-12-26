@@ -101,7 +101,7 @@ public class MemberNameCheck
     protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final var isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 
         return !isStatic && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
             && !ScopeUtil.isLocalVariableDef(ast)

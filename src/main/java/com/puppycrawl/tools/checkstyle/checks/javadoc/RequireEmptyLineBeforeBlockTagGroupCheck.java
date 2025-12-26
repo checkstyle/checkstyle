@@ -111,7 +111,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * @return true when there is a javadoc tag before the provided tagNode.
      */
     private static boolean isAnotherTagBefore(DetailNode tagNode) {
-        var found = false;
+        boolean found = false;
         DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null) {
             if (currentNode.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
@@ -179,7 +179,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * @return true if there are not enough empty lines before the tagNode.
      */
     private static boolean hasInsufficientConsecutiveNewlines(DetailNode tagNode) {
-        var count = 0;
+        int count = 0;
         DetailNode currentNode = tagNode.getPreviousSibling();
         while (currentNode != null
                 && (CommonUtil.isBlank(currentNode.getText())

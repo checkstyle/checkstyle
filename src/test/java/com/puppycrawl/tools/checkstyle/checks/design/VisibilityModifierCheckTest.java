@@ -430,7 +430,7 @@ public class VisibilityModifierCheckTest
             new File(getPath("InputVisibilityModifierIsStarImport.java")),
             JavaParser.Options.WITHOUT_COMMENTS).getFirstChild().getNextSibling();
         final VisibilityModifierCheck check = new VisibilityModifierCheck();
-        final var actual = TestUtil.invokeMethod(check, "isStarImport",
+        final boolean actual = TestUtil.invokeMethod(check, "isStarImport",
                 Boolean.class, importAst);
 
         assertWithMessage("Should return true when star import is passed")

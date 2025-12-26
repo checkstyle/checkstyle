@@ -243,7 +243,7 @@ public class SuppressionCommentFilter
 
     @Override
     public boolean accept(TreeWalkerAuditEvent event) {
-        var accepted = true;
+        boolean accepted = true;
 
         if (event.getViolation() != null) {
             // Lazy update. If the first event for the current file, update file
@@ -270,7 +270,7 @@ public class SuppressionCommentFilter
     private Tag findNearestMatch(TreeWalkerAuditEvent event) {
         Tag result = null;
         for (Tag tag : tags) {
-            final var eventLine = event.getLine();
+            final int eventLine = event.getLine();
             if (tag.getLine() > eventLine
                 || tag.getLine() == eventLine
                     && tag.getColumn() > event.getColumn()) {
@@ -309,10 +309,10 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions(Collection<TextBlock> comments) {
         for (TextBlock comment : comments) {
-            final var startLineNo = comment.getStartLineNo();
+            final int startLineNo = comment.getStartLineNo();
             final String[] text = comment.getText();
             tagCommentLine(text[0], startLineNo, comment.getStartColNo());
-            for (var i = 1; i < text.length; i++) {
+            for (int i = 1; i < text.length; i++) {
                 tagCommentLine(text[i], startLineNo + i, 0);
             }
         }
@@ -549,7 +549,7 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
-            var match = true;
+            boolean match = true;
             if (tagIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
@@ -569,7 +569,7 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
-            var match = true;
+            boolean match = true;
             if (tagMessageRegexp != null) {
                 final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
                 match = messageMatcher.find();

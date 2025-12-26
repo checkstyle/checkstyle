@@ -119,7 +119,7 @@ public class AvoidStaticImportCheck
      * @return true if except false if not
      */
     private boolean isExempt(String classOrStaticMember) {
-        var exempt = false;
+        boolean exempt = false;
 
         for (String exclude : excludes) {
             if (classOrStaticMember.equals(exclude)
@@ -140,7 +140,7 @@ public class AvoidStaticImportCheck
      * @return true if member in exclusion list
      */
     private static boolean isStarImportOfPackage(String classOrStaticMember, String exclude) {
-        var result = false;
+        boolean result = false;
         if (exclude.endsWith(".*")) {
             // this section allows explicit imports
             // to be exempt when configured using

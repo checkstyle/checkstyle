@@ -295,7 +295,7 @@ public final class ConfigurationLoader {
                                                   ThreadModeSettings threadModeSettings)
             throws CheckstyleException {
         try {
-            final var omitIgnoreModules = ignoredModulesOptions == IgnoredModulesOptions.OMIT;
+            final boolean omitIgnoreModules = ignoredModulesOptions == IgnoredModulesOptions.OMIT;
             final ConfigurationLoader loader =
                     new ConfigurationLoader(overridePropsResolver,
                             omitIgnoreModules, threadModeSettings);
@@ -431,9 +431,9 @@ public final class ConfigurationLoader {
                                                Collection<String> fragments,
                                                Collection<String> propertyRefs)
                 throws CheckstyleException {
-            var prev = 0;
+            int prev = 0;
             // search for the next instance of $ from the 'prev' position
-            var pos = value.indexOf(DOLLAR_SIGN, prev);
+            int pos = value.indexOf(DOLLAR_SIGN, prev);
             while (pos >= 0) {
                 // if there was any text before this, add it as a fragment
                 if (pos > 0) {
@@ -447,7 +447,7 @@ public final class ConfigurationLoader {
                 }
                 else if (value.charAt(pos + 1) == '{') {
                     // property found, extract its name or bail on a typo
-                    final var endName = value.indexOf('}', pos);
+                    final int endName = value.indexOf('}', pos);
                     if (endName == -1) {
                         throw new CheckstyleException("Syntax error in property: "
                                                         + value);
@@ -568,7 +568,7 @@ public final class ConfigurationLoader {
 
                 // omit this module if these should be omitted and the module
                 // has the severity 'ignore'
-                final var omitModule = omitIgnoredModules
+                final boolean omitModule = omitIgnoredModules
                     && level == SeverityLevel.IGNORE;
 
                 if (omitModule && !configStack.isEmpty()) {

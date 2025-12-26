@@ -134,11 +134,11 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
     public void visitJavadocToken(DetailNode ast) {
         final DetailAST parentAst = getParent(getBlockCommentAst());
 
-        final var containsAnnotation =
+        final boolean containsAnnotation =
             AnnotationUtil.containsAnnotation(parentAst, DEPRECATED)
             || AnnotationUtil.containsAnnotation(parentAst, FQ_DEPRECATED);
 
-        final var containsJavadocTag = containsDeprecatedTag(ast);
+        final boolean containsJavadocTag = containsDeprecatedTag(ast);
 
         if (containsAnnotation ^ containsJavadocTag) {
             log(parentAst.getLineNo(), MSG_KEY_ANNOTATION_MISSING_DEPRECATED);
@@ -152,7 +152,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
      * @return true if contains the tag
      */
     private boolean containsDeprecatedTag(DetailNode javadoc) {
-        var found = false;
+        boolean found = false;
         DetailNode node = javadoc.getFirstChild();
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
@@ -183,7 +183,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
         }
 
         while (true) {
-            final var type = result.getType();
+            final int type = result.getType();
             if (TYPES_HASH_SET.get(type)) {
                 result = result.getParent();
             }

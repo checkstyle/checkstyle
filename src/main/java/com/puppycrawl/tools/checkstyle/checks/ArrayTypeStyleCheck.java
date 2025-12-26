@@ -76,13 +76,13 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
         final DetailAST identAst = typeAST.getNextSibling();
         // If identAst is null, we have a 'LITERAL_NEW' expression, i.e. 'new int[2][2]'
         if (identAst != null) {
-            final var isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
-            final var isJavaStyle = identAst.getLineNo() > ast.getLineNo()
+            final boolean isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
+            final boolean isJavaStyle = identAst.getLineNo() > ast.getLineNo()
                 || identAst.getColumnNo() - ast.getColumnNo() > -1;
 
             // force all methods to be Java style (see note in top Javadoc)
-            final var isMethodViolation = isMethod && !isJavaStyle;
-            final var isVariableViolation = !isMethod
+            final boolean isMethodViolation = isMethod && !isJavaStyle;
+            final boolean isVariableViolation = !isMethod
                     && isJavaStyle != javaStyle;
 
             if (isMethodViolation || isVariableViolation) {

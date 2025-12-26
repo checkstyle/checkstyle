@@ -161,7 +161,7 @@ public class XmlLoader
         public static void setFeaturesBySystemProperty(SAXParserFactory factory)
                 throws SAXException, ParserConfigurationException {
 
-            final var enableExternalDtdLoad = Boolean.parseBoolean(
+            final boolean enableExternalDtdLoad = Boolean.parseBoolean(
                 System.getProperty(ENABLE_EXTERNAL_DTD_LOAD, "false"));
 
             factory.setFeature(LOAD_EXTERNAL_DTD, enableExternalDtdLoad);

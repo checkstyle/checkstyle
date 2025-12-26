@@ -62,14 +62,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             throws IOException {
         final List<IndentComment> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Path.of(aFileName))) {
-            var lineNumber = 1;
+            int lineNumber = 1;
             String line = br.readLine();
             IndentComment pendingBelowComment = null;
 
             while (line != null) {
                 final Matcher match = LINE_WITH_COMMENT_REGEX.matcher(line);
                 if (pendingBelowComment != null) {
-                    final var actualIndent = getLineStart(line, tabWidth);
+                    final int actualIndent = getLineStart(line, tabWidth);
 
                     processPendingBelowComment(pendingBelowComment, actualIndent,
                             lineNumber, result);
@@ -77,14 +77,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     pendingBelowComment = null;
                 }
                 else if (match.matches()) {
-                    final var isBelow = line.contains("//below indent:");
+                    final boolean isBelow = line.contains("//below indent:");
                     final IndentComment warn = new IndentComment(match, lineNumber);
 
                     if (isBelow) {
                         pendingBelowComment = warn;
                     }
                     else {
-                        final var actualIndent = getLineStart(line, tabWidth);
+                        final int actualIndent = getLineStart(line, tabWidth);
                         processInlineComment(warn, actualIndent, lineNumber, aFileName, result);
                     }
                 }
@@ -154,17 +154,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     private static boolean isCommentConsistent(IndentComment comment) {
         final String[] levels = comment.getExpectedWarning().split(", ");
-        final var indent = comment.getIndent() + comment.getIndentOffset();
+        final int indent = comment.getIndent() + comment.getIndentOffset();
         final boolean result;
         if (levels.length > 1) {
             // multi
-            final var containsActualLevel =
+            final boolean containsActualLevel =
                             Arrays.asList(levels).contains(String.valueOf(indent));
 
             result = containsActualLevel != comment.isWarning();
         }
         else {
-            final var expectedWarning = Integer.parseInt(comment.getExpectedWarning());
+            final int expectedWarning = Integer.parseInt(comment.getExpectedWarning());
 
             final boolean test;
             if (comment.isExpectedNonStrict()) {
@@ -182,8 +182,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     private static int getLineStart(String line, final int tabWidth) {
-        var lineStart = 0;
-        for (var index = 0; index < line.length(); ++index) {
+        int lineStart = 0;
+        for (int index = 0; index < line.length(); ++index) {
             if (!Character.isWhitespace(line.charAt(index))) {
                 lineStart = CommonUtil.lengthExpandedTabs(line, index, tabWidth);
                 break;
@@ -195,7 +195,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     private void verifyWarns(Configuration config, String filePath,
                     String... expected)
                     throws Exception {
-        final var tabWidth = Integer.parseInt(config.getProperty("tabWidth"));
+        final int tabWidth = Integer.parseInt(config.getProperty("tabWidth"));
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         verify(config, filePath, expected, linesWithWarn);
@@ -3348,8 +3348,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getCheckMessage(MSG_ERROR_MULTI, arguments),
             getCheckMessage(MSG_CHILD_ERROR_MULTI, arguments),
         };
-        final var isInOrder = Arrays.stream(messages).allMatch(msg -> {
-            final var indexOfArgumentZero = msg.indexOf((String) arguments[0]);
+        final boolean isInOrder = Arrays.stream(messages).allMatch(msg -> {
+            final int indexOfArgumentZero = msg.indexOf((String) arguments[0]);
             return Arrays.stream(arguments)
                     .map(String.class::cast)
                     .mapToInt(msg::indexOf)
@@ -4185,7 +4185,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public void addError(AuditEvent event) {
-            final var line = event.getLine();
+            final int line = event.getLine();
             final String message = event.getMessage();
 
             assertWithMessage(
@@ -4272,7 +4272,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         private String getExpectedMessagePostfix(final String messageKey) {
             final String msg = getCheckMessage(IndentationCheck.class, messageKey,
                     FAKE_ARGUMENT_ZERO, indent + indentOffset, expectedWarning);
-            final var indexOfMsgPostfix = msg.indexOf(FAKE_ARGUMENT_ZERO)
+            final int indexOfMsgPostfix = msg.indexOf(FAKE_ARGUMENT_ZERO)
                     + FAKE_ARGUMENT_ZERO.length();
             return msg.substring(indexOfMsgPostfix);
         }

@@ -173,14 +173,14 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
         final String parserGrammarFilename = "src/main/resources/com/puppycrawl"
                 + "/tools/checkstyle/grammar/java/JavaLanguageParser.g4";
 
-        final var actualExprCount = Arrays.stream(new FileText(new File(parserGrammarFilename),
+        final int actualExprCount = Arrays.stream(new FileText(new File(parserGrammarFilename),
                         StandardCharsets.UTF_8.name()).toLinesArray())
                 .mapToInt(JavaAstVisitorTest::countExprInLine)
                 .sum();
 
         // Any time we update this count, we should question why we are not building an imaginary
         // 'EXPR' node.
-        final var expectedExprCount = 44;
+        final int expectedExprCount = 44;
 
         assertWithMessage("The 'expr' parser rule does not build an imaginary"
                 + " 'EXPR' node. Any usage of this rule should be questioned.")

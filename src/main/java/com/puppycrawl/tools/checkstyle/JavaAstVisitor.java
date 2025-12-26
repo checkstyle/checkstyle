@@ -131,7 +131,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitCompilationUnit(JavaLanguageParser.CompilationUnitContext ctx) {
         final DetailAstImpl compilationUnit;
         // 'EOF' token is always present; therefore if we only have one child, we have an empty file
-        final var isEmptyFile = ctx.children.size() == 1;
+        final boolean isEmptyFile = ctx.children.size() == 1;
         if (isEmptyFile) {
             compilationUnit = null;
         }
@@ -173,7 +173,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
 
         // Handle star imports
-        final var isStarImport = ctx.STAR() != null;
+        final boolean isStarImport = ctx.STAR() != null;
         if (isStarImport) {
             final DetailAstImpl dot = create(ctx.DOT());
             dot.addChild(visit(ctx.qualifiedName()));
@@ -1416,7 +1416,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
 
     @Override
     public DetailAstImpl visitPrefix(JavaLanguageParser.PrefixContext ctx) {
-        final var tokenType = switch (ctx.prefix.getType()) {
+        final int tokenType = switch (ctx.prefix.getType()) {
             case JavaLanguageLexer.PLUS -> TokenTypes.UNARY_PLUS;
             case JavaLanguageLexer.MINUS -> TokenTypes.UNARY_MINUS;
             default -> ctx.prefix.getType();
@@ -1646,7 +1646,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     public DetailAstImpl visitTypeCastParameters(
             JavaLanguageParser.TypeCastParametersContext ctx) {
         final DetailAstImpl typeType = visit(ctx.typeType(0));
-        for (var i = 0; i < ctx.BAND().size(); i++) {
+        for (int i = 0; i < ctx.BAND().size(); i++) {
             addLastSibling(typeType, create(TokenTypes.TYPE_EXTENSION_AND,
                                 (Token) ctx.BAND(i).getPayload()));
             addLastSibling(typeType, visit(ctx.typeType(i + 1)));
@@ -1684,7 +1684,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl parameters = createImaginary(TokenTypes.PARAMETERS);
         parameters.addChild(createLambdaParameter(ctx.id(0)));
 
-        for (var i = 0; i < ctx.COMMA().size(); i++) {
+        for (int i = 0; i < ctx.COMMA().size(); i++) {
             parameters.addChild(create(ctx.COMMA(i)));
             parameters.addChild(createLambdaParameter(ctx.id(i + 1)));
         }
@@ -1789,7 +1789,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final JavaLanguageParser.ExpressionContext expression = ctx.expression();
         final TerminalNode rbrack = ctx.RBRACK();
         // child[0] is LBRACK
-        for (var i = 1; i < ctx.children.size(); i++) {
+        for (int i = 1; i < ctx.children.size(); i++) {
             if (ctx.children.get(i) == rbrack) {
                 arrayDeclarator.addChild(create(rbrack));
             }
@@ -1866,7 +1866,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl firstTypeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
         firstTypeArgument.addChild(firstIdent);
 
-        for (var i = 0; i < ctx.COMMA().size(); i++) {
+        for (int i = 0; i < ctx.COMMA().size(); i++) {
             addLastSibling(firstTypeArgument, create(ctx.COMMA(i)));
             final DetailAstImpl ident = visit(ctx.typeType(i + 1));
             final DetailAstImpl typeArgument = createImaginary(TokenTypes.TYPE_ARGUMENT);
@@ -1970,7 +1970,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final JavaLanguageParser.InnerPatternContext innerPattern = ctx.innerPattern();
         final ParserRuleContext primaryPattern = innerPattern.primaryPattern();
         final ParserRuleContext recordPattern = innerPattern.recordPattern();
-        final var isSimpleTypePattern = primaryPattern != null
+        final boolean isSimpleTypePattern = primaryPattern != null
                 && primaryPattern.getChild(0) instanceof JavaLanguageParser.TypePatternContext;
 
         final DetailAstImpl pattern;
@@ -2137,7 +2137,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      * @return new DetailAstImpl of given type
      */
     private DetailAstImpl create(Token token) {
-        final var tokenIndex = token.getTokenIndex();
+        final int tokenIndex = token.getTokenIndex();
         final List<Token> tokensToLeft =
                 tokens.getHiddenTokensToLeft(tokenIndex, JavaLanguageLexer.COMMENTS);
         final List<Token> tokensToRight =

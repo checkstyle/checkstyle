@@ -206,7 +206,7 @@ public class XpathQueryGenerator {
      */
     private static int findPositionAmongSiblings(DetailAST ast) {
         DetailAST cur = ast;
-        var pos = 0;
+        int pos = 0;
         while (cur != null) {
             if (cur.getType() == ast.getType()) {
                 pos++;
@@ -292,7 +292,7 @@ public class XpathQueryGenerator {
      * @return if the given ast element has unique {@code TokenTypes} among siblings
      */
     private static boolean hasAtLeastOneSiblingWithSameTokenType(DetailAST ast) {
-        var result = false;
+        boolean result = false;
         DetailAST prev = ast.getPreviousSibling();
         while (prev != null) {
             if (prev.getType() == ast.getType()) {

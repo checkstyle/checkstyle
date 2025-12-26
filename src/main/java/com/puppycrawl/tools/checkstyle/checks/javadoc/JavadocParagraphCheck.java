@@ -196,7 +196,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if the paragraph tag is nested.
      */
     private static boolean isNestedParagraph(DetailNode tag) {
-        var nested = false;
+        boolean nested = false;
         DetailNode parent = tag.getParent();
 
         while (parent != null) {
@@ -307,7 +307,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if line is empty line.
      */
     private static boolean isEmptyLine(DetailNode newLine) {
-        var result = false;
+        boolean result = false;
         DetailNode previousSibling = newLine.getPreviousSibling();
         if (previousSibling != null && (previousSibling.getParent().getType()
                 == JavadocCommentsTokenTypes.JAVADOC_CONTENT
@@ -346,7 +346,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      * @return true, if line with paragraph tag is first line in javadoc.
      */
     private static boolean isFirstParagraph(DetailNode paragraphTag) {
-        var result = true;
+        boolean result = true;
         DetailNode previousNode = paragraphTag.getPreviousSibling();
         while (previousNode != null) {
             if (previousNode.getType() == JavadocCommentsTokenTypes.TEXT

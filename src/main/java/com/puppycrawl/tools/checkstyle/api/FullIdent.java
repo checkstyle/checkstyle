@@ -80,20 +80,20 @@ public final class FullIdent {
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         final Deque<DetailAST> identStack = new ArrayDeque<>();
         pushToIdentStack(identStack, ast);
-        var bracketsExist = false;
-        var dotCounter = 0;
+        boolean bracketsExist = false;
+        int dotCounter = 0;
         while (!identStack.isEmpty()) {
             final DetailAST currentAst = identStack.pop();
 
             final DetailAST nextSibling = currentAst.getNextSibling();
 
             // Here we want type declaration, but not initialization
-            final var isArrayTypeDeclarationStart = nextSibling != null
+            final boolean isArrayTypeDeclarationStart = nextSibling != null
                     && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
                         || nextSibling.getType() == TokenTypes.ANNOTATIONS)
                     && isArrayTypeDeclaration(nextSibling);
 
-            final var typeOfAst = currentAst.getType();
+            final int typeOfAst = currentAst.getType();
             bracketsExist = bracketsExist || isArrayTypeDeclarationStart;
             final DetailAST firstChild = currentAst.getFirstChild();
 
@@ -124,7 +124,7 @@ public final class FullIdent {
      */
     private static int appendToFull(FullIdent full, DetailAST ast,
                 int dotCounter, boolean bracketsExist, boolean isArrayTypeDeclarationStart) {
-        var result = dotCounter;
+        int result = dotCounter;
         if (isArrayTypeDeclarationStart) {
             full.append(ast);
             appendBrackets(full, ast);
@@ -180,9 +180,9 @@ public final class FullIdent {
      * @param ast the type ast we are building a {@code FullIdent} for
      */
     private static void appendBrackets(FullIdent full, DetailAST ast) {
-        final var bracketCount =
+        final int bracketCount =
                 ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
-        for (var i = 0; i < bracketCount; i++) {
+        for (int i = 0; i < bracketCount; i++) {
             full.append("[]");
         }
     }

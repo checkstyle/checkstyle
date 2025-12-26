@@ -111,7 +111,7 @@ public final class TreeTable extends JTable {
         // the table.
         if (tree.getRowHeight() < 1) {
             // Metal looks better like this.
-            final var height = getRowHeight();
+            final int height = getRowHeight();
             setRowHeight(height);
         }
 
@@ -184,21 +184,21 @@ public final class TreeTable extends JTable {
     private void setColumnsInitialWidth() {
         final FontMetrics fontMetrics = getFontMetrics(getFont());
         // Six character string to contain "Column" column.
-        final var widthOfSixCharacterString = fontMetrics.stringWidth("XXXXXX");
+        final int widthOfSixCharacterString = fontMetrics.stringWidth("XXXXXX");
         // Padding must be added to width for columns to make them fully
         // visible in table header.
-        final var padding = 10;
-        final var widthOfColumnContainingSixCharacterString =
+        final int padding = 10;
+        final int widthOfColumnContainingSixCharacterString =
                 widthOfSixCharacterString + padding;
         getColumn("Line").setMaxWidth(widthOfColumnContainingSixCharacterString);
         getColumn("Column").setMaxWidth(widthOfColumnContainingSixCharacterString);
-        final var preferredTreeColumnWidth =
+        final int preferredTreeColumnWidth =
                 Math.toIntExact(Math.round(getPreferredSize().getWidth() * 0.6));
         getColumn("Tree").setPreferredWidth(preferredTreeColumnWidth);
         // Twenty-eight character string to contain "Type" column
-        final var widthOfTwentyEightCharacterString =
+        final int widthOfTwentyEightCharacterString =
                 fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        final var preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
+        final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
     }
 
@@ -302,7 +302,7 @@ public final class TreeTable extends JTable {
      */
     @Override
     public int getEditingRow() {
-        var rowIndex = -1;
+        int rowIndex = -1;
         final Class<?> editingClass = getColumnClass(editingColumn);
         if (editingClass != ParseTreeTableModel.class) {
             rowIndex = editingRow;
@@ -397,7 +397,7 @@ public final class TreeTable extends JTable {
         @Override
         public boolean isCellEditable(EventObject event) {
             if (event instanceof MouseEvent mouseEvent) {
-                for (var counter = getColumnCount() - 1; counter >= 0;
+                for (int counter = getColumnCount() - 1; counter >= 0;
                      counter--) {
                     if (getColumnClass(counter) == ParseTreeTableModel.class) {
                         final MouseEvent newMouseEvent = new MouseEvent(tree, mouseEvent.getID(),

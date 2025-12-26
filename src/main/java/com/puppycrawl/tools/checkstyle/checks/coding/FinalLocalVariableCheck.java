@@ -221,7 +221,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
 
             case TokenTypes.IDENT -> {
-                final var parentType = ast.getParent().getType();
+                final int parentType = ast.getParent().getType();
                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
                     if (candidate.isPresent()) {
@@ -263,7 +263,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             }
 
             case TokenTypes.SLIST -> {
-                var containsBreak = false;
+                boolean containsBreak = false;
                 if (parentAst.getType() != TokenTypes.CASE_GROUP
                     || findLastCaseGroupWhichContainsSlist(parentAst.getParent())
                     == parentAst) {
@@ -334,10 +334,10 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if the scope of a node is restricted to specific code block types.
      */
     private static boolean isInSpecificCodeBlocks(DetailAST node, int... blockTypes) {
-        var returnValue = false;
+        boolean returnValue = false;
         for (int blockType : blockTypes) {
             for (DetailAST token = node; token != null; token = token.getParent()) {
-                final var type = token.getType();
+                final int type = token.getType();
                 if (type == blockType) {
                     returnValue = true;
                     break;
@@ -378,7 +378,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * Update current scope data uninitialized variable according to the whole scope data.
      */
     private void updateAllUninitializedVariables() {
-        final var hasSomeScopes = !currentScopeAssignedVariables.isEmpty();
+        final boolean hasSomeScopes = !currentScopeAssignedVariables.isEmpty();
         if (hasSomeScopes) {
             scopeStack.forEach(scopeData -> {
                 updateUninitializedVariables(scopeData.prevScopeUninitializedVariables);
@@ -395,7 +395,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
         final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
         while (iterator.hasNext()) {
             final DetailAST assignedVariable = iterator.next();
-            var shouldRemove = false;
+            boolean shouldRemove = false;
             for (DetailAST variable : scopeUninitializedVariableData) {
                 for (ScopeData scopeData : scopeStack) {
                     final FinalVariableCandidate candidate =
@@ -438,7 +438,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      *     following, else false
      */
     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
-        var result = false;
+        boolean result = false;
         if (ast.getType() == TokenTypes.CASE_GROUP) {
             result = findLastCaseGroupWhichContainsSlist(ast.getParent()) != ast;
         }
@@ -580,7 +580,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true, if the variable should be removed.
      */
     private static boolean shouldRemoveFinalVariableCandidate(ScopeData scopeData, DetailAST ast) {
-        var shouldRemove = true;
+        boolean shouldRemove = true;
         for (DetailAST variable : scopeData.uninitializedVariables) {
             if (variable.getText().equals(ast.getText())) {
                 // if the variable is declared outside the loop and initialized inside

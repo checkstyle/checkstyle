@@ -175,7 +175,7 @@ public class ExampleMacro extends AbstractMacro {
      */
     private static void writeSnippet(Sink sink, String snippet) {
         sink.rawText("<div class=\"wrapper\">");
-        final var isXml = isXml(snippet);
+        final boolean isXml = isXml(snippet);
 
         final String languageClass;
         if (isXml) {

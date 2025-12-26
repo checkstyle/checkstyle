@@ -201,7 +201,7 @@ public final class FileText {
         try (Reader reader = new InputStreamReader(stream, decoder)) {
             final char[] chars = new char[READ_BUFFER_SIZE];
             while (true) {
-                final var len = reader.read(chars);
+                final int len = reader.read(chars);
                 if (len == -1) {
                     break;
                 }
@@ -269,14 +269,14 @@ public final class FileText {
      */
     public LineColumn lineColumn(int pos) {
         final int[] lineBreakPositions = findLineBreaks();
-        var lineNo = Arrays.binarySearch(lineBreakPositions, pos);
+        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
         if (lineNo < 0) {
             // we have: lineNo = -(insertion point) - 1
             // we want: lineNo =  (insertion point) - 1
             lineNo = -lineNo - 2;
         }
-        final var startOfLine = lineBreakPositions[lineNo];
-        final var columnNo = pos - startOfLine;
+        final int startOfLine = lineBreakPositions[lineNo];
+        final int columnNo = pos - startOfLine;
         // now we have lineNo and columnNo, both starting at zero.
         return new LineColumn(lineNo + 1, columnNo);
     }
@@ -290,7 +290,7 @@ public final class FileText {
         if (lineBreaks == null) {
             final int[] lineBreakPositions = new int[size() + 1];
             lineBreakPositions[0] = 0;
-            var lineNo = 1;
+            int lineNo = 1;
             final Matcher matcher = LINE_TERMINATOR.matcher(fullText);
             while (matcher.find()) {
                 lineBreakPositions[lineNo] = matcher.end();

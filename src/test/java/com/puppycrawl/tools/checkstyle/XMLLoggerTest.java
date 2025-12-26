@@ -435,7 +435,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testCtorWithTwoParametersCloseStreamOptions() {
         final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.CLOSE);
-        final var closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 
         assertWithMessage("closeStream should be true")
                 .that(closeStream)
@@ -451,7 +451,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     @Test
     public void testCtorWithTwoParametersNoneStreamOptions() {
         final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.NONE);
-        final var closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
+        final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 
         assertWithMessage("closeStream should be false")
                 .that(closeStream)

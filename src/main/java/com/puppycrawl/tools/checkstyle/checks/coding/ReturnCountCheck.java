@@ -180,7 +180,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
         final DetailAST methodNameAST = ast.findFirstToken(TokenTypes.IDENT);
-        final var check = !format.matcher(methodNameAST.getText()).find();
+        final boolean check = !format.matcher(methodNameAST.getText()).find();
         context = new Context(check);
     }
 

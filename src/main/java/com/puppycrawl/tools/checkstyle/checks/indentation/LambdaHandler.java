@@ -116,11 +116,11 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
         // If the "->" has no children, it is a switch
         // rule lambda (i.e. 'case ONE -> 1;')
-        final var isSwitchRuleLambda = firstChild == null;
+        final boolean isSwitchRuleLambda = firstChild == null;
 
         if (!isSwitchRuleLambda
             && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
-            final var firstChildColumnNo = expandedTabsColumnNo(firstChild);
+            final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
             final IndentLevel level = getIndent();
 
             if (isNonAcceptableIndent(firstChildColumnNo, level)) {
@@ -130,8 +130,8 @@ public class LambdaHandler extends AbstractExpressionHandler {
         }
 
         // If the "->" is the first element on the line, assume line wrapping.
-        final var mainAstColumnNo = expandedTabsColumnNo(mainAst);
-        final var isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
+        final int mainAstColumnNo = expandedTabsColumnNo(mainAst);
+        final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(mainAst);
         if (isLineWrappedLambda) {
             checkLineWrappedLambda(isSwitchRuleLambda, mainAstColumnNo);
         }
@@ -178,7 +178,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
             // on the previous line and use that to determine the correct
             // indentation for the line wrapped "->"
             final DetailAST previousSibling = mainAst.getPreviousSibling();
-            final var previousLineStart = getLineStart(previousSibling);
+            final int previousLineStart = getLineStart(previousSibling);
 
             level = new IndentLevel(new IndentLevel(previousLineStart),
                     getIndentCheck().getLineWrappingIndentation());
@@ -219,7 +219,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // The first line should not match if the switch rule statement starts on the same line
         // as "->" but continues onto the next lines as part of a single logical expression.
         final DetailAST nextSibling = mainAst.getNextSibling();
-        final var firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
+        final boolean firstLineMatches = getFirstLine(nextSibling) != mainAst.getLineNo();
         checkExpressionSubtree(nextSibling, level, firstLineMatches, false);
     }
 
