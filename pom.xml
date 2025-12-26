@@ -611,6 +611,16 @@
           <configuration>
             <java>
               <endWithNewline />
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <excludes>
+                <exclude>**.ci-temp**</exclude>
+                <exclude>**resources-noncompilable**</exclude>
+                <exclude>**src/it/resources**</exclude>
+                <exclude>**src/test/resources**</exclude>
+                <exclude>**xdocs-examples**</exclude>
+              </excludes>
               <forbidWildcardImports />
               <removeUnusedImports />
               <trimTrailingWhitespace />
