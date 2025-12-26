@@ -1365,7 +1365,7 @@ spotless)
   ./mvnw -e --no-transfer-progress clean spotless:check -P spotless-autofix
   ;;
 
-openrewrite-recipes)
+rewrite)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   export MAVEN_OPTS="-Xmx4g -Xms2g"
