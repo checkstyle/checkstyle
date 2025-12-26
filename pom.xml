@@ -612,9 +612,6 @@
             <java>
               <forbidWildcardImports />
               <removeUnusedImports />
-              <importOrder>
-                <file>config/spotless/import.order</file>
-              </importOrder>
               <licenseHeader>
                 <file>config/spotless/licence.header</file>
               </licenseHeader>
@@ -783,6 +780,18 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
+        <configuration>
+          <java>
+            <palantirJavaFormat>
+              <version>${version.palantirJavaFormat}</version>
+            </palantirJavaFormat>
+            <removeUnusedImports />
+            <forbidWildcardImports />
+            <licenseHeader>
+              <file>config/spotless/licence.header</file>
+            </licenseHeader>
+          </java>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
