@@ -264,16 +264,6 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testCorrectBehaviourOfShortDescription() {
-        final String id = "COMPILATION_UNIT";
-        final String shortDescription = TokenUtil.getShortDescription(id);
-
-        assertWithMessage("Invalid short description")
-            .that(shortDescription)
-            .isEqualTo("This is the root node for the source file.");
-    }
-
-    @Test
     public void testFindFirstTokenByPredicate() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();

@@ -84,7 +84,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     public void testAllCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final List<Path> templatesWithPropertiesMacro =
-                SiteUtil.getTemplatesThatContainPropertiesMacro();
+                SiteUtil.getTemplatesThatContainPropertiesMacro(SiteUtil.PATH_TO_XDOC_TEMPLATES);
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             currentXdocPath = path;
