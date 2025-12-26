@@ -258,11 +258,11 @@ public class JavadocTypeCheck
 
                 if (!allowMissingParamTags) {
 
-                    typeParamNames.forEach((String typeParamName) -> {
+                    typeParamNames.forEach(typeParamName -> {
                         checkTypeParamTag(ast, tags, typeParamName);
                     });
 
-                    recordComponentNames.forEach((String componentName) -> {
+                    recordComponentNames.forEach(componentName -> {
                         checkComponentParamTag(ast, tags, componentName);
                     });
                 }
@@ -296,7 +296,7 @@ public class JavadocTypeCheck
         final JavadocTags tags = JavadocUtil.getJavadocTags(textBlock,
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
-            tags.getInvalidTags().forEach((InvalidJavadocTag tag) -> {
+            tags.getInvalidTags().forEach(tag -> {
                 log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
             });
         }
@@ -444,7 +444,7 @@ public class JavadocTypeCheck
 
         if (components != null) {
             TokenUtil.forEachChild(components,
-                TokenTypes.RECORD_COMPONENT_DEF, (DetailAST component) -> {
+                TokenTypes.RECORD_COMPONENT_DEF, component -> {
                     final DetailAST ident = component.findFirstToken(TokenTypes.IDENT);
                     componentList.add(ident.getText());
                 });

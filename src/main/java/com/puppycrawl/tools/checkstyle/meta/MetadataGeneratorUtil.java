@@ -310,7 +310,7 @@ public final class MetadataGeneratorUtil {
             try (Stream<Path> files = Files.walk(Path.of(path + "/" + folder))) {
                 validFiles.addAll(
                         files.map(Path::toFile)
-                        .filter((File file) -> {
+                        .filter(file -> {
                             final String fileName = file.getName();
                             return fileName.endsWith("SuppressWarningsHolder.java")
                                     || fileName.endsWith("Check.java")

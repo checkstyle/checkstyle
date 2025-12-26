@@ -136,7 +136,7 @@ public class XdocsExampleFileTest {
         try (Stream<Path> testFiles = Files.walk(examplesTestRoot)) {
             testFiles
                 .filter(path -> path.toString().endsWith("ExamplesTest.java"))
-                .forEach((Path testFile) -> {
+                .forEach(testFile -> {
                     try {
                         scanFile(testFile, examplesResources, examplesNonCompilable, failures);
                     }
@@ -184,12 +184,12 @@ public class XdocsExampleFileTest {
         if (Files.exists(exampleDir) && Files.isDirectory(exampleDir)) {
             try (Stream<Path> exampleFiles = Files.list(exampleDir)) {
                 exampleFiles
-                    .filter((Path path) -> {
+                    .filter(path -> {
                         final String fileName = path.getFileName()
                                 .toString();
                         return fileName.matches("Example\\d+\\.java");
                     })
-                    .forEach((Path exampleFile) -> {
+                    .forEach(exampleFile -> {
                         final String fileName = exampleFile.getFileName()
                                 .toString();
                         if (!testContent.contains("\"" + fileName + "\"")) {

@@ -142,7 +142,7 @@ public class ArchUnitTest {
             .resideInAnyPackage(utilPackages);
 
         final EvaluationResult result = classShouldNotDependOnUtilPackages.evaluate(apiPackage);
-        final EvaluationResult filtered = result.filterDescriptionsMatching((String description) -> {
+        final EvaluationResult filtered = result.filterDescriptionsMatching(description -> {
             return API_PACKAGE_SUPPRESSION_DETAILS.stream()
                 .noneMatch(description::startsWith);
         });

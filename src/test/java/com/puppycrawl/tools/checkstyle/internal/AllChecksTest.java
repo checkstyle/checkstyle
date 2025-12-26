@@ -260,7 +260,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // according '4.6.2 Horizontal whitespace point 9'
                 "ELLIPSIS").collect(Collectors.toUnmodifiableSet()));
         INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
-                .map((String moduleName) -> {
+                .map(moduleName -> {
                     final List<String> packageTokens = Splitter
                             .on(".").splitToList(moduleName);
                     return packageTokens.get(packageTokens.size() - 1);
@@ -368,7 +368,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
         moduleNames.removeAll(INTERNAL_MODULES);
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
-            .forEach((String check) -> {
+            .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
                     "%s is not referenced in checkstyle-checks.xml", check);
                 assertWithMessage(errorMessage).fail();
@@ -500,7 +500,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         checkstyleModulesNames.removeAll(INTERNAL_MODULES);
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
-            .forEach((String moduleName) -> {
+            .forEach(moduleName -> {
                 final String missingModuleMessage = String.format(Locale.ROOT,
                     "Module %s does not have xdoc documentation.",
                     moduleName);

@@ -35,8 +35,6 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsLexer;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser;
-import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser.HtmlAttributeContext;
-import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParser.SnippetAttributeContext;
 import com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocCommentsParserBaseVisitor;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -385,7 +383,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.snippetAttributes.isEmpty()) {
             final JavadocNodeImpl snippetAttributes =
                     createImaginary(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTES);
-            ctx.snippetAttributes.forEach((JavadocCommentsParser.SnippetAttributeContext snippetAttributeContext) -> {
+            ctx.snippetAttributes.forEach(snippetAttributeContext -> {
                 final JavadocNodeImpl snippetAttribute = visit(snippetAttributeContext);
                 snippetAttributes.addChild(snippetAttribute);
             });
@@ -449,7 +447,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
 
     @Override
     public JavadocNodeImpl visitSnippetAttribute(
-            SnippetAttributeContext ctx) {
+            JavadocCommentsParser.SnippetAttributeContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.SNIPPET_ATTRIBUTE, ctx);
     }
 
@@ -493,7 +491,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.htmlAttributes.isEmpty()) {
             final JavadocNodeImpl htmlAttributes =
                     createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
-            ctx.htmlAttributes.forEach((JavadocCommentsParser.HtmlAttributeContext htmlAttributeContext) -> {
+            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
                 final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
                 htmlAttributes.addChild(htmlAttribute);
             });
@@ -513,7 +511,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
         if (!ctx.htmlAttributes.isEmpty()) {
             final JavadocNodeImpl htmlAttributes =
                     createImaginary(JavadocCommentsTokenTypes.HTML_ATTRIBUTES);
-            ctx.htmlAttributes.forEach((JavadocCommentsParser.HtmlAttributeContext htmlAttributeContext) -> {
+            ctx.htmlAttributes.forEach(htmlAttributeContext -> {
                 final JavadocNodeImpl htmlAttribute = visit(htmlAttributeContext);
                 htmlAttributes.addChild(htmlAttribute);
             });
@@ -532,7 +530,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
     }
 
     @Override
-    public JavadocNodeImpl visitHtmlAttribute(HtmlAttributeContext ctx) {
+    public JavadocNodeImpl visitHtmlAttribute(JavadocCommentsParser.HtmlAttributeContext ctx) {
         return buildImaginaryNode(JavadocCommentsTokenTypes.HTML_ATTRIBUTE, ctx);
     }
 

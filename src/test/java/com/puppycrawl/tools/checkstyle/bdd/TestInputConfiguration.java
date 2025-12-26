@@ -111,7 +111,7 @@ public final class TestInputConfiguration {
         childrenModules
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
-                .forEach((DefaultConfiguration moduleConfig) -> {
+                .forEach(moduleConfig -> {
                     if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
                         root.addChild(moduleConfig);
                     }
@@ -135,7 +135,7 @@ public final class TestInputConfiguration {
                 .stream()
                 .map(ModuleInputConfiguration::createConfiguration)
                 .filter(moduleConfig -> !moduleConfig.getName().endsWith("Filter"))
-                .forEach((DefaultConfiguration moduleConfig) -> {
+                .forEach(moduleConfig -> {
                     if (CHECKER_CHILDREN.contains(moduleConfig.getName())) {
                         root.addChild(moduleConfig);
                     }

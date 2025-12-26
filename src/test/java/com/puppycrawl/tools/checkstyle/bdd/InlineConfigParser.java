@@ -665,7 +665,7 @@ public final class InlineConfigParser {
         final boolean isSuppressedModule = SUPPRESSED_MODULES.contains(fullyQualifiedClassName);
 
         if (PUBLIC_MODULE_DETAILS_MAP.isEmpty()) {
-            XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach((ModuleDetails module) -> {
+            XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach(module -> {
                 PUBLIC_MODULE_DETAILS_MAP.put(module.getFullQualifiedName(), module);
             });
         }
@@ -674,7 +674,7 @@ public final class InlineConfigParser {
 
         if (!isSuppressedModule && moduleDetails != null) {
             defaultProperties.putAll(moduleDetails.getProperties().stream()
-                    .filter((ModulePropertyDetails prop) -> {
+                    .filter(prop -> {
                         return prop.getName() != null && prop.getDefaultValue() != null;
                     })
                     .collect(Collectors.toUnmodifiableMap(
@@ -774,7 +774,7 @@ public final class InlineConfigParser {
         if (value instanceof double[] arr) {
             result = Arrays.stream(arr)
                            .boxed()
-                           .map((Double number) -> {
+                           .map(number -> {
                                return BigDecimal.valueOf(number)
                                                 .stripTrailingZeros()
                                                 .toPlainString();
@@ -959,7 +959,7 @@ public final class InlineConfigParser {
         if (!propertiesWithMissingDefaultTag.isEmpty()) {
 
             final String propertiesList = propertiesWithMissingDefaultTag.entrySet().stream()
-                    .map((Map.Entry<String,String> entry) -> {
+                    .map(entry -> {
                         return String.format(Locale.ROOT, "%s = (default)%s",
                                 entry.getKey(), entry.getValue());
                     })
@@ -983,12 +983,12 @@ public final class InlineConfigParser {
         Map<String, String> defaultProperties) throws CheckstyleException {
 
         final Map<String, String> matchedProperties = actualProperties.entrySet().stream()
-                .filter((Map.Entry<Object,Object> entry) -> {
+                .filter(entry -> {
                     return entry.getValue()
                         .equals(defaultProperties.get(entry.getKey().toString()));
                 })
                 .collect(HashMap::new,
-                        (HashMap<String,String> map, Map.Entry<Object,Object> entry) -> {
+                        (map, entry) -> {
                         map.put(entry.getKey().toString(), entry.getValue().toString());
                     }, HashMap::putAll);
         final List<String> missingProperties = defaultProperties.keySet().stream()
@@ -1237,14 +1237,14 @@ public final class InlineConfigParser {
         else if (multipleViolationsMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsMatcher.group(1)), lineNo + 1)
-                    .forEach((Integer actualLineNumber) -> {
+                    .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
         else if (multipleViolationsAboveMatcher.matches()) {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsAboveMatcher.group(1)), lineNo)
-                    .forEach((Integer actualLineNumber) -> {
+                    .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }
@@ -1252,7 +1252,7 @@ public final class InlineConfigParser {
             Collections
                     .nCopies(Integer.parseInt(multipleViolationsBelowMatcher.group(1)),
                             lineNo + 2)
-                    .forEach((Integer actualLineNumber) -> {
+                    .forEach(actualLineNumber -> {
                         inputConfigBuilder.addViolation(actualLineNumber, null);
                     });
         }

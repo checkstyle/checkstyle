@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.gui;
 import java.io.Serial;
 
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreePath;
 
@@ -50,7 +49,7 @@ final class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
      */
     /* package */ ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
         treeTable = jTreeTable;
-        getListSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+        getListSelectionModel().addListSelectionListener(event -> {
             updateSelectedPathsFromSelectedRows();
         });
     }

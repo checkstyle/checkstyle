@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +64,7 @@ public final class XdocUtil {
     public static Set<Path> getXdocsFilePaths() throws IOException {
         final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (Path path, BasicFileAttributes attr) -> {
+                (path, attr) -> {
                     return attr.isRegularFile()
                             && (path.toString().endsWith(".xml")
                             || path.toString().endsWith(".xml.vm"));
@@ -85,7 +84,7 @@ public final class XdocUtil {
     public static Set<Path> getXdocsTemplatesFilePaths() throws IOException {
         final Path directory = Path.of(DIRECTORY_PATH);
         try (Stream<Path> stream = Files.find(directory, Integer.MAX_VALUE,
-                (Path path, BasicFileAttributes attr) -> {
+                (path, attr) -> {
                     return attr.isRegularFile()
                             && path.toString().endsWith(".xml.template");
                 })) {

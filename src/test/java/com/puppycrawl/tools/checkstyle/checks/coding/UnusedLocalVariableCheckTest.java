@@ -466,7 +466,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, variableDef,
                         "variables",
-                        (Object variables) -> {
+                        variables -> {
                             return ((Collection<?>) variables).isEmpty();
                         }))
                 .isTrue();
@@ -487,21 +487,21 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclarations",
-                        (Object typeDeclarations) -> {
+                        typeDeclarations -> {
                             return ((Collection<?>) typeDeclarations).isEmpty();
                         }))
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclAstToTypeDeclDesc",
-                        (Object typeDeclAstToTypeDeclDesc) -> {
+                        typeDeclAstToTypeDeclDesc -> {
                             return ((Map<?, ?>) typeDeclAstToTypeDeclDesc).isEmpty();
                         }))
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "depth",
-                        (Object depth) -> {
+                        depth -> {
                             return (int) depth == 0;
                         }))
                 .isTrue();
@@ -525,14 +525,14 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         check.visitToken(classDefAst);
         check.visitToken(literalNew.orElseThrow());
         check.beginTree(null);
-        final Predicate<Object> isClear = (Object anonInnerAstToTypeDesc) -> {
+        final Predicate<Object> isClear = anonInnerAstToTypeDesc -> {
             return ((Map<?, ?>) anonInnerAstToTypeDesc).isEmpty();
         };
         assertWithMessage("State is not cleared on beginTree")
                 .that(isClear.test(TestUtil.getInternalState(
                         check, "anonInnerAstToTypeDeclDesc", Object.class)))
                 .isTrue();
-        final Predicate<Object> isQueueClear = (Object anonInnerClassHolders) -> {
+        final Predicate<Object> isQueueClear = anonInnerClassHolders -> {
             return ((Collection<?>) anonInnerClassHolders).isEmpty();
         };
         assertWithMessage("State is not cleared on beginTree")

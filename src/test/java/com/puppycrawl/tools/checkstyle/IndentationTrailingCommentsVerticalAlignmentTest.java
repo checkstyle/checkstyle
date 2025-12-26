@@ -108,7 +108,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         Stream<Path> result;
         try (Stream<Path> testFiles = Files.walk(indentationDir)) {
             final List<Path> collected = testFiles
-                .filter((Path path) -> {
+                .filter(path -> {
                     final String fileName = path.getFileName().toString();
                     return fileName.startsWith("InputIndentation")
                             && fileName.endsWith(".java");

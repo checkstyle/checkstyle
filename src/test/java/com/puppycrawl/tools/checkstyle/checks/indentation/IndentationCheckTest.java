@@ -3348,7 +3348,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             getCheckMessage(MSG_ERROR_MULTI, arguments),
             getCheckMessage(MSG_CHILD_ERROR_MULTI, arguments),
         };
-        final boolean isInOrder = Arrays.stream(messages).allMatch((String msg) -> {
+        final boolean isInOrder = Arrays.stream(messages).allMatch(msg -> {
             final int indexOfArgumentZero = msg.indexOf((String) arguments[0]);
             return Arrays.stream(arguments)
                     .map(String.class::cast)

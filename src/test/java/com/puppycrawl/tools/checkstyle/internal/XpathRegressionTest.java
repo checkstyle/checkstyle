@@ -124,7 +124,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     private static Set<String> getInternalModules() {
         return Definitions.INTERNAL_MODULES.stream()
-            .map((String moduleName) -> {
+            .map(moduleName -> {
                 final List<String> packageTokens = Splitter.on(".").splitToList(moduleName);
                 return packageTokens.get(packageTokens.size() - 1);
             })

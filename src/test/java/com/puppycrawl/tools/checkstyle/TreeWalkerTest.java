@@ -47,7 +47,6 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedConstruction;
-import org.mockito.MockedConstruction.Context;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
@@ -134,7 +133,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                     OneTopLevelClassCheck.MSG_KEY, "InputTreeWalkerInner"),
         };
         try (MockedConstruction<TreeWalkerAuditEvent> mocked =
-                 Mockito.mockConstruction(TreeWalkerAuditEvent.class, (TreeWalkerAuditEvent mock, MockedConstruction.Context context) -> {
+                 Mockito.mockConstruction(TreeWalkerAuditEvent.class, (mock, context) -> {
                      throw new CheckstyleException("No audit events expected");
                  })) {
             verifyWithInlineConfigParserTwice(getPath("InputTreeWalker.java"), expected);

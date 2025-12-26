@@ -139,7 +139,7 @@ public class MainFrame extends JFrame {
         final JComboBox<ParseMode> modesCombobox = new JComboBox<>(ParseMode.values());
         modesCombobox.setName("modesCombobox");
         modesCombobox.setSelectedIndex(0);
-        modesCombobox.addActionListener((ActionEvent event) -> {
+        modesCombobox.addActionListener(event -> {
             model.setParseMode((ParseMode) modesCombobox.getSelectedItem());
             reloadAction.actionPerformed(null);
         });

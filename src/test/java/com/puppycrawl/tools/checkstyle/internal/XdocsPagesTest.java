@@ -290,10 +290,10 @@ public class XdocsPagesTest {
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
             .stream()
-            .filter((String checkName) -> {
+            .filter(checkName -> {
                 return !"ClassAndPropertiesSettersJavadocScraper".equals(checkName);
             })
-            .forEach((String checkName) -> {
+            .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     assertWithMessage(
                             "%s is not correctly listed on Available Checks page - add it to %s",
@@ -1064,7 +1064,7 @@ public class XdocsPagesTest {
             .stream()
             // First row is header row
             .skip(1)
-            .forEach((Node row) -> {
+            .forEach(row -> {
                 final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
                 assertWithMessage("%s section '%s' should have the requested columns", fileName,
                     sectionName)

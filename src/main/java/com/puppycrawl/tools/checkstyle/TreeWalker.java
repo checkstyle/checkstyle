@@ -443,7 +443,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         return Stream.concat(filters.stream(),
                 Stream.concat(ordinaryChecks.stream(), commentChecks.stream()))
             .filter(ExternalResourceHolder.class::isInstance)
-            .flatMap((Object resource) -> {
+            .flatMap(resource -> {
                 return ((ExternalResourceHolder) resource)
                         .getExternalResourceLocations().stream();
             })

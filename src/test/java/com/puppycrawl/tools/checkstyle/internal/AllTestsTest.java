@@ -48,7 +48,7 @@ public class AllTestsTest {
     public void testAllInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Path.of("src/test/java"), (Path filePath) -> {
+        walkVisible(Path.of("src/test/java"), filePath -> {
             grabAllTests(allTests, filePath.toFile());
         });
 
@@ -56,10 +56,10 @@ public class AllTestsTest {
             .that(allTests.keySet())
             .isNotEmpty();
 
-        walkVisible(Path.of("src/test/resources/com/puppycrawl"), (Path filePath) -> {
+        walkVisible(Path.of("src/test/resources/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
-        walkVisible(Path.of("src/test/resources-noncompilable/com/puppycrawl"), (Path filePath) -> {
+        walkVisible(Path.of("src/test/resources-noncompilable/com/puppycrawl"), filePath -> {
             verifyInputFile(allTests, filePath.toFile());
         });
     }
@@ -68,7 +68,7 @@ public class AllTestsTest {
     public void testAllTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
-        walkVisible(Path.of("src/main/java"), (Path filePath) -> {
+        walkVisible(Path.of("src/main/java"), filePath -> {
             grabAllFiles(allTests, filePath.toFile());
         });
 
@@ -80,7 +80,7 @@ public class AllTestsTest {
                 "IndentationTrailingCommentsVerticalAlignmentTest.java"
         );
 
-        walkVisible(Path.of("src/test/java"), (Path filePath) -> {
+        walkVisible(Path.of("src/test/java"), filePath -> {
             if (!excludedTests.contains(filePath.toFile().getName())) {
                 verifyHasProductionFile(allTests, filePath.toFile());
             }

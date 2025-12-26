@@ -36,7 +36,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedConstruction;
-import org.mockito.MockedConstruction.Context;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -317,7 +316,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     public void testIoExceptionWhenLoadingHeader() {
         final HeaderCheck check = new HeaderCheck();
         try (MockedConstruction<LineNumberReader> mocked = mockConstruction(
-                LineNumberReader.class, (LineNumberReader mock, MockedConstruction.Context context) -> {
+                LineNumberReader.class, (mock, context) -> {
                     when(mock.readLine()).thenThrow(IOException.class);
                 })) {
             final IllegalArgumentException ex =

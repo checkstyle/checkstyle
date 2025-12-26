@@ -197,7 +197,7 @@ public class FinalClassCheck
             // First pass: mark all classes that have derived inner classes
             innerClasses.forEach(this::registerExtendedClass);
             // Second pass: report violation for all classes that should be declared as final
-            innerClasses.forEach((String qualifiedClassName, FinalClassCheck.ClassDesc classDesc) -> {
+            innerClasses.forEach((qualifiedClassName, classDesc) -> {
                 if (shouldBeDeclaredAsFinal(classDesc)) {
                     final String className = CommonUtil.baseClassName(qualifiedClassName);
                     log(classDesc.getTypeDeclarationAst(), MSG_KEY, className);
@@ -243,7 +243,7 @@ public class FinalClassCheck
                                        ClassDesc currentClass) {
         final String superClassName = getSuperClassName(currentClass.getTypeDeclarationAst());
         if (superClassName != null) {
-            final ToIntFunction<ClassDesc> nestedClassCountProvider = (FinalClassCheck.ClassDesc classDesc) -> {
+            final ToIntFunction<ClassDesc> nestedClassCountProvider = classDesc -> {
                 return CheckUtil.typeDeclarationNameMatchingCount(qualifiedClassName,
                                                                   classDesc.getQualifiedName());
             };
@@ -266,7 +266,7 @@ public class FinalClassCheck
                                                          String outerTypeDeclName) {
         final String superClassName = CheckUtil.getShortNameOfAnonInnerClass(literalNewAst);
 
-        final ToIntFunction<ClassDesc> anonClassCountProvider = (FinalClassCheck.ClassDesc classDesc) -> {
+        final ToIntFunction<ClassDesc> anonClassCountProvider = classDesc -> {
             return getAnonSuperTypeMatchingCount(outerTypeDeclName, classDesc.getQualifiedName());
         };
         getNearestClassWithSameName(superClassName, anonClassCountProvider)

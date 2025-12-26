@@ -310,7 +310,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             final int treeCacheKey = blockCommentNode.getLineNo();
 
             final ParseStatus result = TREE_CACHE.get()
-                    .computeIfAbsent(treeCacheKey, (Integer lineNumber) -> {
+                    .computeIfAbsent(treeCacheKey, lineNumber -> {
                         return context.get().parser.parseJavadocComment(blockCommentNode);
                     });
 

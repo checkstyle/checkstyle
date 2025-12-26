@@ -38,8 +38,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageLexer;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser.FieldAccessNoIdentContext;
-import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser.SwitchLabeledRuleContext;
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParserBaseVisitor;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -331,7 +329,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl typeBoundType = visit(ctx.typeBoundType(0));
         final Iterator<JavaLanguageParser.TypeBoundTypeContext> typeBoundTypeIterator =
                 ctx.typeBoundType().listIterator(1);
-        ctx.BAND().forEach((TerminalNode band) -> {
+        ctx.BAND().forEach(band -> {
             addLastSibling(typeBoundType, create(TokenTypes.TYPE_EXTENSION_AND,
                                 (Token) band.getPayload()));
             addLastSibling(typeBoundType, visit(typeBoundTypeIterator.next()));
@@ -1058,7 +1056,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     @Override
     public DetailAstImpl visitSwitchRules(JavaLanguageParser.SwitchRulesContext ctx) {
         final DetailAstImpl dummyRoot = new DetailAstImpl();
-        ctx.switchLabeledRule().forEach((JavaLanguageParser.SwitchLabeledRuleContext switchLabeledRuleContext) -> {
+        ctx.switchLabeledRule().forEach(switchLabeledRuleContext -> {
             final DetailAstImpl switchRule = visit(switchLabeledRuleContext);
             final DetailAstImpl switchRuleParent = createImaginary(TokenTypes.SWITCH_RULE);
             switchRuleParent.addChild(switchRule);
@@ -1196,7 +1194,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         }
         else {
             final DetailAstPair currentAst = new DetailAstPair();
-            ctx.accessList.forEach((JavaLanguageParser.FieldAccessNoIdentContext fieldAccess) -> {
+            ctx.accessList.forEach(fieldAccess -> {
                 DetailAstPair.addAstChild(currentAst, visit(fieldAccess.expr()));
                 DetailAstPair.makeAstRoot(currentAst, create(fieldAccess.DOT()));
             });
@@ -2089,7 +2087,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
      * @param children the list of children to add
      */
     private void processChildren(DetailAstImpl parent, List<? extends ParseTree> children) {
-        children.forEach((ParseTree child) -> {
+        children.forEach(child -> {
             if (child instanceof TerminalNode node) {
                 // Child is a token, create a new DetailAstImpl and add it to parent
                 parent.addChild(create(node));
