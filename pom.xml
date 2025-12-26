@@ -631,11 +631,11 @@
           <artifactId>rewrite-maven-plugin</artifactId>
           <version>6.26.0</version>
           <configuration>
+            <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
             <skipMavenParsing>true</skipMavenParsing>
-            <configLocation>config/rewrite.yml</configLocation>
             <activeRecipes>
-              <recipe>org.checkstyle.openrewrite.SanityCheck</recipe>
+              <recipe>org.checkstyle.AllAutoFixes</recipe>
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
