@@ -853,6 +853,7 @@ missingjavadocpackage
 missingjavadoctype
 missingnullcaseinswitch
 missingoverride
+missingoverrideonrecordaccessor
 missingperiod
 missingswitchdefault
 missingtag
