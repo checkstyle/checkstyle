@@ -143,8 +143,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processEnd(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
-        final int after = ast.getColumnNo() + 1;
+        final var before = ast.getColumnNo() - 1;
+        final var after = ast.getColumnNo() + 1;
 
         if (before >= 0 && CommonUtil.isCodePointWhitespace(line, before)
                 && !containsWhitespaceBefore(before, line)) {
@@ -179,7 +179,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //                                          ^
         //   should be whitespace if followed by & -+
         //
-        final int indexOfAmp = IntStream.range(after, line.length)
+        final var indexOfAmp = IntStream.range(after, line.length)
                 .filter(index -> line[index] == '&')
                 .findFirst()
                 .orElse(-1);
@@ -205,7 +205,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @param after position after
      */
     private void processSingleGeneric(DetailAST ast, int[] line, int after) {
-        final char charAfter = Character.toChars(line[after])[0];
+        final var charAfter = Character.toChars(line[after])[0];
         if (isGenericBeforeMethod(ast)
                 || isGenericBeforeCtorInvocation(ast)
                 || isGenericBeforeRecordHeader(ast)) {
@@ -298,8 +298,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processStart(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int before = ast.getColumnNo() - 1;
-        final int after = ast.getColumnNo() + 1;
+        final var before = ast.getColumnNo() - 1;
+        final var after = ast.getColumnNo() + 1;
 
         // Checks if generic needs to be preceded by a whitespace or not.
         // Handles 3 cases as in:
@@ -346,8 +346,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      * @return whether there are only whitespaces (or nothing)
      */
     private static boolean containsWhitespaceBetween(int fromIndex, int toIndex, int... line) {
-        boolean result = true;
-        for (int i = fromIndex; i < toIndex; i++) {
+        var result = true;
+        for (var i = fromIndex; i < toIndex; i++) {
             if (!CommonUtil.isCodePointWhitespace(line, i)) {
                 result = false;
                 break;

@@ -127,7 +127,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        final int parentType = getParentType(getBlockCommentAst());
+        final var parentType = getParentType(getBlockCommentAst());
 
         if (target.get(parentType)) {
             checkOrderInTagSection(ast);
@@ -140,13 +140,13 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      * @param javadoc Javadoc root node.
      */
     private void checkOrderInTagSection(DetailNode javadoc) {
-        int maxIndexOfPreviousTag = 0;
+        var maxIndexOfPreviousTag = 0;
         DetailNode node = javadoc.getFirstChild();
 
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG) {
                 final String tagText = JavadocUtil.getTagName(node);
-                final int indexOfCurrentTag = tagOrder.indexOf("@" + tagText);
+                final var indexOfCurrentTag = tagOrder.indexOf("@" + tagText);
 
                 if (indexOfCurrentTag != -1) {
                     if (indexOfCurrentTag < maxIndexOfPreviousTag) {
@@ -169,7 +169,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
      */
     private static int getParentType(DetailAST commentBlock) {
         final DetailAST parentNode = commentBlock.getParent();
-        int result = parentNode.getType();
+        var result = parentNode.getType();
         if (result == TokenTypes.TYPE || result == TokenTypes.MODIFIERS) {
             result = parentNode.getParent().getType();
         }

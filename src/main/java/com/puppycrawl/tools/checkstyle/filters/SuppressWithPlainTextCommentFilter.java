@@ -170,7 +170,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
     @Override
     public boolean accept(AuditEvent event) {
-        boolean accepted = true;
+        var accepted = true;
         if (event.getViolation() != null) {
             final String eventFileName = event.getFileName();
 
@@ -223,7 +223,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * @param fileText {@link FileText} instance.
      */
     private void cacheSuppressions(FileText fileText) {
-        for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
+        for (var lineNo = 0; lineNo < fileText.size(); lineNo++) {
             final Optional<Suppression> suppression = getSuppression(fileText, lineNo);
             suppression.ifPresent(currentFileSuppressionCache::add);
         }
@@ -426,7 +426,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
          * @return true if the {@link AuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(AuditEvent event) {
-            boolean match = true;
+            var match = true;
             if (eventIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
@@ -446,7 +446,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
          * @return true if the {@link AuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(AuditEvent event) {
-            boolean match = true;
+            var match = true;
             if (eventMessageRegexp != null) {
                 final Matcher messageMatcher = eventMessageRegexp.matcher(event.getMessage());
                 match = messageMatcher.find();

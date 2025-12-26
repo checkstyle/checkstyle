@@ -214,7 +214,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
     public void testContainsAnnotationListWithEmptyList() {
         final DetailAST ast = new DetailAstImpl();
         final Set<String> annotations = Set.of();
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
+        final var result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("An empty set should lead to a false result")
             .that(result)
             .isFalse();
@@ -227,7 +227,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         modifiersAst.setType(TokenTypes.MODIFIERS);
         ast.addChild(modifiersAst);
         final Set<String> annotations = Set.of("Override");
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
+        final var result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("An empty ast should lead to a false result")
             .that(result)
             .isFalse();
@@ -250,7 +250,7 @@ public class AnnotationUtilTest extends AbstractModuleTestSupport {
         );
         ast.addChild(modifiersAst);
         final Set<String> annotations = Set.of("Deprecated");
-        final boolean result = AnnotationUtil.containsAnnotation(ast, annotations);
+        final var result = AnnotationUtil.containsAnnotation(ast, annotations);
         assertWithMessage("No matching annotation found")
             .that(result)
             .isFalse();

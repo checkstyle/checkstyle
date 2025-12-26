@@ -307,7 +307,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
             // store as field, to share with child Checks
             context.get().blockCommentAst = blockCommentNode;
 
-            final int treeCacheKey = blockCommentNode.getLineNo();
+            final var treeCacheKey = blockCommentNode.getLineNo();
 
             final ParseStatus result = TREE_CACHE.get()
                     .computeIfAbsent(treeCacheKey, lineNumber -> {
@@ -364,7 +364,7 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     private void walk(DetailNode root) {
         DetailNode curNode = root;
         while (curNode != null) {
-            boolean waitsForProcessing = shouldBeProcessed(curNode);
+            var waitsForProcessing = shouldBeProcessed(curNode);
 
             if (waitsForProcessing) {
                 visitJavadocToken(curNode);

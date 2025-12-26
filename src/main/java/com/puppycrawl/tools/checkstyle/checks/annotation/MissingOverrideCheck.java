@@ -127,13 +127,13 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final boolean containsTag = containsInheritDocTag(ast);
+        final var containsTag = containsInheritDocTag(ast);
         if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
             log(ast, MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
         }
         else {
-            boolean check = true;
+            var check = true;
 
             if (javaFiveCompatibility) {
                 final DetailAST defOrNew = ast.getParent().getParent();

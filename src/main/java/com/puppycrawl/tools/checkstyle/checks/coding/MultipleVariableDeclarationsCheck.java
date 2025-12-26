@@ -76,7 +76,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
         DetailAST nextNode = ast.getNextSibling();
 
         if (nextNode != null) {
-            final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
+            final var isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
             if (isCommaSeparated
                 || nextNode.getType() == TokenTypes.SEMI) {

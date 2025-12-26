@@ -94,12 +94,12 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final List<DetailAST> caseLabels = getAllCaseLabels(ast);
-        final boolean hasNullCaseLabel = caseLabels.stream()
+        final var hasNullCaseLabel = caseLabels.stream()
                 .anyMatch(MissingNullCaseInSwitchCheck::hasLiteralNull);
         if (!hasNullCaseLabel) {
-            final boolean hasPatternCaseLabel = caseLabels.stream()
+            final var hasPatternCaseLabel = caseLabels.stream()
                 .anyMatch(MissingNullCaseInSwitchCheck::hasPatternCaseLabel);
-            final boolean hasStringCaseLabel = caseLabels.stream()
+            final var hasStringCaseLabel = caseLabels.stream()
                 .anyMatch(MissingNullCaseInSwitchCheck::hasStringCaseLabel);
             if (hasPatternCaseLabel || hasStringCaseLabel) {
                 log(ast, MSG_KEY);
@@ -159,8 +159,8 @@ public class MissingNullCaseInSwitchCheck extends AbstractCheck {
      */
     private static boolean hasStringCaseLabel(DetailAST caseAST) {
         DetailAST curNode = caseAST;
-        boolean hasStringCaseLabel = false;
-        boolean exitCaseLabelExpression = false;
+        var hasStringCaseLabel = false;
+        var exitCaseLabelExpression = false;
         while (!exitCaseLabelExpression) {
             DetailAST toVisit = curNode.getFirstChild();
             if (curNode.getType() == TokenTypes.STRING_LITERAL) {

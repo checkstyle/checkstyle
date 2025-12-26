@@ -116,8 +116,8 @@ public final class Main {
         commandLine.setCaseInsensitiveEnumValuesAllowed(true);
 
         // provide proper exit code based on results.
-        int exitStatus = 0;
-        int errorCounter = 0;
+        var exitStatus = 0;
+        var errorCounter = 0;
         try {
             final ParseResult parseResult = commandLine.parseArgs(args);
             if (parseResult.isVersionHelpRequested()) {
@@ -197,7 +197,7 @@ public final class Main {
         // return error if something is wrong in arguments
         final List<File> filesToProcess = getFilesToProcess(options);
         final List<String> messages = options.validateCli(parseResult, filesToProcess);
-        final boolean hasMessages = !messages.isEmpty();
+        final var hasMessages = !messages.isEmpty();
         if (hasMessages) {
             messages.forEach(System.out::println);
             exitStatus = EXIT_WITH_INVALID_USER_INPUT_CODE;
@@ -266,7 +266,7 @@ public final class Main {
      * @return True if the directory/file matches one of the patterns.
      */
     private static boolean isPathExcluded(String path, Iterable<Pattern> patternsToExclude) {
-        boolean result = false;
+        var result = false;
 
         for (Pattern pattern : patternsToExclude) {
             if (pattern.matcher(path).find()) {
@@ -292,8 +292,8 @@ public final class Main {
      */
     private static int runCli(CliOptions options, List<File> filesToProcess)
             throws IOException, CheckstyleException {
-        int result = 0;
-        final boolean hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;
+        var result = 0;
+        final var hasSuppressionLineColumnNumber = options.suppressionLineColumnNumber != null;
 
         // create config helper object
         if (options.printAst) {
@@ -841,8 +841,8 @@ public final class Main {
         // -@cs[CyclomaticComplexity] Breaking apart will damage encapsulation
         private List<String> validateCli(ParseResult parseResult, List<File> filesToProcess) {
             final List<String> result = new ArrayList<>();
-            final boolean hasConfigurationFile = configurationFile != null;
-            final boolean hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;
+            final var hasConfigurationFile = configurationFile != null;
+            final var hasSuppressionLineColumnNumber = suppressionLineColumnNumber != null;
 
             if (filesToProcess.isEmpty()) {
                 result.add("Files to process must be specified, found 0.");

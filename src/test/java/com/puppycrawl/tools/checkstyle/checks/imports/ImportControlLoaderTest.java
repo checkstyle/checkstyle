@@ -140,7 +140,7 @@ public class ImportControlLoaderTest {
     @Test
     public void testInputStreamFailsOnRead() throws Exception {
         try (InputStream inputStream = mock()) {
-            final int available = doThrow(IOException.class).when(inputStream).available();
+            final var available = doThrow(IOException.class).when(inputStream).available();
             final URL url = mock();
             when(url.openStream()).thenReturn(inputStream);
             final URI uri = mock();

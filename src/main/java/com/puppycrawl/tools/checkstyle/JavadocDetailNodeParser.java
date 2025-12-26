@@ -75,7 +75,7 @@ public class JavadocDetailNodeParser {
      *        the error message (if parsing failed)
      */
     public ParseStatus parseJavadocComment(DetailAST javadocCommentAst) {
-        final int blockCommentLineNumber = javadocCommentAst.getLineNo();
+        final var blockCommentLineNumber = javadocCommentAst.getLineNo();
 
         final String javadocComment = JavadocUtil.getJavadocCommentContent(javadocCommentAst);
         final ParseStatus result = new ParseStatus();
@@ -116,7 +116,7 @@ public class JavadocDetailNodeParser {
 
         try {
             final JavadocCommentsParser.JavadocContext javadoc = parser.javadoc();
-            final int javadocColumnNumber = javadocCommentAst.getColumnNo()
+            final var javadocColumnNumber = javadocCommentAst.getColumnNo()
                             + JAVADOC_START.length();
 
             final JavadocCommentsAstVisitor visitor = new JavadocCommentsAstVisitor(
@@ -189,14 +189,14 @@ public class JavadocDetailNodeParser {
                 Recognizer<?, ?> recognizer, Object offendingSymbol,
                 int line, int charPositionInLine,
                 String msg, RecognitionException ex) {
-            final int lineNumber = offset + line;
+            final var lineNumber = offset + line;
 
             final String target;
             if (recognizer instanceof JavadocCommentsLexer lexer) {
                 target = lexer.getPreviousToken().getText();
             }
             else {
-                final int ruleIndex = ex.getCtx().getRuleIndex();
+                final var ruleIndex = ex.getCtx().getRuleIndex();
                 final String ruleName = recognizer.getRuleNames()[ruleIndex];
                 target = convertUpperCamelToUpperUnderscore(ruleName);
             }

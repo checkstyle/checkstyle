@@ -229,7 +229,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     private static CharSequence makeLargeXyString() {
         // now needs 10'000 or 100'000, as just 1000 is no longer enough today to provoke the
         // StackOverflowError
-        final int size = 100_000;
+        final var size = 100_000;
         return "xy".repeat(size / 2);
     }
 

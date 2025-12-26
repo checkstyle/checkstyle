@@ -161,11 +161,11 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid tags size")
             .that(tags)
             .hasSize(1);
-        final int lineNo = tags.get(0).getLineNo();
+        final var lineNo = tags.get(0).getLineNo();
         assertWithMessage("Unexpected line number")
             .that(lineNo)
             .isEqualTo(0);
-        final int columnNo = tags.get(0).getColumnNo();
+        final var columnNo = tags.get(0).getColumnNo();
         assertWithMessage("Unexpected column number")
             .that(columnNo)
             .isEqualTo(10);
@@ -330,7 +330,7 @@ public class JavadocUtilTest {
 
     @Test
     public void testGetTokenId() {
-        final int tokenId = JavadocUtil.getTokenId("JAVADOC_CONTENT");
+        final var tokenId = JavadocUtil.getTokenId("JAVADOC_CONTENT");
 
         assertWithMessage("Invalid token id")
             .that(tokenId)

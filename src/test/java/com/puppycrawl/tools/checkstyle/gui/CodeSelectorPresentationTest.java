@@ -66,9 +66,9 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
      */
     private static List<Integer> convertLinesToPosition(List<Integer> systemLinesToPosition) {
         final List<Integer> convertedLinesToPosition = new ArrayList<>();
-        final int lineSeparationCorrection = System.lineSeparator().length() - 1;
+        final var lineSeparationCorrection = System.lineSeparator().length() - 1;
         convertedLinesToPosition.add(0, systemLinesToPosition.get(0));
-        for (int i = 1; i < systemLinesToPosition.size(); i++) {
+        for (var i = 1; i < systemLinesToPosition.size(); i++) {
             convertedLinesToPosition.add(i,
                     systemLinesToPosition.get(i) - lineSeparationCorrection * (i - 1));
         }
@@ -137,7 +137,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         DetailNode javadocLeaf = null;
         DetailNode node = javadoc.getFirstChild();
-        for (int index = 0; node != null; index++, node = node.getNextSibling()) {
+        for (var index = 0; node != null; index++, node = node.getNextSibling()) {
             if (index == 2) {
                 javadocLeaf = node;
                 break;

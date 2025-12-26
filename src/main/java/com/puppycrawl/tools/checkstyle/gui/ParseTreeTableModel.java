@@ -179,7 +179,7 @@ public class ParseTreeTableModel implements TreeModel {
         TreeModelEvent event = null;
         // Process the listeners last to first, notifying
         // those that are interested in this event
-        for (int i = listeners.length - 2; i >= 0; i -= 2) {
+        for (var i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == TreeModelListener.class) {
                 // Lazily create the event:
                 if (event == null) {

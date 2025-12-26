@@ -167,7 +167,7 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
      * @return {@code true} if node is {@code @code}, {@code @literal} or HTML comment.
      */
     private static boolean isCommentOrInlineTag(DetailNode node) {
-        boolean isInsideInlineTagOrHtmlComment = false;
+        var isInsideInlineTagOrHtmlComment = false;
         DetailNode current = node;
 
         while (current != null) {

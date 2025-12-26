@@ -73,7 +73,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return astType == TokenTypes.PACKAGE_DEF
                 || TokenUtil.isTypeDeclaration(astType);
         }
@@ -87,7 +87,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -101,7 +101,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -115,7 +115,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES_DEPRECATED.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -129,7 +129,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return astType == TokenTypes.METHOD_DEF || astType == TokenTypes.CTOR_DEF;
         }
 
@@ -142,7 +142,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
 
             return astType == TokenTypes.METHOD_DEF
                 && ast.findFirstToken(TokenTypes.MODIFIERS)
@@ -159,7 +159,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -173,7 +173,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -187,7 +187,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -201,7 +201,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return astType == TokenTypes.CLASS_DEF
                 || astType == TokenTypes.INTERFACE_DEF
                 || astType == TokenTypes.METHOD_DEF
@@ -217,7 +217,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
 
             return astType == TokenTypes.METHOD_DEF
@@ -233,7 +233,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -247,7 +247,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
 
             return astType == TokenTypes.VARIABLE_DEF
                 && !ScopeUtil.isLocalVariableDef(ast);
@@ -262,7 +262,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             final DetailAST methodNameAst = ast.findFirstToken(TokenTypes.IDENT);
             final String methodName = methodNameAst.getText();
 
@@ -284,7 +284,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             final DetailAST varType = ast.findFirstToken(TokenTypes.TYPE);
 
             return astType == TokenTypes.VARIABLE_DEF
@@ -301,7 +301,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -315,7 +315,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return astType == TokenTypes.METHOD_DEF
                 || astType == TokenTypes.CTOR_DEF;
         }
@@ -329,7 +329,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return DEF_TOKEN_TYPES.get(astType)
                 && !ScopeUtil.isLocalVariableDef(ast);
         }
@@ -343,7 +343,7 @@ public enum JavadocTagInfo {
 
         @Override
         public boolean isValidOn(final DetailAST ast) {
-            final int astType = ast.getType();
+            final var astType = ast.getType();
             return astType == TokenTypes.PACKAGE_DEF
                 || TokenUtil.isTypeDeclaration(astType);
         }

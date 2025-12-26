@@ -103,11 +103,11 @@ public class ConstantNameCheck
 
     @Override
     protected final boolean mustCheckName(DetailAST ast) {
-        boolean returnValue = false;
+        var returnValue = false;
 
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStaticFinal =
+        final var isStaticFinal =
             modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null
                 && modifiersAST.findFirstToken(TokenTypes.FINAL) != null
             || ScopeUtil.isInAnnotationBlock(ast)

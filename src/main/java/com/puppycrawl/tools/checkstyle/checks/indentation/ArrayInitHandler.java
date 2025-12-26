@@ -49,7 +49,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     @Override
     protected IndentLevel getIndentImpl() {
         final DetailAST parentAST = getMainAst().getParent();
-        final int type = parentAST.getType();
+        final var type = parentAST.getType();
         final IndentLevel indentLevel;
         if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
             // note: assumes new or assignment is line to align with
@@ -74,7 +74,7 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel curlyIndent() {
-        int offset = 0;
+        var offset = 0;
 
         final DetailAST lcurly = getLeftCurly();
 
@@ -109,9 +109,9 @@ public class ArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
 
-        final int firstLine = getFirstLine(getListChild());
-        final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
-        final int firstChildPos =
+        final var firstLine = getFirstLine(getListChild());
+        final var lcurlyPos = expandedTabsColumnNo(getLeftCurly());
+        final var firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
 
         if (firstChildPos != NOT_EXIST) {
@@ -134,9 +134,9 @@ public class ArrayInitHandler extends BlockParentHandler {
      *         such char doesn't exist.
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
-        int realColumnNo = columnNo + 1;
+        var realColumnNo = columnNo + 1;
         final String line = getIndentCheck().getLines()[lineNo - 1];
-        final int lineLength = line.length();
+        final var lineLength = line.length();
         while (realColumnNo < lineLength
                && Character.isWhitespace(line.charAt(realColumnNo))) {
             realColumnNo++;

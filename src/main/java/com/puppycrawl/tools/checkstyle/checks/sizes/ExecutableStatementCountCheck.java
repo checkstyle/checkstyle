@@ -148,7 +148,7 @@ public final class ExecutableStatementCountCheck
      * @param ast the token representing the container node.
      */
     private void leaveContainerNode(DetailAST ast) {
-        final int count = context.getCount();
+        final var count = context.getCount();
         if (count > max) {
             log(ast, MSG_KEY, count, max);
         }

@@ -74,8 +74,8 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             // of the line
             final DetailAstSet astSet = new DetailAstSet(indentCheck);
             findSubtreeAst(astSet, getMainAst().getFirstChild(), true);
-            final int firstCol = expandedTabsColumnNo(astSet.firstLine());
-            final int lineStart = getLineStart(getFirstAst(getMainAst()));
+            final var firstCol = expandedTabsColumnNo(astSet.firstLine());
+            final var lineStart = getLineStart(getFirstAst(getMainAst()));
             if (lineStart == firstCol) {
                 indentLevel = super.getIndentImpl();
             }

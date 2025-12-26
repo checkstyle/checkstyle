@@ -110,7 +110,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final boolean hasNoSlist = ast.findFirstToken(TokenTypes.SLIST) == null;
+        final var hasNoSlist = ast.findFirstToken(TokenTypes.SLIST) == null;
         if (hasNoSlist && !isSkipStatement(ast) && isBracesNeeded(ast)) {
             log(ast, MSG_KEY_NEED_BRACES, ast.getText());
         }
@@ -161,7 +161,7 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     private static boolean hasUnbracedStatements(DetailAST ast) {
         final DetailAST nextSibling = ast.getNextSibling();
-        boolean result = false;
+        var result = false;
 
         if (isInSwitchRule(ast)) {
             final DetailAST parent = ast.getParent();
@@ -231,7 +231,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current while statement is single-line statement.
      */
     private static boolean isSingleLineWhile(DetailAST literalWhile) {
-        boolean result = false;
+        var result = false;
         if (literalWhile.getParent().getType() == TokenTypes.SLIST) {
             final DetailAST block = literalWhile.getLastChild().getPreviousSibling();
             result = TokenUtil.areOnSameLine(literalWhile, block);
@@ -252,7 +252,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current do-while statement is single-line statement.
      */
     private static boolean isSingleLineDoWhile(DetailAST literalDo) {
-        boolean result = false;
+        var result = false;
         if (literalDo.getParent().getType() == TokenTypes.SLIST) {
             final DetailAST block = literalDo.getFirstChild();
             result = TokenUtil.areOnSameLine(block, literalDo);
@@ -273,7 +273,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current for statement is single-line statement.
      */
     private static boolean isSingleLineFor(DetailAST literalFor) {
-        boolean result = false;
+        var result = false;
         if (literalFor.getLastChild().getType() == TokenTypes.EMPTY_STAT) {
             result = true;
         }
@@ -296,7 +296,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * @return true if current if statement is single-line statement.
      */
     private static boolean isSingleLineIf(DetailAST literalIf) {
-        boolean result = false;
+        var result = false;
         if (literalIf.getParent().getType() == TokenTypes.SLIST) {
             final DetailAST literalIfLastChild = literalIf.getLastChild();
             final DetailAST block;

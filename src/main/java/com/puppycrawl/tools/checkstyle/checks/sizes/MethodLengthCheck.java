@@ -108,8 +108,8 @@ public class MethodLengthCheck extends AbstractCheck {
      * @return number of lines with code for current block
      */
     private static int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
-        final int startLineNo = openingBrace.getLineNo();
-        final int endLineNo = closingBrace.getLineNo();
+        final var startLineNo = openingBrace.getLineNo();
+        final var endLineNo = closingBrace.getLineNo();
         return endLineNo - startLineNo + 1;
     }
 
@@ -125,11 +125,11 @@ public class MethodLengthCheck extends AbstractCheck {
         final BitSet usedLines = new BitSet();
         while (!nodes.isEmpty()) {
             final DetailAST node = nodes.removeFirst();
-            final int lineIndex = node.getLineNo();
+            final var lineIndex = node.getLineNo();
             // text block requires special treatment,
             // since it is the only non-comment token that can span more than one line
             if (node.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
-                final int endLineIndex = node.getLastChild().getLineNo();
+                final var endLineIndex = node.getLastChild().getLineNo();
                 usedLines.set(lineIndex, endLineIndex + 1);
             }
             else {

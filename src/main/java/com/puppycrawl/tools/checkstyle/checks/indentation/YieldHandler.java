@@ -55,7 +55,7 @@ public class YieldHandler extends AbstractExpressionHandler {
      */
     private void checkYield() {
         final DetailAST yieldKey = getMainAst();
-        final int columnNo = expandedTabsColumnNo(yieldKey);
+        final var columnNo = expandedTabsColumnNo(yieldKey);
         if (isOnStartOfLine(yieldKey) && !getIndent().isAcceptable(columnNo)) {
             logError(yieldKey, "", columnNo);
         }

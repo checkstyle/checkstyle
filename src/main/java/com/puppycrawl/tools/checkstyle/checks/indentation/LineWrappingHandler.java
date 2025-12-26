@@ -161,10 +161,10 @@ public class LineWrappingHandler {
         else {
             firstNodeIndent = startIndent;
         }
-        final int currentIndent = firstNodeIndent + indentLevel;
+        final var currentIndent = firstNodeIndent + indentLevel;
 
         for (DetailAST node : firstNodesOnLines.values()) {
-            final int currentType = node.getType();
+            final var currentType = node.getType();
             if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)
                     || !shouldProcessTextBlockLiteral(node)) {
                 continue;
@@ -221,7 +221,7 @@ public class LineWrappingHandler {
      * @return true if method lparen starts from a new line.
      */
     public static boolean checkForMethodLparenNewLine(DetailAST node) {
-        final int parentType = node.getParent().getType();
+        final var parentType = node.getParent().getType();
         return parentType == TokenTypes.METHOD_DEF && node.getType() == TokenTypes.LPAREN;
     }
 
@@ -315,20 +315,20 @@ public class LineWrappingHandler {
      */
     private void checkAnnotationIndentation(DetailAST atNode,
             NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
-        final int firstNodeIndent = getLineStart(atNode);
-        final int currentIndent = firstNodeIndent + indentLevel;
+        final var firstNodeIndent = getLineStart(atNode);
+        final var currentIndent = firstNodeIndent + indentLevel;
         final Collection<DetailAST> values = firstNodesOnLines.values();
         final DetailAST lastAnnotationNode = atNode.getParent().getLastChild();
-        final int lastAnnotationLine = lastAnnotationNode.getLineNo();
+        final var lastAnnotationLine = lastAnnotationNode.getLineNo();
 
         final Iterator<DetailAST> itr = values.iterator();
         while (firstNodesOnLines.size() > 1) {
             final DetailAST node = itr.next();
 
             final DetailAST parentNode = node.getParent();
-            final boolean isArrayInitPresentInAncestors =
+            final var isArrayInitPresentInAncestors =
                 isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
-            final boolean isCurrentNodeCloseAnnotationAloneInLine =
+            final var isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
             if (!isArrayInitPresentInAncestors
@@ -357,7 +357,7 @@ public class LineWrappingHandler {
      */
     private static boolean isEndOfScope(final DetailAST lastAnnotationNode, final DetailAST node) {
         DetailAST checkNode = node;
-        boolean endOfScope = true;
+        var endOfScope = true;
         while (endOfScope && !checkNode.equals(lastAnnotationNode)) {
             switch (checkNode.getType()) {
                 case TokenTypes.RCURLY, TokenTypes.RBRACK -> {
@@ -381,7 +381,7 @@ public class LineWrappingHandler {
      * @return true if there is a parent of given type
      */
     private static boolean isParentContainsTokenType(final DetailAST node, int type) {
-        boolean returnValue = false;
+        var returnValue = false;
         for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
             if (ast.getType() == type) {
                 returnValue = true;
@@ -426,7 +426,7 @@ public class LineWrappingHandler {
      * @return the start of the specified line
      */
     private int getLineStart(String line) {
-        int index = 0;
+        var index = 0;
         while (Character.isWhitespace(line.charAt(index))) {
             index++;
         }

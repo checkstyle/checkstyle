@@ -113,7 +113,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
         }
 
         String previousProp = "";
-        int startLineNo = 0;
+        var startLineNo = 0;
 
         final Iterator<Object> propertyIterator = properties.keys().asIterator();
 
@@ -123,7 +123,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
             if (String.CASE_INSENSITIVE_ORDER.compare(previousProp, propKey) > 0) {
 
-                final int lineNo = getLineNumber(startLineNo, fileText, previousProp, propKey);
+                final var lineNo = getLineNumber(startLineNo, fileText, previousProp, propKey);
                 log(lineNo + 1, MSG_KEY, propKey, previousProp);
                 // start searching at position of the last reported validation
                 startLineNo = lineNo;
@@ -147,7 +147,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      */
     private static int getLineNumber(int startLineNo, FileText fileText,
                                      String previousProp, String propKey) {
-        final int indexOfPreviousProp = getIndex(startLineNo, fileText, previousProp);
+        final var indexOfPreviousProp = getIndex(startLineNo, fileText, previousProp);
         return getIndex(indexOfPreviousProp, fileText, propKey);
     }
 
@@ -161,9 +161,9 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
      */
     private static int getIndex(int startLineNo, FileText fileText, String keyName) {
         final Pattern keyPattern = getKeyPattern(keyName);
-        int indexNumber = 0;
+        var indexNumber = 0;
         final Matcher matcher = keyPattern.matcher("");
-        for (int index = startLineNo; index < fileText.size(); index++) {
+        for (var index = startLineNo; index < fileText.size(); index++) {
             final String line = fileText.get(index);
             matcher.reset(line);
             if (matcher.matches()) {

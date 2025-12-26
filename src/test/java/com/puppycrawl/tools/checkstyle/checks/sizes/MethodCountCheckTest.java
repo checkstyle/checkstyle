@@ -187,7 +187,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testMethodCountRecords() throws Exception {
-        final int max = 2;
+        final var max = 2;
 
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),

@@ -157,7 +157,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
 
     @Override
     public boolean accept(AuditEvent event) {
-        boolean accepted = true;
+        var accepted = true;
 
         if (event.getViolation() != null) {
             final String eventFileTextAbsolutePath = event.getFileName();
@@ -215,7 +215,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
     private void collectSuppressions(FileText fileText) {
         suppressions.clear();
 
-        for (int lineNo = 0; lineNo < fileText.size(); lineNo++) {
+        for (var lineNo = 0; lineNo < fileText.size(); lineNo++) {
             final Suppression suppression = getSuppression(fileText, lineNo);
             if (suppression != null) {
                 suppressions.add(suppression);
@@ -311,7 +311,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
                 format = CommonUtil.fillTemplateWithStringsByRegexp(lineRange,
                                                                     text, nearbyTextPattern);
 
-                final int range = parseRange(format, lineRange, text);
+                final var range = parseRange(format, lineRange, text);
 
                 firstLine = Math.min(lineNo, lineNo + range);
                 lastLine = Math.max(lineNo, lineNo + range);
@@ -362,7 +362,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
          * @return true if the {@link AuditEvent} is in the scope of the suppression.
          */
         private boolean isInScopeOfSuppression(AuditEvent event) {
-            final int eventLine = event.getLine();
+            final var eventLine = event.getLine();
             return eventLine >= firstLine && eventLine <= lastLine;
         }
 
@@ -384,7 +384,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
          * @return true if the {@link AuditEvent} module ID matches the ID pattern.
          */
         private boolean isIdMatch(AuditEvent event) {
-            boolean match = true;
+            var match = true;
             if (eventIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
@@ -404,7 +404,7 @@ public class SuppressWithNearbyTextFilter extends AbstractAutomaticBean implemen
          * @return true if the {@link AuditEvent} message matches the message pattern.
          */
         private boolean isMessageMatch(AuditEvent event) {
-            boolean match = true;
+            var match = true;
             if (eventMessageRegexp != null) {
                 final Matcher messageMatcher = eventMessageRegexp.matcher(event.getMessage());
                 match = messageMatcher.find();

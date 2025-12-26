@@ -28,9 +28,9 @@ public class VerifyPositionAfterLastTabFileSet extends AbstractFileSetCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        int lineNumber = 0;
+        var lineNumber = 0;
         for (String line : getFileContents().getLines()) {
-            final int position = line.lastIndexOf('\t');
+            final var position = line.lastIndexOf('\t');
             lineNumber++;
 
             if (position != -1) {

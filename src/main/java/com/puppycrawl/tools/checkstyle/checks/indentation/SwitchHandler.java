@@ -117,14 +117,14 @@ public class SwitchHandler extends BlockParentHandler {
         // The enclosing handler node that already determines base indentation
         // (e.g., method declaration containing our current node)
         final DetailAST enclosingHandlerNode = getParent().getMainAst();
-        final boolean isDirectParentTheHandler = directParent.equals(enclosingHandlerNode);
+        final var isDirectParentTheHandler = directParent.equals(enclosingHandlerNode);
 
-        final boolean shouldIndentForDirectParent = !isDirectParentTheHandler
+        final var shouldIndentForDirectParent = !isDirectParentTheHandler
             && isWrappingTrigger(directParent);
 
         // Check if grandparent requires extra indentation (when
         // neither it nor direct parent is the handler)
-        final boolean shouldIndentForGrandParent = !isDirectParentTheHandler
+        final var shouldIndentForGrandParent = !isDirectParentTheHandler
             && !grandParent.equals(enclosingHandlerNode)
             && isWrappingTrigger(grandParent);
 

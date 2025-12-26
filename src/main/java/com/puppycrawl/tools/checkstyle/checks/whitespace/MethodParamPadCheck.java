@@ -118,7 +118,7 @@ public class MethodParamPadCheck
                 }
             }
             else {
-                final int before = parenAST.getColumnNo() - 1;
+                final var before = parenAST.getColumnNo() - 1;
                 if (option == PadOption.NOSPACE
                     && CommonUtil.isCodePointWhitespace(line, before)) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());

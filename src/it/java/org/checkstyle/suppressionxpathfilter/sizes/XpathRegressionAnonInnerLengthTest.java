@@ -1,3 +1,4 @@
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
 // Copyright (C) 2001-2025 the original author or authors.
@@ -75,7 +76,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
 
     @Test
     public void testMaxLength() throws Exception {
-        final int maxLen = 5;
+        final var maxLen = 5;
         final File fileToProcess =
                 new File(getPath("InputXpathAnonInnerLength.java"));
 

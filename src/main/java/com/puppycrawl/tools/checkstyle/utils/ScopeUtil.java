@@ -128,7 +128,7 @@ public final class ScopeUtil {
         for (DetailAST token = node;
              token != null;
              token = token.getParent()) {
-            final int type = token.getType();
+            final var type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final Scope tokenScope = getScope(token);
                 if (returnValue == null || returnValue.isIn(tokenScope)) {
@@ -193,7 +193,7 @@ public final class ScopeUtil {
      * @return a {@code boolean} value
      */
     public static boolean isInBlockOf(DetailAST node, int tokenType) {
-        boolean returnValue = false;
+        var returnValue = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = node.getParent();
@@ -226,7 +226,7 @@ public final class ScopeUtil {
      * @return a {@code boolean} value
      */
     public static boolean isInEnumBlock(DetailAST node) {
-        boolean returnValue = false;
+        var returnValue = false;
 
         // Loop up looking for a containing interface block
         for (DetailAST token = node.getParent();
@@ -250,7 +250,7 @@ public final class ScopeUtil {
      * @return a {@code boolean} value
      */
     public static boolean isInCodeBlock(DetailAST node) {
-        boolean returnValue = false;
+        var returnValue = false;
         final int[] tokenTypes = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
@@ -280,7 +280,7 @@ public final class ScopeUtil {
      * @return a {@code boolean} value
      */
     public static boolean isOuterMostType(DetailAST node) {
-        boolean returnValue = true;
+        var returnValue = true;
         for (DetailAST parent = node.getParent();
              parent != null;
              parent = parent.getParent()) {

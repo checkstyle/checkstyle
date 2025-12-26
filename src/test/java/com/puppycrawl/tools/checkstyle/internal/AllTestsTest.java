@@ -125,7 +125,7 @@ public class AllTestsTest {
                 path += "Check";
             }
 
-            final int slash = path.lastIndexOf(File.separatorChar);
+            final var slash = path.lastIndexOf(File.separatorChar);
             final String packge = path.substring(0, slash);
             final List<String> classes = allTests.computeIfAbsent(packge, key -> new ArrayList<>());
 
@@ -144,7 +144,7 @@ public class AllTestsTest {
                 throw new IllegalStateException(exc);
             }
 
-            final int slash = path.lastIndexOf(File.separatorChar);
+            final var slash = path.lastIndexOf(File.separatorChar);
             final String packge = path.substring(0, slash);
             final List<String> classes = allTests.computeIfAbsent(packge, key -> new ArrayList<>());
 
@@ -166,7 +166,7 @@ public class AllTestsTest {
             // until https://github.com/checkstyle/checkstyle/issues/5105
             if (shouldSkipFileProcessing(path)) {
                 String fileName = file.getName();
-                final boolean skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
+                final var skipFileNaming = shouldSkipInputFileNameCheck(path, fileName);
 
                 if (!skipFileNaming) {
                     assertWithMessage("Resource must start with 'Input' or 'Expected': %s", path)
@@ -180,7 +180,7 @@ public class AllTestsTest {
                         fileName = fileName.substring(8);
                     }
 
-                    final int period = fileName.lastIndexOf('.');
+                    final var period = fileName.lastIndexOf('.');
 
                     if (period > 0) {
                         fileName = fileName.substring(0, period);
@@ -195,11 +195,11 @@ public class AllTestsTest {
     private static void verifyInputFile(Map<String, List<String>> allTests, boolean skipFileNaming,
             String path, String fileName) {
         List<String> classes;
-        int slash = path.lastIndexOf(File.separatorChar);
+        var slash = path.lastIndexOf(File.separatorChar);
         String packge = path.substring(0, slash);
-        boolean found = false;
+        var found = false;
 
-        for (int depth = 0; depth < 4; depth++) {
+        for (var depth = 0; depth < 4; depth++) {
             // -@cs[MoveVariableInsideIf] assignment value is modified later, so it can't be
             // moved
             final String folderPath = packge;
@@ -252,7 +252,7 @@ public class AllTestsTest {
 
                 if (!path.contains(File.separatorChar + "grammar" + File.separatorChar)
                         && !path.contains(File.separatorChar + "internal" + File.separatorChar)) {
-                    final int slash = path.lastIndexOf(File.separatorChar);
+                    final var slash = path.lastIndexOf(File.separatorChar);
                     final String packge = path.substring(0, slash);
                     final List<String> classes = allTests.get(packge);
 
@@ -279,7 +279,7 @@ public class AllTestsTest {
 
     private static boolean checkInputMatchCorrectFileStructure(List<String> classes,
             String folderPath, boolean skipFileNaming, String fileName) {
-        boolean result = false;
+        var result = false;
 
         for (String clss : classes) {
             if (folderPath.endsWith(File.separatorChar + clss.toLowerCase(Locale.ENGLISH))

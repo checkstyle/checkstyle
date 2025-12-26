@@ -187,7 +187,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             final FileContents contents = getFileContents();
             DetailAST rootAST = null;
             // whether skip the procedure after parsing Java files.
-            boolean skip = false;
+            var skip = false;
             try {
                 rootAST = JavaParser.parse(contents);
             }
@@ -267,7 +267,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {
-                final int tokenId = TokenUtil.getTokenId(token);
+                final var tokenId = TokenUtil.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
                     registerCheck(tokenId, check);
                 }
@@ -420,7 +420,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private Collection<AbstractCheck> getListOfChecks(DetailAST ast, AstState astState) {
         final Collection<AbstractCheck> visitors;
-        final int tokenId = ast.getType();
+        final var tokenId = ast.getType();
 
         if (astState == AstState.WITH_COMMENTS) {
             visitors = tokenToCommentChecks.get(tokenId);

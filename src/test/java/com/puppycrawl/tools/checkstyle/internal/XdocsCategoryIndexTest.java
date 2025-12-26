@@ -162,7 +162,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
         final Document document = XmlUtil.getRawXml(checkXdocFile.toString(), content, content);
         final NodeList sections = document.getElementsByTagName("section");
 
-        for (int sectionIndex = 0; sectionIndex < sections.getLength(); sectionIndex++) {
+        for (var sectionIndex = 0; sectionIndex < sections.getLength(); sectionIndex++) {
             final Node sectionNode = sections.item(sectionIndex);
             if (sectionNode instanceof Element sectionElement
                   && sectionElement.hasAttribute("name")) {
@@ -194,7 +194,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
         final Document document = XmlUtil.getRawXml(checkXdocFile.toString(), content, content);
         final NodeList subsections = document.getElementsByTagName("subsection");
 
-        for (int subsectionIdx = 0; subsectionIdx < subsections.getLength(); subsectionIdx++) {
+        for (var subsectionIdx = 0; subsectionIdx < subsections.getLength(); subsectionIdx++) {
             final Node subsectionNode = subsections.item(subsectionIdx);
             if (subsectionNode instanceof Element subsectionElement
                 && "Description".equals(subsectionElement.getAttribute("name"))) {
@@ -283,7 +283,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     private static Optional<String> getAggregatedDirectText(Element parent) {
         final StringBuilder directTextContent = new StringBuilder(32);
         final NodeList directChildren = parent.getChildNodes();
-        for (int childIdx = 0; childIdx < directChildren.getLength(); childIdx++) {
+        for (var childIdx = 0; childIdx < directChildren.getLength(); childIdx++) {
             final Node directChild = directChildren.item(childIdx);
             if (directChild.getNodeType() == Node.TEXT_NODE) {
                 directTextContent.append(directChild.getNodeValue());
@@ -321,7 +321,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
             throw new AssertionError(errorMsg);
         }
 
-        for (int tableIdx = 0; tableIdx < tableNodes.getLength(); tableIdx++) {
+        for (var tableIdx = 0; tableIdx < tableNodes.getLength(); tableIdx++) {
             final Node tableNode = tableNodes.item(tableIdx);
             if (tableNode instanceof Element element) {
                 processTableElement(element, indexedChecks);
@@ -340,7 +340,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     private static void processTableElement(Element tableElement,
                                             Map<String, CheckIndexInfo> indexedChecks) {
         final List<Element> rowElements = getChildrenElementsByTagName(tableElement, "tr");
-        boolean isFirstRowInTable = true;
+        var isFirstRowInTable = true;
 
         for (final Element rowElement : rowElements) {
             if (isFirstRowInTable) {
@@ -400,7 +400,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
         final List<Element> elements = new ArrayList<>();
         if (parent != null) {
             final NodeList children = parent.getChildNodes();
-            for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
+            for (var childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
                 if (child instanceof Element element && tagName.equals(child.getNodeName())) {
                     elements.add(element);
@@ -422,7 +422,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
         Optional<Element> result = Optional.empty();
         if (parent != null) {
             final NodeList children = parent.getChildNodes();
-            for (int childIdx = 0; childIdx < children.getLength(); childIdx++) {
+            for (var childIdx = 0; childIdx < children.getLength(); childIdx++) {
                 final Node child = children.item(childIdx);
                 if (child instanceof Element element && tagName.equals(child.getNodeName())) {
                     result = Optional.of(element);
