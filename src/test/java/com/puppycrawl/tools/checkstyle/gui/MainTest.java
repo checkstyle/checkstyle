@@ -48,7 +48,7 @@ public class MainTest extends AbstractGuiTestSupport {
     @ValueSource(strings = {";", "InputMain.java"})
     public void testMain(String argList) throws Exception {
         final String[] args = argList.split(";");
-        for (int i = 0; i < args.length; i++) {
+        for (var i = 0; i < args.length; i++) {
             args[i] = getPath(args[i]);
         }
 
@@ -57,7 +57,7 @@ public class MainTest extends AbstractGuiTestSupport {
 
         SwingUtilities.invokeAndWait(() -> {
             // Close the main window
-            final long mainFrameCount = Arrays.stream(Window.getWindows())
+            final var mainFrameCount = Arrays.stream(Window.getWindows())
                     .filter(wnd -> wnd instanceof MainFrame && wnd.isVisible())
                     .peek(Window::dispose)
                     .count();

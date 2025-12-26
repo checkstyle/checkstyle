@@ -80,7 +80,7 @@ public class HexLiteralCaseCheck extends AbstractCheck {
      * @return true if the literal contains lowercase hex digits; false otherwise
      */
     private static boolean containsLowerLetter(final String text) {
-        boolean result = false;
+        var result = false;
         final char[] characterList = text.toCharArray();
         for (char character : characterList) {
             if (character >= A_ASCII && character <= F_ASCII) {

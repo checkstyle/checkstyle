@@ -79,18 +79,18 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        final int headerSize = getHeaderLines().size();
-        final int fileSize = fileText.size();
+        final var headerSize = getHeaderLines().size();
+        final var fileSize = fileText.size();
 
         if (headerSize - multiLines.cardinality() > fileSize) {
             log(1, MSG_HEADER_MISSING);
         }
         else {
-            int headerLineNo = 0;
+            var headerLineNo = 0;
             int index;
             for (index = 0; headerLineNo < headerSize && index < fileSize; index++) {
                 final String line = fileText.get(index);
-                boolean isMatch = isMatch(line, headerLineNo);
+                var isMatch = isMatch(line, headerLineNo);
                 while (!isMatch && isMultiLine(headerLineNo)) {
                     headerLineNo++;
                     isMatch = headerLineNo == headerSize
@@ -134,7 +134,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      * @param headerSize whole header size
      */
     private void logFirstSinglelineLine(int startHeaderLine, int headerSize) {
-        for (int lineNum = startHeaderLine; lineNum < headerSize; lineNum++) {
+        for (var lineNum = startHeaderLine; lineNum < headerSize; lineNum++) {
             if (!isMultiLine(lineNum)) {
                 log(1, MSG_HEADER_MISSING);
                 break;

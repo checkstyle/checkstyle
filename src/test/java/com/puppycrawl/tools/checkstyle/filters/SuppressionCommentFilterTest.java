@@ -348,7 +348,7 @@ public class SuppressionCommentFilterTest
         assertWithMessage("Invalid comparing result")
                 .that(tag3.compareTo(tag1) > 0)
                 .isTrue();
-        final int actual = tag1.compareTo(tag4);
+        final var actual = tag1.compareTo(tag4);
         assertWithMessage("Invalid comparing result")
             .that(actual)
             .isEqualTo(0);
@@ -608,7 +608,7 @@ public class SuppressionCommentFilterTest
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
                 new Violation(1, null, null, null, null, Object.class, null), null);
-        final boolean result = suppressionCommentFilter.accept(dummyEvent);
+        final var result = suppressionCommentFilter.accept(dummyEvent);
         assertWithMessage("Filter should not accept event")
             .that(result)
             .isFalse();
@@ -646,8 +646,8 @@ public class SuppressionCommentFilterTest
             String filename, String... lines) {
         final FileContents contents = new FileContents(
                 new FileText(new File(filename), Arrays.asList(lines)));
-        for (int lineNo = 0; lineNo < lines.length; lineNo++) {
-            final int colNo = lines[lineNo].indexOf("//");
+        for (var lineNo = 0; lineNo < lines.length; lineNo++) {
+            final var colNo = lines[lineNo].indexOf("//");
             if (colNo >= 0) {
                 contents.reportSingleLineComment(lineNo + 1, colNo);
             }
@@ -666,8 +666,8 @@ public class SuppressionCommentFilterTest
         final String[] lines = {"//CSOFF", "//CSON"};
         final FileContents fileContents = new FileContents(
                 new FileText(file, Arrays.asList(lines)));
-        for (int lineNo = 0; lineNo < lines.length; lineNo++) {
-            final int colNo = lines[lineNo].indexOf("//");
+        for (var lineNo = 0; lineNo < lines.length; lineNo++) {
+            final var colNo = lines[lineNo].indexOf("//");
             if (colNo >= 0) {
                 fileContents.reportSingleLineComment(lineNo + 1, colNo);
             }

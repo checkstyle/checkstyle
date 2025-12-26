@@ -175,7 +175,7 @@ public abstract class AbstractFileSetCheck
         }
 
         fileExtensions = new String[extensions.length];
-        for (int i = 0; i < extensions.length; i++) {
+        for (var i = 0; i < extensions.length; i++) {
             final String extension = extensions[i];
             if (extension.startsWith(EXTENSION_SEPARATOR)) {
                 fileExtensions[i] = extension;
@@ -230,7 +230,7 @@ public abstract class AbstractFileSetCheck
     public final void log(int lineNo, int colNo, String key,
             Object... args) {
         final FileContext fileContext = context.get();
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
+        final var col = 1 + CommonUtil.lengthExpandedTabs(
                 fileContext.fileContents.getLine(lineNo - 1), colNo, tabWidth);
         fileContext.violations.add(
                 new Violation(lineNo,

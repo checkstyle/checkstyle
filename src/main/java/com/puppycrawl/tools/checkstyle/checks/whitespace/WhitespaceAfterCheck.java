@@ -149,12 +149,12 @@ public class WhitespaceAfterCheck
      * @return true if ast token is followed by a whitespace.
      */
     private static boolean isFollowedByWhitespace(DetailAST targetAST, int... line) {
-        final int after =
+        final var after =
             targetAST.getColumnNo() + targetAST.getText().length();
-        boolean followedByWhitespace = true;
+        var followedByWhitespace = true;
 
         if (after < line.length) {
-            final int codePoint = line[after];
+            final var codePoint = line[after];
 
             followedByWhitespace = codePoint == ';'
                 || codePoint == ')'

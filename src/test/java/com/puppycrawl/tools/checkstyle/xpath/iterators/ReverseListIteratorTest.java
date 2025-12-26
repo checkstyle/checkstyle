@@ -40,7 +40,7 @@ public class ReverseListIteratorTest {
                 new TestNode());
 
         try (ReverseListIterator iterator = new ReverseListIterator(nodes)) {
-            for (int i = nodes.size() - 1; i >= 0; i--) {
+            for (var i = nodes.size() - 1; i >= 0; i--) {
                 assertWithMessage("Invalid node")
                         .that(iterator.next())
                         .isEqualTo(nodes.get(i));

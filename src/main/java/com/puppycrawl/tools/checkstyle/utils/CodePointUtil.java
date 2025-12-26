@@ -62,7 +62,7 @@ public final class CodePointUtil {
      * @return unicode code points array with trailing whitespaces removed
      */
     public static int[] stripTrailing(int... codePoints) {
-        int lastIndex = codePoints.length;
+        var lastIndex = codePoints.length;
         while (CommonUtil.isCodePointWhitespace(codePoints, lastIndex - 1)) {
             lastIndex--;
         }
@@ -78,7 +78,7 @@ public final class CodePointUtil {
      * @return {@code true}, if the unicode code points array ends with provided suffix
      */
     public static boolean endsWith(int[] codePoints, String suffix) {
-        final int startIndex = codePoints.length - suffix.length();
+        final var startIndex = codePoints.length - suffix.length();
         return startIndex > -1 && Arrays.equals(Arrays
                     .copyOfRange(codePoints, startIndex, codePoints.length),
                     suffix.codePoints().toArray());

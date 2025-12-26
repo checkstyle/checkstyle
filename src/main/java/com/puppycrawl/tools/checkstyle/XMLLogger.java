@@ -264,8 +264,8 @@ public final class XMLLogger
      */
     public static String encode(String value) {
         final StringBuilder sb = new StringBuilder(256);
-        for (int i = 0; i < value.length(); i++) {
-            final char chr = value.charAt(i);
+        for (var i = 0; i < value.length(); i++) {
+            final var chr = value.charAt(i);
             switch (chr) {
                 case '<':
                     sb.append("&lt;");
@@ -311,14 +311,14 @@ public final class XMLLogger
      * @return whether the given argument a character or entity reference
      */
     public static boolean isReference(String ent) {
-        boolean reference = false;
+        var reference = false;
 
         if (ent.charAt(0) == '&' && ent.endsWith(";")) {
             if (ent.charAt(1) == '#') {
                 // prefix is "&#"
-                int prefixLength = 2;
+                var prefixLength = 2;
 
-                int radix = BASE_10;
+                var radix = BASE_10;
                 if (ent.charAt(2) == 'x') {
                     prefixLength++;
                     radix = BASE_16;

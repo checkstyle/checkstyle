@@ -94,7 +94,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
     private static boolean isMethodOfScrapedModule(DetailAST methodDef) {
         final DetailAST classDef = getParentAst(methodDef, TokenTypes.CLASS_DEF);
 
-        boolean isMethodOfModule = false;
+        var isMethodOfModule = false;
         if (classDef != null) {
             final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
             isMethodOfModule = className.equals(moduleName);
@@ -140,7 +140,7 @@ public class ClassAndPropertiesSettersJavadocScraper extends AbstractJavadocChec
      * @return whether the AST represents a setter method
      */
     private static boolean isSetterMethod(DetailAST ast) {
-        boolean setterMethod = false;
+        var setterMethod = false;
 
         if (ast.getType() == TokenTypes.METHOD_DEF) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);

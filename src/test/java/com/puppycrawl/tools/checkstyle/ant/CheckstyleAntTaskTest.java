@@ -200,7 +200,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
 
         final String expectedPath = new File(getPath(".")).getAbsolutePath();
-        final boolean containsBaseDir = loggedMessages.stream()
+        final var containsBaseDir = loggedMessages.stream()
                 .anyMatch(msg -> msg.getMsg().contains(expectedPath));
 
         assertWithMessage("Base directory should be present in logs.")
@@ -520,7 +520,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         final List<String> output = readWholeFile(outputFile);
-        final int sizeOfOutputWithNoViolations = 2;
+        final var sizeOfOutputWithNoViolations = 2;
         assertWithMessage("No violations expected")
                 .that(output)
                 .hasSize(sizeOfOutputWithNoViolations);
@@ -545,7 +545,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         final List<String> output = readWholeFile(outputFile);
-        final int sizeOfOutputWithNoViolations = 2;
+        final var sizeOfOutputWithNoViolations = 2;
         assertWithMessage("No violations expected")
                 .that(output)
                 .hasSize(sizeOfOutputWithNoViolations);
@@ -612,7 +612,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> expected = readWholeFile(
             new File(getPath("ExpectedCheckstyleAntTaskXmlOutput.xml")));
         final List<String> actual = readWholeFile(outputFile);
-        for (int i = 0; i < expected.size(); i++) {
+        for (var i = 0; i < expected.size(); i++) {
             final String line = expected.get(i);
             if (!line.startsWith("<checkstyle version") && !line.startsWith("<file")) {
                 assertWithMessage("Content of file with violations differs from expected")
@@ -639,7 +639,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> expected = readWholeFile(
                 new File(getPath("ExpectedCheckstyleAntTaskSarifOutput.sarif")));
         final List<String> actual = readWholeFile(outputFile);
-        for (int lineNumber = 0; lineNumber < expected.size(); lineNumber++) {
+        for (var lineNumber = 0; lineNumber < expected.size(); lineNumber++) {
             final String line = expected.get(lineNumber);
             final StandardSubjectBuilder assertWithMessage =
                     assertWithMessage("Content of file with violations differs from expected");
@@ -917,7 +917,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(loggedMessages)
                 .hasSize(expectedList.size());
 
-        for (int i = 0; i < expectedList.size(); i++) {
+        for (var i = 0; i < expectedList.size(); i++) {
             final MessageLevelPair expected = expectedList.get(i);
             final MessageLevelPair actual = loggedMessages.get(i);
             assertWithMessage("Log messages should match")
@@ -950,10 +950,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        final long startTime = System.currentTimeMillis();
+        final var startTime = System.currentTimeMillis();
         antTask.execute();
-        final long endTime = System.currentTimeMillis();
-        final long testingTime = endTime - startTime;
+        final var endTime = System.currentTimeMillis();
+        final var testingTime = endTime - startTime;
         final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
 
         assertLoggedTime(loggedMessages, testingTime, "Total execution");
@@ -972,7 +972,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
             .that(optionalMessageLevelPair.isPresent())
             .isTrue();
 
-        final long actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
+        final var actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
 
         assertWithMessage("Logged time in '%s' must be less than the testing time", expectedMsg)
             .that(actualTime)

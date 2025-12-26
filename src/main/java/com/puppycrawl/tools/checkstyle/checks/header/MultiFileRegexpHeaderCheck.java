@@ -166,11 +166,11 @@ public class MultiFileRegexpHeaderCheck
      * @return a MatchResult containing the result of the analysis
      */
     private static MatchResult matchHeader(FileText fileText, HeaderFileMetadata headerFile) {
-        final int fileSize = fileText.size();
+        final var fileSize = fileText.size();
         final List<Pattern> headerPatterns = headerFile.headerPatterns();
-        final int headerPatternSize = headerPatterns.size();
+        final var headerPatternSize = headerPatterns.size();
 
-        int mismatchLine = MISMATCH_CODE;
+        var mismatchLine = MISMATCH_CODE;
         int index;
         for (index = 0; index < headerPatternSize && index < fileSize; index++) {
             if (!headerPatterns.get(index).matcher(fileText.get(index)).find()) {

@@ -88,7 +88,7 @@ public final class InlineTagUtil {
 
             final String tagValue = matchedTagValue;
 
-            final int startIndex = inlineTagMatcher.start(1);
+            final var startIndex = inlineTagMatcher.start(1);
             final LineColumn position = getLineColumnOfIndex(commentText,
                 // correct start index offset
                 startIndex - 1);

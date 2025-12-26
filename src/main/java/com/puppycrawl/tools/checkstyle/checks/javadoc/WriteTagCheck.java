@@ -213,13 +213,13 @@ public class WriteTagCheck
      */
     private void checkTag(int astLineNo, int javadocLineNo, String... comment) {
         if (tagRegExp != null) {
-            boolean hasTag = false;
-            for (int i = 0; i < comment.length; i++) {
+            var hasTag = false;
+            for (var i = 0; i < comment.length; i++) {
                 final String commentValue = comment[i];
                 final Matcher matcher = tagRegExp.matcher(commentValue);
                 if (matcher.find()) {
                     hasTag = true;
-                    final int contentStart = matcher.start(1);
+                    final var contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
                         logTag(astLineNo + i, tag, content);

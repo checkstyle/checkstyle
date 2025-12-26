@@ -165,7 +165,7 @@ public class JavadocVariableCheck
      * @return whether we should check a given node.
      */
     private boolean shouldCheck(final DetailAST ast) {
-        boolean result = false;
+        var result = false;
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
             final AccessModifierOption accessModifier =
                     getAccessModifierFromModifiersTokenWithPrivateEnumSupport(ast);

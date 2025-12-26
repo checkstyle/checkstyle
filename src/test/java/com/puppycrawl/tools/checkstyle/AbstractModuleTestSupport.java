@@ -706,7 +706,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
+        for (var index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
                     .matches(testInputViolations.get(index).toRegex());
@@ -733,7 +733,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Violation lines for %s differ.", file)
                 .that(actualViolationLines)
                 .isEqualTo(expectedViolationLines);
-        for (int index = 0; index < actualViolations.size(); index++) {
+        for (var index = 0; index < actualViolations.size(); index++) {
             assertWithMessage("Actual and expected violations differ.")
                     .that(actualViolations.get(index))
                     .matches(testInputViolations.get(index).toRegex());
@@ -922,7 +922,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static String getMessageBundle(String className) {
         final String messageBundle;
         final String messages = "messages";
-        final int endIndex = className.lastIndexOf('.');
+        final var endIndex = className.lastIndexOf('.');
         final Map<String, String> messageBundleMappings = new HashMap<>();
         messageBundleMappings.put("SeverityMatchFilterExamplesTest",
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages");

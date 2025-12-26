@@ -125,7 +125,7 @@ public final class CheckUtil {
             final NodeList nodeList = document.getElementsByTagName("module");
 
             final Set<String> checksReferencedInCheckstyleChecksXml = new HashSet<>();
-            for (int i = 0; i < nodeList.getLength(); i++) {
+            for (var i = 0; i < nodeList.getLength(); i++) {
                 final Node currentNode = nodeList.item(i);
                 if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
                     final Element module = (Element) currentNode;
@@ -297,10 +297,10 @@ public final class CheckUtil {
         }
         else {
             final StringBuilder result = new StringBuilder(50);
-            boolean first = true;
+            var first = true;
 
             for (int token : tokens) {
-                boolean found = false;
+                var found = false;
 
                 for (int subtraction : subtractions) {
                     if (subtraction == token) {
@@ -344,10 +344,10 @@ public final class CheckUtil {
 
     public static String getJavadocTokenText(int[] tokens, int... subtractions) {
         final StringBuilder result = new StringBuilder(50);
-        boolean first = true;
+        var first = true;
 
         for (int token : tokens) {
-            boolean found = false;
+            var found = false;
 
             for (int subtraction : subtractions) {
                 if (subtraction == token) {

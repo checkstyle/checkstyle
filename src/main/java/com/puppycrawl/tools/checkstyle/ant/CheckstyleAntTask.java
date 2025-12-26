@@ -259,7 +259,7 @@ public class CheckstyleAntTask extends Task {
 
     @Override
     public void execute() {
-        final long startTime = System.currentTimeMillis();
+        final var startTime = System.currentTimeMillis();
 
         try {
             final String version = Objects.toString(
@@ -282,7 +282,7 @@ public class CheckstyleAntTask extends Task {
             realExecute(version);
         }
         finally {
-            final long endTime = System.currentTimeMillis();
+            final var endTime = System.currentTimeMillis();
             log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
         }
@@ -328,9 +328,9 @@ public class CheckstyleAntTask extends Task {
      */
     private void processFiles(RootModule rootModule, final SeverityLevelCounter warningCounter,
             final String checkstyleVersion) {
-        final long startTime = System.currentTimeMillis();
+        final var startTime = System.currentTimeMillis();
         final List<File> files = getFilesToCheck();
-        final long endTime = System.currentTimeMillis();
+        final var endTime = System.currentTimeMillis();
         log("To locate the files took " + (endTime - startTime) + TIME_SUFFIX,
             Project.MSG_VERBOSE);
 
@@ -343,17 +343,17 @@ public class CheckstyleAntTask extends Task {
         final int numErrs;
 
         try {
-            final long processingStartTime = System.currentTimeMillis();
+            final var processingStartTime = System.currentTimeMillis();
             numErrs = rootModule.process(files);
-            final long processingEndTime = System.currentTimeMillis();
+            final var processingEndTime = System.currentTimeMillis();
             log("To process the files took " + (processingEndTime - processingStartTime)
                 + TIME_SUFFIX, Project.MSG_VERBOSE);
         }
         catch (CheckstyleException exc) {
             throw new BuildException("Unable to process files: " + files, exc);
         }
-        final int numWarnings = warningCounter.getCount();
-        final boolean okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
+        final var numWarnings = warningCounter.getCount();
+        final var okStatus = numErrs <= maxErrors && numWarnings <= maxWarnings;
 
         // Handle the return status
         if (!okStatus) {
@@ -453,7 +453,7 @@ public class CheckstyleAntTask extends Task {
      * @throws BuildException if the listeners could not be created.
      */
     private AuditListener[] getListeners() {
-        final int formatterCount = Math.max(1, formatters.size());
+        final var formatterCount = Math.max(1, formatters.size());
 
         final AuditListener[] listeners = new AuditListener[formatterCount];
 
@@ -466,7 +466,7 @@ public class CheckstyleAntTask extends Task {
                         err, OutputStreamOptions.CLOSE);
             }
             else {
-                for (int i = 0; i < formatterCount; i++) {
+                for (var i = 0; i < formatterCount; i++) {
                     final Formatter formatter = formatters.get(i);
                     listeners[i] = formatter.createListener(this);
                 }
@@ -512,7 +512,7 @@ public class CheckstyleAntTask extends Task {
     private List<Path> scanPaths() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < paths.size(); i++) {
+        for (var i = 0; i < paths.size(); i++) {
             final org.apache.tools.ant.types.Path currentPath = paths.get(i);
             final List<Path> pathFiles = scanPath(currentPath, i + 1);
             allFiles.addAll(pathFiles);
@@ -532,7 +532,7 @@ public class CheckstyleAntTask extends Task {
         final String[] resources = path.list();
         log(pathIndex + ") Scanning path " + path, Project.MSG_VERBOSE);
         final List<Path> allFiles = new ArrayList<>();
-        int concreteFilesCount = 0;
+        var concreteFilesCount = 0;
 
         for (String resource : resources) {
             final Path file = Path.of(resource);
@@ -565,7 +565,7 @@ public class CheckstyleAntTask extends Task {
     protected List<File> scanFileSets() {
         final List<Path> allFiles = new ArrayList<>();
 
-        for (int i = 0; i < fileSets.size(); i++) {
+        for (var i = 0; i < fileSets.size(); i++) {
             final FileSet fileSet = fileSets.get(i);
             final DirectoryScanner scanner = fileSet.getDirectoryScanner(getProject());
             final List<Path> scannedFiles = retrieveAllScannedFiles(scanner, i);

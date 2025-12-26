@@ -97,12 +97,12 @@ public final class JavadocUtil {
     public static JavadocTags getJavadocTags(TextBlock textBlock,
             JavadocTagType tagType) {
         final List<TagInfo> tags = new ArrayList<>();
-        final boolean isBlockTags = tagType == JavadocTagType.ALL
+        final var isBlockTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.BLOCK;
         if (isBlockTags) {
             tags.addAll(BlockTagUtil.extractBlockTags(textBlock.getText()));
         }
-        final boolean isInlineTags = tagType == JavadocTagType.ALL
+        final var isInlineTags = tagType == JavadocTagType.ALL
                                         || tagType == JavadocTagType.INLINE;
         if (isInlineTags) {
             tags.addAll(InlineTagUtil.extractInlineTags(textBlock.getText()));
@@ -112,12 +112,12 @@ public final class JavadocUtil {
         final List<InvalidJavadocTag> invalidTags = new ArrayList<>();
 
         for (TagInfo tag : tags) {
-            final int col = tag.getPosition().getColumn();
+            final var col = tag.getPosition().getColumn();
 
             // Add the starting line of the comment to the line number to get the actual line number
             // in the source.
             // Lines are one-indexed, so need an off-by-one correction.
-            final int line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
+            final var line = textBlock.getStartLineNo() + tag.getPosition().getLine() - 1;
 
             if (JavadocTagInfo.isValidName(tag.getName())) {
                 validTags.add(
@@ -140,10 +140,10 @@ public final class JavadocUtil {
      *         identifier.
      */
     public static boolean isJavadocComment(String commentContent) {
-        boolean result = false;
+        var result = false;
 
         if (!commentContent.isEmpty()) {
-            final char docCommentIdentifier = commentContent.charAt(0);
+            final var docCommentIdentifier = commentContent.charAt(0);
             result = docCommentIdentifier == '*';
         }
 
@@ -240,7 +240,7 @@ public final class JavadocUtil {
     public static boolean isTag(DetailNode ast, String expectedTagName) {
         final DetailNode htmlTagStart = findFirstToken(ast,
                 JavadocCommentsTokenTypes.HTML_TAG_START);
-        boolean isTag = false;
+        var isTag = false;
         if (htmlTagStart != null) {
             final String tagName = findFirstToken(htmlTagStart,
                 JavadocCommentsTokenTypes.TAG_NAME).getText();

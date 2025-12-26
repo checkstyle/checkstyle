@@ -228,7 +228,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 return getDefaultTokens();
             }
         };
-        final int tabWidth = 4;
+        final var tabWidth = 4;
         check.setTabWidth(tabWidth);
 
         assertWithMessage("Invalid tab width")

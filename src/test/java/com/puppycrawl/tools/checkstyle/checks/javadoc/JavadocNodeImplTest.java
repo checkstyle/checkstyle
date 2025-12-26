@@ -47,7 +47,7 @@ public class JavadocNodeImplTest {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setColumnNumber(1);
 
-        final int result = javadocNode.getColumnNumber();
+        final var result = javadocNode.getColumnNumber();
 
         assertWithMessage("Invalid column number")
             .that(result)

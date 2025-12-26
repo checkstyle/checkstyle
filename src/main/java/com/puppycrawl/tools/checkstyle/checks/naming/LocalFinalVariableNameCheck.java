@@ -70,7 +70,7 @@ public class LocalFinalVariableNameCheck
     protected final boolean mustCheckName(DetailAST ast) {
         final DetailAST modifiersAST =
             ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isFinal = ast.getType() == TokenTypes.RESOURCE
+        final var isFinal = ast.getType() == TokenTypes.RESOURCE
             || modifiersAST.findFirstToken(TokenTypes.FINAL) != null;
         return isFinal && ScopeUtil.isLocalVariableDef(ast);
     }

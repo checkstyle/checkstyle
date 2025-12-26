@@ -98,7 +98,7 @@ public class JavadocLeadingAsteriskAlignCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         // this method checks the alignment of leading asterisks.
-        final boolean isJavadocStartingLine = ast.getLineNumber() == javadocStartLineNumber;
+        final var isJavadocStartingLine = ast.getLineNumber() == javadocStartLineNumber;
 
         if (!isJavadocStartingLine) {
             final Optional<Integer> leadingAsteriskColumnNumber =

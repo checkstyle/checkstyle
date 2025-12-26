@@ -318,10 +318,10 @@ public class XdocsPagesTest {
                     .replace(".xml", ".html")
                     .replaceAll("\\\\", "/")
                     .replaceAll("src[\\\\/]site[\\\\/]xdoc[\\\\/]", "");
-            final boolean isConfigHtmlFile = Pattern.matches("config_[a-z]+.html", expectedFile);
-            final boolean isChecksIndexHtmlFile = "checks/index.html".equals(expectedFile);
-            final boolean isOldReleaseNotes = path.toString().contains("releasenotes_");
-            final boolean isInnerPage = "report_issue.html".equals(expectedFile);
+            final var isConfigHtmlFile = Pattern.matches("config_[a-z]+.html", expectedFile);
+            final var isChecksIndexHtmlFile = "checks/index.html".equals(expectedFile);
+            final var isOldReleaseNotes = path.toString().contains("releasenotes_");
+            final var isInnerPage = "report_issue.html".equals(expectedFile);
 
             if (!isConfigHtmlFile && !isChecksIndexHtmlFile
                 && !isOldReleaseNotes && !isInnerPage) {
@@ -368,7 +368,7 @@ public class XdocsPagesTest {
             final Map<String, String> summaries = readSummaries(availablePagePath);
             final NodeList subsectionSources = getTagSourcesNode(path, "subsection");
 
-            for (int position = 0; position < subsectionSources.getLength(); position++) {
+            for (var position = 0; position < subsectionSources.getLength(); position++) {
                 final Node subsection = subsectionSources.item(position);
                 final String subsectionName = XmlUtil.getNameAttributeOfNode(subsection);
                 if (!"Description".equals(subsectionName)) {
@@ -413,7 +413,7 @@ public class XdocsPagesTest {
 
             final NodeList sources = getTagSourcesNode(path, "tr");
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node tableRow = sources.item(position);
                 final Iterator<Node> cells = XmlUtil
                         .findChildElementsByTag(tableRow, "td").iterator();
@@ -439,7 +439,7 @@ public class XdocsPagesTest {
             throws Exception {
         final NodeList tableRowSources = getTagSourcesNode(availablePath, "tr");
 
-        for (int position = 0; position < tableRowSources.getLength(); position++) {
+        for (var position = 0; position < tableRowSources.getLength(); position++) {
             final Node tableRow = tableRowSources.item(position);
             final Iterator<Node> tdCells = XmlUtil
                 .findChildElementsByTag(tableRow, "td").iterator();
@@ -489,7 +489,7 @@ public class XdocsPagesTest {
     public void testAlphabetOrderInNames() throws Exception {
         final NodeList nodes = getTagSourcesNode(SITE_PATH, "item");
 
-        for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
+        for (var nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
             final Node current = nodes.item(nodeIndex);
 
             if ("Checks".equals(XmlUtil.getNameAttributeOfNode(current))) {
@@ -504,8 +504,8 @@ public class XdocsPagesTest {
                         .inOrder();
 
                 Node groupNode = current.getFirstChild();
-                int index = 0;
-                final int totalGroups = XmlUtil.getChildrenElements(current).size();
+                var index = 0;
+                final var totalGroups = XmlUtil.getChildrenElements(current).size();
                 while (index < totalGroups) {
                     if ("item".equals(groupNode.getNodeName())) {
                         final List<String> checkNames = getNames(groupNode);
@@ -565,7 +565,7 @@ public class XdocsPagesTest {
     public static void validateOrder(Path path, String name) throws Exception {
         final NodeList nodes = getTagSourcesNode(path, "div");
 
-        for (int nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
+        for (var nodeIndex = 0; nodeIndex < nodes.getLength(); nodeIndex++) {
             final Node current = nodes.item(nodeIndex);
             final List<String> names = getNamesFromIndexPage(current);
             final List<String> namesSorted = names.stream()
@@ -585,8 +585,8 @@ public class XdocsPagesTest {
 
         Node current = node.getFirstChild();
         Node treeNode = current;
-        boolean getFirstChild = false;
-        int index = 0;
+        var getFirstChild = false;
+        var index = 0;
         while (current != null && index < children.size()) {
             if ("tr".equals(current.getNodeName())) {
                 treeNode = current.getNextSibling();
@@ -615,7 +615,7 @@ public class XdocsPagesTest {
         final Set<Node> children = XmlUtil.getChildrenElements(node);
         final List<String> result = new ArrayList<>();
         Node current = node.getFirstChild();
-        int index = 0;
+        var index = 0;
         while (index < children.size()) {
             if ("item".equals(current.getNodeName())) {
                 final String name = XmlUtil.getNameAttributeOfNode(current);
@@ -631,7 +631,7 @@ public class XdocsPagesTest {
         final NodeList rows = getTagSourcesNode(availablePath, "tr");
         final Map<String, String> result = new HashMap<>();
 
-        for (int position = 0; position < rows.getLength(); position++) {
+        for (var position = 0; position < rows.getLength(); position++) {
             final Node row = rows.item(position);
             final Iterator<Node> cells = XmlUtil.findChildElementsByTag(row, "td").iterator();
             final String name = XmlUtil.sanitizeXml(cells.next().getTextContent());
@@ -649,7 +649,7 @@ public class XdocsPagesTest {
             final String fileName = path.getFileName().toString();
             final NodeList subSections = getTagSourcesNode(path, "subsection");
 
-            for (int position = 0; position < subSections.getLength(); position++) {
+            for (var position = 0; position < subSections.getLength(); position++) {
                 final Node subSection = subSections.item(position);
                 final Node name = subSection.getAttributes().getNamedItem("name");
 
@@ -701,7 +701,7 @@ public class XdocsPagesTest {
             final String fileName = path.getFileName().toString();
             final NodeList sources = getTagSourcesNode(path, "source");
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final String unserializedSource = sources.item(position).getTextContent()
                         .replace("...", "").trim();
 
@@ -752,7 +752,7 @@ public class XdocsPagesTest {
     }
 
     private static boolean hasFileSetClass(String xml) {
-        boolean found = false;
+        var found = false;
 
         for (String find : XML_FILESET_LIST) {
             if (xml.contains(find)) {
@@ -819,7 +819,7 @@ public class XdocsPagesTest {
             final NodeList sources = getTagSourcesNode(path, "section");
             String lastSectionName = null;
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
@@ -864,7 +864,7 @@ public class XdocsPagesTest {
 
         final NodeList sources = getTagSourcesNode(path, "section");
 
-        for (int position = 0; position < sources.getLength(); position++) {
+        for (var position = 0; position < sources.getLength(); position++) {
             final Node section = sources.item(position);
             final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
@@ -887,7 +887,7 @@ public class XdocsPagesTest {
             throw new CheckstyleException(fileName + " couldn't find class: " + sectionName, exc);
         }
 
-        int subSectionPos = 0;
+        var subSectionPos = 0;
         for (Node subSection : XmlUtil.getChildrenElements(section)) {
             if (subSectionPos == 0 && "p".equals(subSection.getNodeName())) {
                 validateSinceDescriptionSection(fileName, sectionName, subSection);
@@ -1142,9 +1142,9 @@ public class XdocsPagesTest {
 
     private static void validatePropertySectionProperties(String fileName, String sectionName,
             Node table, Object instance, Set<String> properties) throws Exception {
-        boolean skip = true;
-        boolean didJavadocTokens = false;
-        boolean didTokens = false;
+        var skip = true;
+        var didJavadocTokens = false;
+        var didTokens = false;
 
         for (Node row : XmlUtil.getChildrenElements(table)) {
             final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
@@ -1430,7 +1430,7 @@ public class XdocsPagesTest {
                 }
             }
             else if (fieldClass == String[].class) {
-                final boolean preserveOrder = hasPreserveOrderAnnotation(field);
+                final var preserveOrder = hasPreserveOrderAnnotation(field);
                 result = getStringArrayPropertyValue(propertyName, value, preserveOrder);
             }
             else if (fieldClass == URI.class || fieldClass == String.class) {
@@ -1483,7 +1483,7 @@ public class XdocsPagesTest {
         if (value instanceof Collection<?> collection) {
             final Pattern[] newArray = new Pattern[collection.size()];
             final Iterator<?> iterator = collection.iterator();
-            int index = 0;
+            var index = 0;
 
             while (iterator.hasNext()) {
                 final Object next = iterator.next();
@@ -1497,7 +1497,7 @@ public class XdocsPagesTest {
         if (value != null && Array.getLength(value) > 0) {
             final String[] newArray = new String[Array.getLength(value)];
 
-            for (int i = 0; i < newArray.length; i++) {
+            for (var i = 0; i < newArray.length; i++) {
                 newArray[i] = ((Pattern) Array.get(value, i)).pattern();
             }
 
@@ -1747,9 +1747,9 @@ public class XdocsPagesTest {
             .that(text)
             .isEmpty();
 
-        boolean hasCheckstyle = false;
-        boolean hasGoogle = false;
-        boolean hasSun = false;
+        var hasCheckstyle = false;
+        var hasGoogle = false;
+        var hasSun = false;
 
         for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
             final String url = node.getAttributes().getNamedItem("href").getTextContent();
@@ -1837,7 +1837,7 @@ public class XdocsPagesTest {
 
     private static boolean hasParentModule(String sectionName) {
         final String search = "\"" + sectionName + "\"";
-        boolean result = true;
+        var result = true;
 
         for (String find : XML_FILESET_LIST) {
             if (find.contains(search)) {
@@ -1886,7 +1886,7 @@ public class XdocsPagesTest {
             String lastRuleName = null;
             String[] lastRuleNumberParts = null;
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node row = sources.item(position);
                 final List<Node> columns = new ArrayList<>(
                         XmlUtil.findChildElementsByTag(row, "td"));
@@ -1936,11 +1936,11 @@ public class XdocsPagesTest {
         final String[] ruleNumberParts = ruleName.split(" ", 2)[0].split("\\.");
 
         if (lastRuleName != null) {
-            final int ruleNumberPartsAmount = ruleNumberParts.length;
-            final int lastRuleNumberPartsAmount = lastRuleNumberParts.length;
+            final var ruleNumberPartsAmount = ruleNumberParts.length;
+            final var lastRuleNumberPartsAmount = lastRuleNumberParts.length;
             final String outOfOrderReason = fileName + " rule '" + ruleName
                     + "' is out of order compared to '" + lastRuleName + "'";
-            boolean lastRuleNumberPartWasEqual = false;
+            var lastRuleNumberPartWasEqual = false;
             int partIndex;
             for (partIndex = 0; partIndex < ruleNumberPartsAmount; partIndex++) {
                 if (lastRuleNumberPartsAmount <= partIndex) {
@@ -1951,14 +1951,14 @@ public class XdocsPagesTest {
 
                 final String ruleNumberPart = ruleNumberParts[partIndex];
                 final String lastRuleNumberPart = lastRuleNumberParts[partIndex];
-                final boolean ruleNumberPartsAreNumeric = IntStream.concat(
+                final var ruleNumberPartsAreNumeric = IntStream.concat(
                         ruleNumberPart.chars(),
                         lastRuleNumberPart.chars()
                 ).allMatch(Character::isDigit);
 
                 if (ruleNumberPartsAreNumeric) {
-                    final int numericRuleNumberPart = parseInt(ruleNumberPart);
-                    final int numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
+                    final var numericRuleNumberPart = parseInt(ruleNumberPart);
+                    final var numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
                     assertWithMessage(outOfOrderReason)
                         .that(numericRuleNumberPart)
                         .isAtLeast(numericLastRuleNumberPart);
@@ -1994,7 +1994,7 @@ public class XdocsPagesTest {
             .that(anchors)
             .hasSize(2);
 
-        final int space = ruleName.indexOf(' ');
+        final var space = ruleName.indexOf(' ');
         assertWithMessage(
             "%s rule '%s' must have have a space between the rule's number and the rule's name",
             fileName, ruleName)
@@ -2003,7 +2003,7 @@ public class XdocsPagesTest {
 
         final String ruleNumber = ruleName.substring(0, space);
 
-        int position = 1;
+        var position = 1;
 
         for (Node anchor : anchors) {
             final String actualUrl;
@@ -2031,7 +2031,7 @@ public class XdocsPagesTest {
             Set<String> styleChecks, String styleName, String ruleName) {
         final Iterator<Node> itrChecks = checks.iterator();
         final Iterator<Node> itrConfigs = configs.iterator();
-        final boolean isGoogleDocumentation = "google".equals(styleName);
+        final var isGoogleDocumentation = "google".equals(styleName);
 
         if (isGoogleDocumentation) {
             validateChapterWiseTesting(itrChecks, itrConfigs, styleChecks, styleName, ruleName);
@@ -2051,7 +2051,7 @@ public class XdocsPagesTest {
             final Node module = itrChecks.next();
             final String moduleName = module.getTextContent().trim();
             final String href = module.getAttributes().getNamedItem("href").getTextContent();
-            final boolean moduleIsCheck = href.startsWith("checks/");
+            final var moduleIsCheck = href.startsWith("checks/");
 
             if (!moduleIsCheck) {
                 continue;
@@ -2123,14 +2123,14 @@ public class XdocsPagesTest {
 
     private static void validateChapterWiseTesting(Iterator<Node> itrChecks,
           Iterator<Node> itrSample, Set<String> styleChecks, String styleName, String ruleName) {
-        boolean hasChecks = false;
+        var hasChecks = false;
         final Set<String> usedModules = new HashSet<>();
 
         while (itrChecks.hasNext()) {
             final Node module = itrChecks.next();
             final String moduleName = module.getTextContent().trim();
             final String href = module.getAttributes().getNamedItem("href").getTextContent();
-            final boolean moduleIsCheck = href.startsWith("checks/");
+            final var moduleIsCheck = href.startsWith("checks/");
 
             final String partialConfigUrl = "https://github.com/search?q="
                     + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2F" + styleName;
@@ -2246,7 +2246,7 @@ public class XdocsPagesTest {
             final String fileName = path.getFileName().toString();
             final NodeList sources = getTagSourcesNode(path, "macro");
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node macro = sources.item(position);
                 final String macroName = macro.getAttributes()
                         .getNamedItem("name").getTextContent();
@@ -2277,7 +2277,7 @@ public class XdocsPagesTest {
         String exampleName = "";
         String exampleType = "";
         final NodeList params = macro.getChildNodes();
-        for (int paramPosition = 0; paramPosition < params.getLength(); paramPosition++) {
+        for (var paramPosition = 0; paramPosition < params.getLength(); paramPosition++) {
             final Node item = params.item(paramPosition);
 
             if (!"param".equals(item.getNodeName())) {
@@ -2330,7 +2330,7 @@ public class XdocsPagesTest {
             final Document doc = parseXmlToDomDocument(template);
             final NodeList subsectionList = doc.getElementsByTagName("subsection");
 
-            for (int index = 0; index < subsectionList.getLength(); index++) {
+            for (var index = 0; index < subsectionList.getLength(); index++) {
                 final Element subsection = (Element) subsectionList.item(index);
                 if (!"Examples".equals(subsection.getAttribute("name"))) {
                     continue;
@@ -2338,9 +2338,9 @@ public class XdocsPagesTest {
 
                 final NodeList children = subsection.getChildNodes();
                 String lastExampleIdPrefix = null;
-                boolean separatorSeen = false;
+                var separatorSeen = false;
 
-                for (int childIndex = 0; childIndex < children.getLength(); childIndex++) {
+                for (var childIndex = 0; childIndex < children.getLength(); childIndex++) {
                     final Node child = children.item(childIndex);
                     if (child.getNodeType() != Node.ELEMENT_NODE) {
                         continue;
@@ -2392,7 +2392,7 @@ public class XdocsPagesTest {
     }
 
     private static String getExamplePrefix(String id) {
-        final int dash = id.indexOf('-');
+        final var dash = id.indexOf('-');
         final String result;
         if (dash == -1) {
             result = id;

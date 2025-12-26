@@ -56,7 +56,7 @@ public class XdocsMobileWrapperTest {
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
 
-            for (int position = 0; position < sources.getLength(); position++) {
+            for (var position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
                 final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 

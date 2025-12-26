@@ -188,7 +188,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     @Test
     public void testClassDataAbstractionCouplingRecords() throws Exception {
 
-        final int maxAbstraction = 1;
+        final var maxAbstraction = 1;
         final String[] expected = {
             "31:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
             "36:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),

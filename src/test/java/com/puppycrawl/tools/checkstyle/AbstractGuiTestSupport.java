@@ -49,7 +49,7 @@ public abstract class AbstractGuiTestSupport extends AbstractPathTestSupport {
      */
     @BeforeEach
     public void validateGraphicsEnvironment() {
-        final boolean isHeadless = GraphicsEnvironment.isHeadless();
+        final var isHeadless = GraphicsEnvironment.isHeadless();
         assumeFalse(isHeadless, "This test is incompatible with headless environment");
     }
 

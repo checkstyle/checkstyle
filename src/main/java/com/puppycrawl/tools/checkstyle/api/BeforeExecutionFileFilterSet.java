@@ -68,7 +68,7 @@ public final class BeforeExecutionFileFilterSet
 
     @Override
     public boolean accept(String uri) {
-        boolean result = true;
+        var result = true;
         for (BeforeExecutionFileFilter filter : beforeExecutionFileFilters) {
             if (!filter.accept(uri)) {
                 result = false;

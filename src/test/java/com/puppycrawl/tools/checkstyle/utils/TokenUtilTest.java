@@ -48,7 +48,7 @@ public class TokenUtilTest {
     @Test
     public void testGetIntFromAccessibleField() throws NoSuchFieldException {
         final Field field = Integer.class.getField("MAX_VALUE");
-        final int maxValue = TokenUtil.getIntFromField(field, 0);
+        final var maxValue = TokenUtil.getIntFromField(field, 0);
 
         assertWithMessage("Invalid getIntFromField result")
             .that(maxValue)
@@ -110,7 +110,7 @@ public class TokenUtilTest {
 
     @Test
     public void testTokenValueIncorrect() throws IllegalAccessException {
-        int maxId = 0;
+        var maxId = 0;
         final Field[] fields = TokenTypes.class.getDeclaredFields();
         for (final Field field : fields) {
             // Only process the int declarations.
@@ -119,13 +119,13 @@ public class TokenUtilTest {
             }
 
             final String name = field.getName();
-            final int id = field.getInt(name);
+            final var id = field.getInt(name);
             if (id > maxId) {
                 maxId = id;
             }
         }
 
-        final int nextAfterMaxId = maxId + 1;
+        final var nextAfterMaxId = maxId + 1;
         try {
             TokenUtil.getTokenName(nextAfterMaxId);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -147,7 +147,7 @@ public class TokenUtilTest {
             }
 
             final String name = field.getName();
-            final int id = field.getInt(name);
+            final var id = field.getInt(name);
 
             assertWithMessage("Invalid token name")
                 .that(TokenUtil.getTokenName(id))
@@ -157,7 +157,7 @@ public class TokenUtilTest {
 
     @Test
     public void testTokenValueIncorrect2() {
-        final int id = 0;
+        final var id = 0;
         try {
             TokenUtil.getTokenName(id);
             assertWithMessage("IllegalArgumentException is expected").fail();
@@ -224,7 +224,7 @@ public class TokenUtilTest {
 
     @Test
     public void testGetTokenTypesTotalNumber() {
-        final int tokenTypesTotalNumber = TokenUtil.getTokenTypesTotalNumber();
+        final var tokenTypesTotalNumber = TokenUtil.getTokenTypesTotalNumber();
 
         assertWithMessage("Invalid token total number")
             .that(tokenTypesTotalNumber)
@@ -234,7 +234,7 @@ public class TokenUtilTest {
     @Test
     public void testGetAllTokenIds() {
         final int[] allTokenIds = TokenUtil.getAllTokenIds();
-        final int sum = Arrays.stream(allTokenIds).sum();
+        final var sum = Arrays.stream(allTokenIds).sum();
 
         assertWithMessage("Invalid token length")
             .that(allTokenIds.length)
@@ -246,7 +246,7 @@ public class TokenUtilTest {
 
     @Test
     public void testGetTokenNameWithGreatestPossibleId() {
-        final int id = TokenTypes.COMMENT_CONTENT;
+        final var id = TokenTypes.COMMENT_CONTENT;
         final String tokenName = TokenUtil.getTokenName(id);
 
         assertWithMessage("Invalid token name")
@@ -342,12 +342,12 @@ public class TokenUtilTest {
 
     @Test
     public void testIsOfTypeTrue() {
-        final int type = TokenTypes.LITERAL_CATCH;
+        final var type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(type);
-        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+        final var result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
-        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
+        final var result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
 
         assertWithMessage("Token type did not match")
@@ -360,15 +360,15 @@ public class TokenUtilTest {
 
     @Test
     public void testIsOfTypeFalse() {
-        final int type = TokenTypes.LITERAL_CATCH;
+        final var type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest1 = new DetailAstImpl();
         final DetailAstImpl astForTest2 = null;
         astForTest1.setType(type);
-        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+        final var result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
-        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_FOR,
+        final var result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
-        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
+        final var result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
                                 TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
 
         assertWithMessage("Token type should not match")

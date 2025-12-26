@@ -87,12 +87,12 @@ public class NoWhitespaceBeforeCheck
     @Override
     public void visitToken(DetailAST ast) {
         final int[] line = getLineCodePoints(ast.getLineNo() - 1);
-        final int columnNoBeforeToken = ast.getColumnNo() - 1;
-        final boolean isFirstToken = columnNoBeforeToken == -1;
+        final var columnNoBeforeToken = ast.getColumnNo() - 1;
+        final var isFirstToken = columnNoBeforeToken == -1;
 
         if ((isFirstToken || CommonUtil.isCodePointWhitespace(line, columnNoBeforeToken))
                 && !isInEmptyForInitializerOrCondition(ast)) {
-            final boolean isViolation = !allowLineBreaks
+            final var isViolation = !allowLineBreaks
                     || !isFirstToken
                     && !CodePointUtil.hasWhitespaceBefore(columnNoBeforeToken, line);
 
@@ -109,7 +109,7 @@ public class NoWhitespaceBeforeCheck
      * @return true if semicolon is in empty for initializer or condition.
      */
     private static boolean isInEmptyForInitializerOrCondition(DetailAST semicolonAst) {
-        boolean result = false;
+        var result = false;
         final DetailAST sibling = semicolonAst.getPreviousSibling();
         if (sibling != null
                 && (sibling.getType() == TokenTypes.FOR_INIT

@@ -293,7 +293,7 @@ public class SuppressionXpathFilter extends AbstractAutomaticBean implements
 
     @Override
     public boolean accept(TreeWalkerAuditEvent treeWalkerAuditEvent) {
-        boolean result = true;
+        var result = true;
         for (TreeWalkerFilter filter : filters) {
             if (!filter.accept(treeWalkerAuditEvent)) {
                 result = false;

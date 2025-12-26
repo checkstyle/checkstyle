@@ -424,7 +424,7 @@ public class PropertiesMacro extends AbstractMacro {
     private static void writeTokensList(Sink sink, List<String> tokens, String tokenTypesLink,
                                         boolean printDotAtTheEnd)
             throws MacroExecutionException {
-        for (int index = 0; index < tokens.size(); index++) {
+        for (var index = 0; index < tokens.size(); index++) {
             final String token = tokens.get(index);
             sink.rawText(ModuleJavadocParsingUtil.INDENT_LEVEL_16);
             if (index != 0) {

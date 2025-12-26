@@ -174,7 +174,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int tokenType = ast.getType();
+        final var tokenType = ast.getType();
 
         if (tokenType == TokenTypes.CLASS_DEF
             || tokenType == TokenTypes.RECORD_DEF
@@ -192,13 +192,13 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        final int tokenType = ast.getType();
+        final var tokenType = ast.getType();
 
         if (isMethodOrCtorOrInitDefinition(tokenType)) {
             // pop counter from the stack
             final Counter counter = counters.pop();
 
-            final int count = counter.getCount();
+            final var count = counter.getCount();
             if (count > methodMaximum) {
                 log(ast, MSG_METHOD, count, methodMaximum);
             }
@@ -207,7 +207,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             // pop counter from the stack
             final Counter counter = counters.pop();
 
-            final int count = counter.getCount();
+            final var count = counter.getCount();
             if (count > classMaximum) {
                 log(ast, MSG_CLASS, count, classMaximum);
             }
@@ -216,7 +216,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             // pop counter from the stack
             final Counter counter = counters.pop();
 
-            final int count = counter.getCount();
+            final var count = counter.getCount();
             if (count > recordMaximum) {
                 log(ast, MSG_RECORD, count, recordMaximum);
             }
@@ -228,7 +228,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         // pop counter from the stack
         final Counter counter = counters.pop();
 
-        final int count = counter.getCount();
+        final var count = counter.getCount();
         if (count > fileMaximum) {
             log(rootAST, MSG_FILE, count, fileMaximum);
         }
@@ -287,9 +287,9 @@ public class JavaNCSSCheck extends AbstractCheck {
      * @return true if the token is countable
      */
     private static boolean isCountable(DetailAST ast) {
-        boolean countable = true;
+        var countable = true;
 
-        final int tokenType = ast.getType();
+        final var tokenType = ast.getType();
 
         // check if an expression is countable
         if (tokenType == TokenTypes.EXPR) {
@@ -309,11 +309,11 @@ public class JavaNCSSCheck extends AbstractCheck {
      * @return true if the variable definition is countable, false otherwise
      */
     private static boolean isVariableDefCountable(DetailAST ast) {
-        boolean countable = false;
+        var countable = false;
 
         // count variable definitions only if they are direct child to a slist or
         // object block
-        final int parentType = ast.getParent().getType();
+        final var parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.SLIST
             || parentType == TokenTypes.OBJBLOCK) {
@@ -341,7 +341,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         // count expressions only if they are direct child to a slist (method
         // body, for loop...)
         // or direct child of label,if,else,do,while,for
-        final int parentType = ast.getParent().getType();
+        final var parentType = ast.getParent().getType();
         return switch (parentType) {
             case TokenTypes.SLIST, TokenTypes.LABELED_STAT, TokenTypes.LITERAL_FOR,
                  TokenTypes.LITERAL_DO,

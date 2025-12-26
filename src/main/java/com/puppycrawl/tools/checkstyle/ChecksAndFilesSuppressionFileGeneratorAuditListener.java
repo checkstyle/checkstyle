@@ -148,7 +148,7 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
      *     {@code false} otherwise.
      */
     private boolean isFileAndCheckNamePresent(Path fileName, String checkName) {
-        boolean isPresent = false;
+        var isPresent = false;
         final Set<String> checks = filesAndChecksCollector.get(fileName);
         if (checks != null) {
             isPresent = checks.contains(checkName);
@@ -166,7 +166,7 @@ public final class ChecksAndFilesSuppressionFileGeneratorAuditListener
      *     {@code false} otherwise.
      */
     private boolean isFileAndModuleIdPresent(Path fileName, String moduleIdName) {
-        boolean isPresent = false;
+        var isPresent = false;
         final Set<String> moduleIds = filesAndModuleIdCollector.get(fileName);
         if (moduleIds != null) {
             isPresent = moduleIds.contains(moduleIdName);

@@ -65,7 +65,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        final var parentType = ast.getParent().getType();
 
         final int[] tokenTypes = {
             TokenTypes.CLASS_DEF,
@@ -88,11 +88,11 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
      *        is a class, interface or enum object block.
      */
     private void checkOverloadMethodsGrouping(DetailAST objectBlock) {
-        final int allowedDistance = 1;
+        final var allowedDistance = 1;
         DetailAST currentToken = objectBlock.getFirstChild();
         final Map<String, Integer> methodIndexMap = new HashMap<>();
         final Map<String, Integer> methodLineNumberMap = new HashMap<>();
-        int currentIndex = 0;
+        var currentIndex = 0;
         while (currentToken != null) {
             if (currentToken.getType() == TokenTypes.METHOD_DEF) {
                 currentIndex++;
@@ -100,11 +100,11 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
                         currentToken.findFirstToken(TokenTypes.IDENT).getText();
                 final Integer previousIndex = methodIndexMap.get(methodName);
                 final DetailAST previousSibling = currentToken.getPreviousSibling();
-                final boolean isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
+                final var isMethod = previousSibling.getType() == TokenTypes.METHOD_DEF;
 
                 if (previousIndex != null
                         && (!isMethod || currentIndex - previousIndex > allowedDistance)) {
-                    final int previousLineWithOverloadMethod =
+                    final var previousLineWithOverloadMethod =
                             methodLineNumberMap.get(methodName);
                     log(currentToken, MSG_KEY,
                             previousLineWithOverloadMethod);

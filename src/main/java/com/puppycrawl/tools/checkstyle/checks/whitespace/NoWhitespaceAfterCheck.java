@@ -135,8 +135,8 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         if (shouldCheckWhitespaceAfter(ast)) {
             final DetailAST whitespaceFollowedAst = getWhitespaceFollowedNode(ast);
-            final int whitespaceColumnNo = getPositionAfter(whitespaceFollowedAst);
-            final int whitespaceLineNo = whitespaceFollowedAst.getLineNo();
+            final var whitespaceColumnNo = getPositionAfter(whitespaceFollowedAst);
+            final var whitespaceLineNo = whitespaceFollowedAst.getLineNo();
 
             if (hasTrailingWhitespace(ast, whitespaceColumnNo, whitespaceLineNo)) {
                 log(ast, MSG_KEY, whitespaceFollowedAst.getText());
@@ -171,7 +171,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
         final DetailAST previousSibling = ast.getPreviousSibling();
-        final boolean isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
+        final var isSynchronizedMethod = ast.getType() == TokenTypes.LITERAL_SYNCHRONIZED
                         && ast.getFirstChild() == null;
         return !isSynchronizedMethod
                 && (previousSibling == null || previousSibling.getType() != TokenTypes.ANNOTATIONS);
@@ -213,7 +213,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     private boolean hasTrailingWhitespace(DetailAST ast,
         int whitespaceColumnNo, int whitespaceLineNo) {
         final boolean result;
-        final int astLineNo = ast.getLineNo();
+        final var astLineNo = ast.getLineNo();
         final int[] line = getLineCodePoints(astLineNo - 1);
         if (astLineNo == whitespaceLineNo && whitespaceColumnNo < line.length) {
             result = CommonUtil.isCodePointWhitespace(line, whitespaceColumnNo);
@@ -356,7 +356,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     private static DetailAST getTypeLastNode(DetailAST ast) {
         final DetailAST typeLastNode;
         final DetailAST parent = ast.getParent();
-        final boolean isPrecededByTypeArgs =
+        final var isPrecededByTypeArgs =
                 parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
         final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
 
@@ -401,7 +401,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         }
         // ident and lastTypeNode lay on one line
         else {
-            final int instanceOfSize = 13;
+            final var instanceOfSize = 13;
             // +2 because ast has `[]` after the ident
             if (ident.getColumnNo() >= ast.getColumnNo() + 2
                 // +13 because ident (at most 1 character) is followed by

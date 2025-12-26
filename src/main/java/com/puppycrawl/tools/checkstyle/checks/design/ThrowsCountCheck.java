@@ -137,7 +137,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
         if ((!ignorePrivateMethods || !isInPrivateMethod(ast))
                 && !isOverriding(ast)) {
             // Account for all the commas!
-            final int count = (ast.getChildCount() + 1) / 2;
+            final var count = (ast.getChildCount() + 1) / 2;
             if (count > max) {
                 log(ast, MSG_KEY, count, max);
             }
@@ -152,7 +152,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
      */
     private static boolean isOverriding(DetailAST ast) {
         final DetailAST modifiers = ast.getParent().findFirstToken(TokenTypes.MODIFIERS);
-        boolean isOverriding = false;
+        var isOverriding = false;
         DetailAST child = modifiers.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.ANNOTATION

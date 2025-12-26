@@ -93,7 +93,7 @@ class MultilineDetector {
     /** Method that finds the matches. */
     private void findMatch() {
         try {
-            boolean foundMatch = matcher.find();
+            var foundMatch = matcher.find();
 
             while (foundMatch) {
                 currentMatches++;

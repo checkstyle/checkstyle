@@ -111,7 +111,7 @@ public final class AnnotationUtil {
         if (annotations == null) {
             throw new IllegalArgumentException("annotations cannot be null");
         }
-        boolean result = false;
+        var result = false;
         if (!annotations.isEmpty()) {
             final DetailAST firstMatchingAnnotation = findFirstAnnotation(ast, annotationNode -> {
                 final String annotationFullIdent = getAnnotationFullIdent(annotationNode);

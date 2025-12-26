@@ -346,7 +346,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
         final Set<String> modeNames = Set.of(JavadocCommentsLexer.modeNames);
         final Set<String> channelNames = Set.of(JavadocCommentsLexer.channelNames);
 
-        final int tokenCount = (int) Arrays.stream(JavadocCommentsLexer.class.getDeclaredFields())
+        final var tokenCount = (int) Arrays.stream(JavadocCommentsLexer.class.getDeclaredFields())
                 .filter(GeneratedJavadocCommentsTokenTypesTest::isPublicStaticFinalInt)
                 .filter(field -> !modeNames.contains(field.getName()))
                 .filter(field -> !channelNames.contains(field.getName()))
@@ -369,7 +369,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
      */
     private static boolean isPublicStaticFinalInt(Field field) {
         final Class<?> fieldType = field.getType();
-        final int mods = field.getModifiers();
+        final var mods = field.getModifiers();
         return fieldType.equals(Integer.TYPE)
                 && Modifier.isPublic(mods)
                 && Modifier.isStatic(mods)

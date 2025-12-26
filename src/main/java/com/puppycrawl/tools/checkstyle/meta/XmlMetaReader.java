@@ -174,9 +174,9 @@ public final class XmlMetaReader {
      */
     private static List<ModulePropertyDetails> createProperties(Element properties) {
         final NodeList propertyList = properties.getElementsByTagName("property");
-        final int propertyListLength = propertyList.getLength();
+        final var propertyListLength = propertyList.getLength();
         final List<ModulePropertyDetails> result = new ArrayList<>(propertyListLength);
-        for (int i = 0; i < propertyListLength; i++) {
+        for (var i = 0; i < propertyListLength; i++) {
             final ModulePropertyDetails propertyDetails = new ModulePropertyDetails();
             final Element prop = (Element) propertyList.item(i);
             propertyDetails.setName(getAttributeValue(prop, XML_TAG_NAME));
@@ -211,9 +211,9 @@ public final class XmlMetaReader {
         List<String> result = null;
         if (!children.isEmpty()) {
             final NodeList nodeList = children.get(0).getElementsByTagName(listOption);
-            final int nodeListLength = nodeList.getLength();
+            final var nodeListLength = nodeList.getLength();
             final List<String> listContent = new ArrayList<>(nodeListLength);
-            for (int j = 0; j < nodeListLength; j++) {
+            for (var j = 0; j < nodeListLength; j++) {
                 listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));
             }
             result = listContent;
@@ -231,7 +231,7 @@ public final class XmlMetaReader {
     private static List<Element> getDirectChildsByTag(Element element, String sTagName) {
         final NodeList children = element.getElementsByTagName(sTagName);
         final List<Element> res = new ArrayList<>();
-        for (int i = 0; i < children.getLength(); i++) {
+        for (var i = 0; i < children.getLength(); i++) {
             if (children.item(i).getParentNode().equals(element)) {
                 res.add((Element) children.item(i));
             }

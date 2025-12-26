@@ -79,7 +79,7 @@ public final class BlockCommentPosition {
      * @return true if node is before package
      */
     public static boolean isOnPackage(DetailAST blockComment) {
-        boolean result = isOnTokenWithAnnotation(blockComment, TokenTypes.PACKAGE_DEF);
+        var result = isOnTokenWithAnnotation(blockComment, TokenTypes.PACKAGE_DEF);
 
         if (!result) {
             DetailAST nextSibling = blockComment.getNextSibling();
@@ -209,7 +209,7 @@ public final class BlockCommentPosition {
      */
     public static boolean isOnEnumConstant(DetailAST blockComment) {
         final DetailAST parent = blockComment.getParent();
-        boolean result = false;
+        var result = false;
         if (parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
             final DetailAST prevSibling = getPrevSiblingSkipComments(blockComment);
             if (prevSibling.getType() == TokenTypes.ANNOTATIONS && !prevSibling.hasChildren()) {

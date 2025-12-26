@@ -60,7 +60,7 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
 
         if (nextNode != null) {
             final String text = nextNode.getText();
-            final int lastAsteriskPosition = getLastLeadingAsteriskPosition(text);
+            final var lastAsteriskPosition = getLastLeadingAsteriskPosition(text);
 
             if (!isLast(lastAsteriskPosition, text)
                     && !Character.isWhitespace(text.charAt(lastAsteriskPosition + 1))) {
@@ -125,9 +125,9 @@ public class JavadocMissingWhitespaceAfterAsteriskCheck extends AbstractJavadocC
      *
      */
     private static int getLastLeadingAsteriskPosition(String text) {
-        int index = -1;
+        var index = -1;
 
-        for (int i = 0; i < text.length(); i++) {
+        for (var i = 0; i < text.length(); i++) {
             if (text.charAt(i) != '*') {
                 break;
             }

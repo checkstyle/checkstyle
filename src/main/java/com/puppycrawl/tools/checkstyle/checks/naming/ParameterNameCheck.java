@@ -107,7 +107,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
     @Override
     protected boolean mustCheckName(DetailAST ast) {
-        boolean checkName = true;
+        var checkName = true;
         final DetailAST parent = ast.getParent();
         if (ignoreOverridden && isOverriddenMethod(ast)
                 || parent.getType() == TokenTypes.LITERAL_CATCH
@@ -138,7 +138,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @return true if a method is annotated with Override annotation.
      */
     private static boolean isOverriddenMethod(DetailAST ast) {
-        boolean overridden = false;
+        var overridden = false;
 
         final DetailAST parent = ast.getParent().getParent();
         final Optional<DetailAST> annotation =

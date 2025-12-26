@@ -499,7 +499,7 @@ public final class InlineConfigParser {
         final List<String> lines = readFile(filePath);
 
         try {
-            for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+            for (var lineNo = 0; lineNo < lines.size(); lineNo++) {
                 setViolations(testInputConfigBuilder, lines, false, lineNo, true);
             }
         }
@@ -518,7 +518,7 @@ public final class InlineConfigParser {
         final List<String> lines = readFile(filePath);
 
         try {
-            for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+            for (var lineNo = 0; lineNo < lines.size(); lineNo++) {
                 setViolations(testInputConfigBuilder, lines, true, lineNo, true);
             }
         }
@@ -643,7 +643,7 @@ public final class InlineConfigParser {
     private static void handleKeyValueConfig(TestInputConfiguration.Builder testInputConfigBuilder,
                                              String inputFilePath, List<String> lines)
             throws CheckstyleException, IOException, ReflectiveOperationException {
-        int lineNo = 0;
+        var lineNo = 0;
         while (lineNo < lines.size()) {
             final ModuleInputConfiguration.Builder moduleInputConfigBuilder =
                     new ModuleInputConfiguration.Builder();
@@ -662,7 +662,7 @@ public final class InlineConfigParser {
     private static Map<String, String> getDefaultProperties(String fullyQualifiedClassName) {
 
         final Map<String, String> defaultProperties = new HashMap<>();
-        final boolean isSuppressedModule = SUPPRESSED_MODULES.contains(fullyQualifiedClassName);
+        final var isSuppressedModule = SUPPRESSED_MODULES.contains(fullyQualifiedClassName);
 
         if (PUBLIC_MODULE_DETAILS_MAP.isEmpty()) {
             XmlMetaReader.readAllModulesIncludingThirdPartyIfAny().forEach(module -> {
@@ -697,12 +697,12 @@ public final class InlineConfigParser {
         }
         else {
             final String path = SLASH_PATTERN.matcher(filePath).replaceAll(".");
-            final int endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
+            final var endIndex = path.lastIndexOf(moduleName.toLowerCase(Locale.ROOT));
             if (endIndex == -1) {
                 throw new CheckstyleException("Unable to resolve module name: " + moduleName
                     + ". Please check for spelling errors or specify fully qualified class name.");
             }
-            final int beginIndex = path.indexOf("com.puppycrawl");
+            final var beginIndex = path.indexOf("com.puppycrawl");
             fullyQualifiedClassName = path.substring(beginIndex, endIndex) + moduleName;
             if (!fullyQualifiedClassName.endsWith("Filter")) {
                 fullyQualifiedClassName += "Check";
@@ -712,7 +712,7 @@ public final class InlineConfigParser {
     }
 
     private static String getFilePath(String fileName, String inputFilePath) {
-        final int lastSlashIndex = Math.max(inputFilePath.lastIndexOf('\\'),
+        final var lastSlashIndex = Math.max(inputFilePath.lastIndexOf('\\'),
                 inputFilePath.lastIndexOf('/'));
         final String root = inputFilePath.substring(0, lastSlashIndex + 1);
         return root + fileName;
@@ -720,7 +720,7 @@ public final class InlineConfigParser {
 
     private static String getResourcePath(String fileName, String inputFilePath) {
         final String filePath = getUriPath(fileName, inputFilePath);
-        final int lastSlashIndex = filePath.lastIndexOf('/');
+        final var lastSlashIndex = filePath.lastIndexOf('/');
         final String root = filePath.substring(filePath.indexOf("puppycrawl") - 5,
                 lastSlashIndex + 1);
         return root + fileName;
@@ -943,7 +943,7 @@ public final class InlineConfigParser {
 
     private static String readPropertiesContent(int beginLineNo, List<String> lines) {
         final StringBuilder stringBuilder = new StringBuilder(128);
-        int lineNo = beginLineNo;
+        var lineNo = beginLineNo;
         String line = lines.get(lineNo);
         while (!line.isEmpty() && !"*/".equals(line)) {
             stringBuilder.append(line).append('\n');
@@ -1076,7 +1076,7 @@ public final class InlineConfigParser {
             TestInputConfiguration.Builder inputConfigBuilder,
             String inputFilePath) {
 
-        boolean result = false;
+        var result = false;
 
         final List<ModuleInputConfiguration> moduleLists =
                 inputConfigBuilder.getChildrenModules();
@@ -1103,10 +1103,10 @@ public final class InlineConfigParser {
                                       String inputFilePath)
             throws CheckstyleException {
 
-        final boolean specifyViolationMessage =
+        final var specifyViolationMessage =
                 shouldSpecifyViolationMessage(inputConfigBuilder, inputFilePath);
 
-        for (int lineNo = 0; lineNo < lines.size(); lineNo++) {
+        for (var lineNo = 0; lineNo < lines.size(); lineNo++) {
             setViolations(inputConfigBuilder, lines,
                     useFilteredViolations, lineNo, specifyViolationMessage);
         }
@@ -1170,7 +1170,7 @@ public final class InlineConfigParser {
                 VIOLATION_DEFAULT.matcher(lines.get(lineNo));
         if (violationMatcher.matches()) {
             final String violationMessage = violationMatcher.group(1);
-            final int violationLineNum = lineNo + 1;
+            final var violationLineNum = lineNo + 1;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
@@ -1182,7 +1182,7 @@ public final class InlineConfigParser {
         }
         else if (violationBelowMatcher.matches()) {
             final String violationMessage = violationBelowMatcher.group(1);
-            final int violationLineNum = lineNo + 2;
+            final var violationLineNum = lineNo + 2;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
@@ -1194,27 +1194,27 @@ public final class InlineConfigParser {
         }
         else if (violationBelowWithExplanationMatcher.matches()) {
             final String violationMessage = violationBelowWithExplanationMatcher.group(1);
-            final int violationLineNum = lineNo + 2;
+            final var violationLineNum = lineNo + 2;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationWithExplanationMatcher.matches()) {
-            final int violationLineNum = lineNo + 1;
+            final var violationLineNum = lineNo + 1;
             inputConfigBuilder.addViolation(violationLineNum, null);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
-            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
-            final int violationLineNum = lineNo - linesAbove;
+            final var linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1)) - 1;
+            final var violationLineNum = lineNo - linesAbove;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesBelowMatcher.matches()) {
             final String violationMessage = violationSomeLinesBelowMatcher.group(2);
-            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
-            final int violationLineNum = lineNo + linesBelow;
+            final var linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1)) + 1;
+            final var violationLineNum = lineNo + linesBelow;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addViolation(violationLineNum, violationMessage);
@@ -1261,7 +1261,7 @@ public final class InlineConfigParser {
                     lines.get(lineNo), specifyViolationMessage);
         }
         else if (violationsDefault.matches()) {
-            final int violationLineNum = lineNo + 1;
+            final var violationLineNum = lineNo + 1;
             inputConfigBuilder.addViolation(violationLineNum, null);
         }
     }
@@ -1271,9 +1271,9 @@ public final class InlineConfigParser {
                                               Matcher matcher) {
         final List<TestInputViolation> results = new ArrayList<>();
 
-        final int expectedMessageCount =
+        final var expectedMessageCount =
             Integer.parseInt(matcher.group(1));
-        for (int index = 1; index <= expectedMessageCount; index++) {
+        for (var index = 1; index <= expectedMessageCount; index++) {
             final String lineWithMessage = lines.get(lineNo + index);
             final Matcher messageMatcher = VIOLATION_MESSAGE_PATTERN.matcher(lineWithMessage);
             if (messageMatcher.find()) {
@@ -1293,7 +1293,7 @@ public final class InlineConfigParser {
     private static List<TestInputViolation> getExpectedViolations(
                                               List<String> lines, int lineNo,
                                               Matcher matcher, boolean isAbove) {
-        final int violationLine =
+        final var violationLine =
             Integer.parseInt(matcher.group(2));
         final int violationLineNum;
         if (isAbove) {
@@ -1327,30 +1327,30 @@ public final class InlineConfigParser {
         }
         else if (violationAboveMatcher.matches()) {
             final String violationMessage = violationAboveMatcher.group(1);
-            final int violationLineNum = lineNo - 1;
+            final var violationLineNum = lineNo - 1;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
         else if (violationBelowMatcher.matches()) {
             final String violationMessage = violationBelowMatcher.group(1);
-            final int violationLineNum = lineNo + 1;
+            final var violationLineNum = lineNo + 1;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesAboveMatcher.matches()) {
             final String violationMessage = violationSomeLinesAboveMatcher.group(2);
-            final int linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1));
-            final int violationLineNum = lineNo - linesAbove;
+            final var linesAbove = Integer.parseInt(violationSomeLinesAboveMatcher.group(1));
+            final var violationLineNum = lineNo - linesAbove;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);
         }
         else if (violationSomeLinesBelowMatcher.matches()) {
             final String violationMessage = violationSomeLinesBelowMatcher.group(2);
-            final int linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1));
-            final int violationLineNum = lineNo + linesBelow;
+            final var linesBelow = Integer.parseInt(violationSomeLinesBelowMatcher.group(1));
+            final var violationLineNum = lineNo + linesBelow;
             checkWhetherViolationSpecified(specifyViolationMessage, violationMessage,
                     violationLineNum);
             inputConfigBuilder.addFilteredViolation(violationLineNum, violationMessage);

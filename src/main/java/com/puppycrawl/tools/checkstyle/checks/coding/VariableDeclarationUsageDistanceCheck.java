@@ -147,7 +147,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        final var parentType = ast.getParent().getType();
         final DetailAST modifiers = ast.getFirstChild();
 
         if (parentType != TokenTypes.OBJBLOCK
@@ -164,7 +164,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     entry = calculateDistanceInSingleScope(semicolonAst, variable);
                 }
                 final DetailAST variableUsageAst = entry.getKey();
-                final int dist = entry.getValue();
+                final var dist = entry.getValue();
                 if (dist > allowedDistance
                         && !isInitializationSequence(variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
@@ -188,7 +188,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private static String getInstanceName(DetailAST methodCallAst) {
         final String methodCallName =
                 FullIdent.createFullIdentBelow(methodCallAst).getText();
-        final int lastDotIndex = methodCallName.lastIndexOf('.');
+        final var lastDotIndex = methodCallName.lastIndexOf('.');
         String instanceName = "";
         if (lastDotIndex != -1) {
             instanceName = methodCallName.substring(0, lastDotIndex);
@@ -209,8 +209,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static boolean isInitializationSequence(
             DetailAST variableUsageAst, String variableName) {
-        boolean result = true;
-        boolean isUsedVariableDeclarationFound = false;
+        var result = true;
+        var isUsedVariableDeclarationFound = false;
         DetailAST currentSiblingAst = variableUsageAst;
         String initInstanceName = "";
 
@@ -260,8 +260,8 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static Entry<DetailAST, Integer> calculateDistanceInSingleScope(
             DetailAST semicolonAst, DetailAST variableIdentAst) {
-        int dist = 0;
-        boolean firstUsageFound = false;
+        var dist = 0;
+        var firstUsageFound = false;
         DetailAST currentAst = semicolonAst;
         DetailAST variableUsageAst = null;
 
@@ -319,7 +319,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static Entry<DetailAST, Integer> calculateDistanceBetweenScopes(
             DetailAST ast, DetailAST variable) {
-        int dist = 0;
+        var dist = 0;
         DetailAST currentScopeAst = ast;
         DetailAST variableUsageAst = null;
         while (currentScopeAst != null) {
@@ -378,7 +378,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
     private static Entry<List<DetailAST>, Integer>
         searchVariableUsageExpressions(final DetailAST variableAst, final DetailAST statementAst) {
         final List<DetailAST> variableUsageExpressions = new ArrayList<>();
-        int distance = 0;
+        var distance = 0;
         DetailAST currentStatementAst = statementAst;
         while (currentStatementAst != null) {
             if (currentStatementAst.getFirstChild() != null) {
@@ -426,7 +426,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 currentNode = block.findFirstToken(TokenTypes.RPAREN).getNextSibling();
             }
 
-            final int currentNodeType = currentNode.getType();
+            final var currentNodeType = currentNode.getType();
 
             if (currentNodeType != TokenTypes.EXPR) {
                 firstNodeInsideBlock = currentNode;
@@ -621,7 +621,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static boolean isVariableInOperatorExpr(
             DetailAST operator, DetailAST variable) {
-        boolean isVarInOperatorDeclaration = false;
+        var isVarInOperatorDeclaration = false;
 
         DetailAST ast = operator.findFirstToken(TokenTypes.LPAREN);
 
@@ -647,7 +647,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      * @return true if Ast element was found in Ast node, otherwise - false.
      */
     private static boolean isChild(DetailAST parent, DetailAST ast) {
-        boolean isChild = false;
+        var isChild = false;
         DetailAST curNode = parent.getFirstChild();
 
         while (curNode != null) {

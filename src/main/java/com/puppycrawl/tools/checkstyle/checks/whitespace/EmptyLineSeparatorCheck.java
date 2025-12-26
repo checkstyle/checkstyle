@@ -187,7 +187,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next sibling of the token
      */
     private void checkToken(DetailAST ast, DetailAST nextToken) {
-        final int astType = ast.getType();
+        final var astType = ast.getType();
 
         switch (astType) {
             case TokenTypes.VARIABLE_DEF -> processVariableDef(ast, nextToken);
@@ -231,7 +231,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast the ast to check.
      */
     private void processMultipleLinesInside(DetailAST ast) {
-        final int astType = ast.getType();
+        final var astType = ast.getType();
         if (isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
@@ -316,7 +316,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private List<Integer> getEmptyLines(DetailAST ast) {
         final DetailAST lastToken = ast.getLastChild().getLastChild();
-        int lastTokenLineNo = 0;
+        var lastTokenLineNo = 0;
         if (lastToken != null) {
             // -1 as count starts from 0
             // -2 as last token line cannot be empty, because it is a RCURLY
@@ -324,7 +324,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         }
         final List<Integer> emptyLines = new ArrayList<>();
 
-        for (int lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
+        for (var lineNo = ast.getLineNo(); lineNo <= lastTokenLineNo; lineNo++) {
             if (CommonUtil.isBlank(getLine(lineNo))) {
                 emptyLines.add(lineNo);
             }
@@ -340,7 +340,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private static List<Integer> getEmptyLinesToLog(Iterable<Integer> emptyLines) {
         final List<Integer> emptyLinesToLog = new ArrayList<>();
-        int previousEmptyLineNo = -1;
+        var previousEmptyLineNo = -1;
         for (int emptyLineNo : emptyLines) {
             if (previousEmptyLineNo + 1 == emptyLineNo) {
                 emptyLinesToLog.add(previousEmptyLineNo);
@@ -395,7 +395,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private static boolean isLineEmptyAfterPackage(DetailAST ast) {
         DetailAST nextElement = ast;
-        final int lastChildLineNo = ast.getLastChild().getLineNo();
+        final var lastChildLineNo = ast.getLastChild().getLineNo();
         while (nextElement.getLineNo() < lastChildLineNo + 1
                 && nextElement.getNextSibling() != null) {
             nextElement = nextElement.getNextSibling();
@@ -411,7 +411,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private static DetailAST getViolationAstForPackage(DetailAST ast) {
         DetailAST nextElement = ast;
-        final int lastChildLineNo = ast.getLastChild().getLineNo();
+        final var lastChildLineNo = ast.getLastChild().getLineNo();
         while (nextElement.getLineNo() < lastChildLineNo + 1) {
             nextElement = nextElement.getNextSibling();
         }
@@ -530,15 +530,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token has empty lines before.
      */
     private boolean isPrePreviousLineEmpty(DetailAST token) {
-        boolean result = false;
-        final int lineNo = token.getLineNo();
+        var result = false;
+        final var lineNo = token.getLineNo();
         // 3 is the number of the pre-previous line because the numbering starts from zero.
-        final int number = 3;
+        final var number = 3;
         if (lineNo >= number) {
             final String prePreviousLine = getLine(lineNo - number);
 
             result = CommonUtil.isBlank(prePreviousLine);
-            final boolean previousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
+            final var previousLineIsEmpty = CommonUtil.isBlank(getLine(lineNo - 2));
 
             if (previousLineIsEmpty && result) {
                 result = true;
@@ -558,7 +558,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if both previous and pre-previous lines from dependent comment are empty
      */
     private boolean isTwoPrecedingPreviousLinesFromCommentEmpty(DetailAST token) {
-        boolean upToPrePreviousLinesEmpty = false;
+        var upToPrePreviousLinesEmpty = false;
 
         for (DetailAST typeChild = token.findFirstToken(TokenTypes.TYPE).getLastChild();
              typeChild != null; typeChild = typeChild.getPreviousSibling()) {
@@ -617,9 +617,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             nextToken = nextToken.getNextSibling();
         }
         // Start of the next token
-        final int nextBegin = nextToken.getLineNo();
+        final var nextBegin = nextToken.getLineNo();
         // End of current token.
-        final int currentEnd = lastToken.getLineNo();
+        final var currentEnd = lastToken.getLineNo();
         return hasEmptyLine(currentEnd + 1, nextBegin - 1);
     }
 
@@ -648,8 +648,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean hasEmptyLine(int startLine, int endLine) {
         // Initial value is false - blank line not found
-        boolean result = false;
-        for (int line = startLine; line <= endLine; line++) {
+        var result = false;
+        for (var line = startLine; line <= endLine; line++) {
             // Check, if the line is blank. Lines are numbered from 0, so subtract 1
             if (CommonUtil.isBlank(getLine(line - 1))) {
                 result = true;
@@ -666,8 +666,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token have empty line before.
      */
     private boolean hasEmptyLineBefore(DetailAST token) {
-        boolean result = false;
-        final int lineNo = token.getLineNo();
+        var result = false;
+        final var lineNo = token.getLineNo();
         if (lineNo != 1) {
             // [lineNo - 2] is the number of the previous line as the numbering starts from zero.
             final String lineBefore = getLine(lineNo - 2);
@@ -699,7 +699,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean isCommentInBeginningOfLine(DetailAST comment) {
         // comment.getLineNo() - 1 is the number of the previous line as the numbering starts
         // from zero.
-        boolean result = false;
+        var result = false;
         if (comment != null) {
             final String lineWithComment = getLine(comment.getLineNo() - 1).trim();
             result = lineWithComment.startsWith("//") || lineWithComment.startsWith("/*");
@@ -714,7 +714,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if token is preceded by javadoc comment.
      */
     private static boolean isPrecededByJavadoc(DetailAST token) {
-        boolean result = false;
+        var result = false;
         final DetailAST previous = token.getPreviousSibling();
         if (previous.getType() == TokenTypes.BLOCK_COMMENT_BEGIN
                 && JavadocUtil.isJavadocComment(previous.getFirstChild().getText())) {

@@ -399,14 +399,14 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static String extractMismatchFileName(String violation) {
         final String prefix = "Mismatch:  ";
-        final int startIndex = violation.indexOf(prefix);
+        final var startIndex = violation.indexOf(prefix);
         final String result;
 
         if (startIndex == -1) {
             result = null;
         }
         else {
-            final int endIndex = violation.indexOf('\n', startIndex);
+            final var endIndex = violation.indexOf('\n', startIndex);
             if (endIndex == -1) {
                 result = violation.substring(startIndex + prefix.length()).trim();
             }
@@ -457,14 +457,14 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static String extractDirectoryPath(String violation) {
         final String prefix = "Directory: ";
-        final int startIndex = violation.indexOf(prefix);
+        final var startIndex = violation.indexOf(prefix);
         final String result;
 
         if (startIndex == -1) {
             result = null;
         }
         else {
-            final int endIndex = violation.indexOf('\n', startIndex);
+            final var endIndex = violation.indexOf('\n', startIndex);
             if (endIndex == -1) {
                 result = null;
             }
@@ -483,7 +483,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @return true if the directory contains 2 or more Example*.java files
      */
     private static boolean containsMultipleExamples(Path dir) {
-        boolean result = false;
+        var result = false;
 
         try (Stream<Path> pathStream = Files.list(dir)) {
             result = pathStream
@@ -588,7 +588,7 @@ public class XdocsExamplesAstConsistencyTest {
             if (referenceDetailAst != null) {
                 final StructuralAstNode referenceAst = toStructuralAst(referenceDetailAst);
 
-                for (int index = 1; index < examples.size(); index++) {
+                for (var index = 1; index < examples.size(); index++) {
                     final Path example = examples.get(index);
                     final String violation = compareSingleExample(
                             dir, example, reference, referenceAst
@@ -615,10 +615,10 @@ public class XdocsExamplesAstConsistencyTest {
      */
     private static String extractXdocSection(Path file) throws IOException {
         final List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-        int startIndex = -1;
-        int endIndex = -1;
+        var startIndex = -1;
+        var endIndex = -1;
 
-        for (int index = 0; index < lines.size(); index++) {
+        for (var index = 0; index < lines.size(); index++) {
             final String line = lines.get(index);
             if (line.contains(XDOC_START_MARKER)) {
                 startIndex = index + 1;
@@ -735,7 +735,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @return true if the node is a comment
      */
     private static boolean isCommentNode(DetailAST ast) {
-        final int type = ast.getType();
+        final var type = ast.getType();
         return type == TokenTypes.SINGLE_LINE_COMMENT
                 || type == TokenTypes.BLOCK_COMMENT_BEGIN
                 || type == TokenTypes.COMMENT_CONTENT;
@@ -761,7 +761,7 @@ public class XdocsExamplesAstConsistencyTest {
         public boolean equals(Object obj) {
             final boolean result;
             if (obj instanceof StructuralAstNode other) {
-                final boolean childrenEqual = children.equals(other.children);
+                final var childrenEqual = children.equals(other.children);
                 result = type == other.type && childrenEqual;
             }
             else {

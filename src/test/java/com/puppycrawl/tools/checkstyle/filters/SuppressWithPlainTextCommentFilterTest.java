@@ -389,7 +389,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                         Object.class, null)
         );
         filter.accept(auditEvent1);
-        final boolean deleted = tempFile.delete();
+        final var deleted = tempFile.delete();
         assertWithMessage("Temporary file should be deleted.")
                 .that(deleted).isTrue();
         final AuditEvent auditEvent2 = new AuditEvent(

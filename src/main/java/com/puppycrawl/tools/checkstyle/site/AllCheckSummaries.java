@@ -532,7 +532,7 @@ public class AllCheckSummaries extends AbstractMacro {
         final Path fileName = path.getFileName();
         if (fileName != null) {
             final String fileNameString = fileName.toString();
-            final int extensionLength = 4;
+            final var extensionLength = 4;
             final String base = fileNameString.substring(0,
                             fileNameString.length() - extensionLength)
                     .toLowerCase(Locale.ROOT);
@@ -567,7 +567,7 @@ public class AllCheckSummaries extends AbstractMacro {
                 result = href + ANCHOR_SEPARATOR + simpleName;
             }
             else {
-                final int lastSlash = href.lastIndexOf('/');
+                final var lastSlash = href.lastIndexOf('/');
                 final String filename;
                 if (lastSlash >= 0) {
                     filename = href.substring(lastSlash + 1);
@@ -672,8 +672,8 @@ public class AllCheckSummaries extends AbstractMacro {
     private static String extractFirstSentence(String text) {
         String result = "";
         if (text != null && !text.isEmpty()) {
-            int end = -1;
-            for (int index = 0; index < text.length(); index++) {
+            var end = -1;
+            for (var index = 0; index < text.length(); index++) {
                 if (text.charAt(index) == '.'
                         && (index == text.length() - 1
                         || Character.isWhitespace(text.charAt(index + 1))
@@ -709,11 +709,11 @@ public class AllCheckSummaries extends AbstractMacro {
             final String clean = sanitized.trim();
 
             final StringBuilder result = new StringBuilder(CAPACITY);
-            int cleanIndex = 0;
-            final int cleanLen = clean.length();
+            var cleanIndex = 0;
+            final var cleanLen = clean.length();
 
             while (cleanIndex < cleanLen) {
-                final int remainingChars = cleanLen - cleanIndex;
+                final var remainingChars = cleanLen - cleanIndex;
 
                 if (remainingChars <= MAX_CONTENT_WIDTH) {
                     result.append(indent)
@@ -722,8 +722,8 @@ public class AllCheckSummaries extends AbstractMacro {
                     break;
                 }
 
-                final int idealBreak = cleanIndex + MAX_CONTENT_WIDTH;
-                final int actualBreak = calculateBreakPoint(clean, cleanIndex, idealBreak);
+                final var idealBreak = cleanIndex + MAX_CONTENT_WIDTH;
+                final var actualBreak = calculateBreakPoint(clean, cleanIndex, idealBreak);
 
                 result.append(indent)
                         .append(clean, cleanIndex, actualBreak);
@@ -750,7 +750,7 @@ public class AllCheckSummaries extends AbstractMacro {
      * @return the actual break position
      */
     private static int calculateBreakPoint(String clean, int cleanIndex, int idealBreak) {
-        final int anchorStart = clean.indexOf("<a ", cleanIndex);
+        final var anchorStart = clean.indexOf("<a ", cleanIndex);
         final int anchorOpenEnd;
         if (anchorStart == -1) {
             anchorOpenEnd = -1;
@@ -802,7 +802,7 @@ public class AllCheckSummaries extends AbstractMacro {
         final boolean result;
         if (anchorStart != -1 && anchorStart < idealBreak
                 && anchorOpenEnd != -1 && anchorOpenEnd < idealBreak) {
-            final int anchorCloseStart = clean.indexOf(CLOSING_ANCHOR_TAG, anchorOpenEnd);
+            final var anchorCloseStart = clean.indexOf(CLOSING_ANCHOR_TAG, anchorOpenEnd);
             result = anchorCloseStart != -1 && anchorCloseStart >= idealBreak;
         }
         else {
@@ -821,7 +821,7 @@ public class AllCheckSummaries extends AbstractMacro {
      */
     private static int findSafeBreakPoint(String text, int start, int idealBreak) {
         final int actualBreak;
-        final int lastSpace = text.lastIndexOf(' ', idealBreak);
+        final var lastSpace = text.lastIndexOf(' ', idealBreak);
 
         if (lastSpace > start && lastSpace >= start + MAX_CONTENT_WIDTH / 2) {
             actualBreak = lastSpace;

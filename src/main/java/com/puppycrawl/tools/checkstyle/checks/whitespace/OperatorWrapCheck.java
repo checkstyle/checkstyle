@@ -294,7 +294,7 @@ public class OperatorWrapCheck
      */
     private static DetailAST adjustParens(DetailAST node, UnaryOperator<DetailAST> step) {
         DetailAST result = node;
-        int accumulator = 0;
+        var accumulator = 0;
         while (true) {
             if (result.getType() == TokenTypes.LPAREN) {
                 accumulator--;

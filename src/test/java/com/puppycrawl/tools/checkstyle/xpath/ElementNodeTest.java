@@ -104,7 +104,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     public void testCompareOrderWrongInstance() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        final int result = nodes.get(0).compareOrder(null);
+        final var result = nodes.get(0).compareOrder(null);
         assertWithMessage("Expected result wrong")
             .that(result)
             .isEqualTo(0);
@@ -146,7 +146,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
+        final var tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
         assertWithMessage("Invalid token type")
             .that(tokenType)
             .isEqualTo(TokenTypes.NUM_INT);
@@ -159,7 +159,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(2);
-        final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
+        final var tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
         assertWithMessage("Invalid token type")
             .that(tokenType)
             .isEqualTo(TokenTypes.STRING_LITERAL);

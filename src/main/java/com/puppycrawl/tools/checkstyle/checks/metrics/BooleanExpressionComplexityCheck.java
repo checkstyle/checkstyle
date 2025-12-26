@@ -202,7 +202,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      */
     private void visitMethodDef(DetailAST ast) {
         contextStack.push(context);
-        final boolean check = !CheckUtil.isEqualsMethod(ast);
+        final var check = !CheckUtil.isEqualsMethod(ast);
         context = new Context(check);
     }
 
