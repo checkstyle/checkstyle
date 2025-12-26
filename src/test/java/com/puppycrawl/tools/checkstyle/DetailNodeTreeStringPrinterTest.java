@@ -38,27 +38,27 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class))
                 .isTrue();
     }
 
     @Test
-    public void testParseFile() throws Exception {
+    void parseFile() throws Exception {
         verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
                 getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
     }
 
     @Test
-    public void testNoUnnecessaryTextInJavadocAst() throws Exception {
+    void noUnnecessaryTextInJavadocAst() throws Exception {
         verifyJavadocTree(
                 getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
                 getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));
     }
 
     @Test
-    public void testParseErrorMessage() throws Exception {
+    void parseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage", String.class,
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -76,7 +76,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testNoViableAltException() throws Exception {
+    void noViableAltException() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
         try {
@@ -95,7 +95,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testHtmlTagCloseBeforeTagOpen() throws Exception {
+    void htmlTagCloseBeforeTagOpen() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
         try {

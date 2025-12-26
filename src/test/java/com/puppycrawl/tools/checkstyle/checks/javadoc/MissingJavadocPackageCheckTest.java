@@ -36,31 +36,31 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageJavadocPresent() throws Exception {
+    void packageJavadocPresent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("package-info.java"), expected);
     }
 
     @Test
-    public void testPackageSingleLineJavadocPresent() throws Exception {
+    void packageSingleLineJavadocPresent() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("singleline/package-info.java"), expected);
     }
 
     @Test
-    public void testPackageJavadocPresentWithAnnotation() throws Exception {
+    void packageJavadocPresentWithAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("annotation/package-info.java"), expected);
     }
 
     @Test
-    public void testPackageJavadocPresentWithBlankLines() throws Exception {
+    void packageJavadocPresentWithBlankLines() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("blank/package-info.java"), expected);
     }
 
     @Test
-    public void testPackageJavadocMissing() throws Exception {
+    void packageJavadocMissing() throws Exception {
         final String[] expected = {
             "7:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -68,7 +68,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBlockCommentInsteadOfJavadoc() throws Exception {
+    void blockCommentInsteadOfJavadoc() throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -77,7 +77,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSinglelineCommentInsteadOfJavadoc() throws Exception {
+    void singlelineCommentInsteadOfJavadoc() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -86,7 +86,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSinglelineCommentInsteadOfJavadoc2() throws Exception {
+    void singlelineCommentInsteadOfJavadoc2() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -95,7 +95,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageJavadocMissingWithAnnotation() throws Exception {
+    void packageJavadocMissingWithAnnotation() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -104,7 +104,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageJavadocMissingWithAnnotationAndBlockComment() throws Exception {
+    void packageJavadocMissingWithAnnotationAndBlockComment() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -113,7 +113,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageJavadocMissingDetachedJavadoc() throws Exception {
+    void packageJavadocMissingDetachedJavadoc() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -122,13 +122,13 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageJavadocPresentWithHeader() throws Exception {
+    void packageJavadocPresentWithHeader() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("header/package-info.java"), expected);
     }
 
     @Test
-    public void testPackageJavadocMissingWithBlankLines() throws Exception {
+    void packageJavadocMissingWithBlankLines() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
@@ -137,14 +137,14 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotPackageInfo() throws Exception {
+    void notPackageInfo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(
                 getPath("InputMissingJavadocPackageNotPackageInfo-package-info.java"), expected);
     }
 
     @Test
-    public void testTokensAreCorrect() {
+    void tokensAreCorrect() {
         final MissingJavadocPackageCheck check = new MissingJavadocPackageCheck();
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,

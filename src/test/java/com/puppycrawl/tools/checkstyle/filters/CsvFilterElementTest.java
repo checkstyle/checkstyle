@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class CsvFilterElementTest {
+class CsvFilterElementTest {
 
     @Test
-    public void testDecideSingle() {
+    void decideSingle() {
         final IntFilterElement filter = new CsvFilterElement("0");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -43,7 +43,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testDecidePair() {
+    void decidePair() {
         final IntFilterElement filter = new CsvFilterElement("0, 2");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -60,7 +60,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testDecideRange() {
+    void decideRange() {
         final IntFilterElement filter = new CsvFilterElement("0-2");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -80,7 +80,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testDecideEmptyRange() {
+    void decideEmptyRange() {
         final IntFilterElement filter = new CsvFilterElement("2-0");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -100,7 +100,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testDecideRangePlusValue() {
+    void decideRangePlusValue() {
         final IntFilterElement filter = new CsvFilterElement("0-2, 10");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -123,7 +123,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testEmptyChain() {
+    void emptyChain() {
         final CsvFilterElement filter = new CsvFilterElement("");
         assertWithMessage("0")
                 .that(filter.accept(0))
@@ -131,7 +131,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilterElement.class)
                 .usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())

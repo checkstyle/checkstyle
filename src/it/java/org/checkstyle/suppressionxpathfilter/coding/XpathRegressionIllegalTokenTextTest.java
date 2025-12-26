@@ -45,7 +45,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testField() throws Exception {
+    void field() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalTokenTextField.java"));
         final DefaultConfiguration moduleConfig =
@@ -72,7 +72,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalTokenTextMethod.java"));
         final DefaultConfiguration moduleConfig =
@@ -101,7 +101,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testInterface() throws Exception {
+    void testInterface() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalTokenTextInterface.java"));
         final DefaultConfiguration moduleConfig =

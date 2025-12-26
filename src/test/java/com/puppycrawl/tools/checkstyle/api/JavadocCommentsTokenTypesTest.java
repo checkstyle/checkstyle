@@ -24,17 +24,17 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import org.junit.jupiter.api.Test;
 
-public class JavadocCommentsTokenTypesTest {
+class JavadocCommentsTokenTypesTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(JavadocCommentsTokenTypes.class))
                 .isTrue();
     }
 
     @Test
-    public void testTokenValues() {
+    void tokenValues() {
         final String msg = "Please ensure that token values in `JavadocTokenTypes.java` have not"
                 + " changed.";
 

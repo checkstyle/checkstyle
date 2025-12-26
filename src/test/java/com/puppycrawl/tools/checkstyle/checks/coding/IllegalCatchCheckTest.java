@@ -34,7 +34,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalCatchCheckDefaultTokens() throws Exception {
+    void illegalCatchCheckDefaultTokens() throws Exception {
 
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -50,7 +50,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalCatchCheckSuperclassThrowable() throws Exception {
+    void illegalCatchCheckSuperclassThrowable() throws Exception {
         final String[] expected = {
             "14:11: " + getCheckMessage(MSG_KEY, "Exception"),
             "15:11: " + getCheckMessage(MSG_KEY, "Throwable"),
@@ -63,7 +63,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalCatchCheckSuperclassException() throws Exception {
+    void illegalCatchCheckSuperclassException() throws Exception {
         // check that incorrect names don't break the Check
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "Exception"),
@@ -75,7 +75,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalCatchCheckMultipleExceptions() throws Exception {
+    void illegalCatchCheckMultipleExceptions() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY, "RuntimeException"),
             "15:11: " + getCheckMessage(MSG_KEY, "SQLException"),
@@ -95,7 +95,7 @@ public class IllegalCatchCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final IllegalCatchCheck check = new IllegalCatchCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

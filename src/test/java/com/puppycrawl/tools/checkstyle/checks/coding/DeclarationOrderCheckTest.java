@@ -44,7 +44,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault1() throws Exception {
+    void default1() throws Exception {
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -62,7 +62,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault2() throws Exception {
+    void default2() throws Exception {
 
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_ACCESS),
@@ -83,7 +83,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault3() throws Exception {
+    void default3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDeclarationOrderDefault3.java"),
@@ -91,7 +91,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyConstructors1() throws Exception {
+    void onlyConstructors1() throws Exception {
 
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_STATIC),
@@ -103,7 +103,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyConstructors2() throws Exception {
+    void onlyConstructors2() throws Exception {
 
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_STATIC),
@@ -116,7 +116,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyModifiers1() throws Exception {
+    void onlyModifiers1() throws Exception {
 
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_ACCESS),
@@ -133,7 +133,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testOnlyModifiers2() throws Exception {
+    void onlyModifiers2() throws Exception {
 
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_ACCESS),
@@ -153,7 +153,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -167,7 +167,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testParents() {
+    void parents() {
         final DetailAstImpl parent = new DetailAstImpl();
         parent.setType(TokenTypes.STATIC_INIT);
         final DetailAstImpl method = new DetailAstImpl();
@@ -195,7 +195,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testImproperToken() {
+    void improperToken() {
         final DetailAstImpl parent = new DetailAstImpl();
         parent.setType(TokenTypes.STATIC_INIT);
         final DetailAstImpl array = new DetailAstImpl();
@@ -213,7 +213,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testForwardReference() throws Exception {
+    void forwardReference() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_ACCESS),
             "22:5: " + getCheckMessage(MSG_ACCESS),
@@ -230,7 +230,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDeclarationOrderRecordsAndCompactCtors() throws Exception {
+    void declarationOrderRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_CONSTRUCTOR),
             "24:9: " + getCheckMessage(MSG_STATIC),
@@ -244,7 +244,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testDeclarationOrderInterfaceMemberScopeIsPublic() throws Exception {
+    void declarationOrderInterfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
             "21:3: " + getCheckMessage(MSG_STATIC),
         };
@@ -254,7 +254,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testVariableAccess() throws Exception {
+    void variableAccess() throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_ACCESS),
         };
@@ -263,7 +263,7 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
-    public void testAvoidDuplicatesForStaticFinalFields() throws Exception {
+    void avoidDuplicatesForStaticFinalFields() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_STATIC),
         };

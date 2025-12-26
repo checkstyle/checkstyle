@@ -31,34 +31,34 @@ public class LocalVariableNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testPatternVariableName() throws Exception {
+    void patternVariableName() throws Exception {
         verifyWithWholeConfig(getPath(
                 "InputPatternVariableNameEnhancedInstanceofTestDefault.java"));
     }
 
     @Test
-    public void testFormattedPatternVariableName() throws Exception {
+    void formattedPatternVariableName() throws Exception {
         verifyWithWholeConfig(getPath(
                 "InputFormattedPatternVariableNameEnhancedInstanceofTestDefault.java"));
     }
 
     @Test
-    public void testLocalAndPatternVariableName() throws Exception {
+    void localAndPatternVariableName() throws Exception {
         verifyWithWholeConfig(getPath("InputLocalVariableNameSimple.java"));
     }
 
     @Test
-    public void testOneChar() throws Exception {
+    void oneChar() throws Exception {
         verifyWithWholeConfig(getPath("InputLocalVariableNameOneCharVarName.java"));
     }
 
     @Test
-    public void testUnnamedVariables() throws Exception {
+    void unnamedVariables() throws Exception {
         verifyWithWholeConfig(getPath("InputUnnamedVariables.java"));
     }
 
     @Test
-    public void testPatternVariableNameUnnamed() throws Exception {
+    void patternVariableNameUnnamed() throws Exception {
         verifyWithWholeConfig(getPath("InputPatternVariableNameUnnamed.java"));
     }
 

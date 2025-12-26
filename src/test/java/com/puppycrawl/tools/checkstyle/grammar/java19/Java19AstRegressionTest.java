@@ -31,43 +31,43 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testPatternsInNullSwitch1() throws Exception {
+    void patternsInNullSwitch1() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19PatternsInNullSwitch1.txt"),
                 getNonCompilablePath("InputJava19PatternsInNullSwitch1.java"));
     }
 
     @Test
-    public void testPatternsInNullSwitch2() throws Exception {
+    void patternsInNullSwitch2() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19PatternsInNullSwitch2.txt"),
                 getNonCompilablePath("InputJava19PatternsInNullSwitch2.java"));
     }
 
     @Test
-    public void testLotsOfOperators() throws Exception {
+    void lotsOfOperators() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19BindingsWithLotsOfOperators.txt"),
                 getNonCompilablePath("InputJava19BindingsWithLotsOfOperators.java"));
     }
 
     @Test
-    public void testGenericRecordDecomposition() throws Exception {
+    void genericRecordDecomposition() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedGenericRecordDeconstructionPattern.txt"),
                 getNonCompilablePath("InputGenericRecordDeconstructionPattern.java"));
     }
 
     @Test
-    public void testGuardsWithExtraParenthesis() throws Exception {
+    void guardsWithExtraParenthesis() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19GuardsWithExtraParenthesis.txt"),
                 getNonCompilablePath("InputJava19GuardsWithExtraParenthesis.java"));
     }
 
     @Test
-    public void testBindingWithModifiers() throws Exception {
+    void bindingWithModifiers() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19BindingWithModifiers.txt"),
                 getNonCompilablePath("InputJava19BindingWithModifiers.java"));
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         verifyAst(getNonCompilablePath(
                 "ExpectedJava19RecordDecompositionWithConditionInLoops.txt"),
                 getNonCompilablePath(

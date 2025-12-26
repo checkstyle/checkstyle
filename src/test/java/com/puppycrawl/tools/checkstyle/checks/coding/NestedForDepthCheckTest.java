@@ -44,7 +44,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthCheckCustomMaxLevelTwo() throws Exception {
+    void nestedForDepthCheckCustomMaxLevelTwo() throws Exception {
 
         final String[] expected = {
             "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -68,7 +68,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
      *     interface-requirements for test-methods.
      */
     @Test
-    public void testNestedForDepthCheckCustomMaxLevelFour() throws Exception {
+    void nestedForDepthCheckCustomMaxLevelFour() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -78,7 +78,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final NestedForDepthCheck check = new NestedForDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -92,7 +92,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNestedForDepthCheckDefaultMaxLevel() throws Exception {
+    void nestedForDepthCheckDefaultMaxLevel() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY, 2, 1),
         };

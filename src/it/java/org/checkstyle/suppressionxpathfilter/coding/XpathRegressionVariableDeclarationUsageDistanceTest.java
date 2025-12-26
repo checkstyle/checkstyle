@@ -43,7 +43,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathVariableDeclarationUsageDistanceOne.java"));
 
@@ -83,7 +83,7 @@ public class XpathRegressionVariableDeclarationUsageDistanceTest extends Abstrac
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathVariableDeclarationUsageDistanceTwo.java"));
 

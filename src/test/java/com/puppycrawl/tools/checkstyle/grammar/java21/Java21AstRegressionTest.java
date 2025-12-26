@@ -38,7 +38,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testUnnamedVariableBasic() throws Exception {
+    void unnamedVariableBasic() throws Exception {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableBasic.txt"),
@@ -47,7 +47,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testUnnamedVariableSwitch() throws Exception {
+    void unnamedVariableSwitch() throws Exception {
         verifyAst(
                 getPath(
                         "ExpectedUnnamedVariableSwitch.txt"),
@@ -56,7 +56,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testTextBlockConsecutiveEscapes() throws Exception {
+    void textBlockConsecutiveEscapes() throws Exception {
         verifyAst(
                 getPath(
                         "ExpectedTextBlockConsecutiveEscapes.txt"),
@@ -73,7 +73,7 @@ public class Java21AstRegressionTest extends AbstractTreeTestSupport {
      * @throws Exception if an error occurs
      */
     @Test
-    public void testTextBlockParsingFail() throws Exception {
+    void textBlockParsingFail() throws Exception {
         final File file =
                 new File(getPath("InputTextBlockParsingFail.java.fail"));
 

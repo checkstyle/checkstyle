@@ -37,7 +37,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final RequireEmptyLineBeforeBlockTagGroupCheck checkObj =
                 new RequireEmptyLineBeforeBlockTagGroupCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
@@ -47,7 +47,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    void correct() throws Exception {
         createModuleConfig(
                 RequireEmptyLineBeforeBlockTagGroupCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -58,7 +58,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     }
 
     @Test
-    public void testIncorrect() throws Exception {
+    void incorrect() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@since"),
             "20: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),

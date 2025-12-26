@@ -74,14 +74,14 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
         final DefaultConfiguration checkConfig = new DefaultConfiguration(
                 JavaDocCapture.class.getName());
         checker = createChecker(checkConfig);
     }
 
     @Test
-    public void testAllCheckSectionJavaDocs() throws Exception {
+    void allCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final List<Path> templatesWithPropertiesMacro =
                 SiteUtil.getTemplatesThatContainPropertiesMacro();

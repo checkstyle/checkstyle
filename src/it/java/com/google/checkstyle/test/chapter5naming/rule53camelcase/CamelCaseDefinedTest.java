@@ -30,17 +30,17 @@ public class CamelCaseDefinedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testCamelCaseNames() throws Exception {
+    void camelCaseNames() throws Exception {
         verifyWithWholeConfig(getPath("InputCamelCaseDefined.java"));
     }
 
     @Test
-    public void testCamelCaseNamesFormatted() throws Exception {
+    void camelCaseNamesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCamelCaseDefined.java"));
     }
 
     @Test
-    public void testCamelCaseNames2() throws Exception {
+    void camelCaseNames2() throws Exception {
         verifyWithWholeConfig(getPath("InputUnderscoreUsedInNames.java"));
     }
 }

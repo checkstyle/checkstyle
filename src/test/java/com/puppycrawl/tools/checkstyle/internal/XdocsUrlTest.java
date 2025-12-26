@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
-public class XdocsUrlTest {
+class XdocsUrlTest {
 
     private static final String PACKAGE_NAME =
             "src/main/java/com/puppycrawl/tools/checkstyle/checks";
@@ -99,7 +99,7 @@ public class XdocsUrlTest {
     }
 
     @Test
-    public void testXdocsUrl() throws Exception {
+    void xdocsUrl() throws Exception {
         final SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         final SAXParser parser = parserFactory.newSAXParser();
         final DummyHandler checkHandler = new DummyHandler();

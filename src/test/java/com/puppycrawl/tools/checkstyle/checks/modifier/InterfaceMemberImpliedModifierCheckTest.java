@@ -38,7 +38,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterfaceNoImpliedPublicAbstract() throws Exception {
+    void methodsOnInterfaceNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -53,7 +53,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final InterfaceMemberImpliedModifierCheck check = new InterfaceMemberImpliedModifierCheck();
         final int[] actual = check.getRequiredTokens();
         final int[] expected = {
@@ -69,7 +69,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterfaceNoImpliedAbstractAllowImpliedPublic() throws Exception {
+    void methodsOnInterfaceNoImpliedAbstractAllowImpliedPublic() throws Exception {
         final String[] expected = {
             "36:5: " + getCheckMessage(MSG_KEY, "abstract"),
             "38:5: " + getCheckMessage(MSG_KEY, "abstract"),
@@ -80,7 +80,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterfaceNoImpliedPublicAllowImpliedAbstract() throws Exception {
+    void methodsOnInterfaceNoImpliedPublicAllowImpliedAbstract() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -93,7 +93,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterfaceAllowImpliedPublicAbstract() throws Exception {
+    void methodsOnInterfaceAllowImpliedPublicAbstract() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface4.java"),
@@ -101,7 +101,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClassIgnored() throws Exception {
+    void methodsOnClassIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierMethodsOnClass.java"),
@@ -109,7 +109,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterfaceNestedNoImpliedPublicAbstract() throws Exception {
+    void methodsOnInterfaceNestedNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "public"),
             "29:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -124,7 +124,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClassNestedNoImpliedPublicAbstract() throws Exception {
+    void methodsOnClassNestedNoImpliedPublicAbstract() throws Exception {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "public"),
             "29:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -139,7 +139,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnInterfaceNoImpliedPublicStaticFinal() throws Exception {
+    void fieldsOnInterfaceNoImpliedPublicStaticFinal() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -160,7 +160,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnInterfaceNoImpliedPublicStaticAllowImpliedFinal() throws Exception {
+    void fieldsOnInterfaceNoImpliedPublicStaticAllowImpliedFinal() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
             "24:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -177,7 +177,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnInterfaceNoImpliedPublicFinalAllowImpliedStatic() throws Exception {
+    void fieldsOnInterfaceNoImpliedPublicFinalAllowImpliedStatic() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "24:5: " + getCheckMessage(MSG_KEY, "final"),
@@ -194,7 +194,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnInterfaceNoImpliedStaticFinalAllowImpliedPublic() throws Exception {
+    void fieldsOnInterfaceNoImpliedStaticFinalAllowImpliedPublic() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -211,7 +211,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnInterfaceAllowImpliedPublicStaticFinal() throws Exception {
+    void fieldsOnInterfaceAllowImpliedPublicStaticFinal() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface5.java"),
@@ -219,7 +219,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testFieldsOnClassIgnored() throws Exception {
+    void fieldsOnClassIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierFieldsOnClass.java"),
@@ -227,7 +227,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnInterfaceNoImpliedPublicStatic() throws Exception {
+    void nestedOnInterfaceNoImpliedPublicStatic() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "static"),
             "24:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -248,7 +248,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnInterfaceNoImpliedStaticAllowImpliedPublic() throws Exception {
+    void nestedOnInterfaceNoImpliedStaticAllowImpliedPublic() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY, "static"),
             "27:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -263,7 +263,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnInterfaceNoImpliedPublicAllowImpliedStatic() throws Exception {
+    void nestedOnInterfaceNoImpliedPublicAllowImpliedStatic() throws Exception {
         final String[] expected = {
             "24:5: " + getCheckMessage(MSG_KEY, "public"),
             "27:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -278,7 +278,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnInterfaceAllowImpliedPublicStatic() throws Exception {
+    void nestedOnInterfaceAllowImpliedPublicStatic() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnInterface4.java"),
@@ -286,7 +286,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnClassIgnored() throws Exception {
+    void nestedOnClassIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierNestedOnClass.java"),
@@ -294,7 +294,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnInterfaceNestedNoImpliedPublicStatic() throws Exception {
+    void nestedOnInterfaceNestedNoImpliedPublicStatic() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -309,7 +309,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testNestedOnClassNestedNoImpliedPublicStatic() throws Exception {
+    void nestedOnClassNestedNoImpliedPublicStatic() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_KEY, "public"),
             "20:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -324,7 +324,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testPackageScopeInterface() throws Exception {
+    void packageScopeInterface() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY, "final"),
             "22:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -355,7 +355,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testPrivateMethodsOnInterface() throws Exception {
+    void privateMethodsOnInterface() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInterfaceMemberImpliedModifierPrivateMethods.java"),
@@ -363,7 +363,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testIllegalState() {
+    void illegalState() {
         final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
         final DetailAstImpl objBlock = new DetailAstImpl();
@@ -386,7 +386,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testSealedClassInInterface() throws Exception {
+    void sealedClassInInterface() throws Exception {
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY, "final"),
             "18:5: " + getCheckMessage(MSG_KEY, "public"),

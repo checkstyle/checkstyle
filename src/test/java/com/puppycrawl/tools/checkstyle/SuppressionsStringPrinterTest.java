@@ -38,14 +38,14 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class))
                 .isTrue();
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    void correct() throws Exception {
         final String expected = "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputSuppressionsStringPrinter']]" + EOL
                 + "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputSuppressionsStringPrinter']]"
@@ -65,7 +65,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testCustomTabWidth() throws Exception {
+    void customTabWidth() throws Exception {
         final String expected = "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputSuppressionsStringPrinter']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toString']]" + EOL
@@ -88,7 +88,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testCustomTabWidthEmptyResult() throws Exception {
+    void customTabWidthEmptyResult() throws Exception {
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "5:13";
         final int tabWidth = 6;
@@ -100,7 +100,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testInvalidLineAndColumnNumberParameter() throws Exception {
+    void invalidLineAndColumnNumberParameter() throws Exception {
         final File input = new File(getPath("InputSuppressionsStringPrinter.java"));
         final String invalidLineAndColumnNumber = "abc-432";
         final int tabWidth = 2;
@@ -117,7 +117,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testParseFileTextThrowable() throws Exception {
+    void parseFileTextThrowable() throws Exception {
         final File input = new File(getNonCompilablePath("InputSuppressionsStringPrinter.java"));
         final String lineAndColumnNumber = "2:3";
         final int tabWidth = 2;

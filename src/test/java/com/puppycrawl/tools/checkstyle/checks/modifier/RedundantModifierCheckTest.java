@@ -39,7 +39,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testClassesInsideOfInterfaces() throws Exception {
+    void classesInsideOfInterfaces() throws Exception {
         final String[] expected = {
             "19:5: " + getCheckMessage(MSG_KEY, "static"),
             "25:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -52,7 +52,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testItOne() throws Exception {
+    void itOne() throws Exception {
         final String[] expected = {
             "57:12: " + getCheckMessage(MSG_KEY, "static"),
             "60:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -69,7 +69,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testItTwo() throws Exception {
+    void itTwo() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "public"),
             "23:5: " + getCheckMessage(MSG_KEY, "final"),
@@ -82,7 +82,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testStaticMethodInInterface()
+    void staticMethodInInterface()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -91,7 +91,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalInInterface()
+    void finalInInterface()
             throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "final"),
@@ -101,7 +101,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testEnumConstructorIsImplicitlyPrivate() throws Exception {
+    void enumConstructorIsImplicitlyPrivate() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "private"),
         };
@@ -110,7 +110,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testInnerTypeInInterfaceIsImplicitlyStatic() throws Exception {
+    void innerTypeInInterfaceIsImplicitlyStatic() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -121,7 +121,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testNotPublicClassConstructorHasNotPublicModifier() throws Exception {
+    void notPublicClassConstructorHasNotPublicModifier() throws Exception {
 
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -132,7 +132,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testNestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
+    void nestedClassConsInPublicInterfaceHasValidPublicModifier() throws Exception {
 
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY, "public"),
@@ -148,7 +148,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -172,7 +172,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testWrongTokenType() {
+    void wrongTokenType() {
         final RedundantModifierCheck obj = new RedundantModifierCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(TokenTypes.LITERAL_NULL, "null");
@@ -187,7 +187,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getRequiredTokens();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
@@ -197,7 +197,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testNestedStaticEnum() throws Exception {
+    void nestedStaticEnum() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -209,7 +209,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalInAnonymousClass()
+    void finalInAnonymousClass()
             throws Exception {
         final String[] expected = {
             "22:20: " + getCheckMessage(MSG_KEY, "final"),
@@ -220,7 +220,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalInTryWithResource() throws Exception {
+    void finalInTryWithResource() throws Exception {
         final String[] expected = {
             "38:14: " + getCheckMessage(MSG_KEY, "final"),
             "43:14: " + getCheckMessage(MSG_KEY, "final"),
@@ -232,7 +232,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalInAbstractMethods() throws Exception {
+    void finalInAbstractMethods() throws Exception {
         final String[] expected = {
             "12:33: " + getCheckMessage(MSG_KEY, "final"),
             "16:49: " + getCheckMessage(MSG_KEY, "final"),
@@ -246,7 +246,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testEnumMethods() throws Exception {
+    void enumMethods() throws Exception {
         final String[] expected = {
             "15:16: " + getCheckMessage(MSG_KEY, "final"),
             "30:16: " + getCheckMessage(MSG_KEY, "final"),
@@ -256,7 +256,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testEnumStaticMethodsInPublicClass() throws Exception {
+    void enumStaticMethodsInPublicClass() throws Exception {
         final String[] expected = {
             "20:23: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -265,7 +265,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testAnnotationOnEnumConstructor() throws Exception {
+    void annotationOnEnumConstructor() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "private"),
         };
@@ -275,7 +275,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testPrivateMethodInPrivateClass() throws Exception {
+    void privateMethodInPrivateClass() throws Exception {
         final String[] expected = {
             "13:17: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -285,7 +285,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testTryWithResourcesBlock() throws Exception {
+    void tryWithResourcesBlock() throws Exception {
         final String[] expected = {
             "18:19: " + getCheckMessage(MSG_KEY, "final"),
         };
@@ -295,7 +295,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testNestedDef() throws Exception {
+    void nestedDef() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, "public"),
             "11:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -326,7 +326,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testRecords() throws Exception {
+    void records() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "static"),
             "16:9: " + getCheckMessage(MSG_KEY, "final"),
@@ -346,7 +346,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testSealedClasses() throws Exception {
+    void sealedClasses() throws Exception {
         final String[] expected = {
             "11:4: " + getCheckMessage(MSG_KEY, "final"),
             "11:10: " + getCheckMessage(MSG_KEY, "public"),
@@ -367,7 +367,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testStrictfpWithVersionBeforeJava9() throws Exception {
+    void strictfpWithVersionBeforeJava9() throws Exception {
         final String[] expected = {
             "25:5: " + getCheckMessage(MSG_KEY, "abstract"),
             "27:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -380,7 +380,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testStrictfpWithOldVersion() throws Exception {
+    void strictfpWithOldVersion() throws Exception {
         final String[] expected = {
             "25:5: " + getCheckMessage(MSG_KEY, "abstract"),
             "27:9: " + getCheckMessage(MSG_KEY, "public"),
@@ -393,7 +393,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testStrictfpWithJava17() throws Exception {
+    void strictfpWithJava17() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "strictfp"),
             "18:5: " + getCheckMessage(MSG_KEY, "strictfp"),
@@ -414,7 +414,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testStrictfpWithDefaultVersion() throws Exception {
+    void strictfpWithDefaultVersion() throws Exception {
         final String[] expected = {
             "14:19: " + getCheckMessage(MSG_KEY, "strictfp"),
             "17:5: " + getCheckMessage(MSG_KEY, "strictfp"),
@@ -435,7 +435,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalUnnamedVariablesWithDefaultVersion() throws Exception {
+    void finalUnnamedVariablesWithDefaultVersion() throws Exception {
         final String[] expected = {
             "18:26: " + getCheckMessage(MSG_KEY, "final"),
             "24:9: " + getCheckMessage(MSG_KEY, "final"),
@@ -453,7 +453,7 @@ public class RedundantModifierCheckTest
     }
 
     @Test
-    public void testFinalUnnamedVariablesWithOldVersion() throws Exception {
+    void finalUnnamedVariablesWithOldVersion() throws Exception {
         final String[] expected = {
             "40:14: " + getCheckMessage(MSG_KEY, "final"),
             "47:14: " + getCheckMessage(MSG_KEY, "final"),

@@ -34,7 +34,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
         final String[] expected = {
             "30:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "do"),
             "42:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
@@ -65,7 +65,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testItWithAllowsOn() throws Exception {
+    void itWithAllowsOn() throws Exception {
         final String[] expected = {
             "44:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
             "47:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
@@ -91,7 +91,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSingleLineStatements() throws Exception {
+    void singleLineStatements() throws Exception {
         final String[] expected = {
             "32:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
             "39:43: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
@@ -110,7 +110,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSingleLineLambda() throws Exception {
+    void singleLineLambda() throws Exception {
         final String[] expected = {
             "16:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "19:22: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -122,7 +122,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDoNotAllowSingleLineLambda() throws Exception {
+    void doNotAllowSingleLineLambda() throws Exception {
         final String[] expected = {
             "15:28: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "17:29: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -136,7 +136,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSingleLineCaseDefault() throws Exception {
+    void singleLineCaseDefault() throws Exception {
         final String[] expected = {
             "81:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "84:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -148,14 +148,14 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSingleLineCaseDefault2() throws Exception {
+    void singleLineCaseDefault2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestSingleLineCaseDefault2.java"), expected);
     }
 
     @Test
-    public void testSingleLineCaseDefaultNoSingleLine() throws Exception {
+    void singleLineCaseDefaultNoSingleLine() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "19:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -169,14 +169,14 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCycles() throws Exception {
+    void cycles() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesTestCycles.java"), expected);
     }
 
     @Test
-    public void testConditions() throws Exception {
+    void conditions() throws Exception {
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "53:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -187,7 +187,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllowEmptyLoopBodyTrue() throws Exception {
+    void allowEmptyLoopBodyTrue() throws Exception {
         final String[] expected = {
             "106:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "if"),
         };
@@ -196,7 +196,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllowEmptyLoopBodyFalse() throws Exception {
+    void allowEmptyLoopBodyFalse() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
             "23:9: " + getCheckMessage(MSG_KEY_NEED_BRACES, "while"),
@@ -221,14 +221,14 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptySingleLineDefaultStmt() throws Exception {
+    void emptySingleLineDefaultStmt() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNeedBracesEmptySingleLineDefaultStmt.java"), expected);
     }
 
     @Test
-    public void testNeedBracesSwitchExpressionNoSingleLine() throws Exception {
+    void needBracesSwitchExpressionNoSingleLine() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -256,7 +256,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNeedBracesSwitchExpression() throws Exception {
+    void needBracesSwitchExpression() throws Exception {
         final String[] expected = {
             "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "18:49: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -280,7 +280,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPatternMatchingForSwitch() throws Exception {
+    void patternMatchingForSwitch() throws Exception {
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -305,7 +305,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPatternMatchingForSwitchAllowSingleLine() throws Exception {
+    void patternMatchingForSwitchAllowSingleLine() throws Exception {
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
             "21:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
@@ -326,7 +326,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNeedBracesSwitchExpressionAndLambda() throws Exception {
+    void needBracesSwitchExpressionAndLambda() throws Exception {
         final String[] expected = {
             "21:24: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "24:24: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
@@ -346,7 +346,7 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNeedBracesSwitchExpressionAndLambdaAllowSingleLine() throws Exception {
+    void needBracesSwitchExpressionAndLambdaAllowSingleLine() throws Exception {
         final String[] expected = {
             "27:24: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
             "46:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),

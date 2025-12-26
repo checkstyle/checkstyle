@@ -35,7 +35,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final PatternVariableAssignmentCheck patternVariableAssignmentCheckObj =
             new PatternVariableAssignmentCheck();
         final int[] actual = patternVariableAssignmentCheckObj.getAcceptableTokens();
@@ -48,7 +48,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
-    public void testPatternVariableAssignmentCheck() throws Exception {
+    void patternVariableAssignmentCheck() throws Exception {
 
         final String[] expected = {
             "27:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -66,7 +66,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
-    public void testPatternVariableAssignmentCheck2() throws Exception {
+    void patternVariableAssignmentCheck2() throws Exception {
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),

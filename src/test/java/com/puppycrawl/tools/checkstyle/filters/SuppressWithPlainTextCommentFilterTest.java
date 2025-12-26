@@ -66,7 +66,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithDefaultConfig() throws Exception {
+    void filterWithDefaultConfig() throws Exception {
         final String[] suppressed = {
             "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "28:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
@@ -84,7 +84,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testChangeOffAndOnFormat() throws Exception {
+    void changeOffAndOnFormat() throws Exception {
         final String[] suppressed = {
             "20:7: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
             "27:30: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
@@ -103,7 +103,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressionCommentsInXmlFile() throws Exception {
+    void suppressionCommentsInXmlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("offCommentFormat", "CS-OFF");
@@ -129,7 +129,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressionCommentsInPropertiesFile() throws Exception {
+    void suppressionCommentsInPropertiesFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("offCommentFormat", "# CHECKSTYLE:OFF");
@@ -158,7 +158,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressionCommentsInSqlFile() throws Exception {
+    void suppressionCommentsInSqlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("offCommentFormat", "-- CHECKSTYLE OFF");
@@ -184,7 +184,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressionCommentsInJavaScriptFile() throws Exception {
+    void suppressionCommentsInJavaScriptFile() throws Exception {
         final String[] suppressed = {
             "22: " + getCheckMessage(RegexpSinglelineCheck.class,
                     MSG_REGEXP_EXCEEDED, ".*\\s===.*"),
@@ -205,7 +205,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidCheckFormat() throws Exception {
+    void invalidCheckFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("checkFormat", "e[l");
@@ -241,7 +241,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidIdFormat() throws Exception {
+    void invalidIdFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("idFormat", "e[l");
@@ -268,7 +268,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidMessageFormat() throws Exception {
+    void invalidMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("messageFormat", "e[l");
@@ -304,7 +304,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testInvalidMessageFormatInSqlFile() throws Exception {
+    void invalidMessageFormatInSqlFile() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("onCommentFormat", "CSON (\\w+)");
@@ -338,7 +338,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testAcceptNullViolation() {
+    void acceptNullViolation() {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
         assertWithMessage("Filter should accept audit event")
@@ -355,7 +355,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
      * to use reflection to gain access to the inner type {@code Suppression} here.
      */
     @Test
-    public void testEqualsAndHashCodeOfSuppressionClass() throws ClassNotFoundException {
+    void equalsAndHashCodeOfSuppressionClass() throws Exception {
         final Class<?> suppressionClass = TestUtil.getInnerClassType(
                 SuppressWithPlainTextCommentFilter.class, "Suppression");
         final EqualsVerifierReport ev = EqualsVerifier
@@ -374,7 +374,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
      * filter execution to accept violation
      */
     @Test
-    public void testCachingExecution() throws Exception {
+    void cachingExecution() throws Exception {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final String inputPath =
                 getPath("InputSuppressWithPlainTextCommentFilterCustomMessageFormat.java");
@@ -412,7 +412,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void testSuppressionsAreClearedEachRun() throws IOException {
+    void suppressionsAreClearedEachRun() throws Exception {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final Violation violation = new Violation(1, null, null,
                 null, null, Object.class, null);
@@ -439,7 +439,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressByCheck() throws Exception {
+    void suppressByCheck() throws Exception {
         final String[] suppressedViolationMessages = {
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
@@ -464,7 +464,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressByModuleId() throws Exception {
+    void suppressByModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
@@ -496,7 +496,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressByCheckAndModuleId() throws Exception {
+    void suppressByCheckAndModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
             "36:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
@@ -523,7 +523,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressByCheckAndNonMatchingModuleId() throws Exception {
+    void suppressByCheckAndNonMatchingModuleId() throws Exception {
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] expectedViolationMessages = {
@@ -548,7 +548,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressByModuleIdWithNullModuleId() throws Exception {
+    void suppressByModuleIdWithNullModuleId() throws Exception {
         final String[] suppressedViolationMessages = {
             "33: " + getCheckMessage(RegexpSinglelineCheck.class, MSG_REGEXP_EXCEEDED,
                 ".*[a-zA-Z][0-9].*"),
@@ -580,7 +580,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testSuppressedByIdJavadocCheck() throws Exception {
+    void suppressedByIdJavadocCheck() throws Exception {
         final String[] suppressedViolationMessages = {
             "28: " + getCheckMessage(JavadocMethodCheck.class, MSG_RETURN_EXPECTED),
             "32:9: " + getCheckMessage(JavadocMethodCheck.class,
@@ -605,7 +605,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testAcceptThrowsIllegalStateExceptionAsFileNotFound() {
+    void acceptThrowsIllegalStateExceptionAsFileNotFound() {
         final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
         final String fileName = "nonexisting_file";
@@ -634,7 +634,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithCustomMessageFormat() throws Exception {
+    void filterWithCustomMessageFormat() throws Exception {
         final String[] suppressed = {
             "34:1: " + getCheckMessage(FileTabCharacterCheck.class, MSG_CONTAINS_TAB),
         };
@@ -658,7 +658,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithIdAndCustomMessageFormat() throws Exception {
+    void filterWithIdAndCustomMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("offCommentFormat", "CHECKSTYLE stop (\\w+) (\\w+)");
@@ -692,7 +692,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithCheckAndCustomMessageFormat() throws Exception {
+    void filterWithCheckAndCustomMessageFormat() throws Exception {
         final DefaultConfiguration filterCfg =
             createModuleConfig(SuppressWithPlainTextCommentFilter.class);
         filterCfg.addProperty("offCommentFormat", "CHECKSTYLE stop (\\w+) (\\w+)");
@@ -726,7 +726,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void testFilterWithDirectory() throws IOException {
+    void filterWithDirectory() throws Exception {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),

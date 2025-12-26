@@ -25,7 +25,6 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
@@ -47,14 +46,14 @@ public class XpathUtilTest {
     public File tempFolder;
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(XpathUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testSupportsTextAttribute() {
+    void supportsTextAttribute() {
         assertWithMessage("Should return true for supported token types")
                 .that(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)))
                 .isTrue();
@@ -82,7 +81,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testGetValue() {
+    void getValue() {
         assertWithMessage("Returned value differs from expected")
             .that(getTextAttributeValue(
                 createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")))
@@ -99,7 +98,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testPrintXpathNotComment() throws Exception {
+    void printXpathNotComment() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
@@ -120,7 +119,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testPrintXpathComment() throws Exception {
+    void printXpathComment() throws Exception {
         final String fileContent = "class Test { /* comment */ }";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
@@ -138,7 +137,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testPrintXpathTwo() throws Exception {
+    void printXpathTwo() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
@@ -167,7 +166,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testInvalidXpath() throws IOException {
+    void invalidXpath() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(tempFolder, uniqueFileName);
@@ -189,7 +188,7 @@ public class XpathUtilTest {
     }
 
     @Test
-    public void testCreateChildren() {
+    void createChildren() {
         final DetailAstImpl rootAst = new DetailAstImpl();
         final DetailAstImpl elementAst = new DetailAstImpl();
         rootAst.addChild(elementAst);

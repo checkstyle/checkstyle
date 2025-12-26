@@ -45,7 +45,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableNameOne.java"));
@@ -73,7 +73,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableNameTwo.java"));
@@ -102,7 +102,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testThree() throws Exception {
+    void three() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableNameThree.java"));
@@ -131,7 +131,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testFour() throws Exception {
+    void four() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableNameFour.java"));

@@ -42,7 +42,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     }
 
     @Test
-    public void testField() throws Exception {
+    void field() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathInterfaceMemberImpliedModifierField.java")
         );
@@ -75,7 +75,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathInterfaceMemberImpliedModifierMethod.java")
         );
@@ -108,7 +108,7 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
     }
 
     @Test
-    public void testInner() throws Exception {
+    void inner() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathInterfaceMemberImpliedModifierInner.java")
         );

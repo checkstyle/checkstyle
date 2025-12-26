@@ -44,7 +44,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEmptyCatchBlockOne.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEmptyCatchBlockTwo.java"));
 

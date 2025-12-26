@@ -42,7 +42,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final UnusedLambdaParameterShouldBeUnnamedCheck checkObj =
                             new UnusedLambdaParameterShouldBeUnnamedCheck();
         final int[] expected = {
@@ -61,7 +61,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
     }
 
     @Test
-    public void testSingleLambdaParameter() throws Exception {
+    void singleLambdaParameter() throws Exception {
         final String[] expected = {
             "18:45: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "character"),
             "23:32: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "character"),
@@ -80,7 +80,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
     }
 
     @Test
-    public void testMultipleLambdaParameters() throws Exception {
+    void multipleLambdaParameters() throws Exception {
         final String[] expected = {
             "18:56: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "x"),
             "18:59: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "y"),
@@ -102,7 +102,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
     }
 
     @Test
-    public void testNested() throws Exception {
+    void nested() throws Exception {
         final String[] expected = {
             "17:56: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "x"),
             "17:59: " + getCheckMessage(MSG_UNUSED_LAMBDA_PARAMETER, "y"),
@@ -125,7 +125,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
     }
 
     @Test
-    public void testClearState() throws Exception {
+    void clearState() throws Exception {
         final UnusedLambdaParameterShouldBeUnnamedCheck check =
                 new UnusedLambdaParameterShouldBeUnnamedCheck();
 

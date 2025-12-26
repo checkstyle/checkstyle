@@ -44,7 +44,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void test1() throws Exception {
+    void test1() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantModifierClass.java"));
 
@@ -102,7 +102,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void test2() throws Exception {
+    void test2() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantModifierInterface.java"));
 
@@ -143,7 +143,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void test3() throws Exception {
+    void test3() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantModifierWithEnum.java"));
 

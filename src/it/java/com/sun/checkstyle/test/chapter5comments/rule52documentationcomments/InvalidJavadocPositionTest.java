@@ -33,7 +33,7 @@ public class InvalidJavadocPositionTest extends AbstractSunModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String message = getCheckMessage(InvalidJavadocPositionCheck.class,
             "invalid.position");
 

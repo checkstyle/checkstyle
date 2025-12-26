@@ -98,7 +98,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllVisitMethodsAreOverridden() {
+    void allVisitMethodsAreOverridden() {
         final Method[] baseVisitMethods = JavaLanguageParserBaseVisitor
                 .class.getDeclaredMethods();
         final Method[] visitMethods = JavaAstVisitor.class.getDeclaredMethods();
@@ -129,7 +129,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOrderOfVisitMethodsAndProductionRules() throws Exception {
+    void orderOfVisitMethodsAndProductionRules() throws Exception {
         // Order of BaseVisitor's generated 'visit' methods match the order of
         // production rules in 'JavaLanguageParser.g4'.
         final String baseVisitorFilename = "target/generated-sources/antlr/com/puppycrawl"
@@ -169,7 +169,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
      * @throws IOException if file does not exist
      */
     @Test
-    public void countExprUsagesInParserGrammar() throws IOException {
+    void countExprUsagesInParserGrammar() throws Exception {
         final String parserGrammarFilename = "src/main/resources/com/puppycrawl"
                 + "/tools/checkstyle/grammar/java/JavaLanguageParser.g4";
 
@@ -236,12 +236,13 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNullSelfInAddLastSibling() {
+    void nullSelfInAddLastSibling() {
         assertDoesNotThrow(() -> {
             TestUtil.invokeVoidStaticMethod(JavaAstVisitor.class, "addLastSibling",
                     null, null);
         }, "Method should not throw exception.");
     }
+
     /**
      * This test exists to kill surviving mutation from pitest removing expression AST building
      * optimization in {@link JavaAstVisitor#visitBinOp(JavaLanguageParser.BinOpContext)}.
@@ -262,7 +263,7 @@ public class JavaAstVisitorTest extends AbstractModuleTestSupport {
      */
 
     @Test
-    public void testNoStackOverflowOnDeepStringConcat() throws Exception {
+    void noStackOverflowOnDeepStringConcat() throws Exception {
         final File file =
                 new File(getPath("InputJavaAstVisitorNoStackOverflowOnDeepStringConcat.java"));
         final FileText fileText = new FileText(file, StandardCharsets.UTF_8.name());

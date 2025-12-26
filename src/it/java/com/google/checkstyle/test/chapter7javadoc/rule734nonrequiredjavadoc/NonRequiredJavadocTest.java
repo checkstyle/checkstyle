@@ -31,22 +31,22 @@ public class NonRequiredJavadocTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputInvalidJavadocPosition.java"));
     }
 
     @Test
-    public void testDefaultFormatted() throws Exception {
+    void defaultFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedInvalidJavadocPosition.java"));
     }
 
     @Test
-    public void testDefaultRecord() throws Exception {
+    void defaultRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputInvalidJavadocPositionRecord.java"));
     }
 
     @Test
-    public void testDefaultRecordFormatted() throws Exception {
+    void defaultRecordFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedInvalidJavadocPositionRecord.java"));
     }
 }

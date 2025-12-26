@@ -31,22 +31,22 @@ public class TextBlocksTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testTextBlocksGeneralForm() throws Exception {
+    void textBlocksGeneralForm() throws Exception {
         verifyWithWholeConfig(getPath("InputTextBlocksGeneralForm.java"));
     }
 
     @Test
-    public void testFormattedTextBlocksGeneralForm() throws Exception {
+    void formattedTextBlocksGeneralForm() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTextBlocksGeneralForm.java"));
     }
 
     @Test
-    public void testTextBlocksIndentation() throws Exception {
+    void textBlocksIndentation() throws Exception {
         verifyWithWholeConfig(getPath("InputTextBlocksIndentation.java"));
     }
 
     @Test
-    public void testFormattedTextBlocksIndentation() throws Exception {
+    void formattedTextBlocksIndentation() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTextBlocksIndentation.java"));
     }
 }

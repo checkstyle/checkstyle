@@ -31,62 +31,62 @@ public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentati
     }
 
     @Test
-    public void testCorrectClass() throws Exception {
+    void correctClass() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectClass.java"));
     }
 
     @Test
-    public void testCorrectField() throws Exception {
+    void correctField() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectFieldAndParameter.java"));
     }
 
     @Test
-    public void testCorrectFor() throws Exception {
+    void correctFor() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectForAndParameter.java"));
     }
 
     @Test
-    public void testCorrectIf() throws Exception {
+    void correctIf() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectIfAndParameter.java"));
     }
 
     @Test
-    public void testCorrectNewKeyword() throws Exception {
+    void correctNewKeyword() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectNewChildren.java"));
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    void correct() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrect.java"));
     }
 
     @Test
-    public void testCorrectReturn() throws Exception {
+    void correctReturn() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectReturnAndParameter.java"));
     }
 
     @Test
-    public void testCorrectWhile() throws Exception {
+    void correctWhile() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectWhileDoWhileAndParameter.java"));
     }
 
     @Test
-    public void testCorrectChained() throws Exception {
+    void correctChained() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedClassWithChainedMethods2.java"));
     }
 
     @Test
-    public void testWarnChained() throws Exception {
+    void warnChained() throws Exception {
         verifyWithWholeConfig(getPath("InputClassWithChainedMethods2.java"));
     }
 
     @Test
-    public void testCorrectAnnotationArrayInit() throws Exception {
+    void correctAnnotationArrayInit() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectAnnotationArrayInit.java"));
     }
 
     @Test
-    public void testFastMatcher() throws Exception {
+    void fastMatcher() throws Exception {
         verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
 }

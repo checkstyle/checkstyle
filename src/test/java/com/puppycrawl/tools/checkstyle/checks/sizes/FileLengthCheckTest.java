@@ -38,7 +38,7 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testAlarm() throws Exception {
+    void alarm() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_KEY, 228, 20),
         };
@@ -47,28 +47,28 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testAlarmDefault() throws Exception {
+    void alarmDefault() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFileLengthDefault.java"), expected);
     }
 
     @Test
-    public void testFileLengthEqualToMaxLength() throws Exception {
+    void fileLengthEqualToMaxLength() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFileLength2.java"), expected);
     }
 
     @Test
-    public void testOk() throws Exception {
+    void ok() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFileLength3.java"), expected);
     }
 
     @Test
-    public void testArgs() throws Exception {
+    void args() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FileLengthCheck.class);
         try {
@@ -86,7 +86,7 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testNoAlarmByExtension() throws Exception {
+    void noAlarmByExtension() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -94,7 +94,7 @@ public class FileLengthCheckTest
     }
 
     @Test
-    public void testExtensions() {
+    void extensions() {
         final FileLengthCheck check = new FileLengthCheck();
         check.setFileExtensions("java");
         assertWithMessage("extension should be the same")

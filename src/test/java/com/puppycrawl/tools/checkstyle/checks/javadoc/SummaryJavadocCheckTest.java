@@ -39,7 +39,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Default required tokens are invalid")
@@ -48,7 +48,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    void correct() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -56,7 +56,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineCorrect() throws Exception {
+    void inlineCorrect() throws Exception {
         final String[] expected = {
             "112: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
@@ -66,7 +66,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineCorrectTwo() throws Exception {
+    void inlineCorrectTwo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -74,7 +74,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIncorrect() throws Exception {
+    void incorrect() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "25: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -98,7 +98,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineForbidden() throws Exception {
+    void inlineForbidden() throws Exception {
         final String[] expected = {
             "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "31: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -117,7 +117,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPeriod() throws Exception {
+    void period() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
@@ -129,7 +129,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoPeriod() throws Exception {
+    void noPeriod() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -137,7 +137,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    void defaultConfiguration() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -160,7 +160,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIncorrectUsageOfSummaryTag() throws Exception {
+    void incorrectUsageOfSummaryTag() throws Exception {
         final String[] expected = {
             "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -180,7 +180,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineDefaultConfiguration() throws Exception {
+    void inlineDefaultConfiguration() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
@@ -196,7 +196,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineDefaultConfiguration2() throws Exception {
+    void inlineDefaultConfiguration2() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
@@ -212,7 +212,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineReturn() throws Exception {
+    void inlineReturn() throws Exception {
         final String[] expected = {
             "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
@@ -222,7 +222,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineReturn2() throws Exception {
+    void inlineReturn2() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
@@ -232,7 +232,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineReturnForbidden() throws Exception {
+    void inlineReturnForbidden() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
@@ -244,7 +244,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPeriodAtEnd() throws Exception {
+    void periodAtEnd() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "26: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -259,7 +259,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForbiddenFragmentRelativeToPeriod() throws Exception {
+    void forbiddenFragmentRelativeToPeriod() throws Exception {
         final String[] expected = {
             "23: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
@@ -269,7 +269,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testJapanesePeriod() throws Exception {
+    void japanesePeriod() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -277,7 +277,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHtmlFormatSummary() throws Exception {
+    void htmlFormatSummary() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "36: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -289,7 +289,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageInfo() throws Exception {
+    void packageInfo() throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
@@ -299,7 +299,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPackageInfoWithAnnotation() throws Exception {
+    void packageInfoWithAnnotation() throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
         };
@@ -309,7 +309,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForbidden() throws Exception {
+    void forbidden() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
@@ -319,7 +319,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyPeriod() throws Exception {
+    void emptyPeriod() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -327,7 +327,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForbidden3() throws Exception {
+    void forbidden3() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
@@ -337,7 +337,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForbidden2() throws Exception {
+    void forbidden2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -345,7 +345,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSummaryJavaDoc() throws Exception {
+    void summaryJavaDoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -353,7 +353,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSummaryJavaDoc2() throws Exception {
+    void summaryJavaDoc2() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
@@ -363,7 +363,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInheritDoc() throws Exception {
+    void inheritDoc() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
@@ -373,7 +373,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSummaryJavadocLargeJavaDoc() throws Exception {
+    void summaryJavadocLargeJavaDoc() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),

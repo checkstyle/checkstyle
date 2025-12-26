@@ -44,7 +44,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testClassFields() throws Exception {
+    void classFields() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathOneStatementPerLineClassFields.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testForLoopBlock() throws Exception {
+    void forLoopBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathOneStatementPerLineForLoopBlock.java"));
 

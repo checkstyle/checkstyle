@@ -35,7 +35,7 @@ public class ArrayTrailingCommaCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY),
@@ -48,7 +48,7 @@ public class ArrayTrailingCommaCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final ArrayTrailingCommaCheck check = new ArrayTrailingCommaCheck();
         assertWithMessage("Invalid acceptable tokens")
                 .that(check.getAcceptableTokens())
@@ -62,7 +62,7 @@ public class ArrayTrailingCommaCheckTest
     }
 
     @Test
-    public void testAlwaysDemandTrailingComma() throws Exception {
+    void alwaysDemandTrailingComma() throws Exception {
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY),
             "22:29: " + getCheckMessage(MSG_KEY),

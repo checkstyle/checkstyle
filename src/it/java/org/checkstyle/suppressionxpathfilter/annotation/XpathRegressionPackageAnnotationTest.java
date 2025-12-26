@@ -44,7 +44,7 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
                         "InputXpathPackageAnnotationOne.java"));
@@ -65,7 +65,7 @@ public class XpathRegressionPackageAnnotationTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath(
                         "InputXpathPackageAnnotationTwo.java"));

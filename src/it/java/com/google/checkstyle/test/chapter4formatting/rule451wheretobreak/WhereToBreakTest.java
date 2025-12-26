@@ -31,112 +31,112 @@ public class WhereToBreakTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testOperatorWrap() throws Exception {
+    void operatorWrap() throws Exception {
         verifyWithWholeConfig(getPath("InputOperatorWrap.java"));
     }
 
     @Test
-    public void testOperatorWrapFormatted() throws Exception {
+    void operatorWrapFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOperatorWrap.java"));
     }
 
     @Test
-    public void testMethodParamPad() throws Exception {
+    void methodParamPad() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodParamPad.java"));
     }
 
     @Test
-    public void testMethodParamPadFormatted() throws Exception {
+    void methodParamPadFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedMethodParamPad.java"));
     }
 
     @Test
-    public void testSeparatorWrapDot() throws Exception {
+    void separatorWrapDot() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrap.java"));
     }
 
     @Test
-    public void testSeparatorWrapDotFormatted() throws Exception {
+    void separatorWrapDotFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSeparatorWrap.java"));
     }
 
     @Test
-    public void testSeparatorWrapComma() throws Exception {
+    void separatorWrapComma() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapComma.java"));
     }
 
     @Test
-    public void testSeparatorWrapCommaFormatted() throws Exception {
+    void separatorWrapCommaFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapComma.java"));
     }
 
     @Test
-    public void testSeparatorWrapMethodRef() throws Exception {
+    void separatorWrapMethodRef() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapMethodRef.java"));
     }
 
     @Test
-    public void testSeparatorWrapMethodRefFormatted() throws Exception {
+    void separatorWrapMethodRefFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapMethodRef.java"));
     }
 
     @Test
-    public void testEllipsis() throws Exception {
+    void ellipsis() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapEllipsis.java"));
     }
 
     @Test
-    public void testEllipsisFormatted() throws Exception {
+    void ellipsisFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapEllipsis.java"));
     }
 
     @Test
-    public void testArrayDeclarator() throws Exception {
+    void arrayDeclarator() throws Exception {
         verifyWithWholeConfig(getPath("InputSeparatorWrapArrayDeclarator.java"));
     }
 
     @Test
-    public void testArrayDeclaratorFormatted() throws Exception {
+    void arrayDeclaratorFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSeparatorWrapArrayDeclarator.java"));
     }
 
     @Test
-    public void testLambdaBodyWrap() throws Exception {
+    void lambdaBodyWrap() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaBodyWrap.java"));
     }
 
     @Test
-    public void testLambdaBodyWrapFormatted() throws Exception {
+    void lambdaBodyWrapFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedLambdaBodyWrap.java"));
     }
 
     @Test
-    public void testIllegalLineBreakAroundLambda() throws Exception {
+    void illegalLineBreakAroundLambda() throws Exception {
         verifyWithWholeConfig(getPath("InputIllegalLineBreakAroundLambda.java"));
     }
 
     @Test
-    public void testFormattedIllegalLineBreakAroundLambda() throws Exception {
+    void formattedIllegalLineBreakAroundLambda() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedIllegalLineBreakAroundLambda.java"));
     }
 
     @Test
-    public void testNoWrappingAfterRecordName1() throws Exception {
+    void noWrappingAfterRecordName1() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWrappingAfterRecordName.java"));
     }
 
     @Test
-    public void testNoWrappingAfterRecordNameFormatted1() throws Exception {
+    void noWrappingAfterRecordNameFormatted1() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWrappingAfterRecordName.java"));
     }
 
     @Test
-    public void testNoWrappingAfterRecordName2() throws Exception {
+    void noWrappingAfterRecordName2() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWrappingAfterRecordName2.java"));
     }
 
     @Test
-    public void testNoWrappingAfterRecordNameFormatted2() throws Exception {
+    void noWrappingAfterRecordNameFormatted2() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWrappingAfterRecordName2.java"));
     }
 }

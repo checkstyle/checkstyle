@@ -46,7 +46,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testDo() throws Exception {
+    void testDo() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNeedBracesDo.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testSingleLine() throws Exception {
+    void singleLine() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNeedBracesSingleLine.java"));
 
@@ -91,7 +91,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testSingleLineLambda() throws Exception {
+    void singleLineLambda() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNeedBracesSingleLineLambda.java"));
 
@@ -115,7 +115,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testEmptyLoopBody() throws Exception {
+    void emptyLoopBody() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNeedBracesEmptyLoopBody.java"));
 

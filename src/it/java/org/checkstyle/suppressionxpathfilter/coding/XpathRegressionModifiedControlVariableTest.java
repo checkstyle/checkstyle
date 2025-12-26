@@ -44,7 +44,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testDefaultForLoop() throws Exception {
+    void defaultForLoop() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
@@ -66,7 +66,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testDefaultForeach() throws Exception {
+    void defaultForeach() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
@@ -87,7 +87,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testSkipEnhancedForLoop() throws Exception {
+    void skipEnhancedForLoop() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableSkipEnhancedForLoop.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
@@ -110,7 +110,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testDefaultNestedForLoop() throws Exception {
+    void defaultNestedForLoop() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableNestedWithFor.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
@@ -134,7 +134,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testForeachNested() throws Exception {
+    void foreachNested() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableNestedWithForeach.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);
@@ -158,7 +158,7 @@ public class XpathRegressionModifiedControlVariableTest extends AbstractXpathTes
     }
 
     @Test
-    public void testSkipEnhancedForLoopNested() throws Exception {
+    void skipEnhancedForLoopNested() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathModifiedControlVariableNestedSkipEnhancedForLoop.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLAZZ);

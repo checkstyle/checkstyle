@@ -44,7 +44,7 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathOuterTypeNumberDefault.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testMax() throws Exception {
+    void max() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathOuterTypeNumber.java"));
 

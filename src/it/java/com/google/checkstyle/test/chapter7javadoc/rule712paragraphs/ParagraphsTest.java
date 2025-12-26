@@ -31,43 +31,43 @@ public class ParagraphsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testJavadocParagraphCorrect() throws Exception {
+    void javadocParagraphCorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectJavadocParagraph.java"));
     }
 
     @Test
-    public void testJavadocParagraphCorrectFormatted() throws Exception {
+    void javadocParagraphCorrectFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCorrectJavadocParagraph.java"));
     }
 
     @Test
-    public void testJavadocParagraphIncorrect() throws Exception {
+    void javadocParagraphIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectJavadocParagraph.java"));
     }
 
     @Test
-    public void testJavadocParagraphIncorrectFormatted() throws Exception {
+    void javadocParagraphIncorrectFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedIncorrectJavadocParagraph.java"));
     }
 
     @Test
-    public void testRequireEmptyLineBeforeBlockTagGroupCorrect() throws Exception {
+    void requireEmptyLineBeforeBlockTagGroupCorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
     @Test
-    public void testRequireEmptyLineBeforeBlockTagGroupCorrectFormatted() throws Exception {
+    void requireEmptyLineBeforeBlockTagGroupCorrectFormatted() throws Exception {
         verifyWithWholeConfig(
                 getPath("InputFormattedCorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
     @Test
-    public void testRequireEmptyLineBeforeBlockTagGroupIncorrect() throws Exception {
+    void requireEmptyLineBeforeBlockTagGroupIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }
 
     @Test
-    public void testRequireEmptyLineBeforeBlockTagGroupIncorrectFormatted() throws Exception {
+    void requireEmptyLineBeforeBlockTagGroupIncorrectFormatted() throws Exception {
         verifyWithWholeConfig(
                 getPath("InputFormattedIncorrectRequireEmptyLineBeforeBlockTagGroup.java"));
     }

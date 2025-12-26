@@ -31,7 +31,7 @@ public class PresenceOfTheDefaultLabelTest extends AbstractGoogleModuleTestSuppo
     }
 
     @Test
-    public void testPresenceOfDefaultLabel() throws Exception {
+    void presenceOfDefaultLabel() throws Exception {
         verifyWithWholeConfig(getPath("InputPresenceOfDefaultLabel.java"));
     }
 

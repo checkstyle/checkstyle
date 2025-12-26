@@ -28,10 +28,10 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
-public class DefaultConfigurationTest {
+class DefaultConfigurationTest {
 
     @Test
-    public void testGetPropertyNames() {
+    void getPropertyNames() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addProperty("property", "value");
         final String[] actual = config.getPropertyNames();
@@ -42,7 +42,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testAddPropertyAndGetProperty() throws CheckstyleException {
+    void addPropertyAndGetProperty() throws Exception {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addProperty("property", "first");
         assertWithMessage("Invalid property value")
@@ -60,7 +60,7 @@ public class DefaultConfigurationTest {
      */
     @Deprecated(since = "10.2")
     @Test
-    public void testDeprecatedAttributeMethods() throws CheckstyleException {
+    void deprecatedAttributeMethods() throws Exception {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addAttribute("attribute", "first");
         final String[] actual = config.getAttributeNames();
@@ -78,7 +78,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testGetName() {
+    void getName() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         assertWithMessage("Invalid configuration name")
             .that(config.getName())
@@ -86,7 +86,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testRemoveChild() {
+    void removeChild() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
         assertWithMessage("Invalid children count")
@@ -103,7 +103,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testAddMessageAndGetMessages() {
+    void addMessageAndGetMessages() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addMessage("key", "value");
         final Map<String, String> expected = new TreeMap<>();
@@ -114,7 +114,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testExceptionForNonExistentProperty() {
+    void exceptionForNonExistentProperty() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final String propertyName = "NonExistent#$%";
@@ -130,7 +130,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testDefaultMultiThreadConfiguration() {
+    void defaultMultiThreadConfiguration() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final ThreadModeSettings singleThreadMode =
@@ -141,7 +141,7 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testMultiThreadConfiguration() {
+    void multiThreadConfiguration() {
         final String name = "MyConfig";
         final ThreadModeSettings multiThreadMode =
                 new ThreadModeSettings(4, 2);

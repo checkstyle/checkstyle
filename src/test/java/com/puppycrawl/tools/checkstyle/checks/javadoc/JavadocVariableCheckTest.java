@@ -36,7 +36,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
         final int[] actual = javadocVariableCheck.getRequiredTokens();
         final int[] expected = {
@@ -48,7 +48,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final JavadocVariableCheck javadocVariableCheck = new JavadocVariableCheck();
 
         final int[] actual = javadocVariableCheck.getAcceptableTokens();
@@ -63,7 +63,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -77,7 +77,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAnother()
+    void another()
             throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -89,7 +89,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAnother2()
+    void another2()
             throws Exception {
         final String[] expected = {
             "26:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -99,7 +99,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAnother3()
+    void another3()
             throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -115,7 +115,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAnother4()
+    void another4()
             throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -126,7 +126,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testJavadocVariableOnInnerClassFields() throws Exception {
+    void javadocVariableOnInnerClassFields() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -151,7 +151,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testJavadocVariableOnPublicInnerClassFields() throws Exception {
+    void javadocVariableOnPublicInnerClassFields() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -181,7 +181,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAccessModifiersPublicProtected() throws Exception {
+    void accessModifiersPublicProtected() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -209,7 +209,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testAccessModifiersPackagePrivate() throws Exception {
+    void accessModifiersPackagePrivate() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -237,7 +237,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testIgnoredVariableNames()
+    void ignoredVariableNames()
             throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -263,7 +263,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testIgnoredVariableNames2()
+    void ignoredVariableNames2()
             throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -293,7 +293,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testDoNotIgnoreAnythingWhenIgnoreNamePatternIsEmpty()
+    void doNotIgnoreAnythingWhenIgnoreNamePatternIsEmpty()
             throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -340,7 +340,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testLambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
+    void lambdaLocalVariablesDoNotNeedJavadoc() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -350,7 +350,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic() throws Exception {
+    void interfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -362,7 +362,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testMethodInnerClass() throws Exception {
+    void methodInnerClass() throws Exception {
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -375,7 +375,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testJavadocVariableAboveComment() throws Exception {
+    void javadocVariableAboveComment() throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };

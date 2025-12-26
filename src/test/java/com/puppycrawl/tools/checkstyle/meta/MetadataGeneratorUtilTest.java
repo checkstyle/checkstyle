@@ -60,7 +60,7 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
      *                   if an I/O error is thrown when accessing the starting f
      */
     @Test
-    public void testMetadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
+    void metadataFilesGenerationAllFiles(@SystemOutGuard.SysOut Capturable systemOut)
             throws Exception {
         systemOut.captureMuted();
 

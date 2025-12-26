@@ -44,7 +44,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathAnonInnerLengthDefault.java"));
 
@@ -74,7 +74,7 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testMaxLength() throws Exception {
+    void maxLength() throws Exception {
         final int maxLen = 5;
         final File fileToProcess =
                 new File(getPath("InputXpathAnonInnerLength.java"));

@@ -36,7 +36,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
 
         final String[] expected = {
             "33:5: " + getCheckMessage(MSG_KEY, 21),
@@ -53,7 +53,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testOverloadMethodsDeclarationOrderRecords() throws Exception {
+    void overloadMethodsDeclarationOrderRecords() throws Exception {
 
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY, 15),
@@ -67,7 +67,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testOverloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
+    void overloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -78,7 +78,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
         assertWithMessage("Acceptable tokens should not be null")

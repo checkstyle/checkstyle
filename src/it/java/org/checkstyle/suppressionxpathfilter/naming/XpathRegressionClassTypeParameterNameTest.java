@@ -45,7 +45,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testClass() throws Exception {
+    void testClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathClassTypeParameterNameClass.java"));
         final String pattern = "^[A-Z]$";
@@ -73,7 +73,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testInterface() throws Exception {
+    void testInterface() throws Exception {
         final String pattern = "^[A-Z]{2,}$";
         final File fileToProcess =
                 new File(getPath("InputXpathClassTypeParameterNameInterface.java"));
@@ -102,7 +102,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final String pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
         final File fileToProcess =
                 new File(getPath("InputXpathClassTypeParameterNameMethod.java"));

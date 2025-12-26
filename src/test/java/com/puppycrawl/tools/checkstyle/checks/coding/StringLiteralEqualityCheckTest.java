@@ -35,7 +35,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
         final String[] expected = {
             "17:18: " + getCheckMessage(MSG_KEY, "=="),
             "22:20: " + getCheckMessage(MSG_KEY, "=="),
@@ -46,7 +46,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void testStringLiteralEqualityTextBlocks() throws Exception {
+    void stringLiteralEqualityTextBlocks() throws Exception {
         final String[] expected = {
             "14:34: " + getCheckMessage(MSG_KEY, "=="),
             "22:21: " + getCheckMessage(MSG_KEY, "=="),
@@ -59,7 +59,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void testConcatenatedStringLiterals() throws Exception {
+    void concatenatedStringLiterals() throws Exception {
         final String[] expected = {
             "14:15: " + getCheckMessage(MSG_KEY, "=="),
             "17:24: " + getCheckMessage(MSG_KEY, "=="),
@@ -78,7 +78,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void testConcatenatedTextBlocks() throws Exception {
+    void concatenatedTextBlocks() throws Exception {
         final String[] expected = {
             "15:15: " + getCheckMessage(MSG_KEY, "=="),
             "21:23: " + getCheckMessage(MSG_KEY, "=="),
@@ -96,7 +96,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         final String[] expected = {
             "32:24: " + getCheckMessage(MSG_KEY, "=="),
         };
@@ -106,7 +106,7 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

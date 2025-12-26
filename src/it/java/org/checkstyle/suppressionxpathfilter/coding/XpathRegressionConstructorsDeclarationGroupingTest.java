@@ -45,7 +45,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     }
 
     @Test
-    public void testClass() throws Exception {
+    void testClass() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingClass.java"));
 
@@ -77,7 +77,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     }
 
     @Test
-    public void testEnum() throws Exception {
+    void testEnum() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingEnum.java"));
 
@@ -110,7 +110,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     }
 
     @Test
-    public void testRecords() throws Exception {
+    void records() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingRecords.java"));
 

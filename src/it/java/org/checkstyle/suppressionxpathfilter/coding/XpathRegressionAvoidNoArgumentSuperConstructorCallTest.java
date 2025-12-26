@@ -46,7 +46,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidNoArgumentSuperConstructorCallDefault.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
     }
 
     @Test
-    public void testInnerClass() throws Exception {
+    void innerClass() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidNoArgumentSuperConstructorCallInnerClass.java"
         ));

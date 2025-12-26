@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
-public class IntMatchFilterElementTest {
+class IntMatchFilterElementTest {
 
     @Test
-    public void testDecide() {
+    void decide() {
         final IntFilterElement filter = new IntMatchFilterElement(0);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -43,7 +43,7 @@ public class IntMatchFilterElementTest {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilterElement.class)
                 .report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -52,7 +52,7 @@ public class IntMatchFilterElementTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         final IntFilterElement filter = new IntMatchFilterElement(6);
         assertWithMessage("Invalid toString result")
                 .that(filter.toString())

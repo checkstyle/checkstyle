@@ -40,7 +40,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "86:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -51,7 +51,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void testSpace()
+    void space()
             throws Exception {
         final String[] expected = {
             "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
@@ -68,7 +68,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void test1322879() throws Exception {
+    void test1322879() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputTypecastParenPadWhitespaceAround.java"),
@@ -76,7 +76,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
         final int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
         final int[] expected = {

@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 
 import org.junit.jupiter.api.Test;
@@ -33,10 +32,10 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 
-public class MetadataGeneratorLoggerTest {
+class MetadataGeneratorLoggerTest {
 
     @Test
-    public void testIgnoreSeverityLevel() {
+    void ignoreSeverityLevel() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 OutputStreamOptions.CLOSE);
@@ -52,7 +51,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testAddErrorAndFileStart() {
+    void addErrorAndFileStart() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 OutputStreamOptions.CLOSE);
@@ -70,7 +69,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testAddException() {
+    void addException() {
         final OutputStream outputStream = new ByteArrayOutputStream();
         final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
                 OutputStreamOptions.CLOSE);
@@ -83,7 +82,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testClose() throws IOException {
+    void close() throws Exception {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
@@ -96,7 +95,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testCloseOutputStreamOptionNone() throws IOException {
+    void closeOutputStreamOptionNone() throws Exception {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,
@@ -110,7 +109,7 @@ public class MetadataGeneratorLoggerTest {
     }
 
     @Test
-    public void testFlushStreams() throws Exception {
+    void flushStreams() throws Exception {
         try (CloseAndFlushTestByteArrayOutputStream outputStream =
                      new CloseAndFlushTestByteArrayOutputStream()) {
             final MetadataGeneratorLogger logger = new MetadataGeneratorLogger(outputStream,

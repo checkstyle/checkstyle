@@ -32,84 +32,84 @@ public class AnnotationTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimpleTypeAnnotation()
+    void simpleTypeAnnotation()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations1.java"), expected);
     }
 
     @Test
-    public void testAnnotationOnClass()
+    void annotationOnClass()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations2.java"), expected);
     }
 
     @Test
-    public void testClassCastTypeAnnotation()
+    void classCastTypeAnnotation()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations3.java"), expected);
     }
 
     @Test
-    public void testMethodParametersTypeAnnotation()
+    void methodParametersTypeAnnotation()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations4.java"), expected);
     }
 
     @Test
-    public void testAnnotationInThrows()
+    void annotationInThrows()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations5.java"), expected);
     }
 
     @Test
-    public void testAnnotationInGeneric()
+    void annotationInGeneric()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations6.java"), expected);
     }
 
     @Test
-    public void testAnnotationOnConstructorCall()
+    void annotationOnConstructorCall()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations7.java"), expected);
     }
 
     @Test
-    public void testAnnotationNestedCall()
+    void annotationNestedCall()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations8.java"), expected);
     }
 
     @Test
-    public void testAnnotationOnWildcards()
+    void annotationOnWildcards()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations9.java"), expected);
     }
 
     @Test
-    public void testAnnotationInCatchParameters()
+    void annotationInCatchParameters()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations10.java"), expected);
     }
 
     @Test
-    public void testAnnotationInTypeParameters()
+    void annotationInTypeParameters()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations11.java"), expected);
     }
 
     @Test
-    public void testAnnotationOnVarargs()
+    void annotationOnVarargs()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAnnotations12.java"), expected);

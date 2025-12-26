@@ -42,7 +42,7 @@ public class EmptyBlockCheckTest
      * valueOf() is uncovered.
      */
     @Test
-    public void testBlockOptionValueOf() {
+    void blockOptionValueOf() {
         final BlockOption option = BlockOption.valueOf("TEXT");
         assertWithMessage("Invalid valueOf result")
             .that(option)
@@ -50,7 +50,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
@@ -67,7 +67,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testText()
+    void text()
             throws Exception {
         final String[] expected = {
             "38:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
@@ -81,7 +81,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testStatement()
+    void statement()
             throws Exception {
         final String[] expected = {
             "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
@@ -98,7 +98,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void allowEmptyLoops() throws Exception {
+    void allowEmptyLoops() throws Exception {
         final String[] expected = {
             "21:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "24:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
@@ -110,7 +110,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void allowEmptyLoopsText() throws Exception {
+    void allowEmptyLoopsText() throws Exception {
         final String[] expected = {
             "26:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
             "29:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
@@ -122,7 +122,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    void invalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -142,7 +142,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testAllowEmptyCaseWithText() throws Exception {
+    void allowEmptyCaseWithText() throws Exception {
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
@@ -155,7 +155,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testForbidCaseWithoutStmt() throws Exception {
+    void forbidCaseWithoutStmt() throws Exception {
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
@@ -170,7 +170,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testAllowEmptyDefaultWithText() throws Exception {
+    void allowEmptyDefaultWithText() throws Exception {
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
             "21:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
@@ -184,7 +184,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testForbidDefaultWithoutStatement() throws Exception {
+    void forbidDefaultWithoutStatement() throws Exception {
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
             "21:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
@@ -201,7 +201,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testEmptyBlockWithEmoji() throws Exception {
+    void emptyBlockWithEmoji() throws Exception {
         final String[] expected = {
             "15:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
             "25:27: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
@@ -218,7 +218,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testAnnotationDefaultKeyword() throws Exception {
+    void annotationDefaultKeyword() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
         verifyWithInlineConfigParser(
@@ -226,7 +226,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testEmptyBlockSwitchExpressionsOne() throws Exception {
+    void emptyBlockSwitchExpressionsOne() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
@@ -235,7 +235,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testEmptyBlockSwitchExpressionsTwo() throws Exception {
+    void emptyBlockSwitchExpressionsTwo() throws Exception {
         final String[] expected = {
             "25:32: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "27:26: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
@@ -245,7 +245,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testUppercaseProperty() throws Exception {
+    void uppercaseProperty() throws Exception {
         final String[] expected = {
             "16:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
@@ -255,7 +255,7 @@ public class EmptyBlockCheckTest
     }
 
     @Test
-    public void testEmptyBlockCaseAndDefaultWithTextOption() throws Exception {
+    void emptyBlockCaseAndDefaultWithTextOption() throws Exception {
         final String[] expected = {
             "20:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
             "24:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),

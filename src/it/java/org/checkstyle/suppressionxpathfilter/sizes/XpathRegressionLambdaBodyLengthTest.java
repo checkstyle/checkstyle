@@ -46,7 +46,7 @@ public class XpathRegressionLambdaBodyLengthTest
     }
 
     @Test
-    public void testDefaultMax() throws Exception {
+    void defaultMax() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathLambdaBodyLengthDefaultMax.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
@@ -64,7 +64,7 @@ public class XpathRegressionLambdaBodyLengthTest
     }
 
     @Test
-    public void testCustomMax() throws Exception {
+    void customMax() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathLambdaBodyLengthCustomMax.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);

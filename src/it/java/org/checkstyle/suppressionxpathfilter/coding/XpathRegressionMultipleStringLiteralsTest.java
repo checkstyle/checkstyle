@@ -46,7 +46,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMultipleStringLiteralsDefault.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     }
 
     @Test
-    public void testAllowDuplicates() throws Exception {
+    void allowDuplicates() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMultipleStringLiteralsAllowDuplicates.java"));
 
@@ -98,7 +98,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     }
 
     @Test
-    public void testIgnoreRegexp() throws Exception {
+    void ignoreRegexp() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMultipleStringLiteralsIgnoreRegexp.java"));
 
@@ -122,7 +122,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
     }
 
     @Test
-    public void testIgnoreOccurrenceContext() throws Exception {
+    void ignoreOccurrenceContext() throws Exception {
         final String filePath =
                 "InputXpathMultipleStringLiteralsIgnoreOccurrenceContext.java";
         final File fileToProcess = new File(getPath(filePath));

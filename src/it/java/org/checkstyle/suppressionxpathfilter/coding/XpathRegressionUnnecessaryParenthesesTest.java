@@ -43,7 +43,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testClassFields() throws Exception {
+    void classFields() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesClassFields.java")
         );
@@ -72,7 +72,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testConditionals() throws Exception {
+    void conditionals() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesConditionals.java")
         );
@@ -101,7 +101,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testLambdas() throws Exception {
+    void lambdas() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesLambdas.java")
         );
@@ -125,7 +125,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testLocalVariables() throws Exception {
+    void localVariables() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesLocalVariables.java")
         );
@@ -150,7 +150,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testStringLiteral() throws Exception {
+    void stringLiteral() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesStringLiteral.java")
         );
@@ -175,7 +175,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testMethodDef() throws Exception {
+    void methodDef() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesMethodDef.java")
         );
@@ -200,7 +200,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testReturnExpr() throws Exception {
+    void returnExpr() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesReturnExpr.java")
         );
@@ -229,7 +229,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
     }
 
     @Test
-    public void testExprWithMethodParam() throws Exception {
+    void exprWithMethodParam() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathUnnecessaryParenthesesExprWithMethodParam.java")
         );

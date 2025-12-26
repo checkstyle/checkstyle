@@ -36,7 +36,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -68,7 +68,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryWithResources() throws Exception {
+    void tryWithResources() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputFallThrough.java"),
@@ -76,7 +76,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryCatchInSwitch() throws Exception {
+    void tryCatchInSwitch() throws Exception {
         final String[] expected = {
             "37:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -84,7 +84,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStringSwitch() throws Exception {
+    void stringSwitch() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -92,7 +92,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCharacterSwitch() throws Exception {
+    void characterSwitch() throws Exception {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "30:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -105,7 +105,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLastCaseGroup() throws Exception {
+    void lastCaseGroup() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "46:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -133,7 +133,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOwnPattern() throws Exception {
+    void ownPattern() throws Exception {
 
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -179,7 +179,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOwnPatternTryWithResources() throws Exception {
+    void ownPatternTryWithResources() throws Exception {
 
         final String[] expected = {
             "54:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -194,7 +194,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithEmoji() throws Exception {
+    void withEmoji() throws Exception {
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_FALL_THROUGH),
             "25:17: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -206,7 +206,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final FallThroughCheck check = new FallThroughCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -220,7 +220,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughNoElse() throws Exception {
+    void fallThroughNoElse() throws Exception {
         final String[] expected = {
             "28:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -238,7 +238,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testYield() throws Exception {
+    void yield() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -248,7 +248,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLastCase() throws Exception {
+    void lastCase() throws Exception {
         final String[] expected = {
             "48:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "83:11: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
@@ -259,7 +259,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIfElse() throws Exception {
+    void ifElse() throws Exception {
         final String[] expected = {
             "94:13: " + getCheckMessage(MSG_FALL_THROUGH),
         };
@@ -269,7 +269,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThrough() throws Exception {
+    void fallThrough() throws Exception {
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "27:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -285,7 +285,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughNonCompilable4() throws Exception {
+    void fallThroughNonCompilable4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFallThrough10.java"),
@@ -293,7 +293,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughComment() throws Exception {
+    void fallThroughComment() throws Exception {
         final String[] expected = {
             "20:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "43:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -304,7 +304,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughComment2() throws Exception {
+    void fallThroughComment2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFallThroughFallThroughLotsOfComment2.java"),
@@ -312,7 +312,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThrough7() throws Exception {
+    void fallThrough7() throws Exception {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "36:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
@@ -327,7 +327,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLastLine() throws Exception {
+    void lastLine() throws Exception {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "99:39: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
@@ -338,7 +338,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLastLine2() throws Exception {
+    void lastLine2() throws Exception {
         final String[] expected = {
             "24:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
             "31:13: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
@@ -350,7 +350,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReliefCommentBetweenMultipleComment() throws Exception {
+    void reliefCommentBetweenMultipleComment() throws Exception {
         final String[] expected = {};
         verifyWithInlineConfigParser(
                 getPath("InputFallThrough8.java"),
@@ -358,7 +358,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLabeledBreak() throws Exception {
+    void labeledBreak() throws Exception {
         final String[] expected = {
             "51:17: " + getCheckMessage(MSG_FALL_THROUGH),
             "55:17: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -373,7 +373,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSwitchLabeledRules() throws Exception {
+    void switchLabeledRules() throws Exception {
         final String[] expected = {};
 
         verifyWithInlineConfigParser(
@@ -382,7 +382,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineSingleCase() throws Exception {
+    void inlineSingleCase() throws Exception {
         final String[] expected = {
             "12:17: " + getCheckMessage(MSG_FALL_THROUGH_LAST),
         };
@@ -393,7 +393,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineMultipleComment() throws Exception {
+    void inlineMultipleComment() throws Exception {
         final String[] expected = {};
 
         verifyWithInlineConfigParser(
@@ -402,7 +402,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughWithoutReliefPattern() throws Exception {
+    void fallThroughWithoutReliefPattern() throws Exception {
         final String[] expected = {
             "21:9: " + getCheckMessage(MSG_FALL_THROUGH),
             "45:9: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -417,7 +417,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughWithPatternMatching() throws Exception {
+    void fallThroughWithPatternMatching() throws Exception {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "22:13: " + getCheckMessage(MSG_FALL_THROUGH),
@@ -432,7 +432,7 @@ public class FallThroughCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFallThroughWithPatternMatchingCheckLastCase() throws Exception {
+    void fallThroughWithPatternMatchingCheckLastCase() throws Exception {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_FALL_THROUGH),
             "21:13: " + getCheckMessage(MSG_FALL_THROUGH),

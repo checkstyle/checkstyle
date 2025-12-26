@@ -44,7 +44,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
     }
 
     @Test
-    public void testClassDataAbstractCouplingClass() throws Exception {
+    void classDataAbstractCouplingClass() throws Exception {
         final File classPath =
                 new File(getPath("InputXpathClassDataAbstractionCouplingClass.java"));
 
@@ -83,7 +83,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
     }
 
     @Test
-    public void testClassDataAbstractCouplingEnum() throws Exception {
+    void classDataAbstractCouplingEnum() throws Exception {
         final File classPath =
                 new File(getPath("InputXpathClassDataAbstractionCouplingEnum.java"));
 
@@ -122,7 +122,7 @@ public class XpathRegressionClassDataAbstractionCouplingTest extends AbstractXpa
     }
 
     @Test
-    public void testClassDataAbstractCouplingInterface() throws Exception {
+    void classDataAbstractCouplingInterface() throws Exception {
         final File classPath =
                 new File(getPath("InputXpathClassDataAbstractionCouplingInterface.java"));
 

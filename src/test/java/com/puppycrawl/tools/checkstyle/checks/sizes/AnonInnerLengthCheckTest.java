@@ -38,7 +38,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
         final int[] expected = {TokenTypes.LITERAL_NEW};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
         final int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
@@ -59,7 +59,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultOne() throws Exception {
+    void defaultOne() throws Exception {
         final String[] expected = {
             "52:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
@@ -68,7 +68,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultTwo() throws Exception {
+    void defaultTwo() throws Exception {
         final String[] expected = {
             "21:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
@@ -78,7 +78,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonDefaultOne() throws Exception {
+    void nonDefaultOne() throws Exception {
         final String[] expected = {
             "52:35: " + getCheckMessage(MSG_KEY, 21, 6),
         };
@@ -87,7 +87,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonDefaultTwo() throws Exception {
+    void nonDefaultTwo() throws Exception {
         final String[] expected = {
             "22:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };

@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck;
 
-public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXpathTestSupport {
+class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXpathTestSupport {
     private final String checkName = AvoidEscapedUnicodeCharactersCheck.class.getSimpleName();
 
     @Override
@@ -39,7 +39,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidEscapedUnicodeCharactersDefault.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     }
 
     @Test
-    public void testControlCharacters() throws Exception {
+    void controlCharacters() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidEscapedUnicodeCharactersControlCharacters.java")
         );
@@ -97,7 +97,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     }
 
     @Test
-    public void testTailComment() throws Exception {
+    void tailComment() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidEscapedUnicodeCharactersTailComment.java"));
 
@@ -127,7 +127,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     }
 
     @Test
-    public void testAllCharactersEscaped() throws Exception {
+    void allCharactersEscaped() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidEscapedUnicodeCharactersAllEscaped.java"));
 
@@ -157,7 +157,7 @@ public class XpathRegressionAvoidEscapedUnicodeCharactersTest extends AbstractXp
     }
 
     @Test
-    public void testNonPrintableCharacters() throws Exception {
+    void nonPrintableCharacters() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidEscapedUnicodeCharactersNonPrintable.java"));
 

@@ -44,7 +44,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testClass() throws Exception {
+    void testClass() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationClass.java"));
 
@@ -75,7 +75,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testInterface() throws Exception {
+    void testInterface() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationInterface.java"));
 
@@ -108,7 +108,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testEnum() throws Exception {
+    void testEnum() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationEnum.java"));
 
@@ -141,7 +141,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationMethod.java"));
 
@@ -178,7 +178,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testVariable() throws Exception {
+    void variable() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationVariable.java"));
 
@@ -215,7 +215,7 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testConstructor() throws Exception {
+    void constructor() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationLocationCTOR.java"));
 

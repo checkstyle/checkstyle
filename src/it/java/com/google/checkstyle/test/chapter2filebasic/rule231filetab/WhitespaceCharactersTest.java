@@ -31,12 +31,12 @@ public class WhitespaceCharactersTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testFileTab() throws Exception {
+    void fileTab() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceCharacters.java"));
     }
 
     @Test
-    public void testFileTabFormatted() throws Exception {
+    void fileTabFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceCharacters.java"));
     }
 

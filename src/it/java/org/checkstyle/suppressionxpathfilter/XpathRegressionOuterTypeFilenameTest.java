@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck;
 
-public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSupport {
+class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSupport {
 
     private final String checkName = OuterTypeFilenameCheck.class.getSimpleName();
 
@@ -38,7 +38,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testNoPublic() throws Exception {
+    void noPublic() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathOuterTypeFilenameOne.java"));
 
@@ -61,7 +61,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testNested() throws Exception {
+    void nested() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathOuterTypeFilenameTwo.java"));
 

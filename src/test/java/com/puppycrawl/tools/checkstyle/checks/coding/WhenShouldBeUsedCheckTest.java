@@ -37,7 +37,7 @@ public class WhenShouldBeUsedCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final WhenShouldBeUsedCheck check = new WhenShouldBeUsedCheck();
         final int[] expected = {TokenTypes.LITERAL_CASE};
 
@@ -53,7 +53,7 @@ public class WhenShouldBeUsedCheckTest
     }
 
     @Test
-    public void testSwitchStatements() throws Exception {
+    void switchStatements() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputWhenShouldBeUsedSwitchStatements.java"),
@@ -61,7 +61,7 @@ public class WhenShouldBeUsedCheckTest
     }
 
     @Test
-    public void testSwitchRule() throws Exception {
+    void switchRule() throws Exception {
         final String[] expected = {
             "13:13: " + getCheckMessage(MSG_KEY),
             "18:13: " + getCheckMessage(MSG_KEY),
@@ -76,7 +76,7 @@ public class WhenShouldBeUsedCheckTest
     }
 
     @Test
-    public void testSwitchExpression() throws Exception {
+    void switchExpression() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputWhenShouldBeUsedSwitchExpression.java"),
@@ -84,7 +84,7 @@ public class WhenShouldBeUsedCheckTest
     }
 
     @Test
-    public void testNonPatternsSwitch() throws Exception {
+    void nonPatternsSwitch() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputWhenShouldBeUsedNonPatternsSwitch.java"),

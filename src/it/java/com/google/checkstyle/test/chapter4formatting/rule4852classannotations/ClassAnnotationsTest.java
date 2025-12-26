@@ -31,61 +31,61 @@ public class ClassAnnotationsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testAnnotation() throws Exception {
+    void annotation() throws Exception {
         final String filePath = getPath("InputClassAnnotations.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testAnnotationFormatted() throws Exception {
+    void annotationFormatted() throws Exception {
         final String filePath = getPath("InputFormattedClassAnnotations.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testAnnotation2() throws Exception {
+    void annotation2() throws Exception {
         final String filePath = getPath("InputClassAnnotation2.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testAnnotation2Formatted() throws Exception {
+    void annotation2Formatted() throws Exception {
         final String filePath = getPath("InputFormattedClassAnnotation2.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation() throws Exception {
+    void packageAnnotation() throws Exception {
         final String filePath = getPath("package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation2() throws Exception {
+    void packageAnnotation2() throws Exception {
         final String filePath = getPath("sample1/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation3() throws Exception {
+    void packageAnnotation3() throws Exception {
         final String filePath = getPath("sample2/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation4() throws Exception {
+    void packageAnnotation4() throws Exception {
         final String filePath = getPath("sample3/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation5() throws Exception {
+    void packageAnnotation5() throws Exception {
         final String filePath = getPath("sample4/package-info.java");
         verifyWithWholeConfig(filePath);
     }
 
     @Test
-    public void testPackageAnnotation6() throws Exception {
+    void packageAnnotation6() throws Exception {
         final String filePath = getPath("sample5/package-info.java");
         verifyWithWholeConfig(filePath);
     }

@@ -46,7 +46,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testSimple() throws Exception {
+    void simple() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodLengthSimple.java"));
 
@@ -78,7 +78,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testNoEmptyLines() throws Exception {
+    void noEmptyLines() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodLengthNoEmptyLines.java"));
 
@@ -108,7 +108,7 @@ public class XpathRegressionMethodLengthTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testSingleToken() throws Exception {
+    void singleToken() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMethodLengthSingleToken.java"));
 

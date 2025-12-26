@@ -50,13 +50,13 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @BeforeEach
-    public void loadTree() throws Exception {
+    void loadTree() throws Exception {
         classDef = JavaParser.parseFile(new File(getPath("InputParseTreeTablePresentation.java")),
             JavaParser.Options.WITH_COMMENTS).findFirstToken(CLASS_DEF);
     }
 
     @Test
-    public void testChildCount() {
+    void childCount() {
         final int childCount = new ParseTreeTableModel(null).getChildCount(classDef);
         assertWithMessage("Invalid child count")
             .that(childCount)
@@ -64,7 +64,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testChild() {
+    void child() {
         final Object child = new ParseTreeTableModel(null).getChild(classDef, 1);
         assertWithMessage("Invalid child type")
                 .that(child)
@@ -76,7 +76,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCommentChildCount() {
+    void commentChildCount() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -88,7 +88,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testChildCountInJavaAndJavadocMode() {
+    void childCountInJavaAndJavadocMode() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int childCount = parseTree.getChildCount(classDef);
@@ -98,7 +98,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testChildInJavaAndJavadocMode() {
+    void childInJavaAndJavadocMode() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(classDef, 1);
@@ -112,7 +112,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCommentChildCountInJavaAndJavadocMode() {
+    void commentChildCountInJavaAndJavadocMode() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -124,7 +124,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCommentChildInJavaAndJavadocMode() {
+    void commentChildInJavaAndJavadocMode() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -136,7 +136,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testJavadocCommentChildCount() {
+    void javadocCommentChildCount() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -152,7 +152,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testJavadocCommentChild() {
+    void javadocCommentChild() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -176,7 +176,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testJavadocChildCount() {
+    void javadocChildCount() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -196,7 +196,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testJavadocChild() {
+    void javadocChild() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
@@ -220,7 +220,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetIndexOfChild() {
+    void getIndexOfChild() {
         DetailAST child = classDef.findFirstToken(MODIFIERS);
         assertWithMessage("Child must not be null")
             .that(child)
@@ -242,7 +242,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetValueAt() {
+    void getValueAt() {
         final DetailAST classIdentNode = classDef.findFirstToken(IDENT);
         assertWithMessage("Expected a non-null identifier classDef here")
             .that(classIdentNode)
@@ -283,7 +283,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetValueAtDetailNode() {
+    void getValueAtDetailNode() {
         final DetailAST commentContentNode = classDef
                 .findFirstToken(BLOCK_COMMENT_BEGIN).findFirstToken(COMMENT_CONTENT);
         assertWithMessage("Comment classDef cannot be null")
@@ -332,7 +332,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testColumnMethods() {
+    void columnMethods() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
         assertWithMessage("Invalid type")
             .that(parseTree.getColumnClass(0))
@@ -366,7 +366,7 @@ public class ParseTreeTableModelTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testColumnNames() {
+    void columnNames() {
         final ParseTreeTableModel parseTree = new ParseTreeTableModel(null);
         assertWithMessage("Invalid column count")
             .that(parseTree.getColumnCount())

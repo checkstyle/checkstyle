@@ -45,7 +45,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNameDefault.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testFormat() throws Exception {
+    void format() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNameFormat.java"));
 

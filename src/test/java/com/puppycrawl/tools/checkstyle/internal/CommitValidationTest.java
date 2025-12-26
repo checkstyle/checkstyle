@@ -66,7 +66,7 @@ import org.junit.jupiter.api.Test;
  * <p>Filtered commit list is checked if their messages has proper structure.</p>
  *
  */
-public class CommitValidationTest {
+class CommitValidationTest {
 
     private static final List<String> USERS_EXCLUDED_FROM_VALIDATION =
             Collections.singletonList("dependabot[bot]");
@@ -97,7 +97,7 @@ public class CommitValidationTest {
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
     @Test
-    public void testHasCommits() throws Exception {
+    void hasCommits() throws Exception {
         final List<RevCommit> lastCommits = getCommitsToCheck();
 
         assertWithMessage("must have at least one commit to validate")
@@ -106,7 +106,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessage() {
+    void commitMessage() {
         assertWithMessage("should not accept commit message with periods on end")
             .that(validateCommitMessage("minor: Test. Test."))
             .isEqualTo(3);
@@ -146,7 +146,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testReleaseCommitMessage() {
+    void releaseCommitMessage() {
         assertWithMessage("should accept release commit message for preparing release")
                 .that(validateCommitMessage("[maven-release-plugin] "
                         + "prepare release checkstyle-10.8.0"))
@@ -159,7 +159,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testRevertCommitMessage() {
+    void revertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
                 .that(validateCommitMessage(
                         """
@@ -178,7 +178,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testSupplementalPrefix() {
+    void supplementalPrefix() {
         assertWithMessage("should accept commit message with supplemental prefix")
                 .that(0)
                 .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
@@ -207,7 +207,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void testCommitMessageHasProperStructure() throws Exception {
+    void commitMessageHasProperStructure() throws Exception {
         final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();

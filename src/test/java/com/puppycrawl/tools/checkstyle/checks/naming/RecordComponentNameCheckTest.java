@@ -35,7 +35,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
+    void getClassRequiredTokens() {
         final RecordComponentNameCheck checkObj =
                 new RecordComponentNameCheck();
         final int[] expected = {TokenTypes.RECORD_COMPONENT_DEF};
@@ -45,7 +45,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordDefault()
+    void recordDefault()
             throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
@@ -61,7 +61,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClassFooName()
+    void classFooName()
             throws Exception {
 
         final String pattern = "^[a-z0-9]+$";
@@ -77,7 +77,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final RecordComponentNameCheck typeParameterNameCheckObj =
                 new RecordComponentNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();

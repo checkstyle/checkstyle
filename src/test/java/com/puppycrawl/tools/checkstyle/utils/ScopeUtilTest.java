@@ -29,17 +29,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ScopeUtilTest {
+class ScopeUtilTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(ScopeUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testInClassBlock() {
+    void inClassBlock() {
         assertWithMessage("Should return false when passed is not class")
                 .that(ScopeUtil.isInClassBlock(new DetailAstImpl()))
                 .isFalse();
@@ -73,7 +73,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testInEnumBlock() {
+    void inEnumBlock() {
         assertWithMessage("Should return false when passed is not enum")
                 .that(ScopeUtil.isInEnumBlock(new DetailAstImpl()))
                 .isFalse();
@@ -107,7 +107,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsInCodeBlock() {
+    void isInCodeBlock() {
         assertWithMessage("invalid result")
                 .that(ScopeUtil.isInCodeBlock(getNode(TokenTypes.CLASS_DEF)))
                 .isFalse();
@@ -133,7 +133,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testInRecordBlock() {
+    void inRecordBlock() {
         assertWithMessage("Should return false when passed is not record")
                 .that(ScopeUtil.isInRecordBlock(new DetailAstImpl()))
                 .isFalse();
@@ -167,7 +167,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsOuterMostTypeInterface() {
+    void isOuterMostTypeInterface() {
         assertWithMessage("Should return false when passed is not outer most type")
                 .that(ScopeUtil
                         .isOuterMostType(getNode(TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS)))
@@ -175,7 +175,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsOuterMostTypeAnnotation() {
+    void isOuterMostTypeAnnotation() {
         assertWithMessage("Should return false when passed is not outer most type")
                 .that(ScopeUtil
                         .isOuterMostType(getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.MODIFIERS)))
@@ -183,14 +183,14 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsOuterMostTypeEnum() {
+    void isOuterMostTypeEnum() {
         assertWithMessage("Should return false when passed is not outer most type")
                 .that(ScopeUtil.isOuterMostType(getNode(TokenTypes.ENUM_DEF, TokenTypes.MODIFIERS)))
                 .isFalse();
     }
 
     @Test
-    public void testIsOuterMostTypeClass() {
+    void isOuterMostTypeClass() {
         assertWithMessage("Should return false when passed is not outer most type")
                 .that(ScopeUtil
                         .isOuterMostType(getNode(TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS)))
@@ -198,14 +198,14 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsOuterMostTypePackageDef() {
+    void isOuterMostTypePackageDef() {
         assertWithMessage("Should return false when passed is not outer most type")
                 .that(ScopeUtil.isOuterMostType(getNode(TokenTypes.PACKAGE_DEF, TokenTypes.DOT)))
                 .isTrue();
     }
 
     @Test
-    public void testIsLocalVariableDefCatch() {
+    void isLocalVariableDefCatch() {
         assertWithMessage("Should return true when passed is variable def")
             .that(ScopeUtil
                 .isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH, TokenTypes.PARAMETER_DEF)))
@@ -213,7 +213,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsLocalVariableDefUnexpected() {
+    void isLocalVariableDefUnexpected() {
         assertWithMessage("Should return false when passed is not variable def")
                 .that(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.LITERAL_CATCH)))
                 .isFalse();
@@ -224,7 +224,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsLocalVariableDefResource() {
+    void isLocalVariableDefResource() {
         final DetailAstImpl node = getNode(TokenTypes.RESOURCE);
         final DetailAstImpl modifiers = new DetailAstImpl();
         modifiers.setType(TokenTypes.MODIFIERS);
@@ -246,7 +246,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsLocalVariableDefVariable() {
+    void isLocalVariableDefVariable() {
         assertWithMessage("invalid result")
                 .that(ScopeUtil
                         .isLocalVariableDef(getNode(TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)))
@@ -266,7 +266,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsClassFieldDef() {
+    void isClassFieldDef() {
         assertWithMessage("Should return true when passed is class field def")
                 .that(ScopeUtil.isClassFieldDef(getNode(TokenTypes.CLASS_DEF, TokenTypes.OBJBLOCK,
                         TokenTypes.VARIABLE_DEF)))
@@ -281,7 +281,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testSurroundingScope() {
+    void surroundingScope() {
         final Scope publicScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_PUBLIC, "public", TokenTypes.ANNOTATION_DEF));
         assertWithMessage("Invalid surrounding scope")
@@ -305,7 +305,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsInScope() {
+    void isInScope() {
         assertWithMessage("Should return true when node is in valid scope")
                 .that(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                         "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC))
@@ -317,7 +317,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testSurroundingScopeOfNodeChildOfLiteralNewIsAnoninner() {
+    void surroundingScopeOfNodeChildOfLiteralNewIsAnoninner() {
         final Scope scope =
                 ScopeUtil.getSurroundingScope(getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT));
         assertWithMessage("Invalid surrounding scope")
@@ -326,7 +326,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsInInterfaceBlock() {
+    void isInInterfaceBlock() {
         final DetailAST ast = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS);
 
@@ -339,7 +339,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsInAnnotationBlock() {
+    void isInAnnotationBlock() {
         final DetailAST ast = getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK,
                 TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS);
 
@@ -352,7 +352,7 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testisInInterfaceOrAnnotationBlock() {
+    void testisInInterfaceOrAnnotationBlock() {
         assertWithMessage("Should return true when node is in interface or annotation block")
                 .that(ScopeUtil.isInInterfaceOrAnnotationBlock(
                         getNode(TokenTypes.ANNOTATION_DEF, TokenTypes.OBJBLOCK)))

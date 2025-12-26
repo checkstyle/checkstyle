@@ -31,7 +31,7 @@ public class NonAsciiCharactersTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testUnicodeEscapes() throws Exception {
+    void unicodeEscapes() throws Exception {
         verifyWithWholeConfig(getPath("InputNonAsciiCharacters.java"));
     }
 

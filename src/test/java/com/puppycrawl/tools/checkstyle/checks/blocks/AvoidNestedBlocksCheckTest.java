@@ -36,7 +36,7 @@ public class AvoidNestedBlocksCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
         final int[] expected = {TokenTypes.SLIST};
         assertWithMessage("Default required tokens are invalid")
@@ -45,7 +45,7 @@ public class AvoidNestedBlocksCheckTest
     }
 
     @Test
-    public void testStrictSettings()
+    void strictSettings()
             throws Exception {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
@@ -58,7 +58,7 @@ public class AvoidNestedBlocksCheckTest
     }
 
     @Test
-    public void testAllowSwitchInCase()
+    void allowSwitchInCase()
             throws Exception {
 
         final String[] expected = {
@@ -71,7 +71,7 @@ public class AvoidNestedBlocksCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final AvoidNestedBlocksCheck constantNameCheckObj = new AvoidNestedBlocksCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.SLIST };

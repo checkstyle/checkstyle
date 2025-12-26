@@ -38,7 +38,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiCaseSmallTalkStyle() throws Exception {
+    void multiCaseSmallTalkStyle() throws Exception {
         final String[] expected = {
             "14:59: " + getCheckMessage(MSG_KEY),
             "88:21: " + getCheckMessage(MSG_KEY),
@@ -49,7 +49,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiCaseLoops() throws Exception {
+    void multiCaseLoops() throws Exception {
         final String[] expected = {
             "27:18: " + getCheckMessage(MSG_KEY),
             "53:17: " + getCheckMessage(MSG_KEY),
@@ -63,7 +63,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiCaseDeclarations() throws Exception {
+    void multiCaseDeclarations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineSingleLineForDeclarations.java"),
@@ -71,7 +71,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final OneStatementPerLineCheck check = new OneStatementPerLineCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -85,7 +85,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDeclarationsWithMultilineStatements() throws Exception {
+    void declarationsWithMultilineStatements() throws Exception {
         final String[] expected = {
             "49:21: " + getCheckMessage(MSG_KEY),
             "66:17: " + getCheckMessage(MSG_KEY),
@@ -99,7 +99,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLoopsAndTryWithResourceWithMultilineStatements() throws Exception {
+    void loopsAndTryWithResourceWithMultilineStatements() throws Exception {
         final String[] expected = {
             "53:39: " + getCheckMessage(MSG_KEY),
             "87:44: " + getCheckMessage(MSG_KEY),
@@ -111,7 +111,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void oneStatementNonCompilableInputTest() throws Exception {
+    void oneStatementNonCompilableInputTest() throws Exception {
         final String[] expected = {
             "39:4: " + getCheckMessage(MSG_KEY),
             "46:54: " + getCheckMessage(MSG_KEY),
@@ -126,7 +126,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testResourceReferenceVariableIgnored() throws Exception {
+    void resourceReferenceVariableIgnored() throws Exception {
         final String[] expected = {
             "33:42: " + getCheckMessage(MSG_KEY),
             "38:43: " + getCheckMessage(MSG_KEY),
@@ -140,7 +140,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testResourcesIgnored() throws Exception {
+    void resourcesIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineTryWithResourcesIgnore.java"),
@@ -148,7 +148,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllTheCodeInSingleLine() throws Exception {
+    void allTheCodeInSingleLine() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneStatementPerLineCheck.class);
 
@@ -167,7 +167,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStateIsClearedOnBeginTreeForLastStatementEnd() throws Exception {
+    void stateIsClearedOnBeginTreeForLastStatementEnd() throws Exception {
         final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
         final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
@@ -179,7 +179,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStateIsClearedOnBeginTreeForLastVariableStatement() throws Exception {
+    void stateIsClearedOnBeginTreeForLastVariableStatement() throws Exception {
         final String file1 = getPath(
                 "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd1.java");
         final String file2 = getPath(

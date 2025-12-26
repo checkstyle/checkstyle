@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck;
 
-public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport {
+class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport {
 
     private static final Class<UncommentedMainCheck> CLAZZ =
             UncommentedMainCheck.class;
@@ -39,7 +39,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUncommentedMainDefault.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInStaticClass() throws Exception {
+    void inStaticClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
 

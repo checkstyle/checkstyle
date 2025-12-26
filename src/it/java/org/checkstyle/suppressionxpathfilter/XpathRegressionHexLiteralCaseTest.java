@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.HexLiteralCaseCheck;
 
-public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport {
+class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport {
 
     private final String checkName = HexLiteralCaseCheck.class.getSimpleName();
 
@@ -38,7 +38,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testHexLiteralCaseCheck() throws Exception {
+    void hexLiteralCaseCheck() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCase.java"));
         final DefaultConfiguration config =
@@ -63,7 +63,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testLongHexLiteralCaseCheck() throws Exception {
+    void longHexLiteralCaseCheck() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCaseLong.java"));
         final DefaultConfiguration config =
@@ -88,7 +88,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testHexLiteralCaseCheckTwo() throws Exception {
+    void hexLiteralCaseCheckTwo() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCaseTwo.java"));
         final DefaultConfiguration config =

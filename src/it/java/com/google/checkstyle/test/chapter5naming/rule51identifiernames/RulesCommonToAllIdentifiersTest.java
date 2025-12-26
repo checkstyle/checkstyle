@@ -31,7 +31,7 @@ public class RulesCommonToAllIdentifiersTest extends AbstractGoogleModuleTestSup
     }
 
     @Test
-    public void testCatchParameterName() throws Exception {
+    void catchParameterName() throws Exception {
         verifyWithWholeConfig(getPath("InputCatchParameterName.java"));
     }
 

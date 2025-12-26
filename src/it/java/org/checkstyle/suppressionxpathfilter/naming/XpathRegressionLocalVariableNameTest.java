@@ -44,7 +44,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final File fileToProcess = new File(getPath("InputXpathLocalVariableNameMethod.java"));
 
         final DefaultConfiguration moduleConfig =
@@ -68,7 +68,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testIteration() throws Exception {
+    void iteration() throws Exception {
         final File fileToProcess = new File(getPath("InputXpathLocalVariableNameIteration.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(LocalVariableNameCheck.class);
@@ -91,7 +91,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testInnerClass() throws Exception {
+    void innerClass() throws Exception {
         final File fileToProcess = new File(getPath("InputXpathLocalVariableNameInnerClass.java"));
 
         final DefaultConfiguration moduleConfig = createModuleConfig(LocalVariableNameCheck.class);

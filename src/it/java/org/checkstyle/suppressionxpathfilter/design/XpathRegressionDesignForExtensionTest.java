@@ -44,7 +44,7 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDesignForExtensionClass.java"));
 
@@ -77,7 +77,7 @@ public class XpathRegressionDesignForExtensionTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void test2() throws Exception {
+    void test2() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDesignForExtensionWithEnum.java"));
 

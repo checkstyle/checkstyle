@@ -37,7 +37,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimpleOne()
+    void simpleOne()
             throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_KEY, 80, 131),
@@ -47,7 +47,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimpleTwo()
+    void simpleTwo()
             throws Exception {
         final String[] expected = {
             "88: " + getCheckMessage(MSG_KEY, 80, 133),
@@ -57,7 +57,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldLogActualLineLengthOne()
+    void shouldLogActualLineLengthOne()
             throws Exception {
         final String[] expected = {
             "23: 80,90",
@@ -67,7 +67,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldLogActualLineLengthTwo()
+    void shouldLogActualLineLengthTwo()
             throws Exception {
         final String[] expected = {
             "89: 80,92",
@@ -77,7 +77,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongImportStatements() throws Exception {
+    void shouldNotLogLongImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 80, 150),
         };
@@ -86,7 +86,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongPackageStatements() throws Exception {
+    void shouldNotLogLongPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 80, 88),
         };
@@ -96,7 +96,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotLogLongLinks() throws Exception {
+    void shouldNotLogLongLinks() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_KEY, 80, 161),
         };
@@ -105,7 +105,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void countUnicodePointsOnce() throws Exception {
+    void countUnicodePointsOnce() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 100, 200),
             "16: " + getCheckMessage(MSG_KEY, 100, 200),
@@ -115,7 +115,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineLengthIgnoringPackageStatements() throws Exception {
+    void lineLengthIgnoringPackageStatements() throws Exception {
         final String[] expected = {
             "17: " + getCheckMessage(MSG_KEY, 75, 86),
             "21: " + getCheckMessage(MSG_KEY, 75, 76),
@@ -127,7 +127,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineLengthIgnoringImportStatements() throws Exception {
+    void lineLengthIgnoringImportStatements() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY, 75, 81),
             "22: " + getCheckMessage(MSG_KEY, 75, 84),
@@ -148,7 +148,7 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressForbidden
     @Test
-    public void testUnmappableCharacters() throws Exception {
+    void unmappableCharacters() throws Exception {
         final String[] expected = {
             "4: " + getCheckMessage(MSG_KEY, 75, 288),
         };

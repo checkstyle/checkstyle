@@ -41,7 +41,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
 
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
@@ -55,7 +55,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testItIgnoreEmpty() throws Exception {
+    void itIgnoreEmpty() throws Exception {
 
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
@@ -68,7 +68,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleInputs() throws Exception {
+    void multipleInputs() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MultipleStringLiteralsCheck.class);
         checkConfig.addProperty("allowedDuplicates", "2");
@@ -90,7 +90,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testItIgnoreEmptyAndComspace() throws Exception {
+    void itIgnoreEmptyAndComspace() throws Exception {
 
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
@@ -102,7 +102,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testItWithoutIgnoringAnnotations() throws Exception {
+    void itWithoutIgnoringAnnotations() throws Exception {
 
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
@@ -114,7 +114,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final MultipleStringLiteralsCheck check = new MultipleStringLiteralsCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -128,7 +128,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    void defaultConfiguration() throws Exception {
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),
             "16:17: " + getCheckMessage(MSG_KEY, "\"DoubleString\"", 2),
@@ -141,7 +141,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnores() throws Exception {
+    void ignores() throws Exception {
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_KEY, "\"unchecked\"", 4),
         };
@@ -152,7 +152,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleStringLiteralsTextBlocks() throws Exception {
+    void multipleStringLiteralsTextBlocks() throws Exception {
 
         final String[] expected = {
             "14:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),

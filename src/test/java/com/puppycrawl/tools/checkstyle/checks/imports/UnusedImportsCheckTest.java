@@ -42,7 +42,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReferencedStateIsCleared() throws Exception {
+    void referencedStateIsCleared() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
         final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarnings.java");
         final String inputWithWarnings = getPath("InputUnusedImportsCheckClearState.java");
@@ -66,7 +66,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithoutProcessJavadoc() throws Exception {
+    void withoutProcessJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
                 "com.google.errorprone.annotations."
@@ -107,7 +107,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testProcessJavadoc() throws Exception {
+    void processJavadoc() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY,
                     "com.google.errorprone.annotations."
@@ -128,28 +128,28 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testProcessJavadocWithLinkTag() throws Exception {
+    void processJavadocWithLinkTag() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithValueTag.java"), expected);
     }
 
     @Test
-    public void testProcessJavadocWithBlockTagContainingMethodParameters() throws Exception {
+    void processJavadocWithBlockTagContainingMethodParameters() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithBlockMethodParameters.java"), expected);
     }
 
     @Test
-    public void testAnnotations() throws Exception {
+    void annotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsAnnotations.java"), expected);
     }
 
     @Test
-    public void testArrayRef() throws Exception {
+    void arrayRef() throws Exception {
         final String[] expected = {
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.ArrayList"),
         };
@@ -158,21 +158,21 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBug() throws Exception {
+    void bug() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsBug.java"), expected);
     }
 
     @Test
-    public void testNewlinesInsideTags() throws Exception {
+    void newlinesInsideTags() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithNewlinesInsideTags.java"), expected);
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         final int[] actual = testCheckObject.getRequiredTokens();
@@ -203,7 +203,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final UnusedImportsCheck testCheckObject =
                 new UnusedImportsCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
@@ -234,7 +234,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileInUnnamedPackage() throws Exception {
+    void fileInUnnamedPackage() throws Exception {
         final String[] expected = {
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -245,7 +245,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportsFromJavaLang() throws Exception {
+    void importsFromJavaLang() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Math"),
@@ -264,7 +264,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportsJavadocQualifiedName() throws Exception {
+    void importsJavadocQualifiedName() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
@@ -273,7 +273,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSingleWordPackage() throws Exception {
+    void singleWordPackage() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "module"),
         };
@@ -283,7 +283,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsAndCompactCtors() throws Exception {
+    void recordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "19:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToolBar"),
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
@@ -294,7 +294,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShadowedImports() throws Exception {
+    void shadowedImports() throws Exception {
         final String[] expected = {
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
@@ -306,7 +306,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnusedImports3() throws Exception {
+    void unusedImports3() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.awt.Rectangle"),
             "13:8: " + getCheckMessage(MSG_KEY, "java.awt.event.KeyEvent"),
@@ -316,7 +316,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStateIsClearedOnBeginTreeCollect() throws Exception {
+    void stateIsClearedOnBeginTreeCollect() throws Exception {
         final String file1 = getPath(
                 "InputUnusedImportsRecordsAndCompactCtors.java");
         final String file2 = getNonCompilablePath(
@@ -332,7 +332,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImports() throws Exception {
+    void staticMethodRefImports() throws Exception {
         final String[] expected = {
             "26:15: " + getCheckMessage(MSG_KEY, "java.lang.String.format"),
             "27:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
@@ -344,7 +344,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImportsExtended() throws Exception {
+    void staticMethodRefImportsExtended() throws Exception {
         final String[] expected = {
             "17:8: " + getCheckMessage(MSG_KEY, "java.util.Objects"),
             "18:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.toString"),
@@ -357,7 +357,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImportsWithJavadocDisabled() throws Exception {
+    void staticMethodRefImportsWithJavadocDisabled() throws Exception {
         final String[] expected = {
             "24:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
             "25:15: " + getCheckMessage(MSG_KEY, "java.lang.Integer.parseInt"),
@@ -370,7 +370,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImportsInDocsOnly() throws Exception {
+    void staticMethodRefImportsInDocsOnly() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
             "12:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyEnumeration"),
@@ -382,7 +382,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnusedImportsJavadocAboveComments() throws Exception {
+    void unusedImportsJavadocAboveComments() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
@@ -391,7 +391,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportJavaLinkTag() throws Exception {
+    void importJavaLinkTag() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
@@ -403,7 +403,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportJavaLinkTagWithMethod() throws Exception {
+    void importJavaLinkTagWithMethod() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "java.util.Collections"),
             "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),

@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * these markers (like interface definitions) can differ between examples.
  *
  */
-public class XdocsExamplesAstConsistencyTest {
+class XdocsExamplesAstConsistencyTest {
 
     private static final Path XDOCS_ROOT = Path.of(
             "src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle"
@@ -313,7 +313,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     @Test
-    public void testExamplesDifferOnlyByComments() throws IOException {
+    void examplesDifferOnlyByComments() throws Exception {
         final List<String> violations = new ArrayList<>();
 
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {

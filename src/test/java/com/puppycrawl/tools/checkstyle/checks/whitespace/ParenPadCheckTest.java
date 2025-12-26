@@ -43,7 +43,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
         final String[] expected = {
             "65:11: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -61,7 +61,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testSpace()
+    void space()
             throws Exception {
         final String[] expected = {
             "36:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
@@ -105,7 +105,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testDefaultForIterator()
+    void defaultForIterator()
             throws Exception {
         final String[] expected = {
             "24:35: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -121,7 +121,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testSpaceEmptyForIterator()
+    void spaceEmptyForIterator()
             throws Exception {
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
@@ -139,7 +139,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void test1322879() throws Exception {
+    void test1322879() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParenPadWithSpace.java"),
@@ -147,14 +147,14 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testTrimOptionProperty() throws Exception {
+    void trimOptionProperty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParenPadToCheckTrimFunctionInOptionProperty.java"), expected);
     }
 
     @Test
-    public void testNospaceWithComplexInput() throws Exception {
+    void nospaceWithComplexInput() throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "55:28: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -283,7 +283,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testConfigureTokens() throws Exception {
+    void configureTokens() throws Exception {
         final String[] expected = {
             "98:39: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "121:22: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -317,7 +317,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    void invalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -337,7 +337,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaAssignment() throws Exception {
+    void lambdaAssignment() throws Exception {
         final String[] expected = {
             "20:41: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "20:45: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -357,7 +357,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaAssignmentWithSpace() throws Exception {
+    void lambdaAssignmentWithSpace() throws Exception {
         final String[] expected = {
             "20:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "20:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -375,7 +375,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaCheckDisabled() throws Exception {
+    void lambdaCheckDisabled() throws Exception {
         final String[] expected = {
             "27:61: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "27:63: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -387,7 +387,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaCheckDisabledWithSpace() throws Exception {
+    void lambdaCheckDisabledWithSpace() throws Exception {
         final String[] expected = {
             "30:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "30:33: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -397,7 +397,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaCheckOnly() throws Exception {
+    void lambdaCheckOnly() throws Exception {
         final String[] expected = {
             "17:41: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "17:45: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -413,7 +413,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaCheckOnlyWithSpace() throws Exception {
+    void lambdaCheckOnlyWithSpace() throws Exception {
         final String[] expected = {
             "17:41: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "17:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -429,7 +429,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testLambdaCheckOnlyWithSpace1() throws Exception {
+    void lambdaCheckOnlyWithSpace1() throws Exception {
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
         };
@@ -438,7 +438,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testTryWithResources() throws Exception {
+    void tryWithResources() throws Exception {
         final String[] expected = {
             "20:37: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
             "21:61: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -449,7 +449,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testTryWithResourcesAndSuppression() throws Exception {
+    void tryWithResourcesAndSuppression() throws Exception {
         final String[] expectedFiltered = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedUnfiltered = {
             "23:13: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -461,7 +461,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testNoStackoverflowError()
+    void noStackoverflowError()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithLimitedResources(getPath("InputParenPadNoStackoverflowError.java"),
@@ -469,7 +469,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadCheckRecords() throws Exception {
+    void parenPadCheckRecords() throws Exception {
 
         final String[] expected = {
             "20:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -491,7 +491,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadCheckRecordsWithSpace() throws Exception {
+    void parenPadCheckRecordsWithSpace() throws Exception {
 
         final String[] expected = {
             "25:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
@@ -512,7 +512,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadCheckEmoji() throws Exception {
+    void parenPadCheckEmoji() throws Exception {
 
         final String[] expected = {
             "25:45: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -527,7 +527,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadForSynchronized() throws Exception {
+    void parenPadForSynchronized() throws Exception {
 
         final String[] expected = {
             "18:29: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
@@ -537,7 +537,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadForEnum() throws Exception {
+    void parenPadForEnum() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -554,7 +554,7 @@ public class ParenPadCheckTest
      * acceptable tokens pass that check.
      */
     @Test
-    public void testIsAcceptableToken() throws Exception {
+    void isAcceptableToken() throws Exception {
         final ParenPadCheck check = new ParenPadCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         final String message = "Expected that all acceptable tokens will pass isAcceptableToken "
@@ -569,7 +569,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadWithWhenExpression() throws Exception {
+    void parenPadWithWhenExpression() throws Exception {
         final String[] expected = {
             "21:38: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "25:33: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -582,7 +582,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadForRecordPattern() throws Exception {
+    void parenPadForRecordPattern() throws Exception {
         final String[] expected = {
             "14:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
             "16:40: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
@@ -614,7 +614,7 @@ public class ParenPadCheckTest
     }
 
     @Test
-    public void testParenPadForRecordPatternWithSpaceOption() throws Exception {
+    void parenPadForRecordPatternWithSpaceOption() throws Exception {
         final String[] expected = {
             "14:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
             "14:58: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),

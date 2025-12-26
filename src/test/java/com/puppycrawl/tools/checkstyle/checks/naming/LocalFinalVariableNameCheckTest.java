@@ -37,7 +37,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final LocalFinalVariableNameCheck checkObj =
             new LocalFinalVariableNameCheck();
         assertWithMessage("LocalFinalVariableNameCheck#getRequiredTokens should return empty array "
@@ -47,7 +47,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testDefault()
+    void testDefault()
             throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
@@ -60,7 +60,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testSet()
+    void set()
             throws Exception {
 
         final String pattern = "[A-Z]+";
@@ -73,7 +73,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testInnerClass()
+    void innerClass()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -81,7 +81,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
             new LocalFinalVariableNameCheck();
         final int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
@@ -96,7 +96,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testTryWithResources() throws Exception {
+    void tryWithResources() throws Exception {
 
         final String pattern = "[A-Z]+";
 
@@ -112,7 +112,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testTryWithResourcesJava9() throws Exception {
+    void tryWithResourcesJava9() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -120,7 +120,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void testUnnamedVariables() throws Exception {
+    void unnamedVariables() throws Exception {
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {

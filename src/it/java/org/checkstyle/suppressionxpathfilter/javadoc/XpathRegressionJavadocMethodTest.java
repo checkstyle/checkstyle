@@ -48,7 +48,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocMethodOne.java"));
 
@@ -76,7 +76,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocMethodTwo.java"));
 
@@ -99,7 +99,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    void three() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocMethodThree.java"));
 
@@ -126,7 +126,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFour() throws Exception {
+    void four() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocMethodFour.java"));
 
@@ -151,7 +151,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFive() throws Exception {
+    void five() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocMethodFive.java"));
 

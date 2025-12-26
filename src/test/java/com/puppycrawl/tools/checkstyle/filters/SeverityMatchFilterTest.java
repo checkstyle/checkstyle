@@ -25,16 +25,15 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 
-public class SeverityMatchFilterTest {
+class SeverityMatchFilterTest {
 
     private final SeverityMatchFilter filter = new SeverityMatchFilter();
 
     @Test
-    public void testDefault() {
+    void testDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         assertWithMessage("no message")
             .that(filter.accept(ev))
@@ -57,7 +56,7 @@ public class SeverityMatchFilterTest {
     }
 
     @Test
-    public void testSeverity() {
+    void severity() {
         filter.setSeverity(SeverityLevel.INFO);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
@@ -82,7 +81,7 @@ public class SeverityMatchFilterTest {
     }
 
     @Test
-    public void testAcceptOnMatch() {
+    void acceptOnMatch() {
         filter.setSeverity(SeverityLevel.INFO);
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
@@ -108,7 +107,7 @@ public class SeverityMatchFilterTest {
     }
 
     @Test
-    public void testConfigure() throws CheckstyleException {
+    void configure() throws Exception {
         filter.configure(new DefaultConfiguration("test"));
         assertWithMessage("object exists")
             .that(filter)

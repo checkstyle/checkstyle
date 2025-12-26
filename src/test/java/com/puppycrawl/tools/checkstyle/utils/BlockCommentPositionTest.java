@@ -37,14 +37,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class BlockCommentPositionTest extends AbstractModuleTestSupport {
 
     @Test
-    public void testPrivateConstr() throws Exception {
+    void privateConstr() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockCommentPosition.class))
                 .isTrue();
     }
 
     @Test
-    public void testJavaDocsRecognition() throws Exception {
+    void javaDocsRecognition() throws Exception {
         final List<BlockCommentPositionTestMetadata> metadataList = Arrays.asList(
                 new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnClass.java",
                         BlockCommentPosition::isOnClass, 4),
@@ -84,7 +84,7 @@ public class BlockCommentPositionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testJavaDocsRecognitionNonCompilable() throws Exception {
+    void javaDocsRecognitionNonCompilable() throws Exception {
         final List<BlockCommentPositionTestMetadata> metadataList = Arrays.asList(
             new BlockCommentPositionTestMetadata("InputBlockCommentPositionOnRecord.java",
                 BlockCommentPosition::isOnRecord, 3),

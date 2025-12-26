@@ -44,7 +44,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testConditionals() throws Exception {
+    void conditionals() throws Exception {
 
         final File fileToProcess =
                 new File(getPath("InputXpathCyclomaticComplexityConditionals.java"));
@@ -75,7 +75,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testSwitchBlock() throws Exception {
+    void switchBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCyclomaticComplexitySwitchBlock.java"));
 

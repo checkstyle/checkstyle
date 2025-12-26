@@ -42,7 +42,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testVariable() throws Exception {
+    void variable() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMagicNumberVariable.java"));
 
@@ -69,7 +69,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMethodDef() throws Exception {
+    void methodDef() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMagicNumberMethodDef.java"));
 
@@ -97,7 +97,7 @@ public class XpathRegressionMagicNumberTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testAnotherVariable() throws Exception {
+    void anotherVariable() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMagicNumberAnotherVariable.java"));
 

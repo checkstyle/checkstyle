@@ -44,7 +44,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testWhitespaceAroundNotPreceded() throws Exception {
+    void whitespaceAroundNotPreceded() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathWhitespaceAroundNotPreceded.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testWhitespaceAroundNotFollowed() throws Exception {
+    void whitespaceAroundNotFollowed() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathWhitespaceAroundNotFollowed.java"));
 

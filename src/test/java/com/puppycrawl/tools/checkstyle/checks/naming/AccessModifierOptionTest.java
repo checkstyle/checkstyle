@@ -23,10 +23,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
-public class AccessModifierOptionTest {
+class AccessModifierOptionTest {
 
     @Test
-    public void testDefaultCase() {
+    void defaultCase() {
         assertWithMessage("Case mismatch.")
                 .that(AccessModifierOption.PUBLIC.name())
                 .isEqualTo("PUBLIC");
@@ -42,7 +42,7 @@ public class AccessModifierOptionTest {
     }
 
     @Test
-    public void testCase() {
+    void testCase() {
         assertWithMessage("Case mismatch.")
                 .that(AccessModifierOption.PUBLIC.toString())
                 .isEqualTo("public");

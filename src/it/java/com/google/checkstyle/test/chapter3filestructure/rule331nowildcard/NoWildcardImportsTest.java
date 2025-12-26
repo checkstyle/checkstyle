@@ -31,7 +31,7 @@ public class NoWildcardImportsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testStarImport() throws Exception {
+    void starImport() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWildcardImports.java"));
     }
 

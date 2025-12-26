@@ -27,17 +27,17 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-public class BlockTagUtilTest {
+class BlockTagUtilTest {
 
     @Test
-    public void testHasPrivateConstructor() throws Exception {
+    void hasPrivateConstructor() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testExtractBlockTags() {
+    void extractBlockTags() {
         final String[] text = {
             "/** @foo abc ",
             " * @bar def  ",
@@ -69,7 +69,7 @@ public class BlockTagUtilTest {
     }
 
     @Test
-    public void testExtractBlockTagFirstLine() {
+    void extractBlockTagFirstLine() {
         final String[] text = {
             "/** @foo",
             " */",
@@ -85,7 +85,7 @@ public class BlockTagUtilTest {
     }
 
     @Test
-    public void testVersionStringFormat() {
+    void versionStringFormat() {
         final String[] text = {
             "/** ",
             " * @version 1.0",
@@ -104,7 +104,7 @@ public class BlockTagUtilTest {
     }
 
     @Test
-    public void testOddVersionString() {
+    void oddVersionString() {
         final String[] text = {
             "/**",
             " * Foo",

@@ -45,7 +45,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testEqualityTrue() throws Exception {
+    void equalityTrue() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathStringLiteralEqualityTrue.java"));
         final DefaultConfiguration moduleConfig =
@@ -71,7 +71,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testEqualityFalse() throws Exception {
+    void equalityFalse() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathStringLiteralEqualityFalse.java"));
         final DefaultConfiguration moduleConfig =
@@ -97,7 +97,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testEqualityExp() throws Exception {
+    void equalityExp() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathStringLiteralEqualityExp.java"));
         final DefaultConfiguration moduleConfig =

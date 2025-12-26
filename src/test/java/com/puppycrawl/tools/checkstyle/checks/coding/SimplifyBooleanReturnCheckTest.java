@@ -35,7 +35,7 @@ public class SimplifyBooleanReturnCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY),
             "35:9: " + getCheckMessage(MSG_KEY),
@@ -45,7 +45,7 @@ public class SimplifyBooleanReturnCheckTest
     }
 
     @Test
-    public void testYield() throws Exception {
+    void yield() throws Exception {
         final String[] expected = {
             "14:17: " + getCheckMessage(MSG_KEY),
             "28:17: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class SimplifyBooleanReturnCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final SimplifyBooleanReturnCheck check = new SimplifyBooleanReturnCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

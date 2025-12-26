@@ -44,7 +44,7 @@ public class ExecutableStatementCountCheckTest
 
     @SuppressWarnings("unchecked")
     @Test
-    public void testStatefulFieldsClearedOnBeginTree() {
+    void statefulFieldsClearedOnBeginTree() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.STATIC_INIT);
         final ExecutableStatementCountCheck check = new ExecutableStatementCountCheck();
@@ -55,7 +55,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testMaxZero() throws Exception {
+    void maxZero() throws Exception {
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -76,7 +76,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testMethodDef() throws Exception {
+    void methodDef() throws Exception {
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -92,7 +92,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testCtorDef() throws Exception {
+    void ctorDef() throws Exception {
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -104,7 +104,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testStaticInit() throws Exception {
+    void staticInit() throws Exception {
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -115,7 +115,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testInstanceInit() throws Exception {
+    void instanceInit() throws Exception {
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -126,7 +126,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testVisitTokenWithWrongTokenType() {
+    void visitTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
@@ -144,7 +144,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testLeaveTokenWithWrongTokenType() {
+    void leaveTokenWithWrongTokenType() {
         final ExecutableStatementCountCheck checkObj =
             new ExecutableStatementCountCheck();
         final DetailAstImpl ast = new DetailAstImpl();
@@ -162,7 +162,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    void defaultConfiguration() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -170,7 +170,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testExecutableStatementCountRecords() throws Exception {
+    void executableStatementCountRecords() throws Exception {
 
         final int max = 1;
 
@@ -189,7 +189,7 @@ public class ExecutableStatementCountCheckTest
     }
 
     @Test
-    public void testExecutableStatementCountLambdas() throws Exception {
+    void executableStatementCountLambdas() throws Exception {
 
         final int max = 1;
 

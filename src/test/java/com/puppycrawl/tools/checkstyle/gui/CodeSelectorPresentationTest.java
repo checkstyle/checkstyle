@@ -43,7 +43,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     private ImmutableList<Integer> linesToPosition;
 
     @BeforeEach
-    public void loadFile() throws Exception {
+    void loadFile() throws Exception {
         model = new MainFrameModel();
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(new File(getPath("InputCodeSelectorPresentation.java")));
@@ -76,7 +76,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDetailASTSelection() {
+    void detailASTSelection() {
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(tree,
                 linesToPosition);
         selector.findSelectionPositions();
@@ -89,7 +89,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDetailASTLeafSelection() {
+    void detailASTLeafSelection() {
         final DetailAST leaf = tree.getLastChild().getFirstChild();
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
@@ -103,7 +103,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDetailASTNoSelection() {
+    void detailASTNoSelection() {
         final DetailAST leaf = tree.getFirstChild();
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(leaf,
                 linesToPosition);
@@ -117,7 +117,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDetailNodeSelection() {
+    void detailNodeSelection() {
         final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         final CodeSelectorPresentation selector = new CodeSelectorPresentation(javadoc,
@@ -132,7 +132,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDetailNodeLeafSelection() {
+    void detailNodeLeafSelection() {
         final DetailNode javadoc = (DetailNode) model.getParseTreeTableModel()
                 .getChild(tree.getFirstChild().getNextSibling().getFirstChild(), 0);
         DetailNode javadocLeaf = null;

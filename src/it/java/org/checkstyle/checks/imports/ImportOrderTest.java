@@ -34,7 +34,7 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     }
 
     @Test
-    public void testAndroid() throws Exception {
+    void android() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addProperty("groups",
             "android,androidx,com.android,dalvik,com,gov,junit,libcore,net,org,java,javax");
@@ -52,7 +52,7 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     }
 
     @Test
-    public void testSpotify() throws Exception {
+    void spotify() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addProperty("groups", "android,com,net,junit,org,java,javax");
         checkConfig.addProperty("option", "bottom");
@@ -68,7 +68,7 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     }
 
     @Test
-    public void testTwitter() throws Exception {
+    void twitter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addProperty("caseSensitive", "true");
         checkConfig.addProperty("groups", "android,com.twitter,com,junit,net,org,java,javax");

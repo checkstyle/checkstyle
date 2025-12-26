@@ -52,7 +52,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testMatching() throws Exception {
+    void matching() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -67,7 +67,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingTokenType() throws Exception {
+    void nonMatchingTokenType() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -80,7 +80,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingLineNumber() throws Exception {
+    void nonMatchingLineNumber() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "21:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
@@ -96,7 +96,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingColumnNumber() throws Exception {
+    void nonMatchingColumnNumber() throws Exception {
         final String[] expected = {
             "23:11: " + getCheckMessage(TypeNameCheck.class, MSG_INVALID_PATTERN,
                                         "testClass", "^[A-Z][a-zA-Z0-9]*$"),
@@ -111,7 +111,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testComplexQuery() throws Exception {
+    void complexQuery() throws Exception {
         final String[] expected = {
             "27:21: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "3.14"),
             "28:16: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "123"),
@@ -126,7 +126,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testIncorrectQuery() {
+    void incorrectQuery() {
         final String xpath = "1@#";
         try {
             final Object test = createSuppressionXpathSingleFilter(
@@ -142,7 +142,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNoQuery() throws Exception {
+    void noQuery() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -157,7 +157,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNullFileName() throws Exception {
+    void nullFileName() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -170,7 +170,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingFileRegexp() throws Exception {
+    void nonMatchingFileRegexp() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -183,7 +183,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testInvalidFileRegexp() {
+    void invalidFileRegexp() {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
         try {
             filter.setFiles("e[l");
@@ -197,7 +197,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testInvalidCheckRegexp() {
+    void invalidCheckRegexp() {
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
         try {
             filter.setChecks("e[l");
@@ -211,7 +211,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNullViolation() throws Exception {
+    void nullViolation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -221,7 +221,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingModuleId() throws Exception {
+    void nonMatchingModuleId() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -234,7 +234,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testMatchingModuleId() throws Exception {
+    void matchingModuleId() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -249,7 +249,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingChecks() throws Exception {
+    void nonMatchingChecks() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -262,7 +262,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNonMatchingFileNameModuleIdAndCheck() throws Exception {
+    void nonMatchingFileNameModuleIdAndCheck() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -274,7 +274,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNullModuleIdAndNonMatchingChecks() throws Exception {
+    void nullModuleIdAndNonMatchingChecks() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -286,7 +286,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testDecideByMessage() throws Exception {
+    void decideByMessage() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "31:21: " + getCheckMessage(MagicNumberCheck.class, MSG_KEY, "3.14"),
@@ -304,7 +304,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testThrowException() throws Exception {
+    void throwException() throws Exception {
         final String xpath = "//CLASS_DEF[@text='InputSuppressionXpathSingleFilterComplexQuery']";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilterComplexQuery",
@@ -330,7 +330,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testAllNullConfiguration() throws Exception {
+    void allNullConfiguration() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -343,7 +343,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testDecideByIdAndExpression() throws Exception {
+    void decideByIdAndExpression() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -358,7 +358,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testDefaultFileProperty() throws Exception {
+    void defaultFileProperty() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -373,7 +373,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testDecideByCheck() throws Exception {
+    void decideByCheck() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -388,7 +388,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testDecideById() throws Exception {
+    void decideById() throws Exception {
         final String[] expected = {
             "19:1: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
         };
@@ -413,7 +413,7 @@ public class SuppressionXpathSingleFilterTest
      * @throws Exception when there is problem to load Input file
      */
     @Test
-    public void testUpdateFilterFileSettingInRunTime() throws Exception {
+    void updateFilterFileSettingInRunTime() throws Exception {
         final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
 
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
@@ -462,7 +462,7 @@ public class SuppressionXpathSingleFilterTest
      * @throws Exception when there is problem to load Input file
      */
     @Test
-    public void testUpdateFilterChecksSettingInRunTime() throws Exception {
+    void updateFilterChecksSettingInRunTime() throws Exception {
         final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
 
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();
@@ -504,7 +504,7 @@ public class SuppressionXpathSingleFilterTest
      */
 
     @Test
-    public void testSetMessageHandlesNullCorrectly() throws Exception {
+    void setMessageHandlesNullCorrectly() throws Exception {
         final File file = new File(getPath("InputSuppressionXpathSingleFilterComplexQuery.java"));
 
         final SuppressionXpathSingleFilter filter = new SuppressionXpathSingleFilter();

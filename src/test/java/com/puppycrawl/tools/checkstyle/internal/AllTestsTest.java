@@ -42,10 +42,10 @@ import org.junit.jupiter.api.Test;
  * @noinspectionreason ClassIndependentOfModule - architecture of
  *      test modules requires this structure
  */
-public class AllTestsTest {
+class AllTestsTest {
 
     @Test
-    public void testAllInputsHaveTest() throws Exception {
+    void allInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
         walkVisible(Path.of("src/test/java"), filePath -> {
@@ -65,7 +65,7 @@ public class AllTestsTest {
     }
 
     @Test
-    public void testAllTestsHaveProductionCode() throws Exception {
+    void allTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
         walkVisible(Path.of("src/main/java"), filePath -> {

@@ -48,7 +48,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    void it() throws Exception {
         final String[] expected = {
             "20:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "26:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
@@ -76,7 +76,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodsOnly() throws Exception {
+    void methodsOnly() throws Exception {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
             "124:9: " + getCheckMessage(MSG_METHOD, "instanceMethod", ""),
@@ -89,7 +89,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFieldsOnly() throws Exception {
+    void fieldsOnly() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
             "39:9: " + getCheckMessage(MSG_VARIABLE, "i", ""),
@@ -112,7 +112,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFieldsInExpressions() throws Exception {
+    void fieldsInExpressions() throws Exception {
         final String[] expected = {
             "18:28: " + getCheckMessage(MSG_VARIABLE, "id", ""),
             "19:28: " + getCheckMessage(MSG_VARIABLE, "length", ""),
@@ -140,14 +140,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGenerics() throws Exception {
+    void generics() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThis15Extensions.java"), expected);
     }
 
     @Test
-    public void testGithubIssue41() throws Exception {
+    void githubIssue41() throws Exception {
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_VARIABLE, "number", ""),
             "17:16: " + getCheckMessage(MSG_METHOD, "other", ""),
@@ -158,7 +158,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final RequireThisCheck check = new RequireThisCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -172,7 +172,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithAnonymousClass() throws Exception {
+    void withAnonymousClass() throws Exception {
         final String[] expected = {
             "29:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
             "33:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
@@ -184,7 +184,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultSwitch() {
+    void defaultSwitch() {
         final RequireThisCheck check = new RequireThisCheck();
 
         final DetailAstImpl ast = new DetailAstImpl();
@@ -199,7 +199,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidateOnlyOverlappingFalse() throws Exception {
+    void validateOnlyOverlappingFalse() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "30:9: " + getCheckMessage(MSG_VARIABLE, "fieldFinal1", ""),
@@ -252,7 +252,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidateOnlyOverlappingFalseLeaves() throws Exception {
+    void validateOnlyOverlappingFalseLeaves() throws Exception {
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_METHOD, "id", ""),
             "36:16: " + getCheckMessage(MSG_VARIABLE, "_a", ""),
@@ -263,7 +263,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidateOnlyOverlappingTrue() throws Exception {
+    void validateOnlyOverlappingTrue() throws Exception {
         final String[] expected = {
             "29:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
             "52:9: " + getCheckMessage(MSG_VARIABLE, "field1", ""),
@@ -283,35 +283,35 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidateOnlyOverlappingTrue2() throws Exception {
+    void validateOnlyOverlappingTrue2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisValidateOnlyOverlappingTrue2.java"), expected);
     }
 
     @Test
-    public void testReceiverParameter() throws Exception {
+    void receiverParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisReceiver.java"), expected);
     }
 
     @Test
-    public void testBraceAlone() throws Exception {
+    void braceAlone() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisBraceAlone.java"), expected);
     }
 
     @Test
-    public void testStatic() throws Exception {
+    void testStatic() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisStatic.java"), expected);
     }
 
     @Test
-    public void testMethodReferences() throws Exception {
+    void methodReferences() throws Exception {
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_VARIABLE, "tags", ""),
         };
@@ -320,7 +320,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllowLocalVars() throws Exception {
+    void allowLocalVars() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
             "26:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
@@ -334,7 +334,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllowLambdaParameters() throws Exception {
+    void allowLambdaParameters() throws Exception {
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_VARIABLE, "s1", ""),
             "46:21: " + getCheckMessage(MSG_VARIABLE, "z", ""),
@@ -347,14 +347,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTryWithResources() throws Exception {
+    void tryWithResources() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisTryWithResources.java"), expected);
     }
 
     @Test
-    public void testTryWithResourcesOnlyOverlappingFalse() throws Exception {
+    void tryWithResourcesOnlyOverlappingFalse() throws Exception {
         final String[] expected = {
             "44:23: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
             "57:13: " + getCheckMessage(MSG_VARIABLE, "fldCharset", ""),
@@ -372,7 +372,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCatchVariables() throws Exception {
+    void catchVariables() throws Exception {
         final String[] expected = {
             "38:21: " + getCheckMessage(MSG_VARIABLE, "ex", ""),
         };
@@ -381,21 +381,21 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEnumConstant() throws Exception {
+    void enumConstant() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisEnumConstant.java"), expected);
     }
 
     @Test
-    public void testAnnotationInterface() throws Exception {
+    void annotationInterface() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisAnnotationInterface.java"), expected);
     }
 
     @Test
-    public void testFor() throws Exception {
+    void testFor() throws Exception {
         final String[] expected = {
             "22:13: " + getCheckMessage(MSG_VARIABLE, "bottom", ""),
             "30:32: " + getCheckMessage(MSG_VARIABLE, "name", ""),
@@ -405,7 +405,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFinalInstanceVariable() throws Exception {
+    void finalInstanceVariable() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
             "19:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
@@ -415,14 +415,14 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void test() throws Exception {
+    void test() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisCaseGroup.java"), expected);
     }
 
     @Test
-    public void testExtendedMethod() throws Exception {
+    void extendedMethod() throws Exception {
         final String[] expected = {
             "31:9: " + getCheckMessage(MSG_VARIABLE, "EXPR", ""),
         };
@@ -431,7 +431,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsAndCompactCtors() throws Exception {
+    void recordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
             "19:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
@@ -448,7 +448,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordCompactCtors() throws Exception {
+    void recordCompactCtors() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisRecordCompactCtors.java"),
@@ -456,7 +456,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsAsTopLevel() throws Exception {
+    void recordsAsTopLevel() throws Exception {
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
             "18:9: " + getCheckMessage(MSG_METHOD, "method2", ""),
@@ -472,7 +472,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsDefault() throws Exception {
+    void recordsDefault() throws Exception {
         final String[] expected = {
             "26:9: " + getCheckMessage(MSG_VARIABLE, "x", ""),
         };
@@ -482,7 +482,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsWithCheckFields() throws Exception {
+    void recordsWithCheckFields() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRequireThisRecordsWithCheckFields.java"),
@@ -490,7 +490,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordsWithCheckFieldsOverlap() throws Exception {
+    void recordsWithCheckFieldsOverlap() throws Exception {
         final String[] expected = {
             "20:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
             "39:20: " + getCheckMessage(MSG_VARIABLE, "a", ""),
@@ -502,7 +502,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLocalClassesInsideLambdas() throws Exception {
+    void localClassesInsideLambdas() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputRequireThisLocalClassesInsideLambdas.java"),
@@ -516,7 +516,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws an exception.
      */
     @Test
-    public void testUnusedMethodCatch() throws Exception {
+    void unusedMethodCatch() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
@@ -540,7 +540,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws an exception.
      */
     @Test
-    public void testUnusedMethodFor() throws Exception {
+    void unusedMethodFor() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
@@ -560,7 +560,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void testClearState() throws Exception {
+    void clearState() throws Exception {
         final RequireThisCheck check = new RequireThisCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputRequireThisSimple.java")),

@@ -37,7 +37,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testGeneralLogic() throws Exception {
+    void generalLogic() throws Exception {
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -81,7 +81,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testGeneralLogic2() throws Exception {
+    void generalLogic2() throws Exception {
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY, "first", 5, 1),
             "29:9: " + getCheckMessage(MSG_KEY, "allInvariants", 2, 1),
@@ -91,7 +91,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testIfStatements() throws Exception {
+    void ifStatements() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "a", 4, 1),
             "28:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
@@ -108,7 +108,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testDistance() throws Exception {
+    void distance() throws Exception {
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY, "count", 4, 3),
             "231:9: " + getCheckMessage(MSG_KEY, "t", 5, 3),
@@ -125,7 +125,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableRegExp() throws Exception {
+    void variableRegExp() throws Exception {
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
             "56:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -158,7 +158,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testValidateBetweenScopesOption() throws Exception {
+    void validateBetweenScopesOption() throws Exception {
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY, "temp", 2, 1),
@@ -202,7 +202,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testIgnoreFinalOption() throws Exception {
+    void ignoreFinalOption() throws Exception {
         final String[] expected = {
             "42:9: " + getCheckMessage(MSG_KEY_EXT, "a", 2, 1),
             "50:9: " + getCheckMessage(MSG_KEY_EXT, "temp", 2, 1),
@@ -244,7 +244,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testTokensNotNull() {
+    void tokensNotNull() {
         final VariableDeclarationUsageDistanceCheck check =
             new VariableDeclarationUsageDistanceCheck();
         assertWithMessage("Acceptable tokens should not be null")
@@ -259,7 +259,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    void defaultConfiguration() throws Exception {
         final String[] expected = {
             "83:9: " + getCheckMessage(MSG_KEY_EXT, "count", 4, 3),
             "231:9: " + getCheckMessage(MSG_KEY_EXT, "t", 5, 3),
@@ -283,7 +283,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testDefaultConfiguration2() throws Exception {
+    void defaultConfiguration2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -291,7 +291,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testAnonymousClass() throws Exception {
+    void anonymousClass() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_EXT, "prefs", 4, 3),
         };
@@ -302,7 +302,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testLabels() throws Exception {
+    void labels() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY_EXT, "eol", 5, 3),
         };
@@ -311,7 +311,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistanceSwitchExpressions() throws Exception {
+    void variableDeclarationUsageDistanceSwitchExpressions() throws Exception {
 
         final int maxDistance = 1;
         final String[] expected = {
@@ -330,7 +330,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistanceSwitchExpressions2() throws Exception {
+    void variableDeclarationUsageDistanceSwitchExpressions2() throws Exception {
         final int maxDistance = 1;
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY, "i", 2, maxDistance),
@@ -341,7 +341,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testGeneralClass3() throws Exception {
+    void generalClass3() throws Exception {
         final String[] expected = {
             "46:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
         };
@@ -351,7 +351,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testGeneralClass4() throws Exception {
+    void generalClass4() throws Exception {
         final String[] expected = {
             "26:9: " + getCheckMessage(MSG_KEY, "z", 3, 1),
         };
@@ -361,7 +361,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistanceTryResources() throws Exception {
+    void variableDeclarationUsageDistanceTryResources() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY, "a", 2, 1),
             "20:9: " + getCheckMessage(MSG_KEY, "b", 2, 1),
@@ -372,7 +372,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistance4() throws Exception {
+    void variableDeclarationUsageDistance4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -380,7 +380,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistanceScope2() throws Exception {
+    void variableDeclarationUsageDistanceScope2() throws Exception {
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY, "i", 5, 1),
         };
@@ -390,7 +390,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistance1() throws Exception {
+    void variableDeclarationUsageDistance1() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "i", 2, 1),
         };
@@ -400,7 +400,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistanceCloseToBlock() throws Exception {
+    void variableDeclarationUsageDistanceCloseToBlock() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "a", 13, 1),
             "16:9: " + getCheckMessage(MSG_KEY, "b", 13, 1),
@@ -410,7 +410,7 @@ public class VariableDeclarationUsageDistanceCheckTest extends
     }
 
     @Test
-    public void testVariableDeclarationUsageDistancePatternVariables() throws Exception {
+    void variableDeclarationUsageDistancePatternVariables() throws Exception {
         final String[] expected = {
             "35:9: " + getCheckMessage(MSG_KEY, "b", 5, 1),
         };

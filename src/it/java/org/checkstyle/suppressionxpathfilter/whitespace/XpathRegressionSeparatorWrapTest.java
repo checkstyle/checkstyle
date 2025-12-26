@@ -45,7 +45,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testClass() throws Exception {
+    void testClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSeparatorWrapClass.java"));
         final DefaultConfiguration moduleConfig =
@@ -68,7 +68,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testInterface() throws Exception {
+    void testInterface() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSeparatorWrapInterface.java"));
 
@@ -92,7 +92,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMethod() throws Exception {
+    void method() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSeparatorWrapMethod.java"));
 

@@ -40,7 +40,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final MethodCountCheck checkObj = new MethodCountCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -49,7 +49,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    void getAcceptableTokens() {
         final MethodCountCheck methodCountCheckObj =
             new MethodCountCheck();
         final int[] actual = methodCountCheckObj.getAcceptableTokens();
@@ -69,7 +69,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaults() throws Exception {
+    void defaults() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -78,7 +78,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThreesOne() throws Exception {
+    void threesOne() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
@@ -93,7 +93,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThreesTwo() throws Exception {
+    void threesTwo() throws Exception {
 
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
@@ -110,7 +110,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEnum() throws Exception {
+    void testEnum() throws Exception {
 
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
@@ -122,7 +122,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithPackageModifier() throws Exception {
+    void withPackageModifier() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
@@ -133,7 +133,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOnInterfaceDefinitionWithField() throws Exception {
+    void onInterfaceDefinitionWithField() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -142,7 +142,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithInterfaceDefinitionInClass() throws Exception {
+    void withInterfaceDefinitionInClass() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -153,7 +153,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPartialTokens() throws Exception {
+    void partialTokens() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -162,7 +162,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCountMethodToCorrectDefinition() throws Exception {
+    void countMethodToCorrectDefinition() throws Exception {
 
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -173,7 +173,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic() throws Exception {
+    void interfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
@@ -186,7 +186,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodCountRecords() throws Exception {
+    void methodCountRecords() throws Exception {
         final int max = 2;
 
         final String[] expected = {

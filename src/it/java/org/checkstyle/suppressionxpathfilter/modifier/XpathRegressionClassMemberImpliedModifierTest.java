@@ -44,7 +44,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     }
 
     @Test
-    public void testInterface() throws Exception {
+    void testInterface() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathClassMemberImpliedModifierInterface.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionClassMemberImpliedModifierTest extends AbstractXpath
     }
 
     @Test
-    public void testEnum() throws Exception {
+    void testEnum() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathClassMemberImpliedModifierEnum.java"));
 

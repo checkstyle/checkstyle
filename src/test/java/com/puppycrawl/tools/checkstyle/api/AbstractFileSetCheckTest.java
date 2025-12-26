@@ -43,7 +43,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTabWidth() {
+    void tabWidth() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setTabWidth(12345);
         assertWithMessage("expected tab width")
@@ -52,7 +52,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileContents() {
+    void fileContents() {
         final FileContents contents = new FileContents(
                 new FileText(new File("inputAbstractFileSetCheck.tmp"), Collections.emptyList()));
         final DummyFileSetCheck check = new DummyFileSetCheck();
@@ -63,7 +63,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testProcessSequential() throws Exception {
+    void processSequential() throws Exception {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
@@ -92,7 +92,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotProcessed() throws Exception {
+    void notProcessed() throws Exception {
         final ExceptionFileSetCheck check = new ExceptionFileSetCheck();
         check.setFileExtensions("java");
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
@@ -107,7 +107,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testProcessException() throws Exception {
+    void processException() throws Exception {
         final ExceptionFileSetCheck check = new ExceptionFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
@@ -155,7 +155,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetFileExtension() {
+    void getFileExtension() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setFileExtensions("tmp", ".java");
         final String[] expectedExtensions = {".tmp", ".java"};
@@ -169,7 +169,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
      * This javadoc exists only to suppress IntelliJ IDEA inspection.
      */
     @Test
-    public void testSetExtensionThrowsExceptionWhenTheyAreNull() {
+    void setExtensionThrowsExceptionWhenTheyAreNull() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         try {
             check.setFileExtensions((String[]) null);
@@ -184,7 +184,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineColumnLog() throws Exception {
+    void lineColumnLog() throws Exception {
         final ViolationFileSetCheck check = new ViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         final File file = new File(getPath("InputAbstractFileSetLineColumn.java"));
@@ -206,7 +206,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetMessageDispatcher() {
+    void getMessageDispatcher() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         final Checker checker = new Checker();
         check.setMessageDispatcher(checker);
@@ -217,7 +217,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheck() throws Exception {
+    void check() throws Exception {
         final String[] expected = {
             "1:1: Violation.",
         };
@@ -225,7 +225,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiFileFireErrors() throws Exception {
+    void multiFileFireErrors() throws Exception {
         final MultiFileViolationFileSetCheck check = new MultiFileViolationFileSetCheck();
         check.configure(new DefaultConfiguration("filesetcheck"));
         final ViolationDispatcher dispatcher = new ViolationDispatcher();
@@ -267,7 +267,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
      * a test with checks and input file as none of the checks try to modify the fileExtensions.
      */
     @Test
-    public void testCopiedArrayIsReturned() {
+    void copiedArrayIsReturned() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setFileExtensions(".tmp");
         assertWithMessage("Extensions should be copied")

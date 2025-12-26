@@ -31,12 +31,12 @@ public class FinalizersNotUsedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testNoFinalizerBasic() throws Exception {
+    void noFinalizerBasic() throws Exception {
         verifyWithWholeConfig(getPath("InputNoFinalizer.java"));
     }
 
     @Test
-    public void testNoFinalizerExtended() throws Exception {
+    void noFinalizerExtended() throws Exception {
         verifyWithWholeConfig(getPath("InputNoFinalizeExtend.java"));
     }
 

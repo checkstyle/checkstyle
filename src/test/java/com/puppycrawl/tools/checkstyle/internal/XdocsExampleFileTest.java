@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 
-public class XdocsExampleFileTest {
+class XdocsExampleFileTest {
 
     private static final Set<String> COMMON_PROPERTIES = Set.of(
         "severity",
@@ -89,7 +89,7 @@ public class XdocsExampleFileTest {
     );
 
     @Test
-    public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
+    void allCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
             XdocUtil.extractUsedPropertiesFromXdocsExamples();
         final List<String> failures = new ArrayList<>();
@@ -126,7 +126,7 @@ public class XdocsExampleFileTest {
     }
 
     @Test
-    public void testAllExampleFilesHaveCorrespondingTestMethods() throws Exception {
+    void allExampleFilesHaveCorrespondingTestMethods() throws Exception {
         final Path examplesResources = Path.of("src/xdocs-examples/resources");
         final Path examplesNonCompilable = Path.of("src/xdocs-examples/resources-noncompilable");
         final Path examplesTestRoot = Path.of(

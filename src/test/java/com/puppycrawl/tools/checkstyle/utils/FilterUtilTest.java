@@ -34,14 +34,14 @@ public class FilterUtilTest {
     public File temporaryFolder;
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(FilterUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testExistingFile() throws Exception {
+    void existingFile() throws Exception {
         final String uniqueFileName = "junit_" + UUID.randomUUID() + ".java";
         final File file = new File(temporaryFolder, uniqueFileName);
         file.createNewFile();
@@ -51,7 +51,7 @@ public class FilterUtilTest {
     }
 
     @Test
-    public void testNonExistentFile() {
+    void nonExistentFile() {
         assertWithMessage("Suppression file does not exist")
                 .that(FilterUtil.isFileExists("non-existent.xml"))
                 .isFalse();

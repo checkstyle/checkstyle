@@ -38,7 +38,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClass() throws Exception {
+    void methodsOnClass() throws Exception {
         final String[] expected = {
             "51:9: " + getCheckMessage(MSG_KEY, "static"),
             "58:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -53,7 +53,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    void getRequiredTokens() {
         final ClassMemberImpliedModifierCheck check = new ClassMemberImpliedModifierCheck();
         final int[] actual = check.getRequiredTokens();
         final int[] expected = {
@@ -67,7 +67,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClassNoImpliedStaticEnum() throws Exception {
+    void methodsOnClassNoImpliedStaticEnum() throws Exception {
         final String[] expected = {
             "59:9: " + getCheckMessage(MSG_KEY, "static"),
             "77:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -79,7 +79,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClassNoImpliedStaticInterface() throws Exception {
+    void methodsOnClassNoImpliedStaticInterface() throws Exception {
         final String[] expected = {
             "52:9: " + getCheckMessage(MSG_KEY, "static"),
             "63:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -91,7 +91,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnClassNoViolationsChecked() throws Exception {
+    void methodsOnClassNoViolationsChecked() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
@@ -99,7 +99,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testMethodsOnInterface() throws Exception {
+    void methodsOnInterface() throws Exception {
         final String[] expected = {
             "60:13: " + getCheckMessage(MSG_KEY, "static"),
             "67:13: " + getCheckMessage(MSG_KEY, "static"),
@@ -114,7 +114,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testClassMemberImpliedModifierRecords() throws Exception {
+    void classMemberImpliedModifierRecords() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
             "20:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -130,7 +130,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testClassMemberImpliedModifierNoViolationRecords() throws Exception {
+    void classMemberImpliedModifierNoViolationRecords() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "static"),
             "20:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -144,7 +144,7 @@ public class ClassMemberImpliedModifierCheckTest
     }
 
     @Test
-    public void testIllegalState() {
+    void illegalState() {
         final DetailAstImpl init = new DetailAstImpl();
         init.setType(TokenTypes.STATIC_INIT);
         final DetailAstImpl objBlock = new DetailAstImpl();

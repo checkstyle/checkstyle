@@ -44,7 +44,7 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavaNCSSOne.java"));
 
@@ -74,7 +74,7 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavaNCSSTwo.java"));
 
@@ -104,7 +104,7 @@ public class XpathRegressionJavaNCSSTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    void three() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavaNCSSThree.java"));
 

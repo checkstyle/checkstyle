@@ -42,7 +42,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testDefault() throws Exception {
+    void testDefault() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMethodCountDefault.java")
         );
@@ -73,7 +73,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testPrivate() throws Exception {
+    void testPrivate() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMethodCountPrivate.java")
         );
@@ -104,7 +104,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testPackage() throws Exception {
+    void testPackage() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMethodCountDefault.java")
         );
@@ -135,7 +135,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testProtected() throws Exception {
+    void testProtected() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMethodCountProtected.java")
         );
@@ -166,7 +166,7 @@ public class XpathRegressionMethodCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testPublic() throws Exception {
+    void testPublic() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathMethodCountPublic.java")
         );

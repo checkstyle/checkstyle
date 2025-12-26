@@ -44,7 +44,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionTwo.java"));
 
@@ -92,7 +92,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testThree() throws Exception {
+    void three() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionThree.java"));
 
@@ -116,7 +116,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testFour() throws Exception {
+    void four() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionFour.java"));
 
@@ -140,7 +140,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testFive() throws Exception {
+    void five() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionFive.java"));
 
@@ -165,7 +165,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
     }
 
     @Test
-    public void testSix() throws Exception {
+    void six() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInvalidJavadocPositionSix.java"));
 

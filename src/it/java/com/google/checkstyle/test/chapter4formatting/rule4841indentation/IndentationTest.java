@@ -31,171 +31,171 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
-    public void testCorrectClass() throws Exception {
+    void correctClass() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectClass.java"));
     }
 
     @Test
-    public void testCorrectField() throws Exception {
+    void correctField() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectFieldAndParameter.java"));
     }
 
     @Test
-    public void testCorrectFor() throws Exception {
+    void correctFor() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectForAndParameter.java"));
     }
 
     @Test
-    public void testCorrectIf() throws Exception {
+    void correctIf() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectIfAndParameter.java"));
     }
 
     @Test
-    public void testCorrectNewKeyword() throws Exception {
+    void correctNewKeyword() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectNewChildren.java"));
     }
 
     @Test
-    public void testCorrect() throws Exception {
+    void correct() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrect.java"));
     }
 
     @Test
-    public void testCorrectReturn() throws Exception {
+    void correctReturn() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectReturnAndParameter.java"));
     }
 
     @Test
-    public void testCorrectWhile() throws Exception {
+    void correctWhile() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectWhileDoWhileAndParameter.java"));
     }
 
     @Test
-    public void testCorrectChained() throws Exception {
+    void correctChained() throws Exception {
         verifyWithWholeConfig(getPath("InputClassWithChainedMethodsCorrect.java"));
     }
 
     @Test
-    public void testWarnChained() throws Exception {
+    void warnChained() throws Exception {
         verifyWithWholeConfig(getPath("InputClassWithChainedMethods.java"));
     }
 
     @Test
-    public void testWarnChainedFormatted() throws Exception {
+    void warnChainedFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedClassWithChainedMethods.java"));
     }
 
     @Test
-    public void testCorrectAnnotationArrayInit() throws Exception {
+    void correctAnnotationArrayInit() throws Exception {
         verifyWithWholeConfig(getPath("InputIndentationCorrectAnnotationArrayInit.java"));
     }
 
     @Test
-    public void testFastMatcher() throws Exception {
+    void fastMatcher() throws Exception {
         verifyWithWholeConfig(getPath("InputFastMatcher.java"));
     }
 
     @Test
-    public void testSwitchOnTheStartOfTheLine() throws Exception {
+    void switchOnTheStartOfTheLine() throws Exception {
         verifyWithWholeConfig(getPath("InputSwitchOnStartOfTheLine.java"));
     }
 
     @Test
-    public void testFormattedSwitchOnTheStartOfTheLine() throws Exception {
+    void formattedSwitchOnTheStartOfTheLine() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedSwitchOnStartOfTheLine.java"));
     }
 
     @Test
-    public void testSingleSwitchStatementWithoutCurly() throws Exception {
+    void singleSwitchStatementWithoutCurly() throws Exception {
         verifyWithWholeConfig(getPath("InputSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
-    public void testFormattedSingleSwitchStatementWithoutCurly() throws Exception {
+    void formattedSingleSwitchStatementWithoutCurly() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedSingleSwitchStatementWithoutCurly.java"));
     }
 
     @Test
-    public void testSwitchWrappingIndentation() throws Exception {
+    void switchWrappingIndentation() throws Exception {
         verifyWithWholeConfig(getPath("InputSwitchWrappingIndentation.java"));
     }
 
     @Test
-    public void testFormattedSwitchWrappingIndentation() throws Exception {
+    void formattedSwitchWrappingIndentation() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedSwitchWrappingIndentation.java"));
     }
 
     @Test
-    public void testMultilineParameters() throws Exception {
+    void multilineParameters() throws Exception {
         verifyWithWholeConfig(getPath("InputCatchParametersOnNewLine.java"));
     }
 
     @Test
-    public void testFormattedMultilineParameters() throws Exception {
+    void formattedMultilineParameters() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedCatchParametersOnNewLine.java"));
     }
 
     @Test
-    public void testNewKeywordChildren() throws Exception {
+    void newKeywordChildren() throws Exception {
         verifyWithWholeConfig(getPath("InputNewKeywordChildren.java"));
     }
 
     @Test
-    public void testFormattedNewKeywordChildren() throws Exception {
+    void formattedNewKeywordChildren() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNewKeywordChildren.java"));
     }
 
     @Test
-    public void testLambdaChild() throws Exception {
+    void lambdaChild() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaChild.java"));
     }
 
     @Test
-    public void testFormattedLambdaChild() throws Exception {
+    void formattedLambdaChild() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedLambdaChild.java"));
     }
 
     @Test
-    public void testLambdaAndChildOnTheSameLine() throws Exception {
+    void lambdaAndChildOnTheSameLine() throws Exception {
         verifyWithWholeConfig(getPath("InputLambdaAndChildOnTheSameLine.java"));
     }
 
     @Test
-    public void testFormattedLambdaAndChildOnTheSameLine() throws Exception {
+    void formattedLambdaAndChildOnTheSameLine() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedLambdaAndChildOnTheSameLine.java"));
     }
 
     @Test
-    public void testAnnotationArrayInitMultiline1() throws Exception {
+    void annotationArrayInitMultiline1() throws Exception {
         verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultiline.java"));
     }
 
     @Test
-    public void testFormattedAnnotationArrayInitMultiline1() throws Exception {
+    void formattedAnnotationArrayInitMultiline1() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedAnnotationArrayInitMultiline.java"));
     }
 
     @Test
-    public void testAnnotationArrayInitMultiline2() throws Exception {
+    void annotationArrayInitMultiline2() throws Exception {
         verifyWithWholeConfig(getPath("InputAnnotationArrayInitMultiline2.java"));
     }
 
     @Test
-    public void testFormattedAnnotationArrayInitMultiline2() throws Exception {
+    void formattedAnnotationArrayInitMultiline2() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedAnnotationArrayInitMultiline2.java"));
     }
 
     @Test
-    public void testLineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
+    void lineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
         verifyWithWholeConfig(getPath("InputLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
     }
 
     @Test
-    public void testFormattedLineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
+    void formattedLineBreakAfterLeftCurlyOfBlockInSwitch() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedLineBreakAfterLeftCurlyOfBlockInSwitch.java"));
     }

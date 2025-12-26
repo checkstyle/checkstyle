@@ -43,7 +43,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     }
 
     @Test
-    public void testCatchBlock() throws Exception {
+    void catchBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathBooleanExpressionComplexityCatchBlock.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     }
 
     @Test
-    public void testClassFields() throws Exception {
+    void classFields() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathBooleanExpressionComplexityClassFields.java"));
 
@@ -92,7 +92,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
     }
 
     @Test
-    public void testConditionals() throws Exception {
+    void conditionals() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathBooleanExpressionComplexityConditionals.java"));
 

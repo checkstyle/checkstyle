@@ -31,7 +31,7 @@ public class NoCstyleArrayDeclarationsTest extends AbstractGoogleModuleTestSuppo
     }
 
     @Test
-    public void testArrayTypeStyle() throws Exception {
+    void arrayTypeStyle() throws Exception {
         verifyWithWholeConfig(getPath("InputNoCstyleArrays.java"));
     }
 

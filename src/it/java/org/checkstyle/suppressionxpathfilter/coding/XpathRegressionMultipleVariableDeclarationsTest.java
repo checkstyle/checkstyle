@@ -44,7 +44,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
     }
 
     @Test
-    public void testCommaSeparator() throws Exception {
+    void commaSeparator() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMultipleVariableDeclarationsCommaSeparator.java"));
 
@@ -88,7 +88,7 @@ public class XpathRegressionMultipleVariableDeclarationsTest extends AbstractXpa
     }
 
     @Test
-    public void testMultipleVariableDeclarations() throws Exception {
+    void multipleVariableDeclarations() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathMultipleVariableDeclarations.java"));
 

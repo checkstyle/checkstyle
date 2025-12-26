@@ -42,7 +42,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testVoid() throws Exception {
+    void testVoid() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountVoid.java")
         );
@@ -74,7 +74,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testCustomMaxForVoid() throws Exception {
+    void customMaxForVoid() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountVoid.java")
         );
@@ -108,7 +108,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testNonVoid() throws Exception {
+    void nonVoid() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountNonVoid.java")
         );
@@ -140,7 +140,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testCustomMax() throws Exception {
+    void customMax() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountNonVoid.java")
         );
@@ -174,7 +174,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testCtor() throws Exception {
+    void ctor() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountCtor.java")
         );
@@ -204,7 +204,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testLambda() throws Exception {
+    void lambda() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathReturnCountLambda.java")
         );

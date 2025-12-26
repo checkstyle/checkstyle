@@ -26,10 +26,10 @@ import org.junit.jupiter.api.Test;
 
 import net.sf.saxon.om.NodeInfo;
 
-public class DescendantIteratorTest {
+class DescendantIteratorTest {
 
     @Test
-    public void testIncludeSelf() {
+    void includeSelf() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode,
@@ -65,7 +65,7 @@ public class DescendantIteratorTest {
     }
 
     @Test
-    public void testWithoutSelf() {
+    void withoutSelf() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode,
@@ -95,7 +95,7 @@ public class DescendantIteratorTest {
     }
 
     @Test
-    public void testWithNull() {
+    void withNull() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode, null)) {

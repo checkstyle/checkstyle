@@ -45,7 +45,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testOne() throws Exception {
+    void one() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathIllegalIdentifierNameOne.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testTwo() throws Exception {
+    void two() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathIllegalIdentifierNameTwo.java"));
 
