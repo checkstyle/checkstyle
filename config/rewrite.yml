@@ -12,7 +12,6 @@ recipeList:
   - org.openrewrite.java.migrate.UpgradeToJava17
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
-  - org.openrewrite.maven.BestPractices
   - org.openrewrite.maven.UpdateMavenWrapper
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
   - org.openrewrite.staticanalysis.EqualsAvoidsNull
