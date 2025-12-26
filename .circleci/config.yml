@@ -322,16 +322,18 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
 
-  openrewrite:
+  rewrite:
+    name: "Rewrite 🦢"
     jobs:
       - validate-with-maven-script:
-          name: "openrewrite-recipes"
+          name: "Rewrite Validation 🛠️"
           image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes"
+          command: "./.ci/validation.sh rewrite"
 
   spotless:
+    name: "Spotless ✨"
     jobs:
       - validate-with-maven-script:
-          name: spotless
+          name: "Spotless Formatting 🧹"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh spotless"
