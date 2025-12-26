@@ -109,3 +109,4 @@ public class XpathRegressionUnnecessaryNullCheckWithInstanceOfTest
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
     }
 }
+

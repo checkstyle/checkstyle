@@ -97,3 +97,4 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
                 expectedXpathQueries);
     }
 }
+

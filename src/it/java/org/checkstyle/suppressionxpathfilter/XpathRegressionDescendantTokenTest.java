@@ -125,3 +125,4 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expected, expectedXpathQueries);
     }
 }
+
