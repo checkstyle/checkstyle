@@ -389,10 +389,10 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "58:13: " + getCheckMessage(MSG_EXPR),
             "62:13: " + getCheckMessage(MSG_EXPR),
             "65:13: " + getCheckMessage(MSG_EXPR),
-            "76:14: " + getCheckMessage(MSG_EXPR),
-            "82:31: " + getCheckMessage(MSG_EXPR),
-            "88:27: " + getCheckMessage(MSG_EXPR),
-            "94:41: " + getCheckMessage(MSG_EXPR),
+            "74:14: " + getCheckMessage(MSG_EXPR),
+            "78:31: " + getCheckMessage(MSG_EXPR),
+            "82:27: " + getCheckMessage(MSG_EXPR),
+            "86:41: " + getCheckMessage(MSG_EXPR),
         };
         verifyWithInlineConfigParser(
             getPath("InputUnnecessaryParenthesesFieldMethodAccess.java"), expected);
