@@ -642,6 +642,9 @@
               <exclusion>**resources-noncompilable**</exclusion>
               <exclusion>**src/it/resources**</exclusion>
               <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**.png</exclusion>
+              <exclusion>**.template</exclusion>
+              <exclusion>**.jp*g</exclusion>
               <exclusion>**xdocs-examples**</exclusion>
             </exclusions>
             <plainTextMasks>
