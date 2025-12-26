@@ -47,7 +47,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -55,12 +55,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -71,7 +71,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptable() {
+    public void testGetAcceptable() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -79,12 +79,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -95,7 +95,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void commentNodes() {
+    public void testCommentNodes() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -103,12 +103,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -119,7 +119,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void tokenNames() {
+    public void testTokenNames() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -127,12 +127,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -144,7 +144,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void visitToken() {
+    public void testVisitToken() {
         final VisitCounterCheck check = new VisitCounterCheck();
         // Eventually it will become clear abstract method
         check.visitToken(null);
@@ -155,7 +155,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getLine() throws Exception {
+    public void testGetLine() throws Exception {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -163,12 +163,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -182,7 +182,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getLineCodePoints() throws Exception {
+    public void testGetLineCodePoints() throws Exception {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -190,12 +190,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -211,7 +211,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getTabWidth() {
+    public void testGetTabWidth() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -219,12 +219,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -237,7 +237,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void fileContents() {
+    public void testFileContents() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -245,12 +245,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return getDefaultTokens();
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return getDefaultTokens();
             }
         };
@@ -268,7 +268,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
@@ -279,12 +279,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
 
             @Override
-            int[] getAcceptableTokens() {
+            public int[] getAcceptableTokens() {
                 return acceptableTokens;
             }
 
             @Override
-            int[] getRequiredTokens() {
+            public int[] getRequiredTokens() {
                 return requiredTokens;
             }
         };
@@ -301,7 +301,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void clearViolations() {
+    public void testClearViolations() {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
@@ -315,7 +315,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void lineColumnLog() throws Exception {
+    public void testLineColumnLog() throws Exception {
         final ViolationCheck check = new ViolationCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
@@ -351,7 +351,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void astLog() throws Exception {
+    public void testAstLog() throws Exception {
         final ViolationAstCheck check = new ViolationAstCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
@@ -381,7 +381,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    void check() throws Exception {
+    public void testCheck() throws Exception {
         final String[] expected = {
             "6:1: Violation.",
         };
@@ -394,7 +394,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
      * a test with checks and input file as none of the checks try to modify the tokens.
      */
     @Test
-    void tokensAreUnmodifiable() {
+    public void testTokensAreUnmodifiable() {
         final DummyAbstractCheck check = new DummyAbstractCheck();
         final Set<String> tokenNameSet = check.getTokenNames();
         final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,

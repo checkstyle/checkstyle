@@ -641,6 +641,7 @@
               <exclusion>**.ci-temp**</exclusion>
               <exclusion>**CheckstyleAntTask.java</exclusion>
               <exclusion>**DesignForExtensionCheck.java</exclusion>
+              <exclusion>**AbstractCheckTest.java</exclusion>
               <exclusion>**HexLiteralCaseCheck.java</exclusion>
               <exclusion>**NonEmptyAtclauseDescriptionCheckTest.java</exclusion>
               <exclusion>**resources-noncompilable**</exclusion>
