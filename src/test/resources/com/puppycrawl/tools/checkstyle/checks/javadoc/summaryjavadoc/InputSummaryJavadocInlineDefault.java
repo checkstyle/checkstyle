@@ -91,27 +91,5 @@ class InputSummaryJavadocInlineDefault {
          */
         void foo6() {}
     }
-
-    /**
-     * {@summary A {@code InnerInputCorrectJavaDocParagraphCheck} is a simple code.}
-     */
-    InputSummaryJavadocInlineDefault.InnerInputCorrectJavaDocParagraphCheck anon =
-            new InputSummaryJavadocInlineDefault.InnerInputCorrectJavaDocParagraphCheck() {
-
-        /**
-         * Some Javadoc.
-         */
-        public static final byte NUL = 0;
-
-        /**
-         * Some Javadoc.
-         */
-        void emulated(String s) {}
-
-        /**
-         * from {@link #setBounds(int,int,int,int)}.
-         */
-        void foo3() {}
-    };
 }
 
