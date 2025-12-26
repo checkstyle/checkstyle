@@ -99,6 +99,19 @@ class Example1 extends ParentClass1 {
   public static void test4() {
 
   }
+
+  // No javadoc, no @Override needed
+  public void test5() {
+
+  }
+
+  // Javadoc present but no {@inheritDoc}, no @Override needed
+  /**
+   * This is a sample javadoc.
+   */
+  public void test6() {
+
+  }
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
