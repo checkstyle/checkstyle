@@ -21,6 +21,15 @@
         You can find information about development environment preparation here:
         <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
         Prepare development environment in Ubuntu</a>.<br/>
+      </p>
+      <p>
+        <b>Note:</b> JDK 25 is currently not supported. Some test dependencies
+        (cacio-tta, Mockito/ByteBuddy) are incompatible with JDK 25.
+        Please use JDK 21 (LTS) for development until this issue is resolved.
+        See <a href="https://github.com/checkstyle/checkstyle/issues/18361">issue #18361</a>
+        for more details.
+      </p>
+      <p>
         2. Fork Checkstyle upstream project. As it is described
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
         3. Clone your forked repository to your computer:
