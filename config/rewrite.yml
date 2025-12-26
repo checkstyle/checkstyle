@@ -11,7 +11,7 @@ recipeList:
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.staticanalysis.NoDoubleBraceInitialization
   - org.openrewrite.java.testing.junit5.CleanupAssertions
-  # - org.openrewrite.java.testing.junit.JupiterBestPractices
+  # - org.openrewrite.java.testing.junit.JupiterBestPractices # incompatible
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.RemoveTrailingWhitespace
