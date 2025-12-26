@@ -32,6 +32,7 @@ public class Example4 {
         this is a multi-line message
         """);
 
+    // violation 2 lines below 'Text is indented less than opening quotes indentation'
     return
         """
     this is sample text
