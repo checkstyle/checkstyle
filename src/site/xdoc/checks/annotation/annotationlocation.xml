@@ -114,6 +114,18 @@ public String getNameIfPresent() { ... }
                     RECORD_DEF</a>
                 , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                     COMPACT_CTOR_DEF</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+                    TYPECAST</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPE_ARGUMENT">
+                    TYPE_ARGUMENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                    DOT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                    LITERAL_NEW</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_THROWS">
+                    LITERAL_THROWS</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPLEMENTS_CLAUSE">
+                    IMPLEMENTS_CLAUSE</a>
                   .
               </td>
               <td>
@@ -277,6 +289,133 @@ class Example4 {
   @SuppressWarnings("deprecation") public int foo() { return 1; }
   // violation above, 'Annotation 'SuppressWarnings' should be alone on line.'
   @NotNull @Mock DataLoader loader2;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check to validate annotations on type arguments:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="TYPE_ARGUMENT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example5 {
+  List&lt;@TypeArgAnnotation1 String&gt; names; // ok
+  List&lt;@TypeArgAnnotation1 @TypeArgAnnotation2 String&gt; data;
+  // violation above, 'Annotation 'TypeArgAnnotation2' should be alone on line.'
+  Map&lt;@TypeArgAnnotation1 String, @TypeArgAnnotation1 Integer&gt; map; // ok
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example6-config">
+          To configure the check to validate annotations on typecasts:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="TYPECAST"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example6-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example6 {
+  void method(Object obj) {
+    String s1 = (@TypeCastAnnotation1 String) obj; // ok
+    String s2 = (@TypeCastAnnotation1 @TypeCastAnnotation2 String) obj;
+    // violation above, 'Annotation 'TypeCastAnnotation2' should be alone on line.'
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the check to validate annotations on constructor invocations:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="LITERAL_NEW"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example7 {
+  void method() {
+    String[] arr1 = new @NewObjectAnnotation1 String[10]; // ok
+    String[] arr2 = new @NewObjectAnnotation1 @NewObjectAnnotation2 String[10];
+    // violation above, 'Annotation 'NewObjectAnnotation2' should be alone on line.'
+    Object obj = new @NewObjectAnnotation1 Object(); // ok
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-config">
+          To configure the check to validate annotations on exception types in throws clause:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="LITERAL_THROWS"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example8-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example8 {
+  void method1() throws @ThrowsAnnotation1 IOException { } // ok
+  void method2() throws @ThrowsAnnotation1 @ThrowsAnnotation2 IOException { }
+  // violation above, 'Annotation 'ThrowsAnnotation2' should be alone on line.'
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-config">
+          To configure the check to validate annotations on interface types in implements clause:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="IMPLEMENTS_CLAUSE"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example9-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example9 implements @ImplementsAnnotation1 Serializable { } // ok
+class Example9a implements @ImplementsAnnotation1 @ImplementsAnnotation2
+        Serializable { }
+// violation above, 'Annotation 'ImplementsAnnotation2' should be alone on line.'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example10-config">
+          To configure the check to validate annotations on qualified types:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="AnnotationLocation"&gt;
+      &lt;property name="tokens" value="DOT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example10-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example10 {
+  void method() {
+    java.lang.@DotAnnotation1 String s; // ok
+    java.lang.@DotAnnotation1 @DotAnnotation2 String s2;
+    // violation above, 'Annotation 'DotAnnotation2' should be alone on line.'
+  }
 }
 </code></pre></div>
       </subsection>
