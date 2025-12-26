@@ -178,6 +178,7 @@
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java"/>
           <exclude name="**/InputTreeWalkerSkipParsingExceptionConfigSeverityIgnore.java"/>
           <exclude name="**/InputDefaultLoggerTestException.java"/>
+          <exclude name="**/InputTreeWalkerSkipParsingExceptionSeverityError.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
