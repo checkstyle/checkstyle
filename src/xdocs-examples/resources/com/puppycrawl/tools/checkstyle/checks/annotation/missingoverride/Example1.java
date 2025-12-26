@@ -46,8 +46,8 @@ class Example1 extends ParentClass1 {
 
   // Javadoc present but no {@inheritDoc}, no @Override needed
   /**
-   * This is a sample javadoc.
-   */
+  * This is a sample javadoc.
+  */
   public void test6() {
   }
 }
