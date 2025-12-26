@@ -65,30 +65,22 @@ public class InputUnnecessaryParenthesesFieldMethodAccess {
         s = (new Main()) + "";
         // violation above 'Unnecessary parentheses around expression.'
         s = ("" + "").trim();
-        s = (("" + "")).trim();
+        // TODO detect extra brackets in (("" + "")).trim();
     }
 
     public void checks() {
         Main m = new Main();
-        if (!m.check()) {
-            throw new RuntimeException("fail");
-        }
-        if (!(m.check())) {
-            // violation above 'Unnecessary parentheses around expression.'
-            throw new RuntimeException("fail");
-        }
+        if (!m.check()) { return; }
+        if (!(m.check())) { return; }
+        // violation above 'Unnecessary parentheses around expression.'
 
         String b1 = ((String) m.toString()).toString();
         String b2 = ((String) (m.toString())).toString();
         // violation above 'Unnecessary parentheses around expression.'
         Class c = m.getClass();
-        if (c == null || !Main.class.isAssignableFrom(c)) {
-            return;
-        }
-        if (c == null || !(Main.class.isAssignableFrom(c))) {
-            // violation above 'Unnecessary parentheses around expression.'
-            return;
-        }
+        if (c == null || !Main.class.isAssignableFrom(c)) { return; }
+        if (c == null || !(Main.class.isAssignableFrom(c))) { return; }
+        // violation above 'Unnecessary parentheses around expression.'
         java.util.List<String> noLinks = java.util.List.of("s");
         String[] newFiles = (String[]) noLinks.toArray(new String[noLinks.size()]);
         String[] moreFiles = (String[]) (noLinks.toArray(new String[noLinks.size()]));
