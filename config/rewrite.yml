@@ -22,7 +22,6 @@ recipeList:
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
   - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
-  - org.openrewrite.staticanalysis.ExplicitLambdaArgumentTypes
   - org.openrewrite.staticanalysis.JavaApiBestPractices
   - org.openrewrite.staticanalysis.LowercasePackage
   - org.openrewrite.staticanalysis.MissingOverrideAnnotation
