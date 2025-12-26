@@ -9,7 +9,7 @@ recipeList:
 #      configurationPath: "config/checkstyle-checks.xml"
 #      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.maven.UpdateMavenWrapper
+  - org.openrewrite.maven.UpdateMavenWrapper # fixme: remove skipMavenParsing
   - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
