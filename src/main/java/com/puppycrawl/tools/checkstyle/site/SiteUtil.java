@@ -1334,8 +1334,8 @@ public final class SiteUtil {
         boolean isInHrefAttribute = false;
         final StringBuilder description = new StringBuilder(128);
         final List<DetailNode> descriptionNodes = getFirstJavadocParagraphNodes(javadoc);
-        DetailNode node = descriptionNodes.get(0);
-        final DetailNode endNode = descriptionNodes.get(descriptionNodes.size() - 1);
+        DetailNode node = descriptionNodes.getFirst();
+        final DetailNode endNode = descriptionNodes.getLast();
 
         while (node != null) {
             if (node.getType() == JavadocCommentsTokenTypes.TAG_ATTR_NAME
@@ -1414,8 +1414,8 @@ public final class SiteUtil {
             result = "";
         }
         else {
-            final DetailNode startNode = firstParagraphNodes.get(0);
-            final DetailNode endNode = firstParagraphNodes.get(firstParagraphNodes.size() - 1);
+            final DetailNode startNode = firstParagraphNodes.getFirst();
+            final DetailNode endNode = firstParagraphNodes.getLast();
             result = JavadocMetadataScraperUtil.constructSubTreeText(startNode, endNode);
         }
         return result;

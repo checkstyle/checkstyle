@@ -442,7 +442,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *        first import group of file.
      */
     private String getFirstGroup() {
-        final ImportDetails firstImport = importToGroupList.get(0);
+        final ImportDetails firstImport = importToGroupList.getFirst();
         return getImportGroup(firstImport.staticImport(),
                 firstImport.importFullPath());
     }

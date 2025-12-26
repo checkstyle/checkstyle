@@ -66,7 +66,7 @@ class TagParser {
      *         left to return.
      */
     public HtmlTag nextTag() {
-        return tags.remove(0);
+        return tags.removeFirst();
     }
 
     /**

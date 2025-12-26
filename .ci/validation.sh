@@ -1373,7 +1373,7 @@ openrewrite-recipes)
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
-  mvn -e --no-transfer-progress clean install -DskipTests
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
 
   cd "$PROJECT_ROOT"
 

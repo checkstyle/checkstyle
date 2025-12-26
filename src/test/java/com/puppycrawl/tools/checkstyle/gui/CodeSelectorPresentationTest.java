@@ -67,7 +67,7 @@ public class CodeSelectorPresentationTest extends AbstractPathTestSupport {
     private static List<Integer> convertLinesToPosition(List<Integer> systemLinesToPosition) {
         final List<Integer> convertedLinesToPosition = new ArrayList<>();
         final int lineSeparationCorrection = System.lineSeparator().length() - 1;
-        convertedLinesToPosition.add(0, systemLinesToPosition.get(0));
+        convertedLinesToPosition.addFirst(systemLinesToPosition.getFirst());
         for (int i = 1; i < systemLinesToPosition.size(); i++) {
             convertedLinesToPosition.add(i,
                     systemLinesToPosition.get(i) - lineSeparationCorrection * (i - 1));

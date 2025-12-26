@@ -435,7 +435,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         boolean result = true;
         // Check if it contains {@inheritDoc} tag
         if (tags.size() == 1
-                && tags.get(0).isInheritDocTag()) {
+                && tags.getFirst().isInheritDocTag()) {
             // Invalid if private, a constructor, or a static method
             if (!JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
                 log(ast, MSG_INVALID_INHERIT_DOC);

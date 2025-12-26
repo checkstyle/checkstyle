@@ -134,8 +134,8 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Wrong violations count")
                 .that(violations)
                 .hasSize(1);
-        final Violation violation = violations.iterator().next();
-        final String retrievedMessage = violations.iterator().next().getKey();
+        final Violation violation = violations.getFirst();
+        final String retrievedMessage = violations.getFirst().getKey();
         assertWithMessage("violation key is not valid")
                 .that(retrievedMessage)
                 .isEqualTo("unable.open.cause");
