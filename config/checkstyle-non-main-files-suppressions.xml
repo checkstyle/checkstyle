@@ -228,6 +228,8 @@
 
   <!-- no properties in module by design -->
   <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]whitespace[\\/]arraybracketnowhitespace.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]unnecessarynullcheckwithinstanceof.xml.template"/>
