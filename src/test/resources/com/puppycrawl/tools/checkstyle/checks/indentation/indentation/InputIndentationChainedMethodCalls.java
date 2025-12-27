@@ -14,6 +14,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;     //indent:0 exp:0
 
+import java.util.List;                                                      //indent:0 exp:0
+import java.util.stream.Stream;                                             //indent:0 exp:0
+
 class InputIndentationChainedMethodCalls {                                  //indent:0 exp:0
 
   public InputIndentationChainedMethodCalls(Object... params) {             //indent:2 exp:2
@@ -43,5 +46,29 @@ class InputIndentationChainedMethodCalls {                                  //in
         .getInstance()                                                      //indent:8 exp:8
         .doNothing("nothing")                                               //indent:8 exp:8
         .length();                                                          //indent:8 exp:8
+  }                                                                         //indent:2 exp:2
+
+  public static void testListOfStreamPattern() {                            //indent:2 exp:2
+    List.of("foo").stream()                                                 //indent:4 exp:4
+        .findFirst()                                                        //indent:8 exp:8
+        .ifPresentOrElse(                                                   //indent:8 exp:8
+          System.out::println,                                              //indent:10 exp:10
+          () -> {                                                           //indent:10 exp:10
+            throw new IllegalStateException();                              //indent:12 exp:12
+          }                                                                 //indent:10 exp:10
+        );                                                                  //indent:8 exp:8
+
+    List.of("a", "b", "c").stream()                                         //indent:4 exp:4
+        .filter(s -> s.length() > 1)                                        //indent:8 exp:8
+        .forEach(System.out::println);                                      //indent:8 exp:8
+
+    Stream.of("foo")                                                        //indent:4 exp:4
+        .findFirst()                                                        //indent:8 exp:8
+        .ifPresentOrElse(                                                   //indent:8 exp:8
+          System.out::println,                                              //indent:10 exp:10
+          () -> {                                                           //indent:10 exp:10
+            throw new IllegalStateException();                              //indent:12 exp:12
+          }                                                                 //indent:10 exp:10
+        );                                                                  //indent:8 exp:8
   }                                                                         //indent:2 exp:2
 }                                                                           //indent:0 exp:0
