@@ -56,6 +56,7 @@ arget
 Arial
 arity
 Arquillian
+arraybracketnowhitespace
 arraycopy
 arraytrailingcomma
 arraytypestyle
@@ -106,6 +107,7 @@ basedir
 basefont
 baz
 bc
+Bcom
 bdc
 bdd
 bdo
@@ -154,6 +156,7 @@ casesensitive
 catchparametername
 cba
 cbeaff
+ccom
 CComments
 cdata
 cde
@@ -225,6 +228,7 @@ configurationloader
 Connell's
 constantname
 constructorsdeclarationgrouping
+Contentsa
 Contextualizable
 contextualization
 contextualized
@@ -249,6 +253,7 @@ ctx
 CTYPE
 customimportorder
 CVS
+CX
 cyclomatic
 cyclomaticcomplexity
 cygpath
@@ -269,6 +274,7 @@ davidwalsh
 DBFF
 Dcheckstyle
 dcm
+Dcom
 Dconfig
 Dconnection
 ddd
@@ -350,6 +356,7 @@ Dubinin
 Duser
 dv
 Dversion
+Dw
 Dxml
 eb
 EBFF
@@ -357,6 +364,7 @@ EBNF
 ecj
 eclemma
 eclipsecommunityawards
+Ecom
 Edad
 edb
 ededed
@@ -420,7 +428,7 @@ Fchecks
 Fcheckstyle
 fchurn
 Fcoding
-Fcom
+fcom
 fd
 FDCF
 Fdesign
@@ -537,6 +545,7 @@ guieffect
 gwt
 gx
 gz
+Gzi
 hadoop
 hamcrest
 Haml
@@ -547,6 +556,7 @@ HASHTAG
 hazelcast
 hbase
 hcoles
+Hcom
 Headerjava
 Hejl
 HEXCHARS
@@ -555,6 +565,7 @@ hh
 hiddenfield
 hideutilityclassconstructor
 hipparchus
+Hj
 hne
 homepage
 horizontalwhitespace
@@ -577,6 +588,7 @@ hz
 iae
 icm
 ico
+Icom
 icu
 identifiernames
 Idref
@@ -687,6 +699,7 @@ jb
 JBoss
 JButton
 JCheck
+Jcom
 JCombo
 JComponent
 jcp
@@ -758,6 +771,7 @@ Kansara
 kazgroup
 kbd
 kclee
+Kcom
 KDoc
 keyname
 keyscan
@@ -769,6 +783,7 @@ lambdabodylength
 lambdaparametername
 LBRACE
 LBRACK
+Lcom
 lcurly
 Leanback
 leftcurly
@@ -803,10 +818,12 @@ lookaround
 Loughran
 lparen
 lte
+ltnu
 lucene
 lui
 luiframework
 LVL
+lw
 madbean
 magicnumber
 mailhost
@@ -822,6 +839,7 @@ mavenbadge
 maxdepth
 maxmem
 maxmethods
+Mcom
 mdl
 MDM
 mebigfatguy
@@ -910,6 +928,7 @@ nbactions
 nbia
 nbsp
 ncal
+Ncom
 ncss
 needbraces
 NEGS
@@ -998,6 +1017,7 @@ nx
 OAuth
 objblock
 oburn
+Ocom
 OCP
 octocat
 ogg
@@ -1073,6 +1093,7 @@ Paulicke
 paypal
 pbludov
 Pcheckstyle
+Pcom
 pdf
 Peclipse
 Penable
@@ -1137,6 +1158,7 @@ py
 qa
 qalab
 qaplug
+Qcom
 qualitygates
 Qube
 qux
@@ -1147,6 +1169,7 @@ rawtypes
 rb
 RBRACE
 rbrack
+Rcom
 rcurly
 rdiachenko
 RDz
@@ -1226,6 +1249,7 @@ sbt
 scache
 Schneeberger
 scm
+Scom
 scp
 screenshot
 Scriptblock
@@ -1360,6 +1384,7 @@ Taglib
 taglist
 taskdef
 tbody
+Tcom
 tcr
 td
 teamcity
@@ -1417,10 +1442,12 @@ tw
 typecastparenpad
 typename
 typevariablenames
+ua
 ub
 uber
 ubuntu
 ucc
+Ucom
 UElement
 ufeff
 ul
@@ -1453,6 +1480,7 @@ unusedlambdaparametershouldbeunnamed
 unusedlocalvariable
 upperell
 upsss
+uq
 urandom
 uri
 url
@@ -1463,6 +1491,7 @@ usr
 UTests
 utf
 Uth
+uu
 UUID
 UWF
 uxxxx
@@ -1470,6 +1499,7 @@ validator
 VALUEEEE
 vararg
 variabledeclarationusagedistance
+Vcom
 Veach
 Verdana
 Versioning
@@ -1493,6 +1523,7 @@ Wadl
 Wakelock
 walkthrough
 Warni
+Wcom
 Weakento
 webclient
 Webflow
@@ -1531,12 +1562,14 @@ writingfilters
 writingjavadocchecks
 writinglisteners
 Wsdl
+Wv
 www
 Wyq
 xa
 xabc
 xar
 xargs
+Xcom
 XDcompile
 xdeadbeef
 xdoc
@@ -1590,6 +1623,7 @@ yaml
 yamllint
 Yaroslavtsev
 YC
+Ycom
 yml
 youtrack
 youtu
@@ -1598,7 +1632,9 @@ Yoyodyne
 yyyy
 Yzz
 Zbbh
+Zcom
 zf
 zh
 zm
+ZMh
 ZSH
