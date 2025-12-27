@@ -6,7 +6,7 @@ ParameterAssignment
 
 package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class InputParameterAssignmentWithUnchecked {
     int field;

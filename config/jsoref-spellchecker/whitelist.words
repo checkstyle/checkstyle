@@ -720,7 +720,6 @@ JNDI
 JNullness
 jooq
 JOption
-jp
 Jpa
 JPanel
 Jpdl
@@ -1443,6 +1442,7 @@ unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
+unparseable
 Unproxyable
 unregister
 unstale

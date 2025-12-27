@@ -23,7 +23,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 import java.util.Collection;
 import java.util.SortedSet;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class InputClassFanOutComplexityRemoveIncorrectTypeParameter<E> {
   private static <E> Collection<E> typePreservingCollection(

@@ -12,7 +12,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class InputEmptyLineSeparatorWithJavadoc2 {
 
