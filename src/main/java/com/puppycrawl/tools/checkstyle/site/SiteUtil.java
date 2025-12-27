@@ -49,8 +49,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import javax.annotation.Nullable;
-
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.maven.doxia.macro.MacroExecutionException;
 
@@ -81,6 +79,7 @@ import com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraperUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * Utility class for site generation.
