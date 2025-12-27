@@ -23,6 +23,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 
 public class JavadocNodeImplTest {
@@ -68,6 +69,36 @@ public class JavadocNodeImplTest {
         assertWithMessage("Invalid parent")
             .that(result)
             .isSameInstanceAs(root);
+    }
+
+    @Test
+    public void testFindFirstToken() {
+        final JavadocNodeImpl root = new JavadocNodeImpl();
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        firstChild.setType(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        secondChild.setType(JavadocCommentsTokenTypes.TEXT);
+        final JavadocNodeImpl thirdChild = new JavadocNodeImpl();
+        thirdChild.setType(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
+
+        root.addChild(firstChild);
+        root.addChild(secondChild);
+        root.addChild(thirdChild);
+
+        assertWithMessage("Invalid result")
+            .that(firstChild.findFirstToken(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG))
+            .isNull();
+        final DetailNode tag = root.findFirstToken(JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG);
+        assertWithMessage("Invalid result")
+            .that(tag)
+            .isEqualTo(firstChild);
+        final DetailNode text = root.findFirstToken(JavadocCommentsTokenTypes.TEXT);
+        assertWithMessage("Invalid result")
+            .that(text)
+            .isEqualTo(secondChild);
+        assertWithMessage("Invalid result")
+            .that(root.findFirstToken(0))
+            .isNull();
     }
 
 }
