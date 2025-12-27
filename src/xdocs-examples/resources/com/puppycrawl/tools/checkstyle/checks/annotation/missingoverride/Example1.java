@@ -13,6 +13,8 @@ class ParentClass1{
 
   public void test2(){}
 
+  public void test5(){}
+
 }
 // xdoc section -- start
 class Example1 extends ParentClass1 {
