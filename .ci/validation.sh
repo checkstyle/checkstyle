@@ -469,12 +469,16 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+;;
+
+pmd)
+  mkdir -p .ci-temp/pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
+  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
+  cd .ci-temp/pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -482,7 +486,7 @@ spotbugs-and-pmd)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
+  removeFolderWithProtectedFiles pmd
   exit "$RESULT"
 ;;
 
@@ -1328,10 +1332,6 @@ website-only)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
 
-pmd)
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
-  ;;
-
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
@@ -1360,11 +1360,7 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-spotless)
-  ./mvnw -e --no-transfer-progress clean spotless:check
-  ;;
-
-openrewrite-recipes)
+rewrite)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   # export MAVEN_OPTS="-Xmx4g -Xms2g"
