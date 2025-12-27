@@ -21,10 +21,16 @@ package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathIteratorUtil.findNode;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
+import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
+import net.sf.saxon.tree.iter.AxisIterator;
 
 public class FollowingIteratorTest {
 
@@ -73,4 +79,26 @@ public class FollowingIteratorTest {
                     .isNull();
         }
     }
+
+    @Test
+    public void testSiblingEnumIsNulledAfterExhaustion() {
+        try (AxisIterator ancestorEnum = mock(AxisIterator.class);
+             AxisIterator siblingEnum = mock(AxisIterator.class)) {
+
+            final NodeInfo startNode = mock(NodeInfo.class);
+            when(startNode.iterateAxis(AxisInfo.ANCESTOR)).thenReturn(ancestorEnum);
+            when(startNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)).thenReturn(siblingEnum);
+
+            when(siblingEnum.next()).thenReturn(null);
+            when(ancestorEnum.next()).thenReturn(null);
+
+            try (FollowingIterator iterator = new FollowingIterator(startNode)) {
+                iterator.next();
+                iterator.next();
+            }
+
+            verify(siblingEnum, times(1)).next();
+        }
+    }
+
 }
