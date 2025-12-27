@@ -87,12 +87,8 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     *     |--NEWLINE -> \r\n
-     *     |--LEADING_ASTERISK ->  *
-     *     |--TEXT ->  This is plain text content.
-     *     |--NEWLINE -> \r\n
-     *     `--TEXT ->
+     * LEADING_ASTERISK ->  *
+     * TEXT ->  This is plain text content.
      * }</pre>
      *
      * @see #JAVADOC_CONTENT
