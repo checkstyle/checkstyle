@@ -213,6 +213,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh pmd"
       - validate-with-maven-script:
+          name: "openrewrite"
+          image-name: *cs_img
+          command: "./.ci/validation.sh openrewrite"
+      - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
           command: "./.ci/validation.sh site"
@@ -329,10 +333,3 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
-
-  openrewrite:
-    jobs:
-      - validate-with-maven-script:
-          name: "openrewrite-recipes"
-          image-name: "cimg/openjdk:21.0"
-          command: "./.ci/validation.sh openrewrite-recipes"
