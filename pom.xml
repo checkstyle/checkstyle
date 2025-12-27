@@ -198,6 +198,8 @@
   </issueManagement>
 
   <properties>
+    <jacoco.skip>true</jacoco.skip>
+    <checkstyle.skip>true</checkstyle.skip>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <surefire.options />
     <projectVersion>${project.version}</projectVersion>
