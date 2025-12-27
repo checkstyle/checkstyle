@@ -1360,7 +1360,7 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-openrewrite)
+rewrite)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
   # export MAVEN_OPTS="-Xmx4g -Xms2g"

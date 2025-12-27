@@ -213,9 +213,9 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh pmd"
       - validate-with-maven-script:
-          name: "openrewrite"
+          name: "rewrite"
           image-name: *cs_img
-          command: "./.ci/validation.sh openrewrite"
+          command: "./.ci/validation.sh rewrite"
       - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
