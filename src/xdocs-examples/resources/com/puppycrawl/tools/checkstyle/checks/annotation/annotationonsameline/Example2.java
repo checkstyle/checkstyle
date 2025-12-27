@@ -11,7 +11,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 
 // xdoc section -- start
 @Deprecated interface Foo {

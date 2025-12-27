@@ -12,4 +12,4 @@ MissingJavadocPackage
 package com.puppycrawl.tools.checkstyle.checks // violation
         .javadoc.missingjavadocpackage.nojavadoc.annotation.blockcomment;
 
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;

@@ -6,7 +6,7 @@ import java.lang.annotation.Target;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import jakarta.annotation.Nullable;
+import javax.annotation.Nullable;
 
 import org.junit.Assert;
 
