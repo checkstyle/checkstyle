@@ -614,6 +614,9 @@
                 <include>**/*.java</include>
               </includes>
               <excludes>
+                <exclude>**.ci-temp**</exclude>
+                <exclude>**/**.ci-temp**</exclude>
+                <exclude>.ci-temp**</exclude>
                 <exclude>src/**/resources-noncompilable/**</exclude>
                 <exclude>src/it/resources/**</exclude>
                 <exclude>src/test/resources/**</exclude>
