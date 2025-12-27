@@ -469,13 +469,16 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-spotless-pmd)
-  mkdir -p .ci-temp/spotbugs-spotless-pmd
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+;;
+
+pmd-site-report)
+  mkdir -p .ci-temp/pmd-site-report
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean spotless:check
-  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check pmd:check
-  cd .ci-temp/spotbugs-spotless-pmd
+  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
+  cd .ci-temp/pmd-site-report
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -483,7 +486,7 @@ spotbugs-spotless-pmd)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles spotbugs-spotless-pmd
+  removeFolderWithProtectedFiles pmd-site-report
   exit "$RESULT"
 ;;
 
