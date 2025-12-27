@@ -33,8 +33,6 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
-
 import org.apache.maven.doxia.macro.AbstractMacro;
 import org.apache.maven.doxia.macro.Macro;
 import org.apache.maven.doxia.macro.MacroExecutionException;
@@ -44,6 +42,7 @@ import org.codehaus.plexus.component.annotations.Component;
 
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * Macro to generate table rows for all Checkstyle modules.

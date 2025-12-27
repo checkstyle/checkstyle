@@ -21,13 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.Set;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import jakarta.annotation.Nullable;
 
 /**
  * <div>
