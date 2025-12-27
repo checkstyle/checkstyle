@@ -28,13 +28,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import jakarta.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import jakarta.annotation.Nullable;
 
 /**
  * <div>

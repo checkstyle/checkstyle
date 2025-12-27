@@ -21,13 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Locale;
 
+import jakarta.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
-import jakarta.annotation.Nullable;
 
 /**
  * <div>

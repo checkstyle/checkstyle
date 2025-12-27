@@ -22,12 +22,13 @@ package com.puppycrawl.tools.checkstyle;
 import java.util.BitSet;
 import java.util.List;
 
+import jakarta.annotation.Nullable;
+
 import org.antlr.v4.runtime.Token;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
-import jakarta.annotation.Nullable;
 
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to

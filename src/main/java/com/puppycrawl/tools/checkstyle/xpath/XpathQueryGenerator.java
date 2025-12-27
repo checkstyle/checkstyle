@@ -22,13 +22,14 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
-import jakarta.annotation.Nullable;
 
 /**
  * Generates xpath queries. Xpath queries are generated based on received
