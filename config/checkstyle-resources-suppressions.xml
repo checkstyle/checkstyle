@@ -79,6 +79,10 @@
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="uncommentedmain[\\/]InputUncommentedMainBeginTreePackage2\.java"/>
+
+  <!-- compact source files cannot have package declarations -->
+  <suppress checks="PackageDeclarationCheck"
+    files="java25[\\/]InputCompactSourceFile\.java"/>
   
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
