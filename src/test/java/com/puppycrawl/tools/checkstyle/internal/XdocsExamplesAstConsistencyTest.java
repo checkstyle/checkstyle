@@ -86,6 +86,8 @@ public class XdocsExamplesAstConsistencyTest {
      * <p>Until: <a href="https://github.com/checkstyle/checkstyle/issues/18435">...</a>
      */
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
+            // Example2 demonstrates interface implementation and field annotations,
+            // which differ structurally from Example1, so suppression is required
             "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/missingoverride/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
