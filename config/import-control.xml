@@ -323,6 +323,9 @@
     <subpackage name="iterators">
       <!-- These are more saxon utilities, and should not have anything checkstyle specific -->
       <disallow pkg="com\.puppycrawl.*" regex="true"/>
+      <file name="ReverseListIterator">
+        <allow class="com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil"/>
+      </file>
     </subpackage>
   </subpackage>
 
