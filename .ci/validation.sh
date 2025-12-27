@@ -473,12 +473,12 @@ spotless)
   ./mvnw -e --no-transfer-progress clean spotless:check
 ;;
 
-pmd-site-report)
-  mkdir -p .ci-temp/pmd-site-report
+pmd)
+  mkdir -p .ci-temp/pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check
-  cd .ci-temp/pmd-site-report
+  cd .ci-temp/pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -486,7 +486,7 @@ pmd-site-report)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles pmd-site-report
+  removeFolderWithProtectedFiles pmd
   exit "$RESULT"
 ;;
 
@@ -1330,10 +1330,6 @@ package-all-jar)
 
 website-only)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
-  ;;
-
-pmd)
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
 spotbugs)
