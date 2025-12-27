@@ -512,6 +512,7 @@ google
 googleblog
 googleecommon
 googlegroups
+googlemethodname
 googlesource
 govstrangefolder
 GPath
@@ -1009,6 +1010,7 @@ onestatementperline
 onetoplevel
 onetoplevelclass
 onevariableperline
+oo
 OOL
 oopsla
 OOQ
