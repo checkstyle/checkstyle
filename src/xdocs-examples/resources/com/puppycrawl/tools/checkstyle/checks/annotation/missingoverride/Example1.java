@@ -13,6 +13,8 @@ class ParentClass1{
 
   public void test2(){}
 
+  public void test5(){}
+
 }
 // xdoc section -- start
 class Example1 extends ParentClass1 {
@@ -37,6 +39,19 @@ class Example1 extends ParentClass1 {
   /** {@inheritDoc} */
   // violation below '{@inheritDoc} tag is not valid at this location.'
   public static void test4() {
+
+  }
+
+  // No javadoc, no @Override needed
+  public void test5() {
+
+  }
+
+  // Javadoc present but no {@inheritDoc}, no @Override needed
+  /**
+   * This is a sample javadoc.
+   */
+  public void test6() {
 
   }
 }
