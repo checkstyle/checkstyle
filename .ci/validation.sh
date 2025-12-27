@@ -469,12 +469,12 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
+spotbugs-spotless-pmd)
+  mkdir -p .ci-temp/spotbugs-spotless-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check spotless:check pmd:check
+  cd .ci-temp/spotbugs-spotless-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -482,7 +482,7 @@ spotbugs-and-pmd)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
+  removeFolderWithProtectedFiles spotbugs-spotless-pmd
   exit "$RESULT"
 ;;
 
@@ -552,7 +552,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -1361,14 +1360,10 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
-  ;;
-
 openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
+  # export MAVEN_OPTS="-Xmx4g -Xms2g"
 
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
