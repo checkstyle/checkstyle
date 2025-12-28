@@ -41,14 +41,10 @@ class InputWhitespaceAroundBasic {
 
   /** Method. */
   void method2() {
-    synchronized(this) {
-      // 2 violations above:
-      //  ''synchronized' is not followed by whitespace.'
-      //  ''synchronized' is not followed by whitespace.'
+    synchronized(this) { // violation ''synchronized' is not followed by whitespace.'
     }
     try{
-      // 3 violations above:
-      //  ''try' is not followed by whitespace.'
+      // 2 violations above:
       //  ''try' is not followed by whitespace.'
       //  ''{' is not preceded with whitespace.'
     } catch (RuntimeException e) {// violation ''{' is not followed by whitespace.'
@@ -58,10 +54,8 @@ class InputWhitespaceAroundBasic {
   /** Test WS after void return. */
   private void fastExit() {
     boolean complicatedStuffNeeded = true;
-    // 2 violations 3 lines below:
-    //  ''if' is not followed by whitespace.'
-    //  ''if' is not followed by whitespace.'
-    if(!complicatedStuffNeeded) {
+
+    if(!complicatedStuffNeeded) { // violation ''if' is not followed by whitespace.'
       // should not complain about missing WS after return
     } else {
       // do complicated stuff
@@ -75,10 +69,7 @@ class InputWhitespaceAroundBasic {
    */
   private int nonVoid() {
     if (true) {
-      return(2);
-      // 2 violations above:
-      //  ''return' is not followed by whitespace.'
-      //  ''return' is not followed by whitespace.'
+      return(2); // violation ''return' is not followed by whitespace.'
     } else {
       return 2; // this is ok
     }
@@ -233,10 +224,7 @@ class InputWhitespaceAroundBasic {
       Runnable l;
 
       l = ()-> {}; // violation ''->' is not preceded with whitespace.'
-      l = () ->{};
-      // 2 violations above:
-      //  ''->' is not followed by whitespace.'
-      //  ''->' is not followed by whitespace.'
+      l = () ->{}; // violation ''->' is not followed by whitespace.'
       l = () -> {};
       l = () -> {};
 
