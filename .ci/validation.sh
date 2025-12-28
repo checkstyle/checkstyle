@@ -552,7 +552,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -1362,13 +1361,13 @@ sevntu)
   ;;
 
 spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
+  ./mvnw -e --no-transfer-progress clean spotless:check
   ;;
 
 openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
+  # export MAVEN_OPTS="-Xmx4g -Xms2g"
 
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
