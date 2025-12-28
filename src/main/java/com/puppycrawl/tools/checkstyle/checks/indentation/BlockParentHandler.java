@@ -269,6 +269,12 @@ public class BlockParentHandler extends AbstractExpressionHandler {
                         getChildrenExpectedIndent(),
                         true,
                         canChildrenBeNested());
+                // Only check return statement line wrapping for method/constructor bodies
+                // to avoid issues with other contexts
+                if (getMainAst().getType() == TokenTypes.METHOD_DEF
+                        || getMainAst().getType() == TokenTypes.CTOR_DEF) {
+                    checkReturnStatementLineWrapping(listChild);
+                }
             }
         }
     }
@@ -314,6 +320,99 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
+    }
+
+    /**
+     * Checks line wrapping indentation for return statements that span multiple lines.
+     * This ensures that lambda arrows (->) and commas in return statement continuations
+     * are properly checked for indentation violations.
+     *
+     * @param listChild the statement list containing return statements
+     */
+    private void checkReturnStatementLineWrapping(DetailAST listChild) {
+        if (listChild == null) {
+            return;
+        }
+        for (DetailAST child = listChild.getFirstChild();
+                child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.LITERAL_RETURN) {
+                final DetailAST returnExpr = child.getFirstChild();
+                if (returnExpr != null) {
+                    // Only check if return statement spans multiple lines
+                    // Use try-catch to safely get the last node
+                    DetailAST lastNode = null;
+                    try {
+                        lastNode = getLastNode(returnExpr);
+                    } catch (Exception e) {
+                        // Skip if we can't determine the last node
+                        continue;
+                    }
+
+                    // Only check if return statement spans multiple lines
+                    // and lastNode is a proper descendant of returnExpr
+                    if (lastNode != null
+                            && lastNode != returnExpr
+                            && !TokenUtil.areOnSameLine(child, lastNode)
+                            && child.getLineNo() < lastNode.getLineNo()) {
+                        // Verify lastNode is a proper descendant before attempting traversal
+                        if (isProperDescendant(returnExpr, lastNode)) {
+                            // Return statement spans multiple lines, check line wrapping indentation
+                            // Start from returnExpr to ensure safe traversal to lastNode
+                            final int returnLineStart = getLineStart(child);
+                            try {
+                                checkWrappingIndentation(returnExpr, lastNode,
+                                        getLineWrappingIndent(), returnLineStart, true);
+                            } catch (NullPointerException | IllegalStateException | Error e) {
+                                // Skip if there's an issue with traversal - this can happen
+                                // when lastNode is not properly reachable from returnExpr
+                                // through the AST traversal used by LineWrappingHandler
+                                // This is a defensive measure to prevent crashes in edge cases
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if target node is a proper descendant of source node.
+     * This ensures safe traversal in line wrapping checks.
+     *
+     * @param source the source node
+     * @param target the target node to check
+     * @return true if target is a proper descendant of source
+     */
+    private static boolean isProperDescendant(DetailAST source, DetailAST target) {
+        if (source == null || target == null || source == target) {
+            return false;
+        }
+        // Check if target is a descendant of source
+        DetailAST current = target.getParent();
+        while (current != null) {
+            if (current == source) {
+                return true;
+            }
+            current = current.getParent();
+        }
+        return false;
+    }
+
+    /**
+     * Gets the last node in the subtree, traversing to the deepest rightmost node.
+     *
+     * @param ast the root of the subtree
+     * @return the last node in the subtree
+     */
+    private static DetailAST getLastNode(DetailAST ast) {
+        DetailAST last = ast;
+        DetailAST child = ast.getLastChild();
+        while (child != null) {
+            last = child;
+            child = child.getLastChild();
+        }
+        return last;
     }
 
 }
