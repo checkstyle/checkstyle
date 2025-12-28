@@ -1,24 +1,63 @@
-# All files default to text with LF eol
-* eol=lf
+# Default to LF line endings for all text files
+* text=auto eol=lf
 
-# Windows files always have CRLF eol
-*.bat eol=crlf
+# Ensure shell scripts have LF line endings
+*.sh text eol=lf
 
-# Binary files need to be listed explicitly as first rule makes all files text files
+# Windows files always have CRLF line endings
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files should not be modified
 *.gif binary
 *.ico binary
 *.jpeg binary
 *.jpg binary
 *.png binary
+*.pdf binary
+*.zip binary
+*.jar binary
+*.class binary
+*.so binary
+*.dll binary
+*.exe binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# Java class files are binary
+*.class binary
+
+# Archive files
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.7z binary
+
+# Executables
+*.py diff=python
+*.pl diff=perl
+*.rb diff=ruby
+
+# Documentation
+*.md text
+*.txt text
+*.adoc text
+*.asciidoc text
 
 # Test resources that need specific eol
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf.java eol=crlf
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf2.java eol=crlf
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf3.java eol=crlf
-/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeWithBlockComment.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf.java text eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf2.java text eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf3.java text eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadoctype/InputJavadocTypeWithBlockComment.java text eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCr.java -text
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCr2.java -text
-src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator/InputXpathQueryGeneratorTextBlockCrlf.java eol=crlf
+src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator/InputXpathQueryGeneratorTextBlockCrlf.java text eol=crlf
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
-src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
-src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java eol=crlf
+src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc text eol=crlf
+src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java text eol=crlf
+
+# Maven wrapper properties should not have line ending conversions
+.mvn/wrapper/maven-wrapper.properties -text
