@@ -19,12 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import static com.google.common.truth.Truth.assertWithMessage;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
-import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,12 +32,17 @@ import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
+import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -366,6 +365,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationMethodCallLineWrap1.java"),
                 expected);
+    }
+
+    @Test
+    public void testReturnLambdaComma() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "2");
+        checkConfig.addProperty("basicOffset", "2");
+        checkConfig.addProperty("braceAdjustment", "2");
+        checkConfig.addProperty("caseIndent", "2");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String[] expected = {
+            "6:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "7:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "12:5: " + getCheckMessage(MSG_ERROR, "s", 4, 8),
+            "17:5: " + getCheckMessage(MSG_ERROR, "1", 4, 8),
+            "18:5: " + getCheckMessage(MSG_ERROR, "2", 4, 8),
+            "19:5: " + getCheckMessage(MSG_ERROR, "3", 4, 8),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationReturnLambdaComma.java"), expected);
     }
 
     @Test
