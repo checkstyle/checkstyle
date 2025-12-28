@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -86,6 +87,16 @@ public final class UnmodifiableCollectionUtil {
         return items.stream()
                 .map(elementType::cast)
                 .toList();
+    }
+
+    /**
+     * Returns an unmodifiable view of a Charset.
+     *
+     * @param charset The Charset to make unmodifiable.
+     * @return An unmodifiable view of the provided Charset.
+     */
+    public static Charset unmodifiableCharSet(Charset charset) {
+        return charset;
     }
 
     /**
