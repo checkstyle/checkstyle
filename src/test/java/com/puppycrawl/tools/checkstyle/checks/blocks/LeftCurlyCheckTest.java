@@ -410,6 +410,7 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             TokenTypes.STATIC_INIT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.SWITCH_RULE,
         };
         assertWithMessage("Default acceptable tokens are invalid")
             .that(actual)
@@ -549,5 +550,26 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
         };
         verifyWithInlineConfigParser(
                 getPath("InputLeftCurlyCommentBeforeLeftCurly2.java"), expected);
+    }
+
+    @Test
+    public void testSwitchRuleLineBreakAfter() throws Exception {
+        final String[] expected = {
+            "27:31: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 31),
+            "29:31: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 31),
+            "40:24: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 24),
+            "90:7: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 7),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlySwitchRuleLineBreakAfter.java"), expected);
+    }
+
+    @Test
+    public void testSwitchRuleWithBlock() throws Exception {
+        final String[] expected = {
+            "17:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_AFTER, "{", 23),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputLeftCurlySwitchRuleWithBlock.java"), expected);
     }
 }
