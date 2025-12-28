@@ -5,15 +5,6 @@
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable columnFilter</description>
-    <lineContent>columnFilter = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SuppressFilterElement.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressFilterElement</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
     <description>Removed assignment to member variable columnsCsv</description>
     <lineContent>columnsCsv = null;</lineContent>
   </mutation>
