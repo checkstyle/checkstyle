@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -125,7 +126,7 @@ public class MethodNameCheck
             super.visitToken(ast);
         }
 
-        if (!allowClassName) {
+        if (!TokenUtil.isTopLevelNode(ast) && !allowClassName) {
             final DetailAST method =
                 ast.findFirstToken(TokenTypes.IDENT);
             // in all cases this will be the classDef type except anon inner

@@ -558,4 +558,22 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 getPath("InputAbbreviationAsWordInNameAnnotation.java"), expected);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "21:5: " + getWarningMessage("CURRENT_COUNTER", 4),
+            "36:8: " + getWarningMessage("BADRECORD", 4),
+            "42:5: " + getWarningMessage("computeCOUNTERValue", 4),
+            "51:9: " + getWarningMessage("localMYNUM", 4),
+            "71:11: " + getWarningMessage("BADDInterfaceName", 4),
+            "78:7: " + getWarningMessage("AbstractCLASSName", 4),
+            "80:10: " + getWarningMessage("badMETHODName", 4),
+            "82:13: " + getWarningMessage("BADVVariableName", 4),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputAbbreviationAsWordInNameCompactSourceFile.java"),
+                expected);
+    }
+
 }

@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -132,24 +133,8 @@ public final class MissingOverrideCheck extends AbstractCheck {
             log(ast, MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
         }
-        else {
-            boolean check = true;
-
-            if (javaFiveCompatibility) {
-                final DetailAST defOrNew = ast.getParent().getParent();
-
-                if (defOrNew.findFirstToken(TokenTypes.EXTENDS_CLAUSE) != null
-                    || defOrNew.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE) != null
-                    || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
-                    check = false;
-                }
-            }
-
-            if (check
-                && containsTag
-                && !AnnotationUtil.hasOverrideAnnotation(ast)) {
-                log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
-            }
+        else if (!TokenUtil.isTopLevelNode(ast)) {
+            checkMissingOverride(ast, containsTag);
         }
     }
 
@@ -180,6 +165,32 @@ public final class MissingOverrideCheck extends AbstractCheck {
             .findFirst();
         return javadoc.isPresent()
                 && MATCH_INHERIT_DOC.matcher(javadoc.orElseThrow()).find();
+    }
+
+    /**
+     * Checks for missing {@code @Override} annotation.
+     *
+     * @param ast method AST node
+     * @param containsTag if the method contains the inheritDoc tag
+     */
+    private void checkMissingOverride(DetailAST ast, boolean containsTag) {
+        boolean check = true;
+
+        if (javaFiveCompatibility) {
+            final DetailAST defOrNew = ast.getParent().getParent();
+
+            if (defOrNew.findFirstToken(TokenTypes.EXTENDS_CLAUSE) != null
+                || defOrNew.findFirstToken(TokenTypes.IMPLEMENTS_CLAUSE) != null
+                || defOrNew.getType() == TokenTypes.LITERAL_NEW) {
+                check = false;
+            }
+        }
+
+        if (check
+            && containsTag
+            && !AnnotationUtil.hasOverrideAnnotation(ast)) {
+            log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+        }
     }
 
 }

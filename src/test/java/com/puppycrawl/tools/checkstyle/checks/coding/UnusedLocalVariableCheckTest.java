@@ -581,4 +581,19 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
                 expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "assignedOnly"),
+            "15:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "neverAssigned"),
+            "17:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "used"),
+            "20:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "arr"),
+            "25:5: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "local"),
+            "45:9: " + getCheckMessage(MSG_UNUSED_NAMED_LOCAL_VARIABLE, "lambdaUnused"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputUnusedLocalVariableCompactSourceFile.java"),
+                expected);
+    }
 }

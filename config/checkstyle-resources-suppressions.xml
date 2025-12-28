@@ -79,7 +79,31 @@
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
     files="uncommentedmain[\\/]InputUncommentedMainBeginTreePackage2\.java"/>
-  
+
+  <!-- compact source files cannot have package declarations -->
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputMissingOverrideCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputFinalLocalVariableCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputRequireThisCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputUnusedLocalVariableCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputDesignForExtensionCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputFinalClassCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputJavadocStyleCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputAbbreviationAsWordInNameCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputMethodNameCompactSourceFile\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]InputEmptyLineSeparatorCompactSourceFile\.java"/>
+
   <!-- intentional problem for testing -->
   <suppress checks="RegexpSingleline"
     files="javadoctype[\\/]InputJavadocTypeWithBlockComment\.java"/>          
@@ -95,6 +119,20 @@
     files="src[\\/]it[\\/]resources[\\/].*[\\/]InputXpathOuterTypeFilename.*\.java"/>
   <suppress checks="OuterTypeFilename"
     files="src[\\/]it[\\/]resources[\\/].*[\\/]InputFileName3\.java"/>
+
+  <!-- compact source files are allowed to skip class declarations -->
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputMissingOverrideCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputDesignForExtensionCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputFinalClassCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputAbbreviationAsWordInNameCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputMethodNameCompactSourceFile\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="[\\/]InputEmptyLineSeparatorCompactSourceFile\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress id="noTrailingWhitespace"

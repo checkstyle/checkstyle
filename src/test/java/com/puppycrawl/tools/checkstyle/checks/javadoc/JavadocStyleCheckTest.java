@@ -849,4 +849,22 @@ public class JavadocStyleCheckTest
                 getPath("InputJavadocStyleUnclosedTags.java"),
                 expected);
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_NO_PERIOD),
+            "21: " + getCheckMessage(MSG_NO_PERIOD),
+            "36: " + getCheckMessage(MSG_NO_PERIOD),
+            "45: " + getCheckMessage(MSG_NO_PERIOD),
+            "54: " + getCheckMessage(MSG_INCOMPLETE_TAG, " * <p"),
+            "62:4: " + getCheckMessage(MSG_UNCLOSED_HTML, "<div> content"),
+            "70:4: " + getCheckMessage(MSG_EXTRA_HTML, "</b>"),
+            "84: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputJavadocStyleCompactSourceFile.java"),
+                expected);
+    }
 }

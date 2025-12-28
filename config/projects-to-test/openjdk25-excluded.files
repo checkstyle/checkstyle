@@ -70,34 +70,6 @@
   <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]SuperInit[\\/]SuperInitGood.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/17810 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]ImplicitClass.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]ImplicitClass[\\/]NestedEnum.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]flags[\\/]NoFalseSealedError.java$"/>
-</module>
-
-<!-- until https://github.com/checkstyle/checkstyle/issues/13987 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]diags[\\/]examples[\\/]UnnamedClass.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]Class[\\/]UnnamedClass[\\/]Unnamed.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]SourceLevelErrorPosition.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]processing[\\/]model[\\/]element[\\/]Anonymous.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]test[\\/]langtools[\\/]tools[\\/]javac[\\/]unnamedclass[\\/]NestedEnum.java$"/>
-</module>
-
 <!-- Permanent suppression for string templates, see reason at https://github.com/checkstyle/checkstyle/issues/14805#issue-2248064127. -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]test[\\/]jdk[\\/]java[\\/]lang[\\/]template[\\/]StringTemplateTest.java$"/>

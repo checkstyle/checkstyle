@@ -240,4 +240,19 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             .isEqualTo(expectedTokens);
     }
 
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "22:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "27:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "31:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+            "50:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
+        };
+
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputMissingOverrideCompactSourceFile.java"),
+                expected);
+    }
+
 }

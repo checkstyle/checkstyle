@@ -304,8 +304,10 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      * @param varDefAst varDefAst
      */
     private void visitVariableDefToken(DetailAST varDefAst) {
-        addLocalVariables(varDefAst, variables);
-        addInstanceOrClassVar(varDefAst);
+        if (!TokenUtil.isTopLevelNode(varDefAst)) {
+            addLocalVariables(varDefAst, variables);
+            addInstanceOrClassVar(varDefAst);
+        }
     }
 
     /**

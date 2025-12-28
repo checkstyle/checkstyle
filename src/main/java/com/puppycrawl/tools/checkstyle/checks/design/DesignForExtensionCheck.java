@@ -234,7 +234,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!hasJavadocComment(ast)
+        if (!TokenUtil.isTopLevelNode(ast)
+                && !hasJavadocComment(ast)
                 && canBeOverridden(ast)
                 && (isNativeMethod(ast)
                     || !hasEmptyImplementation(ast))

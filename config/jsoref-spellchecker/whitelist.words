@@ -97,8 +97,11 @@ awt
 azurewebsites
 Backquote
 backticks
+BADD
 BADN
 badpackage
+BADRECORD
+BADV
 baeldung
 baratali
 Barowski
@@ -370,6 +373,7 @@ elasticsearch
 elif
 elist
 Ellipsize
+elper
 emacs
 Emoji
 emptyblock
@@ -899,6 +903,7 @@ mycustom
 mycustomtag
 myfile
 myname
+MYNUM
 myproject
 Mysql
 mytag
