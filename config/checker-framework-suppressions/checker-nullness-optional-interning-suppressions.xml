@@ -1317,17 +1317,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>charset = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Charset
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
     <message>the constructor does not initialize fields: lineBreaks</message>
     <lineContent>public FileText(File file, List&lt;String&gt; lines) {</lineContent>

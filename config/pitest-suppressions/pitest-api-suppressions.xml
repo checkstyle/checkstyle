@@ -28,15 +28,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>FileText.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.api.FileText</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable charset</description>
-    <lineContent>charset = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>Violation.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.api.Violation</mutatedClass>
     <mutatedMethod>&lt;init&gt;</mutatedMethod>
