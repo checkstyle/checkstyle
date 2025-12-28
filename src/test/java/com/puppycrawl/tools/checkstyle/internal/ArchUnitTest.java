@@ -54,6 +54,12 @@ public class ArchUnitTest {
         "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
             + ".List)> gets field <com.puppycrawl.tools.checkstyle.utils.CommonUtil"
             + ".EMPTY_STRING_ARRAY>",
+        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(java.io.File, java.util"
+            + ".List)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".UnmodifiableCollectionUtil.unmodifiableCharSet(java.nio.charset.Charset)>",
+        "Constructor <com.puppycrawl.tools.checkstyle.api.FileText.<init>(com.puppycrawl.tools"
+            + ".checkstyle.api.FileText)> calls method <com.puppycrawl.tools.checkstyle.utils"
+            + ".UnmodifiableCollectionUtil.unmodifiableCharSet(java.nio.charset.Charset)>",
         "Method <com.puppycrawl.tools.checkstyle.api.AbstractCheck.log(com.puppycrawl.tools"
             + ".checkstyle.api.DetailAST, java.lang.String, [Ljava.lang.Object;)> calls method "
             + "<com.puppycrawl.tools.checkstyle.utils.CommonUtil.lengthExpandedTabs(java.lang"
