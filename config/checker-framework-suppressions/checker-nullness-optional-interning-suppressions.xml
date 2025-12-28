@@ -1317,9 +1317,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>charset = null;</lineContent>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter charset of UnmodifiableCollectionUtil.unmodifiableCharSet.</message>
+    <lineContent>charset = UnmodifiableCollectionUtil.unmodifiableCharSet(null);</lineContent>
     <details>
       found   : null (NullType)
       required: @Initialized @NonNull Charset
