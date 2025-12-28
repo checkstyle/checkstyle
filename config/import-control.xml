@@ -173,6 +173,9 @@
     <file name="Violation">
       <allow class="com.puppycrawl.tools.checkstyle.LocalizedMessage"/>
     </file>
+    <file name="FileText">
+      <allow class="com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil"/>
+    </file>
   </subpackage>
 
   <subpackage name="checks">
