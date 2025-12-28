@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressedMutations>
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLastChild with receiver</description>
+    <lineContent>final DetailAST commentEnd = ast.getLastChild();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+    <lineContent>final int nextType = nextToken.getType();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getLineNo</description>
+    <lineContent>if (commentEnd.getLineNo() &gt; astLine) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>if (commentEnd.getLineNo() &gt; astLine) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>isTrailing = nextLine != astLine</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>isTrailingComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>isTrailing = nextLine != astLine</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>processBlockComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>&amp;&amp; ast.getLineNo() == pendingLineNo</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>processBlockComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (pendingLiteral != null</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>processPendingLiteral</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable pendingLiteral</description>
+    <lineContent>pendingLiteral = null;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>AvoidEscapedUnicodeCharactersCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck</mutatedClass>
+    <mutatedMethod>processSingleLineComment</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (pendingLiteral != null &amp;&amp; ast.getLineNo() == pendingLineNo) {</lineContent>
+  </mutation>
+</suppressedMutations>
