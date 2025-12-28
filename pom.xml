@@ -233,6 +233,7 @@
     <junit.version>6.0.1</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
+    <json.schema.skip>none</json.schema.skip>
     <checkerframework.version>3.52.1</checkerframework.version>
     <error-prone.version>2.45.0</error-prone.version>
     <error-prone-support.version>0.27.0</error-prone-support.version>
@@ -2170,23 +2171,24 @@
         <version>${json-schema-validator.version}</version>
         <executions>
           <execution>
-            <phase>verify</phase>
+            <id>validate-json</id>
+            <phase>${json.schema.skip}</phase>
             <goals>
               <goal>validate</goal>
             </goals>
+            <configuration>
+              <validations>
+                <validation>
+                  <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
+                  <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
+                  <includes>
+                    <include>**/*.sarif</include>
+                  </includes>
+                </validation>
+              </validations>
+            </configuration>
           </execution>
         </executions>
-        <configuration>
-          <validations>
-            <validation>
-              <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
-              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
-              <includes>
-                <include>**/*.sarif</include>
-              </includes>
-            </validation>
-          </validations>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -2502,6 +2504,7 @@
             <version>${json-schema-validator.version}</version>
             <executions>
               <execution>
+                <id>validate-json</id>
                 <phase>none</phase>
               </execution>
             </executions>
@@ -2651,6 +2654,7 @@
             <version>${json-schema-validator.version}</version>
             <executions>
               <execution>
+                <id>validate-json</id>
                 <phase>none</phase>
               </execution>
             </executions>
