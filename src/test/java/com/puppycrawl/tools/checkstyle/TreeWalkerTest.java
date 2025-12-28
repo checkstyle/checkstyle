@@ -835,6 +835,18 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         verify(checker, files, expectedViolation);
     }
 
+    @Test
+    public void testJavaParseExceptionSeverityCustom() throws Exception {
+        final String path =
+                getNonCompilablePath(
+                        "InputTreeWalkerSkipParsingExceptionSeverityError.java");
+        final String[] expected = {
+            "1: " + getCheckMessage(TreeWalker.PARSE_EXCEPTION_MSG, "IllegalStateException")
+                  + " occurred while parsing file " + path + ".",
+        };
+        verifyWithInlineXmlConfig(path, expected);
+    }
+
     public static class BadJavaDocCheck extends AbstractCheck {
 
         @Override

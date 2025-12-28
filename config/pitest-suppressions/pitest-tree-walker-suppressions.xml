@@ -1,11 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>TreeWalker.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.TreeWalker</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable javaParseExceptionSeverity</description>
-    <lineContent>private SeverityLevel javaParseExceptionSeverity = SeverityLevel.ERROR;</lineContent>
-  </mutation>
 </suppressedMutations>
