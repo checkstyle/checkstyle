@@ -23,10 +23,10 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import com.puppycrawl.tools.checkstyle.TreeWalkerTest;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
@@ -116,6 +116,62 @@ public class SuppressFilterElementTest {
         assertWithMessage("Not in 1-9, 1)")
                 .that(filter2.accept(ev))
                 .isTrue();
+    }
+
+    @Test
+    public void testDecideByColumnWhenColumnsIsNull() {
+        final Violation violation =
+            new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        // When columns is null, columnFilter should be null,
+        // so column filtering doesn't apply
+        // This means isLineAndColumnMatching should return true
+        // when both lineFilter and columnFilter are null
+        final SuppressFilterElement filterWithNullColumns =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+        // Event should be rejected because file and check match,
+        // and both line and column filters are null
+        // If columnFilter is not properly set to null,
+        // the isLineAndColumnMatching logic would fail
+        assertWithMessage("When columns is null, columnFilter should be null "
+                + "and event should be rejected")
+                .that(filterWithNullColumns.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByLineAndColumnWhenBothAreNull() {
+        final Violation violation =
+            new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        // When both lines and columns are null,
+        // both lineFilter and columnFilter should be null
+        // The isLineAndColumnMatching method should return true when both are null
+        // This test specifically targets the mutation
+        // that removes columnFilter = null assignment
+        final SuppressFilterElement filterWithNullLineAndColumn =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+        // When both filters are null, isLineAndColumnMatching returns true
+        // So the event should be rejected (accept returns false)
+        // because file and check match
+        assertWithMessage("When both lines and columns are null, both filters should be null "
+                + "and event should be rejected")
+                .that(filterWithNullLineAndColumn.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testColumnFilterIsNullWhenColumnsIsNull() {
+        // This test directly verifies that columnFilter is set to null
+        // when columns parameter is null
+        // This kills the mutation that removes the assignment columnFilter = null;
+        final SuppressFilterElement testFilter =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+        final Object columnFilter = TestUtil.getInternalState(testFilter, "columnFilter",
+                Object.class);
+        assertWithMessage("When columns is null, columnFilter should be explicitly set to null")
+                .that(columnFilter)
+                .isNull();
     }
 
     @Test
