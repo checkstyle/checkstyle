@@ -5,10 +5,17 @@ displayName: Auto Fixes
 description: List of auto fixes from different providers.
 recipeList:
   - org.checkstyle.autofix.CheckstyleAutoFix:
-      violationReportPath: "target/cs_errors.xml"
-      configurationPath: "config/checkstyle-checks.xml"
-      propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+      violationReportPath: target/cs_errors.xml
+      configurationPath: config/checkstyle-checks.xml
+      propertiesPath: config/openrewrite-recipes-checkstyle.properties
+  - org.openrewrite.codemods.ESLint
+  - org.openrewrite.codemods.ecmascript.5to6.namedExportGeneration
+  - org.openrewrite.codemods.ecmascript.5to6.noStrict
+  - org.openrewrite.codemods.ecmascript.5to6.simpleArrow
+  - org.openrewrite.codemods.ecmascript.5to6.varToLet
+  - org.openrewrite.codemods.format.RecommendedESLintStyling
   - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.RemoveTrailingWhitespace
