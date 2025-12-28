@@ -149,7 +149,7 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     * * @deprecated text
+     * * @deprecated description
      * * /
      * }</pre>
      *
@@ -165,7 +165,7 @@ public final class JavadocCommentsTokenTypes {
      * |--AT_SIGN -> @
      * |--TAG_NAME -> deprecated
      * `--DESCRIPTION -> DESCRIPTION
-     * `--TEXT ->  text
+     * `--TEXT ->  description
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
