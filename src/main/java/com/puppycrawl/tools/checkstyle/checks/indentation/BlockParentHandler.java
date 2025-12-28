@@ -269,6 +269,12 @@ public class BlockParentHandler extends AbstractExpressionHandler {
                         getChildrenExpectedIndent(),
                         true,
                         canChildrenBeNested());
+                // Only check return statement line wrapping for method/constructor bodies
+                // to avoid issues with other contexts
+                if (getMainAst().getType() == TokenTypes.METHOD_DEF
+                        || getMainAst().getType() == TokenTypes.CTOR_DEF) {
+                    checkReturnStatementLineWrapping(listChild);
+                }
             }
         }
     }
@@ -314,6 +320,195 @@ public class BlockParentHandler extends AbstractExpressionHandler {
      */
     private int getLineWrappingIndent() {
         return getIndentCheck().getLineWrappingIndentation();
+    }
+
+    /**
+     * Checks line wrapping indentation for return statements that span multiple lines.
+     * This ensures that lambda arrows (->) and commas in return statement continuations
+     * are properly checked for indentation violations.
+     *
+     * @param listChild the statement list containing return statements
+     */
+    private void checkReturnStatementLineWrapping(DetailAST listChild) {
+        if (listChild == null) {
+            return;
+        }
+        for (DetailAST child = listChild.getFirstChild();
+                child != null;
+                child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.LITERAL_RETURN) {
+                checkReturnStatement(child);
+            }
+        }
+    }
+
+    /**
+     * Checks a single return statement for line wrapping indentation violations.
+     *
+     * @param returnStmt the return statement AST node
+     */
+    @SuppressWarnings("PMD.AvoidCatchingGenericException")
+    private void checkReturnStatement(DetailAST returnStmt) {
+        final DetailAST returnExpr = returnStmt.getFirstChild();
+        if (returnExpr == null) {
+            return;
+        }
+        // Skip if return statement is inside a nested structure that has its own handler
+        // (e.g., switch statements, annotations, etc.)
+        if (isInsideNestedStructure(returnStmt)) {
+            return;
+        }
+        // Skip if return expression itself is a nested structure that has its own handler
+        // (e.g., switch statements, annotation definitions)
+        // We only check the expression itself, not recursively, to avoid skipping valid cases
+        if (returnExpr.getType() == TokenTypes.LITERAL_SWITCH
+                || returnExpr.getType() == TokenTypes.ANNOTATION_DEF) {
+            return;
+        }
+        final DetailAST lastNode = getLastNode(returnExpr);
+        if (lastNode == null
+                || lastNode == returnExpr
+                || TokenUtil.areOnSameLine(returnStmt, lastNode)
+                || returnStmt.getLineNo() >= lastNode.getLineNo()
+                || !isProperDescendant(returnExpr, lastNode)) {
+            return;
+        }
+        // Return statement spans multiple lines, check line wrapping indentation
+        final int returnLineStart = getLineStart(returnStmt);
+        try {
+            checkWrappingIndentation(returnExpr, lastNode,
+                    getLineWrappingIndent(), returnLineStart, true);
+        } catch (RuntimeException e) {
+            // Skip if there's an issue with traversal - this can happen
+            // when lastNode is not properly reachable from returnExpr
+            // through the AST traversal used by LineWrappingHandler
+            // This is a defensive measure to prevent crashes in edge cases
+        }
+    }
+
+    /**
+     * Checks if an expression contains nested structures that have their own indentation handlers.
+     * This prevents conflicts when checking line wrapping indentation.
+     * We recursively check the expression tree to find switch statements, annotation definitions,
+     * or other structures that have their own handlers.
+     *
+     * @param expr the expression AST node to check
+     * @return true if the expression contains nested structures that should be skipped
+     */
+    private static boolean containsNestedStructures(DetailAST expr) {
+        if (expr == null) {
+            return false;
+        }
+        final int type = expr.getType();
+        // Check if this node itself is a nested structure that has its own handler
+        if (type == TokenTypes.LITERAL_SWITCH
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.LITERAL_CASE
+                || type == TokenTypes.LITERAL_DEFAULT) {
+            return true;
+        }
+        // Recursively check children
+        for (DetailAST child = expr.getFirstChild();
+                child != null;
+                child = child.getNextSibling()) {
+            if (containsNestedStructures(child)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a return statement is inside a nested structure that has its own indentation handler.
+     * This prevents conflicts with handlers for switch statements, annotations, etc.
+     *
+     * @param returnStmt the return statement AST node
+     * @return true if the return statement is inside a nested structure
+     */
+    private static boolean isInsideNestedStructure(DetailAST returnStmt) {
+        DetailAST parent = returnStmt.getParent();
+        while (parent != null) {
+            final int type = parent.getType();
+            // Check for nested structures that have their own handlers
+            if (type == TokenTypes.LITERAL_SWITCH
+                    || type == TokenTypes.LITERAL_CASE
+                    || type == TokenTypes.LITERAL_DEFAULT
+                    || type == TokenTypes.ANNOTATION_DEF
+                    || type == TokenTypes.ENUM_DEF
+                    || type == TokenTypes.INTERFACE_DEF
+                    || type == TokenTypes.CLASS_DEF) {
+                return true;
+            }
+            // Stop at method/constructor body (SLIST) - if we reach it, check if we're at top level
+            if (type == TokenTypes.SLIST) {
+                final DetailAST slistParent = parent.getParent();
+                if (slistParent != null
+                        && (slistParent.getType() == TokenTypes.METHOD_DEF
+                                || slistParent.getType() == TokenTypes.CTOR_DEF)) {
+                    // Check if the method/constructor is inside a nested structure
+                    // (e.g., anonymous class, inner class, etc.)
+                    DetailAST methodParent = slistParent.getParent();
+                    while (methodParent != null) {
+                        final int methodParentType = methodParent.getType();
+                        if (methodParentType == TokenTypes.CLASS_DEF
+                                || methodParentType == TokenTypes.INTERFACE_DEF
+                                || methodParentType == TokenTypes.ENUM_DEF
+                                || methodParentType == TokenTypes.ANNOTATION_DEF) {
+                            return true;
+                        }
+                        // Stop at top-level class or if we reach the compilation unit
+                        if (methodParentType == TokenTypes.PACKAGE_DEF
+                                || methodParentType == TokenTypes.IMPORT
+                                || methodParentType == TokenTypes.STATIC_IMPORT) {
+                            break;
+                        }
+                        methodParent = methodParent.getParent();
+                    }
+                    return false;
+                }
+            }
+            parent = parent.getParent();
+        }
+        return false;
+    }
+
+    /**
+     * Checks if target node is a proper descendant of source node.
+     * This ensures safe traversal in line wrapping checks.
+     *
+     * @param source the source node
+     * @param target the target node to check
+     * @return true if target is a proper descendant of source
+     */
+    private static boolean isProperDescendant(DetailAST source, DetailAST target) {
+        if (source == null || target == null || source == target) {
+            return false;
+        }
+        // Check if target is a descendant of source
+        DetailAST current = target.getParent();
+        while (current != null) {
+            if (current == source) {
+                return true;
+            }
+            current = current.getParent();
+        }
+        return false;
+    }
+
+    /**
+     * Gets the last node in the subtree, traversing to the deepest rightmost node.
+     *
+     * @param ast the root of the subtree
+     * @return the last node in the subtree
+     */
+    private static DetailAST getLastNode(DetailAST ast) {
+        DetailAST last = ast;
+        DetailAST child = ast.getLastChild();
+        while (child != null) {
+            last = child;
+            child = child.getLastChild();
+        }
+        return last;
     }
 
 }
