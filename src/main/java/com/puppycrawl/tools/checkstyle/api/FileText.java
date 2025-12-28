@@ -39,6 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
 
 /**
  * Represents the text contents of a file of arbitrary plain text type.
@@ -103,7 +104,7 @@ public final class FileText {
      */
     public FileText(FileText fileText) {
         file = fileText.file;
-        charset = fileText.charset;
+        charset = UnmodifiableCollectionUtil.unmodifiableCharSet(fileText.charset);
         fullText = fileText.fullText;
         lines = fileText.lines.clone();
         if (fileText.lineBreaks != null) {
@@ -129,7 +130,7 @@ public final class FileText {
         }
 
         this.file = file;
-        charset = null;
+        charset = UnmodifiableCollectionUtil.unmodifiableCharSet(null);
         fullText = buf.toString();
         this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }

@@ -1295,12 +1295,12 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter charset of UnmodifiableCollectionUtil.unmodifiableCharSet.</message>
+    <lineContent>charset = UnmodifiableCollectionUtil.unmodifiableCharSet(null);</lineContent>
     <details>
-      found   : @Initialized @Nullable String @Initialized @NonNull []
-      required: @Initialized @NonNull String @Initialized @NonNull []
+      found   : null (NullType)
+      required: @Initialized @NonNull Charset
     </details>
   </checkerFrameworkError>
 
@@ -1319,10 +1319,10 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/api/FileText.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
-    <lineContent>charset = null;</lineContent>
+    <lineContent>lines = textLines.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
     <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull Charset
+      found   : @Initialized @Nullable String @Initialized @NonNull []
+      required: @Initialized @NonNull String @Initialized @NonNull []
     </details>
   </checkerFrameworkError>
 
