@@ -23,6 +23,10 @@ my @excludes=qw(
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
+  # Maven wrapper exclusions
+  ^mvnw$
+  ^mvnw\.cmd$
+  ^\.mvn/wrapper/maven-wrapper\.properties$
 );
 my $exclude = join "|", @excludes;
 while (<>) {
