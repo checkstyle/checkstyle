@@ -44,7 +44,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathNoCloneMethod.java"));
 
@@ -72,7 +72,7 @@ public class XpathRegressionNoCloneTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathNoCloneInnerClass.java"));
 

@@ -69,7 +69,7 @@ public class XpathRegressionFinalClassTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testInnerClass() throws Exception {
+    public void innerClass() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathFinalClassInnerClass.java"));
 

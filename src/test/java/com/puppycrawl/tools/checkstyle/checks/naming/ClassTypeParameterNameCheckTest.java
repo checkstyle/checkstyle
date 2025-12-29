@@ -36,7 +36,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
+    public void getClassRequiredTokens() {
         final ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -46,7 +46,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testClassDefault()
+    public void classDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -61,7 +61,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testClassFooName()
+    public void classFooName()
             throws Exception {
 
         final String pattern = "^foo$";
@@ -75,7 +75,7 @@ public class ClassTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final ClassTypeParameterNameCheck typeParameterNameCheckObj =
             new ClassTypeParameterNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();

@@ -44,7 +44,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
     }
 
     @Test
-    public void testInner() throws Exception {
+    public void inner() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSealedShouldHavePermitsListInner.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionSealedShouldHavePermitsListTest extends AbstractXpat
     }
 
     @Test
-    public void testTopLevel() throws Exception {
+    public void topLevel() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathSealedShouldHavePermitsListTopLevel.java"));

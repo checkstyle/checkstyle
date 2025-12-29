@@ -63,7 +63,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testKeysOnly() throws Exception {
+    public void keysOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "key1", "key2"),
@@ -72,7 +72,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyKeys() throws Exception {
+    public void emptyKeys() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "key11", "key2"),
@@ -81,7 +81,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMalformedValue() throws Exception {
+    public void malformedValue() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String fileName =
                 getPath("InputOrderedProperties3MalformedValue.properties");
@@ -91,7 +91,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCommentsMultiLine() throws Exception {
+    public void commentsMultiLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
             "5: " + getCheckMessage(MSG_KEY, "aKey", "multi.line"),
@@ -101,7 +101,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineNumberRepeatingPreviousKey() throws Exception {
+    public void lineNumberRepeatingPreviousKey() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = {
             "3: " + getCheckMessage(MSG_KEY, "a", "b"),
@@ -111,7 +111,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testShouldNotProcessFilesWithWrongFileExtension() throws Exception {
+    public void shouldNotProcessFilesWithWrongFileExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOrderedProperties.txt"), expected);
@@ -121,7 +121,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
      * Tests IO exception, that can occur during reading of properties file.
      */
     @Test
-    public void testIoException() throws Exception {
+    public void ioException() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
         check.configure(checkConfig);
@@ -155,7 +155,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
      * This will keep the for loop intact.
      */
     @Test
-    public void testKeepForLoopIntact() throws Exception {
+    public void keepForLoopIntact() throws Exception {
 
         final DefaultConfiguration checkConfig = createModuleConfig(OrderedPropertiesCheck.class);
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
@@ -172,7 +172,7 @@ public class OrderedPropertiesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileExtension() {
+    public void fileExtension() {
 
         final OrderedPropertiesCheck check = new OrderedPropertiesCheck();
         assertWithMessage("File extension should be set")

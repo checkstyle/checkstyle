@@ -36,7 +36,7 @@ public class PatternVariableNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final PatternVariableNameCheck patternVariableNameCheck = new PatternVariableNameCheck();
         final int[] expected = {TokenTypes.PATTERN_VARIABLE_DEF};
 
@@ -68,7 +68,7 @@ public class PatternVariableNameCheckTest
     }
 
     @Test
-    public void testPatternVariableNameNoSingleChar() throws Exception {
+    public void patternVariableNameNoSingleChar() throws Exception {
 
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
@@ -100,7 +100,7 @@ public class PatternVariableNameCheckTest
     }
 
     @Test
-    public void testPatternVariableNameUnnamed() throws Exception {
+    public void patternVariableNameUnnamed() throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
@@ -122,7 +122,7 @@ public class PatternVariableNameCheckTest
     }
 
     @Test
-    public void testPatternVariableNameRecordPattern() throws Exception {
+    public void patternVariableNameRecordPattern() throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 

@@ -35,7 +35,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testGetClassRequiredTokens() {
+    public void getClassRequiredTokens() {
         final RecordTypeParameterNameCheck checkObj =
                 new RecordTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -45,7 +45,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testRecordDefault()
+    public void recordDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -60,7 +60,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testClassFooName()
+    public void classFooName()
             throws Exception {
 
         final String pattern = "^foo$";
@@ -75,7 +75,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final RecordTypeParameterNameCheck typeParameterNameCheckObj =
                 new RecordTypeParameterNameCheck();
         final int[] actual = typeParameterNameCheckObj.getAcceptableTokens();

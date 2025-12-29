@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 public class PropertiesExpanderTest {
 
     @Test
-    public void testCtorException() {
+    public void ctorException() {
         try {
             final Object test = new PropertiesExpander(null);
             assertWithMessage("exception expected but got %s", test).fail();
@@ -41,7 +41,7 @@ public class PropertiesExpanderTest {
     }
 
     @Test
-    public void testDefaultProperties() {
+    public void defaultProperties() {
         final Properties properties = new Properties(System.getProperties());
         properties.setProperty("test", "checkstyle");
         final String propertiesUserHome = properties.getProperty("user.home");

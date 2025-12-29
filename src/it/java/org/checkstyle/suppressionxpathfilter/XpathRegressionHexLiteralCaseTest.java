@@ -38,7 +38,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testHexLiteralCaseCheck() throws Exception {
+    public void hexLiteralCaseCheck() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCase.java"));
         final DefaultConfiguration config =
@@ -63,7 +63,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testLongHexLiteralCaseCheck() throws Exception {
+    public void longHexLiteralCaseCheck() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCaseLong.java"));
         final DefaultConfiguration config =
@@ -88,7 +88,7 @@ public class XpathRegressionHexLiteralCaseTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testHexLiteralCaseCheckTwo() throws Exception {
+    public void hexLiteralCaseCheckTwo() throws Exception {
         final File fileProcess =
                 new File(getPath("InputXpathHexLiteralCaseTwo.java"));
         final DefaultConfiguration config =

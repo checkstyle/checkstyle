@@ -29,7 +29,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class IntMatchFilterElementTest {
 
     @Test
-    public void testDecide() {
+    public void decide() {
         final IntFilterElement filter = new IntMatchFilterElement(0);
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -43,7 +43,7 @@ public class IntMatchFilterElementTest {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    public void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilterElement.class)
                 .report();
         assertWithMessage("Error: %s", ev.getMessage())

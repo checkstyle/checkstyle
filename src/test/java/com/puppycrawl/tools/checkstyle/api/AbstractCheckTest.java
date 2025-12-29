@@ -47,7 +47,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -71,7 +71,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptable() {
+    public void getAcceptable() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -95,7 +95,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCommentNodes() {
+    public void commentNodes() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -119,7 +119,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokenNames() {
+    public void tokenNames() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -144,7 +144,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitToken() {
+    public void visitToken() {
         final VisitCounterCheck check = new VisitCounterCheck();
         // Eventually it will become clear abstract method
         check.visitToken(null);
@@ -155,7 +155,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetLine() throws Exception {
+    public void getLine() throws Exception {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -182,7 +182,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetLineCodePoints() throws Exception {
+    public void getLineCodePoints() throws Exception {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -211,7 +211,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetTabWidth() {
+    public void getTabWidth() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -237,7 +237,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileContents() {
+    public void fileContents() {
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -268,7 +268,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
@@ -301,7 +301,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClearViolations() {
+    public void clearViolations() {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
@@ -315,7 +315,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLineColumnLog() throws Exception {
+    public void lineColumnLog() throws Exception {
         final ViolationCheck check = new ViolationCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
@@ -351,7 +351,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAstLog() throws Exception {
+    public void astLog() throws Exception {
         final ViolationAstCheck check = new ViolationAstCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
@@ -381,7 +381,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheck() throws Exception {
+    public void check() throws Exception {
         final String[] expected = {
             "6:1: Violation.",
         };
@@ -394,7 +394,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
      * a test with checks and input file as none of the checks try to modify the tokens.
      */
     @Test
-    public void testTokensAreUnmodifiable() {
+    public void tokensAreUnmodifiable() {
         final DummyAbstractCheck check = new DummyAbstractCheck();
         final Set<String> tokenNameSet = check.getTokenNames();
         final Exception ex = getExpectedThrowable(UnsupportedOperationException.class,

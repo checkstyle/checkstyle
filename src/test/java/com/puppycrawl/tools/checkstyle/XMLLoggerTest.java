@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serial;
 import java.util.List;
@@ -56,8 +55,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testEncode()
-            throws IOException {
+    public void encode()
+            throws Exception {
         final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
         assertWithMessage("should be able to create XMLLogger without issue")
             .that(test)
@@ -86,8 +85,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testIsReference()
-            throws IOException {
+    public void isReference()
+            throws Exception {
         final XMLLogger test = new XMLLogger(outStream, OutputStreamOptions.NONE);
         assertWithMessage("should be able to create XMLLogger without issue")
             .that(test)
@@ -131,7 +130,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * relies on a custom OutputStream to assert close() call behavior.
      */
     @Test
-    public void testCloseStream()
+    public void closeStream()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -151,7 +150,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * @throws Exception throws exception
      */
     @Test
-    public void testNoCloseStream()
+    public void noCloseStream()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.NONE);
         logger.auditStarted(null);
@@ -166,14 +165,14 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-        public void testFileStarted() throws Exception {
+        public void fileStarted() throws Exception {
         verifyWithInlineConfigParserAndXmlLogger(
             "InputXMLLoggerFileStarted.java",
             "ExpectedXMLLoggerFileStarted.xml");
     }
 
     @Test
-    public void testFileFinished()
+    public void fileFinished()
             throws Exception {
         verifyWithInlineConfigParserAndXmlLogger(
             "InputXMLLoggerFileFinished.java",
@@ -181,7 +180,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddError() throws Exception {
+    public void addError() throws Exception {
         verifyWithInlineConfigParserAndXmlLogger("InputXMLLoggerAddError.java",
                 "ExpectedXMLLoggerAddError.xml");
     }
@@ -191,7 +190,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * because it requires an AuditEvent with a null fileName.
      */
     @Test
-    public void testAddErrorWithNullFileName() throws Exception {
+    public void addErrorWithNullFileName() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
         final Violation violation =
@@ -206,48 +205,48 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddErrorModuleId() throws Exception {
+    public void addErrorModuleId() throws Exception {
         final String inputFile = "InputXMLLoggerErrorModuleId.java";
         final String expectedXmlReport = "ExpectedXMLLoggerErrorModuleId.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
-    public void testAddErrorEmptyModuleId() throws Exception {
+    public void addErrorEmptyModuleId() throws Exception {
         final String inputFile = "InputXMLLoggerErrorEmptyModuleId.java";
         final String expectedXmlReport = "ExpectedXMLLoggerErrorEmptyModuleId.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
-    public void testAddErrorWithAndWithoutModuleId() throws Exception {
+    public void addErrorWithAndWithoutModuleId() throws Exception {
         final String inputFile = "InputXMLLoggerErrorWithAndWithoutModuleId.java";
         final String expectedXmlReport = "ExpectedXMLLoggerErrorWithAndWithoutModuleId.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
-    public void testAddErrorWithEncodedMessage() throws Exception {
+    public void addErrorWithEncodedMessage() throws Exception {
         final String inputFileWithConfig = "InputXMLLoggerEncodedMessage.java";
         final String expectedXmlReport = "ExpectedXMLLoggerEncodedMessage.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, expectedXmlReport);
     }
 
     @Test
-    public void testAddErrorOnZeroColumns() throws Exception {
+    public void addErrorOnZeroColumns() throws Exception {
         verifyWithInlineConfigParserAndXmlLogger("InputXMLLoggerErrorOnZeroColumn.java",
                 "ExpectedXMLLoggerErrorZeroColumn.xml");
     }
 
     @Test
-    public void testAddIgnored() throws Exception {
+    public void addIgnored() throws Exception {
         final String inputFile = "InputXMLLoggerIgnored.java";
         final String expectedXmlReport = "ExpectedXMLLoggerIgnored.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
-    public void testAddException()
+    public void addException()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -269,7 +268,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * to verify close() behavior.
      */
     @Test
-    public void testAddExceptionWithNullFileName()
+    public void addExceptionWithNullFileName()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -286,7 +285,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddExceptionAfterFileStarted()
+    public void addExceptionAfterFileStarted()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -309,7 +308,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddExceptionBeforeFileFinished()
+    public void addExceptionBeforeFileFinished()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -328,7 +327,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddExceptionBetweenFileStartedAndFinished()
+    public void addExceptionBetweenFileStartedAndFinished()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -349,14 +348,14 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAuditFinishedWithoutFileFinished() throws Exception {
+    public void auditFinishedWithoutFileFinished() throws Exception {
         final String inputFile = "InputXMLLoggerAuditFinishedWithoutFileFinished.java";
         final String expectedXmlReport = "ExpectedXMLLoggerAuditFinishedWithoutFileFinished.xml";
         verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test
-    public void testFileOpenTag()
+    public void fileOpenTag()
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
@@ -369,7 +368,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testVerifyLogger()
+    public void verifyLogger()
             throws Exception {
         final String inputFileWithConfig = "InputXMLLogger.java";
         final String xmlReport = "ExpectedXMLLoggerWithChecker.xml";
@@ -377,7 +376,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testVerifyLoggerWithMultipleInput()
+    public void verifyLoggerWithMultipleInput()
             throws Exception {
         final String inputFileWithConfig = "InputXMLLogger.java";
         final String expectedXmlReport = "ExpectedXMLLoggerDuplicatedFile.xml";
@@ -393,7 +392,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * messaging, which cannot be exercised through Checker execution.
      */
     @Test
-    public void testNullOutputStreamOptions() {
+    public void nullOutputStreamOptions() {
         try {
             final XMLLogger logger = new XMLLogger(outStream,
                     (OutputStreamOptions) null);
@@ -416,7 +415,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * does not depend on Checker execution or XML output.
      */
     @Test
-    public void testFinishLocalSetup() {
+    public void finishLocalSetup() {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.finishLocalSetup();
         logger.auditStarted(null);
@@ -433,7 +432,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    public void testCtorWithTwoParametersCloseStreamOptions() {
+    public void ctorWithTwoParametersCloseStreamOptions() {
         final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.CLOSE);
         final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 
@@ -449,7 +448,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
      * We keep this test for 100% coverage. Until #12873.
      */
     @Test
-    public void testCtorWithTwoParametersNoneStreamOptions() {
+    public void ctorWithTwoParametersNoneStreamOptions() {
         final XMLLogger logger = new XMLLogger(outStream, AutomaticBean.OutputStreamOptions.NONE);
         final boolean closeStream = TestUtil.getInternalState(logger, "closeStream", Boolean.class);
 

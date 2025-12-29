@@ -46,7 +46,7 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void simple() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathUnusedLambdaParameterShouldBeUnnamedSimple.java"));
@@ -90,7 +90,7 @@ public class XpathRegressionUnusedLambdaParameterShouldBeUnnamedTest
     }
 
     @Test
-    public void testNested() throws Exception {
+    public void nested() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathUnusedLambdaParameterShouldBeUnnamedNested.java"));

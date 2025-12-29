@@ -52,7 +52,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptOne() throws Exception {
+    public void acceptOne() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(getPath("InputSuppressionXpathFilterAcceptOne.java"),
                                            ALL_MESSAGES,
@@ -60,7 +60,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptTwo() throws Exception {
+    public void acceptTwo() throws Exception {
         final String[] expected = {
             "20:29: " + getCheckMessage(ConstantNameCheck.class, MSG_INVALID_PATTERN,
                                         "different_name_than_suppression", PATTERN),
@@ -71,7 +71,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptOnNullFile() throws Exception {
+    public void acceptOnNullFile() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressionXpathFilterAcceptOnNullFile.java"), ALL_MESSAGES,
@@ -79,7 +79,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistentSuppressionFileWithFalseOptional() throws Exception {
+    public void nonExistentSuppressionFileWithFalseOptional() throws Exception {
         final String fileName = getPath("non_existent_suppression_file.xml");
         try {
             final boolean optional = false;
@@ -94,7 +94,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingInvalidSuppressionFileWithTrueOptional() throws Exception {
+    public void existingInvalidSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionXpathFilterInvalidFile.xml");
         try {
             final boolean optional = true;
@@ -110,7 +110,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingSuppressionFileWithTrueOptional() throws Exception {
+    public void existingSuppressionFileWithTrueOptional() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressionXpathFilterAcceptWithOptionalTrue.java"), ALL_MESSAGES,
@@ -118,7 +118,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
+    public void nonExistentSuppressionFileWithTrueOptional() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifyFilterWithInlineConfigParser(
             getPath("InputSuppressionXpathFilterNonExistentFileWithTrueOptional.java"),
@@ -126,7 +126,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReject() throws Exception {
+    public void reject() throws Exception {
         final String[] suppressed = {
             "20:29: " + getCheckMessage(ConstantNameCheck.class,
                                         MSG_INVALID_PATTERN, "bad_name", PATTERN),
@@ -137,7 +137,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    public void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(SuppressionXpathFilter.class)
                 .usingGetClass()
                 .withIgnoredFields("file", "optional", "configuration")
@@ -148,7 +148,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExternalResource() throws Exception {
+    public void externalResource() throws Exception {
         final boolean optional = false;
         final String fileName = getPath("InputSuppressionXpathFilterIdAndQuery.xml");
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
@@ -170,7 +170,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFalseEncodeString() throws Exception {
+    public void falseEncodeString() throws Exception {
         final String pattern = "[^a-zA-z0-9]*";
         final String[] expected = {
             "17:24: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
@@ -199,7 +199,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFalseEncodeChar() throws Exception {
+    public void falseEncodeChar() throws Exception {
         final String pattern = "[^a-zA-z0-9]*";
         final String[] expected = {
             "17:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
@@ -220,7 +220,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testXpathSuppression() throws Exception {
+    public void xpathSuppression() throws Exception {
         for (int test = 1; test <= 4; test++) {
 
             final String[] expected = {
@@ -235,7 +235,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testXpathSuppression2() throws Exception {
+    public void xpathSuppression2() throws Exception {
         final String pattern = "[^a-zA-z0-9]*";
         final String[] expected = {
             "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
@@ -250,7 +250,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testXpathSuppression3() throws Exception {
+    public void xpathSuppression3() throws Exception {
         final String pattern = "[^a-zA-z0-9]*";
         final String[] expected = {
             "18:14: " + getCheckMessage(IllegalTokenTextCheck.class, MSG_KEY, pattern),
@@ -265,7 +265,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testXpathSuppression4() throws Exception {
+    public void xpathSuppression4() throws Exception {
         final String[] suppressed = {
             "20:29: " + getCheckMessage(ConstantNameCheck.class,
                                         MSG_INVALID_PATTERN, "bad_name", PATTERN),

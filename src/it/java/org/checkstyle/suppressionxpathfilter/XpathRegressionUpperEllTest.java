@@ -38,7 +38,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testUpperEllOne() throws Exception {
+    public void upperEllOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUpperEllOne.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionUpperEllTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testUpperEllTwo() throws Exception {
+    public void upperEllTwo() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathUpperEllTwo.java"));
 

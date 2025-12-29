@@ -38,287 +38,287 @@ public class Antlr4AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void simple() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionSimple.txt"),
                 getPath("InputAntlr4AstRegressionSimple.java"));
     }
 
     @Test
-    public void testAnno() throws Exception {
+    public void anno() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionSimpleWithAnno.txt"),
                 getPath("InputAntlr4AstRegressionSimpleWithAnno.java"));
     }
 
     @Test
-    public void testImports() throws Exception {
+    public void imports() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionImports.txt"),
                 getPath("InputAntlr4AstRegressionImports.java"));
     }
 
     @Test
-    public void testConstructorCall() throws Exception {
+    public void constructorCall() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionConstructorCall.txt"),
                 getPath("InputAntlr4AstRegressionConstructorCall.java"));
     }
 
     @Test
-    public void testMethodCall() throws Exception {
+    public void methodCall() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionMethodCall.txt"),
                 getPath("InputAntlr4AstRegressionMethodCall.java"));
     }
 
     @Test
-    public void testRegressionJavaClass1() throws Exception {
+    public void regressionJavaClass1() throws Exception {
         verifyAst(getPath("ExpectedRegressionJavaClass1Ast.txt"),
                 getPath("InputRegressionJavaClass1.java"));
     }
 
     @Test
-    public void testRegressionAnnotationLocation() throws Exception {
+    public void regressionAnnotationLocation() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationLocation.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationLocation.java"));
     }
 
     @Test
-    public void testRegressionKeywordsAndOperators() throws Exception {
+    public void regressionKeywordsAndOperators() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionKeywordsAndOperators.txt"),
                 getPath("InputAntlr4AstRegressionKeywordsAndOperators.java"));
     }
 
     @Test
-    public void testRegressionDiamondOperators() throws Exception {
+    public void regressionDiamondOperators() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionKeywordsAndOperators.txt"),
                 getPath("InputAntlr4AstRegressionKeywordsAndOperators.java"));
     }
 
     @Test
-    public void testSingleLineBlocks() throws Exception {
+    public void singleLineBlocks() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionSingleLineBlocks.txt"),
                 getPath("InputAntlr4AstRegressionSingleLineBlocks.java"));
     }
 
     @Test
-    public void testExpressionList() throws Exception {
+    public void expressionList() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionExpressionList.txt"),
                 getPath("InputAntlr4AstRegressionExpressionList.java"));
     }
 
     @Test
-    public void testNewTypeTree() throws Exception {
+    public void newTypeTree() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionNewTypeTree.txt"),
                 getPath("InputAntlr4AstRegressionNewTypeTree.java"));
     }
 
     @Test
-    public void testFallThroughDefault() throws Exception {
+    public void fallThroughDefault() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionFallThroughDefault.txt"),
                 getPath("InputAntlr4AstRegressionFallThroughDefault.java"));
     }
 
     @Test
-    public void testPackageAnnotation() throws Exception {
+    public void packageAnnotation() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionPackageAnnotation.txt"),
                 getPath("package-info.java"));
     }
 
     @Test
-    public void testAnnotationOnSameLine1() throws Exception {
+    public void annotationOnSameLine1() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationOnSameLine.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationOnSameLine.java"));
     }
 
     @Test
-    public void testAnnotationOnSameLine2() throws Exception {
+    public void annotationOnSameLine2() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationOnSameLine2.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationOnSameLine2.java"));
     }
 
     @Test
-    public void testSuppressWarnings() throws Exception {
+    public void suppressWarnings() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionSuppressWarnings.txt"),
                 getPath("InputAntlr4AstRegressionSuppressWarnings.java"));
     }
 
     @Test
-    public void testBadOverride() throws Exception {
+    public void badOverride() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionBadOverride.txt"),
                 getPath("InputAntlr4AstRegressionBadOverride.java"));
     }
 
     @Test
-    public void testTrickySwitch() throws Exception {
+    public void trickySwitch() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionTrickySwitch.txt"),
                 getPath("InputAntlr4AstRegressionTrickySwitch.java"));
     }
 
     @Test
-    public void testExplicitInitialization() throws Exception {
+    public void explicitInitialization() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionExplicitInitialization.txt"),
                 getPath("InputAntlr4AstRegressionExplicitInitialization.java"));
     }
 
     @Test
-    public void testTypeParams() throws Exception {
+    public void typeParams() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionTypeParams.txt"),
                 getPath("InputAntlr4AstRegressionTypeParams.java"));
     }
 
     @Test
-    public void testForLoops() throws Exception {
+    public void forLoops() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionForLoops.txt"),
                 getPath("InputAntlr4AstRegressionForLoops.java"));
     }
 
     @Test
-    public void testIllegalCatch() throws Exception {
+    public void illegalCatch() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionIllegalCatch.txt"),
                 getPath("InputAntlr4AstRegressionIllegalCatch.java"));
     }
 
     @Test
-    public void testNestedTypeParametersAndArrayDeclarators() throws Exception {
+    public void nestedTypeParametersAndArrayDeclarators() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionNestedTypeParametersAndArrayDeclarators.txt"),
                 getPath("InputAntlr4AstRegressionNestedTypeParametersAndArrayDeclarators.java"));
     }
 
     @Test
-    public void testNewLineAtEndOfFileCr() throws Exception {
+    public void newLineAtEndOfFileCr() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionNewLineAtEndOfFileCr.txt"),
                 getPath("InputAntlr4AstRegressionNewLineAtEndOfFileCr.java"));
     }
 
     @Test
-    public void testWeirdCtor() throws Exception {
+    public void weirdCtor() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionWeirdCtor.txt"),
                 getPath("InputAntlr4AstRegressionWeirdCtor.java"));
     }
 
     @Test
-    public void testAnnotationOnQualifiedTypes() throws Exception {
+    public void annotationOnQualifiedTypes() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationOnQualifiedTypes.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationOnQualifiedTypes.java"));
     }
 
     @Test
-    public void testAnnotationOnArrays() throws Exception {
+    public void annotationOnArrays() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionAnnotationOnArrays.txt"),
                 getPath("InputAntlr4AstRegressionAnnotationOnArrays.java"));
     }
 
     @Test
-    public void testMethodRefs() throws Exception {
+    public void methodRefs() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionMethodRefs.txt"),
                 getPath("InputAntlr4AstRegressionMethodRefs.java"));
     }
 
     @Test
-    public void testEmbeddedBlockComments() throws Exception {
+    public void embeddedBlockComments() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionEmbeddedBlockComments.txt"),
                 getPath("InputAntlr4AstRegressionEmbeddedBlockComments.java"));
     }
 
     @Test
-    public void testJava16LocalEnumAndInterface() throws Exception {
+    public void java16LocalEnumAndInterface() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionJava16LocalEnumAndInterface.txt"),
                 getPath("InputAntlr4AstRegressionJava16LocalEnumAndInterface.java"));
     }
 
     @Test
-    public void testTrickySwitchWithComments() throws Exception {
+    public void trickySwitchWithComments() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionTrickySwitchWithComments.txt"),
                 getPath("InputAntlr4AstRegressionTrickySwitchWithComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testCassandraInputWithComments() throws Exception {
+    public void cassandraInputWithComments() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCassandraInputWithComments.txt"),
                 getPath("InputAntlr4AstRegressionCassandraInputWithComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testCommentsOnAnnotationsAndEnums() throws Exception {
+    public void commentsOnAnnotationsAndEnums() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionCommentsOnAnnotationsAndEnums.txt"),
                 getPath("InputAntlr4AstRegressionCommentsOnAnnotationsAndEnums.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testUncommon() throws Exception {
+    public void uncommon() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionUncommon.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testUncommon2() throws Exception {
+    public void uncommon2() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon2.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionUncommon2.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testTrickyYield() throws Exception {
+    public void trickyYield() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionTrickyYield.txt"),
                 getPath("InputAntlr4AstRegressionTrickyYield.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testSingleCommaInArrayInit() throws Exception {
+    public void singleCommaInArrayInit() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionSingleCommaInArrayInit.txt"),
                 getPath("InputAntlr4AstRegressionSingleCommaInArrayInit.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testUncommon3() throws Exception {
+    public void uncommon3() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon3.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionUncommon3.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testUncommon4() throws Exception {
+    public void uncommon4() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUncommon4.txt"),
                 getPath("InputAntlr4AstRegressionUncommon4.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testQualifiedConstructorParameter() throws Exception {
+    public void qualifiedConstructorParameter() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionQualifiedConstructorParameter.txt"),
                 getNonCompilablePath("InputAntlr4AstRegressionQualifiedConstructorParameter.java"));
     }
 
     @Test
-    public void testJava15FinalLocalRecord() throws Exception {
+    public void java15FinalLocalRecord() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionJava15FinalLocalRecord.txt"),
                 getPath("InputAntlr4AstRegressionJava15FinalLocalRecord.java"),
                 JavaParser.Options.WITH_COMMENTS);
     }
 
     @Test
-    public void testUnusualAnnotation() throws Exception {
+    public void unusualAnnotation() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionUnusualAnnotation.txt"),
                 getPath("InputAntlr4AstRegressionUnusualAnnotation.java"));
     }
 
     @Test
-    public void testLambda() throws Exception {
+    public void lambda() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionLambda.txt"),
                 getPath("InputAntlr4AstRegressionLambda.java"));
     }
 
     @Test
-    public void testExpressions() throws Exception {
+    public void expressions() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionExpressions.txt"),
                 getPath("InputAntlr4AstRegressionExpressions.java"));
     }
 
     @Test
-    public void testInterfaceMemberAlternativePrecedence() throws Exception {
+    public void interfaceMemberAlternativePrecedence() throws Exception {
         verifyAst(getPath("ExpectedAntlr4AstRegressionInterfaceRecordDef.txt"),
                 getPath("InputAntlr4AstRegressionInterfaceRecordDef.java"));
     }

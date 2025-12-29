@@ -44,7 +44,7 @@ public class XdocsMobileWrapperTest {
     );
 
     @Test
-    public void testAllCheckSectionMobileWrapper() throws Exception {
+    public void allCheckSectionMobileWrapper() throws Exception {
         for (Path path : XdocUtil.getXdocsFilePaths()) {
             final File file = path.toFile();
             final String fileName = file.getName();

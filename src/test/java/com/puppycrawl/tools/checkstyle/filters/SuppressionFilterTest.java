@@ -53,7 +53,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAccept() throws Exception {
+    public void accept() throws Exception {
         final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
@@ -66,7 +66,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptFalse() throws Exception {
+    public void acceptFalse() throws Exception {
         final String fileName = getPath("InputSuppressionFilterSuppress.xml");
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
@@ -81,7 +81,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptOnNullFile() throws CheckstyleException {
+    public void acceptOnNullFile() throws Exception {
         final String fileName = null;
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
@@ -93,7 +93,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistentSuppressionFileWithFalseOptional() {
+    public void nonExistentSuppressionFileWithFalseOptional() {
         final String fileName = "non_existent_suppression_file.xml";
         try {
             final boolean optional = false;
@@ -108,7 +108,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingInvalidSuppressionFileWithTrueOptional() throws IOException {
+    public void existingInvalidSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionFilterInvalidFile.xml");
         try {
             final boolean optional = true;
@@ -124,7 +124,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingSuppressionFileWithTrueOptional() throws Exception {
+    public void existingSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = getPath("InputSuppressionFilterNone.xml");
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
@@ -137,7 +137,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistentSuppressionFileWithTrueOptional() throws Exception {
+    public void nonExistentSuppressionFileWithTrueOptional() throws Exception {
         final String fileName = "non_existent_suppression_file.xml";
         final boolean optional = true;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
@@ -150,7 +150,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonExistentSuppressionUrlWithTrueOptional() throws Exception {
+    public void nonExistentSuppressionUrlWithTrueOptional() throws Exception {
         final String fileName =
                 "https://checkstyle.org/non_existent_suppression.xml";
         final boolean optional = true;
@@ -164,7 +164,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUseCacheLocalFileExternalResourceContentDoesNotChange() throws Exception {
+    public void useCacheLocalFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
         filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
@@ -181,7 +181,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUseCacheRemoteFileExternalResourceContentDoesNotChange() throws Exception {
+    public void useCacheRemoteFileExternalResourceContentDoesNotChange() throws Exception {
         final String[] urlCandidates = {
             "https://checkstyle.org/files/suppressions_none.xml",
             "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
@@ -276,7 +276,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testXpathSuppression() throws Exception {
+    public void xpathSuppression() throws Exception {
         for (int test = 1; test <= 6; test++) {
             final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
             final String[] expected = {
@@ -291,7 +291,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSuppression2() throws Exception {
+    public void suppression2() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "19:29: " + getCheckMessage(ConstantNameCheck.class,
@@ -307,7 +307,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSuppression3() throws Exception {
+    public void suppression3() throws Exception {
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
         final String[] expected = {
             "19:29: " + getCheckMessage(ConstantNameCheck.class,

@@ -64,14 +64,14 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testAssignment() throws Exception {
+    public void assignment() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestAssignment.java"), expected);
     }
 
     @Test
-    public void testDotAllowLineBreaks() throws Exception {
+    public void dotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "129:23: " + getCheckMessage(MSG_KEY, "."),
@@ -82,7 +82,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testTypecast() throws Exception {
+    public void typecast() throws Exception {
         final String[] expected = {
             "87:20: " + getCheckMessage(MSG_KEY, ")"),
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
@@ -93,7 +93,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayDeclarations() throws Exception {
+    public void arrayDeclarations() throws Exception {
         final String[] expected = {
             "14:12: " + getCheckMessage(MSG_KEY, "Object"),
             "16:23: " + getCheckMessage(MSG_KEY, "someStuff3"),
@@ -122,7 +122,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayDeclarations2() throws Exception {
+    public void arrayDeclarations2() throws Exception {
         final String[] expected = {
             "20:31: " + getCheckMessage(MSG_KEY, "]"),
             "25:41: " + getCheckMessage(MSG_KEY, "create"),
@@ -172,7 +172,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayDeclarations3() throws Exception {
+    public void arrayDeclarations3() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarations3.java"));
     }
@@ -187,13 +187,13 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testNpe() throws Exception {
+    public void npe() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterTestNpe.java"));
     }
 
     @Test
-    public void testMethodReference() throws Exception {
+    public void methodReference() throws Exception {
         final String[] expected = {
             "17:41: " + getCheckMessage(MSG_KEY, "int"),
             "18:62: " + getCheckMessage(MSG_KEY, "String"),
@@ -203,7 +203,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testMethodReferenceAfter() throws Exception {
+    public void methodReferenceAfter() throws Exception {
         final String[] expected = {
             "25:35: " + getCheckMessage(MSG_KEY, "::"),
             "27:64: " + getCheckMessage(MSG_KEY, "::"),
@@ -213,7 +213,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayDeclarator() throws Exception {
+    public void arrayDeclarator() throws Exception {
         final String[] expected = {
             "19:32: " + getCheckMessage(MSG_KEY, "Entry"),
         };
@@ -222,7 +222,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testVisitTokenSwitchReflection() {
+    public void visitTokenSwitchReflection() {
         // unexpected parent for ARRAY_DECLARATOR token
         final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import");
         final DetailAstImpl astArrayDeclarator = mockAST(TokenTypes.ARRAY_DECLARATOR, "[");
@@ -243,7 +243,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testAllTokens() throws Exception {
+    public void allTokens() throws Exception {
         final String[] expected = {
             "10:13: " + getCheckMessage(MSG_KEY, "."),
             "11:11: " + getCheckMessage(MSG_KEY, "."),
@@ -273,14 +273,14 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayDeclarationsAndAnnotations() throws Exception {
+    public void arrayDeclarationsAndAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
     }
 
     @Test
-    public void testArrayNewTypeStructure() throws Exception {
+    public void arrayNewTypeStructure() throws Exception {
         final String[] expected = {
             "53:17: " + getCheckMessage(MSG_KEY, "ci"),
             "54:27: " + getCheckMessage(MSG_KEY, "int"),
@@ -312,7 +312,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testArrayNewGenericTypeArgument() throws Exception {
+    public void arrayNewGenericTypeArgument() throws Exception {
 
         final String[] expected = {
             "59:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -338,7 +338,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testNoWhitespaceAfterWithEmoji() throws Exception {
+    public void noWhitespaceAfterWithEmoji() throws Exception {
 
         final String[] expected = {
             "16:16: " + getCheckMessage(MSG_KEY, "String"),
@@ -355,7 +355,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testNoWhitespaceAfterSynchronized() throws Exception {
+    public void noWhitespaceAfterSynchronized() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
@@ -366,7 +366,7 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
-    public void testNoWhitespaceAfterUnnamedPattern() throws Exception {
+    public void noWhitespaceAfterUnnamedPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(

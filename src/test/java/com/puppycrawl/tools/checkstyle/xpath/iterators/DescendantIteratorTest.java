@@ -29,7 +29,7 @@ import net.sf.saxon.om.NodeInfo;
 public class DescendantIteratorTest {
 
     @Test
-    public void testIncludeSelf() {
+    public void includeSelf() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode,
@@ -65,7 +65,7 @@ public class DescendantIteratorTest {
     }
 
     @Test
-    public void testWithoutSelf() {
+    public void withoutSelf() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode,
@@ -95,7 +95,7 @@ public class DescendantIteratorTest {
     }
 
     @Test
-    public void testWithNull() {
+    public void withNull() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (DescendantIterator iterator = new DescendantIterator(startNode, null)) {

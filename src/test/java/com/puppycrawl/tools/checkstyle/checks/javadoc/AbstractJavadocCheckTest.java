@@ -69,7 +69,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testJavadocTagsWithoutArgs() throws Exception {
+    public void javadocTagsWithoutArgs() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 4,
                     "no viable alternative at input 'see'", "SEE_TAG"),
@@ -83,7 +83,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNumberFormatException() throws Exception {
+    public void numberFormatException() throws Exception {
         final String[] expected = {
             "8: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 52,
                     "mismatched input '}' expecting IDENTIFIER", "MEMBER_REFERENCE"),
@@ -93,27 +93,27 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustomTag() throws Exception {
+    public void customTag() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocCustomTag.java"), expected);
     }
 
     @Test
-    public void testWithMultipleChecksOne() throws Exception {
+    public void withMultipleChecksOne() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocCorrectParagraphOne.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testWithMultipleChecksTwo() throws Exception {
+    public void withMultipleChecksTwo() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocCorrectParagraphTwo.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
+    public void antlrError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
             "9: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 77,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
@@ -126,7 +126,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAntlrLexerError(@SysErr Capturable systemErr) throws Exception {
+    public void antlrLexerError(@SysErr Capturable systemErr) throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     29, "token recognition error at: '-'", "fieldName"),
@@ -139,7 +139,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
+    public void checkReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
             @SysErr Capturable systemErr) throws Exception {
         final String[] expectedMessagesForFile1 = {
             "11: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 5,
@@ -161,7 +161,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
+    public void checkReuseAfterParseErrorWithFollowingAntlrErrorInSingleFile()
             throws Exception {
         final String[] expected = {
             "10: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 81,
@@ -172,7 +172,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCache() throws Exception {
+    public void cache() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
         };
@@ -181,13 +181,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCacheWithBlockCommentInSingleLineComment() throws Exception {
+    public void cacheWithBlockCommentInSingleLineComment() throws Exception {
         final String[] expected = {};
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocCache3.java"), expected);
     }
 
     @Test
-    public void testCacheWithTwoBlockCommentAtSameLine() throws Exception {
+    public void cacheWithTwoBlockCommentAtSameLine() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(SummaryJavadocCheck.class, MSG_SUMMARY_FIRST_SENTENCE),
         };
@@ -195,7 +195,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionOne() throws Exception {
+    public void positionOne() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionOne.java"), expected);
@@ -205,7 +205,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionTwo() throws Exception {
+    public void positionTwo() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionTwo.java"), expected);
@@ -215,7 +215,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionThree() throws Exception {
+    public void positionThree() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocPositionThree.java"), expected);
@@ -225,7 +225,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionWithSinglelineCommentsOne() throws Exception {
+    public void positionWithSinglelineCommentsOne() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -236,7 +236,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionWithSinglelineCommentsTwo() throws Exception {
+    public void positionWithSinglelineCommentsTwo() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -247,7 +247,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionWithSinglelineCommentsThree() throws Exception {
+    public void positionWithSinglelineCommentsThree() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -258,7 +258,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPositionOnlyComments() throws Exception {
+    public void positionOnlyComments() throws Exception {
         JavadocCatchCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -269,7 +269,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokens() {
+    public void tokens() {
         final int[] defaultJavadocTokens = {JavadocCommentsTokenTypes.JAVADOC_CONTENT};
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override
@@ -304,7 +304,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensFail() {
+    public void tokensFail() {
         final int[] defaultJavadocTokens = {JavadocCommentsTokenTypes.JAVADOC_CONTENT,
             JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
             JavadocCommentsTokenTypes.HTML_COMMENT,
@@ -327,7 +327,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptableTokensFail() throws Exception {
+    public void acceptableTokensFail() throws Exception {
         final String path = getPath("InputAbstractJavadocTokensFail.java");
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -346,13 +346,13 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptableTokensPass() throws Exception {
+    public void acceptableTokensPass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocTokensPass.java"), expected);
     }
 
     @Test
-    public void testRequiredTokenIsNotInDefaultTokens() throws Exception {
+    public void requiredTokenIsNotInDefaultTokens() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RequiredTokenIsNotInDefaultsJavadocCheck.class);
         final String uniqueFileName = "empty_" + UUID.randomUUID() + ".java";
@@ -374,7 +374,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitLeaveTokenOne() throws Exception {
+    public void visitLeaveTokenOne() throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenOne.java"), expected);
@@ -387,7 +387,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitLeaveTokenTwo() throws Exception {
+    public void visitLeaveTokenTwo() throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenTwo.java"), expected);
@@ -400,7 +400,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitLeaveTokenThree() throws Exception {
+    public void visitLeaveTokenThree() throws Exception {
         JavadocVisitLeaveCheck.clearCounter();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputAbstractJavadocLeaveTokenThree.java"), expected);
@@ -413,7 +413,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoWsBeforeDescriptionInJavadocTags() throws Exception {
+    public void noWsBeforeDescriptionInJavadocTags() throws Exception {
         final String[] expected = {
             "27: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR,
                     29, "token recognition error at: '-'", "fieldName"),
@@ -434,7 +434,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckOne() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckOne() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -449,7 +449,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckTwo() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckTwo() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "19: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -462,21 +462,21 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationOne() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckReportingNoViolationOne() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationOne.java"), expected);
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckReportingNoViolationTwo() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocNonTightHtmlTagsNoViolationTwo.java"), expected);
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckVisitCountOne() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "28: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -492,7 +492,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonTightHtmlTagIntolerantCheckVisitCountTwo() throws Exception {
+    public void nonTightHtmlTagIntolerantCheckVisitCountTwo() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "47: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "li"),
@@ -505,7 +505,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
+    public void visitCountForCheckAcceptingJavadocWithNonTightHtml() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
             "23: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
@@ -522,7 +522,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVisitCountForCheckAcceptingJavadocWithNonTightHtml3() throws Exception {
+    public void visitCountForCheckAcceptingJavadocWithNonTightHtml3() throws Exception {
         final String[] expected = {
             "15:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
             "30:8: " + getCheckMessage(NonTightHtmlTagCheck.MSG_KEY, "PARAM_BLOCK_TAG"),
@@ -534,7 +534,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLeaveJavadocToken() throws Exception {
+    public void leaveJavadocToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAbstractJavadocLeaveToken.java"), expected);

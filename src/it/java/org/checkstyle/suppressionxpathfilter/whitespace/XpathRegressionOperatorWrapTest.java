@@ -44,7 +44,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOperatorWrapNewLine() throws Exception {
+    public void operatorWrapNewLine() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathOperatorWrapNewLine.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOperatorWrapPreviousLine() throws Exception {
+    public void operatorWrapPreviousLine() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathOperatorWrapPreviousLine.java"));
 

@@ -44,7 +44,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testBlockComment() throws Exception {
+    public void blockComment() throws Exception {
         final File fileToProcess = new File(getPath(
                 "blockcomment/package-info.java"));
 
@@ -64,7 +64,7 @@ public class XpathRegressionMissingJavadocPackageTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testNoJavadoc() throws Exception {
+    public void noJavadoc() throws Exception {
         final File fileToProcess = new File(getPath(
                 "nojavadoc/package-info.java"));
 

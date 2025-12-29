@@ -29,7 +29,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class LineColumnTest {
 
     @Test
-    public void testCompareToBothEqual() {
+    public void compareToBothEqual() {
         final int actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));
         assertWithMessage("Invalid LineColumn comparing result")
                 .that(actual)
@@ -37,7 +37,7 @@ public class LineColumnTest {
     }
 
     @Test
-    public void testCompareToFirstLarger() {
+    public void compareToFirstLarger() {
         final LineColumn lineColumn = new LineColumn(0, 0);
 
         final int line1column0 = new LineColumn(1, 0).compareTo(lineColumn);
@@ -51,7 +51,7 @@ public class LineColumnTest {
     }
 
     @Test
-    public void testCompareToFirstSmaller() {
+    public void compareToFirstSmaller() {
         final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
         final int line1Column0 = lineColumn.compareTo(new LineColumn(1, 0));
@@ -65,7 +65,7 @@ public class LineColumnTest {
     }
 
     @Test
-    public void testEqualsAndHashCode() {
+    public void equalsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(LineColumn.class).usingGetClass()
                 .report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -74,7 +74,7 @@ public class LineColumnTest {
     }
 
     @Test
-    public void testGetters() {
+    public void getters() {
         final LineColumn lineColumn = new LineColumn(2, 3);
 
         assertWithMessage("Invalid LineColumn comparison result")

@@ -49,7 +49,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
-    public void testNoBraceAfterAllowed() throws Exception {
+    public void noBraceAfterAllowed() throws Exception {
         final String[] expected = {
             "16:42: " + getCheckMessage(MSG_SEMI),
             "19:13: " + getCheckMessage(MSG_SEMI),
@@ -62,7 +62,7 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
     }
 
     @Test
-    public void testTokensAreCorrect() {
+    public void tokensAreCorrect() {
         final UnnecessarySemicolonInTryWithResourcesCheck check =
             new UnnecessarySemicolonInTryWithResourcesCheck();
         final int[] expected = {

@@ -36,7 +36,7 @@ public class Java7DiamondTest
     }
 
     @Test
-    public void testCanParse()
+    public void canParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

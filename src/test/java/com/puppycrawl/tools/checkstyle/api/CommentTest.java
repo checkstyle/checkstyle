@@ -52,7 +52,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects() {
+    public void intersects() {
         final String[] text = {"test", "test"};
         final Comment comment = new Comment(text, 2, 4, 4);
 
@@ -75,7 +75,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects2() {
+    public void intersects2() {
         final String[] text = {"a"};
         final Comment comment = new Comment(text, 2, 2, 2);
 
@@ -85,7 +85,7 @@ public class CommentTest {
     }
 
     @Test
-    public void testIntersects3() {
+    public void intersects3() {
         final String[] text = {"test"};
         final Comment comment = new Comment(text, 1, 1, 2);
 

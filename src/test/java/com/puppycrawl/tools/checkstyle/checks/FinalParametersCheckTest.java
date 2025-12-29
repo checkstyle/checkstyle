@@ -34,7 +34,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultTokens() throws Exception {
+    public void defaultTokens() throws Exception {
         final String[] expected = {
             "28:26: " + getCheckMessage(MSG_KEY, "s"),
             "43:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -53,7 +53,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCtorToken() throws Exception {
+    public void ctorToken() throws Exception {
         final String[] expected = {
             "29:27: " + getCheckMessage(MSG_KEY, "s"),
             "44:27: " + getCheckMessage(MSG_KEY, "i"),
@@ -64,7 +64,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodToken() throws Exception {
+    public void methodToken() throws Exception {
         final String[] expected = {
             "59:17: " + getCheckMessage(MSG_KEY, "s"),
             "75:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -80,7 +80,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCatchToken() throws Exception {
+    public void catchToken() throws Exception {
         final String[] expected = {
             "131:16: " + getCheckMessage(MSG_KEY, "npe"),
             "137:16: " + getCheckMessage(MSG_KEY, "e"),
@@ -91,7 +91,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testForEachClauseToken() throws Exception {
+    public void forEachClauseToken() throws Exception {
         final String[] expected = {
             "158:13: " + getCheckMessage(MSG_KEY, "s"),
             "166:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -101,7 +101,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnorePrimitiveTypesParameters() throws Exception {
+    public void ignorePrimitiveTypesParameters() throws Exception {
         final String[] expected = {
             "15:22: " + getCheckMessage(MSG_KEY, "k"),
             "16:15: " + getCheckMessage(MSG_KEY, "s"),
@@ -116,7 +116,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPrimitiveTypesParameters() throws Exception {
+    public void primitiveTypesParameters() throws Exception {
         final String[] expected = {
             "14:14: " + getCheckMessage(MSG_KEY, "i"),
             "15:15: " + getCheckMessage(MSG_KEY, "i"),
@@ -138,14 +138,14 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReceiverParameters() throws Exception {
+    public void receiverParameters() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalParametersReceiver.java"), expected);
     }
 
     @Test
-    public void testUnnamedParametersPropertyTrue() throws Exception {
+    public void unnamedParametersPropertyTrue() throws Exception {
         final String[] expected = {
             "25:18: " + getCheckMessage(MSG_KEY, "__"),
             "30:18: " + getCheckMessage(MSG_KEY, "_e"),
@@ -159,7 +159,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnamedParametersPropertyFalse() throws Exception {
+    public void unnamedParametersPropertyFalse() throws Exception {
         final String[] expected = {
             "20:18: " + getCheckMessage(MSG_KEY, "_"),
             "25:18: " + getCheckMessage(MSG_KEY, "__"),
@@ -175,7 +175,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodTokenInInterface() throws Exception {
+    public void methodTokenInInterface() throws Exception {
         final String[] expected = {
             "16:26: " + getCheckMessage(MSG_KEY, "param1"),
             "22:27: " + getCheckMessage(MSG_KEY, "param1"),
@@ -186,7 +186,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPatternVariableDefinitions() throws Exception {
+    public void patternVariableDefinitions() throws Exception {
         final String[] expected = {
             "17:47: " + getCheckMessage(MSG_KEY, "s"),
             "19:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -199,7 +199,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRecordForLoopPatternVariableDefinitions() throws Exception {
+    public void recordForLoopPatternVariableDefinitions() throws Exception {
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_KEY, "name"),
         };

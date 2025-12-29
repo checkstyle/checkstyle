@@ -47,7 +47,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testIfBooleanEqualsBoolean() throws Exception {
+    public void ifBooleanEqualsBoolean() throws Exception {
         final File fileToProcess = new File(
             getPath(
                 "InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean.java"));
@@ -69,7 +69,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testIfBooleanReturnBoolean() throws Exception {
+    public void ifBooleanReturnBoolean() throws Exception {
         final File fileToProcess = new File(
             getPath(
                 "InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean.java"

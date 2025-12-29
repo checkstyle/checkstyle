@@ -36,7 +36,7 @@ public class TodoCommentCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final TodoCommentCheck checkObj = new TodoCommentCheck();
         final int[] expected = {TokenTypes.COMMENT_CONTENT};
         assertWithMessage("Required tokens differs from expected")
@@ -45,7 +45,7 @@ public class TodoCommentCheckTest
     }
 
     @Test
-    public void testItOne() throws Exception {
+    public void itOne() throws Exception {
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
         };
@@ -54,7 +54,7 @@ public class TodoCommentCheckTest
     }
 
     @Test
-    public void testItTwo() throws Exception {
+    public void itTwo() throws Exception {
         final String[] expected = {
             "1:3: " + getCheckMessage(MSG_KEY, "FIXME:"),
             "68:7: " + getCheckMessage(MSG_KEY, "FIXME:"),
@@ -66,7 +66,7 @@ public class TodoCommentCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final int[] expected = {TokenTypes.COMMENT_CONTENT };
         final TodoCommentCheck check = new TodoCommentCheck();
         final int[] actual = check.getAcceptableTokens();

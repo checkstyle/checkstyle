@@ -31,24 +31,24 @@ public class SpecialEscapeSequencesTest extends AbstractGoogleModuleTestSupport 
     }
 
     @Test
-    public void testIllegalTokens() throws Exception {
+    public void illegalTokens() throws Exception {
         verifyWithWholeConfig(getPath("InputSpecialEscapeSequences.java"));
     }
 
     @Test
-    public void testIllegalTokensInTextBlockForOctalValues() throws Exception {
+    public void illegalTokensInTextBlockForOctalValues() throws Exception {
         verifyWithWholeConfig(
             getPath("InputSpecialEscapeSequencesInTextBlockForOctalValues.java"));
     }
 
     @Test
-    public void testIllegalTokensInTextBlockForUnicodeValues() throws Exception {
+    public void illegalTokensInTextBlockForUnicodeValues() throws Exception {
         verifyWithWholeConfig(
             getPath("InputSpecialEscapeSequencesInTextBlockForUnicodeValues.java"));
     }
 
     @Test
-    public void testIllegalTokensEscapedForEscapedS() throws Exception {
+    public void illegalTokensEscapedForEscapedS() throws Exception {
         verifyWithWholeConfig(getPath("InputSpecialEscapeSequencesForEscapedS.java"));
     }
 }

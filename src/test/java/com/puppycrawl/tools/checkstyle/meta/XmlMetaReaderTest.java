@@ -44,20 +44,20 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testDuplicatePackage() {
+    public void duplicatePackage() {
         assertThat(XmlMetaReader
                     .readAllModulesIncludingThirdPartyIfAny("com.puppycrawl.tools.checkstyle.meta"))
                 .hasSize(212);
     }
 
     @Test
-    public void testBadPackage() {
+    public void badPackage() {
         assertThat(XmlMetaReader.readAllModulesIncludingThirdPartyIfAny("DOES.NOT.EXIST"))
                 .hasSize(212);
     }
 
     @Test
-    public void testReadXmlMetaCheckWithProperties() throws Exception {
+    public void readXmlMetaCheckWithProperties() throws Exception {
         final String path = getPath("InputXmlMetaReaderCheckWithProps.xml");
         try (InputStream is = Files.newInputStream(Path.of(path))) {
             final ModuleDetails result = XmlMetaReader.read(is, ModuleType.CHECK);
@@ -84,7 +84,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReadXmlMetaCheckNoProperties() throws Exception {
+    public void readXmlMetaCheckNoProperties() throws Exception {
         final String path = getPath("InputXmlMetaReaderCheckNoProps.xml");
         try (InputStream is = Files.newInputStream(Path.of(path))) {
             final ModuleDetails result = XmlMetaReader.read(is, ModuleType.CHECK);
@@ -102,7 +102,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReadXmlMetaFilter() throws Exception {
+    public void readXmlMetaFilter() throws Exception {
         final String path = getPath("InputXmlMetaReaderFilter.xml");
         try (InputStream is = Files.newInputStream(Path.of(path))) {
             final ModuleDetails result = XmlMetaReader.read(is, ModuleType.FILTER);
@@ -121,7 +121,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReadXmlMetaFileFilter() throws Exception {
+    public void readXmlMetaFileFilter() throws Exception {
         final String path = getPath("InputXmlMetaReaderFileFilter.xml");
         try (InputStream is = Files.newInputStream(Path.of(path))) {
             final ModuleDetails result = XmlMetaReader.read(is, ModuleType.FILEFILTER);
@@ -144,7 +144,7 @@ public class XmlMetaReaderTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testReadXmlMetaModuleTypeNull() throws Exception {
+    public void readXmlMetaModuleTypeNull() throws Exception {
         try (InputStream is = IOUtils.toInputStream("", "UTF-8")) {
             assertThat(XmlMetaReader.read(is, null)).isNull();
         }

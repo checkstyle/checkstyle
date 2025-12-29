@@ -66,7 +66,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     }
 
     @Test
-    public void testNoBrace() throws Exception {
+    public void noBrace() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace.java"
         ));

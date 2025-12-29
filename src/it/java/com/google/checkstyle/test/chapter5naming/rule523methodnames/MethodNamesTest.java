@@ -31,12 +31,12 @@ public class MethodNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testMethodName() throws Exception {
+    public void methodName() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodName.java"));
     }
 
     @Test
-    public void testMethodName2() throws Exception {
+    public void methodName2() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodName2.java"));
     }
 }

@@ -45,7 +45,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderMethod.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testVariable() throws Exception {
+    public void variable() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderVariable.java"));
 
@@ -90,7 +90,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testAnnotation() throws Exception {
+    public void annotation() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathModifierOrderAnnotation.java"));
 

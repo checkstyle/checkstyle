@@ -34,7 +34,7 @@ public class SeverityLevelTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void testSeverityLevelValueOf() {
+    public void severityLevelValueOf() {
         final SeverityLevel level = SeverityLevel.valueOf("INFO");
         assertWithMessage("Invalid severity level")
             .that(level)
@@ -42,7 +42,7 @@ public class SeverityLevelTest {
     }
 
     @Test
-    public void testMisc() {
+    public void misc() {
         final SeverityLevel severityLevel = SeverityLevel.getInstance("info");
         assertWithMessage("Invalid getInstance result, should not be null")
             .that(severityLevel)
@@ -67,7 +67,7 @@ public class SeverityLevelTest {
     }
 
     @Test
-    public void testMixedCaseSpaces() {
+    public void mixedCaseSpaces() {
         assertWithMessage("Invalid getInstance result")
             .that(SeverityLevel.getInstance("IgnoRe "))
             .isEqualTo(SeverityLevel.IGNORE);
@@ -84,7 +84,7 @@ public class SeverityLevelTest {
 
     @DefaultLocale(language = "tr", country = "TR")
     @Test
-    public void testMixedCaseSpacesWithDifferentLocales() {
+    public void mixedCaseSpacesWithDifferentLocales() {
         assertWithMessage("Invalid getInstance result")
             .that(SeverityLevel.getInstance("IgnoRe "))
             .isEqualTo(SeverityLevel.IGNORE);
