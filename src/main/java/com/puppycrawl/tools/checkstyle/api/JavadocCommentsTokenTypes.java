@@ -148,16 +148,13 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>
-     * {@code
      * /**
-     * * @deprecated description
-     * * /
-     * }
+     * * &#64;deprecated description
+     * *&#47;
      * </pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>
-     * {@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
      * |--NEWLINE -> \n
@@ -165,11 +162,10 @@ public final class JavadocCommentsTokenTypes {
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      * `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
-     * |--AT_SIGN -> @
+     * |--AT_SIGN -> &#64;
      * |--TAG_NAME -> deprecated
      * `--DESCRIPTION -> DESCRIPTION
      * `--TEXT ->  description
-     * }
      * </pre>
      *
      * @see #JAVADOC_BLOCK_TAG
