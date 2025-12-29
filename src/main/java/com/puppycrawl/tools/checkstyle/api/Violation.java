@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 import com.puppycrawl.tools.checkstyle.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
