@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>LocalizedMessage.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.LocalizedMessage</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <lineNumber>81</lineNumber>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable args</description>
-    <lineContent>this.args = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>SarifLogger.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.SarifLogger</mutatedClass>
     <mutatedMethod>renderSeverityLevel</mutatedMethod>
