@@ -294,4 +294,25 @@ public class SuppressFilterElementTest {
                 .isTrue();
     }
 
+    @Test
+    public void testDecideByColumnWhenColumnsIsNull() {
+        final Violation violation =
+            new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement filterWithNullColumns =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+        final SuppressFilterElement filterWithColumns =
+                new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
+
+        // When columns is null, columnFilter should be null, so column matching is skipped
+        // Filter should reject because there are matches on file name and check name
+        assertWithMessage("Filter with null columns should reject when file/check match")
+                .that(filterWithNullColumns.accept(ev))
+                .isFalse();
+        // When columns is specified, filter should reject because column also matches
+        assertWithMessage("Filter with columns should reject when file/check/column match")
+                .that(filterWithColumns.accept(ev))
+                .isFalse();
+    }
+
 }
