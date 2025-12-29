@@ -18,6 +18,8 @@ class Example3
 {
   static int foo(int x, int y) {
     // ok, because PARAMETER_DEF is not configured in tokens
+    int _  = 1;
+    //ok above , validateUnnamedVariable is false by default
     return x+y;
   }
   public static void main (String []args) {
