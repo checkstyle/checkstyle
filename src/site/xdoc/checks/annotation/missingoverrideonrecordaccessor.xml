@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>MissingOverrideOnRecordAccessor</title>
+  </head>
+  <body>
+    <section xmlns="http://maven.apache.org/XDOC/2.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MissingOverrideOnRecordAccessor">
+      <p>Since Checkstyle 12.4.0</p>
+      <subsection name="Description" id="MissingOverrideOnRecordAccessor_Description">
+        <div>
+          Verifies that explicitly declared record accessor methods include
+          the <code>@Override</code> annotation.
+        </div>
+
+        <p>
+          Per <a href="https://openjdk.org/jeps/395">JEP 395</a>, the meaning of the
+          <code>@Override</code> annotation was extended to include explicitly declared
+          accessor methods for record components.
+        </p>
+
+        <p>
+          This check focuses only on record component accessor methods. It does not
+          attempt to detect general method overrides from interfaces or superclasses,
+          due to Checkstyle's single-file analysis limitations.
+        </p>
+      </subsection>
+      <subsection name="Examples" id="MissingOverrideOnRecordAccessor_Examples">
+        <p id="Example1-config"> To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingOverrideOnRecordAccessor"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+record Person(String name, int age) {
+
+  // violation below, 'method must include @java.lang.Override annotation.'
+  public String name() {
+    return name.toUpperCase();
+  }
+
+  @Override
+  public int age() {
+    return age;
+  }
+}
+</code></pre></div>
+        <hr class="example-separator"/>
+        <p id="Example2-config"> To configure the check:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="MissingOverrideOnRecordAccessor"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example with record implementing interface
+            (only record component accessors flagged):</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+interface Printable {
+  void print();
+}
+
+record Document(String title) implements Printable {
+
+  // violation below 'method must include @java.lang.Override annotation.'
+  public String title() {
+    return title.toUpperCase();
+  }
+
+  public void print() {
+    System.out.println(title);
+  }
+}
+</code></pre></div>
+      </subsection>
+      <subsection name="Example of Usage" id="MissingOverrideOnRecordAccessor_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+      <subsection name="Violation Messages" id="MissingOverrideOnRecordAccessor_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fannotation%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22annotation.missing.override.record.accessor%22">
+              annotation.missing.override.record.accessor
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">
+          see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+      <subsection name="Package" id="MissingOverrideOnRecordAccessor_Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.annotation </p>
+      </subsection>
+      <subsection name="Parent Module" id="MissingOverrideOnRecordAccessor_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>

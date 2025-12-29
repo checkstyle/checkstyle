@@ -91,6 +91,8 @@
           <item name="AnnotationUseStyle" href="checks/annotation/annotationusestyle.html"/>
           <item name="MissingDeprecated" href="checks/annotation/missingdeprecated.html"/>
           <item name="MissingOverride" href="checks/annotation/missingoverride.html"/>
+          <item name="MissingOverrideOnRecordAccessor"
+                href="checks/annotation/missingoverrideonrecordaccessor.html"/>
           <item name="PackageAnnotation" href="checks/annotation/packageannotation.html"/>
           <item name="SuppressWarnings" href="checks/annotation/suppresswarnings.html"/>
           <item name="SuppressWarningsHolder" href="checks/annotation/suppresswarningsholder.html"/>
