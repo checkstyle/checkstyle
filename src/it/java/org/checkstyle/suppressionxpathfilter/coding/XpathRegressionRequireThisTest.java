@@ -44,7 +44,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRequireThisOne.java"));
 
@@ -69,7 +69,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRequireThisTwo.java"));
 

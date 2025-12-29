@@ -81,7 +81,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllCheckSectionJavaDocs() throws Exception {
+    public void allCheckSectionJavaDocs() throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final List<Path> templatesWithPropertiesMacro =
                 SiteUtil.getTemplatesThatContainPropertiesMacro();

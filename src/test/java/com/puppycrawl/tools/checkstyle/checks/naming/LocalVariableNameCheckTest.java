@@ -37,7 +37,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final LocalVariableNameCheck localVariableNameCheck = new LocalVariableNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
 
@@ -47,7 +47,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testDefaultOne()
+    public void defaultOne()
             throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
@@ -62,7 +62,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testDefaultTwo()
+    public void defaultTwo()
             throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
@@ -75,7 +75,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testInnerClass()
+    public void innerClass()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -83,7 +83,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testLoopVariables()
+    public void loopVariables()
             throws Exception {
 
         final String pattern = "^[a-z]{2,}[a-zA-Z0-9]*$";
@@ -101,7 +101,7 @@ public class LocalVariableNameCheckTest
     }
 
     @Test
-    public void testUnnamedVariables() throws Exception {
+    public void unnamedVariables() throws Exception {
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {

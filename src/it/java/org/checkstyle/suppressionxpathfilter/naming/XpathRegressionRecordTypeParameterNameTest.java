@@ -45,7 +45,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    public void testTypeDeclared() throws Exception {
+    public void typeDeclared() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathRecordTypeParameterNameTypeDeclared.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionRecordTypeParameterNameTest extends AbstractXpathTes
     }
 
     @Test
-    public void testTypeDefault() throws Exception {
+    public void typeDefault() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathRecordTypeParameterNameTypeDefault.java"));
 

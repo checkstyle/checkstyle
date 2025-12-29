@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class PkgImportRuleTest {
 
     @Test
-    public void testPkgImportRule() {
+    public void pkgImportRule() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -52,7 +52,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleExactMatch() {
+    public void pkgImportRuleExactMatch() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -75,7 +75,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleRegexpSimple() {
+    public void pkgImportRuleRegexpSimple() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", false, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -101,7 +101,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleExactMatchRegexpSimple() {
+    public void pkgImportRuleExactMatchRegexpSimple() {
         final PkgImportRule rule = new PkgImportRule(true, false, "pkg", true, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -124,7 +124,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleRegexp() {
+    public void pkgImportRuleRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, true);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -162,7 +162,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleNoRegexp() {
+    public void pkgImportRuleNoRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, false);
         assertWithMessage("Rule must not be null")
             .that(rule)
@@ -197,7 +197,7 @@ public class PkgImportRuleTest {
     }
 
     @Test
-    public void testPkgImportRuleExactMatchRegexp() {
+    public void pkgImportRuleExactMatchRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", true, true);
         assertWithMessage("Rule must not be null")
             .that(rule)

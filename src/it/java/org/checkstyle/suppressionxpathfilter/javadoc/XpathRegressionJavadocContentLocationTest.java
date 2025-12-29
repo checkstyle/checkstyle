@@ -44,7 +44,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocContentLocationOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocContentLocationTwo.java"));
 

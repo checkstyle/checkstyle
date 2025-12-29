@@ -37,7 +37,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final DesignForExtensionCheck checkObj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -46,7 +46,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void it() throws Exception {
         final String[] expected = {
             "50:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtension", "doh"),
             "104:9: " + getCheckMessage(MSG_KEY, "anotherNonFinalClass", "someMethod"),
@@ -56,7 +56,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final DesignForExtensionCheck obj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -65,7 +65,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testOverridableMethods() throws Exception {
+    public void overridableMethods() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
             "38:9: " + getCheckMessage(MSG_KEY, "A", "foo8"),
@@ -92,7 +92,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testIgnoredAnnotationsOption() throws Exception {
+    public void ignoredAnnotationsOption() throws Exception {
         final String[] expected = {
             "39:5: "
                 + getCheckMessage(MSG_KEY, "InputDesignForExtensionIgnoredAnnotations", "foo1"),
@@ -110,14 +110,14 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testIgnoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
+    public void ignoreAnnotationsOptionWithMultipleAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDesignForExtensionMultipleAnnotations.java"), expected);
     }
 
     @Test
-    public void testNativeMethods() throws Exception {
+    public void nativeMethods() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo1"),
             "32:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionNativeMethods", "foo6"),
@@ -127,7 +127,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testDesignForExtensionRecords() throws Exception {
+    public void designForExtensionRecords() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -136,7 +136,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testRequiredJavadocPhrase() throws Exception {
+    public void requiredJavadocPhrase() throws Exception {
         final String className = "InputDesignForExtensionRequiredJavadocPhrase";
         final String[] expected = {
             "41:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
@@ -149,7 +149,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testRequiredJavadocPhraseMultiLine() throws Exception {
+    public void requiredJavadocPhraseMultiLine() throws Exception {
         final String className = "InputDesignForExtensionRequiredJavadocPhraseMultiLine";
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY, className, "foo2"),
@@ -160,7 +160,7 @@ public class DesignForExtensionCheckTest
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic() throws Exception {
+    public void interfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "Inner", "getProperty"),
         };

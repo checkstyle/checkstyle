@@ -45,7 +45,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testDefaultPattern() throws Exception {
+    public void defaultPattern() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathParameterNameDefaultPattern.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testDifferentPattern() throws Exception {
+    public void differentPattern() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathParameterNameDifferentPattern.java"));
 
@@ -96,7 +96,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testIgnoreOverridden() throws Exception {
+    public void ignoreOverridden() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathParameterNameIgnoreOverridden.java"));
 
@@ -122,7 +122,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testAccessModifiers() throws Exception {
+    public void accessModifiers() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathParameterNameAccessModifier.java"));
 

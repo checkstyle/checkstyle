@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class InlineTagUtilTest {
 
     @Test
-    public void testHasPrivateConstructor() throws Exception {
+    public void hasPrivateConstructor() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class))
                 .isTrue();
@@ -57,7 +57,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testMultiLineLinkTag() {
+    public void multiLineLinkTag() {
         final String[] text = {
             "/**",
             " * {@link foo",
@@ -73,7 +73,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testCollapseWhitespace() {
+    public void collapseWhitespace() {
         final String[] text = {
             "/**",
             " * {@code     foo\t\t   bar   baz\t    }",
@@ -104,7 +104,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testBadInputExtractInlineTagsLineFeed() {
+    public void badInputExtractInlineTagsLineFeed() {
         try {
             InlineTagUtil.extractInlineTags("abc\ndef");
             assertWithMessage("IllegalArgumentException expected").fail();
@@ -117,7 +117,7 @@ public class InlineTagUtilTest {
     }
 
     @Test
-    public void testBadInputExtractInlineTagsCarriageReturn() {
+    public void badInputExtractInlineTagsCarriageReturn() {
         try {
             InlineTagUtil.extractInlineTags("abc\rdef");
             assertWithMessage("IllegalArgumentException expected").fail();

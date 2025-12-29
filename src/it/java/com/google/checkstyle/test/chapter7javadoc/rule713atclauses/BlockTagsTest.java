@@ -31,52 +31,52 @@ public class BlockTagsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testCorrectAtClauseOrder1() throws Exception {
+    public void correctAtClauseOrder1() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck1.java"));
     }
 
     @Test
-    public void testCorrectAtClauseOrder2() throws Exception {
+    public void correctAtClauseOrder2() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck2.java"));
     }
 
     @Test
-    public void testCorrectAtClauseOrder3() throws Exception {
+    public void correctAtClauseOrder3() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectAtClauseOrderCheck3.java"));
     }
 
     @Test
-    public void testIncorrectAtClauseOrder1() throws Exception {
+    public void incorrectAtClauseOrder1() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck1.java"));
     }
 
     @Test
-    public void testIncorrectAtClauseOrder2() throws Exception {
+    public void incorrectAtClauseOrder2() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck2.java"));
     }
 
     @Test
-    public void testIncorrectAtClauseOrder3() throws Exception {
+    public void incorrectAtClauseOrder3() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectAtClauseOrderCheck3.java"));
     }
 
     @Test
-    public void testJavadocTagContinuationIndentation() throws Exception {
+    public void javadocTagContinuationIndentation() throws Exception {
         verifyWithWholeConfig(getPath("InputJavaDocTagContinuationIndentation.java"));
     }
 
     @Test
-    public void testJavadocTagContinuationIndentationFormatted() throws Exception {
+    public void javadocTagContinuationIndentationFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedJavaDocTagContinuationIndentation.java"));
     }
 
     @Test
-    public void testNonEmptyAtclauseDescription() throws Exception {
+    public void nonEmptyAtclauseDescription() throws Exception {
         verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescription.java"));
     }
 
     @Test
-    public void testNonEmptyAtclauseDescriptionSpaceSequence() throws Exception {
+    public void nonEmptyAtclauseDescriptionSpaceSequence() throws Exception {
         verifyWithWholeConfig(getPath("InputNonEmptyAtclauseDescriptionSpaceSeq.java"));
     }
 }

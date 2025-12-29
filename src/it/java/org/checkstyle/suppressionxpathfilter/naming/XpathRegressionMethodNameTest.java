@@ -69,7 +69,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testInnerClass() throws Exception {
+    public void innerClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodNameInner.java"));
 
@@ -95,7 +95,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testCustomProperties() throws Exception {
+    public void customProperties() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodNameCustomProperties.java"));
 

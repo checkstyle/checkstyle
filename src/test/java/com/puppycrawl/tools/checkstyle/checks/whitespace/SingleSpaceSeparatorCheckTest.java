@@ -35,20 +35,20 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoSpaceErrors() throws Exception {
+    public void noSpaceErrors() throws Exception {
         verifyWithInlineConfigParser(
                 getPath("InputSingleSpaceSeparatorNoErrors.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testNoStackoverflowError() throws Exception {
+    public void noStackoverflowError() throws Exception {
         verifyWithLimitedResources(getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final SingleSpaceSeparatorCheck check = new SingleSpaceSeparatorCheck();
 
         assertWithMessage("Invalid acceptable tokens")
@@ -57,7 +57,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrors() throws Exception {
+    public void spaceErrors() throws Exception {
         final String[] expected = {
             "8:10: " + getCheckMessage(MSG_KEY),
             "8:28: " + getCheckMessage(MSG_KEY),
@@ -98,7 +98,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrorsAroundComments() throws Exception {
+    public void spaceErrorsAroundComments() throws Exception {
         final String[] expected = {
             "12:11: " + getCheckMessage(MSG_KEY),
             "12:43: " + getCheckMessage(MSG_KEY),
@@ -113,7 +113,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrorsInChildNodes() throws Exception {
+    public void spaceErrorsInChildNodes() throws Exception {
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
         };
@@ -123,7 +123,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinColumnNo() throws Exception {
+    public void minColumnNo() throws Exception {
         final String[] expected = {
             "12:4: " + getCheckMessage(MSG_KEY),
         };
@@ -133,7 +133,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWhitespaceInStartOfTheLine() throws Exception {
+    public void whitespaceInStartOfTheLine() throws Exception {
         final String[] expected = {
             "12:7: " + getCheckMessage(MSG_KEY),
         };
@@ -143,7 +143,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrorsIfCommentsIgnored() throws Exception {
+    public void spaceErrorsIfCommentsIgnored() throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY),
         };
@@ -153,7 +153,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmpty() throws Exception {
+    public void empty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -161,7 +161,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrorsWithEmoji() throws Exception {
+    public void spaceErrorsWithEmoji() throws Exception {
         final String[] expected = {
             "14:18: " + getCheckMessage(MSG_KEY),
             "16:17: " + getCheckMessage(MSG_KEY),
@@ -182,7 +182,7 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpaceErrorsAroundCommentsWithEmoji() throws Exception {
+    public void spaceErrorsAroundCommentsWithEmoji() throws Exception {
         final String[] expected = {
             "25:22: " + getCheckMessage(MSG_KEY),
             "25:26: " + getCheckMessage(MSG_KEY),

@@ -39,7 +39,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final ConstantNameCheck checkObj = new ConstantNameCheck();
         final int[] expected = {TokenTypes.VARIABLE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -48,7 +48,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testIllegalRegexp()
+    public void illegalRegexp()
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
@@ -82,7 +82,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testAccessControlTuning()
+    public void accessControlTuning()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
@@ -95,7 +95,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testInterfaceAndAnnotation()
+    public void interfaceAndAnnotation()
             throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
@@ -109,7 +109,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testDefault1()
+    public void default1()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -117,7 +117,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testIntoInterface() throws Exception {
+    public void intoInterface() throws Exception {
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -136,7 +136,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testIntoInterfaceExcludePublic() throws Exception {
+    public void intoInterfaceExcludePublic() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -144,7 +144,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testStaticMethodInInterface()
+    public void staticMethodInInterface()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -152,7 +152,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final ConstantNameCheck constantNameCheckObj = new ConstantNameCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -167,7 +167,7 @@ public class ConstantNameCheckTest
     }
 
     @Test
-    public void testApplyPropertiesSetters() throws Exception {
+    public void applyPropertiesSetters() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

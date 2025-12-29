@@ -42,7 +42,7 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableAssignmentMethod.java"));
@@ -65,7 +65,7 @@ public class XpathRegressionPatternVariableAssignmentTest extends AbstractXpathT
     }
 
     @Test
-    public void testLambda() throws Exception {
+    public void lambda() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathPatternVariableAssignmentLambda.java"));

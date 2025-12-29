@@ -30,14 +30,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ParserUtilTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(ParserUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testCreationOfFakeCommentBlock() {
+    public void creationOfFakeCommentBlock() {
         final DetailAST testCommentBlock =
             ParserUtil.createBlockCommentNode("test_comment");
         assertWithMessage("Invalid token type")

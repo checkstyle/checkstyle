@@ -36,7 +36,7 @@ public class MethodTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final MethodTypeParameterNameCheck methodTypeParameterNameCheck =
             new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -47,7 +47,7 @@ public class MethodTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final MethodTypeParameterNameCheck checkObj =
             new MethodTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -57,7 +57,7 @@ public class MethodTypeParameterNameCheckTest
     }
 
     @Test
-    public void testMethodDefault()
+    public void methodDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -74,7 +74,7 @@ public class MethodTypeParameterNameCheckTest
     }
 
     @Test
-    public void testMethodFooName()
+    public void methodFooName()
             throws Exception {
 
         final String pattern = "^foo$";

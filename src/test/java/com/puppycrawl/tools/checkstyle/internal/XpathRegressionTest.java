@@ -148,7 +148,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void validateIncompatibleJavadocCheckNames() throws IOException {
+    public void validateIncompatibleJavadocCheckNames() throws Exception {
         // subclasses of AbstractJavadocCheck
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()

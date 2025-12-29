@@ -42,7 +42,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
@@ -52,7 +52,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
@@ -62,7 +62,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testCheckOne() throws Exception {
+    public void checkOne() throws Exception {
         final String[] expected = {
             // this is a case with description that is sequences of spaces
             "37: " + getCheckMessage(MSG_KEY),
@@ -87,7 +87,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testCheckTwo() throws Exception {
+    public void checkTwo() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_KEY),
             "17: " + getCheckMessage(MSG_KEY),
@@ -114,7 +114,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
      */
     @SuppressForbidden
     @Test
-    public void testDecoderOnMalformedInput() throws Exception {
+    public void decoderOnMalformedInput() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
@@ -131,7 +131,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     }
 
     @Test
-    public void testExample3() throws Exception {
+    public void example3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNonEmptyAtclauseDescriptionThree.java"), expected);

@@ -37,7 +37,7 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final File fileToProcess =
                   new File(getPath("InputXpathFinalParametersMethod.java"));
 
@@ -80,7 +80,7 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testCtor() throws Exception {
+    public void ctor() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFinalParametersCtor.java"));
 
@@ -130,7 +130,7 @@ public class XpathRegressionFinalParametersTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testAnonymous() throws Exception {
+    public void anonymous() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFinalParametersAnonymous.java"));
 

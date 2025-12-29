@@ -44,7 +44,7 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testWrongPackage() throws Exception {
+    public void wrongPackage() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath("InputXpathWrongPackage.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionPackageDeclarationTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testMissingPackage() throws Exception {
+    public void missingPackage() throws Exception {
         final File fileToProcess =
                 new File(getNonCompilablePath("InputXpathMissingPackage.java"));
 

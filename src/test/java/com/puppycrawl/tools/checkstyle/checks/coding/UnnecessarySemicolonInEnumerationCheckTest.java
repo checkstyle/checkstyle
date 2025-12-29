@@ -61,7 +61,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final UnnecessarySemicolonInEnumerationCheck check =
                 new UnnecessarySemicolonInEnumerationCheck();
         final int[] expected = {

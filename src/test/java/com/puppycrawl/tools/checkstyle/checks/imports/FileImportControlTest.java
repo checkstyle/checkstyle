@@ -48,7 +48,7 @@ public class FileImportControlTest {
     }
 
     @Test
-    public void testLocateFinest() {
+    public void locateFinest() {
         assertWithMessage("Unexpected response")
             .that(root.locateFinest("com.kazgroup.courtlink.domain", "Random"))
             .isEqualTo(root);

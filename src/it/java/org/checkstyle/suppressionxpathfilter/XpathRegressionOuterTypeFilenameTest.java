@@ -38,7 +38,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testNoPublic() throws Exception {
+    public void noPublic() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathOuterTypeFilenameOne.java"));
 
@@ -61,7 +61,7 @@ public class XpathRegressionOuterTypeFilenameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void testNested() throws Exception {
+    public void nested() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathOuterTypeFilenameTwo.java"));
 

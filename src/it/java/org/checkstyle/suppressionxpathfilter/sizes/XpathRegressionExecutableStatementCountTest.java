@@ -44,7 +44,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     }
 
     @Test
-    public void testDefaultConfig() throws Exception {
+    public void defaultConfig() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountDefault.java");
         final File fileToProcess = new File(filePath);
@@ -77,7 +77,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     }
 
     @Test
-    public void testCustomMax() throws Exception {
+    public void customMax() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountCustomMax.java");
         final File fileToProcess = new File(filePath);
@@ -113,7 +113,7 @@ public class XpathRegressionExecutableStatementCountTest extends AbstractXpathTe
     }
 
     @Test
-    public void testLambdas() throws Exception {
+    public void lambdas() throws Exception {
         final String filePath =
                 getPath("InputXpathExecutableStatementCountLambdas.java");
         final File fileToProcess = new File(filePath);

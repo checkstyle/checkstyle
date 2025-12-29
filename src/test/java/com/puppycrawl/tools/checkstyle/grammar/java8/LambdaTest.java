@@ -32,126 +32,126 @@ public class LambdaTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaInVariableInitialization()
+    public void lambdaInVariableInitialization()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda1.java"), expected);
     }
 
     @Test
-    public void testWithoutArgsOneLineLambdaBody()
+    public void withoutArgsOneLineLambdaBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda2.java"), expected);
     }
 
     @Test
-    public void testWithoutArgsFullLambdaBody()
+    public void withoutArgsFullLambdaBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda3.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithOneLineBody()
+    public void withOneArgWithOneLineBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda4.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithFullBody()
+    public void withOneArgWithFullBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda5.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithoutTypeOneLineBody()
+    public void withOneArgWithoutTypeOneLineBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda6.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithoutTypeFullBody()
+    public void withOneArgWithoutTypeFullBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda7.java"), expected);
     }
 
     @Test
-    public void testWithFewArgsWithoutTypeOneLineBody()
+    public void withFewArgsWithoutTypeOneLineBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda8.java"), expected);
     }
 
     @Test
-    public void testWithFewArgsWithoutTypeFullBody()
+    public void withFewArgsWithoutTypeFullBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda9.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithoutParenthesesWithoutTypeOneLineBody()
+    public void withOneArgWithoutParenthesesWithoutTypeOneLineBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda10.java"), expected);
     }
 
     @Test
-    public void testWithOneArgWithoutParenthesesWithoutTypeFullBody()
+    public void withOneArgWithoutParenthesesWithoutTypeFullBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda11.java"), expected);
     }
 
     @Test
-    public void testWithFewArgWithTypeOneLine()
+    public void withFewArgWithTypeOneLine()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda12.java"), expected);
     }
 
     @Test
-    public void testWithFewArgWithTypeFullBody()
+    public void withFewArgWithTypeFullBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda13.java"), expected);
     }
 
     @Test
-    public void testWithMultilineBody()
+    public void withMultilineBody()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda14.java"), expected);
     }
 
     @Test
-    public void testCasesFromSpec()
+    public void casesFromSpec()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda15.java"), expected);
     }
 
     @Test
-    public void testWithTypecast()
+    public void withTypecast()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda16.java"), expected);
     }
 
     @Test
-    public void testInAssignment()
+    public void inAssignment()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda17.java"), expected);
     }
 
     @Test
-    public void testInTernary()
+    public void inTernary()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputLambda18.java"), expected);

@@ -72,7 +72,7 @@ public class XdocsCategoryIndexTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllChecksListedInCategoryIndexAndDescriptionMatches() throws Exception {
+    public void allChecksListedInCategoryIndexAndDescriptionMatches() throws Exception {
         final List<Path> checkXdocFiles = getCheckXdocFiles();
 
         for (final Path checkXdocFile : checkXdocFiles) {

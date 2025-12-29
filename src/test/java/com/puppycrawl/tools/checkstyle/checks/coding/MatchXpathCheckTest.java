@@ -40,7 +40,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithEmptyQuery()
+    public void checkWithEmptyQuery()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -48,7 +48,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testNoStackoverflowError()
+    public void noStackoverflowError()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -56,7 +56,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithImplicitEmptyQuery()
+    public void checkWithImplicitEmptyQuery()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -64,7 +64,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithMatchingMethodNames()
+    public void checkWithMatchingMethodNames()
             throws Exception {
         final String[] expected = {
             "11:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -75,7 +75,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithNoMatchingMethodName()
+    public void checkWithNoMatchingMethodName()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -83,7 +83,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithSingleLineCommentsStartsWithSpace() throws Exception {
+    public void checkWithSingleLineCommentsStartsWithSpace() throws Exception {
         final String[] expected = {
             "13:25: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:27: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -93,7 +93,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithBlockComments() throws Exception {
+    public void checkWithBlockComments() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -103,7 +103,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithMultilineComments() throws Exception {
+    public void checkWithMultilineComments() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
             "20:5: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -113,7 +113,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testCheckWithDoubleBraceInitialization()
+    public void checkWithDoubleBraceInitialization()
             throws Exception {
         final String[] expected = {
             "18:35: Do not use double-brace initialization",
@@ -123,7 +123,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testImitateIllegalThrowsCheck()
+    public void imitateIllegalThrowsCheck()
             throws Exception {
         final String[] expected = {
             "13:25: Illegal throws statement",
@@ -135,7 +135,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testImitateExecutableStatementCountCheck()
+    public void imitateExecutableStatementCountCheck()
             throws Exception {
         final String[] expected = {
             "25:5: Executable number of statements exceed threshold",
@@ -145,7 +145,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testForbidPrintStackTrace()
+    public void forbidPrintStackTrace()
             throws Exception {
         final String[] expected = {
             "18:27: printStackTrace() method calls are forbidden",
@@ -155,7 +155,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testForbidParameterizedConstructor()
+    public void forbidParameterizedConstructor()
             throws Exception {
         final String[] expected = {
             "13:5: Parameterized constructors are not allowed",
@@ -167,7 +167,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testAvoidInstanceCreationWithoutVar()
+    public void avoidInstanceCreationWithoutVar()
             throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MatchXpathCheck.MSG_KEY),
@@ -178,7 +178,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testInvalidQuery() {
+    public void invalidQuery() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
 
         try {
@@ -191,7 +191,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testEvaluationException() {
+    public void evaluationException() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
         matchXpathCheck.setQuery("count(*) div 0");
 
@@ -211,7 +211,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testGetDefaultTokens() {
+    public void getDefaultTokens() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getDefaultTokens())
@@ -219,7 +219,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getAcceptableTokens())
@@ -227,7 +227,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final MatchXpathCheck matchXpathCheck = new MatchXpathCheck();
         assertWithMessage("Expected empty array")
                 .that(matchXpathCheck.getRequiredTokens())
@@ -235,7 +235,7 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testMatchXpathWithFailedEvaluation() {
+    public void matchXpathWithFailedEvaluation() {
         final CheckstyleException ex = getExpectedThrowable(CheckstyleException.class,
                 () -> verifyWithInlineConfigParser(getPath("InputMatchXpath5.java")));
         assertThat(ex.getCause().getMessage())

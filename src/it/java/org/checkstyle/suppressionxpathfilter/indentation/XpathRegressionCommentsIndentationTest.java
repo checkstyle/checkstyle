@@ -44,7 +44,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testSingleLine() throws Exception {
+    public void singleLine() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationSingleLine.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testBlock() throws Exception {
+    public void block() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationBlock.java"));
 
@@ -91,7 +91,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testSeparator() throws Exception {
+    public void separator() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationSeparator.java"));
 
@@ -115,7 +115,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testDistributedStatement() throws Exception {
+    public void distributedStatement() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationDistributedStatement.java"));
 
@@ -139,7 +139,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testSingleLineBlock() throws Exception {
+    public void singleLineBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationSingleLineBlock.java"));
 
@@ -163,7 +163,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testNonEmptyCase() throws Exception {
+    public void nonEmptyCase() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationNonEmptyCase.java"));
 
@@ -187,7 +187,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testEmptyCase() throws Exception {
+    public void emptyCase() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationEmptyCase.java"));
 
@@ -211,7 +211,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testWithinBlockStatement() throws Exception {
+    public void withinBlockStatement() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCommentsIndentationWithinBlockStatement.java"));
 

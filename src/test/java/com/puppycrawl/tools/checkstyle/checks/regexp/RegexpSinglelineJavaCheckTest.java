@@ -36,7 +36,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final RegexpSinglelineJavaCheck regexpSinglelineJavaCheck =
             new RegexpSinglelineJavaCheck();
         assertWithMessage("Default acceptable tokens are invalid")
@@ -45,7 +45,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
         assertWithMessage("Default required tokens are invalid")
                 .that(checkObj.getRequiredTokens())
@@ -53,7 +53,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void it() throws Exception {
         final String[] expected = {
             "77: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
@@ -62,7 +62,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMessageProperty()
+    public void messageProperty()
             throws Exception {
         final String[] expected = {
             "78: " + "Bad line :(",
@@ -72,7 +72,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCaseTrue() throws Exception {
+    public void ignoreCaseTrue() throws Exception {
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
@@ -81,14 +81,14 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCaseFalse() throws Exception {
+    public void ignoreCaseFalse() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic4.java"), expected);
     }
 
     @Test
-    public void testIgnoreCommentsCppStyle() throws Exception {
+    public void ignoreCommentsCppStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -96,7 +96,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsFalseCppStyle() throws Exception {
+    public void ignoreCommentsFalseCppStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = {
             "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "don't\\suse trailing comments"),
@@ -106,7 +106,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsBlockStyle() throws Exception {
+    public void ignoreCommentsBlockStyle() throws Exception {
         // See if the comment is removed properly
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -114,7 +114,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsFalseBlockStyle() throws Exception {
+    public void ignoreCommentsFalseBlockStyle() throws Exception {
         final String[] expected = {
             "31: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "c-style\\s1"),
         };
@@ -123,7 +123,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsMultipleBlockStyle() throws Exception {
+    public void ignoreCommentsMultipleBlockStyle() throws Exception {
         // See if a second comment on the same line is removed properly
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -131,21 +131,21 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsMultiLine() throws Exception {
+    public void ignoreCommentsMultiLine() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment6.java"), expected);
     }
 
     @Test
-    public void testIgnoreCommentsInlineStart() throws Exception {
+    public void ignoreCommentsInlineStart() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaTrailingComment7.java"), expected);
     }
 
     @Test
-    public void testIgnoreCommentsInlineEnd() throws Exception {
+    public void ignoreCommentsInlineEnd() throws Exception {
         final String[] expected = {
             "34: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int z"),
         };
@@ -154,7 +154,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsInlineMiddle() throws Exception {
+    public void ignoreCommentsInlineMiddle() throws Exception {
         final String[] expected = {
             "35: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "int y"),
         };
@@ -163,7 +163,7 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCommentsNoSpaces() throws Exception {
+    public void ignoreCommentsNoSpaces() throws Exception {
         // make sure the comment is not turned into spaces
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -179,21 +179,21 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExistingInDoc() throws Exception {
+    public void existingInDoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic5.java"), expected);
     }
 
     @Test
-    public void testExistingInCode() throws Exception {
+    public void existingInCode() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpSinglelineJavaSemantic6.java"), expected);
     }
 
     @Test
-    public void testMissing() throws Exception {
+    public void missing() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_REGEXP_MINIMUM, 1, "This\\stext is not in the file"),
         };

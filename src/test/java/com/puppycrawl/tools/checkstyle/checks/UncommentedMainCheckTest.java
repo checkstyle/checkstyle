@@ -44,7 +44,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testDefaults()
+    public void defaults()
             throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testExcludedClasses()
+    public void excludedClasses()
             throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
@@ -69,7 +69,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testTokens() {
+    public void tokens() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         assertWithMessage("Required tokens should not be null")
             .that(check.getRequiredTokens())
@@ -86,14 +86,14 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testDeepDepth() throws Exception {
+    public void deepDepth() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain2.java"), expected);
     }
 
     @Test
-    public void testVisitPackage() throws Exception {
+    public void visitPackage() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY),
         };
@@ -102,21 +102,21 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testWrongName() throws Exception {
+    public void wrongName() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain3.java"), expected);
     }
 
     @Test
-    public void testWrongArrayType() throws Exception {
+    public void wrongArrayType() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUncommentedMain4.java"), expected);
     }
 
     @Test
-    public void testIllegalStateException() {
+    public void illegalStateException() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.CTOR_DEF, "ctor"));
@@ -132,7 +132,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testRecords()
+    public void records()
             throws Exception {
 
         final String[] expected = {
@@ -147,7 +147,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testStateIsClearedOnBeginTree() throws Exception {
+    public void stateIsClearedOnBeginTree() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         final String file1 = getPath(
                 "InputUncommentedMainRecords2.java");
@@ -168,7 +168,7 @@ public class UncommentedMainCheckTest
     }
 
     @Test
-    public void testStateIsClearedOnBeginTree2() throws Exception {
+    public void stateIsClearedOnBeginTree2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         checkConfig.addProperty("excludedClasses",
                 "uncommentedmain\\.InputUncommentedMainBeginTreePackage2");

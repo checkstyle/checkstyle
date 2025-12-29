@@ -40,7 +40,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final MissingJavadocMethodCheck missingJavadocMethodCheck = new MissingJavadocMethodCheck();
 
         final int[] actual = missingJavadocMethodCheck.getAcceptableTokens();
@@ -57,7 +57,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final MissingJavadocMethodCheck missingJavadocMethodCheck = new MissingJavadocMethodCheck();
         final int[] actual = missingJavadocMethodCheck.getRequiredTokens();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
@@ -94,7 +94,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTags() throws Exception {
+    public void tags() throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -106,7 +106,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStrictJavadoc() throws Exception {
+    public void strictJavadoc() throws Exception {
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "30:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -126,7 +126,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoJavadoc() throws Exception {
+    public void noJavadoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodPublicOnly2.java"), expected);
@@ -134,7 +134,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
 
     // pre 1.4 relaxed mode is roughly equivalent with check=protected
     @Test
-    public void testRelaxedJavadoc() throws Exception {
+    public void relaxedJavadoc() throws Exception {
         final String[] expected = {
             "65:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "69:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -146,7 +146,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testScopeInnerInterfacesPublic() throws Exception {
+    public void scopeInnerInterfacesPublic() throws Exception {
         final String[] expected = {
             "52:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "53:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -157,7 +157,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic() throws Exception {
+    public void interfaceMemberScopeIsPublic() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -168,7 +168,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEnumCtorScopeIsPrivate() throws Exception {
+    public void enumCtorScopeIsPrivate() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -178,14 +178,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testScopeAnonInnerPrivate() throws Exception {
+    public void scopeAnonInnerPrivate() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodScopeAnonInner.java"), expected);
     }
 
     @Test
-    public void testScopeAnonInnerAnonInner() throws Exception {
+    public void scopeAnonInnerAnonInner() throws Exception {
         final String[] expected = {
             "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "47:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -195,7 +195,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testScopes() throws Exception {
+    public void scopes() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -240,7 +240,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testScopes2() throws Exception {
+    public void scopes2() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -252,7 +252,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testExcludeScope() throws Exception {
+    public void excludeScope() throws Exception {
         final String[] expected = {
             "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "29:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -285,14 +285,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDoAllowMissingJavadocTagsByDefault() throws Exception {
+    public void doAllowMissingJavadocTagsByDefault() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodMissingJavadocTags.java"), expected);
     }
 
     @Test
-    public void testSetterGetterOff() throws Exception {
+    public void setterGetterOff() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -317,7 +317,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetterGetterOnCheck() throws Exception {
+    public void setterGetterOnCheck() throws Exception {
         final String[] expected = {
             "30:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "35:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -353,14 +353,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSkipCertainMethods() throws Exception {
+    public void skipCertainMethods() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodIgnoreNameRegex.java"), expected);
     }
 
     @Test
-    public void testNotSkipAnythingWhenSkipRegexDoesNotMatch() throws Exception {
+    public void notSkipAnythingWhenSkipRegexDoesNotMatch() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "26:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -371,21 +371,21 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllowToSkipOverridden() throws Exception {
+    public void allowToSkipOverridden() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodsNotSkipWritten.java"), expected);
     }
 
     @Test
-    public void testJava8ReceiverParameter() throws Exception {
+    public void java8ReceiverParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodReceiverParameter.java"), expected);
     }
 
     @Test
-    public void testJavadocInMethod() throws Exception {
+    public void javadocInMethod() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -397,7 +397,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testConstructor() throws Exception {
+    public void constructor() throws Exception {
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -406,14 +406,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotPublicInterfaceMethods() throws Exception {
+    public void notPublicInterfaceMethods() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingJavadocMethodInterfacePrivateMethod.java"), expected);
     }
 
     @Test
-    public void testPublicMethods() throws Exception {
+    public void publicMethods() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "24:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -427,7 +427,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingJavadocMethodRecordsAndCompactCtors() throws Exception {
+    public void missingJavadocMethodRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -441,7 +441,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingJavadocMethodRecordsAndCompactCtorsMinLineCount() throws Exception {
+    public void missingJavadocMethodRecordsAndCompactCtorsMinLineCount() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -451,7 +451,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinLineCount() throws Exception {
+    public void minLineCount() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -461,7 +461,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAnnotationField() throws Exception {
+    public void annotationField() throws Exception {
         final String[] expected = {
             "25:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "27:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -473,7 +473,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIsGetterMethod() throws Exception {
+    public void isGetterMethod() throws Exception {
         final Path testFile = Path.of(getPath("InputMissingJavadocMethodSetterGetter3.java"));
         final DetailAST notGetterMethod = CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
 
@@ -488,7 +488,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIsSetterMethod() throws Exception {
+    public void isSetterMethod() throws Exception {
         final Path testFile = Path.of(getPath("InputMissingJavadocMethodSetterGetter3.java"));
         final DetailAST firstClassMethod = CheckUtilTest.getNode(testFile, TokenTypes.METHOD_DEF);
 
@@ -505,7 +505,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetterGetterOn() throws Exception {
+    public void setterGetterOn() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
                     MSG_JAVADOC_MISSING),
@@ -528,7 +528,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingJavadocMethodAboveComments() throws Exception {
+    public void missingJavadocMethodAboveComments() throws Exception {
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "36:5: " + getCheckMessage(MSG_JAVADOC_MISSING),

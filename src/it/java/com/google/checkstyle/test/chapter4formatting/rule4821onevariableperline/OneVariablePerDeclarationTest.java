@@ -31,12 +31,12 @@ public class OneVariablePerDeclarationTest extends AbstractGoogleModuleTestSuppo
     }
 
     @Test
-    public void testMultipleVariableDeclarations() throws Exception {
+    public void multipleVariableDeclarations() throws Exception {
         verifyWithWholeConfig(getPath("InputOneVariablePerDeclaration.java"));
     }
 
     @Test
-    public void testMultipleVariableDeclarationsFormatted() throws Exception {
+    public void multipleVariableDeclarationsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOneVariablePerDeclaration.java"));
     }
 

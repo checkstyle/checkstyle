@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class AccessModifierOptionTest {
 
     @Test
-    public void testDefaultCase() {
+    public void defaultCase() {
         assertWithMessage("Case mismatch.")
                 .that(AccessModifierOption.PUBLIC.name())
                 .isEqualTo("PUBLIC");

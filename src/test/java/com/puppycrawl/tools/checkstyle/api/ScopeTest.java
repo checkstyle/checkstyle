@@ -34,7 +34,7 @@ public class ScopeTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void testScopeValueOf() {
+    public void scopeValueOf() {
         final Scope scope = Scope.valueOf("PRIVATE");
         assertWithMessage("Invalid scope")
             .that(scope)
@@ -42,7 +42,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testMisc() {
+    public void misc() {
         final Scope scope = Scope.getInstance("public");
         assertWithMessage("Scope must not be null")
             .that(scope)
@@ -66,7 +66,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testMixedCaseSpaces() {
+    public void mixedCaseSpaces() {
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance("NothinG "))
             .isEqualTo(Scope.NOTHING);
@@ -89,7 +89,7 @@ public class ScopeTest {
 
     @DefaultLocale(language = "tr", country = "TR")
     @Test
-    public void testMixedCaseSpacesWithDifferentLocale() {
+    public void mixedCaseSpacesWithDifferentLocale() {
         assertWithMessage("Invalid scope")
             .that(Scope.getInstance("NothinG "))
             .isEqualTo(Scope.NOTHING);
@@ -111,7 +111,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInAnonInner() {
+    public void isInAnonInner() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.ANONINNER))
                 .isTrue();
@@ -133,7 +133,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInPrivate() {
+    public void isInPrivate() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.PRIVATE))
                 .isTrue();
@@ -155,7 +155,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInPackage() {
+    public void isInPackage() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.PACKAGE))
                 .isTrue();
@@ -177,7 +177,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInProtected() {
+    public void isInProtected() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.PROTECTED))
                 .isTrue();
@@ -199,7 +199,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInPublic() {
+    public void isInPublic() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.PUBLIC))
                 .isTrue();
@@ -221,7 +221,7 @@ public class ScopeTest {
     }
 
     @Test
-    public void testIsInNothing() {
+    public void isInNothing() {
         assertWithMessage("Invalid subscope")
                 .that(Scope.NOTHING.isIn(Scope.NOTHING))
                 .isTrue();

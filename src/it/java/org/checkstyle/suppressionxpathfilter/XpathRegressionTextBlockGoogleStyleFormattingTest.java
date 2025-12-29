@@ -38,7 +38,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
     }
 
     @Test
-    public void testTextBlocksFormatNotVerticallyAligned() throws Exception {
+    public void textBlocksFormatNotVerticallyAligned() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting.java"));
 
@@ -64,7 +64,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
     }
 
     @Test
-    public void testTextBlocksFormatNotVerticallyAlignedInMethodCall() throws Exception {
+    public void textBlocksFormatNotVerticallyAlignedInMethodCall() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting2.java"));
 
@@ -91,7 +91,7 @@ public class XpathRegressionTextBlockGoogleStyleFormattingTest extends AbstractX
     }
 
     @Test
-    public void testTextBlocksFormatClosingQuotesNotOnNewLine() throws Exception {
+    public void textBlocksFormatClosingQuotesNotOnNewLine() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathTextBlockGoogleStyleFormatting3.java"));
 

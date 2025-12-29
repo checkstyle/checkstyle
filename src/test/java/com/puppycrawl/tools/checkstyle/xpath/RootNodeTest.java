@@ -55,7 +55,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCompareOrder() {
+    public void compareOrder() {
         try {
             rootNode.compareOrder(null);
             assertWithMessage("Exception is excepted").fail();
@@ -68,7 +68,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testXpath() throws Exception {
+    public void xpath() throws Exception {
         final String xpath = "/";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -84,28 +84,28 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetDepth() {
+    public void getDepth() {
         assertWithMessage("Root node depth should be 0")
                 .that(rootNode.getDepth())
                 .isEqualTo(0);
     }
 
     @Test
-    public void testGetTokenType() {
+    public void getTokenType() {
         assertWithMessage("Invalid token type")
             .that(rootNode.getTokenType())
             .isEqualTo(TokenTypes.COMPILATION_UNIT);
     }
 
     @Test
-    public void testGetLineNumber() {
+    public void getLineNumber() {
         assertWithMessage("Invalid line number")
             .that(rootNode.getLineNumber())
             .isEqualTo(1);
     }
 
     @Test
-    public void testGetColumnNumber() {
+    public void getColumnNumber() {
         assertWithMessage("Invalid column number")
             .that(rootNode.getColumnNumber())
             .isEqualTo(0);
@@ -117,7 +117,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
      * Test exists until https://github.com/checkstyle/checkstyle/issues/4997
      */
     @Test
-    public void testNonRealGetColumnNumber() {
+    public void nonRealGetColumnNumber() {
         final DetailAstImpl nonRealNode = new DetailAstImpl();
         nonRealNode.setType(TokenTypes.PACKAGE_DEF);
         nonRealNode.setLineNo(555);
@@ -130,14 +130,14 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetLocalPart() {
+    public void getLocalPart() {
         assertWithMessage("Invalid local part")
             .that(rootNode.getLocalPart())
             .isEqualTo("ROOT");
     }
 
     @Test
-    public void testIterate() {
+    public void iterate() {
         try (AxisIterator following = rootNode.iterateAxis(AxisInfo.FOLLOWING)) {
             assertWithMessage("Result iterator does not match expected")
                 .that(following)
@@ -171,7 +171,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testRootWithNullDetailAst() {
+    public void rootWithNullDetailAst() {
         final RootNode emptyRootNode = new RootNode(null);
         assertWithMessage("Empty node should not have children")
                 .that(emptyRootNode.hasChildNodes())
@@ -190,7 +190,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetStringValue() {
+    public void getStringValue() {
         try {
             rootNode.getStringValue();
             assertWithMessage("Exception is excepted").fail();
@@ -203,7 +203,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeValue() {
+    public void getAttributeValue() {
         try {
             rootNode.getAttributeValue("", "");
             assertWithMessage("Exception is excepted").fail();
@@ -216,7 +216,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetDeclaredNamespaces() {
+    public void getDeclaredNamespaces() {
         try {
             rootNode.getDeclaredNamespaces(null);
             assertWithMessage("Exception is excepted").fail();
@@ -229,7 +229,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsId() {
+    public void isId() {
         try {
             rootNode.isId();
             assertWithMessage("Exception is excepted").fail();
@@ -242,7 +242,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsIdref() {
+    public void isIdref() {
         try {
             rootNode.isIdref();
             assertWithMessage("Exception is excepted").fail();
@@ -255,7 +255,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsNilled() {
+    public void isNilled() {
         try {
             rootNode.isNilled();
             assertWithMessage("Exception is excepted").fail();
@@ -268,7 +268,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIsStreamed() {
+    public void isStreamed() {
         try {
             rootNode.isStreamed();
             assertWithMessage("Exception is excepted").fail();
@@ -281,7 +281,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetConfiguration() {
+    public void getConfiguration() {
         try {
             rootNode.getConfiguration();
             assertWithMessage("Exception is excepted").fail();
@@ -294,7 +294,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSetSystemId() {
+    public void setSystemId() {
         try {
             rootNode.setSystemId("1");
             assertWithMessage("Exception is excepted").fail();
@@ -307,7 +307,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetSystemId() {
+    public void getSystemId() {
         try {
             rootNode.getSystemId();
             assertWithMessage("Exception is excepted").fail();
@@ -320,7 +320,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetPublicId() {
+    public void getPublicId() {
         try {
             rootNode.getPublicId();
             assertWithMessage("Exception is excepted").fail();
@@ -333,7 +333,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testBaseUri() {
+    public void baseUri() {
         try {
             rootNode.getBaseURI();
             assertWithMessage("Exception is excepted").fail();
@@ -346,7 +346,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSaveLocation() {
+    public void saveLocation() {
         try {
             rootNode.saveLocation();
             assertWithMessage("Exception is excepted").fail();
@@ -359,7 +359,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetStringValueCs() {
+    public void getStringValueCs() {
         try {
             rootNode.getUnicodeStringValue();
             assertWithMessage("Exception is excepted").fail();
@@ -372,7 +372,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testFingerprint() {
+    public void fingerprint() {
         try {
             rootNode.getFingerprint();
             assertWithMessage("Exception is excepted").fail();
@@ -385,7 +385,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetDisplayName() {
+    public void getDisplayName() {
         try {
             rootNode.getDisplayName();
             assertWithMessage("Exception is excepted").fail();
@@ -398,7 +398,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetPrefix() {
+    public void getPrefix() {
         try {
             rootNode.getPrefix();
             assertWithMessage("Exception is excepted").fail();
@@ -411,7 +411,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetSchemaType() {
+    public void getSchemaType() {
         try {
             rootNode.getSchemaType();
             assertWithMessage("Exception is excepted").fail();
@@ -424,7 +424,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testAtomize() {
+    public void atomize() {
         try {
             rootNode.atomize();
             assertWithMessage("Exception is excepted").fail();
@@ -437,7 +437,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGenerateId() {
+    public void generateId() {
         try {
             rootNode.generateId(null);
             assertWithMessage("Exception is excepted").fail();
@@ -450,7 +450,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCopy() {
+    public void copy() {
         try {
             rootNode.copy(null, -1, null);
             assertWithMessage("Exception is excepted").fail();
@@ -463,7 +463,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAllNamespaces() {
+    public void getAllNamespaces() {
         try {
             rootNode.getAllNamespaces();
             assertWithMessage("Exception is excepted").fail();
@@ -476,7 +476,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSameNodeInfo() {
+    public void sameNodeInfo() {
         assertWithMessage("Should return true, because object is being compared to itself")
                 .that(rootNode.isSameNodeInfo(rootNode))
                 .isTrue();

@@ -58,7 +58,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testParentChildOrdering() {
+    public void parentChildOrdering() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.VARIABLE_DEF);
 
@@ -77,7 +77,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSiblingsOrdering() {
+    public void siblingsOrdering() {
         final DetailAstImpl detailAst1 = new DetailAstImpl();
         detailAst1.setType(TokenTypes.VARIABLE_DEF);
 
@@ -101,7 +101,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCompareOrderWrongInstance() throws Exception {
+    public void compareOrderWrongInstance() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         final int result = nodes.get(0).compareOrder(null);
@@ -111,7 +111,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetParent() throws Exception {
+    public void getParent() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -124,7 +124,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testRootOfElementNode() throws Exception {
+    public void rootOfElementNode() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -140,7 +140,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetNodeByValueNumInt() throws Exception {
+    public void getNodeByValueNumInt() throws Exception {
         final String xPath = "//NUM_INT[@text = 123]";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -153,7 +153,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetNodeByValueStringLiteral() throws Exception {
+    public void getNodeByValueStringLiteral() throws Exception {
         final String xPath = "//STRING_LITERAL[@text = 'HelloWorld']";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -166,7 +166,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetNodeByValueWithSameTokenText() throws Exception {
+    public void getNodeByValueWithSameTokenText() throws Exception {
         final String xPath = "//MODIFIERS[@text = 'MODIFIERS']";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
         assertWithMessage("Invalid number of nodes")
@@ -175,7 +175,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeValue() {
+    public void getAttributeValue() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
@@ -188,7 +188,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeCached() {
+    public void getAttributeCached() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
@@ -203,7 +203,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeValueNoAttribute() {
+    public void getAttributeValueNoAttribute() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.CLASS_DEF);
         detailAST.setText("HelloWorld");
@@ -216,7 +216,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAttributeValueWrongAttribute() {
+    public void getAttributeValueWrongAttribute() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
@@ -229,7 +229,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIterateAxisEmptyChildren() {
+    public void iterateAxisEmptyChildren() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
         final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
@@ -246,7 +246,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIterateAxisWithChildren() {
+    public void iterateAxisWithChildren() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
         final DetailAstImpl childAst = new DetailAstImpl();
@@ -266,7 +266,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testIterateAxisWithNoSiblings() {
+    public void iterateAxisWithNoSiblings() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.VARIABLE_DEF);
 

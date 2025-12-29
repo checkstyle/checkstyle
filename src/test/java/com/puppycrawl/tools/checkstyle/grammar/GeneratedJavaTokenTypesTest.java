@@ -77,7 +77,7 @@ public class GeneratedJavaTokenTypesTest {
      * </p>
      */
     @Test
-    public void testTokenNumbering() {
+    public void tokenNumbering() {
         final String message =
                 """
                 A token's number has changed. Please open\
@@ -770,7 +770,7 @@ public class GeneratedJavaTokenTypesTest {
      * Collections#lastIndexOfSubList to return a -1 and fail the test.
      */
     @Test
-    public void testTokenHasBeenAddedToTokensBlockInLexerGrammar() {
+    public void tokenHasBeenAddedToTokensBlockInLexerGrammar() {
         final VocabularyImpl vocabulary = (VocabularyImpl) JavaLanguageLexer.VOCABULARY;
         final String[] nullableSymbolicNames = vocabulary.getSymbolicNames();
         final List<String> allTokenNames = Arrays.stream(nullableSymbolicNames)

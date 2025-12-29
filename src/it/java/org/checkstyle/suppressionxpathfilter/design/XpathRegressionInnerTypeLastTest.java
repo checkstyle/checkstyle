@@ -46,7 +46,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathInnerTypeLastOne.java"));
 
@@ -78,7 +78,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
 
         final File fileToProcess =
                 new File(getPath("InputXpathInnerTypeLastTwo.java"));
@@ -112,7 +112,7 @@ public class XpathRegressionInnerTypeLastTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void three() throws Exception {
 
         final File fileToProcess = new File(
                 getPath("InputXpathInnerTypeLastThree.java"));
