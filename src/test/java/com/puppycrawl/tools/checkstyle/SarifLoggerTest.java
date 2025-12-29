@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serial;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -525,6 +526,24 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
 
         verifyWithInlineConfigParserAndLogger(
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
+    }
+
+    @Test
+    public void testRenderSeverityLevelWithNull() throws Exception {
+        final var method =
+                SarifLogger.class.getDeclaredMethod(
+                        "renderSeverityLevel", SeverityLevel.class);
+        method.setAccessible(true);
+
+        try {
+            method.invoke(null, (SeverityLevel) null);
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (InvocationTargetException exception) {
+            assertWithMessage("Unexpected exception type")
+                .that(exception.getCause())
+                .isInstanceOf(IllegalStateException.class);
+        }
     }
 
     private static void verifyContent(
