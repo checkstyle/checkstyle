@@ -3931,7 +3931,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4597,7 +4598,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5005,7 +5007,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5093,7 +5096,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5401,7 +5405,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
