@@ -65,7 +65,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testMethods() throws Exception {
+    public void methods() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathParameterNumberMethods.java"));
 
@@ -87,7 +87,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testIgnoreOverriddenMethods() throws Exception {
+    public void ignoreOverriddenMethods() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterNumberIgnoreOverriddenMethods.java");
         final File fileToProcess = new File(filePath);
@@ -110,7 +110,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testIgnoreAnnotatedBy() throws Exception {
+    public void ignoreAnnotatedBy() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterNumberIgnoreAnnotatedBy.java");
         final File fileToProcess = new File(filePath);

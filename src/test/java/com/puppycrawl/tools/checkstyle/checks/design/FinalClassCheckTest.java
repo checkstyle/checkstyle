@@ -43,7 +43,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
         final int[] expected = {
             TokenTypes.ANNOTATION_DEF,
@@ -61,7 +61,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClass() throws Exception {
+    public void finalClass() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "19:4: " + getCheckMessage(MSG_KEY, "test4"),
@@ -71,7 +71,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClass2() throws Exception {
+    public void finalClass2() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
             "33:5: " + getCheckMessage(MSG_KEY, "SomeClass"),
@@ -84,7 +84,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testClassWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
+    public void classWithPrivateCtorAndNestedExtendingSubclass() throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "ExtendA"),
             "18:9: " + getCheckMessage(MSG_KEY, "ExtendB"),
@@ -98,7 +98,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testClassWithPrivateCtorAndNestedExtendingSubclassWithoutPackage()
+    public void classWithPrivateCtorAndNestedExtendingSubclassWithoutPackage()
             throws Exception {
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY, "ExtendA"),
@@ -112,7 +112,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassConstructorInRecord() throws Exception {
+    public void finalClassConstructorInRecord() throws Exception {
 
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY, "F"),
@@ -124,7 +124,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testImproperToken() {
+    public void improperToken() {
         final FinalClassCheck finalClassCheck = new FinalClassCheck();
         final DetailAstImpl badAst = new DetailAstImpl();
         final int unsupportedTokenByCheck = TokenTypes.COMPILATION_UNIT;
@@ -141,7 +141,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
         final int[] expected = {
             TokenTypes.ANNOTATION_DEF,
@@ -159,7 +159,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassInnerAndNestedClasses() throws Exception {
+    public void finalClassInnerAndNestedClasses() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY, "SubClass"),
             "19:5: " + getCheckMessage(MSG_KEY, "SameName"),
@@ -171,7 +171,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassStaticNestedClasses() throws Exception {
+    public void finalClassStaticNestedClasses() throws Exception {
 
         final String[] expected = {
             "14:17: " + getCheckMessage(MSG_KEY, "C"),
@@ -188,7 +188,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassEnum() throws Exception {
+    public void finalClassEnum() throws Exception {
         final String[] expected = {
             "35:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
         };
@@ -196,7 +196,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassAnnotation() throws Exception {
+    public void finalClassAnnotation() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
         };
@@ -204,7 +204,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassInterface() throws Exception {
+    public void finalClassInterface() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY, "DerivedClass"),
         };
@@ -212,7 +212,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassAnonymousInnerClass() throws Exception {
+    public void finalClassAnonymousInnerClass() throws Exception {
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY, "b"),
             "27:9: " + getCheckMessage(MSG_KEY, "m"),
@@ -227,7 +227,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassNestedInInterface() throws Exception {
+    public void finalClassNestedInInterface() throws Exception {
         final String[] expected = {
             "24:5: " + getCheckMessage(MSG_KEY, "b"),
             "28:13: " + getCheckMessage(MSG_KEY, "m"),
@@ -238,7 +238,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassNestedInEnum() throws Exception {
+    public void finalClassNestedInEnum() throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "j"),
             "27:9: " + getCheckMessage(MSG_KEY, "n"),
@@ -248,7 +248,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testFinalClassNestedInRecord() throws Exception {
+    public void finalClassNestedInRecord() throws Exception {
         final String[] expected = {
             "13:9: " + getCheckMessage(MSG_KEY, "c"),
             "31:13: " + getCheckMessage(MSG_KEY, "j"),
@@ -266,7 +266,7 @@ public class FinalClassCheckTest
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void testClearState() throws Exception {
+    public void clearState() throws Exception {
         final FinalClassCheck check = new FinalClassCheck();
         final DetailAST root = JavaParser.parseFile(new File(getPath("InputFinalClass.java")),
                 JavaParser.Options.WITHOUT_COMMENTS);
@@ -284,7 +284,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testPrivateClassWithDefaultCtor() throws Exception {
+    public void privateClassWithDefaultCtor() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, "Some2"),
             "19:1: " + getCheckMessage(MSG_KEY, "Some"),
@@ -304,7 +304,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testPrivateClassWithDefaultCtor2() throws Exception {
+    public void privateClassWithDefaultCtor2() throws Exception {
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_KEY, "PrivateClass"),
             "34:5: " + getCheckMessage(MSG_KEY, "Check"),
@@ -316,7 +316,7 @@ public class FinalClassCheckTest
     }
 
     @Test
-    public void testPrivateClassWithDefaultCtor3() throws Exception {
+    public void privateClassWithDefaultCtor3() throws Exception {
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY, "MyClass"),
             "30:5: " + getCheckMessage(MSG_KEY, "Check2"),

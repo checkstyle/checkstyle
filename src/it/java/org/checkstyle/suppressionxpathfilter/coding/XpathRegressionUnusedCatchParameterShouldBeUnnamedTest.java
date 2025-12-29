@@ -46,7 +46,7 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void simple() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathUnusedCatchParameterShouldBeUnnamedSimple.java"));
@@ -86,7 +86,7 @@ public class XpathRegressionUnusedCatchParameterShouldBeUnnamedTest
     }
 
     @Test
-    public void testNested() throws Exception {
+    public void nested() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathUnusedCatchParameterShouldBeUnnamedNested.java"));

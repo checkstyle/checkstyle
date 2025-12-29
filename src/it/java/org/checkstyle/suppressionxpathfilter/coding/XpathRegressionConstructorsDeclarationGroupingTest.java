@@ -110,7 +110,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     }
 
     @Test
-    public void testRecords() throws Exception {
+    public void records() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathConstructorsDeclarationGroupingRecords.java"));
 

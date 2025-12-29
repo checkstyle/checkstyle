@@ -43,7 +43,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final JavadocStyleCheck javadocStyleCheck = new JavadocStyleCheck();
 
         final int[] actual = javadocStyleCheck.getAcceptableTokens();
@@ -68,7 +68,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleDefaultSettingsOne()
+    public void javadocStyleDefaultSettingsOne()
             throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
@@ -91,7 +91,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleDefaultSettingsTwo()
+    public void javadocStyleDefaultSettingsTwo()
             throws Exception {
         final String[] expected = {
             "26:39: " + getCheckMessage(MSG_EXTRA_HTML, "</img>"),
@@ -105,7 +105,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleDefaultSettingsThree()
+    public void javadocStyleDefaultSettingsThree()
             throws Exception {
         final String[] expected = {
             "109: " + getCheckMessage(MSG_NO_PERIOD),
@@ -116,7 +116,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleDefaultSettingsFour()
+    public void javadocStyleDefaultSettingsFour()
             throws Exception {
         final String[] expected = {
             "30:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
@@ -135,7 +135,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleDefaultSettingsFive()
+    public void javadocStyleDefaultSettingsFive()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -144,7 +144,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleTrailingSpace()
+    public void javadocStyleTrailingSpace()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -153,7 +153,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceOne() throws Exception {
+    public void javadocStyleFirstSentenceOne() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
             "50: " + getCheckMessage(MSG_NO_PERIOD),
@@ -167,7 +167,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceTwo() throws Exception {
+    public void javadocStyleFirstSentenceTwo() throws Exception {
         final String[] expected = {
             "67: " + getCheckMessage(MSG_NO_PERIOD),
             "101: " + getCheckMessage(MSG_NO_PERIOD),
@@ -178,7 +178,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceThree() throws Exception {
+    public void javadocStyleFirstSentenceThree() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -186,7 +186,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceFour() throws Exception {
+    public void javadocStyleFirstSentenceFour() throws Exception {
         final String[] expected = {
             "40: " + getCheckMessage(MSG_NO_PERIOD),
             "51: " + getCheckMessage(MSG_NO_PERIOD),
@@ -201,7 +201,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceFormatOne() throws Exception {
+    public void javadocStyleFirstSentenceFormatOne() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
             "35: " + getCheckMessage(MSG_NO_PERIOD),
@@ -217,7 +217,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceFormatTwo() throws Exception {
+    public void javadocStyleFirstSentenceFormatTwo() throws Exception {
         final String[] expected = {
             "74: " + getCheckMessage(MSG_NO_PERIOD),
             "108: " + getCheckMessage(MSG_NO_PERIOD),
@@ -228,7 +228,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceFormatThree() throws Exception {
+    public void javadocStyleFirstSentenceFormatThree() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -236,7 +236,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleFirstSentenceFormatFour() throws Exception {
+    public void javadocStyleFirstSentenceFormatFour() throws Exception {
         final String[] expected = {
             "40: " + getCheckMessage(MSG_NO_PERIOD),
             "51: " + getCheckMessage(MSG_NO_PERIOD),
@@ -251,7 +251,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtml1() throws Exception {
+    public void html1() throws Exception {
         final String[] expected = {
             "59:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>"),
             "62:7: " + getCheckMessage(MSG_EXTRA_HTML, "</td>"),
@@ -269,7 +269,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtml2() throws Exception {
+    public void html2() throws Exception {
         final String[] expected = {
             "68:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote>"),
         };
@@ -279,7 +279,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtml3() throws Exception {
+    public void html3() throws Exception {
         final String[] expected = {
             "103:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
         };
@@ -289,7 +289,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtml4() throws Exception {
+    public void html4() throws Exception {
         final String[] expected = {
             "29:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
             "47:11: " + getCheckMessage(MSG_UNCLOSED_HTML, "<b>"),
@@ -300,7 +300,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtmlComment() throws Exception {
+    public void htmlComment() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -308,7 +308,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testOnInputWithNoJavadoc1() throws Exception {
+    public void onInputWithNoJavadoc1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -316,7 +316,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testOnInputWithNoJavadoc2() throws Exception {
+    public void onInputWithNoJavadoc2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -324,7 +324,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePublic1()
+    public void scopePublic1()
             throws Exception {
         final String[] expected = {
             "78: " + getCheckMessage(MSG_NO_PERIOD),
@@ -337,7 +337,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePublic2()
+    public void scopePublic2()
             throws Exception {
         final String[] expected = {
             "83: " + getCheckMessage(MSG_EMPTY),
@@ -350,7 +350,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePublic3()
+    public void scopePublic3()
             throws Exception {
         final String[] expected = {
             "104:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
@@ -361,7 +361,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePublic4()
+    public void scopePublic4()
             throws Exception {
         final String[] expected = {
             "51: " + getCheckMessage(MSG_NO_PERIOD),
@@ -374,7 +374,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopeProtected1()
+    public void scopeProtected1()
             throws Exception {
         final String[] expected = {
             "67: " + getCheckMessage(MSG_NO_PERIOD),
@@ -389,7 +389,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopeProtected2()
+    public void scopeProtected2()
             throws Exception {
         final String[] expected = {
             "83: " + getCheckMessage(MSG_EMPTY),
@@ -403,7 +403,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopeProtected3()
+    public void scopeProtected3()
             throws Exception {
         final String[] expected = {
             "104:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
@@ -414,7 +414,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopeProtected4()
+    public void scopeProtected4()
             throws Exception {
         final String[] expected = {
             "51: " + getCheckMessage(MSG_NO_PERIOD),
@@ -427,7 +427,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePackage1()
+    public void scopePackage1()
             throws Exception {
         final String[] expected = {
             "67: " + getCheckMessage(MSG_NO_PERIOD),
@@ -444,7 +444,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePackage2()
+    public void scopePackage2()
             throws Exception {
         final String[] expected = {
             "83: " + getCheckMessage(MSG_EMPTY),
@@ -459,7 +459,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePackage3()
+    public void scopePackage3()
             throws Exception {
         final String[] expected = {
             "104:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string>"),
@@ -470,7 +470,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testScopePackage4()
+    public void scopePackage4()
             throws Exception {
         final String[] expected = {
             "51: " + getCheckMessage(MSG_NO_PERIOD),
@@ -485,7 +485,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc1() throws Exception {
+    public void emptyJavadoc1() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -493,7 +493,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc2() throws Exception {
+    public void emptyJavadoc2() throws Exception {
         final String[] expected = {
             "75: " + getCheckMessage(MSG_EMPTY),
             "79: " + getCheckMessage(MSG_EMPTY),
@@ -507,7 +507,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc3() throws Exception {
+    public void emptyJavadoc3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -515,7 +515,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEmptyJavadoc4() throws Exception {
+    public void emptyJavadoc4() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -523,7 +523,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testExcludeScope1()
+    public void excludeScope1()
             throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
@@ -542,7 +542,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testExcludeScope2()
+    public void excludeScope2()
             throws Exception {
         final String[] expected = {
             "69:8: " + getCheckMessage(MSG_UNCLOSED_HTML, "<blockquote>"),
@@ -554,7 +554,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testExcludeScope3()
+    public void excludeScope3()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -563,7 +563,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testExcludeScope4()
+    public void excludeScope4()
             throws Exception {
         final String[] expected = {
             "30:33: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>"),
@@ -633,7 +633,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testNothing() throws Exception {
+    public void nothing() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -652,7 +652,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testRestrictedTokenSet1()
+    public void restrictedTokenSet1()
             throws Exception {
         final String[] expected = {
             "74: " + getCheckMessage(MSG_NO_PERIOD),
@@ -663,7 +663,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testRestrictedTokenSet2()
+    public void restrictedTokenSet2()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -672,7 +672,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testRestrictedTokenSet3()
+    public void restrictedTokenSet3()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -681,7 +681,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testRestrictedTokenSet4()
+    public void restrictedTokenSet4()
             throws Exception {
         final String[] expected = {
             "53: " + getCheckMessage(MSG_NO_PERIOD),
@@ -693,7 +693,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleRecordsAndCompactCtors() throws Exception {
+    public void javadocStyleRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_NO_PERIOD),
             "45: " + getCheckMessage(MSG_NO_PERIOD),
@@ -714,7 +714,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testHtmlTagToString() {
+    public void htmlTagToString() {
         final HtmlTag tag = new HtmlTag("id", 3, 5, true, false, "<a href=\"URL\"/>");
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
@@ -723,7 +723,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testNeverEndingXmlCommentInsideJavadoc() throws Exception {
+    public void neverEndingXmlCommentInsideJavadoc() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -731,7 +731,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic()
+    public void interfaceMemberScopeIsPublic()
             throws Exception {
         final String[] expected = {
             "21: " + getCheckMessage(MSG_EMPTY),
@@ -744,7 +744,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testEnumCtorScopeIsPrivate()
+    public void enumCtorScopeIsPrivate()
             throws Exception {
         final String[] expected = {
             "21: " + getCheckMessage(MSG_EMPTY),
@@ -758,7 +758,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testLowerCasePropertyForTag() throws Exception {
+    public void lowerCasePropertyForTag() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -766,7 +766,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocTag() throws Exception {
+    public void javadocTag() throws Exception {
         final String[] expected = {
             "11: " + getCheckMessage(MSG_NO_PERIOD),
             "15: " + getCheckMessage(MSG_NO_PERIOD),
@@ -778,7 +778,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocTag2() throws Exception {
+    public void javadocTag2() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_NO_PERIOD),
             "18:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
@@ -791,7 +791,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocTag3() throws Exception {
+    public void javadocTag3() throws Exception {
         final String[] expected = {
             "21:4: " + getCheckMessage(MSG_EXTRA_HTML, "</body>"),
         };
@@ -802,7 +802,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleCheck3() throws Exception {
+    public void javadocStyleCheck3() throws Exception {
         final String[] expected = {
             "11: " + getCheckMessage(MSG_NO_PERIOD),
         };
@@ -813,7 +813,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleCheck4() throws Exception {
+    public void javadocStyleCheck4() throws Exception {
         final String[] expected = {
             "12: " + getCheckMessage(MSG_NO_PERIOD),
         };
@@ -824,7 +824,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleAboveComments() throws Exception {
+    public void javadocStyleAboveComments() throws Exception {
         final String[] expected = {
             "13: " + getCheckMessage(MSG_NO_PERIOD),
             "20: " + getCheckMessage(MSG_NO_PERIOD),
@@ -836,7 +836,7 @@ public class JavadocStyleCheckTest
     }
 
     @Test
-    public void testJavadocStyleUnclosedTags() throws Exception {
+    public void javadocStyleUnclosedTags() throws Exception {
         // Test covers mutations in JavadocCommentsLexerUtil through realistic Javadoc inputs.
         // This test verifies violations are reported on the correct lines.
         final String[] expected = {

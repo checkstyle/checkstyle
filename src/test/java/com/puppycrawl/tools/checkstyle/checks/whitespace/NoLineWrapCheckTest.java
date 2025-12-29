@@ -35,14 +35,14 @@ public class NoLineWrapCheckTest
     }
 
     @Test
-    public void testCaseWithoutLineWrapping() throws Exception {
+    public void caseWithoutLineWrapping() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputNoLineWrapGood.java"), expected);
     }
 
     @Test
-    public void testDefaultTokensLineWrapping() throws Exception {
+    public void defaultTokensLineWrapping() throws Exception {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_KEY, "package"),
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -53,7 +53,7 @@ public class NoLineWrapCheckTest
     }
 
     @Test
-    public void testCustomTokensLineWrapping()
+    public void customTokensLineWrapping()
             throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -67,7 +67,7 @@ public class NoLineWrapCheckTest
     }
 
     @Test
-    public void testNoLineWrapRecordsAndCompactCtors()
+    public void noLineWrapRecordsAndCompactCtors()
             throws Exception {
 
         final String[] expected = {

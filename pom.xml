@@ -674,6 +674,11 @@
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-testing-frameworks</artifactId>
+              <version>3.24.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
               <version>2.24.0</version>
             </dependency>

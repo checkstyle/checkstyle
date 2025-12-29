@@ -45,7 +45,7 @@ import org.junit.jupiter.api.Test;
 public class AllTestsTest {
 
     @Test
-    public void testAllInputsHaveTest() throws Exception {
+    public void allInputsHaveTest() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
         walkVisible(Path.of("src/test/java"), filePath -> {
@@ -65,7 +65,7 @@ public class AllTestsTest {
     }
 
     @Test
-    public void testAllTestsHaveProductionCode() throws Exception {
+    public void allTestsHaveProductionCode() throws Exception {
         final Map<String, List<String>> allTests = new HashMap<>();
 
         walkVisible(Path.of("src/main/java"), filePath -> {

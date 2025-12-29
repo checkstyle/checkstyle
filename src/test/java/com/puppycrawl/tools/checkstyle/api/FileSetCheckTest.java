@@ -37,7 +37,7 @@ public class FileSetCheckTest
     }
 
     @Test
-    public void testTranslation() throws Exception {
+    public void translation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 
@@ -47,7 +47,7 @@ public class FileSetCheckTest
     }
 
     @Test
-    public void testProcessCallsFinishBeforeCallingDestroy() throws Exception {
+    public void processCallsFinishBeforeCallingDestroy() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputFileSetIllegalTokens.java"), expected);
 

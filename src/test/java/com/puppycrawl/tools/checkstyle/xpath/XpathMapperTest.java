@@ -41,7 +41,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNodeOrdering() throws Exception {
+    public void nodeOrdering() throws Exception {
         final String xpath = "//METHOD_DEF/SLIST/*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -63,7 +63,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFullPath() throws Exception {
+    public void fullPath() throws Exception {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF/OBJBLOCK"
                 + "/METHOD_DEF[1]/SLIST/VARIABLE_DEF[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -84,7 +84,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParent() throws Exception {
+    public void parent() throws Exception {
         final String xpath = "(//VARIABLE_DEF)[1]/..";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -101,7 +101,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCurlyBrackets() throws Exception {
+    public void curlyBrackets() throws Exception {
         final String xpath = "(//RCURLY)[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -119,7 +119,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOr() throws Exception {
+    public void or() throws Exception {
         final String xpath = "//CLASS_DEF | //METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -138,7 +138,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testComplexQueryOne() throws Exception {
+    public void complexQueryOne() throws Exception {
         final String xpath = "//CLASS_DEF | //CLASS_DEF/OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -154,7 +154,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testComplexQueryTwo() throws Exception {
+    public void complexQueryTwo() throws Exception {
         final String xpath = "//PACKAGE_DEF | //PACKAGE_DEF/ANNOTATIONS";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -170,7 +170,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testComplexQueryThree() throws Exception {
+    public void complexQueryThree() throws Exception {
         final String xpath = "//CLASS_DEF | //CLASS_DEF//METHOD_DEF |"
                 + " /COMPILATION_UNIT/CLASS_DEF/OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -193,7 +193,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAttributeOr() throws Exception {
+    public void attributeOr() throws Exception {
         final String xpath = "//METHOD_DEF[./IDENT[@text='getSomeMethod'] "
                 + "or ./IDENT[@text='nonExistentMethod']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -212,7 +212,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAttributeAnd() throws Exception {
+    public void attributeAnd() throws Exception {
         final String xpath = "//METHOD_DEF[./IDENT[@text='callSomeMethod'] and "
                 + "../..[./IDENT[@text='InputXpathMapperAst']]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -230,7 +230,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAllElementsWithAttribute() throws Exception {
+    public void queryAllElementsWithAttribute() throws Exception {
         final String xpath = "//*[./IDENT[@text]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -240,7 +240,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementByIndex() throws Exception {
+    public void queryElementByIndex() throws Exception {
         final String xpath = "(//VARIABLE_DEF)[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -261,7 +261,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAllVariableDefinitionsWithAttribute() throws Exception {
+    public void queryAllVariableDefinitionsWithAttribute() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@*]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -271,7 +271,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAllVariableDefWrongAttribute() throws Exception {
+    public void queryAllVariableDefWrongAttribute() throws Exception {
         final String xpath = "//VARIABLE_DEF[@qwe]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -281,7 +281,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAllMethodDefinitionsInContext() throws Exception {
+    public void queryAllMethodDefinitionsInContext() throws Exception {
         final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
@@ -314,7 +314,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAllClassDefinitions() throws Exception {
+    public void queryAllClassDefinitions() throws Exception {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -339,7 +339,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryByMethodName() throws Exception {
+    public void queryByMethodName() throws Exception {
         final String xpath = "//METHOD_DEF[./IDENT[@text='getSomeMethod']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -356,7 +356,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryMethodDefinitionsByClassName() throws Exception {
+    public void queryMethodDefinitionsByClassName() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]"
                 + "//OBJBLOCK//METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -380,7 +380,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryByClassNameAndMethodName() throws Exception {
+    public void queryByClassNameAndMethodName() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK"
                 + "//METHOD_DEF[./IDENT[@text='getSomeMethod']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -398,7 +398,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryClassDefinitionByClassName() throws Exception {
+    public void queryClassDefinitionByClassName() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -417,7 +417,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryWrongClassName() throws Exception {
+    public void queryWrongClassName() throws Exception {
         final String xpath = "/CLASS_DEF[@text='WrongName']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -427,7 +427,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryWrongXpath() throws Exception {
+    public void queryWrongXpath() throws Exception {
         final String xpath = "/WRONG_XPATH";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -437,7 +437,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAncestor() throws Exception {
+    public void queryAncestor() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@text='another']]/ancestor::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -453,7 +453,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAncestorOrSelf() throws Exception {
+    public void queryAncestorOrSelf() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@text='another']]"
                 + "/ancestor-or-self::VARIABLE_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -474,7 +474,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryDescendant() throws Exception {
+    public void queryDescendant() throws Exception {
         final String xpath = "//METHOD_DEF/descendant::EXPR";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -484,7 +484,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryDescendantOrSelf() throws Exception {
+    public void queryDescendantOrSelf() throws Exception {
         final String xpath = "//METHOD_DEF/descendant-or-self::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -507,7 +507,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryNoChild() throws Exception {
+    public void queryNoChild() throws Exception {
         final String xpath = "//RCURLY/METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -517,7 +517,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryNoDescendant() throws Exception {
+    public void queryNoDescendant() throws Exception {
         final String xpath = "//RCURLY/descendant::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -527,7 +527,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryRootNotImplementedAxis() throws Exception {
+    public void queryRootNotImplementedAxis() throws Exception {
         final String xpath = "//namespace::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         try {
@@ -542,7 +542,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementNotImplementedAxis() throws Exception {
+    public void queryElementNotImplementedAxis() throws Exception {
         final String xpath = "/COMPILATION_UNIT/CLASS_DEF//namespace::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         try {
@@ -557,7 +557,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQuerySelf() throws Exception {
+    public void querySelf() throws Exception {
         final String objectXpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]//OBJBLOCK";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> objectNodes = getXpathItems(objectXpath, rootNode);
@@ -578,7 +578,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryNonExistentAttribute() throws Exception {
+    public void queryNonExistentAttribute() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -589,7 +589,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryRootSelf() throws Exception {
+    public void queryRootSelf() throws Exception {
         final String xpath = "self::node()";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -599,7 +599,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryAnnotation() throws Exception {
+    public void queryAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[./IDENT[@text='Deprecated']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -615,7 +615,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryNonExistentAnnotation() throws Exception {
+    public void queryNonExistentAnnotation() throws Exception {
         final String xpath = "//ANNOTATION[@text='SpringBootApplication']";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -625,7 +625,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryEnumDef() throws Exception {
+    public void queryEnumDef() throws Exception {
         final String xpath = "/COMPILATION_UNIT/ENUM_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
@@ -639,7 +639,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryEnumElementsNumber() throws Exception {
+    public void queryEnumElementsNumber() throws Exception {
         final String xpath = "/COMPILATION_UNIT/ENUM_DEF/OBJBLOCK/ENUM_CONSTANT_DEF";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, enumRootNode);
@@ -649,7 +649,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryEnumElementByName() throws Exception {
+    public void queryEnumElementByName() throws Exception {
         final String xpath = "//*[./IDENT[@text='TWO']]";
         final RootNode enumRootNode = getRootNode("InputXpathMapperEnum.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
@@ -668,7 +668,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryInterfaceDef() throws Exception {
+    public void queryInterfaceDef() throws Exception {
         final String xpath = "//INTERFACE_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
@@ -683,7 +683,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryInterfaceMethodDefNumber() throws Exception {
+    public void queryInterfaceMethodDefNumber() throws Exception {
         final String xpath = "//INTERFACE_DEF/OBJBLOCK/METHOD_DEF";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, interfaceRootNode);
@@ -693,7 +693,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryInterfaceParameterDef() throws Exception {
+    public void queryInterfaceParameterDef() throws Exception {
         final String xpath = "//PARAMETER_DEF[./IDENT[@text='someVariable']]/../..";
         final RootNode interfaceRootNode = getRootNode("InputXpathMapperInterface.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, interfaceRootNode));
@@ -711,7 +711,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIdent() throws Exception {
+    public void ident() throws Exception {
         final String xpath = "//CLASS_DEF/IDENT[@text='InputXpathMapperAst']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
@@ -728,7 +728,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIdentByText() throws Exception {
+    public void identByText() throws Exception {
         final String xpath = "//IDENT[@text='puppycrawl']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -749,7 +749,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNumVariableByItsValue() throws Exception {
+    public void numVariableByItsValue() throws Exception {
         final String xpath = "//VARIABLE_DEF[.//NUM_INT[@text=123]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -767,7 +767,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStringVariableByItsValue() throws Exception {
+    public void stringVariableByItsValue() throws Exception {
         final String xpath = "//VARIABLE_DEF[./ASSIGN/EXPR"
                 + "/STRING_LITERAL[@text='HelloWorld']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -788,7 +788,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSameNodesByNameAndByText() throws Exception {
+    public void sameNodesByNameAndByText() throws Exception {
         final String xpath1 = "//VARIABLE_DEF[./IDENT[@text='another']]/ASSIGN/EXPR/STRING_LITERAL";
         final String xpath2 = "//VARIABLE_DEF/ASSIGN/EXPR/STRING_LITERAL[@text='HelloWorld']";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -800,7 +800,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodDefByAnnotationValue() throws Exception {
+    public void methodDefByAnnotationValue() throws Exception {
         final String xpath = "//METHOD_DEF[.//ANNOTATION[./IDENT[@text='SuppressWarnings']"
                 + " and .//*[@text='good']]]";
         final RootNode rootNode = getRootNode("InputXpathMapperAnnotation.java");
@@ -818,7 +818,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFirstImport() throws Exception {
+    public void firstImport() throws Exception {
         final String xpath = "/COMPILATION_UNIT/IMPORT[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -832,7 +832,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSecondImport() throws Exception {
+    public void secondImport() throws Exception {
         final String xpath = "/COMPILATION_UNIT/IMPORT[2]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -847,7 +847,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThirdImport() throws Exception {
+    public void thirdImport() throws Exception {
         final String xpath = "/COMPILATION_UNIT/IMPORT[3]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -863,7 +863,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLastImport() throws Exception {
+    public void lastImport() throws Exception {
         final String xpath = "/COMPILATION_UNIT/IMPORT[9]";
         final RootNode rootNode = getRootNode("InputXpathMapperPositions.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -885,7 +885,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFirstCaseGroup() throws Exception {
+    public void firstCaseGroup() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[1]";
@@ -906,7 +906,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSecondCaseGroup() throws Exception {
+    public void secondCaseGroup() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[2]";
@@ -928,7 +928,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThirdCaseGroup() throws Exception {
+    public void thirdCaseGroup() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[3]";
@@ -951,7 +951,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFourthCaseGroup() throws Exception {
+    public void fourthCaseGroup() throws Exception {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperPositions']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='switchMethod']]"
                 + "/SLIST/LITERAL_SWITCH/CASE_GROUP[4]";
@@ -975,7 +975,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowingSibling() throws Exception {
+    public void queryElementFollowingSibling() throws Exception {
         final String xpath = "//METHOD_DEF/following-sibling::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -999,7 +999,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementNoFollowingSibling() throws Exception {
+    public void queryElementNoFollowingSibling() throws Exception {
         final String xpath = "//CLASS_DEF/following-sibling::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1009,7 +1009,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowingSiblingRcurly() throws Exception {
+    public void queryElementFollowingSiblingRcurly() throws Exception {
         final String xpath = "//METHOD_DEF/following-sibling::RCURLY";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1026,7 +1026,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowing() throws Exception {
+    public void queryElementFollowing() throws Exception {
         final String xpath = "//IDENT[@text='variable']/following::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
@@ -1036,7 +1036,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowingTwo() throws Exception {
+    public void queryElementFollowingTwo() throws Exception {
         final String xpath = "//LITERAL_RETURN[.//STRING_LITERAL[@text='HelloWorld']]/following::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1058,7 +1058,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowingMethodDef() throws Exception {
+    public void queryElementFollowingMethodDef() throws Exception {
         final String xpath = "//PACKAGE_DEF/following::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1081,7 +1081,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementNoFollowing() throws Exception {
+    public void queryElementNoFollowing() throws Exception {
         final String xpath = "//CLASS_DEF/following::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1091,7 +1091,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingSibling() throws Exception {
+    public void queryElementPrecedingSibling() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1113,7 +1113,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingSiblingVariableDef() throws Exception {
+    public void queryElementPrecedingSiblingVariableDef() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::"
                 + "VARIABLE_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -1134,7 +1134,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingSiblingArray() throws Exception {
+    public void queryElementPrecedingSiblingArray() throws Exception {
         final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1153,7 +1153,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingOne() throws Exception {
+    public void queryElementPrecedingOne() throws Exception {
         final String xpath = "//LITERAL_CLASS/preceding::*";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath,
@@ -1164,7 +1164,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingTwo() throws Exception {
+    public void queryElementPrecedingTwo() throws Exception {
         final String xpath = "//PACKAGE_DEF/DOT/preceding::*";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1183,7 +1183,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQueryElementPrecedingLiteralPublic() throws Exception {
+    public void queryElementPrecedingLiteralPublic() throws Exception {
         final String xpath = "//LITERAL_CLASS/preceding::LITERAL_PUBLIC";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1199,7 +1199,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTextBlockByItsValue() throws Exception {
+    public void textBlockByItsValue() throws Exception {
         final String xpath = "//TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
                 + "[@text='\\n        &1line\\n        >2line\\n        <3line\\n        ']]";
         final RootNode rootNode = getRootNode("InputXpathMapperTextBlock.java");
@@ -1219,7 +1219,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testQuerySingleLineCommentByCommentContent() throws Exception {
+    public void querySingleLineCommentByCommentContent() throws Exception {
         final String xpath = "//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' some comment\\n']]";
         final RootNode rootNode = getRootNodeWithComments("InputXpathMapperSingleLineComment.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
@@ -1235,7 +1235,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testManyNestedNodes() throws Exception {
+    public void manyNestedNodes() throws Exception {
         final String xpath = "//STRING_LITERAL";
         final RootNode rootNode = getRootNode("InputXpathMapperStringConcat.java");
         final List<NodeInfo> actual = getXpathItems(xpath, rootNode);

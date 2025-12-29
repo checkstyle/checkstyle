@@ -36,7 +36,7 @@ public class InterfaceTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final InterfaceTypeParameterNameCheck interfaceTypeParameterNameCheck =
             new InterfaceTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -47,7 +47,7 @@ public class InterfaceTypeParameterNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final InterfaceTypeParameterNameCheck checkObj =
             new InterfaceTypeParameterNameCheck();
         final int[] expected = {TokenTypes.TYPE_PARAMETER};
@@ -57,7 +57,7 @@ public class InterfaceTypeParameterNameCheckTest
     }
 
     @Test
-    public void testInterfaceDefault()
+    public void interfaceDefault()
             throws Exception {
 
         final String pattern = "^[A-Z]$";
@@ -70,7 +70,7 @@ public class InterfaceTypeParameterNameCheckTest
     }
 
     @Test
-    public void testInterfaceFooName()
+    public void interfaceFooName()
             throws Exception {
 
         final String pattern = "^foo$";

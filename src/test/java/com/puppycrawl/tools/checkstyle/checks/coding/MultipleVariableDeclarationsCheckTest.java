@@ -35,7 +35,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void it() throws Exception {
 
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
@@ -55,7 +55,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final MultipleVariableDeclarationsCheck check = new MultipleVariableDeclarationsCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -82,7 +82,7 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testUnnamedVariables() throws Exception {
+    public void unnamedVariables() throws Exception {
 
         final String[] expected = {
             "12:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),

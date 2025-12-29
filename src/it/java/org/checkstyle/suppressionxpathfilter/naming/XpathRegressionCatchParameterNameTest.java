@@ -45,7 +45,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void simple() throws Exception {
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final DefaultConfiguration moduleConfig =
@@ -70,7 +70,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testNested() throws Exception {
+    public void nested() throws Exception {
         final String pattern = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final DefaultConfiguration moduleConfig =
@@ -97,7 +97,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testStaticInit() throws Exception {
+    public void staticInit() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
         final DefaultConfiguration moduleConfig =
@@ -123,7 +123,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testAnonymous() throws Exception {
+    public void anonymous() throws Exception {
         final String pattern = "^[a-z][a-zA-Z0-9]+$";
 
         final DefaultConfiguration moduleConfig =
@@ -152,7 +152,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void testLambda() throws Exception {
+    public void lambda() throws Exception {
         final String pattern = "^[A-Z][a-z]+$";
 
         final DefaultConfiguration moduleConfig =

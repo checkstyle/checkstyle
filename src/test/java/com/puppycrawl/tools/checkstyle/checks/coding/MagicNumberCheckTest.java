@@ -35,7 +35,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testLocalVariables()
+    public void localVariables()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -43,7 +43,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testLocalVariables2()
+    public void localVariables2()
             throws Exception {
         final String[] expected = {
             "27:17: " + getCheckMessage(MSG_KEY, "8"),
@@ -53,7 +53,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testDefault1()
+    public void default1()
             throws Exception {
         final String[] expected = {
             "56:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -83,7 +83,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testDefault2()
+    public void default2()
             throws Exception {
         final String[] expected = {
             "23:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -102,7 +102,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testDefault3()
+    public void default3()
             throws Exception {
         final String[] expected = {
             "22:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -126,7 +126,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreSome1()
+    public void ignoreSome1()
             throws Exception {
         final String[] expected = {
             "38:25: " + getCheckMessage(MSG_KEY, "2"),
@@ -150,7 +150,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreSome2()
+    public void ignoreSome2()
             throws Exception {
         final String[] expected = {
             "23:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -172,7 +172,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreSome3()
+    public void ignoreSome3()
             throws Exception {
         final String[] expected = {
             "23:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -191,7 +191,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNone1()
+    public void ignoreNone1()
             throws Exception {
         final String[] expected = {
             "39:24: " + getCheckMessage(MSG_KEY, "1"),
@@ -242,7 +242,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNone2()
+    public void ignoreNone2()
             throws Exception {
         final String[] expected = {
             "21:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -265,7 +265,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNone3()
+    public void ignoreNone3()
             throws Exception {
         final String[] expected = {
             "22:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -284,7 +284,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIntegersOnly1()
+    public void integersOnly1()
             throws Exception {
         final String[] expected = {
             "57:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -312,7 +312,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIntegersOnly2()
+    public void integersOnly2()
             throws Exception {
         final String[] expected = {
             "22:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -329,7 +329,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIntegersOnly3()
+    public void integersOnly3()
             throws Exception {
         final String[] expected = {
             "22:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -348,7 +348,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex1() throws Exception {
+    public void ignoreNegativeOctalHex1() throws Exception {
         final String[] expected = {
             "57:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "59:27: " + getCheckMessage(MSG_KEY, "3"),
@@ -375,7 +375,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex2() throws Exception {
+    public void ignoreNegativeOctalHex2() throws Exception {
         final String[] expected = {
             "22:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
             "30:30: " + getCheckMessage(MSG_KEY, "+3"),
@@ -386,7 +386,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreNegativeOctalHex3() throws Exception {
+    public void ignoreNegativeOctalHex3() throws Exception {
         final String[] expected = {
             "22:16: " + getCheckMessage(MSG_KEY, "31"),
             "27:16: " + getCheckMessage(MSG_KEY, "42"),
@@ -404,7 +404,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreHashCodeMethod() throws Exception {
+    public void ignoreHashCodeMethod() throws Exception {
         final String[] expected = {
             "57:26: " + getCheckMessage(MSG_KEY, "3_000"),
             "58:32: " + getCheckMessage(MSG_KEY, "1.5_0"),
@@ -433,7 +433,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreHashCodeMethod2() throws Exception {
+    public void ignoreHashCodeMethod2() throws Exception {
         final String[] expected = {
             "22:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
             "29:30: " + getCheckMessage(MSG_KEY, "+3"),
@@ -451,7 +451,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreHashCodeMethod3() throws Exception {
+    public void ignoreHashCodeMethod3() throws Exception {
         final String[] expected = {
             "27:16: " + getCheckMessage(MSG_KEY, "42"),
             "32:16: " + getCheckMessage(MSG_KEY, "13"),
@@ -468,7 +468,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration1()
+    public void ignoreFieldDeclaration1()
             throws Exception {
         final String[] expected = {
             "57:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -497,7 +497,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration2()
+    public void ignoreFieldDeclaration2()
             throws Exception {
         final String[] expected = {
             "51:20: " + getCheckMessage(MSG_KEY, "378"),
@@ -507,7 +507,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration3()
+    public void ignoreFieldDeclaration3()
             throws Exception {
         final String[] expected = {
             "22:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -527,7 +527,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration4()
+    public void ignoreFieldDeclaration4()
             throws Exception {
         final String[] expected = {
             "29:27: " + getCheckMessage(MSG_KEY, "5"),
@@ -544,7 +544,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration5()
+    public void ignoreFieldDeclaration5()
             throws Exception {
         final String[] expected = {
             "17:32: " + getCheckMessage(MSG_KEY, "22"),
@@ -571,7 +571,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreFieldDeclaration6()
+    public void ignoreFieldDeclaration6()
             throws Exception {
         final String[] expected = {
             "16:38: " + getCheckMessage(MSG_KEY, "10"),
@@ -582,7 +582,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testWaiverParentToken()
+    public void waiverParentToken()
             throws Exception {
         final String[] expected = {
             "55:26: " + getCheckMessage(MSG_KEY, "3_000"),
@@ -612,7 +612,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testWaiverParentToken2()
+    public void waiverParentToken2()
             throws Exception {
         final String[] expected = {
             "20:14: " + getCheckMessage(MSG_KEY, "0xffffffffL"),
@@ -636,7 +636,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testWaiverParentToken3()
+    public void waiverParentToken3()
             throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_KEY, "31"),
@@ -660,7 +660,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberRecordsDefault()
+    public void magicNumberRecordsDefault()
             throws Exception {
         final String[] expected = {
             "21:11: " + getCheckMessage(MSG_KEY, "6"),
@@ -674,7 +674,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberIgnoreFieldDeclarationRecords()
+    public void magicNumberIgnoreFieldDeclarationRecords()
             throws Exception {
         final String[] expected = {
             "21:11: " + getCheckMessage(MSG_KEY, "6"),
@@ -688,7 +688,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberIgnoreFieldDeclarationWithAnnotation()
+    public void magicNumberIgnoreFieldDeclarationWithAnnotation()
             throws Exception {
         final String[] expected = {
             "18:38: " + getCheckMessage(MSG_KEY, "3"),
@@ -701,7 +701,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testIgnoreInAnnotationElementDefault() throws Exception {
+    public void ignoreInAnnotationElementDefault() throws Exception {
         final String[] expected = {
             "20:29: " + getCheckMessage(MSG_KEY, "10"),
             "21:33: " + getCheckMessage(MSG_KEY, "11"),
@@ -711,7 +711,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumber()
+    public void magicNumber()
             throws Exception {
         final String[] expected = {
             "40:29: " + getCheckMessage(MSG_KEY, "3.0"),
@@ -752,7 +752,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumber2() throws Exception {
+    public void magicNumber2() throws Exception {
         final String[] expected = {
             "27:17: " + getCheckMessage(MSG_KEY, "9"),
             "29:20: " + getCheckMessage(MSG_KEY, "5.5"),
@@ -777,14 +777,14 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumber3() throws Exception {
+    public void magicNumber3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMagicNumberMagicNumber3.java"), expected);
     }
 
     @Test
-    public void testMagicNumberInGuards() throws Exception {
+    public void magicNumberInGuards() throws Exception {
         final String[] expected = {
             "23:63: " + getCheckMessage(MSG_KEY, "3"),
             "23:72: " + getCheckMessage(MSG_KEY, "8"),
@@ -801,7 +801,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberWithUnnamedVariables() throws Exception {
+    public void magicNumberWithUnnamedVariables() throws Exception {
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY, "9"),
             "24:21: " + getCheckMessage(MSG_KEY, "17"),
@@ -813,7 +813,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberWithOperatorsWithIgnoreFieldsTrue() throws Exception {
+    public void magicNumberWithOperatorsWithIgnoreFieldsTrue() throws Exception {
         final String[] expected = {
             "35:35: " + getCheckMessage(MSG_KEY, "3"),
             "36:35: " + getCheckMessage(MSG_KEY, "3"),
@@ -838,7 +838,7 @@ public class MagicNumberCheckTest
     }
 
     @Test
-    public void testMagicNumberWithOperatorsWithIgnoreFieldsFalse() throws Exception {
+    public void magicNumberWithOperatorsWithIgnoreFieldsFalse() throws Exception {
         final String[] expected = {
             "54:25: " + getCheckMessage(MSG_KEY, "3"),
             "55:25: " + getCheckMessage(MSG_KEY, "3"),

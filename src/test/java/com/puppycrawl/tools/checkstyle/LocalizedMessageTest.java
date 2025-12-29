@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -53,7 +52,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("en")
     @Test
-    public void testNullArgs() {
+    public void nullArgs() {
         final LocalizedMessage messageClass = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", "myfile");
         assertWithMessage("Violation should contain exception info")
@@ -69,7 +68,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReloadUrlNull() throws IOException {
+    public void bundleReloadUrlNull() throws Exception {
         final Utf8Control control = new Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
@@ -89,7 +88,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNull() throws IOException {
+    public void bundleReloadUrlNotNull() throws Exception {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -146,7 +145,7 @@ public class LocalizedMessageTest {
      *      testing
      */
     @Test
-    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+    public void bundleReloadUrlNotNullFalseReload() throws Exception {
         final AtomicBoolean closed = new AtomicBoolean();
 
         final InputStream inputStream = new InputStream() {
@@ -195,7 +194,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
+    public void bundleReloadUrlNotNullStreamNull() throws Exception {
         final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
@@ -217,7 +216,7 @@ public class LocalizedMessageTest {
      * Verifies that the language specified with the system property {@code user.language} exists.
      */
     @Test
-    public void testLanguageIsValid() {
+    public void languageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
@@ -230,7 +229,7 @@ public class LocalizedMessageTest {
      * Verifies that the country specified with the system property {@code user.country} exists.
      */
     @Test
-    public void testCountryIsValid() {
+    public void countryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
@@ -240,7 +239,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testMessageInFrench() {
+    public void messageInFrench() {
         final LocalizedMessage violation = createSampleViolation();
         LocalizedMessage.setLocale(Locale.FRENCH);
 
@@ -251,7 +250,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
+    public void enforceEnglishLanguageBySettingUnitedStatesLocale() {
         LocalizedMessage.setLocale(Locale.US);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -262,7 +261,7 @@ public class LocalizedMessageTest {
 
     @DefaultLocale("fr")
     @Test
-    public void testEnforceEnglishLanguageBySettingRootLocale() {
+    public void enforceEnglishLanguageBySettingRootLocale() {
         LocalizedMessage.setLocale(Locale.ROOT);
         final LocalizedMessage violation = createSampleViolation();
 
@@ -277,7 +276,7 @@ public class LocalizedMessageTest {
     }
 
     @Test
-    public void testArgsFieldIsSetToNullWhenArgsIsNull() {
+    public void argsFieldIsSetToNullWhenArgsIsNull() {
         final LocalizedMessage message = new LocalizedMessage(Definitions.CHECKSTYLE_BUNDLE,
                 DefaultLogger.class, "DefaultLogger.addException", (Object[]) null);
         final Object[] args = TestUtil.getInternalState(message, "args", Object[].class);

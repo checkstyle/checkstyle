@@ -35,7 +35,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final SealedShouldHavePermitsListCheck checkObj = new SealedShouldHavePermitsListCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -50,7 +50,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testInnerSealedClass() throws Exception {
+    public void innerSealedClass() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY),
             "15:5: " + getCheckMessage(MSG_KEY),
@@ -61,7 +61,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testInnerSealedInterface() throws Exception {
+    public void innerSealedInterface() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY),
         };
@@ -71,7 +71,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testTopLevelSealedClass() throws Exception {
+    public void topLevelSealedClass() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -81,7 +81,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testTopLevelSealedInterface() throws Exception {
+    public void topLevelSealedInterface() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY),
         };
@@ -92,7 +92,7 @@ public class SealedShouldHavePermitsListCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void testJepExample() throws Exception {
+    public void jepExample() throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY),
             "24:1: " + getCheckMessage(MSG_KEY),

@@ -43,7 +43,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testInnerClone() throws Exception {
+    public void innerClone() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSuperCloneInnerClone.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testNoSuperClone() throws Exception {
+    public void noSuperClone() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSuperCloneNoSuperClone.java"));
 
@@ -89,7 +89,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testPlainAndSubclasses() throws Exception {
+    public void plainAndSubclasses() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSuperClonePlainAndSubclasses.java"));
 

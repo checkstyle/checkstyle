@@ -44,7 +44,7 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNoEnumTrailingCommaOne.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionNoEnumTrailingCommaTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathNoEnumTrailingCommaTwo.java"));
 

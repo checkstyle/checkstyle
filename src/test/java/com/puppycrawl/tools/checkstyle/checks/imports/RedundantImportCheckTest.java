@@ -45,7 +45,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final RedundantImportCheck checkObj = new RedundantImportCheck();
         final int[] expected = {
             TokenTypes.IMPORT,
@@ -59,7 +59,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testStateIsClearedOnBeginTree1()
+    public void stateIsClearedOnBeginTree1()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RedundantImportCheck.class);
         final String inputWithWarnings = getPath("InputRedundantImportCheckClearState.java");
@@ -77,7 +77,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testWithChecker()
+    public void withChecker()
             throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_SAME,
@@ -95,7 +95,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testUnnamedPackage()
+    public void unnamedPackage()
             throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_DUPLICATE, 9, "java.util.List"),
@@ -107,7 +107,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final RedundantImportCheck testCheckObject =
                 new RedundantImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
@@ -124,7 +124,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testBeginTreePackage() throws Exception {
+    public void beginTreePackage() throws Exception {
         final String file1 = getPath("InputRedundantImportCheckClearState.java");
         final String file2 = getPath("InputRedundantImportWithoutPackage.java");
         final List<String> expectedFirstInput = Arrays.asList(
@@ -139,7 +139,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testModuleImportBuiltInModules() throws Exception {
+    public void moduleImportBuiltInModules() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_DUPLICATE, 10, "java.base"),
             "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "java.logging"),
@@ -149,7 +149,7 @@ public class RedundantImportCheckTest
     }
 
     @Test
-    public void testModuleImportCustomModules() throws Exception {
+    public void moduleImportCustomModules() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_DUPLICATE, 10, "moduleA"),
             "13:1: " + getCheckMessage(MSG_DUPLICATE, 12, "moduleB"),

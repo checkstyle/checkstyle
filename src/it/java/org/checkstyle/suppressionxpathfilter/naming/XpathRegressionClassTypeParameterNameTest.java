@@ -102,7 +102,7 @@ public class XpathRegressionClassTypeParameterNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final String pattern = "(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)";
         final File fileToProcess =
                 new File(getPath("InputXpathClassTypeParameterNameMethod.java"));

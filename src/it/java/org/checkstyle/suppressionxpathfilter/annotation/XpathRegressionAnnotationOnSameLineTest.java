@@ -44,7 +44,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathAnnotationOnSameLineMethod.java"));
@@ -86,7 +86,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathAnnotationOnSameLineField.java"));
@@ -122,7 +122,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void three() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathAnnotationOnSameLineInterface.java"));

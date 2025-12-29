@@ -47,7 +47,7 @@ public class AvoidInlineConditionalsCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final AvoidInlineConditionalsCheck check = new AvoidInlineConditionalsCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

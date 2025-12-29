@@ -35,7 +35,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptableTokens() {
+    public void acceptableTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Default acceptable tokens are invalid")
@@ -44,7 +44,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final SingleLineJavadocCheck checkObj = new SingleLineJavadocCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Default required tokens are invalid")
@@ -66,7 +66,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoredTags() throws Exception {
+    public void ignoredTags() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY),
             "44: " + getCheckMessage(MSG_KEY),
@@ -83,7 +83,7 @@ public class SingleLineJavadocCheckTest extends AbstractModuleTestSupport {
      * Demonstrate that we can show lexer errors as violation messages, and keep parsing.
      */
     @Test
-    public void testLexerError() throws Exception {
+    public void lexerError() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(AbstractJavadocCheck.MSG_JAVADOC_PARSE_RULE_ERROR,
                         4, "token recognition error at: '@'", "@"),

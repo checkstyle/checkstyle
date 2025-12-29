@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -44,7 +43,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testUnsupportedCharset() throws IOException {
+    public void unsupportedCharset() throws Exception {
         // just to make UT coverage 100%
         final String charsetName = "STRANGE_CHARSET";
         final File file = new File("any name");
@@ -62,7 +61,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testFileNotFound() throws IOException {
+    public void fileNotFound() throws Exception {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final File file = new File("any name");
         try {
@@ -79,7 +78,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSupportedCharset() throws IOException {
+    public void supportedCharset() throws Exception {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
@@ -89,7 +88,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testLineColumnBeforeCopyConstructor() throws IOException {
+    public void lineColumnBeforeCopyConstructor() throws Exception {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
@@ -105,7 +104,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testLineColumnAfterCopyConstructor() throws IOException {
+    public void lineColumnAfterCopyConstructor() throws Exception {
         final Charset charset = StandardCharsets.ISO_8859_1;
         final String filepath = getPath("InputFileTextImportControl.xml");
         final FileText fileText = new FileText(new File(filepath), charset.name());
@@ -130,7 +129,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testLineColumnAtTheStartOfFile() throws IOException {
+    public void lineColumnAtTheStartOfFile() throws Exception {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
@@ -145,7 +144,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testLines() throws IOException {
+    public void lines() throws Exception {
         final List<String> lines = Collections.singletonList("abc");
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 lines);
@@ -155,7 +154,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testFindLineBreaks() throws Exception {
+    public void findLineBreaks() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Arrays.asList("1", "2"));
 
         assertWithMessage("Invalid line breaks")
@@ -178,7 +177,7 @@ public class FileTextTest extends AbstractPathTestSupport {
      * @throws Exception if there is an error.
      */
     @Test
-    public void testFindLineBreaksCache() throws Exception {
+    public void findLineBreaksCache() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Collections.emptyList());
         final int[] lineBreaks = {5};
         TestUtil.setInternalState(fileText, "lineBreaks", lineBreaks);
@@ -191,7 +190,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testCharsetAfterCopyConstructor() throws IOException {
+    public void charsetAfterCopyConstructor() throws Exception {
         final Charset charset = StandardCharsets.ISO_8859_1;
         final String filepath = getPath("InputFileTextImportControl.xml");
         final FileText fileText = new FileText(new File(filepath), charset.name());

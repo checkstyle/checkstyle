@@ -44,7 +44,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testPrivateClassFields() throws Exception {
+    public void privateClassFields() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocVariablePrivateClassFields.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionJavadocVariableTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInnerClassFields() throws Exception {
+    public void innerClassFields() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocVariableInnerClassFields.java"));
 

@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class XmlLoaderTest {
 
     @Test
-    public void testParserConfiguredSuccessfully() throws Exception {
+    public void parserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
         final XMLReader parser = TestUtil.getInternalState(dummyLoader, "parser", XMLReader.class);
         assertWithMessage("Invalid entity resolver")
@@ -45,7 +45,7 @@ public class XmlLoaderTest {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(
                         XmlLoader.LoadExternalDtdFeatureProvider.class))
@@ -53,7 +53,7 @@ public class XmlLoaderTest {
     }
 
     @Test
-    public void testResolveEntityDefault() throws Exception {
+    public void resolveEntityDefault() throws Exception {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);
@@ -63,7 +63,7 @@ public class XmlLoaderTest {
     }
 
     @Test
-    public void testResolveEntityMap() throws Exception {
+    public void resolveEntityMap() throws Exception {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);

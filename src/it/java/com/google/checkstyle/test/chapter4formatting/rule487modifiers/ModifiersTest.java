@@ -31,32 +31,32 @@ public class ModifiersTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void testModifierOrder() throws Exception {
+    public void modifierOrder() throws Exception {
         verifyWithWholeConfig(getPath("InputModifierOrder.java"));
     }
 
     @Test
-    public void testModifierOrderFormatted() throws Exception {
+    public void modifierOrderFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedModifierOrder.java"));
     }
 
     @Test
-    public void testModifierOrderSealed() throws Exception {
+    public void modifierOrderSealed() throws Exception {
         verifyWithWholeConfig(getPath("InputModifierOrderSealed.java"));
     }
 
     @Test
-    public void testModifierOrderSealedFormatted() throws Exception {
+    public void modifierOrderSealedFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedModifierOrderSealed.java"));
     }
 
     @Test
-    public void testModifierOrderNonSealed() throws Exception {
+    public void modifierOrderNonSealed() throws Exception {
         verifyWithWholeConfig(getPath("InputModifierOrderNonSealed.java"));
     }
 
     @Test
-    public void testModifierOrderNonSealedFormatted() throws Exception {
+    public void modifierOrderNonSealedFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedModifierOrderNonSealed.java"));
     }
 }

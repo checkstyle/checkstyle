@@ -45,14 +45,14 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfigurationOnValidInput() throws Exception {
+    public void defaultConfigurationOnValidInput() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         verify(checkConfig, getPath("InputRegexpOnFilenameSemantic.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Test
-    public void testDefaultProperties() throws Exception {
+    public void defaultProperties() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         final String path = getPath("InputRegexpOnFilename Space.properties");
         final String[] expected = {
@@ -62,7 +62,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFileMatches() throws Exception {
+    public void matchFileMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("fileNamePattern", ".*\\.java");
@@ -74,7 +74,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFileNotMatches() throws Exception {
+    public void matchFileNotMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("fileNamePattern", "BAD.*");
@@ -83,7 +83,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFileMatches() throws Exception {
+    public void notMatchFileMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("fileNamePattern", ".*\\.properties");
@@ -95,7 +95,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFileNotMatches() throws Exception {
+    public void notMatchFileNotMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("fileNamePattern", ".*\\.java");
@@ -104,7 +104,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderMatches() throws Exception {
+    public void matchFolderMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]resources[\\\\/].*");
@@ -116,7 +116,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderNotMatches() throws Exception {
+    public void matchFolderNotMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", "BAD.*");
@@ -125,7 +125,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFolderMatches() throws Exception {
+    public void notMatchFolderMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]gov[\\\\/].*");
@@ -137,7 +137,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFolderNotMatches() throws Exception {
+    public void notMatchFolderNotMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]resources[\\\\/].*");
@@ -146,7 +146,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderAndFileMatches() throws Exception {
+    public void matchFolderAndFileMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]resources[\\\\/].*");
@@ -159,7 +159,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderAndFileNotMatchesBoth() throws Exception {
+    public void matchFolderAndFileNotMatchesBoth() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", "BAD.*");
@@ -169,7 +169,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderAndFileNotMatchesFile() throws Exception {
+    public void matchFolderAndFileNotMatchesFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]resources[\\\\/].*");
@@ -179,7 +179,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMatchFolderAndFileNotMatchesFolder() throws Exception {
+    public void matchFolderAndFileNotMatchesFolder() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "true");
         checkConfig.addProperty("folderPattern", "BAD.*");
@@ -189,7 +189,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFolderAndFileMatches() throws Exception {
+    public void notMatchFolderAndFileMatches() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]com[\\\\/].*");
@@ -202,7 +202,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFolderAndFileNotMatchesFolder() throws Exception {
+    public void notMatchFolderAndFileNotMatchesFolder() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]javastrangefolder[\\\\/].*");
@@ -212,7 +212,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNotMatchFolderAndFileNotMatchesFile() throws Exception {
+    public void notMatchFolderAndFileNotMatchesFile() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("match", "false");
         checkConfig.addProperty("folderPattern", ".*[\\\\/]govstrangefolder[\\\\/].*");
@@ -222,7 +222,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreExtension() throws Exception {
+    public void ignoreExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("fileNamePattern", ".*\\.java");
         checkConfig.addProperty("ignoreFileNameExtensions", "true");
@@ -231,7 +231,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreExtensionNoExtension() throws Exception {
+    public void ignoreExtensionNoExtension() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         checkConfig.addProperty("fileNamePattern", "\\.");
         checkConfig.addProperty("ignoreFileNameExtensions", "true");
@@ -240,7 +240,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testException() throws Exception {
+    public void exception() throws Exception {
         // escape character needed for testing IOException from File.getCanonicalPath on all OSes
         final File file = new File(getPath("") + "\u0000" + File.separatorChar + "Test");
         final RegexpOnFilenameCheck check = new RegexpOnFilenameCheck();
@@ -255,7 +255,7 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithFileWithoutParent() throws Exception {
+    public void withFileWithoutParent() throws Exception {
         final DefaultConfiguration moduleConfig = createModuleConfig(RegexpOnFilenameCheck.class);
         final String path = getPath("package-info.java");
         final File fileWithoutParent = new MockFile(path);

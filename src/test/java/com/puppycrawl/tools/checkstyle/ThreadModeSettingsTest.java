@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 public class ThreadModeSettingsTest {
 
     @Test
-    public void testProperties() {
+    public void properties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
         assertWithMessage("Invalid checker threads number")
                 .that(config.checkerThreadsNumber())
@@ -41,7 +41,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveCheckerInMultiThreadMode() {
+    public void resolveCheckerInMultiThreadMode() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
@@ -56,7 +56,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveCheckerInSingleThreadMode() {
+    public void resolveCheckerInSingleThreadMode() {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
         final String name = singleThreadMode.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
@@ -66,7 +66,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveTreeWalker() {
+    public void resolveTreeWalker() {
         final ThreadModeSettings configuration = new ThreadModeSettings(2, 2);
 
         try {
@@ -81,7 +81,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveTreeWalkerInSingleThreadMode() {
+    public void resolveTreeWalkerInSingleThreadMode() {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
@@ -91,7 +91,7 @@ public class ThreadModeSettingsTest {
     }
 
     @Test
-    public void testResolveAnyOtherModule() throws Exception {
+    public void resolveAnyOtherModule() throws Exception {
         final Set<Class<?>> allModules = CheckUtil.getCheckstyleModules();
         final ThreadModeSettings multiThreadModeSettings = new ThreadModeSettings(2, 2);
         final ThreadModeSettings singleThreadModeSettings =

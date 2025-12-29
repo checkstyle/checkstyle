@@ -45,7 +45,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testClassDefinition() throws Exception {
+    public void classDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsClassDefinition.java"));
 
@@ -76,7 +76,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testParameterDefinition() throws Exception {
+    public void parameterDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsParameterDefinition.java"));
 
@@ -115,7 +115,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testVariableDefinition() throws Exception {
+    public void variableDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsVariableDefinition.java"));
 
@@ -150,7 +150,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testEnumDefinition() throws Exception {
+    public void enumDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsEnumDefinition.java"));
 
@@ -181,7 +181,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testInterfaceDefinition() throws Exception {
+    public void interfaceDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsInterfaceDefinition.java"));
 
@@ -212,7 +212,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testEnumConstantDefinition() throws Exception {
+    public void enumConstantDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsEnumConstantDefinition.java"));
 
@@ -247,7 +247,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testMethodDefinition() throws Exception {
+    public void methodDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsMethodDefinition.java"));
 
@@ -282,7 +282,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testAnnotationDefinition() throws Exception {
+    public void annotationDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsAnnotationDefinition.java"));
 
@@ -313,7 +313,7 @@ public class XpathRegressionSuppressWarningsTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testAnnotationFieldDefinition() throws Exception {
+    public void annotationFieldDefinition() throws Exception {
         final File fileToCheck =
                 new File(getPath("InputXpathSuppressWarningsAnnotationFieldDefinition.java"));
 

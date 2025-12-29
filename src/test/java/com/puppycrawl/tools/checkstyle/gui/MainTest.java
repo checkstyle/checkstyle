@@ -46,7 +46,7 @@ public class MainTest extends AbstractGuiTestSupport {
      */
     @ParameterizedTest
     @ValueSource(strings = {";", "InputMain.java"})
-    public void testMain(String argList) throws Exception {
+    public void main(String argList) throws Exception {
         final String[] args = argList.split(";");
         for (int i = 0; i < args.length; i++) {
             args[i] = getPath(args[i]);

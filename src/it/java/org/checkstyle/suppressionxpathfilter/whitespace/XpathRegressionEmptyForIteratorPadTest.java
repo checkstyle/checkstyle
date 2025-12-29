@@ -45,7 +45,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testFollowed() throws Exception {
+    public void followed() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathEmptyForIteratorPadFollowed.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testNotFollowed() throws Exception {
+    public void notFollowed() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathEmptyForIteratorPadNotFollowed.java"));
 

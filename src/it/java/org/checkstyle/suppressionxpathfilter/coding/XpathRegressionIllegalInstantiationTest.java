@@ -43,7 +43,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testSimple() throws Exception {
+    public void simple() throws Exception {
         final String fileName = "InputXpathIllegalInstantiationSimple.java";
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 
@@ -72,7 +72,7 @@ public class XpathRegressionIllegalInstantiationTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void testAnonymous() throws Exception {
+    public void anonymous() throws Exception {
         final String fileName = "InputXpathIllegalInstantiationAnonymous.java";
         final File fileToProcess = new File(getNonCompilablePath(fileName));
 

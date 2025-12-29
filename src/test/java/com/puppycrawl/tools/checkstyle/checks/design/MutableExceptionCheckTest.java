@@ -44,7 +44,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClassExtendsGenericClass() throws Exception {
+    public void classExtendsGenericClass() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -67,7 +67,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleInputs() throws Exception {
+    public void multipleInputs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MutableExceptionCheck.class);
         final String filePath1 = getPath("InputMutableException2.java");
         final String filePath2 = getPath("InputMutableExceptionMultipleInputs.java");
@@ -87,7 +87,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFormat() throws Exception {
+    public void format() throws Exception {
         final String[] expected = {
             "42:13: " + getCheckMessage(MSG_KEY, "errorCode"),
         };
@@ -97,7 +97,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNested() throws Exception {
+    public void nested() throws Exception {
 
         final String[] expected = {
             "15:9: " + getCheckMessage(MSG_KEY, "code"),
@@ -108,7 +108,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -117,7 +117,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -126,7 +126,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWrongTokenType() {
+    public void wrongTokenType() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));

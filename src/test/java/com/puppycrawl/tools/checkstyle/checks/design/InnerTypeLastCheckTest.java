@@ -39,7 +39,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final InnerTypeLastCheck checkObj = new InnerTypeLastCheck();
         final int[] expected = {
             TokenTypes.CLASS_DEF,
@@ -52,7 +52,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMembersBeforeInner() throws Exception {
+    public void membersBeforeInner() throws Exception {
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY),
             "71:9: " + getCheckMessage(MSG_KEY),
@@ -65,21 +65,21 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIfRootClassChecked() throws Exception {
+    public void ifRootClassChecked() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass.java"), expected);
     }
 
     @Test
-    public void testIfRootClassChecked2() throws Exception {
+    public void ifRootClassChecked2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInnerTypeLastClassRootClass2.java"), expected);
     }
 
     @Test
-    public void testIfRootClassChecked3() throws Exception {
+    public void ifRootClassChecked3() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerTypeLastCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -90,7 +90,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInnerTypeBeforeCtor() throws Exception {
+    public void innerTypeBeforeCtor() throws Exception {
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_KEY),
             "22:5: " + getCheckMessage(MSG_KEY),
@@ -101,7 +101,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInnerTypeLastRecords() throws Exception {
+    public void innerTypeLastRecords() throws Exception {
 
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY),
@@ -117,7 +117,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInnerTypeLastCstyleArray() throws Exception {
+    public void innerTypeLastCstyleArray() throws Exception {
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY),
             "12:5: " + getCheckMessage(MSG_KEY),
@@ -129,7 +129,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
         final int[] expected = {
             TokenTypes.CLASS_DEF,

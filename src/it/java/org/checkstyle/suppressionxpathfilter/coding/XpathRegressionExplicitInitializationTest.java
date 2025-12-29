@@ -44,7 +44,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testPrimitiveType() throws Exception {
+    public void primitiveType() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathExplicitInitializationPrimitiveType.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
     }
 
     @Test
-    public void testObjectType() throws Exception {
+    public void objectType() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathExplicitInitializationObjectType.java"));
 

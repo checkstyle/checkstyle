@@ -45,7 +45,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathImportControlOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathImportControlTwo.java"));
 
@@ -91,7 +91,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void three() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathImportControlThree.java"));
 
@@ -112,7 +112,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testFour() throws Exception {
+    public void four() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathImportControlFour.java"));
 

@@ -36,7 +36,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    public void specified()
             throws Exception {
         final String[] expected = {
             "25:14: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -64,7 +64,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testClassSpecific()
+    public void classSpecific()
             throws Exception {
         final String[] expected = {
             "15:7: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -75,7 +75,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testInterfaceSpecific()
+    public void interfaceSpecific()
             throws Exception {
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -86,7 +86,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testEnumSpecific()
+    public void enumSpecific()
             throws Exception {
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -97,7 +97,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testAnnotationSpecific()
+    public void annotationSpecific()
             throws Exception {
         final String[] expected = {
             "21:23: " + getCheckMessage(MSG_INVALID_PATTERN,
@@ -108,7 +108,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testTypeNameRecords() throws Exception {
+    public void typeNameRecords() throws Exception {
 
         final String[] expected = {
             "23:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
@@ -122,7 +122,7 @@ public class TypeNameCheckTest
     }
 
     @Test
-    public void testApplyPropertiesSetters() throws Exception {
+    public void applyPropertiesSetters() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

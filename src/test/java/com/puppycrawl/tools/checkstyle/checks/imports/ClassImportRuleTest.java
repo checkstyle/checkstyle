@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class ClassImportRuleTest {
 
     @Test
-    public void testClassImportRule() {
+    public void classImportRule() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", false);
         assertWithMessage("Class import rule should not be null")
             .that(rule)
@@ -52,7 +52,7 @@ public class ClassImportRuleTest {
     }
 
     @Test
-    public void testClassImportRuleRegexpSimple() {
+    public void classImportRuleRegexpSimple() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", true);
         assertWithMessage("Class import rule should not be null")
             .that(rule)
@@ -78,7 +78,7 @@ public class ClassImportRuleTest {
     }
 
     @Test
-    public void testClassImportRuleRegexp() {
+    public void classImportRuleRegexp() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pk[gx]\\.a", true);
         assertWithMessage("Class import rule should not be null")
             .that(rule)

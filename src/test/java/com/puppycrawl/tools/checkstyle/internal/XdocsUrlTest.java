@@ -99,7 +99,7 @@ public class XdocsUrlTest {
     }
 
     @Test
-    public void testXdocsUrl() throws Exception {
+    public void xdocsUrl() throws Exception {
         final SAXParserFactory parserFactory = SAXParserFactory.newInstance();
         final SAXParser parser = parserFactory.newSAXParser();
         final DummyHandler checkHandler = new DummyHandler();
