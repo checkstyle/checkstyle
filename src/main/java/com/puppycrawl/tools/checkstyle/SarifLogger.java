@@ -455,6 +455,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             case INFO -> "note";
             case WARNING -> "warning";
             case ERROR -> "error";
+            default -> throw new IllegalStateException(
+                "Unexpected SeverityLevel: " + severityLevel
+            );
         };
     }
 
