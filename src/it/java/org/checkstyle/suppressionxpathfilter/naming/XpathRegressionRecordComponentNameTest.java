@@ -40,7 +40,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/naming/recordcomponentname";
     }
 

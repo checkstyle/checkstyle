@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/nestedtrydepth";
     }
 

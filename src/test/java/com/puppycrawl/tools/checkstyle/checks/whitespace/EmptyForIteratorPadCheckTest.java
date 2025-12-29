@@ -34,7 +34,7 @@ public class EmptyForIteratorPadCheckTest
     extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/whitespace/emptyforiteratorpad";
     }
 

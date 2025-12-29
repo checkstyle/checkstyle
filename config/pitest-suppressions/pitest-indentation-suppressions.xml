@@ -109,65 +109,11 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>IndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck</mutatedClass>
-    <mutatedMethod>beginTree</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/PrimordialHandler::checkIndentation</description>
-    <lineContent>primordialHandler.checkIndentation();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>MethodDefHandler.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
     <mutatedMethod>getMethodDefLineStart</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
     <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SwitchHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
-    <mutatedMethod>checkIndentation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkSwitchExpr</description>
-    <lineContent>checkSwitchExpr();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SwitchHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SwitchHandler</mutatedClass>
-    <mutatedMethod>checkSwitchExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SwitchHandler::checkExpressionSubtree</description>
-    <lineContent>checkExpressionSubtree(</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SynchronizedHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
-    <mutatedMethod>checkIndentation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkSynchronizedExpr</description>
-    <lineContent>checkSynchronizedExpr();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>SynchronizedHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.SynchronizedHandler</mutatedClass>
-    <mutatedMethod>checkSynchronizedExpr</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/SynchronizedHandler::checkExpressionSubtree</description>
-    <lineContent>checkExpressionSubtree(syncAst, expected, false, false);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>TryHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.TryHandler</mutatedClass>
-    <mutatedMethod>checkIndentation</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/TryHandler::checkTryResParen</description>
-    <lineContent>checkTryResParen(getTryResLparen(), &quot;lparen&quot;);</lineContent>
   </mutation>
 </suppressedMutations>

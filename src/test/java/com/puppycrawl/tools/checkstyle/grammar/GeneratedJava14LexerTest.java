@@ -44,7 +44,7 @@ public class GeneratedJava14LexerTest
             .equals(StandardCharsets.UTF_8);
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/grammar";
     }
 

@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/multiplevariabledeclarations";
     }
 

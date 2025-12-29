@@ -107,7 +107,7 @@ public class SuppressionCommentFilterTest
     };
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter";
     }
 

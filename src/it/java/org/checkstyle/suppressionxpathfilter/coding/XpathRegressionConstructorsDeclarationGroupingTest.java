@@ -40,7 +40,7 @@ public class XpathRegressionConstructorsDeclarationGroupingTest extends Abstract
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/constructorsdeclarationgrouping";
     }
 

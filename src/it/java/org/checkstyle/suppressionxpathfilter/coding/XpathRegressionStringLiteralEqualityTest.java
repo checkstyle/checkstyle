@@ -40,7 +40,7 @@ public class XpathRegressionStringLiteralEqualityTest extends AbstractXpathTestS
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/stringliteralequality";
     }
 

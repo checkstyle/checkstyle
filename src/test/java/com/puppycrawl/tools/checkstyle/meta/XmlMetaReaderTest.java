@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 public class XmlMetaReaderTest extends AbstractPathTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/meta/xmlmetareader";
     }
 

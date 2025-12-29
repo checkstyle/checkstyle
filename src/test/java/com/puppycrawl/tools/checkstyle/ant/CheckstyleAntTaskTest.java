@@ -78,7 +78,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/ant/checkstyleanttask/";
     }
 

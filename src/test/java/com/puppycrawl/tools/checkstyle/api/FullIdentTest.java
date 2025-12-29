@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
 public class FullIdentTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/api/fullident/";
     }
 

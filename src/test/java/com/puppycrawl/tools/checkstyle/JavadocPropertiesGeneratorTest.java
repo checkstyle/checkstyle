@@ -56,7 +56,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     private static final String DESTFILE_ABSOLUTE_PATH = DESTFILE.getAbsolutePath();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/javadocpropertiesgenerator";
     }
 

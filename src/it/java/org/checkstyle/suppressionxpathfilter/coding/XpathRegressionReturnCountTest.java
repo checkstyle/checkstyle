@@ -37,7 +37,7 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/coding/returncount";
     }
 
@@ -227,4 +227,3 @@ public class XpathRegressionReturnCountTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 }
-

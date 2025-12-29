@@ -1,29 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
-  <mutation unstable="false">
-    <sourceFile>FollowingIterator.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.FollowingIterator</mutatedClass>
-    <mutatedMethod>next</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable siblingEnum</description>
-    <lineContent>siblingEnum = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>PrecedingIterator.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.PrecedingIterator</mutatedClass>
-    <mutatedMethod>next</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable previousSiblingEnum</description>
-    <lineContent>previousSiblingEnum = null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>ReverseListIterator.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.xpath.iterators.ReverseListIterator</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
-    <description>Removed assignment to member variable items</description>
-    <lineContent>this.items = null;</lineContent>
-  </mutation>
 </suppressedMutations>

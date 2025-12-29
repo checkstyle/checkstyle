@@ -66,7 +66,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     protected abstract String getCheckName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         final String subpackage = getCheckName().toLowerCase(Locale.ENGLISH)
                 .replace("check", "");
         return "org/checkstyle/suppressionxpathfilter/" + subpackage;

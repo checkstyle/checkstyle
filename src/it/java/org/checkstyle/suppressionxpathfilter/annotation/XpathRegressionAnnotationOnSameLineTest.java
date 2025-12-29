@@ -34,7 +34,7 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
     private final String checkName = AnnotationOnSameLineCheck.class.getSimpleName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/annotation/annotationonsameline";
     }
 

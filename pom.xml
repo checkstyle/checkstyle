@@ -273,6 +273,7 @@
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
@@ -542,7 +543,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.6.3</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -609,8 +610,19 @@
           <version>3.1.0</version>
           <configuration>
             <java>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <excludes>
+                <exclude>src/**/resources-noncompilable/**</exclude>
+                <exclude>src/it/resources/**</exclude>
+                <exclude>src/test/resources/**</exclude>
+                <exclude>src/xdocs-examples/**</exclude>
+              </excludes>
+              <endWithNewline />
               <forbidWildcardImports />
               <removeUnusedImports />
+              <trimTrailingWhitespace />
               <importOrder>
                 <file>config/spotless/import.order</file>
               </importOrder>
@@ -622,6 +634,55 @@
               <enabled>true</enabled>
             </upToDateChecking>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>6.26.0</version>
+          <configuration>
+            <configLocation>config/rewrite.yml</configLocation>
+            <exportDatatables>true</exportDatatables>
+            <skipMavenParsing>true</skipMavenParsing>
+            <activeRecipes>
+              <recipe>org.checkstyle.AllAutoFixes</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**xdocs-examples**</exclusion>
+            </exclusions>
+            <plainTextMasks>
+              <plainTextMask>**/*.groovy</plainTextMask>
+              <plainTextMask>**/*.xml</plainTextMask>
+              <plainTextMask>**/*.yml</plainTextMask>
+              <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+              <plainTextMask>**/resources/**</plainTextMask>
+            </plainTextMasks>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle-openrewrite-recipes</artifactId>
+              <version>${checkstyle.openrewrite.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>3.22.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.24.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.17.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -782,6 +843,10 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
@@ -1912,6 +1977,7 @@
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>projects-to-test/**</exclude>
+                <exclude>rewrite.yml</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
@@ -3070,7 +3136,8 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor>
+          <!-- RegexChecker disabled, runtime exceptions are sufficient, see https://github.com/checkstyle/checkstyle/issues/12567 -->
+          <!-- <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor> -->
                 <annotationProcessor>org.checkerframework.checker.propkey.PropertyKeyChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.compilermsgs.CompilerMessagesChecker</annotationProcessor>
               </annotationProcessors>
@@ -3864,7 +3931,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4530,7 +4598,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4938,7 +5007,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5026,7 +5096,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5334,7 +5405,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5436,73 +5508,6 @@
               <threads>${pitest.plugin.threads}</threads>
               <outputFormats>${pitest.plugin.output.formats}</outputFormats>
             </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>checkstyle-autofix</id>
-      <build>
-        <plugins>
-          <!-- Checkstyle Autofix -->
-          <plugin>
-            <groupId>org.openrewrite.maven</groupId>
-            <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.26.0</version>
-            <configuration>
-              <exportDatatables>true</exportDatatables>
-              <skipMavenParsing>true</skipMavenParsing>
-              <activeRecipes>
-                <recipe>org.checkstyle.AllAutoFixes</recipe>
-              </activeRecipes>
-              <exclusions>
-                <exclusion>**.ci-temp**</exclusion>
-                <exclusion>**/resources-noncompilable/**</exclusion>
-                <exclusion>**src/it/resources**</exclusion>
-                <exclusion>**src/test/resources**</exclusion>
-                <exclusion>**xdocs-examples**</exclusion>
-              </exclusions>
-              <plainTextMasks>
-                <plainTextMask>**/*.xml</plainTextMask>
-                <plainTextMask>**/*.yml</plainTextMask>
-                <plainTextMask>**/*.groovy</plainTextMask>
-                <plainTextMask>**/resources/**</plainTextMask>
-                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
-              </plainTextMasks>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>com.puppycrawl.tools</groupId>
-                <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>${checkstyle.openrewrite.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-migrate-java</artifactId>
-                <version>3.22.0</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-static-analysis</artifactId>
-                <version>2.24.0</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-rewrite</artifactId>
-                <version>0.17.0</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>spotless-autofix</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.diffplug.spotless</groupId>
-            <artifactId>spotless-maven-plugin</artifactId>
           </plugin>
         </plugins>
       </build>

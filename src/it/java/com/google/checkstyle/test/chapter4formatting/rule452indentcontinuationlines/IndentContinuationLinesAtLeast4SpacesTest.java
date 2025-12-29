@@ -26,7 +26,7 @@ import com.google.checkstyle.test.base.AbstractIndentationTestSupport;
 public class IndentContinuationLinesAtLeast4SpacesTest extends AbstractIndentationTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines";
     }
 

@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodcount";
     }
 
@@ -52,5 +52,30 @@ public class MethodCountCheckExamplesTest extends AbstractExamplesModuleTestSupp
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
+    }
+
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MethodCountCheck.MSG_PRIVATE_METHODS, 2, 1),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example4.java"), expected);
+    }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MethodCountCheck.MSG_PACKAGE_METHODS, 1, 0),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
+    @Test
+    public void testExample6() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
 }

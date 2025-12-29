@@ -39,7 +39,7 @@ public class XpathRegressionRedundantModifierTest extends AbstractXpathTestSuppo
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/modifier/redundantmodifier";
     }
 

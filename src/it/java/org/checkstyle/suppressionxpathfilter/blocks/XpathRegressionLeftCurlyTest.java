@@ -36,7 +36,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
     private final String checkName = LeftCurlyCheck.class.getSimpleName();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "org/checkstyle/suppressionxpathfilter/blocks/leftcurly";
     }
 
