@@ -44,7 +44,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testLabel() throws Exception {
+    public void label() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIllegalTokenLabel.java"));
         final DefaultConfiguration moduleConfig =

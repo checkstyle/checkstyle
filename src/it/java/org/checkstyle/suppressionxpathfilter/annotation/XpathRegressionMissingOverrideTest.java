@@ -109,7 +109,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testAnonymous() throws Exception {
+    public void anonymous() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingOverrideAnonymous.java"));
 
@@ -146,7 +146,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInheritDocInvalidPrivateMethod() throws Exception {
+    public void inheritDocInvalidPrivateMethod() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingOverrideInheritDocInvalidPrivateMethod.java"));
 
@@ -177,7 +177,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testInheritDocInvalidPublicMethod() throws Exception {
+    public void inheritDocInvalidPublicMethod() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingOverrideInheritDocInvalidPublicMethod.java"));
 
@@ -208,7 +208,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testJavaFiveCompatibilityOne() throws Exception {
+    public void javaFiveCompatibilityOne() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingOverrideClass.java"));
 
@@ -240,7 +240,7 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testJavaFiveCompatibilityTwo() throws Exception {
+    public void javaFiveCompatibilityTwo() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingOverrideInterface.java"));
 

@@ -33,7 +33,7 @@ public class MultipleVariableDeclarationsTest extends AbstractSunModuleTestSuppo
     }
 
     @Test
-    public void testMultipleVariableDeclarations() throws Exception {
+    public void multipleVariableDeclarations() throws Exception {
         final String msgComma = getCheckMessage(MultipleVariableDeclarationsCheck.class,
             "multiple.variable.declarations.comma");
         final String msg = getCheckMessage(MultipleVariableDeclarationsCheck.class,

@@ -57,7 +57,7 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final AvoidDoubleBraceInitializationCheck check =
             new AvoidDoubleBraceInitializationCheck();
         final int[] expected = {

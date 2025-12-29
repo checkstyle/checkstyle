@@ -34,7 +34,7 @@ public class JavadocTagInfoTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void testJavadocTagInfoValueOf() {
+    public void javadocTagInfoValueOf() {
         final JavadocTagInfo tag = JavadocTagInfo.valueOf("AUTHOR");
         assertWithMessage("Invalid valueOf result")
             .that(tag)
@@ -46,7 +46,7 @@ public class JavadocTagInfoTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void testTypeValueOf() {
+    public void typeValueOf() {
         final JavadocTagInfo.Type type = JavadocTagInfo.Type.valueOf("BLOCK");
         assertWithMessage("Invalid valueOf result")
             .that(type)
@@ -58,7 +58,7 @@ public class JavadocTagInfoTest {
      * values() is uncovered.
      */
     @Test
-    public void testTypeValues() {
+    public void typeValues() {
         final JavadocTagInfo.Type[] expected = {
             JavadocTagInfo.Type.BLOCK,
             JavadocTagInfo.Type.INLINE,
@@ -70,7 +70,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testAuthor() {
+    public void author() {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
@@ -94,7 +94,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testOthers() throws ReflectiveOperationException {
+    public void others() throws Exception {
         final JavadocTagInfo[] tags = {
             JavadocTagInfo.CODE,
             JavadocTagInfo.DOC_ROOT,
@@ -143,7 +143,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testDeprecated() throws ReflectiveOperationException {
+    public void deprecated() throws Exception {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
@@ -180,7 +180,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testSerial() throws ReflectiveOperationException {
+    public void serial() throws Exception {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astParent = new DetailAstImpl();
         astParent.setType(TokenTypes.LITERAL_CATCH);
@@ -209,7 +209,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testException() {
+    public void exception() {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
@@ -251,7 +251,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testVersions() {
+    public void versions() {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
@@ -275,7 +275,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testParam() {
+    public void param() {
         final DetailAstImpl ast = new DetailAstImpl();
 
         final int[] validTypes = {
@@ -334,7 +334,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testSerialField() {
+    public void serialField() {
         final DetailAstImpl ast = new DetailAstImpl();
         final DetailAstImpl astChild = new DetailAstImpl();
         astChild.setType(TokenTypes.TYPE);
@@ -398,7 +398,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testSerialData() {
+    public void serialData() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setType(TokenTypes.METHOD_DEF);
         final DetailAstImpl astChild = new DetailAstImpl();
@@ -438,7 +438,7 @@ public class JavadocTagInfoTest {
     }
 
     @Test
-    public void testCoverage() {
+    public void coverage() {
         assertWithMessage("Invalid type")
             .that(JavadocTagInfo.VERSION.getType())
             .isEqualTo(JavadocTagInfo.Type.BLOCK);

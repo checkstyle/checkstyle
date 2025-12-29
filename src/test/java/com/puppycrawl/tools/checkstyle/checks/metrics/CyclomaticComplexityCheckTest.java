@@ -37,7 +37,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testSwitchBlockAsSingleDecisionPointSetToTrue() throws Exception {
+    public void switchBlockAsSingleDecisionPointSetToTrue() throws Exception {
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -48,7 +48,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testSwitchBlockAsSingleDecisionPointSetToFalse() throws Exception {
+    public void switchBlockAsSingleDecisionPointSetToFalse() throws Exception {
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -59,7 +59,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testEqualsMaxComplexity() throws Exception {
+    public void equalsMaxComplexity() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -88,7 +88,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testCyclomaticComplexityRecords() throws Exception {
+    public void cyclomaticComplexityRecords() throws Exception {
 
         final int max = 0;
 
@@ -105,7 +105,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
             new CyclomaticComplexityCheck();
         final int[] actual = cyclomaticComplexityCheckObj.getAcceptableTokens();
@@ -133,7 +133,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
             new CyclomaticComplexityCheck();
         final int[] actual = cyclomaticComplexityCheckObj.getRequiredTokens();
@@ -150,7 +150,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testHighMax() throws Exception {
+    public void highMax() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -158,7 +158,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testDefaultMax() throws Exception {
+    public void defaultMax() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 12, 10),
         };
@@ -168,7 +168,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testWhenExpression() throws Exception {
+    public void whenExpression() throws Exception {
         final String[] expected = {
             "13:4: " + getCheckMessage(MSG_KEY, 5, 0),
             "19:4: " + getCheckMessage(MSG_KEY, 5, 0),
@@ -179,7 +179,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testWhenExpressionSwitchAsSinglePoint() throws Exception {
+    public void whenExpressionSwitchAsSinglePoint() throws Exception {
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_KEY, 5, 0),
             "20:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -192,7 +192,7 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
-    public void testSwitchBlockAsSingleDecisionPointWithNestedSwitch() throws Exception {
+    public void switchBlockAsSingleDecisionPointWithNestedSwitch() throws Exception {
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "26:5: " + getCheckMessage(MSG_KEY, 2, 0),

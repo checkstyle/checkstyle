@@ -67,7 +67,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
     }
 
     @Test
-    public void testTokens() throws Exception {
+    public void tokens() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
                 + ".java"));

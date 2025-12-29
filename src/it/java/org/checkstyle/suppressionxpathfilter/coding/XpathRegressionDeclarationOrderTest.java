@@ -44,7 +44,7 @@ public class XpathRegressionDeclarationOrderTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testNonStatic() throws Exception {
+    public void nonStatic() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDeclarationOrderNonStatic.java"));
 

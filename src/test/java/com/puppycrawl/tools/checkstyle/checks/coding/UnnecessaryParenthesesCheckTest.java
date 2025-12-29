@@ -112,7 +112,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdas() throws Exception {
+    public void lambdas() throws Exception {
         final String[] expected = {
             "17:35: " + getCheckMessage(MSG_LAMBDA),
             "18:35: " + getCheckMessage(MSG_LAMBDA),
@@ -142,7 +142,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnecessaryParenthesesSwitchExpression() throws Exception {
+    public void unnecessaryParenthesesSwitchExpression() throws Exception {
         final String[] expected = {
             "21:31: " + getCheckMessage(MSG_ASSIGN),
             "24:13: " + getCheckMessage(MSG_LITERAL, 2),
@@ -163,7 +163,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnecessaryParenthesesTextBlocks() throws Exception {
+    public void unnecessaryParenthesesTextBlocks() throws Exception {
         final String[] expected = {
             "19:23: " + getCheckMessage(MSG_STRING, "\"this\""),
             "19:34: " + getCheckMessage(MSG_STRING, "\"that\""),
@@ -184,7 +184,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnecessaryParenthesesPatterns() throws Exception {
+    public void unnecessaryParenthesesPatterns() throws Exception {
         final String[] expected = {
             "24:22: " + getCheckMessage(MSG_ASSIGN),
             "27:21: " + getCheckMessage(MSG_ASSIGN),
@@ -197,7 +197,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -211,7 +211,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIfStatement() throws Exception {
+    public void ifStatement() throws Exception {
 
         final String[] expected = {
             "20:20: " + getCheckMessage(MSG_EXPR),
@@ -246,7 +246,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIfStatement2() throws Exception {
+    public void ifStatement2() throws Exception {
         final String[] expected = {
             "28:17: " + getCheckMessage(MSG_EXPR),
             "39:17: " + getCheckMessage(MSG_EXPR),
@@ -263,7 +263,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIdentifier() throws Exception {
+    public void identifier() throws Exception {
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_IDENT, "test"),
             "31:18: " + getCheckMessage(MSG_ASSIGN),
@@ -283,7 +283,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOperator1() throws Exception {
+    public void operator1() throws Exception {
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_EXPR),
             "22:17: " + getCheckMessage(MSG_EXPR),
@@ -318,7 +318,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOperator2() throws Exception {
+    public void operator2() throws Exception {
         final String[] expected = {
             "66:18: " + getCheckMessage(MSG_EXPR),
             "67:17: " + getCheckMessage(MSG_EXPR),
@@ -337,14 +337,14 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOperator3() throws Exception {
+    public void operator3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputUnnecessaryParenthesesOperator3.java"), expected);
     }
 
     @Test
-    public void testWhenExpressions() throws Exception {
+    public void whenExpressions() throws Exception {
         final String[] expected = {
             "22:33: " + getCheckMessage(MSG_EXPR),
             "24:32: " + getCheckMessage(MSG_EXPR),
@@ -359,7 +359,7 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnnecessaryParenthesesConditionalExpression() throws Exception {
+    public void unnecessaryParenthesesConditionalExpression() throws Exception {
         final String[] expected = {
             "19:17: " + getCheckMessage(MSG_EXPR),
             "19:29: " + getCheckMessage(MSG_LITERAL, "3"),

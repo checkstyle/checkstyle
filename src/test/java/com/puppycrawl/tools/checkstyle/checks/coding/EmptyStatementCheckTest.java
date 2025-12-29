@@ -35,7 +35,7 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testEmptyStatements()
+    public void emptyStatements()
             throws Exception {
         final String[] expected = {
             "18:7: " + getCheckMessage(MSG_KEY),
@@ -61,7 +61,7 @@ public class EmptyStatementCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final EmptyStatementCheck check = new EmptyStatementCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

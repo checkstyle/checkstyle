@@ -43,7 +43,7 @@ public class JavadocNodeImplTest {
     }
 
     @Test
-    public void testGetColumnNumber() {
+    public void getColumnNumber() {
         final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
         javadocNode.setColumnNumber(1);
 
@@ -55,7 +55,7 @@ public class JavadocNodeImplTest {
     }
 
     @Test
-    public void testSetNextSibling() {
+    public void setNextSibling() {
         final JavadocNodeImpl root = new JavadocNodeImpl();
         final JavadocNodeImpl firstChild = new JavadocNodeImpl();
         final JavadocNodeImpl secondChild = new JavadocNodeImpl();

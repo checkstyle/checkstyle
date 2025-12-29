@@ -47,7 +47,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustomizedDepth() throws Exception {
+    public void customizedDepth() throws Exception {
 
         final String[] expected = {
             "41:21: " + getCheckMessage(MSG_KEY, 3, 2),
@@ -58,7 +58,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final NestedTryDepthCheck check = new NestedTryDepthCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

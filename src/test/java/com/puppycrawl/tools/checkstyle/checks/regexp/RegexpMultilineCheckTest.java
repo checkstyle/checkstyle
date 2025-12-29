@@ -49,7 +49,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIt() throws Exception {
+    public void it() throws Exception {
         final String[] expected = {
             "78: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "System\\.(out)|(err)\\.print(ln)?\\("),
         };
@@ -58,7 +58,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMessageProperty()
+    public void messageProperty()
             throws Exception {
         final String[] expected = {
             "79: " + "Bad line :(",
@@ -68,7 +68,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCaseTrue() throws Exception {
+    public void ignoreCaseTrue() throws Exception {
         final String[] expected = {
             "79: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "SYSTEM\\.(OUT)|(ERR)\\.PRINT(LN)?\\("),
         };
@@ -77,14 +77,14 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIgnoreCaseFalse() throws Exception {
+    public void ignoreCaseFalse() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic4.java"), expected);
     }
 
     @Test
-    public void testIllegalFailBelowErrorLimit() throws Exception {
+    public void illegalFailBelowErrorLimit() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
             "17: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "^import"),
@@ -95,7 +95,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCarriageReturn() throws Exception {
+    public void carriageReturn() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addProperty("format", "\\r");
         checkConfig.addProperty("maximum", "0");
@@ -112,7 +112,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMaximum() throws Exception {
+    public void maximum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addProperty("format", "\\r");
         checkConfig.addProperty("maximum", "1");
@@ -133,7 +133,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
      * @throws Exception some Exception
      */
     @Test
-    public void testStateIsBeingReset() throws Exception {
+    public void stateIsBeingReset() throws Exception {
         final TestLoggingReporter reporter = new TestLoggingReporter();
         final DetectorOptions detectorOptions = DetectorOptions.newBuilder()
                 .reporter(reporter)
@@ -155,14 +155,14 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    public void defaultConfiguration() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic6.java"), expected);
     }
 
     @Test
-    public void testNullFormat() throws Exception {
+    public void nullFormat() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_EMPTY),
         };
@@ -171,7 +171,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyFormat() throws Exception {
+    public void emptyFormat() throws Exception {
         final String[] expected = {
             "1: " + getCheckMessage(MSG_EMPTY),
         };
@@ -180,7 +180,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoStackOverflowError() throws Exception {
+    public void noStackOverflowError() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         // http://madbean.com/2004/mb2004-20/
         checkConfig.addProperty("format", "(x|y)*");
@@ -196,7 +196,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinimum() throws Exception {
+    public void minimum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addProperty("format", "\\r");
         checkConfig.addProperty("minimum", "5");
@@ -211,7 +211,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinimumWithCustomMessage() throws Exception {
+    public void minimumWithCustomMessage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RegexpMultilineCheck.class);
         checkConfig.addProperty("format", "\\r");
         checkConfig.addProperty("minimum", "5");
@@ -234,14 +234,14 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGoodLimit() throws Exception {
+    public void goodLimit() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRegexpMultilineSemantic9.java"), expected);
     }
 
     @Test
-    public void testMultilineSupport() throws Exception {
+    public void multilineSupport() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*def"),
         };
@@ -250,7 +250,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultilineSupportNotGreedy() throws Exception {
+    public void multilineSupportNotGreedy() throws Exception {
         final String[] expected = {
             "22: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*?def"),
             "24: " + getCheckMessage(MSG_REGEXP_EXCEEDED, "(a)bc.*?def"),

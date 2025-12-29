@@ -45,7 +45,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMaximumNumber()
+    public void maximumNumber()
             throws Exception {
         final String[] expected = {
             "32:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
@@ -55,7 +55,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMessage()
+    public void message()
             throws Exception {
         final String[] expected = {
             "32:12: Using 'native' is not allowed.",
@@ -65,7 +65,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinimumNumber()
+    public void minimumNumber()
             throws Exception {
         final String[] expected = {
             "24:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
@@ -75,7 +75,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMinimumDepth()
+    public void minimumDepth()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -83,7 +83,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMaximumDepth()
+    public void maximumDepth()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -91,7 +91,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyStatements()
+    public void emptyStatements()
             throws Exception {
 
         final String[] expected = {
@@ -118,7 +118,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingSwitchDefault() throws Exception {
+    public void missingSwitchDefault() throws Exception {
 
         final String[] expected = {
             "32:9: switch without \"default\" clause.",
@@ -129,7 +129,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStringLiteralEquality() throws Exception {
+    public void stringLiteralEquality() throws Exception {
         final String[] expected = {
             "22:18: Literal Strings should be compared using equals(), not '=='.",
             "27:20: Literal Strings should be compared using equals(), not '=='.",
@@ -140,7 +140,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalTokenDefault() throws Exception {
+    public void illegalTokenDefault() throws Exception {
 
         final String[] expected = {
             "23:9: Using 'LITERAL_SWITCH' is not allowed.",
@@ -152,7 +152,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIllegalTokenNative() throws Exception {
+    public void illegalTokenNative() throws Exception {
 
         final String[] expected = {
             "32:12: Using 'LITERAL_NATIVE' is not allowed.",
@@ -162,7 +162,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReturnFromCatch() throws Exception {
+    public void returnFromCatch() throws Exception {
 
         final String[] expected = {
             "22:11: Return from catch is not allowed.",
@@ -174,7 +174,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testReturnFromFinally() throws Exception {
+    public void returnFromFinally() throws Exception {
 
         final String[] expected = {
             "22:11: Return from finally is not allowed.",
@@ -186,7 +186,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoSum() throws Exception {
+    public void noSum() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -195,7 +195,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithSumCustomMsg() throws Exception {
+    public void withSumCustomMsg() throws Exception {
 
         final String[] expected = {
             "37:32: this cannot be null.",
@@ -209,7 +209,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithSumDefaultMsg() throws Exception {
+    public void withSumDefaultMsg() throws Exception {
 
         final String[] expected = {
             "37:32: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
@@ -223,7 +223,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithSumLessThenMinDefMsg() throws Exception {
+    public void withSumLessThenMinDefMsg() throws Exception {
 
         final String[] expected = {
             "32:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
@@ -240,7 +240,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithSumLessThenMinCustomMsg() throws Exception {
+    public void withSumLessThenMinCustomMsg() throws Exception {
 
         final String[] expected = {
             "31:44: custom message",
@@ -257,7 +257,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMaxTokenType() throws Exception {
+    public void maxTokenType() throws Exception {
         final String[] expected = {
             "21:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "21:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
@@ -267,7 +267,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMaxTokenTypeReverseOrder() throws Exception {
+    public void maxTokenTypeReverseOrder() throws Exception {
         final String[] expected = {
             "21:49: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "21:49: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
@@ -277,7 +277,7 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLimitedToken() throws Exception {
+    public void limitedToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputDescendantTokenTestLimitedToken.java"), expected);

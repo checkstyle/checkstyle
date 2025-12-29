@@ -50,7 +50,7 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
     }
 
     @Test
-    public void testTokens() {
+    public void tokens() {
         final AvoidNoArgumentSuperConstructorCallCheck check =
             new AvoidNoArgumentSuperConstructorCallCheck();
         final int[] expected = {

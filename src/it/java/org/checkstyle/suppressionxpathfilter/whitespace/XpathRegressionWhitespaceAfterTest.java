@@ -44,7 +44,7 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testWhitespaceAfterTypecast() throws Exception {
+    public void whitespaceAfterTypecast() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathWhitespaceAfterTypecast.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionWhitespaceAfterTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testWhitespaceAfterNotFollowed() throws Exception {
+    public void whitespaceAfterNotFollowed() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathWhitespaceAfterNotFollowed.java"));
 

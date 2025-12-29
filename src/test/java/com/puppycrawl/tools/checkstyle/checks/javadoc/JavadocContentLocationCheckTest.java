@@ -37,7 +37,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final JavadocContentLocationCheck checkObj = new JavadocContentLocationCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Acceptable tokens are invalid")
@@ -46,7 +46,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetDefaultTokens() {
+    public void getDefaultTokens() {
         final JavadocContentLocationCheck checkObj = new JavadocContentLocationCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertWithMessage("Default tokens are invalid")
@@ -65,7 +65,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFirstLine() throws Exception {
+    public void firstLine() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
@@ -93,14 +93,14 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOptionalSpacesAndAsterisks() throws Exception {
+    public void optionalSpacesAndAsterisks() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputJavadocContentLocationTrailingSpace.java"), expected);
     }
 
     @Test
-    public void testTrimOptionProperty() throws Exception {
+    public void trimOptionProperty() throws Exception {
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
@@ -110,7 +110,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefault2() throws Exception {
+    public void default2() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };

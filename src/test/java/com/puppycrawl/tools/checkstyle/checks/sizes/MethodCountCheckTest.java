@@ -40,7 +40,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final MethodCountCheck checkObj = new MethodCountCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -49,7 +49,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final MethodCountCheck methodCountCheckObj =
             new MethodCountCheck();
         final int[] actual = methodCountCheckObj.getAcceptableTokens();
@@ -69,7 +69,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaults() throws Exception {
+    public void defaults() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -78,7 +78,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThreesOne() throws Exception {
+    public void threesOne() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
@@ -93,7 +93,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThreesTwo() throws Exception {
+    public void threesTwo() throws Exception {
 
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 4, 3),
@@ -122,7 +122,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithPackageModifier() throws Exception {
+    public void withPackageModifier() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
@@ -133,7 +133,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOnInterfaceDefinitionWithField() throws Exception {
+    public void onInterfaceDefinitionWithField() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -142,7 +142,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithInterfaceDefinitionInClass() throws Exception {
+    public void withInterfaceDefinitionInClass() throws Exception {
 
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -153,7 +153,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPartialTokens() throws Exception {
+    public void partialTokens() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -162,7 +162,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCountMethodToCorrectDefinition() throws Exception {
+    public void countMethodToCorrectDefinition() throws Exception {
 
         final String[] expected = {
             "22:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -173,7 +173,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInterfaceMemberScopeIsPublic() throws Exception {
+    public void interfaceMemberScopeIsPublic() throws Exception {
 
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_PUBLIC_METHODS, 2, 1),
@@ -186,7 +186,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMethodCountRecords() throws Exception {
+    public void methodCountRecords() throws Exception {
         final int max = 2;
 
         final String[] expected = {

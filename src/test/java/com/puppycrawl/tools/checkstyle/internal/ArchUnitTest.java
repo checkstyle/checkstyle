@@ -126,7 +126,7 @@ public class ArchUnitTest {
      * "internal". Therefore classes in api should not depend on them.
      */
     @Test
-    public void testClassesInApiDoNotDependOnClassesInUtil() {
+    public void classesInApiDoNotDependOnClassesInUtil() {
         final JavaClasses apiPackage = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .importPackages("com.puppycrawl.tools.checkstyle.api");

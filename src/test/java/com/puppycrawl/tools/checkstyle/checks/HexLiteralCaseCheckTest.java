@@ -36,7 +36,7 @@ public class HexLiteralCaseCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final HexLiteralCaseCheck check = new HexLiteralCaseCheck();
         final int[] expectedTokens = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
         assertWithMessage("Default required tokens are valid")
@@ -45,7 +45,7 @@ public class HexLiteralCaseCheckTest
     }
 
     @Test
-    public void testAcceptableTokens() {
+    public void acceptableTokens() {
         final int[] expected = {TokenTypes.NUM_LONG, TokenTypes.NUM_INT};
         final HexLiteralCaseCheck check = new HexLiteralCaseCheck();
         final int[] actual = check.getAcceptableTokens();
@@ -58,7 +58,7 @@ public class HexLiteralCaseCheckTest
     }
 
     @Test
-    public void testCheck()
+    public void check()
             throws Exception {
         final String[] expected = {
             "10:13: " + getCheckMessage(MSG_KEY),

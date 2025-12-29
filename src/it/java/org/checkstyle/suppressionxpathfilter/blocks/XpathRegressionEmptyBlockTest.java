@@ -44,7 +44,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testEmptyForLoopEmptyBlock() throws Exception {
+    public void emptyForLoopEmptyBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =
@@ -65,7 +65,7 @@ public class XpathRegressionEmptyBlockTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testEmptyForLoopEmptyStatement() throws Exception {
+    public void emptyForLoopEmptyStatement() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathEmptyBlockEmpty.java"));
         final DefaultConfiguration moduleConfig =

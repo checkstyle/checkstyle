@@ -36,7 +36,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTokens() {
+    public void tokens() {
         final CatchParameterNameCheck catchParameterNameCheck = new CatchParameterNameCheck();
         final int[] expected = {TokenTypes.PARAMETER_DEF};
 
@@ -49,7 +49,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfigurationOnCorrectFile() throws Exception {
+    public void defaultConfigurationOnCorrectFile() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -57,7 +57,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfigurationOnCorrectFile2() throws Exception {
+    public void defaultConfigurationOnCorrectFile2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -65,7 +65,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfigurationOnFileWithViolations() throws Exception {
+    public void defaultConfigurationOnFileWithViolations() throws Exception {
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final String[] expected = {
@@ -84,7 +84,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustomFormatFromJavadoc() throws Exception {
+    public void customFormatFromJavadoc() throws Exception {
 
         final String[] expected = {
             "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
@@ -96,7 +96,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustomFormatWithNoAnchors() throws Exception {
+    public void customFormatWithNoAnchors() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -105,7 +105,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCatchParameterNameUnnamed() throws Exception {
+    public void catchParameterNameUnnamed() throws Exception {
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+|_)$";
 
         final String[] expected = {

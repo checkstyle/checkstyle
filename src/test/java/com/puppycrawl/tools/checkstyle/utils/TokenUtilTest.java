@@ -39,14 +39,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class TokenUtilTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(TokenUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void testGetIntFromAccessibleField() throws NoSuchFieldException {
+    public void getIntFromAccessibleField() throws Exception {
         final Field field = Integer.class.getField("MAX_VALUE");
         final int maxValue = TokenUtil.getIntFromField(field, 0);
 
@@ -56,7 +56,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testGetIntFromInaccessibleField() throws NoSuchFieldException {
+    public void getIntFromInaccessibleField() throws Exception {
         final Field field = Integer.class.getDeclaredField("value");
 
         try {
@@ -76,7 +76,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testNameToValueMapFromPublicIntFields() {
+    public void nameToValueMapFromPublicIntFields() {
         final Map<String, Integer> actualMap =
             TokenUtil.nameToValueMapFromPublicIntFields(Integer.class);
         final Map<String, Integer> expectedMap = new TreeMap<>();
@@ -91,7 +91,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testInvertMap() {
+    public void invertMap() {
         final Map<String, Integer> map = new TreeMap<>();
         map.put("ZERO", 0);
         map.put("ONE", 1);
@@ -109,7 +109,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testTokenValueIncorrect() throws IllegalAccessException {
+    public void tokenValueIncorrect() throws Exception {
         int maxId = 0;
         final Field[] fields = TokenTypes.class.getDeclaredFields();
         for (final Field field : fields) {
@@ -138,7 +138,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testTokenValueCorrect() throws IllegalAccessException {
+    public void tokenValueCorrect() throws Exception {
         final Field[] fields = TokenTypes.class.getDeclaredFields();
         for (final Field field : fields) {
             // Only process the int declarations.
@@ -156,7 +156,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testTokenValueIncorrect2() {
+    public void tokenValueIncorrect2() {
         final int id = 0;
         try {
             TokenUtil.getTokenName(id);
@@ -170,7 +170,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testTokenIdIncorrect() {
+    public void tokenIdIncorrect() {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getTokenId(id);
@@ -184,7 +184,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testShortDescriptionIncorrect() {
+    public void shortDescriptionIncorrect() {
         final String id = "NON_EXISTENT_VALUE";
         try {
             TokenUtil.getShortDescription(id);
@@ -198,7 +198,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testIsCommentType() {
+    public void isCommentType() {
         assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isCommentType(TokenTypes.SINGLE_LINE_COMMENT))
                 .isTrue();
@@ -223,7 +223,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testGetTokenTypesTotalNumber() {
+    public void getTokenTypesTotalNumber() {
         final int tokenTypesTotalNumber = TokenUtil.getTokenTypesTotalNumber();
 
         assertWithMessage("Invalid token total number")
@@ -232,7 +232,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testGetAllTokenIds() {
+    public void getAllTokenIds() {
         final int[] allTokenIds = TokenUtil.getAllTokenIds();
         final int sum = Arrays.stream(allTokenIds).sum();
 
@@ -245,7 +245,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testGetTokenNameWithGreatestPossibleId() {
+    public void getTokenNameWithGreatestPossibleId() {
         final int id = TokenTypes.COMMENT_CONTENT;
         final String tokenName = TokenUtil.getTokenName(id);
 
@@ -255,7 +255,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testCorrectBehaviourOfGetTokenId() {
+    public void correctBehaviourOfGetTokenId() {
         final String id = "COMPILATION_UNIT";
 
         assertWithMessage("Invalid token id")
@@ -264,7 +264,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testCorrectBehaviourOfShortDescription() {
+    public void correctBehaviourOfShortDescription() {
         final String id = "COMPILATION_UNIT";
         final String shortDescription = TokenUtil.getShortDescription(id);
 
@@ -274,7 +274,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testFindFirstTokenByPredicate() {
+    public void findFirstTokenByPredicate() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl firstSibling = new DetailAstImpl();
@@ -296,7 +296,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testForEachChild() {
+    public void forEachChild() {
         final DetailAstImpl astForTest = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl firstSibling = new DetailAstImpl();
@@ -322,7 +322,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testIsTypeDeclaration() {
+    public void isTypeDeclaration() {
         assertWithMessage("Should return true when valid type passed")
                 .that(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF))
                 .isTrue();
@@ -341,7 +341,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testIsOfTypeTrue() {
+    public void isOfTypeTrue() {
         final int type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest = new DetailAstImpl();
         astForTest.setType(type);
@@ -359,7 +359,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testIsOfTypeFalse() {
+    public void isOfTypeFalse() {
         final int type = TokenTypes.LITERAL_CATCH;
         final DetailAstImpl astForTest1 = new DetailAstImpl();
         final DetailAstImpl astForTest2 = null;
@@ -383,7 +383,7 @@ public class TokenUtilTest {
     }
 
     @Test
-    public void testIsBooleanLiteralType() {
+    public void isBooleanLiteralType() {
         assertWithMessage("Result is not expected")
                 .that(TokenUtil.isBooleanLiteralType(TokenTypes.LITERAL_TRUE))
                 .isTrue();

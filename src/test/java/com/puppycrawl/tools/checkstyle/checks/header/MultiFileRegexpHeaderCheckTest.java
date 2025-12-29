@@ -27,7 +27,6 @@ import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_STRING_ARRA
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -40,7 +39,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 /**
  * Tests for {@link MultiFileRegexpHeaderCheck}.
@@ -65,7 +63,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderUriNotSupport() {
+    public void setHeaderUriNotSupport() {
         final MultiFileRegexpHeaderCheck instance = new MultiFileRegexpHeaderCheck();
         try {
             instance.setHeaderFiles(String.valueOf(URI.create("file://test")));
@@ -79,7 +77,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderFilesNull() throws CheckstyleException {
+    public void setHeaderFilesNull() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
 
@@ -95,7 +93,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderFilesIsBlank() throws CheckstyleException {
+    public void setHeaderFilesIsBlank() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", " , ");
@@ -111,7 +109,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyFilename() throws Exception {
+    public void emptyFilename() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", "");
@@ -127,7 +125,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    public void defaultConfiguration() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         createChecker(checkConfig);
@@ -136,7 +134,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllHeaderLinesMatchedWithEmptyLine() throws Exception {
+    public void allHeaderLinesMatchedWithEmptyLine() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeaderNewLines.header"));
@@ -153,7 +151,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyHeaderFile() throws IOException {
+    public void emptyHeaderFile() throws Exception {
         final File emptyFile = new File(temporaryFolder, "empty.header");
         Files.write(emptyFile.toPath(), new ArrayList<>(), StandardCharsets.UTF_8);
         final URI fileUri = emptyFile.toURI();
@@ -172,7 +170,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRegexpHeader() throws Exception {
+    public void regexpHeader() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
@@ -189,7 +187,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRegexpHeaderUrl() throws Exception {
+    public void regexpHeaderUrl() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getUriString("InputRegexpHeader.header"));
@@ -206,7 +204,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
+    public void inlineRegexpHeaderConsecutiveNewlinesThroughConfigFile() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getUriString("InputRegexpHeaderNewLines.header"));
@@ -223,7 +221,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLogFirstMismatchNoMismatch() throws Exception {
+    public void logFirstMismatchNoMismatch() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles",
@@ -235,7 +233,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllHeaderLinesMatchedExactly() throws Exception {
+    public void allHeaderLinesMatchedExactly() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles",
@@ -245,7 +243,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBlankPatternBranch() throws Exception {
+    public void blankPatternBranch() throws Exception {
         final File headerFile = new File(temporaryFolder, "blankPattern.header");
         Files.write(headerFile.toPath(),
                 List.of("// First line", "// Second line", "   "),
@@ -264,7 +262,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMismatchInMiddleOfHeader() throws Exception {
+    public void mismatchInMiddleOfHeader() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
@@ -280,7 +278,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMismatchInHeaderLine() throws Exception {
+    public void mismatchInHeaderLine() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader.header"));
@@ -296,7 +294,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoWarningIfSingleLinedLeft() throws Exception {
+    public void noWarningIfSingleLinedLeft() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         checkConfig.addProperty("headerFiles", getPath("InputRegexpHeader4.header"));
@@ -304,7 +302,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyPatternInHeader() throws Exception {
+    public void emptyPatternInHeader() throws Exception {
         final File headerFile = new File(temporaryFolder, "headerFiles.header");
         Files.write(headerFile.toPath(), List.of("", "valid"),
             StandardCharsets.UTF_8);
@@ -317,7 +315,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetExternalResourceLocationsWithNoPropertySet() throws Exception {
+    public void getExternalResourceLocationsWithNoPropertySet() throws Exception {
         final DefaultConfiguration configNoHeaderFiles =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         final MultiFileRegexpHeaderCheck checkNoHeaders = new MultiFileRegexpHeaderCheck();
@@ -331,7 +329,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetExternalResourceLocationsFromMultipleFilesSet() throws Exception {
+    public void getExternalResourceLocationsFromMultipleFilesSet() throws Exception {
         final DefaultConfiguration configWithHeaderFiles =
                 createModuleConfig(MultiFileRegexpHeaderCheck.class);
         final String header4Path = getPath("InputRegexpHeader4.header");
@@ -361,7 +359,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAllLinesMatch() throws Exception {
+    public void allLinesMatch() throws Exception {
         final String[] fileLines = {
             "// First line",
             "// Second line",
@@ -385,7 +383,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEmptyPatternMatch() throws Exception {
+    public void emptyPatternMatch() throws Exception {
         final File fileWithBlank = new File(temporaryFolder, "blank.java");
         Files.write(fileWithBlank.toPath(), List.of(
             "// First line",
@@ -406,7 +404,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBlankLineMismatch() throws Exception {
+    public void blankLineMismatch() throws Exception {
         final File fileNoBlank = new File(temporaryFolder, "noblank.java");
         Files.write(fileNoBlank.toPath(), List.of(
             "// First line",
@@ -434,7 +432,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleHeaderFilesAllInvalid() throws Exception {
+    public void multipleHeaderFilesAllInvalid() throws Exception {
         final File testFile = new File(temporaryFolder, "test.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
@@ -464,7 +462,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleHeaderFiles() throws Exception {
+    public void multipleHeaderFiles() throws Exception {
         final File headerFile1 = new File(temporaryFolder, "header1.header");
         Files.write(headerFile1.toPath(), List.of("Copyright", "Author: .*", ""),
             StandardCharsets.UTF_8);
@@ -486,7 +484,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidRegex() throws Exception {
+    public void invalidRegex() throws Exception {
         final File corruptedHeaderFile = new File(temporaryFolder, "corrupted.header");
         Files.write(corruptedHeaderFile.toPath(), List.of("Invalid regex [a-z"),
             StandardCharsets.UTF_8);
@@ -505,7 +503,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidFileName() {
+    public void invalidFileName() {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final String headerFile = "UnExisted file";
         final IllegalArgumentException thrown =
@@ -518,7 +516,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHeaderMoreLinesThanFile() throws Exception {
+    public void headerMoreLinesThanFile() throws Exception {
         final File testFile = new File(temporaryFolder, "shortFile.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
@@ -547,7 +545,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMismatchLineCondition() throws Exception {
+    public void mismatchLineCondition() throws Exception {
         final File testFile = new File(temporaryFolder, "mismatchFile.java");
         Files.write(testFile.toPath(), List.of(
             "// First line matches",
@@ -576,7 +574,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFindFirstMismatch() throws Exception {
+    public void findFirstMismatch() throws Exception {
         final File testFile = new File(temporaryFolder, "test.java");
         Files.write(testFile.toPath(), List.of(
             "// First line",
@@ -604,7 +602,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoMatchingHeaderFile() throws Exception {
+    public void noMatchingHeaderFile() throws Exception {
         final File testFile = new File(temporaryFolder, "test.java");
         Files.write(testFile.toPath(), List.of(
             "// Different content",
@@ -630,7 +628,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNonEmptyPatternsWithMismatchedCardinality() throws Exception {
+    public void nonEmptyPatternsWithMismatchedCardinality() throws Exception {
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
@@ -661,7 +659,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileFailsWhenShorterThanHeader() throws Exception {
+    public void fileFailsWhenShorterThanHeader() throws Exception {
         final File headerFile = new File(temporaryFolder, "longerHeader.header");
         Files.write(headerFile.toPath(), List.of(
             "// Line 1",
@@ -689,7 +687,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHeaderWithTrailingBlanksFailsWhenFileIsShorter() throws Exception {
+    public void headerWithTrailingBlanksFailsWhenFileIsShorter() throws Exception {
         final File headerFile = new File(temporaryFolder, "headerWithBlanks.header");
         Files.write(headerFile.toPath(), List.of(
             "// Line 1",
@@ -717,7 +715,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileSizeGreaterThanHeaderPatternSize() throws Exception {
+    public void fileSizeGreaterThanHeaderPatternSize() throws Exception {
         final File headerFile = new File(temporaryFolder, "shorterHeader.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
@@ -741,7 +739,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFileSizeEqualHeaderPatternSize() throws Exception {
+    public void fileSizeEqualHeaderPatternSize() throws Exception {
         final File headerFile = new File(temporaryFolder, "shorterHeader.header");
         Files.write(headerFile.toPath(), List.of(
                 "// First line",
@@ -762,7 +760,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSpecificLineMismatch() throws Exception {
+    public void specificLineMismatch() throws Exception {
         final File headerFile = new File(temporaryFolder, "multiline.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
@@ -794,7 +792,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleHeaderFilesFirstMatchesSecondDoesnt() throws Exception {
+    public void multipleHeaderFilesFirstMatchesSecondDoesnt() throws Exception {
         final File matchingHeaderFile = new File(temporaryFolder, "matching.header");
         Files.write(matchingHeaderFile.toPath(), List.of(
             "// This header matches",
@@ -818,7 +816,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultipleHeaderFilesNoneMatch() throws Exception {
+    public void multipleHeaderFilesNoneMatch() throws Exception {
         final File matchingHeader = new File(temporaryFolder, "nonMatching1.header");
         Files.write(matchingHeader.toPath(), List.of(
             "// First matching header",
@@ -843,7 +841,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderFilesWithNullPathThrowsException() {
+    public void setHeaderFilesWithNullPathThrowsException() {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final IllegalArgumentException thrown =
@@ -855,7 +853,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderFilesWithNullVarargsArray() {
+    public void setHeaderFilesWithNullVarargsArray() {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         assertDoesNotThrow(() -> {
@@ -869,7 +867,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSetHeaderFilesClearsPreviousConfiguration() throws IOException {
+    public void setHeaderFilesClearsPreviousConfiguration() throws Exception {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
 
         final File headerFileA = new File(temporaryFolder, "testHeaderA_clear_check.header");
@@ -896,7 +894,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHeaderFileMetadataMethods() throws Exception {
+    public void headerFileMetadataMethods() throws Exception {
         final File headerFile = new File(temporaryFolder, "header.header");
         Files.write(headerFile.toPath(), List.of(
             "// First line",
@@ -917,7 +915,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIoExceptionInGetLines() {
+    public void ioExceptionInGetLines() {
         final File nonExistentFile = new File(temporaryFolder, "nonexistent.header");
         final URI fileUri = nonExistentFile.toURI();
 
@@ -935,7 +933,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testConfiguredHeaderPathsNoFiles() {
+    public void configuredHeaderPathsNoFiles() {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         assertWithMessage("Expected empty string when no header files are configured")
             .that(check.getConfiguredHeaderPaths())
@@ -943,7 +941,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testConfiguredHeaderPathsSingleFile() throws IOException {
+    public void configuredHeaderPathsSingleFile() throws Exception {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final File headerFile = new File(temporaryFolder, "singleTest.header");
         Files.writeString(headerFile.toPath(), "// Single test header", StandardCharsets.UTF_8);
@@ -957,7 +955,7 @@ public class MultiFileRegexpHeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testConfiguredHeaderPathsMultipleFiles() throws IOException {
+    public void configuredHeaderPathsMultipleFiles() throws Exception {
         final MultiFileRegexpHeaderCheck check = new MultiFileRegexpHeaderCheck();
         final File headerFile1 = new File(temporaryFolder, "multiTest1.header");
         Files.writeString(headerFile1.toPath(), "// Multi test header 1", StandardCharsets.UTF_8);

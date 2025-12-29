@@ -44,7 +44,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void one() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodParamPadOne.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void two() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodParamPadTwo.java"));
 
@@ -90,7 +90,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void testThree() throws Exception {
+    public void three() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMethodParamPadThree.java"));
 

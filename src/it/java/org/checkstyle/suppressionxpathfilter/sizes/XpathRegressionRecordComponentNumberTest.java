@@ -70,7 +70,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
     }
 
     @Test
-    public void testCustomMax() throws Exception {
+    public void customMax() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathRecordComponentNumberCustomMax.java"));
 
