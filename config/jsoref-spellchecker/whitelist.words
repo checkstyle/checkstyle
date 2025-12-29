@@ -50,7 +50,6 @@ APPLET
 appveyor
 APRV
 Aqj
-ARCHITEW
 archunit
 arget
 Arial
@@ -150,9 +149,9 @@ caciocavallosilano
 calledmethods
 camelcase
 casegroup
-casesensitive
 catchparametername
 cba
+cbea
 cbeaff
 CComments
 cdata
@@ -1228,7 +1227,6 @@ Schneeberger
 scm
 scp
 screenshot
-Scriptblock
 Scss
 sdk
 sdkman
@@ -1241,6 +1239,7 @@ SEO
 separatorwrap
 SERIALVERSIONUID
 servlet
+setlocal
 severitymatchfilter
 sevntu
 shanegenschaw
@@ -1269,6 +1268,7 @@ smth
 snyk
 socio
 Sohjiro
+Solaris
 solr
 someinner
 somename
@@ -1284,6 +1284,7 @@ sourceforge
 sourcepath
 sourcesets
 spacebar
+Sparc
 specialescape
 spellchecker
 spliterator
@@ -1459,6 +1460,7 @@ url
 usebackq
 userguide
 username
+USERPROFILE
 usr
 UTests
 utf
@@ -1493,6 +1495,7 @@ Wadl
 Wakelock
 walkthrough
 Warni
+wdir
 Weakento
 webclient
 Webflow
@@ -1536,9 +1539,10 @@ Wyq
 xa
 xabc
 xar
-xargs
+xarg
 XDcompile
 xdeadbeef
+Xdebug
 xdoc
 xdocspagetitle
 Xep
@@ -1571,6 +1575,7 @@ xpathquerygenerator
 Xpkginfo
 Xplugin
 xright
+Xrunjdwp
 xsd
 Xshare
 xsi
@@ -1584,7 +1589,6 @@ xxxxxx
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 xy
 XYzz
-xzf
 xzvf
 yaml
 yamllint
