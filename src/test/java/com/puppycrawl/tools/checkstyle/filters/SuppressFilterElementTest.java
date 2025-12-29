@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.google.common.truth.Truth.assertWithMessage;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getInternalState;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -292,6 +293,49 @@ public class SuppressFilterElementTest {
         assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
+    }
+
+    @Test
+    public void testDecideByColumnWhenColumnsIsNull() {
+        final Violation violation =
+            new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement suppressFilter =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+
+        // When columns is null, columnFilter should be null
+        // Filter should not accept because there are matches on file name and check name
+        assertWithMessage("Filter should not accept when column filter is null but file and check match")
+                .that(suppressFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testDecideByLineAndColumnWhenBothAreNull() {
+        final Violation violation =
+            new Violation(10, 10, "", "", null, null, getClass(), null);
+        final AuditEvent ev = new AuditEvent(this, "ATest.java", violation);
+        final SuppressFilterElement suppressFilter =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+
+        // When both line and column filters are null, filter should not accept
+        // because there are matches on file name and check name
+        assertWithMessage("Filter should not accept when both filters are null but file and check match")
+                .that(suppressFilter.accept(ev))
+                .isFalse();
+    }
+
+    @Test
+    public void testColumnFilterIsNullWhenColumnsIsNull() {
+        final SuppressFilterElement suppressFilter =
+                new SuppressFilterElement("Test", "Test", null, null, null, null);
+
+        // Verify that columnFilter is explicitly set to null when columns is null
+        // This test kills the mutation that removes "columnFilter = null;" assignment
+        final Object columnFilter = getInternalState(suppressFilter, "columnFilter", Object.class);
+        assertWithMessage("columnFilter should be null when columns parameter is null")
+                .that(columnFilter)
+                .isNull();
     }
 
 }
