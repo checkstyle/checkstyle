@@ -1368,7 +1368,7 @@ spotless)
 openrewrite-recipes)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
+  # export MAVEN_OPTS="-Xmx4g -Xms2g"
 
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
