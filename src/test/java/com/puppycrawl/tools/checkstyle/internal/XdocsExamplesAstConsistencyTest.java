@@ -88,6 +88,7 @@ public class XdocsExamplesAstConsistencyTest {
     private static final Set<String> SUPPRESSED_EXAMPLES = Set.of(
             "checks/annotation/annotationonsameline/Example2",
             "checks/annotation/missingoverride/Example2",
+            "checks/annotation/missingoverrideonrecordaccessor/Example2",
             "checks/annotation/suppresswarningsholder/Example1",
             "checks/blocks/emptyblock/Example3",
             "checks/blocks/emptycatchblock/Example4",
