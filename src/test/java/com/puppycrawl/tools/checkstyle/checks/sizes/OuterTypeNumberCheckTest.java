@@ -42,7 +42,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final OuterTypeNumberCheck checkObj = new OuterTypeNumberCheck();
         final int[] expected = {
             TokenTypes.CLASS_DEF,
@@ -57,7 +57,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final OuterTypeNumberCheck outerTypeNumberObj =
             new OuterTypeNumberCheck();
         final int[] actual = outerTypeNumberObj.getAcceptableTokens();
@@ -84,21 +84,21 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMax30() throws Exception {
+    public void max30() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOuterTypeNumberSimple1.java"), expected);
     }
 
     @Test
-    public void testWithInnerClass() throws Exception {
+    public void withInnerClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOuterTypeNumberEmptyInner.java"), expected);
     }
 
     @Test
-    public void testWithRecords() throws Exception {
+    public void withRecords() throws Exception {
 
         final int max = 1;
 
@@ -118,7 +118,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
      * @throws Exception if there is an error.
      */
     @Test
-    public void testClearState() throws Exception {
+    public void clearState() throws Exception {
         final OuterTypeNumberCheck check = new OuterTypeNumberCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputOuterTypeNumberSimple.java")),

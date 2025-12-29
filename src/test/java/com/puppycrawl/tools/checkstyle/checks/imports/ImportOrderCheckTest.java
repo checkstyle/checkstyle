@@ -48,7 +48,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testVeryPreciseGrouping() throws Exception {
+    public void veryPreciseGrouping() throws Exception {
         final String[] expected = {};
 
         verifyWithInlineConfigParser(
@@ -56,7 +56,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetTokens() {
+    public void getTokens() {
         final ImportOrderCheck checkObj = new ImportOrderCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
         assertWithMessage("Default tokens differs from expected")
@@ -75,7 +75,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testImportOrderOptionValueOf() {
+    public void importOrderOptionValueOf() {
         final ImportOrderOption option = ImportOrderOption.valueOf("TOP");
         assertWithMessage("Invalid valueOf result")
             .that(option)
@@ -98,7 +98,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWrongSequenceInNonStaticImports() throws Exception {
+    public void wrongSequenceInNonStaticImports() throws Exception {
 
         final String[] expected = {
             "19:1: " + getCheckMessage(MSG_ORDERING,
@@ -110,7 +110,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultilineImport() throws Exception {
+    public void multilineImport() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -118,7 +118,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGroups() throws Exception {
+    public void groups() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "29:1: " + getCheckMessage(MSG_ORDERING, "java.io.IOException"),
@@ -132,7 +132,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGroupsRegexp() throws Exception {
+    public void groupsRegexp() throws Exception {
         final String[] expected = {
             "27:1: " + getCheckMessage(MSG_ORDERING, "java.io.File"),
             "34:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
@@ -144,7 +144,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSeparated() throws Exception {
+    public void separated() throws Exception {
         final String[] expected = {
             "25:1: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
             "27:1: " + getCheckMessage(MSG_SEPARATION, "java.io.File"),
@@ -156,7 +156,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticImportSeparated() throws Exception {
+    public void staticImportSeparated() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.cos"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.junit.Assert.assertEquals"),
@@ -167,7 +167,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoGapBetweenStaticImports() throws Exception {
+    public void noGapBetweenStaticImports() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -175,7 +175,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSortStaticImportsAlphabeticallyFalse() throws Exception {
+    public void sortStaticImportsAlphabeticallyFalse() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -184,7 +184,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSortStaticImportsAlphabeticallyTrue() throws Exception {
+    public void sortStaticImportsAlphabeticallyTrue() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_ORDERING,
                 "javax.xml.transform.TransformerFactory.newInstance"),
@@ -198,7 +198,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCaseInsensitive() throws Exception {
+    public void caseInsensitive() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -206,7 +206,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testContainerCaseInsensitive() throws Exception {
+    public void containerCaseInsensitive() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -215,7 +215,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSimilarGroupPattern() throws Exception {
+    public void similarGroupPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -224,7 +224,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidOption() throws Exception {
+    public void invalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -244,7 +244,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTop() throws Exception {
+    public void top() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Button"),
             "28:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.IOException"),
@@ -258,7 +258,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAbove() throws Exception {
+    public void above() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
             "24:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
@@ -272,7 +272,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInFlow() throws Exception {
+    public void inFlow() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "25:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.swing.JComponent"),
@@ -290,7 +290,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnder() throws Exception {
+    public void under() throws Exception {
         // is default (testDefault)
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
@@ -304,7 +304,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBottom() throws Exception {
+    public void bottom() throws Exception {
         final String[] expected = {
             "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.IOException"),
             "27:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "javax.swing.JComponent"),
@@ -320,7 +320,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetGroupNumber() throws Exception {
+    public void getGroupNumber() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -328,7 +328,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHonorsTokenProperty() throws Exception {
+    public void honorsTokenProperty() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Button.ABORT"),
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
@@ -340,7 +340,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWildcard() throws Exception {
+    public void wildcard() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "javax.crypto.Cipher"),
         };
@@ -350,7 +350,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWildcardUnspecified() throws Exception {
+    public void wildcardUnspecified() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "javax.crypto.Cipher"),
@@ -361,7 +361,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoFailureForRedundantImports() throws Exception {
+    public void noFailureForRedundantImports() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputImportOrder_NoFailureForRedundantImports.java"),
@@ -369,7 +369,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsAlphabeticalOrder() throws Exception {
+    public void staticGroupsAlphabeticalOrder() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
@@ -380,7 +380,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsOrder() throws Exception {
+    public void staticGroupsOrder() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
@@ -390,7 +390,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsAlphabeticalOrderBottom() throws Exception {
+    public void staticGroupsAlphabeticalOrderBottom() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.PI"),
@@ -400,7 +400,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsAlphabeticalOrderBottomNegative() throws Exception {
+    public void staticGroupsAlphabeticalOrderBottomNegative() throws Exception {
         final String[] expected = {
             "24:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
@@ -414,7 +414,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * error if order=bottom.
      */
     @Test
-    public void testStaticGroupsAlphabeticalOrderTopNegative() throws Exception {
+    public void staticGroupsAlphabeticalOrderTopNegative() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.lang.Math.PI"),
         };
@@ -428,7 +428,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * error if order=top.
      */
     @Test
-    public void testStaticGroupsAlphabeticalOrderBottomNegative2() throws Exception {
+    public void staticGroupsAlphabeticalOrderBottomNegative2() throws Exception {
         final String[] expected = {
             "24:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
@@ -438,7 +438,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsOrderBottom() throws Exception {
+    public void staticGroupsOrderBottom() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.PI"),
@@ -448,21 +448,21 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportReception() throws Exception {
+    public void importReception() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputImportOrderRepetition.java"), expected);
     }
 
     @Test
-    public void testStaticImportReceptionTop() throws Exception {
+    public void staticImportReceptionTop() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputImportOrderStaticRepetition1.java"), expected);
     }
 
     @Test
-    public void testStaticImportReception() throws Exception {
+    public void staticImportReception() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_SEPARATION, "org.antlr.v4.runtime.CommonToken.*"),
             "23:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
@@ -472,7 +472,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsOrderAbove() throws Exception {
+    public void staticGroupsOrderAbove() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.PI"),
@@ -484,7 +484,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticOnDemandGroupsOrder() throws Exception {
+    public void staticOnDemandGroupsOrder() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
@@ -495,7 +495,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticOnDemandGroupsAlphabeticalOrder() throws Exception {
+    public void staticOnDemandGroupsAlphabeticalOrder() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "24:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
@@ -506,7 +506,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticOnDemandGroupsOrderBottom() throws Exception {
+    public void staticOnDemandGroupsOrderBottom() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.*"),
@@ -517,7 +517,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticOnDemandGroupsAlphabeticalOrderBottom() throws Exception {
+    public void staticOnDemandGroupsAlphabeticalOrderBottom() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.*"),
@@ -528,7 +528,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticOnDemandGroupsOrderAbove() throws Exception {
+    public void staticOnDemandGroupsOrderAbove() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "23:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.lang.Math.*"),
@@ -541,7 +541,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGroupWithSlashes() throws Exception {
+    public void groupWithSlashes() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addProperty("groups", "/^javax");
 
@@ -563,7 +563,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGroupWithDot() throws Exception {
+    public void groupWithDot() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
             "23:1: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
@@ -574,7 +574,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiplePatternMatches() throws Exception {
+    public void multiplePatternMatches() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
         };
@@ -591,7 +591,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * option is given, so there is no other way to cover this code.
      */
     @Test
-    public void testVisitTokenSwitchReflection() {
+    public void visitTokenSwitchReflection() {
         // Create mock ast
         final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", 0, 0);
         final DetailAstImpl astIdent = mockAST(TokenTypes.IDENT, "myTestImport", 0, 0);
@@ -635,7 +635,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testEclipseDefaultPositive() throws Exception {
+    public void eclipseDefaultPositive() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -643,14 +643,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticImportEclipseRepetition() throws Exception {
+    public void staticImportEclipseRepetition() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputImportOrderEclipseStaticRepetition.java"), expected);
     }
 
     @Test
-    public void testEclipseDefaultNegative() throws Exception {
+    public void eclipseDefaultNegative() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_SEPARATION, "javax.swing.JComponent"),
             "33:1: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
@@ -661,14 +661,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUseContainerOrderingForStaticTrue() throws Exception {
+    public void useContainerOrderingForStaticTrue() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputImportOrderEclipseStatic1.java"), expected);
     }
 
     @Test
-    public void testUseContainerOrderingForStaticFalse() throws Exception {
+    public void useContainerOrderingForStaticFalse() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_ORDERING,
                 "io.netty.handler.codec.http.HttpHeaders.Names.addDate"),
@@ -678,7 +678,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUseContainerOrderingForStaticTrueCaseSensitive() throws Exception {
+    public void useContainerOrderingForStaticTrueCaseSensitive() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_ORDERING,
                 "io.netty.handler.codec.http.HttpHeaders.Names.DATE"),
@@ -688,7 +688,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUseContainerOrderingForStatic() throws Exception {
+    public void useContainerOrderingForStatic() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_ORDERING,
                     "io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same"),
@@ -701,7 +701,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportGroupsRedundantSeparatedInternally() throws Exception {
+    public void importGroupsRedundantSeparatedInternally() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
         };
@@ -711,7 +711,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsAbove() throws Exception {
+    public void staticGroupsAbove() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -720,7 +720,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsBottom() throws Exception {
+    public void staticGroupsBottom() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -729,7 +729,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsBottomSeparated() throws Exception {
+    public void staticGroupsBottomSeparated() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -737,7 +737,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsInflow() throws Exception {
+    public void staticGroupsInflow() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -746,7 +746,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsNegative() throws Exception {
+    public void staticGroupsNegative() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_ORDERING, "org.junit.Assert.fail"),
             "23:1: " + getCheckMessage(MSG_ORDERING, "org.infinispan.test.TestingUtil.extract"),
@@ -758,7 +758,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsTop() throws Exception {
+    public void staticGroupsTop() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -767,7 +767,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsTopSeparated() throws Exception {
+    public void staticGroupsTopSeparated() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -776,7 +776,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticGroupsUnordered() throws Exception {
+    public void staticGroupsUnordered() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -785,7 +785,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTrimOption() throws Exception {
+    public void trimOption() throws Exception {
         final String[] expected = {
             "25:1: " + getCheckMessage(MSG_ORDERING, "java.util.Set"),
         };
@@ -804,7 +804,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void testClearState() throws Exception {
+    public void clearState() throws Exception {
         final ImportOrderCheck check = new ImportOrderCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputImportOrderBeginTree.java")),

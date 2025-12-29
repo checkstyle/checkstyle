@@ -45,7 +45,7 @@ public class FileTabCharacterCheckTest
     }
 
     @Test
-    public void testCustomMessage() throws Exception {
+    public void customMessage() throws Exception {
         final String msgFileContainsTab =
             "File contains tab characters (this is the first instance) :)";
         final String[] expected = {
@@ -57,7 +57,7 @@ public class FileTabCharacterCheckTest
     }
 
     @Test
-    public void testVerbose() throws Exception {
+    public void verbose() throws Exception {
         final String[] expected = {
             "22:25: " + getCheckMessage(MSG_CONTAINS_TAB),
             "148:35: " + getCheckMessage(MSG_CONTAINS_TAB),

@@ -37,7 +37,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final PackageNameCheck checkObj = new PackageNameCheck();
         final int[] expected = {TokenTypes.PACKAGE_DEF};
         assertWithMessage("Default required tokens are invalid")
@@ -46,7 +46,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testSpecified()
+    public void specified()
             throws Exception {
 
         final String pattern = "[A-Z]+";
@@ -68,7 +68,7 @@ public class PackageNameCheckTest
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final PackageNameCheck packageNameCheckObj = new PackageNameCheck();
         final int[] actual = packageNameCheckObj.getAcceptableTokens();
         final int[] expected = {

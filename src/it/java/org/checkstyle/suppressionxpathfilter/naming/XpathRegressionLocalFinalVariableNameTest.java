@@ -46,7 +46,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testResource() throws Exception {
+    public void resource() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathLocalFinalVariableNameResource.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testVariable() throws Exception {
+    public void variable() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathLocalFinalVariableNameVar.java"));
 
@@ -95,7 +95,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
     }
 
     @Test
-    public void testInnerClass() throws Exception {
+    public void innerClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathLocalFinalVariableNameInner.java"));
 

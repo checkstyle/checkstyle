@@ -36,7 +36,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefault() throws Exception {
+    public void missingSwitchDefault() throws Exception {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY, "default"),
             "35:17: " + getCheckMessage(MSG_KEY, "default"),
@@ -49,7 +49,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final MissingSwitchDefaultCheck check = new MissingSwitchDefaultCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -63,7 +63,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultSwitchExpressions() throws Exception {
+    public void missingSwitchDefaultSwitchExpressions() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
@@ -73,7 +73,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testNullCaseLabel() throws Exception {
+    public void nullCaseLabel() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingSwitchDefaultCheckNullCaseLabel.java"),
@@ -81,7 +81,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultSwitchExpressionsTwo() throws Exception {
+    public void missingSwitchDefaultSwitchExpressionsTwo() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_KEY, "default"),
             "26:9: " + getCheckMessage(MSG_KEY, "default"),
@@ -92,7 +92,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultSwitchExpressionsThree() throws Exception {
+    public void missingSwitchDefaultSwitchExpressionsThree() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingSwitchDefaultCheckSwitchExpressionsThree.java"),
@@ -100,7 +100,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultCaseLabelElements() throws Exception {
+    public void missingSwitchDefaultCaseLabelElements() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingSwitchDefaultCaseLabelElements.java"),
@@ -108,7 +108,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultRecordPattern() throws Exception {
+    public void missingSwitchDefaultRecordPattern() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingSwitchDefaultRecordPattern.java"),
@@ -116,7 +116,7 @@ public class MissingSwitchDefaultCheckTest
     }
 
     @Test
-    public void testMissingSwitchDefaultWithSwitchExpressionUnderMethodCall() throws Exception {
+    public void missingSwitchDefaultWithSwitchExpressionUnderMethodCall() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY),
         };

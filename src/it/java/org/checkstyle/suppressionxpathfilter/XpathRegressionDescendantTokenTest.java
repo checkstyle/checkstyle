@@ -37,7 +37,7 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testSwitchNoDefault() throws Exception {
+    public void switchNoDefault() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenSwitchNoDefault.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testSwitchTooManyCases() throws Exception {
+    public void switchTooManyCases() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenSwitchTooManyCases.java"));
 
@@ -94,7 +94,7 @@ public class XpathRegressionDescendantTokenTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void testNestedSwitch() throws Exception {
+    public void nestedSwitch() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathDescendantTokenNestedSwitch.java"));
 

@@ -42,7 +42,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testGetMessageBundleWithPackage() throws Exception {
+    public void getMessageBundleWithPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
                 .that(TestUtil.invokeStaticMethod(AbstractViolationReporter.class,
                         "getMessageBundle", String.class,
@@ -51,7 +51,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testGetMessageBundleWithoutPackage() throws Exception {
+    public void getMessageBundleWithoutPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
                 .that(TestUtil.invokeStaticMethod(AbstractViolationReporter.class,
                         "getMessageBundle", String.class, "MyCoolCheck"))
@@ -59,7 +59,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testCustomId() {
+    public void customId() {
         emptyCheck.setId("MyId");
         assertWithMessage("Id differs from expected")
                 .that(emptyCheck.getId())
@@ -67,7 +67,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testSeverity() throws Exception {
+    public void severity() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("severity", "error");
         emptyCheck.configure(config);
@@ -81,7 +81,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testCustomMessage() throws Exception {
+    public void customMessage() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom violation.");
         emptyCheck.configure(config);
@@ -99,7 +99,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testCustomMessageWithParameters() throws Exception {
+    public void customMessageWithParameters() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom violation with {0}.");
         emptyCheck.configure(config);
@@ -117,7 +117,7 @@ public class AbstractViolationReporterTest {
     }
 
     @Test
-    public void testCustomMessageWithParametersNegative() throws Exception {
+    public void customMessageWithParametersNegative() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
         config.addMessage("msgKey", "This is a custom violation {0.");
         emptyCheck.configure(config);

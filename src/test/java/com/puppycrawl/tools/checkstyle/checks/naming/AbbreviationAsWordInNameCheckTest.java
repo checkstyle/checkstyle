@@ -53,7 +53,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForThreePermittedCapitalLetters() throws Exception {
+    public void typeNamesForThreePermittedCapitalLetters() throws Exception {
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
@@ -68,7 +68,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForFourPermittedCapitalLetters() throws Exception {
+    public void typeNamesForFourPermittedCapitalLetters() throws Exception {
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -80,7 +80,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForFivePermittedCapitalLetters() throws Exception {
+    public void typeNamesForFivePermittedCapitalLetters() throws Exception {
         final int expectedCapitalCount = 6;
         final String[] expected = {
             "45:11: " + getWarningMessage("AbstractINNERRClass", expectedCapitalCount),
@@ -92,7 +92,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNames() throws Exception {
+    public void typeAndVariablesAndMethodNames() throws Exception {
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -108,7 +108,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithNoIgnores() throws Exception {
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -126,7 +126,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithNoIgnoresPart2() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithNoIgnoresPart2() throws Exception {
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -139,7 +139,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnores() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnores() throws Exception {
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -153,7 +153,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresPart2() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnoresPart2() throws Exception {
         final int expectedCapitalCount = 6;
 
         final String[] expected = {
@@ -166,7 +166,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnoresFinal() throws Exception {
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -186,7 +186,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnoresStatic() throws Exception {
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -206,7 +206,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticFinal() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnoresStaticFinal() throws Exception {
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -228,7 +228,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinal() throws Exception {
+    public void typeAndVariablesAndMethodNamesWithIgnoresNonStaticFinal() throws Exception {
         final int expectedCapitalCount = 5;
 
         final String[] expected = {
@@ -256,7 +256,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresNonStaticFinalPart2()
+    public void typeAndVariablesAndMethodNamesWithIgnoresNonStaticFinalPart2()
             throws Exception {
         final int expectedCapitalCount = 5;
 
@@ -275,7 +275,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresFinalKeepStaticFinal()
+    public void typeAndVariablesAndMethodNamesWithIgnoresFinalKeepStaticFinal()
             throws Exception {
         final int expectedCapitalCount = 5;
 
@@ -306,7 +306,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeAndVariablesAndMethodNamesWithIgnoresStaticKeepStaticFinal()
+    public void typeAndVariablesAndMethodNamesWithIgnoresStaticKeepStaticFinal()
             throws Exception {
         final int expectedCapitalCount = 5;
 
@@ -337,7 +337,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForThreePermittedCapitalLettersWithOverriddenMethod()
+    public void typeNamesForThreePermittedCapitalLettersWithOverriddenMethod()
             throws Exception {
         final int expectedCapitalCount = 4;
 
@@ -350,7 +350,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testOverriddenMethod()
+    public void overriddenMethod()
             throws Exception {
         final int expectedCapitalCount = 4;
 
@@ -366,7 +366,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForZeroPermittedCapitalLetter() throws Exception {
+    public void typeNamesForZeroPermittedCapitalLetter() throws Exception {
         final int expectedCapitalCount = 1;
         final String[] expected = {
             "20:16: " + getWarningMessage("NonAAAAbstractClassName6", expectedCapitalCount),
@@ -398,7 +398,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testTypeNamesForZeroPermittedCapitalLetterPart2()
+    public void typeNamesForZeroPermittedCapitalLetterPart2()
             throws Exception {
         final int expectedCapitalCount = 1;
 
@@ -416,7 +416,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testNullPointerException() throws Exception {
+    public void nullPointerException() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -426,7 +426,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAbbreviationAsWordInNameCheckEnhancedInstanceof()
+    public void abbreviationAsWordInNameCheckEnhancedInstanceof()
             throws Exception {
 
         final int expectedCapitalCount = 4;
@@ -445,7 +445,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1()
+    public void abbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1()
             throws Exception {
 
         final int expectedCapitalCount = 2;
@@ -466,7 +466,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAbbreviationAsWordInNameCheckRecords()
+    public void abbreviationAsWordInNameCheckRecords()
             throws Exception {
 
         final int expectedCapitalCount = 4;
@@ -496,7 +496,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAbbreviationAsWordInNameCheckRecordPatterns()
+    public void abbreviationAsWordInNameCheckRecordPatterns()
             throws Exception {
 
         final int expectedCapitalCount = 4;
@@ -522,7 +522,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testReceiver() throws Exception {
+    public void receiver() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -531,7 +531,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testInputAbbreviationAsWordInNameTypeSnakeStyle() throws Exception {
+    public void inputAbbreviationAsWordInNameTypeSnakeStyle() throws Exception {
         final String[] expected = {
             "13:20: " + getWarningMessage("FLAG_IS_FIRST_RUN", 4),
             "16:17: " + getWarningMessage("HYBRID_LOCK_PATH", 4),
@@ -549,7 +549,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAnnotation() throws Exception {
+    public void annotation() throws Exception {
         final String[] expected = {
             "16:12: " + getWarningMessage("readMETHOD", 4),
         };

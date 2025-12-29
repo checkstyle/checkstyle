@@ -35,7 +35,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final int[] expected = {
             TokenTypes.LAMBDA,
         };
@@ -48,7 +48,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAcceptableTokens() {
+    public void acceptableTokens() {
         final int[] expected = {
             TokenTypes.LAMBDA,
         };
@@ -61,7 +61,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParametersInLambda() throws Exception {
+    public void parametersInLambda() throws Exception {
 
         final String pattern = "^(id)|([a-z][a-z0-9][a-zA-Z0-9]+)$";
 
@@ -77,7 +77,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaParameterNameSwitchExpression() throws Exception {
+    public void lambdaParameterNameSwitchExpression() throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
@@ -95,7 +95,7 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testLambdaParameterNameUnnamed() throws Exception {
+    public void lambdaParameterNameUnnamed() throws Exception {
 
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 

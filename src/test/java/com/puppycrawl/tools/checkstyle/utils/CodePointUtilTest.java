@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class CodePointUtilTest {
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(CodePointUtil.class))
                 .isTrue();

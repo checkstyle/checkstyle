@@ -76,7 +76,7 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testClassName() throws Exception {
+    public void className() throws Exception {
         final String classFormat = "^.*ExceptionClassName$";
         final File fileToProcess =
                 new File(getPath("InputXpathMutableExceptionClassName.java"));
@@ -110,7 +110,7 @@ public class XpathRegressionMutableExceptionTest extends AbstractXpathTestSuppor
     }
 
     @Test
-    public void testExtendedClassName() throws Exception {
+    public void extendedClassName() throws Exception {
         final String extendedClassNameFormat = "^.*Throwable$";
         final File fileToProcess =
                 new File(getPath("InputXpathMutableExceptionExtendedClassName.java"));

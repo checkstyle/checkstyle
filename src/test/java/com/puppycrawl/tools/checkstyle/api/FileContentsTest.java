@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class FileContentsTest {
 
     @Test
-    public void testTextFileName() {
+    public void textFileName() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("123", "456")));
 
@@ -52,7 +52,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testIsLineBlank() {
+    public void isLineBlank() {
         assertWithMessage("Invalid result")
                 .that(new FileContents(
                         new FileText(new File("filename"), Collections.singletonList("123")))
@@ -66,7 +66,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testLineIsComment() {
+    public void lineIsComment() {
         assertWithMessage("Invalid result")
                 .that(new FileContents(
                         new FileText(new File("filename"), Collections.singletonList("123")))
@@ -80,7 +80,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testDeprecatedAbbreviatedMethod() {
+    public void deprecatedAbbreviatedMethod() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("123", "456")));
@@ -100,7 +100,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testSinglelineCommentNotIntersect() {
+    public void singlelineCommentNotIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  //  ")));
@@ -111,7 +111,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testSinglelineCommentIntersect() {
+    public void singlelineCommentIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  //   ")));
@@ -122,7 +122,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportCppComment() {
+    public void reportCppComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("   //  ")));
         fileContents.reportSingleLineComment(1, 2);
@@ -134,7 +134,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testHasIntersectionWithSingleLineComment() {
+    public void hasIntersectionWithSingleLineComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("     ", "  //test   ",
                         "  //test   ", "  //test   ")));
@@ -146,7 +146,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportComment() {
+    public void reportComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  //   ")));
         fileContents.reportBlockComment("type", 1, 2, 1, 2);
@@ -158,7 +158,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportBlockCommentSameLine() {
+    public void reportBlockCommentSameLine() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("/* a */ /* b */ ")));
         fileContents.reportBlockComment("type", 1, 0, 1, 6);
@@ -174,7 +174,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportBlockCommentMultiLine() {
+    public void reportBlockCommentMultiLine() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("/*", "c", "*/")));
         fileContents.reportBlockComment("type", 1, 0, 3, 1);
@@ -188,7 +188,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportBlockCommentJavadoc() {
+    public void reportBlockCommentJavadoc() {
         final FileContents fileContents = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("/** A */", "", "//", "/**/", "/* B */")));
         fileContents.reportBlockComment("type", 1, 0, 1, 7);
@@ -210,7 +210,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testHasIntersectionWithBlockComment() {
+    public void hasIntersectionWithBlockComment() {
         final FileContents fileContents = new FileContents(new FileText(new File("filename"),
                         Arrays.asList("  /* */    ", "    ", "  /* test   ", "  */  ", "   ")));
         fileContents.reportBlockComment(1, 2, 1, 5);
@@ -222,7 +222,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testHasIntersectionWithBlockComment2() {
+    public void hasIntersectionWithBlockComment2() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("  /* */    ", "    ", " ")));
         fileContents.reportBlockComment(1, 2, 1, 5);
@@ -233,7 +233,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportJavadocComment() {
+    public void reportJavadocComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
         fileContents.reportBlockComment(1, 2, 1, 6);
@@ -245,7 +245,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testReportJavadocComment2() {
+    public void reportJavadocComment2() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
         fileContents.reportBlockComment(1, 2, 1, 6);
@@ -262,7 +262,7 @@ public class FileContentsTest {
      */
     @Deprecated(since = "10.2")
     @Test
-    public void testInPackageInfo() {
+    public void inPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
                 new File("package-info.java"),
                 Collections.singletonList("  //   ")));
@@ -278,7 +278,7 @@ public class FileContentsTest {
      */
     @Deprecated(since = "10.2")
     @Test
-    public void testNotInPackageInfo() {
+    public void notInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
                 new File("some-package-info.java"),
                 Collections.singletonList("  //   ")));
@@ -289,7 +289,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testGetJavadocBefore() {
+    public void getJavadocBefore() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("    ")));
         final Map<Integer, TextBlock> javadoc = new HashMap<>();
@@ -303,7 +303,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testExtractBlockComment() {
+    public void extractBlockComment() {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList("   ", "    ", "  /* test   ",
                         "  */  ", "   ")));
@@ -318,7 +318,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testHasIntersectionEarlyOut() throws Exception {
+    public void hasIntersectionEarlyOut() throws Exception {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.emptyList()));
         final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalStateMapIntegerList(
@@ -334,7 +334,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testUnmodifiableGetSingleLineComment() {
+    public void unmodifiableGetSingleLineComment() {
         final FileContents cppComments = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("// comment ", " A + B ", " ")));
         cppComments.reportSingleLineComment(1, 0);
@@ -347,7 +347,7 @@ public class FileContentsTest {
     }
 
     @Test
-    public void testUnmodifiableGetBlockComments() {
+    public void unmodifiableGetBlockComments() {
         final FileContents clangComments = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("/* comment ", " ", " comment */")));
         clangComments.reportBlockComment(1, 0, 3, 9);

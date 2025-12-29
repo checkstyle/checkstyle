@@ -92,7 +92,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMethod() throws Exception {
+    public void method() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathSeparatorWrapMethod.java"));
 

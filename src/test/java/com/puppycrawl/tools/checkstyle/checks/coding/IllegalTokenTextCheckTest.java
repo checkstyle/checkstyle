@@ -42,7 +42,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextCheckDefaultCaseSensitive()
+    public void illegalTokenTextCheckDefaultCaseSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -52,7 +52,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextCheckCaseInSensitive()
+    public void illegalTokenTextCheckCaseInSensitive()
             throws Exception {
         final String[] expected = {
             "34:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -63,7 +63,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextCheckCustomMessageInStringLiteral()
+    public void illegalTokenTextCheckCustomMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
@@ -74,7 +74,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextCheckNullMessageInStringLiteral()
+    public void illegalTokenTextCheckNullMessageInStringLiteral()
             throws Exception {
 
         final String[] expected = {
@@ -85,7 +85,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextTextBlocks() throws Exception {
+    public void illegalTokenTextTextBlocks() throws Exception {
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -99,7 +99,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
+    public void illegalTokenTextTextBlocksQuotes() throws Exception {
 
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY, "\""),
@@ -115,7 +115,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -132,7 +132,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testIllegalTokenTextCheckCommentToken()
+    public void illegalTokenTextCheckCommentToken()
             throws Exception {
 
         final String[] expected = {
@@ -144,7 +144,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testOrderOfProperties() {
+    public void orderOfProperties() {
         // pure class must be used as configuration doesn't guarantee order of
         // attributes
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
@@ -160,7 +160,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testAcceptableTokensMakeSense() {
+    public void acceptableTokensMakeSense() {
         final int expectedTokenTypesTotalNumber = 191;
         assertWithMessage("Total number of TokenTypes has changed, acceptable tokens in"
                 + " IllegalTokenTextCheck need to be reconsidered.")
@@ -190,7 +190,7 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
-    public void testDefaultFormat() throws Exception {
+    public void defaultFormat() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

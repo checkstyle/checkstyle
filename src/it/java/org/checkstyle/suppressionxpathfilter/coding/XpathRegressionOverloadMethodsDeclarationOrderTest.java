@@ -73,7 +73,7 @@ public class XpathRegressionOverloadMethodsDeclarationOrderTest extends Abstract
     }
 
     @Test
-    public void testAnonymous() throws Exception {
+    public void anonymous() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathOverloadMethodsDeclarationOrderAnonymous.java"));
 

@@ -44,7 +44,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testMethods() throws Exception {
+    public void methods() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterAssignmentMethods.java");
         final File fileToProcess = new File(filePath);
@@ -72,7 +72,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testLambdas() throws Exception {
+    public void lambdas() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterAssignmentLambdas.java");
         final File fileToProcess = new File(filePath);
@@ -99,7 +99,7 @@ public class XpathRegressionParameterAssignmentTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void testCtor() throws Exception {
+    public void ctor() throws Exception {
         final String filePath =
                 getPath("InputXpathParameterAssignmentCtor.java");
         final File fileToProcess = new File(filePath);

@@ -56,7 +56,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testDot() throws Exception {
+    public void dot() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "10:5: " + getCheckMessage(MSG_KEY, "."),
@@ -70,7 +70,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testDotAllowLineBreaks() throws Exception {
+    public void dotAllowLineBreaks() throws Exception {
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY, "."),
             "133:18: " + getCheckMessage(MSG_KEY, "."),
@@ -81,7 +81,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testMethodReference() throws Exception {
+    public void methodReference() throws Exception {
         final String[] expected = {
             "25:32: " + getCheckMessage(MSG_KEY, "::"),
             "26:61: " + getCheckMessage(MSG_KEY, "::"),
@@ -91,7 +91,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testDotAtTheStartOfTheLine() throws Exception {
+    public void dotAtTheStartOfTheLine() throws Exception {
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY, "."),
         };
@@ -100,7 +100,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testMethodRefAtTheStartOfTheLine() throws Exception {
+    public void methodRefAtTheStartOfTheLine() throws Exception {
         final String[] expected = {
             "22:3: " + getCheckMessage(MSG_KEY, "::"),
         };
@@ -109,7 +109,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testEmptyForLoop() throws Exception {
+    public void emptyForLoop() throws Exception {
         final String[] expected = {
             "20:24: " + getCheckMessage(MSG_KEY, ";"),
             "26:32: " + getCheckMessage(MSG_KEY, ";"),
@@ -119,7 +119,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testNoWhitespaceBeforeTextBlocksWithTabIndent() throws Exception {
+    public void noWhitespaceBeforeTextBlocksWithTabIndent() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -128,7 +128,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testNoWhitespaceBeforeEllipsis() throws Exception {
+    public void noWhitespaceBeforeEllipsis() throws Exception {
         final String[] expected = {
             "25:37: " + getCheckMessage(MSG_KEY, "..."),
             "28:37: " + getCheckMessage(MSG_KEY, "..."),
@@ -139,7 +139,7 @@ public class NoWhitespaceBeforeCheckTest
     }
 
     @Test
-    public void testNoWhitespaceBeforeWithEmoji() throws Exception {
+    public void noWhitespaceBeforeWithEmoji() throws Exception {
         final String[] expected = {
             "13:15: " + getCheckMessage(MSG_KEY, ","),
             "14:17: " + getCheckMessage(MSG_KEY, ","),

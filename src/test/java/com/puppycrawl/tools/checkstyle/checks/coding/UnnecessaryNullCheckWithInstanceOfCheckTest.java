@@ -34,7 +34,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceof() throws Exception {
+    public void unnecessaryNullCheckWithInstanceof() throws Exception {
 
         final String[] expected = {
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -52,7 +52,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofClass() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofClass() throws Exception {
 
         final String[] expected = {
             "14:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -63,7 +63,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofConditions() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofConditions() throws Exception {
 
         final String[] expected = {
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -79,7 +79,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofNested() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofNested() throws Exception {
 
         final String[] expected = {
             "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -91,7 +91,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofLambda() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofLambda() throws Exception {
 
         final String[] expected = {
             "17:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -103,7 +103,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofSwitch() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofSwitch() throws Exception {
 
         final String[] expected = {
             "13:21: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -114,7 +114,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofTernary() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofTernary() throws Exception {
 
         final String[] expected = {
             "11:16: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -133,7 +133,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofTryCatch() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofTryCatch() throws Exception {
 
         final String[] expected = {
             "11:17: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -145,7 +145,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofTryVariable() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofTryVariable() throws Exception {
 
         final String[] expected = {
             "12:27: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -156,7 +156,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofPattern() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofPattern() throws Exception {
 
         final String[] expected = {
             "12:13: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -168,7 +168,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testUnnecessaryNullCheckWithInstanceofPair() throws Exception {
+    public void unnecessaryNullCheckWithInstanceofPair() throws Exception {
 
         final String[] expected = {
             "15:56: " + getCheckMessage(MSG_UNNECESSARY_NULLCHECK),
@@ -180,7 +180,7 @@ public class UnnecessaryNullCheckWithInstanceOfCheckTest extends AbstractModuleT
     }
 
     @Test
-    public void testTokensNotNull() {
+    public void tokensNotNull() {
         final UnnecessaryNullCheckWithInstanceOfCheck check =
             new UnnecessaryNullCheckWithInstanceOfCheck();
         assertWithMessage("Acceptable tokens should not be null")

@@ -48,7 +48,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testMissingTag() throws Exception {
+    public void missingTag() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocTypeMissingTag.java"));
 
@@ -77,7 +77,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testWrongFormat() throws Exception {
+    public void wrongFormat() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocTypeWrongFormat.java"));
 
@@ -105,7 +105,7 @@ public class XpathRegressionJavadocTypeTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void testIncomplete() throws Exception {
+    public void incomplete() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathJavadocTypeIncomplete.java"));
 

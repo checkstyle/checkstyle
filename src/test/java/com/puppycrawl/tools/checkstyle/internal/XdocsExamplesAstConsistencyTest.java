@@ -324,7 +324,7 @@ public class XdocsExamplesAstConsistencyTest {
      * @throws IOException if an I/O error occurs
      */
     @Test
-    public void testExamplesDifferOnlyByComments() throws IOException {
+    public void examplesDifferOnlyByComments() throws Exception {
         final List<String> violations = new ArrayList<>();
 
         try (Stream<Path> pathStream = Files.walk(XDOCS_ROOT)) {

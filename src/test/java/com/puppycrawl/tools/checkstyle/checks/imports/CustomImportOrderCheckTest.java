@@ -54,7 +54,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetRequiredTokens() {
+    public void getRequiredTokens() {
         final CustomImportOrderCheck checkObj = new CustomImportOrderCheck();
         final int[] expected = {
             TokenTypes.IMPORT,
@@ -67,7 +67,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCustom() throws Exception {
+    public void custom() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                     "java.io.File.createTempFile"),
@@ -95,7 +95,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
      * specified in the configuration.
      */
     @Test
-    public void testStaticStandardThird() throws Exception {
+    public void staticStandardThird() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                     "java.io.File.createTempFile"),
@@ -116,7 +116,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticStandardThirdListCustomRules() throws Exception {
+    public void staticStandardThirdListCustomRules() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                     "java.io.File.createTempFile"),
@@ -137,7 +137,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticStandardThirdListCustomRulesWhitespace() throws Exception {
+    public void staticStandardThirdListCustomRulesWhitespace() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -145,7 +145,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderSingleLineList() throws Exception {
+    public void inputCustomImportOrderSingleLineList() throws Exception {
         final String[] expected = {
             "14:112: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "java.util.Map"),
@@ -165,7 +165,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
      * Checks different combinations for same_package group.
      */
     @Test
-    public void testNonSpecifiedImports() throws Exception {
+    public void nonSpecifiedImports() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
@@ -186,7 +186,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOrderRuleEmpty() throws Exception {
+    public void orderRuleEmpty() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
         };
@@ -196,7 +196,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOrderRuleWithOneGroup() throws Exception {
+    public void orderRuleWithOneGroup() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
                     "java.io.File.createTempFile"),
@@ -221,7 +221,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticSamePackage() throws Exception {
+    public void staticSamePackage() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
             "18:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
@@ -243,7 +243,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithoutLineSeparator() throws Exception {
+    public void withoutLineSeparator() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
             "18:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
@@ -265,7 +265,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithoutLineSeparator2() throws Exception {
+    public void withoutLineSeparator2() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.io.File.createTempFile",
                 "javax.swing.WindowConstants.*"),
@@ -278,7 +278,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoValid() throws Exception {
+    public void noValid() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -286,7 +286,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPossibleIndexOutOfBoundsException() throws Exception {
+    public void possibleIndexOutOfBoundsException() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, THIRD, "org.w3c.dom.Node"),
         };
@@ -296,7 +296,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultPackage2() throws Exception {
+    public void defaultPackage2() throws Exception {
 
         final String[] expected = {
             "19:1: " + getCheckMessage(MSG_LEX, "java.awt.Button.ABORT",
@@ -321,7 +321,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithoutThirdPartyPackage() throws Exception {
+    public void withoutThirdPartyPackage() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -329,7 +329,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testThirdPartyAndSpecialImports() throws Exception {
+    public void thirdPartyAndSpecialImports() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
                 "com.google.common.collect.HashMultimap"),
@@ -340,7 +340,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCompareImports() throws Exception {
+    public void compareImports() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_LEX, "java.util.Map",
                 "java.util.Map.Entry"),
@@ -351,7 +351,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testFindBetterPatternMatch() throws Exception {
+    public void findBetterPatternMatch() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_ORDER, THIRD, SPECIAL,
                 "com.google.common.annotations.Beta"),
@@ -362,7 +362,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testBeginTreeClear() throws Exception {
+    public void beginTreeClear() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CustomImportOrderCheck.class);
         checkConfig.addProperty("specialImportsRegExp", "com");
@@ -381,7 +381,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testImportsContainingJava() throws Exception {
+    public void importsContainingJava() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                     "com.google.errorprone.annotations.*"),
@@ -392,7 +392,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testGetAcceptableTokens() {
+    public void getAcceptableTokens() {
         final CustomImportOrderCheck testCheckObject =
                 new CustomImportOrderCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
@@ -410,7 +410,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     // UT uses Reflection to avoid removing null-validation from static method,
     // which is a candidate for utility method in the future
-    public void testGetFullImportIdent() throws Exception {
+    public void getFullImportIdent() throws Exception {
         final Class<?> clazz = CustomImportOrderCheck.class;
         final Object t = TestUtil.instantiate(clazz);
         final Object actual = TestUtil.invokeMethod(t, "getFullImportIdent",
@@ -423,7 +423,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepth2() throws Exception {
+    public void samePackageDepth2() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.*"),
             "21:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.List"),
@@ -443,7 +443,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepth3() throws Exception {
+    public void samePackageDepth3() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME, "java.util.concurrent.*"),
             "24:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
@@ -458,7 +458,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepth4() throws Exception {
+    public void samePackageDepth4() throws Exception {
         final String[] expected = {
             "25:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SAME,
                 "java.util.concurrent.locks.LockSupport"),
@@ -470,7 +470,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepthLongerThenActualPackage() throws Exception {
+    public void samePackageDepthLongerThenActualPackage() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -479,7 +479,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepthNegative() throws Exception {
+    public void samePackageDepthNegative() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -505,7 +505,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepthZero() throws Exception {
+    public void samePackageDepthZero() throws Exception {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -529,7 +529,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testUnsupportedRule() throws Exception {
+    public void unsupportedRule() throws Exception {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -552,7 +552,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testSamePackageDepthNotInt() throws Exception {
+    public void samePackageDepthNotInt() throws Exception {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -575,7 +575,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoImports() throws Exception {
+    public void noImports() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -583,7 +583,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    public void defaultConfiguration() throws Exception {
         final String[] expected = {
             "20:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Button"),
             "32:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.io.*"),
@@ -594,7 +594,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testRulesWithOverlappingPatterns() throws Exception {
+    public void rulesWithOverlappingPatterns() throws Exception {
         final String[] expected = {
             "23:1: " + getCheckMessage(MSG_ORDER, THIRD, STD,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl"),
@@ -617,7 +617,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiplePatternMatchesSecondPatternIsLonger() throws Exception {
+    public void multiplePatternMatchesSecondPatternIsLonger() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches.java"),
@@ -625,7 +625,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiplePatternMatchesFirstPatternHasLaterPosition() throws Exception {
+    public void multiplePatternMatchesFirstPatternHasLaterPosition() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches2.java"),
@@ -633,7 +633,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiplePatternMatchesFirstPatternHasEarlierPosition() throws Exception {
+    public void multiplePatternMatchesFirstPatternHasEarlierPosition() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrder_MultiplePatternMatches3.java"),
@@ -641,7 +641,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMultiplePatternMultipleImportFirstPatternHasLaterPosition() throws Exception {
+    public void multiplePatternMultipleImportFirstPatternHasLaterPosition() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "org.junit.Test"),
         };
@@ -651,7 +651,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoPackage() throws Exception {
+    public void noPackage() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.*"),
             "19:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.HashMap"),
@@ -664,7 +664,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoPackage2() throws Exception {
+    public void noPackage2() throws Exception {
         final String[] expected = {
             "18:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.sun.accessibility.internal.resources.*"),
@@ -678,7 +678,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNoPackage3() throws Exception {
+    public void noPackage3() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "java.util.Map"),
@@ -693,7 +693,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderSingleLine() throws Exception {
+    public void inputCustomImportOrderSingleLine() throws Exception {
         final String[] expected = {
             "14:112: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "java.util.Map"),
@@ -710,7 +710,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderSingleLine2() throws Exception {
+    public void inputCustomImportOrderSingleLine2() throws Exception {
         final String[] expected = {
             "14:118: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "java.util.Map"),
@@ -721,7 +721,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderThirdPartyAndSpecial2() throws Exception {
+    public void inputCustomImportOrderThirdPartyAndSpecial2() throws Exception {
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP,
                 "javax.swing.WindowConstants.*"),
@@ -745,7 +745,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderMultipleViolationsSameLine() throws Exception {
+    public void inputCustomImportOrderMultipleViolationsSameLine() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STATIC,
                 "java.util.Collections.*"),
@@ -762,7 +762,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderSpanMultipleLines() throws Exception {
+    public void inputCustomImportOrderSpanMultipleLines() throws Exception {
         final String[] expected = {
             "30:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.BitSet"),
             "45:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.HashSet"),
@@ -776,7 +776,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderEclipseDefaultPositive() throws Exception {
+    public void inputCustomImportOrderEclipseDefaultPositive() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.awt.Button"),
             "23:1: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "java.awt.Dialog"),
@@ -794,7 +794,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInputCustomImportOrderSpecialImportsRegExp() throws Exception {
+    public void inputCustomImportOrderSpecialImportsRegExp() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCustomImportOrderSpecialImportsRegExp.java"),

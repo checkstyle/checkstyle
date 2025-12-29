@@ -40,7 +40,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testTokens() {
+    public void tokens() {
         final ClassDataAbstractionCouplingCheck check = new ClassDataAbstractionCouplingCheck();
         assertWithMessage("Required tokens should not be null")
             .that(check.getRequiredTokens())
@@ -70,7 +70,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageDirectPackages() throws Exception {
+    public void excludedPackageDirectPackages() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
             "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
@@ -83,7 +83,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageCommonPackages() throws Exception {
+    public void excludedPackageCommonPackages() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0, "[ImmutablePair, StrTokenizer]"),
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0, "[BasicThreadFactory.Builder, MutablePair]"),
@@ -96,7 +96,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageWithEndingDot() throws Exception {
+    public void excludedPackageWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassDataAbstractionCouplingCheck.class);
 
@@ -124,7 +124,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testExcludedPackageCommonPackagesAllIgnored() throws Exception {
+    public void excludedPackageCommonPackagesAllIgnored() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 1, 0, "[StrTokenizer]"),
             "32:5: " + getCheckMessage(MSG_KEY, 1, 0, "[BasicThreadFactory.Builder]"),
@@ -137,14 +137,14 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testDefaultConfiguration() throws Exception {
+    public void defaultConfiguration() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassDataAbstractionCoupling2.java"), expected);
     }
 
     @Test
-    public void testWrongToken() {
+    public void wrongToken() {
         final ClassDataAbstractionCouplingCheck classDataAbstractionCouplingCheckObj =
             new ClassDataAbstractionCouplingCheck();
         final DetailAstImpl ast = new DetailAstImpl();
@@ -161,7 +161,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testRegularExpression() throws Exception {
+    public void regularExpression() throws Exception {
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 2, 0, "[AnotherInnerClass, int]"),
@@ -173,7 +173,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testEmptyRegularExpression() throws Exception {
+    public void emptyRegularExpression() throws Exception {
 
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY, 4, 0, "[AnotherInnerClass, HashMap, HashSet, int]"),
@@ -186,7 +186,7 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
     }
 
     @Test
-    public void testClassDataAbstractionCouplingRecords() throws Exception {
+    public void classDataAbstractionCouplingRecords() throws Exception {
 
         final int maxAbstraction = 1;
         final String[] expected = {

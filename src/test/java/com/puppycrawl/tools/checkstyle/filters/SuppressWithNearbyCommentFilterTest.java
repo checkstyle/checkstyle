@@ -132,7 +132,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testNone() throws Exception {
+    public void none() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expected = {
             "36:17: "
@@ -246,7 +246,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testCheckC() throws Exception {
+    public void checkC() throws Exception {
         final String[] suppressed = {
             "46:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -260,7 +260,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testCheckCpp() throws Exception {
+    public void checkCpp() throws Exception {
         final String[] suppressed = {
             "49:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -283,7 +283,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingVariableMessage() throws Exception {
+    public void usingVariableMessage() throws Exception {
         final String[] suppressed = {
             "102:23: "
                 + getCheckMessage(IllegalCatchCheck.class,
@@ -297,7 +297,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingNonMatchingVariableMessage() throws Exception {
+    public void usingNonMatchingVariableMessage() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(
             getPath("InputSuppressWithNearbyCommentFilterUsingNonMatchingVariableMessage.java"),
@@ -305,7 +305,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingVariableCheckOnNextLine() throws Exception {
+    public void usingVariableCheckOnNextLine() throws Exception {
         final String[] suppressed = {
             "61:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -317,7 +317,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingVariableCheckOnPreviousLine() throws Exception {
+    public void usingVariableCheckOnPreviousLine() throws Exception {
         final String[] suppressed = {
             "65:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -329,7 +329,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testVariableCheckOnVariableNumberOfLines() throws Exception {
+    public void variableCheckOnVariableNumberOfLines() throws Exception {
         final String[] suppressed = {
             "74:30: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -351,7 +351,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testEqualsAndHashCodeOfTagClass() {
+    public void equalsAndHashCodeOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
@@ -376,7 +376,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testInvalidInfluenceFormat() throws Exception {
+    public void invalidInfluenceFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -403,7 +403,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testInfluenceFormat() throws Exception {
+    public void influenceFormat() throws Exception {
         final String[] suppressed = {
             "46:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -436,7 +436,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testInvalidCheckFormat() throws Exception {
+    public void invalidCheckFormat() throws Exception {
         final DefaultConfiguration treeWalkerConfig =
             createModuleConfig(TreeWalker.class);
         final DefaultConfiguration filterConfig =
@@ -462,7 +462,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testAcceptNullViolation() {
+    public void acceptNullViolation() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
                 Collections.singletonList("//SUPPRESS CHECKSTYLE ignore")));
@@ -475,7 +475,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testAcceptNullFileContents() {
+    public void acceptNullFileContents() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
@@ -486,7 +486,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testToStringOfTagClass() {
+    public void toStringOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
                 getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
@@ -497,7 +497,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testToStringOfTagClassWithId() {
+    public void toStringOfTagClassWithId() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         filter.setIdFormat(".*");
         final Object tag =
@@ -509,7 +509,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testUsingTagMessageRegexp() throws Exception {
+    public void usingTagMessageRegexp() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(
             getPath("InputSuppressWithNearbyCommentFilterUsingTagMessageRegexp.java"),
@@ -517,7 +517,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testSuppressByCheck() throws Exception {
+    public void suppressByCheck() throws Exception {
         final String[] suppressedViolationMessages = {
             "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -558,7 +558,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testSuppressById() throws Exception {
+    public void suppressById() throws Exception {
         final String[] suppressedViolationMessages = {
             "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -599,7 +599,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testSuppressByCheckAndId() throws Exception {
+    public void suppressByCheckAndId() throws Exception {
         final String[] suppressedViolationMessages = {
             "41:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -641,7 +641,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testSuppressByCheckAndNonMatchingId() throws Exception {
+    public void suppressByCheckAndNonMatchingId() throws Exception {
         final String[] suppressedViolationMessages = CommonUtil.EMPTY_STRING_ARRAY;
         final String[] expectedViolationMessages = {
             "41:17: "
@@ -745,7 +745,7 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testTagsAreClearedEachRun() {
+    public void tagsAreClearedEachRun() {
         final SuppressWithNearbyCommentFilter suppressionCommentFilter =
                 new SuppressWithNearbyCommentFilter();
         final List<?> tags1 = getTagsAfterExecution(suppressionCommentFilter,

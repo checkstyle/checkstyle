@@ -43,14 +43,14 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testIsProperUtilsClass() throws ReflectiveOperationException {
+    public void isProperUtilsClass() throws Exception {
         assertWithMessage("Constructor is not private.")
             .that(isUtilsClassHasPrivateConstructor(ChainedPropertyUtil.class))
             .isTrue();
     }
 
     @Test
-    public void testPropertyChaining() throws Exception {
+    public void propertyChaining() throws Exception {
         final File propertiesFile =
             new File(getPath("InputChainedPropertyUtil.properties"));
         final Properties properties = loadProperties(propertiesFile);
@@ -80,7 +80,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPropertyChainingPropertyNotFound() throws Exception {
+    public void propertyChainingPropertyNotFound() throws Exception {
         final File propertiesFile =
             new File(getPath("InputChainedPropertyUtilUndefinedProperty.properties"));
         final Properties properties = loadProperties(propertiesFile);
@@ -98,7 +98,7 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testPropertyChainingRecursiveUnresolvable() throws Exception {
+    public void propertyChainingRecursiveUnresolvable() throws Exception {
         final File propertiesFile =
             new File(getPath("InputChainedPropertyUtilRecursiveUnresolvable.properties"));
         final Properties properties = loadProperties(propertiesFile);
