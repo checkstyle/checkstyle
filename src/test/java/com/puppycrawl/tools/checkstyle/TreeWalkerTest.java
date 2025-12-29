@@ -26,6 +26,7 @@ import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -51,6 +52,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.internal.util.Checks;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -833,6 +835,24 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
                         + getNonCompilablePath("InputTreeWalkerSkipParsingException.java") + "."));
 
         verify(checker, files, expectedViolation);
+    }
+
+    @Test
+    public void testJavaParseExceptionSeverityDefault() throws Exception {
+        final String inputFile = "InputTreeWalkerSkipParsingExceptionConfigSeverityDefault.java";
+        final String expectedInfoFile = "ExpectedSeverityInfo.txt";
+        final String expectedErrorFile = "ExpectedSeverityError.txt";
+
+        final ByteArrayOutputStream infoStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+        final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE,
+                errorStream, OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndDefaultLogger(
+                getNonCompilablePath(inputFile),
+                getPath(expectedInfoFile),
+                getPath(expectedErrorFile),
+                dl, infoStream, errorStream);
     }
 
     public static class BadJavaDocCheck extends AbstractCheck {
