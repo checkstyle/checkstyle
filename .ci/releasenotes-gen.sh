@@ -1,7 +1,7 @@
 #!/bin/bash
 # to run on local:
 # export READ_ONLY_TOKEN=9ffd28f
-#  && export DRONE_PULL_REQUEST="master" && ./.ci/releasenotes-gen.sh
+#  && export DRONE_PULL_REQUEST="main" && ./.ci/releasenotes-gen.sh
 
 set -e
 
@@ -21,8 +21,8 @@ fi
 mkdir -p .ci-temp
 if [ -d .ci-temp/contribution ]; then
   cd .ci-temp/contribution/
-  git reset --hard origin/master
-  git pull origin master
+  git reset --hard origin/main
+  git pull origin main
   git fetch --tags
   cd ../../
 else
@@ -36,8 +36,8 @@ cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then
   cd .ci-temp/checkstyle/
-  git reset --hard origin/master
-  git pull origin master
+  git reset --hard origin/main
+  git pull origin main
   git fetch --tags
   cd ../../
 else

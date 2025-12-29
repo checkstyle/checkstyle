@@ -60,24 +60,24 @@ function CreateTOC(tocElement) {
 
   // Get the highest level heading
   var firstHeading = headings[0];
-  var masterLevel = parseInt(headingLevels.charAt(1));
+  var mainLevel = parseInt(headingLevels.charAt(1));
 
   // Get the lowest heading level
   var lowestLevel = parseInt(headingLevels.charAt(headingLevels - 1));
 
   switch (tocType) {
     case TocTypeEnum.HORIZONTAL:
-        CreateHorizontalTOC(headings, masterLevel, lowestLevel, tbody_element);
+        CreateHorizontalTOC(headings, mainLevel, lowestLevel, tbody_element);
         break;
     case TocTypeEnum.VERTICAL:
-        CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element);
+        CreateVerticalTOC(headings, mainLevel, lowestLevel, tbody_element);
         break;
     default:
    }
 }
 
 function CreateHorizontalTOC(
-             headings, masterLevel, lowestLevel, tbody_element) {
+             headings, mainLevel, lowestLevel, tbody_element) {
 
   // Initialize the header counter
   var h = 0;
@@ -92,17 +92,17 @@ function CreateHorizontalTOC(
 
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
-    // If level is a masterLevel, make it a TOC parent category
-    if ((level == masterLevel) && (!hasClass(heading, 'ignoreLink'))) {
-      toc_current_row = AddTOCMaster(tbody_element, heading);
+    // If level is a mainLevel, make it a TOC parent category
+    if ((level == mainLevel) && (!hasClass(heading, 'ignoreLink'))) {
+      toc_current_row = AddTOCMain(tbody_element, heading);
       ignoreChildren = false;
     }
 
-    if ((level == masterLevel) && (hasClass(heading, 'ignoreLink'))) {
+    if ((level == mainLevel) && (hasClass(heading, 'ignoreLink'))) {
       ignoreChildren = true;
     }
 
-    if ((level != masterLevel) && (!ignoreChildren)) {
+    if ((level != mainLevel) && (!ignoreChildren)) {
       AddTOCElements(toc_current_row, heading);
     }
 
@@ -111,8 +111,8 @@ function CreateHorizontalTOC(
   }
 }
 
-// Adds a master Table of Content heading
-function AddTOCMaster(tocTable, heading) {
+// Adds a main Table of Content heading
+function AddTOCMain(tocTable, heading) {
 
   // Add the table row scaffolding
   var toc_tr = document.createElement('tr');
@@ -140,7 +140,7 @@ function AddTOCMaster(tocTable, heading) {
   return (toc_td_div);
 }
 
-// Adds Table of Contents element to a master heading as children
+// Adds Table of Contents element to a main heading as children
 function AddTOCElements(toc_div, heading) {
 
   if (heading.offsetParent === null) {
@@ -159,7 +159,7 @@ function AddTOCElements(toc_div, heading) {
   }
 }
 
-function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
+function CreateVerticalTOC(headings, mainLevel, lowestLevel, tbody_element) {
 
   // Create the Column scaffolding
   var toc_tr = document.createElement('tr');
@@ -183,8 +183,8 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
 
     if (isNaN(level) || level < 1 || level > lowestLevel) continue;
 
-    // If level is a masterLevel, make it a TOC parent category
-    if ((level == masterLevel) && (!hasClass(heading, 'ignoreLink'))) {
+    // If level is a mainLevel, make it a TOC parent category
+    if ((level == mainLevel) && (!hasClass(heading, 'ignoreLink'))) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {
@@ -203,13 +203,13 @@ function CreateVerticalTOC(headings, masterLevel, lowestLevel, tbody_element) {
       }
     }
 
-    // If level is a masterLevel, but it's specified to ignore links, skip it
+    // If level is a mainLevel, but it's specified to ignore links, skip it
     // and its children.
-    if ((level == masterLevel) && (hasClass(heading, 'ignoreLink'))) {
+    if ((level == mainLevel) && (hasClass(heading, 'ignoreLink'))) {
       ignoreChildren = true;
     }
 
-    if ((level != masterLevel) && (!ignoreChildren)) {
+    if ((level != mainLevel) && (!ignoreChildren)) {
       if (heading.offsetParent === null) {
         // The element is currently hidden, so don't create a TOC entry
       } else {

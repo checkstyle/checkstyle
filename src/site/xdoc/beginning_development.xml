@@ -107,28 +107,28 @@ git push origin my-new-check
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git rebase -i master
+git rebase -i main
 git push --force origin my-new-check
         </code></pre></div>
       </div>
       <p>
-           6) Update current branch and local master by pulling changes that were done<br/>
+           6) Update current branch and local main by pulling changes that were done<br/>
            by other contributors:
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
-git checkout master
-git pull upstream master
-git push origin master
+git checkout main
+git pull upstream main
+git push origin main
         </code></pre></div>
       </div>
       <p>
-           7) Rebase your branch on your updated master:
+           7) Rebase your branch on your updated main:
       </p>
       <div class="wrap-content">
         <div class="wrapper"><pre class="prettyprint"><code class="language-text">
 git checkout my-new-check
-git rebase master
+git rebase main
         </code></pre></div>
       </div>
       <p>

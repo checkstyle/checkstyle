@@ -110,19 +110,19 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Returns {@link Configuration} instance for the given module name pulled
-     * from the {@code masterConfig}.
+     * from the {@code mainConfig}.
      *
-     * @param masterConfig The master configuration to examine.
+     * @param mainConfig The main configuration to examine.
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
      * @throws IllegalStateException if there is a problem retrieving the module
      *         or config.
      */
-    protected static Configuration getModuleConfig(Configuration masterConfig, String moduleName,
+    protected static Configuration getModuleConfig(Configuration mainConfig, String moduleName,
             String moduleId) {
         final Configuration result;
-        final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
+        final List<Configuration> configs = getModuleConfigs(mainConfig, moduleName);
         if (configs.size() == 1) {
             result = configs.get(0);
         }
@@ -160,17 +160,17 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Returns a list of all {@link Configuration} instances for the given module IDs in the
-     * {@code masterConfig}.
+     * {@code mainConfig}.
      *
-     * @param masterConfig The master configuration to pull results from.
+     * @param mainConfig The main configuration to pull results from.
      * @param moduleIds module IDs.
      * @return List of {@link Configuration} instances.
      * @throws CheckstyleException if there is an error with the config.
      */
-    protected static List<Configuration> getModuleConfigsByIds(Configuration masterConfig,
+    protected static List<Configuration> getModuleConfigsByIds(Configuration mainConfig,
             String... moduleIds) throws CheckstyleException {
         final List<Configuration> result = new ArrayList<>();
-        for (Configuration currentConfig : masterConfig.getChildren()) {
+        for (Configuration currentConfig : mainConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
                 for (Configuration moduleConfig : currentConfig.getChildren()) {
                     final String id = getProperty(moduleConfig, "id");
@@ -230,16 +230,16 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Returns a list of all {@link Configuration} instances for the given
-     * module name pulled from the {@code masterConfig}.
+     * module name pulled from the {@code mainConfig}.
      *
-     * @param masterConfig The master configuration to examine.
+     * @param mainConfig The main configuration to examine.
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
-    private static List<Configuration> getModuleConfigs(Configuration masterConfig,
+    private static List<Configuration> getModuleConfigs(Configuration mainConfig,
             String moduleName) {
         final List<Configuration> result = new ArrayList<>();
-        for (Configuration currentConfig : masterConfig.getChildren()) {
+        for (Configuration currentConfig : mainConfig.getChildren()) {
             if ("TreeWalker".equals(currentConfig.getName())) {
                 for (Configuration moduleConfig : currentConfig.getChildren()) {
                     if (moduleName.equals(moduleConfig.getName())) {

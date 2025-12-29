@@ -1073,18 +1073,18 @@
         For a complete example of a configuration XML document, examine
         files
         <a href=
-          "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
+          "https://github.com/checkstyle/checkstyle/blob/main/src/main/resources/sun_checks.xml">
           sun_checks.xml
         </a>
         and
         <a href=
-          "https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
+          "https://github.com/checkstyle/checkstyle/blob/main/src/main/resources/google_checks.xml">
           google_checks.xml
         </a>
         that checks the coding conventions.
         Example of all Checks/Modules usage could be found at checkstyle's code convention at file
         <a
-          href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle-checks.xml">
+          href="https://github.com/checkstyle/checkstyle/blob/main/config/checkstyle-checks.xml">
           checkstyle-checks.xml
         </a>
       </p>

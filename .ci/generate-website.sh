@@ -19,4 +19,4 @@ echo "Generating web site"
 ./mvnw -e --no-transfer-progress site -Pno-validations \
   -Dmaven.javadoc.skip=false -Djdepend.skip=false
 
-git checkout origin/master
+git checkout origin/main

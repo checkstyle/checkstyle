@@ -3,7 +3,7 @@ name: Checker
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches: '*'
 

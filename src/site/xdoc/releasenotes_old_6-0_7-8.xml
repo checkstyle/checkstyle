@@ -1299,7 +1299,7 @@
             doc: update for AnnotationLocation examples to be more exact. Author: Roman Ivanov
           </li>
           <li>
-            6 tests in Checkstyle master branch fail at clean Ubuntu 14.04 Docker container (Java 8, Maven 3). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3177">#3177</a>
+            6 tests in Checkstyle main branch fail at clean Ubuntu 14.04 Docker container (Java 8, Maven 3). Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3177">#3177</a>
           </li>
           <li>
             Avoid catching of InvalidPathException and AccessDeniedException in PropertyCacheFile#persist. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3259">#3259</a>
@@ -2124,10 +2124,10 @@
           deprecated AbstractIllegalCheck. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2451">#2451</a>
         </li>
         <li>
-          removed xdoc google style links to master. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2519">#2519</a>
+          removed xdoc google style links to main. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2519">#2519</a>
         </li>
         <li>
-          removed xdoc links to master. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2519">#2519</a>
+          removed xdoc links to main. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2519">#2519</a>
         </li>
         <li>
           added xdoc example url validation. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/2517">#2517</a>
@@ -4019,7 +4019,7 @@
           JUnit 4.12, ..... Author: Michal Kordas
         </li>
         <li>
-          <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/java/com/google/checkstyle/test">google-style-config-test</a> project for Google style is introduces, google_style wiki was updated. Author: Max Vetrenko
+          <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/java/com/google/checkstyle/test">google-style-config-test</a> project for Google style is introduces, google_style wiki was updated. Author: Max Vetrenko
         </li>
         <li>
           New maven profile "assembly" for quick build without any report and checks has been

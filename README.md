@@ -1,6 +1,6 @@
 # Checkstyle - Java Code Quality Tool
 
-![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+![](https://raw.githubusercontent.com/checkstyle/resources/main/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
 --------------------------
 
@@ -84,7 +84,7 @@ Checkstyle ends with 1 errors.
 ## Contributing
 
 Thanks for your interest in contributing to CheckStyle! Please see the
-[Contribution Guidelines](https://github.com/checkstyle/checkstyle/blob/master/.github/CONTRIBUTING.md)
+[Contribution Guidelines](https://github.com/checkstyle/checkstyle/blob/main/.github/CONTRIBUTING.md)
 for information on how to contribute to the project. This includes creating issues, submitting pull
 requests, and setting up your development environment.
 
@@ -150,8 +150,8 @@ Checkstyle uses libraries:
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true
 
-[coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=master
-[coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=master
+[coverage]:https://codecov.io/github/checkstyle/checkstyle?branch=main
+[coverage img]:https://codecov.io/github/checkstyle/checkstyle/coverage.svg?branch=main
 
 [mavenbadge]:https://search.maven.org/search?q=g:%22com.puppycrawl.tools%22%20AND%20a:%22checkstyle%22
 [mavenbadge img]:https://img.shields.io/maven-central/v/com.puppycrawl.tools/checkstyle.svg?label=Maven%20Central
@@ -162,20 +162,20 @@ Checkstyle uses libraries:
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
 [teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
 
-[circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
-[circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
+[circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/main
+[circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/main.svg?style=svg
 
 [cirrusci]: https://cirrus-ci.com/github/checkstyle/checkstyle
-[cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=master
+[cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=main
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
 
 [semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
-[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
+[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/main.svg?style=shields
 
-[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
-[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=main
+[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=main
 
 [backers.opencollective]:https://opencollective.com/checkstyle/
 [backers.opencollective img]:https://opencollective.com/checkstyle/backers/badge.svg

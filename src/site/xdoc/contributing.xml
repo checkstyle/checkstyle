@@ -128,7 +128,7 @@
       <p>
         We require regression testing for most functional changes, especially for check modules.
         See our <a href=
-        "https://github.com/checkstyle/contribution/tree/master/checkstyle-tester#checkstyle-tester">
+        "https://github.com/checkstyle/contribution/tree/main/checkstyle-tester#checkstyle-tester">
         regression testing tool documentation</a> for details.
       </p>
     </section>
@@ -148,7 +148,7 @@
         for your contribution. In the Pull Request description, add any explanations of the
         implementation nuances. Please read the Pull Request template for more requirements.
         <b>ATTENTION:</b> Please verify that the Pull Request contains ONLY your intended changes
-        and is based on the most recent HEAD of our master branch.
+        and is based on the most recent HEAD of our main branch.
       </p>
 
       <p>

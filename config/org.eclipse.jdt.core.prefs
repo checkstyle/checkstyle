@@ -1,5 +1,5 @@
 # The list of options supported by Eclipse compiler
-# https://github.com/eclipse/eclipse.jdt.core/blame/master/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+# https://github.com/eclipse/eclipse.jdt.core/blame/main/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
 
 org.eclipse.jdt.core.compiler.problem.APILeak=error
 org.eclipse.jdt.core.compiler.problem.annotatedTypeArgumentToUnannotated=error

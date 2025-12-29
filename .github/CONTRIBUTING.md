@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+![](https://raw.githubusercontent.com/checkstyle/resources/main/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
 ---------------------------------
 
@@ -63,7 +63,7 @@ This project and everyone participating in it is governed by the
   activity, feel free to ask if the issue is still being worked on.
 - **Read the Github docs.** Visit GitHub's [Pull Request Guide](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
   for information on how to submit a pull request.
-- **Follow the template.** Please follow the [CheckStyle Pull Request Template](https://github.com/checkstyle/checkstyle/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
+- **Follow the template.** Please follow the [CheckStyle Pull Request Template](https://github.com/checkstyle/checkstyle/blob/main/.github/PULL_REQUEST_TEMPLATE.md)
   that is provided in the pull request description when submitting a pull request.
 - **Run maven build locally.** `mvn clean verify` should pass on your local before
   submitting a pull request.
@@ -116,12 +116,12 @@ Some points to consider when opening an issue:
 
 **Do not file a public issue for security vulnerabilities.** Please contact the
 maintainers directly.
-see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/master/SECURITY.md)
+see the [Security Policy](https://github.com/checkstyle/checkstyle/blob/main/SECURITY.md)
 for more information.
 
 ## Google Summer of Code
 
-Please see the [GSoC Participant Guide](https://github.com/checkstyle/checkstyle/blob/master/.github/GSOC.md).
+Please see the [GSoC Participant Guide](https://github.com/checkstyle/checkstyle/blob/main/.github/GSOC.md).
 
 ## Asking Questions
 
@@ -134,6 +134,6 @@ for filing bugs and feature requests. You can also visit our
 
 *This document was inspired by work from the following communities:*
 
-- [CocoaPods](https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md)
-- [Docker](https://github.com/moby/moby/blob/master/CONTRIBUTING.md)
+- [CocoaPods](https://github.com/CocoaPods/CocoaPods/blob/main/CONTRIBUTING.md)
+- [Docker](https://github.com/moby/moby/blob/main/CONTRIBUTING.md)
 - [.github](https://github.com/jessesquires/.github)

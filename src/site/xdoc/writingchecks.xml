@@ -479,7 +479,7 @@ public class MethodLimitCheck extends AbstractCheck
         like <code>getChildCount()</code>. By now you have
         probably consulted the API documentation - and if not, you should -
         and found that
-        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">
+        <a href="https://github.com/checkstyle/checkstyle/blob/main/src/main/java/com/puppycrawl/tools/checkstyle/api/DetailAST.java">
             DetailsAST</a> additionally provides methods for navigating around
         in the syntax tree, like finding the next sibling of a node, the
         children of a node, the parent of a node, etc.
@@ -562,7 +562,7 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         To support internationalized violation messages, you need to create or reuse an existing
         messages.properties file alongside your Check class (
-        <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
+        <a href="https://github.com/checkstyle/checkstyle/blob/main/src/main/resources/com/puppycrawl/tools/checkstyle/checks/sizes/messages.properties">
           example</a>).
         The Java file and the properties files should be in the same
         directory. Add a symbolic violation code and an English

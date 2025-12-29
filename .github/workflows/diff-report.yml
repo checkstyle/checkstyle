@@ -16,7 +16,7 @@ env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
   # yamllint disable-line rule:line-length
-  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/main/checkstyle-tester/projects-to-test-on-for-github-action.properties"
   USER_LOGIN: ${{ github.event.issue.user.login }}
 
 on:
@@ -120,7 +120,7 @@ jobs:
           ./.ci/diff-report.sh download-files
 
       # set main checkstyle repo as an upstream
-      # Diff report will be generated taking upstream's master branch as a base branch
+      # Diff report will be generated taking upstream's main branch as a base branch
       - name: set upstream
         run: |
           bash
@@ -164,7 +164,7 @@ jobs:
           bash
           REF="forked/$BRANCH"
           REPO="../../../../checkstyle"
-          BASE_BRANCH="upstream/master"
+          BASE_BRANCH="upstream/main"
           export MAVEN_OPTS="-Xmx5g"
           if [ -f new_module_config.xml ]; then
             groovy diff.groovy -r "$REPO" -p "$REF" -pc new_module_config.xml -m single\
@@ -242,7 +242,7 @@ jobs:
           ./.ci/append-to-github-output.sh "message" "$(cat .ci-temp/message)"
 
       - name: Comment PR
-        uses: checkstyle/contribution/comment-action@master
+        uses: checkstyle/contribution/comment-action@main
         with:
           message: ${{steps.out.outputs.message}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

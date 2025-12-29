@@ -88,8 +88,8 @@
       <b>Release:</b><br/>
       <ul>
         <li>happens at the end of each month if functional changes exist in the
-          <a href="https://github.com/checkstyle/checkstyle/commits/master">
-          master branch of our repo</a>
+          <a href="https://github.com/checkstyle/checkstyle/commits/main">
+          main branch of our repo</a>
         </li>
         <li>can happen by request by any user who is impacted,
           but it is not always guaranteed.</li>
@@ -499,7 +499,7 @@
               <td>Part of the standard JDEE distribution -
                 <a href="https://github.com/jdee-emacs/jdee"/>
               </td>
-              <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">
+              <td><a href="https://github.com/jdee-emacs/jdee/blob/main/jdee-checkstyle.el">
                   configuration could be seen at jdee-checkstyle.el</a></td>
             </tr>
             <tr>

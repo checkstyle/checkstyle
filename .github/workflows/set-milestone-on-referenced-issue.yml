@@ -7,7 +7,7 @@ name: 'Milestone issue closed by PR'
 on:
   push:
     branches:
-      - master
+      - main
   workflow_dispatch:
     inputs:
       commits:
