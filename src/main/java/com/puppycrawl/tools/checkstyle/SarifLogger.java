@@ -448,6 +448,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      *
      * @param severityLevel the Severity level.
      * @return the rendered severity level in string.
+     * @throws IllegalStateException if the severity level is unexpected
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
         return switch (severityLevel) {
@@ -455,6 +456,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             case INFO -> "note";
             case WARNING -> "warning";
             case ERROR -> "error";
+            default -> throw new IllegalStateException(
+                "Unexpected SeverityLevel: " + severityLevel
+            );
         };
     }
 
