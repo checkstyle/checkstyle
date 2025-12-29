@@ -37,7 +37,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings with default regex.
      */
     @Test
-    public void singleDefault() throws Exception {
+    public void testSingleDefault() throws Exception {
 
         final String[] expected = {
             "19:23: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -59,7 +59,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings all warnings disabled on everything.
      */
     @Test
-    public void singleAll() throws Exception {
+    public void testSingleAll() throws Exception {
 
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -100,7 +100,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on everything.
      */
     @Test
-    public void singleNoUnchecked() throws Exception {
+    public void testSingleNoUnchecked() throws Exception {
 
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -123,7 +123,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
      */
     @Test
-    public void singleNoUncheckedTokens() throws Exception {
+    public void testSingleNoUncheckedTokens() throws Exception {
 
         final String[] expected = {
             "14:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -143,7 +143,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings un* warning disabled on everything.
      */
     @Test
-    public void singleNoUnWildcard() throws Exception {
+    public void testSingleNoUnWildcard() throws Exception {
 
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -175,7 +175,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
      */
     @Test
-    public void singleNoUncheckedUnused() throws Exception {
+    public void testSingleNoUncheckedUnused() throws Exception {
 
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -204,7 +204,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
      */
     @Test
-    public void singleNoUncheckedUnusedAll() throws Exception {
+    public void testSingleNoUncheckedUnusedAll() throws Exception {
 
         final String[] expected = {
             "16:19: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -245,7 +245,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings with default regex.
      */
     @Test
-    public void compactDefault() throws Exception {
+    public void testCompactDefault() throws Exception {
 
         final String[] expected = {
             "19:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -259,7 +259,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactDefaultNonConstant() throws Exception {
+    public void testCompactDefaultNonConstant() throws Exception {
 
         final String[] expected = {
             "19:24: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -288,7 +288,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings all warnings disabled on everything.
      */
     @Test
-    public void compactAll() throws Exception {
+    public void testCompactAll() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -315,7 +315,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactAllNonConstant() throws Exception {
+    public void testCompactAllNonConstant() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -375,7 +375,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on everything.
      */
     @Test
-    public void compactNoUnchecked() throws Exception {
+    public void testCompactNoUnchecked() throws Exception {
 
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -393,7 +393,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
      */
     @Test
-    public void compactNoUncheckedTokens() throws Exception {
+    public void testCompactNoUncheckedTokens() throws Exception {
 
         final String[] expected = {
             "14:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -404,7 +404,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactNoUncheckedTokensNonConstant() throws Exception {
+    public void testCompactNoUncheckedTokensNonConstant() throws Exception {
 
         final String[] expected = {
             "14:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -421,7 +421,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings un* warning disabled on everything.
      */
     @Test
-    public void compactNoUnWildcard() throws Exception {
+    public void testCompactNoUnWildcard() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -441,7 +441,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactNoUnWildcardNonConstant() throws Exception {
+    public void testCompactNoUnWildcardNonConstant() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -482,7 +482,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
      */
     @Test
-    public void compactNoUncheckedUnused() throws Exception {
+    public void testCompactNoUncheckedUnused() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -501,7 +501,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactNoUncheckedUnusedNonConstant() throws Exception {
+    public void testCompactNoUncheckedUnusedNonConstant() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -536,7 +536,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
      */
     @Test
-    public void compactNoUncheckedUnusedAll() throws Exception {
+    public void testCompactNoUncheckedUnusedAll() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -563,7 +563,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void compactNoUncheckedUnusedAllNonConstant() throws Exception {
+    public void testCompactNoUncheckedUnusedAllNonConstant() throws Exception {
 
         final String[] expected = {
             "15:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -623,7 +623,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings with default regex.
      */
     @Test
-    public void expandedDefault() throws Exception {
+    public void testExpandedDefault() throws Exception {
 
         final String[] expected = {
             "19:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -637,7 +637,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedDefaultNonConstant() throws Exception {
+    public void testExpandedDefaultNonConstant() throws Exception {
 
         final String[] expected = {
             "19:30: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "   "),
@@ -664,7 +664,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings all warnings disabled on everything.
      */
     @Test
-    public void expandedAll() throws Exception {
+    public void testExpandedAll() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -691,7 +691,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedAllNonConstant() throws Exception {
+    public void testExpandedAllNonConstant() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -747,7 +747,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on everything.
      */
     @Test
-    public void expandedNoUnchecked() throws Exception {
+    public void testExpandedNoUnchecked() throws Exception {
 
         final String[] expected = {
             "16:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -762,7 +762,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedNoUncheckedNonConstant() throws Exception {
+    public void testExpandedNoUncheckedNonConstant() throws Exception {
 
         final String[] expected = {
             "16:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -789,7 +789,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked warning disabled on certain tokens.
      */
     @Test
-    public void expandedNoUncheckedTokens() throws Exception {
+    public void testExpandedNoUncheckedTokens() throws Exception {
 
         final String[] expected = {
             "14:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -800,7 +800,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedNoUncheckedTokensNonConstant() throws Exception {
+    public void testExpandedNoUncheckedTokensNonConstant() throws Exception {
 
         final String[] expected = {
             "14:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -817,7 +817,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings un* warning disabled on everything.
      */
     @Test
-    public void expandedNoUnWildcard() throws Exception {
+    public void testExpandedNoUnWildcard() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -837,7 +837,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedNoUnWildcardNonConstant() throws Exception {
+    public void testExpandedNoUnWildcardNonConstant() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -874,7 +874,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings unchecked, unused warning disabled on everything.
      */
     @Test
-    public void expandedNoUncheckedUnused() throws Exception {
+    public void testExpandedNoUncheckedUnused() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -893,7 +893,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedNoUncheckedUnusedNonConstant() throws Exception {
+    public void testExpandedNoUncheckedUnusedNonConstant() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -929,7 +929,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
      * Tests SuppressWarnings *, unchecked, unused warning disabled on everything.
      */
     @Test
-    public void expandedNoUncheckedUnusedAll() throws Exception {
+    public void testExpandedNoUncheckedUnusedAll() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -956,7 +956,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void expandedNoUncheckedUnusedAllNonConstant() throws Exception {
+    public void testExpandedNoUncheckedUnusedAllNonConstant() throws Exception {
 
         final String[] expected = {
             "15:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -1009,7 +1009,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void uncheckedInConstant() throws Exception {
+    public void testUncheckedInConstant() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -1018,7 +1018,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void valuePairAnnotation() throws Exception {
+    public void testValuePairAnnotation() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -1027,7 +1027,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void workingProperlyOnComplexAnnotations() throws Exception {
+    public void testWorkingProperlyOnComplexAnnotations() throws Exception {
 
         final String[] expected = {
             "31:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -1040,7 +1040,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void workingProperlyOnComplexAnnotationsNonConstant() throws Exception {
+    public void testWorkingProperlyOnComplexAnnotationsNonConstant() throws Exception {
 
         final String[] expected = {
             "31:34: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
@@ -1054,7 +1054,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void suppressWarningsRecords() throws Exception {
+    public void testSuppressWarningsRecords() throws Exception {
 
         final String[] expected = {
             "23:28: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
@@ -1082,7 +1082,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void suppressWarningsPatternVariables() throws Exception {
+    public void testSuppressWarningsPatternVariables() throws Exception {
 
         final String[] expected = {
             "18:57: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),

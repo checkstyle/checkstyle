@@ -49,7 +49,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void load() throws Exception {
+    public void testLoad() throws CheckstyleException {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
@@ -59,7 +59,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void wrongFormatUri() throws Exception {
+    public void testWrongFormatUri() throws Exception {
         try {
             ImportControlLoader.load(new URI("aaa://"
                     + getPath("InputImportControlLoaderComplete.xml")));
@@ -78,7 +78,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void extraElementInConfig() throws Exception {
+    public void testExtraElementInConfig() throws Exception {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
@@ -89,7 +89,7 @@ public class ImportControlLoaderTest {
 
     @Test
     // UT uses Reflection to avoid removing null-validation from static method
-    public void safeGetThrowsException() {
+    public void testSafeGetThrowsException() {
         final AttributesImpl attr = new AttributesImpl() {
             @Override
             public String getValue(int index) {
@@ -117,7 +117,7 @@ public class ImportControlLoaderTest {
     // UT uses Reflection to cover IOException from 'loader.parseInputSource(source);'
     // because this is possible situation (though highly unlikely), which depends on hardware
     // and is difficult to emulate
-    public void loadThrowsException() {
+    public void testLoadThrowsException() {
         final InputSource source = new InputSource();
         try {
             final Class<?> clazz = ImportControlLoader.class;
@@ -138,7 +138,7 @@ public class ImportControlLoaderTest {
     }
 
     @Test
-    public void inputStreamFailsOnRead() throws Exception {
+    public void testInputStreamFailsOnRead() throws Exception {
         try (InputStream inputStream = mock()) {
             final int available = doThrow(IOException.class).when(inputStream).available();
             final URL url = mock();

@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -61,7 +62,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void expandOnMouseDoubleClick() {
+    public void testExpandOnMouseDoubleClick() {
         final MouseEvent mouseDoubleClickEvent =
                 new MouseEvent(treeTable, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 2, false);
         assertWithMessage("The tree should be initially expanded")
@@ -78,7 +79,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void nothingChangedOnMouseSingleClick() {
+    public void testNothingChangedOnMouseSingleClick() {
         final MouseEvent mouseSingleClickEvent =
                 new MouseEvent(treeTable, MouseEvent.MOUSE_CLICKED, 0, 0, 0, 0, 1, false);
         assertWithMessage("The tree should be initially expanded")
@@ -91,7 +92,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void expandOnEnterKey() {
+    public void testExpandOnEnterKey() {
         final ActionEvent expandCollapseActionEvent =
                 new ActionEvent(treeTable, ActionEvent.ACTION_PERFORMED, "expand/collapse");
         final ActionListener actionForEnter =
@@ -110,7 +111,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void findNodesAllClassDefs() throws Exception {
+    public void testFindNodesAllClassDefs() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
         final JButton findNodeButton = findComponentByName(mainFrame,
@@ -135,7 +136,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void findNodesIdent() throws Exception {
+    public void testFindNodesIdent() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
         final JButton findNodeButton = findComponentByName(mainFrame,
@@ -174,7 +175,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void findNodesMissingElements() throws Exception {
+    public void testFindNodesMissingElements() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
         final JButton findNodeButton = findComponentByName(mainFrame,
@@ -192,7 +193,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void findNodesUnexpectedTokenAtStart() throws Exception {
+    public void testFindNodesUnexpectedTokenAtStart() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
         final JButton findNodeButton = findComponentByName(mainFrame,
@@ -210,7 +211,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void findNodesInvalidCharacterInExpression() throws Exception {
+    public void testFindNodesInvalidCharacterInExpression() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
         final JButton findNodeButton = findComponentByName(mainFrame,
@@ -228,7 +229,7 @@ public class TreeTableTest extends AbstractGuiTestSupport {
     }
 
     @Test
-    public void treeModelAdapterMethods() throws Exception {
+    public void testTreeModelAdapterMethods() throws IOException {
         final MainFrame mainFrame = new MainFrame();
         mainFrame.openFile(new File(getPath("InputTreeTableXpathAreaPanel.java")));
 

@@ -37,7 +37,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final MissingNullCaseInSwitchCheck check = new MissingNullCaseInSwitchCheck();
         final int[] expected = {TokenTypes.LITERAL_SWITCH};
 
@@ -53,7 +53,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void missingNullCaseInSwitchWithPattern() throws Exception {
+    public void testMissingNullCaseInSwitchWithPattern() throws Exception {
         final String[] expected = {
             "12:9: " + getCheckMessage(MSG_KEY),
             "31:9: " + getCheckMessage(MSG_KEY),
@@ -67,7 +67,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void missingNullCaseInSwitchWithPattern2() throws Exception {
+    public void testMissingNullCaseInSwitchWithPattern2() throws Exception {
         final String[] expected = {
             "11:9: " + getCheckMessage(MSG_KEY),
             "42:9: " + getCheckMessage(MSG_KEY),
@@ -78,7 +78,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void missingNullCaseInSwitchWithRecordPattern() throws Exception {
+    public void testMissingNullCaseInSwitchWithRecordPattern() throws Exception {
         final String[] expected = {
             "12:9: " + getCheckMessage(MSG_KEY),
             "32:9: " + getCheckMessage(MSG_KEY),
@@ -92,7 +92,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void missingNullCaseInSwitchWithStringLiterals() throws Exception {
+    public void testMissingNullCaseInSwitchWithStringLiterals() throws Exception {
         final String[] expected = {
             "12:9: " + getCheckMessage(MSG_KEY),
             "23:9: " + getCheckMessage(MSG_KEY),
@@ -110,7 +110,7 @@ public class MissingNullCaseInSwitchCheckTest extends
     }
 
     @Test
-    public void missingNullCaseInSwitchWithPrimitives() throws Exception {
+    public void testMissingNullCaseInSwitchWithPrimitives() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputMissingNullCaseInSwitchWithPrimitives.java"),

@@ -31,132 +31,132 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void whitespaceAroundBasic() throws Exception {
+    public void testWhitespaceAroundBasic() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundBasic.java"));
     }
 
     @Test
-    public void whitespaceAroundBasicFormatted() throws Exception {
+    public void testWhitespaceAroundBasicFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundBasic.java"));
     }
 
     @Test
-    public void whitespaceAroundEmptyTypesCycles() throws Exception {
+    public void testWhitespaceAroundEmptyTypesCycles() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundEmptyTypesAndCycles.java"));
     }
 
     @Test
-    public void whitespaceAroundEmptyTypesCyclesFormatted() throws Exception {
+    public void testWhitespaceAroundEmptyTypesCyclesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundEmptyTypesAndCycles.java"));
     }
 
     @Test
-    public void whitespaceAfterBad() throws Exception {
+    public void testWhitespaceAfterBad() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAfterBad.java"));
     }
 
     @Test
-    public void whitespaceAfterBadFormatted() throws Exception {
+    public void testWhitespaceAfterBadFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterBad.java"));
     }
 
     @Test
-    public void whitespaceAfterGood() throws Exception {
+    public void testWhitespaceAfterGood() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAfterGood.java"));
     }
 
     @Test
-    public void whitespaceAfterGoodFormatted() throws Exception {
+    public void testWhitespaceAfterGoodFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterGood.java"));
     }
 
     @Test
-    public void parenPad() throws Exception {
+    public void testParenPad() throws Exception {
         verifyWithWholeConfig(getPath("InputParenPad.java"));
     }
 
     @Test
-    public void parenPadFormatted() throws Exception {
+    public void testParenPadFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedParenPad.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeEmptyForLoop() throws Exception {
+    public void testNoWhitespaceBeforeEmptyForLoop() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEmptyForLoop.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeEmptyForLoopFormatted() throws Exception {
+    public void testNoWhitespaceBeforeEmptyForLoopFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeEmptyForLoop.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeColonOfLabel() throws Exception {
+    public void testNoWhitespaceBeforeColonOfLabel() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeColonOfLabel.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeColonOfLabelFormatted() throws Exception {
+    public void testNoWhitespaceBeforeColonOfLabelFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeColonOfLabel.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeAnnotations() throws Exception {
+    public void testNoWhitespaceBeforeAnnotations() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeAnnotations.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeAnnotationsFormatted() throws Exception {
+    public void testNoWhitespaceBeforeAnnotationsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeAnnotations.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeEllipsis() throws Exception {
+    public void testNoWhitespaceBeforeEllipsis() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeEllipsis.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeEllipsisFormatted() throws Exception {
+    public void testNoWhitespaceBeforeEllipsisFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeEllipsis.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeCaseDefaultColon() throws Exception {
+    public void testNoWhitespaceBeforeCaseDefaultColon() throws Exception {
         verifyWithWholeConfig(getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"));
     }
 
     @Test
-    public void noWhitespaceBeforeCaseDefaultColonFormatted() throws Exception {
+    public void testNoWhitespaceBeforeCaseDefaultColonFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNoWhitespaceBeforeCaseDefaultColon.java"));
     }
 
     @Test
-    public void methodParamPad() throws Exception {
+    public void testMethodParamPad() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodParamPad2.java"));
     }
 
     @Test
-    public void methodParamPadFormatted() throws Exception {
+    public void testMethodParamPadFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedMethodParamPad2.java"));
     }
 
     @Test
-    public void whitespaceAroundGenerics() throws Exception {
+    public void testWhitespaceAroundGenerics() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundGenerics.java"));
     }
 
     @Test
-    public void whitespaceAroundGenericsFormatted() throws Exception {
+    public void testWhitespaceAroundGenericsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundGenerics.java"));
     }
 
     @Test
-    public void genericWhitespace() throws Exception {
+    public void testGenericWhitespace() throws Exception {
         verifyWithWholeConfig(getPath("InputGenericWhitespace.java"));
     }
 
     @Test
-    public void genericWhitespaceFormatted() throws Exception {
+    public void testGenericWhitespaceFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedGenericWhitespace.java"));
     }
 
@@ -171,52 +171,52 @@ public class HorizontalWhitespaceTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void whitespaceAroundWhen() throws Exception {
+    public void testWhitespaceAroundWhen() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundWhen.java"));
     }
 
     @Test
-    public void whitespaceInsideArrayInitializer() throws Exception {
+    public void testWhitespaceInsideArrayInitializer() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceInsideArrayInitializer.java"));
     }
 
     @Test
-    public void whitespaceInsideArrayInitializerFormatted() throws Exception {
+    public void testWhitespaceInsideArrayInitializerFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceInsideArrayInitializer.java"));
     }
 
     @Test
-    public void whitespaceAroundWhenFormatted() throws Exception {
+    public void testWhitespaceAroundWhenFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundWhen.java"));
     }
 
     @Test
-    public void whitespaceAroundArrow() throws Exception {
+    public void testWhitespaceAroundArrow() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAroundArrow.java"));
     }
 
     @Test
-    public void formattedWhitespaceAroundArrow() throws Exception {
+    public void testFormattedWhitespaceAroundArrow() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAroundArrow.java"));
     }
 
     @Test
-    public void whitespaceAfterDoubleSlashes() throws Exception {
+    public void testWhitespaceAfterDoubleSlashes() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceAfterDoubleSlashes.java"));
     }
 
     @Test
-    public void whitespaceAfterDoubleSlashesFormatted() throws Exception {
+    public void testWhitespaceAfterDoubleSlashesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceAfterDoubleSlashes.java"));
     }
 
     @Test
-    public void whitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
 
     @Test
-    public void whitespaceBeforeLeftCurlyOfEmptyBlocksFormatted() throws Exception {
+    public void testWhitespaceBeforeLeftCurlyOfEmptyBlocksFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedWhitespaceBeforeLeftCurlyOfEmptyBlock.java"));
     }
 }

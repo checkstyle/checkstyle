@@ -39,7 +39,7 @@ class BaseCellEditorTest {
     }
 
     @Test
-    public void stopCellEditing() {
+    public void testStopCellEditing() {
 
         final BaseCellEditor cellEditor = new BaseCellEditor();
 
@@ -49,7 +49,7 @@ class BaseCellEditorTest {
     }
 
     @Test
-    public void fireEditingStoppedAndCanceled() {
+    public void testFireEditingStoppedAndCanceled() {
 
         final BaseCellEditor cellEditor = new BaseCellEditor();
 

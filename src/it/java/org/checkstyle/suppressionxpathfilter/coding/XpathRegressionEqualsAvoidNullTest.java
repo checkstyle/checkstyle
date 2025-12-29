@@ -44,7 +44,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void equals() throws Exception {
+    public void testEquals() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEqualsAvoidNull.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionEqualsAvoidNullTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void equalsIgnoreCase() throws Exception {
+    public void testEqualsIgnoreCase() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEqualsAvoidNullIgnoreCase.java"));
 

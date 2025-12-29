@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 public class CrAwareLexerTest {
 
     @Test
-    public void consumeCarriageReturnZeroCharPositionInLine() {
+    public void testConsumeCarriageReturnZeroCharPositionInLine() {
         final String text = "\r";
         final CharStream charStream = CharStreams.fromString(text);
         final CrAwareLexerSimulator lexer =
@@ -41,7 +41,7 @@ public class CrAwareLexerTest {
     }
 
     @Test
-    public void consumeCarriageReturnNewline() {
+    public void testConsumeCarriageReturnNewline() {
         final String text = "\r";
         final CharStream charStream = CharStreams.fromString(text);
         final CrAwareLexerSimulator lexer =
@@ -54,7 +54,7 @@ public class CrAwareLexerTest {
     }
 
     @Test
-    public void consumeWindowsNewlineZeroCharPositionInLine() {
+    public void testConsumeWindowsNewlineZeroCharPositionInLine() {
         final String text = "\r\n";
         final CharStream charStream = CharStreams.fromString(text);
         final CrAwareLexerSimulator lexer =
@@ -68,7 +68,7 @@ public class CrAwareLexerTest {
     }
 
     @Test
-    public void consumeWindowsNewline() {
+    public void testConsumeWindowsNewline() {
         final String text = "\r\n";
         final CharStream charStream = CharStreams.fromString(text);
         final CrAwareLexerSimulator lexer =

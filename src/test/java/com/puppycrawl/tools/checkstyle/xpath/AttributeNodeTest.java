@@ -39,21 +39,21 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getNamespaceUri() {
+    public void testGetNamespaceUri() {
         assertWithMessage("Attribute node should have default namespace URI")
             .that(attributeNode.getNamespaceUri())
             .isEqualTo(NamespaceUri.NULL);
     }
 
     @Test
-    public void getUri() {
+    public void testGetUri() {
         assertWithMessage("Attribute node should have blank URI")
             .that(attributeNode.getURI())
             .isEqualTo("");
     }
 
     @Test
-    public void compareOrder() {
+    public void testCompareOrder() {
         try {
             attributeNode.compareOrder(null);
             assertWithMessage("Exception is excepted").fail();
@@ -66,7 +66,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getDepth() {
+    public void testGetDepth() {
         final UnsupportedOperationException exception =
             getExpectedThrowable(UnsupportedOperationException.class, attributeNode::getDepth);
         assertWithMessage("Invalid exception message")
@@ -76,14 +76,14 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void hasChildNodes() {
+    public void testHasChildNodes() {
         assertWithMessage("Attribute node shouldn't have children")
             .that(attributeNode.hasChildNodes())
             .isFalse();
     }
 
     @Test
-    public void getAttributeValue() {
+    public void testGetAttributeValue() {
         try {
             attributeNode.getAttributeValue("", "");
             assertWithMessage("Exception is excepted").fail();
@@ -96,7 +96,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getChildren() {
+    public void testGetChildren() {
         final UnsupportedOperationException exception =
             getExpectedThrowable(UnsupportedOperationException.class, attributeNode::getChildren);
         assertWithMessage("Invalid exception message")
@@ -106,7 +106,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getParent() {
+    public void testGetParent() {
         try {
             attributeNode.getParent();
             assertWithMessage("Exception is excepted").fail();
@@ -119,7 +119,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getRoot() {
+    public void testGetRoot() {
         try {
             attributeNode.getRoot();
             assertWithMessage("Exception is excepted").fail();
@@ -132,14 +132,14 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getStringValue() {
+    public void testGetStringValue() {
         assertWithMessage("Invalid string value")
             .that(attributeNode.getStringValue())
             .isEqualTo("value");
     }
 
     @Test
-    public void iterate() {
+    public void testIterate() {
         try (AxisIterator ignored = attributeNode.iterateAxis(AxisInfo.SELF)) {
             assertWithMessage("Exception is excepted").fail();
         }
@@ -151,7 +151,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getLineNumber() {
+    public void testGetLineNumber() {
         try {
             attributeNode.getLineNumber();
             assertWithMessage("Exception is excepted").fail();
@@ -164,7 +164,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getColumnNumber() {
+    public void testGetColumnNumber() {
         try {
             attributeNode.getColumnNumber();
             assertWithMessage("Exception is excepted").fail();
@@ -177,7 +177,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getTokenType() {
+    public void testGetTokenType() {
         try {
             attributeNode.getTokenType();
             assertWithMessage("Exception is excepted").fail();
@@ -190,7 +190,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getUnderlyingNode() {
+    public void testGetUnderlyingNode() {
         try {
             attributeNode.getUnderlyingNode();
             assertWithMessage("Exception is excepted").fail();
@@ -203,7 +203,7 @@ public class AttributeNodeTest {
     }
 
     @Test
-    public void getAllNamespaces() {
+    public void testGetAllNamespaces() {
         try {
             attributeNode.getAllNamespaces();
             assertWithMessage("Exception is excepted").fail();

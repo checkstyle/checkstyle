@@ -44,7 +44,7 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void missingCtor() throws Exception {
+    public void testMissingCtor() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingCtor.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionMissingCtorTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void innerClass() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingCtorInner.java"));
 

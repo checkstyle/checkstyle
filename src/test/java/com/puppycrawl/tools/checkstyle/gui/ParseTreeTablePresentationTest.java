@@ -52,7 +52,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void root() throws Exception {
+    public void testRoot() throws Exception {
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputParseTreeTablePresentation.java")),
                 JavaParser.Options.WITH_COMMENTS);
@@ -62,7 +62,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void childCount() {
+    public void testChildCount() {
         final int childCount = new ParseTreeTablePresentation(null).getChildCount(tree);
         assertWithMessage("Invalid child count")
             .that(childCount)
@@ -70,7 +70,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void childCountInJavaAndJavadocMode() {
+    public void testChildCountInJavaAndJavadocMode() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final int childCount = parseTree.getChildCount(tree);
@@ -80,7 +80,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void child() {
+    public void testChild() {
         final Object child = new ParseTreeTablePresentation(null).getChild(tree, 1);
         assertWithMessage("Invalid child type")
                 .that(child)
@@ -92,7 +92,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void childInJavaAndJavadocMode() {
+    public void testChildInJavaAndJavadocMode() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final Object child = parseTree.getChild(tree, 1);
@@ -106,7 +106,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void commentChildCount() {
+    public void testCommentChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
@@ -117,7 +117,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void commentChildCountInJavaAndJavadocMode() {
+    public void testCommentChildCountInJavaAndJavadocMode() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
@@ -129,7 +129,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void commentChildInJavaAndJavadocMode() {
+    public void testCommentChildInJavaAndJavadocMode() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         final DetailAST commentContentNode = tree.getLastChild().getLastChild()
@@ -141,7 +141,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void javadocCommentChildCount() {
+    public void testJavadocCommentChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         final int commentChildCount = parseTree.getChildCount(commentContentNode);
@@ -156,7 +156,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void javadocCommentChild() {
+    public void testJavadocCommentChild() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
@@ -180,7 +180,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void javadocChildCount() {
+    public void testJavadocChildCount() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
@@ -199,7 +199,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void javadocChild() {
+    public void testJavadocChild() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         parseTree.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
@@ -222,7 +222,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void getIndexOfChild() {
+    public void testGetIndexOfChild() {
         DetailAST ithChild = tree.getFirstChild();
         assertWithMessage("Child must not be null")
             .that(ithChild)
@@ -257,7 +257,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
      *  </pre>
      */
     @Test
-    public void getValueAt() {
+    public void testGetValueAt() {
         final DetailAST node = tree.getFirstChild()
             .getNextSibling()
             .getNextSibling()
@@ -305,7 +305,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void getValueAtDetailNode() {
+    public void testGetValueAtDetailNode() {
         final DetailAST commentContentNode = tree.getFirstChild().getNextSibling().getFirstChild();
         assertWithMessage("Comment node cannot be null")
             .that(commentContentNode)
@@ -363,7 +363,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void columnMethods() {
+    public void testColumnMethods() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         assertWithMessage("Invalid type")
             .that(parseTree.getColumnClass(0))
@@ -397,7 +397,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void columnNames() {
+    public void testColumnNames() {
         final ParseTreeTablePresentation parseTree = new ParseTreeTablePresentation(null);
         assertWithMessage("Invalid column count")
             .that(parseTree.getColumnCount())

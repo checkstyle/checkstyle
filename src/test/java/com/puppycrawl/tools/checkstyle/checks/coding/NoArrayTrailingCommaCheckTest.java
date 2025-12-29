@@ -49,7 +49,7 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final NoArrayTrailingCommaCheck check = new NoArrayTrailingCommaCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

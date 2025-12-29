@@ -36,7 +36,7 @@ public class UpperEllCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final UpperEllCheck checkObj = new UpperEllCheck();
         final int[] expected = {TokenTypes.NUM_LONG};
         assertWithMessage("Default required tokens are invalid")
@@ -45,7 +45,7 @@ public class UpperEllCheckTest
     }
 
     @Test
-    public void withChecker()
+    public void testWithChecker()
             throws Exception {
         final String[] expected = {
             "29:40: " + getCheckMessage(MSG_KEY),
@@ -55,7 +55,7 @@ public class UpperEllCheckTest
     }
 
     @Test
-    public void acceptableTokens() {
+    public void testAcceptableTokens() {
         final int[] expected = {TokenTypes.NUM_LONG };
         final UpperEllCheck check = new UpperEllCheck();
         final int[] actual = check.getAcceptableTokens();

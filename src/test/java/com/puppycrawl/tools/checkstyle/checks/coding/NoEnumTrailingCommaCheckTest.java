@@ -34,7 +34,7 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultOne() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
             "23:12: " + getCheckMessage(MSG_KEY),
             "28:12: " + getCheckMessage(MSG_KEY),
@@ -50,7 +50,7 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultTwo() throws Exception {
+    public void testDefaultTwo() throws Exception {
         final String[] expected = {
             "21:55: " + getCheckMessage(MSG_KEY),
             "25:14: " + getCheckMessage(MSG_KEY),
@@ -67,7 +67,7 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultThree() throws Exception {
+    public void testDefaultThree() throws Exception {
         final String[] expected = {
             "13:21: " + getCheckMessage(MSG_KEY),
             "33:10: " + getCheckMessage(MSG_KEY),
@@ -80,7 +80,7 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final NoEnumTrailingCommaCheck check = new NoEnumTrailingCommaCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

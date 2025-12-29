@@ -94,7 +94,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void defaultFlawless() throws Exception {
+    public final void testDefaultFlawless() throws IOException {
         TestRootModuleChecker.reset();
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
@@ -106,7 +106,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void pathsOneFile() throws Exception {
+    public final void testPathsOneFile() throws IOException {
         // given
         TestRootModuleChecker.reset();
 
@@ -134,7 +134,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void pathsFileWithLogVerification() throws Exception {
+    public final void testPathsFileWithLogVerification() throws IOException {
         // given
         TestRootModuleChecker.reset();
         final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
@@ -181,7 +181,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void baseDirPresence() throws Exception {
+    public final void testBaseDirPresence() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
@@ -209,7 +209,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void pathsDirectoryWithNestedFile() throws Exception {
+    public final void testPathsDirectoryWithNestedFile() throws IOException {
         // given
         TestRootModuleChecker.reset();
 
@@ -243,7 +243,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void customRootModule() throws Exception {
+    public final void testCustomRootModule() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -256,7 +256,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void fileSet() throws Exception {
+    public final void testFileSet() throws IOException {
         TestRootModuleChecker.reset();
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
         final FileSet examinationFileSet = new FileSet();
@@ -277,7 +277,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void noConfigFile() throws Exception {
+    public final void testNoConfigFile() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
@@ -296,7 +296,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void noFileOrPathSpecified() {
+    public void testNoFileOrPathSpecified() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
 
@@ -316,7 +316,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void nonExistentConfig() throws Exception {
+    public final void testNonExistentConfig() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(getPath(NOT_EXISTING_FILE));
         antTask.setProject(new Project());
@@ -333,7 +333,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void emptyConfigFile() throws Exception {
+    public final void testEmptyConfigFile() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(getPath("InputCheckstyleAntTaskEmptyConfig.xml"));
         antTask.setProject(new Project());
@@ -350,7 +350,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void noFile() throws Exception {
+    public final void testNoFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
@@ -361,7 +361,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void maxWarningExceeded() throws Exception {
+    public final void testMaxWarningExceeded() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(WARNING_INPUT)));
         antTask.setMaxWarnings(0);
@@ -380,7 +380,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void maxErrorsExceeded() throws Exception {
+    public final void testMaxErrorsExceeded() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setMaxErrors(1);
@@ -394,7 +394,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void maxErrors() throws Exception {
+    public final void testMaxErrors() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -408,7 +408,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void failureProperty() throws Exception {
+    public final void testFailureProperty() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
@@ -433,7 +433,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void overrideProperty() throws Exception {
+    public final void testOverrideProperty() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -457,7 +457,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void executeIgnoredModules() throws Exception {
+    public final void testExecuteIgnoredModules() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setFailOnViolation(false);
@@ -501,7 +501,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void configurationByUrl() throws Exception {
+    public final void testConfigurationByUrl() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
@@ -527,7 +527,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void configurationByResource() throws Exception {
+    public final void testConfigurationByResource() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
         antTask.setConfig(getPath(CONFIG_FILE));
@@ -552,7 +552,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void simultaneousConfiguration() throws Exception {
+    public final void testSimultaneousConfiguration() throws IOException {
         final File file = new File(getPath(CONFIG_FILE));
         final URL url = file.toURI().toURL();
 
@@ -568,7 +568,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void setPropertiesFile() throws Exception {
+    public final void testSetPropertiesFile() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -583,7 +583,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void setPropertiesNonExistentFile() throws Exception {
+    public final void testSetPropertiesNonExistentFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
@@ -596,7 +596,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void xmlOutput() throws Exception {
+    public final void testXmlOutput() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setFailOnViolation(false);
@@ -623,7 +623,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void sarifOutput() throws Exception {
+    public final void testSarifOutput() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setFailOnViolation(false);
@@ -661,7 +661,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void createListenerException() throws Exception {
+    public final void testCreateListenerException() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -678,7 +678,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void createListenerExceptionWithXmlLogger() throws Exception {
+    public final void testCreateListenerExceptionWithXmlLogger() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -697,7 +697,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void createListenerExceptionWithSarifLogger() throws Exception {
+    public final void testCreateListenerExceptionWithSarifLogger() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -716,7 +716,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void setInvalidType() {
+    public void testSetInvalidType() {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 () -> formatterType.setValue("foo"),
@@ -727,7 +727,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void setFileValueByFile() throws Exception {
+    public void testSetFileValueByFile() throws IOException {
         final String filename = getPath("InputCheckstyleAntTaskCheckstyleAntTest.properties");
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
         property.setFile(new File(filename));
@@ -737,7 +737,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void defaultLoggerListener() throws Exception {
+    public void testDefaultLoggerListener() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setUseFile(false);
         assertWithMessage("Listener instance has unexpected type")
@@ -746,7 +746,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void defaultLoggerListenerWithToFile() throws Exception {
+    public void testDefaultLoggerListenerWithToFile() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setUseFile(false);
         formatter.setTofile(new File("target/"));
@@ -756,7 +756,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void xmlLoggerListener() throws Exception {
+    public void testXmlLoggerListener() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -768,7 +768,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void xmlLoggerListenerWithToFile() throws Exception {
+    public void testXmlLoggerListenerWithToFile() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -781,7 +781,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void defaultLoggerWithNullToFile() throws Exception {
+    public void testDefaultLoggerWithNullToFile() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setTofile(null);
         assertWithMessage("Listener instance has unexpected type")
@@ -790,7 +790,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void xmlLoggerWithNullToFile() throws Exception {
+    public void testXmlLoggerWithNullToFile() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("xml");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -802,7 +802,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void sarifLoggerListener() throws Exception {
+    public void testSarifLoggerListener() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("sarif");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -814,7 +814,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void sarifLoggerListenerWithToFile() throws Exception {
+    public void testSarifLoggerListenerWithToFile() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("sarif");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -827,7 +827,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void sarifLoggerWithNullToFile() throws Exception {
+    public void testSarifLoggerWithNullToFile() throws IOException {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         formatterType.setValue("sarif");
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
@@ -842,7 +842,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
      * Testing deprecated method.
      */
     @Test
-    public void createClasspath() {
+    public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         final Project mockProject = new Project();
         antTask.setProject(mockProject);
@@ -857,7 +857,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void destroyed() throws Exception {
+    public void testDestroyed() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -871,7 +871,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void maxWarnings() throws Exception {
+    public void testMaxWarnings() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
@@ -885,7 +885,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public final void executeLogOutput() throws Exception {
+    public final void testExecuteLogOutput() throws Exception {
         final URL url = new File(getPath(CONFIG_FILE)).toURI().toURL();
         final ResourceBundle bundle = ResourceBundle.getBundle(
                 Definitions.CHECKSTYLE_BUNDLE, Locale.ROOT);
@@ -930,7 +930,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void checkerException() throws Exception {
+    public void testCheckerException() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
@@ -945,7 +945,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void loggedTime() throws Exception {
+    public void testLoggedTime() throws IOException {
         final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
@@ -990,7 +990,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void maxWarningDefault() throws Exception {
+    public void testMaxWarningDefault() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         final File inputFile = new File(getPath(WARNING_INPUT));
         final Location fileLocation = new Location("build.xml", 42, 10);
@@ -1001,7 +1001,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void multipleFormattersProduceOutputs() throws Exception {
+    public void testMultipleFormattersProduceOutputs() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(VIOLATED_INPUT)));
         antTask.setFailOnViolation(false);
@@ -1029,7 +1029,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void exceptionMessageContainsFileList() throws Exception {
+    public void testExceptionMessageContainsFileList() throws Exception {
         final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
         antTask.setConfig(getPath(CONFIG_FILE));
         antTask.setProject(new Project());
@@ -1046,7 +1046,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void antProjectPropertyValueIsCopiedCorrectly() throws Exception {
+    public void testAntProjectPropertyValueIsCopiedCorrectly() throws IOException {
         TestRootModuleChecker.reset();
 
         final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);

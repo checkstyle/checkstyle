@@ -37,7 +37,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AnnotationLocationCheck checkObj = new AnnotationLocationCheck();
         assertWithMessage(
                 "AnnotationLocationCheck#getRequiredTokens should return empty array by default")
@@ -46,7 +46,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void correct() throws Exception {
+    public void testCorrect() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -54,7 +54,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void incorrectOne() throws Exception {
+    public void testIncorrectOne() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn"),
             "20:15: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation1"),
@@ -85,7 +85,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void incorrectTwo() throws Exception {
+    public void testIncorrectTwo() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_21", 0, 3),
         };
@@ -94,7 +94,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void incorrectAllTokensOne() throws Exception {
+    public void testIncorrectAllTokensOne() throws Exception {
         final String[] expected = {
             "15:11: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnn3"),
             "20:15: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation_13"),
@@ -125,7 +125,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void incorrectAllTokensTwo() throws Exception {
+    public void testIncorrectAllTokensTwo() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_23", 0, 3),
         };
@@ -134,7 +134,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AnnotationLocationCheck constantNameCheckObj = new AnnotationLocationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -157,14 +157,14 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void withoutAnnotations() throws Exception {
+    public void testWithoutAnnotations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationEmpty.java"), expected);
     }
 
     @Test
-    public void withParametersOne() throws Exception {
+    public void testWithParametersOne() throws Exception {
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
             "33:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
@@ -184,7 +184,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void withParametersTwo() throws Exception {
+    public void testWithParametersTwo() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnn_22", 0, 3),
         };
@@ -193,7 +193,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void withMultipleAnnotations() throws Exception {
+    public void testWithMultipleAnnotations() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation11"),
             "14:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
@@ -205,14 +205,14 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void allTokens() throws Exception {
+    public void testAllTokens() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 2, 0),
             "20:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
@@ -272,21 +272,21 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotationInForEachLoopParameterAndVariableDef() throws Exception {
+    public void testAnnotationInForEachLoopParameterAndVariableDef() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
     }
 
     @Test
-    public void annotationMultiple() throws Exception {
+    public void testAnnotationMultiple() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationMultiple.java"), expected);
     }
 
     @Test
-    public void annotationParameterized() throws Exception {
+    public void testAnnotationParameterized() throws Exception {
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
@@ -301,7 +301,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotationSingleParameterless() throws Exception {
+    public void testAnnotationSingleParameterless() throws Exception {
         final String[] expected = {
             "23:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "25:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
@@ -316,7 +316,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotationLocationRecordsAndCompactCtors() throws Exception {
+    public void testAnnotationLocationRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
             "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
@@ -332,7 +332,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotationLocationOnLocalAndPatternVariables() throws Exception {
+    public void testAnnotationLocationOnLocalAndPatternVariables() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputAnnotationLocationLocalAndPatternVariables.java"),

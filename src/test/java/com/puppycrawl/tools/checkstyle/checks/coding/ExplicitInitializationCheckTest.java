@@ -65,7 +65,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final ExplicitInitializationCheck check = new ExplicitInitializationCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -79,7 +79,7 @@ public class ExplicitInitializationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void onlyObjectReferences() throws Exception {
+    public void testOnlyObjectReferences() throws Exception {
         final String[] expected = {
             "12:20: " + getCheckMessage(MSG_KEY, "bar", "null"),
             "21:22: " + getCheckMessage(MSG_KEY, "str1", "null"),

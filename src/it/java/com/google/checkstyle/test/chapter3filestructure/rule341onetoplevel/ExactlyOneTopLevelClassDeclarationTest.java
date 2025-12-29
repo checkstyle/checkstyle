@@ -31,22 +31,22 @@ public class ExactlyOneTopLevelClassDeclarationTest extends AbstractGoogleModule
     }
 
     @Test
-    public void bad() throws Exception {
+    public void testBad() throws Exception {
         verifyWithWholeConfig(getPath("InputOneTopLevelClassBasic.java"));
     }
 
     @Test
-    public void good() throws Exception {
+    public void testGood() throws Exception {
         verifyWithWholeConfig(getPath("InputOneTopLevelClassGood.java"));
     }
 
     @Test
-    public void bad1() throws Exception {
+    public void testBad1() throws Exception {
         verifyWithWholeConfig(getPath("InputOneTopLevelClassBad1.java"));
     }
 
     @Test
-    public void bad2() throws Exception {
+    public void testBad2() throws Exception {
         verifyWithWholeConfig(getPath("InputOneTopLevelClassBad2.java"));
     }
 

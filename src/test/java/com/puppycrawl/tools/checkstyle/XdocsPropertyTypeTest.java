@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -36,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class XdocsPropertyTypeTest {
 
     @Test
-    public void allPropertyTypesAreUsed() throws Exception {
+    public void testAllPropertyTypesAreUsed() throws IOException {
         final Set<PropertyType> propertyTypes = Stream.concat(
                 Stream.of(AbstractHeaderCheck.class, Checker.class),
                 CheckUtil.getCheckstyleChecks().stream())
@@ -53,7 +54,7 @@ public class XdocsPropertyTypeTest {
     }
 
     @Test
-    public void allPropertyTypesHaveDescription() {
+    public void testAllPropertyTypesHaveDescription() {
         for (PropertyType value : PropertyType.values()) {
             assertWithMessage("Property type '%s' has no description", value)
                 .that(CommonUtil.isBlank(value.getDescription()))

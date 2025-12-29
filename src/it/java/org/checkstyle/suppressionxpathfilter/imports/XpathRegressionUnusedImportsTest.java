@@ -44,7 +44,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void unusedImports() throws Exception {
+    public void testUnusedImports() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUnusedImports.java"));
 

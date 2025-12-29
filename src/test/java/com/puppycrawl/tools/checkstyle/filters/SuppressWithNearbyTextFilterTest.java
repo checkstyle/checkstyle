@@ -58,7 +58,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void defaultConfig() throws Exception {
+    public void testDefaultConfig() throws Exception {
         final int expectedLineLength = 90;
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -86,7 +86,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void nearbyTextPattern() throws Exception {
+    public void testNearbyTextPattern() throws Exception {
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
@@ -117,7 +117,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void checkPattern() throws Exception {
+    public void testCheckPattern() throws Exception {
         final int expectedLineLength = 80;
 
         final String[] violationMessages = {
@@ -139,7 +139,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void messagePattern() throws Exception {
+    public void testMessagePattern() throws Exception {
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
@@ -161,7 +161,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void idPattern() throws Exception {
+    public void testIdPattern() throws Exception {
         final int expectedLineLength = 80;
 
         final String[] violationMessages = {
@@ -183,7 +183,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void lineRangePositive3() throws Exception {
+    public void testLineRangePositive3() throws Exception {
         final int expectedLineLength = 92;
 
         final String[] violationMessages = {
@@ -215,7 +215,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void lineRangeNegative2() throws Exception {
+    public void testLineRangeNegative2() throws Exception {
         final int expectedLineLength = 91;
 
         final String[] violationMessages = {
@@ -246,7 +246,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void variableCheckPatternAndLineRange() throws Exception {
+    public void testVariableCheckPatternAndLineRange() throws Exception {
         final int expectedLineLength = 85;
 
         final String[] violationMessages = {
@@ -275,7 +275,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void nearbyTextPatternAny() throws Exception {
+    public void testNearbyTextPatternAny() throws Exception {
         final int expectedLineLength = 76;
 
         final String[] violationMessages = {
@@ -293,7 +293,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void nearbyTextPatternCompactVariableCheckPattern() throws Exception {
+    public void testNearbyTextPatternCompactVariableCheckPattern() throws Exception {
         final String[] violationMessages = {
             "26:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "42"),
             "27:13: " + getCheckMessage(MagicNumberCheck.class, MagicNumberCheck.MSG_KEY, "43"),
@@ -311,7 +311,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void nearbyTextPatternUrlLineLengthSuppression() throws Exception {
+    public void testNearbyTextPatternUrlLineLengthSuppression() throws Exception {
         final int expectedLineLength = 90;
 
         final String[] violationMessages = {
@@ -332,7 +332,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void invalidCheckPattern() throws Exception {
+    public void testInvalidCheckPattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
@@ -354,7 +354,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void invalidIdPattern() throws Exception {
+    public void testInvalidIdPattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
@@ -376,7 +376,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void invalidMessagePattern() throws Exception {
+    public void testInvalidMessagePattern() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
@@ -398,7 +398,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void invalidLineRange() throws Exception {
+    public void testInvalidLineRange() throws Exception {
         final String[] violationAndSuppressedMessages = {
             "18: " + getLineLengthCheckMessage(80, 93),
         };
@@ -428,7 +428,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * filter execution to accept violation
      */
     @Test
-    public void cachingExecution() throws Exception {
+    public void testCachingExecution() throws Exception {
         final SuppressWithNearbyTextFilter suppressFilter = new SuppressWithNearbyTextFilter();
         final String inputPath =
                 getPath("InputSuppressWithNearbyTextFilterDefaultConfig.java");
@@ -463,7 +463,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * null violation with {@link AbstractModuleTestSupport#verifyFilterWithInlineConfigParser}.
      */
     @Test
-    public void acceptNullViolation() {
+    public void testAcceptNullViolation() {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
         assertWithMessage("Filter should accept audit event")
@@ -481,7 +481,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * {@code InlineConfigParser} does not allow to specify a non-existing file.
      */
     @Test
-    public void throwsIllegalStateExceptionWhenFileNotFound() {
+    public void testThrowsIllegalStateExceptionWhenFileNotFound() {
         final Violation message = new Violation(1, 1, 1, TokenTypes.CLASS_DEF,
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
         final String fileName = "nonexisting_file";
@@ -518,7 +518,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void filterWithDirectory() throws Exception {
+    public void testFilterWithDirectory() throws IOException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
         final AuditEvent event = new AuditEvent(this, getPath(""), new Violation(1, 1,
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
@@ -538,7 +538,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void suppressionsAreClearedEachRun() throws Exception {
+    public void testSuppressionsAreClearedEachRun() throws IOException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
         final List<?> suppressions1 = getSuppressionsAfterExecution(filter,
@@ -563,7 +563,7 @@ public class SuppressWithNearbyTextFilterTest extends AbstractModuleTestSupport 
      * @throws IOException if an error occurs while formatting the path to the input file.
      */
     @Test
-    public void cachedFileAbsolutePathHasChangedEachRun() throws Exception {
+    public void testCachedFileAbsolutePathHasChangedEachRun() throws IOException {
         final SuppressWithNearbyTextFilter filter = new SuppressWithNearbyTextFilter();
 
         final String cachedFileAbsolutePath1 = getCachedFileAbsolutePathAfterExecution(filter,

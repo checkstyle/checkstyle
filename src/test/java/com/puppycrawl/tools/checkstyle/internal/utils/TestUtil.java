@@ -103,8 +103,10 @@ public final class TestUtil {
                 field.setAccessible(true);
                 return field;
             })
-            .orElseThrow(() -> new IllegalStateException(String.format(Locale.ROOT,
-                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName())));
+            .orElseThrow(() -> {
+                return new IllegalStateException(String.format(Locale.ROOT,
+                        "Field '%s' not found in '%s'", fieldName, clss.getCanonicalName()));
+            });
     }
 
     /**
@@ -120,10 +122,14 @@ public final class TestUtil {
                                                  int parameters) {
         final Stream<Method> methods = Stream.<Class<?>>iterate(clss, Class::getSuperclass)
                 .flatMap(cls -> Arrays.stream(cls.getDeclaredMethods()))
-                .filter(method -> methodName.equals(method.getName()));
+                .filter(method -> {
+                    return methodName.equals(method.getName());
+                });
 
-        final Supplier<String> exceptionMessage = () -> String.format(Locale.ROOT, "Method '%s' with %d parameters not found in '%s'",
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Method '%s' with %d parameters not found in '%s'",
                     methodName, parameters, clss.getCanonicalName());
+        };
 
         return getMatchingExecutable(methods, parameters, exceptionMessage);
     }
@@ -139,13 +145,17 @@ public final class TestUtil {
      */
     private static <T extends java.lang.reflect.Executable> T getMatchingExecutable(
             Stream<T> execs, int parameters, Supplier<String> exceptionMessage) {
-        return execs.filter(method -> parameters == method.getParameterCount())
+        return execs.filter(method -> {
+            return parameters == method.getParameterCount();
+        })
         .findFirst()
         .map(method -> {
             method.setAccessible(true);
             return method;
         })
-        .orElseThrow(() -> new IllegalStateException(exceptionMessage.get()));
+        .orElseThrow(() -> {
+            return new IllegalStateException(exceptionMessage.get());
+        });
     }
 
     /**
@@ -586,8 +596,10 @@ public final class TestUtil {
         final Stream<Constructor<T>> ctors =
                 Arrays.stream(clss.getDeclaredConstructors()).map(Constructor.class::cast);
 
-        final Supplier<String> exceptionMessage = () -> String.format(Locale.ROOT, "Constructor with %d parameters not found in '%s'",
+        final Supplier<String> exceptionMessage = () -> {
+            return String.format(Locale.ROOT, "Constructor with %d parameters not found in '%s'",
                     arguments.length, clss.getCanonicalName());
+        };
 
         final Constructor<T> constructor =
                 getMatchingExecutable(ctors, arguments.length, exceptionMessage);

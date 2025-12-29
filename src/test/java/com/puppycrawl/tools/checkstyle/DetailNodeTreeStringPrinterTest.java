@@ -38,27 +38,27 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(DetailNodeTreeStringPrinter.class))
                 .isTrue();
     }
 
     @Test
-    public void parseFile() throws Exception {
+    public void testParseFile() throws Exception {
         verifyJavadocTree(getPath("ExpectedDetailNodeTreeStringPrinterJavadocComment.txt"),
                 getPath("InputDetailNodeTreeStringPrinterJavadocComment.javadoc"));
     }
 
     @Test
-    public void noUnnecessaryTextInJavadocAst() throws Exception {
+    public void testNoUnnecessaryTextInJavadocAst() throws Exception {
         verifyJavadocTree(
                 getPath("ExpectedDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.txt"),
                 getPath("InputDetailNodeTreeStringPrinterNoUnnecessaryTextInJavadocAst.javadoc"));
     }
 
     @Test
-    public void parseErrorMessage() throws Exception {
+    public void testParseErrorMessage() throws Exception {
         final String actual = TestUtil.invokeStaticMethod(DetailNodeTreeStringPrinter.class,
                 "getParseErrorMessage", String.class,
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -76,7 +76,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void noViableAltException() throws Exception {
+    public void testNoViableAltException() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterNoViableAltException.javadoc"));
         try {
@@ -95,7 +95,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void htmlTagCloseBeforeTagOpen() throws Exception {
+    public void testHtmlTagCloseBeforeTagOpen() throws Exception {
         final File file = new File(
                 getPath("InputDetailNodeTreeStringPrinterHtmlTagCloseBeforeTagOpen.javadoc"));
         try {

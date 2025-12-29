@@ -44,7 +44,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void classNameTop() throws Exception {
+    public void testClassNameTop() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathAbstractClassNameTop.java"));
 
@@ -73,7 +73,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void classNameInner() throws Exception {
+    public void testClassNameInner() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathAbstractClassNameInner.java"));
 
@@ -103,7 +103,7 @@ public class XpathRegressionAbstractClassNameTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void classNameNoModifier() throws Exception {
+    public void testClassNameNoModifier() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathAbstractClassNameNoModifier.java"));
 

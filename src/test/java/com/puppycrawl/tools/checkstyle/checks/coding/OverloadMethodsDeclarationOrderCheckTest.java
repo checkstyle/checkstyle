@@ -53,7 +53,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void overloadMethodsDeclarationOrderRecords() throws Exception {
+    public void testOverloadMethodsDeclarationOrderRecords() throws Exception {
 
         final String[] expected = {
             "22:9: " + getCheckMessage(MSG_KEY, 15),
@@ -67,7 +67,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void overloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
+    public void testOverloadMethodsDeclarationOrderPrivateAndStaticMethods() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -78,7 +78,7 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
         assertWithMessage("Acceptable tokens should not be null")

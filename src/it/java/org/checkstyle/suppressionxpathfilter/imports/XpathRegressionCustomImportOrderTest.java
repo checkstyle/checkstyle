@@ -44,7 +44,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderTwo.java"));
 
@@ -90,7 +90,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void three() throws Exception {
+    public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderThree.java"));
 
@@ -112,7 +112,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void four() throws Exception {
+    public void testFour() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderFour.java"));
 
@@ -135,7 +135,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void five() throws Exception {
+    public void testFive() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderFive.java"));
 
@@ -158,7 +158,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
     }
 
     @Test
-    public void six() throws Exception {
+    public void testSix() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCustomImportOrderSix.java"));
 

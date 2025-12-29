@@ -32,12 +32,12 @@ public class MethodsAndConstructorsAnnotationsTest extends AbstractGoogleModuleT
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         verifyWithWholeConfig(getPath("InputMethodsAndConstructorsAnnotations.java"));
     }
 
     @Test
-    public void annotationFormatted() throws Exception {
+    public void testAnnotationFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedMethodsAndConstructorsAnnotations.java"));
     }
 }

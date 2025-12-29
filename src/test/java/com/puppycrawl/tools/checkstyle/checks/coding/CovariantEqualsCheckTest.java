@@ -35,7 +35,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void defaultOne()
+    public void testDefaultOne()
             throws Exception {
         final String[] expected = {
             "17:24: " + getCheckMessage(MSG_KEY),
@@ -48,7 +48,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void defaultTwo()
+    public void testDefaultTwo()
             throws Exception {
         final String[] expected = {
             "41:20: " + getCheckMessage(MSG_KEY),
@@ -59,7 +59,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void covariantEqualsRecords()
+    public void testCovariantEqualsRecords()
             throws Exception {
         final String[] expected = {
             "13:24: " + getCheckMessage(MSG_KEY),
@@ -70,7 +70,7 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final CovariantEqualsCheck check = new CovariantEqualsCheck();
         assertWithMessage("Acceptable tokens should not be null")
                 .that(check.getAcceptableTokens())

@@ -42,7 +42,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void rightCurlyOptionValueOf() {
+    public void testRightCurlyOptionValueOf() {
         final RightCurlyOption option = RightCurlyOption.valueOf("ALONE");
         assertWithMessage("Invalid valueOf result")
             .that(option)
@@ -63,7 +63,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void same() throws Exception {
+    public void testSame() throws Exception {
         final String[] expected = {
             "26:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
             "29:17: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 17),
@@ -79,21 +79,21 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void sameOmitOneLiners() throws Exception {
+    public void testSameOmitOneLiners() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSameOmitOneLiners.java"), expected);
     }
 
     @Test
-    public void sameDoesNotComplainForNonMultilineConstructs() throws Exception {
+    public void testSameDoesNotComplainForNonMultilineConstructs() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSame.java"), expected);
     }
 
     @Test
-    public void alone() throws Exception {
+    public void testAlone() throws Exception {
         final String[] expected = {
             "57:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "94:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
@@ -111,7 +111,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void newLine() throws Exception {
+    public void testNewLine() throws Exception {
         final String[] expected = {
             "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -135,7 +135,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldStartLine2() throws Exception {
+    public void testShouldStartLine2() throws Exception {
         final String[] expected = {
             "86:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "111:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -154,7 +154,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void forceLineBreakBefore() throws Exception {
+    public void testForceLineBreakBefore() throws Exception {
         final String[] expected = {
             "38:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
             "41:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
@@ -167,21 +167,21 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void forceLineBreakBefore2() throws Exception {
+    public void testForceLineBreakBefore2() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestForceLineBreakBefore2.java"), expected);
     }
 
     @Test
-    public void nullPointerException() throws Exception {
+    public void testNullPointerException() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestNullPointerException.java"), expected);
     }
 
     @Test
-    public void withAnnotations() throws Exception {
+    public void testWithAnnotations() throws Exception {
         final String[] expected = {
             "18:77: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 77),
             "21:65: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 65),
@@ -259,7 +259,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void aloneOrSingleLine() throws Exception {
+    public void testAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "70:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
             "84:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
@@ -307,14 +307,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void aloneOrSingleLineTryCatchBlock() throws Exception {
+    public void testAloneOrSingleLineTryCatchBlock() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestAloneOrSinglelineTryCatchBlock.java"), expected);
     }
 
     @Test
-    public void catchWithoutFinally() throws Exception {
+    public void testCatchWithoutFinally() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
         };
@@ -323,7 +323,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void singleLineClass() throws Exception {
+    public void testSingleLineClass() throws Exception {
         final String[] expected = {
             "29:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
         };
@@ -332,7 +332,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -352,7 +352,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlySameAndLiteralDo() throws Exception {
+    public void testRightCurlySameAndLiteralDo() throws Exception {
         final String[] expected = {
             "70:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "75:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
@@ -363,7 +363,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tryWithResourceSame() throws Exception {
+    public void testTryWithResourceSame() throws Exception {
         final String[] expected = {
             "19:9: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 9),
             "33:67: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 67),
@@ -375,7 +375,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tryWithResourceAlone() throws Exception {
+    public void testTryWithResourceAlone() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "33:67: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 67),
@@ -391,7 +391,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tryWithResourceAloneSingle() throws Exception {
+    public void testTryWithResourceAloneSingle() throws Exception {
         final String[] expected = {
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "43:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
@@ -402,7 +402,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void bracePolicyAloneAndSinglelineIfBlocks() throws Exception {
+    public void testBracePolicyAloneAndSinglelineIfBlocks() throws Exception {
         final String[] expected = {
             "13:32: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 32),
             "15:45: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 45),
@@ -413,28 +413,28 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyIsAloneLambda() throws Exception {
+    public void testRightCurlyIsAloneLambda() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsAloneLambda.java"), expected);
     }
 
     @Test
-    public void rightCurlyIsAloneOrSinglelineLambda() throws Exception {
+    public void testRightCurlyIsAloneOrSinglelineLambda() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsAloneOrSinglelineLambda.java"), expected);
     }
 
     @Test
-    public void rightCurlyIsSameLambda() throws Exception {
+    public void testRightCurlyIsSameLambda() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestIsSameLambda.java"), expected);
     }
 
     @Test
-    public void optionAlone() throws Exception {
+    public void testOptionAlone() throws Exception {
         final String[] expected = {
             "16:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "17:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
@@ -464,7 +464,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void optionAloneOrSingleLine() throws Exception {
+    public void testOptionAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "21:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
             "30:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
@@ -482,7 +482,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void blocksEndingWithSemiOptionSame() throws Exception {
+    public void testBlocksEndingWithSemiOptionSame() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -503,7 +503,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void blocksEndingWithSemiOptionAlone() throws Exception {
+    public void testBlocksEndingWithSemiOptionAlone() throws Exception {
         final String[] expected = {
             "13:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -531,7 +531,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void blocksEndingWithSemiOptionAloneOrSingleLine() throws Exception {
+    public void testBlocksEndingWithSemiOptionAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "16:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "21:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -552,7 +552,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void newTokensAlone() throws Exception {
+    public void testNewTokensAlone() throws Exception {
         final String[] expected = {
             "13:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
@@ -563,7 +563,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void newTokensAloneOrSingleLine() throws Exception {
+    public void testNewTokensAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 20),
         };
@@ -572,7 +572,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void newTokensSame() throws Exception {
+    public void testNewTokensSame() throws Exception {
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 20),
         };
@@ -581,7 +581,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyDoubleBrace() throws Exception {
+    public void testRightCurlyDoubleBrace() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 1),
             "14:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
@@ -591,14 +591,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyEmptyOnSingleLine() throws Exception {
+    public void testRightCurlyEmptyOnSingleLine() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestEmptyOnSingleLine.java"), expected);
     }
 
     @Test
-    public void rightCurlyEndOfFile() throws Exception {
+    public void testRightCurlyEndOfFile() throws Exception {
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 2),
             "16:3: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 3),
@@ -608,7 +608,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyRecordsAndCompactCtors() throws Exception {
+    public void testRightCurlyRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "23:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "23:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
@@ -622,7 +622,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyWithEmoji() throws Exception {
+    public void testRightCurlyWithEmoji() throws Exception {
         final String[] expected = {
             "24:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
             "28:13: " + getCheckMessage(MSG_KEY_LINE_SAME, "}", 13),
@@ -636,7 +636,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyWithEmojiAloneOrSingleLine() throws Exception {
+    public void testRightCurlyWithEmojiAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "24:38: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 38),
             "30:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
@@ -649,7 +649,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void uppercaseOptionProperty() throws Exception {
+    public void testUppercaseOptionProperty() throws Exception {
         final String[] expected = {
             "16:46: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 46),
             "21:35: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 35),
@@ -659,7 +659,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void rightCurlyWithIfElseAlone() throws Exception {
+    public void testRightCurlyWithIfElseAlone() throws Exception {
         final String[] expected = {
             "19:12: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 12),
             "27:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
@@ -669,7 +669,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchCase() throws Exception {
+    public void testSwitchCase() throws Exception {
         final String[] expected = {
             "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
             "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
@@ -684,7 +684,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchCase2() throws Exception {
+    public void testSwitchCase2() throws Exception {
         final String[] expected = {
             "20:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
             "27:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
@@ -695,7 +695,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchCase3() throws Exception {
+    public void testSwitchCase3() throws Exception {
         final String[] expected = {
             "15:22: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 22),
             "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
@@ -719,7 +719,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchCase4() throws Exception {
+    public void testSwitchCase4() throws Exception {
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "19:36: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 36),
@@ -736,7 +736,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchCase5() throws Exception {
+    public void testSwitchCase5() throws Exception {
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "19:36: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 36),
@@ -754,7 +754,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchExpression() throws Exception {
+    public void testSwitchExpression() throws Exception {
         final String[] expected = {
             "48:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "56:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -765,7 +765,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchExpression2() throws Exception {
+    public void testSwitchExpression2() throws Exception {
         final String[] expected = {
             "46:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
             "54:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
@@ -777,14 +777,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchExpression3() throws Exception {
+    public void testSwitchExpression3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression3.java"), expected);
     }
 
     @Test
-    public void switchExpression4() throws Exception {
+    public void testSwitchExpression4() throws Exception {
         final String[] expected = {
             "117:28: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 28),
         };
@@ -793,14 +793,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchExpression5() throws Exception {
+    public void testSwitchExpression5() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression5.java"), expected);
     }
 
     @Test
-    public void switchWithComment() throws Exception {
+    public void testSwitchWithComment() throws Exception {
         final String[] expected = {
             "16:66: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 66),
             "23:61: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 61),
@@ -815,21 +815,21 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void switchExpression6() throws Exception {
+    public void testSwitchExpression6() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression6.java"), expected);
     }
 
     @Test
-    public void switchExpression7() throws Exception {
+    public void testSwitchExpression7() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputRightCurlyTestSwitchExpression7.java"), expected);
     }
 
     @Test
-    public void caseBlocksInSwitchStatementAlone() throws Exception {
+    public void testCaseBlocksInSwitchStatementAlone() throws Exception {
         final String[] expected = {
             "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -844,7 +844,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksInSwitchStatementAlone2() throws Exception {
+    public void testCaseBlocksInSwitchStatementAlone2() throws Exception {
         final String[] expected = {
             "17:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "26:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -865,7 +865,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksInSwitchStatementAloneOrSingleLine() throws Exception {
+    public void testCaseBlocksInSwitchStatementAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "33:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -878,7 +878,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksInSwitchStatementAloneOrSingle2() throws Exception {
+    public void testCaseBlocksInSwitchStatementAloneOrSingle2() throws Exception {
         final String[] expected = {
             "18:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
             "27:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -895,7 +895,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksInSwitchStatementSame() throws Exception {
+    public void testCaseBlocksInSwitchStatementSame() throws Exception {
         final String[] expected = {
             "33:16: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 16),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -908,7 +908,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksInSwitchStatementSame2() throws Exception {
+    public void testCaseBlocksInSwitchStatementSame2() throws Exception {
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "27:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -926,7 +926,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksWithSwitchRuleAlone() throws Exception {
+    public void testCaseBlocksWithSwitchRuleAlone() throws Exception {
         final String[] expected = {
             "32:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
             "44:13: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 13),
@@ -945,7 +945,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksWithSwitchRuleAloneOrSingleLine() throws Exception {
+    public void testCaseBlocksWithSwitchRuleAloneOrSingleLine() throws Exception {
 
         final String[] expected = {
             "27:19: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 19),
@@ -963,7 +963,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksWithSwitchExpressionAlone() throws Exception {
+    public void testCaseBlocksWithSwitchExpressionAlone() throws Exception {
         final String[] expected = {
             "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
             "86:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
@@ -973,7 +973,7 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void caseBlocksWithSwitchExpressionAloneOrSingleLine() throws Exception {
+    public void testCaseBlocksWithSwitchExpressionAloneOrSingleLine() throws Exception {
         final String[] expected = {
             "63:31: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 31),
         };

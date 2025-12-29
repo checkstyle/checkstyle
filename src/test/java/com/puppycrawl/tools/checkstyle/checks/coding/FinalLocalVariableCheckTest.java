@@ -38,7 +38,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariableOne() throws Exception {
+    public void testInputFinalLocalVariableOne() throws Exception {
 
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_KEY, "i"),
@@ -62,7 +62,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariableTwo() throws Exception {
+    public void testInputFinalLocalVariableTwo() throws Exception {
         final String[] expected = {
             "24:17: " + getCheckMessage(MSG_KEY, "weird"),
             "25:17: " + getCheckMessage(MSG_KEY, "j"),
@@ -73,7 +73,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariableThree() throws Exception {
+    public void testInputFinalLocalVariableThree() throws Exception {
         final String[] expected = {
             "14:17: " + getCheckMessage(MSG_KEY, "x"),
             "20:21: " + getCheckMessage(MSG_KEY, "x"),
@@ -91,7 +91,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariableFour() throws Exception {
+    public void testInputFinalLocalVariableFour() throws Exception {
         final String[] expected = {
             "16:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
             "28:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
@@ -104,7 +104,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void finalLocalVariableFive() throws Exception {
+    public void testFinalLocalVariableFive() throws Exception {
         final String[] expected = {
             "15:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
             "26:17: " + getCheckMessage(MSG_KEY, "shouldBeFinal"),
@@ -117,7 +117,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void recordsInput() throws Exception {
+    public void testRecordsInput() throws Exception {
         final String[] expected = {
             "20:17: " + getCheckMessage(MSG_KEY, "b"),
         };
@@ -126,7 +126,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariable2One() throws Exception {
+    public void testInputFinalLocalVariable2One() throws Exception {
 
         final String[] expected = {
             "53:28: " + getCheckMessage(MSG_KEY, "aArg"),
@@ -136,7 +136,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariable2Two() throws Exception {
+    public void testInputFinalLocalVariable2Two() throws Exception {
 
         final String[] excepted = {
             "78:36: " + getCheckMessage(MSG_KEY, "_o"),
@@ -147,7 +147,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariable2Three() throws Exception {
+    public void testInputFinalLocalVariable2Three() throws Exception {
 
         final String[] excepted = {
 
@@ -157,7 +157,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariable2Four() throws Exception {
+    public void testInputFinalLocalVariable2Four() throws Exception {
 
         final String[] excepted = {
 
@@ -167,7 +167,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void inputFinalLocalVariable2Five() throws Exception {
+    public void testInputFinalLocalVariable2Five() throws Exception {
 
         final String[] excepted = {
 
@@ -177,7 +177,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void nativeMethods() throws Exception {
+    public void testNativeMethods() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -185,7 +185,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void falsePositive() throws Exception {
+    public void testFalsePositive() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -193,7 +193,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void enhancedForLoopVariableTrue() throws Exception {
+    public void testEnhancedForLoopVariableTrue() throws Exception {
         final String[] expected = {
             "16:20: " + getCheckMessage(MSG_KEY, "a"),
             "23:13: " + getCheckMessage(MSG_KEY, "x"),
@@ -209,7 +209,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void enhancedForLoopVariableFalse() throws Exception {
+    public void testEnhancedForLoopVariableFalse() throws Exception {
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_KEY, "x"),
             "29:66: " + getCheckMessage(MSG_KEY, "snippets"),
@@ -222,7 +222,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void lambda()
+    public void testLambda()
             throws Exception {
         final String[] expected = {
             "43:16: " + getCheckMessage(MSG_KEY, "result"),
@@ -233,7 +233,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void variableNameShadowing()
+    public void testVariableNameShadowing()
             throws Exception {
 
         final String[] expected = {
@@ -245,7 +245,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void improperToken() {
+    public void testImproperToken() {
         final FinalLocalVariableCheck check = new FinalLocalVariableCheck();
 
         final DetailAstImpl lambdaAst = new DetailAstImpl();
@@ -261,7 +261,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void variableWhichIsAssignedMultipleTimes() throws Exception {
+    public void testVariableWhichIsAssignedMultipleTimes() throws Exception {
 
         final String[] expected = {
             "57:13: " + getCheckMessage(MSG_KEY, "i"),
@@ -276,7 +276,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void variableIsAssignedInsideAndOutsideSwitchBlock() throws Exception {
+    public void testVariableIsAssignedInsideAndOutsideSwitchBlock() throws Exception {
         final String[] expected = {
             "39:13: " + getCheckMessage(MSG_KEY, "b"),
         };
@@ -286,7 +286,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void finalLocalVariableFalsePositives() throws Exception {
+    public void testFinalLocalVariableFalsePositives() throws Exception {
         final String[] expected = {
             "352:16: " + getCheckMessage(MSG_KEY, "c2"),
             "2195:16: " + getCheckMessage(MSG_KEY, "b"),
@@ -296,7 +296,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void multipleAndNestedConditions() throws Exception {
+    public void testMultipleAndNestedConditions() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableMultipleAndNestedConditions.java"),
@@ -304,7 +304,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void multiTypeCatch() throws Exception {
+    public void testMultiTypeCatch() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableMultiCatch.java"),
@@ -312,14 +312,14 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void leavingSlistToken() throws Exception {
+    public void testLeavingSlistToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableLeavingSlistToken.java"), expected);
     }
 
     @Test
-    public void breakOrReturn() throws Exception {
+    public void testBreakOrReturn() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
         };
@@ -328,7 +328,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void anonymousClass() throws Exception {
+    public void testAnonymousClass() throws Exception {
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_KEY, "testSupport"),
         };
@@ -337,14 +337,14 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void receiverParameter() throws Exception {
+    public void testReceiverParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputFinalLocalVariableReceiverParameter.java"), expected);
     }
 
     @Test
-    public void finalLocalVariableSwitchExpressions() throws Exception {
+    public void testFinalLocalVariableSwitchExpressions() throws Exception {
         final String[] expected = {
             "15:19: " + getCheckMessage(MSG_KEY, "e"),
             "53:19: " + getCheckMessage(MSG_KEY, "e"),
@@ -357,7 +357,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void finalLocalVariableSwitchAssignment() throws Exception {
+    public void testFinalLocalVariableSwitchAssignment() throws Exception {
         final String[] expected = {
             "21:13: " + getCheckMessage(MSG_KEY, "a"),
             "44:13: " + getCheckMessage(MSG_KEY, "b"),
@@ -371,7 +371,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void finalLocalVariableSwitchStatement() throws Exception {
+    public void testFinalLocalVariableSwitchStatement() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputFinalLocalVariableSwitchStatement.java"),
@@ -379,7 +379,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void constructor() throws Exception {
+    public void testConstructor() throws Exception {
         final String[] expected = {
             "14:44: " + getCheckMessage(MSG_KEY, "a"),
             "18:44: " + getCheckMessage(MSG_KEY, "a"),
@@ -407,7 +407,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void validateUnnamedVariablesTrue() throws Exception {
+    public void testValidateUnnamedVariablesTrue() throws Exception {
         final String[] expected = {
             "21:22: " + getCheckMessage(MSG_KEY, "i"),
             "22:17: " + getCheckMessage(MSG_KEY, "_"),
@@ -424,7 +424,7 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
-    public void validateUnnamedVariablesFalse() throws Exception {
+    public void testValidateUnnamedVariablesFalse() throws Exception {
         final String[] expected = {
             "21:22: " + getCheckMessage(MSG_KEY, "i"),
             "23:17: " + getCheckMessage(MSG_KEY, "__"),

@@ -43,7 +43,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void methodDef() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableMethodDef.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void forLoop() throws Exception {
+    public void testForLoop() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableForLoop.java"));
 
@@ -87,7 +87,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void switchCase() throws Exception {
+    public void testSwitchCase() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableSwitchCase.java"));
 
@@ -110,7 +110,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void innerClass() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableInnerClass.java"));
 
@@ -133,7 +133,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void parameterDef() throws Exception {
+    public void testParameterDef() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableParameterDef.java"));
 
@@ -156,7 +156,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void enhancedFor() throws Exception {
+    public void testEnhancedFor() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableEnhancedFor.java"));
 
@@ -179,7 +179,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void ctor() throws Exception {
+    public void testCtor() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableCtor.java"));
 
@@ -203,7 +203,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void tryBlock() throws Exception {
+    public void testTryBlock() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableTryBlock.java"));
 
@@ -225,7 +225,7 @@ public class XpathRegressionFinalLocalVariableTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void conditionals() throws Exception {
+    public void testConditionals() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathFinalLocalVariableConditionals.java"));
 

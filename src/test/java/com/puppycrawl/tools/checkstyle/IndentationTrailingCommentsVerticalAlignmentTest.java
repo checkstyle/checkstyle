@@ -61,7 +61,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
-    public void trailingCommentsAlignment(Path testFile) throws Exception {
+    public void testTrailingCommentsAlignment(Path testFile) throws IOException {
         final String fileName = testFile.getFileName().toString();
         if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
             Assumptions.assumeTrue(false, "Skipping file: " + fileName);

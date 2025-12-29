@@ -44,7 +44,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameAnnotation.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void annotationField() throws Exception {
+    public void testAnnotationField() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameAnnotationField.java"));
 
@@ -136,7 +136,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void field() throws Exception {
+    public void testField() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameField.java"));
 
@@ -182,7 +182,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void method() throws Exception {
+    public void testMethod() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameMethod.java"));
 
@@ -205,7 +205,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void parameter() throws Exception {
+    public void testParameter() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameParameter.java"));
 
@@ -229,7 +229,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
     }
 
     @Test
-    public void variable() throws Exception {
+    public void testVariable() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAbbreviationAsWordInNameVariable.java"));
 

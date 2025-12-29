@@ -55,7 +55,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void classes() throws Exception {
+    public void testClasses() throws Exception {
         final String[] expected = {
             "24:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "29:21: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
@@ -71,7 +71,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void sameClassNameAsJavaLang() throws Exception {
+    public void testSameClassNameAsJavaLang() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationSameClassNameJavaLang.java"),
@@ -79,7 +79,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void java8() throws Exception {
+    public void testJava8() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiation.java"),
@@ -87,7 +87,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void noPackage() throws Exception {
+    public void testNoPackage() throws Exception {
         final String[] expected = {
             "10:20: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
         };
@@ -96,7 +96,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void javaLangPackage() throws Exception {
+    public void testJavaLangPackage() throws Exception {
         final String[] expected = {
             "13:19: " + getCheckMessage(MSG_KEY, "java.lang.Boolean"),
             "21:20: " + getCheckMessage(MSG_KEY, "java.lang.String"),
@@ -107,7 +107,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void wrongPackage() throws Exception {
+    public void testWrongPackage() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputIllegalInstantiationLang2.java"),
@@ -115,7 +115,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void javaLangPackage3() throws Exception {
+    public void testJavaLangPackage3() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputIllegalInstantiationLang3.java"),
@@ -123,7 +123,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void nameSimilarToStandardClass() throws Exception {
+    public void testNameSimilarToStandardClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
             getPath("InputIllegalInstantiationNameSimilarToStandardClasses.java"),
@@ -131,7 +131,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -145,7 +145,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void improperToken() {
+    public void testImproperToken() {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
 
         final DetailAstImpl lambdaAst = new DetailAstImpl();
@@ -172,7 +172,7 @@ public class IllegalInstantiationCheckTest
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void clearStateClassNames() throws Exception {
+    public void testClearStateClassNames() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputIllegalInstantiationSemantic.java")),
@@ -197,7 +197,7 @@ public class IllegalInstantiationCheckTest
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void clearStateImports() throws Exception {
+    public void testClearStateImports() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(new File(
                 getPath("InputIllegalInstantiationSemantic.java")),
@@ -223,7 +223,7 @@ public class IllegalInstantiationCheckTest
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void clearStateInstantiations() throws Exception {
+    public void testClearStateInstantiations() throws Exception {
         final IllegalInstantiationCheck check = new IllegalInstantiationCheck();
         final DetailAST root = JavaParser.parseFile(new File(
                 getNonCompilablePath("InputIllegalInstantiationLang.java")),
@@ -242,7 +242,7 @@ public class IllegalInstantiationCheckTest
     }
 
     @Test
-    public void stateIsClearedOnBeginTreePackageName() throws Exception {
+    public void testStateIsClearedOnBeginTreePackageName() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalInstantiationCheck.class);
         checkConfig.addProperty("classes",

@@ -44,7 +44,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void innerAssignment() throws Exception {
+    public void testInnerAssignment() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathInnerAssignment.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionInnerAssignmentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void arrays() throws Exception {
+    public void testArrays() throws Exception {
         final File fileToProcess = new
                 File(getPath("InputXpathInnerAssignmentArrays.java"));
 

@@ -34,7 +34,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckDefaultTokenLabel() throws Exception {
+    public void testIllegalTokensCheckDefaultTokenLabel() throws Exception {
         final String[] expected = {
             "36:14: " + getCheckMessage(MSG_KEY, "label:"),
             "38:25: " + getCheckMessage(MSG_KEY, "anotherLabel:"),
@@ -44,7 +44,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckSwitchAndPostIncDec() throws Exception {
+    public void testIllegalTokensCheckSwitchAndPostIncDec() throws Exception {
         final String[] expected = {
             "18:9: " + getCheckMessage(MSG_KEY, "switch"),
             "21:18: " + getCheckMessage(MSG_KEY, "--"),
@@ -55,7 +55,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckTokenNative() throws Exception {
+    public void testIllegalTokensCheckTokenNative() throws Exception {
         final String[] expected = {
             "27:12: " + getCheckMessage(MSG_KEY, "native"),
         };
@@ -64,7 +64,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckCommentsContent() throws Exception {
+    public void testIllegalTokensCheckCommentsContent() throws Exception {
 
         final String path = getPath("InputIllegalTokensCheckCommentsContent.java");
         final String[] expected = {
@@ -84,7 +84,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckBlockCommentBegin() throws Exception {
+    public void testIllegalTokensCheckBlockCommentBegin() throws Exception {
 
         final String[] expected = {
             "1:1: " + getCheckMessage(MSG_KEY, "/*"),
@@ -95,7 +95,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckBlockCommentEnd() throws Exception {
+    public void testIllegalTokensCheckBlockCommentEnd() throws Exception {
 
         final String[] expected = {
             "6:1: " + getCheckMessage(MSG_KEY, "*/"),
@@ -106,7 +106,7 @@ public class IllegalTokenCheckTest
     }
 
     @Test
-    public void illegalTokensCheckSingleLineComment() throws Exception {
+    public void testIllegalTokensCheckSingleLineComment() throws Exception {
 
         final String[] expected = {
             "38:27: " + getCheckMessage(MSG_KEY, "//"),

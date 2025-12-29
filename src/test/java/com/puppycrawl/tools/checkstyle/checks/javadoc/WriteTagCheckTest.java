@@ -62,13 +62,13 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultSettings() throws Exception {
+    public void testDefaultSettings() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(getPath("InputWriteTagDefault.java"), expected);
     }
 
     @Test
-    public void tag() throws Exception {
+    public void testTag() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
@@ -76,7 +76,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void missingFormat() throws Exception {
+    public void testMissingFormat() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
@@ -85,7 +85,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tagIncomplete() throws Exception {
+    public void testTagIncomplete() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code..."),
@@ -95,7 +95,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void doubleTag() throws Exception {
+    public void testDoubleTag() throws Exception {
         final String[] expected = {
             "18: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
             "19: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
@@ -105,7 +105,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void emptyTag() throws Exception {
+    public void testEmptyTag() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
@@ -114,7 +114,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void missingTag() throws Exception {
+    public void testMissingTag() throws Exception {
         final String[] expected = {
             "20: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
@@ -133,7 +133,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void blockComment() throws Exception {
+    public void testBlockComment() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserTwice(
                 getPath("InputWriteTagBlockComment.java"), expected
@@ -141,7 +141,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void method() throws Exception {
+    public void testMethod() throws Exception {
         final String[] expected = {
             "24: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
                     "Add a constructor comment"),
@@ -152,7 +152,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void severity() throws Exception {
+    public void testSeverity() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
@@ -172,7 +172,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressForbidden
     @Test
-    public void resetSeverityLevel() throws Exception {
+    public void testResetSeverityLevel() throws Exception {
 
         final Checker checker = new Checker();
 
@@ -239,13 +239,13 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void ignoreMissing() throws Exception {
+    public void testIgnoreMissing() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParserTwice(getPath("InputWriteTagIgnore.java"), expected);
     }
 
     @Test
-    public void regularEx() throws Exception {
+    public void testRegularEx() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
@@ -255,7 +255,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void regularExError() throws Exception {
+    public void testRegularExError() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
@@ -264,7 +264,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void enumsAndAnnotations() throws Exception {
+    public void testEnumsAndAnnotations() throws Exception {
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                     "This enum needs more code..."),
@@ -280,14 +280,14 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void noJavadocs() throws Exception {
+    public void testNoJavadocs() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParserTwice(getPath("InputWriteTagNoJavadoc.java"), expected);
     }
 
     @Test
-    public void writeTagRecordsAndCompactCtors() throws Exception {
+    public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final String[] expected = {
             "19: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
             "26: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",

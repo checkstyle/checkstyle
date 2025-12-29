@@ -52,7 +52,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void opWrapEol()
+    public void testOpWrapEol()
             throws Exception {
         final String[] expected = {
             "26:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "-"),
@@ -64,7 +64,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void nonDefOpsDefault()
+    public void testNonDefOpsDefault()
             throws Exception {
         final String[] expected = {
             "37:33: " + getCheckMessage(MSG_LINE_NEW, "::"),
@@ -74,7 +74,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void nonDefOpsWrapEol()
+    public void testNonDefOpsWrapEol()
             throws Exception {
         final String[] expected = {
             "35:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "::"),
@@ -85,7 +85,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void assignEol()
+    public void testAssignEol()
             throws Exception {
         final String[] expected = {
             "46:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
@@ -95,7 +95,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void eol() throws Exception {
+    public void testEol() throws Exception {
         final String[] expected = {
             "21:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
             "22:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
@@ -112,7 +112,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void nl() throws Exception {
+    public void testNl() throws Exception {
         final String[] expected = {
             "20:16: " + getCheckMessage(MSG_LINE_NEW, "="),
             "21:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
@@ -128,7 +128,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void arraysAssign() throws Exception {
+    public void testArraysAssign() throws Exception {
         final String[] expected = {
             "18:22: " + getCheckMessage(MSG_LINE_NEW, "="),
             "36:28: " + getCheckMessage(MSG_LINE_NEW, "="),
@@ -139,7 +139,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void guardedPattern() throws Exception {
+    public void testGuardedPattern() throws Exception {
         final String[] expected = {
             "30:23: " + getCheckMessage(MSG_LINE_NEW, "&&"),
             "31:40: " + getCheckMessage(MSG_LINE_NEW, "&&"),
@@ -153,14 +153,14 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void tryWithResources() throws Exception {
+    public void testTryWithResources() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOperatorWrapTryWithResources.java"), expected);
     }
 
     @Test
-    public void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -180,7 +180,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "18:21: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
             "19:21: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
@@ -190,7 +190,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void instanceOfOperator() throws Exception {
+    public void testInstanceOfOperator() throws Exception {
         final String[] expected = {
             "17:15: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
             "23:15: " + getCheckMessage(MSG_LINE_NEW, "instanceof"),
@@ -206,7 +206,7 @@ public class OperatorWrapCheckTest
     }
 
     @Test
-    public void instanceOfOperatorEndOfLine() throws Exception {
+    public void testInstanceOfOperatorEndOfLine() throws Exception {
         final String[] expected = {
             "28:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "instanceof"),
             "43:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "instanceof"),

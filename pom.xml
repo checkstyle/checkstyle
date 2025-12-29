@@ -648,11 +648,19 @@
             </activeRecipes>
             <exclusions>
               <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**AvoidEscapedUnicodeCharactersCheckTest.java</exclusion>
+              <exclusion>**CheckerTest.java</exclusion>
+              <exclusion>**CheckstyleAntTaskTest.java</exclusion>
+              <exclusion>**DetailAstImplTest.java</exclusion>
+              <exclusion>**MainTest.java</exclusion>
+              <exclusion>**PropertyCacheFileTest.java</exclusion>
+              <exclusion>**ReverseListIteratorTest.java</exclusion>
+              <exclusion>**TestUtil.java</exclusion>
+              <exclusion>**XpathMapperTest.java</exclusion>
               <exclusion>**resources-noncompilable**</exclusion>
               <exclusion>**src/it/resources**</exclusion>
               <exclusion>**src/test/resources**</exclusion>
               <exclusion>**xdocs-examples**</exclusion>
-              <exclusion>**AvoidEscapedUnicodeCharactersCheckTest.java</exclusion>
             </exclusions>
             <plainTextMasks>
               <plainTextMask>**/*.groovy</plainTextMask>

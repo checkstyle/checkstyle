@@ -29,7 +29,7 @@ import net.sf.saxon.om.NodeInfo;
 public class FollowingIteratorTest {
 
     @Test
-    public void followingSibling() {
+    public void testFollowingSibling() {
         final NodeInfo startNode = findNode("ANNOTATIONS");
 
         try (FollowingIterator iterator = new FollowingIterator(startNode)) {
@@ -64,7 +64,7 @@ public class FollowingIteratorTest {
     }
 
     @Test
-    public void noSibling() {
+    public void testNoSibling() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (FollowingIterator iterator = new FollowingIterator(startNode)) {

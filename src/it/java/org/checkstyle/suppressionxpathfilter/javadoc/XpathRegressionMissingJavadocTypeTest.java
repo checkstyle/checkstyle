@@ -73,7 +73,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void scope() throws Exception {
+    public void testScope() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingJavadocTypeScope.java"
         ));
@@ -104,7 +104,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void excluded() throws Exception {
+    public void testExcluded() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingJavadocTypeExcluded.java"
         ));
@@ -136,7 +136,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingJavadocTypeAnnotation.java"
         ));
@@ -172,7 +172,7 @@ public class XpathRegressionMissingJavadocTypeTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void token() throws Exception {
+    public void testToken() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathMissingJavadocTypeToken.java"
         ));

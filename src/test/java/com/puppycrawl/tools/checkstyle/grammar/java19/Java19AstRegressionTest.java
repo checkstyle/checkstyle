@@ -31,37 +31,37 @@ public class Java19AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
-    public void patternsInNullSwitch1() throws Exception {
+    public void testPatternsInNullSwitch1() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19PatternsInNullSwitch1.txt"),
                 getNonCompilablePath("InputJava19PatternsInNullSwitch1.java"));
     }
 
     @Test
-    public void patternsInNullSwitch2() throws Exception {
+    public void testPatternsInNullSwitch2() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19PatternsInNullSwitch2.txt"),
                 getNonCompilablePath("InputJava19PatternsInNullSwitch2.java"));
     }
 
     @Test
-    public void lotsOfOperators() throws Exception {
+    public void testLotsOfOperators() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19BindingsWithLotsOfOperators.txt"),
                 getNonCompilablePath("InputJava19BindingsWithLotsOfOperators.java"));
     }
 
     @Test
-    public void genericRecordDecomposition() throws Exception {
+    public void testGenericRecordDecomposition() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedGenericRecordDeconstructionPattern.txt"),
                 getNonCompilablePath("InputGenericRecordDeconstructionPattern.java"));
     }
 
     @Test
-    public void guardsWithExtraParenthesis() throws Exception {
+    public void testGuardsWithExtraParenthesis() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19GuardsWithExtraParenthesis.txt"),
                 getNonCompilablePath("InputJava19GuardsWithExtraParenthesis.java"));
     }
 
     @Test
-    public void bindingWithModifiers() throws Exception {
+    public void testBindingWithModifiers() throws Exception {
         verifyAst(getNonCompilablePath("ExpectedJava19BindingWithModifiers.txt"),
                 getNonCompilablePath("InputJava19BindingWithModifiers.java"));
     }

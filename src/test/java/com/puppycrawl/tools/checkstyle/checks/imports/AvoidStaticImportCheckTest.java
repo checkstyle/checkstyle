@@ -36,7 +36,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AvoidStaticImportCheck checkObj = new AvoidStaticImportCheck();
         final int[] expected = {TokenTypes.STATIC_IMPORT};
         assertWithMessage("Default required tokens are invalid")
@@ -45,7 +45,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void defaultOperation()
+    public void testDefaultOperation()
             throws Exception {
         final String[] expected = {
             "24:27: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
@@ -67,7 +67,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void starExcludes()
+    public void testStarExcludes()
             throws Exception {
         // allow the "java.io.File.*" AND "sun.net.ftpclient.FtpClient.*" star imports
         final String[] expected = {
@@ -86,7 +86,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void memberExcludes()
+    public void testMemberExcludes()
             throws Exception {
         // allow the java.io.File.listRoots and java.lang.Math.E member imports
         final String[] expected = {
@@ -106,7 +106,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void bogusMemberExcludes()
+    public void testBogusMemberExcludes()
             throws Exception {
         // should NOT mask anything
         final String[] expected = {
@@ -128,7 +128,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void innerClassMemberExcludesStar()
+    public void testInnerClassMemberExcludesStar()
             throws Exception {
         // should mask com.puppycrawl.tools.checkstyle.imports.avoidstaticimport.
         // InputAvoidStaticImportNestedClass.InnerClass.one
@@ -148,7 +148,7 @@ public class AvoidStaticImportCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AvoidStaticImportCheck testCheckObject =
                 new AvoidStaticImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();

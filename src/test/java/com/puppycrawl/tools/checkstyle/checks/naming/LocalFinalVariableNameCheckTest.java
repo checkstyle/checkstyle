@@ -37,7 +37,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final LocalFinalVariableNameCheck checkObj =
             new LocalFinalVariableNameCheck();
         assertWithMessage("LocalFinalVariableNameCheck#getRequiredTokens should return empty array "
@@ -60,7 +60,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void set()
+    public void testSet()
             throws Exception {
 
         final String pattern = "[A-Z]+";
@@ -73,7 +73,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void innerClass()
+    public void testInnerClass()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -81,7 +81,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final LocalFinalVariableNameCheck localFinalVariableNameCheckObj =
             new LocalFinalVariableNameCheck();
         final int[] actual = localFinalVariableNameCheckObj.getAcceptableTokens();
@@ -96,7 +96,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void tryWithResources() throws Exception {
+    public void testTryWithResources() throws Exception {
 
         final String pattern = "[A-Z]+";
 
@@ -112,7 +112,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void tryWithResourcesJava9() throws Exception {
+    public void testTryWithResourcesJava9() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -120,7 +120,7 @@ public class LocalFinalVariableNameCheckTest
     }
 
     @Test
-    public void unnamedVariables() throws Exception {
+    public void testUnnamedVariables() throws Exception {
         final String pattern = "^([a-z][a-zA-Z0-9]*|_)$";
 
         final String[] expected = {

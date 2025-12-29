@@ -45,7 +45,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void simple() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMissingSwitchDefaultSimple.java"));
 
@@ -65,7 +65,7 @@ public class XpathRegressionMissingSwitchDefaultTest extends AbstractXpathTestSu
     }
 
     @Test
-    public void nested() throws Exception {
+    public void testNested() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathMissingSwitchDefaultNested.java"));
 

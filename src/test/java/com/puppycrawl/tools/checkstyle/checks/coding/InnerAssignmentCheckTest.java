@@ -36,7 +36,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void it() throws Exception {
+    public void testIt() throws Exception {
         final String[] expected = {
             "22:15: " + getCheckMessage(MSG_KEY),
             "22:19: " + getCheckMessage(MSG_KEY),
@@ -49,7 +49,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void method() throws Exception {
+    public void testMethod() throws Exception {
         final String[] expected = {
             "73:22: " + getCheckMessage(MSG_KEY),
         };
@@ -58,7 +58,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void demoBug1195047Comment3() throws Exception {
+    public void testDemoBug1195047Comment3() throws Exception {
         final String[] expected = {
             "18:16: " + getCheckMessage(MSG_KEY),
             "19:24: " + getCheckMessage(MSG_KEY),
@@ -78,7 +78,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void lambdaExpression() throws Exception {
+    public void testLambdaExpression() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputInnerAssignmentLambdaExpressions.java"),
@@ -86,7 +86,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void innerAssignmentNotInLoopContext() throws Exception {
+    public void testInnerAssignmentNotInLoopContext() throws Exception {
         final String[] expected = {
             "12:28: " + getCheckMessage(MSG_KEY),
         };
@@ -96,7 +96,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -110,7 +110,7 @@ public class InnerAssignmentCheckTest
     }
 
     @Test
-    public void innerAssignmentSwitchAndSwitchExpression() throws Exception {
+    public void testInnerAssignmentSwitchAndSwitchExpression() throws Exception {
         final String[] expected = {
             "28:23: " + getCheckMessage(MSG_KEY),
             "38:25: " + getCheckMessage(MSG_KEY),

@@ -31,12 +31,12 @@ public class TheSummaryFragmentTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void correct() throws Exception {
+    public void testCorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectSummaryFragment.java"));
     }
 
     @Test
-    public void incorrect() throws Exception {
+    public void testIncorrect() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectSummaryFragment.java"));
     }
 

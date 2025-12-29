@@ -66,14 +66,14 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void receiverParameter() throws Exception {
+    public void testReceiverParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputParameterAssignmentReceiver.java"), expected);
     }
 
     @Test
-    public void enhancedSwitch() throws Exception {
+    public void testEnhancedSwitch() throws Exception {
         final String[] expected = {
             "14:28: " + getCheckMessage(MSG_KEY, "a"),
             "21:16: " + getCheckMessage(MSG_KEY, "result"),
@@ -84,7 +84,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())
@@ -106,7 +106,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final ParameterAssignmentCheck check = new ParameterAssignmentCheck();
         final Optional<DetailAST> methodDef = TestUtil.findTokenInAstByPredicate(
             JavaParser.parseFile(new File(getPath("InputParameterAssignmentReceiver.java")),

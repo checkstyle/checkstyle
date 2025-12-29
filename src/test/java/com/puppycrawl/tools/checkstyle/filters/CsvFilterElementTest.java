@@ -29,7 +29,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 public class CsvFilterElementTest {
 
     @Test
-    public void decideSingle() {
+    public void testDecideSingle() {
         final IntFilterElement filter = new CsvFilterElement("0");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -43,7 +43,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void decidePair() {
+    public void testDecidePair() {
         final IntFilterElement filter = new CsvFilterElement("0, 2");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -60,7 +60,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void decideRange() {
+    public void testDecideRange() {
         final IntFilterElement filter = new CsvFilterElement("0-2");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -80,7 +80,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void decideEmptyRange() {
+    public void testDecideEmptyRange() {
         final IntFilterElement filter = new CsvFilterElement("2-0");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -100,7 +100,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void decideRangePlusValue() {
+    public void testDecideRangePlusValue() {
         final IntFilterElement filter = new CsvFilterElement("0-2, 10");
         assertWithMessage("less than")
                 .that(filter.accept(-1))
@@ -123,7 +123,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void emptyChain() {
+    public void testEmptyChain() {
         final CsvFilterElement filter = new CsvFilterElement("");
         assertWithMessage("0")
                 .that(filter.accept(0))
@@ -131,7 +131,7 @@ public class CsvFilterElementTest {
     }
 
     @Test
-    public void equalsAndHashCode() {
+    public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(CsvFilterElement.class)
                 .usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())

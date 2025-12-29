@@ -45,7 +45,7 @@ public class AuditEventTest {
     }
 
     @Test
-    public void noSource() {
+    public void testNoSource() {
         final IllegalArgumentException ex = getExpectedThrowable(IllegalArgumentException.class,
                 () -> new AuditEvent(null),
                 "IllegalArgumentException expected");
@@ -55,7 +55,7 @@ public class AuditEventTest {
     }
 
     @Test
-    public void fullConstructor() {
+    public void testFullConstructor() {
         final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);

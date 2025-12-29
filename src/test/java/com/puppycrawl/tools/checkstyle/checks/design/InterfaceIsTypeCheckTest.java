@@ -46,7 +46,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void allowMarker()
+    public void testAllowMarker()
             throws Exception {
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY),
@@ -57,7 +57,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default acceptable tokens are invalid")
@@ -66,7 +66,7 @@ public class InterfaceIsTypeCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final InterfaceIsTypeCheck obj = new InterfaceIsTypeCheck();
         final int[] expected = {TokenTypes.INTERFACE_DEF};
         assertWithMessage("Default required tokens are invalid")

@@ -36,7 +36,7 @@ public class Java7TryWithResourcesTest
     }
 
     @Test
-    public void canParse()
+    public void testCanParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

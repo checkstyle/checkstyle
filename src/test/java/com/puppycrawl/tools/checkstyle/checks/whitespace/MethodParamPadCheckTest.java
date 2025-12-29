@@ -40,7 +40,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
         assertWithMessage("MethodParamPadCheck#getRequiredTokens should return empty array "
                 + "by default")
@@ -75,7 +75,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void allowLineBreaks() throws Exception {
+    public void testAllowLineBreaks() throws Exception {
         final String[] expected = {
             "21:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "23:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -92,7 +92,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void spaceOption() throws Exception {
+    public void testSpaceOption() throws Exception {
         final String[] expected = {
             "16:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "18:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
@@ -122,7 +122,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void methodParamPadRecords() throws Exception {
+    public void testMethodParamPadRecords() throws Exception {
         final String[] expected = {
             "19:16: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "20:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -151,7 +151,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void methodParamPadCheckWithEmoji() throws Exception {
+    public void testMethodParamPadCheckWithEmoji() throws Exception {
         final String[] expected = {
             "19:31: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "21:30: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -168,7 +168,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void methodParamPadCheckConstructors() throws Exception {
+    public void testMethodParamPadCheckConstructors() throws Exception {
         final String[] expected = {
             "21:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "25:14: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -179,7 +179,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final MethodParamPadCheck methodParamPadCheckObj = new MethodParamPadCheck();
         final int[] actual = methodParamPadCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -199,7 +199,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -217,7 +217,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "15:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "26:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
@@ -227,7 +227,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void recordPattern() throws Exception {
+    public void testRecordPattern() throws Exception {
         final String[] expected = {
             "19:41: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "22:42: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -243,7 +243,7 @@ public class MethodParamPadCheckTest
     }
 
     @Test
-    public void recordPattern2() throws Exception {
+    public void testRecordPattern2() throws Exception {
         final String[] expected = {
             "23:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "23:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),

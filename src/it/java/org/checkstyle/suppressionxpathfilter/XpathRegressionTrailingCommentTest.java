@@ -37,7 +37,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void singleLine() throws Exception {
+    public void testSingleLine() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathTrailingCommentSingleLine.java"));
 
@@ -61,7 +61,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void block() throws Exception {
+    public void testBlock() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathTrailingCommentBlock.java"));
 

@@ -42,7 +42,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void main() throws Exception {
+    public void testMain() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathNoFinalizerMain.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionNoFinalizerTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void inner() throws Exception {
+    public void testInner() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathNoFinalizerInner.java"));
 

@@ -42,7 +42,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final OneTopLevelClassCheck checkObj = new OneTopLevelClassCheck();
         final int[] expected = {TokenTypes.COMPILATION_UNIT};
         assertWithMessage("Required tokens are invalid.")
@@ -51,7 +51,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
         final String firstInputFilePath = getPath("InputOneTopLevelClassDeclarationOrder.java");
@@ -75,7 +75,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void acceptableTokens() {
+    public void testAcceptableTokens() {
         final OneTopLevelClassCheck check = new OneTopLevelClassCheck();
         final int[] expected = {TokenTypes.COMPILATION_UNIT};
         assertWithMessage("Default required tokens are invalid")
@@ -84,35 +84,35 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithOneTopLevelClass() throws Exception {
+    public void testFileWithOneTopLevelClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClass.java"), expected);
     }
 
     @Test
-    public void fileWithOneTopLevelInterface() throws Exception {
+    public void testFileWithOneTopLevelInterface() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassInterface.java"), expected);
     }
 
     @Test
-    public void fileWithOneTopLevelEnum() throws Exception {
+    public void testFileWithOneTopLevelEnum() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassEnum.java"), expected);
     }
 
     @Test
-    public void fileWithOneTopLevelAnnotation() throws Exception {
+    public void testFileWithOneTopLevelAnnotation() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputOneTopLevelClassAnnotation.java"), expected);
     }
 
     @Test
-    public void fileWithNoPublicTopLevelClass() throws Exception {
+    public void testFileWithNoPublicTopLevelClass() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassNoPublic2"),
         };
@@ -121,7 +121,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithThreeTopLevelInterface() throws Exception {
+    public void testFileWithThreeTopLevelInterface() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface3inner2"),
@@ -131,7 +131,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithThreeTopLevelEnum() throws Exception {
+    public void testFileWithThreeTopLevelEnum() throws Exception {
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner1"),
             "17:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassEnum2inner2"),
@@ -141,7 +141,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithThreeTopLevelAnnotation() throws Exception {
+    public void testFileWithThreeTopLevelAnnotation() throws Exception {
         final String[] expected = {
             "15:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
             "20:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
@@ -151,7 +151,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithFewTopLevelClasses() throws Exception {
+    public void testFileWithFewTopLevelClasses() throws Exception {
         final String[] expected = {
             "31:1: " + getCheckMessage(MSG_KEY, "NoSuperClone"),
             "35:1: " + getCheckMessage(MSG_KEY, "InnerClone"),
@@ -166,7 +166,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithSecondEnumTopLevelClass() throws Exception {
+    public void testFileWithSecondEnumTopLevelClass() throws Exception {
         final String[] expected = {
             "16:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum2"),
             "26:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation2"),
@@ -176,14 +176,14 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void packageInfoWithNoTypesDeclared() throws Exception {
+    public void testPackageInfoWithNoTypesDeclared() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("package-info.java"), expected);
     }
 
     @Test
-    public void fileWithMultipleSameLine() throws Exception {
+    public void testFileWithMultipleSameLine() throws Exception {
         final String[] expected = {
             "9:47: " + getCheckMessage(MSG_KEY, "ViolatingSecondType"),
         };
@@ -192,7 +192,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fileWithIndentation() throws Exception {
+    public void testFileWithIndentation() throws Exception {
         final String[] expected = {
             "13:2: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass1"),
             "17:5: " + getCheckMessage(MSG_KEY, "ViolatingIndentedClass2"),
@@ -203,7 +203,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void oneTopLevelClassRecords() throws Exception {
+    public void testOneTopLevelClassRecords() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
             "17:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
@@ -213,7 +213,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void oneTopLevelClassEmpty() throws Exception {
+    public void testOneTopLevelClassEmpty() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputOneTopLevelClassEmpty.java"), expected);

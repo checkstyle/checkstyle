@@ -27,14 +27,14 @@ import org.junit.jupiter.api.Test;
 public class JavadocCommentsTokenTypesTest {
 
     @Test
-    public void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(JavadocCommentsTokenTypes.class))
                 .isTrue();
     }
 
     @Test
-    public void tokenValues() {
+    public void testTokenValues() {
         final String msg = "Please ensure that token values in `JavadocTokenTypes.java` have not"
                 + " changed.";
 

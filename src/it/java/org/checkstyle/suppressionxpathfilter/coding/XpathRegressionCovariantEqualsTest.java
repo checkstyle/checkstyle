@@ -44,7 +44,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void covariantEqualsInClass() throws Exception {
+    public void testCovariantEqualsInClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCovariantEqualsInClass.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void covariantEqualsInEnum() throws Exception {
+    public void testCovariantEqualsInEnum() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathCovariantEqualsInEnum.java"));
 
@@ -89,7 +89,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void covariantEqualsInRecord() throws Exception {
+    public void testCovariantEqualsInRecord() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathCovariantEqualsInRecord.java"));

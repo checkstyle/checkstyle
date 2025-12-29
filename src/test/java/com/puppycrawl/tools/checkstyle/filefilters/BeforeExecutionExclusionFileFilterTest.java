@@ -38,7 +38,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void accept() {
+    public void testAccept() {
         final String fileName = "BAD";
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
@@ -49,7 +49,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void acceptOnNullFile() {
+    public void testAcceptOnNullFile() {
         final String fileName = null;
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
@@ -60,7 +60,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void reject() {
+    public void testReject() {
         final String fileName = "Test";
         final BeforeExecutionExclusionFileFilter filter =
                 createExclusionBeforeExecutionFileFilter(fileName);
@@ -71,7 +71,7 @@ public class BeforeExecutionExclusionFileFilterTest extends AbstractModuleTestSu
     }
 
     @Test
-    public void fileExclusion() throws Exception {
+    public void testFileExclusion() throws Exception {
         final String[] filteredViolations = CommonUtil.EMPTY_STRING_ARRAY;
 
         final String[] unfilteredViolations = {

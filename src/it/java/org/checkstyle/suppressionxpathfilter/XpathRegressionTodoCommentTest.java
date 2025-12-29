@@ -39,7 +39,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void singleLine() throws Exception {
+    public void testSingleLine() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTodoCommentSingleLine.java"));
 
@@ -61,7 +61,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void block() throws Exception {
+    public void testBlock() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathTodoCommentBlock.java"));
 

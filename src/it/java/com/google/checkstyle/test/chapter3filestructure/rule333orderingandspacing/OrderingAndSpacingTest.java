@@ -30,82 +30,82 @@ public class OrderingAndSpacingTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void customImport1() throws Exception {
+    public void testCustomImport1() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacing1.java"));
     }
 
     @Test
-    public void customImport1Formatted() throws Exception {
+    public void testCustomImport1Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacing1.java"));
     }
 
     @Test
-    public void customImport2() throws Exception {
+    public void testCustomImport2() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacing2.java"));
     }
 
     @Test
-    public void customImport2Formatted() throws Exception {
+    public void testCustomImport2Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacing2.java"));
     }
 
     @Test
-    public void customImport3() throws Exception {
+    public void testCustomImport3() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacing3.java"));
     }
 
     @Test
-    public void customImport3Formatted() throws Exception {
+    public void testCustomImport3Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacing3.java"));
     }
 
     @Test
-    public void customImport4() throws Exception {
+    public void testCustomImport4() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacing4.java"));
     }
 
     @Test
-    public void customImport4Formatted() throws Exception {
+    public void testCustomImport4Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacing4.java"));
     }
 
     @Test
-    public void customImport5() throws Exception {
+    public void testCustomImport5() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacing5.java"));
     }
 
     @Test
-    public void customImport5Formatted() throws Exception {
+    public void testCustomImport5Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacing5.java"));
     }
 
     @Test
-    public void valid() throws Exception {
+    public void testValid() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacingValid.java"));
     }
 
     @Test
-    public void validFormatted() throws Exception {
+    public void testValidFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacingValid.java"));
     }
 
     @Test
-    public void valid2() throws Exception {
+    public void testValid2() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacingValid2.java"));
     }
 
     @Test
-    public void valid2Formatted() throws Exception {
+    public void testValid2Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacingValid2.java"));
     }
 
     @Test
-    public void validGoogleStyleOrderOfImports() throws Exception {
+    public void testValidGoogleStyleOrderOfImports() throws Exception {
         verifyWithWholeConfig(getPath("InputOrderingAndSpacingNoImports.java"));
     }
 
     @Test
-    public void validGoogleStyleOrderOfImportsFormatted() throws Exception {
+    public void testValidGoogleStyleOrderOfImportsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedOrderingAndSpacingNoImports.java"));
     }
 

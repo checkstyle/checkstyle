@@ -31,78 +31,78 @@ public class GeneralFormTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void singleLineJavadocAndInvalidJavadocPosition() throws Exception {
+    public void testSingleLineJavadocAndInvalidJavadocPosition() throws Exception {
         verifyWithWholeConfig(getPath("InputSingleLineJavadocAndInvalidJavadocPosition.java"));
     }
 
     @Test
-    public void singleLineJavadocAndInvalidJavadocPositionFormatted() throws Exception {
+    public void testSingleLineJavadocAndInvalidJavadocPositionFormatted() throws Exception {
         verifyWithWholeConfig(
                 getPath("InputFormattedSingleLineJavadocAndInvalidJavadocPosition.java"));
     }
 
     @Test
-    public void javadocPositionOnCompactConstructorInRecord() throws Exception {
+    public void testJavadocPositionOnCompactConstructorInRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputJavadocPositionOnConstructorInRecord.java"));
     }
 
     @Test
-    public void formattedJavadocPositionOnCompactConstructorInRecord() throws Exception {
+    public void testFormattedJavadocPositionOnCompactConstructorInRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedJavadocPositionOnConstructorInRecord.java"));
     }
 
     @Test
-    public void javadocPositionOnCompactConstructorWithAnnotation() throws Exception {
+    public void testJavadocPositionOnCompactConstructorWithAnnotation() throws Exception {
         verifyWithWholeConfig(
             getPath("InputJavadocPositionOnCompactConstructorsWithAnnotation.java"));
     }
 
     @Test
-    public void formattedJavadocPositionOnCompactConstructorWithAnnotation() throws Exception {
+    public void testFormattedJavadocPositionOnCompactConstructorWithAnnotation() throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedJavadocPositionOnCompactConstructorsWithAnnotation.java"));
     }
 
     @Test
-    public void javadocPositionOnCanonicalConstructorWithAnnotation() throws Exception {
+    public void testJavadocPositionOnCanonicalConstructorWithAnnotation() throws Exception {
         verifyWithWholeConfig(
             getPath("InputJavadocPositionOnCanonicalConstructorsWithAnnotation.java"));
     }
 
     @Test
-    public void formattedJavadocPositionOnCanonicalConstructorWithAnnotation()
+    public void testFormattedJavadocPositionOnCanonicalConstructorWithAnnotation()
             throws Exception {
         verifyWithWholeConfig(
             getPath("InputFormattedJavadocPositionOnCanonicalConstructorsWithAnnotation.java"));
     }
 
     @Test
-    public void recordClassJavadocPosition() throws Exception {
+    public void testRecordClassJavadocPosition() throws Exception {
         verifyWithWholeConfig(getPath("InputRecordClassJavadocPosition.java"));
     }
 
     @Test
-    public void formattedRecordClassJavadocPosition() throws Exception {
+    public void testFormattedRecordClassJavadocPosition() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRecordClassJavadocPosition.java"));
     }
 
     @Test
-    public void correctJavadocLeadingAsteriskAlignment() throws Exception {
+    public void testCorrectJavadocLeadingAsteriskAlignment() throws Exception {
         verifyWithWholeConfig(getPath("InputCorrectJavadocLeadingAsteriskAlignment.java"));
     }
 
     @Test
-    public void formattedCorrectJavadocLeadingAsteriskAlignment() throws Exception {
+    public void testFormattedCorrectJavadocLeadingAsteriskAlignment() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCorrectJavadocLeadingAsteriskAlignment.java"));
     }
 
     @Test
-    public void incorrectJavadocLeadingAsteriskAlignment() throws Exception {
+    public void testIncorrectJavadocLeadingAsteriskAlignment() throws Exception {
         verifyWithWholeConfig(getPath("InputIncorrectJavadocLeadingAsteriskAlignment.java"));
     }
 
     @Test
-    public void formattedIncorrectJavadocLeadingAsteriskAlignment() throws Exception {
+    public void testFormattedIncorrectJavadocLeadingAsteriskAlignment() throws Exception {
         verifyWithWholeConfig(
                     getPath("InputFormattedIncorrectJavadocLeadingAsteriskAlignment.java"));
     }

@@ -47,7 +47,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
     }
 
     @Test
-    public void simple() throws Exception {
+    public void testSimple() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationSimple.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
@@ -63,7 +63,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
     }
 
     @Test
-    public void innerTypes() throws Exception {
+    public void testInnerTypes() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathUnnecessarySemicolonAfterOuterTypeDeclarationInnerTypes"
                     + ".java"));

@@ -97,7 +97,7 @@ public class CommitValidationTest {
             CommitsResolutionMode.BY_LAST_COMMIT_AUTHOR;
 
     @Test
-    public void hasCommits() throws Exception {
+    public void testHasCommits() throws Exception {
         final List<RevCommit> lastCommits = getCommitsToCheck();
 
         assertWithMessage("must have at least one commit to validate")
@@ -106,7 +106,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void commitMessage() {
+    public void testCommitMessage() {
         assertWithMessage("should not accept commit message with periods on end")
             .that(validateCommitMessage("minor: Test. Test."))
             .isEqualTo(3);
@@ -146,7 +146,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void releaseCommitMessage() {
+    public void testReleaseCommitMessage() {
         assertWithMessage("should accept release commit message for preparing release")
                 .that(validateCommitMessage("[maven-release-plugin] "
                         + "prepare release checkstyle-10.8.0"))
@@ -159,7 +159,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void revertCommitMessage() {
+    public void testRevertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
                 .that(validateCommitMessage(
                         """
@@ -178,7 +178,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void supplementalPrefix() {
+    public void testSupplementalPrefix() {
         assertWithMessage("should accept commit message with supplemental prefix")
                 .that(0)
                 .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
@@ -207,7 +207,7 @@ public class CommitValidationTest {
     }
 
     @Test
-    public void commitMessageHasProperStructure() throws Exception {
+    public void testCommitMessageHasProperStructure() throws Exception {
         final List<RevCommit> lastCommits = getCommitsToCheck();
         for (RevCommit commit : filterValidCommits(lastCommits)) {
             final String commitMessage = commit.getFullMessage();

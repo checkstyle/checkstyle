@@ -35,7 +35,7 @@ import net.sf.saxon.om.NodeInfo;
 public class ReverseListIteratorTest {
 
     @Test
-    public void correctOrder() {
+    public void testCorrectOrder() {
         final List<AbstractNode> nodes = Arrays.asList(new TestNode(), new TestNode(),
                 new TestNode());
 
@@ -52,7 +52,7 @@ public class ReverseListIteratorTest {
     }
 
     @Test
-    public void nullList() {
+    public void testNullList() {
         try (ReverseListIterator iterator = new ReverseListIterator(null)) {
             assertWithMessage("Node should be null")
                     .that(iterator.next())

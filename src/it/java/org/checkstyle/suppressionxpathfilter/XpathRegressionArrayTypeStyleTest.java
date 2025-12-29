@@ -36,7 +36,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void variable() throws Exception {
+    public void testVariable() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTypeStyleVariable.java"));
 
@@ -59,7 +59,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void methodDef() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathArrayTypeStyleMethodDef.java"));
 

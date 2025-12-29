@@ -38,7 +38,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final AnonInnerLengthCheck checkObj = new AnonInnerLengthCheck();
         final int[] expected = {TokenTypes.LITERAL_NEW};
         assertWithMessage("Default required tokens are invalid")
@@ -47,7 +47,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AnonInnerLengthCheck anonInnerLengthCheckObj =
                 new AnonInnerLengthCheck();
         final int[] actual = anonInnerLengthCheckObj.getAcceptableTokens();
@@ -59,7 +59,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultOne() throws Exception {
+    public void testDefaultOne() throws Exception {
         final String[] expected = {
             "52:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
@@ -68,7 +68,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultTwo() throws Exception {
+    public void testDefaultTwo() throws Exception {
         final String[] expected = {
             "21:35: " + getCheckMessage(MSG_KEY, 21, 20),
         };
@@ -78,7 +78,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nonDefaultOne() throws Exception {
+    public void testNonDefaultOne() throws Exception {
         final String[] expected = {
             "52:35: " + getCheckMessage(MSG_KEY, 21, 6),
         };
@@ -87,7 +87,7 @@ public class AnonInnerLengthCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nonDefaultTwo() throws Exception {
+    public void testNonDefaultTwo() throws Exception {
         final String[] expected = {
             "22:35: " + getCheckMessage(MSG_KEY, 20, 6),
         };

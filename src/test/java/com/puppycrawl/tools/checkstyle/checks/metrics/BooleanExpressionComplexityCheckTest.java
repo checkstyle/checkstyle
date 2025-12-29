@@ -53,7 +53,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void noBitwise() throws Exception {
+    public void testNoBitwise() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -62,7 +62,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void nullPointerException() throws Exception {
+    public void testNullPointerException() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -71,7 +71,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void wrongToken() {
+    public void testWrongToken() {
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
             new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
@@ -88,7 +88,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void small() throws Exception {
+    public void testSmall() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -97,7 +97,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void booleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
+    public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
 
         final int max = 3;
 
@@ -115,7 +115,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void leaves() throws Exception {
+    public void testLeaves() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -124,7 +124,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void recordLeaves() throws Exception {
+    public void testRecordLeaves() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -134,7 +134,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
     }
 
     @Test
-    public void whenExpression() throws Exception {
+    public void testWhenExpression() throws Exception {
 
         final int max = 0;
 

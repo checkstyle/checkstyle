@@ -51,7 +51,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void space()
+    public void testSpace()
             throws Exception {
         final String[] expected = {
             "84:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
@@ -76,7 +76,7 @@ public class TypecastParenPadCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final TypecastParenPadCheck typecastParenPadCheckObj = new TypecastParenPadCheck();
         final int[] actual = typecastParenPadCheckObj.getAcceptableTokens();
         final int[] expected = {

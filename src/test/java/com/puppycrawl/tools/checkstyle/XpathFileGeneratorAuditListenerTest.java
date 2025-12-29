@@ -93,7 +93,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void finishLocalSetup() {
+    public void testFinishLocalSetup() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
@@ -108,7 +108,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void fileStarted() {
+    public void testFileStarted() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
@@ -122,7 +122,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void fileFinished() {
+    public void testFileFinished() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
@@ -136,7 +136,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void addException() {
+    public void testAddException() {
         final OutputStream out = new ByteArrayOutputStream();
         final XpathFileGeneratorAuditListener logger =
                 new XpathFileGeneratorAuditListener(out, OutputStreamOptions.CLOSE);
@@ -158,7 +158,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void correctOne() {
+    public void testCorrectOne() {
         final AuditEvent event = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 FIRST_MESSAGE);
 
@@ -182,7 +182,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void correctTwo() {
+    public void testCorrectTwo() {
         final AuditEvent event1 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 SECOND_MESSAGE);
 
@@ -215,7 +215,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void onlyOneMatching() {
+    public void testOnlyOneMatching() {
         final AuditEvent event1 = createAuditEvent("InputXpathFileGeneratorAuditListener.java",
                 10, 5, MethodParamPadCheck.class);
 
@@ -244,7 +244,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void closeStream() {
+    public void testCloseStream() {
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(outStream, OutputStreamOptions.CLOSE);
         listener.finishLocalSetup();
@@ -257,7 +257,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void noCloseStream() {
+    public void testNoCloseStream() {
         final XpathFileGeneratorAuditListener listener =
                 new XpathFileGeneratorAuditListener(outStream, OutputStreamOptions.NONE);
         listener.finishLocalSetup();
@@ -270,7 +270,7 @@ public class XpathFileGeneratorAuditListenerTest {
     }
 
     @Test
-    public void nullOutputStreamOptions() {
+    public void testNullOutputStreamOptions() {
         final OutputStream out = new ByteArrayOutputStream();
         try {
             final XpathFileGeneratorAuditListener listener = new XpathFileGeneratorAuditListener(

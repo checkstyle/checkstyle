@@ -38,7 +38,7 @@ public class LineCommentAtTheEndOfFileTest
     }
 
     @Test
-    public void canParse()
+    public void testCanParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

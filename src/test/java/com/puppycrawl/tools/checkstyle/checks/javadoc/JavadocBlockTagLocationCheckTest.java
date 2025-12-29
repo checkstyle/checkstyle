@@ -36,7 +36,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final JavadocBlockTagLocationCheck checkObj = new JavadocBlockTagLocationCheck();
         final int[] expected = {
             JavadocCommentsTokenTypes.TEXT,
@@ -47,7 +47,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void correct() throws Exception {
+    public void testCorrect() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -64,7 +64,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
      * @throws Exception if exception occurs during verification process.
      */
     @Test
-    public void multilineCodeBlock() throws Exception {
+    public void testMultilineCodeBlock() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -72,7 +72,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void incorrect() throws Exception {
+    public void testIncorrect() throws Exception {
         final String[] expected = {
             "15: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "author"),
             "16: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "since"),
@@ -87,7 +87,7 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     }
 
     @Test
-    public void customTags() throws Exception {
+    public void testCustomTags() throws Exception {
         final String[] expected = {
             "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
             "14: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),

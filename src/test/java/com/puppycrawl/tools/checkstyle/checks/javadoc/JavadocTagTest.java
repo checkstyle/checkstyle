@@ -33,7 +33,7 @@ public class JavadocTagTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void javadocTagTypeValueOf() {
+    public void testJavadocTagTypeValueOf() {
         final JavadocUtil.JavadocTagType enumConst =
             JavadocUtil.JavadocTagType.valueOf("ALL");
         assertWithMessage("Invalid enum valueOf result")
@@ -46,7 +46,7 @@ public class JavadocTagTest {
      * values() is uncovered.
      */
     @Test
-    public void javadocTagTypeValues() {
+    public void testJavadocTagTypeValues() {
         final JavadocUtil.JavadocTagType[] enumConstants =
             JavadocUtil.JavadocTagType.values();
         final JavadocUtil.JavadocTagType[] expected = {
@@ -71,7 +71,7 @@ public class JavadocTagTest {
     }
 
     @Test
-    public void javadocTagReferenceImports() {
+    public void testJavadocTagReferenceImports() {
         assertThat(new JavadocTag(0, 0, "see", null).canReferenceImports()).isTrue();
         assertThat(new JavadocTag(0, 0, "link", null).canReferenceImports()).isTrue();
         assertThat(new JavadocTag(0, 0, "value", null).canReferenceImports()).isTrue();
@@ -81,13 +81,13 @@ public class JavadocTagTest {
     }
 
     @Test
-    public void javadocTagReferenceImportsInvalid() {
+    public void testJavadocTagReferenceImportsInvalid() {
         assertThat(new JavadocTag(0, 0, "author", null).canReferenceImports())
                 .isFalse();
     }
 
     @Test
-    public void javadocTagIsInlineTag() {
+    public void testJavadocTagIsInlineTag() {
         assertThat(new JavadocTag(0, 0, "link", null).isInlineTag()).isTrue();
         assertThat(new JavadocTag(0, 0, "value", null).isInlineTag()).isTrue();
         assertThat(new JavadocTag(0, 0, "see", null).isInlineTag()).isFalse();

@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class XpathFileGeneratorAstFilterTest {
 
     @Test
-    public void acceptNoToken() {
+    public void testAcceptNoToken() {
         final Violation violation = new Violation(0, 0, 0, null, null, null, null,
                 null, XpathFileGeneratorAstFilterTest.class, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(null, null, violation, null);
@@ -82,7 +82,7 @@ public class XpathFileGeneratorAstFilterTest {
     }
 
     @Test
-    public void noXpathQuery() throws Exception {
+    public void testNoXpathQuery() throws Exception {
         final Violation violation = new Violation(10, 10, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
                 null);
@@ -104,7 +104,7 @@ public class XpathFileGeneratorAstFilterTest {
     }
 
     @Test
-    public void tabWidth() throws Exception {
+    public void testTabWidth() throws Exception {
         final Violation violation = new Violation(6, 7, TokenTypes.LITERAL_RETURN,
                 "messages.properties", null, null, SeverityLevel.ERROR, null,
                 XpathFileGeneratorAstFilterTest.class, null);
@@ -137,7 +137,7 @@ public class XpathFileGeneratorAstFilterTest {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final Violation violation = new Violation(3, 47, TokenTypes.LCURLY,
                 "messages.properties", null, null, SeverityLevel.ERROR, null, LeftCurlyCheck.class,
                 null);

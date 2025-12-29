@@ -31,112 +31,112 @@ public class NonemptyBlocksKrStyleTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void leftAndRightCurlyBraces() throws Exception {
+    public void testLeftAndRightCurlyBraces() throws Exception {
         verifyWithWholeConfig(getPath("InputNonemptyBlocksLeftRightCurly.java"));
     }
 
     @Test
-    public void leftAndRightCurlyBracesFormatted() throws Exception {
+    public void testLeftAndRightCurlyBracesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedNonemptyBlocksLeftRightCurly.java"));
     }
 
     @Test
-    public void leftCurlyAnnotations() throws Exception {
+    public void testLeftCurlyAnnotations() throws Exception {
         verifyWithWholeConfig(getPath("InputLeftCurlyAnnotations.java"));
     }
 
     @Test
-    public void leftCurlyAnnotationsFormatted() throws Exception {
+    public void testLeftCurlyAnnotationsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedLeftCurlyAnnotations.java"));
     }
 
     @Test
-    public void leftCurlyMethods() throws Exception {
+    public void testLeftCurlyMethods() throws Exception {
         verifyWithWholeConfig(getPath("InputLeftCurlyMethod.java"));
     }
 
     @Test
-    public void leftCurlyMethodsFormatted() throws Exception {
+    public void testLeftCurlyMethodsFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedLeftCurlyMethod.java"));
     }
 
     @Test
-    public void rightCurly() throws Exception {
+    public void testRightCurly() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurly.java"));
     }
 
     @Test
-    public void rightCurlyFormatted() throws Exception {
+    public void testRightCurlyFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurly.java"));
     }
 
     @Test
-    public void rightCurlyLiteralDoDefault() throws Exception {
+    public void testRightCurlyLiteralDoDefault() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurlyDoWhile.java"));
     }
 
     @Test
-    public void rightCurlyLiteralDoDefaultFormatted() throws Exception {
+    public void testRightCurlyLiteralDoDefaultFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurlyDoWhile.java"));
     }
 
     @Test
-    public void rightCurlyOther() throws Exception {
+    public void testRightCurlyOther() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurlyOther.java"));
     }
 
     @Test
-    public void rightCurlyOtherFormatted() throws Exception {
+    public void testRightCurlyOtherFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurlyOther.java"));
     }
 
     @Test
-    public void rightCurlyLiteralDo() throws Exception {
+    public void testRightCurlyLiteralDo() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurlyDoWhile2.java"));
     }
 
     @Test
-    public void rightCurlyLiteralDoFormatted() throws Exception {
+    public void testRightCurlyLiteralDoFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurlyDoWhile2.java"));
     }
 
     @Test
-    public void rightCurlySwitch() throws Exception {
+    public void testRightCurlySwitch() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurlySwitchCase.java"));
     }
 
     @Test
-    public void rightCurlySwitchFormatted() throws Exception {
+    public void testRightCurlySwitchFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurlySwitchCase.java"));
     }
 
     @Test
-    public void rightCurlySwitchCases() throws Exception {
+    public void testRightCurlySwitchCases() throws Exception {
         verifyWithWholeConfig(getPath("InputRightCurlySwitchCasesBlocks.java"));
     }
 
     @Test
-    public void rightCurlySwitchCasesFormatted() throws Exception {
+    public void testRightCurlySwitchCasesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedRightCurlySwitchCasesBlocks.java"));
     }
 
     @Test
-    public void tryCatchIfElse() throws Exception {
+    public void testTryCatchIfElse() throws Exception {
         verifyWithWholeConfig(getPath("InputTryCatchIfElse.java"));
     }
 
     @Test
-    public void tryCatchIfElseFormatted() throws Exception {
+    public void testTryCatchIfElseFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTryCatchIfElse.java"));
     }
 
     @Test
-    public void tryCatchIfElse2() throws Exception {
+    public void testTryCatchIfElse2() throws Exception {
         verifyWithWholeConfig(getPath("InputTryCatchIfElse2.java"));
     }
 
     @Test
-    public void tryCatchIfElse2Formatted() throws Exception {
+    public void testTryCatchIfElse2Formatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedTryCatchIfElse2.java"));
     }
 

@@ -46,7 +46,7 @@ import com.tngtech.archunit.lang.SimpleConditionEvent;
 public class ArchUnitSuperClassTest {
 
     /**
-     * Classes not abiding to {@link #checksShouldHaveAllowedAbstractClassAsSuperclass()} rule.
+     * Classes not abiding to {@link #testChecksShouldHaveAllowedAbstractClassAsSuperclass()} rule.
      */
     private static final Set<String> SUPPRESSED_CLASSES = Set.of(
         "com.puppycrawl.tools.checkstyle.checks.coding.SuperCloneCheck",
@@ -93,7 +93,7 @@ public class ArchUnitSuperClassTest {
      * {@link AbstractJavadocCheck} as their super class.
      */
     @Test
-    public void checksShouldHaveAllowedAbstractClassAsSuperclass() {
+    public void testChecksShouldHaveAllowedAbstractClassAsSuperclass() {
         final JavaClasses checksPackage = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
             .importPackages("com.puppycrawl.tools.checkstyle")

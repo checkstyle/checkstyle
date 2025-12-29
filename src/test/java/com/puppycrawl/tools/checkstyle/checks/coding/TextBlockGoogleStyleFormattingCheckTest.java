@@ -37,7 +37,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final TextBlockGoogleStyleFormattingCheck check =
             new TextBlockGoogleStyleFormattingCheck();
 
@@ -48,7 +48,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat() throws Exception {
+    public void testDefaultTextBlockFormat() throws Exception {
         final String[] expected = {
             "13:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "15:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -78,7 +78,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat1() throws Exception {
+    public void testDefaultTextBlockFormat1() throws Exception {
         final String[] expected = {
             "17:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "19:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -96,7 +96,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat2() throws Exception {
+    public void testDefaultTextBlockFormat2() throws Exception {
         final String[] expected = {
             "13:37: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "14:14: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -135,7 +135,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat3() throws Exception {
+    public void testDefaultTextBlockFormat3() throws Exception {
         final String[] expected = {
             "18:17: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "20:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -168,7 +168,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat4() throws Exception {
+    public void testDefaultTextBlockFormat4() throws Exception {
         final String[] expected = {
             "17:25: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "26:29: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
@@ -197,7 +197,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormat5() throws Exception {
+    public void testDefaultTextBlockFormat5() throws Exception {
         final String[] expected = {
             "17:45: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "19:9: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -225,7 +225,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void textBlockGoogleStyleFormattingWithTabs() throws Exception {
+    public void testTextBlockGoogleStyleFormattingWithTabs() throws Exception {
         final String[] expected = {
             "15:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "18:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -242,7 +242,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void textBlockFormatNotVerticallyAligned() throws Exception {
+    public void testTextBlockFormatNotVerticallyAligned() throws Exception {
         final String[] expected = {
             "28:17: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
             "33:13: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -261,7 +261,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatWithIf() throws Exception {
+    public void testDefaultTextBlockFormatWithIf() throws Exception {
         final String[] expected = {
             "16:18: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "17:18: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
@@ -310,7 +310,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatWithNewKeyword() throws Exception {
+    public void testDefaultTextBlockFormatWithNewKeyword() throws Exception {
         final String[] expected = {
             "13:42: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "15:33: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -335,7 +335,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatInCtor() throws Exception {
+    public void testDefaultTextBlockFormatInCtor() throws Exception {
         final String[] expected = {
             "24:66: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
             "24:66: " + getCheckMessage(MSG_VERTICALLY_UNALIGNED),
@@ -349,7 +349,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatInAnnotations() throws Exception {
+    public void testDefaultTextBlockFormatInAnnotations() throws Exception {
         final String[] expected = {
             "13:22: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "14:19: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
@@ -365,7 +365,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatIndentationOfContent() throws Exception {
+    public void testDefaultTextBlockFormatIndentationOfContent() throws Exception {
         final String[] expected = {
             "47:17: " + getCheckMessage(MSG_CLOSE_QUOTES_ERROR),
         };
@@ -374,7 +374,7 @@ public class TextBlockGoogleStyleFormattingCheckTest extends AbstractModuleTestS
     }
 
     @Test
-    public void defaultTextBlockFormatAnnotations() throws Exception {
+    public void testDefaultTextBlockFormatAnnotations() throws Exception {
         final String[] expected = {
             "59:27: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),
             "66:19: " + getCheckMessage(MSG_OPEN_QUOTES_ERROR),

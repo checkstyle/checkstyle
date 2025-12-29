@@ -48,7 +48,7 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void matching() throws Exception {
+    public void testMatching() throws Exception {
         final String[] suppressed = {
             "25: " + MESSAGE,
         };
@@ -56,31 +56,31 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nonMatchingLineNumber() throws Exception {
+    public void testNonMatchingLineNumber() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter4.java"), suppressed);
     }
 
     @Test
-    public void nonMatchingColumnNumber() throws Exception {
+    public void testNonMatchingColumnNumber() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter5.java"), suppressed);
     }
 
     @Test
-    public void nonMatchingFileRegexp() throws Exception {
+    public void testNonMatchingFileRegexp() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter6.java"), suppressed);
     }
 
     @Test
-    public void nonMatchingModuleId() throws Exception {
+    public void testNonMatchingModuleId() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter7.java"), suppressed);
     }
 
     @Test
-    public void matchingModuleId() throws Exception {
+    public void testMatchingModuleId() throws Exception {
         final String[] suppressed = {
             "25: " + MESSAGE,
         };
@@ -88,19 +88,19 @@ public class SuppressionSingleFilterTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nonMatchingChecks() throws Exception {
+    public void testNonMatchingChecks() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter8.java"), suppressed);
     }
 
     @Test
-    public void notMatchingMessage() throws Exception {
+    public void testNotMatchingMessage() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressedWithParser(getPath("InputSuppressionSingleFilter9.java"), suppressed);
     }
 
     @Test
-    public void matchMessage() throws Exception {
+    public void testMatchMessage() throws Exception {
         final String[] suppressed = {
             "25: " + MESSAGE,
         };

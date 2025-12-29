@@ -44,7 +44,7 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
-    public void semantic() throws Exception {
+    public void testSemantic() throws Exception {
         final String[] expected = {
             "37:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
@@ -53,7 +53,7 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
-    public void noEquals() throws Exception {
+    public void testNoEquals() throws Exception {
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
         };
@@ -62,14 +62,14 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
-    public void booleanMethods() throws Exception {
+    public void testBooleanMethods() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputEqualsHashCode.java"), expected);
     }
 
     @Test
-    public void multipleInputs() throws Exception {
+    public void testMultipleInputs() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
 
@@ -100,7 +100,7 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
-    public void equalsParameter() throws Exception {
+    public void testEqualsParameter() throws Exception {
         final String[] expected = {
             "16:9: " + getCheckMessage(MSG_KEY_EQUALS),
             "24:9: " + getCheckMessage(MSG_KEY_HASHCODE),
@@ -117,7 +117,7 @@ public class EqualsHashCodeCheckTest
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final EqualsHashCodeCheck check = new EqualsHashCodeCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

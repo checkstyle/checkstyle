@@ -36,7 +36,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final ArrayTypeStyleCheck checkObj = new ArrayTypeStyleCheck();
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR};
         assertWithMessage("Required tokens differs from expected")
@@ -45,7 +45,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void javaStyleOn()
+    public void testJavaStyleOn()
             throws Exception {
         final String[] expected = {
             "13:23: " + getCheckMessage(MSG_KEY),
@@ -62,7 +62,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void javaStyleOff()
+    public void testJavaStyleOff()
             throws Exception {
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
@@ -80,7 +80,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void nestedGenerics()
+    public void testNestedGenerics()
             throws Exception {
         final String[] expected = {
             "22:45: " + getCheckMessage(MSG_KEY),
@@ -93,7 +93,7 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
         final int[] actual = check.getAcceptableTokens();

@@ -45,7 +45,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleOne.java"));
 
@@ -72,7 +72,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleTwo.java"));
 
@@ -107,7 +107,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void three() throws Exception {
+    public void testThree() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleThree.java"));
 
@@ -144,7 +144,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void four() throws Exception {
+    public void testFour() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleFour.java"));
 
@@ -172,7 +172,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void five() throws Exception {
+    public void testFive() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleFive.java"));
 
@@ -208,7 +208,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void six() throws Exception {
+    public void testSix() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleSix.java"));
 
@@ -244,7 +244,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void seven() throws Exception {
+    public void testSeven() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleSeven.java"));
 
@@ -271,7 +271,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void eight() throws Exception {
+    public void testEight() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathAnnotationUseStyleEight.java"));
 

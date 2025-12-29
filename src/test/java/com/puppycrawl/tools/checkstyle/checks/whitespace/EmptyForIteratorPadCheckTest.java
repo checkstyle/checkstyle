@@ -39,7 +39,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
         final int[] expected = {TokenTypes.FOR_ITERATOR};
         assertWithMessage("Default required tokens are invalid")
@@ -59,7 +59,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void spaceOption() throws Exception {
+    public void testSpaceOption() throws Exception {
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
@@ -68,7 +68,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void withEmoji() throws Exception {
+    public void testWithEmoji() throws Exception {
         final String[] expected = {
             "24:40: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
@@ -78,7 +78,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final EmptyForIteratorPadCheck emptyForIteratorPadCheckObj = new EmptyForIteratorPadCheck();
         final int[] actual = emptyForIteratorPadCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -90,7 +90,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -108,7 +108,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
@@ -119,7 +119,7 @@ public class EmptyForIteratorPadCheckTest
     }
 
     @Test
-    public void uppercaseOptionProperty() throws Exception {
+    public void testUppercaseOptionProperty() throws Exception {
         final String[] expected = {
             "20:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };

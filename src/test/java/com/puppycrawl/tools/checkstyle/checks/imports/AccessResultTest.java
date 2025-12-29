@@ -30,7 +30,7 @@ public class AccessResultTest {
      * valueOf() is uncovered.
      */
     @Test
-    public void accessResultValueOf() {
+    public void testAccessResultValueOf() {
         final AccessResult result = AccessResult.valueOf("ALLOWED");
         assertWithMessage("Invalid access result")
             .that(result)
@@ -42,7 +42,7 @@ public class AccessResultTest {
      * values() is uncovered.
      */
     @Test
-    public void accessResultValues() {
+    public void testAccessResultValues() {
         final AccessResult[] actual = AccessResult.values();
         final AccessResult[] expected = {
             AccessResult.ALLOWED,

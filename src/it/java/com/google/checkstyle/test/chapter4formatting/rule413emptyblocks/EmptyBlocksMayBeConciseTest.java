@@ -31,42 +31,42 @@ public class EmptyBlocksMayBeConciseTest extends AbstractGoogleModuleTestSupport
     }
 
     @Test
-    public void emptyBlocksAndCatchBlocks() throws Exception {
+    public void testEmptyBlocksAndCatchBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocks.java"));
     }
 
     @Test
-    public void emptyBlocksAndCatchBlocksFormatted() throws Exception {
+    public void testEmptyBlocksAndCatchBlocksFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedEmptyBlocksAndCatchBlocks.java"));
     }
 
     @Test
-    public void emptyFinallyBlocks() throws Exception {
+    public void testEmptyFinallyBlocks() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyFinallyBlocks.java"));
     }
 
     @Test
-    public void emptyCatchBlockNoViolations() throws Exception {
+    public void testEmptyCatchBlockNoViolations() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyBlocksAndCatchBlocksNoViolations.java"));
     }
 
     @Test
-    public void emptyCatchBlockViolationsByComment() throws Exception {
+    public void testEmptyCatchBlockViolationsByComment() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByComment.java"));
     }
 
     @Test
-    public void emptyCatchBlockViolationsByVariableName() throws Exception {
+    public void testEmptyCatchBlockViolationsByVariableName() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchBlockViolationsByVariableName.java"));
     }
 
     @Test
-    public void emptyCatchEmptyComment() throws Exception {
+    public void testEmptyCatchEmptyComment() throws Exception {
         verifyWithWholeConfig(getPath("InputEmptyCatchEmptyComment.java"));
     }
 
     @Test
-    public void formattedEmptyCatchEmptyComment() throws Exception {
+    public void testFormattedEmptyCatchEmptyComment() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedEmptyCatchEmptyComment.java"));
     }
 }

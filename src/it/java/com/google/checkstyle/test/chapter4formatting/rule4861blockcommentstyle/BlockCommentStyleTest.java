@@ -31,43 +31,43 @@ public class BlockCommentStyleTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void commentIsAtTheEndOfBlock() throws Exception {
+    public void testCommentIsAtTheEndOfBlock() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationCommentIsAtTheEndOfBlock.java"));
     }
 
     @Test
-    public void commentIsAtTheEndOfBlockFormatted() throws Exception {
+    public void testCommentIsAtTheEndOfBlockFormatted() throws Exception {
         verifyWithWholeConfig(
                 getPath("InputFormattedCommentsIndentationCommentIsAtTheEndOfBlock.java"));
     }
 
     @Test
-    public void commentIsInsideSwitchBlock() throws Exception {
+    public void testCommentIsInsideSwitchBlock() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationInSwitchBlock.java"));
     }
 
     @Test
-    public void commentIsInsideSwitchBlockFormatted() throws Exception {
+    public void testCommentIsInsideSwitchBlockFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInSwitchBlock.java"));
     }
 
     @Test
-    public void commentIsInsideEmptyBlock() throws Exception {
+    public void testCommentIsInsideEmptyBlock() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationInEmptyBlock.java"));
     }
 
     @Test
-    public void commentIsInsideEmptyBlockFormatted() throws Exception {
+    public void testCommentIsInsideEmptyBlockFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationInEmptyBlock.java"));
     }
 
     @Test
-    public void surroundingCode() throws Exception {
+    public void testSurroundingCode() throws Exception {
         verifyWithWholeConfig(getPath("InputCommentsIndentationSurroundingCode.java"));
     }
 
     @Test
-    public void surroundingCodeFormatted() throws Exception {
+    public void testSurroundingCodeFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedCommentsIndentationSurroundingCode.java"));
     }
 

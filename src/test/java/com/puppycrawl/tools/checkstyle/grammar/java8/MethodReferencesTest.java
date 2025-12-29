@@ -32,7 +32,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void canParse()
+    public void testCanParse()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -40,7 +40,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fromSpec()
+    public void testFromSpec()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -48,7 +48,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void genericInPostfixExpressionBeforeReference()
+    public void testGenericInPostfixExpressionBeforeReference()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -56,7 +56,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void arrayAfterGeneric()
+    public void testArrayAfterGeneric()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -64,7 +64,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fromHibernate()
+    public void testFromHibernate()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -72,7 +72,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void fromSpring()
+    public void testFromSpring()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -80,7 +80,7 @@ public class MethodReferencesTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void methodReferences7()
+    public void testMethodReferences7()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(

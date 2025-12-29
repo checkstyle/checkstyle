@@ -58,7 +58,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void excludedPackagesDirectPackages() throws Exception {
+    public void testExcludedPackagesDirectPackages() throws Exception {
         final String[] expected = {
             "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
         };
@@ -68,7 +68,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void excludedPackagesCommonPackages() throws Exception {
+    public void testExcludedPackagesCommonPackages() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0),
             "32:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -79,7 +79,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void excludedPackagesCommonPackagesWithEndingDot() throws Exception {
+    public void testExcludedPackagesCommonPackagesWithEndingDot() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassFanOutComplexityCheck.class);
 
@@ -107,7 +107,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void excludedPackagesAllIgnored() throws Exception {
+    public void testExcludedPackagesAllIgnored() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityExcludedPackagesAllIgnored.java"), expected);
@@ -125,14 +125,14 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultConfiguration() throws Exception {
+    public void testDefaultConfiguration() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexity2.java"), expected);
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final ClassFanOutComplexityCheck classFanOutComplexityCheckObj =
             new ClassFanOutComplexityCheck();
         final int[] actual = classFanOutComplexityCheckObj.getAcceptableTokens();
@@ -160,7 +160,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void regularExpression() throws Exception {
+    public void testRegularExpression() throws Exception {
 
         final String[] expected = {
             "44:1: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -172,7 +172,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void emptyRegularExpression() throws Exception {
+    public void testEmptyRegularExpression() throws Exception {
 
         final String[] expected = {
             "44:1: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -184,7 +184,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void withMultiDimensionalArray() throws Exception {
+    public void testWithMultiDimensionalArray() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -192,7 +192,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void packageName() throws Exception {
+    public void testPackageName() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -218,7 +218,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final String[] expected = {
             "29:1: " + getCheckMessage(MSG_KEY, 2, 0),
             "45:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -233,7 +233,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void implementsAndNestedCount() throws Exception {
+    public void testImplementsAndNestedCount() throws Exception {
         final String[] expected = {
             "26:1: " + getCheckMessage(MSG_KEY, 3, 0),
         };
@@ -242,7 +242,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void classFanOutComplexityRecords() throws Exception {
+    public void testClassFanOutComplexityRecords() throws Exception {
         final String[] expected = {
             "32:1: " + getCheckMessage(MSG_KEY, 4, 2),
             "53:1: " + getCheckMessage(MSG_KEY, 4, 2),
@@ -252,14 +252,14 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void classFanOutComplexityIgnoreVar() throws Exception {
+    public void testClassFanOutComplexityIgnoreVar() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityVar.java"), expected);
     }
 
     @Test
-    public void classFanOutComplexityRemoveIncorrectAnnotationToken() throws Exception {
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationToken() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getNonCompilablePath(
@@ -267,14 +267,14 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void classFanOutComplexityRemoveIncorrectTypeParameter() throws Exception {
+    public void testClassFanOutComplexityRemoveIncorrectTypeParameter() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputClassFanOutComplexityRemoveIncorrectTypeParameter.java"), expected);
     }
 
     @Test
-    public void classFanOutComplexityMultiCatchBitwiseOr() throws Exception {
+    public void testClassFanOutComplexityMultiCatchBitwiseOr() throws Exception {
         final String[] expected = {
             "27:1: " + getCheckMessage(MSG_KEY, 5, 4),
         };
@@ -294,7 +294,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void sealedClasses() throws Exception {
+    public void testSealedClasses() throws Exception {
         final String[] expected = {
             "25:1: " + getCheckMessage(MSG_KEY, 2, 0),
             "32:1: " + getCheckMessage(MSG_KEY, 1, 0),
@@ -314,7 +314,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressWarnings("unchecked")
     @Test
-    public void clearStateImportedClassPackages() throws Exception {
+    public void testClearStateImportedClassPackages() throws Exception {
         final ClassFanOutComplexityCheck check = new ClassFanOutComplexityCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputClassFanOutComplexity.java")),
@@ -340,7 +340,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void clearStateClassContexts() throws Exception {
+    public void testClearStateClassContexts() throws Exception {
         final ClassFanOutComplexityCheck check = new ClassFanOutComplexityCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputClassFanOutComplexity.java")),
@@ -366,7 +366,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void clearStatePackageName() throws Exception {
+    public void testClearStatePackageName() throws Exception {
         final ClassFanOutComplexityCheck check = new ClassFanOutComplexityCheck();
         final DetailAST root = JavaParser.parseFile(
                 new File(getPath("InputClassFanOutComplexity.java")),
@@ -391,7 +391,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
      * @throws Exception when code tested throws exception
      */
     @Test
-    public void lambdaNew() throws Exception {
+    public void testLambdaNew() throws Exception {
         final String[] expected = {
             "28:1: " + getCheckMessage(MSG_KEY, 2, 0),
         };

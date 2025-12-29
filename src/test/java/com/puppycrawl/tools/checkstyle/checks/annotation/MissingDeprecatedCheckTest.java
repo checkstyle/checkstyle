@@ -37,7 +37,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getDefaultJavadocTokens() {
+    public void testGetDefaultJavadocTokens() {
         final MissingDeprecatedCheck missingDeprecatedCheck =
                 new MissingDeprecatedCheck();
         final int[] expected = {
@@ -50,7 +50,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredJavadocTokens() {
+    public void testGetRequiredJavadocTokens() {
         final MissingDeprecatedCheck checkObj = new MissingDeprecatedCheck();
         final int[] expected = {
             JavadocCommentsTokenTypes.JAVADOC_CONTENT,
@@ -64,7 +64,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      * Tests that members that are only deprecated via javadoc are flagged.
      */
     @Test
-    public void badDeprecatedAnnotation() throws Exception {
+    public void testBadDeprecatedAnnotation() throws Exception {
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -86,7 +86,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      * Tests that members that are only deprecated via the annotation are flagged.
      */
     @Test
-    public void badDeprecatedJavadoc() throws Exception {
+    public void testBadDeprecatedJavadoc() throws Exception {
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -104,7 +104,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      * Tests various special deprecation conditions such as duplicate or empty tags.
      */
     @Test
-    public void specialCaseDeprecated() throws Exception {
+    public void testSpecialCaseDeprecated() throws Exception {
 
         final String[] expected = {
             "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -127,7 +127,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
      * Tests that good forms of deprecation are not flagged.
      */
     @Test
-    public void goodDeprecated() throws Exception {
+    public void testGoodDeprecated() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -136,7 +136,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void twoInJavadocWithoutAnnotation() throws Exception {
+    public void testTwoInJavadocWithoutAnnotation() throws Exception {
 
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
@@ -148,7 +148,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void emptyJavadocLine() throws Exception {
+    public void testEmptyJavadocLine() throws Exception {
 
         final String[] expected = {
             "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -159,7 +159,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void packageInfo() throws Exception {
+    public void testPackageInfo() throws Exception {
 
         final String[] expected = {
             "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -170,7 +170,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void depPackageInfoBelowComment() throws Exception {
+    public void testDepPackageInfoBelowComment() throws Exception {
 
         final String[] expected = {
             "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
@@ -181,7 +181,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void packageInfoBelowComment() throws Exception {
+    public void testPackageInfoBelowComment() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

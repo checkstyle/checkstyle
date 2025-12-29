@@ -63,7 +63,7 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
-    public void unnecessarySemicolonAfterTypeMemberDeclarationRecords() throws Exception {
+    public void testUnnecessarySemicolonAfterTypeMemberDeclarationRecords() throws Exception {
 
         final String[] expected = {
             "14:5: " + getCheckMessage(MSG_SEMI),
@@ -82,7 +82,7 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
-    public void tokens() {
+    public void testTokens() {
         final UnnecessarySemicolonAfterTypeMemberDeclarationCheck check =
             new UnnecessarySemicolonAfterTypeMemberDeclarationCheck();
         final int[] expected = {
@@ -112,7 +112,7 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
-    public void isSemicolonWithNullAst() throws Exception {
+    public void testIsSemicolonWithNullAst() throws Exception {
         final String[] expected = {"24:32: " + getCheckMessage(MSG_SEMI)};
 
         verifyWithInlineConfigParser(

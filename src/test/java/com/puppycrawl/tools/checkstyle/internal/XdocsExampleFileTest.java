@@ -88,7 +88,7 @@ public class XdocsExampleFileTest {
     );
 
     @Test
-    public void allCheckPropertiesAreUsedInXdocsExamples() throws Exception {
+    public void testAllCheckPropertiesAreUsedInXdocsExamples() throws Exception {
         final Map<String, Set<String>> usedPropertiesByCheck =
             XdocUtil.extractUsedPropertiesFromXdocsExamples();
         final List<String> failures = new ArrayList<>();
@@ -125,7 +125,7 @@ public class XdocsExampleFileTest {
     }
 
     @Test
-    public void allExampleFilesHaveCorrespondingTestMethods() throws Exception {
+    public void testAllExampleFilesHaveCorrespondingTestMethods() throws Exception {
         final Path examplesResources = Path.of("src/xdocs-examples/resources");
         final Path examplesNonCompilable = Path.of("src/xdocs-examples/resources-noncompilable");
         final Path examplesTestRoot = Path.of(

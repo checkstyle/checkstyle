@@ -55,14 +55,14 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void isProperUtilsClass() throws Exception {
+    public void testIsProperUtilsClass() throws ReflectiveOperationException {
         assertWithMessage("Constructor is not private")
                 .that(isUtilsClassHasPrivateConstructor(CheckUtil.class))
                 .isTrue();
     }
 
     @Test
-    public void parseDoubleWithIncorrectToken() {
+    public void testParseDoubleWithIncorrectToken() {
         final double parsedDouble = CheckUtil.parseDouble("1_02", TokenTypes.ASSIGN);
         assertWithMessage("Invalid parse result")
             .that(parsedDouble)
@@ -70,7 +70,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void equals() {
+    public void testEquals() {
         final DetailAstImpl litStatic = new DetailAstImpl();
         litStatic.setType(TokenTypes.LITERAL_STATIC);
 
@@ -114,7 +114,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAccessModifierFromModifiersTokenWrongTokenType() {
+    public void testGetAccessModifierFromModifiersTokenWrongTokenType() {
         final DetailAstImpl modifiers = new DetailAstImpl();
         modifiers.setType(TokenTypes.METHOD_DEF);
 
@@ -133,7 +133,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getTypeParameterNames() throws Exception {
+    public void testGetTypeParameterNames() throws Exception {
         final DetailAST parameterizedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
         final List<String> expected = Arrays.asList("V", "C");
         final List<String> actual = CheckUtil.getTypeParameterNames(parameterizedClassNode);
@@ -144,7 +144,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getTypeParameters() throws Exception {
+    public void testGetTypeParameters() throws Exception {
         final DetailAST parameterizedClassNode = getNodeFromFile(TokenTypes.CLASS_DEF);
         final DetailAST firstTypeParameter =
                 getNode(parameterizedClassNode, TokenTypes.TYPE_PARAMETER);
@@ -158,7 +158,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void isEqualsMethod() throws Exception {
+    public void testIsEqualsMethod() throws Exception {
         final DetailAST equalsMethodNode = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST someOtherMethod = equalsMethodNode.getNextSibling();
 
@@ -171,7 +171,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void isNonVoidMethod() throws Exception {
+    public void testIsNonVoidMethod() throws Exception {
         final DetailAST nonVoidMethod = getNodeFromFile(TokenTypes.METHOD_DEF);
         final DetailAST voidMethod = nonVoidMethod.getNextSibling();
 
@@ -184,7 +184,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAccessModifierFromModifiersToken() throws Exception {
+    public void testGetAccessModifierFromModifiersToken() throws Exception {
         final DetailAST interfaceDef = getNodeFromFile(TokenTypes.INTERFACE_DEF);
         final AccessModifierOption modifierInterface = CheckUtil
                 .getAccessModifierFromModifiersToken(interfaceDef
@@ -231,7 +231,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getFirstNode() throws Exception {
+    public void testGetFirstNode() throws Exception {
         final DetailAST classDef = getNodeFromFile(TokenTypes.CLASS_DEF);
 
         final DetailAST firstChild = classDef.getFirstChild().getFirstChild();
@@ -242,7 +242,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getFirstNode1() {
+    public void testGetFirstNode1() {
         final DetailAstImpl child = new DetailAstImpl();
         child.setLineNo(5);
         child.setColumnNo(6);
@@ -260,7 +260,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getFirstNode2() {
+    public void testGetFirstNode2() {
         final DetailAstImpl child = new DetailAstImpl();
         child.setLineNo(6);
         child.setColumnNo(5);
@@ -278,7 +278,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void parseDoubleFloatingPointValues() {
+    public void testParseDoubleFloatingPointValues() {
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT))
             .isEqualTo(-0.05);
@@ -300,7 +300,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void parseDoubleIntegerValues() {
+    public void testParseDoubleIntegerValues() {
         assertWithMessage("Invalid parse result")
             .that(CheckUtil.parseDouble("0L", TokenTypes.NUM_LONG))
             .isEqualTo(0.0);
@@ -337,7 +337,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void parseClassNames() {
+    public void testParseClassNames() {
         final Set<String> actual = CheckUtil.parseClassNames(
                 "I.am.class.name.with.dot.in.the.end.", "ClassOnly", "my.Class");
         final Set<String> expected = new HashSet<>();
@@ -351,7 +351,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void equalsAvoidNullCheck() throws Exception {
+    public void testEqualsAvoidNullCheck() throws Exception {
 
         final String[] expected = {
             "14:28: " + getCheckMessage(EqualsAvoidNullCheck.class, MSG_EQUALS_AVOID_NULL),
@@ -362,7 +362,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void multipleVariableDeclarationsCheck() throws Exception {
+    public void testMultipleVariableDeclarationsCheck() throws Exception {
         final String[] expected = {
             "11:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
             "14:5: " + getCheckMessage(MultipleVariableDeclarationsCheck.class, MSG_MULTIPLE),
@@ -373,7 +373,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nestedIfDepth() throws Exception {
+    public void testNestedIfDepth() throws Exception {
         final String[] expected = {
             "26:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
             "52:17: " + getCheckMessage(NestedIfDepthCheck.class, MSG_KEY, 2, 1),
@@ -383,14 +383,14 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void javaDocMethod() throws Exception {
+    public void testJavaDocMethod() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputCheckUtil4.java"), expected);
     }
 
     @Test
-    public void javaDocMethod2() throws Exception {
+    public void testJavaDocMethod2() throws Exception {
         final String[] expected = {
             "14:25: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
@@ -400,7 +400,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void javadoc() throws Exception {
+    public void testJavadoc() throws Exception {
         final String[] expected = {
             "25:39: " + getCheckMessage(JavadocMethodCheck.class,
                   MSG_EXPECTED_TAG, "@param", "i"),
@@ -447,7 +447,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void packageInfo() {
+    public void testPackageInfo() {
         final boolean result = CheckUtil.isPackageInfo("/");
 
         assertWithMessage("Expected isPackageInfo() to return false for ('/')")

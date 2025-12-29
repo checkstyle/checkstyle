@@ -45,7 +45,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRightCurlyOne.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRightCurlyTwo.java"));
 
@@ -92,7 +92,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void three() throws Exception {
+    public void testThree() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRightCurlyThree.java"));
 
@@ -116,7 +116,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void four() throws Exception {
+    public void testFour() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRightCurlyFour.java"));
 

@@ -68,7 +68,7 @@ public class XpathRegressionUncommentedMainTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void inStaticClass() throws Exception {
+    public void testInStaticClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathUncommentedMainInStaticClass.java"));
 

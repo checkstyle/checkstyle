@@ -45,7 +45,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void staticVariableName() throws Exception {
+    public void testStaticVariableName() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathStaticVariableName.java"));
 
@@ -70,7 +70,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void innerClassField() throws Exception {
+    public void testInnerClassField() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathStaticVariableNameInnerClassField.java"));
@@ -97,7 +97,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void noAccessModifier() throws Exception {
+    public void testNoAccessModifier() throws Exception {
         final File fileToProcess =
                 new File(getPath(
                         "InputXpathStaticVariableNameNoAccessModifier.java"));

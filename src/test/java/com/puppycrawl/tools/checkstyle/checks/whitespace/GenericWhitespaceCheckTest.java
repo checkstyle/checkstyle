@@ -51,7 +51,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final GenericWhitespaceCheck checkObj = new GenericWhitespaceCheck();
         final int[] expected = {
             TokenTypes.GENERIC_START,
@@ -107,7 +107,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void atTheStartOfTheLine() throws Exception {
+    public void testAtTheStartOfTheLine() throws Exception {
         final String[] expected = {
             "16:2: " + getCheckMessage(MSG_WS_PRECEDED, ">"),
             "18:2: " + getCheckMessage(MSG_WS_PRECEDED, "<"),
@@ -117,7 +117,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void nestedGeneric() throws Exception {
+    public void testNestedGeneric() throws Exception {
         final String[] expected = {
             "17:1: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
         };
@@ -126,28 +126,28 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void list() throws Exception {
+    public void testList() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceList.java"), expected);
     }
 
     @Test
-    public void innerClass() throws Exception {
+    public void testInnerClass() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceInnerClass.java"), expected);
     }
 
     @Test
-    public void methodReferences() throws Exception {
+    public void testMethodReferences() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceMethodRef1.java"), expected);
     }
 
     @Test
-    public void methodReferences2() throws Exception {
+    public void testMethodReferences2() throws Exception {
         final String[] expected = {
             "16:37: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
@@ -156,14 +156,14 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void genericEndsTheLine() throws Exception {
+    public void testGenericEndsTheLine() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
                 getPath("InputGenericWhitespaceEndsTheLine.java"), expected);
     }
 
     @Test
-    public void genericWhitespaceWithEmoji() throws Exception {
+    public void testGenericWhitespaceWithEmoji() throws Exception {
         final String[] expected = {
             "35:2: " + getCheckMessage(MSG_WS_PRECEDED, '>'),
             "40:35: " + getCheckMessage(MSG_WS_PRECEDED, '<'),
@@ -176,7 +176,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void beforeCtorInvocation() throws Exception {
+    public void testBeforeCtorInvocation() throws Exception {
         final String[] expected = {
             "17:31: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
             "19:56: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
@@ -200,7 +200,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void afterNew() throws Exception {
+    public void testAfterNew() throws Exception {
         final String[] expected = {
             "17:30: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
             "21:12: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
@@ -227,7 +227,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void beforeRecordHeader() throws Exception {
+    public void testBeforeRecordHeader() throws Exception {
         final String[] expected = {
             "17:20: " + getCheckMessage(MSG_WS_FOLLOWED, '>'),
             "18:20: " + getCheckMessage(MSG_WS_FOLLOWED, '<'),
@@ -279,7 +279,7 @@ public class GenericWhitespaceCheckTest
      * @throws Exception if there is an error.
      */
     @Test
-    public void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final GenericWhitespaceCheck check = new GenericWhitespaceCheck();
         final FileText fileText = new FileText(
                 new File(getPath("InputGenericWhitespaceDefault.java")),
@@ -302,7 +302,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         final int[] actual = genericWhitespaceCheckObj.getAcceptableTokens();
         final int[] expected = {
@@ -315,7 +315,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void wrongTokenType() {
+    public void testWrongTokenType() {
         final GenericWhitespaceCheck genericWhitespaceCheckObj = new GenericWhitespaceCheck();
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
@@ -331,7 +331,7 @@ public class GenericWhitespaceCheckTest
     }
 
     @Test
-    public void tabAndMissingSpace() throws Exception {
+    public void testTabAndMissingSpace() throws Exception {
         final String[] expected = {
             "14:16: " + getCheckMessage(MSG_WS_ILLEGAL_FOLLOW, '>'),
         };

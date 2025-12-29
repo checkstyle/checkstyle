@@ -46,7 +46,7 @@ public class XpathRegressionAvoidStaticImportTest
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidStaticImportOne.java"));
 
@@ -66,7 +66,7 @@ public class XpathRegressionAvoidStaticImportTest
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
             "InputXpathAvoidStaticImportTwo.java"));
 

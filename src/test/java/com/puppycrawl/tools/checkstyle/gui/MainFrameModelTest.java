@@ -57,7 +57,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void parseModeEnum() {
+    public void testParseModeEnum() {
         for (final ParseMode parseMode : ParseMode.values()) {
             switch (parseMode) {
                 case PLAIN_JAVA -> assertWithMessage("Invalid toString result")
@@ -78,7 +78,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileWithParseModeJavaWithComments() throws Exception {
+    public void testOpenFileWithParseModeJavaWithComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_COMMENTS);
         model.openFile(testData);
 
@@ -86,7 +86,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileWithParseModeJavaWithJavadocAndComments() throws Exception {
+    public void testOpenFileWithParseModeJavaWithJavadocAndComments() throws Exception {
         model.setParseMode(ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS);
         model.openFile(testData);
 
@@ -94,7 +94,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileNullParameter() throws Exception {
+    public void testOpenFileNullParameter() throws Exception {
         model.openFile(testData);
 
         model.openFile(null);
@@ -104,7 +104,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileNullParameter2() throws Exception {
+    public void testOpenFileNullParameter2() throws Exception {
         model.openFile(null);
 
         assertWithMessage("Test is null")
@@ -122,7 +122,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileNonExistentFile() throws Exception {
+    public void testOpenFileNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
 
         try {
@@ -142,7 +142,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileNonCompilableFile() throws Exception {
+    public void testOpenFileNonCompilableFile() throws IOException {
         final File nonCompilableFile = new File(getNonCompilablePath(FILE_NAME_NON_COMPILABLE));
 
         try {
@@ -196,7 +196,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldAcceptDirectory() {
+    public void testShouldAcceptDirectory() {
         final File directory = mock();
         when(directory.isDirectory()).thenReturn(true);
         assertWithMessage("MainFrame should accept directory")
@@ -205,7 +205,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldAcceptFile() throws Exception {
+    public void testShouldAcceptFile() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
         assertWithMessage("MainFrame should accept java file")
                 .that(MainFrameModel.shouldAcceptFile(javaFile))
@@ -213,7 +213,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotAcceptNonJavaFile() {
+    public void testShouldNotAcceptNonJavaFile() {
         final File nonJavaFile = mock();
         when(nonJavaFile.isDirectory()).thenReturn(false);
         when(nonJavaFile.getName()).thenReturn(FILE_NAME_NON_JAVA);
@@ -223,7 +223,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void shouldNotAcceptNonExistentFile() throws Exception {
+    public void testShouldNotAcceptNonExistentFile() throws IOException {
         final File nonExistentFile = new File(getPath(FILE_NAME_NON_EXISTENT));
         assertWithMessage("MainFrame should not accept non-existent file")
                 .that(MainFrameModel.shouldAcceptFile(nonExistentFile))
@@ -231,7 +231,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void openFileForUnknownParseMode() throws Exception {
+    public void testOpenFileForUnknownParseMode() throws IOException {
         final File javaFile = new File(getPath(FILE_NAME_TEST_DATA));
         final ParseMode mock = mock();
         model.setParseMode(mock);

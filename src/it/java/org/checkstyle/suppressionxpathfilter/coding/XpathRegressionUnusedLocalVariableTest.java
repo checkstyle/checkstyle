@@ -43,7 +43,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathUnusedLocalVariableOne.java"));
 
@@ -78,7 +78,7 @@ public class XpathRegressionUnusedLocalVariableTest extends AbstractXpathTestSup
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess = new File(getPath(
                 "InputXpathUnusedLocalVariableTwo.java"));
 

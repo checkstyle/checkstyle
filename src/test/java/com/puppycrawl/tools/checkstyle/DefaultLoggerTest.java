@@ -56,7 +56,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void exception() throws Exception {
+    public void testException() throws Exception {
         final String inputFile = "InputDefaultLoggerTestException.java";
         final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
         final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestException.txt";
@@ -74,7 +74,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void singleError() throws Exception {
+    public void testSingleError() throws Exception {
         final String inputFile = "InputDefaultLoggerTestSingleError.java";
         final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
         final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestSingleError.txt";
@@ -92,7 +92,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void multipleErrors() throws Exception {
+    public void testMultipleErrors() throws Exception {
         final String inputFile = "InputDefaultLoggerTestMultipleErrors.java";
         final String expectedInfoFile = "ExpectedDefaultLoggerInfoDefaultOutput.txt";
         final String expectedErrorFile = "ExpectedDefaultLoggerErrorsTestMultipleErrors.txt";
@@ -110,7 +110,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void ctorWithTwoParametersCloseStreamOptions() throws Exception {
+    public void testCtorWithTwoParametersCloseStreamOptions() throws Exception {
         final String inputFile = "InputDefaultLoggerTestSingleError.java";
         final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
 
@@ -124,7 +124,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void ctorWithTwoParametersNoneStreamOptions() throws Exception {
+    public void testCtorWithTwoParametersNoneStreamOptions() throws Exception {
         final String inputFile = "InputDefaultLoggerTestSingleError.java";
         final String expectedOutputFile = "ExpectedDefaultLoggerOutputSingleError.txt";
 
@@ -143,7 +143,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
      * mapping.
      */
     @Test
-    public void oldCtorWithTwoParametersCloseStreamOptions() {
+    public void testOldCtorWithTwoParametersCloseStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.CLOSE);
@@ -160,7 +160,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
      * mapping.
      */
     @Test
-    public void oldCtorWithTwoParametersNoneStreamOptions() {
+    public void testOldCtorWithTwoParametersNoneStreamOptions() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 AutomaticBean.OutputStreamOptions.NONE);
@@ -172,7 +172,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void ctorWithNullParameter() {
+    public void testCtorWithNullParameter() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream, OutputStreamOptions.CLOSE);
         dl.addException(new AuditEvent(5000), new IllegalStateException("upsss"));
@@ -184,7 +184,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nullInfoStreamOptions() {
+    public void testNullInfoStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class,
@@ -197,7 +197,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void nullErrorStreamOptions() {
+    public void testNullErrorStreamOptions() {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final IllegalArgumentException ex =
                 TestUtil.getExpectedThrowable(IllegalArgumentException.class, () -> {
@@ -217,7 +217,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addError() {
+    public void testAddError() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final String auditStartMessage = getAuditStartMessage();
@@ -243,7 +243,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addErrorModuleId() {
+    public void testAddErrorModuleId() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final String auditFinishMessage = getAuditFinishMessage();
@@ -268,7 +268,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addErrorIgnoreSeverityLevel() {
+    public void testAddErrorIgnoreSeverityLevel() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final OutputStream errorStream = new ByteArrayOutputStream();
         final DefaultLogger defaultLogger = new DefaultLogger(
@@ -287,7 +287,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void finishLocalSetup() {
+    public void testFinishLocalSetup() {
         final OutputStream infoStream = new ByteArrayOutputStream();
         final DefaultLogger dl = new DefaultLogger(infoStream,
                 OutputStreamOptions.CLOSE);
@@ -303,7 +303,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
      * Verifies that the language specified with the system property {@code user.language} exists.
      */
     @Test
-    public void languageIsValid() {
+    public void testLanguageIsValid() {
         final String language = DEFAULT_LOCALE.getLanguage();
         assumeFalse(language.isEmpty(), "Locale not set");
         assertWithMessage("Invalid language")
@@ -315,7 +315,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
      * Verifies that the country specified with the system property {@code user.country} exists.
      */
     @Test
-    public void countryIsValid() {
+    public void testCountryIsValid() {
         final String country = DEFAULT_LOCALE.getCountry();
         assumeFalse(country.isEmpty(), "Locale not set");
         assertWithMessage("Invalid country")
@@ -324,7 +324,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void newCtor() throws Exception {
+    public void testNewCtor() throws Exception {
         final ResourceBundle bundle = ResourceBundle.getBundle(
                 Definitions.CHECKSTYLE_BUNDLE, Locale.ENGLISH);
         final String auditStartedMessage = bundle.getString(DefaultLogger.AUDIT_STARTED_MESSAGE);
@@ -369,7 +369,7 @@ public class DefaultLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void streamsNotClosedByLogger() throws Exception {
+    public void testStreamsNotClosedByLogger() throws IOException {
         try (MockByteArrayOutputStream infoStream = new MockByteArrayOutputStream();
              MockByteArrayOutputStream errorStream = new MockByteArrayOutputStream()) {
             final DefaultLogger defaultLogger = new DefaultLogger(

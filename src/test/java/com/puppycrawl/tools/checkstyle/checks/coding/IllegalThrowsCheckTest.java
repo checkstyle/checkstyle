@@ -48,7 +48,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void illegalClassNames() throws Exception {
+    public void testIllegalClassNames() throws Exception {
         // check that incorrect names don't break the Check
         final String[] expected = {
             "15:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
@@ -63,7 +63,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      * Test to validate the IllegalThrowsCheck with ignoredMethodNames attribute.
      */
     @Test
-    public void ignoreMethodNames() throws Exception {
+    public void testIgnoreMethodNames() throws Exception {
 
         final String[] expected = {
             "19:51: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -78,7 +78,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      * Test to validate the IllegalThrowsCheck with both the attributes specified.
      */
     @Test
-    public void illegalClassNamesWithIgnoreMethodNames() throws Exception {
+    public void testIllegalClassNamesWithIgnoreMethodNames() throws Exception {
         final String[] expected = {
             "14:33: " + getCheckMessage(MSG_KEY, "NullPointerException"),
             "27:35: " + getCheckMessage(MSG_KEY, "Throwable"),
@@ -93,7 +93,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      * property.
      */
     @Test
-    public void ignoreOverriddenMethods() throws Exception {
+    public void testIgnoreOverriddenMethods() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -106,7 +106,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
      * property.
      */
     @Test
-    public void notIgnoreOverriddenMethods() throws Exception {
+    public void testNotIgnoreOverriddenMethods() throws Exception {
 
         final String[] expected = {
             "17:36: " + getCheckMessage(MSG_KEY, "RuntimeException"),
@@ -118,7 +118,7 @@ public class IllegalThrowsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void tokensNotNull() {
+    public void testTokensNotNull() {
         final IllegalThrowsCheck check = new IllegalThrowsCheck();
         assertWithMessage("Acceptable tokens should not be null")
             .that(check.getAcceptableTokens())

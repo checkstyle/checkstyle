@@ -79,7 +79,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void basicOffset() throws Exception {
+    public void testBasicOffset() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIndentationBasicOffset.java"));
 
@@ -122,7 +122,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void caseIndent() throws Exception {
+    public void testCaseIndent() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIndentationSwitchCase.java"));
 
@@ -159,7 +159,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void lambdaOne() throws Exception {
+    public void testLambdaOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIndentationLambdaOne.java"));
 
@@ -191,7 +191,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void lambdaTwo() throws Exception {
+    public void testLambdaTwo() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIndentationLambdaTwo.java"));
 
@@ -223,7 +223,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void ifWithNoCurlies() throws Exception {
+    public void testIfWithNoCurlies() throws Exception {
         final File fileToProcess =
             new File(getPath("InputXpathIndentationIfWithoutCurly.java"));
 
@@ -256,7 +256,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void elseWithNoCurlies() throws Exception {
+    public void testElseWithNoCurlies() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathIndentationElseWithoutCurly.java"));
 

@@ -29,7 +29,7 @@ import net.sf.saxon.om.NodeInfo;
 public class ReverseDescendantIteratorTest {
 
     @Test
-    public void correctOrder() {
+    public void testCorrectOrder() {
         final NodeInfo startNode = findNode("CLASS_DEF");
 
         try (ReverseDescendantIterator iterator = new ReverseDescendantIterator(startNode)) {

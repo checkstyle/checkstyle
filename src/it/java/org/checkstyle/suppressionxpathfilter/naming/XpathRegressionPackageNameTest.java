@@ -46,7 +46,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
 
         final File fileToProcess =
                 new File(getPath("InputXpathPackageNameOne.java"));
@@ -75,7 +75,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void three() throws Exception {
+    public void testThree() throws Exception {
 
         final File fileToProcess =
                 new File(getNonCompilablePath("InputXpathPackageNameThree.java"));
@@ -102,7 +102,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
 
         final File fileToProcess =
                 new File(getPath("InputXpathPackageNameTwo.java"));

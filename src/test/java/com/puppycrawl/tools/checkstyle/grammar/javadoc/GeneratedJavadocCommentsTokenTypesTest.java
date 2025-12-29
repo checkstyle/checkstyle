@@ -83,7 +83,7 @@ public class GeneratedJavadocCommentsTokenTypesTest {
      * @see "https://github.com/checkstyle/checkstyle/issues/5186"
      */
     @Test
-    public void tokenNumbers() {
+    public void testTokenNumbers() {
         assertWithMessage(MSG)
             .that(JavadocCommentsLexer.JAVADOC)
             .isEqualTo(1);

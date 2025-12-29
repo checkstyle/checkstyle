@@ -42,7 +42,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final UnusedCatchParameterShouldBeUnnamedCheck checkObj =
                             new UnusedCatchParameterShouldBeUnnamedCheck();
         final int[] expected = {
@@ -61,7 +61,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void unusedCatchParameterShouldBeUnnamed() throws Exception {
+    public void testUnusedCatchParameterShouldBeUnnamed() throws Exception {
         final String[] expected = {
             "17:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "24:16: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
@@ -78,7 +78,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void unusedCatchParameterShouldBeUnnamedWithResourceAndFinally() throws Exception {
+    public void testUnusedCatchParameterShouldBeUnnamedWithResourceAndFinally() throws Exception {
         final String[] expected = {
             "19:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "38:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
@@ -92,7 +92,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void unusedCatchParameterShouldBeUnnamedNested() throws Exception {
+    public void testUnusedCatchParameterShouldBeUnnamedNested() throws Exception {
         final String[] expected = {
             "15:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "18:22: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "ex"),
@@ -107,7 +107,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void unusedCatchParameterShouldBeUnnamedInsideAnonClass() throws Exception {
+    public void testUnusedCatchParameterShouldBeUnnamedInsideAnonClass() throws Exception {
         final String[] expected = {
             "14:18: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
             "39:28: " + getCheckMessage(MSG_UNUSED_CATCH_PARAMETER, "e"),
@@ -123,7 +123,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
     }
 
     @Test
-    public void clearState() throws Exception {
+    public void testClearState() throws Exception {
         final UnusedCatchParameterShouldBeUnnamedCheck check =
                 new UnusedCatchParameterShouldBeUnnamedCheck();
 

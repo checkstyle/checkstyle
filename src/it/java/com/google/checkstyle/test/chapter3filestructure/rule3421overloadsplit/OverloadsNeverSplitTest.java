@@ -31,12 +31,12 @@ public class OverloadsNeverSplitTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void overloadConstructors() throws Exception {
+    public void testOverloadConstructors() throws Exception {
         verifyWithWholeConfig(getPath("InputOverloadsNeverSplit.java"));
     }
 
     @Test
-    public void overloadConstructorsRecords() throws Exception {
+    public void testOverloadConstructorsRecords() throws Exception {
         verifyWithWholeConfig(getPath("InputOverloadsNeverSplitRecords.java"));
     }
 }

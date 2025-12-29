@@ -41,7 +41,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void equalsOnly() throws Exception {
+    public void testEqualsOnly() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEqualsHashCodeEqualsOnly.java"));
 
@@ -68,7 +68,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void hashCodeOnly() throws Exception {
+    public void testHashCodeOnly() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEqualsHashCodeHashCodeOnly.java"));
 
@@ -95,7 +95,7 @@ public class XpathRegressionEqualsHashCodeTest extends AbstractXpathTestSupport 
     }
 
     @Test
-    public void nestedCase() throws Exception {
+    public void testNestedCase() throws Exception {
         final File fileToProcess = new File(
             getPath("InputXpathEqualsHashCodeNestedCase.java"));
 

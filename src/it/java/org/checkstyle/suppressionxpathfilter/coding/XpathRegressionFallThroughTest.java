@@ -44,7 +44,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void fallThrough() throws Exception {
+    public void testFallThrough() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFallThrough.java"));
 
@@ -71,7 +71,7 @@ public class XpathRegressionFallThroughTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void defaultCase() throws Exception {
+    public void testDefaultCase() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathFallThroughDefaultCase.java"));
 

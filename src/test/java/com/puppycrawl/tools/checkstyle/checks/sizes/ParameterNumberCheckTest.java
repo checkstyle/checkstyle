@@ -37,7 +37,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final ParameterNumberCheck checkObj = new ParameterNumberCheck();
         assertWithMessage("ParameterNumberCheck#getRequiredTokens should return empty array "
                 + "by default")
@@ -46,7 +46,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final ParameterNumberCheck paramNumberCheckObj =
             new ParameterNumberCheck();
         final int[] actual = paramNumberCheckObj.getAcceptableTokens();
@@ -61,7 +61,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void defaultOne()
+    public void testDefaultOne()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -69,7 +69,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void defaultTwo()
+    public void testDefaultTwo()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -77,7 +77,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void defaultThree()
+    public void testDefaultThree()
             throws Exception {
         final String[] expected = {
             "47:10: " + getCheckMessage(MSG_KEY, 7, 9),
@@ -87,7 +87,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void num()
+    public void testNum()
             throws Exception {
         final String[] expected = {
             "75:9: " + getCheckMessage(MSG_KEY, 2, 3),
@@ -98,7 +98,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void maxParam()
+    public void testMaxParam()
             throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -116,7 +116,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void ignoreOverriddenMethods()
+    public void testIgnoreOverriddenMethods()
             throws Exception {
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
@@ -127,7 +127,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void ignoreOverriddenMethodsFalse()
+    public void testIgnoreOverriddenMethodsFalse()
             throws Exception {
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_KEY, 7, 8),
@@ -140,7 +140,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void ignoreAnnotatedBy() throws Exception {
+    public void testIgnoreAnnotatedBy() throws Exception {
         final String[] expected = {
             "23:10: " + getCheckMessage(MSG_KEY, 2, 3),
             "30:10: " + getCheckMessage(MSG_KEY, 2, 4),
@@ -157,7 +157,7 @@ public class ParameterNumberCheckTest
     }
 
     @Test
-    public void ignoreAnnotatedByFullyQualifiedClassName() throws Exception {
+    public void testIgnoreAnnotatedByFullyQualifiedClassName() throws Exception {
         final String[] expected = {
             "15:10: " + getCheckMessage(MSG_KEY, 2, 3),
             "17:10: " + getCheckMessage(MSG_KEY, 2, 3),

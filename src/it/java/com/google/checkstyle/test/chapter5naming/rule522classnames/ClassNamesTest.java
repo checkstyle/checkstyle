@@ -31,17 +31,17 @@ public class ClassNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void classNames() throws Exception {
+    public void testClassNames() throws Exception {
         verifyWithWholeConfig(getPath("InputClassNames.java"));
     }
 
     @Test
-    public void classNamesFormatted() throws Exception {
+    public void testClassNamesFormatted() throws Exception {
         verifyWithWholeConfig(getPath("InputFormattedClassNames.java"));
     }
 
     @Test
-    public void classNamesWithUnderscore() throws Exception {
+    public void testClassNamesWithUnderscore() throws Exception {
         verifyWithWholeConfig(getPath("InputClassNamesWithUnderscore.java"));
     }
 }

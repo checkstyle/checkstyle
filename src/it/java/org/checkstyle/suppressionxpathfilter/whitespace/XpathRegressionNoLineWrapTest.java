@@ -63,7 +63,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void methodDef() throws Exception {
+    public void testMethodDef() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathNoLineWrapTokensMethodDef.java")
         );
@@ -98,7 +98,7 @@ public class XpathRegressionNoLineWrapTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void tokensCtorDef() throws Exception {
+    public void testTokensCtorDef() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathNoLineWrapTokensCtorDef.java")
         );

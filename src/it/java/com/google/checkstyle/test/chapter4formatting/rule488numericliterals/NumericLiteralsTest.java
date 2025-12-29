@@ -31,7 +31,7 @@ public class NumericLiteralsTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void upperEll() throws Exception {
+    public void testUpperEll() throws Exception {
         verifyWithWholeConfig(getPath("InputNumericLiterals.java"));
     }
 

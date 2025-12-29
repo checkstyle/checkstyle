@@ -75,7 +75,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void initialize() {
+    public void testInitialize() {
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setText("test");
         ast.setType(1);
@@ -103,7 +103,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void initializeToken() {
+    public void testInitializeToken() {
         final CommonToken token = new CommonToken(1);
         token.setText("test");
         token.setLine(2);
@@ -127,7 +127,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getChildCount() throws Exception {
+    public void testGetChildCount() throws Exception {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl firstLevelA = new DetailAstImpl();
         final DetailAstImpl firstLevelB = new DetailAstImpl();
@@ -174,7 +174,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void hasChildren() {
+    public void testHasChildren() {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         root.setFirstChild(child);
@@ -188,7 +188,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getChildCountType() throws Exception {
+    public void testGetChildCountType() throws Exception {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl firstLevelA = new DetailAstImpl();
         final DetailAstImpl firstLevelB = new DetailAstImpl();
@@ -226,7 +226,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void setSiblingNull() throws Exception {
+    public void testSetSiblingNull() throws Exception {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl firstLevelA = new DetailAstImpl();
 
@@ -246,7 +246,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addPreviousSibling() {
+    public void testAddPreviousSibling() {
         final DetailAST previousSibling = new DetailAstImpl();
         final DetailAstImpl instance = new DetailAstImpl();
         final DetailAstImpl parent = new DetailAstImpl();
@@ -299,7 +299,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addPreviousSiblingNullParent() {
+    public void testAddPreviousSiblingNullParent() {
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAST newSibling = new DetailAstImpl();
 
@@ -314,7 +314,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void insertSiblingBetween() throws Exception {
+    public void testInsertSiblingBetween() throws Exception {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl firstLevelA = new DetailAstImpl();
         final DetailAST firstLevelB = new DetailAstImpl();
@@ -347,7 +347,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void branchContains() {
+    public void testBranchContains() {
         final DetailAstImpl root = createToken(null, TokenTypes.CLASS_DEF);
         final DetailAstImpl modifiers = createToken(root, TokenTypes.MODIFIERS);
         createToken(modifiers, TokenTypes.LITERAL_PUBLIC);
@@ -370,7 +370,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void clearBranchTokenTypes() throws Exception {
+    public void testClearBranchTokenTypes() throws Exception {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         parent.setFirstChild(child);
@@ -408,7 +408,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void cacheBranchTokenTypes() {
+    public void testCacheBranchTokenTypes() {
         final DetailAST root = new DetailAstImpl();
         final BitSet bitSet = new BitSet();
         bitSet.set(999);
@@ -420,7 +420,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void clearChildCountCache() {
+    public void testClearChildCountCache() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         parent.setFirstChild(child);
@@ -458,7 +458,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void cacheGetChildCount() {
+    public void testCacheGetChildCount() {
         final DetailAST root = new DetailAstImpl();
 
         TestUtil.setInternalState(root, "childCount", 999);
@@ -468,7 +468,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addNextSibling() {
+    public void testAddNextSibling() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl sibling = new DetailAstImpl();
@@ -507,7 +507,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addNextSibling2() {
+    public void testAddNextSibling2() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         parent.setFirstChild(child);
@@ -529,7 +529,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addNextSibling3() {
+    public void testAddNextSibling3() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl sibling = new DetailAstImpl();
@@ -544,7 +544,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addNextSibling4() {
+    public void testAddNextSibling4() {
         final DetailAstImpl parent = new DetailAstImpl();
         parent.setText("Parent");
         final DetailAstImpl child = new DetailAstImpl();
@@ -560,7 +560,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addNextSiblingNullParent() {
+    public void testAddNextSiblingNullParent() {
         final DetailAstImpl child = new DetailAstImpl();
         final DetailAstImpl newSibling = new DetailAstImpl();
         final DetailAstImpl oldParent = new DetailAstImpl();
@@ -579,7 +579,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getLineNo() {
+    public void testGetLineNo() {
         final DetailAstImpl root1 = new DetailAstImpl();
         root1.setLineNo(1);
         assertWithMessage("Invalid line number")
@@ -613,7 +613,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getColumnNo() {
+    public void testGetColumnNo() {
         final DetailAstImpl root1 = new DetailAstImpl();
         root1.setColumnNo(1);
         assertWithMessage("Invalid column number")
@@ -647,7 +647,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void findFirstToken() {
+    public void testFindFirstToken() {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl firstChild = new DetailAstImpl();
         firstChild.setType(TokenTypes.IDENT);
@@ -677,7 +677,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void manyComments() throws Exception {
+    public void testManyComments() throws Exception {
         final File file = new File(temporaryFolder, "InputDetailASTManyComments.java");
 
         try (Writer bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
@@ -701,7 +701,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void treeStructure() throws Exception {
+    public void testTreeStructure() throws Exception {
         final List<File> files = getAllFiles(
                 new File("src/test/resources/com/puppycrawl/tools/checkstyle"));
 
@@ -732,7 +732,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void removeChildren() {
+    public void testRemoveChildren() {
         final DetailAstImpl parent = new DetailAstImpl();
         final DetailAstImpl child1 = new DetailAstImpl();
         parent.setFirstChild(child1);
@@ -747,7 +747,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void addChild() {
+    public void testAddChild() {
         final DetailAstImpl grandParent = new DetailAstImpl();
         grandParent.setText("grandparent");
         final DetailAstImpl parent = new DetailAstImpl();

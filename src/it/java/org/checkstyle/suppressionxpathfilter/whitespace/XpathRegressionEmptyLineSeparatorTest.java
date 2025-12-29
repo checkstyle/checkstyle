@@ -43,7 +43,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void one() throws Exception {
+    public void testOne() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathEmptyLineSeparatorOne.java")
         );
@@ -65,7 +65,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void two() throws Exception {
+    public void testTwo() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathEmptyLineSeparatorTwo.java")
         );
@@ -87,7 +87,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void three() throws Exception {
+    public void testThree() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathEmptyLineSeparatorThree.java")
         );
@@ -121,7 +121,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void four() throws Exception {
+    public void testFour() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathEmptyLineSeparatorFour.java")
         );
@@ -145,7 +145,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void five() throws Exception {
+    public void testFive() throws Exception {
         final File fileToProcess = new File(
                 getPath("InputXpathEmptyLineSeparatorFive.java")
         );

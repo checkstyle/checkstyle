@@ -44,7 +44,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void internal() throws Exception {
+    public void testInternal() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantImportInternal.java"));
         final DefaultConfiguration moduleConfig =
@@ -62,7 +62,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void library() throws Exception {
+    public void testLibrary() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantImportLibrary.java"));
         final DefaultConfiguration moduleConfig =
@@ -79,7 +79,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
     }
 
     @Test
-    public void duplicate() throws Exception {
+    public void testDuplicate() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathRedundantImportDuplicate.java"));
         final DefaultConfiguration moduleConfig =

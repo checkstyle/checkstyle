@@ -46,7 +46,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void elementStyleOptionValueOf() {
+    public void testElementStyleOptionValueOf() {
         final AnnotationUseStyleCheck.ElementStyleOption option =
             AnnotationUseStyleCheck.ElementStyleOption.valueOf("COMPACT");
         assertWithMessage("Invalid valueOf result")
@@ -59,7 +59,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void trailingArrayCommaOptionValueOf() {
+    public void testTrailingArrayCommaOptionValueOf() {
         final AnnotationUseStyleCheck.TrailingArrayCommaOption option =
             AnnotationUseStyleCheck.TrailingArrayCommaOption.valueOf("ALWAYS");
         assertWithMessage("Invalid valueOf result")
@@ -72,7 +72,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void closingParensOptionValueOf() {
+    public void testClosingParensOptionValueOf() {
         final AnnotationUseStyleCheck.ClosingParensOption option =
             AnnotationUseStyleCheck.ClosingParensOption.valueOf("ALWAYS");
         assertWithMessage("Invalid valueOf result")
@@ -89,7 +89,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      */
     @SuppressForbidden
     @Test
-    public void nonTrimmedInput() throws Exception {
+    public void testNonTrimmedInput() throws Exception {
         final DefaultConfiguration configuration =
             createModuleConfig(AnnotationUseStyleCheck.class);
         configuration.addProperty("elementStyle", "ignore");
@@ -128,7 +128,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * Test that annotation parens are always present.
      */
     @Test
-    public void parensAlways() throws Exception {
+    public void testParensAlways() throws Exception {
         final String[] expected = {
             "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "27:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
@@ -147,7 +147,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * Test that annotation parens are never present.
      */
     @Test
-    public void parensNever() throws Exception {
+    public void testParensNever() throws Exception {
         final String[] expected = {
             "22:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "40:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
@@ -161,7 +161,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void styleExpanded() throws Exception {
+    public void testStyleExpanded() throws Exception {
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
             "21:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
@@ -180,7 +180,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void styleCompact() throws Exception {
+    public void testStyleCompact() throws Exception {
         final String[] expected = {
             "52:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
             "56:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
@@ -194,7 +194,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void styleCompactNoArray() throws Exception {
+    public void testStyleCompactNoArray() throws Exception {
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -212,7 +212,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaAlwaysViolations() throws Exception {
+    public void testCommaAlwaysViolations() throws Exception {
         final String[] expected = {
             "12:20: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "15:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
@@ -234,7 +234,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaAlwaysViolationsNonCompilable() throws Exception {
+    public void testCommaAlwaysViolationsNonCompilable() throws Exception {
         final String[] expected = {
             "15:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "15:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
@@ -245,7 +245,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaAlwaysNoViolations() throws Exception {
+    public void testCommaAlwaysNoViolations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -253,7 +253,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaAlwaysNoViolationsNonCompilable() throws Exception {
+    public void testCommaAlwaysNoViolationsNonCompilable() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -261,7 +261,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void trailingArrayIgnore() throws Exception {
+    public void testTrailingArrayIgnore() throws Exception {
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "23:13: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -274,7 +274,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaNeverViolations() throws Exception {
+    public void testCommaNeverViolations() throws Exception {
         final String[] expected = {
             "16:32: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "21:42: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
@@ -291,7 +291,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void commaNeverNoViolations() throws Exception {
+    public void testCommaNeverNoViolations() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -299,7 +299,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void everythingMixed() throws Exception {
+    public void testEverythingMixed() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -307,7 +307,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void annotationsWithoutDefaultValues() throws Exception {
+    public void testAnnotationsWithoutDefaultValues() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -315,7 +315,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final AnnotationUseStyleCheck constantNameCheckObj = new AnnotationUseStyleCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.ANNOTATION };
@@ -325,7 +325,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getOption() {
+    public void testGetOption() {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
@@ -341,7 +341,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void styleNotInList() throws Exception {
+    public void testStyleNotInList() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(

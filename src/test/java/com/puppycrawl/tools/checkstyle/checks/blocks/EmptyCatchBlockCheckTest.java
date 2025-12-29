@@ -35,7 +35,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
         final int[] expected = {TokenTypes.LITERAL_CATCH};
         assertWithMessage("Default required tokens are invalid")
@@ -54,7 +54,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void withUserSetValues() throws Exception {
+    public void testWithUserSetValues() throws Exception {
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "54:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -70,7 +70,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void linesAreProperlySplitSystemIndependently() throws Exception {
+    public void testLinesAreProperlySplitSystemIndependently() throws Exception {
         final String[] expected = {
             "25:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "53:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -93,7 +93,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final EmptyCatchBlockCheck constantNameCheckObj = new EmptyCatchBlockCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.LITERAL_CATCH };

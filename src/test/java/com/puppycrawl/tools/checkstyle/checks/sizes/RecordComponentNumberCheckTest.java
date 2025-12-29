@@ -38,7 +38,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getRequiredTokens() {
+    public void testGetRequiredTokens() {
         final RecordComponentNumberCheck checkObj = new RecordComponentNumberCheck();
         final int[] actual = checkObj.getRequiredTokens();
         final int[] expected = {
@@ -52,7 +52,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void getAcceptableTokens() {
+    public void testGetAcceptableTokens() {
         final RecordComponentNumberCheck checkObj = new RecordComponentNumberCheck();
         final int[] actual = checkObj.getAcceptableTokens();
         final int[] expected = {
@@ -65,7 +65,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultOne() throws Exception {
+    public void testDefaultOne() throws Exception {
 
         final int max = 8;
 
@@ -82,7 +82,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void defaultTwo() throws Exception {
+    public void testDefaultTwo() throws Exception {
 
         final int max = 8;
 
@@ -96,7 +96,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberTopLevel1() throws Exception {
+    public void testRecordComponentNumberTopLevel1() throws Exception {
 
         final int max = 8;
 
@@ -110,7 +110,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberTopLevel2() throws Exception {
+    public void testRecordComponentNumberTopLevel2() throws Exception {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -120,7 +120,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberMax1() throws Exception {
+    public void testRecordComponentNumberMax1() throws Exception {
 
         final int max = 1;
 
@@ -146,7 +146,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberMax20() throws Exception {
+    public void testRecordComponentNumberMax20() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verifyWithInlineConfigParser(
@@ -154,7 +154,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberPrivateModifierOne() throws Exception {
+    public void testRecordComponentNumberPrivateModifierOne() throws Exception {
 
         final int max = 8;
 
@@ -168,7 +168,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void recordComponentNumberPrivateModifierTwo() throws Exception {
+    public void testRecordComponentNumberPrivateModifierTwo() throws Exception {
 
         final int max = 8;
 
@@ -188,7 +188,7 @@ public class RecordComponentNumberCheckTest extends AbstractModuleTestSupport {
      * is needed for other style checks.
      */
     @Test
-    public void cloneInAccessModifiersProperty() {
+    public void testCloneInAccessModifiersProperty() {
         final AccessModifierOption[] input = {
             AccessModifierOption.PACKAGE,
         };

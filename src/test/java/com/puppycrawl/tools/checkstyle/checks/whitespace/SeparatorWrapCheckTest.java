@@ -39,7 +39,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void dot()
+    public void testDot()
             throws Exception {
         final String[] expected = {
             "39:10: " + getCheckMessage(MSG_LINE_NEW, "."),
@@ -49,7 +49,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void comma() throws Exception {
+    public void testComma() throws Exception {
         final String[] expected = {
             "47:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ","),
         };
@@ -58,7 +58,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void methodRef() throws Exception {
+    public void testMethodRef() throws Exception {
         final String[] expected = {
             "25:56: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
@@ -67,7 +67,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void getDefaultTokens() {
+    public void testGetDefaultTokens() {
         final SeparatorWrapCheck separatorWrapCheckObj = new SeparatorWrapCheck();
         final int[] actual = separatorWrapCheckObj.getDefaultTokens();
         final int[] expected = {
@@ -80,7 +80,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void invalidOption() throws Exception {
+    public void testInvalidOption() throws Exception {
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -100,7 +100,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void ellipsis() throws Exception {
+    public void testEllipsis() throws Exception {
         final String[] expected = {
             "19:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "..."),
         };
@@ -109,7 +109,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void arrayDeclarator() throws Exception {
+    public void testArrayDeclarator() throws Exception {
         final String[] expected = {
             "17:13: " + getCheckMessage(MSG_LINE_PREVIOUS, "["),
         };
@@ -118,7 +118,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void withEmoji() throws Exception {
+    public void testWithEmoji() throws Exception {
         final String[] expected = {
             "13:39: " + getCheckMessage(MSG_LINE_NEW, '['),
             "16:57: " + getCheckMessage(MSG_LINE_NEW, '['),
@@ -132,7 +132,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void trimOptionProperty() throws Exception {
+    public void testTrimOptionProperty() throws Exception {
         final String[] expected = {
             "18:44: " + getCheckMessage(MSG_LINE_NEW, "::"),
         };
@@ -141,7 +141,7 @@ public class SeparatorWrapCheckTest
     }
 
     @Test
-    public void commaOnNewLine() throws Exception {
+    public void testCommaOnNewLine() throws Exception {
         final String[] expected = {
             "16:10: " + getCheckMessage(MSG_LINE_NEW, ","),
             "21:26: " + getCheckMessage(MSG_LINE_NEW, ","),

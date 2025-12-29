@@ -46,7 +46,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void defaultModifier() throws Exception {
+    public void testDefaultModifier() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathVisibilityModifierDefault.java"));
 
@@ -67,7 +67,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void annotation() throws Exception {
+    public void testAnnotation() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathVisibilityModifierAnnotation.java"));
 
@@ -90,7 +90,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void anonymousClass() throws Exception {
+    public void testAnonymousClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathVisibilityModifierAnonymous.java"));
 
@@ -113,7 +113,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
     }
 
     @Test
-    public void innerClass() throws Exception {
+    public void testInnerClass() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathVisibilityModifierInner.java"));
 

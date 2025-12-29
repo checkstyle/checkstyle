@@ -66,7 +66,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void customMax() throws Exception {
+    public void testCustomMax() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathThrowsCountCustomMax.java"));
         final DefaultConfiguration moduleConfig =
@@ -91,7 +91,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
     }
 
     @Test
-    public void privateMethods() throws Exception {
+    public void testPrivateMethods() throws Exception {
         final File fileToProcess =
                 new File(getPath("InputXpathThrowsCountPrivateMethods.java"));
         final DefaultConfiguration moduleConfig =

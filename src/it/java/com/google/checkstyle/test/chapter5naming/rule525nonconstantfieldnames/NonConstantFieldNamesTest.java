@@ -31,12 +31,12 @@ public class NonConstantFieldNamesTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
-    public void memberName() throws Exception {
+    public void testMemberName() throws Exception {
         verifyWithWholeConfig(getPath("InputNonConstantNamesBasic.java"));
     }
 
     @Test
-    public void simple() throws Exception {
+    public void testSimple() throws Exception {
         verifyWithWholeConfig(getPath("InputNonConstantNamesSimple.java"));
     }
 

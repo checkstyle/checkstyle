@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 public class SeverityLevelCounterTest {
 
     @Test
-    public void ctorException() {
+    public void testCtorException() {
         try {
             final Object test = new SeverityLevelCounter(null);
             assertWithMessage("exception expected but got %s", test)
@@ -41,7 +41,7 @@ public class SeverityLevelCounterTest {
     }
 
     @Test
-    public void addError() {
+    public void testAddError() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         assertWithMessage("Invalid severity level count")
                 .that(counter.getCount())
@@ -59,7 +59,7 @@ public class SeverityLevelCounterTest {
     }
 
     @Test
-    public void addException() {
+    public void testAddException() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
         assertWithMessage("Invalid severity level count")
@@ -72,7 +72,7 @@ public class SeverityLevelCounterTest {
     }
 
     @Test
-    public void addExceptionWarning() {
+    public void testAddExceptionWarning() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
         assertWithMessage("Invalid severity level count")
@@ -85,7 +85,7 @@ public class SeverityLevelCounterTest {
     }
 
     @Test
-    public void auditStartedClearsState() {
+    public void testAuditStartedClearsState() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
         final AuditEvent secondEvent = new AuditEvent(this, "BTest.java", null);
