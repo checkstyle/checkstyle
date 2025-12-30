@@ -322,6 +322,18 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
+    public void testToStringOfTagClassWithIdFormat() {
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        filter.setIdFormat("id");
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:OFF").get(0);
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=id]");
+    }
+
+    @Test
     public void testCompareToOfTagClass() {
         final List<Comparable<Object>> tags1 =
                 getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF", " //CHECKSTYLE:ON");
