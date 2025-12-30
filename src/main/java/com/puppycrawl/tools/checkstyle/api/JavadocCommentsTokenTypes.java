@@ -920,7 +920,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
     /**
-     * Custom or unrecognized inline tag.
+     * {@code @custom} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  Example showing
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> custom
+     * |       |--DESCRIPTION -> DESCRIPTION
+     * |       |   `--TEXT ->  This is a Custom Inline Tag
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 
