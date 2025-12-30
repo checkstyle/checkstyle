@@ -527,6 +527,30 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
                 getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
+    @Test
+    public void testUnexpectedSeverityLevelFailsSarifLogger() throws Exception {
+        final SarifLogger logger = new SarifLogger(outStream, OutputStreamOptions.CLOSE);
+        final Violation violation =
+                new Violation(1, 1,
+                        "messages.properties", "ruleId", null, null,
+                        getClass(), "test message");
+        final AuditEvent event = new AuditEvent(this, "Test.java", violation);
+
+        try {
+            logger.auditStarted(null);
+            logger.fileStarted(event);
+            logger.addError(event);
+            logger.fileFinished(event);
+            logger.auditFinished(null);
+            assertWithMessage("Exception was expected").fail();
+        }
+        catch (IllegalStateException exception) {
+            assertWithMessage("Unexpected exception message")
+                    .that(exception.getMessage())
+                    .contains("Unexpected SeverityLevel");
+        }
+    }
+
     private static void verifyContent(
             String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream) throws IOException {
