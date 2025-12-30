@@ -469,23 +469,6 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
-  CHECKSTYLE_DIR=$(pwd)
-  export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
-  grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
-  RESULT=$(cat errors.log | wc -l)
-  if [[ $RESULT != 0 ]]; then
-    echo "Errors are detected in target/site/pmd.html."
-    sleep 5s
-  fi
-  cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
-  exit "$RESULT"
-;;
-
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
@@ -552,7 +535,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -1337,6 +1319,10 @@ spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
 
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+;;
+
 checkstyle)
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   ;;
@@ -1361,32 +1347,23 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
-  ;;
-
-openrewrite-recipes)
+rewrite)
+  export MAVEN_OPTS="-Xmx3g"
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
   mvn -e --no-transfer-progress clean install -DskipTests
-
   cd "$PROJECT_ROOT"
-
   echo "Running Checkstyle validation to get report for openrewrite..."
   set +e
   ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
   set -e
   echo "Running OpenRewrite recipes..."
   ./mvnw -e --no-transfer-progress rewrite:run -Drewrite.recipeChangeLogLevel=INFO
-
   echo "Checking for uncommitted changes..."
   ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
   rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
