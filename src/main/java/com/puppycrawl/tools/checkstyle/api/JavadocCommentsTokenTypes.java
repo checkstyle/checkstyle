@@ -927,8 +927,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
+     * |--LEADING_ASTERISK ->      *
      * |--TEXT ->  Example showing
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
@@ -937,7 +936,7 @@ public final class JavadocCommentsTokenTypes {
      * |       |--DESCRIPTION -> DESCRIPTION
      * |       |   `--TEXT ->  This is a Custom Inline Tag
      * |       `--JAVADOC_INLINE_TAG_END -> }
-     * `--TEXT -> .
+     * |--TEXT -> .
      * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
