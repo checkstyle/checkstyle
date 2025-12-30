@@ -123,6 +123,7 @@ public class LeftCurlyCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.SWITCH_RULE,
         };
     }
 
@@ -167,6 +168,10 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_CASE, TokenTypes.LITERAL_DEFAULT -> {
                 startToken = ast;
                 yield getBraceFromSwitchMember(ast);
+            }
+            case TokenTypes.SWITCH_RULE -> {
+                startToken = ast;
+                yield ast.findFirstToken(TokenTypes.SLIST);
             }
             default -> {
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
@@ -341,6 +346,9 @@ public class LeftCurlyCheck
         DetailAST nextToken = null;
         if (leftCurly.getType() == TokenTypes.SLIST) {
             nextToken = leftCurly.getFirstChild();
+            if (nextToken != null && nextToken.getType() == TokenTypes.LCURLY) {
+                nextToken = nextToken.getNextSibling();
+            }
         }
         else {
             if (!ignoreEnums

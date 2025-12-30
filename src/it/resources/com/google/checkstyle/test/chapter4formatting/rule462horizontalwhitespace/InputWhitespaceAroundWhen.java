@@ -1,3 +1,5 @@
+// CHECKSTYLE.OFF: LeftCurly - this file tests other checks, not LeftCurly
+
 // Java21
 
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;

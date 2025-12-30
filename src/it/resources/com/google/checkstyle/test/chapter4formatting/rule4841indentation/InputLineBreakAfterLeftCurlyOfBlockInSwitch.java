@@ -1,3 +1,5 @@
+// CHECKSTYLE.OFF: LeftCurly - this file tests other checks, not LeftCurly
+
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
 /** Some javadoc. */
