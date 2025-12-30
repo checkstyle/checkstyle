@@ -43,4 +43,11 @@ public class Java25AstRegressionTest extends AbstractTreeTestSupport {
                 getNonCompilablePath("ExpectedImportModuleJavaBase.txt"),
                 getNonCompilablePath("InputImportModuleJavaBase.java"));
     }
+
+    @Test
+    public void testCompactSourceFile() throws Exception {
+        verifyAst(
+                getNonCompilablePath("ExpectedCompactSourceFile.txt"),
+                getNonCompilablePath("InputCompactSourceFile.java"));
+    }
 }
