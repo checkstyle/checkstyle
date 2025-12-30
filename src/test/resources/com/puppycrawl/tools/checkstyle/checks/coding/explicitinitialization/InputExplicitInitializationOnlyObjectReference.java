@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitializationOnlyObjectReference {
     private int x = 0;
-    private Object bar = /* comment test */null; // violation
+    private Object bar = /* comment test */null; // violation 'explicit initialization'
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
@@ -19,7 +19,7 @@ public class InputExplicitInitializationOnlyObjectReference {
     private boolean b3;
     private String str = "";
     java.lang.String str1 = null, str3 = null; // 2 violations
-    int ar1[] = null; // violation
+    int ar1[] = null; // violation 'explicit initialization'
     int ar2[] = new int[1];
     int ar3[];
     float f1 = 0f;
@@ -43,8 +43,8 @@ interface interface2 {
 }
 
 class InputExplicitInit4 {
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private Bar<String> bar = null; // violation 'explicit initialization'
+    private Bar<String>[] barArray = null; // violation 'explicit initialization'
 }
 
 enum InputExplicitInit5 {
@@ -52,13 +52,13 @@ enum InputExplicitInit5 {
     B
     {
         private int x = 0;
-        private Bar<String> bar = null; // violation
-        private Bar<String>[] barArray = null; // violation
+        private Bar<String> bar = null; // violation 'explicit initialization'
+        private Bar<String>[] barArray = null; // violation 'explicit initialization'
         private int y = 1;
     };
     private int x = 0;
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private Bar<String> bar = null; // violation 'explicit initialization'
+    private Bar<String>[] barArray = null; // violation 'explicit initialization'
     private int y = 1;
     private Boolean booleanAtt = false;
 }
