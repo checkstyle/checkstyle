@@ -8,26 +8,26 @@ onlyObjectReferences = (default)false
 package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitialization {
-    private int x = 0; // violation
-    private Object bar = /* comment test */null; // violation
+    private int x = 0; // violation 'explicit initialization'
+    private Object bar = /* comment test */null; // violation 'explicit initialization'
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
-    private long y4 = 0L; // violation
-    private boolean b1 = false; // violation
+    private long y4 = 0L; // violation 'explicit initialization'
+    private boolean b1 = false; // violation 'explicit initialization'
     private boolean b2 = true;
     private boolean b3;
     private String str = "";
     java.lang.String str1 = null, str3 = null; // 2 violations
-    int ar1[] = null; // violation
+    int ar1[] = null; // violation 'explicit initialization'
     int ar2[] = new int[1];
     int ar3[];
-    float f1 = 0f; // violation
-    double d1 = 0.0; // violation
+    float f1 = 0f; // violation 'explicit initialization'
+    double d1 = 0.0; // violation 'explicit initialization'
 
     static char ch;
-    static char ch1 = 0; // violation
-    static char ch2 = '\0'; // violation
+    static char ch1 = 0; // violation 'explicit initialization'
+    static char ch2 = '\0'; // violation 'explicit initialization'
     static char ch3 = '\1';
 
     void method() {
@@ -43,22 +43,22 @@ interface interface1{
 }
 
 class InputExplicitInit2 {
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private Bar<String> bar = null; // violation 'explicit initialization'
+    private Bar<String>[] barArray = null; // violation 'explicit initialization'
 }
 
 enum InputExplicitInit3 {
     A,
     B
     {
-        private int x = 0; // violation
-        private Bar<String> bar = null; // violation
-        private Bar<String>[] barArray = null; // violation
+        private int x = 0; // violation 'explicit initialization'
+        private Bar<String> bar = null; // violation 'explicit initialization'
+        private Bar<String>[] barArray = null; // violation 'explicit initialization'
         private int y = 1;
     };
-    private int x = 0; // violation
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private int x = 0; // violation 'explicit initialization'
+    private Bar<String> bar = null; // violation 'explicit initialization'
+    private Bar<String>[] barArray = null; // violation 'explicit initialization'
     private int y = 1;
     private Boolean booleanAtt = false;
 }
@@ -93,7 +93,7 @@ class Chars {
 class Doubles {
     final double subZero = -0.0;
     final double nan = Double.NaN;
-    private short shortVariable = 0; // violation
-    private byte bite = 0; // violation
-    double d = 0d; // violation
+    private short shortVariable = 0; // violation 'explicit initialization'
+    private byte bite = 0; // violation 'explicit initialization'
+    double d = 0d; // violation 'explicit initialization'
 }
