@@ -194,17 +194,18 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
     }
 
     @Override
-    public DetailAstImpl visitTypeDeclaration(JavaLanguageParser.TypeDeclarationContext ctx) {
-        final DetailAstImpl typeDeclaration;
+    public DetailAstImpl visitTopLevelDeclaration(
+            JavaLanguageParser.TopLevelDeclarationContext ctx) {
+        final DetailAstImpl topLevelDeclaration;
         if (ctx.type == null) {
-            typeDeclaration = create(ctx.semi.get(0));
+            topLevelDeclaration = create(ctx.semi.get(0));
             ctx.semi.subList(1, ctx.semi.size())
-                    .forEach(semi -> addLastSibling(typeDeclaration, create(semi)));
+                    .forEach(semi -> addLastSibling(topLevelDeclaration, create(semi)));
         }
         else {
-            typeDeclaration = visit(ctx.type);
+            topLevelDeclaration = visit(ctx.type);
         }
-        return typeDeclaration;
+        return topLevelDeclaration;
     }
 
     @Override
