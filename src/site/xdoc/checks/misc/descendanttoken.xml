@@ -933,7 +933,7 @@ class Example16 {
   Example:
 </p>
 <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example17 {
+class Example17{
   void test(int x) {
     switch (x) { // violation, 'At least two case statements are required.'
       case 1:
