@@ -12,7 +12,7 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 // xdoc section -- start
-class Example5 {
+public class Example5 {
 
   public void method0() {
     int mode = 0;
