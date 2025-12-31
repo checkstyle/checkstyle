@@ -106,6 +106,9 @@ public class SuppressWithNearbyCommentFilter
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
 
+    /** Cached absolute path of the file being processed to avoid null pointer exception. */
+    private String cachedFileAbsolutePath = "";
+
     /**
      * Specify negative/zero/positive value that defines the number of lines
      * preceding/at/following the suppression comment.
@@ -222,14 +225,18 @@ public class SuppressWithNearbyCommentFilter
         boolean accepted = true;
 
         if (event.violation() != null) {
-            // Lazy update. If the first event for the current file, update file
-            // contents and tag suppressions
             final FileContents currentContents = event.fileContents();
 
-            if (getFileContents() != currentContents) {
-                setFileContents(currentContents);
-                tagSuppressions();
+            if (currentContents != null) {
+                final String eventFileTextAbsolutePath = currentContents.getFileName();
+
+                if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {
+                    setFileContents(currentContents);
+                    tagSuppressions();
+                    cachedFileAbsolutePath = eventFileTextAbsolutePath;
+                }
             }
+
             if (matchesTag(event)) {
                 accepted = false;
             }
@@ -411,19 +418,14 @@ public class SuppressWithNearbyCommentFilter
 
         @Override
         public boolean equals(Object other) {
-            if (this == other) {
-                return true;
-            }
-            if (other == null || getClass() != other.getClass()) {
-                return false;
-            }
-            final Tag tag = (Tag) other;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+            return other != null
+                    && getClass() == other.getClass()
+                    && Objects.equals(firstLine, ((Tag) other).firstLine)
+                    && Objects.equals(lastLine, ((Tag) other).lastLine)
+                    && Objects.equals(text, ((Tag) other).text)
+                    && Objects.equals(tagCheckRegexp, ((Tag) other).tagCheckRegexp)
+                    && Objects.equals(tagMessageRegexp, ((Tag) other).tagMessageRegexp)
+                    && Objects.equals(tagIdRegexp, ((Tag) other).tagIdRegexp);
         }
 
         @Override
