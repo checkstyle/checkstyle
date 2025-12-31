@@ -203,6 +203,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(violation.getColumnNo())
                 .isEqualTo(1);
+        assertWithMessage("expected severity")
+                .that(violation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
@@ -248,6 +251,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(violation.getColumnNo())
                 .isEqualTo(0);
+        assertWithMessage("expected severity")
+                .that(violation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
 
         // re-running erases previous errors
 

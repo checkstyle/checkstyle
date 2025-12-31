@@ -340,6 +340,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(firstViolation.getColumnNo())
                 .isEqualTo(0);
+        assertWithMessage("expected severity level")
+                .that(firstViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
 
         final Violation secondViolation = iterator.next();
         assertWithMessage("expected line")
@@ -348,6 +351,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(secondViolation.getColumnNo())
                 .isEqualTo(6);
+        assertWithMessage("expected severity level")
+                .that(secondViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
@@ -378,6 +384,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(firstViolation.getColumnNo())
                 .isEqualTo(5);
+        assertWithMessage("expected severity level")
+                .that(firstViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
