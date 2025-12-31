@@ -77,7 +77,6 @@ public class XdocsExampleFileTest {
                     "violateImpliedStaticOnNestedRecord",
                     "violateImpliedStaticOnNestedInterface"
             )),
-            Map.entry("DescendantTokenCheck", Set.of("minimumMessage")),
             Map.entry("InterfaceMemberImpliedModifierCheck", Set.of(
                     "violateImpliedFinalField",
                     "violateImpliedPublicField",
