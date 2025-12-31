@@ -97,7 +97,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/blocks/rightcurly/Example3",
             "checks/blocks/rightcurly/Example4",
             "checks/blocks/rightcurly/Example5",
-            "checks/coding/arraytrailingcomma/Example2",
             "checks/coding/constructorsdeclarationgrouping/Example2",
             "checks/coding/covariantequals/Example2",
             "checks/coding/hiddenfield/Example7",
