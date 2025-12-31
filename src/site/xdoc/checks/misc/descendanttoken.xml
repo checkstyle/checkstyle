@@ -910,6 +910,39 @@ class Example16 {
   }
 }
 </code></pre></div>
+<hr class="example-separator"/>
+
+<p id="Example17-config">
+  To configure the check to use a custom message when the minimum count is not reached:
+</p>
+<div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_CASE"/&gt;
+      &lt;property name="minimumNumber" value="2"/&gt;
+      &lt;property name="minimumMessage"
+        value="At least two case statements are required."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+
+<p id="Example17-code">
+  Example:
+</p>
+<div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example17{
+  void test(int x) {
+    switch (x) { // violation, 'At least two case statements are required.'
+      case 1:
+        break;
+    }
+  }
+}
+</code></pre></div>
+
       </subsection>
 
       <subsection name="Example of Usage" id="DescendantToken_Example_of_Usage">
