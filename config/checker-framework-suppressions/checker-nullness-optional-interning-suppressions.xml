@@ -5421,17 +5421,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
     <specifier>method.invocation</specifier>
     <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
-    <lineContent>register(TokenTypes.INDEX_OP, IndexHandler.class);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
-      required: @Initialized @NonNull HandlerFactory
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to &lt;T&gt;register(int,java.lang.Class&lt;T&gt;) not allowed on the given receiver.</message>
     <lineContent>register(TokenTypes.INSTANCE_INIT, SlistHandler.class);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory.class) @NonNull HandlerFactory
