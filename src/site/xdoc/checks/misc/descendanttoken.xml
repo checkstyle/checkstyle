@@ -912,7 +912,7 @@ class Example16 {
 </code></pre></div>
 <hr class="example-separator"/>
 
-<p id="Example17-config">
+<p id="Example18-config">
   To configure the check to use a custom message when the minimum count is not reached:
 </p>
 <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -929,11 +929,11 @@ class Example16 {
 &lt;/module&gt;
 </code></pre></div>
 
-<p id="Example17-code">
+<p id="Example18-code">
   Example:
 </p>
 <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-class Example17{
+class Example18{
   void test(int x) {
     switch (x) { // violation, 'At least two case statements are required.'
       case 1:
