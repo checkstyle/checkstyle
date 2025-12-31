@@ -363,6 +363,42 @@ public class SuppressWithNearbyCommentFilterTest
                 .isTrue();
     }
 
+    @Test
+    public void testSuppressWithNearbyCommentFilterMutation() throws Exception {
+        final String[] suppressed = {
+            "28:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        final String[] expected = {
+            "28:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "30:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterMutation.java"),
+            expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testSuppressWithNearbyCommentFilterMutation2() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "C1", "^[a-z][a-zA-Z0-9]*$"),
+            "30:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "D1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterMutation2.java"),
+            expected, removeSuppressed(expected, suppressed));
+    }
+
     private void verifySuppressedWithParser(String fileName, String... suppressed)
             throws Exception {
         verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
