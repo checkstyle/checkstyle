@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.File;
 import java.util.Arrays;
@@ -31,7 +32,10 @@ import org.junit.jupiter.api.Test;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
@@ -180,21 +184,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertWithMessage("Default required tokens are invalid")
@@ -211,21 +203,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IDENT,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
-            // Definitions that may contain Javadoc...
-            TokenTypes.PACKAGE_DEF,
-            TokenTypes.ANNOTATION_DEF,
-            TokenTypes.ANNOTATION_FIELD_DEF,
-            TokenTypes.ENUM_DEF,
-            TokenTypes.ENUM_CONSTANT_DEF,
-            TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF,
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-            TokenTypes.VARIABLE_DEF,
-            TokenTypes.RECORD_DEF,
-            TokenTypes.COMPACT_CTOR_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.SLIST,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -276,6 +256,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     public void testSingleWordPackage() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "module"),
+            "11:15: " + getCheckMessage(MSG_KEY, "module2"),
         };
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsSingleWordPackage.java"),
@@ -326,7 +307,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton")
         );
         final List<String> expectedSecondInput = List.of(
-            "10:8: " + getCheckMessage(MSG_KEY, "module")
+            "10:8: " + getCheckMessage(MSG_KEY, "module"),
+            "11:15: " + getCheckMessage(MSG_KEY, "module2")
         );
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
@@ -370,18 +352,6 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testStaticMethodRefImportsInDocsOnly() throws Exception {
-        final String[] expected = {
-            "11:8: " + getCheckMessage(MSG_KEY, "java.lang.Integer"),
-            "12:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.emptyEnumeration"),
-            "13:15: " + getCheckMessage(MSG_KEY, "java.util.Arrays.sort"),
-            "14:15: " + getCheckMessage(MSG_KEY, "java.util.Collections.shuffle"),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputUnusedImportsFromStaticMethodRefInDocsOnly.java"), expected);
-    }
-
-    @Test
     public void testUnusedImportsJavadocAboveComments() throws Exception {
         final String[] expected = {
             "11:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
@@ -405,17 +375,77 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImportJavaLinkTagWithMethod() throws Exception {
         final String[] expected = {
-            "10:8: " + getCheckMessage(MSG_KEY, "java.util.Collections"),
-            "12:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
-            "14:8: " + getCheckMessage(MSG_KEY, "java.util.PriorityQueue"),
-            "16:8: " + getCheckMessage(MSG_KEY, "java.util.Queue"),
-            "20:8: " + getCheckMessage(MSG_KEY, "java.util.LinkedList"),
-            "24:8: " + getCheckMessage(MSG_KEY, "java.time.LocalDateTime"),
-            "27:8: " + getCheckMessage(MSG_KEY, "java.util.concurrent.TimeUnit"),
+            "12:8: " + getCheckMessage(MSG_KEY, "java.util.PriorityQueue"),
+            "15:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "21:8: " + getCheckMessage(MSG_KEY, "java.util.concurrent.TimeUnit"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputUnusedImportsWithLinkAndMethodTag.java"), expected);
 
+    }
+
+    @Test
+    public void testImproperToken() {
+        final UnusedImportsCheck check = new UnusedImportsCheck();
+
+        final DetailAstImpl lambdaAst = new DetailAstImpl();
+        lambdaAst.setType(TokenTypes.LAMBDA);
+        lambdaAst.setText("LAMBDA");
+
+        try {
+            check.visitToken(lambdaAst);
+            assertWithMessage("IllegalArgumentException is expected").fail();
+        }
+        catch (IllegalArgumentException exc) {
+            assertWithMessage("Message must include token name")
+                .that(exc.getMessage())
+                .contains("LAMBDA");
+        }
+    }
+
+    @Test
+    public void testImproperJavadocToken() {
+        final UnusedImportsCheck check = new UnusedImportsCheck();
+
+        final JavadocNodeImpl ast = new JavadocNodeImpl();
+        ast.setType(JavadocCommentsTokenTypes.EQUALS);
+        ast.setText("EQUALS");
+
+        try {
+            check.visitJavadocToken(ast);
+            assertWithMessage("IllegalArgumentException is expected").fail();
+        }
+        catch (IllegalArgumentException exc) {
+            assertWithMessage("Message must include token name")
+                .that(exc.getMessage())
+                .contains("EQUALS");
+        }
+    }
+
+    @Test
+    public void testIsValidIdentifier() {
+        final UnusedImportsCheck check = new UnusedImportsCheck();
+        final JavadocNodeImpl reference = new JavadocNodeImpl();
+        reference.setType(JavadocCommentsTokenTypes.REFERENCE);
+
+        final JavadocNodeImpl child = new JavadocNodeImpl();
+        child.setType(JavadocCommentsTokenTypes.IDENTIFIER);
+        child.setText("");
+        reference.addChild(child);
+
+        assertDoesNotThrow(
+            () -> check.visitJavadocToken(reference),
+            "visitJavadocToken must not throw for REFERENCE with empty identifier text"
+        );
+    }
+
+    @Test
+    public void testCache() throws Exception {
+        final String[] expected = {
+            "10:8: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+        };
+        verifyWithInlineConfigParser(getPath("InputUnusedImportsCache1.java"),
+            getPath("InputUnusedImportsCache2.java"), expected);
     }
 
 }
