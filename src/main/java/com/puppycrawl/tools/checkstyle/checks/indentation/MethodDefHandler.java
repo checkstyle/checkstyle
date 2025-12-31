@@ -97,9 +97,7 @@ public class MethodDefHandler extends BlockParentHandler {
                 continue;
             }
 
-            if (node.getLineNo() < lineStart) {
-                lineStart = node.getLineNo();
-            }
+            lineStart = Math.min(lineStart, node.getLineNo());
         }
 
         return lineStart;
