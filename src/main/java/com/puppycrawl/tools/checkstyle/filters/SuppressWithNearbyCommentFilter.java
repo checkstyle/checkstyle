@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -106,6 +107,9 @@ public class SuppressWithNearbyCommentFilter
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
 
+    /** Cached absolute path of the file being processed to avoid null pointer exception. */
+    private String cachedFileAbsolutePath = "";
+
     /**
      * Specify negative/zero/positive value that defines the number of lines
      * preceding/at/following the suppression comment.
@@ -119,7 +123,7 @@ public class SuppressWithNearbyCommentFilter
      * are reassigned to the next FileContents, at which time filtering for
      * the current FileContents is finished.
      */
-    private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
+    private WeakReference<FileContents> fileContentsReference;
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
@@ -222,20 +226,47 @@ public class SuppressWithNearbyCommentFilter
         boolean accepted = true;
 
         if (event.violation() != null) {
-            // Lazy update. If the first event for the current file, update file
-            // contents and tag suppressions
             final FileContents currentContents = event.fileContents();
 
-            if (getFileContents() != currentContents) {
-                setFileContents(currentContents);
-                tagSuppressions();
+            if (currentContents != null) {
+                cachedFileAbsolutePath = initIfDifferent(
+                        currentContents.getFileName(),
+                        cachedFileAbsolutePath,
+                        () -> {
+                            setFileContents(currentContents);
+                            tagSuppressions();
+                            return currentContents.getFileName();
+                        });
             }
+
             if (matchesTag(event)) {
                 accepted = false;
             }
         }
         return accepted;
     }
+
+    /**
+     * Lazy initialization utility that updates cached state only when the key changes.
+     * This is a performance optimization to avoid redundant reprocessing.
+     *
+     * @param <T> the type of the cached object
+     * @param current the current value to compare
+     * @param cached the previously cached value
+     * @param supplier the supplier to provide new value if current differs from cached
+     * @return the cached value if it equals current, otherwise the value from supplier
+     */
+    private static <T> T initIfDifferent(T current, T cached, Supplier<T> supplier) {
+        final T result;
+        if (!cached.equals(current)) {
+            result = supplier.get();
+        }
+        else {
+            result = cached;
+        }
+        return result;
+    }
+
 
     /**
      * Whether current event matches any tag from {@link #tags}.
