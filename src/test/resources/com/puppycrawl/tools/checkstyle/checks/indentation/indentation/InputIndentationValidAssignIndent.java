@@ -53,6 +53,8 @@ public class InputIndentationValidAssignIndent                                 /
 //             =                                                               //indent:0 exp:0
 //             parameters;                                                     //indent:0 exp:0
         //     : add more testing                                              //indent:8 exp:8
+        getMyArray()[1] = "some_value";                                        //indent:8 exp:8
+        mIndentCheck[getLineNo()] = "value";                                   //indent:8 exp:8
     }                                                                          //indent:4 exp:4
 
     private interface AnInterfaceFooWithALongName {                            //indent:4 exp:4
@@ -69,6 +71,9 @@ public class InputIndentationValidAssignIndent                                 /
     }                                                                          //indent:4 exp:4
     String getLine() {                                                         //indent:4 exp:4
         return "";                                                             //indent:8 exp:8
+    }                                                                          //indent:4 exp:4
+    String[] getMyArray() {                                                    //indent:4 exp:4
+        return mIndentCheck;                                                   //indent:8 exp:8
     }                                                                          //indent:4 exp:4
     InputIndentationValidAssignIndent lastArgument() {                         //indent:4 exp:4
         return this;                                                           //indent:8 exp:8
