@@ -26,6 +26,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -484,6 +487,39 @@ public class SuppressWithNearbyCommentFilterTest
         assertWithMessage("Filter should accept audit event")
                 .that(filter.accept(auditEvent))
                 .isTrue();
+    }
+
+    @Test
+    public void testAcceptUsesCachedSuppressionsWithRealFiles() throws Exception {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        filter.setCommentFormat(Pattern.compile("SUPPRESS"));
+
+        final File commonFile = new File("Dummy.java");
+        
+        final FileText text1 = new FileText(commonFile,
+                Files.readAllLines(Paths.get(
+                    getPath("InputSuppressWithNearbyCommentFilterMutation.java"))));
+        final FileContents contents1 = new FileContents(text1);
+        contents1.reportSingleLineComment(28, 19);
+
+        final FileText text2 = new FileText(commonFile,
+                Files.readAllLines(Paths.get(
+                    getPath("InputSuppressWithNearbyCommentFilterMutation2.java"))));
+        final FileContents contents2 = new FileContents(text2);
+        contents2.reportSingleLineComment(28, 19);
+
+        final Violation violation = 
+            new Violation(28, null, null, null, null, Object.class, null);
+
+        assertWithMessage("First event should be suppressed")
+                .that(filter.accept(new TreeWalkerAuditEvent(
+                        contents1, "Dummy.java", violation, null)))
+                .isFalse();
+
+        assertWithMessage("Second event should use cache (ignore new content)")
+                .that(filter.accept(new TreeWalkerAuditEvent(
+                        contents2, "Dummy.java", violation, null)))
+                .isFalse();
     }
 
     @Test
