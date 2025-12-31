@@ -243,11 +243,11 @@ no-error-pmd)
   echo "Checkout target sources ..."
   checkout_from "https://github.com/pmd/build-tools.git"
   cd .ci-temp/build-tools/
-  mvn -e --no-transfer-progress install
+  ./mvnw -e --no-transfer-progress install
   cd ..
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  mvn -e --no-transfer-progress verify --show-version --errors --batch-mode \
+  ./mvnw -e --no-transfer-progress verify --show-version --errors --batch-mode \
                 -DskipTests \
                 -Dmaven.javadoc.skip=true \
                 -Dmaven.source.skip=true \
@@ -266,7 +266,7 @@ no-error-hazelcast)
   echo "Checkout Hazelcast sources..."
   checkout_from "https://github.com/hazelcast/hazelcast.git"
   cd .ci-temp/hazelcast
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress checkstyle:check \
     -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles hazelcast
@@ -296,27 +296,29 @@ no-error-xwiki)
   checkout_from "https://github.com/xwiki/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
-  mvn -e --no-transfer-progress -f \
+  ./mvnw -e --no-transfer-progress -f \
     xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
       -Dantlr4.version="${ANTLR4_VERSION}"
   # Validate xwiki-commons
-  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress checkstyle:check@default \
+    -Dcheckstyle.version="${CS_POM_VERSION}"
   # Install various required poms and extensions
-  mvn -e --no-transfer-progress install:install-file -Dfile=pom.xml -DpomFile=pom.xml
-  mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-tools/pom.xml \
+  ./mvnw -e --no-transfer-progress install:install-file -Dfile=pom.xml -DpomFile=pom.xml
+  ./mvnw -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-tools/pom.xml \
     -DpomFile=xwiki-commons-tools/pom.xml
-  mvn -e --no-transfer-progress install:install-file \
+  ./mvnw -e --no-transfer-progress install:install-file \
     -Dfile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml \
     -DpomFile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml
-  mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-pom/pom.xml \
+  ./mvnw -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-pom/pom.xml \
     -DpomFile=xwiki-commons-pom/pom.xml
-  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
+  ./mvnw -e --no-transfer-progress -f \
+    xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress \
+  ./mvnw -e --no-transfer-progress \
     -f xwiki-commons-tools/xwiki-commons-tool-webjar-node-handlers/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
+  ./mvnw -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
     install -Dmaven.test.skip -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles xwiki-commons
@@ -324,14 +326,14 @@ no-error-xwiki)
   checkout_from https://github.com/xwiki/xwiki-rendering.git
   cd .ci-temp/xwiki-rendering
   # Validate xwiki-rendering
-  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
   # Validate xwiki-platform
-  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles xwiki-platform
   ;;
@@ -784,7 +786,7 @@ no-error-orekit)
   SHA_HIPPARCHUS="1492f06848f57e46bef911a""ad16203a242080028"
   git fetch --depth 1 origin "$SHA_HIPPARCHUS"
   git checkout $SHA_HIPPARCHUS
-  mvn -e --no-transfer-progress install -DskipTests
+  ./mvnw -e --no-transfer-progress install -DskipTests
   cd -
   checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
@@ -793,7 +795,7 @@ no-error-orekit)
   # git checkout $(git describe --abbrev=0 --tags)
   git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
-  mvn -e --no-transfer-progress compile checkstyle:check \
+  ./mvnw -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version="${CS_POM_VERSION}"
   cd ..
   removeFolderWithProtectedFiles Orekit
@@ -807,11 +809,11 @@ no-error-hibernate-search)
   echo "Checkout target sources ..."
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e --no-transfer-progress clean install -pl build/config -am \
+  ./mvnw -e --no-transfer-progress clean install -pl build/config -am \
      -DskipTests=true -Dmaven.compiler.failOnWarning=false \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
-  mvn -e --no-transfer-progress checkstyle:check \
+  ./mvnw -e --no-transfer-progress checkstyle:check \
      -Dversion.com.puppycrawl.tools.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles hibernate-search
@@ -836,7 +838,7 @@ no-error-sevntu-checks)
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
-  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
+  ./mvnw -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.ant.skip=false \
      -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml \
      -Dcheckstyle.nonMain.configLocation=../../../config/checkstyle-non-main-files-checks.xml \
@@ -854,11 +856,11 @@ no-error-contribution)
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution
   cd patch-diff-report-tool
-  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
+  ./mvnw -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml
   cd ../
   cd releasenotes-builder
-  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
+  ./mvnw -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../../config/checkstyle-checks.xml
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -872,7 +874,7 @@ no-error-methods-distance)
   echo "Checkout target sources ..."
   checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
   cd .ci-temp/methods-distance
-  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version="${CS_POM_VERSION}" \
+  ./mvnw -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version="${CS_POM_VERSION}" \
      -Dcheckstyle.configLocation=../../config/checkstyle-checks.xml
   cd ..
   removeFolderWithProtectedFiles  methods-distance
@@ -885,7 +887,7 @@ no-error-equalsverifier)
   echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle compile \
+  ./mvnw -e --no-transfer-progress -Pstatic-analysis-checkstyle compile \
     checkstyle:check -Dversion.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles equalsverifier
@@ -900,10 +902,10 @@ no-error-strata)
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
   # shellcheck disable=2016 # we do not want to expand properties in this command
-  STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+  STRATA_CS_POM_VERSION=$(./mvnw -e --no-transfer-progress -q -Dexec.executable='echo' \
                      -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
+  ./mvnw -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version="${CS_POM_VERSION}" \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
@@ -933,7 +935,7 @@ no-error-htmlunit)
   echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
-  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+  ./mvnw -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;
@@ -1373,7 +1375,7 @@ openrewrite-recipes)
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
   cd checkstyle-openrewrite-recipes
-  mvn -e --no-transfer-progress clean install -DskipTests
+  ./mvnw -e --no-transfer-progress clean install -DskipTests
 
   cd "$PROJECT_ROOT"
 
