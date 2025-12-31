@@ -7699,20 +7699,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
-    <specifier>not.interned</specifier>
-    <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for other.</message>
     <lineContent>public boolean equals(Object other) {</lineContent>
