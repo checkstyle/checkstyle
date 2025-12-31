@@ -106,6 +106,9 @@ public class SuppressWithNearbyCommentFilter
     @XdocsPropertyType(PropertyType.PATTERN)
     private String idFormat;
 
+    /** Cached absolute path of the file being processed to avoid null pointer exception. */
+    private String cachedFileAbsolutePath = "";
+
     /**
      * Specify negative/zero/positive value that defines the number of lines
      * preceding/at/following the suppression comment.
@@ -222,14 +225,18 @@ public class SuppressWithNearbyCommentFilter
         boolean accepted = true;
 
         if (event.violation() != null) {
-            // Lazy update. If the first event for the current file, update file
-            // contents and tag suppressions
             final FileContents currentContents = event.fileContents();
 
-            if (getFileContents() != currentContents) {
-                setFileContents(currentContents);
-                tagSuppressions();
+            if (currentContents != null) {
+                final String eventFileTextAbsolutePath = currentContents.getFileName();
+
+                if (!cachedFileAbsolutePath.equals(eventFileTextAbsolutePath)) {
+                    setFileContents(currentContents);
+                    tagSuppressions();
+                    cachedFileAbsolutePath = eventFileTextAbsolutePath;
+                }
             }
+
             if (matchesTag(event)) {
                 accepted = false;
             }
