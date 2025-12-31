@@ -486,6 +486,28 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
+    public void testAcceptUsesCachedSuppressionsOnConfigChange() {
+        final FileText fileText = new FileText(new File("Test.java"),
+                Collections.singletonList("public class Test {} // SUPPRESS"));
+        final FileContents fileContents = new FileContents(fileText);
+        fileContents.reportSingleLineComment(1, 21);
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        filter.setCommentFormat(java.util.regex.Pattern.compile("SUPPRESS"));
+        final Violation violation = new Violation(1, null, null, null, null, Object.class, null);
+        final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(
+                fileContents, "Test.java", violation, null);
+        final boolean firstResult = filter.accept(event);
+        assertWithMessage("Filter should suppress violation initially")
+                .that(firstResult)
+                .isFalse();
+        filter.setCommentFormat(java.util.regex.Pattern.compile("IGNORE"));
+        final boolean secondResult = filter.accept(event);
+        assertWithMessage("Filter should rely on cached tags and ignore config change")
+                .that(secondResult)
+                .isFalse();
+    }
+
+    @Test
     public void testToStringOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
@@ -506,6 +528,19 @@ public class SuppressWithNearbyCommentFilterTest
             .that(tag.toString())
             .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
                     + "tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=.*]");
+    }
+
+    @Test
+    public void testToStringOfTagClassWithMessage() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        filter.setMessageFormat("msg");
+        filter.setCheckFormat("IGNORE");
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
+                    + "tagCheckRegexp=IGNORE, tagMessageRegexp=msg, tagIdRegexp=null]");
     }
 
     @Test
