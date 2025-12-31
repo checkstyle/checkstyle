@@ -5146,6 +5146,11 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- Since https://github.com/checkstyle/checkstyle/pull/18475 -->
+                <!-- performance optimization for caching file-level suppression tags -->
+                <param>initIfDifferent</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>94</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
