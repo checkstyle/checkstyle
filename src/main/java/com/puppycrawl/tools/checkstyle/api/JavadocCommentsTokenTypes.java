@@ -585,7 +585,12 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
     /**
-     * Start of an inline tag  <code>{</code>.
+     * Start of an inline tag <code>{</code>.
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * `--JAVADOC_INLINE_TAG_START -> {
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG_START =
             JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
