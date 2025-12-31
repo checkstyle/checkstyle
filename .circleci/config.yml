@@ -104,7 +104,7 @@ workflows:
   #            - sonarqube
   test:
     jobs:
-      # no-exception-test script
+      # no-exception-test script:
       - validate-with-maven-script:
           name: no-exception-lucene-and-others-javadoc
           image-name: &cs_img "amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1"
@@ -121,7 +121,7 @@ workflows:
           name: no-exception-only-javadoc
           image-name: *cs_img
           command: ./.ci/no-exception-test.sh no-exception-only-javadoc
-      # validation script
+      # validation script:
       - validate-with-maven-script:
           name: no-error-xwiki
           image-name: cimg/openjdk:21.0.6
