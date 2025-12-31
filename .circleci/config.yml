@@ -1,12 +1,9 @@
 name: CI
 version: 2.1
-
 jobs:
-
   run-inspections:
     docker:
       - image: amitkumardeoghoria/idea-image:jdk21-idea2022.3.3-v1
-
     steps:
       - checkout
       - run:
@@ -28,7 +25,6 @@ jobs:
           working_directory: ~/project
       - store_artifacts:
           path: /home/circleci/project/target/inspection-results
-
   validate-with-maven-script:
     description: Runs a maven script using the job name as the argument.
     parameters: &script_parameters
@@ -59,7 +55,6 @@ jobs:
           paths:
             - .m2
             - .mvn/wrapper
-
   validate-with-script:
     description: Runs a non-maven script using the job name as the argument.
     parameters: *script_parameters
@@ -76,11 +71,9 @@ jobs:
             export PR_HEAD_SHA=$CIRCLE_SHA1
             export PR_NUMBER=$CIRCLE_PR_NUMBER
             << parameters.command >>
-
   sonarqube:
     docker:
       - image: amitkumardeoghoria/jdk-21-groovy-git-mvn-ant-jq:v1
-
     steps:
       - checkout
       - run:
@@ -90,11 +83,9 @@ jobs:
             export PR_BRANCH_NAME=$CIRCLE_BRANCH
             export SONAR_API_TOKEN=$SONAR_TOKEN
             ./.ci/validation.sh sonarqube
-
   yamllint:
     docker:
       - image: cimg/base:2022.11
-
     steps:
       - checkout
       - run:
@@ -105,14 +96,12 @@ jobs:
       - run:
           name: Run yamllint
           command: yamllint -f parsable -c config/yamllint.yaml .
-
 workflows:
   #  sonarqube:
   #    jobs:
   #      - sonarqube:
   #          context:
   #            - sonarqube
-
   test:
     jobs:
       # no-exception-test script
@@ -132,7 +121,6 @@ workflows:
           name: no-exception-only-javadoc
           image-name: *cs_img
           command: ./.ci/no-exception-test.sh no-exception-only-javadoc
-
       # validation script
       - validate-with-maven-script:
           name: no-error-xwiki
@@ -240,7 +228,6 @@ workflows:
           name: no-exception-samples-maven
           image-name: cimg/openjdk:21.0.6
           command: ./.ci/no-exception-test.sh no-exception-samples-maven
-
       - validate-with-maven-script:
           name: no-exception-samples-ant
           image-name: *cs_img
@@ -249,11 +236,9 @@ workflows:
           name: no-error-hazelcast
           image-name: *cs_img
           command: ./.ci/validation.sh no-error-hazelcast
-
   idea:
     jobs:
       - run-inspections
-
   git-validation:
     jobs:
       - validate-with-script:
@@ -262,7 +247,6 @@ workflows:
       - validate-with-script:
           name: git-check-pull-number
           command: ./.ci/validation.sh git-check-pull-number
-
   cli-validation:
     jobs:
       - yamllint
@@ -276,7 +260,6 @@ workflows:
           name: check-wildcards-on-pitest-target-classes
           image-name: cimg/base:2022.11
           command: ./.ci/validation.sh check-wildcards-on-pitest-target-classes
-
   javac-validation:
     jobs:
       - validate-with-script:
@@ -314,21 +297,18 @@ workflows:
           name: javac25
           image-name: cimg/openjdk:25.0
           command: ./.ci/validation.sh javac25
-
   site-validation:
     jobs:
       - validate-with-maven-script:
           name: jdk21-package-site
           image-name: *cs_img
           command: ./.ci/validation.sh package-site
-
   openrewrite:
     jobs:
       - validate-with-maven-script:
           name: openrewrite-recipes
           image-name: cimg/openjdk:21.0
           command: ./.ci/validation.sh openrewrite-recipes
-
   spotless:
     jobs:
       - validate-with-maven-script:
