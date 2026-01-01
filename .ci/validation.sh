@@ -1344,6 +1344,10 @@ spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
 
+spotless)
+  ./mvnw -e --no-transfer-progress spotless:check
+  ;;
+
 error-prone)
   ./mvnw -e --no-transfer-progress clean verify -P error-prone-compile
   ./mvnw -e --no-transfer-progress clean verify -P error-prone-test-compile
