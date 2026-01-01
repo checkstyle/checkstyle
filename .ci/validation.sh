@@ -1341,7 +1341,7 @@ sevntu)
 spotbugs)
   # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains
   # why we need execution of spotbugs without any other maven plugins which can change binaries
-  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
+  ./mvnw -e --no-transfer-progress test-compile spotbugs:check
   ;;
 
 spotless)
@@ -1349,8 +1349,8 @@ spotless)
   ;;
 
 error-prone)
-  ./mvnw -e --no-transfer-progress clean verify -P error-prone-compile
-  ./mvnw -e --no-transfer-progress clean verify -P error-prone-test-compile
+  ./mvnw -e --no-transfer-progress verify -P error-prone-compile
+  ./mvnw -e --no-transfer-progress verify -P error-prone-test-compile
   ;;
 
 pmd)
