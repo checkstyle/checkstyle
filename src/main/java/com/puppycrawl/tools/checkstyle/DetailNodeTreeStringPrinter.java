@@ -159,7 +159,7 @@ public final class DetailNodeTreeStringPrinter {
      */
     private static DetailNode parseFile(File file) throws IOException {
         return parseJavadocAsDetailNode(ParserUtil.createBlockCommentNode((String)
-                new FileText(file, Charset.defaultCharset().displayName()).getFullText()));
+                new FileText(file, Charset.defaultCharset().name()).getFullText()));
     }
 
 }
