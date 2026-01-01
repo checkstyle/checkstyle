@@ -475,7 +475,9 @@ checkstyle-and-sevntu)
 sevntu)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
-    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true \
+    -Dpmd.skip=true \
+    -Dspotbugs.skip=true \
+    -Djacoco.skip=true \
     -Dcheckstyle.skip=true
   ;;
 
