@@ -8,6 +8,11 @@ recipeList:
       violationReportPath: "target/cs_errors.xml"
       configurationPath: "config/checkstyle-checks.xml"
       propertiesPath: "config/openrewrite-recipes-checkstyle.properties"
+  - org.openrewrite.codemods.ESLint
+  - org.openrewrite.codemods.ecmascript.5to6.namedExportGeneration
+  - org.openrewrite.codemods.ecmascript.5to6.simpleArrow
+  - org.openrewrite.codemods.ecmascript.5to6.varToLet
+  - org.openrewrite.codemods.format.RecommendedESLintStyling
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.NormalizeFormat
   - org.openrewrite.java.format.NormalizeLineBreaks
