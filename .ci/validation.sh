@@ -1357,7 +1357,7 @@ pmd)
   ./mvnw -e --no-transfer-progress pmd:check
   ;;
 
-sanity)
+rewrite)
   echo PMD
   ./mvnw -e --no-transfer-progress pmd:check
   # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains

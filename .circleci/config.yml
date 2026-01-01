@@ -210,9 +210,9 @@ workflows:
           image-name: &cs_img
           command: ./.ci/validation.sh checkstyle-and-sevntu
       - validate-with-maven-script:
-          name: sanity
+          name: rewrite
           image-name: *cs_img
-          command: ./.ci/validation.sh sanity
+          command: ./.ci/validation.sh rewrite
       - validate-with-maven-script:
           name: site
           image-name: *cs_img
