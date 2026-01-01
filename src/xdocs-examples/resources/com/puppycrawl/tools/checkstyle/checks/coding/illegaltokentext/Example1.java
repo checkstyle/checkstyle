@@ -4,6 +4,7 @@
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL"/>
       <property name="format" value="a href"/>
+      <property name="message" value="Avoid using a href string literal"/>
     </module>
   </module>
 </module>
