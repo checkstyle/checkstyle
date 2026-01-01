@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2026 the original author or authors.
+// Copyright (C) 2001-2025 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -581,6 +581,11 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General inline tag (e.g. {@code @link}).
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
