@@ -214,9 +214,9 @@ workflows:
           image-name: *cs_img
           command: ./.ci/validation.sh checkstyle
       - validate-with-maven-script:
-          name: prone
+          name: error-prone
           image-name: *cs_img
-          command: ./.ci/validation.sh prone
+          command: ./.ci/validation.sh error-prone
       - validate-with-maven-script:
           name: spotless
           image-name: *cs_img
