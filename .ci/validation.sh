@@ -469,7 +469,6 @@ verify-regexp-id)
 checkstyle)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress checkstyle:check
-  # ./mvnw -e --no-transfer-progress clean checkstyle:checkstyle
   ;;
 
 sevntu)
