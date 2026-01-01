@@ -19,11 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
@@ -194,19 +192,11 @@ public abstract class AbstractAutomaticBean
     public final void configure(Configuration config)
             throws CheckstyleException {
         configuration = config;
-
-        final String[] attributes = config.getPropertyNames();
-
-        for (final String key : attributes) {
-            final String value = config.getProperty(key);
-
-            tryCopyProperty(key, value, true);
+        for (final String key : config.getPropertyNames()) {
+            tryCopyProperty(key, config.getProperty(key), true);
         }
-
         finishLocalSetup();
-
-        final Configuration[] childConfigs = config.getChildren();
-        for (final Configuration childConfig : childConfigs) {
+        for (final Configuration childConfig : config.getChildren()) {
             setupChild(childConfig);
         }
     }
@@ -221,24 +211,17 @@ public abstract class AbstractAutomaticBean
      */
     private void tryCopyProperty(String key, Object value, boolean recheck)
             throws CheckstyleException {
-        final BeanUtilsBean beanUtils = createBeanUtilsBean();
-
         try {
-            if (recheck) {
-                // BeanUtilsBean.copyProperties silently ignores missing setters
-                // for key, so we have to go through great lengths here to
-                // figure out if the bean property really exists.
-                final PropertyDescriptor descriptor =
-                        PropertyUtils.getPropertyDescriptor(this, key);
-                if (descriptor == null) {
-                    final String message = getLocalizedMessage(
-                        AbstractAutomaticBean.class,
-                        "AbstractAutomaticBean.doesNotExist", key);
-                    throw new CheckstyleException(message);
-                }
+            // BeanUtilsBean.copyProperties silently ignores missing setters
+            // for key, so we have to go through great lengths here to
+            // figure out if the bean property really exists.
+            if (recheck && PropertyUtils.getPropertyDescriptor(this, key) == null) {
+                throw new CheckstyleException(getLocalizedMessage(
+                    AbstractAutomaticBean.class,
+                    "AbstractAutomaticBean.doesNotExist", key));
             }
             // finally we can set the bean property
-            beanUtils.copyProperty(this, key, value);
+            createBeanUtilsBean().copyProperty(this, key, value);
         }
         catch (final InvocationTargetException | IllegalAccessException
                 | NoSuchMethodException exc) {
@@ -246,16 +229,14 @@ public abstract class AbstractAutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty,
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            final String message = getLocalizedMessage(
+            throw new CheckstyleException(getLocalizedMessage(
                 AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.cannotSet", key, value);
-            throw new CheckstyleException(message, exc);
+                "AbstractAutomaticBean.cannotSet", key, value), exc);
         }
         catch (final IllegalArgumentException | ConversionException exc) {
-            final String message = getLocalizedMessage(
+            throw new CheckstyleException(getLocalizedMessage(
                 AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.illegalValue", value, key);
-            throw new CheckstyleException(message, exc);
+                "AbstractAutomaticBean.illegalValue", value, key), exc);
         }
     }
 
@@ -267,12 +248,8 @@ public abstract class AbstractAutomaticBean
     @Override
     public final void contextualize(Context context)
             throws CheckstyleException {
-        final Collection<String> attributes = context.getAttributeNames();
-
-        for (final String key : attributes) {
-            final Object value = context.get(key);
-
-            tryCopyProperty(key, value, false);
+        for (final String key : context.getAttributeNames()) {
+            tryCopyProperty(key, context.get(key), false);
         }
     }
 
@@ -301,11 +278,10 @@ public abstract class AbstractAutomaticBean
     protected void setupChild(Configuration childConf)
             throws CheckstyleException {
         if (childConf != null) {
-            final String message = getLocalizedMessage(
+            throw new CheckstyleException(getLocalizedMessage(
                 AbstractAutomaticBean.class,
                 "AbstractAutomaticBean.disallowedChild", childConf.getName(),
-                configuration.getName());
-            throw new CheckstyleException(message);
+                configuration.getName()));
         }
     }
     /**
