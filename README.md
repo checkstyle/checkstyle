@@ -4,7 +4,7 @@
 
 --------------------------
 
-*Checkstyle is a tool that ensures adherence to a code standard or a set of best practices.*
+*Checkstyle is a tool that ensures adherence to a Java code standard or a set of best practices.*
 
 [![][appveyor img]][appveyor]
 [![][circleci img]][circleci]
