@@ -2701,7 +2701,6 @@
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <failOnError>false</failOnError>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
@@ -2757,7 +2756,6 @@
                   <goal>testCompile</goal>
                 </goals>
                 <configuration>
-                  <failOnError>false</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
