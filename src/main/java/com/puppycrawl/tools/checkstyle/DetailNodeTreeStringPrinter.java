@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseStatus;
@@ -69,17 +70,6 @@ public final class DetailNodeTreeStringPrinter {
             throw new IllegalArgumentException(getParseErrorMessage(status.getParseErrorMessage()));
         }
         return status.getTree();
-    }
-
-    /**
-     * Parse javadoc comment to DetailNode tree.
-     *
-     * @param javadocComment javadoc comment content
-     * @return tree
-     */
-    private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final DetailAST blockComment = ParserUtil.createBlockCommentNode(javadocComment);
-        return parseJavadocAsDetailNode(blockComment);
     }
 
     /**
@@ -168,8 +158,11 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        final FileText text = new FileText(file, System.getProperty("file.encoding"));
-        return parseJavadocAsDetailNode(text.getFullText().toString());
+        return parseJavadocAsDetailNode(
+                ParserUtil.createBlockCommentNode(
+                        new FileText(
+                                file,
+                                Charset.defaultCharset().displayName()).getFullText().toString()));
     }
 
 }
