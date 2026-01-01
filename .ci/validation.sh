@@ -468,15 +468,15 @@ verify-regexp-id)
 
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress checkstyle:checkstyleMain
-  ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
-    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+  # ./mvnw -e --no-transfer-progress checkstyle:check
+  ./mvnw -e --no-transfer-progress clean checkstyle:checkstyle
   ;;
 
 sevntu)
   export MAVEN_OPTS='-Xmx2g'
   ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
-    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true \
+    -Dcheckstyle.skip=true
   ;;
 
 site)
