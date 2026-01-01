@@ -1347,6 +1347,8 @@ sanity)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   echo Error Prone
   ./mvnw -e --no-transfer-progress clean install -P error-prone-compile
+  echo Error Prone test
+  ./mvnw -e --no-transfer-progress clean install -P error-prone-test-compile
   echo Spotless
   ./mvnw -e --no-transfer-progress spotless:check
   export MAVEN_OPTS="-Xmx3g"
