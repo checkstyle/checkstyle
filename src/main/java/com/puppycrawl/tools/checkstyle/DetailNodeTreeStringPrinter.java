@@ -158,11 +158,8 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        return parseJavadocAsDetailNode(
-                ParserUtil.createBlockCommentNode(
-                        new FileText(
-                                file,
-                                Charset.defaultCharset().displayName()).getFullText().toString()));
+        return parseJavadocAsDetailNode(ParserUtil.createBlockCommentNode((String)
+                new FileText(file, Charset.defaultCharset().displayName()).getFullText()));
     }
 
 }
