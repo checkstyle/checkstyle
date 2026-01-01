@@ -60,7 +60,6 @@ public class XdocsExampleFileTest {
     private static final Map<String, Set<String>> SUPPRESSED_PROPERTIES_BY_CHECK = Map.ofEntries(
             Map.entry("MissingJavadocTypeCheck", Set.of("skipAnnotations")),
             Map.entry("JavadocStyleCheck", Set.of("endOfSentenceFormat", "checkEmptyJavadoc")),
-            Map.entry("ConstantNameCheck", Set.of("applyToPackage", "applyToPrivate")),
             Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
             Map.entry("IllegalTokenTextCheck", Set.of("message")),
