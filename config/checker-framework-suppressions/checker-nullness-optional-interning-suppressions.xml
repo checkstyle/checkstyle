@@ -4946,16 +4946,13 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getMainAst().findFirstToken(TokenTypes.RPAREN)</message>
-    <lineContent>return getMainAst().findFirstToken(TokenTypes.RPAREN).getNextSibling();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference slist</message>
-    <lineContent>return slist.findFirstToken(TokenTypes.RCURLY);</lineContent>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter expr of BlockParentHandler.checkMultiLineReturnExpression.</message>
+    <lineContent>handled = checkMultiLineReturnExpression(child, expr, startIndent);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -5020,7 +5017,18 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
-    <lineContent>return slist.findFirstToken(TokenTypes.RCURLY);</lineContent>
+    <lineContent>return result;</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable DetailAST
+      method return type: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/BlockParentHandler.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return result;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
@@ -5798,14 +5806,14 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (curNode != lastNode) {</lineContent>
+    <lineContent>while (curNode != null &amp;&amp; curNode != lastNode) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/LineWrappingHandler.java</fileName>
     <specifier>not.interned</specifier>
     <message>attempting to use a non-@Interned comparison operand</message>
-    <lineContent>while (curNode != lastNode) {</lineContent>
+    <lineContent>while (curNode != null &amp;&amp; curNode != lastNode) {</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
