@@ -1345,6 +1345,8 @@ sanity)
   # why we need execution of spotbugs without any other maven plugins which can change binaries
   echo Spotbugs
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
+  echo Error Prone
+  ./mvnw -e --no-transfer-progress clean install -P error-prone-compile
   echo Spotless
   ./mvnw -e --no-transfer-progress spotless:check
   export MAVEN_OPTS="-Xmx3g"
