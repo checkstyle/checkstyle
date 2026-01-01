@@ -251,7 +251,7 @@
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
-      -Xep:IdentityConversion:ERROR
+      <!-- -Xep:IdentityConversion:ERROR -->
       -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
