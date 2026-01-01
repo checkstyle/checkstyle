@@ -210,6 +210,22 @@ workflows:
           image-name: &cs_img
           command: ./.ci/validation.sh checkstyle-and-sevntu
       - validate-with-maven-script:
+          name: pmd
+          image-name: *cs_img
+          command: ./.ci/validation.sh pmd
+      - validate-with-maven-script:
+          name: error-prone
+          image-name: *cs_img
+          command: ./.ci/validation.sh error-prone
+      - validate-with-maven-script:
+          name: spotless
+          image-name: *cs_img
+          command: ./.ci/validation.sh spotless
+      - validate-with-maven-script:
+          name: spotbugs
+          image-name: *cs_img
+          command: ./.ci/validation.sh spotbugs
+      - validate-with-maven-script:
           name: rewrite
           image-name: *cs_img
           command: ./.ci/validation.sh rewrite

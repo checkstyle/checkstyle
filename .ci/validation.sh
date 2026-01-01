@@ -1358,18 +1358,6 @@ pmd)
   ;;
 
 rewrite)
-  echo PMD
-  ./mvnw -e --no-transfer-progress pmd:check
-  # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains
-  # why we need execution of spotbugs without any other maven plugins which can change binaries
-  echo Spotbugs
-  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
-  echo Error Prone
-  ./mvnw -e --no-transfer-progress clean install -P error-prone-compile
-  echo Error Prone test
-  ./mvnw -e --no-transfer-progress clean install -P error-prone-test-compile
-  echo Spotless
-  ./mvnw -e --no-transfer-progress spotless:check
   export MAVEN_OPTS="-Xmx3g"
   echo Rewrite
   echo Cloning and building OpenRewrite recipes...
