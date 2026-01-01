@@ -1346,8 +1346,8 @@ spotless)
   ;;
 
 error-prone)
-  ./mvnw -e --no-transfer-progress verify -P error-prone-compile
-  ./mvnw -e --no-transfer-progress verify -P error-prone-test-compile
+  ./mvnw -e --no-transfer-progress clean compile -P error-prone-compile
+  ./mvnw -e --no-transfer-progress clean compile -P error-prone-test-compile
   ;;
 
 rewrite)
