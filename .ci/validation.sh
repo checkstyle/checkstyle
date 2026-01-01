@@ -468,6 +468,7 @@ verify-regexp-id)
 
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2g'
+  ./mvnw -e --no-transfer-progress checkstyle:checkMain
   ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
