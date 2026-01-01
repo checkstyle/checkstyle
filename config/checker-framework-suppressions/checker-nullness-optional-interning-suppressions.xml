@@ -905,9 +905,20 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg1 of String.replace.</message>
+    <lineContent>SarifLogger.class.getPackage().getImplementationVersion());</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference SarifLogger.class.getPackage()</message>
-    <lineContent>final String version = SarifLogger.class.getPackage().getImplementationVersion();</lineContent>
+    <lineContent>SarifLogger.class.getPackage().getImplementationVersion());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
