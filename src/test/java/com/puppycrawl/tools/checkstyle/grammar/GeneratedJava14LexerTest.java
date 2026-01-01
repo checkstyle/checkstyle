@@ -40,8 +40,7 @@ public class GeneratedJava14LexerTest
     /**
      * Is {@code true} if current default encoding is UTF-8.
      */
-    private static final boolean IS_UTF8 = Charset.forName(System.getProperty("file.encoding"))
-            .equals(StandardCharsets.UTF_8);
+    private static final boolean IS_UTF8 = Charset.defaultCharset().equals(StandardCharsets.UTF_8);
 
     @Override
     public String getPackageLocation() {
