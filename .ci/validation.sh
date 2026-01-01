@@ -1349,6 +1349,10 @@ error-prone)
   ./mvnw -e --no-transfer-progress clean verify -P error-prone-test-compile
   ;;
 
+pmd)
+  ./mvnw -e --no-transfer-progress pmd:check
+  ;;
+
 sanity)
   echo PMD
   ./mvnw -e --no-transfer-progress pmd:check
