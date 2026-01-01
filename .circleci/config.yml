@@ -206,9 +206,13 @@ workflows:
           command: ./.ci/validation.sh no-warning-imports-java-design-patterns
       # validation script:
       - validate-with-maven-script:
-          name: checkstyle-and-sevntu
+          name: checkstyle
           image-name: &cs_img
-          command: ./.ci/validation.sh checkstyle-and-sevntu
+          command: ./.ci/validation.sh checkstyle
+      - validate-with-maven-script:
+          name: sevntu
+          image-name: &cs_img
+          command: ./.ci/validation.sh sevntu
       - validate-with-maven-script:
           name: pmd
           image-name: *cs_img

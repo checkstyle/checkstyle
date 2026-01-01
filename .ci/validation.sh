@@ -472,6 +472,12 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
+sevntu)
+  export MAVEN_OPTS='-Xmx2g'
+  ./mvnw -e --no-transfer-progress clean verify -DskipTests -DskipITs \
+    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+  ;;
+
 site)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
