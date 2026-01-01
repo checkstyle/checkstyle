@@ -275,24 +275,26 @@
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:EqualsGetClass:WARN
-      -Xep:InlineFormatString:WARN
-      -Xep:JdkObsolete:WARN
-      -Xep:StatementSwitchToExpressionSwitch:WARN
-      -Xep:StringSplitter:WARN
-      -Xep:EffectivelyPrivate:WARN
+      -Xep:EqualsGetClass:ERROR
+      -Xep:InlineFormatString:ERROR
+      -Xep:JdkObsolete:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StringSplitter:ERROR
+      -Xep:EffectivelyPrivate:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
-      -Xep:JUnitClassModifiers:OFF
+      -Xep:JUnitClassModifiers:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
-      -Xep:JUnitMethodDeclaration:OFF
+      -Xep:JUnitMethodDeclaration:ERROR
       <!-- We prefer different style of writing tests. -->
-      -Xep:JUnitValueSource:OFF
+      -Xep:JUnitValueSource:ERROR
       <!-- We prefer to qualify all static method calls with class name. -->
-      -Xep:StaticImport:OFF
+      -Xep:StaticImport:ERROR
+      -Xep:LoopOverCharArray:ERROR
+      -Xep:NonStaticImport:ERROR
       <!-- no ability to declare noinspection tags as valid tags -->
-      -Xep:InvalidBlockTag:OFF
+      -Xep:InvalidBlockTag:ERROR
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence -->
-      -Xep:OperatorPrecedence:OFF
+      -Xep:OperatorPrecedence:ERROR
     </error-prone.configuration-args>
   </properties>
 
