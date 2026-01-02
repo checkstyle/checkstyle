@@ -23,11 +23,11 @@ public class Example2 {
   private boolean boolField2 = true;
   private boolean boolField3;
 
-  private Object objField1 = null; // violation
+  private Object objField1 = null; // violation 'Variable 'objField1' explicitly initialized to 'null' (default value for its type)'
   private Object objField2 = new Object();
   private Object objField3;
 
-  private int arrField1[] = null; // violation
+  private int arrField1[] = null; // violation 'Variable 'arrField1' explicitly initialized to 'null' (default value for its type)'
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
