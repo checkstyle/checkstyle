@@ -12,10 +12,11 @@ tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, 
 
 package com.google.checkstyle.test.chapter4formatting.rule461verticalwhitespace;
 
-// violation above ''package' has more than 1 empty lines before.'
-
 public class InputFormattedEmptyLineSeparator3 {
-  // violation above ''CLASS_DEF' has more than 1 empty lines before.'
+  // violation above 'Missing a Javadoc comment.'
 
-  String s = "Hello"; // violation ''VARIABLE_DEF' has more than 1 empty lines before.'
+  String str = "Hello";
+
+  /** Another method. */
+  public void bar() {}
 }
