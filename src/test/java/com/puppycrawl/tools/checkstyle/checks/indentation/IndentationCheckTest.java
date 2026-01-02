@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -213,7 +213,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/indentation/indentation";
     }
 
@@ -4020,6 +4020,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSynchronizedExprViolation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        final String fileName = getPath("InputIndentationSynchronizedExprViolation.java");
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_CHILD_ERROR, "synchronized", 0, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testIndentationAnnotationArray() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addProperty("tabWidth", "4");
@@ -4033,6 +4050,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath(
                 "InputIndentationAnnotationArray.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testSwitchExprViolation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        final String fileName = getPath("InputIndentationSwitchExprViolation.java");
+        final String[] expected = {
+            "18:1: " + getCheckMessage(MSG_CHILD_ERROR, "switch", 0, 8),
+        };
         verifyWarns(checkConfig, fileName, expected);
     }
 
@@ -4067,6 +4101,57 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "56:9: " + getCheckMessage(MSG_ERROR, "class", 8, 4),
         };
         verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testTryResourcesLparenViolation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("tabWidth", "4");
+        final String fileName = getPath("InputIndentationTryResourcesLparenViolation.java");
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_ERROR_MULTI, "try lparen", 0, "8, 12"),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testSynchronizedWrapping() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "8");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationSynchronizedWrapping.java");
+        final String[] expected = {
+            "22:13: " + getCheckMessage(MSG_ERROR, ".", 12, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    /**
+     * Pure unit test to satisfy line coverage for {@link PrimordialHandler#checkIndentation()}.
+     * The method has an empty implementation required by the abstract contract of
+     * {@link AbstractExpressionHandler}. A unit test is required as this method is not
+     * reachable through any integration test.
+     */
+    @Test
+    public void testPrimordialHandlerCheckIndentation() {
+        final IndentationCheck check = new IndentationCheck();
+        final PrimordialHandler handler = new PrimordialHandler(check);
+        handler.checkIndentation();
+        assertWithMessage("Method should complete without exception")
+            .that(handler)
+            .isNotNull();
     }
 
     private static final class IndentAudit implements AuditListener {

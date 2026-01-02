@@ -6,6 +6,7 @@
   </module>
   <module name="TreeWalker">
     <module name="EqualsAvoidNull">
+      <property name="ignoreEqualsIgnoreCase" value="false"/>
       <property name="id" value="stringEqual"/>
     </module>
     <module name="LineLength">

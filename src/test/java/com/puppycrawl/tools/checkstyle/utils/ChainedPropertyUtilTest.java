@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/utils/chainedpropertyutil";
     }
 
@@ -86,13 +86,12 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
         final Properties properties = loadProperties(propertiesFile);
         final String expected =
             ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE + "[property.not.found]";
-        final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
             getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
-        assertWithMessage(message)
+        assertWithMessage("Undefined property reference expected.")
             .that(exception)
             .hasMessageThat()
             .isEqualTo(expected);
@@ -104,13 +103,12 @@ public class ChainedPropertyUtilTest extends AbstractModuleTestSupport {
             new File(getPath("InputChainedPropertyUtilRecursiveUnresolvable.properties"));
         final Properties properties = loadProperties(propertiesFile);
         final String expected = ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE;
-        final String message = "Undefined property reference expected.";
 
         final CheckstyleException exception =
             getExpectedThrowable(CheckstyleException.class,
                 () -> ChainedPropertyUtil.getResolvedProperties(properties));
 
-        assertWithMessage(message)
+        assertWithMessage("Undefined property reference expected.")
             .that(exception)
             .hasMessageThat()
             .contains(expected);

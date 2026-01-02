@@ -10,6 +10,306 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 12.3.1">
+      <div class="releaseDate">31.12.2025</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Duplicate violations in WhitespaceAfter and WhitespaceAround in google config.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/17265">#17265</a>
+          </li>
+          <li>
+            Add support to properly follow Rule `7.1.1 General Form` in Google Style Guide
+            Implementation.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/17778">#17778</a>
+          </li>
+          <li>
+            NullPointerException in TextBlockGoogleStyleFormatting with text blocks in annotations.
+            Author: Mohit-Sharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/18381">#18381</a>
+          </li>
+          <li>
+            Need default config in google_checks.xml to forbid lowercase Javadoc beginnings.
+            Author: Pratyksh Gupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/17727">#17727</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add missing property examples to XDocs for Checkstyle Checks.
+            Author: EKansh Mittal, Youssef Alaa, vishalup29
+            <a href="https://github.com/checkstyle/checkstyle/issues/17449">#17449</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - filters.
+            Author: aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/18023">#18023</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - api.
+            Author: Youssef Alaa, aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/18028">#18028</a>
+          </li>
+          <li>
+            Refine newly added reuse of metadata and xdoc to simplify Javadocs.
+            Author: SteLeo1602
+            <a href="https://github.com/checkstyle/checkstyle/issues/17746">#17746</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - tree-walker.
+            Author: Aman Baliyan, Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/18025">#18025</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/12341">#12341</a>
+          </li>
+          <li>
+            NoClassDefFound Exception during compilation on jdk25.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18361">#18361</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - xpath.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/18033">#18033</a>
+          </li>
+          <li>
+            MissingOverride: update doc example to show method without inheritDoc.
+            Author: Aradhya Sharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/18317">#18317</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: NiMv1, Lucas Gustavo Weber, Youssef Alaa, vishalup29
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            implement IDE agnostic configuration with `editorconfig.org`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/16543">#16543</a>
+          </li>
+          <li>
+            Examples Validation: content is same in all for single Check.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17177">#17177</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Monu Chaudhary, aclfe, Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Add `rewrite` support for `errorprone.refasterrules`.
+            Author: Vincent Potucek
+            <a href="https://github.com/checkstyle/checkstyle/issues/17487">#17487</a>
+          </li>
+          <li>
+            XMLLoggerTest.java to use verifyWithInlineConfigParserAndXmlLogger.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/16360">#16360</a>
+          </li>
+          <li>
+            cleanup spotbugs suppression after next fb-contrib release.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17720">#17720</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for indentation profile to 100%.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/6294">#6294</a>
+          </li>
+          <li>
+            Resolve error-prone violations.
+            Author: Daniel Gao
+            <a href="https://github.com/checkstyle/checkstyle/issues/17988">#17988</a>
+          </li>
+          <li>
+            Remove CheckerFramework &#39;RegexChecker&#39; annotation processor.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/12567">#12567</a>
+          </li>
+          <li>
+            XdocsExampleFileTest should catch fact that ExampleX.java is not referenced in
+            respected Test class.
+            Author: Aman Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/18303">#18303</a>
+          </li>
+          <li>
+            SarifLoggerTest.java to use verifyWithInlineConfigParserAndLogger.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/16361">#16361</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            Intellij Idea setup: Add steps to change encoding of properties file to UTF-8..
+            Author: atharv
+            <a href="https://github.com/checkstyle/checkstyle/issues/18325">#18325</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - ant.
+            Author: Monu Chaudhary
+            <a href="https://github.com/checkstyle/checkstyle/issues/18027">#18027</a>
+          </li>
+          <li>
+            build failure in CI for project Configurate.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/9248">#9248</a>
+          </li>
+          <li>
+            Updating properties in Input files to mention all default properties,.
+            Author: Youssef Alaa
+            <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - common.
+            Author: Pratyksh Gupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/18024">#18024</a>
+          </li>
+          <li>
+            Clarification needed for 5.2.5 Non-constant field names coverage in Google style.
+            Author: Pratyksh Gupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/17680">#17680</a>
+          </li>
+          <li>
+            Resolve CheckerFramework violations.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/14084">#14084</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            resolve PMD warning during execution.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/18070">#18070</a>
+          </li>
+          <li>
+            Remove last example code block at at the bottom of examples for NoLineWrap.
+            Author: Aman Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/18282">#18282</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 12.3.0">
+      <div class="releaseDate">13.12.2025</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            IllegalImport: new property illegalModules to cover module imports.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18207">#18207</a>
+          </li>
+          <li>
+            Google-style: New Check TextBlockGoogleStyleFormattingCheck.
+            Author: Mohit-Sharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/17223">#17223</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Google style checks should allow `_` keyword for anonymous variables.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18283">#18283</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: Aman Baliyan, mahfouz72, Monu Chaudhary, Jiya Gupta, Suryanshu Agrawal, vishalup29
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+          <li>
+            Clone `apache/kafka` once KAFKA-19809 is merged.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18272">#18272</a>
+          </li>
+          <li>
+            Add Kakfa project into Checkstyle regression suite.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/16003">#16003</a>
+          </li>
+          <li>
+            use new nio jdk api instead of all api.
+            Author: ivanmalutin
+            <a href="https://github.com/checkstyle/checkstyle/issues/16155">#16155</a>
+          </li>
+          <li>
+            Recfactor classes to avoid CT_CONSTRUCTOR_THROW violation.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/14122">#14122</a>
+          </li>
+          <li>
+            uncliear error message if basedir is Linux based but execution is on windows.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/17951">#17951</a>
+          </li>
+          <li>
+            test to check indentation trailing comments are vertically aligned.
+            Author: Monu Chaudhary
+            <a href="https://github.com/checkstyle/checkstyle/issues/17128">#17128</a>
+          </li>
+          <li>
+            infra: Fixing ECJ&#39;s version to be pinned, rather than being dynamic to not break CI
+            pipelines.
+            Author: aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/18253">#18253</a>
+          </li>
+          <li>
+            Website Generation doesn&#39;t automatically reflect new changes to checks.xml and
+            checks/&lt;type&gt;/index.xml.
+            Author: smita_1078
+            <a href="https://github.com/checkstyle/checkstyle/issues/17691">#17691</a>
+          </li>
+          <li>
+            Define violation messages for all violations.
+            Author: aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>
+          </li>
+          <li>
+            checkstyle-12.2.0: fails 2 checks building from source code.
+            Author: aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/18221">#18221</a>
+          </li>
+          <li>
+            Xdoc marco to put version in xdoc from &#39;since&#39; javadoc tag on Check.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/18218">#18218</a>
+          </li>
+          <li>
+            CI: verify-no-exception-configs should actually check contribution PR to append the
+            same Check.
+            Author: stoyanK7
+            <a href="https://github.com/checkstyle/checkstyle/issues/7304">#7304</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - main.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18026">#18026</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - ant.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18027">#18027</a>
+          </li>
+          <li>
+            doc: note UnusedImports limitation for module import declarations.
+            Author: stoyanK7
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.2.0">
       <div class="releaseDate">30.11.2025</div>
       <p>New:</p>

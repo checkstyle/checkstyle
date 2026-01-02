@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedNoWhitespaceBeforeCaseDefaultColon {
   {
     switch (1) {

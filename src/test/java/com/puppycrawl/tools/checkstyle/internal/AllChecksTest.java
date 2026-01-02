@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -235,6 +235,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // google prefers no spaces on one side or both for these tokens
                 "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
                 .collect(Collectors.toUnmodifiableSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAfter", Stream.of(
+                // these tokens are already validated by WhitespaceAround, having them
+                // in both checks causes duplicate violations
+                "LITERAL_IF", "LITERAL_ELSE", "LITERAL_RETURN", "LITERAL_WHILE",
+                "LITERAL_DO", "LITERAL_FOR", "LITERAL_FINALLY", "DO_WHILE",
+                "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_CATCH",
+                "LAMBDA", "LITERAL_WHEN")
+                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // numerical types should not be included
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG",
@@ -269,7 +277,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/internal/allchecks";
     }
 
@@ -352,8 +360,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 continue;
             }
 
-            assertWithMessage("module '" + module.getSimpleName()
-                    + "' must contain a multi-thread annotation")
+            assertWithMessage("module '%s' must contain a multi-thread annotation",
+                module.getSimpleName())
                             .that(module.isAnnotationPresent(GlobalStatefulCheck.class)
                                     || module.isAnnotationPresent(FileStatefulCheck.class)
                                     || module.isAnnotationPresent(StatelessCheck.class))
@@ -457,9 +465,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         }
         for (Entry<String, Set<String>> entry : checkTokens.entrySet()) {
             final Set<String> actual = configCheckTokens.get(entry.getKey());
-            assertWithMessage("'" + entry.getKey()
-                    + "' should have all acceptable tokens from check in " + configName
-                    + " config or specify an override to ignore the specific tokens")
+            assertWithMessage(
+                "'%s' should have all acceptable tokens "
+                    + "from check in %s config "
+                    + "or specify an override to ignore the specific tokens",
+                entry.getKey(), configName)
                 .that(actual)
                 .isEqualTo(entry.getValue());
         }
@@ -480,8 +490,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
         else {
-            assertWithMessage("All default tokens should be used in config for "
-                    + checkConfig.getName()).fail();
+            assertWithMessage("All default tokens should be used in config for %s",
+                checkConfig.getName()).fail();
         }
     }
 
@@ -512,7 +522,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
-            assertWithMessage("checkstyle-checks.xml is missing module: " + moduleName)
+            assertWithMessage("checkstyle-checks.xml is missing module: %s", moduleName)
                     .that(configChecks)
                     .contains(moduleName);
         }
@@ -526,13 +536,13 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             // No messages in just module
             if ("SuppressWarningsHolder".equals(name)) {
-                assertWithMessage(name + " should not have any 'MSG_*' fields for error messages")
+                assertWithMessage("%s should not have any 'MSG_*' fields for error messages", name)
                         .that(messages)
                         .isEmpty();
             }
             else {
                 assertWithMessage(
-                        name + " should have at least one 'MSG_*' field for error messages")
+                        "%s should have at least one 'MSG_*' field for error messages", name)
                                 .that(messages)
                                 .isNotEmpty();
             }
@@ -546,8 +556,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // test validity of messages from modules
         for (Class<?> module : CheckUtil.getCheckstyleModules()) {
             for (Field message : CheckUtil.getCheckMessages(module, true)) {
-                assertWithMessage(module.getSimpleName() + "." + message.getName()
-                                + " should be 'public static final'")
+                assertWithMessage("%s.%s should be 'public static final'", module.getSimpleName(),
+                    message.getName())
                     .that(message.getModifiers())
                     .isEqualTo(Modifier.PUBLIC | Modifier.STATIC | Modifier.FINAL);
 
@@ -572,8 +582,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     continue;
                 }
 
-                assertWithMessage("property '" + key + "' isn't used by any check in package '"
-                                      + entry.getKey() + "'")
+                assertWithMessage("property '%s' isn't used by any check in package '%s'", key,
+                    entry.getKey())
                         .that(entry.getValue())
                         .contains(key.toString());
             }
@@ -597,13 +607,13 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             }
             // -@cs[IllegalCatch] There is no other way to deliver filename that was used
             catch (Exception exc) {
-                assertWithMessage(module.getSimpleName() + " with the message '" + messageString
-                        + "' in locale '" + locale.getLanguage() + "' failed with: "
-                        + exc.getClass().getSimpleName() + " - " + exc.getMessage()).fail();
+                assertWithMessage("%s with the message '%s' in locale '%s' failed with: %s - %s",
+                        module.getSimpleName(), messageString, locale.getLanguage(),
+                        exc.getClass().getSimpleName(), exc.getMessage()).fail();
             }
 
-            assertWithMessage(module.getSimpleName() + " should have text for the message '"
-                    + messageString + "' in locale " + locale.getLanguage() + "'")
+            assertWithMessage("%s should have text for the message '%s' in locale %s'",
+                    module.getSimpleName(), messageString, locale.getLanguage())
                 .that(result)
                 .isNotNull();
             assertWithMessage("%s should have non-empty text for the message '%s' in locale '%s'",
@@ -611,8 +621,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     .that(result.trim())
                     .isNotEmpty();
             assertWithMessage(
-                    module.getSimpleName() + " should have non-TODO text for the message '"
-                            + messageString + "' in locale " + locale.getLanguage() + "'")
+                    "%s should have non-TODO text for the message '%s' in locale %s'",
+                    module.getSimpleName(), messageString, locale.getLanguage())
                                     .that(!"todo.match".equals(messageString)
                                             && result.trim().startsWith("TODO"))
                                     .isFalse();

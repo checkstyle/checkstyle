@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_FINISHED_MESSA
 import static com.puppycrawl.tools.checkstyle.DefaultLogger.AUDIT_STARTED_MESSAGE;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -54,10 +55,13 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
 
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Project;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
+import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -123,7 +127,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     }
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checker";
     }
 
@@ -1641,12 +1645,12 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = "[ERROR] " + path + ":" + expected[i];
-                assertWithMessage("error message " + i)
+                assertWithMessage("error message %s", i)
                         .that(actual.get(i))
                         .isEqualTo(expectedResult);
             }
 
-            assertWithMessage("unexpected output: " + lnr.readLine())
+            assertWithMessage("unexpected output: %s", lnr.readLine())
                     .that(errs)
                     .isEqualTo(expected.length);
         }
@@ -1760,6 +1764,52 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         verify(createChecker(checkerConfig), processedFiles,
                 tempFile.getName(), expected);
+    }
+
+    @Test
+    public void testBasedirPathMismatchExceptionMessage() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+        antTask.setConfig(getPath("InputCheckerTestConfigBasedirMismatch.xml"));
+
+        final File testFile = Files.createFile(
+            temporaryFolder.toPath().resolve("TestBasedirMismatch.java"))
+            .toFile();
+
+        antTask.setFile(testFile);
+
+        final BuildException ex = getExpectedThrowable(
+            BuildException.class,
+            antTask::execute,
+            "BuildException is expected");
+
+        final IllegalStateException relativizeException = findRelativizePathException(ex);
+        final String message = relativizeException.getMessage();
+
+        assertWithMessage("Exception message should mention failed relativization")
+            .that(message)
+            .contains("Failed to relativize path");
+
+        assertWithMessage("Exception message should mention base directory")
+            .that(message)
+            .contains("base directory");
+
+        assertWithMessage("Exception message should contain the file path")
+            .that(message)
+            .contains(testFile.getAbsolutePath());
+    }
+
+    private static IllegalStateException findRelativizePathException(Throwable throwable) {
+        Throwable current = throwable;
+        while (current != null) {
+            if (current instanceof IllegalStateException exception
+                    && current.getCause() instanceof IllegalArgumentException) {
+                return exception;
+            }
+            current = current.getCause();
+        }
+        throw new AssertionError(
+            "IllegalStateException from CommonUtil.relativizePath not found in cause chain");
     }
 
     public static class DefaultLoggerWithCounter extends DefaultLogger {

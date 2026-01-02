@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -78,7 +78,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/ant/checkstyleanttask/";
     }
 
@@ -974,8 +974,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final long actualTime = getNumberFromLine(optionalMessageLevelPair.orElseThrow().getMsg());
 
-        assertWithMessage("Logged time in '" + expectedMsg + "' "
-                              + "must be less than the testing time")
+        assertWithMessage("Logged time in '%s' must be less than the testing time", expectedMsg)
             .that(actualTime)
             .isAtMost(testingTime);
     }
@@ -1027,6 +1026,42 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Second formatter output is empty")
                 .that(secondOutput.length())
                 .isGreaterThan(0L);
+    }
+
+    @Test
+    public void testExceptionMessageContainsFileList() throws Exception {
+        final CheckstyleAntTask antTask = new CheckstyleAntTaskStub();
+        antTask.setConfig(getPath(CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final File file = new File(getPath(FLAWLESS_INPUT));
+        antTask.setFile(file);
+
+        final BuildException ex = getExpectedThrowable(
+                BuildException.class, antTask::execute, "BuildException is expected");
+
+        assertWithMessage("Exception message must contain the file name")
+                .that(ex.getMessage())
+                .contains(file.getName());
+    }
+
+    @Test
+    public void testAntProjectPropertyValueIsCopiedCorrectly() throws IOException {
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+
+        final Project project = new Project();
+        project.setProperty("lineLength.severity", "ignore");
+        antTask.setProject(project);
+
+        antTask.setFile(new File(getPath(VIOLATED_INPUT)));
+
+        antTask.execute();
+
+        assertWithMessage("Failed to propagate Ant project property value correctly")
+                .that(TestRootModuleChecker.getProperty())
+                .isEqualTo("ignore");
     }
 
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {

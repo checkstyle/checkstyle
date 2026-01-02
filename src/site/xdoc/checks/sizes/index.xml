@@ -66,8 +66,8 @@
               </a>
             </td>
             <td>
-              Checks the number of methods declared in each type declaration by access modifier
-            or total count.
+              Checks the number of methods declared in each type declaration by access modifier or
+              total count.
             </td>
           </tr>
           <tr>
@@ -87,8 +87,8 @@
               </a>
             </td>
             <td>
-              Checks for the number of types declared at the <i>outer</i>
-              (or <i>root</i>) level in a file.
+              Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in
+              a file.
             </td>
           </tr>
           <tr>
@@ -108,7 +108,8 @@
               </a>
             </td>
             <td>
-              Checks the number of record components in the header of a record definition.
+              Checks the number of record components in the <a href="https://docs.oracle.com/javase/specs/jls/se14/preview/specs/records-jls.html#jls-8.10.1">
+              header</a> of a record definition.
             </td>
           </tr>
         </table>

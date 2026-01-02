@@ -1636,7 +1636,7 @@
     <lineContent>setFileExtensions(&quot;properties&quot;);</lineContent>
     <details>
       found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck.class) @NonNull TranslationCheck
-      required: @Initialized @NonNull TranslationCheck
+      required: @Initialized @NonNull AbstractFileSetCheck
     </details>
   </checkerFrameworkError>
 
@@ -4619,7 +4619,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/IllegalImportCheck.java</fileName>
     <specifier>initialization.fields.uninitialized</specifier>
-    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses</message>
+    <message>the constructor does not initialize fields: illegalPkgs, illegalClasses, illegalModules</message>
     <lineContent>public IllegalImportCheck() {</lineContent>
   </checkerFrameworkError>
 
@@ -8874,6 +8874,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter arg0 of Pattern.matcher.</message>
+    <lineContent>final String cleanedUrl = SPACE_PATTERN.matcher(originalUrl).replaceAll(&quot;&quot;);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull CharSequence
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/ClassAndPropertiesSettersJavadocScraper.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference classDef.findFirstToken(TokenTypes.IDENT)</message>
@@ -9814,17 +9825,6 @@
     <details>
       type of expression: @Initialized @Nullable NodeInfo
       method return type: @Initialized @NonNull NodeInfo
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/xpath/iterators/ReverseListIterator.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
-    <lineContent>this.items = null;</lineContent>
-    <details>
-      found   : null (NullType)
-      required: @Initialized @NonNull List&lt;? extends @Initialized @NonNull NodeInfo&gt;
     </details>
   </checkerFrameworkError>
 

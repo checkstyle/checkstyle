@@ -4,28 +4,23 @@ package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespac
 
 class InputWhitespaceAroundWhen {
 
-  /** method. */
+  /** Method. */
   void test(Object o) {
     switch (o) {
-      case Integer i when(i == 0) ->
+      case Integer i when(i == 0) -> // violation ''when' is not followed by whitespace.'
         {
         }
-      // 2 violations 3 lines above:
-      //              ''when' is not followed by whitespace.'
-      //              ''when' is not followed by whitespace.'
+      // violation below, ''when' is not followed by whitespace.'
       case String s when(
-              // 2 violations above:
-              //              ''when' is not followed by whitespace'
-              //              ''when' is not followed by whitespace'
               s.equals("a")) ->
         {
         }
+
+      // violation below, ''when' is not followed by whitespace.'
       case Point(int x, int y) when!(x >= 0 && y >= 0) ->
         {
         }
-      // 2 violations 3 lines above:
-      //              ''when' is not followed by whitespace.'
-      //              ''when' is not followed by whitespace.'
+
       default ->
         {
         }
@@ -38,15 +33,13 @@ class InputWhitespaceAroundWhen {
       case Point(int x, int y)when(x >= 0 && y >= 0) ->
         {
         }
-      // 3 violations 3 lines above:
-      //              ''when' is not followed by whitespace.'
+      // 2 violations 3 lines above:
       //              ''when' is not followed by whitespace.'
       //              ''when' is not preceded with whitespace.'
       case Point(int x, int y)when!(x >= 0 && y >= 0) ->
         {
         }
-      // 3 violations 3 lines above:
-      //              ''when' is not followed by whitespace.'
+      // 2 violations 3 lines above:
       //              ''when' is not followed by whitespace.'
       //              ''when' is not preceded with whitespace.'
       default ->
@@ -55,7 +48,7 @@ class InputWhitespaceAroundWhen {
     }
   }
 
-  /** method. */
+  /** Method. */
   void test2(Object o) {
 
     switch (o) {

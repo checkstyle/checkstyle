@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>12.2.1-SNAPSHOT</version>
+  <version>12.3.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -205,7 +205,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.8.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
-    <pmd.version>7.19.0</pmd.version>
+    <pmd.version>7.20.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <slf4j.version>2.0.17</slf4j.version>
@@ -273,6 +273,7 @@
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
@@ -401,7 +402,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.2.4</version>
+      <version>4.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -419,7 +420,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>7.4.0.202509020913-r</version>
+      <version>7.5.0.202512021534-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -542,7 +543,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.6.3</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -609,8 +610,19 @@
           <version>3.1.0</version>
           <configuration>
             <java>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+              <excludes>
+                <exclude>src/**/resources-noncompilable/**</exclude>
+                <exclude>src/it/resources/**</exclude>
+                <exclude>src/test/resources/**</exclude>
+                <exclude>src/xdocs-examples/**</exclude>
+              </excludes>
+              <endWithNewline />
               <forbidWildcardImports />
               <removeUnusedImports />
+              <trimTrailingWhitespace />
               <importOrder>
                 <file>config/spotless/import.order</file>
               </importOrder>
@@ -622,6 +634,55 @@
               <enabled>true</enabled>
             </upToDateChecking>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.openrewrite.maven</groupId>
+          <artifactId>rewrite-maven-plugin</artifactId>
+          <version>6.26.0</version>
+          <configuration>
+            <configLocation>config/rewrite.yml</configLocation>
+            <exportDatatables>true</exportDatatables>
+            <skipMavenParsing>true</skipMavenParsing>
+            <activeRecipes>
+              <recipe>org.checkstyle.AllAutoFixes</recipe>
+            </activeRecipes>
+            <exclusions>
+              <exclusion>**.ci-temp**</exclusion>
+              <exclusion>**resources-noncompilable**</exclusion>
+              <exclusion>**src/it/resources**</exclusion>
+              <exclusion>**src/test/resources**</exclusion>
+              <exclusion>**xdocs-examples**</exclusion>
+            </exclusions>
+            <plainTextMasks>
+              <plainTextMask>**/*.groovy</plainTextMask>
+              <plainTextMask>**/*.xml</plainTextMask>
+              <plainTextMask>**/*.yml</plainTextMask>
+              <plainTextMask>**/resources-noncompilable/**</plainTextMask>
+              <plainTextMask>**/resources/**</plainTextMask>
+            </plainTextMasks>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle-openrewrite-recipes</artifactId>
+              <version>${checkstyle.openrewrite.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-migrate-java</artifactId>
+              <version>3.22.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-static-analysis</artifactId>
+              <version>2.24.0</version>
+            </dependency>
+            <dependency>
+              <groupId>org.openrewrite.recipe</groupId>
+              <artifactId>rewrite-rewrite</artifactId>
+              <version>0.17.0</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -685,7 +746,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.7.1</version>
+                <version>7.7.2</version>
               </plugin>
             </plugins>
           </configuration>
@@ -784,6 +845,10 @@
         <artifactId>spotless-maven-plugin</artifactId>
       </plugin>
       <plugin>
+        <groupId>org.openrewrite.maven</groupId>
+        <artifactId>rewrite-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
         <version>2.2.0</version>
@@ -807,7 +872,6 @@
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
             <exclusionPattern>java/io/File.*</exclusionPattern>
-            <exclusionPattern>java/nio/file/Paths.get:.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
@@ -1913,6 +1977,8 @@
                 <exclude>openrewrite-recipes-checkstyle.properties</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>projects-to-test/**</exclude>
+                <exclude>rewrite.yml</exclude>
+                <exclude>sarif-schema-2.1.0.json</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
@@ -2115,7 +2181,7 @@
           <validations>
             <validation>
               <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
-              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
+              <jsonSchema>file:///${project.basedir}/config/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
               </includes>
@@ -2925,65 +2991,6 @@
     </profile>
 
     <profile>
-      <id>checker-index</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.compiler.plugin.version}</version>
-            <configuration>
-              <!-- Must fork or else JVM arguments are ignored. -->
-              <fork>true</fork>
-              <failOnError>true</failOnError>
-              <meminitial>1024m</meminitial>
-              <maxmem>8192m</maxmem>
-              <compilerArguments>
-                <Xmaxerrs>10000</Xmaxerrs>
-                <Xmaxwarns>10000</Xmaxwarns>
-              </compilerArguments>
-              <annotationProcessorPaths>
-                <path>
-                  <groupId>org.checkerframework</groupId>
-                  <artifactId>checker</artifactId>
-                  <version>${checkerframework.version}</version>
-                </path>
-              </annotationProcessorPaths>
-              <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.index.IndexChecker</annotationProcessor>
-              </annotationProcessors>
-              <compilerArgs combine.children="append">
-                <!-- -Awarns turns type-checking errors into warnings. -->
-                <arg>-Awarns</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-                <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-                <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-              </compilerArgs>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-      <properties>
-        <!-- Needed for animal-sniffer-maven-plugin version 1.19 (version 1.20 is fixed). -->
-        <animal.sniffer.skip>true</animal.sniffer.skip>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-          <version>${checkerframework.version}</version>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
       <id>checker-formatter</id>
       <build>
         <plugins>
@@ -3130,7 +3137,8 @@
                 </path>
               </annotationProcessorPaths>
               <annotationProcessors>
-                <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor>
+          <!-- RegexChecker disabled, runtime exceptions are sufficient, see https://github.com/checkstyle/checkstyle/issues/12567 -->
+          <!-- <annotationProcessor>org.checkerframework.checker.regex.RegexChecker</annotationProcessor> -->
                 <annotationProcessor>org.checkerframework.checker.propkey.PropertyKeyChecker</annotationProcessor>
                 <annotationProcessor>org.checkerframework.checker.compilermsgs.CompilerMessagesChecker</annotationProcessor>
               </annotationProcessors>
@@ -3531,6 +3539,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheck*</param>
               </targetClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheckTest</param>
@@ -3562,6 +3571,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedCatchParameterShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLambdaParameterShouldBeUnnamedCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.TextBlockGoogleStyleFormattingCheckTest</param>
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
@@ -3922,7 +3932,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4588,7 +4599,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4617,9 +4629,6 @@
                 <param>com.puppycrawl.tools.checkstyle.Checker*</param>
                 <param>com.puppycrawl.tools.checkstyle.ThreadModeSettings*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.SimpleToken*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil*</param>
-                <param>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil*</param>
                 <param>com.puppycrawl.tools.checkstyle.grammar.CompositeLexerContextCache*</param>
                 <!-- interfaces -->
                 <param>com.puppycrawl.tools.checkstyle.AuditEventFormatter*</param>
@@ -4674,6 +4683,11 @@
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
               </avoidCallsTo>
+              <excludedClasses>
+                <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.grammar.SimpleToken</class>
+              </excludedClasses>
               <excludedMethods>
                 <!-- caching of search results, big performance optimization -->
                 <param>lazyLoad</param>
@@ -4994,7 +5008,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5082,7 +5097,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5168,6 +5184,8 @@
               <excludedMethods>
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
                 <param>isFileExists</param>
+                <!-- Its mutation potentially causes the cascade change in generated xml files -->
+                <param>getAllNodesOfType</param>
               </excludedMethods>
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
@@ -5340,7 +5358,7 @@
         <dependency>
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>org.eclipse.jdt.annotation</artifactId>
-          <version>2.4.0</version>
+          <version>2.4.100</version>
         </dependency>
       </dependencies>
       <build>
@@ -5390,7 +5408,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5492,73 +5511,6 @@
               <threads>${pitest.plugin.threads}</threads>
               <outputFormats>${pitest.plugin.output.formats}</outputFormats>
             </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>checkstyle-autofix</id>
-      <build>
-        <plugins>
-          <!-- Checkstyle Autofix -->
-          <plugin>
-            <groupId>org.openrewrite.maven</groupId>
-            <artifactId>rewrite-maven-plugin</artifactId>
-            <version>6.24.0</version>
-            <configuration>
-              <exportDatatables>true</exportDatatables>
-              <skipMavenParsing>true</skipMavenParsing>
-              <activeRecipes>
-                <recipe>org.checkstyle.AllAutoFixes</recipe>
-              </activeRecipes>
-              <exclusions>
-                <exclusion>**.ci-temp**</exclusion>
-                <exclusion>**/resources-noncompilable/**</exclusion>
-                <exclusion>**src/it/resources**</exclusion>
-                <exclusion>**src/test/resources**</exclusion>
-                <exclusion>**xdocs-examples**</exclusion>
-              </exclusions>
-              <plainTextMasks>
-                <plainTextMask>**/*.xml</plainTextMask>
-                <plainTextMask>**/*.yml</plainTextMask>
-                <plainTextMask>**/*.groovy</plainTextMask>
-                <plainTextMask>**/resources/**</plainTextMask>
-                <plainTextMask>**/resources-noncompilable/**</plainTextMask>
-              </plainTextMasks>
-            </configuration>
-            <dependencies>
-              <dependency>
-                <groupId>com.puppycrawl.tools</groupId>
-                <artifactId>checkstyle-openrewrite-recipes</artifactId>
-                <version>${checkstyle.openrewrite.version}</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-migrate-java</artifactId>
-                <version>3.22.0</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-static-analysis</artifactId>
-                <version>2.22.0</version>
-              </dependency>
-              <dependency>
-                <groupId>org.openrewrite.recipe</groupId>
-                <artifactId>rewrite-rewrite</artifactId>
-                <version>0.16.0</version>
-              </dependency>
-            </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>spotless-autofix</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.diffplug.spotless</groupId>
-            <artifactId>spotless-maven-plugin</artifactId>
           </plugin>
         </plugins>
       </build>

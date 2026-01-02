@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -78,7 +78,8 @@ public class GeneratedJavaTokenTypesTest {
      */
     @Test
     public void testTokenNumbering() {
-        final String message = """
+        final String message =
+                """
                 A token's number has changed. Please open\
                  'GeneratedJavaTokenTypesTest' and confirm which token is at fault.
                 Token numbers must not change or else they will create a conflict\
@@ -781,10 +782,8 @@ public class GeneratedJavaTokenTypesTest {
         final int lastIndexOfSublist =
                 Collections.lastIndexOfSubList(allTokenNames, INTERNAL_TOKENS);
         final int expectedNumberOfUsedTokens = allTokenNames.size() - INTERNAL_TOKENS.size();
-        final String message = "New tokens must be added to the 'tokens' block in the"
-                + " lexer grammar.";
 
-        assertWithMessage(message)
+        assertWithMessage("New tokens must be added to the 'tokens' block in the lexer grammar.")
                 .that(lastIndexOfSublist)
                 .isEqualTo(expectedNumberOfUsedTokens);
     }

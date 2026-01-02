@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some annotation. */
+/** Some annotation. */
 @InputAnnotationArrayInitMultilineCorrect.AnnotList({
   @InputAnnotationArrayInitMultilineCorrect.Annot(
       "hello-Goodbye world in one very long and lengthy string in annoation array"),

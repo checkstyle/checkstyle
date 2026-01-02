@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,7 +51,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         new CloseAndFlushTestByteArrayOutputStream();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xmllogger";
     }
 
@@ -78,7 +78,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = XMLLogger.encode(encoding[0]);
-            assertWithMessage("\"" + encoding[0] + "\"")
+            assertWithMessage("\"%s\"", encoding[0])
                 .that(encoded)
                 .isEqualTo(encoding[1]);
         }
@@ -102,7 +102,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "&amp;",
         };
         for (String reference : references) {
-            assertWithMessage("reference: " + reference)
+            assertWithMessage("reference: %s", reference)
                     .that(XMLLogger.isReference(reference))
                     .isTrue();
         }
@@ -118,7 +118,7 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             "ref",
         };
         for (String noReference : noReferences) {
-            assertWithMessage("no reference: " + noReference)
+            assertWithMessage("no reference: %s", noReference)
                     .that(XMLLogger.isReference(noReference))
                     .isFalse();
         }
@@ -350,21 +350,9 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
 
     @Test
     public void testAuditFinishedWithoutFileFinished() throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
-        logger.fileStarted(fileStartedEvent);
-
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "key", null, SeverityLevel.ERROR, null,
-                        getClass(), null);
-        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", violation);
-        logger.addError(errorEvent);
-
-        logger.fileFinished(errorEvent);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
+        final String inputFile = "InputXMLLoggerAuditFinishedWithoutFileFinished.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerAuditFinishedWithoutFileFinished.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFile, expectedXmlReport);
     }
 
     @Test

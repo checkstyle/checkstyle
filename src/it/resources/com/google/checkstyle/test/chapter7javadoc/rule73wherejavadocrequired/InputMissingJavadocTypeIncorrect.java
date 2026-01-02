@@ -27,7 +27,7 @@ public class InputMissingJavadocTypeIncorrect {
   // violation below 'Missing a Javadoc comment.'
   protected @interface MyAnnotationProtected {}
 
-  /** some javadoc. */
+  /** Some javadoc. */
   public void myMethod() {
     class MyMethodClass {}
   }

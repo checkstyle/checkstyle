@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -107,7 +107,7 @@ public class SuppressionCommentFilterTest
     };
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/filters/suppressioncommentfilter";
     }
 
@@ -295,7 +295,7 @@ public class SuppressionCommentFilterTest
         final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
         final EqualsVerifierReport ev = EqualsVerifier.forClass(tag.getClass())
                 .usingGetClass().report();
-        assertWithMessage("Error: " + ev.getMessage())
+        assertWithMessage("Error: %s", ev.getMessage())
                 .that(ev.isSuccessful())
                 .isTrue();
     }
@@ -319,6 +319,18 @@ public class SuppressionCommentFilterTest
             .that(tag.toString())
             .isEqualTo("Tag[text='CHECKSTYLE:ON', line=1, column=0, type=ON,"
                 + " tagCheckRegexp=.*, tagMessageRegexp=.*, tagIdRegexp=null]");
+    }
+
+    @Test
+    public void testToStringOfTagClassWithIdFormat() {
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        filter.setIdFormat("id");
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:OFF").get(0);
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=id]");
     }
 
     @Test

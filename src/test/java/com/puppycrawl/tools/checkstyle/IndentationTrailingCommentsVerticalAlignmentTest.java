@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         // reason: checkstyle check: Line gets longer than 100 characters
         "InputIndentationInvalidLabelIndent.java",
         "InputIndentationInvalidMethodIndent2.java",
-        "InputIndentationLambda2.java",
         "InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine.java",
         "InputIndentationNewChildren.java",
         "InputIndentationNewWithForceStrictCondition.java",
@@ -92,8 +91,9 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                         expectedStartIndex = actualStartIndex;
                     }
                     else {
-                        assertWithMessage("Trailing comment alignment mismatch in file: "
-                                + testFile + " on line " + (idx + 1))
+                        assertWithMessage(
+                                "Trailing comment alignment mismatch in file: %s on line %s",
+                                testFile, idx + 1)
                                 .that(actualStartIndex)
                                 .isEqualTo(expectedStartIndex);
                     }

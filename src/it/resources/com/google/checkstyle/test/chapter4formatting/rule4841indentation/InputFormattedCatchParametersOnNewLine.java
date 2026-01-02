@@ -2,10 +2,10 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputFormattedCatchParametersOnNewLine {
 
-  /** some test Method. */
+  /** Some test Method. */
   public void test1() {
     try {
       System.out.println("try0");
@@ -55,10 +55,13 @@ public class InputFormattedCatchParametersOnNewLine {
         """
         s
         """;
+
+    // violation below 'Opening quotes (""") of text-block must be on the new line'
     return ("""
       def newInstance = params.instance;
       def existingInstance = ctx._source;
-    """ // violation '.* incorrect indentation level 4, expected .* 8.'
+    """ // violation 'Text-block quotes are not vertically aligned'
+        // violation above '.* incorrect indentation level 4, expected .* 8.'
         + simplePropertyUpdateScript);
   }
 

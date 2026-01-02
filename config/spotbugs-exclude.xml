@@ -302,16 +302,9 @@
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
-      <Class name="com.puppycrawl.tools.checkstyle.SarifLogger"/>
-      <Class name="com.puppycrawl.tools.checkstyle.XMLLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
-      <Class name="com.puppycrawl.tools.checkstyle.filters.XpathFilterElement"/>
       <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
-      <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
       <Class name="com.puppycrawl.tools.checkstyle.filters.CsvFilterElement"/>
-      <Class name="com.puppycrawl.tools.checkstyle.XpathFileGeneratorAuditListener" />
-      <Class name=
-           "com.puppycrawl.tools.checkstyle.ChecksAndFilesSuppressionFileGeneratorAuditListener" />
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
@@ -433,12 +426,6 @@
   <Match>
     <Class name="com.puppycrawl.tools.checkstyle.checks.header.MultiFileRegexpHeaderCheck" />
     <Field name="headerFiles" />
-    <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
-  </Match>
-  <!-- until https://github.com/checkstyle/checkstyle/issues/17720 -->
-  <Match>
-    <Class name="com.puppycrawl.tools.checkstyle.Main$CliOptions" />
-    <Field name="tabWidth" />
     <Bug pattern="SPP_FIELD_COULD_BE_STATIC" />
   </Match>
   <Match>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -86,10 +86,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * are even more important in the age of automated refactorings.
  * </p>
  *
- * @since 3.4
  * @noinspection HtmlTagCanBeJavadocTag
  * @noinspectionreason HtmlTagCanBeJavadocTag - encoded symbols were not decoded
  *      when replaced with Javadoc tag
+ * @since 3.4
  */
 @StatelessCheck
 public class TrailingCommentCheck extends AbstractCheck {

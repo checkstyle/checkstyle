@@ -223,6 +223,8 @@
     files="[\\/]InputCheckerTabCharacter\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputCheckerTabCharacterCustomWidth\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
@@ -270,18 +272,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeJavadoc_3\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineDefault\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect2\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineCorrect\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocInlineForbidden\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocCorrect\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodNoJavadoc3\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethodNoJavadoc2\.java"/>
@@ -319,10 +309,6 @@
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple1\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength2\.java"/>
-  <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]sizes[\\/]anoninnerlength[\\/]InputAnonInnerLength\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]regexp[\\/]regexpsinglelinejava[\\/]InputRegexpSinglelineJavaSemantic7\.java"/>
   <suppress checks="FileLength"

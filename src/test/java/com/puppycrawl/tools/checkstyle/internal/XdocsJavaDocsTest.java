@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -69,7 +69,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static Path currentXdocPath;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com.puppycrawl.tools.checkstyle.internal";
     }
 
@@ -269,7 +269,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             if ("a".equals(nodeName) && "href".equals(attrName)) {
                 final String value = attribute.getNodeValue();
 
-                assertWithMessage("links starting with '#' aren't supported: " + value)
+                assertWithMessage("links starting with '#' aren't supported: %s", value)
                     .that(value.charAt(0))
                     .isNotEqualTo('#');
 
@@ -347,15 +347,15 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
                 switch (parentNode.getType()) {
                     case TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.ENUM_DEF,
-                         TokenTypes.ENUM_CONSTANT_DEF -> {
+                         TokenTypes.ENUM_CONSTANT_DEF, TokenTypes.RECORD_DEF -> {
                         // ignore
                     }
                     case TokenTypes.METHOD_DEF -> visitMethod(ast, parentNode);
                     case TokenTypes.VARIABLE_DEF -> visitField(ast, parentNode);
                     default ->
                         assertWithMessage(
-                                "Unknown token '" + TokenUtil.getTokenName(parentNode.getType())
-                                        + "': " + ast.getLineNo()).fail();
+                            "Unknown token '%s': %s", TokenUtil.getTokenName(parentNode.getType()),
+                                ast.getLineNo()).fail();
                 }
             }
         }
@@ -378,8 +378,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 final String propertyDoc = CHECK_PROPERTY_DOC.get(propertyName);
 
                 if (propertyDoc != null) {
-                    assertWithMessage(checkName + "'s class field-level JavaDoc for "
-                            + propertyName)
+                    assertWithMessage("%s's class field-level JavaDoc for %s", checkName,
+                        propertyName)
                         .that(getJavaDocText(node))
                         .isEqualTo(makeFirstUpper(propertyDoc));
                 }
@@ -396,8 +396,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 if (propertyDoc != null) {
                     final String javaDoc = getJavaDocText(node);
 
-                    assertWithMessage(checkName + "'s class method-level JavaDoc for "
-                            + propertyName)
+                    assertWithMessage("%s's class method-level JavaDoc for %s", checkName,
+                        propertyName)
                         .that(javaDoc.substring(0, javaDoc.indexOf(" @param")))
                         .isEqualTo("Setter to " + makeFirstLower(propertyDoc));
                 }
@@ -445,7 +445,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         .replace("\r", "");
             }
             catch (ParserConfigurationException exc) {
-                assertWithMessage("Exception: " + exc.getClass() + " - " + exc.getMessage()).fail();
+                assertWithMessage("Exception: %s - %s", exc.getClass(), exc.getMessage()).fail();
             }
 
             return result;

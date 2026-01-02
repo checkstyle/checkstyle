@@ -76,7 +76,7 @@ class ResponseDot {}
 // violation below 'Top-level class ErrorDot has to reside in its own source file.'
 class ErrorDot {}
 
-/** some javadoc. */
+/** Some javadoc. */
 @TagNameAndDescription(
     name = "${something1.something2.something3}",
     description = "Endpoint for blah blah blah activities",
@@ -86,7 +86,7 @@ class ErrorDot {}
             url = "https://google.com"))
 public interface InputFormattedAnnotationArrayInitMultiline2 {
 
-  /** some javadoc. */
+  /** Some javadoc. */
   @Operation(summary = "Retrieves something for verifying something")
   @ResponseValueShow(DummyHttp.OK)
   @ApiResponsesOne(

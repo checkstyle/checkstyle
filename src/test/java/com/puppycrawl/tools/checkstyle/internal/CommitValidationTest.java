@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,6 +40,7 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -159,7 +161,8 @@ public class CommitValidationTest {
     @Test
     public void testRevertCommitMessage() {
         assertWithMessage("should accept proper revert commit message")
-                .that(validateCommitMessage("""
+                .that(validateCommitMessage(
+                        """
                         Revert "doc: release notes for 10.8.0"\
 
                         This reverts commit ff873c3c22161656794c969bb28a8cb09595f.
@@ -254,6 +257,8 @@ public class CommitValidationTest {
     }
 
     private static List<RevCommit> getCommitsToCheck() throws Exception {
+        Assumptions.assumeTrue(new File(".git").exists(),
+            "Project is not a git repository (likely a zip download), skipping commit validation");
         final List<RevCommit> commits;
         try (Repository repo = new FileRepositoryBuilder().findGitDir().build()) {
             final RevCommitsPair revCommitsPair = resolveRevCommitsPair(repo);

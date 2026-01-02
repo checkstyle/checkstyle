@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,7 +34,7 @@ tokens {
     INDEX_TERM, RETURN, SNIPPET, SNIPPET_ATTR_NAME, COLON, EXCEPTION,
     THROWS, PARAMETER_NAME, SINCE, VERSION, SEE, STRING_LITERAL,
     LITERAL_HIDDEN, SERIAL, SERIAL_DATA, SERIAL_FIELD, FIELD_TYPE,
-    AT_SIGN, TYPE_NAME, REFERENCE, MEMBER_REFERENCE, PARAMETER_TYPE_LIST,
+    AT_SIGN, UNUSED_TOKEN1, REFERENCE, MEMBER_REFERENCE, PARAMETER_TYPE_LIST,
     TYPE_ARGUMENTS, TYPE_ARGUMENT, DESCRIPTION, SNIPPET_ATTRIBUTES,
     SNIPPET_ATTRIBUTE, SNIPPET_BODY, HTML_ELEMENT, VOID_ELEMENT,
     HTML_CONTENT, HTML_TAG_START, HTML_TAG_END, HTML_ATTRIBUTES,

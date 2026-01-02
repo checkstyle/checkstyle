@@ -22,6 +22,7 @@ aggregators
 allchecks
 allclasses
 allowlegacy
+allprojects
 alot
 alundblad
 amazonaws
@@ -1309,6 +1310,7 @@ stemp
 stext
 sthref
 stmt
+stoyan
 streamapi
 strictfp
 stringliteralequality
@@ -1365,7 +1367,8 @@ technotes
 temurin
 Testik
 testmodules
-textblocks
+textblock
+textblockgooglestyleformatting
 tfij
 Tfo
 tfoot
@@ -1439,6 +1442,7 @@ unnecessarysemicolonafteroutertypedeclaration
 unnecessarysemicolonaftertypememberdeclaration
 unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
+unparseable
 Unproxyable
 unregister
 unstale

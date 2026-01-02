@@ -1733,11 +1733,16 @@
                     4.8.9 Text Blocks</a>
                 </td>
                 <td>
-                  Opening and closing quotes of text blocks are always on new line is not
-                  covered. It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17159">
-                    #17159
-                  </a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="checks/coding/textblockgooglestyleformatting.html">TextBlockGoogleStyleFormatting</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TextBlockGoogleStyleFormatting">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks">
+                    samples</a>
                 </td>
                 <td/>
               </tr>
@@ -1965,6 +1970,19 @@
                   <a href="https://github.com/checkstyle/checkstyle/issues/17842">
                     #17842
                   </a>
+                  <br/>
+                  <br/>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
+                  As with section 5.2.4, due to
+                  <a href="writingchecks.html#Limitations">limitations</a>,
+                  Checkstyle cannot determine whether a static final field is semantically
+                  a constant or not. In other words, MemberName cannot verify that static
+                  final fields use lower case name when they are not constants (e.g.,
+                  static final List&lt;String&gt; names).
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames">
@@ -2356,6 +2374,28 @@
                   <br />
                   <span class="wrapper inline">
                     <img
+                            src="images/ok_green.png"
+                            alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadocmissingleadingasterisk.html#JavadocMissingLeadingAsterisk">
+                    JavadocMissingLeadingAsterisk</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingLeadingAsterisk">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img
+                            src="images/ok_blue.png"
+                            alt="" />
+                  </span>
+                  <a href="checks/javadoc/javadoccontentlocation.html#JavadocContentLocation">
+                    JavadocContentLocation</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocContentLocation">
+                  config</a>)
+                  <br />
+                  <br />
+                  <span class="wrapper inline">
+                    <img
                             src="images/ok_blue.png"
                             alt="" />
                   </span>
@@ -2363,6 +2403,23 @@
                     InvalidJavadocPosition</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
                   config</a>)
+                  <br />
+                  <br />
+                  Non covered:
+                  <br />
+                  1. There is a false negative related to Javadoc content that begins
+                  with a leading asterisk. It is addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/18271">
+                    #18271
+                  </a>
+                  <br />
+                  <br />
+                  2. There is a false negative concerning Javadoc blocks where the
+                  closing <code>*/</code> does not appear on its own line.
+                  It is addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/18273">
+                    #18273
+                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform">

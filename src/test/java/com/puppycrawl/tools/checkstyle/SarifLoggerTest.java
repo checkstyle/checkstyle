@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -51,7 +51,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         new CloseAndFlushTestByteArrayOutputStream();
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/sariflogger";
     }
 
@@ -96,7 +96,7 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         };
         for (String[] encoding : encodings) {
             final String encoded = SarifLogger.escape(encoding[0]);
-            assertWithMessage("\"" + encoding[0] + "\"")
+            assertWithMessage("\"%s\"", encoding[0])
                 .that(encoded)
                 .isEqualTo(encoding[1]);
         }
@@ -239,20 +239,13 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAddErrorWithAbsoluteLinuxPath() throws IOException {
+    public void testAddErrorWithAbsoluteLinuxPath() throws Exception {
+        final String inputFile = "InputSarifLoggerAbsoluteLinuxPath.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAbsoluteLinuxPath.sarif";
         final SarifLogger logger = new SarifLogger(outStream,
                 OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", "ruleId", null, SeverityLevel.ERROR, null,
-                        getClass(), "found an error");
-        final AuditEvent ev = new AuditEvent(this, "/home/someuser/Code/Test.java", violation);
-        logger.fileStarted(ev);
-        logger.addError(ev);
-        logger.fileFinished(ev);
-        logger.auditFinished(null);
-        verifyContent(getPath("ExpectedSarifLoggerAbsoluteLinuxPath.sarif"), outStream);
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     @Test
@@ -513,6 +506,25 @@ public class SarifLoggerTest extends AbstractModuleTestSupport {
         logger.auditFinished(null);
 
         verifyContent(getPath("ExpectedSarifLoggerMissingResourceException.sarif"), outStream);
+    }
+
+    /**
+     * Tests that all severity levels (ERROR, WARNING, INFO, IGNORE) are correctly
+     * rendered in SARIF output to kill the switch statement mutation in renderSeverityLevel.
+     * This test uses realistic input with inline configuration rather than manual mocking
+     * to ensure proper integration testing.
+     *
+     * @throws Exception if an error occurs during verification
+     */
+    @Test
+    public void testRenderSeverityLevelAllLevels() throws Exception {
+        final String inputFile = "InputSarifLoggerAllSeverityLevels.java";
+        final String expectedReportFile = "ExpectedSarifLoggerAllSeverityLevels.sarif";
+        final SarifLogger logger = new SarifLogger(outStream,
+                OutputStreamOptions.CLOSE);
+
+        verifyWithInlineConfigParserAndLogger(
+                getPath(inputFile), getPath(expectedReportFile), logger, outStream);
     }
 
     private static void verifyContent(

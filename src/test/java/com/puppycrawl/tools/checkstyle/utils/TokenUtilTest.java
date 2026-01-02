@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -67,7 +67,7 @@ public class TokenUtilTest {
             // The exception message may vary depending on the version of the JDK.
             // It will definitely contain the TokenUtil class name and the Integer class name.
             final String message = expected.getMessage();
-            assertWithMessage("Invalid exception message: " + message)
+            assertWithMessage("Invalid exception message: %s", message)
                     .that(message.startsWith("java.lang.IllegalAccessException: ")
                             && message.contains("com.puppycrawl.tools.checkstyle.utils.TokenUtil")
                             && message.contains("access a member of class java.lang.Integer"))

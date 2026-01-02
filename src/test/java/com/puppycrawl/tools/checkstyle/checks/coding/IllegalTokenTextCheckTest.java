@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -37,7 +37,7 @@ public class IllegalTokenTextCheckTest
     extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext";
     }
 
@@ -181,9 +181,9 @@ public class IllegalTokenTextCheckTest
             TokenTypes.TEXT_BLOCK_CONTENT
         );
         for (int tokenType : allowedTokens) {
-            assertWithMessage(TokenUtil.getTokenName(tokenType) + " should not be allowed"
-                    + " in this check as its text is a constant"
-                    + " (IllegalTokenCheck should be used for such cases).")
+            assertWithMessage("%s should not be allowed in this check as its text is a constant"
+                    + " (IllegalTokenCheck should be used for such cases).",
+                    TokenUtil.getTokenName(tokenType))
                             .that(tokenTypesWithMutableText)
                             .contains(tokenType);
         }

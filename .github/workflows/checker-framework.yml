@@ -21,7 +21,6 @@ jobs:
           nullness-optional-interning,
           methods-resource-fenum,
           lock-tainting,
-          index,
           formatter,
           signature-gui-units-init,
           regex-property-key-compiler-message,
@@ -43,7 +42,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Setup local maven cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
@@ -59,7 +58,7 @@ jobs:
 
       - name: Share patch as artifact to apply on local
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: checker-${{ matrix.profile }}-patch
           path: target/checker-${{ matrix.profile }}.patch

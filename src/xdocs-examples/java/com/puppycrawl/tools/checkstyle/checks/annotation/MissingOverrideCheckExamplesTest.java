@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -29,16 +29,16 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class MissingOverrideCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/annotation/missingoverride";
     }
 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "27:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
-            "33:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
-            "39:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "31:3: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE, "test2"),
+            "37:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
+            "43:3: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
     }

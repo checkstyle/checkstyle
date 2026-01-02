@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -67,7 +67,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public File temporaryFolder;
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/propertycachefile";
     }
 
@@ -75,7 +75,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
     public void testCtor() {
         try {
             final Object test = new PropertyCacheFile(null, "");
-            assertWithMessage("exception expected but got " + test).fail();
+            assertWithMessage("exception expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")
@@ -85,7 +85,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final Configuration config = new DefaultConfiguration("myName");
         try {
             final Object test = new PropertyCacheFile(config, null);
-            assertWithMessage("exception expected but got " + test).fail();
+            assertWithMessage("exception expected but got %s", test).fail();
         }
         catch (IllegalArgumentException exc) {
             assertWithMessage("Invalid exception message")

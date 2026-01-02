@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupport {
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/illegaltype";
     }
 
@@ -118,6 +118,25 @@ public class IllegalTypeCheckExamplesTest extends AbstractExamplesModuleTestSupp
         };
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
+    }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "73:10: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+            "75:3: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "Optional"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example7.java"), expected);
+    }
+
+    @Test
+    public void testExample8() throws Exception {
+        final String[] expected = {
+            "74:5: " + getCheckMessage(IllegalTypeCheck.MSG_KEY, "var"),
+        };
+
+        verifyWithInlineConfigParser(getPath("Example8.java"), expected);
     }
 
     @Test

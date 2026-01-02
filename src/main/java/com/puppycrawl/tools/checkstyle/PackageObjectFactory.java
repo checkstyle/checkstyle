@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -601,6 +601,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck");
         NAME_TO_FULL_MODULE_NAME.put("MatchXpathCheck",
                 BASE_PACKAGE + ".checks.coding.MatchXpathCheck");
+        NAME_TO_FULL_MODULE_NAME.put("TextBlockGoogleStyleFormattingCheck",
+                BASE_PACKAGE + ".checks.coding.TextBlockGoogleStyleFormattingCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedLocalVariableCheck",
                 BASE_PACKAGE + ".checks.coding.UnusedLocalVariableCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnusedCatchParameterShouldBeUnnamedCheck",

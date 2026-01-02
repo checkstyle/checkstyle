@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -48,6 +48,26 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Leading asterisk used to format Javadoc lines.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * This is a Javadoc line.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /**
+     *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is a Javadoc line.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     * `   --BLOCK_COMMENT_END -> *
+     * }</pre>
      */
     public static final int LEADING_ASTERISK = JavadocCommentsLexer.LEADING_ASTERISK;
 
@@ -70,6 +90,23 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * At-sign {@code @} that starts a block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @author name}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> author
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  name
+     * }</pre>
+     *
+     * @see #JAVADOC_BLOCK_TAG
      */
     public static final int AT_SIGN = JavadocCommentsLexer.AT_SIGN;
 
@@ -78,19 +115,23 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @author name.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> author
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  name.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> author
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  name.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -102,7 +143,7 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
@@ -110,12 +151,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> deprecated
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  deprecated text.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--DEPRECATED_BLOCK_TAG -> DEPRECATED_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> deprecated
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  deprecated text.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -127,22 +171,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #PARAMETER_NAME}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #PARAMETER_NAME}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @param value The parameter of method.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> param
-     *    |--TEXT ->
-     *    |--PARAMETER_NAME -> value
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  The parameter of method.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> param
+     *         |--TEXT ->
+     *         |--PARAMETER_NAME -> value
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The parameter of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -154,19 +202,23 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @return The return of method.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> return
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  The return of method.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--RETURN_BLOCK_TAG -> RETURN_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> return
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The return of method.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -178,22 +230,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER} - the exception class</li>
-     *  <li>{@link #DESCRIPTION} - description</li>
+     *   <li>{@link #IDENTIFIER} - the exception class</li>
+     *   <li>{@link #DESCRIPTION} - description</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @throws IOException if an I/O error occurs}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> throws
-     *     |--TEXT ->
-     *     |--IDENTIFIER -> IOException
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  if an I/O error occurs
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> throws
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> IOException
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  if an I/O error occurs
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -205,22 +261,26 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #IDENTIFIER}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @exception FileNotFoundException when file is not found.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> exception
-     *    |--TEXT ->
-     *    |--IDENTIFIER -> FileNotFoundException
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT -> when file is not found.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--EXCEPTION_BLOCK_TAG -> EXCEPTION_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> exception
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> FileNotFoundException
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  when file is not found.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -240,12 +300,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> since
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  1.0
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SINCE_BLOCK_TAG -> SINCE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> since
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  1.0
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -259,14 +322,18 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @version value}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> version
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  value
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--VERSION_BLOCK_TAG -> VERSION_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> version
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -278,9 +345,9 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have three children:</p>
      * <ol>
-     *  <li>{@link #REFERENCE}</li>
-     *  <li>{@link #DESCRIPTION}</li>
-     *  <li>{@link #HTML_ELEMENT}</li>
+     *   <li>{@link #REFERENCE}</li>
+     *   <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #HTML_ELEMENT}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
@@ -288,16 +355,19 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> see
-     *     |--TEXT ->
-     *     `--REFERENCE -> REFERENCE
-     *         |--IDENTIFIER -> SomeClass
-     *         |--HASH -> #
-     *         `--MEMBER_REFERENCE -> MEMBER_REFERENCE
-     *             `--IDENTIFIER -> Field
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> see
+     *         |--TEXT ->
+     *         `--REFERENCE -> REFERENCE
+     *             |--IDENTIFIER -> SomeClass
+     *             |--HASH -> #
+     *             `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *                 `--IDENTIFIER -> Field
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -317,12 +387,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--HIDDEN_BLOCK_TAG -> HIDDEN_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> hidden
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  value
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--HIDDEN_BLOCK_TAG -> HIDDEN_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> hidden
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -342,12 +415,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--USES_BLOCK_TAG -> USES_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> uses
-     *    |--TEXT ->
-     *    `--IDENTIFIER -> com.example.app.MyService
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--USES_BLOCK_TAG -> USES_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> uses
+     *         |--TEXT ->
+     *         `--IDENTIFIER -> com.example.app.MyService
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -359,8 +435,8 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
-     *  <li>{@link #IDENTIFIER}</li>
-     *  <li>{@link #DESCRIPTION}</li>
+     *   <li>{@link #IDENTIFIER}</li>
+     *   <li>{@link #DESCRIPTION}</li>
      * </ol>
      *
      * <p><b>Example:</b></p>
@@ -368,14 +444,17 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> provides
-     *    |--TEXT ->
-     *    |--IDENTIFIER -> com.example.MyService
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  with com.example.MyServiceImpl
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PROVIDES_BLOCK_TAG -> PROVIDES_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> provides
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> com.example.MyService
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  with com.example.MyServiceImpl
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -395,12 +474,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
-     *   |--AT_SIGN -> @
-     *   |--TAG_NAME -> serial
-     *   `--DESCRIPTION -> DESCRIPTION
-     *       `--TEXT ->  include
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SERIAL_BLOCK_TAG -> SERIAL_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> serial
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  include
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -420,12 +502,15 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
-     *    |--AT_SIGN -> @
-     *    |--TAG_NAME -> serialData
-     *    `--DESCRIPTION -> DESCRIPTION
-     *        `--TEXT ->  data description value
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SERIAL_DATA_BLOCK_TAG -> SERIAL_DATA_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> serialData
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  data description value
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -447,16 +532,19 @@ public final class JavadocCommentsTokenTypes {
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> serialField
-     *     |--TEXT ->
-     *     |--IDENTIFIER -> name
-     *     |--TEXT ->
-     *     |--FIELD_TYPE -> String
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  The person's full name.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> serialField
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> name
+     *         |--TEXT ->
+     *         |--FIELD_TYPE -> String
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The person's full name.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -471,15 +559,18 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code * @mycustomtag This is a custom block tag.}</pre>
+     *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
-     * `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
-     *     |--AT_SIGN -> @
-     *     |--TAG_NAME -> customBlock
-     *     |--TEXT ->
-     *     `--DESCRIPTION -> DESCRIPTION
-     *         `--TEXT ->  This is a custom block tag.
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> mycustomtag
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  This is a custom block tag.
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
@@ -666,17 +757,74 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * {@code {@inheritDoc}} inline tag.
+     *
+     * <p>This node models the inline {@code {@inheritDoc}} tag that instructs Javadoc
+     * to inherit documentation from the corresponding element in a parent class or interface.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@inheritDoc}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--INHERIT_DOC_INLINE_TAG -> INHERIT_DOC_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> inheritDoc
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int INHERIT_DOC_INLINE_TAG = JavadocCommentsLexer.INHERIT_DOC_INLINE_TAG;
 
     /**
      * {@code {@systemProperty}} inline tag.
+     *
+     * <p>Such Javadoc tag is used to reference a system property.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * This method uses {@systemProperty user.home} system property.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  This method uses
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--SYSTEM_PROPERTY_INLINE_TAG -> SYSTEM_PROPERTY_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> systemProperty
+     * |       |--TEXT ->
+     * |       |--IDENTIFIER -> user.home
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT ->  system property.
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int SYSTEM_PROPERTY_INLINE_TAG =
             JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG;
 
     /**
      * {@code {@literal}} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * {@literal @Override}}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LITERAL_INLINE_TAG -> LITERAL_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> { @
+     *         |--TAG_NAME -> literal
+     *         |--TEXT ->  @Override
+     *         `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int LITERAL_INLINE_TAG = JavadocCommentsLexer.LITERAL_INLINE_TAG;
 
@@ -772,7 +920,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
     /**
-     * Custom or unrecognized inline tag.
+     * {@code @custom} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  Example showing
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> custom
+     * |       |--DESCRIPTION -> DESCRIPTION
+     * |       |   `--TEXT ->  This is a Custom Inline Tag
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 
@@ -864,12 +1031,66 @@ public final class JavadocCommentsTokenTypes {
     public static final int EXTENDS = JavadocCommentsLexer.EXTENDS;
 
     /**
-     * Keyword {@code super} in type parameters.
+     * {@code SUPER} represents the {@code super} keyword inside a generic
+     * wildcard bound (e.g., {@code ? super Number}).
+     *
+     * <p><b>Example:</b> {@code {@link java.util.List <? super Integer> list}
+     * of any supertype of Integer}</p>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> { @
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> java.util.List
+     *     |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *     |       |--LT -> <
+     *     |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *     |       |   |--QUESTION -> ?
+     *     |       |   |--TEXT ->
+     *     |       |   |--SUPER -> super
+     *     |       |   |--TEXT ->
+     *     |       |   `--IDENTIFIER -> Integer
+     *     |       `--GT -> >
+     *     |--DESCRIPTION -> DESCRIPTION
+     *     |   `--TEXT ->  list of any supertype of Integer
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE
      */
     public static final int SUPER = JavadocCommentsLexer.SUPER;
 
     /**
-     * Parameter type reference.
+     * {@code PARAMETER_TYPE} Parameter type reference.
+     *
+     * <p>Represents a type used in a method parameter.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link java.util.List#add(Object)}} </pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> List
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> add
+     *     |       |--LPAREN -> (
+     *     |       |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *     |       |   `--PARAMETER_TYPE -> Object
+     *     |       `--RPAREN -> )
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int PARAMETER_TYPE = JavadocCommentsLexer.PARAMETER_TYPE;
 
@@ -898,12 +1119,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int REFERENCE = JavadocCommentsLexer.REFERENCE;
 
     /**
-     * Type name reference.
-     */
-    public static final int TYPE_NAME = JavadocCommentsLexer.TYPE_NAME;
-
-    /**
-     * Member reference (e.g. method or field).
+     * {@code MEMBER_REFERENCE} Member reference (method or field).
+     *
+     * <p>Represents a field or method in a type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link String#length()}
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> String
+     *     |   |--HASH -> #
+     *     |   `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |       |--IDENTIFIER -> length
+     *     |       |--LPAREN -> (
+     *     |       `--RPAREN -> )
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #REFERENCE
      */
     public static final int MEMBER_REFERENCE = JavadocCommentsLexer.MEMBER_REFERENCE;
 
@@ -943,7 +1185,31 @@ public final class JavadocCommentsTokenTypes {
     public static final int PARAMETER_TYPE_LIST = JavadocCommentsLexer.PARAMETER_TYPE_LIST;
 
     /**
-     * Type arguments in generics.
+     * {@code TYPE_ARGUMENTS} Type arguments in generics.
+     *
+     * <p>Represents the type arguments inside a generic type reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code {@link java.util.List<String>}}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> &#123;@
+     *     |--TAG_NAME -> link
+     *     |--TEXT ->
+     *     |--REFERENCE -> REFERENCE
+     *     |   |--IDENTIFIER -> java.util.List
+     *     |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *     |       |--LT -> <
+     *     |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *     |       |   `--IDENTIFIER -> String
+     *     |       `--GT -> >
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
      */
     public static final int TYPE_ARGUMENTS = JavadocCommentsLexer.TYPE_ARGUMENTS;
 
@@ -973,7 +1239,35 @@ public final class JavadocCommentsTokenTypes {
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
     /**
-     * Value assigned to an attribute.
+     * {@code ATTRIBUTE_VALUE} Value assigned to an attribute.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code <a href="example">text</a>}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> a
+     * |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |       |--TEXT ->
+     * |   |       |--TAG_ATTR_NAME -> href
+     * |   |       |--EQUALS -> =
+     * |   |       `--ATTRIBUTE_VALUE -> "example"
+     * |   `--TAG_CLOSE -> >
+     * |--HTML_CONTENT -> HTML_CONTENT
+     * |   `--TEXT -> text
+     * `--HTML_TAG_END -> HTML_TAG_END
+     * |--TAG_OPEN -> <
+     * |--TAG_SLASH -> /
+     * |--TAG_NAME -> a
+     * `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTE
+     * @see #TAG_ATTR_NAME
      */
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
 
@@ -1097,7 +1391,38 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_ATTRIBUTE = JavadocCommentsLexer.HTML_ATTRIBUTE;
 
     /**
-     * List of HTML attributes.
+     * {@code HTML_ATTRIBUTES} represents a collection of HTML attributes
+     * inside an HTML tag.
+     *
+     * <p>Appears in Javadoc comments when documenting HTML elements that contain
+     * multiple attributes.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * <div lang="en" custom-attr="value"></div>
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> div
+     * |   |--HTML_ATTRIBUTES -> HTML_ATTRIBUTES
+     * |   |   |--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |   |   |--TEXT ->
+     * |   |   |   |--TAG_ATTR_NAME -> lang
+     * |   |   |   |--EQUALS -> =
+     * |   |   |   `--ATTRIBUTE_VALUE -> "en"
+     * |   |   `--HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |   |       |--TEXT ->
+     * |   |       |--TAG_ATTR_NAME -> custom-attr
+     * |   |       |--EQUALS -> =
+     * |   |       `--ATTRIBUTE_VALUE -> "value"
+     * |   `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTE
      */
     public static final int HTML_ATTRIBUTES = JavadocCommentsLexer.HTML_ATTRIBUTES;
 
@@ -1394,7 +1719,23 @@ public final class JavadocCommentsTokenTypes {
     public static final int HTML_COMMENT = JavadocCommentsLexer.HTML_COMMENT;
 
     /**
-     * Opening part of an HTML comment.
+     * {@code HTML_COMMENT_START} represents the beginning of an HTML comment,
+     * i.e., the {@literal "<!--"} sequence inside a Javadoc comment.
+     *
+     * <p>HTML comments occasionally appear in Javadoc to add internal notes or
+     * explanations without affecting the rendered output.</p>
+     * Example: {@code <!-- Note: This method is for demonstration purposes only. -->}
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * HTML_COMMENT -> HTML_COMMENT
+     * |--HTML_COMMENT_START -> <!--
+     * |--HTML_COMMENT_CONTENT -> HTML_COMMENT_CONTENT
+     * |   `--TEXT ->  Note: This method is for demonstration purposes only.
+     * `--HTML_COMMENT_END -> -->
+     * }</pre>
+     *
+     * @see #HTML_COMMENT_END
      */
     public static final int HTML_COMMENT_START = JavadocCommentsLexer.HTML_COMMENT_START;
 

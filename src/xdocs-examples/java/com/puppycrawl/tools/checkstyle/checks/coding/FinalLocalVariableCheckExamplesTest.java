@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -28,14 +28,14 @@ import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/coding/finallocalvariable";
     }
 
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "29:9: " + getCheckMessage(MSG_KEY, "result"),
+            "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -46,8 +46,8 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_KEY, "x"),
             "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "23:37: " + getCheckMessage(MSG_KEY, "args"),
-            "29:9: " + getCheckMessage(MSG_KEY, "result"),
+            "25:37: " + getCheckMessage(MSG_KEY, "args"),
+            "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
@@ -56,8 +56,8 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "26:17: " + getCheckMessage(MSG_KEY, "i"),
-            "29:9: " + getCheckMessage(MSG_KEY, "result"),
+            "28:17: " + getCheckMessage(MSG_KEY, "i"),
+            "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example3.java"), expected);
@@ -68,10 +68,23 @@ public class FinalLocalVariableCheckExamplesTest extends AbstractExamplesModuleT
         final String[] expected = {
             "17:22: " + getCheckMessage(MSG_KEY, "x"),
             "17:29: " + getCheckMessage(MSG_KEY, "y"),
-            "23:37: " + getCheckMessage(MSG_KEY, "args"),
-            "29:9: " + getCheckMessage(MSG_KEY, "result"),
+            "25:37: " + getCheckMessage(MSG_KEY, "args"),
+            "31:9: " + getCheckMessage(MSG_KEY, "result"),
         };
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "17:22: " + getCheckMessage(MSG_KEY, "x"),
+            "17:29: " + getCheckMessage(MSG_KEY, "y"),
+            "21:9: " + getCheckMessage(MSG_KEY, "_"),
+            "25:37: " + getCheckMessage(MSG_KEY, "args"),
+            "31:9: " + getCheckMessage(MSG_KEY, "result"),
+        };
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
+
 }

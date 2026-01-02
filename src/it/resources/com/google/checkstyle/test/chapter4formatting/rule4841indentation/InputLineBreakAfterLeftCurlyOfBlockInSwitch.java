@@ -1,6 +1,6 @@
 package com.google.checkstyle.test.chapter4formatting.rule4841indentation;
 
-/** some javadoc. */
+/** Some javadoc. */
 public class InputLineBreakAfterLeftCurlyOfBlockInSwitch {
 
   void testMethod1(int month) {

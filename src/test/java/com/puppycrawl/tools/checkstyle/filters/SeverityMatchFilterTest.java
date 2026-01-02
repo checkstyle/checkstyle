@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -44,14 +44,14 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertWithMessage("level:" + errorLevel)
+        assertWithMessage("level:%s", errorLevel)
                 .that(filter.accept(ev2))
                 .isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
-        assertWithMessage("level:" + infoLevel)
+        assertWithMessage("level:%s", infoLevel)
             .that(filter.accept(ev3))
             .isFalse();
     }
@@ -69,14 +69,14 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertWithMessage("level:" + errorLevel)
+        assertWithMessage("level:%s", errorLevel)
             .that(filter.accept(ev2))
             .isFalse();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoMessage =
                 new Violation(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
-        assertWithMessage("level:" + infoLevel)
+        assertWithMessage("level:%s", infoLevel)
                 .that(filter.accept(ev3))
                 .isTrue();
     }
@@ -95,14 +95,14 @@ public class SeverityMatchFilterTest {
             new Violation(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorViolation);
-        assertWithMessage("level:" + errorLevel)
+        assertWithMessage("level:%s", errorLevel)
                 .that(filter.accept(ev2))
                 .isTrue();
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final Violation infoViolation = new Violation(1, 0, "", "", null, infoLevel,
             null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoViolation);
-        assertWithMessage("level:" + infoLevel)
+        assertWithMessage("level:%s", infoLevel)
             .that(filter.accept(ev3))
             .isFalse();
     }

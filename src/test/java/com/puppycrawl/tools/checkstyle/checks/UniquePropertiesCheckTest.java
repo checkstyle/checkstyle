@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     @Override
-    protected String getPackageLocation() {
+    public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/uniqueproperties";
     }
 
@@ -135,15 +135,15 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<Violation> violations =
                 check.process(file, fileText);
-        assertWithMessage("Wrong messages count: " + violations.size())
+        assertWithMessage("Wrong messages count: %s", violations.size())
             .that(violations)
             .hasSize(1);
         final Violation violation = violations.iterator().next();
         final String retrievedMessage = violations.iterator().next().getKey();
-        assertWithMessage("violation key '" + retrievedMessage + "' is not valid")
+        assertWithMessage("violation key '%s' is not valid", retrievedMessage)
             .that(retrievedMessage)
             .isEqualTo("unable.open.cause");
-        assertWithMessage("violation '" + violation.getViolation() + "' is not valid")
+        assertWithMessage("violation '%s' is not valid", violation.getViolation())
             .that(getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)))
             .isEqualTo(violation.getViolation());
     }

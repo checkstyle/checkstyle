@@ -16,7 +16,8 @@
               </a>
             </td>
             <td>
-              Checks the order of javadoc block-tags or javadoc tags.
+              Checks the order of <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+              javadoc block-tags or javadoc tags</a>.
             </td>
           </tr>
           <tr>
@@ -36,8 +37,9 @@
               </a>
             </td>
             <td>
-              Checks that a javadoc block tag appears only at the beginning of a line,
-            ignoring leading asterisks and white space.
+              Checks that a <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/javadoc/doc-comment-spec.html#block-tags">
+              javadoc block tag</a> appears only at the beginning of a line, ignoring leading
+              asterisks and white space.
             </td>
           </tr>
           <tr>
@@ -47,8 +49,8 @@
               </a>
             </td>
             <td>
-              Checks that the Javadoc content begins from the same position
-            for all Javadoc comments in the project.
+              Checks that the Javadoc content begins from the same position for all Javadoc comments
+              in the project.
             </td>
           </tr>
           <tr>
@@ -58,7 +60,8 @@
               </a>
             </td>
             <td>
-              Checks the alignment of leading asterisks in a Javadoc comment.
+              Checks the alignment of <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+              leading asterisks</a> in a Javadoc comment.
             </td>
           </tr>
           <tr>
@@ -78,7 +81,8 @@
               </a>
             </td>
             <td>
-              Checks if the javadoc has leading asterisks on each line.
+              Checks if the javadoc has <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+              leading asterisks</a> on each line.
             </td>
           </tr>
           <tr>
@@ -179,7 +183,7 @@
             </td>
             <td>
               Checks for missing Javadoc comments for class, enum, interface, and annotation
-            interface definitions.
+              interface definitions.
             </td>
           </tr>
           <tr>
@@ -209,8 +213,7 @@
               </a>
             </td>
             <td>
-              Checks that a Javadoc block can fit in a single-line and doesn't contain
-            block tags.
+              Checks that a Javadoc block can fit in a single-line and doesn't contain block tags.
             </td>
           </tr>
           <tr>
@@ -220,8 +223,8 @@
               </a>
             </td>
             <td>
-              Checks that Javadoc summary sentence does not contain phrases that are not recommended
-            to use.
+              Checks that <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
+              Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
             </td>
           </tr>
           <tr>
@@ -231,8 +234,8 @@
               </a>
             </td>
             <td>
-              Requires user defined Javadoc tag to be present in Javadoc comment
-            with defined format.
+              Requires user defined Javadoc tag to be present in Javadoc comment with defined
+              format.
             </td>
           </tr>
         </table>
