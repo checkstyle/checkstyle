@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>12.3.1-SNAPSHOT</version>
+  <version>12.3.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -402,7 +402,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.2.6</version>
+      <version>4.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1978,6 +1978,7 @@
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>rewrite.yml</exclude>
+                <exclude>sarif-schema-2.1.0.json</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
@@ -2180,7 +2181,7 @@
           <validations>
             <validation>
               <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
-              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
+              <jsonSchema>file:///${project.basedir}/config/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
               </includes>
