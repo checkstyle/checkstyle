@@ -84,7 +84,33 @@ public final class JavadocCommentsTokenTypes {
     // Block tags
 
     /**
-     * General block tag (e.g. {@code @param}, {@code @return}).
+     * Javadoc block tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * @author name 
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--AUTHOR_BLOCK_TAG -> AUTHOR_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> author
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           |--TEXT ->  name
+     * |           |--NEWLINE -> \r\n
+     * |           |--LEADING_ASTERISK ->  *
+     * |           |--TEXT -> /
+     * |           |--NEWLINE -> \r\n
+     * |           `--TEXT -> class Test {}
+     * `--NEWLINE -> \r\n
+     * }</pre>
      */
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
 

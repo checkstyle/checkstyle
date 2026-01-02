@@ -1,0 +1,4 @@
+/**
+ * @author MyName
+ */
+class Test {}
