@@ -327,6 +327,12 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             .isEqualTo(1);
     }
 
+    /**
+     * Cannot use verifyWithInlineConfigParserAndXmlLogger because this test
+     * injects a custom exception and verifies XMLLogger exception-handling
+     * and OutputStream close() behavior, which cannot be reproduced
+     * through Checker execution.
+     */
     @Test
     public void testAddExceptionBetweenFileStartedAndFinished()
             throws Exception {
