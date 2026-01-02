@@ -219,7 +219,7 @@ public abstract class AbstractSuperCheck
         /**
          * Records that the overriding method has a call to the super method.
          */
-        public void setCallingSuper() {
+        /* package */ void setCallingSuper() {
             callingSuper = true;
         }
 
@@ -229,7 +229,7 @@ public abstract class AbstractSuperCheck
          *
          * @return true if the overriding method has a call to the super method.
          */
-        public boolean isCallingSuper() {
+        /* package */ boolean isCallingSuper() {
             return callingSuper;
         }
 
@@ -238,7 +238,7 @@ public abstract class AbstractSuperCheck
          *
          * @return the overriding method definition AST.
          */
-        public DetailAST getMethod() {
+        /* package */ DetailAST getMethod() {
             return method;
         }
 
