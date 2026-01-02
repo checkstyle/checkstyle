@@ -444,6 +444,7 @@ public class FinalClassCheck
          *
          * @return qualified class name
          */
+        @SuppressWarnings("EffectivelyPrivate")
         protected String getQualifiedName() {
             return qualifiedName;
         }
@@ -453,6 +454,7 @@ public class FinalClassCheck
          *
          * @return the depth of nesting of type declaration
          */
+        @SuppressWarnings("EffectivelyPrivate")
         protected int getDepth() {
             return depth;
         }
@@ -462,6 +464,7 @@ public class FinalClassCheck
          *
          * @return ast node of the type declaration
          */
+        @SuppressWarnings("EffectivelyPrivate")
         protected DetailAST getTypeDeclarationAst() {
             return typeDeclarationAst;
         }

@@ -280,7 +280,7 @@ public class MultiFileRegexpHeaderCheck
          * @return HeaderFileMetadata instance
          * @throws IllegalArgumentException if the header file is invalid or cannot be read
          */
-        public static HeaderFileMetadata createFromFile(String headerPath) {
+        /* package */ static HeaderFileMetadata createFromFile(String headerPath) {
             if (CommonUtil.isBlank(headerPath)) {
                 throw new IllegalArgumentException("Header file is not set");
             }
@@ -375,7 +375,7 @@ public class MultiFileRegexpHeaderCheck
          *
          * @return a matching result
          */
-        public static MatchResult matching() {
+        /* package */ static MatchResult matching() {
             return new MatchResult(true, 0, null, null);
         }
 
@@ -387,7 +387,7 @@ public class MultiFileRegexpHeaderCheck
          * @param messageArg the argument for the message
          * @return a mismatch result
          */
-        public static MatchResult mismatch(int lineNumber, String messageKey,
+        /* package */ static MatchResult mismatch(int lineNumber, String messageKey,
                                            String messageArg) {
             return new MatchResult(false, lineNumber, messageKey, messageArg);
         }

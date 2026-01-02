@@ -336,7 +336,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          *
          * @param literalThrows throws to process.
          */
-        public void visitLiteralThrows(DetailAST literalThrows) {
+        /* package */ void visitLiteralThrows(DetailAST literalThrows) {
             for (DetailAST childAST = literalThrows.getFirstChild();
                  childAST != null;
                  childAST = childAST.getNextSibling()) {
@@ -351,7 +351,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          *
          * @param ast type to process.
          */
-        public void visitType(DetailAST ast) {
+        /* package */ void visitType(DetailAST ast) {
             DetailAST child = ast.getFirstChild();
             while (child != null) {
                 if (TokenUtil.isOfType(child, TokenTypes.IDENT, TokenTypes.DOT)) {
@@ -369,7 +369,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          *
          * @param ast NEW to process.
          */
-        public void visitLiteralNew(DetailAST ast) {
+        /* package */ void visitLiteralNew(DetailAST ast) {
 
             if (ast.getParent().getType() == TokenTypes.METHOD_REF) {
                 addReferencedClassName(ast.getParent().getFirstChild());
@@ -403,7 +403,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
         }
 
         /** Checks if coupling less than allowed or not. */
-        public void checkCoupling() {
+        /* package */ void checkCoupling() {
             referencedClassNames.remove(className);
             referencedClassNames.remove(packageName + DOT + className);
 

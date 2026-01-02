@@ -209,7 +209,7 @@ public final class ExecutableStatementCountCheck
          *
          * @param addition the count increment.
          */
-        public void addCount(int addition) {
+        /* package */ void addCount(int addition) {
             count += addition;
         }
 
@@ -218,7 +218,7 @@ public final class ExecutableStatementCountCheck
          *
          * @return the member AST node.
          */
-        public DetailAST getAST() {
+        /* package */ DetailAST getAST() {
             return ast;
         }
 
@@ -227,7 +227,7 @@ public final class ExecutableStatementCountCheck
          *
          * @return the count.
          */
-        public int getCount() {
+        /* package */ int getCount() {
             return count;
         }
 
