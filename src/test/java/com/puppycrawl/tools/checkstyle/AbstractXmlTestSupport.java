@@ -37,6 +37,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
@@ -328,5 +329,41 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
 
         checker.process(filesToCheck);
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);
+    }
+
+    /**
+     * Verifies XML output using inline configuration parser and XML logger,
+     * using a provided OutputStream so tests can verify stream lifecycle behavior.
+     *
+     * @param filePath the path to the test file
+     * @param expectedXmlReportPath the path to the expected XML report
+     * @param outStream the output stream used by XMLLogger
+     * @throws Exception if an error occurs
+     */
+    protected final void verifyWithInlineConfigParserAndXmlLogger(
+            String filePath,
+            String expectedXmlReportPath,
+            CloseAndFlushTestByteArrayOutputStream outStream) throws Exception {
+
+        final String configFilePath = getPath(filePath);
+        final TestInputConfiguration testInputConfiguration =
+                InlineConfigParser.parse(configFilePath);
+        final DefaultConfiguration parsedConfig =
+                testInputConfiguration.createConfiguration();
+        final String basePath = new File(getPath("")).getAbsolutePath();
+
+        final Checker checker = createChecker(parsedConfig);
+        checker.setBasedir(basePath);
+
+        final XMLLogger logger = new XMLLogger(
+                outStream,
+                AbstractAutomaticBean.OutputStreamOptions.CLOSE);
+        checker.addListener(logger);
+
+        final List<File> filesToCheck =
+                Collections.singletonList(new File(configFilePath));
+        checker.process(filesToCheck);
+
+        verifyXml(getPath(expectedXmlReportPath), outStream);
     }
 }
