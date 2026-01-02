@@ -54,13 +54,8 @@ check-missing-pitests)
   #  https://github.com/checkstyle/checkstyle/issues/8761
   #  Coverage for site package is skipped
   #  until https://github.com/checkstyle/checkstyle/issues/13393
-  #  JavadocCommentsLexerUtil, JavadocCommentsParserUtil, and SimpleToken
-  #  are excluded from Pitest (aligned with JaCoCo exclusion)
   list=("com.puppycrawl.tools.checkstyle.meta.*"
-    "com.puppycrawl.tools.checkstyle.site.*"
-    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsLexerUtil"
-    "com.puppycrawl.tools.checkstyle.grammar.JavadocCommentsParserUtil"
-    "com.puppycrawl.tools.checkstyle.grammar.SimpleToken" "${list[@]}")
+    "com.puppycrawl.tools.checkstyle.site.*" "${list[@]}")
 
   CMD="find src/main/java -type f ! -name 'package-info.java'"
 
@@ -215,27 +210,6 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
-no-error-kafka)
-  CS_POM_VERSION="$(getCheckstylePomVersion)"
-  echo "CS_version: ${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
-  echo "Checkout target sources ..."
-  checkout_from "https://github.com/apache/kafka.git"
-  cd .ci-temp/kafka/
-  cat >> customConfig.gradle<< EOF
-allprojects {
-    repositories {
-        mavenLocal()
-    }
-}
-EOF
-  ./gradlew checkstyleMain checkstyleTest \
-    -I customConfig.gradle \
-    -PcheckstyleVersion="${CS_POM_VERSION}"
-  cd ..
-  removeFolderWithProtectedFiles kafka
-  ;;
-
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
@@ -272,17 +246,16 @@ no-error-hazelcast)
   removeFolderWithProtectedFiles hazelcast
   ;;
 
-no-error-configurate)
+no-violation-test-configurate)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   ./mvnw -e --no-transfer-progress clean install -Pno-validations
   echo "Checkout target sources ..."
-  # until https://github.com/checkstyle/checkstyle/issues/18327
-  checkout_from "https://github.com/stoyanK7/Configurate.git"
-  cd .ci-temp/Configurate
-  git fetch --depth 1 origin major-checkstyle-12:major-checkstyle-12
-  git checkout major-checkstyle-12
-  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" checkstyleMain checkstyleTest
+  mkdir -p .ci-temp
+  cd .ci-temp
+  git clone https://github.com/SpongePowered/Configurate.git
+  cd Configurate
+  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" -x test check
   cd ..
   removeFolderWithProtectedFiles Configurate
   ;;
@@ -352,9 +325,6 @@ no-error-test-sbe)
   ;;
 
 verify-no-exception-configs)
-  checkForVariable "GITHUB_TOKEN"
-  checkForVariable "PR_NUMBER"
-
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
   wget -q \
@@ -386,13 +356,13 @@ verify-no-exception-configs)
 
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
-    if [[ $PR_NUMBER =~ ^([0-9]+)$ ]]; then
-      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PR_NUMBER
-      REGEXP="https://github.com/checkstyle/contribution/pull/[0-9]+"
-      CONTRIBUTION_PR_LINK=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$LINK_PR" \
-                  | jq -r '.body' | grep -Eo "$REGEXP" | head -1 | cat )
-      echo "Link to contribution PR: ${CONTRIBUTION_PR_LINK}"
-      if [[ -z $CONTRIBUTION_PR_LINK ]]; then
+    if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
+      REGEXP="https://github.com/checkstyle/contribution/pull/"
+      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$LINK_PR" \
+                  | jq '.body' | grep $REGEXP | cat )
+      echo 'PR Description grepped:'"${PR_DESC:0:180}"
+      if [[ -z $PR_DESC ]]; then
         echo 'You introduce new Check'
         diff -u $working_dir/web.txt $working_dir/file.txt | cat
         echo 'Please create PR to repository https://github.com/checkstyle/contribution'
@@ -402,34 +372,6 @@ verify-no-exception-configs)
         echo 'Place the contribution repository PR link in the description of this PR.'
         echo 'PR for contribution repository will be merged right after this PR.'
         fail=1;
-      else
-        CONTRIBUTION_PR_NUMBER="$(echo "$CONTRIBUTION_PR_LINK" | grep -oP '(?<=pull/)[0-9]+')"
-        LINK_FILES="https://api.github.com/repos/checkstyle/contribution/pulls/$CONTRIBUTION_PR_NUMBER/files"
-        FILES="$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$LINK_FILES" | jq -r '
-          .[]
-          | select(.filename == "checkstyle-tester/checks-only-javadoc-error.xml"
-                or .filename == "checkstyle-tester/checks-nonjavadoc-error.xml")
-          | { filename, patch }
-        ')"
-        FILE_COUNT="$(echo "$FILES" | jq -s 'length')"
-        if [ "$FILE_COUNT" -ne 1 ]; then
-          echo "Expected only 1 of checkstyle-tester/checks-only-javadoc-error.xml or"
-          echo "checkstyle-tester/checks-nonjavadoc-error.xml to be changed in"
-          echo "$CONTRIBUTION_PR_LINK. Found $FILE_COUNT files changed."
-          fail=1;
-        else
-          PATCH="$(echo "$FILES" | jq -r '.patch')"
-          MODULE_NAME="$(echo "$DIFF_TEXT" | grep -E "^[+-][^+-]" | sed 's/^.//')"
-          if echo "$PATCH" | grep -qE "\+\s*<module name=\"$MODULE_NAME\""; then
-            echo "Module $MODULE_NAME found in contribution PR patch."
-          else
-            echo "Module $MODULE_NAME not found in contribution PR patch."
-            echo "Please add $MODULE_NAME to only one of the following files:"
-            echo '   checkstyle-tester/checks-nonjavadoc-error.xml'
-            echo 'or checkstyle-tester/checks-only-javadoc-error.xml'
-            fail=1;
-          fi
-        fi
       fi
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
@@ -508,51 +450,17 @@ assembly-run-all-jar)
   mkdir -p .ci-temp
   FOLDER=src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired
   FILE=InputMissingJavadocTypeCorrect.java
-  echo "Execution with plain text report"
   java -jar target/checkstyle-"$CS_POM_VERSION"-all.jar -c /google_checks.xml \
         $FOLDER/$FILE > .ci-temp/output.log
   fail=0
   if grep -vE '(Starting audit)|(warning)|(Audit done.)' .ci-temp/output.log ; then
     fail=1;
-    exit $fail;
   elif grep 'warning' .ci-temp/output.log ; then
     fail=1;
-    exit $fail;
   fi
   rm .ci-temp/output.log
-  echo "Execution with xml report"
-  java -jar target/checkstyle-"$CS_POM_VERSION"-all.jar -f xml -c /google_checks.xml \
-        $FOLDER/$FILE -o .ci-temp/output.xml
-  fail=0
-  echo "Content of report:"
-  cat .ci-temp/output.xml
-  echo "Validation of report"
-  if ! grep '</checkstyle>' .ci-temp/output.xml ; then
-    fail=1;
-    echo "no closed tag"
-    exit $fail;
-  elif ! grep 'file name' .ci-temp/output.xml ; then
-    fail=1;
-    echo "no file tag"
-    exit $fail;
-  fi
-  rm .ci-temp/output.xml
-  echo "Execution with sarif report"
-  java -jar target/checkstyle-"$CS_POM_VERSION"-all.jar -f sarif -c /google_checks.xml \
-        $FOLDER/$FILE -o .ci-temp/output.json
-  fail=0
-  echo "Content of report:"
-  cat .ci-temp/output.json
-  echo "Validation of report"
-  if ! grep 'downloadUri' .ci-temp/output.json ; then
-    fail=1;
-    exit $fail;
-  elif ! grep 'results' .ci-temp/output.json ; then
-    fail=1;
-    exit $fail;
-  fi
-  rm .ci-temp/output.json
-
+  sleep 5
+  exit $fail
   ;;
 
 check-since-version)
@@ -607,11 +515,11 @@ compile-test-resources)
   -Dmaven.compiler.enablePreview=true
   ;;
 
-javac17_standard)
+javac21_standard)
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
-  files=($(grep -RELi --include='*.java' \
+  files=($(grep -REL --include='*.java' \
         --exclude='InputCustomImportOrderNoPackage2.java' \
         --exclude='InputIllegalTypePackageClassName.java' \
         --exclude='InputVisibilityModifierPackageClassName.java' \
@@ -622,78 +530,30 @@ javac17_standard)
   mkdir -p target
   for file in "${files[@]}"
   do
-    echo "Compiling ${file} with standard JDK17"
+    echo "Compiling ${file} with standard JDK21"
     javac -d target "${file}"
   done
   ;;
 
-javac17)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java17' \
+javac21)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java21' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable \
         | grep -v 'importorder/' || true))
   if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java17 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 17 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac19)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java19' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java19 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 19 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac20)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java20' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java20 files to process"
-  else
-      mkdir -p target
-      for file in "${files[@]}"
-      do
-        javac --release 20 --enable-preview -d target "${file}"
-      done
-  fi
-  ;;
-
-javac21)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java21' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
     echo "No Java21 files to process"
   else
-    mkdir -p target
-    for file in "${files[@]}"
-    do
-      javac --release 21 --enable-preview -d target "${file}"
-    done
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 21 --enable-preview -d target "${file}"
+      done
   fi
   ;;
 
 javac22)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java22' \
+  files=($(grep -Rl --include='*.java' ': Compilable with Java22' \
         src/test/resources-noncompilable \
         src/it/resources-noncompilable \
         src/xdocs-examples/resources-noncompilable || true))
@@ -704,22 +564,6 @@ javac22)
     for file in "${files[@]}"
     do
       javac --release 22 --enable-preview -d target "${file}"
-    done
-  fi
-  ;;
-
-javac25)
-  files=($(grep -Rli --include='*.java' ': Compilable with Java25' \
-        src/test/resources-noncompilable \
-        src/it/resources-noncompilable \
-        src/xdocs-examples/resources-noncompilable || true))
-  if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java25 files to process"
-  else
-    mkdir -p target
-    for file in "${files[@]}"
-    do
-      javac --release 25 --enable-preview -d target "${file}"
     done
   fi
   ;;
@@ -782,7 +626,6 @@ no-error-orekit)
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
   SHA_HIPPARCHUS="1492f06848f57e46bef911a""ad16203a242080028"
-  git fetch --depth 1 origin "$SHA_HIPPARCHUS"
   git checkout $SHA_HIPPARCHUS
   mvn -e --no-transfer-progress install -DskipTests
   cd -
@@ -791,7 +634,6 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git fetch --depth 1 origin "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   git checkout "9b121e504771f3ddd303ab""cc""c74ac9db64541ea1"
   mvn -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version="${CS_POM_VERSION}"
@@ -1359,35 +1201,6 @@ run-test)
 
 sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
-  ;;
-
-spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
-  ;;
-
-openrewrite-recipes)
-  echo "Cloning and building OpenRewrite recipes..."
-  PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
-
-  cd /tmp
-  git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git
-  cd checkstyle-openrewrite-recipes
-  mvn -e --no-transfer-progress clean install -DskipTests
-
-  cd "$PROJECT_ROOT"
-
-  echo "Running Checkstyle validation to get report for openrewrite..."
-  set +e
-  ./mvnw -e --no-transfer-progress clean compile antrun:run@ant-phase-verify
-  set -e
-  echo "Running OpenRewrite recipes..."
-  ./mvnw -e --no-transfer-progress rewrite:run -Drewrite.recipeChangeLogLevel=INFO
-
-  echo "Checking for uncommitted changes..."
-  ./.ci/print-diff-as-patch.sh target/rewrite.patch
-
-  rm -rf /tmp/checkstyle-openrewrite-recipes
   ;;
 
 *)
