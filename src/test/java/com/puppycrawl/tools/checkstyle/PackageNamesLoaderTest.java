@@ -303,7 +303,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
      */
     private static class NoOperationUrlConnection extends URLConnection {
 
-        protected NoOperationUrlConnection(URL url) {
+        /* package */ NoOperationUrlConnection(URL url) {
             super(url);
         }
 

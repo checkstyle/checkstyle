@@ -351,7 +351,7 @@ public final class XMLLogger
          *
          * @return the file error events.
          */
-        public List<AuditEvent> getErrors() {
+        /* package */ List<AuditEvent> getErrors() {
             return Collections.unmodifiableList(errors);
         }
 
@@ -360,7 +360,7 @@ public final class XMLLogger
          *
          * @param event the error event.
          */
-        public void addError(AuditEvent event) {
+        /* package */ void addError(AuditEvent event) {
             errors.add(event);
         }
 
@@ -369,7 +369,7 @@ public final class XMLLogger
          *
          * @return the file exceptions.
          */
-        public List<Throwable> getExceptions() {
+        /* package */ List<Throwable> getExceptions() {
             return Collections.unmodifiableList(exceptions);
         }
 
@@ -378,7 +378,7 @@ public final class XMLLogger
          *
          * @param throwable the file exception
          */
-        public void addException(Throwable throwable) {
+        /* package */ void addException(Throwable throwable) {
             exceptions.add(throwable);
         }
 
