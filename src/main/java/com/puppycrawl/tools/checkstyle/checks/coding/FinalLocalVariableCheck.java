@@ -729,7 +729,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
          * @param ast ast.
          * @return Optional of {@link FinalVariableCandidate}.
          */
-        public Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
+        /* package */ Optional<FinalVariableCandidate>
+            findFinalVariableCandidateForAst(DetailAST ast) {
             Optional<FinalVariableCandidate> result = Optional.empty();
             DetailAST storedVariable = null;
             final Optional<FinalVariableCandidate> candidate =

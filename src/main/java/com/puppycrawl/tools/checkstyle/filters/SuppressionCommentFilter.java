@@ -442,7 +442,7 @@ public class SuppressionCommentFilter
          *
          * @return the line number of the tag in the source file.
          */
-        public int getLine() {
+        /* package */ int getLine() {
             return line;
         }
 
@@ -453,7 +453,7 @@ public class SuppressionCommentFilter
          *
          * @return the column number of the tag in the source file.
          */
-        public int getColumn() {
+        /* package */ int getColumn() {
             return column;
         }
 
@@ -463,7 +463,7 @@ public class SuppressionCommentFilter
          *
          * @return {@code ON} if the suppression turns reporting on.
          */
-        public TagType getTagType() {
+        /* package */ TagType getTagType() {
             return tagType;
         }
 
@@ -527,7 +527,7 @@ public class SuppressionCommentFilter
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(TreeWalkerAuditEvent event) {
+        /* package */ boolean isMatch(TreeWalkerAuditEvent event) {
             return isCheckMatch(event) && isIdMatch(event) && isMessageMatch(event);
         }
 
