@@ -78,6 +78,20 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Plain text content within a Javadoc comment.
+     *
+     * <p>This node represents any plain text that appears in a Javadoc comment,
+     * including spaces and punctuation.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * This is plain text content.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * LEADING_ASTERISK ->  *
+     * TEXT ->  This is plain text content.
+     * }</pre>
+     *
+     * @see #JAVADOC_CONTENT
      */
     public static final int TEXT = JavadocCommentsLexer.TEXT;
 
