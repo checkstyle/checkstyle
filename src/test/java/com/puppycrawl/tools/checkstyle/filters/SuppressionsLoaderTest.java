@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -220,10 +221,11 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     private static boolean isUrlReachable(String url) {
         boolean result = true;
         try {
-            final URL verifiableUrl = new URL(url);
+            final URL verifiableUrl = URI.create(url).toURL();
             final HttpURLConnection urlConnect = (HttpURLConnection) verifiableUrl.openConnection();
             urlConnect.getContent();
         }
+
         catch (IOException ignored) {
             result = false;
         }
