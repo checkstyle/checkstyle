@@ -381,7 +381,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         /**
          * Increments the counter.
          */
-        public void increment() {
+        /* package */ void increment() {
             count++;
         }
 
@@ -390,7 +390,7 @@ public class JavaNCSSCheck extends AbstractCheck {
          *
          * @return the counter
          */
-        public int getCount() {
+        /* package */ int getCount() {
             return count;
         }
 
