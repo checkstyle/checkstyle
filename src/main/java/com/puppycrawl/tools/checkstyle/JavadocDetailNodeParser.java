@@ -170,7 +170,7 @@ public class JavadocDetailNodeParser {
          * @param offset
          *        offset line number
          */
-        public void setOffset(int offset) {
+        /* package */ void setOffset(int offset) {
             this.offset = offset;
         }
 

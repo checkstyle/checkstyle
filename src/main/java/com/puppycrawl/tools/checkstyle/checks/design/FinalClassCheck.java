@@ -444,7 +444,7 @@ public class FinalClassCheck
          *
          * @return qualified class name
          */
-        protected String getQualifiedName() {
+        /* package */ String getQualifiedName() {
             return qualifiedName;
         }
 
@@ -453,7 +453,7 @@ public class FinalClassCheck
          *
          * @return the depth of nesting of type declaration
          */
-        protected int getDepth() {
+        /* package */ int getDepth() {
             return depth;
         }
 
@@ -462,7 +462,8 @@ public class FinalClassCheck
          *
          * @return ast node of the type declaration
          */
-        protected DetailAST getTypeDeclarationAst() {
+
+        /* package */ DetailAST getTypeDeclarationAst() {
             return typeDeclarationAst;
         }
     }
