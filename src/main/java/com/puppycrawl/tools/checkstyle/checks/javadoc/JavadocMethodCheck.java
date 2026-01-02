@@ -1002,7 +1002,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param className token which represents class name.
          * @throws IllegalArgumentException when className is nulls
          */
-        protected ClassInfo(final Token className) {
+        /* package */ ClassInfo(final Token className) {
             name = className;
         }
 
@@ -1011,7 +1011,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          *
          * @return class name
          */
-        public final Token getName() {
+        /* package */ final Token getName() {
             return name;
         }
 
@@ -1039,7 +1039,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          *
          * @return text of the token
          */
-        public String getText() {
+        /* package */ String getText() {
             return text;
         }
 
