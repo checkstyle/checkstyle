@@ -246,6 +246,7 @@
       -Xep:ConstantNaming:ERROR
       -Xep:DefaultCharset:ERROR
       -Xep:DirectReturn:ERROR
+      -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
@@ -280,7 +281,6 @@
       -Xep:JdkObsolete:WARN
       -Xep:StatementSwitchToExpressionSwitch:WARN
       -Xep:StringSplitter:WARN
-      -Xep:EffectivelyPrivate:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
