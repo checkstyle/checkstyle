@@ -19,19 +19,25 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -158,6 +164,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Required tokens differ from expected")
             .that(checkObj.getRequiredTokens())
@@ -464,6 +472,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
             TokenTypes.TEXT_BLOCK_CONTENT,
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
         assertWithMessage("Acceptable tokens differ from expected")
             .that(actual)
@@ -555,6 +565,141 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             }
             lastChar = currentChar;
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Map<Integer, List<DetailAST>> pendingMap(
+            AvoidEscapedUnicodeCharactersCheck check) {
+        return TestUtil.getInternalState(check, "pendingLiteralsByLine", Map.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Set<Integer> trailingSet(
+            AvoidEscapedUnicodeCharactersCheck check) {
+        return TestUtil.getInternalState(check, "linesWithTrailingComments", Set.class);
+    }
+
+    private static boolean isTrailingComment(DetailAST ast) throws Exception {
+        return TestUtil.invokeStaticMethod(
+                AvoidEscapedUnicodeCharactersCheck.class,
+                "isTrailingComment",
+                Boolean.class,
+                ast);
+    }
+
+    @Test
+    public void testTrailingCommentLastChildOnLaterLine() throws Exception {
+        final DetailAST comment = Mockito.mock();
+        final DetailAST lastChild = Mockito.mock();
+        final DetailAST next = Mockito.mock();
+
+        when(comment.getLineNo()).thenReturn(10);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(11);
+
+        when(comment.getNextSibling()).thenReturn(next);
+        when(next.getLineNo()).thenReturn(10);
+        when(next.getType()).thenReturn(TokenTypes.IDENT);
+
+        assertThat(isTrailingComment(comment)).isTrue();
+    }
+
+    @Test
+    public void testTrailingCommentWithoutNextSibling() throws Exception {
+        final DetailAST comment = Mockito.mock();
+        final DetailAST lastChild = Mockito.mock();
+
+        when(comment.getLineNo()).thenReturn(40);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(40);
+
+        when(comment.getNextSibling()).thenReturn(null);
+
+        assertThat(isTrailingComment(comment)).isTrue();
+    }
+
+    @Test
+    public void testTrailingCommentNextSiblingVariants() throws Exception {
+        final DetailAST comment = Mockito.mock();
+        final DetailAST lastChild = Mockito.mock();
+        final DetailAST next = Mockito.mock();
+
+        when(comment.getLineNo()).thenReturn(20);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(20);
+
+        when(comment.getNextSibling()).thenReturn(next);
+
+        when(next.getLineNo()).thenReturn(21);
+        when(next.getType()).thenReturn(TokenTypes.IDENT);
+        assertThat(isTrailingComment(comment)).isTrue();
+
+        when(next.getLineNo()).thenReturn(20);
+        when(next.getType()).thenReturn(TokenTypes.SINGLE_LINE_COMMENT);
+        assertThat(isTrailingComment(comment)).isTrue();
+
+        when(next.getType()).thenReturn(TokenTypes.BLOCK_COMMENT_BEGIN);
+        assertThat(isTrailingComment(comment)).isTrue();
+    }
+
+    @Test
+    public void testTrailingCommentSameLineNonComment() throws Exception {
+        final DetailAST comment = Mockito.mock();
+        final DetailAST lastChild = Mockito.mock();
+        final DetailAST next = Mockito.mock();
+
+        when(comment.getLineNo()).thenReturn(30);
+        when(comment.getLastChild()).thenReturn(lastChild);
+        when(lastChild.getLineNo()).thenReturn(30);
+
+        when(comment.getNextSibling()).thenReturn(next);
+        when(next.getLineNo()).thenReturn(30);
+        when(next.getType()).thenReturn(TokenTypes.IDENT);
+
+        assertThat(isTrailingComment(comment)).isFalse();
+    }
+
+    @Test
+    public void testVisitTokenAddsStringLiteral() {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        final DetailAST stringLiteral = Mockito.mock();
+        when(stringLiteral.getType()).thenReturn(TokenTypes.STRING_LITERAL);
+        when(stringLiteral.getLineNo()).thenReturn(77);
+        when(stringLiteral.getText()).thenReturn("\"abc\"");
+
+        when(stringLiteral.getNextSibling()).thenThrow(
+                new AssertionError("getNextSibling must not be called"));
+
+        check.visitToken(stringLiteral);
+
+        assertThat(pendingMap(check)).containsKey(77);
+    }
+
+    @Test
+    public void testFinishTreeClearsState() {
+        final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
+
+        final DetailAST literal = Mockito.mock();
+        when(literal.getType()).thenReturn(TokenTypes.STRING_LITERAL);
+        when(literal.getLineNo()).thenReturn(101);
+        when(literal.getText()).thenReturn("\"test\"");
+
+        check.visitToken(literal);
+
+        final DetailAST comment = Mockito.mock();
+        when(comment.getType()).thenReturn(TokenTypes.SINGLE_LINE_COMMENT);
+        when(comment.getLineNo()).thenReturn(101);
+
+        check.visitToken(comment);
+
+        assertThat(pendingMap(check)).isNotEmpty();
+        assertThat(trailingSet(check)).isNotEmpty();
+
+        check.finishTree(Mockito.mock());
+
+        assertThat(pendingMap(check)).isEmpty();
+        assertThat(trailingSet(check)).isEmpty();
     }
 
     private static boolean isControlCharacter(final int character) {
