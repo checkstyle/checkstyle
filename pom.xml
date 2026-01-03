@@ -3324,6 +3324,7 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
               </avoidCallsTo>
               <features>
