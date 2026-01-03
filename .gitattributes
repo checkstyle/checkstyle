@@ -22,3 +22,7 @@ src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquer
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
 src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
 src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/Example3.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCRLF.java eol=crlf
+/src/test/resources/com/puppycrawl/tools/checkstyle/checks/lineending/InputLineEndingCRLF2.java eol=crlf
+/src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example2.java eol=crlf
+/src/xdocs-examples/resources/com/puppycrawl/tools/checkstyle/checks/lineending/Example3.java eol=crlf
