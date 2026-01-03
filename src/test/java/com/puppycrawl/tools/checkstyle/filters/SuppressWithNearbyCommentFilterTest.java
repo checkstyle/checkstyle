@@ -26,6 +26,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.junit.jupiter.api.Test;
 
@@ -483,6 +484,46 @@ public class SuppressWithNearbyCommentFilterTest
         assertWithMessage("Filter should accept audit event")
                 .that(filter.accept(auditEvent))
                 .isTrue();
+    }
+
+    // /**
+    //  * We cannot use {@link #verifySuppressedWithParser(String, String...)} here because
+    //  * it abstracts away the creation of {@code SuppressWithNearbyCommentFilter}.
+    //  * We need access to the filter instance to modify its configuration at runtime
+    //  * for caching verification.
+    //  */
+    // @Test
+    // public void testAcceptUsesCachedSuppressionsOnConfigChange() {
+    //     final FileText fileText = new FileText(new File("Test.java"),
+    //             Collections.singletonList("public class Test {} // SUPPRESS"));
+    //     final FileContents fileContents = new FileContents(fileText);
+    //     fileContents.reportSingleLineComment(1, 21);
+    //     final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+    //     filter.setCommentFormat(Pattern.compile("SUPPRESS"));
+    //     final Violation violation = new Violation(1, null, null, null, null, Object.class, null);
+    //     final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(
+    //             fileContents, "Test.java", violation, null);
+    //     final boolean firstResult = filter.accept(event);
+    //     assertWithMessage("Filter should suppress violation initially")
+    //             .that(firstResult)
+    //             .isFalse();
+    //     filter.setCommentFormat(Pattern.compile("IGNORE"));
+    //     final boolean secondResult = filter.accept(event);
+    //     assertWithMessage("Filter should rely on cached tags and ignore config change")
+    //             .that(secondResult)
+    //             .isFalse();
+    // }
+
+    @Test
+    public void testAcceptUsesCachedSuppressions() throws Exception {
+        final String filePath1 = getPath("InputSuppressWithNearbyCommentFilterMutation.java");
+        final String filePath2 = getPath("InputSuppressWithNearbyCommentFilterMutation2.java");
+
+        final String[] expected = {
+            "28:17: Name 'A' must match pattern '^[a-z][a-zA-Z0-9]*$'."
+        };
+
+        verifyWithInlineConfigParser(filePath2, filePath1, expected);
     }
 
     @Test
