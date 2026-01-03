@@ -8,6 +8,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.textblockgooglestyleformat
 
 public class InputTextBlockGoogleStyleFormatting10 {
     public static void textFun() {
+        // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         final String simpleScript =
             """
      Less Indentation than expected
@@ -19,6 +20,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
                 More indentation than the quotes, ok.
             """;
 
+        // violation 4 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         final String simpleScript2 =
                 simpleScript +
                 simpleScript1 +
@@ -42,6 +44,7 @@ public class InputTextBlockGoogleStyleFormatting10 {
                        this is a simple sentence
                 """);
 
+        // violation 2 lines below 'Each line of text in the text block must be indented at least as much as the opening and closing quotes'
         final String simpleScript5 =
                 """
      test       """;
