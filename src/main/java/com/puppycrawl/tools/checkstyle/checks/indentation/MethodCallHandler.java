@@ -57,7 +57,17 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())
                     || isChainedMethodCallWrapped()
                     || areMethodsChained(container.getMainAst(), getMainAst())) {
-                indentLevel = container.getIndent();
+                // For chained calls, use container's indent but also add the line start
+                // as an acceptable level to handle cases like List.of().stream().method()
+                final IndentLevel containerIndent = container.getIndent();
+                final int lineStart = getLineStart(getFirstAst(getMainAst()));
+                if (lineStart == containerIndent.getFirstIndentLevel()) {
+                    indentLevel = containerIndent;
+                }
+                else {
+                    indentLevel = IndentLevel.addAcceptable(containerIndent,
+                            new IndentLevel(lineStart));
+                }
             }
             // we should increase indentation only if this is the first
             // chained method call which was moved to the next line
