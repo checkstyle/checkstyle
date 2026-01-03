@@ -508,6 +508,23 @@ public class SuppressWithNearbyCommentFilterTest
                     + "tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=.*]");
     }
 
+    /**
+     * {@link #verifySuppressedWithParser(String, String...)} does not invoke
+     * {@code Tag#toString()}. Direct assertion is required to kill the mutation
+     */
+    @Test
+    public void testToStringOfTagClassWithMessage() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        filter.setMessageFormat("msg");
+        filter.setCheckFormat("IGNORE");
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
+                    + "tagCheckRegexp=IGNORE, tagMessageRegexp=msg, tagIdRegexp=null]");
+    }
+
     @Test
     public void testUsingTagMessageRegexp() throws Exception {
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
