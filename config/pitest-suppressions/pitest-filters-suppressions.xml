@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter</mutatedClass>
-    <mutatedMethod>accept</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter::getFileContents</description>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XpathFilterElement.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
     <mutatedMethod>isXpathQueryMatching</mutatedMethod>
