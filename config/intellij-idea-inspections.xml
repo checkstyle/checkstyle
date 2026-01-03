@@ -5272,8 +5272,7 @@
     <option name="ADD_SERVLET_TO_ENTRIES" value="true"/>
     <option name="ADD_NONJAVA_TO_ENTRIES" value="true"/>
   </inspection_tool>
-  <!-- disabled till https://github.com/checkstyle/checkstyle/issues/17299 -->
-  <inspection_tool class="ClassCanBeRecord" enabled="false"
+  <inspection_tool class="ClassCanBeRecord" enabled="true"
                    level="WEAK WARNING" enabled_by_default="true" />
   <inspection_tool class="EnhancedSwitchMigration" enabled="true"
                    level="WARNING" enabled_by_default="true" />
