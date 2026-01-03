@@ -1032,6 +1032,11 @@
                   config</a>)
                   <br />
                   <br />
+                  Partial support: The check does not validate whitespace before empty
+                  blocks(<code>{}</code>) for classes, methods, interfaces, static blocks,
+                  loops(<code>while</code>, <code>do</code>, <code>for</code>), and records.
+                  <br />
+                  <br />
                   <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
@@ -1058,7 +1063,7 @@
                   <br />
                   <br />
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/whitespace/whitespaceafter.html#WhitespaceAfter">
                     WhitespaceAfter</a>
@@ -1066,13 +1071,28 @@
                   config</a>)
                   <br />
                   <br />
+                  Partial support: The check does not validate whitespace after annotations
+                  in all type-use contexts, particularly when annotations appear before array
+                  declarators or when multiple annotations are present (only the last annotation
+                  is validated).
+                  <br />
+                  <br />
                   <span class="wrapper inline">
-                    <img src="images/ok_green.png" alt="" />
+                    <img src="images/ok_blue.png" alt="" />
                   </span>
                   <a href="checks/whitespace/nowhitespacebefore.html#NoWhitespaceBefore">
                     NoWhitespaceBefore</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBefore">
                   config</a>)
+                  <br/>
+                  <br/>
+                  A single whitespace before the empty block(<code>{}</code>) of a class,
+                  method, interface, static, loops(<code>while</code>,
+                  <code>do</code>, <code>for</code>), and record is not covered.
+                  It will be addressed at:
+                  <a href="https://github.com/checkstyle/checkstyle/issues/17715">
+                    #17715
+                  </a>
                   <br />
                   <br />
                   <span class="wrapper inline">
@@ -1091,15 +1111,6 @@
                     MatchXpath</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MatchXpath">
                   config</a>)
-                  <br/>
-                  <br/>
-                  A single whitespace before the empty block(<code>{}</code>) of a class,
-                  method, interface, static, loops(<code>while</code>,
-                  <code>do</code>, <code>for</code>), and record is not covered.
-                  It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17715">
-                    #17715
-                  </a>
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">
@@ -1861,8 +1872,12 @@
                         alt="" />
                   </span>
                   <a href="checks/naming/typename.html#TypeName">TypeName</a>
-                  ()<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
-                  config</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+TypeName">
+                  config</a>)
+                  <br/>
+                  <br/>
+                  Partial support: The check does not validate class names with underscores at
+                  the end or between digits and letters.
                   <br/>
                   <br/>
                   <span class="wrapper inline">
@@ -1901,11 +1916,8 @@
                   config</a>)
                   <br/>
                   <br/>
-                  There are some false-negatives regarding the use of underscores in
-                  the method names. They will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17841">
-                    #17841
-                  </a>
+                  Partial support: The check does not detect all cases of invalid underscore
+                  usage in method names.
                   <br/>
                   <br/>
                   <span class="wrapper inline">
@@ -2244,12 +2256,17 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_green.png"
+                        src="images/ok_blue.png"
                         alt="" />
                   </span>
                   <a href="checks/blocks/emptycatchblock.html#EmptyCatchBlock">EmptyCatchBlock</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+EmptyCatchBlock">
                   config</a>)
+                  <br />
+                  <br />
+                  Partial support: The check only validates empty <code>catch</code> blocks.
+                  Empty <code>finally</code> blocks are not validated, though Google style
+                  requires that they should not be ignored.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
@@ -2414,12 +2431,8 @@
                   </a>
                   <br />
                   <br />
-                  2. There is a false negative concerning Javadoc blocks where the
-                  closing <code>*/</code> does not appear on its own line.
-                  It is addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/18273">
-                    #18273
-                  </a>
+                  2. Javadoc blocks where the closing <code>*/</code> does not appear
+                  on its own line.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform">
@@ -2447,6 +2460,11 @@
                   <a href="checks/javadoc/javadocparagraph.html#JavadocParagraph">JavadocParagraph</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
                   config</a>)
+                  <br />
+                  <br />
+                  Partial support: The check does not validate some edge cases related to
+                  paragraph tag placement and formatting within Javadoc comments, particularly
+                  for nested HTML elements and certain paragraph tag positions.
                   <br />
                   <br />
                   <span class="wrapper inline">
@@ -2662,6 +2680,11 @@
                   <a href="checks/javadoc/javadocmethod.html#JavadocMethod">JavadocMethod</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMethod">
                   config</a>)
+                  <br />
+                  <br />
+                  Partial support: The check does not validate exception documentation in
+                  overridden methods. Google style requires that overridden methods should
+                  document exceptions, but this is not validated by the check.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule732exceptionoverrides">
@@ -2690,6 +2713,13 @@
                     InvalidJavadocPosition</a>
                   (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+InvalidJavadocPosition">
                   config</a>)
+                  <br />
+                  <br />
+                  Partial support: The check does not detect invalid Javadoc positions in
+                  contexts where Javadoc is not required by Google style, such as for private
+                  methods or
+                  certain non-public members. Some invalid positions may not be detected in
+                  these non-required contexts.
                 </td>
                 <td>
                   <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc">
