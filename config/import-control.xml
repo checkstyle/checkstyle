@@ -130,6 +130,11 @@
     <file name="ModuleReflectionUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
+
+    <file name="NullnessAssertUtil">
+      <allow class="javax.annotation.Nonnull"/>
+      <allow class="javax.annotation.Nullable"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">

@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.NullnessAssertUtil;
 
 /**
  * <div>
@@ -147,7 +148,8 @@ public class UncommentedMainCheck
         // we are not use inner classes because they can not
         // have static methods
         if (classDepth == 0) {
-            final DetailAST ident = classOrRecordDef.findFirstToken(TokenTypes.IDENT);
+            final DetailAST ident =
+                    NullnessAssertUtil.notNull(classOrRecordDef.findFirstToken(TokenTypes.IDENT));
             currentClass = packageName.getText() + "." + ident.getText();
             classDepth++;
         }
@@ -187,7 +189,7 @@ public class UncommentedMainCheck
      * @return true if check passed, false otherwise
      */
     private static boolean checkName(DetailAST method) {
-        final DetailAST ident = method.findFirstToken(TokenTypes.IDENT);
+        final DetailAST ident = NullnessAssertUtil.notNull(method.findFirstToken(TokenTypes.IDENT));
         return "main".equals(ident.getText());
     }
 
@@ -199,7 +201,7 @@ public class UncommentedMainCheck
      */
     private static boolean checkModifiers(DetailAST method) {
         final DetailAST modifiers =
-            method.findFirstToken(TokenTypes.MODIFIERS);
+            NullnessAssertUtil.notNull(method.findFirstToken(TokenTypes.MODIFIERS));
 
         return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
             && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
@@ -213,7 +215,7 @@ public class UncommentedMainCheck
      */
     private static boolean checkType(DetailAST method) {
         final DetailAST type =
-            method.findFirstToken(TokenTypes.TYPE).getFirstChild();
+            NullnessAssertUtil.notNull(method.findFirstToken(TokenTypes.TYPE)).getFirstChild();
         return type.getType() == TokenTypes.LITERAL_VOID;
     }
 
@@ -225,10 +227,13 @@ public class UncommentedMainCheck
      */
     private static boolean checkParams(DetailAST method) {
         boolean checkPassed = false;
-        final DetailAST params = method.findFirstToken(TokenTypes.PARAMETERS);
+        final DetailAST params =
+                NullnessAssertUtil.notNull(method.findFirstToken(TokenTypes.PARAMETERS));
 
         if (params.getChildCount() == 1) {
-            final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
+            final DetailAST parameterType =
+                    NullnessAssertUtil.notNull(params.getFirstChild()
+                            .findFirstToken(TokenTypes.TYPE));
             final boolean isArrayDeclaration =
                 parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
             final Optional<DetailAST> varargs = Optional.ofNullable(
