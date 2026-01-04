@@ -315,14 +315,12 @@ public class VariableDeclarationUsageDistanceCheckTest extends
 
         final int maxDistance = 1;
         final String[] expected = {
-            "35:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
-            "80:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
-            "81:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
-            "113:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
-            "155:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
-            "156:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
-            "177:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
-            "197:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
+            "33:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
+            "50:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
+            "51:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
+            "83:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
+            "100:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
+            "101:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
         };
 
         final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions.java";
