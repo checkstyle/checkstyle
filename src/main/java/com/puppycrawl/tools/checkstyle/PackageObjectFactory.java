@@ -457,6 +457,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.annotation.MissingDeprecatedCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingOverrideCheck",
                 BASE_PACKAGE + ".checks.annotation.MissingOverrideCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MissingOverrideOnRecordAccessorCheck",
+                BASE_PACKAGE + ".checks.annotation.MissingOverrideOnRecordAccessorCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageAnnotationCheck",
                 BASE_PACKAGE + ".checks.annotation.PackageAnnotationCheck");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsCheck",

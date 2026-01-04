@@ -296,6 +296,7 @@
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
     <module name="MissingOverride"/>
+    <module name="MissingOverrideOnRecordAccessor"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
       <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>

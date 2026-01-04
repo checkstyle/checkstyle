@@ -1113,6 +1113,17 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/annotation/missingoverrideonrecordaccessor.html#MissingOverrideOnRecordAccessor">
+                MissingOverrideOnRecordAccessor
+              </a>
+            </td>
+            <td>
+              Verifies that explicitly declared record accessor methods include the
+              <code>@Override</code> annotation.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/coding/missingswitchdefault.html#MissingSwitchDefault">
                 MissingSwitchDefault
               </a>
