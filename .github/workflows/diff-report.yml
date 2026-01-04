@@ -56,7 +56,7 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
       - run: 'echo without this pull-request-comment-trigger causes all further steps be skipped'
-        if: always()
+        if: 'true'
 
       - name: Checkout repository
         uses: actions/checkout@v6
