@@ -341,7 +341,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      *
      * @param annotation the annotation token
      * @noinspection EnhancedSwitchMigration
-     * @noinspectionreason Until #17674
+     * @noinspectionreason EnhancedSwitch statement cause too many problems with other tools
      */
     private void checkStyleType(final DetailAST annotation) {
         switch (elementStyle) {
@@ -356,8 +356,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
                 break;
             case IGNORE:
             default:
-                break;
-        }
+                break;        }
     }
 
     /**
