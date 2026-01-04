@@ -742,7 +742,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
          *
          * @param token the token to accumulate
          */
-        public void append(Token token) {
+        /* package */ void append(Token token) {
             if (buffer.isEmpty()) {
                 startToken = token;
             }
@@ -755,7 +755,7 @@ public class JavadocCommentsAstVisitor extends JavadocCommentsParserBaseVisitor<
          *
          * @param parent the parent node to add the new node to
          */
-        public void flushTo(JavadocNodeImpl parent) {
+        /* package */ void flushTo(JavadocNodeImpl parent) {
             if (!buffer.isEmpty()) {
                 final JavadocNodeImpl startNode = create(startToken);
                 startNode.setText(buffer.toString());
