@@ -59,6 +59,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
         };
         assertWithMessage("Default required tokens are invalid")
             .that(checkObj.getRequiredTokens())
@@ -274,6 +275,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PACKAGE_DEF,
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
+            TokenTypes.MODULE_IMPORT,
         };
 
         assertWithMessage("Default acceptable tokens are invalid")
@@ -474,6 +476,25 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         assertThat(ex.getCause().getCause().getCause().getCause().getCause().getMessage())
                 .endsWith("- Document root element \"import-control\", must match DOCTYPE"
                  + " root \"null\".");
+    }
+
+    @Test
+    public void testModuleImportNoRegex() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.sql"),
+            "14:1: " + getCheckMessage(MSG_DISALLOWED, "java.logging"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportControlModuleImportNoRegex.java"), expected);
+    }
+
+    @Test
+    public void testModuleImportWithRegex() throws Exception {
+        final String[] expected = {
+            "12:1: " + getCheckMessage(MSG_DISALLOWED, "java.sql"),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputImportControlModuleImportWithRegex.java"), expected);
     }
 
     /**
