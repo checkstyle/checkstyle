@@ -1876,6 +1876,11 @@ public class XdocsPagesTest {
                     checks.removeAll(IGNORED_SUN_MODULES);
                     yield checks;
                 }
+                case null -> {
+                    assertWithMessage("Style name is unexpectedly null")
+                            .fail();
+                    yield null;
+                }
                 default -> {
                     assertWithMessage("Missing modules list for style file '%s'", fileName)
                             .fail();
