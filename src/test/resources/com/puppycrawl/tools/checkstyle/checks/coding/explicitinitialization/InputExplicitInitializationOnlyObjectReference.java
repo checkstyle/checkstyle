@@ -9,7 +9,8 @@ package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitializationOnlyObjectReference {
     private int x = 0;
-    private Object bar = /* comment test */null; // violation
+// violation below 'Variable 'bar' explicitly initialized to 'null' (default value for its type)'
+    private Object bar = /* comment test */null;
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
@@ -19,7 +20,8 @@ public class InputExplicitInitializationOnlyObjectReference {
     private boolean b3;
     private String str = "";
     java.lang.String str1 = null, str3 = null; // 2 violations
-    int ar1[] = null; // violation
+// violation below 'Variable 'ar1' explicitly initialized to 'null' (default value for its type)'
+    int ar1[] = null;
     int ar2[] = new int[1];
     int ar3[];
     float f1 = 0f;
@@ -43,8 +45,10 @@ interface interface2 {
 }
 
 class InputExplicitInit4 {
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+// violation below 'Variable 'bar' explicitly initialized to 'null' (default value for its type)'
+    private Bar<String> bar = null;
+// violation below 'Variable 'barArr' explicitly initialized to 'null' (default value for its type)'
+    private Bar<String>[] barArr = null;
 }
 
 enum InputExplicitInit5 {
@@ -52,13 +56,17 @@ enum InputExplicitInit5 {
     B
     {
         private int x = 0;
-        private Bar<String> bar = null; // violation
-        private Bar<String>[] barArray = null; // violation
+// violation below 'Variable 'bar' explicitly initialized to 'null' (default value for its type)'
+        private Bar<String> bar = null;
+// violation below 'Variable 'barArr' explicitly initialized to 'null' (default value for its type)'
+        private Bar<String>[] barArr = null;
         private int y = 1;
     };
     private int x = 0;
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+// violation below 'Variable 'bar' explicitly initialized to 'null' (default value for its type)'
+    private Bar<String> bar = null;
+// violation below 'Variable 'barArr' explicitly initialized to 'null' (default value for its type)'
+    private Bar<String>[] barArr = null;
     private int y = 1;
     private Boolean booleanAtt = false;
 }
