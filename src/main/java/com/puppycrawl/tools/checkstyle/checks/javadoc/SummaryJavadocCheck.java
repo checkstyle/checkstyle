@@ -209,19 +209,15 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         DetailNode currentAst = inlineTagNode.getPreviousSibling();
         while (currentAst != null && isDefinedFirst) {
             switch (currentAst.getType()) {
-                case JavadocCommentsTokenTypes.TEXT:
+                case JavadocCommentsTokenTypes.TEXT ->
                     isDefinedFirst = currentAst.getText().isBlank();
-                    break;
-                case JavadocCommentsTokenTypes.HTML_ELEMENT:
+                case JavadocCommentsTokenTypes.HTML_ELEMENT ->
                     isDefinedFirst = isHtmlTagWithoutText(currentAst);
-                    break;
-                case JavadocCommentsTokenTypes.LEADING_ASTERISK:
-                case JavadocCommentsTokenTypes.NEWLINE:
+                case JavadocCommentsTokenTypes.LEADING_ASTERISK,
+                     JavadocCommentsTokenTypes.NEWLINE -> {
                     // Ignore formatting tokens
-                    break;
-                default:
-                    isDefinedFirst = false;
-                    break;
+                }
+                default -> isDefinedFirst = false;
             }
             currentAst = currentAst.getPreviousSibling();
         }

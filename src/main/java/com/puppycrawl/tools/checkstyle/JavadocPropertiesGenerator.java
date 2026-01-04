@@ -278,22 +278,21 @@ public final class JavadocPropertiesGenerator {
                 node = node.getNextSibling()) {
             switch (node.getType()) {
                 // The text to append.
-                case JavadocCommentsTokenTypes.TEXT:
+                case JavadocCommentsTokenTypes.TEXT -> {
                     if (wrapWithCodeTag) {
                         builder.append("<code>").append(node.getText().trim()).append("</code>");
                     }
                     else {
                         builder.append(node.getText().trim());
                     }
-                    break;
-                // skip tag markers
-                case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START:
-                case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END:
-                case JavadocCommentsTokenTypes.TAG_NAME:
-                    break;
-                default:
-                    throw new CheckstyleException("Unsupported child in the inline tag "
-                        + JavadocUtil.getTokenName(node.getType()));
+                }
+                case JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_START,
+                     JavadocCommentsTokenTypes.JAVADOC_INLINE_TAG_END,
+                     JavadocCommentsTokenTypes.TAG_NAME -> {
+                    // skip tag markers
+                }
+                default -> throw new CheckstyleException("Unsupported child in the inline tag "
+                    + JavadocUtil.getTokenName(node.getType()));
             }
         }
     }

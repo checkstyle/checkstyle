@@ -130,8 +130,7 @@ public class FallThroughCheck extends AbstractCheck {
         if (!isLastGroup || checkLastCaseGroup) {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
-            if (slist != null && !isTerminated(slist, true, true, new HashSet<>())
-                    && !hasFallThroughComment(ast)) {
+            if (slist != null && !isTerminated(slist) && !hasFallThroughComment(ast)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }
@@ -143,7 +142,17 @@ public class FallThroughCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if a given subtree terminated by return, throw or,
+     * Checks if a given subtree is terminated by return, throw, break, continue, or yield.
+     *
+     * @param ast root of given subtree
+     * @return true if the subtree is terminated.
+     */
+    public static boolean isTerminated(final DetailAST ast) {
+        return isTerminated(ast, true, true, new HashSet<>());
+    }
+
+    /**
+     * Checks if a given subtree terminated by return, throw, yield or,
      * if allowed break, continue.
      * When analyzing fall-through cases in switch statements, a Set of String labels
      * is used to keep track of the labels encountered in the enclosing switch statements.
@@ -154,8 +163,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labelsForCurrentSwitchScope the Set labels for the current scope of the switch
      * @return true if the subtree is terminated.
      */
-    private boolean isTerminated(final DetailAST ast, boolean useBreak,
-                                 boolean useContinue, Set<String> labelsForCurrentSwitchScope) {
+    private static boolean isTerminated(final DetailAST ast, boolean useBreak, boolean useContinue,
+                                        Set<String> labelsForCurrentSwitchScope) {
 
         return switch (ast.getType()) {
             case TokenTypes.LITERAL_RETURN, TokenTypes.LITERAL_YIELD,
@@ -212,8 +221,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if SLIST is terminated.
      */
-    private boolean checkSlist(final DetailAST slistAst, boolean useBreak,
-                               boolean useContinue, Set<String> labels) {
+    private static boolean checkSlist(final DetailAST slistAst, boolean useBreak,
+                                      boolean useContinue, Set<String> labels) {
         DetailAST lastStmt = slistAst.getLastChild();
 
         if (lastStmt.getType() == TokenTypes.RCURLY) {
@@ -239,8 +248,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if IF is terminated.
      */
-    private boolean checkIf(final DetailAST ast, boolean useBreak,
-                            boolean useContinue, Set<String> labels) {
+    private static boolean checkIf(final DetailAST ast, boolean useBreak,
+                                   boolean useContinue, Set<String> labels) {
         final DetailAST thenStmt = getNextNonCommentAst(ast.findFirstToken(TokenTypes.RPAREN));
 
         final DetailAST elseStmt = getNextNonCommentAst(thenStmt);
@@ -273,7 +282,7 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if loop is terminated.
      */
-    private boolean checkLoop(final DetailAST ast, Set<String> labels) {
+    private static boolean checkLoop(final DetailAST ast, Set<String> labels) {
         final DetailAST loopBody;
         if (ast.getType() == TokenTypes.LITERAL_DO) {
             final DetailAST lparen = ast.findFirstToken(TokenTypes.DO_WHILE);
@@ -296,8 +305,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if try/catch/finally block is terminated
      */
-    private boolean checkTry(final DetailAST ast, boolean useBreak,
-                             boolean useContinue, Set<String> labels) {
+    private static boolean checkTry(final DetailAST ast, boolean useBreak,
+                                    boolean useContinue, Set<String> labels) {
         final DetailAST finalStmt = ast.getLastChild();
         boolean isTerminated = finalStmt.getType() == TokenTypes.LITERAL_FINALLY
                 && isTerminated(finalStmt.findFirstToken(TokenTypes.SLIST),
@@ -335,8 +344,8 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if switch is terminated
      */
-    private boolean checkSwitch(DetailAST literalSwitchAst,
-                                boolean useContinue, Set<String> labels) {
+    private static boolean checkSwitch(DetailAST literalSwitchAst,
+                                       boolean useContinue, Set<String> labels) {
         DetailAST caseGroup = literalSwitchAst.findFirstToken(TokenTypes.CASE_GROUP);
         boolean isTerminated = caseGroup != null;
         while (isTerminated && caseGroup.getType() != TokenTypes.RCURLY) {
@@ -359,7 +368,7 @@ public class FallThroughCheck extends AbstractCheck {
      * @param labels label names
      * @return true if synchronized block is terminated
      */
-    private boolean checkSynchronized(final DetailAST synchronizedAst, boolean useBreak,
+    private static boolean checkSynchronized(final DetailAST synchronizedAst, boolean useBreak,
                                       boolean useContinue, Set<String> labels) {
         return isTerminated(
             synchronizedAst.findFirstToken(TokenTypes.SLIST), useBreak, useContinue, labels);

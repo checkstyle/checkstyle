@@ -352,22 +352,16 @@ public class SuppressWarningsHolder
             final DetailAST nextAST = lparenAST.getNextSibling();
             final int nextType = nextAST.getType();
             switch (nextType) {
-                case TokenTypes.EXPR:
-                case TokenTypes.ANNOTATION_ARRAY_INIT:
+                case TokenTypes.EXPR, TokenTypes.ANNOTATION_ARRAY_INIT ->
                     values = getAnnotationValues(nextAST);
-                    break;
-
-                case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR ->
                     // expected children: IDENT ASSIGN ( EXPR |
                     // ANNOTATION_ARRAY_INIT )
                     values = getAnnotationValues(getNthChild(nextAST, 2));
-                    break;
-
-                case TokenTypes.RPAREN:
+                case TokenTypes.RPAREN -> {
                     // no value present (not valid Java)
-                    break;
-
-                default:
+                }
+                default ->
                     // unknown annotation value type (new syntax?)
                     throw new IllegalArgumentException("Unexpected AST: " + nextAST);
             }

@@ -159,16 +159,13 @@ public final class ReturnCountCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.LAMBDA:
-                leave(ast);
-                break;
-            case TokenTypes.LITERAL_RETURN:
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.LAMBDA -> leave(ast);
+            case TokenTypes.LITERAL_RETURN -> {
                 // Do nothing
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+            }
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 

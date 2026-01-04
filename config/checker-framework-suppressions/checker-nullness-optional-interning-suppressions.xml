@@ -3977,6 +3977,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/UseEnhancedSwitchCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter ast of FallThroughCheck.isTerminated.</message>
+    <lineContent>if (!FallThroughCheck.isTerminated(statementList)) {</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/VariableDeclarationUsageDistanceCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ast</message>
