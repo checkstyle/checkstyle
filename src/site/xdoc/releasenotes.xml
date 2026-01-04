@@ -10,6 +10,84 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 13.0.0">
+      <div class="releaseDate">04.01.2026</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Use jdk21 as minimial required.
+            Author: Amit Kumar Deohoria, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17430">#17430</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Remove duplicate violations in WhitespaceAfter and WhitespaceAround in sun_checks.xml.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18409">#18409</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            jdk21: activate MissingNullCaseInSwitch for checkstyle project.
+            Author: Monu Chaudhary
+            <a href="https://github.com/checkstyle/checkstyle/issues/17428">#17428</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - imports.
+            Author: Daniel Gao
+            <a href="https://github.com/checkstyle/checkstyle/issues/18034">#18034</a>
+          </li>
+          <li>
+            Conversion to Enhance Switch for AnnotationUseStyle Check Causing Jacoco Coverage Issue.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17674">#17674</a>
+          </li>
+          <li>
+            Convert eligible classes to records.
+            Author: smita_1078, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/17299">#17299</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for indentation profile to 100%.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/6294">#6294</a>
+          </li>
+          <li>
+            Resolve Pitest Suppressions - filters.
+            Author: aclfe
+            <a href="https://github.com/checkstyle/checkstyle/issues/18023">#18023</a>
+          </li>
+          <li>
+            Fix xdocs Examples AST Consistency Test (Reduce suppressions list).
+            Author: Zaheer Ahmad
+            <a href="https://github.com/checkstyle/checkstyle/issues/18435">#18435</a>
+          </li>
+          <li>
+            EmptyLineSeparator ignores configured tokens: reports violations for unlisted tokens
+            and skips listed ones.
+            Author: Aman Baliyan
+            <a href="https://github.com/checkstyle/checkstyle/issues/17568">#17568</a>
+          </li>
+          <li>
+            Enforce file size on Java inputs.
+            Author: Monu Chaudhary
+            <a href="https://github.com/checkstyle/checkstyle/issues/11163">#11163</a>
+          </li>
+          <li>
+            Store SARIF schema locally to avoid external network dependency.
+            Author: vivek-0509
+            <a href="https://github.com/checkstyle/checkstyle/issues/18448">#18448</a>
+          </li>
+          <li>
+            Update `JavadocCommentsTokenTypes.java` to new format of AST print.
+            Author: 0xChaitanya
+            <a href="https://github.com/checkstyle/checkstyle/issues/17882">#17882</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 12.3.1">
       <div class="releaseDate">31.12.2025</div>
       <p>Bug fixes:</p>
