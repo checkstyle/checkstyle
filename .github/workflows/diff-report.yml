@@ -55,9 +55,6 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
-      - run: 'echo We print it here for this action to work'
-        if: 'true'
-
       - name: Checkout repository
         uses: actions/checkout@v6
 
