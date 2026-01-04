@@ -349,7 +349,7 @@ public class AllCheckSummaries extends AbstractMacro {
                                        StringBuilder holderRows) {
         for (CheckInfo info : infos.values()) {
             final String row = buildTableRow(info);
-            if (isHolder(info.simpleName)) {
+            if (isHolder(info.simpleName())) {
                 holderRows.append(row);
             }
             else {
@@ -372,15 +372,15 @@ public class AllCheckSummaries extends AbstractMacro {
         final String ind14 = ModuleJavadocParsingUtil.INDENT_LEVEL_14;
         final String ind16 = ModuleJavadocParsingUtil.INDENT_LEVEL_16;
 
-        final String cleanSummary = sanitizeAnchorUrls(info.summary);
+        final String cleanSummary = sanitizeAnchorUrls(info.summary());
 
         return ind10 + "<tr>"
                 + ind12 + TD_TAG
                 + ind14
                 + "<a href=\""
-                + info.link
+                + info.link()
                 + "\">"
-                + ind16 + info.simpleName
+                + ind16 + info.simpleName()
                 + ind14 + CLOSING_ANCHOR_TAG
                 + ind12 + TD_CLOSE_TAG
                 + ind12 + TD_TAG
@@ -835,26 +835,11 @@ public class AllCheckSummaries extends AbstractMacro {
 
     /**
      * Data holder for each Check module entry.
+     *
+     * @param simpleName check simple name
+     * @param link documentation link
+     * @param summary module summary
      */
-    private static final class CheckInfo {
-        /** Simple name of the check. */
-        private final String simpleName;
-        /** Documentation link. */
-        private final String link;
-        /** Short summary text. */
-        private final String summary;
-
-        /**
-         * Constructs an info record.
-         *
-         * @param simpleName check simple name
-         * @param link documentation link
-         * @param summary module summary
-         */
-        private CheckInfo(String simpleName, String link, String summary) {
-            this.simpleName = simpleName;
-            this.link = link;
-            this.summary = summary;
-        }
+    private record CheckInfo(String simpleName, String link, String summary) {
     }
 }
