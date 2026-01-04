@@ -49,6 +49,9 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
             "29:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
             "29:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
             "29:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            // new empty-switch violations (switch (value) {})
+            "39:20: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "39:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -157,4 +160,12 @@ public class WhitespaceAroundExamplesTest extends AbstractExamplesModuleTestSupp
 
         verifyWithInlineConfigParser(getPath("Example10.java"), expected);
     }
+
+    @Test
+    public void testExample11() throws Exception {
+        final String[] expected = {};
+
+        verifyWithInlineConfigParser(getPath("Example11.java"), expected);
+    }
+
 }
