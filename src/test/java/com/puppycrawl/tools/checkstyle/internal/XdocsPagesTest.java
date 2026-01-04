@@ -1870,6 +1870,11 @@ public class XdocsPagesTest {
             final NodeList sources = getTagSourcesNode(path, "tr");
 
             final Set<String> styleChecks = switch (styleName) {
+                case null -> {
+                    assertWithMessage("Style name is unexpectedly null")
+                            .fail();
+                    yield null;
+                }
                 case "google" -> new HashSet<>(GOOGLE_MODULES);
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
