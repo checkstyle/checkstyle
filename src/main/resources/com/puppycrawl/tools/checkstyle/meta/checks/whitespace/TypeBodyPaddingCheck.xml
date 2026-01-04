@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypeBodyPaddingCheck"
+             name="TypeBodyPadding"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks the padding policy for type bodies. Ensures that a blank line is present
+ immediately after the opening brace and/or immediately before the closing brace
+ of type definitions: (&lt;code&gt;class&lt;/code&gt;, &lt;code&gt;interface&lt;/code&gt;, &lt;code&gt;enum&lt;/code&gt;,
+ &lt;code&gt;record&lt;/code&gt;, and &lt;code&gt;annotation&lt;/code&gt; types).
+ &lt;/div&gt;</description>
+         <properties>
+            <property default-value="true" name="allowEmpty" type="boolean">
+               <description>Control whether to allow empty type bodies without padding.</description>
+            </property>
+            <property default-value="false" name="ending" type="boolean">
+               <description>Control whether padding is required at the end of the body.</description>
+            </property>
+            <property default-value="true" name="skipInner" type="boolean">
+               <description>Control whether to skip checking of inner types.</description>
+            </property>
+            <property default-value="true" name="skipLocal" type="boolean">
+               <description>Control whether to skip checking of local types.</description>
+            </property>
+            <property default-value="true" name="starting" type="boolean">
+               <description>Control whether padding is required at the start of the body.</description>
+            </property>
+            <property default-value="ANNOTATION_DEF,CLASS_DEF,ENUM_DEF,INTERFACE_DEF,RECORD_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="type.body.padding.end.required"/>
+            <message-key key="type.body.padding.start.required"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

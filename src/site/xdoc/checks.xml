@@ -1847,6 +1847,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/typebodypadding.html#TypeBodyPadding">
+                TypeBodyPadding
+              </a>
+            </td>
+            <td>
+              Checks the padding policy for type bodies.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/naming/typename.html#TypeName">
                 TypeName
               </a>

@@ -1014,6 +1014,9 @@
     <module name="SingleSpaceSeparator">
       <property name="validateComments" value="false"/>
     </module>
+    <module name="TypeBodyPadding">
+      <property name="starting" value="false"/>
+    </module>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter">
       <property name="tokens"
