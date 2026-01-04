@@ -185,7 +185,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
          *
          * @return A collection of duplicated keys.
          */
-        public Map<String, Integer> getDuplicatedKeys() {
+        /* package */ Map<String, Integer> getDuplicatedKeys() {
             return new HashMap<>(duplicatedKeys);
         }
 
