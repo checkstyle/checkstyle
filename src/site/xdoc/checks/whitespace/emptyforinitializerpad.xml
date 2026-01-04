@@ -89,10 +89,10 @@ class Example1 {
 class Example2 {
   int i = 0;
   void example() {
-    for ( ; i &lt; 2; i++ ) { };
-    for (; i &lt; 2; i++ ) { };    // violation '';' is not preceded with whitespace'
-    for (;i&lt;2;i++) { };         // violation '';' is not preceded with whitespace'
-    for ( ;i&lt;2;i++) { };
+    for ( ; i &lt; 1; i++ );
+    for (; i &lt; 2; i++ );    // violation '';' is not preceded with whitespace'
+    for (;i&lt;2;i++);         // violation '';' is not preceded with whitespace'
+    for ( ;i&lt;2;i++);
     for (
           ; i &lt; 2; i++ );
   }
