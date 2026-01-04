@@ -439,7 +439,7 @@ public class SuppressWithNearbyCommentFilter
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(TreeWalkerAuditEvent event) {
+        /* package */ boolean isMatch(TreeWalkerAuditEvent event) {
             return isInScopeOfSuppression(event)
                     && isCheckMatch(event)
                     && isIdMatch(event)
