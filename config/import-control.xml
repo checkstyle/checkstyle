@@ -130,6 +130,10 @@
     <file name="ModuleReflectionUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
+
+    <file name="NullnessAssertUtil">
+      <allow pkg="org.checkerframework.checker.nullness.qual"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">

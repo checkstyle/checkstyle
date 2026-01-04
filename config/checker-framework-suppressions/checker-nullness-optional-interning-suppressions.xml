@@ -1653,48 +1653,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ident</message>
-    <lineContent>currentClass = packageName.getText() + &quot;.&quot; + ident.getText();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference ident</message>
-    <lineContent>return &quot;main&quot;.equals(ident.getText());</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference method.findFirstToken(TokenTypes.TYPE)</message>
-    <lineContent>method.findFirstToken(TokenTypes.TYPE).getFirstChild();</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference modifiers</message>
-    <lineContent>return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference parameterType</message>
-    <lineContent>parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
-    <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference params</message>
-    <lineContent>if (params.getChildCount() == 1) {</lineContent>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/UncommentedMainCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field currentClass</message>
     <lineContent>private String currentClass;</lineContent>
