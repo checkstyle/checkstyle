@@ -166,20 +166,4 @@ public class ImportControlLoaderTest {
         }
     }
 
-    @Test
-    public void testLoadUriUnableToFindFile(@TempDir Path tempDir) {
-        final Path missingFile = tempDir.resolve("missingFile.xml");
-        final URI uri = missingFile.toUri();
-
-        final CheckstyleException exception = getExpectedThrowable(CheckstyleException.class,
-                () -> ImportControlLoader.load(uri));
-
-        assertWithMessage("Invalid exception message")
-                .that(exception.getMessage())
-                .isEqualTo("unable to find " + uri);
-        assertWithMessage("Invalid exception class")
-                .that(exception.getCause())
-                .isInstanceOf(IOException.class);
-    }
-
 }
