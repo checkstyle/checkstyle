@@ -567,7 +567,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the bundle base name
          */
-        public String getBaseName() {
+        /* package */ String getBaseName() {
             return baseName;
         }
 
@@ -576,7 +576,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the common path of files
          */
-        public String getPath() {
+        /* package */ String getPath() {
             return path;
         }
 
@@ -585,7 +585,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the common extension of files
          */
-        public String getExtension() {
+        /* package */ String getExtension() {
             return extension;
         }
 
@@ -594,7 +594,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          *
          * @return the set of files
          */
-        public Set<File> getFiles() {
+        /* package */ Set<File> getFiles() {
             return Collections.unmodifiableSet(files);
         }
 
@@ -603,7 +603,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          *
          * @param file file which should be added into resource bundle.
          */
-        public void addFile(File file) {
+        /* package */ void addFile(File file) {
             files.add(file);
         }
 
@@ -613,7 +613,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
          * @param fileNameRegexp file name regexp.
          * @return true if a resource bundle contains a file which name matches file name regexp.
          */
-        public boolean containsFile(String fileNameRegexp) {
+        /* package */ boolean containsFile(String fileNameRegexp) {
             boolean containsFile = false;
             for (File currentFile : files) {
                 if (Pattern.matches(fileNameRegexp, currentFile.getName())) {

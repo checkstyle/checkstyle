@@ -247,7 +247,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          * @param maxAssigned Maximum allowed number of return statements.
          * @param voidReturn Identifies if context is void.
          */
-        public void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
+        /* package */ void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
             isVoidContext = voidReturn;
             maxAllowed = maxAssigned;
 
@@ -260,7 +260,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          *
          * @param ast method def associated with this context.
          */
-        public void checkCount(DetailAST ast) {
+        /* package */ void checkCount(DetailAST ast) {
             if (checking && maxAllowed != null && count > maxAllowed) {
                 if (isVoidContext) {
                     log(ast, MSG_KEY_VOID, count, maxAllowed);
