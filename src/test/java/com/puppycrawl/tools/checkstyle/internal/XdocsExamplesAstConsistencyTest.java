@@ -244,6 +244,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
             "checks/trailingcomment/Example6",
+            "checks/whitespace/arraybracketnowhitespace/Example2",
             "checks/whitespace/emptyforinitializerpad/Example2",
             "checks/whitespace/nolinewrap/Example2",
             "checks/whitespace/nolinewrap/Example3",

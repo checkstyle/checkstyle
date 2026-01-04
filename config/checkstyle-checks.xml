@@ -395,6 +395,7 @@
 
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>
+    <module name="ArrayBracketNoWhitespace"/>
     <module name="AvoidDoubleBraceInitialization"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>

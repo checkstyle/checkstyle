@@ -7313,6 +7313,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/ArrayBracketNoWhitespaceCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter rightBracket of ArrayBracketNoWhitespaceCheck.processRightBracket.</message>
+    <lineContent>processRightBracket(rightBracket);</lineContent>
+    <details>
+      found   : @Initialized @Nullable DetailAST
+      required: @Initialized @NonNull DetailAST
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/EmptyLineSeparatorCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference token.findFirstToken(TokenTypes.TYPE)</message>
