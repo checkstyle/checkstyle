@@ -24,6 +24,8 @@ import java.util.Objects;
 /**
  * Immutable line and column numbers.
  *
+ * @noinspection ClassCanBeRecord
+ * @noinspectionreason Public API class – converting to record would break binary compatibility.
  */
 public class LineColumn implements Comparable<LineColumn> {
 
