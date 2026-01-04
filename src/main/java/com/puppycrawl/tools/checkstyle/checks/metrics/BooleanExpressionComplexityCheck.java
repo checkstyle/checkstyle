@@ -255,12 +255,12 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          *
          * @return should we check in current context or not.
          */
-        public boolean isChecking() {
+        /* package */ boolean isChecking() {
             return checking;
         }
 
         /** Increases operator counter. */
-        public void visitBooleanOperator() {
+        /* package */ void visitBooleanOperator() {
             ++count;
         }
 
@@ -269,7 +269,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
          *
          * @param ast a node we check now.
          */
-        public void checkCount(DetailAST ast) {
+        /* package */ void checkCount(DetailAST ast) {
             if (checking && count > max) {
                 final DetailAST parentAST = ast.getParent();
 
