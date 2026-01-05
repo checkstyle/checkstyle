@@ -30,15 +30,6 @@
   <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>findPreviousStatement</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (root.getLineNo() &gt;= comment.getLineNo()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
     <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
     <description>negated conditional</description>
