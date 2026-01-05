@@ -830,7 +830,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 blockBody = blockBody.getPreviousSibling();
             }
             if (blockBody.getType() == TokenTypes.EXPR) {
-                if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {
+                if (!isUsingOfObjectReferenceToInvokeMethod(blockBody)) {
                     prevStmt = findStartTokenOfMethodCallChain(blockBody);
                 }
                 else {
