@@ -61,23 +61,28 @@
         <p id="Example1-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example1 {
-  private int intField1 = 0; // violation
+  // violation below ''intField1' explicitly initialized to '0''
+  private int intField1 = 0;
   private int intField2 = 1;
   private int intField3;
 
-  private char charField1 = '\0'; // violation
+  // violation below ''charField1' explicitly initialized to '\\0''
+  private char charField1 = '\0';
   private char charField2 = 'b';
   private char charField3;
 
-  private boolean boolField1 = false; // violation
+  // violation below ''boolField1' explicitly initialized to 'false''
+  private boolean boolField1 = false;
   private boolean boolField2 = true;
   private boolean boolField3;
 
-  private Object objField1 = null; // violation
+  // violation below ''objField1' explicitly initialized to 'null''
+  private Object objField1 = null;
   private Object objField2 = new Object();
   private Object objField3;
 
-  private int arrField1[] = null; // violation
+  // violation below ''arrField1' explicitly initialized to 'null''
+  private int arrField1[] = null;
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
@@ -110,11 +115,13 @@ public class Example2 {
   private boolean boolField2 = true;
   private boolean boolField3;
 
-  private Object objField1 = null; // violation
+  // violation below ''objField1' explicitly initialized to 'null''
+  private Object objField1 = null;
   private Object objField2 = new Object();
   private Object objField3;
 
-  private int arrField1[] = null; // violation
+  // violation below ''arrField1' explicitly initialized to 'null''
+  private int arrField1[] = null;
   private int arrField2[] = new int[10];
   private int arrField3[];
 }
