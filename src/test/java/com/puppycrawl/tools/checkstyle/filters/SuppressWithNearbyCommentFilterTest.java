@@ -354,7 +354,8 @@ public class SuppressWithNearbyCommentFilterTest
     public void testEqualsAndHashCodeOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
-                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
+                        .getFirst();
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(tag.getClass()).usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -489,7 +490,8 @@ public class SuppressWithNearbyCommentFilterTest
     public void testToStringOfTagClass() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final Object tag =
-                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
+                        .getFirst();
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
             .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
@@ -501,7 +503,8 @@ public class SuppressWithNearbyCommentFilterTest
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         filter.setIdFormat(".*");
         final Object tag =
-                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore")
+                        .getFirst();
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
             .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "
@@ -518,7 +521,7 @@ public class SuppressWithNearbyCommentFilterTest
         filter.setMessageFormat("msg");
         filter.setCheckFormat("IGNORE");
         final Object tag =
-                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").get(0);
+                getTagsAfterExecution(filter, "filename", "//SUPPRESS CHECKSTYLE ignore").getFirst();
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
             .isEqualTo("Tag[text='SUPPRESS CHECKSTYLE ignore', firstLine=1, lastLine=1, "

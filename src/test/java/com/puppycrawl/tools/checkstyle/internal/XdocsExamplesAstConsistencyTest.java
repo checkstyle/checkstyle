@@ -586,7 +586,7 @@ public class XdocsExamplesAstConsistencyTest {
     private static List<String> validateAllMatch(Path dir, List<Path> examples)
             throws IOException {
         final List<String> violations = new ArrayList<>();
-        final Path reference = examples.get(0);
+        final Path reference = examples.getFirst();
         final String referenceXdocSection = extractXdocSection(reference);
 
         try {
