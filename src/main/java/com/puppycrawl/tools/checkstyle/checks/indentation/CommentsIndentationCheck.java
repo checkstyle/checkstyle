@@ -620,7 +620,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private DetailAST findPreviousStatement(DetailAST comment, DetailAST root) {
         DetailAST previousStatement = null;
-        if (Math.max(root.getLineNo(), comment.getLineNo()) == root.getLineNo()) {
+        if (root.getLineNo() > comment.getLineNo()) {
             // ATTENTION: parent of the comment is below the comment in case block
             // See https://github.com/checkstyle/checkstyle/issues/851
             previousStatement = getPrevStatementFromSwitchBlock(comment);
