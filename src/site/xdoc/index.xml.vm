@@ -21,10 +21,10 @@
 
       <p>
         Checkstyle is highly configurable and can be made to support almost
-        any coding standard. An example configuration files are supplied
+        any coding standard. Example configuration files are supplied
         supporting the
         <a href="styleguides/sun-code-conventions-19990420/CodeConvTOC.doc.html">
-          Sun Code Conventions</a>,
+          Sun Code Conventions</a> and
         <a href="styleguides/google-java-style-20250426/javaguide.html">
           Google Java Style</a>.
       </p>
