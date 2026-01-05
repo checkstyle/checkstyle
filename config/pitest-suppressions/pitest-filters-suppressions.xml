@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter$Tag</mutatedClass>
-    <mutatedMethod>toString</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/String::valueOf</description>
-    <lineContent>return &quot;Tag[text=&apos;&quot; + text + &apos;\&apos;&apos;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>XpathFilterElement.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.XpathFilterElement</mutatedClass>
     <mutatedMethod>isXpathQueryMatching</mutatedMethod>

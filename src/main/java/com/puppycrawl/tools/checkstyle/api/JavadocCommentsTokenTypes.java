@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -78,6 +78,31 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Plain text content within a Javadoc comment.
+     *
+     * <p>This node represents any plain text that appears in a Javadoc comment,
+     * including spaces and punctuation.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * This is plain text content.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /**
+     *    |--COMMENT_CONTENT -> *\r\n * This is plain text content.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is plain text content.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     *    `--BLOCK_COMMENT_END -> * /
+     * }</pre>
+     *
+     * @see #JAVADOC_CONTENT
      */
     public static final int TEXT = JavadocCommentsLexer.TEXT;
 
@@ -938,7 +963,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
     /**
-     * Custom or unrecognized inline tag.
+     * {@code @custom} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  Example showing
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> custom
+     * |       |--DESCRIPTION -> DESCRIPTION
+     * |       |   `--TEXT ->  This is a Custom Inline Tag
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 

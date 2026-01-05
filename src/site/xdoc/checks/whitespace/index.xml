@@ -38,8 +38,8 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package, all import declarations, fields,
-              constructors, methods, nested classes, static initializers and instance initializers.
+              Checks for empty line separators after, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
             </td>
           </tr>
           <tr>

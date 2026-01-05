@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -1875,6 +1875,11 @@ public class XdocsPagesTest {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
                     yield checks;
+                }
+                case null -> {
+                    assertWithMessage("Style name is unexpectedly null")
+                            .fail();
+                    yield null;
                 }
                 default -> {
                     assertWithMessage("Missing modules list for style file '%s'", fileName)

@@ -75,15 +75,6 @@
   <mutation unstable="false">
     <sourceFile>HandlerFactory.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
-    <mutatedMethod>&lt;init&gt;</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/checks/indentation/HandlerFactory::register</description>
-    <lineContent>register(TokenTypes.INDEX_OP, IndexHandler.class);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>HandlerFactory.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.HandlerFactory</mutatedClass>
     <mutatedMethod>clearCreatedHandlers</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
     <description>removed call to java/util/Map::clear</description>
@@ -106,14 +97,5 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
     <description>removed call to java/util/Deque::clear</description>
     <lineContent>handlers.clear();</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>MethodDefHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.MethodDefHandler</mutatedClass>
-    <mutatedMethod>getMethodDefLineStart</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (node.getLineNo() &lt; lineStart) {</lineContent>
   </mutation>
 </suppressedMutations>
