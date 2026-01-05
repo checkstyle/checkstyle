@@ -628,12 +628,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final DetailAST tokenWhichBeginsTheLine;
         if (root.getType() == TokenTypes.EXPR
                 && root.getFirstChild().getFirstChild() != null) {
-            if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
-                tokenWhichBeginsTheLine = root.getFirstChild();
-            }
-            else {
-                tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);
-            }
+            tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);
         }
         else if (root.getType() == TokenTypes.PLUS) {
             tokenWhichBeginsTheLine = root.getFirstChild();
