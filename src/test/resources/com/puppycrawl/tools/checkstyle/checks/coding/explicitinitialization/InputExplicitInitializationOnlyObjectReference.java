@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
 public class InputExplicitInitializationOnlyObjectReference {
     private int x = 0;
-    private Object bar = /* comment test */null; // violation
+    private Object bar = /* comment test */null; // violation ''bar' explicitly initialized'
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
@@ -43,8 +43,8 @@ interface interface2 {
 }
 
 class InputExplicitInit4 {
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private Bar<String> bar = null; // violation ''bar' explicitly initialized'
+    private Bar<String>[] barArray = null; // violation ''barArray' explicitly initialized'
 }
 
 enum InputExplicitInit5 {
@@ -52,13 +52,13 @@ enum InputExplicitInit5 {
     B
     {
         private int x = 0;
-        private Bar<String> bar = null; // violation
-        private Bar<String>[] barArray = null; // violation
+        private Bar<String> bar = null; // violation ''bar' explicitly initialized'
+        private Bar<String>[] barArray = null; // violation ''barArray' explicitly initialized'
         private int y = 1;
     };
     private int x = 0;
-    private Bar<String> bar = null; // violation
-    private Bar<String>[] barArray = null; // violation
+    private Bar<String> bar = null; // violation ''bar' explicitly initialized'
+    private Bar<String>[] barArray = null; // violation ''barArray' explicitly initialized'
     private int y = 1;
     private Boolean booleanAtt = false;
 }
