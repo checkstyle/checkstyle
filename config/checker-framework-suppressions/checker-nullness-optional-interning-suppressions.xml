@@ -8758,7 +8758,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter description of ModulePropertyDetails.setDescription.</message>
-    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
+    <lineContent>.getFirst().getFirstChild().getNodeValue());</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
@@ -8829,15 +8829,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).get(0).getFirstChild()</message>
+    <message>dereference of possibly-null reference getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).getFirst().getFirstChild()</message>
     <lineContent>.getFirstChild().getNodeValue());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getDirectChildsByTag(prop, XML_TAG_DESCRIPTION).get(0).getFirstChild()</message>
-    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
+    <message>dereference of possibly-null reference getDirectChildsByTag(prop, XML_TAG_DESCRIPTION).getFirst().getFirstChild()</message>
+    <lineContent>.getFirst().getFirstChild().getNodeValue());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
