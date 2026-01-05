@@ -255,40 +255,26 @@ public class RedundantModifierCheck
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.INTERFACE_DEF,
+                 TokenTypes.ANNOTATION_DEF ->
                 checkInterfaceModifiers(ast);
-                break;
-            case TokenTypes.ENUM_DEF:
-                checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
-                break;
-            case TokenTypes.CTOR_DEF:
-                checkConstructorModifiers(ast);
-                break;
-            case TokenTypes.METHOD_DEF:
-                processMethods(ast);
-                break;
-            case TokenTypes.RESOURCE:
-                processResources(ast);
-                break;
-            case TokenTypes.RECORD_DEF:
+            case TokenTypes.ENUM_DEF -> checkForRedundantModifier(ast, TokenTypes.LITERAL_STATIC);
+            case TokenTypes.CTOR_DEF -> checkConstructorModifiers(ast);
+            case TokenTypes.METHOD_DEF -> processMethods(ast);
+            case TokenTypes.RESOURCE -> processResources(ast);
+            case TokenTypes.RECORD_DEF ->
                 checkForRedundantModifier(ast, TokenTypes.FINAL, TokenTypes.LITERAL_STATIC);
-                break;
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.PATTERN_VARIABLE_DEF:
+            case TokenTypes.VARIABLE_DEF,
+                 TokenTypes.PATTERN_VARIABLE_DEF ->
                 checkUnnamedVariables(ast);
-                break;
-            case TokenTypes.LITERAL_CATCH:
+            case TokenTypes.LITERAL_CATCH ->
                 checkUnnamedVariables(ast.findFirstToken(TokenTypes.PARAMETER_DEF));
-                break;
-            case TokenTypes.LAMBDA:
-                processLambdaParameters(ast);
-                break;
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.ANNOTATION_FIELD_DEF:
-                break;
-            default:
-                throw new IllegalStateException("Unexpected token type: " + ast.getType());
+            case TokenTypes.LAMBDA -> processLambdaParameters(ast);
+            case TokenTypes.CLASS_DEF,
+                 TokenTypes.ANNOTATION_FIELD_DEF -> {
+                // Nothing extra to do
+            }
+            default -> throw new IllegalStateException("Unexpected token type: " + ast.getType());
         }
 
         if (isInterfaceOrAnnotationMember(ast)) {
