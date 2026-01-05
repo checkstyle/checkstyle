@@ -83,12 +83,23 @@ public final class JavadocCommentsTokenTypes {
      * including spaces and punctuation.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * This is plain text content.}</pre>
-     *
-     * <b>Tree:</b>
      * <pre>{@code
-     * LEADING_ASTERISK ->  *
-     * TEXT ->  This is plain text content.
+     * /**
+     *  * This is plain text content.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /**
+     *    |--COMMENT_CONTENT -> *\r\n * This is plain text content.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is plain text content.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     *    `--BLOCK_COMMENT_END -> * /
      * }</pre>
      *
      * @see #JAVADOC_CONTENT
