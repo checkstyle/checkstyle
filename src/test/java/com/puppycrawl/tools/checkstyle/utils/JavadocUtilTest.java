@@ -95,7 +95,7 @@ public class JavadocUtilTest {
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
             comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertWithMessage("Invalid first arg")
-            .that(tags.get(0).getFirstArg())
+            .that(tags.getFirst().getFirstArg())
             .isEqualTo("List link text");
     }
 
@@ -108,7 +108,7 @@ public class JavadocUtilTest {
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(
             comment, JavadocUtil.JavadocTagType.ALL).getValidTags();
         assertWithMessage("Invalid first arg")
-            .that(tags.get(0).getFirstArg())
+            .that(tags.getFirst().getFirstArg())
             .isEqualTo("List#add(Object)");
     }
 
@@ -127,7 +127,7 @@ public class JavadocUtilTest {
             .that(tags)
             .hasSize(2);
 
-        final JavadocTag seeTag = tags.get(0);
+        final JavadocTag seeTag = tags.getFirst();
         assertWithMessage("Invalid tag name")
             .that(seeTag.getTagName())
             .isEqualTo(JavadocTagInfo.SEE.getName());
@@ -161,11 +161,11 @@ public class JavadocUtilTest {
         assertWithMessage("Invalid tags size")
             .that(tags)
             .hasSize(1);
-        final int lineNo = tags.get(0).getLineNo();
+        final int lineNo = tags.getFirst().getLineNo();
         assertWithMessage("Unexpected line number")
             .that(lineNo)
             .isEqualTo(0);
-        final int columnNo = tags.get(0).getColumnNo();
+        final int columnNo = tags.getFirst().getColumnNo();
         assertWithMessage("Unexpected column number")
             .that(columnNo)
             .isEqualTo(10);
@@ -185,14 +185,14 @@ public class JavadocUtilTest {
             .that(allTags.getInvalidTags())
             .hasSize(2);
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(1, 4, "fake"),
-                allTags.getInvalidTags().get(0));
+                allTags.getInvalidTags().getFirst());
         assertTag("Unexpected invalid tag", new InvalidJavadocTag(2, 4, "bogus"),
                 allTags.getInvalidTags().get(1));
         assertWithMessage("Unexpected valid tags size")
             .that(allTags.getValidTags())
             .hasSize(1);
         assertTag("Unexpected valid tag", new JavadocTag(3, 4, "link", "List valid"),
-                allTags.getValidTags().get(0));
+                allTags.getValidTags().getFirst());
     }
 
     @Test

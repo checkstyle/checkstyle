@@ -377,7 +377,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .that(internalViolations)
                 .hasSize(1);
 
-        final Violation firstViolation = internalViolations.iterator().next();
+        final Violation firstViolation = internalViolations.getFirst();
         assertWithMessage("expected line")
                 .that(firstViolation.getLineNo())
                 .isEqualTo(1);

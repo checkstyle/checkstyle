@@ -321,7 +321,7 @@ public class AvoidEscapedUnicodeCharactersCheck
         else {
             final List<TextBlock> commentList = blockComments.get(lineNo);
             if (commentList != null) {
-                final TextBlock comment = commentList.get(commentList.size() - 1);
+                final TextBlock comment = commentList.getLast();
                 final int[] codePoints = getLineCodePoints(lineNo - 1);
                 result = isTrailingBlockComment(comment, codePoints);
             }
