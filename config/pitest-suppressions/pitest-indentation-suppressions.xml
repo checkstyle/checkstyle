@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>getFirstAstNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>&amp;&amp; curNode.getColumnNo() &lt; realStart.getColumnNo()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
     <mutatedMethod>findPreviousStatement</mutatedMethod>
