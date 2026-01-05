@@ -618,6 +618,7 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="UnusedLocalVariable"/>
+    <module name="UseEnhancedSwitch"/>
     <module name="VariableDeclarationUsageDistance"/>
     <module name="WhenShouldBeUsed"/>
 

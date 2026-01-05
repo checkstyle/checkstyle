@@ -1462,6 +1462,7 @@ urandom
 uri
 url
 usebackq
+useenhancedswitch
 userguide
 username
 usr
