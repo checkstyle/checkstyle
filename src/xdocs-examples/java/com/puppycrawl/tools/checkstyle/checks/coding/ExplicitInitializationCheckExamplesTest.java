@@ -34,11 +34,11 @@ public class ExplicitInitializationCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "13:15: " + getCheckMessage(MSG_KEY, "intField1", "0"),
-            "17:16: " + getCheckMessage(MSG_KEY, "charField1", "\\0"),
-            "21:19: " + getCheckMessage(MSG_KEY, "boolField1", "false"),
-            "25:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
-            "29:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
+            "14:15: " + getCheckMessage(MSG_KEY, "intField1", "0"),
+            "19:16: " + getCheckMessage(MSG_KEY, "charField1", "\\0"),
+            "24:19: " + getCheckMessage(MSG_KEY, "boolField1", "false"),
+            "29:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
+            "34:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,8 +47,8 @@ public class ExplicitInitializationCheckExamplesTest extends AbstractExamplesMod
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "26:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
-            "30:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
+            "27:18: " + getCheckMessage(MSG_KEY, "objField1", "null"),
+            "32:15: " + getCheckMessage(MSG_KEY, "arrField1", "null"),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
