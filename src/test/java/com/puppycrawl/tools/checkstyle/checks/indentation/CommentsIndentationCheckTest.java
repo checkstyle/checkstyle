@@ -27,7 +27,9 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
@@ -412,6 +414,36 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
             getPath("InputCommentsIndentationCommentsAfterMethodCall.java"),
             expected);
+    }
+
+    @Test
+    public void testFindPreviousStatementWithNullToken() throws Exception {
+        final DetailAstImpl comment = new DetailAstImpl();
+        comment.setType(TokenTypes.SINGLE_LINE_COMMENT);
+        comment.setLineNo(3);
+        comment.setColumnNo(0);
+
+        final DetailAstImpl root = new DetailAstImpl();
+        root.setType(TokenTypes.EXPR);
+        root.setLineNo(2);
+
+        final DetailAstImpl child1 = new DetailAstImpl();
+        child1.setType(TokenTypes.METHOD_CALL);
+        child1.setLineNo(1);
+
+        final DetailAstImpl child2 = new DetailAstImpl();
+        child2.setType(TokenTypes.DOT);
+        child2.setLineNo(1);
+
+        child1.addChild(child2);
+        root.addChild(child1);
+
+        final CommentsIndentationCheck check = new CommentsIndentationCheck();
+        final DetailAST result = TestUtil.invokeMethod(check, "findPreviousStatement",
+            DetailAST.class, comment, root);
+
+        assertWithMessage("Should return null when token is null")
+            .that(result).isNull();
     }
 
 }
