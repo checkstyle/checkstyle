@@ -580,12 +580,25 @@ public final class JavadocCommentsTokenTypes {
     // Inline tags
 
     /**
-     * General inline tag (e.g. {@code @link}).
+     * General inline tag (e.g. {@code {@link}}).
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * {@link String}
+     * }</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     `--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *         |--JAVADOC_INLINE_TAG_START -> {@
+     *         |--TAG_NAME -> link
+     *         |--REFERENCE -> REFERENCE
+     *         |   `--IDENTIFIER -> String
+     *         `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
