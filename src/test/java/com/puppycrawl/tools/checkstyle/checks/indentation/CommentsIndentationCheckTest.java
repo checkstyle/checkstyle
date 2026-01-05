@@ -27,7 +27,9 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
@@ -413,5 +415,4 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             getPath("InputCommentsIndentationCommentsAfterMethodCall.java"),
             expected);
     }
-
 }
