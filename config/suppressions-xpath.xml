@@ -22,6 +22,11 @@
                   query="//CLASS_DEF[./IDENT[@text='XmlMetaReader']]
                         //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 
+  <!-- until github.com/checkstyle/checkstyle/issues/17674 -->
+  <suppress-xpath checks="UseEnhancedSwitch"
+                  query="//CLASS_DEF[./IDENT[@text='AnnotationUseStyleCheck']]
+                        //METHOD_DEF[./IDENT[@text='checkStyleType']]//LITERAL_SWITCH"/>
+
   <!-- until https://github.com/checkstyle/checkstyle/issues/11522 -->
   <suppress-xpath
           files="AbstractFileSetCheck.java"
