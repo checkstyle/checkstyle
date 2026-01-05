@@ -10,15 +10,6 @@
   </mutation>
 
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>getFirstToken</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>if (toTest.getColumnNo() &lt; first.getColumnNo()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
     <mutatedMethod>findPreviousStatement</mutatedMethod>

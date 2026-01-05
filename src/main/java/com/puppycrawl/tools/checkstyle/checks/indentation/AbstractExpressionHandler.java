@@ -195,7 +195,8 @@ public abstract class AbstractExpressionHandler {
 
         while (child != null) {
             final DetailAST toTest = getFirstToken(child);
-            if (toTest.getColumnNo() < first.getColumnNo()) {
+            final int toTestColumnNo = toTest.getColumnNo();
+            if (Math.min(toTestColumnNo, first.getColumnNo()) == toTestColumnNo) {
                 first = toTest;
             }
             child = child.getNextSibling();
