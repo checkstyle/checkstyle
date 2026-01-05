@@ -460,7 +460,8 @@ public abstract class AbstractExpressionHandler {
         while (curNode != null) {
             if (curNode.getLineNo() < realStart.getLineNo()
                     || curNode.getLineNo() == realStart.getLineNo()
-                    && curNode.getColumnNo() < realStart.getColumnNo()) {
+                    && Math.min(curNode.getColumnNo(), realStart.getColumnNo())
+                    == curNode.getColumnNo()) {
                 realStart = curNode;
             }
             DetailAST toVisit = curNode.getFirstChild();
