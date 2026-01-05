@@ -267,27 +267,16 @@ public final class XMLLogger
         for (int i = 0; i < value.length(); i++) {
             final char chr = value.charAt(i);
             switch (chr) {
-                case '<':
-                    sb.append("&lt;");
-                    break;
-                case '>':
-                    sb.append("&gt;");
-                    break;
-                case '\'':
-                    sb.append("&apos;");
-                    break;
-                case '\"':
-                    sb.append("&quot;");
-                    break;
-                case '&':
-                    sb.append("&amp;");
-                    break;
-                case '\r':
-                    break;
-                case '\n':
-                    sb.append("&#10;");
-                    break;
-                default:
+                case '<' -> sb.append("&lt;");
+                case '>' -> sb.append("&gt;");
+                case '\'' -> sb.append("&apos;");
+                case '\"' -> sb.append("&quot;");
+                case '&' -> sb.append("&amp;");
+                case '\r' -> {
+                    // Remove \r to make consistent new lines.
+                }
+                case '\n' -> sb.append("&#10;");
+                default -> {
                     if (Character.isISOControl(chr)) {
                         // true escape characters need '&' before, but it also requires XML 1.1
                         // until https://github.com/checkstyle/checkstyle/issues/5168
@@ -298,7 +287,7 @@ public final class XMLLogger
                     else {
                         sb.append(chr);
                     }
-                    break;
+                }
             }
         }
         return sb.toString();
