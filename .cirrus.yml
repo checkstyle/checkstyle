@@ -1,4 +1,11 @@
-only_if: $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH || $CIRRUS_BRANCH !=~ 'pull/.*'
+only_if: |
+  $CIRRUS_BRANCH == $CIRRUS_DEFAULT_BRANCH ||
+  changesInclude(
+    'src/**',
+    'sevntu-checks/**',
+    'pom.xml',
+    '.ci/**'
+  )
 task:
   name: Windows build
   windows_container:
