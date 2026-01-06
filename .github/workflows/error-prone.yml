@@ -3,7 +3,7 @@ name: Error-Prone
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches: '*'
 

@@ -1,6 +1,6 @@
 # Beginning Development Guide
 
-![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+![](https://raw.githubusercontent.com/checkstyle/resources/main/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
 ---------------------------------
 
@@ -220,21 +220,21 @@ repository without any conflicts.
 Fetch the latest changes from the main repository using the following command:
 
 ```bash
-git checkout master
-git pull upstream master
+git checkout main
+git pull upstream main
 ```
 
-You can optionally push the latest changes to the master branch of your forked repository:
+You can optionally push the latest changes to the main branch of your forked repository:
 
 ```bash
-git push origin master
+git push origin main
 ```
 
 Rebase your changes on the latest changes in the main repository using the following command:
 
 ```bash
 git checkout issue-1234
-git rebase master
+git rebase main
 ```
 
 Push your changes to your forked repository using the following command:

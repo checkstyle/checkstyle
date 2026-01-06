@@ -11,7 +11,7 @@ LINKED_ISSUES_MENTIONED=/tmp/linked_issues_mentioned
 API_GITHUB_PREFIX="https://api.github.com/repos"
 GITHUB_HOST="https://github.com"
 MAIN_REPO="checkstyle/checkstyle"
-DEFAULT_BRANCH="master"
+DEFAULT_BRANCH="main"
 
 # These are modified when event is of type pull_request
 if [ -n "$PR_HEAD_REPO_NAME" ]; then

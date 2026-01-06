@@ -85,7 +85,7 @@
         1) Use Eclipse compiler preferences from repo:<br/><br/>
         copy
         <a href=
-          "https://github.com/checkstyle/checkstyle/blob/master/config/org.eclipse.jdt.core.prefs">
+          "https://github.com/checkstyle/checkstyle/blob/main/config/org.eclipse.jdt.core.prefs">
           config/org.eclipse.jdt.core.prefs</a> file
         to
         <code>.settings</code> folder of cloned repository on your PC. Restart Eclipse.

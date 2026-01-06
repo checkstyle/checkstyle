@@ -185,7 +185,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     public void testUseCacheRemoteFileExternalResourceContentDoesNotChange() throws Exception {
         final String[] urlCandidates = {
             "https://checkstyle.org/files/suppressions_none.xml",
-            "https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/site/resources/"
+            "https://raw.githubusercontent.com/checkstyle/checkstyle/main/src/site/resources/"
                 + "files/suppressions_none.xml",
         };
 

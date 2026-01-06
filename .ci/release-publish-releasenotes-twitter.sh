@@ -18,8 +18,8 @@ cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then
   cd .ci-temp/checkstyle/
-  git reset --hard origin/master
-  git pull origin master
+  git reset --hard origin/main
+  git pull origin main
   git fetch --tags
   cd ../../
 else

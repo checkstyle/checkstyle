@@ -123,16 +123,16 @@ pr-age)
     git reset --hard "$(git log -n 1 --no-merges --pretty=format:"%h")"
   fi
 
-  PR_MASTER=$(git merge-base origin/master HEAD)
-  COMMITS_SINCE_MASTER=$(git rev-list --count "$PR_MASTER"..origin/master)
+  PR_MAIN=$(git merge-base origin/main HEAD)
+  COMMITS_SINCE_MAIN=$(git rev-list --count "$PR_MAIN"..origin/main)
   MAX_ALLOWED=10
 
-  echo "The PR is based on a master that is $COMMITS_SINCE_MASTER commit(s) old."
+  echo "The PR is based on a main that is $COMMITS_SINCE_MAIN commit(s) old."
   echo "The max allowed is $MAX_ALLOWED."
 
-  if (( $COMMITS_SINCE_MASTER > $MAX_ALLOWED ));
+  if (( $COMMITS_SINCE_MAIN > $MAX_ALLOWED ));
   then
-    echo "This PR is too old and should be rebased on origin/master."
+    echo "This PR is too old and should be rebased on origin/main."
     false
   fi
   ;;
@@ -360,11 +360,11 @@ verify-no-exception-configs)
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
-    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
+    https://raw.githubusercontent.com/checkstyle/contribution/main/checkstyle-tester/checks-nonjavadoc-error.xml
   wget -q \
     --directory-prefix $working_dir \
     --no-clobber \
-    https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
+    https://raw.githubusercontent.com/checkstyle/contribution/main/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet fo -D \
     -n $working_dir/checks-nonjavadoc-error.xml \
@@ -434,8 +434,8 @@ verify-no-exception-configs)
     else
       diff -u $working_dir/web.txt $working_dir/file.txt | cat
       echo 'file config/checkstyle-checks.xml contains Check that is not present at:'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
-      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
+      echo 'https://github.com/checkstyle/contribution/blob/main/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://github.com/checkstyle/contribution/blob/main/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       fail=1;
     fi
@@ -469,12 +469,16 @@ checkstyle-and-sevntu)
     -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
-spotbugs-and-pmd)
-  mkdir -p .ci-temp/spotbugs-and-pmd
+spotless)
+  ./mvnw -e --no-transfer-progress clean spotless:check
+;;
+
+pmd)
+  mkdir -p .ci-temp/pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
-  cd .ci-temp/spotbugs-and-pmd
+  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
+  cd .ci-temp/pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
   if [[ $RESULT != 0 ]]; then
@@ -482,7 +486,7 @@ spotbugs-and-pmd)
     sleep 5s
   fi
   cd ..
-  removeFolderWithProtectedFiles spotbugs-and-pmd
+  removeFolderWithProtectedFiles pmd
   exit "$RESULT"
 ;;
 
@@ -552,7 +556,6 @@ assembly-run-all-jar)
     exit $fail;
   fi
   rm .ci-temp/output.json
-
   ;;
 
 check-since-version)
@@ -564,8 +567,8 @@ check-since-version)
       HEAD=$(git log -n 1 --no-merges --pretty=format:"%H")
   fi
   # Identify previous commit to know how much to examine
-  # Script assumes we are only working with 1 commit if we are in master
-  # Otherwise, it looks for the common ancestor with master
+  # Script assumes we are only working with 1 commit if we are in main
+  # Otherwise, it looks for the common ancestor with main
   COMMIT=$(git rev-parse "$HEAD")
   echo "PR commit: $COMMIT"
 
@@ -731,16 +734,16 @@ package-site)
 
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
-  # execution on local for master:
+  # execution on local for main:
   # SONAR_TOKEN=xxxxxx ./.ci/validation.sh sonarqube
-  # execution on local for non-master:
+  # execution on local for non-main:
   # SONAR_TOKEN=xxxxxx PR_NUMBER=xxxxxx PR_BRANCH_NAME=xxxxxx ./.ci/validation.sh sonarqube
   checkForVariable "SONAR_TOKEN"
 
   if [[ $PR_NUMBER =~ ^([0-9]+)$ ]]; then
       SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR_NUMBER"
       SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.branch=$PR_BRANCH_NAME"
-      SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.base=master"
+      SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.base=main"
       echo "SONAR_PR_VARIABLES: ""$SONAR_PR_VARIABLES"
   fi
 
@@ -1220,7 +1223,7 @@ git-diff)
   ;;
 
 git-no-merge-commits)
-  MERGE_COMMITS=$(git rev-list --merges master.."$PR_HEAD_SHA")
+  MERGE_COMMITS=$(git rev-list --merges main.."$PR_HEAD_SHA")
 
   if [ -n "$MERGE_COMMITS" ]; then
     for MERGE_COMMIT in $MERGE_COMMITS; do
@@ -1235,7 +1238,7 @@ git-no-merge-commits)
 git-check-pull-number)
   PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
   echo "PR_NUMBER=${PR_NUMBER}"
-  COMMITS="$(git log --format=format:%B master.."$PR_HEAD_SHA")"
+  COMMITS="$(git log --format=format:%B main.."$PR_HEAD_SHA")"
 
   echo "$COMMITS" | while read -r COMMIT ; do
     if [[ $COMMIT =~ 'Pull #' ]]; then
@@ -1329,10 +1332,6 @@ website-only)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
 
-pmd)
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
-  ;;
-
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
@@ -1361,14 +1360,10 @@ sevntu)
   ./mvnw -e --no-transfer-progress clean compile checkstyle:check@sevntu-checkstyle-check
   ;;
 
-spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
-  ;;
-
-openrewrite-recipes)
+rewrite)
   echo "Cloning and building OpenRewrite recipes..."
   PROJECT_ROOT="$(pwd)"
-  export MAVEN_OPTS="-Xmx4g -Xms2g"
+  # export MAVEN_OPTS="-Xmx4g -Xms2g"
 
   cd /tmp
   git clone https://github.com/checkstyle/checkstyle-openrewrite-recipes.git

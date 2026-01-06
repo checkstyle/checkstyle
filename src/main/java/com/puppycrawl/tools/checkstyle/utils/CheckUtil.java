@@ -404,7 +404,7 @@ public final class CheckUtil {
      * Strip initial newline and preceding whitespace on each line from text block content.
      * In order to be consistent with how javac handles this task, we have modeled this
      * implementation after the code from:
-     * github.com/openjdk/jdk14u/blob/master/src/java.base/share/classes/java/lang/String.java
+     * github.com/openjdk/jdk14u/blob/main/src/java.base/share/classes/java/lang/String.java
      *
      * @param textBlockContent the actual content of the text block.
      * @return string consistent with javac representation.
