@@ -606,6 +606,11 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General inline tag (e.g. {@code @link}).
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * }</pre>
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
