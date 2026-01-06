@@ -1678,12 +1678,64 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
 
     /**
-     * Collection of snippet attributes.
+     * Collection of snippet attributes in {@code @snippet} tag.
+     *
+     * <p>This token represents the container for all attributes
+     * specified in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java" class="Example":
+     *  *   System.out.println("Hello");
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |   |--SNIPPET_ATTR_NAME -> lang
+     * |   |--EQUALS -> =
+     * |   `--STRING_LITERAL -> "java"
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_BODY
+     * @see #SNIPPET_ATTR_NAME
      */
     public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
 
     /**
-     * Body content of a {@code @snippet}.
+     * Body content of a {@code @snippet} tag.
+     *
+     * <p>This token represents the code content inside a {@code @snippet}
+     * inline tag, which contains the actual code example.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet :
+     *  *   int x = 42;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * |   `--TEXT ->    int x = 42;
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
