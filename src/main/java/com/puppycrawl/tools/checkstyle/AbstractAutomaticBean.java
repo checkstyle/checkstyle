@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
