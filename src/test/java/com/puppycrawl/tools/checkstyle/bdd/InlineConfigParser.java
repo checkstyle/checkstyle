@@ -236,8 +236,6 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
