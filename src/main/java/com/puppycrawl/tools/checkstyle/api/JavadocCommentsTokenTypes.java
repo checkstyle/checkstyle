@@ -1230,12 +1230,56 @@ public final class JavadocCommentsTokenTypes {
     public static final int QUESTION = JavadocCommentsLexer.QUESTION;
 
     /**
-     * Less-than symbol {@code < }.
+     * Less-than symbol {@code <} in type arguments.
+     *
+     * <p>This token represents the opening angle bracket for generic type arguments
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #GT
+     * @see #TYPE_ARGUMENTS
      */
     public static final int LT = JavadocCommentsLexer.LT;
 
     /**
-     * Greater-than symbol {@code > }.
+     * Greater-than symbol {@code >} in type arguments.
+     *
+     * <p>This token represents the closing angle bracket for generic type arguments
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #LT
+     * @see #TYPE_ARGUMENTS
      */
     public static final int GT = JavadocCommentsLexer.GT;
 
