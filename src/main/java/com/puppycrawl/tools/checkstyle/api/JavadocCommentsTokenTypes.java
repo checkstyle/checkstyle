@@ -1540,11 +1540,56 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Single type argument in generics.
+     *
+     * <p>This token represents a single type argument within generic type parameters,
+     * such as {@code String} in {@code List<String>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENTS
+     * @see #LT
+     * @see #GT
      */
     public static final int TYPE_ARGUMENT = JavadocCommentsLexer.TYPE_ARGUMENT;
 
     /**
      * Description part of a Javadoc tag.
+     *
+     * <p>This token represents the descriptive text that follows a Javadoc tag,
+     * such as the explanation after {@code @param name} or {@code @return}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * @param name the user's name
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |--TAG_NAME -> param
+     * |--PARAMETER_NAME -> name
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #RETURN_BLOCK_TAG
      */
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
