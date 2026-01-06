@@ -78,8 +78,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return tree
      */
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final DetailAST blockComment = ParserUtil.createBlockCommentNode(javadocComment);
-        return parseJavadocAsDetailNode(blockComment);
+        return parseJavadocAsDetailNode(ParserUtil.createBlockCommentNode(javadocComment));
     }
 
     /**

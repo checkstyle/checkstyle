@@ -1313,7 +1313,7 @@ website-only)
   ;;
 
 pmd)
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
+  ./mvnw -e --no-transfer-progress clean pmd:check
   ;;
 
 spotbugs)
