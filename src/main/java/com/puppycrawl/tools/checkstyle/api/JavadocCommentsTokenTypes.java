@@ -1604,7 +1604,28 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
     /**
-     * Equals sign {@code = }.
+     * Equals sign {@code =} in HTML attributes.
+     *
+     * <p>This token represents the equals sign that separates an attribute name
+     * from its value in HTML tags within Javadoc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <a href="example">link</a>
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |--TAG_ATTR_NAME -> href
+     * |--EQUALS -> =
+     * `--ATTRIBUTE_VALUE -> "example"
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTE
+     * @see #ATTRIBUTE_VALUE
      */
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
