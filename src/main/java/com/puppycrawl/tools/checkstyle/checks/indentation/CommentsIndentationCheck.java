@@ -632,7 +632,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 tokenWhichBeginsTheLine = root.getFirstChild();
             }
             else {
-                tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);
+                tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
             }
         }
         else if (root.getType() == TokenTypes.PLUS) {
@@ -641,40 +641,11 @@ public class CommentsIndentationCheck extends AbstractCheck {
         else {
             tokenWhichBeginsTheLine = root;
         }
-        if (tokenWhichBeginsTheLine != null
-                && !isComment(tokenWhichBeginsTheLine)
+        if (!isComment(tokenWhichBeginsTheLine)
                 && isOnPreviousLineIgnoringComments(comment, tokenWhichBeginsTheLine)) {
             previousStatement = tokenWhichBeginsTheLine;
         }
         return previousStatement;
-    }
-
-    /**
-     * Finds a token which begins the line.
-     *
-     * @param root root token of the line.
-     * @return token which begins the line.
-     */
-    private static DetailAST findTokenWhichBeginsTheLine(DetailAST root) {
-        final DetailAST tokenWhichBeginsTheLine;
-        if (isUsingOfObjectReferenceToInvokeMethod(root)) {
-            tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
-        }
-        else {
-            tokenWhichBeginsTheLine = root.getFirstChild().findFirstToken(TokenTypes.IDENT);
-        }
-        return tokenWhichBeginsTheLine;
-    }
-
-    /**
-     * Checks whether there is a use of an object reference to invoke an object's method on line.
-     *
-     * @param root root token of the line.
-     * @return true if there is a use of an object reference to invoke an object's method on line.
-     */
-    private static boolean isUsingOfObjectReferenceToInvokeMethod(DetailAST root) {
-        return root.getFirstChild().getFirstChild().getFirstChild() != null
-            && root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;
     }
 
     /**
@@ -830,12 +801,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 blockBody = blockBody.getPreviousSibling();
             }
             if (blockBody.getType() == TokenTypes.EXPR) {
-                if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {
-                    prevStmt = findStartTokenOfMethodCallChain(blockBody);
-                }
-                else {
-                    prevStmt = blockBody.getFirstChild().getFirstChild();
-                }
+                prevStmt = findStartTokenOfMethodCallChain(blockBody);
             }
             else {
                 if (blockBody.getType() == TokenTypes.SLIST) {
