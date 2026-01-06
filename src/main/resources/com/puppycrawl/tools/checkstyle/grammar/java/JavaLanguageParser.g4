@@ -78,7 +78,7 @@ options { tokenVocab=JavaLanguageLexer; }
 }
 
 compilationUnit
-    : packageDeclaration? importDeclaration* typeDeclaration* EOF
+    : packageDeclaration? importDeclaration* topLevelDeclaration* EOF
     ;
 
 packageDeclaration
@@ -91,9 +91,9 @@ importDeclaration
     | SEMI                                                     #singleSemiImport
     ;
 
-typeDeclaration
+topLevelDeclaration
     : mods+=modifier*
-      type=types[$ctx.mods]
+      type=memberDeclaration[$ctx.mods]
     | semi+=SEMI+
     ;
 
@@ -252,14 +252,10 @@ classBodyDeclaration
     ;
 
 memberDeclaration[List<ModifierContext> mods]
-    : recordDeclaration[mods]
-    | methodDeclaration[mods]
+    : types[mods]
     | fieldDeclaration[mods]
     | constructorDeclaration[mods]
-    | interfaceDeclaration[mods]
-    | annotationTypeDeclaration[mods]
-    | classDeclaration[mods]
-    | enumDeclaration[mods]
+    | methodDeclaration[mods]
     ;
 
 methodDeclaration[List<ModifierContext> mods]

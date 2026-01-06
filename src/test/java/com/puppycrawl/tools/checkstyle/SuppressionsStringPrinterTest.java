@@ -133,7 +133,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             assertWithMessage("Invalid exception message")
                 .that(exc.getCause().toString())
                 .isEqualTo(IllegalStateException.class.getName()
-                            + ": 2:0: no viable alternative at input 'classD'");
+                            + ": 2:9: no viable alternative at input 'classDa{'");
         }
     }
 

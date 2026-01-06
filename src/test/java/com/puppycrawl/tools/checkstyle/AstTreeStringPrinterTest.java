@@ -61,7 +61,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
                 .isInstanceOf(IllegalStateException.class);
             assertWithMessage("Invalid exception message")
                 .that(exc.getCause().getMessage())
-                .isEqualTo("2:0: no viable alternative at input 'classD'");
+                .isEqualTo("2:9: no viable alternative at input 'classDa{'");
         }
     }
 
