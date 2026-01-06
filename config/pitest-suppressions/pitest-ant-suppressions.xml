@@ -21,15 +21,6 @@
   <mutation unstable="false">
     <sourceFile>CheckstyleAntTask.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>createRootModule</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to java/lang/Package::getName</description>
-    <lineContent>Checker.class.getPackage().getName() + &quot;.&quot;, moduleClassLoader);</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
     <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
