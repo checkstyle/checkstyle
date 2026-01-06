@@ -1750,12 +1750,64 @@ public final class JavadocCommentsTokenTypes {
     // HTML
 
     /**
-     * General HTML element.
+     * General HTML element in Javadoc.
+     *
+     * <p>This token represents an HTML element with start tag, content, and end tag
+     * within a Javadoc comment.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <b>bold text</b>
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> b
+     * |   `--TAG_CLOSE -> >
+     * |--HTML_CONTENT -> HTML_CONTENT
+     * |   `--TEXT -> bold text
+     * `--HTML_TAG_END -> HTML_TAG_END
+     *     |--TAG_OPEN -> <
+     *     |--TAG_SLASH -> /
+     *     |--TAG_NAME -> b
+     *     `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_TAG_START
+     * @see #HTML_TAG_END
+     * @see #HTML_CONTENT
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
 
     /**
-     * Void HTML element (self-closing).
+     * Void HTML element (self-closing) in Javadoc.
+     *
+     * <p>This token represents a self-closing HTML element that has no content,
+     * such as {@code <br>}, {@code <hr>}, or {@code <img>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Line 1<br>Line 2
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * VOID_ELEMENT -> VOID_ELEMENT
+     * `--HTML_TAG_START -> HTML_TAG_START
+     *     |--TAG_OPEN -> <
+     *     |--TAG_NAME -> br
+     *     `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
+     * @see #HTML_TAG_START
      */
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
 
