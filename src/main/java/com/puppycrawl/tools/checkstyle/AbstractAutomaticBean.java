@@ -221,24 +221,19 @@ public abstract class AbstractAutomaticBean
      */
     private void tryCopyProperty(String key, Object value, boolean recheck)
             throws CheckstyleException {
-        final BeanUtilsBean beanUtils = createBeanUtilsBean();
-
         try {
             if (recheck) {
                 // BeanUtilsBean.copyProperties silently ignores missing setters
                 // for key, so we have to go through great lengths here to
                 // figure out if the bean property really exists.
-                final PropertyDescriptor descriptor =
-                        PropertyUtils.getPropertyDescriptor(this, key);
-                if (descriptor == null) {
-                    final String message = getLocalizedMessage(
+                if (PropertyUtils.getPropertyDescriptor(this, key) == null) {
+                    throw new CheckstyleException(getLocalizedMessage(
                         AbstractAutomaticBean.class,
-                        "AbstractAutomaticBean.doesNotExist", key);
-                    throw new CheckstyleException(message);
+                        "AbstractAutomaticBean.doesNotExist", key));
                 }
             }
             // finally we can set the bean property
-            beanUtils.copyProperty(this, key, value);
+            createBeanUtilsBean().copyProperty(this, key, value);
         }
         catch (final InvocationTargetException | IllegalAccessException
                 | NoSuchMethodException exc) {
@@ -246,16 +241,14 @@ public abstract class AbstractAutomaticBean
             // as we do PropertyUtils.getPropertyDescriptor before beanUtils.copyProperty,
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
-            final String message = getLocalizedMessage(
+            throw new CheckstyleException(getLocalizedMessage(
                 AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.cannotSet", key, value);
-            throw new CheckstyleException(message, exc);
+                "AbstractAutomaticBean.cannotSet", key, value), exc);
         }
         catch (final IllegalArgumentException | ConversionException exc) {
-            final String message = getLocalizedMessage(
+            throw new CheckstyleException(getLocalizedMessage(
                 AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.illegalValue", value, key);
-            throw new CheckstyleException(message, exc);
+                "AbstractAutomaticBean.illegalValue", value, key), exc);
         }
     }
 
