@@ -1663,7 +1663,33 @@ public final class JavadocCommentsTokenTypes {
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
 
     /**
-     * Colon symbol {@code : }.
+     * Colon symbol {@code :} in Javadoc.
+     *
+     * <p>This token represents the colon character, typically used
+     * in {@code @snippet} tags to separate attributes from body content.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |--COLON -> :
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
+     * @see #SNIPPET_BODY
      */
     public static final int COLON = JavadocCommentsLexer.COLON;
 
