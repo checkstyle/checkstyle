@@ -1220,12 +1220,44 @@ public final class JavadocCommentsTokenTypes {
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
     /**
-     * Slash symbol {@code / }.
+     * Slash symbol {@code /} in URLs or paths.
+     *
+     * <p>This token represents a forward slash character, typically used in URLs
+     * within Javadoc HTML tags.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <a href="https://example.com/path">link</a>
+     *  * /
+     * }</pre>
+     *
+     * @see #HTML_TAG
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
     /**
-     * Question mark symbol {@code ? }.
+     * Question mark symbol {@code ?} in wildcard types.
+     *
+     * <p>This token represents the wildcard character in generic type arguments,
+     * such as {@code List<?>} or {@code List<? extends Number>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<?>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * `--QUESTION -> ?
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
+     * @see #EXTENDS
+     * @see #SUPER
      */
     public static final int QUESTION = JavadocCommentsLexer.QUESTION;
 
