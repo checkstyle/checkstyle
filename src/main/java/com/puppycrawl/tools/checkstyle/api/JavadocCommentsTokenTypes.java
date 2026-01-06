@@ -1084,11 +1084,57 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Identifier token.
+     *
+     * <p>This token represents an identifier in a Javadoc reference, such as a class name,
+     * method name, or field name.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#length()}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * REFERENCE -> REFERENCE
+     * |--IDENTIFIER -> String
+     * |--HASH -> #
+     * `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |--IDENTIFIER -> length
+     *     |--LPAREN -> (
+     *     `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #REFERENCE
+     * @see #MEMBER_REFERENCE
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
      * Hash symbol {@code #} used in references.
+     *
+     * <p>This token represents the hash symbol that separates a class name from a member name
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#length()}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * REFERENCE -> REFERENCE
+     * |--IDENTIFIER -> String
+     * |--HASH -> #
+     * `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     `--IDENTIFIER -> length
+     * }</pre>
+     *
+     * @see #REFERENCE
+     * @see #IDENTIFIER
      */
     public static final int HASH = JavadocCommentsLexer.HASH;
 
