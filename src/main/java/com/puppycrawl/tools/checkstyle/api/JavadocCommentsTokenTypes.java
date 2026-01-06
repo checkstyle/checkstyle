@@ -110,6 +110,41 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General block tag (e.g. {@code @param}, {@code @return}).
+     *
+     * <p>This token represents any Javadoc block tag. It serves as a container
+     * for specific block tag types like {@link #PARAM_BLOCK_TAG}, {@link #RETURN_BLOCK_TAG}, etc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * @param value The parameter of method.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> param
+     * |       |--TEXT ->
+     * |       |--PARAMETER_NAME -> value
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           |--TEXT ->  The parameter of method.
+     * |           |--NEWLINE -> \r\n
+     * |           |--LEADING_ASTERISK ->  *
+     * |           `--TEXT -> /
+     * `--NEWLINE -> \r\n
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #RETURN_BLOCK_TAG
+     * @see #THROWS_BLOCK_TAG
      */
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
 
@@ -605,44 +640,40 @@ public final class JavadocCommentsTokenTypes {
     // Inline tags
 
     /**
-     * General inline tag (e.g. {@code @link}).
+     * General inline tag (e.g. {@code @link}, {@code @code}).
      *
-     * <p>Such Javadoc tag can have these children:</p>
-     * <ol>
-     * <li>{@link #CODE_INLINE_TAG}</li>
-     * <li>{@link #LINK_INLINE_TAG}</li>
-     * <li>{@link #VALUE_INLINE_TAG}</li>
-     * </ol>
+     * <p>This token represents any Javadoc inline tag. It serves as a container
+     * for specific inline tag types like {@link #CODE_INLINE_TAG}, {@link #LINK_INLINE_TAG}, etc.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     * * {@code code}
-     * &#42;/
+     *  * Example: {@code println("Hello");}
+     *  * /
      * }</pre>
      *
-     * <b>Tree:</b>
+     * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
-     * |--TEXT ->
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->  Example:
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
-     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--JAVADOC_INLINE_TAG_START -> {@
      * |       |--TAG_NAME -> code
-     * |       |--TEXT ->   code
+     * |       |--TEXT ->  println("Hello");
      * |       `--JAVADOC_INLINE_TAG_END -> }
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
      * |--TEXT -> /
-     * |--NEWLINE -> \n
-     * |--TEXT -> public class Test {}
-     * `--NEWLINE -> \n
+     * `--NEWLINE -> \r\n
      * }</pre>
      *
-     * @see #JAVADOC_INLINE_TAG
+     * @see #CODE_INLINE_TAG
+     * @see #LINK_INLINE_TAG
+     * @see #LITERAL_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
