@@ -3665,6 +3665,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheck*</param>
               </targetClasses>
               <targetTests>
@@ -3699,6 +3700,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInEnumerationCheckTest</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.UseEnhancedSwitchCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.WhenShouldBeUsedCheckTest</param>
               </targetTests>
               <excludedTestClasses>
