@@ -159,16 +159,13 @@ public final class ReturnCountCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.LAMBDA:
-                leave(ast);
-                break;
-            case TokenTypes.LITERAL_RETURN:
+            case TokenTypes.CTOR_DEF,
+                 TokenTypes.METHOD_DEF,
+                 TokenTypes.LAMBDA -> leave(ast);
+            case TokenTypes.LITERAL_RETURN -> {
                 // Do nothing
-                break;
-            default:
-                throw new IllegalStateException(ast.toString());
+            }
+            default -> throw new IllegalStateException(ast.toString());
         }
     }
 
@@ -247,7 +244,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          * @param maxAssigned Maximum allowed number of return statements.
          * @param voidReturn Identifies if context is void.
          */
-        public void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
+        /* package */ void visitLiteralReturn(int maxAssigned, Boolean voidReturn) {
             isVoidContext = voidReturn;
             maxAllowed = maxAssigned;
 
@@ -260,7 +257,7 @@ public final class ReturnCountCheck extends AbstractCheck {
          *
          * @param ast method def associated with this context.
          */
-        public void checkCount(DetailAST ast) {
+        /* package */ void checkCount(DetailAST ast) {
             if (checking && maxAllowed != null && count > maxAllowed) {
                 if (isVoidContext) {
                     log(ast, MSG_KEY_VOID, count, maxAllowed);
