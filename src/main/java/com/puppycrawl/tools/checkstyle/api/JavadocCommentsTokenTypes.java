@@ -1139,17 +1139,83 @@ public final class JavadocCommentsTokenTypes {
     public static final int HASH = JavadocCommentsLexer.HASH;
 
     /**
-     * Left parenthesis {@code ( }.
+     * Left parenthesis {@code (} in method references.
+     *
+     * <p>This token represents the opening parenthesis in a method reference within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#indexOf(int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |--IDENTIFIER -> indexOf
+     * |--LPAREN -> (
+     * |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |   `--PARAMETER_TYPE -> int
+     * `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #RPAREN
+     * @see #MEMBER_REFERENCE
      */
     public static final int LPAREN = JavadocCommentsLexer.LPAREN;
 
     /**
-     * Right parenthesis {@code ) }.
+     * Right parenthesis {@code )} in method references.
+     *
+     * <p>This token represents the closing parenthesis in a method reference within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#indexOf(int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |--IDENTIFIER -> indexOf
+     * |--LPAREN -> (
+     * |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |   `--PARAMETER_TYPE -> int
+     * `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #LPAREN
+     * @see #MEMBER_REFERENCE
      */
     public static final int RPAREN = JavadocCommentsLexer.RPAREN;
 
     /**
-     * Comma symbol {@code , }.
+     * Comma symbol {@code ,} in parameter lists.
+     *
+     * <p>This token represents a comma that separates parameters in a method reference
+     * within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link Math#max(int, int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |--PARAMETER_TYPE -> int
+     * |--COMMA -> ,
+     * |--TEXT ->  
+     * `--PARAMETER_TYPE -> int
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE_LIST
+     * @see #MEMBER_REFERENCE
      */
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
