@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -40,6 +41,7 @@ import java.util.regex.Pattern;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Location;
 import org.apache.tools.ant.Project;
+import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.resources.FileResource;
@@ -498,6 +500,29 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage(errorMessage)
                 .that(output.get(4))
                 .isEqualTo(auditFinishedMessage);
+    }
+
+    @Test
+    public void testScanPathLogsVerboseMessage() throws IOException {
+        final LogCapturingProject project = new LogCapturingProject();
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(project);
+
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+
+        final Path path = new Path(project);
+        path.setPath(getPath(FLAWLESS_INPUT));
+        antTask.addPath(path);
+
+        antTask.execute();
+
+        final String expectedLogFragment = ") Scanning path " + path;
+        boolean logFound = project.getVerboseLogs().stream()
+                .anyMatch(log -> log.contains(expectedLogFragment));
+
+        assertWithMessage("Verbose log should contain the scanning path")
+                .that(logFound)
+                .isTrue();
     }
 
     @Test
@@ -1062,6 +1087,28 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Failed to propagate Ant project property value correctly")
                 .that(TestRootModuleChecker.getProperty())
                 .isEqualTo("ignore");
+    }
+
+    private static class LogCapturingProject extends Project {
+        private final List<String> verboseLogs = new ArrayList<>();
+
+        @Override
+        public void log(Task task, String message, int msgLevel) {
+            if (msgLevel == MSG_VERBOSE) {
+                verboseLogs.add(message);
+            }
+        }
+
+        @Override
+        public void log(String message, int msgLevel) {
+            if (msgLevel == MSG_VERBOSE) {
+                verboseLogs.add(message);
+            }
+        }
+
+        public List<String> getVerboseLogs() {
+            return verboseLogs;
+        }
     }
 
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
