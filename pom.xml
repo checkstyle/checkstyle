@@ -625,9 +625,6 @@
               <importOrder>
                 <file>config/spotless/import.order</file>
               </importOrder>
-              <licenseHeader>
-                <file>config/spotless/licence.header</file>
-              </licenseHeader>
             </java>
             <upToDateChecking>
               <enabled>true</enabled>
@@ -1981,7 +1978,6 @@
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
-                <exclude>spotless/licence.header</exclude>
                 <exclude>yamllint.yaml</exclude>
                 <!-- until https://github.com/checkstyle/checkstyle/issues/11572 -->
                 <exclude>linkcheck-suppressions.txt</exclude>
