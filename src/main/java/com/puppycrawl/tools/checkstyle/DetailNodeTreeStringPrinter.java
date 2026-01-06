@@ -73,16 +73,6 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
-     * Parse javadoc comment to DetailNode tree.
-     *
-     * @param javadocComment javadoc comment content
-     * @return tree
-     */
-    private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        return parseJavadocAsDetailNode(ParserUtil.createBlockCommentNode(javadocComment));
-    }
-
-    /**
      * Builds violation base on ParseErrorMessage's violation key, its arguments, etc.
      *
      * @param parseErrorMessage ParseErrorMessage
@@ -168,8 +158,11 @@ public final class DetailNodeTreeStringPrinter {
      * @throws IOException if the file could not be read.
      */
     private static DetailNode parseFile(File file) throws IOException {
-        return parseJavadocAsDetailNode(new FileText(file, Charset.defaultCharset().name())
-                .getFullText().toString());
+        return parseJavadocAsDetailNode(
+                ParserUtil.createBlockCommentNode(
+                        new FileText(
+                                file,
+                                Charset.defaultCharset().name()).getFullText().toString()));
     }
 
 }
