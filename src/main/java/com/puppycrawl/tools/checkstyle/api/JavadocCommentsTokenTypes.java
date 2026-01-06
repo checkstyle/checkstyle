@@ -1669,11 +1669,58 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Term used in {@code {@index}} tag.
+     *
+     * <p>This token represents the search term in an {@code {@index}}
+     * inline tag, which is used to add an entry to the search index.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@index "search term" optional description}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> index
+     * |--INDEX_TERM -> "search term"
+     * |--DESCRIPTION -> DESCRIPTION
+     * |   `--TEXT ->  optional description
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #DESCRIPTION
      */
     public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
 
     /**
-     * Single snippet attribute.
+     * Single snippet attribute in {@code @snippet} tag.
+     *
+     * <p>This token represents one attribute (name-value pair)
+     * in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * `--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     *     |--SNIPPET_ATTR_NAME -> lang
+     *     |--EQUALS -> =
+     *     `--STRING_LITERAL -> "java"
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
+     * @see #SNIPPET_ATTR_NAME
      */
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
 
