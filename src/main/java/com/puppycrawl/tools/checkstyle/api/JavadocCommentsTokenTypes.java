@@ -1796,6 +1796,33 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * String literal inside Javadoc.
+     *
+     * <p>This token represents a quoted string value, typically used
+     * in snippet attributes or other Javadoc constructs.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |   |--SNIPPET_ATTR_NAME -> lang
+     * |   |--EQUALS -> =
+     * |   `--STRING_LITERAL -> "java"
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
 
