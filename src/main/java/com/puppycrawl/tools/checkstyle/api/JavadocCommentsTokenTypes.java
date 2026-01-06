@@ -1688,12 +1688,57 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     /**
-     * Field type reference.
+     * Field type reference in {@code @serialField} tag.
+     *
+     * <p>This token represents the type of a serializable field
+     * in a {@code @serialField} Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * @serialField name String the user's name
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     * |--TAG_NAME -> serialField
+     * |--FIELD_NAME -> name
+     * |--FIELD_TYPE -> String
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #SERIAL_FIELD_BLOCK_TAG
+     * @see #FIELD_NAME
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
     /**
-     * Parameter name reference.
+     * Parameter name in {@code @param} tag.
+     *
+     * <p>This token represents the name of a parameter
+     * in a {@code @param} Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * @param name the user's name
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |--TAG_NAME -> param
+     * |--PARAMETER_NAME -> name
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #DESCRIPTION
      */
     public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
 
