@@ -190,22 +190,13 @@ public abstract class AbstractAutomaticBean
      * @see Configurable
      */
     @Override
-    public final void configure(Configuration config)
-            throws CheckstyleException {
+    public final void configure(Configuration config) throws CheckstyleException {
         configuration = config;
-
-        final String[] attributes = config.getPropertyNames();
-
-        for (final String key : attributes) {
-            final String value = config.getProperty(key);
-
-            tryCopyProperty(key, value, true);
+        for (final String key : config.getPropertyNames()) {
+            tryCopyProperty(key, config.getProperty(key), true);
         }
-
         finishLocalSetup();
-
-        final Configuration[] childConfigs = config.getChildren();
-        for (final Configuration childConfig : childConfigs) {
+        for (final Configuration childConfig : config.getChildren()) {
             setupChild(childConfig);
         }
     }
@@ -218,8 +209,7 @@ public abstract class AbstractAutomaticBean
      * @param recheck whether to check for property existence before copy
      * @throws CheckstyleException when property defined incorrectly
      */
-    private void tryCopyProperty(String key, Object value, boolean recheck)
-            throws CheckstyleException {
+    private void tryCopyProperty(String key, Object value, boolean recheck) throws CheckstyleException {
         try {
             if (recheck) {
                 // BeanUtilsBean.copyProperties silently ignores missing setters
@@ -227,8 +217,7 @@ public abstract class AbstractAutomaticBean
                 // figure out if the bean property really exists.
                 if (PropertyUtils.getPropertyDescriptor(this, key) == null) {
                     throw new CheckstyleException(getLocalizedMessage(
-                        AbstractAutomaticBean.class,
-                        "AbstractAutomaticBean.doesNotExist", key));
+                            "AbstractAutomaticBean.doesNotExist", key));
                 }
             }
             // finally we can set the bean property
@@ -241,13 +230,11 @@ public abstract class AbstractAutomaticBean
             // so we have to join these exceptions with InvocationTargetException
             // to satisfy UTs coverage
             throw new CheckstyleException(getLocalizedMessage(
-                AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.cannotSet", key, value), exc);
+                    "AbstractAutomaticBean.cannotSet", key, value), exc);
         }
         catch (final IllegalArgumentException | ConversionException exc) {
             throw new CheckstyleException(getLocalizedMessage(
-                AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.illegalValue", value, key), exc);
+                    "AbstractAutomaticBean.illegalValue", value, key), exc);
         }
     }
 
@@ -257,14 +244,9 @@ public abstract class AbstractAutomaticBean
      * @see Contextualizable
      */
     @Override
-    public final void contextualize(Context context)
-            throws CheckstyleException {
-        final Collection<String> attributes = context.getAttributeNames();
-
-        for (final String key : attributes) {
-            final Object value = context.get(key);
-
-            tryCopyProperty(key, value, false);
+    public final void contextualize(Context context) throws CheckstyleException {
+        for (final String key : context.getAttributeNames()) {
+            tryCopyProperty(key, context.get(key), false);
         }
     }
 
@@ -290,32 +272,25 @@ public abstract class AbstractAutomaticBean
      * @throws CheckstyleException if there is a configuration error.
      * @see Configuration#getChildren
      */
-    protected void setupChild(Configuration childConf)
-            throws CheckstyleException {
+    protected void setupChild(Configuration childConf) throws CheckstyleException {
         if (childConf != null) {
-            final String message = getLocalizedMessage(
-                AbstractAutomaticBean.class,
-                "AbstractAutomaticBean.disallowedChild", childConf.getName(),
-                configuration.getName());
-            throw new CheckstyleException(message);
+            throw new CheckstyleException(getLocalizedMessage(
+                    "AbstractAutomaticBean.disallowedChild", childConf.getName(),
+                configuration.getName()));
         }
     }
     /**
      * Extracts localized messages from properties files.
      *
-     * @param caller the {@link Class} used to resolve the resource bundle
      * @param messageKey the key pointing to localized message in respective properties file.
-     * @param args the arguments of message in respective properties file.
+     * @param args       the arguments of message in respective properties file.
      * @return a string containing extracted localized message
      */
 
-    private static String getLocalizedMessage(Class<?> caller,
-                                              String messageKey, Object... args) {
-        final LocalizedMessage localizedMessage = new LocalizedMessage(
-            Definitions.CHECKSTYLE_BUNDLE, caller,
-                    messageKey, args);
-
-        return localizedMessage.getMessage();
+    private static String getLocalizedMessage(String messageKey, Object... args) {
+        return new LocalizedMessage(
+            Definitions.CHECKSTYLE_BUNDLE, AbstractAutomaticBean.class,
+                    messageKey, args).getMessage();
     }
 
     /** A converter that converts a string to a pattern. */
