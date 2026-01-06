@@ -11,7 +11,7 @@ package org.checkstyle.checks.importorder;
  * staticGroups = {android,androidx,com.android,dalvik,com,gov,junit,libcore,net,org,java,javax}
  *
  * This test-input is based on real application code and shouldn't be changed.
- * @see https://android.googlesource.com/platform/prebuilts/checkstyle/+/main/default-treewalker-checks.xml
+ * @see https://android.googlesource.com/platform/prebuilts/checkstyle/+/master/default-treewalker-checks.xml
  */
 import static android.graphics.drawable.Icon.TYPE_ADAPTIVE_BITMAP;
 import static android.graphics.drawable.Icon.TYPE_BITMAP;

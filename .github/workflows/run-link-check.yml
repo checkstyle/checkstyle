@@ -2,14 +2,14 @@
 # GitHub Action to run link checks.
 #
 # Workflow starts when:
-# 1) push on main branch
+# 1) push on master branch
 #
 #####################################################################################
 name: "Check no broken links"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

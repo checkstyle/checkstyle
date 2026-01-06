@@ -22,7 +22,7 @@
         </p>
 
         <p>
-          <a href="https://github.com/checkstyle/checkstyle/blob/main/src/main/resources/sun_checks.xml">
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml">
             incomplete Checkstyle configuration for 'Sun's Java Style'</a>
         </p>
       </subsection>
@@ -443,7 +443,7 @@
                     config
                   </a>
                   <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/main/src/it/java/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments/InvalidJavadocPositionTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter5comments/rule52documentationcomments/InvalidJavadocPositionTest.java">
                     test
                   </a>
                 </td>
@@ -492,7 +492,7 @@
                     config
                   </a>
                   <br/>
-                  <a href="https://github.com/checkstyle/checkstyle/blob/main/src/it/java/com/sun/checkstyle/test/chapter6declarations/rule61numberperline/MultipleVariableDeclarationsTest.java">
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter6declarations/rule61numberperline/MultipleVariableDeclarationsTest.java">
                     test
                   </a>
                 </td>

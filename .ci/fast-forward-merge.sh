@@ -35,11 +35,11 @@ git branch -D "${LOCAL_USER_BRANCH}" | true
 echo "creating local branch ..."
 git checkout -b "${LOCAL_USER_BRANCH}" "${REPO}"/"${USER_BRANCH}"
 
-echo "rebasing over main ..."
-git rebase main
+echo "rebasing over master ..."
+git rebase master
 
-echo "merge to main ..."
-git checkout main
+echo "merge to master ..."
+git checkout master
 git merge "${LOCAL_USER_BRANCH}" --ff-only
 
 echo "removing local branch ..."

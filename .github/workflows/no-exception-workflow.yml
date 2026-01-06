@@ -3,7 +3,7 @@ name: "no-exception testing"
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: '*'
 

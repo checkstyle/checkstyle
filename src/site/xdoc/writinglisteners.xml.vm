@@ -204,7 +204,7 @@ public class VerboseListener
         href="config.html#Audit_Listeners">configuration file</a>. For
         example, to configure a <code>Checker</code> so
         that it uses custom listener
-        <a href="https://github.com/checkstyle/contribution/blob/main/examples/listeners/com/mycompany/listeners/VerboseListener.java">
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/VerboseListener.java">
             VerboseListener</a>
         to print audit messages to a
         file named &quot;audit.txt&quot;, include the following module
@@ -264,7 +264,7 @@ Audit finished. Total errors: 1
 
       <p>
         The source code for
-        <a href="https://github.com/checkstyle/contribution/blob/main/examples/listeners/com/mycompany/listeners/CommonsLoggingListener.java">
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/CommonsLoggingListener.java">
         CommonsLoggingListener</a>.  Notice that
         each <code>AuditListener</code> method that
         receives an <code> AuditEvent</code> calls a method
@@ -329,7 +329,7 @@ INFO  com.puppycrawl...Checker  - Audit finished.
 
       <h4>MailLogger</h4>
       <p>
-        <a href="https://github.com/checkstyle/contribution/blob/main/examples/listeners/com/mycompany/listeners/MailLogger.java">
+        <a href="https://github.com/checkstyle/contribution/blob/master/examples/listeners/com/mycompany/listeners/MailLogger.java">
         MailLogger</a>
         sends an audit report in an
         email message.  The listener uses a <code>DefaultLogger</code> to prepare the text of the

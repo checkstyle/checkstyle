@@ -360,7 +360,7 @@ public final class ConfigurationLoader {
          * with the string value of the corresponding data types.
          *
          * <p>Code copied from
-         * <a href="https://github.com/apache/ant/blob/main/src/main/org/apache/tools/ant/ProjectHelper.java">
+         * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
          * ant
          * </a>
          *
@@ -413,7 +413,7 @@ public final class ConfigurationLoader {
          * reference from the second collection.
          *
          * <p>Code copied from
-         * <a href="https://github.com/apache/ant/blob/main/src/main/org/apache/tools/ant/ProjectHelper.java">
+         * <a href="https://github.com/apache/ant/blob/master/src/main/org/apache/tools/ant/ProjectHelper.java">
          * ant
          * </a>
          *

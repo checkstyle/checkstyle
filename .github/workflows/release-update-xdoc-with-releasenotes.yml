@@ -53,4 +53,4 @@ jobs:
             git config user.name 'github-actions[bot]'
             git config user.email 'github-actions[bot]@users.noreply.github.com'
             git add . && git commit -m "doc: release notes for ${{ inputs.version }}"
-            git push origin main
+            git push origin master

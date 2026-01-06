@@ -1,6 +1,6 @@
 # GSOC Participant Guide
 
-![](https://raw.githubusercontent.com/checkstyle/resources/main/img/checkstyle-logos/checkstyle-logo-260x99.png)
+![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
 
 ---------------------------------
 

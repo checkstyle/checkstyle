@@ -2,7 +2,7 @@ name: "Check PR Description"
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

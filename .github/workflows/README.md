@@ -12,7 +12,7 @@ for changes that they have in Pull Request(PR).
 Workflow does:
 
 - takes configurations from user's PR comment or/and PR description,
-- builds checkstyle from main branch,
+- builds checkstyle from master branch,
 - run checkstyle validation for user defined list of project with user defined configs
 - stores results of validation
 - builds checkstyle from PR branch,
@@ -56,7 +56,7 @@ use then for diff report generation.
 ### Diff Report by configuration in Pull Request Description
 
 Add the links of the config files in the PR description as described at
-[checkstyle-tester](https://github.com/checkstyle/contribution/blob/main/checkstyle-tester/README.md#executing-generation-using-github-action)
+[checkstyle-tester](https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/README.md#executing-generation-using-github-action)
 
 Make a comment in PR:
 

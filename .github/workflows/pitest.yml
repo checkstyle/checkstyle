@@ -3,7 +3,7 @@ name: Pitest
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: '*'
 
@@ -80,12 +80,12 @@ jobs:
           ./.ci/print-diff-as-patch.sh target/pitest-${{ matrix.profile }}.patch
 
       - name: Stage results
-        if: failure() || github.ref == 'refs/heads/main'
+        if: failure() || github.ref == 'refs/heads/master'
         run: |
           mkdir staging && cp -r target/pit-reports/ staging
 
       - name: Archive code coverage results
-        if: failure() || github.ref == 'refs/heads/main'
+        if: failure() || github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v6
         with:
           name: pitest-${{ matrix.profile }}-coverage-report

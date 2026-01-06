@@ -24,7 +24,7 @@ fi
 
 if [ ! -e "$word_splitter" ]; then
   echo "Retrieve w"
-  w_location='https://raw.githubusercontent.com/jsoref/spelling/main/w'
+  w_location='https://raw.githubusercontent.com/jsoref/spelling/master/w'
   curl --fail-with-body -s "$w_location" |\
     perl -p -n -e "s</usr/share/dict/words><$dict>" > "$word_splitter"
   get_word_splitter_status="${PIPESTATUS[0]} ${PIPESTATUS[1]}"

@@ -96,7 +96,7 @@
   <suppress checks="ClassDataAbstractionCoupling" files="(TreeTable|MainFrame)\.java"/>
 
   <!-- Should be fixed after moving
-  https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/main/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java
+  https://github.com/sevntu-checkstyle/sevntu.checkstyle/blob/master/sevntu-checks/src/main/java/com/github/sevntu/checkstyle/checks/coding/ReturnCountExtendedCheck.java
   into the main repo, to allow skip guard sentences(or by topLinesToIgnoreCount) -->
   <suppress checks="ReturnCount" files="(ConfigurationLoader|LambdaHandler)\.java"/>
 

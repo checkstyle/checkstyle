@@ -326,7 +326,7 @@
 
       <p>
         An example project can be found
-        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/main/ant-project">
+        <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
             here</a>.
       </p>
 
@@ -334,7 +334,7 @@
         <b>
           Checkstyle use ant configuration to validate its own code. See example is our git
           repository -
-          <a href="https://github.com/checkstyle/checkstyle/blob/main/config/ant-phase-verify.xml#L25">
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
             config/ant-phase-verify.xml</a>.
         </b>
       </p>
@@ -456,7 +456,7 @@
         <b>
           To run checkstyle with a custom JAR with implementation of custom Checks
           be sure the custom JAR is found on the classpath. An example can be found at
-          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/main/ant-project">
+          <a href="https://github.com/sevntu-checkstyle/checkstyle-samples/tree/master/ant-project">
           checkstyle-samples</a>.
         </b>
       </p>

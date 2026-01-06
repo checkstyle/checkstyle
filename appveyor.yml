@@ -5,7 +5,7 @@ skip_tags: true
 clone_depth: 10
 branches:
   only:
-    - main
+    - master
   except:
     - gh-pages
 

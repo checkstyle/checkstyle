@@ -112,7 +112,7 @@ jobs:
     outputs:
       message: ${{ steps.out.outputs.message}}
     steps:
-      - name: Checkout main branch
+      - name: Checkout master branch
         uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle
@@ -161,7 +161,7 @@ jobs:
     needs: [ publish_site ]
     if: failure() || success()
     steps:
-      - name: Checkout main branch
+      - name: Checkout master branch
         uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle

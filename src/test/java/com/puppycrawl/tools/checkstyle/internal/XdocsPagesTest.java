@@ -1790,7 +1790,7 @@ public class XdocsPagesTest {
                     .contains(sectionName);
             }
             else if ("Checkstyle's Import Control Config".equals(linkText)) {
-                expectedUrl = "https://github.com/checkstyle/checkstyle/blob/main/config/"
+                expectedUrl = "https://github.com/checkstyle/checkstyle/blob/master/config/"
                     + "import-control.xml";
             }
 
@@ -2107,7 +2107,7 @@ public class XdocsPagesTest {
                         ruleName, moduleName, configName)
                             .that(configUrl)
                             .startsWith("https://github.com/checkstyle/checkstyle/"
-                                    + "blob/main/src/it/java/com/" + styleName
+                                    + "blob/master/src/it/java/com/" + styleName
                                     + "/checkstyle/test/");
                     assertWithMessage(
                         "%s_style.xml rule '%s' module '%s' should have matching %s url", styleName,
@@ -2204,7 +2204,7 @@ public class XdocsPagesTest {
                 ruleName)
                     .that(inputFolderUrl)
                     .startsWith("https://github.com/checkstyle/checkstyle/"
-                            + "tree/main/src/it/resources/com/google/checkstyle/test/");
+                            + "tree/master/src/it/resources/com/google/checkstyle/test/");
 
             assertWithMessage("google_style.xml rule '%s' should have matching sample url",
                 ruleName)

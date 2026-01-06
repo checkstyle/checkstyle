@@ -34,13 +34,13 @@ final class InputFormattedColumnLimit {
 
   /**
    * Some javadoc. Very long url with https:
-   * https://github.com/checkstyle/checkstyle/blob/main/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+   * https://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
    */
   String https = "200 OK";
 
   /**
    * Some javadoc. Very long url with http:
-   * http://github.com/checkstyle/checkstyle/blob/main/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
+   * http://github.com/checkstyle/checkstyle/blob/master/src/main/java/com/puppycrawl/tools/checkstyle/checks/AvoidEscapedUnicodeCharactersCheck.java
    */
   String http = "200 OK";
 

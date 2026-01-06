@@ -2,7 +2,7 @@
 # GitHub Action to check references to closed issues in code.
 #
 # Workflow starts when:
-# 1) push on main branch
+# 1) push on master branch
 # 2) pull request is opened or synchronized or reopened
 #
 #####################################################################################
@@ -10,7 +10,7 @@ name: "Check no closed issue references"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
     branches: '*'
 

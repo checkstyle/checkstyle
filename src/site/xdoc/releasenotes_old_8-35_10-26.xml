@@ -7155,7 +7155,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/10676">#10676</a>
         </li>
         <li>
-          Github actions for pitest does not safe artifacts in main builds for all executions.
+          Github actions for pitest does not safe artifacts in master builds for all executions.
           Author: AkMo3
           <a href="https://github.com/checkstyle/checkstyle/issues/10684">#10684</a>
         </li>
@@ -9196,7 +9196,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/9001">#9001</a>
         </li>
         <li>
-          no-error-pgjdbc is failing on main build.
+          no-error-pgjdbc is failing on master build.
           Author: Abhishek-kumar09
           <a href="https://github.com/checkstyle/checkstyle/issues/9176">#9176</a>
         </li>
@@ -9692,7 +9692,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/6658">#6658</a>
         </li>
         <li>
-          Diff Report should be generated against main checkstyle&#39;s main branch.
+          Diff Report should be generated against main checkstyle&#39;s master branch.
           Author: Abhishek-kumar09
           <a href="https://github.com/checkstyle/checkstyle/issues/8827">#8827</a>
         </li>

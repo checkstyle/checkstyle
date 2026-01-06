@@ -1730,7 +1730,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/5060">#5060</a>
         </li>
         <li>
-          config: fix previous commits check to avoid confusion with main and
+          config: fix previous commits check to avoid confusion with master and
           rewrite main ci for easier maintenance.
           Author: rnveach
           <a href="https://github.com/checkstyle/checkstyle/issues/7125">#7125</a>
@@ -1841,7 +1841,7 @@
           <a href="https://github.com/checkstyle/checkstyle/issues/3279">#3279</a>
         </li>
         <li>
-          CI should fail if PR is based on an old main.
+          CI should fail if PR is based on an old master.
           Author: rnveach
           <a href="https://github.com/checkstyle/checkstyle/issues/5496">#5496</a>
         </li>

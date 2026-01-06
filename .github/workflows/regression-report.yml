@@ -102,7 +102,7 @@ jobs:
           repository: ${{ steps.get_pr_details.outputs.fork_repo }}
           ref: ${{ steps.get_pr_details.outputs.branch }}
 
-      - name: Checkout main branch
+      - name: Checkout master branch
         uses: actions/checkout@v6
         with:
           repository: checkstyle/checkstyle
@@ -558,7 +558,7 @@ jobs:
           bash
           PR_BRANCH="${{ needs.checkout_and_cache.outputs.pr_branch }}"
           REPO="${{ github.workspace }}/.ci-temp/checkstyle"
-          BASE_BRANCH="upstream/main"
+          BASE_BRANCH="upstream/master"
           export MAVEN_OPTS="-Xmx5g"
 
           # Paths to config files

@@ -2,7 +2,7 @@
 # GitHub Action to format specific files by google-java-format.
 #
 # Workflow starts when:
-# 1) push to main
+# 1) push to master
 # 2) PR created or pushed
 #
 #####################################################################################
@@ -11,7 +11,7 @@ name: Google-Java-Format
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: '*'
 

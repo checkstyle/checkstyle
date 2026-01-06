@@ -2085,7 +2085,7 @@ public class InputFinalLocalVariableFalsePositives {
         }
     }
 
-    // Hbase/hbase-server/src/main/java/org/apache/hadoop/hbase/main/AssignmentManager.java
+    // Hbase/hbase-server/src/main/java/org/apache/hadoop/hbase/master/AssignmentManager.java
     private void foo85() {
         boolean needNewPlan;
         try {

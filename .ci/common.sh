@@ -23,8 +23,8 @@ function should_run_job {
               echo "List of branches: $OUT"
               OUT=$(git log -10 --format="%h %B")
               echo "Current Branch log: $OUT"
-              OUT=$(git log origin/main -10 --format="%h %B")
-              echo "origin/main log: $OUT"
+              OUT=$(git log origin/master -10 --format="%h %B")
+              echo "origin/master log: $OUT"
          fi
 
          # This identifies the PR's original commit
@@ -36,22 +36,22 @@ function should_run_job {
          fi
 
          # Identify previous commit to know how much to examine
-         # Script assumes we are only working with 1 commit if we are in main
-         # Otherwise, it looks for the common ancestor with main
+         # Script assumes we are only working with 1 commit if we are in master
+         # Otherwise, it looks for the common ancestor with master
          local PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
 
          if [[ $DEBUG == "true" ]]; then
               echo "Head commit: $HEAD"
               OUT=$(git branch -a --contains "$HEAD")
-              echo "Main contains head commit: $OUT"
-              OUT=$(git branch -a --contains "$HEAD" | grep " origin/main$" || true)
-              echo "Main contains head commit (filtered): $OUT"
+              echo "Master contains head commit: $OUT"
+              OUT=$(git branch -a --contains "$HEAD" | grep " origin/master$" || true)
+              echo "Master contains head commit (filtered): $OUT"
          fi
 
-         # We are not in main if main does not contain the head commit
-         if [[ $(git branch -a --contains "$HEAD" | grep " origin/main$" \
+         # We are not in master if master does not contain the head commit
+         if [[ $(git branch -a --contains "$HEAD" | grep " origin/master$" \
                     | wc -c ) == 0 ]]; then
-              PREVIOUS_COMMIT=$(git merge-base origin/main "$HEAD")
+              PREVIOUS_COMMIT=$(git merge-base origin/master "$HEAD")
          fi
 
          echo "Previous Commit to start with: $PREVIOUS_COMMIT"
@@ -92,7 +92,7 @@ function should_run_job {
          echo "Top commit message: $OUT"
     fi
 
-    # Note: this command only works in main branch
+    # Note: this command only works in master branch
     if [ "$(git log -1 --format=%B | grep -E "\[maven-release-plugin\] prepare release" \
               | cat | wc -l)" -lt 1 ];
     then

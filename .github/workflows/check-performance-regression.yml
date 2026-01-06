@@ -2,7 +2,7 @@
 # GitHub Action to test performance regression.
 #
 # Workflow starts when:
-# 1) push to main
+# 1) push to master
 # 2) PR created or pushed
 #
 #####################################################################################
@@ -11,7 +11,7 @@ name: Check-Performance-Regression
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches: '*'
 

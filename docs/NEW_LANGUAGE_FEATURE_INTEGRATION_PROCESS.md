@@ -138,7 +138,7 @@ Review real usage examples of the new language feature in large projects.
 This helps to identify potential issues and ensures that the checks
 are aligned with practical use cases.
 A list of representative projects can be found
-[here](https://github.com/checkstyle/contribution/tree/main/checkstyle-tester)
+[here](https://github.com/checkstyle/contribution/tree/master/checkstyle-tester)
 in projects files.
 
 ### 1.7 Good Source of Best Practices

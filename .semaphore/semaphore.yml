@@ -6,7 +6,7 @@ agent:
     os_image: ubuntu2004
 auto_cancel:
   running:
-    when: "branch != 'main'"
+    when: "branch != 'master'"
 blocks:
   - name: "Linux openjdk build"
     task:

@@ -20,7 +20,7 @@
             cached page</a>), version of 26 Apr 2025.
         </p>
         <p>
-          <a href="https://github.com/checkstyle/checkstyle/blob/main/src/main/resources/google_checks.xml">
+          <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml">
             Checkstyle configuration for 'Google Java Style'</a>
         </p>
       </subsection>
@@ -172,7 +172,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule21filename">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule21filename">
                     samples</a>
                 </td>
               </tr>
@@ -238,7 +238,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule231filetab">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule231filetab">
                     samples</a>
                 </td>
               </tr>
@@ -265,7 +265,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule232specialescape">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule232specialescape">
                     samples</a>
                 </td>
               </tr>
@@ -291,7 +291,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule233nonascii">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter2filebasic/rule233nonascii">
                     samples</a>
                 </td>
               </tr>
@@ -335,7 +335,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3sourcefile">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3sourcefile">
                     samples</a>
                 </td>
               </tr>
@@ -383,7 +383,7 @@
                     config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule32packagestatement">
                     samples</a>
                 </td>
               </tr>
@@ -424,7 +424,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule331nowildcard">
                     samples</a>
                 </td>
               </tr>
@@ -457,7 +457,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap">
                     samples</a>
                 </td>
               </tr>
@@ -483,7 +483,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing">
                     samples</a>
                 </td>
               </tr>
@@ -548,7 +548,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule341onetoplevel">
                     samples</a>
                 </td>
               </tr>
@@ -598,7 +598,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule3421overloadsplit">
                     samples</a>
                 </td>
               </tr>
@@ -698,7 +698,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule411optionalbracesusage">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule411optionalbracesusage">
                     samples</a>
                 </td>
               </tr>
@@ -740,7 +740,7 @@
                   <a href="https://github.com/checkstyle/checkstyle/issues/14782">#14782</a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule412nonemptyblocks">
                     samples</a>
                 </td>
               </tr>
@@ -770,7 +770,7 @@
                   <a href="https://github.com/checkstyle/checkstyle/issues/15791">#15791</a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks">
                     samples
                   </a>
                 </td>
@@ -798,7 +798,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule42blockindentation">
                     samples</a>
                 </td>
               </tr>
@@ -824,7 +824,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule43onestatement">
                     samples</a>
                 </td>
               </tr>
@@ -869,7 +869,7 @@
                   <br/>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule44columnlimit">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule44columnlimit">
                     samples</a>
                 </td>
               </tr>
@@ -933,7 +933,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule451wheretobreak">
                     samples</a>
                 </td>
               </tr>
@@ -958,7 +958,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule452indentcontinuationlines">
                     samples</a>
                 </td>
               </tr>
@@ -1006,7 +1006,7 @@
                   This exception is not satisfied
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule461verticalwhitespace">
                     samples</a>
                 </td>
               </tr>
@@ -1102,7 +1102,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace">
                     samples</a>
                 </td>
               </tr>
@@ -1204,7 +1204,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4821onevariableperline">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4821onevariableperline">
                     samples</a>
                 </td>
               </tr>
@@ -1232,7 +1232,7 @@
                   <br />
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4822declaredwhenneeded">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4822declaredwhenneeded">
                     samples</a>
                 </td>
               </tr>
@@ -1287,7 +1287,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4832nocstylearray">
                     samples</a>
                 </td>
               </tr>
@@ -1334,7 +1334,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4841indentation">
                     samples</a>
                 </td>
               </tr>
@@ -1359,7 +1359,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4842fallthrough">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4842fallthrough">
                     samples</a>
                 </td>
               </tr>
@@ -1392,7 +1392,7 @@
                   enum values may look the same as static final String constants.
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4843defaultlabelpresence">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4843defaultlabelpresence">
                     samples</a>
                 </td>
               </tr>
@@ -1492,7 +1492,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4852classannotations">
                     samples</a>
                 </td>
               </tr>
@@ -1527,7 +1527,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4853methodsandconstructorsannotations">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4853methodsandconstructorsannotations">
                     samples</a>
                 </td>
               </tr>
@@ -1562,7 +1562,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4854fieldannotations">
                     samples</a>
                 </td>
               </tr>
@@ -1627,7 +1627,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4861blockcommentstyle">
                     samples</a>
                 </td>
                 <td/>
@@ -1654,7 +1654,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4862todocomments">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule4862todocomments">
                     samples</a>
                 </td>
                 <td/>
@@ -1690,7 +1690,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule487modifiers">
                     samples</a>
                 </td>
 
@@ -1716,7 +1716,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule488numericliterals">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule488numericliterals">
                     samples</a>
                 </td>
               </tr>
@@ -1741,7 +1741,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter4formatting/rule489textblocks">
                     samples</a>
                 </td>
                 <td/>
@@ -1786,7 +1786,7 @@
                   All other types of identifiers are covered in special sections below
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule51identifiernames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule51identifiernames">
                     samples</a>
                 </td>
                 <td/>
@@ -1838,7 +1838,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule521packagenames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule521packagenames">
                     samples</a>
                 </td>
               </tr>
@@ -1874,7 +1874,7 @@
                   name is a noun, an adjective, or any other grammatical category.
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule522classnames">
                     samples</a>
                 </td>
               </tr>
@@ -1917,7 +1917,7 @@
                   name is a noun, an adjective, or any other grammatical category.
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule523methodnames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule523methodnames">
                     samples</a>
                 </td>
               </tr>
@@ -1985,7 +1985,7 @@
                   static final List&lt;String&gt; names).
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule525nonconstantfieldnames">
                     samples</a>
                 </td>
               </tr>
@@ -2037,7 +2037,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule526parameternames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule526parameternames">
                     samples</a>
                 </td>
               </tr>
@@ -2070,7 +2070,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule527localvariablenames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule527localvariablenames">
                     samples</a>
                 </td>
               </tr>
@@ -2126,7 +2126,7 @@
                   <br/>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule528typevariablenames">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule528typevariablenames">
                     samples</a>
                   <br />
                 </td>
@@ -2173,7 +2173,7 @@
                   </a> respectively.
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter5naming/rule53camelcase">
                     samples</a>
                 </td>
               </tr>
@@ -2252,7 +2252,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule62donotignoreexceptions">
                     samples</a>
                 </td>
               </tr>
@@ -2301,7 +2301,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule64finalizers">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule64finalizers">
                     samples</a>
                 </td>
               </tr>
@@ -2422,7 +2422,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule711generalform">
                     samples</a>
                 </td>
               </tr>
@@ -2459,7 +2459,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs">
                     samples</a>
                 </td>
               </tr>
@@ -2504,7 +2504,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule713atclauses">
                     samples</a>
                 </td>
               </tr>
@@ -2531,7 +2531,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule72thesummaryfragment">
                     samples</a>
                 </td>
               </tr>
@@ -2579,7 +2579,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired">
                     samples</a>
                 </td>
               </tr>
@@ -2623,7 +2623,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule731selfexplanatory">
                     samples</a>
                 </td>
               </tr>
@@ -2664,7 +2664,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule732exceptionoverrides">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule732exceptionoverrides">
                     samples</a>
                 </td>
               </tr>
@@ -2692,7 +2692,7 @@
                   config</a>)
                 </td>
                 <td>
-                  <a href="https://github.com/checkstyle/checkstyle/tree/main/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc">
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule734nonrequiredjavadoc">
                     samples</a>
                 </td>
               </tr>

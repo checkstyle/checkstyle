@@ -22,8 +22,8 @@ cd ../../../
 
 if [ -d .ci-temp/checkstyle ]; then
   cd .ci-temp/checkstyle/
-  git reset --hard origin/main
-  git pull origin main
+  git reset --hard origin/master
+  git pull origin master
   git fetch --tags
   cd ../../
 else
@@ -73,7 +73,7 @@ cat <<EOF > body.json
 {
   "tag_name": "checkstyle-$TARGET_VERSION",
   "body": ${UPDATED_CONTENT},
-  "target_commitish": "main",
+  "target_commitish": "master",
   "name": "",
   "draft": false,
   "prerelease": false

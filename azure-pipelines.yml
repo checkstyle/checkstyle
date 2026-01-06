@@ -8,13 +8,13 @@ schedules:
     displayName: Weekly weekend build
     branches:
       include:
-        - main
+        - master
 
 trigger:
-  - main
+  - master
 
 pr:
-  - main
+  - master
 
 strategy:
   matrix:

@@ -801,7 +801,7 @@ public class Example12 {}
             Checkstyle Style</a>
           </li>
           <li>
-            <a href="https://github.com/checkstyle/checkstyle/blob/main/config/import-control.xml">
+            <a href="https://github.com/checkstyle/checkstyle/blob/master/config/import-control.xml">
             Checkstyle's Import Control Config</a>
           </li>
         </ul>

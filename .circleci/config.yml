@@ -201,21 +201,9 @@ workflows:
       # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains
       # why we need execution of spotbugs without any other maven plugins which can change binaries
       - validate-with-maven-script:
-          name: "spotbugs"
+          name: "spotbugs-and-pmd"
           image-name: *cs_img
-          command: "./.ci/validation.sh spotbugs"
-      - validate-with-maven-script:
-          name: "spotless"
-          image-name: *cs_img
-          command: "./.ci/validation.sh spotless"
-      - validate-with-maven-script:
-          name: "pmd"
-          image-name: *cs_img
-          command: "./.ci/validation.sh pmd"
-      - validate-with-maven-script:
-          name: "rewrite"
-          image-name: *cs_img
-          command: "./.ci/validation.sh rewrite"
+          command: "./.ci/validation.sh spotbugs-and-pmd"
       - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
@@ -317,3 +305,17 @@ workflows:
           name: "jdk21-package-site"
           image-name: *cs_img
           command: "./.ci/validation.sh package-site"
+
+  openrewrite:
+    jobs:
+      - validate-with-maven-script:
+          name: "openrewrite-recipes"
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh openrewrite-recipes"
+
+  spotless:
+    jobs:
+      - validate-with-maven-script:
+          name: spotless
+          image-name: "cimg/openjdk:21.0"
+          command: "./.ci/validation.sh spotless"
