@@ -1595,11 +1595,46 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Format specifier inside Javadoc content.
+     *
+     * <p>This token represents a format specifier pattern, typically used
+     * in formatted output documentation.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Formats the value using %s pattern
+     *  * /
+     * }</pre>
+     *
+     * @see #DESCRIPTION
      */
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
     /**
-     * Attribute name in a {@code @snippet}.
+     * Attribute name in a {@code @snippet} tag.
+     *
+     * <p>This token represents the name part of an attribute
+     * in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java" class="Example":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     * |--SNIPPET_ATTR_NAME -> lang
+     * |--EQUALS -> =
+     * `--STRING_LITERAL -> "java"
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
+     * @see #STRING_LITERAL
      */
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
