@@ -1362,7 +1362,7 @@ sevntu)
   ;;
 
 spotless)
-  ./mvnw -e --no-transfer-progress spotless:check
+  ./mvnw -e --no-transfer-progress clean spotless:check
   ;;
 
 openrewrite-recipes)
