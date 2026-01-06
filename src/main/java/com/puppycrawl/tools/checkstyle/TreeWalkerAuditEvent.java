@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -26,61 +26,16 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 /**
  * Raw {@code TreeWalker} event for audit.
  *
+ * @param fileContents contents of the file associated with the event
+ * @param fileName file associated with the event
+ * @param violation the actual violation
+ * @param rootAst root AST element {@link DetailAST} of the file
  */
-public class TreeWalkerAuditEvent {
-
-    /** Filename event associated with. **/
-    private final String fileName;
-    /** The file contents. */
-    private final FileContents fileContents;
-    /** Violation associated with the event. **/
-    private final Violation violation;
-    /** Root ast element. **/
-    private final DetailAST rootAst;
-
-    /**
-     * Creates a new {@code TreeWalkerAuditEvent} instance.
-     *
-     * @param fileContents contents of the file associated with the event
-     * @param fileName file associated with the event
-     * @param violation the actual violation
-     * @param rootAst root AST element {@link DetailAST} of the file
-     */
-    public TreeWalkerAuditEvent(FileContents fileContents, String fileName,
-                                Violation violation, DetailAST rootAst) {
-        this.fileContents = fileContents;
-        this.fileName = fileName;
-        this.violation = violation;
-        this.rootAst = rootAst;
-    }
-
-    /**
-     * Returns name of file being audited.
-     *
-     * @return the file name currently being audited or null if there is
-     *     no relation to a file.
-     */
-    public String getFileName() {
-        return fileName;
-    }
-
-    /**
-     * Returns contents of the file.
-     *
-     * @return contents of the file.
-     */
-    public FileContents getFileContents() {
-        return fileContents;
-    }
-
-    /**
-     * Gets the violation.
-     *
-     * @return the violation
-     */
-    public Violation getViolation() {
-        return violation;
-    }
+public record TreeWalkerAuditEvent(
+        FileContents fileContents,
+        String fileName,
+        Violation violation,
+        DetailAST rootAst) {
 
     /**
      * Return the line number on the source file where the event occurred.
@@ -145,15 +100,6 @@ public class TreeWalkerAuditEvent {
      */
     public int getTokenType() {
         return violation.getTokenType();
-    }
-
-    /**
-     * Gets the root element of the AST tree.
-     *
-     * @return the root element of the AST tree
-     */
-    public DetailAST getRootAst() {
-        return rootAst;
     }
 
 }

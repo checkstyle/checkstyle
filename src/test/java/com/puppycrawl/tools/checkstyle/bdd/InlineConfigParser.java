@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -236,7 +236,7 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
+
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
@@ -581,13 +581,13 @@ public final class InlineConfigParser {
      * @return true if a file provides xml configuration, otherwise false.
      */
     private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.get(0));
+        return "/*xml".equals(lines.getFirst());
     }
 
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.get(0).startsWith("/*")) {
+        if (!lines.getFirst().startsWith("/*")) {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
@@ -1082,7 +1082,7 @@ public final class InlineConfigParser {
                 inputConfigBuilder.getChildrenModules();
 
         if (moduleLists.size() == 1) {
-            final String moduleName = moduleLists.get(0).getModuleName();
+            final String moduleName = moduleLists.getFirst().getModuleName();
 
             if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
                     && !SUPPRESSED_CHECKS.contains(moduleName)) {

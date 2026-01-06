@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -921,7 +921,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return name of variable
          */
-        public String getName() {
+        /* package */ String getName() {
             return name;
         }
 
@@ -930,7 +930,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the associated ast node of type {@link TokenTypes#TYPE}
          */
-        public DetailAST getTypeAst() {
+        /* package */ DetailAST getTypeAst() {
             return typeAst;
         }
 
@@ -941,14 +941,14 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the scope associated with the variable
          */
-        public DetailAST getScope() {
+        /* package */ DetailAST getScope() {
             return scope;
         }
 
         /**
          * Register the variable as used.
          */
-        public void registerAsUsed() {
+        /* package */ void registerAsUsed() {
             used = true;
         }
 
@@ -956,7 +956,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * Register the variable as an instance variable or
          * class variable.
          */
-        public void registerAsInstOrClassVar() {
+        /* package */ void registerAsInstOrClassVar() {
             instVarOrClassVar = true;
         }
 
@@ -965,7 +965,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return true if variable is used
          */
-        public boolean isUsed() {
+        /* package */ boolean isUsed() {
             return used;
         }
 
@@ -974,7 +974,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return true if is an instance variable or a class variable
          */
-        public boolean isInstVarOrClassVar() {
+        /* package */ boolean isInstVarOrClassVar() {
             return instVarOrClassVar;
         }
     }
@@ -1028,7 +1028,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return qualified class name
          */
-        public String getQualifiedName() {
+        /* package */ String getQualifiedName() {
             return qualifiedName;
         }
 
@@ -1037,7 +1037,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return the depth of nesting of type declaration
          */
-        public int getDepth() {
+        /* package */ int getDepth() {
             return depth;
         }
 
@@ -1046,7 +1046,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @return ast node of the type declaration
          */
-        public DetailAST getTypeDeclAst() {
+        /* package */ DetailAST getTypeDeclAst() {
             return typeDeclAst;
         }
 
@@ -1056,7 +1056,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          * @param literalNewAst ast node of type {@link TokenTypes#LITERAL_NEW}
          * @return copy of variables in instanceAndClassVar stack with updated scope.
          */
-        public Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
+        /* package */ Deque<VariableDesc> getUpdatedCopyOfVarStack(DetailAST literalNewAst) {
             final DetailAST updatedScope = literalNewAst;
             final Deque<VariableDesc> instAndClassVarDeque = new ArrayDeque<>();
             instanceAndClassVarStack.forEach(instVar -> {
@@ -1073,7 +1073,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
          *
          * @param variableDesc variable to be added
          */
-        public void addInstOrClassVar(VariableDesc variableDesc) {
+        /* package */ void addInstOrClassVar(VariableDesc variableDesc) {
             instanceAndClassVarStack.push(variableDesc);
         }
     }

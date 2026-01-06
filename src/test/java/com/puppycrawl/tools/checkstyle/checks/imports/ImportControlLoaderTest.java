@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -60,15 +60,18 @@ public class ImportControlLoaderTest {
 
     @Test
     public void testWrongFormatUri() throws Exception {
+        final URI uri = new URI("aaa://" + getPath("InputImportControlLoaderComplete.xml"));
         try {
-            ImportControlLoader.load(new URI("aaa://"
-                    + getPath("InputImportControlLoaderComplete.xml")));
+            ImportControlLoader.load(uri);
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException exc) {
             assertWithMessage("Invalid exception class")
                 .that(exc.getCause())
                 .isInstanceOf(MalformedURLException.class);
+            assertWithMessage("Invalid exception message")
+                .that(exc.getMessage())
+                .isEqualTo("syntax error in url " + uri);
             assertWithMessage("Invalid exception message")
                 .that(exc)
                 .hasCauseThat()
@@ -119,10 +122,11 @@ public class ImportControlLoaderTest {
     // and is difficult to emulate
     public void testLoadThrowsException() {
         final InputSource source = new InputSource();
+        final URI uri = new File(getPath("InputImportControlLoaderComplete.xml")).toURI();
         try {
             final Class<?> clazz = ImportControlLoader.class;
             TestUtil.invokeVoidStaticMethod(clazz, "load", source,
-                    new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
+                    uri);
             assertWithMessage("exception expected").fail();
         }
         catch (ReflectiveOperationException exc) {
@@ -133,7 +137,7 @@ public class ImportControlLoaderTest {
                     .that(exc)
                     .hasCauseThat()
                     .hasMessageThat()
-                    .startsWith("unable to read");
+                    .isEqualTo("unable to read " + uri);
         }
     }
 

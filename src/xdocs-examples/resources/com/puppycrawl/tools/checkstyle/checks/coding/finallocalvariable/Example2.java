@@ -16,8 +16,10 @@ class Example2
 {
   static int foo(int x, int y) {
     // 2 violations above:
-    //  'Variable 'x' should be declared final'
-    //  'Variable 'y' should be declared final'
+    // 'Variable 'x' should be declared final'
+    // 'Variable 'y' should be declared final'
+    int _  = 1;
+
     return x+y;
   }
   public static void main (String []args) {

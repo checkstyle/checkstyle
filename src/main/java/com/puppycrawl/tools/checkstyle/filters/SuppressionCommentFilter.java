@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -245,10 +245,10 @@ public class SuppressionCommentFilter
     public boolean accept(TreeWalkerAuditEvent event) {
         boolean accepted = true;
 
-        if (event.getViolation() != null) {
+        if (event.violation() != null) {
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
-            final FileContents currentContents = event.getFileContents();
+            final FileContents currentContents = event.fileContents();
 
             if (getFileContents() != currentContents) {
                 setFileContents(currentContents);
@@ -442,7 +442,7 @@ public class SuppressionCommentFilter
          *
          * @return the line number of the tag in the source file.
          */
-        public int getLine() {
+        /* package */ int getLine() {
             return line;
         }
 
@@ -453,7 +453,7 @@ public class SuppressionCommentFilter
          *
          * @return the column number of the tag in the source file.
          */
-        public int getColumn() {
+        /* package */ int getColumn() {
             return column;
         }
 
@@ -463,7 +463,7 @@ public class SuppressionCommentFilter
          *
          * @return {@code ON} if the suppression turns reporting on.
          */
-        public TagType getTagType() {
+        /* package */ TagType getTagType() {
             return tagType;
         }
 
@@ -527,7 +527,7 @@ public class SuppressionCommentFilter
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
-        public boolean isMatch(TreeWalkerAuditEvent event) {
+        /* package */ boolean isMatch(TreeWalkerAuditEvent event) {
             return isCheckMatch(event) && isIdMatch(event) && isMessageMatch(event);
         }
 

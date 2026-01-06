@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -74,7 +74,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final NodeInfo firstNode = nodes.get(0);
+        final NodeInfo firstNode = nodes.getFirst();
         assertWithMessage("Should return true, because selected node is RootNode")
                 .that(firstNode)
                 .isInstanceOf(RootNode.class);

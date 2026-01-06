@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -124,7 +124,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         final Configuration result;
         final List<Configuration> configs = getModuleConfigs(mainConfig, moduleName);
         if (configs.size() == 1) {
-            result = configs.get(0);
+            result = configs.getFirst();
         }
         else if (configs.isEmpty()) {
             throw new IllegalStateException("no instances of the Module was found: " + moduleName);

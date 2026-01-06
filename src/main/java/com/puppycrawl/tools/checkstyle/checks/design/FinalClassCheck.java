@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -444,7 +444,7 @@ public class FinalClassCheck
          *
          * @return qualified class name
          */
-        protected String getQualifiedName() {
+        /* package */ String getQualifiedName() {
             return qualifiedName;
         }
 
@@ -453,7 +453,7 @@ public class FinalClassCheck
          *
          * @return the depth of nesting of type declaration
          */
-        protected int getDepth() {
+        /* package */ int getDepth() {
             return depth;
         }
 
@@ -462,7 +462,8 @@ public class FinalClassCheck
          *
          * @return ast node of the type declaration
          */
-        protected DetailAST getTypeDeclarationAst() {
+
+        /* package */ DetailAST getTypeDeclarationAst() {
             return typeDeclarationAst;
         }
     }

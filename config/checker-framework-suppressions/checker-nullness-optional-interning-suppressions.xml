@@ -574,7 +574,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg2 of ResourceBundle.getBundle.</message>
+    <message>incompatible argument for parameter loader of ResourceBundle.getBundle.</message>
     <lineContent>return ResourceBundle.getBundle(bundle, sLocale, sourceClass.getClassLoader(),</lineContent>
     <details>
       found   : @Initialized @Nullable ClassLoader
@@ -717,17 +717,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Optional.orElse.</message>
-    <lineContent>.orElse(fullName);</lineContent>
-    <details>
-      found   : String
-      required: @KeyFor(&quot;com.puppycrawl.tools.checkstyle.PackageObjectFactory.class.NAME_TO_FULL_MODULE_NAME&quot;) String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter arg0 of Set.contains.</message>
     <lineContent>if (packageNames.contains(null)) {</lineContent>
     <details>
@@ -744,6 +733,17 @@
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PackageObjectFactory.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter other of Optional.orElse.</message>
+    <lineContent>.orElse(fullName);</lineContent>
+    <details>
+      found   : String
+      required: @KeyFor(&quot;com.puppycrawl.tools.checkstyle.PackageObjectFactory.class.NAME_TO_FULL_MODULE_NAME&quot;) String
     </details>
   </checkerFrameworkError>
 
@@ -873,22 +873,22 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of Map.putIfAbsent.</message>
-    <lineContent>ruleMetadata.putIfAbsent(key, module);</lineContent>
+    <message>incompatible argument for parameter loader of ResourceBundle.getBundle.</message>
+    <lineContent>moduleClass.getClassLoader(),</lineContent>
     <details>
-      found   : @Initialized @Nullable ModuleDetails
-      required: @Initialized @NonNull ModuleDetails
+      found   : @Initialized @Nullable ClassLoader
+      required: @Initialized @NonNull ClassLoader
     </details>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg2 of ResourceBundle.getBundle.</message>
-    <lineContent>moduleClass.getClassLoader(),</lineContent>
+    <message>incompatible argument for parameter value of Map.putIfAbsent.</message>
+    <lineContent>ruleMetadata.putIfAbsent(key, module);</lineContent>
     <details>
-      found   : @Initialized @Nullable ClassLoader
-      required: @Initialized @NonNull ClassLoader
+      found   : @Initialized @Nullable ModuleDetails
+      required: @Initialized @NonNull ModuleDetails
     </details>
   </checkerFrameworkError>
 
@@ -924,7 +924,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Integer.parseInt.</message>
+    <message>incompatible argument for parameter s of Integer.parseInt.</message>
     <lineContent>final int columnNumber = Integer.parseInt(matcher.group(2));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -935,7 +935,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Integer.parseInt.</message>
+    <message>incompatible argument for parameter s of Integer.parseInt.</message>
     <lineContent>final int lineNumber = Integer.parseInt(matcher.group(1));</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -1048,7 +1048,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/XmlLoader.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of InputSource constructor.</message>
+    <message>incompatible argument for parameter byteStream of InputSource constructor.</message>
     <lineContent>inputSource = new InputSource(dtdIs);</lineContent>
     <details>
       found   : @Initialized @Nullable InputStream
@@ -1835,7 +1835,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/blocks/EmptyBlockCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Optional.of.</message>
+    <message>incompatible argument for parameter value of Optional.of.</message>
     <lineContent>leftCurly = Optional.of(ast.findFirstToken(TokenTypes.SLIST));</lineContent>
     <details>
       found   : @Initialized @Nullable DetailAST
@@ -8446,22 +8446,11 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of JComponent.getFontMetrics.</message>
+    <message>incompatible argument for parameter font of JComponent.getFontMetrics.</message>
     <lineContent>final FontMetrics fontMetrics = getFontMetrics(getFont());</lineContent>
     <details>
       found   : @Initialized @Nullable Font
       required: @Initialized @NonNull Font
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of JTree.setSelectionModel.</message>
-    <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
-      required: @Initialized @NonNull TreeSelectionModel
     </details>
   </checkerFrameworkError>
 
@@ -8473,6 +8462,17 @@
     <details>
       found   : @UnderInitialization(javax.swing.JTable.class) @NonNull TreeTable
       required: @Initialized @NonNull TreeTable
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter selectionModel of JTree.setSelectionModel.</message>
+    <lineContent>tree.setSelectionModel(selectionWrapper);</lineContent>
+    <details>
+      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.gui.ListToTreeSelectionModelWrapper.class) @NonNull ListToTreeSelectionModelWrapper
+      required: @Initialized @NonNull TreeSelectionModel
     </details>
   </checkerFrameworkError>
 
@@ -8758,7 +8758,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter description of ModulePropertyDetails.setDescription.</message>
-    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
+    <lineContent>.getFirst().getFirstChild().getNodeValue());</lineContent>
     <details>
       found   : @Initialized @Nullable String
       required: @Initialized @NonNull String
@@ -8829,15 +8829,15 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).get(0).getFirstChild()</message>
+    <message>dereference of possibly-null reference getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).getFirst().getFirstChild()</message>
     <lineContent>.getFirstChild().getNodeValue());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/meta/XmlMetaReader.java</fileName>
     <specifier>dereference.of.nullable</specifier>
-    <message>dereference of possibly-null reference getDirectChildsByTag(prop, XML_TAG_DESCRIPTION).get(0).getFirstChild()</message>
-    <lineContent>.get(0).getFirstChild().getNodeValue());</lineContent>
+    <message>dereference of possibly-null reference getDirectChildsByTag(prop, XML_TAG_DESCRIPTION).getFirst().getFirstChild()</message>
+    <lineContent>.getFirst().getFirstChild().getNodeValue());</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -8876,7 +8876,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/site/AllCheckSummaries.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Pattern.matcher.</message>
+    <message>incompatible argument for parameter input of Pattern.matcher.</message>
     <lineContent>final String cleanedUrl = SPACE_PATTERN.matcher(originalUrl).replaceAll(&quot;&quot;);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -9270,7 +9270,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Pattern.matcher.</message>
+    <message>incompatible argument for parameter input of Pattern.matcher.</message>
     <lineContent>final Matcher matcher = PROPERTY_VARIABLE_PATTERN.matcher(propertyValue);</lineContent>
     <details>
       found   : @Initialized @Nullable String
@@ -9370,7 +9370,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg1 of String.replaceAll.</message>
+    <message>incompatible argument for parameter replacement of String.replaceAll.</message>
     <lineContent>result = result.replaceAll(&quot;\\$&quot; + i, matcher.group(i));</lineContent>
     <details>
       found   : @Initialized @Nullable String

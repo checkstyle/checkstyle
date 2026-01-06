@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -340,6 +340,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(firstViolation.getColumnNo())
                 .isEqualTo(0);
+        assertWithMessage("expected severity level")
+                .that(firstViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
 
         final Violation secondViolation = iterator.next();
         assertWithMessage("expected line")
@@ -348,6 +351,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("expected column")
                 .that(secondViolation.getColumnNo())
                 .isEqualTo(6);
+        assertWithMessage("expected severity level")
+                .that(secondViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test
@@ -371,13 +377,16 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .that(internalViolations)
                 .hasSize(1);
 
-        final Violation firstViolation = internalViolations.iterator().next();
+        final Violation firstViolation = internalViolations.first();
         assertWithMessage("expected line")
                 .that(firstViolation.getLineNo())
                 .isEqualTo(1);
         assertWithMessage("expected column")
                 .that(firstViolation.getColumnNo())
                 .isEqualTo(5);
+        assertWithMessage("expected severity level")
+                .that(firstViolation.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
     }
 
     @Test

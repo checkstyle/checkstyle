@@ -30,6 +30,12 @@ jobs:
     name: New Milestone, Create issues for ${{ inputs.version }}
     runs-on: ubuntu-24.04
     steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
       - name: Checkout the latest code
         uses: actions/checkout@v6
         with:

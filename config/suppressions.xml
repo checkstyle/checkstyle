@@ -82,7 +82,7 @@
              files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser|ElementNode|SarifLogger)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
-                    |CheckstyleAntTaskTest|
+                    |CheckstyleAntTaskTest|TreeWalkerTest|
                     |TranslationCheckTest|LocalizedMessageTest|AbstractFileSetCheckTest|
                     |AbstractCheckTest|InlineConfigParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"

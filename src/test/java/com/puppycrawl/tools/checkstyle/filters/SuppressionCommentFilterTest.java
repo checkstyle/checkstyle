@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -292,7 +292,7 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testEqualsAndHashCodeOfTagClass() {
-        final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
+        final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").getFirst();
         final EqualsVerifierReport ev = EqualsVerifier.forClass(tag.getClass())
                 .usingGetClass().report();
         assertWithMessage("Error: %s", ev.getMessage())
@@ -302,7 +302,7 @@ public class SuppressionCommentFilterTest
 
     @Test
     public void testToStringOfTagClass() {
-        final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").get(0);
+        final Object tag = getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF").getFirst();
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
             .isEqualTo("Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
@@ -314,7 +314,7 @@ public class SuppressionCommentFilterTest
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         filter.setMessageFormat(".*");
         final Object tag =
-                getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:ON").get(0);
+                getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:ON").getFirst();
         assertWithMessage("Invalid toString result")
             .that(tag.toString())
             .isEqualTo("Tag[text='CHECKSTYLE:ON', line=1, column=0, type=ON,"
@@ -322,19 +322,31 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
+    public void testToStringOfTagClassWithIdFormat() {
+        final SuppressionCommentFilter filter = new SuppressionCommentFilter();
+        filter.setIdFormat("id");
+        final Object tag =
+                getTagsAfterExecution(filter, "filename", "//CHECKSTYLE:OFF").getFirst();
+        assertWithMessage("Invalid toString result")
+            .that(tag.toString())
+            .isEqualTo("Tag[text='CHECKSTYLE:OFF', line=1, column=0, type=OFF,"
+                    + " tagCheckRegexp=.*, tagMessageRegexp=null, tagIdRegexp=id]");
+    }
+
+    @Test
     public void testCompareToOfTagClass() {
         final List<Comparable<Object>> tags1 =
                 getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:OFF", " //CHECKSTYLE:ON");
-        final Comparable<Object> tag1 = tags1.get(0);
+        final Comparable<Object> tag1 = tags1.getFirst();
         final Comparable<Object> tag2 = tags1.get(1);
 
         final List<Comparable<Object>> tags2 =
                 getTagsAfterExecutionOnDefaultFilter(" //CHECKSTYLE:OFF");
-        final Comparable<Object> tag3 = tags2.get(0);
+        final Comparable<Object> tag3 = tags2.getFirst();
 
         final List<Comparable<Object>> tags3 =
                 getTagsAfterExecutionOnDefaultFilter("//CHECKSTYLE:ON");
-        final Comparable<Object> tag4 = tags3.get(0);
+        final Comparable<Object> tag4 = tags3.getFirst();
 
         assertWithMessage("Invalid comparing result")
                 .that(tag1.compareTo(tag2) < 0)
@@ -416,7 +428,7 @@ public class SuppressionCommentFilterTest
             .that(filter.accept(auditEvent))
                 .isTrue();
         assertWithMessage("File name should not be null")
-            .that(auditEvent.getFileName())
+            .that(auditEvent.fileName())
             .isNull();
     }
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -35,13 +35,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
- * Checks for empty line separators before package, all import declarations,
+ * Checks for empty line separators after,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.
  * </div>
  *
  * <p>
- * Checks for empty line separators before not only statements but
+ * For package declaration it checks for both before and after
+ * line separators and for import declarations it checks for
+ * empty line separator after last import declaration.
+ * </p>
+ *
+ * <p>
+ * Checks for empty line separators after not only statements but
  * implementation and documentation comments and blocks as well.
  * </p>
  *
