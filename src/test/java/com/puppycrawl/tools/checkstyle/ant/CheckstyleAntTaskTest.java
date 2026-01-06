@@ -233,7 +233,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
                 .that(filesToCheck)
-                .hasSize(9);
+                .hasSize(10);
         assertWithMessage("The path of file differs from expected")
                 .that(filesToCheck.get(6).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
@@ -358,6 +358,30 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .isEqualTo("Must specify at least one of 'file' or nested 'fileset' or 'path'.");
+    }
+
+    @Test
+    public void testPackagePrefixResolution() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+        antTask.setConfig(getPath("InputCheckstyleAntTaskPackagePrefix.xml"));
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        try {
+            antTask.execute();
+            assertWithMessage("Should throw BuildException for non-existent module.")
+                    .fail();
+        }
+        catch (final BuildException ex) {
+            final Throwable cause = ex.getCause();
+
+            assertWithMessage("BuildException should have a cause")
+                    .that(cause)
+                    .isNotNull();
+            assertWithMessage("Error message should contain the correct package prefix")
+                    .that(cause.getMessage())
+                    .contains("com.puppycrawl.tools.checkstyle");
+        }
     }
 
     @Test
