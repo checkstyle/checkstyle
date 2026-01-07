@@ -35,6 +35,17 @@ public @Nullable Long getStartTimeOrNull() { ... }
           Such annotations are better to keep close to type.
           Due to limitations, Checkstyle can not examine the target of an annotation.
         </p>
+        <p>
+          <strong>Note on same-line annotation properties:</strong>
+          The properties <code>allowSamelineMultipleAnnotations</code>,
+          <code>allowSamelineParameterizedAnnotation</code>, and
+          <code>allowSamelineSingleParameterlessAnnotation</code> are evaluated independently.
+          Enabling <code>allowSamelineParameterizedAnnotation</code> allows only a single
+          parameterized annotation on the same line, and does not permit non-parameterized
+          annotations on the same line unless explicitly allowed by other properties.
+          This behavior is intentional.
+        </p>
+
 
         <p>
           Example:
