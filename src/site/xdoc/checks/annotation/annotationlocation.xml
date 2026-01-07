@@ -45,8 +45,6 @@ public @Nullable Long getStartTimeOrNull() { ... }
           annotations on the same line unless explicitly allowed by other properties.
           This behavior is intentional.
         </p>
-
-
         <p>
           Example:
         </p>
