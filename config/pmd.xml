@@ -304,6 +304,7 @@
          (preferable immutable) to transfer content from one part to another.
          There is no way to configure the rule (it has no properties). -->
     <exclude name="DataClass"/>
+    <exclude name="ExceptionAsFlowControl"/>
     <!-- Too many alarms on the check classes, we will never move logic out of the check,
          each check is an independent logic container. -->
     <exclude name="GodClass"/>
