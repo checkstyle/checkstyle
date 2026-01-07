@@ -229,10 +229,10 @@
     <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>6.0.1</junit.version>
+    <junit.version>6.0.2</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.52.1</checkerframework.version>
+    <checkerframework.version>3.53.0</checkerframework.version>
     <error-prone.version>2.45.0</error-prone.version>
     <error-prone-support.version>0.27.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>

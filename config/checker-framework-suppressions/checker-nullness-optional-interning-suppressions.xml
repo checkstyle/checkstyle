@@ -9,9 +9,9 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/AbstractAutomaticBean.java</fileName>
-    <specifier>toarray.nullable.elements.not.newarray</specifier>
-    <message>call of toArray on collection of non-null elements yields an array of possibly-null elements; omit the argument to toArray or make it an explicit array constructor</message>
-    <lineContent>return result.toArray(CommonUtil.EMPTY_STRING_ARRAY);</lineContent>
+    <specifier>introduce.eliminate</specifier>
+    <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
+    <lineContent>.orElse(null);</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
