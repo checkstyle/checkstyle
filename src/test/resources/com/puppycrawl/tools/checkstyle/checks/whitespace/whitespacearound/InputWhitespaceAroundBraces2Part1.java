@@ -20,7 +20,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-class InputWhitespaceAroundBraces2
+class InputWhitespaceAroundBraces2Part1
 {
     /** @return helper func **/
     boolean condition()
@@ -74,63 +74,5 @@ class InputWhitespaceAroundBraces2
              i++)
             if (i > 2)
                 testFor();
-    }
-
-    /** Test if constructs **/
-    public void testIf()
-    {
-        // Valid
-        if (condition()) {
-            testIf();
-        }
-        else if (condition()) {
-            testIf();
-        }
-        else {
-            testIf();
-        }
-
-        // Invalid
-        if (condition());
-        if (condition())
-            testIf();
-        if (condition())
-            testIf();
-        else
-            testIf();
-        if (condition())
-            testIf();
-        else {
-            testIf();
-        }
-        if (condition()) {
-            testIf();
-        }
-        else
-            testIf();
-        if (condition())
-            if (condition())
-                testIf();
-    }
-
-    void whitespaceAfterSemi()
-    {
-        //reject
-        int i = 1;int j = 2;
-
-        //accept
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputWhitespaceAroundBraces2() {}
-
-    /** Empty method block. **/
-    public void emptyImplementation() {}
-
-    public void foo() {
-        boolean flag = true;
-        if(flag){} // 4 violations
     }
 }
