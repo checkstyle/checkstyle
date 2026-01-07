@@ -457,6 +457,19 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testDisAllowMultipleEmptyLinesInsideClassMembers1() throws Exception {
+        final String[] expected = {
+            "23:27: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "26:19: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "31:64: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+            "36:19: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorInsideClassMembers.java"),
+                expected);
+    }
+
+    @Test
     public void testAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
         final String[] expected = {
             "53:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
