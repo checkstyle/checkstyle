@@ -262,9 +262,7 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
+            final String version = getCheckstyleVersion();
 
             log("checkstyle version " + version, Project.MSG_VERBOSE);
 
@@ -286,6 +284,17 @@ public class CheckstyleAntTask extends Task {
             log("Total execution took " + (endTime - startTime) + TIME_SUFFIX,
                 Project.MSG_VERBOSE);
         }
+    }
+
+    /**
+     * Gets the Checkstyle version from the package implementation version.
+     *
+     * @return the version string, or empty string if not available
+     */
+    private String getCheckstyleVersion() {
+        final String implementationVersion =
+                CheckstyleAntTask.class.getPackage().getImplementationVersion();
+        return Objects.toString(implementationVersion, "");
     }
 
     /**
