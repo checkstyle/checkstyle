@@ -261,8 +261,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             }
         }
 
-        if (result.getNextSibling() != null) {
-            final Optional<DetailAST> postFixNode = getPostFixNode(result.getNextSibling());
+        DetailAST reqAST = result;
+        if (reqAST.getNextSibling() != null) {
+            final Optional<DetailAST> postFixNode = getPostFixNode(reqAST.getNextSibling());
             if (postFixNode.isPresent()) {
                 // A post fix AST will always have a sibling METHOD CALL
                 // METHOD CALL will at least have two children
@@ -270,8 +271,12 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 // First child of DOT again puts us back to normal AST tree which will
                 // recurse down below from here
                 final DetailAST firstChildAfterPostFix = postFixNode.orElseThrow();
-                result = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
+                reqAST = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
             }
+        }
+
+        if (reqAST.getLineNo() <= line) {
+            result = reqAST;
         }
         return result;
     }
