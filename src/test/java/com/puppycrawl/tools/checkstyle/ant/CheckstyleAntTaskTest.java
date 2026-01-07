@@ -501,6 +501,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testScanPathLogsVerboseMessage() throws IOException {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final Path path = new Path(antTask.getProject());
+        path.setPath(getPath(FLAWLESS_INPUT));
+        antTask.addPath(path);
+
+        antTask.execute();
+
+        final String expectedLogFragment = ") Scanning path " + path;
+
+        final boolean logFound = antTask.getLoggedMessages().stream()
+                .anyMatch(pair -> {
+                    return pair.getMsg().contains(expectedLogFragment)
+                            && pair.getLevel() == Project.MSG_VERBOSE;
+                });
+
+        assertWithMessage("Verbose log should contain the scanning path")
+                .that(logFound)
+                .isTrue();
+    }
+
+    @Test
     public final void testConfigurationByUrl() throws IOException {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setProject(new Project());
