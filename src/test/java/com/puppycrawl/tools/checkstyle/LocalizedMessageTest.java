@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -114,7 +115,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -171,7 +172,7 @@ public class LocalizedMessageTest {
                 return inputStream;
             }
         };
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL u) {
                 return urlConnection;
@@ -196,7 +197,7 @@ public class LocalizedMessageTest {
 
     @Test
     public void testBundleReloadUrlNotNullStreamNull() throws IOException {
-        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+        final URL url = URL.of(URI.create("test:///"), new URLStreamHandler() {
             @Override
             protected URLConnection openConnection(URL ignore) {
                 return null;

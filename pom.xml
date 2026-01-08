@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>12.3.1-SNAPSHOT</version>
+  <version>13.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -205,7 +205,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.9.8.2</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.28.0</maven.pmd.plugin.version>
-    <pmd.version>7.19.0</pmd.version>
+    <pmd.version>7.20.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
     <mockito.version>5.2.0</mockito.version>
     <slf4j.version>2.0.17</slf4j.version>
@@ -219,8 +219,7 @@
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
-    <java.version>17</java.version>
-    <next.java.version>21</next.java.version>
+    <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <pitest.plugin.version>1.22.0</pitest.plugin.version>
     <pitest.plugin.timeout.factor>10</pitest.plugin.timeout.factor>
@@ -230,10 +229,10 @@
     <pitest.junit5.plugin.version>1.2.3</pitest.junit5.plugin.version>
     <pitest.accelerator.junit5.plugin.version>1.0.6</pitest.accelerator.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>6.0.1</junit.version>
+    <junit.version>6.0.2</junit.version>
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
-    <checkerframework.version>3.52.1</checkerframework.version>
+    <checkerframework.version>3.53.0</checkerframework.version>
     <error-prone.version>2.45.0</error-prone.version>
     <error-prone-support.version>0.27.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
@@ -246,6 +245,7 @@
       -Xep:ConstantNaming:ERROR
       -Xep:DefaultCharset:ERROR
       -Xep:DirectReturn:ERROR
+      -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
@@ -280,7 +280,6 @@
       -Xep:JdkObsolete:WARN
       -Xep:StatementSwitchToExpressionSwitch:WARN
       -Xep:StringSplitter:WARN
-      -Xep:EffectivelyPrivate:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -402,7 +401,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>4.2.5</version>
+      <version>4.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -638,7 +637,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.26.0</version>
+          <version>6.27.0</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
@@ -670,17 +669,17 @@
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.22.0</version>
+              <version>3.25.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.24.0</version>
+              <version>2.25.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-rewrite</artifactId>
-              <version>0.17.0</version>
+              <version>0.18.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -1583,7 +1582,7 @@
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.9.0</version>
+        <version>0.10.0</version>
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
@@ -1978,6 +1977,7 @@
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>projects-to-test/**</exclude>
                 <exclude>rewrite.yml</exclude>
+                <exclude>sarif-schema-2.1.0.json</exclude>
                 <exclude>signatures-test.txt</exclude>
                 <exclude>signatures.txt</exclude>
                 <exclude>spotless/import.order</exclude>
@@ -2180,7 +2180,7 @@
           <validations>
             <validation>
               <directory>${project.basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
-              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json</jsonSchema>
+              <jsonSchema>file:///${project.basedir}/config/sarif-schema-2.1.0.json</jsonSchema>
               <includes>
                 <include>**/*.sarif</include>
               </includes>
@@ -3931,7 +3931,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -4597,7 +4598,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5005,7 +5007,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5093,7 +5096,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>
@@ -5179,6 +5183,8 @@
               <excludedMethods>
                 <!-- unkilled in generated code https://github.com/hcoles/pitest/issues/255 -->
                 <param>isFileExists</param>
+                <!-- Its mutation potentially causes the cascade change in generated xml files -->
+                <param>getAllNodesOfType</param>
               </excludedMethods>
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
@@ -5364,7 +5370,7 @@
               <classpathScope>test</classpathScope>
               <arguments>
                 <classpath />
-                <argument>${next.java.version}</argument>
+                <argument>${java.version}</argument>
               </arguments>
             </configuration>
           </plugin>
@@ -5401,7 +5407,8 @@
                 <mutator>EXPERIMENTAL_ARGUMENT_PROPAGATION</mutator>
                 <mutator>EXPERIMENTAL_BIG_DECIMAL</mutator>
                 <mutator>EXPERIMENTAL_BIG_INTEGER</mutator>
-                <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                <!-- Disabled until issue in pitest is resolved at https://github.com/hcoles/pitest/issues/1440 -->
+                <!-- <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator> -->
                 <mutator>EXPERIMENTAL_NAKED_RECEIVER</mutator>
                 <mutator>REMOVE_INCREMENTS</mutator>
                 <mutator>EXPERIMENTAL_SWITCH</mutator>

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -235,6 +235,14 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // google prefers no spaces on one side or both for these tokens
                 "GENERIC_START", "GENERIC_END", "WILDCARD_TYPE")
                 .collect(Collectors.toUnmodifiableSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WhitespaceAfter", Stream.of(
+                // these tokens are already validated by WhitespaceAround, having them
+                // in both checks causes duplicate violations
+                "LITERAL_IF", "LITERAL_ELSE", "LITERAL_RETURN", "LITERAL_WHILE",
+                "LITERAL_DO", "LITERAL_FOR", "LITERAL_FINALLY", "DO_WHILE",
+                "LITERAL_SWITCH", "LITERAL_SYNCHRONIZED", "LITERAL_TRY", "LITERAL_CATCH",
+                "LAMBDA", "LITERAL_WHEN")
+                .collect(Collectors.toUnmodifiableSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // numerical types should not be included
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG",
@@ -263,7 +271,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 .map(moduleName -> {
                     final List<String> packageTokens = Splitter
                             .on(".").splitToList(moduleName);
-                    return packageTokens.get(packageTokens.size() - 1);
+                    return packageTokens.getLast();
                 })
                 .collect(Collectors.toUnmodifiableSet());
     }

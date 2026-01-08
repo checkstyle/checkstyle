@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -4152,6 +4152,37 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Method should complete without exception")
             .that(handler)
             .isNotNull();
+    }
+
+    @Test
+    public void testIndexOpWithInvalidChildIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationInvalidArrayIndexIndent.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testFirstTokenSelection() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_ERROR, "member def type", 0, 8),
+            "16:1: " + getCheckMessage(MSG_ERROR, "Integer", 0, 12),
+            "17:1: " + getCheckMessage(MSG_ERROR, ">", 0, 12),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationFirstTokenSelection.java"), expected);
     }
 
     private static final class IndentAudit implements AuditListener {

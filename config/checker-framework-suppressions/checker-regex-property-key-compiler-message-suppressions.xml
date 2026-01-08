@@ -3,7 +3,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/LocalizedMessage.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of ResourceBundle.getString.</message>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
     <lineContent>final String pattern = resourceBundle.getString(key);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -14,7 +14,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertiesExpander.java</fileName>
     <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
+    <message>Incompatible parameter type for key</message>
     <lineContent>Collectors.toUnmodifiableMap(Function.identity(), properties::getProperty));</lineContent>
     <details>
       found   : @PropertyKey String
@@ -29,7 +29,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedConfigHash = details.getProperty(CONFIG_HASH_KEY);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -40,7 +40,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedHashSum = details.getProperty(location);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -51,7 +51,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String cachedHashSum = details.getProperty(resource.location);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -62,7 +62,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>final String lastChecked = details.getProperty(uncheckedFileName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -73,7 +73,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>return details.getProperty(name);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -84,7 +84,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>.forEach(resource -&gt; details.setProperty(resource.location, resource.contentHashSum));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -95,7 +95,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>details.setProperty(CONFIG_HASH_KEY, configHash);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -106,7 +106,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/PropertyCacheFile.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>details.setProperty(checkedFileName, Long.toString(timestamp));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -117,7 +117,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of ResourceBundle.getString.</message>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
     <lineContent>result.put(key, bundle.getString(key));</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -128,7 +128,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>returnValue.setProperty(entry.getKey(), value);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -139,7 +139,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>returnValue.setProperty(p.getKey(), p.getValue());</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -150,7 +150,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>String propertyValue = properties.getProperty(propertyName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -161,7 +161,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.getProperty.</message>
+    <message>incompatible argument for parameter key of Properties.getProperty.</message>
     <lineContent>properties.getProperty(unresolvedPropertyName);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -172,7 +172,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/ChainedPropertyUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of Properties.setProperty.</message>
+    <message>incompatible argument for parameter key of Properties.setProperty.</message>
     <lineContent>properties.setProperty(propertyName, propertyValue);</lineContent>
     <details>
       found   : @UnknownPropertyKey String
@@ -183,7 +183,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/utils/TokenUtil.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter arg0 of ResourceBundle.getString.</message>
+    <message>incompatible argument for parameter key of ResourceBundle.getString.</message>
     <lineContent>return bundle.getString(name);</lineContent>
     <details>
       found   : @UnknownPropertyKey String

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -129,7 +129,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(filesToCheck)
                 .hasSize(1);
         assertWithMessage("The path of file differs from expected")
-                .that(filesToCheck.get(0).getAbsolutePath())
+                .that(filesToCheck.getFirst().getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
@@ -176,7 +176,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(filesToCheck)
                 .hasSize(1);
         assertWithMessage("The path of file differs from expected")
-                .that(filesToCheck.get(0).getAbsolutePath())
+                .that(filesToCheck.getFirst().getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
@@ -233,7 +233,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
         assertWithMessage("There are more files to check than expected")
                 .that(filesToCheck)
-                .hasSize(9);
+                .hasSize(10);
         assertWithMessage("The path of file differs from expected")
                 .that(filesToCheck.get(6).getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
@@ -272,7 +272,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .that(filesToCheck)
                 .hasSize(1);
         assertWithMessage("The path of file differs from expected")
-                .that(filesToCheck.get(0).getAbsolutePath())
+                .that(filesToCheck.getFirst().getAbsolutePath())
                 .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
@@ -358,6 +358,30 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .isEqualTo("Must specify at least one of 'file' or nested 'fileset' or 'path'.");
+    }
+
+    @Test
+    public void testPackagePrefixResolution() throws IOException {
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setProject(new Project());
+        antTask.setConfig(getPath("InputCheckstyleAntTaskPackagePrefix.xml"));
+        antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
+
+        try {
+            antTask.execute();
+            assertWithMessage("Should throw BuildException for non-existent module.")
+                    .fail();
+        }
+        catch (final BuildException exception) {
+            final Throwable cause = exception.getCause();
+
+            assertWithMessage("BuildException should have a cause")
+                    .that(cause)
+                    .isNotNull();
+            assertWithMessage("Error message should contain the correct package prefix")
+                    .that(cause.getMessage())
+                    .contains("com.puppycrawl.tools.checkstyle");
+        }
     }
 
     @Test
@@ -481,7 +505,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final List<String> output = readWholeFile(outputFile);
         final String errorMessage = "Content of file with violations differs from expected";
         assertWithMessage(errorMessage)
-                .that(output.get(0))
+                .that(output.getFirst())
                 .isEqualTo(auditStartedMessage);
         assertWithMessage(errorMessage)
                 .that(output.get(1))
@@ -498,6 +522,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage(errorMessage)
                 .that(output.get(4))
                 .isEqualTo(auditFinishedMessage);
+    }
+
+    @Test
+    public void testScanPathLogsVerboseMessage() throws IOException {
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final Path path = new Path(antTask.getProject());
+        path.setPath(getPath(FLAWLESS_INPUT));
+        antTask.addPath(path);
+
+        antTask.execute();
+
+        final String expectedLogFragment = ") Scanning path " + path;
+
+        final boolean logFound = antTask.getLoggedMessages().stream()
+                .anyMatch(pair -> {
+                    return pair.getMsg().contains(expectedLogFragment)
+                            && pair.getLevel() == Project.MSG_VERBOSE;
+                });
+
+        assertWithMessage("Verbose log should contain the scanning path")
+                .that(logFound)
+                .isTrue();
     }
 
     @Test
@@ -836,24 +885,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Listener instance has unexpected type")
                 .that(formatter.createListener(null))
                 .isInstanceOf(SarifLogger.class);
-    }
-
-    /**
-     * Testing deprecated method.
-     */
-    @Test
-    public void testCreateClasspath() {
-        final CheckstyleAntTask antTask = new CheckstyleAntTask();
-        final Project mockProject = new Project();
-        antTask.setProject(mockProject);
-
-        assertWithMessage("Classpath should belong to the expected project")
-                .that(antTask.createClasspath().getProject())
-                .isEqualTo(mockProject);
-
-        assertWithMessage("Invalid classpath")
-                .that(antTask.createClasspath().toString())
-                .isEmpty();
     }
 
     @Test

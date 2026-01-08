@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -138,8 +138,8 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Wrong messages count: %s", violations.size())
             .that(violations)
             .hasSize(1);
-        final Violation violation = violations.iterator().next();
-        final String retrievedMessage = violations.iterator().next().getKey();
+        final Violation violation = violations.first();
+        final String retrievedMessage = violations.first().getKey();
         assertWithMessage("violation key '%s' is not valid", retrievedMessage)
             .that(retrievedMessage)
             .isEqualTo("unable.open.cause");

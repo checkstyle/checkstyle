@@ -21,32 +21,32 @@ class InputIllegalInstantiationSemantic2
 {
     /* Boolean instantiation in a static initializer */
     static {
-        Boolean x = new Boolean(true); // violation
+        Boolean x = new Boolean(true); // violation 'Instantiation of java.lang.Boolean'
     }
 
     /* Boolean instantiation in a non-static initializer */
     {
-        Boolean x = new Boolean(true); // violation
+        Boolean x = new Boolean(true); // violation 'Instantiation of java.lang.Boolean'
         Boolean[] y = new Boolean[]{Boolean.TRUE, Boolean.FALSE};
     }
 
     /** fully qualified Boolean instantiation in a method. **/
     Boolean getBoolean()
     {
-        return new java.lang.Boolean(true); // violation
+        return new java.lang.Boolean(true); // violation 'Instantiation of java.lang.Boolean'
     }
 
     void otherInstantiations()
     {
         // instantiation of classes in the same package
         Object o1 = new InputBraces();
-        Object o2 = new InputModifier(); // violation
+        Object o2 = new InputModifier(); // violation 'Instantiation'
         // classes in another package with .* import
         ByteArrayOutputStream s = new ByteArrayOutputStream();
-        File f = new File("/tmp"); // violation
+        File f = new File("/tmp"); // violation 'Instantiation of java.io.File'
         // classes in another package with explicit import
         Dimension dim = new Dimension();
-        Color col = new Color(0, 0, 0); // violation
+        Color col = new Color(0, 0, 0); // violation 'Instantiation of java.awt.Color'
     }
 
     public class EqualsVsHashCode1

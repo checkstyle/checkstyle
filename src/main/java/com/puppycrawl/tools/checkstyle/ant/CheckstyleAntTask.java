@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -192,20 +192,6 @@ public class CheckstyleAntTask extends Task {
      */
     public void addProperty(Property property) {
         overrideProps.add(property);
-    }
-
-    /**
-     * Creates classpath.
-     *
-     * @return a created path for locating classes
-     * @deprecated left in implementation until #12556 only to allow users to migrate to new gradle
-     *     plugins. This method will be removed in Checkstyle 11.x.x .
-     * @noinspection DeprecatedIsStillUsed
-     * @noinspectionreason DeprecatedIsStillUsed - until #12556
-     */
-    @Deprecated(since = "10.7.0")
-    public org.apache.tools.ant.types.Path createClasspath() {
-        return new org.apache.tools.ant.types.Path(getProject());
     }
 
     /**
