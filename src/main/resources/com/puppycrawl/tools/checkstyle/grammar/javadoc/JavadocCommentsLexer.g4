@@ -222,7 +222,7 @@ PROVIDES: 'provides' -> pushMode(QUALIFIED_IDENTIFIER);
 SERIAL: 'serial' -> pushMode(DEFAULT_MODE);
 SERIAL_DATA: 'serialData' -> pushMode(DEFAULT_MODE);
 SERIAL_FIELD: 'serialField' -> pushMode(FIELD_NAME);
-BlockTag_CUSTOM_NAME: [a-zA-Z0-9:._-]+ -> type(CUSTOM_NAME), pushMode(DEFAULT_MODE);
+BlockTag_CUSTOM_NAME: (LetterOrDigit | [:._-])+ -> type(CUSTOM_NAME), pushMode(DEFAULT_MODE);
 
 // --- FIELD_NAME ---
 // Purpose: Parses the field name in @serialField block tag.
@@ -253,14 +253,14 @@ FieldType_WS
     ;
 
 FIELD_TYPE
-    : ([a-zA-Z0-9_$] | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.' | '[' | ']')+ -> mode(DEFAULT_MODE)
     ;
 
 // --- QUALIFIED_IDENTIFIER ---
 mode QUALIFIED_IDENTIFIER;
 
 DOTTED_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 DottedIdentifier_NEWLINE
@@ -280,7 +280,7 @@ DottedIdentifier_LEADING_ASTERISK
 mode EXCEPTION_NAME_MODE;
 
 EXCEPTION_NAME
-    : ([a-zA-Z0-9_$] | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
+    : (LetterOrDigit | '.')+ -> type(IDENTIFIER), mode(DEFAULT_MODE)
     ;
 
 ExceptionName_NEWLINE
@@ -300,7 +300,7 @@ ExceptionName_LEADING_ASTERISK
 mode PARAMETER_NAME_MODE;
 
 PARAMETER_NAME
-    : [a-zA-Z0-9<>_$]+ -> mode(DEFAULT_MODE)
+    : (LetterOrDigit | [<>])+ -> mode(DEFAULT_MODE)
     ;
 
 Param_NEWLINE
@@ -330,7 +330,7 @@ INDEX: 'index' -> pushMode(INDEX_TERM_MODE);
 RETURN: 'return' -> pushMode(INLINE_TAG_DESCRIPTION);
 LITERAL: 'literal' -> pushMode(PLAIN_TEXT_TAG);
 SNIPPET: 'snippet' -> pushMode(SNIPPET_ATTRIBUTE_MODE);
-CUSTOM_NAME: [a-zA-Z0-9:._-]+ -> pushMode(INLINE_TAG_DESCRIPTION);
+CUSTOM_NAME: (LetterOrDigit | [:._-])+ -> pushMode(INLINE_TAG_DESCRIPTION);
 
 // --- PLAIN_TEXT_TAG ---
 mode PLAIN_TEXT_TAG;
@@ -423,7 +423,7 @@ fragment Snippet_ATTCHARS
     ;
 
 fragment Snippet_ATTCHAR
-    : '-' | '_' | '.' | '/' | '+' | ',' | '?' | '=' | ';' | '#' | [0-9a-zA-Z]
+    : '-' | '_' | '.' | '/' | '+' | ',' | '?' | '=' | ';' | '#' | LetterOrDigit
     ;
 
 fragment Snippet_HEXCHARS
@@ -449,7 +449,7 @@ EXTENDS: 'extends';
 SUPER: 'super';
 
 IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.')+
+    : (LetterOrDigit | '.')+
       {
           int la = _input.LA(1);
           if (Character.isWhitespace(la) || la == '\n' || la == '\r') {
@@ -516,8 +516,20 @@ See_TAG_OPEN
       -> skip, mode(DEFAULT_MODE)
     ;
 
-fragment LetterOrDigit: Letter | [0-9];
-fragment Letter: [a-zA-Z$_];
+fragment LetterOrDigit
+    : Letter
+    | [0-9]
+    ;
+
+fragment Letter
+    // these are the "java letters" below 0x7F
+    : [a-zA-Z$_]
+    // covers all characters above 0x7F which are not a surrogate AND NOT a Non-Breaking Space
+    // Added \u00A0 to the exclusion list below
+    | ~[\u0000-\u007F\uD800-\uDBFF\u00A0]
+    // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
+    | [\uD800-\uDBFF][\uDC00-\uDFFF]
+    ;
 
 // --- LINK_TAG_DESCRIPTION ---
 mode LINK_TAG_DESCRIPTION;
@@ -569,7 +581,7 @@ ParameterList_LEADING_ASTERISK
     ;
 
 PARAMETER_TYPE
-    : ([a-zA-Z0-9_$] | '.' | '[' | ']')+
+    : (LetterOrDigit | '.' | '[' | ']')+
     ;
 
 COMMA: ',';
@@ -590,11 +602,11 @@ RPAREN
 mode VALUE_MODE;
 
 Value_IDENTIFIER
-    : ([a-zA-Z0-9_$] | '.' | '-')+ -> type(IDENTIFIER)
+    : (LetterOrDigit | '.' | '-')+ -> type(IDENTIFIER)
     ;
 
 FORMAT_SPECIFIER
-    : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? [a-zA-Z]
+    : '%' [#+\- 0,(]* [0-9]* ('.' [0-9]+)? Letter
     ;
 
 Value_HASH: '#' -> type(HASH);
@@ -747,7 +759,7 @@ ATTRIBUTE
 fragment ATTCHARS: ATTCHAR+ ' '?;
 fragment ATTCHAR
     : '-' | '_' | '.' | '/' | '+' | ',' | '?' | '=' | ':' | ';' | '#'
-      | [0-9a-zA-Z]
+      | LetterOrDigit
     ;
 
 fragment HEXCHARS: '#' [0-9a-fA-F]+;
