@@ -1051,7 +1051,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
+            if (!(obj instanceof TestCheck)) {
                 return false;
             }
             final TestCheck other = (TestCheck) obj;
