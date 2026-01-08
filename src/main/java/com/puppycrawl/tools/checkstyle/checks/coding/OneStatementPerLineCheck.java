@@ -77,6 +77,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private int forStatementEnd;
 
     /**
+     * Hold the line-number where the last annotation ends.
+     */
+    private int lastAnnotation;
+
+    /**
      * The for-header usually has 3 statements on one line, but THIS IS OK.
      */
     private boolean inForHeader;
@@ -128,6 +133,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.ANNOTATION,
         };
     }
 
@@ -135,6 +141,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         lastStatementEnd = 0;
         lastVariableResourceStatementEnd = 0;
+        lastAnnotation = 0;
     }
 
     @Override
@@ -142,6 +149,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         switch (ast.getType()) {
             case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
+            case TokenTypes.ANNOTATION -> lastAnnotation = ast.getLineNo();
             case TokenTypes.LAMBDA -> {
                 isInLambda = true;
                 countOfSemiInLambda.push(0);
@@ -193,7 +201,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             checkResourceVariable(ast);
         }
         else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+                forStatementEnd, lambdaStatementEnd, lastAnnotation)) {
             log(ast, MSG_KEY);
         }
     }
@@ -211,7 +219,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         if (!inForHeader && countOfSemiInCurrentLambda > 1
                 && isOnTheSameLine(currentStatement,
                 lastStatementEnd, forStatementEnd,
-                lambdaStatementEnd)) {
+                lambdaStatementEnd, lastAnnotation)) {
             log(ast, MSG_KEY);
         }
     }
@@ -254,12 +262,17 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      *                        statement ended.
      * @param lambdaStatementEnd the line-number where the last lambda
      *                        statement ended.
+     * @param lastAnnotation the line-number where the last annotation ends.
      * @return true if two statements are on the same line.
      */
-    private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
-                                           int forStatementEnd, int lambdaStatementEnd) {
-        return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+    private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd, int forStatementEnd,
+                                           int lambdaStatementEnd, int lastAnnotation) {
+        int lineNumber = ast.getLineNo();
+        if (lastAnnotation == lineNumber && ast.hasChildren()) {
+            lineNumber = ast.getLastChild().getLineNo();
+        }
+        return lastStatementEnd == lineNumber && forStatementEnd != lineNumber
+                && lambdaStatementEnd != lineNumber;
     }
 
 }
