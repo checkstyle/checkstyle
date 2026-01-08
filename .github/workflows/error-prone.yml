@@ -26,7 +26,7 @@ jobs:
         run: |
           curl --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 5.0.0
+          sdk install groovy 4.0.24
           echo "GROOVY_HOME=$HOME/.sdkman/candidates/groovy/current" >> "$GITHUB_ENV"
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
 

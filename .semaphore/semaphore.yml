@@ -16,11 +16,14 @@ blocks:
           - cache restore m2
           - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
           - sudo apt-get update
-          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+          - sudo apt-get install -y ant xsltproc xmlstarlet
           - sudo apt-get install -y openjdk-21-jdk
           - export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
           - export PATH=$JAVA_HOME/bin:$PATH
           - java -version
+          - curl --fail-with-body -s "https://get.sdkman.io" | bash
+          - source "$HOME/.sdkman/bin/sdkman-init.sh"
+          - sdk install groovy 4.0.24
           - export GRADLE_OPTS=-Dorg.gradle.console=plain
       epilogue:
         commands:

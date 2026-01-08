@@ -56,10 +56,13 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install groovy
+      - name: Install Groovy using SDKMAN
         run: |
-          sudo apt update
-          sudo apt install groovy
+          curl --fail-with-body -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 4.0.24
+          echo "GROOVY_HOME=$HOME/.sdkman/candidates/groovy/current" >> "$GITHUB_ENV"
+          echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
 
       - name: Setup local maven cache
         uses: actions/cache@v5
