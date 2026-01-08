@@ -27,6 +27,18 @@
             var a = document.createElement("a");
             a.setAttribute("href", link);
 
+            a.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(link);
+                    showCopiedFeedback(anchorItem);
+                }
+
+                // Update URL without page jump
+                history.replaceState(null, "", "#" + name);
+            });
+
             var image = document.createElement("img");
             image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
@@ -51,6 +63,18 @@
             var a = document.createElement("a");
             a.setAttribute("href", link);
 
+            a.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(link);
+                    showCopiedFeedback(anchorItem);
+                }
+
+                // Update URL without page jump
+                history.replaceState(null, "", "#" + name);
+            });
+
             var image = document.createElement("img");
             image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
@@ -70,6 +94,18 @@
             const a = document.createElement("a");
             a.setAttribute("href", link);
 
+            a.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(link);
+                    showCopiedFeedback(anchorItem);
+                }
+
+                // Update URL without page jump
+                history.replaceState(null, "", "#" + name);
+            });
+
             const image = document.createElement("img");
             image.setAttribute("src", `${relativePath}/images/anchor.png`);
 
@@ -81,4 +117,19 @@
             exampleDiv.appendChild(anchor);
         });
     });
-}());
+
+}(),
+function showCopiedFeedback(element) {
+    var feedback = document.createElement("span");
+    feedback.textContent = "Link copied";
+    feedback.className = "anchor-feedback";
+
+    element.appendChild(feedback);
+
+    setTimeout(function () {
+        feedback.remove();
+    }, 1200);
+}
+
+
+);
