@@ -190,4 +190,16 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testEmptyStatementWithAnnotation() throws Exception {
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY),
+            "13:5: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatementWithAnnotation.java"),
+                expected);
+    }
 }
