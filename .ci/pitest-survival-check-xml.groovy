@@ -2,9 +2,10 @@ import groovy.io.FileType
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
-import groovy.util.slurpersupport.GPathResult
-import groovy.util.slurpersupport.NodeChildren
+import groovy.xml.XmlParser
+import groovy.xml.XmlSlurper
 import groovy.xml.XmlUtil
+import groovy.xml.slurpersupport.GPathResult
 
 @Field static final String USAGE_STRING = "Usage groovy .${File.separator}.ci${File.separator}" +
         "pitest-survival-check-xml.groovy [profile]\n" +
@@ -51,10 +52,10 @@ private int parseArgumentAndExecute(String argument) {
  */
 private static Set<String> getPitestProfiles() {
     final GPathResult mainNode = new XmlSlurper().parse(".${File.separator}pom.xml")
-    final NodeChildren ids = mainNode.profiles.profile.id as NodeChildren
+    final GPathResult ids = mainNode.profiles.profile.id
     final Set<String> profiles = new HashSet<>()
     ids.each { node ->
-        final GPathResult id = node as GPathResult
+        final GPathResult id = node
         final String idText = id.text()
         if (idText.startsWith("pitest-")) {
             profiles.add(idText)
@@ -136,7 +137,7 @@ private static Set<Mutation> getSurvivingMutations(Node mainNode) {
     final Set<Mutation> survivingMutations = new TreeSet<>()
 
     children.each { node ->
-        final Node mutationNode = node as Node
+        final Node mutationNode = node
 
         final String mutationStatus = mutationNode.attribute("status")
 
@@ -159,7 +160,7 @@ private static Set<Mutation> getSuppressedMutations(Node mainNode) {
     final Set<Mutation> suppressedMutations = new TreeSet<>()
 
     children.each { node ->
-        final Node mutationNode = node as Node
+        final Node mutationNode = node
         suppressedMutations.add(getMutation(mutationNode))
     }
     return suppressedMutations
@@ -173,7 +174,7 @@ private static Set<Mutation> getSuppressedMutations(Node mainNode) {
  * @return {@link Mutation} object represented by the {@code mutation} XML node
  */
 private static Mutation getMutation(Node mutationNode) {
-    final List childNodes = mutationNode.children()
+    final List<Node> childNodes = mutationNode.children()
 
     String sourceFile = null
     String mutatedClass = null
@@ -184,7 +185,7 @@ private static Mutation getMutation(Node mutationNode) {
     String mutationClassPackage = null
     int lineNumber = 0
     childNodes.each {
-        final Node childNode = it as Node
+        final Node childNode = it
         final String text = childNode.name()
 
         final String childNodeText = XmlUtil.escapeXml(childNode.text())
