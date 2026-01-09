@@ -873,6 +873,17 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
     <specifier>argument</specifier>
+    <message>incompatible argument for parameter obj of Objects.requireNonNull.</message>
+    <lineContent>return Objects.requireNonNull(SEVERITY_LEVEL_MAP.get(severityLevel),</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>argument</specifier>
     <message>incompatible argument for parameter loader of ResourceBundle.getBundle.</message>
     <lineContent>moduleClass.getClassLoader(),</lineContent>
     <details>
