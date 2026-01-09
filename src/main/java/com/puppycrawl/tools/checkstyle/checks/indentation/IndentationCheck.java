@@ -351,8 +351,7 @@ public class IndentationCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST ast) {
-        handlerFactory.clearCreatedHandlers();
-        handlers.clear();
+        clearState();
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
         incorrectIndentationLines = new HashSet<>();
@@ -369,6 +368,14 @@ public class IndentationCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         handlers.pop();
+    }
+
+    /**
+     * Clears internal state for memory management between files.
+     */
+    private void clearState() {
+        handlerFactory.clearCreatedHandlers();
+        handlers.clear();
     }
 
     /**
