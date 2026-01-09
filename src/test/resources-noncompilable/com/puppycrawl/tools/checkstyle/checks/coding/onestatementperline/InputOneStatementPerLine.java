@@ -36,7 +36,7 @@ public class InputOneStatementPerLine {
    * may be considered as two empty statements on the same line
    * and rises violation.
    */
-  ;; // violation 'Only one statement per line allowed.'
+  ;;
   static {
     new JCheckBox().addActionListener((final ActionEvent e) -> {good();});
     List<Integer> ints = new LinkedList<Integer>();
