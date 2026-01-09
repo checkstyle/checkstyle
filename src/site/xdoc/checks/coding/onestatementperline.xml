@@ -25,10 +25,11 @@
 
         <p>
           OneStatementPerLineCheck checks the following types of statements:
-          variable declaration statements, empty statements, import statements,
-          assignment statements, expression statements, increment statements,
-          object creation statements, 'for loop' statements, 'break' statements,
-          'continue' statements, 'return' statements, resources statements (optional).
+          block statements, variable declaration statements, empty statements,
+          import statements, assignment statements, expression statements,
+          increment statements, object creation statements, 'for loop' statements,
+          'break' statements, 'continue' statements, 'return' statements,
+          resources statements (optional).
         </p>
       </subsection>
 
