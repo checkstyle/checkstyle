@@ -325,6 +325,8 @@
           <item name="RecordComponentNumber" href="checks/sizes/recordcomponentnumber.html"/>
         </item>
         <item name="Whitespace" href="checks/whitespace/index.html" collapse="true">
+          <item name="ArrayBracketNoWhitespace"
+                href="checks/whitespace/arraybracketnowhitespace.html"/>
           <item name="EmptyForInitializerPad"
                 href="checks/whitespace/emptyforinitializerpad.html"/>
           <item name="EmptyForIteratorPad" href="checks/whitespace/emptyforiteratorpad.html"/>
