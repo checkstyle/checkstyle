@@ -33,12 +33,12 @@ public class OneStatementPerLineCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample1() throws Exception {
         final String[] expected = {
-            "17:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "22:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "23:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "29:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "31:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "33:19: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "17:32: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "22:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "23:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "29:33: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "31:7: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "33:14: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example1.java"), expected);
@@ -47,13 +47,13 @@ public class OneStatementPerLineCheckExamplesTest extends AbstractExamplesModule
     @Test
     public void testExample2() throws Exception {
         final String[] expected = {
-            "19:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "24:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "25:23: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "31:59: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "33:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "35:19: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
-            "44:42: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "19:32: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "24:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "25:15: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "31:33: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "33:7: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "35:14: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
+            "44:44: " + getCheckMessage(OneStatementPerLineCheck.MSG_KEY),
         };
 
         verifyWithInlineConfigParser(getPath("Example2.java"), expected);
