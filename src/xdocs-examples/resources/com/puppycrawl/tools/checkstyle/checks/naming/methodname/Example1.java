@@ -6,6 +6,10 @@
 </module>
 */
 
+
+
+
+
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 // xdoc section -- start
@@ -14,5 +18,6 @@ class Example1 {
   protected void method2() {}
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
   public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  void method5() {}
 }
 // xdoc section -- end
