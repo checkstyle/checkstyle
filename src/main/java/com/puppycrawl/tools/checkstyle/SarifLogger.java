@@ -449,13 +449,15 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      *
      * @param severityLevel the Severity level.
      * @return the rendered severity level in string.
+     * @noinspection EnumSwitchStatementWhichMissesCases
+     * @noinspectionreason EnumSwitchStatementWhichMissesCases - default case handles ERROR
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
         return switch (severityLevel) {
             case IGNORE -> "none";
             case INFO -> "note";
             case WARNING -> "warning";
-            case ERROR -> "error";
+            default -> "error";
         };
     }
 
