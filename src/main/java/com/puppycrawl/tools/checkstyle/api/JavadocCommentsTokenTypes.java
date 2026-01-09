@@ -605,41 +605,23 @@ public final class JavadocCommentsTokenTypes {
     // Inline tags
 
     /**
-     * General inline tag (e.g. {@code @link}).
+     * Javadoc inline tag.
      *
-     * <p>Such Javadoc tag can have these children:</p>
-     * <ol>
-     * <li>{@link #CODE_INLINE_TAG}</li>
-     * <li>{@link #LINK_INLINE_TAG}</li>
-     * <li>{@link #VALUE_INLINE_TAG}</li>
-     * </ol>
+     * <p>Such Javadoc tag can have children:</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * /**
-     * * {@code code}
-     * &#42;/
+     * {@link String}
      * }</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--TEXT -> /**
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
-     * |--TEXT ->
-     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
-     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
-     * |       |--JAVADOC_INLINE_TAG_START -> { @
-     * |       |--TAG_NAME -> code
-     * |       |--TEXT ->   code
-     * |       `--JAVADOC_INLINE_TAG_END -> }
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
-     * |--TEXT -> /
-     * |--NEWLINE -> \n
-     * |--TEXT -> public class Test {}
-     * `--NEWLINE -> \n
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     *     |--LINK_INLINE_TAG -> LINK_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> { @
+     *     |--TAG_NAME -> link
+     *     |--REFERENCE -> String
+     *     `--JAVADOC_INLINE_TAG_END -> }
      * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
