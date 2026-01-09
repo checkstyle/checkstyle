@@ -548,6 +548,27 @@ public class Example6 {
   }
 }
 </code></pre></div>
+
+<p>
+          To configure the check to validate empty Javadoc:
+        </p>
+        <source>
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="checkEmptyJavadoc" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example7:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
