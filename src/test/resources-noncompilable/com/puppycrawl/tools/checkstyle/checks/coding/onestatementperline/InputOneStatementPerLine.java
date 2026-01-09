@@ -41,6 +41,7 @@ public class InputOneStatementPerLine {
     new JCheckBox().addActionListener((final ActionEvent e) -> {good();});
     List<Integer> ints = new LinkedList<Integer>();
     ints.stream().map( t -> { return t * 2;} ).filter( t -> { return false;});
+    // violation above 'Only one statement per line allowed.'
 
     // violation below 'Only one statement per line allowed.'
     ints.stream().map( t -> { int m = t * 2; return m; } );
