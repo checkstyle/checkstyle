@@ -114,11 +114,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void oneStatementNonCompilableInputTest() throws Exception {
         final String[] expected = {
             "39:4: " + getCheckMessage(MSG_KEY),
-            "46:54: " + getCheckMessage(MSG_KEY),
-            "48:54: " + getCheckMessage(MSG_KEY),
-            "48:70: " + getCheckMessage(MSG_KEY),
-            "54:46: " + getCheckMessage(MSG_KEY),
-            "60:81: " + getCheckMessage(MSG_KEY),
+            "43:75: " + getCheckMessage(MSG_KEY),
+            "47:54: " + getCheckMessage(MSG_KEY),
+            "49:54: " + getCheckMessage(MSG_KEY),
+            "49:70: " + getCheckMessage(MSG_KEY),
+            "55:46: " + getCheckMessage(MSG_KEY),
+            "61:81: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -189,4 +190,147 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testEmptyStatement() throws Exception {
+        final String[] expected = {
+            "13:11: " + getCheckMessage(MSG_KEY),
+            "17:29: " + getCheckMessage(MSG_KEY),
+            "17:40: " + getCheckMessage(MSG_KEY),
+            "22:11: " + getCheckMessage(MSG_KEY),
+            "22:22: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "24:22: " + getCheckMessage(MSG_KEY),
+            "25:19: " + getCheckMessage(MSG_KEY),
+            "25:20: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyStatement2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = {
+            "14:27: " + getCheckMessage(MSG_KEY),
+            "18:22: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnotation.java"),
+                expected);
+    }
+
+    @Test
+    public void testTryResourcesInLambda() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLine2.java"),
+                expected);
+    }
+
+    @Test
+    public void testTryResourcesAndLoops() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineBeginTree3.java"),
+                expected);
+    }
+
+    @Test
+    public void testLastStatementEnd() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineLastStatementEnd.java"),
+                getPath("InputOneStatementPerLineLastStatementEnd2.java"),
+                expected);
+    }
+
+    @Test
+    public void testAnnonymousClassAndStatements() throws Exception {
+        final String[] expected = {
+            "16:81: " + getCheckMessage(MSG_KEY),
+            "19:66: " + getCheckMessage(MSG_KEY),
+            "24:50: " + getCheckMessage(MSG_KEY),
+            "27:81: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnonymousClass.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testNestedLambdaAndStatements() throws Exception {
+        final String[] expected = {
+            "17:57: " + getCheckMessage(MSG_KEY),
+            "20:20: " + getCheckMessage(MSG_KEY),
+            "25:81: " + getCheckMessage(MSG_KEY),
+            "25:85: " + getCheckMessage(MSG_KEY),
+            "31:79: " + getCheckMessage(MSG_KEY),
+            "34:14: " + getCheckMessage(MSG_KEY),
+            "38:41: " + getCheckMessage(MSG_KEY),
+            "42:62: " + getCheckMessage(MSG_KEY),
+            "45:41: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineNestedLambda.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testAnnonymousClassAndLambda() throws Exception {
+        final String[] expected = {
+            "17:69: " + getCheckMessage(MSG_KEY),
+            "17:72: " + getCheckMessage(MSG_KEY),
+            "24:58: " + getCheckMessage(MSG_KEY),
+            "26:11: " + getCheckMessage(MSG_KEY),
+            "30:51: " + getCheckMessage(MSG_KEY),
+            "51:43: " + getCheckMessage(MSG_KEY),
+            "58:12: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineAnnonymousClassAndLambda.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testImportStatements() throws Exception {
+        final String[] expected = {
+            "11:35: " + getCheckMessage(MSG_KEY),
+            "14:28: " + getCheckMessage(MSG_KEY),
+            "18:12: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineImportStatements.java"),
+                expected
+        );
+    }
+
+    @Test
+    public void testNonCompilableModueImportStatements() throws Exception {
+        final String[] expected = {
+            "12:24: " + getCheckMessage(MSG_KEY),
+        };
+        verifyWithInlineConfigParser(
+                getNonCompilablePath("InputOneStatementPerLineImportStatement.java"),
+                expected
+        );
+    }
+
 }
