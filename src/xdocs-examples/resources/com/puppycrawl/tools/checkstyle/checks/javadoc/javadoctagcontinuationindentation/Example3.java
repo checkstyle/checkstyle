@@ -31,5 +31,13 @@ class Example3 {
   public void testMethod2(String input) {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
+
+    /**
+   * Test class.
+   *
+   * @apiNote
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */
+   public void testMethod3(String input) {}
 }
 // xdoc section -- end
