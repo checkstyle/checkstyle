@@ -73,6 +73,24 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Newline character in a Javadoc comment.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * * Line one
+     * * Line two
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Line one
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK -> *
+     * `--TEXT ->  Line two
+     * }</pre>
+     *
+     * @see #JAVADOC_CONTENT
      */
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
 
