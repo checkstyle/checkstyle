@@ -111,6 +111,14 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
     /** Comma and line separator. */
     private static final String COMMA_LINE_SEPARATOR = ",\n";
 
+    /** Map of severity levels to SARIF level strings. */
+    private static final Map<SeverityLevel, String> SEVERITY_LEVEL_MAP = Map.of(
+        SeverityLevel.IGNORE, "none",
+        SeverityLevel.INFO, "note",
+        SeverityLevel.WARNING, "warning",
+        SeverityLevel.ERROR, "error"
+    );
+
     /** Helper writer that allows easy encoding and printing. */
     private final PrintWriter writer;
 
@@ -451,12 +459,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return the rendered severity level in string.
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
-        return switch (severityLevel) {
-            case IGNORE -> "none";
-            case INFO -> "note";
-            case WARNING -> "warning";
-            case ERROR -> "error";
-        };
+        return Objects.requireNonNull(SEVERITY_LEVEL_MAP.get(severityLevel),
+                "Unexpected severity level: " + severityLevel);
     }
 
     /**
