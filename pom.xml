@@ -350,6 +350,12 @@
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
     </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>1.3.5</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
@@ -532,12 +538,6 @@
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.9.0</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-release-plugin</artifactId>
-          <!-- version is same as in supper-pom as it is better to use same version
-               as in sonatype-nexus-staging -->
-          <version>2.1</version>
-        </plugin>
         <!-- from super-pom END -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -641,7 +641,6 @@
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
-            <skipMavenParsing>true</skipMavenParsing>
             <activeRecipes>
               <recipe>org.checkstyle.AllAutoFixes</recipe>
             </activeRecipes>
