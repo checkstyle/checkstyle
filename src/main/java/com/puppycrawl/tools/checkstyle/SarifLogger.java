@@ -455,7 +455,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
             case IGNORE -> "none";
             case INFO -> "note";
             case WARNING -> "warning";
-            case ERROR -> "error";
+            default -> "error";
         };
     }
 
