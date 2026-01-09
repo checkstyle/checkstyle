@@ -84,7 +84,6 @@ public class InputOneVariablePerDeclarationReformatted {
             java.lang.Object obj;
             Object obj1;
         }
-
     }
 
     class Suppress {
