@@ -4170,6 +4170,21 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, fileName, expected);
     }
 
+    @Test
+    public void testFirstTokenSelection() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_ERROR, "member def type", 0, 8),
+            "16:1: " + getCheckMessage(MSG_ERROR, "Integer", 0, 12),
+            "17:1: " + getCheckMessage(MSG_ERROR, ">", 0, 12),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationFirstTokenSelection.java"), expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;

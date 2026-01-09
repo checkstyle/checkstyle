@@ -124,7 +124,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         final Configuration result;
         final List<Configuration> configs = getModuleConfigs(masterConfig, moduleName);
         if (configs.size() == 1) {
-            result = configs.get(0);
+            result = configs.getFirst();
         }
         else if (configs.isEmpty()) {
             throw new IllegalStateException("no instances of the Module was found: " + moduleName);

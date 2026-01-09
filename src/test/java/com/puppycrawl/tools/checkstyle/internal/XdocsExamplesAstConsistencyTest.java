@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Ensures xdocs Java examples for the same check differ only by comments.
@@ -237,6 +238,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/regexp/regexpsingleline/Example2",
             "checks/regexp/regexpsingleline/Example3",
             "checks/regexp/regexpsingleline/Example4",
+            "checks/regexp/regexpmultiline/Example5",
             "checks/sizes/lambdabodylength/Example2",
             "checks/sizes/linelength/Example6",
             "checks/trailingcomment/Example2",
@@ -244,7 +246,6 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/trailingcomment/Example4",
             "checks/trailingcomment/Example5",
             "checks/trailingcomment/Example6",
-            "checks/whitespace/emptyforinitializerpad/Example2",
             "checks/whitespace/nolinewrap/Example2",
             "checks/whitespace/nolinewrap/Example3",
             "checks/whitespace/nolinewrap/Example4",
@@ -306,10 +307,12 @@ public class XdocsExamplesAstConsistencyTest {
             "filters/suppresswithnearbycommentfilter/Example6",
             "filters/suppresswithnearbycommentfilter/Example7",
             "filters/suppresswithnearbycommentfilter/Example8",
+            "filters/suppresswithnearbytextfilter/Example2",
             "filters/suppresswithnearbytextfilter/Example3",
             "filters/suppresswithnearbytextfilter/Example4",
             "filters/suppresswithnearbytextfilter/Example5",
             "filters/suppresswithnearbytextfilter/Example6",
+            "filters/suppresswithnearbytextfilter/Example7",
             "filters/suppresswithnearbytextfilter/Example8",
             "filters/suppresswithnearbytextfilter/Example9",
             "filters/suppresswithplaintextcommentfilter/Example5",
@@ -350,7 +353,7 @@ public class XdocsExamplesAstConsistencyTest {
 
             builder.append("Found ")
                     .append(violations.size())
-                    .append("example files with AST mismatches.\n\n");
+                    .append(" example files with AST mismatches.\n\n");
 
             for (String violation : violations) {
                 builder.append(violation)
@@ -358,7 +361,7 @@ public class XdocsExamplesAstConsistencyTest {
             }
 
             builder.append("If these examples have different code intent, "
-                    + "add them to INDEPENDENT_EXAMPLES:\n");
+                    + "add them to SUPPRESSED_EXAMPLES:\n");
 
             for (String violation : violations) {
                 final String pattern = extractIndependentPattern(violation);
@@ -588,7 +591,7 @@ public class XdocsExamplesAstConsistencyTest {
     private static List<String> validateAllMatch(Path dir, List<Path> examples)
             throws IOException {
         final List<String> violations = new ArrayList<>();
-        final Path reference = examples.get(0);
+        final Path reference = examples.getFirst();
         final String referenceXdocSection = extractXdocSection(reference);
 
         try {
@@ -726,7 +729,7 @@ public class XdocsExamplesAstConsistencyTest {
             result = null;
         }
         else {
-            final StructuralAstNode node = new StructuralAstNode(ast.getType());
+            final StructuralAstNode node = new StructuralAstNode(ast.getType(), ast.getText());
 
             for (DetailAST child = ast.getFirstChild();
                  child != null;
@@ -758,13 +761,37 @@ public class XdocsExamplesAstConsistencyTest {
     /**
      * Represents a structural AST node without comments or source positions.
      * This allows for pure structural comparison between example files.
+     * Now includes literal text values for semantic comparison.
      */
     private static final class StructuralAstNode {
         private final int type;
+        private final String text;
         private final List<StructuralAstNode> children = new ArrayList<>();
 
-        private StructuralAstNode(int type) {
+        private StructuralAstNode(int type, String text) {
             this.type = type;
+            if (isLiteralToken(type)) {
+                this.text = text;
+            }
+            else {
+                this.text = null;
+            }
+        }
+
+        /**
+         * Checks if a token type represents a literal that should have its text compared.
+         *
+         * @param tokenType the token type
+         * @return true if the token represents a literal with semantic value
+         */
+        private static boolean isLiteralToken(int tokenType) {
+            return switch (tokenType) {
+                case TokenTypes.NUM_INT, TokenTypes.NUM_LONG, TokenTypes.NUM_FLOAT,
+                     TokenTypes.NUM_DOUBLE, TokenTypes.STRING_LITERAL,
+                     TokenTypes.CHAR_LITERAL, TokenTypes.LITERAL_TRUE,
+                     TokenTypes.LITERAL_FALSE, TokenTypes.LITERAL_NULL -> true;
+                default -> false;
+            };
         }
 
         private void addChild(StructuralAstNode child) {
@@ -775,8 +802,10 @@ public class XdocsExamplesAstConsistencyTest {
         public boolean equals(Object obj) {
             final boolean result;
             if (obj instanceof StructuralAstNode other) {
-                final boolean childrenEqual = children.equals(other.children);
-                result = type == other.type && childrenEqual;
+                final boolean typeMatch = type == other.type;
+                final boolean textMatch = Objects.equals(text, other.text);
+                final boolean childrenMatch = children.equals(other.children);
+                result = typeMatch && textMatch && childrenMatch;
             }
             else {
                 result = false;
@@ -786,7 +815,27 @@ public class XdocsExamplesAstConsistencyTest {
 
         @Override
         public int hashCode() {
-            return Objects.hash(type, children);
+            return Objects.hash(type, text, children);
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder sb = new StringBuilder(128);
+            sb.append("StructuralAstNode{type=");
+            try {
+                sb.append(TokenUtil.getTokenName(type));
+            }
+            catch (IllegalArgumentException exception) {
+                sb.append(type);
+            }
+            if (text != null) {
+                sb.append(", text='").append(text).append('\'');
+            }
+            if (!children.isEmpty()) {
+                sb.append(", children=").append(children.size());
+            }
+            sb.append('}');
+            return sb.toString();
         }
     }
 }
