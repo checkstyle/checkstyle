@@ -101,13 +101,13 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "16:5: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
-            "20:3: " + getCheckMessage(JavadocStyleCheck.MSG_EMPTY),
-            "34:5: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
-            "40:5: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
-            "47:5: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
-            "53:35: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
-            "54:5: " + getCheckMessage(JavadocStyleCheck.MSG_INCOMPLETE_TAG, "p"),
+            "13: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "20: " + getCheckMessage(JavadocStyleCheck.MSG_EMPTY),
+            "33: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "39: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "45: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "52: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "54: " + getCheckMessage(JavadocStyleCheck.MSG_INCOMPLETE_TAG, "   * <p"),
         };
 
         verifyWithInlineConfigParser(
