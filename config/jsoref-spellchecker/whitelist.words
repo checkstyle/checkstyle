@@ -183,6 +183,7 @@ circleci
 cirrusci
 classannotations
 classdataabstractioncoupling
+classdeclarations
 classfanoutcomplexity
 classloader
 classmemberimpliedmodifier
@@ -443,6 +444,7 @@ filebasic
 filechooser
 filefilter
 filelength
+fileorganization
 filepath
 fileset
 filesetcheck
@@ -1248,6 +1250,7 @@ shellcheck
 shengchen
 Shiell
 sickboy
+simplestatements
 Simplifiable
 simplifybooleanexpression
 simplifybooleanreturn
@@ -1348,6 +1351,7 @@ suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
+switchstatements
 sxpath
 syntastic
 Sys
