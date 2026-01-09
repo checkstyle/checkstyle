@@ -165,14 +165,17 @@
 
     <!-- Checks for common coding problems               -->
     <!-- See https://checkstyle.org/checks/coding/index.html -->
+    <module name="DeclarationOrder"/>
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
     <module name="HiddenField"/>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
+    <module name="FallThrough"/>
     <module name="MissingSwitchDefault"/>
     <module name="MultipleVariableDeclarations"/>
+    <module name="OneStatementPerLine"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
 
