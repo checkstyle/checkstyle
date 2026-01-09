@@ -98,4 +98,20 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
 
         verifyWithInlineConfigParser(getPath("Example6.java"), expected);
     }
+
+    @Test
+    public void testExample7() throws Exception {
+        final String[] expected = {
+            "13: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "20: " + getCheckMessage(JavadocStyleCheck.MSG_EMPTY),
+            "33: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "39: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "45: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "52: " + getCheckMessage(JavadocStyleCheck.MSG_NO_PERIOD),
+            "54: " + getCheckMessage(JavadocStyleCheck.MSG_INCOMPLETE_TAG, "   * <p"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example7.java"), expected);
+    }
 }
