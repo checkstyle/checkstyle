@@ -426,6 +426,80 @@ class Example7 { // violation above ''import' should be separated from previous 
     int var5 = 5;
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example8-package-info-code">
+          Example of <code>package-info.java</code> with annotation before
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
+/* OK: annotation before PACKAGE_DEF */
+@Deprecated
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.Example8;
+
+import java.lang.Deprecated;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example9-package-info-code">
+          Example of <code>package-info.java</code> with Javadoc before
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
+/** OK: Javadoc before PACKAGE_DEF */
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.Example9;
+
+// import is present so PACKAGE_DEF is not the last token
+import java.lang.System;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example10-package-info-code">
+          Example of violation when a configuration block comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+//////////////////////////////////////////////////
+/*
+ * configuration block comment
+ */
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.Example10;
+// violation above ''package' should be separated from previous line'
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example11-package-info-code">
+          Example of violation when single-line comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
+// single-line comment before package
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.Example11;
+// violation above ''package' should be separated from previous line'
+
+import java.lang.System;
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example12-package-info-code">
+          Example of violation when block comment precedes
+          <code>PACKAGE_DEF</code>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+
+/*
+ * Block comment is not a Javadoc
+ */
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator.packageinfo.Example12;
+// violation above ''package' should be separated from previous line'
 </code></pre></div>
       </subsection>
 
