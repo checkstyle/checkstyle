@@ -97,4 +97,14 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
         return getModuleConfig(CONFIGURATION, moduleName, moduleId);
     }
 
+    /**
+     * Performs verification of the file with the given file path against the whole config.
+     *
+     * @param filePath file path to verify.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected void verifyWithWholeConfig(String filePath) throws Exception {
+        verifyWithItConfig(CONFIGURATION, filePath);
+    }
+
 }
