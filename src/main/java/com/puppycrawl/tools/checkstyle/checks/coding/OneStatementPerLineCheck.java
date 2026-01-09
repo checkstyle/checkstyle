@@ -19,9 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -62,14 +59,14 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     public static final String MSG_KEY = "multiple.statements.line";
 
     /**
-     * Counts number of semicolons in nested lambdas.
-     */
-    private final Deque<Integer> countOfSemiInLambda = new ArrayDeque<>();
-
-    /**
      * Hold the line-number where the last statement ended.
      */
     private int lastStatementEnd;
+
+    /**
+     * Hold the column where the last statement ended.
+     */
+    private int lastStatementColumn;
 
     /**
      * Hold the line-number where the last 'for-loop' statement ended.
@@ -82,12 +79,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private boolean inForHeader;
 
     /**
-     * Holds if current token is inside lambda.
-     */
-    private boolean isInLambda;
-
-    /**
-     * Hold the line-number where the last lambda statement ended.
+     * Hold the line-number where the last lambda expression ended.
      */
     private int lambdaStatementEnd;
 
@@ -128,6 +120,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.EMPTY_STAT,
         };
     }
 
@@ -140,31 +133,32 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT ->
+                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
-            case TokenTypes.LAMBDA -> {
-                isInLambda = true;
-                countOfSemiInLambda.push(0);
+            case TokenTypes.FOR_INIT -> inForHeader = true;
+            default -> {
+                // do nothing
             }
-            default -> inForHeader = true;
         }
     }
 
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> {
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT -> {
                 lastStatementEnd = ast.getLineNo();
+                lastStatementColumn = ast.getColumnNo();
                 forStatementEnd = 0;
                 lambdaStatementEnd = 0;
             }
             case TokenTypes.FOR_ITERATOR -> inForHeader = false;
             case TokenTypes.LAMBDA -> {
-                countOfSemiInLambda.pop();
-                if (countOfSemiInLambda.isEmpty()) {
-                    isInLambda = false;
+                DetailAST currentAst = ast;
+                while (currentAst != null) {
+                    lambdaStatementEnd = currentAst.getLineNo();
+                    currentAst = currentAst.getLastChild();
                 }
-                lambdaStatementEnd = ast.getLineNo();
             }
             default -> {
                 // do nothing
@@ -178,42 +172,41 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @param ast semicolon to check
      */
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
-        DetailAST currentStatement = ast;
         final DetailAST previousSibling = ast.getPreviousSibling();
-        final boolean isUnnecessarySemicolon = previousSibling == null
-            || previousSibling.getType() == TokenTypes.RESOURCES
-            || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
-        if (!isUnnecessarySemicolon) {
-            currentStatement = ast.getPreviousSibling();
+        boolean validStatement = true;
+        if (isResource(ast.getParent())) {
+            validStatement = checkResourceVariable(ast);
         }
-        if (isInLambda) {
-            checkLambda(ast, currentStatement);
+        else if (!inForHeader) {
+            validStatement = isValidStatement(ast, previousSibling);
         }
-        else if (isResource(ast.getParent())) {
-            checkResourceVariable(ast);
-        }
-        else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+        if (!validStatement) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Checks semicolon placement in lambda.
+     * Checks whether the current statement is placed on a separate line
+     * from the previous statement.
      *
-     * @param ast semicolon to check
-     * @param currentStatement current statement
+     * @param ast semicolon token representing the end of the current statement
+     * @param previousSibling previous sibling of the semicolon in the AST
+     * @return {@code true} if the current statement starts on a different line
+     *         than the previous statement; {@code false} otherwise
      */
-    private void checkLambda(DetailAST ast, DetailAST currentStatement) {
-        int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
-        countOfSemiInCurrentLambda++;
-        countOfSemiInLambda.push(countOfSemiInCurrentLambda);
-        if (!inForHeader && countOfSemiInCurrentLambda > 1
-                && isOnTheSameLine(currentStatement,
-                lastStatementEnd, forStatementEnd,
-                lambdaStatementEnd)) {
-            log(ast, MSG_KEY);
+    private boolean isValidStatement(DetailAST ast, DetailAST previousSibling) {
+        final boolean validStatement;
+        final boolean onPreviousLine = onPreviousLine(ast);
+        if (onPreviousLine) {
+            validStatement = false;
         }
+        else if (previousSibling == null) {
+            validStatement = true;
+        }
+        else {
+            validStatement = !onPreviousLine(ast.getPreviousSibling());
+        }
+        return validStatement;
     }
 
     /**
@@ -228,38 +221,35 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     }
 
     /**
-     * Checks resource variable.
+     * Checks whether the current statement represents a valid resource
+     * declaration in a try-with-resources statement.
      *
-     * @param currentStatement current statement
+     * @param currentStatement the statement to check
+     * @return {@code true} if the statement is a valid resource declaration;
+     *         {@code false} otherwise.
      */
-    private void checkResourceVariable(DetailAST currentStatement) {
+    private boolean checkResourceVariable(DetailAST currentStatement) {
+        boolean result = true;
         if (treatTryResourcesAsStatement) {
             final DetailAST nextNode = currentStatement.getNextSibling();
             if (currentStatement.getPreviousSibling().findFirstToken(TokenTypes.ASSIGN) != null) {
                 lastVariableResourceStatementEnd = currentStatement.getLineNo();
             }
-            if (nextNode.findFirstToken(TokenTypes.ASSIGN) != null
-                && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
-                log(currentStatement, MSG_KEY);
-            }
+            result = nextNode.findFirstToken(TokenTypes.ASSIGN) == null
+                    || nextNode.getLineNo() != lastVariableResourceStatementEnd;
         }
+        return result;
     }
 
     /**
-     * Checks whether two statements are on the same line.
+     * Checks whether the ast is on the line with another statement.
      *
      * @param ast token for the current statement.
-     * @param lastStatementEnd the line-number where the last statement ended.
-     * @param forStatementEnd the line-number where the last 'for-loop'
-     *                        statement ended.
-     * @param lambdaStatementEnd the line-number where the last lambda
-     *                        statement ended.
      * @return true if two statements are on the same line.
      */
-    private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
-                                           int forStatementEnd, int lambdaStatementEnd) {
+    private boolean onPreviousLine(DetailAST ast) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+                && lambdaStatementEnd != ast.getLineNo() && lastStatementColumn < ast.getColumnNo();
     }
 
 }
