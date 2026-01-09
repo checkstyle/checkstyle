@@ -128,6 +128,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.EMPTY_STAT,
         };
     }
 
@@ -140,7 +141,8 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT ->
+                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
             case TokenTypes.LAMBDA -> {
                 isInLambda = true;
@@ -153,7 +155,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> {
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT -> {
                 lastStatementEnd = ast.getLineNo();
                 forStatementEnd = 0;
                 lambdaStatementEnd = 0;
@@ -181,6 +183,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         DetailAST currentStatement = ast;
         final DetailAST previousSibling = ast.getPreviousSibling();
         final boolean isUnnecessarySemicolon = previousSibling == null
+            || ast.getType() == TokenTypes.EMPTY_STAT
             || previousSibling.getType() == TokenTypes.RESOURCES
             || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
         if (!isUnnecessarySemicolon) {
