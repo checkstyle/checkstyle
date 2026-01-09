@@ -190,4 +190,31 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
     }
+
+    @Test
+    public void testEmptyStatement() throws Exception {
+        final String[] expected = {
+            "13:11: " + getCheckMessage(MSG_KEY),
+            "17:29: " + getCheckMessage(MSG_KEY),
+            "17:40: " + getCheckMessage(MSG_KEY),
+            "22:11: " + getCheckMessage(MSG_KEY),
+            "22:22: " + getCheckMessage(MSG_KEY),
+            "24:20: " + getCheckMessage(MSG_KEY),
+            "24:22: " + getCheckMessage(MSG_KEY),
+            "25:19: " + getCheckMessage(MSG_KEY),
+            "25:20: " + getCheckMessage(MSG_KEY),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyStatement2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputOneStatementPerLineEmptyStatement2.java"),
+                expected);
+    }
 }
