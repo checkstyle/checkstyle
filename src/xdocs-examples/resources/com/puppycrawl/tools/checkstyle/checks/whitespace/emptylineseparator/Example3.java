@@ -2,7 +2,7 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="EmptyLineSeparator">
-      <property name="allowNoEmptyLineBetweenFields" value="true"/>
+      <property name="tokens" value="IMPORT"/>
     </module>
   </module>
 </module>
@@ -15,11 +15,8 @@
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
 class Example3 {
-
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2;
 
@@ -28,7 +25,7 @@ class Example3 {
 
 
   void method1() {}
-  void method2() { // violation ''METHOD_DEF' should be separated from previous line'
+  void method2() {
     int var4 = 4;
 
 

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -364,7 +364,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             DetailAST result = node.getParent();
             int type = result.getType();
 
-            while (type == TokenTypes.MODIFIERS || type == TokenTypes.ANNOTATION) {
+            while (type == TokenTypes.MODIFIERS || type == TokenTypes.ANNOTATION
+                    || type == TokenTypes.TYPE) {
                 result = result.getParent();
                 type = result.getType();
             }

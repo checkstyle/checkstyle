@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -209,7 +209,7 @@ public final class ExecutableStatementCountCheck
          *
          * @param addition the count increment.
          */
-        public void addCount(int addition) {
+        /* package */ void addCount(int addition) {
             count += addition;
         }
 
@@ -218,7 +218,7 @@ public final class ExecutableStatementCountCheck
          *
          * @return the member AST node.
          */
-        public DetailAST getAST() {
+        /* package */ DetailAST getAST() {
             return ast;
         }
 
@@ -227,7 +227,7 @@ public final class ExecutableStatementCountCheck
          *
          * @return the count.
          */
-        public int getCount() {
+        /* package */ int getCount() {
             return count;
         }
 

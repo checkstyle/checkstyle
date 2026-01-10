@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -152,7 +152,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         }
         else if (firstElementInBlock.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             commentContent = firstElementInBlock.getFirstChild().getText();
-            final String[] lines = LINE_END_PATTERN.split(commentContent);
+            final String[] lines = LINE_END_PATTERN.split(commentContent, -1);
             for (String line : lines) {
                 if (!line.isEmpty()) {
                     commentContent = line;

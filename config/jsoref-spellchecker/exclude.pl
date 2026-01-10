@@ -23,6 +23,7 @@ my @excludes=qw(
   ^config/jsoref-spellchecker/whitelist.words$
   ^config/checker-framework-suppressions/
   ^config/archunit-store/
+  ^config/sarif-schema-2.1.0.json$
 );
 my $exclude = join "|", @excludes;
 while (<>) {

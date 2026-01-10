@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -109,6 +110,14 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
 
     /** Comma and line separator. */
     private static final String COMMA_LINE_SEPARATOR = ",\n";
+
+    /** Map of severity levels to SARIF level strings. */
+    private static final Map<SeverityLevel, String> SEVERITY_LEVEL_MAP = Map.of(
+        SeverityLevel.IGNORE, "none",
+        SeverityLevel.INFO, "note",
+        SeverityLevel.WARNING, "warning",
+        SeverityLevel.ERROR, "error"
+    );
 
     /** Helper writer that allows easy encoding and printing. */
     private final PrintWriter writer;
@@ -328,8 +337,8 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return a version string based on the package implementation version
      */
     private static String replaceVersionString(String report) {
-        return report.replace(VERSION_PLACEHOLDER,
-                SarifLogger.class.getPackage().getImplementationVersion());
+        final String version = SarifLogger.class.getPackage().getImplementationVersion();
+        return report.replace(VERSION_PLACEHOLDER, Objects.toString(version, "null"));
     }
 
     @Override
@@ -450,12 +459,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return the rendered severity level in string.
      */
     private static String renderSeverityLevel(SeverityLevel severityLevel) {
-        return switch (severityLevel) {
-            case IGNORE -> "none";
-            case INFO -> "note";
-            case WARNING -> "warning";
-            case ERROR -> "error";
-        };
+        return SEVERITY_LEVEL_MAP.get(severityLevel);
     }
 
     /**

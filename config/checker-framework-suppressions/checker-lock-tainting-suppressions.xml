@@ -488,7 +488,7 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FallThroughCheck.java</fileName>
     <specifier>methodref.param</specifier>
-    <message>Incompatible parameter type for arg0</message>
+    <message>Incompatible parameter type for obj</message>
     <lineContent>.filter(Objects::nonNull)</lineContent>
     <details>
       found   : @GuardSatisfied Object

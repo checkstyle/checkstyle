@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpectedThrowable;
 
 import java.io.File;
+import java.net.URI;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -146,6 +147,26 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
                     .that(message)
                     .startsWith(messageStart);
         }
+    }
+
+    @Test
+    public void testSetFileContainsUriInMessage() {
+        final ImportControlCheck check = new ImportControlCheck();
+        final File missingFile = new File(temporaryFolder, "missing-import-control.xml");
+        final URI uri = missingFile.toURI();
+
+        final IllegalArgumentException exception =
+                getExpectedThrowable(IllegalArgumentException.class, () -> check.setFile(uri));
+
+        assertWithMessage("Invalid exception message")
+                .that(exception.getMessage())
+                .isEqualTo("Unable to load " + uri);
+        assertWithMessage("Invalid exception cause")
+                .that(exception.getCause())
+                .isInstanceOf(CheckstyleException.class);
+        assertWithMessage("Cause message should contain uri")
+                .that(exception.getCause().getMessage())
+                .isEqualTo("unable to find " + uri);
     }
 
     @Test

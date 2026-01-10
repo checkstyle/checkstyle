@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -108,7 +108,7 @@ public class XdocsUrlTest {
         }
         final Map<String, List<String>> checksNamesMap = getXdocsMap();
         for (List<String> sub : checkHandler.checkNamesList) {
-            final String moduleName = sub.get(0);
+            final String moduleName = sub.getFirst();
             final String checkNameInAttribute = sub.get(1);
             final String checkNameInText = sub.get(2);
             final String checkNameInconsistentErrorMsg = String.format(Locale.ROOT,
@@ -167,10 +167,10 @@ public class XdocsUrlTest {
             if (NODE_NAME.equals(qName)) {
                 final List<String> moduleAndCheckName =
                        Arrays.asList(attributes.getValue(0).split(SPLIT_CHECK_NAME_IN_ATTRIBUTE));
-                if (moduleAndCheckName.get(0).startsWith(PREFIX_CONFIG)) {
+                if (moduleAndCheckName.getFirst().startsWith(PREFIX_CONFIG)) {
                     singleCheckNameList = new ArrayList<>();
                     final String moduleName =
-                            moduleAndCheckName.get(0).replaceAll("(.*config_)|(\\.html.*)", "");
+                            moduleAndCheckName.getFirst().replaceAll("(.*config_)|(\\.html.*)", "");
                     singleCheckNameList.add(moduleName);
                     singleCheckNameList.add(moduleAndCheckName.get(1));
                 }

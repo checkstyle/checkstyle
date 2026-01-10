@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -575,7 +575,7 @@ public class HiddenFieldCheck
          *
          * @param field  the name of the instance field.
          */
-        public void addInstanceField(String field) {
+        /* package */ void addInstanceField(String field) {
             instanceFields.add(field);
         }
 
@@ -584,7 +584,7 @@ public class HiddenFieldCheck
          *
          * @param field  the name of the instance field.
          */
-        public void addStaticField(String field) {
+        /* package */ void addStaticField(String field) {
             staticFields.add(field);
         }
 
@@ -594,7 +594,7 @@ public class HiddenFieldCheck
          * @param field the field to check
          * @return true if this FieldFrame contains instance field
          */
-        public boolean containsInstanceField(String field) {
+        /* package */ boolean containsInstanceField(String field) {
             FieldFrame currentParent = parent;
             boolean contains = instanceFields.contains(field);
             boolean isStaticType = staticType;
@@ -612,7 +612,7 @@ public class HiddenFieldCheck
          * @param field the field to check
          * @return true if this FieldFrame contains static field
          */
-        public boolean containsStaticField(String field) {
+        /* package */ boolean containsStaticField(String field) {
             FieldFrame currentParent = parent;
             boolean contains = staticFields.contains(field);
             while (currentParent != null && !contains) {
@@ -627,7 +627,7 @@ public class HiddenFieldCheck
          *
          * @return parent frame.
          */
-        public FieldFrame getParent() {
+        /* package */ FieldFrame getParent() {
             return parent;
         }
 
