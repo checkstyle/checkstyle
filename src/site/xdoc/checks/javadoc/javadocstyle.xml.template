@@ -119,6 +119,23 @@
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example6.java"/>
           <param name="type" value="code"/>
         </macro>
+
+        <hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check to verify that there are no empty Javadoc comments:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example7-code">Example7:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example7.java"/>
+          <param name="type" value="code"/>
+        </macro>
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
