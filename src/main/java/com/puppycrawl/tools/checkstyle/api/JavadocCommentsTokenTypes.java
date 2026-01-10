@@ -76,18 +76,22 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
-     * * Line one
-     * * Line two
+     * /**
+     * * This is a Javadoc line.
+     * * /
      * }</pre>
      *
-     * <b>Tree:</b>
+     * <p><b>Tree:</b></p>
      * <pre>{@code
-     * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
-     * |--TEXT ->  Line one
-     * |--NEWLINE -> \r\n
-     * |--LEADING_ASTERISK -> *
-     * `--TEXT ->  Line two
+     * --BLOCK_COMMENT_BEGIN -> /**
+     * |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
+     * |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |       |--NEWLINE -> \r\n
+     * |       |--LEADING_ASTERISK ->  *
+     * |       |--TEXT ->  This is a Javadoc line.
+     * |       |--NEWLINE -> \r\n
+     * |       `--TEXT ->
+     * `   --BLOCK_COMMENT_END -> *
      * }</pre>
      *
      * @see #JAVADOC_CONTENT
