@@ -635,13 +635,20 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public final void testSetPropertiesNonExistentFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
+        final File propertiesFile = new File(getPath(NOT_EXISTING_FILE));
+        antTask.setProperties(propertiesFile);
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .startsWith("Error loading Properties file");
+        assertWithMessage("Error message should contain file path")
+                .that(ex.getMessage())
+                .contains(propertiesFile.toPath().toString());
+        assertWithMessage("Exception should have a location")
+                .that(ex.getLocation())
+                .isNotNull();
     }
 
     @Test

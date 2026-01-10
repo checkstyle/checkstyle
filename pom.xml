@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>13.0.1-SNAPSHOT</version>
+  <version>13.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -234,7 +234,7 @@
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.53.0</checkerframework.version>
     <error-prone.version>2.45.0</error-prone.version>
-    <error-prone-support.version>0.27.0</error-prone-support.version>
+    <error-prone-support.version>0.28.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -274,11 +274,11 @@
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
       -Xep:JdkObsolete:WARN
-      -Xep:StatementSwitchToExpressionSwitch:WARN
       -Xep:StringSplitter:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF

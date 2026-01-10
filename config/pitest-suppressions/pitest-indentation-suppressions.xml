@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
-    <sourceFile>AbstractExpressionHandler.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.AbstractExpressionHandler</mutatedClass>
-    <mutatedMethod>getFirstAstNode</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
-    <description>changed conditional boundary</description>
-    <lineContent>&amp;&amp; curNode.getColumnNo() &lt; realStart.getColumnNo()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
     <sourceFile>CommentsIndentationCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
     <mutatedMethod>findPreviousStatement</mutatedMethod>
@@ -25,42 +16,6 @@
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
     <description>changed conditional boundary</description>
     <lineContent>if (root.getLineNo() &gt;= comment.getLineNo()) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>findTokenWhichBeginsTheLine</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
-    <description>negated conditional</description>
-    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(root)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>getPrevStatementWhenCommentIsUnderCase</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
-    <description>negated conditional</description>
-    <lineContent>if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
-    <description>negated conditional</description>
-    <lineContent>&amp;&amp; root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CommentsIndentationCheck.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck</mutatedClass>
-    <mutatedMethod>isUsingOfObjectReferenceToInvokeMethod</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
-    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck::isUsingOfObjectReferenceToInvokeMethod</description>
-    <lineContent>return root.getFirstChild().getFirstChild().getFirstChild() != null</lineContent>
   </mutation>
 
   <mutation unstable="false">

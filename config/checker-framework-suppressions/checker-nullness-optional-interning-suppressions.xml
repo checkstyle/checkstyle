@@ -922,6 +922,17 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
+    <specifier>return</specifier>
+    <message>incompatible types in return.</message>
+    <lineContent>return SEVERITY_LEVEL_MAP.get(severityLevel);</lineContent>
+    <details>
+      type of expression: @Initialized @Nullable String
+      method return type: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter s of Integer.parseInt.</message>
@@ -1816,6 +1827,34 @@
     <specifier>introduce.eliminate</specifier>
     <message>It is bad style to create an Optional just to chain methods to get a non-optional value.</message>
     <lineContent>.orElse(modifiers);</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideOnRecordAccessorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference ast.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>final String methodName = ast.findFirstToken(TokenTypes.IDENT).getText();</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideOnRecordAccessorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference child.findFirstToken(TokenTypes.IDENT)</message>
+    <lineContent>names.add(child.findFirstToken(TokenTypes.IDENT).getText());</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideOnRecordAccessorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference parameters</message>
+    <lineContent>if (parameters.getChildCount() == 0) {</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/annotation/MissingOverrideOnRecordAccessorCheck.java</fileName>
+    <specifier>dereference.of.nullable</specifier>
+    <message>dereference of possibly-null reference recordComponents</message>
+    <lineContent>DetailAST child = recordComponents.getFirstChild();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
@@ -5184,17 +5223,6 @@
     <specifier>return</specifier>
     <message>incompatible types in return.</message>
     <lineContent>return previousStatement;</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable DetailAST
-      method return type: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/indentation/CommentsIndentationCheck.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return tokenWhichBeginsTheLine;</lineContent>
     <details>
       type of expression: @Initialized @Nullable DetailAST
       method return type: @Initialized @NonNull DetailAST
