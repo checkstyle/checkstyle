@@ -1333,6 +1333,11 @@ pmd)
   ./mvnw -e --no-transfer-progress clean test-compile pmd:check
   ;;
 
+error-prone)
+  ./mvnw -e --no-transfer-progress clean compile -P error-prone-compile
+  ./mvnw -e --no-transfer-progress clean test-compile -P error-prone-test-compile
+  ;;
+
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
