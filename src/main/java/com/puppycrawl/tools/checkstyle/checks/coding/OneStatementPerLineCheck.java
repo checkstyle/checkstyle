@@ -72,6 +72,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private int lastStatementEnd;
 
     /**
+     * Hold the column-number where the last staement ended.
+     */
+    private int lastStatementColumn;
+
+    /**
      * Hold the line-number where the last 'for-loop' statement ended.
      */
     private int forStatementEnd;
@@ -128,19 +133,22 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.EMPTY_STAT,
         };
     }
 
     @Override
     public void beginTree(DetailAST rootAST) {
         lastStatementEnd = 0;
+        lastStatementColumn = 0;
         lastVariableResourceStatementEnd = 0;
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT ->
+                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
             case TokenTypes.LAMBDA -> {
                 isInLambda = true;
@@ -153,8 +161,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> {
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT -> {
                 lastStatementEnd = ast.getLineNo();
+                lastStatementColumn = ast.getColumnNo();
                 forStatementEnd = 0;
                 lambdaStatementEnd = 0;
             }
@@ -181,6 +190,8 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         DetailAST currentStatement = ast;
         final DetailAST previousSibling = ast.getPreviousSibling();
         final boolean isUnnecessarySemicolon = previousSibling == null
+            || previousSibling.getType() == TokenTypes.SEMI
+            || ast.getType() == TokenTypes.EMPTY_STAT
             || previousSibling.getType() == TokenTypes.RESOURCES
             || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
         if (!isUnnecessarySemicolon) {
@@ -193,7 +204,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             checkResourceVariable(ast);
         }
         else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+                lastStatementColumn, forStatementEnd, lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
     }
@@ -210,7 +221,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         countOfSemiInLambda.push(countOfSemiInCurrentLambda);
         if (!inForHeader && countOfSemiInCurrentLambda > 1
                 && isOnTheSameLine(currentStatement,
-                lastStatementEnd, forStatementEnd,
+                lastStatementEnd, lastStatementColumn, forStatementEnd,
                 lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
@@ -250,6 +261,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      *
      * @param ast token for the current statement.
      * @param lastStatementEnd the line-number where the last statement ended.
+     * @param lastStatementColumn the column-number where the last staement ended.
      * @param forStatementEnd the line-number where the last 'for-loop'
      *                        statement ended.
      * @param lambdaStatementEnd the line-number where the last lambda
@@ -257,9 +269,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @return true if two statements are on the same line.
      */
     private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
-                                           int forStatementEnd, int lambdaStatementEnd) {
+        int lastStatementColumn, int forStatementEnd, int lambdaStatementEnd) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+                && lambdaStatementEnd != ast.getLineNo() && lastStatementColumn < ast.getColumnNo();
     }
 
 }
