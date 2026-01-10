@@ -251,6 +251,7 @@
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
@@ -265,17 +266,16 @@
       -Xep:RedundantStringEscape:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
-      -Xep:FormatStringShouldUsePlaceholders:ERROR
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
-      -Xep:StringSplitter:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
@@ -2681,7 +2681,7 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <executions>
-              <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
+              <!-- sneak into the default execution as we don't want to execute the compile goal twice -->
               <execution>
                 <id>default-compile</id>
                 <phase>compile</phase>
@@ -2689,17 +2689,7 @@
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <skipMain>true</skipMain>
-                </configuration>
-              </execution>
-              <execution>
-                <id>error-prone-compile</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>compile</goal>
-                </goals>
-                <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
@@ -2738,7 +2728,7 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <executions>
-              <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
+              <!-- sneak into the default execution as we don't want to execute the compile goal twice -->
               <execution>
                 <id>default-testCompile</id>
                 <phase>test-compile</phase>
@@ -2746,17 +2736,7 @@
                   <goal>testCompile</goal>
                 </goals>
                 <configuration>
-                  <skip>true</skip>
-                </configuration>
-              </execution>
-              <execution>
-                <id>error-prone-test-compile</id>
-                <phase>test-compile</phase>
-                <goals>
-                  <goal>testCompile</goal>
-                </goals>
-                <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
