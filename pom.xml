@@ -278,7 +278,7 @@
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:InlineFormatString:WARN
+      -Xep:InlineFormatString:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
