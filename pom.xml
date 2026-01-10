@@ -253,6 +253,7 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InlineFormatString:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
@@ -278,7 +279,6 @@
       -Xep:StringSplitter:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
-      -Xep:InlineFormatString:WARN
       -Xep:JdkObsolete:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF

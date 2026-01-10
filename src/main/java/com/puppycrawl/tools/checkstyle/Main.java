@@ -876,8 +876,8 @@ public final class Main {
                     CommonUtil.getUriByFilename(configurationFile);
                 }
                 catch (CheckstyleException ignored) {
-                    final String msg = "Could not find config XML file '%s'.";
-                    result.add(String.format(Locale.ROOT, msg, configurationFile));
+                    result.add(String.format(Locale.ROOT,
+                            "Could not find config XML file '%s'.", configurationFile));
                 }
                 result.addAll(validateOptionalCliParametersIfConfigDefined());
             }
