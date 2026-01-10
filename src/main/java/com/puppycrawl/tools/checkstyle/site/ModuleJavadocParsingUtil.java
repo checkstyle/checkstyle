@@ -111,7 +111,7 @@ public final class ModuleJavadocParsingUtil {
      */
     public static void writeOutJavadocPortion(String javadocPortion, Sink sink) {
         final String[] javadocPortionLinesSplit = javadocPortion.split(NEWLINE
-            .replace("\r", ""));
+            .replace("\r", ""), -1);
 
         sink.rawText(javadocPortionLinesSplit[0]);
         String lastHtmlTag = javadocPortionLinesSplit[0];
