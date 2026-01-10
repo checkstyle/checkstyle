@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -45,7 +45,7 @@ public abstract class AbstractSuperCheck
     public static final String MSG_KEY = "missing.super.call";
 
     /** Stack of methods. */
-    private final Deque<MethodNode> methodStack = new LinkedList<>();
+    private final Deque<MethodNode> methodStack = new ArrayDeque<>();
 
     /**
      * Returns the name of the overriding method.
