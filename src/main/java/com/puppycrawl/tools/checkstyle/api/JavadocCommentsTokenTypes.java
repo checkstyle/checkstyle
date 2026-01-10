@@ -112,7 +112,8 @@ public final class JavadocCommentsTokenTypes {
      * General block tag (e.g. {@code @param}, {@code @return}).
      *
      * <p>This token represents any Javadoc block tag. It serves as a container
-     * for specific block tag types like {@link #PARAM_BLOCK_TAG}, {@link #RETURN_BLOCK_TAG}, etc.</p>
+     * for specific block tag types like {@link #PARAM_BLOCK_TAG},
+     * {@link #RETURN_BLOCK_TAG}, etc.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
@@ -643,7 +644,8 @@ public final class JavadocCommentsTokenTypes {
      * General inline tag (e.g. {@code @link}, {@code @code}).
      *
      * <p>This token represents any Javadoc inline tag. It serves as a container
-     * for specific inline tag types like {@link #CODE_INLINE_TAG}, {@link #LINK_INLINE_TAG}, etc.</p>
+     * for specific inline tag types like {@link #CODE_INLINE_TAG},
+     * {@link #LINK_INLINE_TAG}, etc.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
@@ -1141,7 +1143,8 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Left parenthesis {@code (} in method references.
      *
-     * <p>This token represents the opening parenthesis in a method reference within a Javadoc tag.</p>
+     * <p>This token represents the opening parenthesis in a method reference
+     * within a Javadoc tag.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
@@ -1168,7 +1171,8 @@ public final class JavadocCommentsTokenTypes {
     /**
      * Right parenthesis {@code )} in method references.
      *
-     * <p>This token represents the closing parenthesis in a method reference within a Javadoc tag.</p>
+     * <p>This token represents the closing parenthesis in a method reference
+     * within a Javadoc tag.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
@@ -1210,7 +1214,7 @@ public final class JavadocCommentsTokenTypes {
      * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
      * |--PARAMETER_TYPE -> int
      * |--COMMA -> ,
-     * |--TEXT ->  
+     * |--TEXT ->
      * `--PARAMETER_TYPE -> int
      * }</pre>
      *
