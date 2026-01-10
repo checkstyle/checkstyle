@@ -74,9 +74,6 @@ public final class ConfigurationLoader {
     public static final String DTD_CONFIGURATION_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
-    /** Format of message for sax parse exception. */
-    private static final String SAX_PARSE_EXCEPTION_FORMAT = "%s - %s:%s:%s";
-
     /** The public ID for version 1_0 of the configuration dtd. */
     private static final String DTD_PUBLIC_ID_1_0 =
         "-//Puppy Crawl//DTD Check Configuration 1.0//EN";
@@ -302,7 +299,7 @@ public final class ConfigurationLoader {
             return loader.parseInputSource(configSource);
         }
         catch (final SAXParseException exc) {
-            final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
+            final String message = String.format(Locale.ROOT, "%s - %s:%s:%s",
                     UNABLE_TO_PARSE_EXCEPTION_PREFIX,
                     exc.getMessage(), exc.getLineNumber(), exc.getColumnNumber());
             throw new CheckstyleException(message, exc);

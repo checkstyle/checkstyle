@@ -143,17 +143,6 @@ public final class TranslationCheck extends AbstractFileSetCheck {
     private static final Pattern LANGUAGE_PATTERN =
         CommonUtil.createPattern("^.+\\_[a-z]{2}\\..+$");
 
-    /** File name format for default translation. */
-    private static final String DEFAULT_TRANSLATION_FILE_NAME_FORMATTER = "%s.%s";
-    /** File name format with language code. */
-    private static final String FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER = "%s_%s.%s";
-
-    /** Formatting string to form regexp to validate required translations file names. */
-    private static final String REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS =
-        "^%1$s\\_%2$s(\\_[A-Z]{2})?\\.%3$s$|^%1$s\\_%2$s\\_[A-Z]{2}\\_[A-Za-z]+\\.%3$s$";
-    /** Formatting string to form regexp to validate default translations file names. */
-    private static final String REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS = "^%s\\.%s$";
-
     /** Logger for TranslationCheck. */
     private final Log log;
 
@@ -303,23 +292,24 @@ public final class TranslationCheck extends AbstractFileSetCheck {
         final String baseName = bundle.getBaseName();
         if (languageCode == null) {
             searchForDefaultTranslation = true;
-            fileNameRegexp = String.format(Locale.ROOT, REGEXP_FORMAT_TO_CHECK_DEFAULT_TRANSLATIONS,
+            fileNameRegexp = String.format(Locale.ROOT, "^%s\\.%s$",
                     baseName, extension);
         }
         else {
             searchForDefaultTranslation = false;
             fileNameRegexp = String.format(Locale.ROOT,
-                REGEXP_FORMAT_TO_CHECK_REQUIRED_TRANSLATIONS, baseName, languageCode, extension);
+                "^%1$s\\_%2$s(\\_[A-Z]{2})?\\.%3$s$|^%1$s\\_%2$s\\_[A-Z]{2}\\_[A-Za-z]+\\.%3$s$",
+                    baseName, languageCode, extension);
         }
         Optional<String> missingFileName = Optional.empty();
         if (!bundle.containsFile(fileNameRegexp)) {
             if (searchForDefaultTranslation) {
                 missingFileName = Optional.of(String.format(Locale.ROOT,
-                        DEFAULT_TRANSLATION_FILE_NAME_FORMATTER, baseName, extension));
+                        "%s.%s", baseName, extension));
             }
             else {
                 missingFileName = Optional.of(String.format(Locale.ROOT,
-                        FILE_NAME_WITH_LANGUAGE_CODE_FORMATTER, baseName, languageCode, extension));
+                        "%s_%s.%s", baseName, languageCode, extension));
             }
         }
         return missingFileName;

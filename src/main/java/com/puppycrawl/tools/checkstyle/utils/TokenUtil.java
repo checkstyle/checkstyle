@@ -50,9 +50,6 @@ public final class TokenUtil {
     /** Array of all token IDs. */
     private static final int[] TOKEN_IDS;
 
-    /** Format for exception message when getting token by given id. */
-    private static final String TOKEN_ID_EXCEPTION_FORMAT = "unknown TokenTypes id '%s'";
-
     /** Format for exception message when getting token by given name. */
     private static final String TOKEN_NAME_EXCEPTION_FORMAT = "unknown TokenTypes value '%s'";
 
@@ -144,7 +141,7 @@ public final class TokenUtil {
         final String name = TOKEN_VALUE_TO_NAME.get(id);
         if (name == null) {
             throw new IllegalArgumentException(
-                String.format(Locale.ROOT, TOKEN_ID_EXCEPTION_FORMAT, id));
+                String.format(Locale.ROOT, "unknown TokenTypes id '%s'", id));
         }
         return name;
     }

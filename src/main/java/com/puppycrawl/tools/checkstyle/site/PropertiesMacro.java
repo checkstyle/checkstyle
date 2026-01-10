@@ -68,9 +68,6 @@ public class PropertiesMacro extends AbstractMacro {
     /** The string '#'. */
     private static final String HASHTAG = "#";
 
-    /** Represents the format string for constructing URLs with two placeholders. */
-    private static final String URL_F = "%s#%s";
-
     /** Reflects start of a code segment. */
     private static final String CODE_START = "<code>";
 
@@ -367,7 +364,8 @@ public class PropertiesMacro extends AbstractMacro {
                         .replace("]", ".5D");
 
                 final String url =
-                        String.format(Locale.ROOT, URL_F, relativePathToPropertyTypes, escapedType);
+                        String.format(Locale.ROOT,
+                                "%s#%s", relativePathToPropertyTypes, escapedType);
 
                 sink.link(url);
                 sink.text(type);
