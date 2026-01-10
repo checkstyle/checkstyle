@@ -263,6 +263,7 @@
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
+      -Xep:EqualsUsingHashCode:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
       -Xep:StreamResourceLeak:ERROR
