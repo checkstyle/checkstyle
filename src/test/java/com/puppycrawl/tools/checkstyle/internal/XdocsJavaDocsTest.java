@@ -364,7 +364,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             DetailAST result = node.getParent();
             int type = result.getType();
 
-            while (type == TokenTypes.MODIFIERS || type == TokenTypes.ANNOTATION) {
+            while (type == TokenTypes.MODIFIERS || type == TokenTypes.ANNOTATION
+                    || type == TokenTypes.TYPE) {
                 result = result.getParent();
                 type = result.getType();
             }

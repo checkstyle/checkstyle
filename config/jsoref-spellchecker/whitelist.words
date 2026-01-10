@@ -183,6 +183,7 @@ circleci
 cirrusci
 classannotations
 classdataabstractioncoupling
+classdeclarations
 classfanoutcomplexity
 classloader
 classmemberimpliedmodifier
@@ -443,6 +444,7 @@ filebasic
 filechooser
 filefilter
 filelength
+fileorganization
 filepath
 fileset
 filesetcheck
@@ -851,6 +853,7 @@ missingjavadocpackage
 missingjavadoctype
 missingnullcaseinswitch
 missingoverride
+missingoverrideonrecordaccessor
 missingperiod
 missingswitchdefault
 missingtag
@@ -1243,12 +1246,12 @@ SERIALVERSIONUID
 servlet
 severitymatchfilter
 sevntu
-shanegenschaw
 shasum
 shellcheck
 shengchen
 Shiell
 sickboy
+simplestatements
 Simplifiable
 simplifybooleanexpression
 simplifybooleanreturn
@@ -1349,6 +1352,7 @@ suppresswithnearbytextfilter
 suppresswithplaintextcommentfilter
 suse
 svg
+switchstatements
 sxpath
 syntastic
 Sys
@@ -1537,6 +1541,7 @@ xa
 xabc
 xar
 xargs
+XDadd
 XDcompile
 xdeadbeef
 xdoc

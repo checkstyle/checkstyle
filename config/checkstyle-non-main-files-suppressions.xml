@@ -64,6 +64,7 @@
   <!-- this file cannot be line wraped -->
   <suppress id="lineLength" files="config[\\/]signatures.txt"/>
   <suppress id="lineLength" files="config[\\/]signatures-test.txt"/>
+  <suppress id="lineLength" files="config[\\/]sarif-schema-2.1.0.json"/>
   <!-- test resources are weird by design, no validations in them -->
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]Input.*ColumnLimit\.java"/>
@@ -226,6 +227,8 @@
             files="src[\\/]site[\\/]xdoc[\\/]checks\.xml\.template"/>
 
   <!-- no properties in module by design -->
+  <suppress id="propertiesMacroMustExist"
+         files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]missingoverrideonrecordaccessor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]annotation[\\/]packageannotation.xml.template"/>
   <suppress id="propertiesMacroMustExist"

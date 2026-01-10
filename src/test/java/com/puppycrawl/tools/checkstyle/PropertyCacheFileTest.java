@@ -581,7 +581,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             assertWithMessage("Invalid config hash")
                     .that(configHashes[0])
                     .isEqualTo(configHashes[1]);
-            final boolean sameException = messages.get(0).equals(messages.get(1));
+            final boolean sameException = messages.getFirst().equals(messages.get(1));
             assertWithMessage("Invalid external resource hashes")
                     .that(externalResourceHashes[0].equals(externalResourceHashes[1]))
                     .isEqualTo(sameException);

@@ -5,13 +5,19 @@
              name="EmptyLineSeparator"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;div&gt;
- Checks for empty line separators before package, all import declarations,
+ Checks for empty line separators after,
  fields, constructors, methods, nested classes,
  static initializers and instance initializers.
  &lt;/div&gt;
 
  &lt;p&gt;
- Checks for empty line separators before not only statements but
+ For package declaration it checks for both before and after
+ line separators and for import declarations it checks for
+ empty line separator after last import declaration.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Checks for empty line separators after not only statements but
  implementation and documentation comments and blocks as well.
  &lt;/p&gt;
 

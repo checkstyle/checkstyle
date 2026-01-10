@@ -236,8 +236,6 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/15456">#15456</a>.
      */
     private static final Set<String> SUPPRESSED_CHECKS = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
@@ -581,13 +579,13 @@ public final class InlineConfigParser {
      * @return true if a file provides xml configuration, otherwise false.
      */
     private static boolean checkIsXmlConfig(List<String> lines) {
-        return "/*xml".equals(lines.get(0));
+        return "/*xml".equals(lines.getFirst());
     }
 
     private static void setModules(TestInputConfiguration.Builder testInputConfigBuilder,
                                    String inputFilePath, List<String> lines)
             throws Exception {
-        if (!lines.get(0).startsWith("/*")) {
+        if (!lines.getFirst().startsWith("/*")) {
             throw new CheckstyleException("Config not specified on top."
                 + "Please see other inputs for examples of what is required.");
         }
@@ -1082,7 +1080,7 @@ public final class InlineConfigParser {
                 inputConfigBuilder.getChildrenModules();
 
         if (moduleLists.size() == 1) {
-            final String moduleName = moduleLists.get(0).getModuleName();
+            final String moduleName = moduleLists.getFirst().getModuleName();
 
             if (!PERMANENT_SUPPRESSED_CHECKS.contains(moduleName)
                     && !SUPPRESSED_CHECKS.contains(moduleName)) {

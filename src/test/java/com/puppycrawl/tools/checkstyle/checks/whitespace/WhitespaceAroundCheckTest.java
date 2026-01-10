@@ -96,18 +96,34 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
-    public void testSimpleInput()
+    public void testSimpleInputPart1()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundSimplePart1.java"), expected);
+    }
+
+    @Test
+    public void testSimpleInputPart2()
             throws Exception {
         final String[] expected = {
-            "168:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
-            "169:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
-            "170:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
-            "171:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
-            "172:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
-            "173:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "105:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "106:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "107:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "108:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "109:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "110:22: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
         };
         verifyWithInlineConfigParser(
-                getPath("InputWhitespaceAroundSimple.java"), expected);
+                getPath("InputWhitespaceAroundSimplePart2.java"), expected);
+    }
+
+    @Test
+    public void testSimpleInputPart3()
+            throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundSimplePart3.java"), expected);
     }
 
     @Test
@@ -121,39 +137,55 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
-    public void testBraces()
+    public void testBracesPart1()
             throws Exception {
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
-            // + ":74:23: ';' is not followed by whitespace.",
-            // + ":74:29: ';' is not followed by whitespace.",
-            "127:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "127:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
-            "130:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "130:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
-            "134:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
-            "134:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "134:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
-            "134:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputWhitespaceAroundBraces.java"), expected);
+                getPath("InputWhitespaceAroundBracesPart1.java"), expected);
     }
 
     @Test
-    public void testBracesInMethodsAndConstructors()
+    public void testBracesPart2()
+            throws Exception {
+        final String[] expected = {
+            "36:47: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "36:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "39:39: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "39:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "43:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "43:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "43:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "43:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundBracesPart2.java"), expected);
+    }
+
+    @Test
+    public void testBracesInMethodsAndConstructorsPart1()
             throws Exception {
         final String[] expected = {
             "53:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "while"),
             "70:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "for"),
-            "134:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
-            "134:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
-            "134:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
-            "134:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
         };
         verifyWithInlineConfigParser(
-                getPath("InputWhitespaceAroundBraces2.java"), expected);
+                getPath("InputWhitespaceAroundBraces2Part1.java"), expected);
+    }
+
+    @Test
+    public void testBracesInMethodsAndConstructorsPart2()
+            throws Exception {
+        final String[] expected = {
+            "86:9: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "if"),
+            "86:17: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "86:17: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "86:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputWhitespaceAroundBraces2Part2.java"), expected);
     }
 
     @Test

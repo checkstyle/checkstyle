@@ -78,6 +78,31 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Plain text content within a Javadoc comment.
+     *
+     * <p>This node represents any plain text that appears in a Javadoc comment,
+     * including spaces and punctuation.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * This is plain text content.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /**
+     *    |--COMMENT_CONTENT -> *\r\n * This is plain text content.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is plain text content.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     *    `--BLOCK_COMMENT_END -> * /
+     * }</pre>
+     *
+     * @see #JAVADOC_CONTENT
      */
     public static final int TEXT = JavadocCommentsLexer.TEXT;
 
@@ -576,8 +601,7 @@ public final class JavadocCommentsTokenTypes {
      * @see #JAVADOC_BLOCK_TAG
      */
     public static final int CUSTOM_BLOCK_TAG = JavadocCommentsLexer.CUSTOM_BLOCK_TAG;
-
-    // Inline tags
+// Inline tags
 
     /**
      * General inline tag (e.g. {@code @link}).
@@ -586,8 +610,43 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * }</pre>
+     *
+     * <p>Such Javadoc tag can have these children:</p>
+     * <ol>
+     * <li>{@link #CODE_INLINE_TAG}</li>
+     * <li>{@link #LINK_INLINE_TAG}</li>
+     * <li>{@link #VALUE_INLINE_TAG}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@code code}
+     *  * &#42;/
+     *  * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
      */
-    public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
+    public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC
 
     /**
      * Start of an inline tag  <code>{</code>.
@@ -925,7 +984,26 @@ public final class JavadocCommentsTokenTypes {
     public static final int SNIPPET_INLINE_TAG = JavadocCommentsLexer.SNIPPET_INLINE_TAG;
 
     /**
-     * Custom or unrecognized inline tag.
+     * {@code @custom} inline tag.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Example showing {@custom This is a Custom Inline Tag}.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->  Example showing
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CUSTOM_INLINE_TAG -> CUSTOM_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> custom
+     * |       |--DESCRIPTION -> DESCRIPTION
+     * |       |   `--TEXT ->  This is a Custom Inline Tag
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--TEXT -> .
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int CUSTOM_INLINE_TAG = JavadocCommentsLexer.CUSTOM_INLINE_TAG;
 

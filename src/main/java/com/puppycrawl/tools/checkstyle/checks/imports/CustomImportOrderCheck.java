@@ -442,7 +442,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *        first import group of file.
      */
     private String getFirstGroup() {
-        final ImportDetails firstImport = importToGroupList.get(0);
+        final ImportDetails firstImport = importToGroupList.getFirst();
         return getImportGroup(firstImport.staticImport(),
                 firstImport.importFullPath());
     }
@@ -651,8 +651,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static int compareImports(String import1, String import2) {
         int result = 0;
         final String separator = "\\.";
-        final String[] import1Tokens = import1.split(separator);
-        final String[] import2Tokens = import2.split(separator);
+        final String[] import1Tokens = import1.split(separator, -1);
+        final String[] import2Tokens = import2.split(separator, -1);
         for (int i = 0; i != import1Tokens.length && i != import2Tokens.length; i++) {
             final String import1Token = import1Tokens[i];
             final String import2Token = import2Tokens[i];
@@ -793,7 +793,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return import start line from ast.
          */
-        public int getStartLineNumber() {
+        /* package */ int getStartLineNumber() {
             return importAST.getLineNo();
         }
 
@@ -807,7 +807,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          *
          * @return import end line from ast.
          */
-        public int getEndLineNumber() {
+        /* package */ int getEndLineNumber() {
             return importAST.getLastChild().getLineNo();
         }
     }

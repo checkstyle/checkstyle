@@ -93,10 +93,10 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final List<AbstractNode> children = parentNode.getChildren();
 
         assertWithMessage("Incorrect ordering value")
-            .that(children.get(0).compareOrder(children.get(1)))
+            .that(children.getFirst().compareOrder(children.get(1)))
             .isEqualTo(-1);
         assertWithMessage("Incorrect ordering value")
-            .that(children.get(1).compareOrder(children.get(0)))
+            .that(children.get(1).compareOrder(children.getFirst()))
             .isEqualTo(1);
     }
 
@@ -104,7 +104,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     public void testCompareOrderWrongInstance() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        final int result = nodes.get(0).compareOrder(null);
+        final int result = nodes.getFirst().compareOrder(null);
         assertWithMessage("Expected result wrong")
             .that(result)
             .isEqualTo(0);
@@ -117,7 +117,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final AbstractNode parent = (AbstractNode) nodes.get(0).getParent();
+        final AbstractNode parent = (AbstractNode) nodes.getFirst().getParent();
         assertWithMessage("Invalid token type")
             .that(parent.getTokenType())
             .isEqualTo(TokenTypes.CLASS_DEF);
@@ -130,7 +130,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final AbstractNode root = (AbstractNode) nodes.get(0).getRoot();
+        final AbstractNode root = (AbstractNode) nodes.getFirst().getRoot();
         assertWithMessage("Invalid token type")
             .that(root.getTokenType())
             .isEqualTo(TokenTypes.COMPILATION_UNIT);
@@ -146,7 +146,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(1);
-        final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
+        final int tokenType = ((AbstractNode) nodes.getFirst()).getTokenType();
         assertWithMessage("Invalid token type")
             .that(tokenType)
             .isEqualTo(TokenTypes.NUM_INT);
@@ -159,7 +159,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         assertWithMessage("Invalid number of nodes")
             .that(nodes)
             .hasSize(2);
-        final int tokenType = ((AbstractNode) nodes.get(0)).getTokenType();
+        final int tokenType = ((AbstractNode) nodes.getFirst()).getTokenType();
         assertWithMessage("Invalid token type")
             .that(tokenType)
             .isEqualTo(TokenTypes.STRING_LITERAL);
@@ -275,7 +275,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         parentAST.setType(TokenTypes.METHOD_DEF);
         final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
 
-        final AbstractNode elementNode = parentNode.getChildren().get(0);
+        final AbstractNode elementNode = parentNode.getChildren().getFirst();
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
             assertWithMessage("Invalid iterator")
                     .that(iterator)

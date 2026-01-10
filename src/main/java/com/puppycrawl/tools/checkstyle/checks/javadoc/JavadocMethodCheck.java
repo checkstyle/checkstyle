@@ -435,7 +435,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         boolean result = true;
         // Check if it contains {@inheritDoc} tag
         if (tags.size() == 1
-                && tags.get(0).isInheritDocTag()) {
+                && tags.getFirst().isInheritDocTag()) {
             // Invalid if private, a constructor, or a static method
             if (!JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
                 log(ast, MSG_INVALID_INHERIT_DOC);
@@ -1002,7 +1002,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param className token which represents class name.
          * @throws IllegalArgumentException when className is nulls
          */
-        protected ClassInfo(final Token className) {
+        /* package */ ClassInfo(final Token className) {
             name = className;
         }
 
@@ -1011,7 +1011,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          *
          * @return class name
          */
-        public final Token getName() {
+        /* package */ final Token getName() {
             return name;
         }
 
@@ -1039,7 +1039,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          *
          * @return text of the token
          */
-        public String getText() {
+        /* package */ String getText() {
             return text;
         }
 
