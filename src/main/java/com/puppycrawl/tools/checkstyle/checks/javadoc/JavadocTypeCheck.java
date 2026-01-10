@@ -402,7 +402,7 @@ public class JavadocTypeCheck
                     }
                     else {
                         final String actualParamName =
-                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
                         log(tag.getLineNo(), tag.getColumnNo(),
                             MSG_UNUSED_TAG,
                             JavadocTagInfo.PARAM.getText(), actualParamName);
@@ -427,7 +427,7 @@ public class JavadocTypeCheck
             typeParamName = matchInAngleBrackets.group(1).trim();
         }
         else {
-            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
+            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
         }
         return typeParamName;
     }
