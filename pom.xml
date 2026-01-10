@@ -275,11 +275,11 @@
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StringSplitter:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
       -Xep:JdkObsolete:WARN
-      -Xep:StringSplitter:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
