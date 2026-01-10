@@ -627,12 +627,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         }
         final DetailAST tokenWhichBeginsTheLine;
         if (root.getType() == TokenTypes.EXPR) {
-            if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
-                tokenWhichBeginsTheLine = root.getFirstChild();
-            }
-            else {
-                tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
-            }
+            tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
         }
         else if (root.getType() == TokenTypes.PLUS) {
             tokenWhichBeginsTheLine = root.getFirstChild();
