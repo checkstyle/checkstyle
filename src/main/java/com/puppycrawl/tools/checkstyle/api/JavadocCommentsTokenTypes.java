@@ -601,11 +601,15 @@ public final class JavadocCommentsTokenTypes {
      * @see #JAVADOC_BLOCK_TAG
      */
     public static final int CUSTOM_BLOCK_TAG = JavadocCommentsLexer.CUSTOM_BLOCK_TAG;
-
-    // Inline tags
+// Inline tags
 
     /**
      * General inline tag (e.g. {@code @link}).
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * `--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * }</pre>
      *
      * <p>Such Javadoc tag can have these children:</p>
      * <ol>
@@ -617,9 +621,9 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     * * {@code code}
-     * &#42;/
-     * }</pre>
+     *  * {@code code}
+     *  * &#42;/
+     *  * }</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -641,10 +645,8 @@ public final class JavadocCommentsTokenTypes {
      * |--TEXT -> public class Test {}
      * `--NEWLINE -> \n
      * }</pre>
-     *
-     * @see #JAVADOC_INLINE_TAG
      */
-    public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
+    public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC
 
     /**
      * Start of an inline tag  <code>{</code>.
