@@ -248,9 +248,11 @@
       -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
+      -Xep:EqualsUsingHashCode:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
@@ -265,17 +267,17 @@
       -Xep:RedundantStringEscape:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnnecessaryLambda:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
-      -Xep:FormatStringShouldUsePlaceholders:ERROR
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
-      -Xep:StringSplitter:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
@@ -2699,7 +2701,7 @@
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
@@ -2756,7 +2758,7 @@
                   <goal>testCompile</goal>
                 </goals>
                 <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
