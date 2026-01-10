@@ -337,8 +337,9 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      * @return a version string based on the package implementation version
      */
     private static String replaceVersionString(String report) {
-        final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        return report.replace(VERSION_PLACEHOLDER, Objects.toString(version, "null"));
+        return report.replace(
+                VERSION_PLACEHOLDER,
+                Objects.toString(SarifLogger.class.getPackage().getImplementationVersion()));
     }
 
     @Override
