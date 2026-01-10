@@ -1102,6 +1102,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 .isEqualTo("ignore");
     }
 
+    @Test
+    public final void testFileSetWithLogIndexVerification() throws IOException {
+        // given
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final FileSet fileSet = new FileSet();
+        fileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.addFileset(fileSet);
+
+        // when
+        antTask.scanFileSets();
+
+        // then
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertWithMessage("Log message with correct index was not found")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.getMsg().startsWith("0) Adding 1 files from directory")).count())
+                .isEqualTo(1);
+    }
+
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setTofile(outputFile);
