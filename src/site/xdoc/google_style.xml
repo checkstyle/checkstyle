@@ -1893,19 +1893,12 @@
                 <td>
                   <span class="wrapper inline">
                     <img
-                        src="images/ok_blue.png"
+                        src="images/ok_green.png"
                         alt="" />
                   </span>
-                  <a href="checks/naming/methodname.html#MethodName">MethodName</a>
-                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
+                  <a href="checks/naming/googlemethodname.html#GoogleMethodName">GoogleMethodName</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GoogleMethodName">
                   config</a>)
-                  <br/>
-                  <br/>
-                  There are some false-negatives regarding the use of underscores in
-                  the method names. They will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17841">
-                    #17841
-                  </a>
                   <br/>
                   <br/>
                   <span class="wrapper inline">
