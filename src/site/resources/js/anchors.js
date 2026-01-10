@@ -5,7 +5,7 @@
 
     function showCopiedFeedback(element) {
         var feedback = document.createElement("span");
-        feedback.textContent = "copied";
+        feedback.textContent = "copied!";
         feedback.className = "anchor-feedback";
 
         element.appendChild(feedback);
