@@ -77,25 +77,24 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     * * This is a Javadoc line.
-     * * /
+     *  * This is a Javadoc line.
+     *  * /
      * }</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * --BLOCK_COMMENT_BEGIN -> /**
-     * |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
-     * |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |       |--NEWLINE -> \r\n
-     * |       |--LEADING_ASTERISK ->  *
-     * |       |--TEXT ->  This is a Javadoc line.
-     * |       |--NEWLINE -> \r\n
-     * |       `--TEXT ->
+     *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is a Javadoc line.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
      * `   --BLOCK_COMMENT_END -> *
      * }</pre>
-     *
-     * @see #JAVADOC_CONTENT
      */
+
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
 
     /**
@@ -628,6 +627,43 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General inline tag (e.g. {@code @link}).
+     *
+     * <p>Such Javadoc tag can have these children:</p>
+     * <ol>
+     * <li>{@link #CODE_INLINE_TAG}</li>
+     * <li>{@link #LINK_INLINE_TAG}</li>
+     * <li>{@link #VALUE_INLINE_TAG}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     * * {@code code}
+     * &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
