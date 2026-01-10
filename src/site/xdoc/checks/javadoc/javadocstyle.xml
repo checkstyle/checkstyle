@@ -548,6 +548,72 @@ public class Example6 {
   }
 }
 </code></pre></div>
+
+        <hr class="example-separator"/>
+
+        <p id="Example7-config">
+          To configure the check to verify that there are no empty Javadoc comments:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="JavadocStyle"&gt;
+      &lt;property name="checkEmptyJavadoc" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example7-code">Example7:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some description here
+ */
+public class Example7 {
+  Example7() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   *
+   */
+  private void testMethod1() {
+    // violation 4 lines above 'Javadoc has empty description section'
+  } // ok below, @return tag automatically inserts a period after the text
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() {
+    // violation 5 lines above 'First sentence should end with a period'
+    // violation 4 lines above 'Incomplete HTML tag found'
+  }
+}
+</code></pre></div>
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
