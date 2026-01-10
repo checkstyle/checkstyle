@@ -248,9 +248,11 @@
       -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
+      -Xep:EqualsUsingHashCode:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
+      -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
@@ -263,21 +265,19 @@
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
-      -Xep:EqualsUsingHashCode:ERROR
       -Xep:ReferenceEquality:ERROR
       -Xep:Slf4jLogStatement:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StreamResourceLeak:ERROR
       -Xep:StringJoin:ERROR
       -Xep:StringJoining:ERROR
+      -Xep:StringSplitter:ERROR
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnnecessaryLambda:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
-      -Xep:FormatStringShouldUsePlaceholders:ERROR
-      -Xep:StatementSwitchToExpressionSwitch:ERROR
-      -Xep:StringSplitter:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:EqualsGetClass:WARN
       -Xep:InlineFormatString:WARN
