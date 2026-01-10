@@ -32,6 +32,11 @@ class Example1 {
     for (char item: vowels) { // ok, ignoreEnhancedForColon is true by default
 
     }
+
+    int value = 0;
+    // violation below: empty switch block is not allowed when
+    // allowEmptySwitchBlockStatements is false (default behavior)
+    switch (value) {}
   }
 }
 // xdoc section -- end
