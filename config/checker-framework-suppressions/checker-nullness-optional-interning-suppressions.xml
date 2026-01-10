@@ -922,17 +922,6 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SarifLogger.java</fileName>
-    <specifier>return</specifier>
-    <message>incompatible types in return.</message>
-    <lineContent>return SEVERITY_LEVEL_MAP.get(severityLevel);</lineContent>
-    <details>
-      type of expression: @Initialized @Nullable String
-      method return type: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/SuppressionsStringPrinter.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter s of Integer.parseInt.</message>
