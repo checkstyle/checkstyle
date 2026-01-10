@@ -1210,7 +1210,7 @@ public final class JavadocCommentsTokenTypes {
      * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
      * |--PARAMETER_TYPE -> int
      * |--COMMA -> ,
-     * |--TEXT ->  
+     * |--TEXT ->
      * `--PARAMETER_TYPE -> int
      * }</pre>
      *
