@@ -43,7 +43,6 @@ class Example4 {
    *   "JavadocTagContinuation do not validate lines contained in Pre tag,
    *   No violation is expected here."</pre>
    */
-  public void testMethod3(String input) {}
 
 }
 
