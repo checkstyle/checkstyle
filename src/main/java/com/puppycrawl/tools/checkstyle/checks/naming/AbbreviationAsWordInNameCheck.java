@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.naming;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -433,7 +433,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @return The list of children one level below on the current parent node.
      */
     private static List<DetailAST> getChildren(final DetailAST node) {
-        final List<DetailAST> result = new LinkedList<>();
+        final List<DetailAST> result = new ArrayList<>();
         DetailAST curNode = node.getFirstChild();
         while (curNode != null) {
             result.add(curNode);
