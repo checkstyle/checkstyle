@@ -4698,6 +4698,10 @@
                 <param>replaceVersionString</param>
                 <!-- this method in XMLLogger.java works properly only when execution is from jar -->
                 <param>printVersionString</param>
+                <!-- Switch expressions with enum cases produce equivalent mutations
+                that cannot be killed since all branches are already covered.
+                See https://github.com/checkstyle/checkstyle/issues/18024 -->
+                <param>renderSeverityLevel</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
