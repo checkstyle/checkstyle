@@ -1047,18 +1047,6 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            final TestCheck other = (TestCheck) obj;
-            return hashCode() == other.hashCode();
-        }
-
-        @Override
         public int[] getDefaultTokens() {
             return CommonUtil.EMPTY_INT_ARRAY;
         }
