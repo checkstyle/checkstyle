@@ -1,0 +1,7 @@
+/*
+LineEnding
+fileExtensions = "java"
+lineEnding = crlf
+
+
+*/

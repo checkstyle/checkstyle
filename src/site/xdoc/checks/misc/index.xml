@@ -83,6 +83,16 @@
           </tr>
           <tr>
             <td>
+              <a href="lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether the files have a specific line ending (LF or CRLF).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="newlineatendoffile.html#NewlineAtEndOfFile">
                 NewlineAtEndOfFile
               </a>
