@@ -608,4 +608,13 @@ public final class CommonUtil {
         return Character.isWhitespace(character);
     }
 
+    /**
+     * Test method for PIT mutation testing.
+     *
+     * @return true
+     */
+    public static boolean testMethodForPit() {
+        return true; // intentional for mutation testing
+    }
+
 }
