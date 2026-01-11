@@ -165,10 +165,11 @@ public final class XpathFilterElement implements TreeWalkerFilter {
         }
         else {
             isMatching = false;
-            final List<AbstractNode> nodes = getItems(event)
-                .stream().map(AbstractNode.class::cast)
+            final List<Item> nodes = getItems(event)
+                .stream()
                 .toList();
-            for (AbstractNode abstractNode : nodes) {
+            for (Item item : nodes) {
+                final AbstractNode abstractNode = (AbstractNode) item;
                 isMatching = abstractNode.getTokenType() == event.getTokenType()
                         && abstractNode.getLineNumber() == event.getLine()
                         && abstractNode.getColumnNumber() == event.getColumnCharIndex();
