@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>IllegalSymbol</title>
+  </head>
+  <body>
+    <section name="IllegalSymbol">
+      <p>Since Checkstyle 10.19.0</p>
+      <subsection name="Description" id="IllegalSymbol_Description">
+        <div>
+          Checks that specified symbols (by Unicode code points or ranges) are not used in code.
+        </div>
+
+        <p>
+          Rationale: This check helps prevent emoji symbols in code, enforce ASCII-only source files,
+          or forbid specific Unicode characters.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="IllegalSymbol_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td><a id="asciiOnly"/><a href="#asciiOnly">asciiOnly</a></td>
+              <td>Control whether only ASCII characters are allowed.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.19.0</td>
+            </tr>
+            <tr>
+              <td><a id="symbolCodes"/><a href="#symbolCodes">symbolCodes</a></td>
+              <td>Specify the symbols to check for. Format: comma-separated list of hex codes or ranges (e.g., "0x2705, 0xd83c-0xd83e").</td>
+              <td><a href="../../property_types.html#String">String</a></td>
+              <td><code/></td>
+              <td>10.19.0</td>
+            </tr>
+            <tr>
+              <td><a id="tokens"/><a href="#tokens">tokens</a></td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                    COMMENT_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                    STRING_LITERAL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
+                    CHAR_LITERAL</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                    TEXT_BLOCK_CONTENT</a>
+                , <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                    IDENT</a>
+                  .
+              </td>
+              <td>
+                <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                    COMMENT_CONTENT</a>
+                  .
+              </td>
+              <td>10.19.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="IllegalSymbol_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example1 {
+  // ✅ Enhancement completed
+  // 😀 Happy coding
+  int value = 1;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example2-config">
+          To configure the check to forbid emoji ranges:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="symbolCodes" value="0x1F300-0x1F5FF,  0x1F680-0x1F6FF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example2 {
+  int x = 1;
+
+  // 🌟 Star // violation 'Illegal Unicode symbol detected'
+  int star = 3;
+
+  // 🚀 Rocket // violation 'Illegal Unicode symbol detected'
+  int fast = 3;
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To configure the check for ASCII-only mode:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalSymbol"&gt;
+      &lt;property name="asciiOnly" value="true"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">
+            Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example3 {
+  // Regular ASCII comment
+  int x = 1;
+
+  // café // violation 'Illegal Unicode symbol detected'
+  int coffee = 2;
+
+  // • bullet point // violation 'Illegal Unicode symbol detected'
+  int item = 3;
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="IllegalSymbol_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+IllegalSymbol">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="IllegalSymbol_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22illegal.symbol%22">
+              illegal.symbol
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="IllegalSymbol_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="IllegalSymbol_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
