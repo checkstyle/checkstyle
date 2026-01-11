@@ -2682,7 +2682,7 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <executions>
-              <!-- Skip the default-compile execution as we don't want to execute the compile goal twice -->
+              <!-- sneak into the default execution as we don't want to execute the compile goal twice -->
               <execution>
                 <id>default-compile</id>
                 <phase>compile</phase>
@@ -2690,17 +2690,7 @@
                   <goal>compile</goal>
                 </goals>
                 <configuration>
-                  <skipMain>true</skipMain>
-                </configuration>
-              </execution>
-              <execution>
-                <id>error-prone-compile</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>compile</goal>
-                </goals>
-                <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
@@ -2739,7 +2729,7 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven.compiler.plugin.version}</version>
             <executions>
-              <!-- Skip the default-testCompile execution as we don't want to execute the testCompile goal twice -->
+              <!-- sneak into the default execution as we don't want to execute the compile goal twice -->
               <execution>
                 <id>default-testCompile</id>
                 <phase>test-compile</phase>
@@ -2747,17 +2737,7 @@
                   <goal>testCompile</goal>
                 </goals>
                 <configuration>
-                  <skip>true</skip>
-                </configuration>
-              </execution>
-              <execution>
-                <id>error-prone-test-compile</id>
-                <phase>test-compile</phase>
-                <goals>
-                  <goal>testCompile</goal>
-                </goals>
-                <configuration>
-                  <failOnError>false</failOnError>
+                  <failOnError>true</failOnError>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
