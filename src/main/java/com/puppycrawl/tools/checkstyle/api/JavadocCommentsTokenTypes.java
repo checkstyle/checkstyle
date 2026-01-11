@@ -110,6 +110,35 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General block tag (e.g. {@code @param}, {@code @return}).
+     *
+     * <p>This token represents any Javadoc block tag. It serves as a container
+     * for specific block tag types like {@link #PARAM_BLOCK_TAG},
+     * {@link #RETURN_BLOCK_TAG}, etc.</p>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     * |   `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |       |--AT_SIGN -> @
+     * |       |--TAG_NAME -> param
+     * |       |--TEXT ->
+     * |       |--PARAMETER_NAME -> value
+     * |       `--DESCRIPTION -> DESCRIPTION
+     * |           |--TEXT ->  The parameter of method.
+     * |           |--NEWLINE -> \r\n
+     * |           |--LEADING_ASTERISK ->  *
+     * |           `--TEXT -> /
+     * `--NEWLINE -> \r\n
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #RETURN_BLOCK_TAG
+     * @see #THROWS_BLOCK_TAG
      */
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
 
@@ -605,55 +634,96 @@ public final class JavadocCommentsTokenTypes {
     // Inline tags
 
     /**
-     * General inline tag (e.g. {@code @link}).
+     * General inline tag (e.g. {@code @link}, {@code @code}).
      *
-     * <p>Such Javadoc tag can have these children:</p>
-     * <ol>
-     * <li>{@link #CODE_INLINE_TAG}</li>
-     * <li>{@link #LINK_INLINE_TAG}</li>
-     * <li>{@link #VALUE_INLINE_TAG}</li>
-     * </ol>
+     * <p>This token represents any Javadoc inline tag. It serves as a container
+     * for specific inline tag types like {@link #CODE_INLINE_TAG},
+     * {@link #LINK_INLINE_TAG}, etc.</p>
      *
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     * * {@code code}
-     * &#42;/
+     *  * Example: code snippet here
+     *  * /
      * }</pre>
      *
-     * <b>Tree:</b>
+     * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
      * |--TEXT -> /**
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
-     * |--TEXT ->
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
+     * |--TEXT ->  Example:
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
      * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
-     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--JAVADOC_INLINE_TAG_START -> {@
      * |       |--TAG_NAME -> code
-     * |       |--TEXT ->   code
+     * |       |--TEXT ->  println("Hello");
      * |       `--JAVADOC_INLINE_TAG_END -> }
-     * |--NEWLINE -> \n
-     * |--LEADING_ASTERISK ->   *
+     * |--NEWLINE -> \r\n
+     * |--LEADING_ASTERISK ->  *
      * |--TEXT -> /
-     * |--NEWLINE -> \n
-     * |--TEXT -> public class Test {}
-     * `--NEWLINE -> \n
+     * `--NEWLINE -> \r\n
      * }</pre>
      *
-     * @see #JAVADOC_INLINE_TAG
+     * @see #CODE_INLINE_TAG
+     * @see #LINK_INLINE_TAG
+     * @see #LITERAL_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
     /**
-     * Start of an inline tag  <code>{</code>.
+     * Start of an inline tag {@code &#123;@}.
+     *
+     * <p>This token represents the opening brace and at-sign that begin an inline Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Example: inline tag here
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {@
+     *     |--TAG_NAME -> code
+     *     |--TEXT ->  text
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
+     * @see #JAVADOC_INLINE_TAG_END
      */
     public static final int JAVADOC_INLINE_TAG_START =
             JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
 
     /**
-     * End of an inline tag <code>}</code>.
+     * End of an inline tag {@code &#125;}.
+     *
+     * <p>This token represents the closing brace that ends an inline Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Example: inline tag here
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -> {@
+     *     |--TAG_NAME -> code
+     *     |--TEXT ->  text
+     *     `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
+     * @see #JAVADOC_INLINE_TAG_START
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
 
@@ -1009,46 +1079,236 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Identifier token.
+     *
+     * <p>This token represents an identifier in a Javadoc reference, such as a class name,
+     * method name, or field name.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#length()}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * REFERENCE -> REFERENCE
+     * |--IDENTIFIER -> String
+     * |--HASH -> #
+     * `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     |--IDENTIFIER -> length
+     *     |--LPAREN -> (
+     *     `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #REFERENCE
+     * @see #MEMBER_REFERENCE
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
     /**
      * Hash symbol {@code #} used in references.
+     *
+     * <p>This token represents the hash symbol that separates a class name from a member name
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#length()}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * REFERENCE -> REFERENCE
+     * |--IDENTIFIER -> String
+     * |--HASH -> #
+     * `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *     `--IDENTIFIER -> length
+     * }</pre>
+     *
+     * @see #REFERENCE
+     * @see #IDENTIFIER
      */
     public static final int HASH = JavadocCommentsLexer.HASH;
 
     /**
-     * Left parenthesis {@code ( }.
+     * Left parenthesis {@code (} in method references.
+     *
+     * <p>This token represents the opening parenthesis in a method reference
+     * within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#indexOf(int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |--IDENTIFIER -> indexOf
+     * |--LPAREN -> (
+     * |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |   `--PARAMETER_TYPE -> int
+     * `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #RPAREN
+     * @see #MEMBER_REFERENCE
      */
     public static final int LPAREN = JavadocCommentsLexer.LPAREN;
 
     /**
-     * Right parenthesis {@code ) }.
+     * Right parenthesis {@code )} in method references.
+     *
+     * <p>This token represents the closing parenthesis in a method reference
+     * within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link String#indexOf(int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * MEMBER_REFERENCE -> MEMBER_REFERENCE
+     * |--IDENTIFIER -> indexOf
+     * |--LPAREN -> (
+     * |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |   `--PARAMETER_TYPE -> int
+     * `--RPAREN -> )
+     * }</pre>
+     *
+     * @see #LPAREN
+     * @see #MEMBER_REFERENCE
      */
     public static final int RPAREN = JavadocCommentsLexer.RPAREN;
 
     /**
-     * Comma symbol {@code , }.
+     * Comma symbol {@code ,} in parameter lists.
+     *
+     * <p>This token represents a comma that separates parameters in a method reference
+     * within a Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link Math#max(int, int)}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     * |--PARAMETER_TYPE -> int
+     * |--COMMA -> ,
+     * |--TEXT ->
+     * `--PARAMETER_TYPE -> int
+     * }</pre>
+     *
+     * @see #PARAMETER_TYPE_LIST
+     * @see #MEMBER_REFERENCE
      */
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
     /**
-     * Slash symbol {@code / }.
+     * Slash symbol {@code /} in URLs or paths.
+     *
+     * <p>This token represents a forward slash character, typically used in URLs
+     * within Javadoc HTML tags.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <a href="https://example.com/path">link</a>
+     *  * /
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
     /**
-     * Question mark symbol {@code ? }.
+     * Question mark symbol {@code ?} in wildcard types.
+     *
+     * <p>This token represents the wildcard character in generic type arguments,
+     * such as {@code List<?>} or {@code List<? extends Number>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<?>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * `--QUESTION -> ?
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENT
+     * @see #EXTENDS
+     * @see #SUPER
      */
     public static final int QUESTION = JavadocCommentsLexer.QUESTION;
 
     /**
-     * Less-than symbol {@code < }.
+     * Less-than symbol {@code <} in type arguments.
+     *
+     * <p>This token represents the opening angle bracket for generic type arguments
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #GT
+     * @see #TYPE_ARGUMENTS
      */
     public static final int LT = JavadocCommentsLexer.LT;
 
     /**
-     * Greater-than symbol {@code > }.
+     * Greater-than symbol {@code >} in type arguments.
+     *
+     * <p>This token represents the closing angle bracket for generic type arguments
+     * in a Javadoc reference.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #LT
+     * @see #TYPE_ARGUMENTS
      */
     public static final int GT = JavadocCommentsLexer.GT;
 
@@ -1277,26 +1537,120 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Single type argument in generics.
+     *
+     * <p>This token represents a single type argument within generic type parameters,
+     * such as {@code String} in {@code List<String>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@link List<String>}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     * |--LT -> <
+     * |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     * |   `--IDENTIFIER -> String
+     * `--GT -> >
+     * }</pre>
+     *
+     * @see #TYPE_ARGUMENTS
+     * @see #LT
+     * @see #GT
      */
     public static final int TYPE_ARGUMENT = JavadocCommentsLexer.TYPE_ARGUMENT;
 
     /**
      * Description part of a Javadoc tag.
+     *
+     * <p>This token represents the descriptive text that follows a Javadoc tag,
+     * such as the explanation after {@code @param name} or {@code @return}.</p>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |--TAG_NAME -> param
+     * |--PARAMETER_NAME -> name
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #RETURN_BLOCK_TAG
      */
     public static final int DESCRIPTION = JavadocCommentsLexer.DESCRIPTION;
 
     /**
      * Format specifier inside Javadoc content.
+     *
+     * <p>This token represents a format specifier pattern, typically used
+     * in formatted output documentation.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Formats the value using %s pattern
+     *  * /
+     * }</pre>
+     *
+     * @see #DESCRIPTION
      */
     public static final int FORMAT_SPECIFIER = JavadocCommentsLexer.FORMAT_SPECIFIER;
 
     /**
-     * Attribute name in a {@code @snippet}.
+     * Attribute name in a {@code @snippet} tag.
+     *
+     * <p>This token represents the name part of an attribute
+     * in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java" class="Example":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     * |--SNIPPET_ATTR_NAME -> lang
+     * |--EQUALS -> =
+     * `--STRING_LITERAL -> "java"
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTE
+     * @see #STRING_LITERAL
      */
     public static final int SNIPPET_ATTR_NAME = JavadocCommentsLexer.SNIPPET_ATTR_NAME;
 
     /**
-     * Equals sign {@code = }.
+     * Equals sign {@code =} in HTML attributes.
+     *
+     * <p>This token represents the equals sign that separates an attribute name
+     * from its value in HTML tags within Javadoc.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <a href="example">link</a>
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * HTML_ATTRIBUTE -> HTML_ATTRIBUTE
+     * |--TAG_ATTR_NAME -> href
+     * |--EQUALS -> =
+     * `--ATTRIBUTE_VALUE -> "example"
+     * }</pre>
+     *
+     * @see #HTML_ATTRIBUTE
+     * @see #ATTRIBUTE_VALUE
      */
     public static final int EQUALS = JavadocCommentsLexer.EQUALS;
 
@@ -1334,54 +1688,289 @@ public final class JavadocCommentsTokenTypes {
     public static final int ATTRIBUTE_VALUE = JavadocCommentsLexer.ATTRIBUTE_VALUE;
 
     /**
-     * Colon symbol {@code : }.
+     * Colon symbol {@code :} in Javadoc.
+     *
+     * <p>This token represents the colon character, typically used
+     * in {@code @snippet} tags to separate attributes from body content.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |--COLON -> :
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
+     * @see #SNIPPET_BODY
      */
     public static final int COLON = JavadocCommentsLexer.COLON;
 
     /**
      * Term used in {@code {@index}} tag.
+     *
+     * <p>This token represents the search term in an {@code {@index}}
+     * inline tag, which is used to add an entry to the search index.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See {@index "search term" optional description}
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> index
+     * |--INDEX_TERM -> "search term"
+     * |--DESCRIPTION -> DESCRIPTION
+     * |   `--TEXT ->  optional description
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #DESCRIPTION
      */
     public static final int INDEX_TERM = JavadocCommentsLexer.INDEX_TERM;
 
     /**
-     * Single snippet attribute.
+     * Single snippet attribute in {@code @snippet} tag.
+     *
+     * <p>This token represents one attribute (name-value pair)
+     * in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * `--SNIPPET_ATTRIBUTE -> SNIPPET_ATTRIBUTE
+     *     |--SNIPPET_ATTR_NAME -> lang
+     *     |--EQUALS -> =
+     *     `--STRING_LITERAL -> "java"
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
+     * @see #SNIPPET_ATTR_NAME
      */
     public static final int SNIPPET_ATTRIBUTE = JavadocCommentsLexer.SNIPPET_ATTRIBUTE;
 
     /**
-     * Collection of snippet attributes.
+     * Collection of snippet attributes in {@code @snippet} tag.
+     *
+     * <p>This token represents the container for all attributes
+     * specified in a {@code @snippet} inline tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java" class="Example":
+     *  *   System.out.println("Hello");
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |   |--SNIPPET_ATTR_NAME -> lang
+     * |   |--EQUALS -> =
+     * |   `--STRING_LITERAL -> "java"
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_BODY
+     * @see #SNIPPET_ATTR_NAME
      */
     public static final int SNIPPET_ATTRIBUTES = JavadocCommentsLexer.SNIPPET_ATTRIBUTES;
 
     /**
-     * Body content of a {@code @snippet}.
+     * Body content of a {@code @snippet} tag.
+     *
+     * <p>This token represents the code content inside a {@code @snippet}
+     * inline tag, which contains the actual code example.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet :
+     *  *   int x = 42;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * |   `--TEXT ->    int x = 42;
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int SNIPPET_BODY = JavadocCommentsLexer.SNIPPET_BODY;
 
     /**
-     * Field type reference.
+     * Field type reference in {@code @serialField} tag.
+     *
+     * <p>This token represents the type of a serializable field
+     * in a {@code @serialField} Javadoc tag.</p>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
+     * |--TAG_NAME -> serialField
+     * |--FIELD_NAME -> name
+     * |--FIELD_TYPE -> String
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #SERIAL_FIELD_BLOCK_TAG
+     * @see #IDENTIFIER
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
     /**
-     * Parameter name reference.
+     * Parameter name in {@code @param} tag.
+     *
+     * <p>This token represents the name of a parameter
+     * in a {@code @param} Javadoc tag.</p>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     * |--TAG_NAME -> param
+     * |--PARAMETER_NAME -> name
+     * `--DESCRIPTION -> DESCRIPTION
+     *     `--TEXT ->  the user's name
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #DESCRIPTION
      */
     public static final int PARAMETER_NAME = JavadocCommentsLexer.PARAMETER_NAME;
 
     /**
      * String literal inside Javadoc.
+     *
+     * <p>This token represents a quoted string value, typically used
+     * in snippet attributes or other Javadoc constructs.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * {@snippet lang="java":
+     *  *   int x = 1;
+     *  * }
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |--JAVADOC_INLINE_TAG_START -> {
+     * |--TAG_NAME -> snippet
+     * |--SNIPPET_ATTRIBUTES -> SNIPPET_ATTRIBUTES
+     * |   |--SNIPPET_ATTR_NAME -> lang
+     * |   |--EQUALS -> =
+     * |   `--STRING_LITERAL -> "java"
+     * |--SNIPPET_BODY -> SNIPPET_BODY
+     * `--JAVADOC_INLINE_TAG_END -> }
+     * }</pre>
+     *
+     * @see #SNIPPET_ATTRIBUTES
      */
     public static final int STRING_LITERAL = JavadocCommentsLexer.STRING_LITERAL;
 
     // HTML
 
     /**
-     * General HTML element.
+     * General HTML element in Javadoc.
+     *
+     * <p>This token represents an HTML element with start tag, content, and end tag
+     * within a Javadoc comment.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * See <b>bold text</b>
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * HTML_ELEMENT -> HTML_ELEMENT
+     * |--HTML_TAG_START -> HTML_TAG_START
+     * |   |--TAG_OPEN -> <
+     * |   |--TAG_NAME -> b
+     * |   `--TAG_CLOSE -> >
+     * |--HTML_CONTENT -> HTML_CONTENT
+     * |   `--TEXT -> bold text
+     * `--HTML_TAG_END -> HTML_TAG_END
+     *     |--TAG_OPEN -> <
+     *     |--TAG_SLASH -> /
+     *     |--TAG_NAME -> b
+     *     `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_TAG_START
+     * @see #HTML_TAG_END
+     * @see #HTML_CONTENT
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
 
     /**
-     * Void HTML element (self-closing).
+     * Void HTML element (self-closing) in Javadoc.
+     *
+     * <p>This token represents a self-closing HTML element that has no content,
+     * such as {@code <br>}, {@code <hr>}, or {@code <img>}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * Line 1<br>Line 2
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree (partial):</b></p>
+     * <pre>{@code
+     * VOID_ELEMENT -> VOID_ELEMENT
+     * `--HTML_TAG_START -> HTML_TAG_START
+     *     |--TAG_OPEN -> <
+     *     |--TAG_NAME -> br
+     *     `--TAG_CLOSE -> >
+     * }</pre>
+     *
+     * @see #HTML_ELEMENT
+     * @see #HTML_TAG_START
      */
     public static final int VOID_ELEMENT = JavadocCommentsLexer.VOID_ELEMENT;
 
