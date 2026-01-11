@@ -1059,6 +1059,24 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Identifier token.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @throws Exception if error.}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--THROWS_BLOCK_TAG -> THROWS_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> throws
+     *         |--TEXT ->
+     *         |--IDENTIFIER -> Exception
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  if error.
+     * }</pre>
      */
     public static final int IDENTIFIER = JavadocCommentsLexer.IDENTIFIER;
 
