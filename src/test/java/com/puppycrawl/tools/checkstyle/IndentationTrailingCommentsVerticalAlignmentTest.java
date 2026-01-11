@@ -25,10 +25,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -61,13 +59,10 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
     public void testTrailingCommentsAlignment(Path testFile) throws IOException {
-        final String fileName = testFile.getFileName().toString();
-        if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
-            Assumptions.assumeTrue(false, "Skipping file: " + fileName);
-        }
 
         final List<String> lines = Files.readAllLines(testFile);
-        int expectedStartIndex = -1;
+        int maxStartIndex = -1;
+        final List<Integer> indices = new java.util.ArrayList<>();
 
         for (int idx = 0; idx < lines.size(); idx++) {
             final String line = lines.get(idx);
@@ -86,18 +81,31 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
                         Character::isSupplementaryCodePoint).count();
                     actualStartIndex -= Math.toIntExact(extraWidth);
 
-                    if (expectedStartIndex == -1) {
-                        expectedStartIndex = actualStartIndex;
+                    if (actualStartIndex > maxStartIndex) {
+                        maxStartIndex = actualStartIndex;
                     }
-                    else {
-                        assertWithMessage(
-                                "Trailing comment alignment mismatch in file: %s on line %s",
-                                testFile, idx + 1)
-                                .that(actualStartIndex)
-                                .isEqualTo(expectedStartIndex);
-                    }
+                    indices.add(idx);
                 }
             }
+        }
+
+        for (int idx : indices) {
+            final String line = lines.get(idx);
+            final int commentStartIndex = line.indexOf("//indent:");
+            final String codePart = line.substring(0, commentStartIndex);
+            int actualStartIndex =
+                CommonUtil.lengthExpandedTabs(line, commentStartIndex, TAB_WIDTH);
+
+            // for unicode characters having supplementary code points
+            final long extraWidth = codePart.codePoints().filter(
+                Character::isSupplementaryCodePoint).count();
+            actualStartIndex -= Math.toIntExact(extraWidth);
+
+            assertWithMessage(
+                    "Trailing comment alignment mismatch in file: %s on line %s",
+                    testFile, idx + 1)
+                    .that(actualStartIndex)
+                    .isEqualTo(maxStartIndex);
         }
     }
 
