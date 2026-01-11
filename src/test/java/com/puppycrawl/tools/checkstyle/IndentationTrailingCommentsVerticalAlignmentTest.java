@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -65,7 +65,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
             Assumptions.assumeTrue(false, "Skipping file: " + fileName);
         }
-
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
