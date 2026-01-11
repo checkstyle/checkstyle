@@ -130,6 +130,11 @@
     <file name="ModuleReflectionUtil">
       <allow class="com.puppycrawl.tools.checkstyle.AbstractAutomaticBean"/>
     </file>
+
+    <file name="NullUtil">
+      <allow class="org.jspecify.annotations.NonNull"/>
+      <allow class="org.jspecify.annotations.Nullable"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
