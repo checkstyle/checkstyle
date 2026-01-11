@@ -125,7 +125,8 @@ public final class ParserUtil {
         int lines = initialLinesCnt;
         int columns = initialColumnsCnt;
         boolean foundCr = false;
-        for (char c : text.toCharArray()) {
+        for (int i = 0; i < text.length(); i++) {
+            final char c = text.charAt(i);
             if (c == '\n') {
                 foundCr = false;
                 lines++;

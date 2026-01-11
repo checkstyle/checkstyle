@@ -770,7 +770,6 @@ public final class SiteUtil {
      * @param propertyJavadoc the property Javadoc to extract the since version from.
      * @return the Optional of property version specified in its javadoc.
      */
-    @Nullable
     private static Optional<String> getPropertyVersionFromItsJavadoc(DetailNode propertyJavadoc) {
         final Optional<DetailNode> propertyJavadocTag =
             getPropertySinceJavadocTag(propertyJavadoc);

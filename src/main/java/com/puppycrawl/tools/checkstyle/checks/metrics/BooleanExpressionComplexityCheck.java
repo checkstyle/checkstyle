@@ -43,11 +43,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Note that the operators {@code &amp;} and {@code |} are not only integer bitwise
  * operators, they are also the
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.22.2">
- * non-shortcut versions</a> of the boolean operators {@code &amp;&amp;} and {@code ||}.
+ * non-shortcut versions</a> of the boolean operators {@code &&} and {@code ||}.
  * </p>
  *
  * <p>
- * Note that {@code &amp;}, {@code |} and {@code ^} are not checked if they are part
+ * Note that {@code &}, {@code |} and {@code ^} are not checked if they are part
  * of constructor or method call because they can be applied to non-boolean
  * variables and Checkstyle does not know types of methods from different classes.
  * </p>
