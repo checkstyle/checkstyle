@@ -871,7 +871,7 @@ public final class SiteUtil {
     }
 
     /**
-     * Returns {@code true} if {@code actualVersion} ≥ {@code requiredVersion}.
+     * Returns {@code true} if {@code actualVersion} >= {@code requiredVersion}.
      * Both versions have any trailing "-SNAPSHOT" stripped before comparison.
      *
      * @param actualVersion   e.g. "8.3" or "8.3-SNAPSHOT"
