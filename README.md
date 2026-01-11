@@ -13,7 +13,6 @@
 [![][snyk img]][snyk]
 [![][semaphoreci img]][semaphoreci]
 [![][azure img]][azure]
-[![][error prone img]][error prone]
 [![][pitest img]][pitest]
 [![][checker framework img]][checker framework]
 [![][dependabot img]][dependabot]
@@ -194,9 +193,6 @@ Checkstyle uses libraries:
 
 [link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml
 [link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run-link-check.yml/badge.svg
-
-[error prone]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml
-[error prone img]:https://github.com/checkstyle/checkstyle/actions/workflows/error-prone.yml/badge.svg
 
 [pitest]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml
 [pitest img]:https://github.com/checkstyle/checkstyle/actions/workflows/pitest.yml/badge.svg
