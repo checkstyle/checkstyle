@@ -53,7 +53,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * This is a Javadoc line.
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -86,7 +86,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * This is plain text content.
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -114,13 +114,6 @@ public final class JavadocCommentsTokenTypes {
      * <p>This token represents any Javadoc block tag. It serves as a container
      * for specific block tag types like {@link #PARAM_BLOCK_TAG},
      * {@link #RETURN_BLOCK_TAG}, etc.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param value The parameter of method.
-     *  * /
-     * }</pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -650,8 +643,8 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     *  * Example: {@code println("Hello");}
-     *  * /
+     *  * Example: code snippet here
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -687,8 +680,8 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     *  * Example: {@code text}
-     *  * /
+     *  * Example: inline tag here
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -715,8 +708,8 @@ public final class JavadocCommentsTokenTypes {
      * <p><b>Example:</b></p>
      * <pre>{@code
      * /**
-     *  * Example: {@code text}
-     *  * /
+     *  * Example: inline tag here
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree:</b></p>
@@ -1094,7 +1087,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link String#length()}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1123,7 +1116,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link String#length()}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1150,7 +1143,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link String#indexOf(int)}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1178,7 +1171,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link String#indexOf(int)}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1206,7 +1199,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link Math#max(int, int)}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1233,10 +1226,10 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See <a href="https://example.com/path">link</a>
-     *  * /
+     *  &#42;/
      * }</pre>
      *
-     * @see #HTML_TAG
+     * @see #HTML_ELEMENT
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
@@ -1250,7 +1243,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link List<?>}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1275,7 +1268,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link List<String>}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1302,7 +1295,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link List<String>}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1552,7 +1545,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@link List<String>}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1575,13 +1568,6 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>This token represents the descriptive text that follows a Javadoc tag,
      * such as the explanation after {@code @param name} or {@code @return}.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
@@ -1607,7 +1593,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * Formats the value using %s pattern
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * @see #DESCRIPTION
@@ -1626,7 +1612,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet lang="java" class="Example":
      *  *   int x = 1;
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1652,7 +1638,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See <a href="example">link</a>
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1713,7 +1699,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet lang="java":
      *  *   int x = 1;
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1742,7 +1728,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See {@index "search term" optional description}
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1772,7 +1758,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet lang="java":
      *  *   int x = 1;
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1801,7 +1787,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet lang="java" class="Example":
      *  *   System.out.println("Hello");
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1834,7 +1820,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet :
      *  *   int x = 42;
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1857,13 +1843,6 @@ public final class JavadocCommentsTokenTypes {
      * <p>This token represents the type of a serializable field
      * in a {@code @serialField} Javadoc tag.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @serialField name String the user's name
-     *  * /
-     * }</pre>
-     *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
      * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
@@ -1875,7 +1854,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * @see #SERIAL_FIELD_BLOCK_TAG
-     * @see #FIELD_NAME
+     * @see #IDENTIFIER
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
@@ -1884,13 +1863,6 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>This token represents the name of a parameter
      * in a {@code @param} Javadoc tag.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
@@ -1918,7 +1890,7 @@ public final class JavadocCommentsTokenTypes {
      *  * {@snippet lang="java":
      *  *   int x = 1;
      *  * }
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1950,7 +1922,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * See <b>bold text</b>
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
@@ -1985,7 +1957,7 @@ public final class JavadocCommentsTokenTypes {
      * <pre>{@code
      * /**
      *  * Line 1<br>Line 2
-     *  * /
+     *  &#42;/
      * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
