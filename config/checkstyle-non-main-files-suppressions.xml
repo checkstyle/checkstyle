@@ -126,9 +126,6 @@
   <suppress id="lineLength" files="config[\\/]pitest-suppressions[\\/].*"/>
 
   <!-- this file cannot be line wrapped, It contains a list of suppressions -->
-  <suppress id="lineLength" files="config[\\/]error-prone-suppressions[\\/].*"/>
-
-  <!-- this file cannot be line wrapped, It contains a list of suppressions -->
   <suppress id="lineLength" files="config[\\/]checker-framework-suppressions[\\/].*"/>
 
   <!-- this file cannot be line wrapped, it contains cdg pitest licence -->
