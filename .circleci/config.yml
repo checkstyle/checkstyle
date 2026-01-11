@@ -208,6 +208,10 @@ workflows:
           image-name: *cs_img
           command: "./.ci/validation.sh spotbugs-and-pmd"
       - validate-with-maven-script:
+          name: error-prone
+          image-name: *cs_img
+          command: "./.ci/validation.sh error-prone"
+      - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
           command: "./.ci/validation.sh site"
