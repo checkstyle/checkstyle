@@ -215,8 +215,8 @@ public class JavadocDetailNodeParser {
          */
         private static String convertUpperCamelToUpperUnderscore(String text) {
             final StringBuilder result = new StringBuilder(20);
-            for (int i = 0; i < text.length(); i++) {
-                final char letter = text.charAt(i);
+            for (int index = 0; index < text.length(); index++) {
+                final char letter = text.charAt(index);
                 if (Character.isUpperCase(letter)) {
                     result.append('_');
                 }

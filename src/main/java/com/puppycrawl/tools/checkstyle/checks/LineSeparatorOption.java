@@ -48,7 +48,6 @@ public enum LineSeparatorOption {
     SYSTEM(System.lineSeparator());
 
     /** The line separator representation. */
-    @SuppressWarnings("ImmutableEnumChecker")
     private final byte[] lineSeparator;
 
     /**

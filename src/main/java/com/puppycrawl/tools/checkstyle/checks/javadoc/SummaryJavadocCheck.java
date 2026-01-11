@@ -367,8 +367,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final StringBuilder result = new StringBuilder(256);
         boolean previousWhitespace = true;
 
-        for (int i = 0; i < text.length(); i++) {
-            final char letter = text.charAt(i);
+        for (int index = 0; index < text.length(); index++) {
+            final char letter = text.charAt(index);
             final char print;
             if (Character.isWhitespace(letter)) {
                 if (previousWhitespace) {
