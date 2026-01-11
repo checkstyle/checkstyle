@@ -291,13 +291,13 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
 
-        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
+        final AuditEvent fileStartedEvent = new AuditEvent(this, "InputXMLLoggerAddExceptionBetweenFileStartedAndFinished.java");
         logger.fileStarted(fileStartedEvent);
 
         final Violation violation =
                 new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
+        final AuditEvent ev = new AuditEvent(this, "InputXMLLoggerAddExceptionBetweenFileStartedAndFinished.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
 
         logger.fileFinished(ev);
@@ -328,24 +328,11 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     }
 
     @Test
-    public void testAddExceptionBetweenFileStartedAndFinished()
-            throws Exception {
-        final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
-        logger.auditStarted(null);
-        final Violation violation =
-                new Violation(1, 1,
-                        "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
-        logger.fileStarted(fileStartedEvent);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
-        logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
-        final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
-        logger.fileFinished(fileFinishedEvent);
-        logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerException2.xml"), outStream);
-        assertWithMessage("Invalid close count")
-            .that(outStream.getCloseCount())
-            .isEqualTo(1);
+    public void testAddExceptionBetweenFileStartedAndFinished() throws Exception {
+        final String inputFileWithConfig = "InputXMLLoggerAddExceptionBetweenFileStartedAndFinished.java";
+        final String expectedXmlReport = "ExpectedXMLLoggerException2.xml";
+        verifyWithInlineConfigParserAndXmlLogger(inputFileWithConfig, expectedXmlReport, outStream);
+
     }
 
     @Test
