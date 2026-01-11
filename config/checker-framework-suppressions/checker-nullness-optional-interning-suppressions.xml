@@ -8238,17 +8238,6 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
     <specifier>assignment</specifier>
     <message>incompatible types in assignment.</message>
-    <lineContent>.toList();</lineContent>
-    <details>
-      found   : @Initialized @NonNull List&lt;@Initialized @PolyNull AbstractNode&gt;
-      required: @UnknownInitialization @Nullable List&lt;@Initialized @NonNull AbstractNode&gt;
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/XpathFilterElement.java</fileName>
-    <specifier>assignment</specifier>
-    <message>incompatible types in assignment.</message>
     <lineContent>xpathExpression = null;</lineContent>
     <details>
       found   : null (NullType)
