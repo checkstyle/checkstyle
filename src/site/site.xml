@@ -138,6 +138,7 @@
           <item name="HiddenField" href="checks/coding/hiddenfield.html"/>
           <item name="IllegalCatch" href="checks/coding/illegalcatch.html"/>
           <item name="IllegalInstantiation" href="checks/coding/illegalinstantiation.html"/>
+          <item name="IllegalSymbol" href="checks/coding/illegalsymbol.html"/>
           <item name="IllegalThrows" href="checks/coding/illegalthrows.html"/>
           <item name="IllegalToken" href="checks/coding/illegaltoken.html"/>
           <item name="IllegalTokenText" href="checks/coding/illegaltokentext.html"/>
