@@ -115,13 +115,6 @@ public final class JavadocCommentsTokenTypes {
      * for specific block tag types like {@link #PARAM_BLOCK_TAG},
      * {@link #RETURN_BLOCK_TAG}, etc.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param value The parameter of method.
-     *  * /
-     * }</pre>
-     *
      * <p><b>Tree:</b></p>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
@@ -1236,7 +1229,7 @@ public final class JavadocCommentsTokenTypes {
      *  * /
      * }</pre>
      *
-     * @see #HTML_TAG
+     * @see #HTML_ELEMENT
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
@@ -1576,13 +1569,6 @@ public final class JavadocCommentsTokenTypes {
      * <p>This token represents the descriptive text that follows a Javadoc tag,
      * such as the explanation after {@code @param name} or {@code @return}.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
-     *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
      * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
@@ -1857,13 +1843,6 @@ public final class JavadocCommentsTokenTypes {
      * <p>This token represents the type of a serializable field
      * in a {@code @serialField} Javadoc tag.</p>
      *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @serialField name String the user's name
-     *  * /
-     * }</pre>
-     *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
      * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
@@ -1875,7 +1854,7 @@ public final class JavadocCommentsTokenTypes {
      * }</pre>
      *
      * @see #SERIAL_FIELD_BLOCK_TAG
-     * @see #FIELD_NAME
+     * @see #IDENTIFIER
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
@@ -1884,13 +1863,6 @@ public final class JavadocCommentsTokenTypes {
      *
      * <p>This token represents the name of a parameter
      * in a {@code @param} Javadoc tag.</p>
-     *
-     * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
      *
      * <p><b>Tree (partial):</b></p>
      * <pre>{@code
