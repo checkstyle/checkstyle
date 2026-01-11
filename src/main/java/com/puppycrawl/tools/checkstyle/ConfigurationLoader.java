@@ -371,8 +371,8 @@ public final class ConfigurationLoader {
          *
          * @return the original string with the properties replaced.
          * @throws CheckstyleException if the string contains an opening
-         *                           {@code ${} without a closing
-         *                           {@code }}
+         *                           <code>${</code> without a closing
+         *                           <code>}</code>
          */
         private String replaceProperties(
                 String value, String defaultValue)
@@ -424,8 +424,8 @@ public final class ConfigurationLoader {
          *                     Must not be {@code null}.
          *
          * @throws CheckstyleException if the string contains an opening
-         *                           {@code ${} without a closing
-         *                           {@code }}
+         *                           <code>${</code> without a closing
+         *                           <code>}</code>
          */
         private static void parsePropertyString(String value,
                                                Collection<String> fragments,
