@@ -8,11 +8,16 @@
 </module>
 */
 
+
+
 package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 // xdoc section -- start
 class Example2 {
   public void method1() {}
-  public void Method2() {} // violation 'Name 'Method2' must match pattern'
+  protected void method2() {}
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  void method5() {}
 }
 // xdoc section -- end

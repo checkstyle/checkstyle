@@ -96,6 +96,7 @@ class Example1 {
   protected void method2() {}
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
   public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  void method5() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -115,7 +116,10 @@ class Example1 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example2 {
   public void method1() {}
-  public void Method2() {} // violation 'Name 'Method2' must match pattern'
+  protected void method2() {}
+  private void Method3() {} // violation 'Name 'Method3' must match pattern'
+  public void Method4() {} // violation 'Name 'Method4' must match pattern'
+  void method5() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -178,10 +182,11 @@ class Example4 {
         <p id="Example5-code">Code Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example5 {
-  public void Method1() {}
-  protected void Method2() {}
+  public void Method1() {} // ok because, 'Property 'applyToPublic' is false'
+  protected void Method2() {} // ok because, 'Property 'applyToProtected' is false'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void method4() {}
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div>
       <hr class="example-separator"/>
@@ -204,7 +209,8 @@ class Example6 {
   public void Method1() {} // violation 'Name 'Method1' must match pattern'
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {}
-  void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void method4() {}
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 </code></pre></div><hr class="example-separator"/>
       <p id="Example7-config">
@@ -226,7 +232,8 @@ class Example7 {
   public void Method1() {} // violation 'Name 'Method1' must match pattern'
   protected void Method2() {} // violation 'Name 'Method2' must match pattern'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  void Method4() {}
+  public void method4() {}
+  void Method5() {}  // ok because , 'Property 'applyToPackage' is set to false'
 }
 </code></pre></div>
       </subsection>
