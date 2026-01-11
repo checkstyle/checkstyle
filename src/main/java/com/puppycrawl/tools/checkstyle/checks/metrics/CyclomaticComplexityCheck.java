@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * {@code ?:}, {@code catch}, {@code switch}, {@code case} statements.
  * </li>
  * <li>
- *  Operators {@code &amp;&amp;} and {@code ||} in the body of target.
+ *  Operators {@code &&} and {@code ||} in the body of target.
  * </li>
  * <li>
  *  {@code when} expression in case labels, also known as guards.
