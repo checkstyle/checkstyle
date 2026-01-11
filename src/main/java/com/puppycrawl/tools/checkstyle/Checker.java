@@ -141,6 +141,20 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     private String testField;
 
     /**
+     * Test method for PIT mutation testing.
+     *
+     * @return 1
+     */
+    public int testMethodForPit() {
+        if (true) { // intentional for mutation testing
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+
+    /**
      * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
      */
