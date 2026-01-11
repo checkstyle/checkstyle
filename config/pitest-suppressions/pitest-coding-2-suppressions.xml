@@ -1,6 +1,897 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
   <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable symbolCodes</description>
+    <lineContent>private String symbolCodes = &quot;&quot;;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::codePointAt</description>
+    <lineContent>final int codePoint = text.codePointAt(offset);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/String::codePointAt with argument</description>
+    <lineContent>final int codePoint = text.codePointAt(offset);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::length</description>
+    <lineContent>final int length = text.length();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (isIllegalSymbol(codePoint)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isIllegalSymbol</description>
+    <lineContent>if (isIllegalSymbol(codePoint)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (isIllegalSymbol(codePoint)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (isIllegalSymbol(codePoint)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::log</description>
+    <lineContent>log(ast, MSG_KEY);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.MathMutator</mutator>
+    <description>Replaced integer addition with subtraction</description>
+    <lineContent>offset += Character.charCount(codePoint);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Character::charCount</description>
+    <lineContent>offset += Character.charCount(codePoint);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/Character::charCount with argument</description>
+    <lineContent>offset += Character.charCount(codePoint);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>while (offset &lt; length) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>while (offset &lt; length) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>while (offset &lt; length) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>checkText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>while (offset &lt; length) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>getAcceptableTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::getAcceptableTokens</description>
+    <lineContent>return new int[] {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>getDefaultTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::getDefaultTokens</description>
+    <lineContent>return new int[] {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>getRequiredTokens</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.NullReturnValsMutator</mutator>
+    <description>replaced return value with null for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::getRequiredTokens</description>
+    <lineContent>return CommonUtil.EMPTY_INT_ARRAY;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isCommentNodesRequired</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isCommentNodesRequired</description>
+    <lineContent>return true;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>else if (!symbolCodes.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::isEmpty</description>
+    <lineContent>else if (!symbolCodes.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>else if (!symbolCodes.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>else if (!symbolCodes.isEmpty()) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>if (asciiOnly &amp;&amp; codePoint &gt;= ASCII_UPPER_BOUND) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInSymbolCodes</description>
+    <lineContent>result = isInSymbolCodes(codePoint);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isIllegalSymbol</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isIllegalSymbol</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isIllegalSymbol</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::split</description>
+    <lineContent>final String[] range = rangeStr.split(RANGE_SEPARATOR, -1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::parseCodePoint</description>
+    <lineContent>final int end = parseCodePoint(range[1].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::trim</description>
+    <lineContent>final int end = parseCodePoint(range[1].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final int end = parseCodePoint(range[1].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::parseCodePoint</description>
+    <lineContent>final int start = parseCodePoint(range[0].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::trim</description>
+    <lineContent>final int start = parseCodePoint(range[0].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final int start = parseCodePoint(range[0].trim());</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (range.length == 2) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (range.length == 2) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (range.length == 2) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>result = codePoint &gt;= start &amp;&amp; codePoint &lt;= end;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>result = codePoint &gt;= start &amp;&amp; codePoint &lt;= end;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_ELSE</mutator>
+    <description>removed conditional - replaced comparison check with false</description>
+    <lineContent>result = codePoint &gt;= start &amp;&amp; codePoint &lt;= end;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_ORDER_IF</mutator>
+    <description>removed conditional - replaced comparison check with true</description>
+    <lineContent>result = codePoint &gt;= start &amp;&amp; codePoint &lt;= end;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInRange</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInRange</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInRange</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::trim</description>
+    <lineContent>final String trimmed = part.trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final String trimmed = part.trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::split</description>
+    <lineContent>final String[] parts = symbolCodes.split(&quot;,&quot;, -1);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::parseCodePoint</description>
+    <lineContent>final int checkPoint = parseCodePoint(trimmed);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>found = codePoint == checkPoint;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>found = codePoint == checkPoint;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>found = codePoint == checkPoint;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInRange</description>
+    <lineContent>found = isInRange(codePoint, trimmed);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (found) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (found) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (found) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (trimmed.contains(RANGE_SEPARATOR)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::contains</description>
+    <lineContent>if (trimmed.contains(RANGE_SEPARATOR)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (trimmed.contains(RANGE_SEPARATOR)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (trimmed.contains(RANGE_SEPARATOR)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator</mutator>
+    <description>replaced boolean return with false for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInSymbolCodes</description>
+    <lineContent>return found;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>isInSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator</mutator>
+    <description>replaced boolean return with true for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::isInSymbolCodes</description>
+    <lineContent>return found;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::trim</description>
+    <lineContent>final String cleaned = str.trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::trim with receiver</description>
+    <lineContent>final String cleaned = str.trim();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>if (cleaned.startsWith(&quot;\\u&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::startsWith</description>
+    <lineContent>if (cleaned.startsWith(&quot;\\u&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>if (cleaned.startsWith(&quot;\\u&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>if (cleaned.startsWith(&quot;\\u&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Integer::parseInt</description>
+    <lineContent>result = Integer.parseInt(cleaned, hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/Integer::parseInt with argument</description>
+    <lineContent>result = Integer.parseInt(cleaned, hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/Integer::parseInt</description>
+    <lineContent>result = Integer.parseInt(cleaned.substring(2), hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::substring</description>
+    <lineContent>result = Integer.parseInt(cleaned.substring(2), hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
+    <description>replaced call to java/lang/Integer::parseInt with argument</description>
+    <lineContent>result = Integer.parseInt(cleaned.substring(2), hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+    <description>replaced call to java/lang/String::substring with receiver</description>
+    <lineContent>result = Integer.parseInt(cleaned.substring(2), hexRadix);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.returns.PrimitiveReturnsMutator</mutator>
+    <description>replaced int return with 0 for com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::parseCodePoint</description>
+    <lineContent>return result;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| cleaned.startsWith(&quot;0X&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::startsWith</description>
+    <lineContent>|| cleaned.startsWith(&quot;0X&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| cleaned.startsWith(&quot;0X&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| cleaned.startsWith(&quot;0X&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| cleaned.startsWith(&quot;0x&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::startsWith</description>
+    <lineContent>|| cleaned.startsWith(&quot;0x&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| cleaned.startsWith(&quot;0x&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| cleaned.startsWith(&quot;0x&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| cleaned.startsWith(&quot;U+&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::startsWith</description>
+    <lineContent>|| cleaned.startsWith(&quot;U+&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| cleaned.startsWith(&quot;U+&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| cleaned.startsWith(&quot;U+&quot;)</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator>
+    <description>negated conditional</description>
+    <lineContent>|| cleaned.startsWith(&quot;u+&quot;)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to java/lang/String::startsWith</description>
+    <lineContent>|| cleaned.startsWith(&quot;u+&quot;)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+    <description>removed conditional - replaced equality check with false</description>
+    <lineContent>|| cleaned.startsWith(&quot;u+&quot;)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>parseCodePoint</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+    <description>removed conditional - replaced equality check with true</description>
+    <lineContent>|| cleaned.startsWith(&quot;u+&quot;)) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>setAsciiOnly</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable asciiOnly</description>
+    <lineContent>this.asciiOnly = asciiOnly;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>setSymbolCodes</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+    <description>Removed assignment to member variable symbolCodes</description>
+    <lineContent>symbolCodes = symbols;</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck::checkText</description>
+    <lineContent>checkText(text, ast);</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>IllegalSymbolCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck</mutatedClass>
+    <mutatedMethod>visitToken</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+    <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getText</description>
+    <lineContent>final String text = ast.getText();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
     <sourceFile>UnusedLocalVariableCheck.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck</mutatedClass>
     <mutatedMethod>getBlockContainingLocalAnonInnerClass</mutatedMethod>
