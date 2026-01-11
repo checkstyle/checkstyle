@@ -94,7 +94,7 @@ public class MultiFileRegexpHeaderCheck
      * a preferred header for such reporting.
      */
     @XdocsPropertyType(PropertyType.STRING)
-    private String headerFiles;
+    private transient String headerFiles;
 
     /**
      * Setter to specify a comma-separated list of files containing the required headers.
