@@ -39,6 +39,23 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final int TAB_WIDTH = 4;
 
+    private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
+        // reason: checkstyle check: Line gets longer than 100 characters
+        "InputIndentationInvalidLabelIndent.java",
+        "InputIndentationInvalidMethodIndent2.java",
+        "InputIndentationNewChildren.java",
+        "InputIndentationNewWithForceStrictCondition.java",
+        "InputIndentationStrictCondition.java",
+        "InputIndentationTryResourcesNotStrict.java",
+        "InputIndentationTryResourcesNotStrict1.java",
+        "InputIndentationTryWithResourcesStrict.java",
+        "InputIndentationTryWithResourcesStrict1.java",
+        "InputIndentationValidClassDefIndent.java",
+        "InputIndentationValidClassDefIndent1.java",
+        "InputIndentationCorrectIfAndParameter1.java",
+        "InputIndentationPackageDeclaration3.java"
+    );
+
     @MethodSource("indentationTestFiles")
     @ParameterizedTest
     public void testTrailingCommentsAlignment(Path testFile) throws IOException {
