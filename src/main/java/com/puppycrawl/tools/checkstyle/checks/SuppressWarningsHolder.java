@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class SuppressWarningsHolder
      * file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
-            ThreadLocal.withInitial(LinkedList::new);
+            ThreadLocal.withInitial(ArrayList::new);
 
     /**
      * Compiled pattern used to match whitespace in text block content.
@@ -479,7 +479,7 @@ public class SuppressWarningsHolder
      * @return list of expressions in strings
      */
     private static List<String> findAllExpressionsInChildren(DetailAST parent) {
-        final List<String> valueList = new LinkedList<>();
+        final List<String> valueList = new ArrayList<>();
         DetailAST childAST = parent.getFirstChild();
         while (childAST != null) {
             if (childAST.getType() == TokenTypes.EXPR) {

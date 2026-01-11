@@ -635,13 +635,20 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public final void testSetPropertiesNonExistentFile() throws IOException {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
-        antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
+        final File propertiesFile = new File(getPath(NOT_EXISTING_FILE));
+        antTask.setProperties(propertiesFile);
         final BuildException ex = getExpectedThrowable(BuildException.class,
                 antTask::execute,
                 "BuildException is expected");
         assertWithMessage("Error message is unexpected")
                 .that(ex.getMessage())
                 .startsWith("Error loading Properties file");
+        assertWithMessage("Error message should contain file path")
+                .that(ex.getMessage())
+                .contains(propertiesFile.toPath().toString());
+        assertWithMessage("Exception should have a location")
+                .that(ex.getLocation())
+                .isNotNull();
     }
 
     @Test
@@ -1093,6 +1100,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertWithMessage("Failed to propagate Ant project property value correctly")
                 .that(TestRootModuleChecker.getProperty())
                 .isEqualTo("ignore");
+    }
+
+    @Test
+    public final void testFileSetWithLogIndexVerification() throws IOException {
+        // given
+        TestRootModuleChecker.reset();
+
+        final CheckstyleAntTaskLogStub antTask = new CheckstyleAntTaskLogStub();
+        antTask.setConfig(getPath(CUSTOM_ROOT_CONFIG_FILE));
+        antTask.setProject(new Project());
+
+        final FileSet fileSet = new FileSet();
+        fileSet.setFile(new File(getPath(FLAWLESS_INPUT)));
+        antTask.addFileset(fileSet);
+
+        // when
+        antTask.scanFileSets();
+
+        // then
+        final List<MessageLevelPair> loggedMessages = antTask.getLoggedMessages();
+
+        assertWithMessage("Log message with correct index was not found")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.getMsg().startsWith("0) Adding 1 files from directory")).count())
+                .isEqualTo(1);
     }
 
     private static CheckstyleAntTask.Formatter createPlainFormatter(File outputFile) {

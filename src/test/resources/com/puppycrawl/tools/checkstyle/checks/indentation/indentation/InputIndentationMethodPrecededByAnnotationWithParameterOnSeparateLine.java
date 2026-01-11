@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;             //indent:0 exp:0
 
 public class InputIndentationMethodPrecededByAnnotationWithParameterOnSeparateLine {//indent:0 exp:0
 

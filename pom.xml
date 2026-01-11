@@ -233,8 +233,8 @@
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.53.0</checkerframework.version>
-    <error-prone.version>2.45.0</error-prone.version>
-    <error-prone-support.version>0.27.0</error-prone-support.version>
+    <error-prone.version>2.46.0</error-prone.version>
+    <error-prone-support.version>0.28.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -275,11 +275,12 @@
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StringSplitter:ERROR
+      -Xep:JdkObsolete:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:EqualsGetClass:WARN
-      -Xep:InlineFormatString:WARN
-      -Xep:JdkObsolete:WARN
-      -Xep:StringSplitter:WARN
+      -Xep:InlineFormatString:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
+      -Xep:EqualsGetClass:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -2703,6 +2704,7 @@
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>
                       -Xplugin:ErrorProne ${error-prone.configuration-args}
@@ -2760,6 +2762,7 @@
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>
                       -Xplugin:ErrorProne \
                       -XepExcludedPaths:.*[\\/]resources[\\/].* \
@@ -3998,8 +4001,12 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <param>clearCreatedHandlers</param>
+                <param>clearState</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4696,6 +4703,10 @@
                 <param>replaceVersionString</param>
                 <!-- this method in XMLLogger.java works properly only when execution is from jar -->
                 <param>printVersionString</param>
+                <!-- Switch expressions with enum cases produce equivalent mutations
+                that cannot be killed since all branches are already covered.
+                See https://github.com/checkstyle/checkstyle/issues/18024 -->
+                <param>renderSeverityLevel</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
