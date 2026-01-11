@@ -72,6 +72,11 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     private int lastStatementEnd;
 
     /**
+     * Hold the column-number where the last statement ended.
+     */
+    private int lastStatementColumn;
+
+    /**
      * Hold the line-number where the last 'for-loop' statement ended.
      */
     private int forStatementEnd;
@@ -128,6 +133,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
             TokenTypes.FOR_INIT,
             TokenTypes.FOR_ITERATOR,
             TokenTypes.LAMBDA,
+            TokenTypes.EMPTY_STAT,
         };
     }
 
@@ -140,7 +146,8 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> checkIfSemicolonIsInDifferentLineThanPrevious(ast);
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT ->
+                checkIfSemicolonIsInDifferentLineThanPrevious(ast);
             case TokenTypes.FOR_ITERATOR -> forStatementEnd = ast.getLineNo();
             case TokenTypes.LAMBDA -> {
                 isInLambda = true;
@@ -153,8 +160,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         switch (ast.getType()) {
-            case TokenTypes.SEMI -> {
+            case TokenTypes.SEMI, TokenTypes.EMPTY_STAT -> {
                 lastStatementEnd = ast.getLineNo();
+                lastStatementColumn = ast.getColumnNo();
                 forStatementEnd = 0;
                 lambdaStatementEnd = 0;
             }
@@ -178,24 +186,37 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @param ast semicolon to check
      */
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
-        DetailAST currentStatement = ast;
-        final DetailAST previousSibling = ast.getPreviousSibling();
-        final boolean isUnnecessarySemicolon = previousSibling == null
-            || previousSibling.getType() == TokenTypes.RESOURCES
-            || ast.getParent().getType() == TokenTypes.COMPILATION_UNIT;
-        if (!isUnnecessarySemicolon) {
-            currentStatement = ast.getPreviousSibling();
-        }
+        final DetailAST currentStatement = getCurrentStatement(ast);
         if (isInLambda) {
             checkLambda(ast, currentStatement);
         }
         else if (isResource(ast.getParent())) {
             checkResourceVariable(ast);
         }
-        else if (!inForHeader && isOnTheSameLine(currentStatement, lastStatementEnd,
-                forStatementEnd, lambdaStatementEnd)) {
+        else if (!inForHeader
+                && (isOnTheSameLine(currentStatement, lastStatementEnd,
+                lastStatementColumn, forStatementEnd, lambdaStatementEnd)
+                || isOnTheSameLine(ast, lastStatementEnd,
+                lastStatementColumn, forStatementEnd, lambdaStatementEnd))) {
             log(ast, MSG_KEY);
         }
+    }
+
+    /**
+     * Determines whether the given semicolon is necessary or unnecessary.
+     *
+     * @param ast the semicolon token to examine
+     * @return the current AST if the semicolon is unnecessary; otherwise, the previous sibling
+     */
+    private static DetailAST getCurrentStatement(DetailAST ast) {
+        DetailAST currentStatement = ast;
+        final DetailAST previousSibling = ast.getPreviousSibling();
+        final boolean isUnnecessarySemicolon = previousSibling == null
+            || previousSibling.getType() == TokenTypes.RESOURCES;
+        if (!isUnnecessarySemicolon) {
+            currentStatement = ast.getPreviousSibling();
+        }
+        return currentStatement;
     }
 
     /**
@@ -210,7 +231,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         countOfSemiInLambda.push(countOfSemiInCurrentLambda);
         if (!inForHeader && countOfSemiInCurrentLambda > 1
                 && isOnTheSameLine(currentStatement,
-                lastStatementEnd, forStatementEnd,
+                lastStatementEnd, lastStatementColumn, forStatementEnd,
                 lambdaStatementEnd)) {
             log(ast, MSG_KEY);
         }
@@ -250,6 +271,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      *
      * @param ast token for the current statement.
      * @param lastStatementEnd the line-number where the last statement ended.
+     * @param lastStatementColumn the column-number where the last statement ended.
      * @param forStatementEnd the line-number where the last 'for-loop'
      *                        statement ended.
      * @param lambdaStatementEnd the line-number where the last lambda
@@ -257,9 +279,9 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
      * @return true if two statements are on the same line.
      */
     private static boolean isOnTheSameLine(DetailAST ast, int lastStatementEnd,
-                                           int forStatementEnd, int lambdaStatementEnd) {
+        int lastStatementColumn, int forStatementEnd, int lambdaStatementEnd) {
         return lastStatementEnd == ast.getLineNo() && forStatementEnd != ast.getLineNo()
-                && lambdaStatementEnd != ast.getLineNo();
+                && lambdaStatementEnd != ast.getLineNo() && lastStatementColumn < ast.getColumnNo();
     }
 
 }
