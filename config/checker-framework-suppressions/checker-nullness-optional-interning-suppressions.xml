@@ -4873,17 +4873,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
-    <specifier>argument</specifier>
-    <message>incompatible argument for parameter type of UnusedImportsCheck.topLevelType.</message>
-    <lineContent>references.add(topLevelType(matcher.group(1)));</lineContent>
-    <details>
-      found   : @Initialized @Nullable String
-      required: @Initialized @NonNull String
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/UnusedImportsCheck.java</fileName>
     <specifier>initialization.field.uninitialized</specifier>
     <message>the default constructor does not initialize field currentFrame</message>
     <lineContent>private Frame currentFrame;</lineContent>

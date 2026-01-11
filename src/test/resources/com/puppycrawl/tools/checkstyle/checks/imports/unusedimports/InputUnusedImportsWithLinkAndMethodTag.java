@@ -1,54 +1,53 @@
 /*
 UnusedImports
 processJavadoc = (default)true
-
+violateExecutionOnNonTightHtml = (default)false
+javadocTokens = (default)REFERENCE, PARAMETER_TYPE, THROWS_BLOCK_TAG
 
 */
-
 package com.puppycrawl.tools.checkstyle.checks.imports.unusedimports;
 
-import java.util.Collections; // violation 'Unused import - java.util.Collections.'
 import java.util.List;
-import java.util.Set;         // violation 'Unused import - java.util.Set.'
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.PriorityQueue; // violation 'Unused import - java.util.PriorityQueue.'
 import java.time.Duration;
-import java.util.Queue;         // violation 'Unused import - java.util.Queue.'
 import java.util.HashSet;
+import java.util.Set; // violation 'Unused import - java.util.Set.'
 import java.util.TreeSet;
 import java.util.Random;
-import java.util.LinkedList;   // violation 'Unused import - java.util.LinkedList.'
 import java.net.URI;
 import java.util.Collection;
 import java.time.LocalDate;
-import java.time.LocalDateTime; // violation 'Unused import - java.time.LocalDateTime.'
-import java.time.LocalTime;
-import java.time.Month;
 import java.util.concurrent.TimeUnit; // violation 'Unused import - java.util.concurrent.TimeUnit.'
-
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import java.io.IOException;
 
 /**
- * @link {Collections::emptyEnumeration}
+ * {@link CallbackHandler#handle(Callback[])}
+ * {@linkplain ...}
+ * {@code {@link Set}}
  * {@link TreeSet}
  * {@see TimeUnit#SECONDS}
  * {@link List#size}
- * {@link Set::add}
- * {@link ArrayList<LocalTime>#add( LocalTime )},
- * {@link LinkedList<Integer>#set(int index(,int element)}
  * {@link Random#ints},
  * {@link PriorityQueue#123invalid}
  *  {@link 123invalid}
- * {@link Queue# }
  * {@linkplain HashSet}
  *  @see Duration#ZERO
  *  {@link #setUrl(URI)}
+ *  {@link #Test0(Map.Entry)}
  *  {@link #Test(LocalDate, Collection)}
- *  {@link #Test(LocalDateTime}}
- *  {@link #extractParameters(double[], Month)}
- *
  */
 class InputUnusedImportsWithLinkAndMethodTag extends
         InputUnusedImportsWithLinkAndMethodTagSuperClass {
+
+    /**
+     * @exception IOException
+     */
+    public int getD(){
+        return 1;
+    }
 
 
 }
