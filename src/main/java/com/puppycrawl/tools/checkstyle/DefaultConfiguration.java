@@ -141,6 +141,7 @@ public final class DefaultConfiguration implements Configuration {
      *      {@code addProperty(String propertyName, String value)} instead.
      */
     @Deprecated(since = "8.45")
+    @SuppressWarnings("InlineMeSuggester")
     public void addAttribute(String attributeName, String value) {
         addProperty(attributeName, value);
     }

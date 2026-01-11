@@ -193,13 +193,13 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Setter to control whether to check C++ style comments ({@code //}).
      *
-     * @param checkCpp {@code true} if C++ comments are checked.
+     * @param checkCPP {@code true} if C++ comments are checked.
      * @since 5.0
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
     // check's property is a part of API (used in configurations).
-    public void setCheckCPP(boolean checkCpp) {
-        checkCPP = checkCpp;
+    public void setCheckCPP(boolean checkCPP) {
+        this.checkCPP = checkCPP;
     }
 
     /**
@@ -418,8 +418,8 @@ public class SuppressWithNearbyCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
+            return firstLine == tag.firstLine
+                    && lastLine == tag.lastLine
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
