@@ -204,9 +204,13 @@ workflows:
       # https://github.com/spotbugs/spotbugs-maven-plugin/issues/806 explains
       # why we need execution of spotbugs without any other maven plugins which can change binaries
       - validate-with-maven-script:
-          name: "spotbugs-and-pmd"
+          name: spotbugs
           image-name: *cs_img
-          command: "./.ci/validation.sh spotbugs-and-pmd"
+          command: "./.ci/validation.sh spotbugs"
+      - validate-with-maven-script:
+          name: pmd
+          image-name: *cs_img
+          command: "./.ci/validation.sh pmd"
       - validate-with-maven-script:
           name: "site"
           image-name: *cs_img
