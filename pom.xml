@@ -277,6 +277,41 @@
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:ObjectEqualsForPrimitives:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:LoopOverCharArray:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:InconsistentCapitalization:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:PatternMatchingInstanceof:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:UnnecessaryLambda:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:UnusedVariable:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:UnsynchronizedOverridesSynchronized:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:NullableOptional:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:MalformedInlineTag:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      <!-- OFF: Conflicts with Javadoc examples in JavadocCommentsTokenTypes.java -->
+      -Xep:InvalidInlineTag:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      -Xep:InvalidParam:ERROR
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      <!-- OFF: Conflicts with Javadoc examples in JavadocCommentsTokenTypes.java -->
+      -Xep:UnrecognisedJavadocTag:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      <!-- OFF: HTML entities needed in Javadoc examples (JavadocCommentsTokenTypes.java) -->
+      -Xep:EscapedEntity:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      <!-- OFF: Some enums legitimately contain mutable byte arrays (LineSeparatorOption) -->
+      -Xep:ImmutableEnumChecker:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/18599. -->
+      <!-- OFF: Would require adding @InlineMe annotation to public deprecated API -->
+      -Xep:InlineMeSuggester:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
@@ -2701,13 +2736,14 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
+                  <failOnWarning>true</failOnWarning>
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>
-                      -Xplugin:ErrorProne ${error-prone.configuration-args}
+                      -Xplugin:ErrorProne ${error-prone.configuration-args} -Werror
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>
@@ -2758,6 +2794,7 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
+                  <failOnWarning>true</failOnWarning>
                   <compilerArgs>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
@@ -2766,7 +2803,8 @@
                     <arg>
                       -Xplugin:ErrorProne \
                       -XepExcludedPaths:.*[\\/]resources[\\/].* \
-                      ${error-prone.configuration-args}
+                      ${error-prone.configuration-args} \
+                      -Werror
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>

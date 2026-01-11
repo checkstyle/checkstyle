@@ -62,7 +62,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     public static final String MSG_KEY = "avoid.double.brace.init";
 
     /**
-     * Set of token types that are used in {@link #HAS_MEMBERS} predicate.
+     * Set of token types that are used in {@link #hasMembers(DetailAST)} method.
      */
     private static final BitSet IGNORED_TYPES = TokenUtil.asBitSet(
         TokenTypes.INSTANCE_INIT,
@@ -73,9 +73,13 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
 
     /**
      * Predicate for tokens that is used in {@link #hasOnlyInitialization(DetailAST)}.
+     *
+     * @param token the token to check.
+     * @return true if token is not an ignored type.
      */
-    private static final Predicate<DetailAST> HAS_MEMBERS =
-        token -> !IGNORED_TYPES.get(token.getType());
+    private static boolean hasMembers(DetailAST token) {
+        return !IGNORED_TYPES.get(token.getType());
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -110,6 +114,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     private static boolean hasOnlyInitialization(DetailAST objBlock) {
         final boolean hasInitBlock = objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null;
         return hasInitBlock
-                  && TokenUtil.findFirstTokenByPredicate(objBlock, HAS_MEMBERS).isEmpty();
+                  && TokenUtil.findFirstTokenByPredicate(objBlock,
+                      AvoidDoubleBraceInitializationCheck::hasMembers).isEmpty();
     }
 }
