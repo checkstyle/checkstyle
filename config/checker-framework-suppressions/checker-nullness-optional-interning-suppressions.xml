@@ -2787,6 +2787,20 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field codePointRanges</message>
+    <lineContent>private Set&lt;CodePointRange&gt; codePointRanges;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalSymbolCheck.java</fileName>
+    <specifier>initialization.field.uninitialized</specifier>
+    <message>the default constructor does not initialize field singleCodePoints</message>
+    <lineContent>private Set&lt;Integer&gt; singleCodePoints;</lineContent>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/IllegalThrowsCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference methodDef.findFirstToken(TokenTypes.IDENT)</message>
