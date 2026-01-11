@@ -73,6 +73,9 @@
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]InlineConfigParser\.java"/>
   <!-- exception maybe thrown while executing the static block -->
   <suppress checks="IllegalCatch" files="[\\/]src[\\/]test[\\/].*[\\/]XpathFileGeneratorAuditListenerTest\.java"/>
+    <!-- Uses non-ascii symbols intentionally for testing IllegalSymbolCheck -->
+  <suppress checks="AvoidEscapedUnicodeCharacters"
+            files="[\\/]src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]coding[\\/]XpathRegressionIllegalSymbolTest.java"/>
 
 
   <!-- we need that set of converters -->
