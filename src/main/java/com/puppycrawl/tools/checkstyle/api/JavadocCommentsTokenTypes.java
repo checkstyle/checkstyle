@@ -116,11 +116,11 @@ public final class JavadocCommentsTokenTypes {
      * {@link #RETURN_BLOCK_TAG}, etc.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param value The parameter of method.
-     *  * /
-     * }</pre>
+     * <pre>
+     * &#47;**
+     *  * &#64;param value The parameter of method.
+     *  *&#47;
+     * </pre>
      *
      * <p><b>Tree:</b></p>
      * <pre>{@code
@@ -1236,7 +1236,7 @@ public final class JavadocCommentsTokenTypes {
      *  * /
      * }</pre>
      *
-     * @see #HTML_TAG
+     * @see #HTML_ELEMENT
      */
     public static final int SLASH = JavadocCommentsLexer.SLASH;
 
@@ -1577,20 +1577,20 @@ public final class JavadocCommentsTokenTypes {
      * such as the explanation after {@code @param name} or {@code @return}.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
+     * <pre>
+     * &#47;**
+     *  * &#64;param name the user's name
+     *  *&#47;
+     * </pre>
      *
      * <p><b>Tree (partial):</b></p>
-     * <pre>{@code
-     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-     * |--TAG_NAME -> param
-     * |--PARAMETER_NAME -> name
-     * `--DESCRIPTION -> DESCRIPTION
-     *     `--TEXT ->  the user's name
-     * }</pre>
+     * <pre>
+     * PARAM_BLOCK_TAG -&gt; PARAM_BLOCK_TAG
+     * |--TAG_NAME -&gt; param
+     * |--PARAMETER_NAME -&gt; name
+     * `--DESCRIPTION -&gt; DESCRIPTION
+     *     `--TEXT -&gt;  the user's name
+     * </pre>
      *
      * @see #PARAM_BLOCK_TAG
      * @see #RETURN_BLOCK_TAG
@@ -1858,24 +1858,24 @@ public final class JavadocCommentsTokenTypes {
      * in a {@code @serialField} Javadoc tag.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @serialField name String the user's name
-     *  * /
-     * }</pre>
+     * <pre>
+     * &#47;**
+     *  * &#64;serialField name String the user's name
+     *  *&#47;
+     * </pre>
      *
      * <p><b>Tree (partial):</b></p>
-     * <pre>{@code
-     * SERIAL_FIELD_BLOCK_TAG -> SERIAL_FIELD_BLOCK_TAG
-     * |--TAG_NAME -> serialField
-     * |--FIELD_NAME -> name
-     * |--FIELD_TYPE -> String
-     * `--DESCRIPTION -> DESCRIPTION
-     *     `--TEXT ->  the user's name
-     * }</pre>
+     * <pre>
+     * SERIAL_FIELD_BLOCK_TAG -&gt; SERIAL_FIELD_BLOCK_TAG
+     * |--TAG_NAME -&gt; serialField
+     * |--FIELD_NAME -&gt; name
+     * |--FIELD_TYPE -&gt; String
+     * `--DESCRIPTION -&gt; DESCRIPTION
+     *     `--TEXT -&gt;  the user's name
+     * </pre>
      *
      * @see #SERIAL_FIELD_BLOCK_TAG
-     * @see #FIELD_NAME
+     * @see #IDENTIFIER
      */
     public static final int FIELD_TYPE = JavadocCommentsLexer.FIELD_TYPE;
 
@@ -1886,20 +1886,20 @@ public final class JavadocCommentsTokenTypes {
      * in a {@code @param} Javadoc tag.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code
-     * /**
-     *  * @param name the user's name
-     *  * /
-     * }</pre>
+     * <pre>
+     * &#47;**
+     *  * &#64;param name the user's name
+     *  *&#47;
+     * </pre>
      *
      * <p><b>Tree (partial):</b></p>
-     * <pre>{@code
-     * PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
-     * |--TAG_NAME -> param
-     * |--PARAMETER_NAME -> name
-     * `--DESCRIPTION -> DESCRIPTION
-     *     `--TEXT ->  the user's name
-     * }</pre>
+     * <pre>
+     * PARAM_BLOCK_TAG -&gt; PARAM_BLOCK_TAG
+     * |--TAG_NAME -&gt; param
+     * |--PARAMETER_NAME -&gt; name
+     * `--DESCRIPTION -&gt; DESCRIPTION
+     *     `--TEXT -&gt;  the user's name
+     * </pre>
      *
      * @see #PARAM_BLOCK_TAG
      * @see #DESCRIPTION
