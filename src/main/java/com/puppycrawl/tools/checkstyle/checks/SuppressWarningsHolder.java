@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class SuppressWarningsHolder
      * file parsed.
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
-            ThreadLocal.withInitial(LinkedList::new);
+            ThreadLocal.withInitial(ArrayList::new);
 
     /**
      * Compiled pattern used to match whitespace in text block content.
@@ -352,22 +352,16 @@ public class SuppressWarningsHolder
             final DetailAST nextAST = lparenAST.getNextSibling();
             final int nextType = nextAST.getType();
             switch (nextType) {
-                case TokenTypes.EXPR:
-                case TokenTypes.ANNOTATION_ARRAY_INIT:
+                case TokenTypes.EXPR, TokenTypes.ANNOTATION_ARRAY_INIT ->
                     values = getAnnotationValues(nextAST);
-                    break;
-
-                case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
+                case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR ->
                     // expected children: IDENT ASSIGN ( EXPR |
                     // ANNOTATION_ARRAY_INIT )
                     values = getAnnotationValues(getNthChild(nextAST, 2));
-                    break;
-
-                case TokenTypes.RPAREN:
+                case TokenTypes.RPAREN -> {
                     // no value present (not valid Java)
-                    break;
-
-                default:
+                }
+                default ->
                     // unknown annotation value type (new syntax?)
                     throw new IllegalArgumentException("Unexpected AST: " + nextAST);
             }
@@ -485,7 +479,7 @@ public class SuppressWarningsHolder
      * @return list of expressions in strings
      */
     private static List<String> findAllExpressionsInChildren(DetailAST parent) {
-        final List<String> valueList = new LinkedList<>();
+        final List<String> valueList = new ArrayList<>();
         DetailAST childAST = parent.getFirstChild();
         while (childAST != null) {
             if (childAST.getType() == TokenTypes.EXPR) {

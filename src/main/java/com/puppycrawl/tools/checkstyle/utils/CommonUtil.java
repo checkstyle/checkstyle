@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -367,16 +367,14 @@ public final class CommonUtil {
      *
      * @param filename name of the file
      * @return resolved file URI or null if URL is malformed or non-existent
-     * @noinspection deprecation
-     * @noinspectionreason Disabled until #17646
      */
     public static URI getWebOrFileProtocolUri(String filename) {
         URI uri;
         try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
+            uri = URI.create(filename);
+            uri = uri.toURL().toURI();
         }
-        catch (URISyntaxException | MalformedURLException ignored) {
+        catch (IllegalArgumentException | MalformedURLException | URISyntaxException ignored) {
             uri = null;
         }
         return uri;

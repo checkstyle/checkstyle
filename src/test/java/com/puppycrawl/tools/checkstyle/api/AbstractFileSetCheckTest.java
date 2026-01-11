@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -196,7 +196,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .that(internalViolations)
                 .hasSize(1);
 
-        final Violation violation = internalViolations.iterator().next();
+        final Violation violation = internalViolations.first();
         assertWithMessage("expected line")
                 .that(violation.getLineNo())
                 .isEqualTo(1);
@@ -244,7 +244,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 .that(dispatcher.errorList)
                 .hasSize(1);
 
-        final Violation violation = dispatcher.errorList.iterator().next();
+        final Violation violation = dispatcher.errorList.first();
         assertWithMessage("expected line")
                 .that(violation.getLineNo())
                 .isEqualTo(1);

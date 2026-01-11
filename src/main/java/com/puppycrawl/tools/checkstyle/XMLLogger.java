@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -267,27 +267,16 @@ public final class XMLLogger
         for (int i = 0; i < value.length(); i++) {
             final char chr = value.charAt(i);
             switch (chr) {
-                case '<':
-                    sb.append("&lt;");
-                    break;
-                case '>':
-                    sb.append("&gt;");
-                    break;
-                case '\'':
-                    sb.append("&apos;");
-                    break;
-                case '\"':
-                    sb.append("&quot;");
-                    break;
-                case '&':
-                    sb.append("&amp;");
-                    break;
-                case '\r':
-                    break;
-                case '\n':
-                    sb.append("&#10;");
-                    break;
-                default:
+                case '<' -> sb.append("&lt;");
+                case '>' -> sb.append("&gt;");
+                case '\'' -> sb.append("&apos;");
+                case '\"' -> sb.append("&quot;");
+                case '&' -> sb.append("&amp;");
+                case '\r' -> {
+                    // Remove \r to make consistent new lines.
+                }
+                case '\n' -> sb.append("&#10;");
+                default -> {
                     if (Character.isISOControl(chr)) {
                         // true escape characters need '&' before, but it also requires XML 1.1
                         // until https://github.com/checkstyle/checkstyle/issues/5168
@@ -298,7 +287,7 @@ public final class XMLLogger
                     else {
                         sb.append(chr);
                     }
-                    break;
+                }
             }
         }
         return sb.toString();
@@ -362,7 +351,7 @@ public final class XMLLogger
          *
          * @return the file error events.
          */
-        public List<AuditEvent> getErrors() {
+        /* package */ List<AuditEvent> getErrors() {
             return Collections.unmodifiableList(errors);
         }
 
@@ -371,7 +360,7 @@ public final class XMLLogger
          *
          * @param event the error event.
          */
-        public void addError(AuditEvent event) {
+        /* package */ void addError(AuditEvent event) {
             errors.add(event);
         }
 
@@ -380,7 +369,7 @@ public final class XMLLogger
          *
          * @return the file exceptions.
          */
-        public List<Throwable> getExceptions() {
+        /* package */ List<Throwable> getExceptions() {
             return Collections.unmodifiableList(exceptions);
         }
 
@@ -389,7 +378,7 @@ public final class XMLLogger
          *
          * @param throwable the file exception
          */
-        public void addException(Throwable throwable) {
+        /* package */ void addException(Throwable throwable) {
             exceptions.add(throwable);
         }
 

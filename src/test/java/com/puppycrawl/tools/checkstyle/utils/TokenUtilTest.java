@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -311,7 +311,7 @@ public class TokenUtilTest {
         astForTest.setFirstChild(child);
         final List<DetailAST> children = new ArrayList<>();
         TokenUtil.forEachChild(astForTest, TokenTypes.CLASS_DEF, children::add);
-        final DetailAST firstChild = children.get(0);
+        final DetailAST firstChild = children.getFirst();
 
         assertWithMessage("Must be one match")
             .that(children)

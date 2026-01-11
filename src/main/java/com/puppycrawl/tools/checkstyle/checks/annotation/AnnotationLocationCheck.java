@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -68,6 +68,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * immediately after the documentation block. If that behavior is desired, consider also using
  * <a href="https://checkstyle.org/checks/javadoc/invalidjavadocposition.html#InvalidJavadocPosition">
  * InvalidJavadocPosition</a>.
+ * </p>
+ *
+ * <p>
+ * The property {@code allowSamelineMultipleAnnotations} has the
+ * dominant effect and allows both single and multiple annotations on
+ * the same line, regardless of whether they are parameterized or parameterless.
  * </p>
  *
  * @since 6.0

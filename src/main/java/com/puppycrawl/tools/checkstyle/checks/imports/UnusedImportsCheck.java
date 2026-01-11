@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -402,7 +402,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @param type the type name
          */
-        public void addDeclaredType(String type) {
+        /* package */ void addDeclaredType(String type) {
             declaredTypes.add(type);
         }
 
@@ -411,7 +411,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @param type the type name
          */
-        public void addReferencedType(String type) {
+        /* package */ void addReferencedType(String type) {
             referencedTypes.add(type);
         }
 
@@ -420,7 +420,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @param types the type names
          */
-        public void addReferencedTypes(Collection<String> types) {
+        /* package */ void addReferencedTypes(Collection<String> types) {
             referencedTypes.addAll(types);
         }
 
@@ -428,7 +428,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          * Filters out all references to locally defined types.
          *
          */
-        public void finish() {
+        /* package */ void finish() {
             referencedTypes.removeAll(declaredTypes);
         }
 
@@ -437,7 +437,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @return a new frame.
          */
-        public Frame push() {
+        /* package */ Frame push() {
             return new Frame(this);
         }
 
@@ -446,7 +446,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @return the parent frame
          */
-        public Frame pop() {
+        /* package */ Frame pop() {
             finish();
             parent.addReferencedTypes(referencedTypes);
             return parent;
@@ -458,7 +458,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          * @param type the type name
          * @return {@code true} if the type is used
          */
-        public boolean isReferencedType(String type) {
+        /* package */ boolean isReferencedType(String type) {
             return referencedTypes.contains(type);
         }
 
@@ -467,7 +467,7 @@ public class UnusedImportsCheck extends AbstractJavadocCheck {
          *
          * @return a new frame.
          */
-        public static Frame compilationUnit() {
+        /* package */ static Frame compilationUnit() {
             return new Frame(null);
         }
 

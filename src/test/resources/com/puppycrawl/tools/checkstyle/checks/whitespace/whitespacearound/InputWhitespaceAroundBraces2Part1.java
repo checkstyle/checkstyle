@@ -1,7 +1,7 @@
 /*
 WhitespaceAround
-allowEmptyConstructors = (default)false
-allowEmptyMethods = (default)false
+allowEmptyConstructors = true
+allowEmptyMethods = true
 allowEmptyTypes = (default)false
 allowEmptyLoops = (default)false
 allowEmptyLambdas = (default)false
@@ -20,7 +20,7 @@ tokens = (default)ASSIGN, BAND, BAND_ASSIGN, BOR, BOR_ASSIGN, BSR, BSR_ASSIGN, B
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-class InputWhitespaceAroundBraces
+class InputWhitespaceAroundBraces2Part1
 {
     /** @return helper func **/
     boolean condition()
@@ -67,70 +67,12 @@ class InputWhitespaceAroundBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++); // violation  ''for' is not followed by whitespace'
+        for(int i = 1;i < 5;i++); // violation ''for' is not followed by whitespace'
         for (int i = 1; i < 5; i++)
             testFor();
         for (int i = 1; i < 5;
              i++)
             if (i > 2)
                 testFor();
-    }
-
-    /** Test if constructs **/
-    public void testIf()
-    {
-        // Valid
-        if (condition()) {
-            testIf();
-        }
-        else if (condition()) {
-            testIf();
-        }
-        else {
-            testIf();
-        }
-
-        // Invalid
-        if (condition());
-        if (condition())
-            testIf();
-        if (condition())
-            testIf();
-        else
-            testIf();
-        if (condition())
-            testIf();
-        else {
-            testIf();
-        }
-        if (condition()) {
-            testIf();
-        }
-        else
-            testIf();
-        if (condition())
-            if (condition())
-                testIf();
-    }
-
-    void whitespaceAfterSemi()
-    {
-        //reject
-        int i = 1;int j = 2;
-
-        //accept
-        for (;;) {
-        }
-    }
-
-    /** Empty constructor block. **/
-    public InputWhitespaceAroundBraces() {} // 2 violations
-
-    /** Empty method block. **/
-    public void emptyImplementation() {} // 2 violations
-
-    public void foo() {
-        boolean flag = true;
-        if(flag){} // 4 violations
     }
 }

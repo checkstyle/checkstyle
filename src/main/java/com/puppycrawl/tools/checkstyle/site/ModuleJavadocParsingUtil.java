@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -111,7 +111,7 @@ public final class ModuleJavadocParsingUtil {
      */
     public static void writeOutJavadocPortion(String javadocPortion, Sink sink) {
         final String[] javadocPortionLinesSplit = javadocPortion.split(NEWLINE
-            .replace("\r", ""));
+            .replace("\r", ""), -1);
 
         sink.rawText(javadocPortionLinesSplit[0]);
         String lastHtmlTag = javadocPortionLinesSplit[0];

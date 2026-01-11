@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -204,7 +204,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @return boolean
          */
-        public boolean isHasNonStaticMethodOrField() {
+        /* package */ boolean isHasNonStaticMethodOrField() {
             return hasNonStaticMethodOrField;
         }
 
@@ -213,7 +213,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @return boolean
          */
-        public boolean isHasNonPrivateStaticMethodOrField() {
+        /* package */ boolean isHasNonPrivateStaticMethodOrField() {
             return hasNonPrivateStaticMethodOrField;
         }
 
@@ -222,7 +222,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @return boolean
          */
-        public boolean isHasDefaultCtor() {
+        /* package */ boolean isHasDefaultCtor() {
             return hasDefaultCtor;
         }
 
@@ -231,14 +231,14 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          *
          * @return boolean
          */
-        public boolean isHasPublicCtor() {
+        /* package */ boolean isHasPublicCtor() {
             return hasPublicCtor;
         }
 
         /**
          * Main method to gather statistics.
          */
-        public void invoke() {
+        /* package */ void invoke() {
             final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
             hasDefaultCtor = true;
             DetailAST child = objBlock.getFirstChild();

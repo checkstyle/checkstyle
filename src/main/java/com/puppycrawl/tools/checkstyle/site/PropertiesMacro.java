@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -219,7 +219,7 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static List<String> orderProperties(Set<String> properties) {
 
-        final List<String> orderProperties = new LinkedList<>(properties);
+        final List<String> orderProperties = new ArrayList<>(properties);
 
         if (orderProperties.remove(TOKENS_PROPERTY)) {
             orderProperties.add(TOKENS_PROPERTY);

@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -457,6 +457,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.annotation.MissingDeprecatedCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingOverrideCheck",
                 BASE_PACKAGE + ".checks.annotation.MissingOverrideCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MissingOverrideOnRecordAccessorCheck",
+                BASE_PACKAGE + ".checks.annotation.MissingOverrideOnRecordAccessorCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageAnnotationCheck",
                 BASE_PACKAGE + ".checks.annotation.PackageAnnotationCheck");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsCheck",

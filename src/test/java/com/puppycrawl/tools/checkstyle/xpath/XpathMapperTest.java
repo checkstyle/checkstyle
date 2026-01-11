@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -288,7 +288,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid number of nodes")
                 .that(objectNodes)
                 .hasSize(1);
-        final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
+        final AbstractNode objNode = (AbstractNode) objectNodes.getFirst();
         final String methodsXpath = "METHOD_DEF";
         final List<NodeInfo> methodsNodes = getXpathItems(methodsXpath, objNode);
         assertWithMessage("Invalid number of nodes")
@@ -321,7 +321,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid number of nodes")
                 .that(nodes)
                 .hasSize(1);
-        final AbstractNode classDefNode = (AbstractNode) nodes.get(0);
+        final AbstractNode classDefNode = (AbstractNode) nodes.getFirst();
         assertWithMessage("Invalid line number")
                 .that(classDefNode.getLineNumber())
                 .isEqualTo(3);
@@ -407,7 +407,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 TokenTypes.COMPILATION_UNIT)
                 .findFirstToken(TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
-        final ElementNode classDefNode = (ElementNode) nodes.get(0);
+        final ElementNode classDefNode = (ElementNode) nodes.getFirst();
         assertWithMessage("Invalid node name")
                 .that(classDefNode.getLocalPart())
                 .isEqualTo("CLASS_DEF");
@@ -564,7 +564,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertWithMessage("Invalid number of nodes")
                 .that(objectNodes)
                 .hasSize(1);
-        final AbstractNode objNode = (AbstractNode) objectNodes.get(0);
+        final AbstractNode objNode = (AbstractNode) objectNodes.getFirst();
         final String methodsXpath = "self::OBJBLOCK";
         final DetailAST[] actual = convertToArray(getXpathItems(methodsXpath, objNode));
         final DetailAST expectedObjBlockNode = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -582,7 +582,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//CLASS_DEF[./IDENT[@text='InputXpathMapperAst']]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
-        final ElementNode classDefNode = (ElementNode) nodes.get(0);
+        final ElementNode classDefNode = (ElementNode) nodes.getFirst();
         assertWithMessage("Not existing attribute should have null value")
                 .that(classDefNode.getAttributeValue("", "noneExistingAttribute"))
                 .isNull();
@@ -1157,7 +1157,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         final String xpath = "//LITERAL_CLASS/preceding::*";
         final RootNode rootNode = getRootNode("InputXpathMapperSingleTopClass.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath,
-                rootNode.createChildren().get(0)));
+                rootNode.createChildren().getFirst()));
         assertWithMessage("Invalid number of nodes")
                 .that(actual)
                 .hasLength(18);

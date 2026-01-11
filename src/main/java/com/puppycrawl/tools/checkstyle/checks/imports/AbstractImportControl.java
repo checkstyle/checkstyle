@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 /**
  * Represents a tree of import rules for controlling whether packages or
@@ -30,7 +30,7 @@ import java.util.LinkedList;
 abstract class AbstractImportControl {
 
     /** List of {@link AbstractImportRule} objects to check. */
-    private final Deque<AbstractImportRule> rules = new LinkedList<>();
+    private final Deque<AbstractImportRule> rules = new ArrayDeque<>();
     /** The parent. Null indicates we are the root node. */
     private final AbstractImportControl parent;
     /** Strategy in a case if matching allow/disallow rule was not found. */

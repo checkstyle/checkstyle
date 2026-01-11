@@ -407,8 +407,8 @@
               </a>
             </td>
             <td>
-              Checks for empty line separators before package, all import declarations, fields,
-              constructors, methods, nested classes, static initializers and instance initializers.
+              Checks for empty line separators after, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
             </td>
           </tr>
           <tr>
@@ -1109,6 +1109,17 @@
             <td>
               Verifies that the <code>@Override</code> annotation is present when the
               <code>@inheritDoc</code> javadoc tag is present.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="checks/annotation/missingoverrideonrecordaccessor.html#MissingOverrideOnRecordAccessor">
+                MissingOverrideOnRecordAccessor
+              </a>
+            </td>
+            <td>
+              Verifies that explicitly declared record accessor methods include the
+              <code>@Override</code> annotation.
             </td>
           </tr>
           <tr>

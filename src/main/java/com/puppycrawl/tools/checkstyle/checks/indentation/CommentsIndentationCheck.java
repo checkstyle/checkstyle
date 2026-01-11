@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -620,20 +620,14 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private DetailAST findPreviousStatement(DetailAST comment, DetailAST root) {
         DetailAST previousStatement = null;
-        if (root.getLineNo() >= comment.getLineNo()) {
+        if (Math.max(root.getLineNo(), comment.getLineNo()) == root.getLineNo()) {
             // ATTENTION: parent of the comment is below the comment in case block
             // See https://github.com/checkstyle/checkstyle/issues/851
             previousStatement = getPrevStatementFromSwitchBlock(comment);
         }
         final DetailAST tokenWhichBeginsTheLine;
-        if (root.getType() == TokenTypes.EXPR
-                && root.getFirstChild().getFirstChild() != null) {
-            if (root.getFirstChild().getType() == TokenTypes.LITERAL_NEW) {
-                tokenWhichBeginsTheLine = root.getFirstChild();
-            }
-            else {
-                tokenWhichBeginsTheLine = findTokenWhichBeginsTheLine(root);
-            }
+        if (root.getType() == TokenTypes.EXPR) {
+            tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
         }
         else if (root.getType() == TokenTypes.PLUS) {
             tokenWhichBeginsTheLine = root.getFirstChild();
@@ -647,34 +641,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
             previousStatement = tokenWhichBeginsTheLine;
         }
         return previousStatement;
-    }
-
-    /**
-     * Finds a token which begins the line.
-     *
-     * @param root root token of the line.
-     * @return token which begins the line.
-     */
-    private static DetailAST findTokenWhichBeginsTheLine(DetailAST root) {
-        final DetailAST tokenWhichBeginsTheLine;
-        if (isUsingOfObjectReferenceToInvokeMethod(root)) {
-            tokenWhichBeginsTheLine = findStartTokenOfMethodCallChain(root);
-        }
-        else {
-            tokenWhichBeginsTheLine = root.getFirstChild().findFirstToken(TokenTypes.IDENT);
-        }
-        return tokenWhichBeginsTheLine;
-    }
-
-    /**
-     * Checks whether there is a use of an object reference to invoke an object's method on line.
-     *
-     * @param root root token of the line.
-     * @return true if there is a use of an object reference to invoke an object's method on line.
-     */
-    private static boolean isUsingOfObjectReferenceToInvokeMethod(DetailAST root) {
-        return root.getFirstChild().getFirstChild().getFirstChild() != null
-            && root.getFirstChild().getFirstChild().getFirstChild().getNextSibling() != null;
     }
 
     /**
@@ -830,12 +796,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 blockBody = blockBody.getPreviousSibling();
             }
             if (blockBody.getType() == TokenTypes.EXPR) {
-                if (isUsingOfObjectReferenceToInvokeMethod(blockBody)) {
-                    prevStmt = findStartTokenOfMethodCallChain(blockBody);
-                }
-                else {
-                    prevStmt = blockBody.getFirstChild().getFirstChild();
-                }
+                prevStmt = findStartTokenOfMethodCallChain(blockBody);
             }
             else {
                 if (blockBody.getType() == TokenTypes.SLIST) {

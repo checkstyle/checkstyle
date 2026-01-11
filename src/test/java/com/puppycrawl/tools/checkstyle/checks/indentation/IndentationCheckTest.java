@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // checkstyle: Checks Java source code and other text files for adherence to a set of rules.
-// Copyright (C) 2001-2025 the original author or authors.
+// Copyright (C) 2001-2026 the original author or authors.
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -31,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -44,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -4152,6 +4154,71 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Method should complete without exception")
             .that(handler)
             .isNotNull();
+    }
+
+    @Test
+    public void testIndexOpWithInvalidChildIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("arrayInitIndent", "4");
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("braceAdjustment", "0");
+        checkConfig.addProperty("caseIndent", "4");
+        checkConfig.addProperty("forceStrictCondition", "false");
+        checkConfig.addProperty("lineWrappingIndentation", "4");
+        checkConfig.addProperty("tabWidth", "4");
+        checkConfig.addProperty("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationInvalidArrayIndexIndent.java");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testFirstTokenSelection() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addProperty("basicOffset", "4");
+        checkConfig.addProperty("tabWidth", "4");
+
+        final String[] expected = {
+            "15:1: " + getCheckMessage(MSG_ERROR, "member def type", 0, 8),
+            "16:1: " + getCheckMessage(MSG_ERROR, "Integer", 0, 12),
+            "17:1: " + getCheckMessage(MSG_ERROR, ">", 0, 12),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationFirstTokenSelection.java"), expected);
+    }
+
+    /**
+     * Test to kill Pitest mutation by verifying internal state is cleared.
+     *
+     * <p>This reflection-based test was chosen because:
+     * 1. clearState() exists purely for memory management, prevents OutOfMemoryError when
+     *    processing thousands of files
+     * 2. Removing clear() has no observable effect in normal tests since each file creates
+     *    new DetailAST objects (no collision possible)
+     * 3. Pitest's excludedMethods only protects method bodies, not call-sites
+     * 4. Creating a utility class with avoidCallsTo was overkill for one mutation
+     *
+     * @see <a href="https://github.com/hcoles/pitest/issues/404">Pitest Issue #404</a>
+     */
+    @Test
+    public void testClearStateForMemoryManagement() {
+        final IndentationCheck check = new IndentationCheck();
+        @SuppressWarnings("unchecked")
+        final Deque<PrimordialHandler> handlers = TestUtil.getInternalState(check,
+                "handlers", Deque.class);
+
+        handlers.push(new PrimordialHandler(check));
+        handlers.push(new PrimordialHandler(check));
+
+        assertWithMessage("handlers should have 2 elements before beginTree")
+                .that(handlers)
+                .hasSize(2);
+
+        check.beginTree(null);
+
+        assertWithMessage("handlers should be reset to 1 element after beginTree")
+                .that(handlers)
+                .hasSize(1);
     }
 
     private static final class IndentAudit implements AuditListener {

@@ -10,13 +10,19 @@
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="EmptyLineSeparator_Description">
         <div>
-          Checks for empty line separators before package, all import declarations,
+          Checks for empty line separators after,
           fields, constructors, methods, nested classes,
           static initializers and instance initializers.
         </div>
 
         <p>
-          Checks for empty line separators before not only statements but
+          For package declaration it checks for both before and after
+          line separators and for import declarations it checks for
+          empty line separator after last import declaration.
+        </p>
+
+        <p>
+          Checks for empty line separators after not only statements but
           implementation and documentation comments and blocks as well.
         </p>
 
@@ -146,12 +152,9 @@
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
-class Example1 {
-
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example1 { // violation above ''import' should be separated from previous line'
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
@@ -169,7 +172,85 @@ class Example1 {
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
-          To check empty line before
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                  PACKAGE_DEF</a>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"&gt;
+      &lt;property name="tokens" value="PACKAGE_DEF"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example2-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example2 { // violation above ''import' should be separated from previous line'
+
+  int var1 = 1;
+  int var2 = 2;
+
+
+  int var3 = 3;
+
+
+  void method1() {}
+  void method2() {
+    int var4 = 4;
+
+
+    int var5 = 5;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example3-config">
+          To check empty line for
+          <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                  IMPORT</a>:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="EmptyLineSeparator"&gt;
+      &lt;property name="tokens" value="IMPORT"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example3-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
+import java.io.Serializable;
+class Example3 {
+  // violation above ''CLASS_DEF' should be separated from previous line'
+  int var1 = 1;
+  int var2 = 2;
+
+
+  int var3 = 3;
+
+
+  void method1() {}
+  void method2() {
+    int var4 = 4;
+
+
+    int var5 = 5;
+  }
+}
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example4-config">
+          To check empty line for
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a> and
           <a href="../../apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -184,15 +265,14 @@ class Example1 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example2-code">Example:</p>
+        <p id="Example4-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 import java.io.Serializable;
-
-class Example2 {
+class Example4 {
 
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
@@ -211,7 +291,7 @@ class Example2 {
 }
 </code></pre></div><hr class="example-separator"/>
 
-        <p id="Example3-config">
+        <p id="Example5-config">
           To allow no empty line between fields:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -223,7 +303,7 @@ class Example2 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example3-code">
+        <p id="Example5-code">
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -231,12 +311,9 @@ class Example2 {
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
-class Example3 {
-
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example5 { // violation above ''import' should be separated from previous line'
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2;
 
@@ -253,7 +330,7 @@ class Example3 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example4-config">
+        <p id="Example6-config">
           To disallow multiple empty lines between class members:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
@@ -265,18 +342,15 @@ class Example3 {
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
-        <p id="Example4-code">Example:</p>
+        <p id="Example6-code">Example:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
-class Example4 {
-
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example6 { // violation above ''import' should be separated from previous line'
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 
@@ -293,7 +367,7 @@ class Example4 {
   }
 }
 </code></pre></div><hr class="example-separator"/>
-        <p id="Example5-config">
+        <p id="Example7-config">
           To disallow multiple empty lines inside constructor,
             initialization block and method:
         </p>
@@ -326,7 +400,7 @@ class Example4 {
                 CTOR_DEF</a>
           .
         </p>
-        <p id="Example5-code">
+        <p id="Example7-code">
           Example of declarations with multiple empty lines inside method:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -334,12 +408,9 @@ class Example4 {
 //HEADER
 ///////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
-import java.io.Serializable;
-// violation 2 lines above ''package' should be separated from previous line'
-// violation 2 lines above ''import' should be separated from previous line'
-
-class Example5 {
-
+import java.io.Serializable; // violation above ''package' should be separated from previous line'
+class Example7 { // violation above ''import' should be separated from previous line'
+  // violation above ''CLASS_DEF' should be separated from previous line'
   int var1 = 1;
   int var2 = 2; // violation ''VARIABLE_DEF' should be separated from previous line'
 

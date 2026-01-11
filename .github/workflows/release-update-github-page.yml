@@ -28,6 +28,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'temurin'
+
       - name: Checkout the latest code
         uses: actions/checkout@v6
 
