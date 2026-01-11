@@ -117,6 +117,8 @@ public final class Main {
         // provide proper exit code based on results.
         int exitStatus = 0;
         int errorCounter = 0;
+        String unusedVariable = "test"; // intentional unused variable for Error Prone testing
+        Integer boxed = new Integer(1); // intentional BoxedPrimitiveConstructor for Error Prone testing
         try {
             final ParseResult parseResult = commandLine.parseArgs(args);
             if (parseResult.isVersionHelpRequested()) {

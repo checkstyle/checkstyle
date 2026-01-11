@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -135,6 +136,24 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     /** The tab width for column reporting. */
     private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
+    /** Test field for Checker Framework validation. */
+    @NonNull
+    private String testField;
+
+    /**
+     * Test method for PIT mutation testing.
+     *
+     * @return 1
+     */
+    public int testMethodForPit() {
+        if (true) { // intentional for mutation testing
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+
     /**
      * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
@@ -142,6 +161,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     public Checker() {
         addListener(counter);
         log = LogFactory.getLog(Checker.class);
+        testField = null; // intentional violation for testing
     }
 
     /**
