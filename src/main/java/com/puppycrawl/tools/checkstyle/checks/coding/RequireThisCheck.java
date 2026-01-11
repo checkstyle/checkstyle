@@ -24,7 +24,6 @@ import java.util.BitSet;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -204,7 +203,7 @@ public class RequireThisCheck extends AbstractCheck {
         frames = new HashMap<>();
         current.clear();
 
-        final Deque<AbstractFrame> frameStack = new LinkedList<>();
+        final Deque<AbstractFrame> frameStack = new ArrayDeque<>();
         DetailAST curNode = rootAST;
         while (curNode != null) {
             collectDeclarations(frameStack, curNode);

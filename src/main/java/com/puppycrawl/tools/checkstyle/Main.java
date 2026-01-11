@@ -26,7 +26,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -217,7 +216,7 @@ public final class Main {
     private static List<File> getFilesToProcess(CliOptions options) {
         final List<Pattern> patternsToExclude = options.getExclusions();
 
-        final List<File> result = new LinkedList<>();
+        final List<File> result = new ArrayList<>();
         for (File file : options.files) {
             result.addAll(listFiles(file, patternsToExclude));
         }
@@ -237,7 +236,7 @@ public final class Main {
     private static List<File> listFiles(File node, List<Pattern> patternsToExclude) {
         // could be replaced with org.apache.commons.io.FileUtils.list() method
         // if only we add commons-io library
-        final List<File> result = new LinkedList<>();
+        final List<File> result = new ArrayList<>();
 
         if (node.canRead() && !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {
             if (node.isDirectory()) {
