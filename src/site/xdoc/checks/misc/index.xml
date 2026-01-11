@@ -83,6 +83,17 @@
           </tr>
           <tr>
             <td>
+              <a href="lineending.html#LineEnding">
+                LineEnding
+              </a>
+            </td>
+            <td>
+              Checks whether files use a specific line-ending sequence (<code>LF</code>,
+              <code>CRLF</code>, or <code>CR</code>).
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="newlineatendoffile.html#NewlineAtEndOfFile">
                 NewlineAtEndOfFile
               </a>
