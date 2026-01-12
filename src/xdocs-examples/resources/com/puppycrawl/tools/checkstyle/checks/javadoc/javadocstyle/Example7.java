@@ -13,8 +13,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 /**
  * Some description here
  */
-public class Example1 {
-  Example1() {
+public class Example7 {
+  Example7() {
     // violation 5 lines above 'First sentence should end with a period'
   }
   /**
