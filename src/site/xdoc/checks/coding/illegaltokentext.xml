@@ -195,7 +195,7 @@ public class Example4 {
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 public class Example5 {
   public void test() {
-    String link = "href"; // violation, Custom illegal text found
+    String link  = "href"; // violation, Custom illegal text found
   }
 }
 </code></pre></div>
