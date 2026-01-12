@@ -418,12 +418,14 @@ public class SuppressWithNearbyCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
+            return firstLine == tag.firstLine
+                    && lastLine == tag.lastLine
                     && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+                    && Objects.equals(tagCheckRegexp.pattern(), tag.tagCheckRegexp.pattern())
+                    && Objects.equals(tagMessageRegexp != null ? tagMessageRegexp.pattern() : null,
+                            tag.tagMessageRegexp != null ? tag.tagMessageRegexp.pattern() : null)
+                    && Objects.equals(tagIdRegexp != null ? tagIdRegexp.pattern() : null,
+                            tag.tagIdRegexp != null ? tag.tagIdRegexp.pattern() : null);
         }
 
         @Override
