@@ -24,8 +24,6 @@ recipeList:
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
   - org.openrewrite.java.migrate.util.SequencedCollection
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
-  - org.openrewrite.java.recipes.RecipeTestingBestPractices
-  - org.openrewrite.java.security.JavaSecurityBestPractices
   - org.openrewrite.maven.BestPractices
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
   - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
