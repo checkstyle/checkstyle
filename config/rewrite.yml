@@ -73,7 +73,7 @@ recipeList:
 #  - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes
 #  - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
 #  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
- - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
- - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
+# - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
+# - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
  - tech.picnic.errorprone.refasterrules.StringRulesRecipes
 ---
