@@ -239,6 +239,12 @@ public class CheckstyleAntTask extends Task {
         properties = props.toPath();
     }
 
+    public String getImplVersionForVersionInfo() {
+        return Objects.toString(
+                CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+                "");
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
@@ -248,9 +254,7 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
+            final String version = getImplVersionForVersionInfo();
 
             log("checkstyle version " + version, Project.MSG_VERBOSE);
 
