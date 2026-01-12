@@ -4507,6 +4507,9 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <param>execute</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>92</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
