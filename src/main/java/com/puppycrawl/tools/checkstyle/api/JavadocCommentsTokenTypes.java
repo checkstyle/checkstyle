@@ -683,6 +683,24 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * End of an inline tag <code>}</code>.
+     *
+     * <p>This token represents the closing brace that ends an inline Javadoc tag.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>* &#123;@code text}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>
+     * JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
+     * `--CODE_INLINE_TAG -&gt; CODE_INLINE_TAG
+     *     |--JAVADOC_INLINE_TAG_START -&gt; &#123;@
+     *     |--TAG_NAME -&gt; code
+     *     |--TEXT -&gt;  text
+     *     `--JAVADOC_INLINE_TAG_END -&gt; }
+     * </pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
+     * @see #JAVADOC_INLINE_TAG_START
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
 
