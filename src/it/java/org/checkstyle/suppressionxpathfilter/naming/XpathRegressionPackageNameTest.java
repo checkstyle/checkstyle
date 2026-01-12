@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.naming;
 import static com.puppycrawl.tools.checkstyle.checks.naming.PackageNameCheck.MSG_KEY;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -62,7 +61,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                     pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
                         + "[./IDENT[@text='packagename']]/DOT"
                         + "[./IDENT[@text='naming']]/DOT"
@@ -90,7 +89,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                     pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/PACKAGE_DEF/DOT[./IDENT"
                         + "[@text='PACKAGENAME']]/DOT[./IDENT"
                         + "[@text='suppressionxpathfilter']]"
@@ -118,7 +117,7 @@ public class XpathRegressionPackageNameTest extends AbstractXpathTestSupport {
                     pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/PACKAGE_DEF/DOT"
                         + "[./IDENT[@text='packagename']]/DOT"
                         + "[./IDENT[@text='naming']]/DOT"

@@ -25,9 +25,9 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.getExpecte
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
@@ -319,7 +319,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final ViolationCheck check = new ViolationCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
-        final FileText theText = new FileText(file, Collections.singletonList("test123"));
+        final FileText theText = new FileText(file, List.of("test123"));
 
         check.setFileContents(new FileContents(theText));
         check.clearViolations();
@@ -361,7 +361,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final ViolationAstCheck check = new ViolationAstCheck();
         check.configure(new DefaultConfiguration("check"));
         final File file = new File("fileName");
-        final FileText theText = new FileText(file, Collections.singletonList("test123"));
+        final FileText theText = new FileText(file, List.of("test123"));
 
         check.setFileContents(new FileContents(theText));
         check.clearViolations();
@@ -377,7 +377,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 .that(internalViolations)
                 .hasSize(1);
 
-        final Violation firstViolation = internalViolations.first();
+        final Violation firstViolation = internalViolations.getFirst();
         assertWithMessage("expected line")
                 .that(firstViolation.getLineNo())
                 .isEqualTo(1);

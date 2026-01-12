@@ -398,7 +398,7 @@ public class SuppressWarningsHolder
      */
     private static DetailAST getNthChild(DetailAST ast, int index) {
         DetailAST child = ast.getFirstChild();
-        for (int i = 0; i < index && child != null; ++i) {
+        for (int i = 0; i < index && child != null; i++) {
             child = child.getNextSibling();
         }
         return child;
@@ -465,7 +465,7 @@ public class SuppressWarningsHolder
      */
     private static List<String> getAnnotationValues(DetailAST ast) {
         return switch (ast.getType()) {
-            case TokenTypes.EXPR -> Collections.singletonList(getStringExpr(ast));
+            case TokenTypes.EXPR -> List.of(getStringExpr(ast));
             case TokenTypes.ANNOTATION_ARRAY_INIT -> findAllExpressionsInChildren(ast);
             default -> throw new IllegalArgumentException(
                     "Expression or annotation array initializer AST expected: " + ast);

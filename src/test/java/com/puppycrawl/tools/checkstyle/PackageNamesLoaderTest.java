@@ -79,8 +79,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testPackagesFile() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoaderFile.xml")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoaderFile.xml")).toURI().toURL()));
 
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -117,8 +116,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testPackagesWithDots() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoaderWithDots.xml")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoaderWithDots.xml")).toURI().toURL()));
 
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -138,8 +136,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testPackagesWithDotsEx() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoaderWithDotsEx.xml")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoaderWithDotsEx.xml")).toURI().toURL()));
 
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -160,8 +157,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testPackagesWithSaxException() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoaderNotXml.java")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoaderNotXml.java")).toURI().toURL()));
 
         try {
             PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -186,7 +182,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
         final URL url = URL.of(URI.create("test://dummy"), handler);
 
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(url));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(url));
 
         try {
             PackageNamesLoader.getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -239,8 +235,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testMapping() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoader1.xml")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoader1.xml")).toURI().toURL()));
 
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(enumeration));
@@ -252,8 +247,7 @@ public class PackageNamesLoaderTest extends AbstractPathTestSupport {
 
     @Test
     public void testMapping2() throws Exception {
-        final Enumeration<URL> enumeration = Collections.enumeration(Collections.singleton(
-                new File(getPath("InputPackageNamesLoader2.xml")).toURI().toURL()));
+        final Enumeration<URL> enumeration = Collections.enumeration(Set.of(new File(getPath("InputPackageNamesLoader2.xml")).toURI().toURL()));
 
         final Set<String> actualPackageNames = PackageNamesLoader
                 .getPackageNames(new TestUrlsClassLoader(enumeration));
