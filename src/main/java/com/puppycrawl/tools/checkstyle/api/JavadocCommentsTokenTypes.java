@@ -617,7 +617,7 @@ public final class JavadocCommentsTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--LEADING_ASTERISK -> *
+     * |--LEADING_ASTERISK -> * //error here. a fix can be to wrap them around <pre> tags. That will help with showcasing this multi lin diagram
      * |--TEXT ->
      * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
      *     `--CUSTOM_BLOCK_TAG -> CUSTOM_BLOCK_TAG
@@ -658,7 +658,7 @@ public final class JavadocCommentsTokenTypes {
      * |--LEADING_ASTERISK ->   *
      * |--TEXT ->
      * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
-     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG //error here. a fix can be to wrap them around <pre> tags. That will help with showcasing this multi lin diagram
      * |       |--JAVADOC_INLINE_TAG_START -> { @
      * |       |--TAG_NAME -> code
      * |       |--TEXT ->   code
