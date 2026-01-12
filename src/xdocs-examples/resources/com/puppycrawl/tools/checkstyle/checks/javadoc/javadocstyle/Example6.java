@@ -55,5 +55,10 @@ public class Example6 {
   private void testMethod6() {
 
   }
+  /**
+   *
+   */
+  public void testEmptyJavadoc() {
+  }
 }
 // xdoc section -- end

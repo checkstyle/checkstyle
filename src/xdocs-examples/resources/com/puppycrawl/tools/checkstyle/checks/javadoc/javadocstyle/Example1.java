@@ -53,5 +53,10 @@ public class Example1 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
     // violation 3 lines above 'Incomplete HTML tag found'
   }
+  /**
+   *
+   */
+  public void testEmptyJavadoc() {
+  }
 }
 // xdoc section -- end

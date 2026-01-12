@@ -55,5 +55,10 @@ public class Example5 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
 
   }
+  /**
+   *
+   */
+  public void testEmptyJavadoc() {
+  }
 }
 // xdoc section -- end
