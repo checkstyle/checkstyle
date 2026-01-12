@@ -353,6 +353,9 @@ public final class Violation
      * @noinspection EqualsCalledOnEnumConstant
      * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
      *      code consistent
+     * @noinspection OverlyComplexBooleanExpression
+     * @noinspectionreason OverlyComplexBooleanExpression - equals method has a lot
+     *      of fields to check
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
@@ -364,10 +367,11 @@ public final class Violation
             return false;
         }
         final Violation violation = (Violation) object;
-        return Objects.equals(lineNo, violation.lineNo)
-                && Objects.equals(columnNo, violation.columnNo)
-                && Objects.equals(columnCharIndex, violation.columnCharIndex)
-                && Objects.equals(tokenType, violation.tokenType)
+        // -@cs[BooleanExpressionComplexity] equals - a lot of fields to check.
+        return lineNo == violation.lineNo
+                && columnNo == violation.columnNo
+                && columnCharIndex == violation.columnCharIndex
+                && tokenType == violation.tokenType
                 && Objects.equals(severityLevel, violation.severityLevel)
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
