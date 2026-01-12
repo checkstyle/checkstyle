@@ -55,5 +55,10 @@ public class Example4 {
   private void testMethod6() {
     // violation 3 lines above 'Incomplete HTML tag'
   }
+  /**
+   *
+   */
+  public void testEmptyJavadoc() {
+  }
 }
 // xdoc section -- end

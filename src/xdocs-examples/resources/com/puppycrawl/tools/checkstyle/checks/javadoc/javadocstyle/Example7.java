@@ -8,20 +8,20 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
+
 // xdoc section -- start
 /**
  * Some description here
  */
-public class Example7 {
-  Example7() {
+public class Example1 {
+  Example1() {
     // violation 5 lines above 'First sentence should end with a period'
   }
   /**
-   *
+   * Some description here.
    */
-  private void testMethod1() {
-    // violation 4 lines above 'Javadoc has empty description section'
-  } // ok below, @return tag automatically inserts a period after the text
+  private void testMethod1() {}
+  // ok below, @return tag automatically inserts a period after the text
   /**
    * {@return {@code true} if this object
    * has been initialized, {@code false} otherwise}
@@ -52,9 +52,13 @@ public class Example7 {
    * Some description here
    * <p
    */
-  private void testMethod6() {
-    // violation 5 lines above 'First sentence should end with a period'
-    // violation 4 lines above 'Incomplete HTML tag found'
+  private void testMethod6() { // violation 4 lines above 'should end with >
+    // violation 3 lines above 'Incomplete HTML tag found'
+  }
+  /**
+   *
+   */
+  public void testEmptyJavadoc() { // violation, 'Javadoc has empty description section.'
   }
 }
 // xdoc section -- end

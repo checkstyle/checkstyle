@@ -103,13 +103,13 @@ public class JavadocStyleCheckExamplesTest extends AbstractExamplesModuleTestSup
     @Test
     public void testExample7() throws Exception {
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_NO_PERIOD),
-            "19: " + getCheckMessage(MSG_EMPTY),
+            "13: " + getCheckMessage(MSG_NO_PERIOD),
             "32: " + getCheckMessage(MSG_NO_PERIOD),
             "38: " + getCheckMessage(MSG_NO_PERIOD),
             "44: " + getCheckMessage(MSG_NO_PERIOD),
             "51: " + getCheckMessage(MSG_NO_PERIOD),
             "53: " + getCheckMessage(MSG_INCOMPLETE_TAG, "   * <p"),
+            "58: " + getCheckMessage(MSG_EMPTY),
         };
 
         verifyWithInlineConfigParser(
