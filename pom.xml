@@ -260,7 +260,7 @@
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
       -Xep:OptionalOrElseGet:ERROR
-      -Xep:PrimitiveComparison:ERROR
+      -Xep:ObjectEqualsForPrimitives:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
       -Xep:ReferenceEquality:ERROR
