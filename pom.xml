@@ -259,6 +259,11 @@
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:UnnecessaryBoxedAssignment:ERROR
+      -Xep:UnnecessaryBoxedVariable:ERROR
+      -Xep:UnnecessaryLambda:ERROR
+      -Xep:UnnecessaryLongToIntConversion:ERROR
+      -Xep:UnnecessaryStringBuilder:ERROR
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
