@@ -3,9 +3,9 @@
   <mutation unstable="false">
     <sourceFile>SuppressWithNearbyCommentFilter.java</sourceFile>
     <mutatedClass>com.puppycrawl.tools.checkstyle.filters.SuppressWithNearbyCommentFilter</mutatedClass>
-    <mutatedMethod>accept</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
-    <description>removed call to com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter::getFileContents</description>
-    <lineContent>if (getFileContents() != currentContents) {</lineContent>
+    <mutatedMethod>&lt;init&gt;</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator</mutator>
+    <description>removed call to java/lang/ref/WeakReference::&lt;init&gt;</description>
+    <lineContent>private WeakReference&lt;FileContents&gt; fileContentsReference = new WeakReference&lt;&gt;(null);</lineContent>
   </mutation>
 </suppressedMutations>
