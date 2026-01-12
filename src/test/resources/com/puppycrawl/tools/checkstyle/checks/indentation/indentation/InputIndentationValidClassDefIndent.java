@@ -1,9 +1,9 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;           //indent:0 exp:0
 
-import java.awt.event.ActionEvent; //indent:0 exp:0
-import java.awt.event.ActionListener; //indent:0 exp:0
+import java.awt.event.ActionEvent;                                                //indent:0 exp:0
+import java.awt.event.ActionListener;                                             //indent:0 exp:0
 
-import javax.swing.JButton; //indent:0 exp:0
+import javax.swing.JButton;                                                       //indent:0 exp:0
 
 /**                                                                               //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:       //indent:1 exp:1

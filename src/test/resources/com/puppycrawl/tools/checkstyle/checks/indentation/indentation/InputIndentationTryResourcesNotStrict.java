@@ -1,14 +1,14 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;            //indent:0 exp:0
 
-import java.io.BufferedWriter; //indent:0 exp:0
-import java.io.IOException; //indent:0 exp:0
-import java.nio.charset.Charset; //indent:0 exp:0
-import java.nio.charset.MalformedInputException; //indent:0 exp:0
-import java.nio.charset.StandardCharsets; //indent:0 exp:0
-import java.nio.file.Files; //indent:0 exp:0
-import java.nio.file.Path; //indent:0 exp:0
-import java.nio.file.Paths; //indent:0 exp:0
-import java.util.zip.ZipFile; //indent:0 exp:0
+import java.io.BufferedWriter;                                                     //indent:0 exp:0
+import java.io.IOException;                                                        //indent:0 exp:0
+import java.nio.charset.Charset;                                                   //indent:0 exp:0
+import java.nio.charset.MalformedInputException;                                   //indent:0 exp:0
+import java.nio.charset.StandardCharsets;                                          //indent:0 exp:0
+import java.nio.file.Files;                                                        //indent:0 exp:0
+import java.nio.file.Path;                                                         //indent:0 exp:0
+import java.nio.file.Paths;                                                        //indent:0 exp:0
+import java.util.zip.ZipFile;                                                      //indent:0 exp:0
 
 public final class InputIndentationTryResourcesNotStrict {                         //indent:0 exp:0
 

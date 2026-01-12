@@ -1,6 +1,6 @@
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;       //indent:0 exp:0
 
-import java.util.Arrays; //indent:0 exp:0
+import java.util.Arrays;                                                      //indent:0 exp:0
 
 /**                                                                           //indent:0 exp:0
  * This test-input is intended to be checked using following configuration:   //indent:1 exp:1

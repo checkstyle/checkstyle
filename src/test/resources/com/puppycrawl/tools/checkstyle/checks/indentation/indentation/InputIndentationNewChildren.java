@@ -12,12 +12,12 @@
  *                                                                            //indent:1 exp:1
  */                                                                           //indent:1 exp:1
 
-package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;   //indent:0 exp:0
+package com.puppycrawl.tools.checkstyle.checks.indentation.indentation;       //indent:0 exp:0
 
-import java.io.BufferedReader;                                            //indent:0 exp:0
-import java.io.IOException;                                               //indent:0 exp:0
-import java.io.InputStreamReader;                                         //indent:0 exp:0
-import java.util.Optional;                                                //indent:0 exp:0
+import java.io.BufferedReader;                                                //indent:0 exp:0
+import java.io.IOException;                                                   //indent:0 exp:0
+import java.io.InputStreamReader;                                             //indent:0 exp:0
+import java.util.Optional;                                                    //indent:0 exp:0
 
 public class InputIndentationNewChildren {                                    //indent:0 exp:0
   public Object foo() {                                                       //indent:2 exp:2
