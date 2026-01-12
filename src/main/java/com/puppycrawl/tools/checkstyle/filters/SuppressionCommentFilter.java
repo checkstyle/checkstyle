@@ -474,6 +474,8 @@ public class SuppressionCommentFilter
          * @noinspection EqualsCalledOnEnumConstant
          * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
          *      code consistent
+         * @noinspection ObjectEqualsForPrimitives
+         * @noinspectionreason ObjectEqualsForPrimitives - this code is generated
          */
         @Override
         public boolean equals(Object other) {
@@ -484,8 +486,8 @@ public class SuppressionCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(line, tag.line)
-                    && Objects.equals(column, tag.column)
+            return line == tag.line
+                    && column == tag.column
                     && Objects.equals(tagType, tag.tagType)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)

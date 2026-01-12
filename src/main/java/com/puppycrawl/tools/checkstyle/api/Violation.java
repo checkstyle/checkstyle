@@ -353,6 +353,8 @@ public final class Violation
      * @noinspection EqualsCalledOnEnumConstant
      * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
      *      code consistent
+     * @noinspection ObjectEqualsForPrimitives
+     * @noinspectionreason ObjectEqualsForPrimitives - this code is generated
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
