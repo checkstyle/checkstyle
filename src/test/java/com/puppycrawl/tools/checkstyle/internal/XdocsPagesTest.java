@@ -131,6 +131,7 @@ public class XdocsPagesTest {
             "name=\"RegexpSingleline\"",
             "name=\"RegexpMultiline\"",
             "name=\"JavadocPackage\"",
+            "name=\"LineEnding\"",
             "name=\"NewlineAtEndOfFile\"",
             "name=\"OrderedProperties\"",
             "name=\"UniqueProperties\"",
