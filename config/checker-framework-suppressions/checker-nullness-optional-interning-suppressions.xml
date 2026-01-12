@@ -1142,9 +1142,20 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter checkstyleVersion of CheckstyleAntTask.realExecute.</message>
+    <lineContent>realExecute(version);</lineContent>
+    <details>
+      found   : @Initialized @Nullable String
+      required: @Initialized @NonNull String
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/ant/CheckstyleAntTask.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference CheckstyleAntTask.class.getPackage()</message>
-    <lineContent>CheckstyleAntTask.class.getPackage().getImplementationVersion(),</lineContent>
+    <lineContent>final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">

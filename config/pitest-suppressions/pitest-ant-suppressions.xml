@@ -6,15 +6,6 @@
     <mutatedMethod>execute</mutatedMethod>
     <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
     <description>removed call to java/lang/Package::getImplementationVersion</description>
-    <lineContent>CheckstyleAntTask.class.getPackage().getImplementationVersion(),</lineContent>
-  </mutation>
-
-  <mutation unstable="false">
-    <sourceFile>CheckstyleAntTask.java</sourceFile>
-    <mutatedClass>com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask</mutatedClass>
-    <mutatedMethod>execute</mutatedMethod>
-    <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.ArgumentPropagationMutator</mutator>
-    <description>replaced call to java/util/Objects::toString with argument</description>
-    <lineContent>final String version = Objects.toString(</lineContent>
+    <lineContent>final String version = CheckstyleAntTask.class.getPackage().getImplementationVersion();</lineContent>
   </mutation>
 </suppressedMutations>
