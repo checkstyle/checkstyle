@@ -16,7 +16,6 @@ recipeList:
   - org.openrewrite.java.format.NormalizeLineBreaks
   - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
-  - org.openrewrite.java.migrate.UpgradeToJava17
   - org.openrewrite.java.migrate.UpgradeToJava21
   - org.openrewrite.java.migrate.lang.JavaLangAPIs
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
