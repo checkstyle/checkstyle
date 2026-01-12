@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -52,7 +53,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
             "5:10: " + getCheckMessage(IllegalTokenCheck.class,
                         IllegalTokenCheck.MSG_KEY, "outer:"),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenLabel']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"
@@ -76,7 +77,7 @@ public class XpathRegressionIllegalTokenTest extends AbstractXpathTestSupport {
             "4:10: " + getCheckMessage(IllegalTokenCheck.class,
                         IllegalTokenCheck.MSG_KEY, "native"),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTokenNative']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]"

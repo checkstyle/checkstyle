@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.design;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -52,7 +53,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
             "4:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountDefault']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
@@ -77,7 +78,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
             "4:30: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 3, 2),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/INTERFACE_DEF[./IDENT[@text='InputXpathThrowsCountCustomMax']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunction']]"
@@ -102,7 +103,7 @@ public class XpathRegressionThrowsCountTest extends AbstractXpathTestSupport {
             "9:40: " + getCheckMessage(ThrowsCountCheck.class,
                         ThrowsCountCheck.MSG_KEY, 5, 4),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                     + "/CLASS_DEF[./IDENT[@text='InputXpathThrowsCountPrivateMethods']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myFunc']]"

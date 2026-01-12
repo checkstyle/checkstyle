@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +59,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
                 AbstractNameCheck.MSG_INVALID_PATTERN, "var", format),
             };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF"
                 + "[./IDENT[@text='InputXpathIllegalIdentifierNameOne'"
                 + "]]/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='var']"
@@ -83,7 +84,7 @@ public class XpathRegressionIllegalIdentifierNameTest extends AbstractXpathTestS
                 AbstractNameCheck.MSG_INVALID_PATTERN, "te$t", format),
             };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathIllegalIdentifierNameTwo']"
                 + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/PARAMETERS/PARAMETER_DEF"

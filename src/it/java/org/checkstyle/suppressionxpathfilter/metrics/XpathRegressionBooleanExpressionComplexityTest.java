@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.metrics;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +55,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathBooleanExpressionComplexityCatchBlock']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodOne']]/SLIST"
@@ -79,7 +80,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                     BooleanExpressionComplexityCheck.MSG_KEY, 11, 3),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathBooleanExpressionComplexityClassFields']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodTwo']]/SLIST/VARIABLE_DEF"
@@ -103,7 +104,7 @@ public class XpathRegressionBooleanExpressionComplexityTest
                     BooleanExpressionComplexityCheck.MSG_KEY, 4, 3),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathBooleanExpressionComplexityConditionals']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='methodThree']]/SLIST/LITERAL_IF"

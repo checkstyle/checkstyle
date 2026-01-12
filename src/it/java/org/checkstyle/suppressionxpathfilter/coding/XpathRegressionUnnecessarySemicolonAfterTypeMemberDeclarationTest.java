@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text="
                 + "'InputXpathUnnecessarySemicolonAfterTypeMemberDeclarationDefault']]"
@@ -78,7 +79,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
                 UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text='InputXpathUnnecessarySemicolonAfterTypeMember"
                     + "DeclarationTokens']]"

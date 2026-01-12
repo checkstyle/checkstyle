@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -53,7 +54,7 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
             "3:1: " + getCheckMessage(IllegalImportCheck.class,
                         IllegalImportCheck.MSG_KEY, "java.util.List"),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/IMPORT"
         );
 
@@ -74,7 +75,7 @@ public class XpathRegressionIllegalImportTest extends AbstractXpathTestSupport {
             "3:1: " + getCheckMessage(IllegalImportCheck.class,
                         IllegalImportCheck.MSG_KEY, "java.lang.Math.pow"),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/STATIC_IMPORT"
 
         );

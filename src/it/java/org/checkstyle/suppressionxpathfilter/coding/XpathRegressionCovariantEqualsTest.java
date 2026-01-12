@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCovariantEqualsInClass']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']"
@@ -78,7 +79,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/ENUM_DEF"
                 + "[./IDENT[@text='InputXpathCovariantEqualsInEnum']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");
@@ -101,7 +102,7 @@ public class XpathRegressionCovariantEqualsTest extends AbstractXpathTestSupport
                         CovariantEqualsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/RECORD_DEF"
                 + "[./IDENT[@text='InputXpathCovariantEqualsInRecord']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='equals']");

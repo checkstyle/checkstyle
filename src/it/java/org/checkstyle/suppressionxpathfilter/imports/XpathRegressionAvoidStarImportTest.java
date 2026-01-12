@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +58,7 @@ public class XpathRegressionAvoidStarImportTest
                 AvoidStarImportCheck.MSG_KEY, "javax.swing.WindowConstants.*"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
@@ -77,7 +78,7 @@ public class XpathRegressionAvoidStarImportTest
                 AvoidStarImportCheck.MSG_KEY, "java.io.*"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT/DOT"
         );
 

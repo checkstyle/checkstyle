@@ -22,6 +22,7 @@ package org.checkstyle.suppressionxpathfilter.naming;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +59,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "e1", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameSimple']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
@@ -83,7 +84,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "i", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameNested']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NestedClass']]"
@@ -111,7 +112,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "Ex", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameStaticInit']]"
                 + "/OBJBLOCK/STATIC_INIT/SLIST"
@@ -137,7 +138,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "E1", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameAnonymous']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"
@@ -166,7 +167,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "e", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameLambda']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lambdaFunction']]"
@@ -194,7 +195,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "eX", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/ENUM_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameEnum']]"
                 + "/OBJBLOCK/ENUM_CONSTANT_DEF[./IDENT[@text='VALUE']]"
@@ -222,7 +223,7 @@ public class XpathRegressionCatchParameterNameTest extends AbstractXpathTestSupp
                     MSG_INVALID_PATTERN, "EX", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/INTERFACE_DEF"
                 + "[./IDENT[@text='InputXpathCatchParameterNameInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='InnerInterface']]"

@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.modifier;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -80,7 +81,7 @@ public class XpathRegressionModifierOrderTest extends AbstractXpathTestSupport {
                     ModifierOrderCheck.MSG_MODIFIER_ORDER, "private"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathModifierOrderVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS/LITERAL_PRIVATE");

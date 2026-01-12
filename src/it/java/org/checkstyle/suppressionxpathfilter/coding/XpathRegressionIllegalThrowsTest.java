@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
                 IllegalThrowsCheck.MSG_KEY, "RuntimeException"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathIllegalThrowsRuntimeException']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LITERAL_THROWS"
@@ -79,7 +80,7 @@ public class XpathRegressionIllegalThrowsTest extends AbstractXpathTestSupport {
                 IllegalThrowsCheck.MSG_KEY, "java.lang.Error"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathIllegalThrowsError']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='methodTwo']]/LITERAL_THROWS"

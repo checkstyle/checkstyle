@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +58,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
                     "_value", "^[a-z][a-zA-Z0-9]*$"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/RECORD_DEF[./IDENT[@text='InputXpathRecordComponentNameDefault']]"
                 + "/RECORD_COMPONENTS/RECORD_COMPONENT_DEF/IDENT[@text='_value']"
         );
@@ -81,7 +82,7 @@ public class XpathRegressionRecordComponentNameTest extends AbstractXpathTestSup
                     "otherValue", "^_[a-z][a-zA-Z0-9]*$"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRecordComponentNameFormat']]/OBJBLOCK"
                 + "/RECORD_DEF[./IDENT[@text='MyRecord']]"

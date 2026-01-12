@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
                     JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/INTERFACE_DEF"
                 + "[./IDENT[@text='InputXpathJavadocContentLocationOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
@@ -81,7 +82,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
                     JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_FIRST_LINE),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT"
                     + "[@text='InputXpathJavadocContentLocationTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"

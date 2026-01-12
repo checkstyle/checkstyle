@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.indentation;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", 4, 8, 4),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationSingleLine']]"
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
@@ -78,7 +79,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.block", 7, 10, 4),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationBlock']]/OBJBLOCK/"
                 + "VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
@@ -102,7 +103,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", 10, 12, 4),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationSeparator']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS/SINGLE_LINE_COMMENT"
@@ -126,7 +127,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", 8, 24, 8),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationDistributedStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
@@ -150,7 +151,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", 7, 0, 4),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationSingleLineBlock']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
@@ -174,7 +175,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", "9, 11", 19, "16, 12"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationNonEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
@@ -198,7 +199,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", "8, 10", 0, "12, 12"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
@@ -222,7 +223,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 "comments.indentation.single", 7, 8, 12),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathCommentsIndentationWithinBlockStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF"

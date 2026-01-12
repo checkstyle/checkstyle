@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsCla
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -86,7 +87,7 @@ public class ModuleReflectionUtilTest {
     @Test
     public void testGetCheckStyleModules() throws IOException {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        final Set<String> packages = Set.of(BASE_PACKAGE + ".checks.javadoc.utils");
+        final Set<String> packages = Collections.singleton(BASE_PACKAGE + ".checks.javadoc.utils");
 
         assertWithMessage("specified package has no checkstyle modules")
                 .that(ModuleReflectionUtil.getCheckstyleModules(packages, classLoader))

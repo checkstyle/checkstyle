@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathOneStatementPerLineClassFields']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='j']]/SEMI"
@@ -78,7 +79,7 @@ public class XpathRegressionOneStatementPerLineTest extends AbstractXpathTestSup
                 OneStatementPerLineCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathOneStatementPerLineForLoopBlock']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='foo5']]/SLIST/LITERAL_FOR/SLIST/SEMI[2]"

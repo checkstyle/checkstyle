@@ -24,6 +24,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -131,7 +132,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Label']]/SLIST/LITERAL_SWITCH/LCURLY");
         assertWithMessage("Generated queries do not match expected ones")
@@ -146,7 +147,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
                 + "/INSTANCE_INIT/SLIST/RCURLY");
         assertWithMessage("Generated queries do not match expected ones")
@@ -178,7 +179,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/LPAREN");
         assertWithMessage("Generated queries do not match expected ones")
@@ -220,7 +221,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='File']]");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -265,7 +266,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='Label']]/SLIST/LITERAL_SWITCH");
         assertWithMessage("Generated queries do not match expected ones")
@@ -320,7 +321,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
                 + "./IDENT[@text='foo']]/SLIST/LITERAL_FOR/FOR_ITERATOR/ELIST/COMMA");
@@ -353,7 +354,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='JToolBar']]");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -367,7 +368,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Iterator']]");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -381,7 +382,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT/DOT[./IDENT[@text='JToolBar']]/DOT/IDENT[@text='javax']");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -395,7 +396,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF/IDENT[@text='InputXpathQueryGenerator']");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -470,7 +471,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathQueryGeneratorTabWidth']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='tabAfterMe']]/SLIST");
@@ -492,7 +493,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTabWidth']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='endLineTab']]/SEMI");
         assertWithMessage("Generated queries do not match expected ones")
@@ -507,7 +508,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAst, lineNumber,
                 columnNumber, TokenTypes.CLASS_DEF, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]");
         assertWithMessage("Generated queries do not match expected ones")
             .that(actual)
@@ -598,7 +599,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathQueryGeneratorTextBlock']]/OBJBLOCK/"
                     + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
@@ -625,7 +626,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathQueryGeneratorTextBlockNewLine']]/OBJBLOCK/"
                         + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
@@ -652,7 +653,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
         final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
                 lineNumber, columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
-        final List<String> expected = List.of(
+        final List<String> expected = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathQueryGeneratorTextBlockCrlf']]/OBJBLOCK/"
                         + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"

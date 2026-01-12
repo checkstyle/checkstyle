@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +59,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
                     AbstractNameCheck.MSG_INVALID_PATTERN, "S", defaultPattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                "/COMPILATION_UNIT/CLASS_DEF"
                        + "[./IDENT[@text='InputXpathLambdaParameterNameDefault']]"
                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["

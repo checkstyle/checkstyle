@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                         ImportOrderCheck.MSG_ORDERING, "java.util.Set"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT"
         );
 
@@ -76,7 +77,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                         ImportOrderCheck.MSG_SEPARATED_IN_GROUP, "java.util.Set"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Set']]"
         );
 
@@ -99,7 +100,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                         ImportOrderCheck.MSG_SEPARATION, "org.junit.*"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/DOT/IDENT[@text='org']]"
         );
 
@@ -121,7 +122,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                         ImportOrderCheck.MSG_ORDERING, "java.lang.Math.PI"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT"
         );
 
@@ -143,7 +144,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
                         ImportOrderCheck.MSG_ORDERING, "java.util.Date"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Date']]"
         );
 

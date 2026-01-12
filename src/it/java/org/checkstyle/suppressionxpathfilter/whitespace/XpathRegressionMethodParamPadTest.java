@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 MethodParamPadCheck.MSG_WS_PRECEDED, "("),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMethodParamPadOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='InputMethodParamPad']]/LPAREN"
@@ -78,7 +79,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 MethodParamPadCheck.MSG_LINE_PREVIOUS, "("),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMethodParamPadTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"
@@ -102,7 +103,7 @@ public class XpathRegressionMethodParamPadTest extends AbstractXpathTestSupport 
                 MethodParamPadCheck.MSG_WS_NOT_PRECEDED, "("),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMethodParamPadThree']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sayHello']]/LPAREN"

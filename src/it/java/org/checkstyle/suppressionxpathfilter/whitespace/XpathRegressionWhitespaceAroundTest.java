@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                     WhitespaceAroundCheck.MSG_WS_NOT_PRECEDED, "="),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathWhitespaceAroundNotPreceded']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
@@ -78,7 +79,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
                     WhitespaceAroundCheck.MSG_WS_NOT_FOLLOWED, "="),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                 + "@text='InputXpathWhitespaceAroundNotFollowed']]/OBJBLOCK"
                 + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"

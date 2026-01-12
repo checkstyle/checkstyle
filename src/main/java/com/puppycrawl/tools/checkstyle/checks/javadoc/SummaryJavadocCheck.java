@@ -184,7 +184,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 final Optional<String> firstSentence = getFirstSentence(ast, period);
 
                 if (firstSentence.isPresent()) {
-                    if (containsForbiddenFragment(firstSentence.orElseThrow())) {
+                    if (containsForbiddenFragment(firstSentence.get())) {
                         log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                     }
                 }
@@ -479,7 +479,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final Optional<String> sentenceEnding = findSentenceEnding(text, period);
 
             if (sentenceEnding.isPresent()) {
-                sentenceParts.add(sentenceEnding.orElseThrow());
+                sentenceParts.add(sentenceEnding.get());
                 result = Optional.of(String.join("", sentenceParts));
                 break;
             }

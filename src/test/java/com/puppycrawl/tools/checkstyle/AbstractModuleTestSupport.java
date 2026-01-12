@@ -440,7 +440,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parse(inputFile);
         final DefaultConfiguration parsedConfig =
                 testInputConfiguration.createConfiguration();
-        final List<File> filesToCheck = List.of(new File(inputFile));
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
         final String basePath = Path.of("").toAbsolutePath().toString();
 
         final Checker checker = createChecker(parsedConfig);
@@ -471,7 +471,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parseWithXmlHeader(inputFile);
         final Configuration parsedConfig =
                 testInputConfiguration.getXmlConfiguration();
-        final List<File> filesToCheck = List.of(new File(inputFile));
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
         final String basePath = Path.of("").toAbsolutePath().toString();
 
         final Checker checker = createChecker(parsedConfig);
@@ -510,7 +510,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 InlineConfigParser.parseWithXmlHeader(inputFile);
         final Configuration parsedConfig =
                 testInputConfiguration.getXmlConfiguration();
-        final List<File> filesToCheck = List.of(new File(inputFile));
+        final List<File> filesToCheck = Collections.singletonList(new File(inputFile));
         final String basePath = Path.of("").toAbsolutePath().toString();
 
         final Checker checker = createChecker(parsedConfig);
@@ -812,7 +812,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                                                     String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = List.of(new File(file));
+        final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         checker.process(files);
         final Map<String, List<String>> actualViolations =

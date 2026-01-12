@@ -482,7 +482,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
           String file) throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> files = List.of(new File(file));
+        final List<File> files = Collections.singletonList(new File(file));
         final Checker checker = createChecker(config);
         final Map<String, List<String>> actualViolations =
                 getActualViolations(checker.process(files));

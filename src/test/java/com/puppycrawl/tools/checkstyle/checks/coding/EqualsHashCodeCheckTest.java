@@ -25,6 +25,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -72,10 +73,10 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
 
-        final List<String> expectedFirstInputErrors = List.of(
+        final List<String> expectedFirstInputErrors = Collections.singletonList(
             "10:5: " + getCheckMessage(MSG_KEY_EQUALS)
         );
-        final List<String> expectedSecondInputErrors = List.of(
+        final List<String> expectedSecondInputErrors = Collections.singletonList(
             "37:13: " + getCheckMessage(MSG_KEY_HASHCODE)
         );
         final List<String> expectedThirdInputErrors =

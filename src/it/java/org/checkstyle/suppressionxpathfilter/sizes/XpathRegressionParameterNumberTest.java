@@ -22,6 +22,7 @@ package org.checkstyle.suppressionxpathfilter.sizes;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck.MSG_KEY;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -53,7 +54,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
             "5:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 11),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParameterNumberDefault']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
@@ -76,7 +77,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
             "7:10: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 10, 11),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                "/COMPILATION_UNIT/CLASS_DEF"
                + "[./IDENT[@text='InputXpathParameterNumberMethods']]"
                + "/OBJBLOCK/METHOD_DEF/IDENT[@text='myMethod']"
@@ -98,7 +99,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
             "6:13: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 7, 8),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathParameterNumberIgnoreOverriddenMethods']]"
                 + "/OBJBLOCK/CTOR_DEF/IDENT"
@@ -122,7 +123,7 @@ public class XpathRegressionParameterNumberTest extends AbstractXpathTestSupport
             "15:34: " + getCheckMessage(ParameterNumberCheck.class, MSG_KEY, 2, 3),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParameterNumberIgnoreAnnotatedBy']]"
                 + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]"

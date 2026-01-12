@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiPredicate;
@@ -289,7 +290,7 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         final XMLLogger logger = new XMLLogger(actualXmlOutput,
                 AbstractAutomaticBean.OutputStreamOptions.CLOSE);
         checker.addListener(logger);
-        final List<File> filesToCheck = List.of(new File(configFilePath));
+        final List<File> filesToCheck = Collections.singletonList(new File(configFilePath));
         checker.process(filesToCheck);
 
         verifyXml(getPath(expectedXmlReportPath), actualXmlOutput);

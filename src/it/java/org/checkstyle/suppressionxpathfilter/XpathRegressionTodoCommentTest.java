@@ -22,6 +22,7 @@ package org.checkstyle.suppressionxpathfilter;
 import static com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck.MSG_KEY;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
             "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'InputXpathTodoCommentSingleLine']]/OBJBLOCK/"
                         + "SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn FIXME:\\n']");
@@ -72,7 +73,7 @@ public class XpathRegressionTodoCommentTest extends AbstractXpathTestSupport {
             "4:7: " + getCheckMessage(TodoCommentCheck.class, MSG_KEY, "FIXME:"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'InputXpathTodoCommentBlock']]/"
                         + "OBJBLOCK/BLOCK_COMMENT_BEGIN/COMMENT_CONTENT"

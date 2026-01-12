@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +59,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         "java.util.Arrays.sort"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
@@ -80,7 +81,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         CustomImportOrderCheck.MSG_LINE_SEPARATOR, "java.io.File"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='File']]"
         );
 
@@ -102,7 +103,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP, "java.lang.Math.PI"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
@@ -125,7 +126,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         "com.puppycrawl.tools.checkstyle.api.DetailAST"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 
@@ -148,7 +149,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         "java.lang.Math.PI"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT[./DOT/IDENT[@text='PI']]"
         );
 
@@ -173,7 +174,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
                         "com.puppycrawl.tools.checkstyle.api.DetailAST"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='DetailAST']]"
         );
 

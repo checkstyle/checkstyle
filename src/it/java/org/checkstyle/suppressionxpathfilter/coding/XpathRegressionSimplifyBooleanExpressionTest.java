@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanExpre
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -107,7 +108,7 @@ public class XpathRegressionSimplifyBooleanExpressionTest extends AbstractXpathT
             "7:20: " + getCheckMessage(SimplifyBooleanExpressionCheck.class, MSG_KEY),
         };
 
-        final List<String> expectedXpathQuery = List.of(
+        final List<String> expectedXpathQuery = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathSimplifyBooleanExpressionInterface']]"
                 + "/OBJBLOCK/INTERFACE_DEF[./IDENT[@text='Inner']]/OBJBLOCK/METHOD_DEF[./IDENT"

@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.blocks;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +55,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
                     AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAvoidNestedBlocksEmpty']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='empty']]/SLIST/SLIST"
@@ -77,7 +78,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
                     AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAvoidNestedBlocksVariable']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='varAssign']]/SLIST/SLIST"
@@ -129,7 +130,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
                     AvoidNestedBlocksCheck.MSG_KEY_BLOCK_NESTED),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                         + "[@text='InputXpathAvoidNestedBlocksAllowedInSwitchCase"
                         + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='s']]"

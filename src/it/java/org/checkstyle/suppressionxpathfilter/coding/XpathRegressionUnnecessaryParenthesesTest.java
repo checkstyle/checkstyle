@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -113,7 +114,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 UnnecessaryParenthesesCheck.MSG_LAMBDA),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLambdas']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='predicate']]"
@@ -137,7 +138,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 UnnecessaryParenthesesCheck.MSG_IDENT, "a"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathUnnecessaryParenthesesLocalVariables']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
@@ -162,7 +163,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 UnnecessaryParenthesesCheck.MSG_STRING, "\"Checkstyle\""),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathUnnecessaryParenthesesStringLiteral']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
@@ -187,7 +188,7 @@ public class XpathRegressionUnnecessaryParenthesesTest extends AbstractXpathTest
                 UnnecessaryParenthesesCheck.MSG_LITERAL, "10"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathUnnecessaryParenthesesMethodDef']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"

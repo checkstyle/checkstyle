@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.indentation;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -178,7 +179,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     IndentationCheck.MSG_ERROR, "(", 8, 12),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathIndentationLambdaOne"
                     + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
@@ -210,7 +211,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                     IndentationCheck.MSG_CHILD_ERROR_MULTI, "block", 14, "12, 16"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathIndentationLambdaTwo']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
@@ -243,7 +244,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                 IndentationCheck.MSG_CHILD_ERROR, "if", 8, 12),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathIndentationIfWithoutCurly']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/"
@@ -276,7 +277,7 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
                 IndentationCheck.MSG_CHILD_ERROR, "else", 8, 12),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathIndentationElseWithoutCurly']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/LITERAL_ELSE"

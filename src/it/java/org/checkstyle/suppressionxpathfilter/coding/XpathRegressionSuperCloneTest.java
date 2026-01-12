@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -53,7 +54,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
             "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathSuperCloneInnerClone']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClone']]"
@@ -76,7 +77,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
             "6:23: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathSuperCloneNoSuperClone']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='NoSuperClone']]"
@@ -99,7 +100,7 @@ public class XpathRegressionSuperCloneTest extends AbstractXpathTestSupport {
             "4:19: " + getCheckMessage(SuperCloneCheck.class, AbstractSuperCheck.MSG_KEY, "clone"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathSuperClonePlainAndSubclasses']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='clone']"

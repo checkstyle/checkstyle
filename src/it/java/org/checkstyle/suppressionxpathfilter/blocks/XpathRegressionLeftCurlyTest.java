@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.blocks;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -106,7 +107,7 @@ public class XpathRegressionLeftCurlyTest extends AbstractXpathTestSupport {
                 LeftCurlyCheck.MSG_KEY_LINE_BREAK_AFTER, "{", 19),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLeftCurlyThree']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST"

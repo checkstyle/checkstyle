@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
             "11:76: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                         + "'InputXpathUnnecessarySemicolonInTryWithResourcesDefault']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
@@ -79,7 +80,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                 UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'InputXpathUnnecessarySemicolonInTryWithResourcesNoBrace']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"

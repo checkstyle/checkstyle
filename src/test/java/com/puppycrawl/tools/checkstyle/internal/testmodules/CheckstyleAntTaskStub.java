@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import java.io.File;
 import java.io.Serial;
+import java.util.Collections;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
@@ -29,7 +30,7 @@ public class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
     @Override
     protected List<File> scanFileSets() {
-        return List.of(new MockFile());
+        return Collections.singletonList(new MockFile());
     }
 
     private static final class MockFile extends File {

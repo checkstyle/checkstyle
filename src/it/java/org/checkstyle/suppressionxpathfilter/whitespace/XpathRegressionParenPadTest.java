@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +58,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                     AbstractParenPadCheck.MSG_WS_FOLLOWED, "("),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParenPadLeftFollowed']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/LPAREN"
@@ -81,7 +82,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                     AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED, "("),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParenPadLeftNotFollowed']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/LPAREN"
@@ -104,7 +105,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                     AbstractParenPadCheck.MSG_WS_PRECEDED, ")"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParenPadRightPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/RPAREN"
@@ -128,7 +129,7 @@ public class XpathRegressionParenPadTest extends AbstractXpathTestSupport {
                     AbstractParenPadCheck.MSG_WS_NOT_PRECEDED, ")"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathParenPadRightNotPreceded']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/LITERAL_IF/RPAREN"

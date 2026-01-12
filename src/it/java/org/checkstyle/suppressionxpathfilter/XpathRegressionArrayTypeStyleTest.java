@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
             "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathArrayTypeStyleVariable']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE["
@@ -69,7 +70,7 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
             "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathArrayTypeStyleMethodDef']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"

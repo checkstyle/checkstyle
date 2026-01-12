@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -51,7 +52,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         final String[] expectedViolation = {
             "5:36: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementLoops']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
@@ -70,7 +71,7 @@ public class XpathRegressionEmptyStatementTest extends AbstractXpathTestSupport 
         final String[] expectedViolation = {
             "6:19: " + getCheckMessage(EmptyStatementCheck.class, EmptyStatementCheck.MSG_KEY),
         };
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text='InputXpathEmptyStatementConditionals']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"

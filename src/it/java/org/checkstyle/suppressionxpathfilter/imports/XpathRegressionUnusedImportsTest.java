@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
                     UnusedImportsCheck.MSG_KEY, "java.util.List"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/IMPORT/DOT[./IDENT[@text='List']]/DOT/IDENT[@text='java']");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -75,7 +76,7 @@ public class XpathRegressionUnusedImportsTest extends AbstractXpathTestSupport {
                     UnusedImportsCheck.MSG_KEY, "java.util.Map.Entry"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
                         + "[./IDENT[@text='Entry']]/DOT[./IDENT[@text='Map']]"
                         + "/DOT/IDENT[@text='java']");

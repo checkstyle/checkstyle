@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.javadoc;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathInvalidJavadocPositionOne']]"
                     + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
@@ -79,7 +80,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='InputXpathInvalidJavadocPositionTwo']]"
                     + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
@@ -103,7 +104,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathInvalidJavadocPositionThree']]/"
                     + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
@@ -127,7 +128,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathInvalidJavadocPositionFour']]"
                 + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
@@ -151,7 +152,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathInvalidJavadocPositionFive']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
@@ -176,7 +177,7 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
                 InvalidJavadocPositionCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathInvalidJavadocPositionSix']]"
                 + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"

@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +57,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
                 RequireThisCheck.MSG_VARIABLE, "age", ""),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRequireThisOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='changeAge']]/SLIST/EXPR/ASSIGN"
@@ -81,7 +82,7 @@ public class XpathRegressionRequireThisTest extends AbstractXpathTestSupport {
                 RequireThisCheck.MSG_METHOD, "method1", ""),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRequireThisTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method2']]/SLIST/EXPR"

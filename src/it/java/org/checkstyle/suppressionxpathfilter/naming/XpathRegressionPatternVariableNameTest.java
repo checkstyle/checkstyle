@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -59,7 +60,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                     "STRING1", defaultPattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathPatternVariableNameOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
@@ -88,7 +89,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                     AbstractNameCheck.MSG_INVALID_PATTERN, "s", nonDefaultPattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathPatternVariableNameTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"
@@ -117,7 +118,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 AbstractNameCheck.MSG_INVALID_PATTERN, "STR", nonDefaultPattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathPatternVariableNameThree']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/"
@@ -146,7 +147,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
                 AbstractNameCheck.MSG_INVALID_PATTERN, "st", nonDefaultPattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathPatternVariableNameFour']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyClass']]/SLIST/LITERAL_IF/EXPR/"

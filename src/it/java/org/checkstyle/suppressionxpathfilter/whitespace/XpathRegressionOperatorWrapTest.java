@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -55,7 +56,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
                         OperatorWrapCheck.MSG_LINE_NEW, "+"),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathOperatorWrapNewLine']]"
@@ -84,7 +85,7 @@ public class XpathRegressionOperatorWrapTest extends AbstractXpathTestSupport {
                         OperatorWrapCheck.MSG_LINE_PREVIOUS, "="),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
              "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathOperatorWrapPreviousLine']]"
                 + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]"

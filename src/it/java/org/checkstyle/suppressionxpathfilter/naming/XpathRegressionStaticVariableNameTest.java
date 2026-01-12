@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +58,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathStaticVariableName']]"
@@ -83,7 +84,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathStaticVariableNameInnerClassField']]"
@@ -110,7 +111,7 @@ public class XpathRegressionStaticVariableNameTest extends AbstractXpathTestSupp
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM3", pattern),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathStaticVariableNameNoAccessModifier']]"

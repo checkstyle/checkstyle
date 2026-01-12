@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter.metrics;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -88,7 +89,7 @@ public class XpathRegressionNPathComplexityTest extends AbstractXpathTestSupport
                 NPathComplexityCheck.MSG_KEY, 3, 0),
         };
 
-        final List<String> expectedXpathQueries = List.of(
+        final List<String> expectedXpathQueries = Collections.singletonList(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNPathComplexityStaticBlock']]"
                 + "/OBJBLOCK/STATIC_INIT"

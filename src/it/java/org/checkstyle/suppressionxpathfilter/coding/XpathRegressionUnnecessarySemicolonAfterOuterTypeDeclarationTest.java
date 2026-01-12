@@ -20,6 +20,7 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +57,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                List.of("/COMPILATION_UNIT/SEMI");
+                Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
@@ -73,7 +74,7 @@ public class XpathRegressionUnnecessarySemicolonAfterOuterTypeDeclarationTest
         };
 
         final List<String> expectedXpathQueries =
-                List.of("/COMPILATION_UNIT/SEMI");
+                Collections.singletonList("/COMPILATION_UNIT/SEMI");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
