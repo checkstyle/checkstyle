@@ -75,5 +75,5 @@ recipeList:
 #  - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
  - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
- #- tech.picnic.errorprone.refasterrules.StringRulesRecipes
+ - tech.picnic.errorprone.refasterrules.StringRulesRecipes
 ---
