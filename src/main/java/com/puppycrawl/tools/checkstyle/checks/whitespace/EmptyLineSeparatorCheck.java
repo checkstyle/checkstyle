@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -505,7 +504,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param token DetailAST token
      */
     private void checkCommentsInsideToken(DetailAST token) {
-        final List<DetailAST> childNodes = new LinkedList<>();
+        final List<DetailAST> childNodes = new ArrayList<>();
         DetailAST childNode = token.getLastChild();
         while (childNode != null) {
             if (childNode.getType() == TokenTypes.MODIFIERS) {

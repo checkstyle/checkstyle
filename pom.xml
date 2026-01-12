@@ -276,10 +276,11 @@
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
+      -Xep:JdkObsolete:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:EqualsGetClass:WARN
-      -Xep:InlineFormatString:WARN
-      -Xep:JdkObsolete:WARN
+      -Xep:InlineFormatString:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
+      -Xep:EqualsGetClass:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -3323,6 +3324,7 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
               </avoidCallsTo>
               <features>
@@ -4000,8 +4002,12 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <param>clearCreatedHandlers</param>
+                <param>clearState</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4698,6 +4704,10 @@
                 <param>replaceVersionString</param>
                 <!-- this method in XMLLogger.java works properly only when execution is from jar -->
                 <param>printVersionString</param>
+                <!-- Switch expressions with enum cases produce equivalent mutations
+                that cannot be killed since all branches are already covered.
+                See https://github.com/checkstyle/checkstyle/issues/18024 -->
+                <param>renderSeverityLevel</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
