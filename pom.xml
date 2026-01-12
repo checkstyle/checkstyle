@@ -248,18 +248,24 @@
       -Xep:EffectivelyPrivate:ERROR
       -Xep:EmptyMethod:ERROR
       -Xep:EnumOrdinal:ERROR
+      -Xep:EscapedEntity:ERROR
       -Xep:ExplicitArgumentEnumeration:ERROR
       -Xep:ExplicitEnumOrdering:ERROR
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InconsistentCapitalization:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:NullableOptional:ERROR
+      -Xep:ObjectEqualsForPrimitives:ERROR
       -Xep:OptionalOrElseGet:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
@@ -271,6 +277,7 @@
       -Xep:TimeZoneUsage:ERROR
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
+      -Xep:UnrecognisedJavadocTag:ERROR
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
@@ -293,6 +300,8 @@
       -Xep:InvalidBlockTag:OFF
       <!-- We prefer UnnecessaryParenthesesCheck over error-prone's OperatorPrecedence -->
       -Xep:OperatorPrecedence:OFF
+      <!-- InlineMeSuggester is just a suggestion for future API improvements -->
+      -Xep:InlineMeSuggester:OFF
     </error-prone.configuration-args>
   </properties>
 
@@ -2706,6 +2715,7 @@
                     <arg>-XDcompilePolicy=simple</arg>
                     <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
+                    <arg>-Werror</arg>
                     <arg>
                       -Xplugin:ErrorProne ${error-prone.configuration-args}
                     </arg>
