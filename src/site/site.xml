@@ -373,6 +373,7 @@
 
       <item name="Style Configurations" href="style_configs.html">
         <item name="Google's Style" href="google_style.html"/>
+        <item name="OpenJDK's Style" href="openjdk_style.html"/>
         <item name="Sun's Style" href="sun_style.html"/>
       </item>
     </menu>

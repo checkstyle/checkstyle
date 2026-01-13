@@ -241,6 +241,9 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
+        CheckUtil.getConfigOpenJdkStyleModules());
+
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -252,6 +255,7 @@ public class XdocsPagesTest {
         "checks.xml",
         "property_types.xml",
         "google_style.xml",
+        "openjdk_style.xml",
         "sun_style.xml",
         "style_configs.xml",
         "writingfilters.xml",
@@ -676,6 +680,10 @@ public class XdocsPagesTest {
                 }
                 else if ("sun_style.xml".equals(fileName)) {
                     sectionName = "Sun";
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
+                }
+                else if ("openjdk_style.xml".equals(fileName)) {
+                    sectionName = "OpenJDK";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
                 else if ((path.toString().contains("filters")
@@ -1871,6 +1879,7 @@ public class XdocsPagesTest {
 
             final Set<String> styleChecks = switch (styleName) {
                 case "google" -> new HashSet<>(GOOGLE_MODULES);
+                case "openjdk" -> new HashSet<>(OPENJDK_MODULES);
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
