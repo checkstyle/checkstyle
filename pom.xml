@@ -3642,6 +3642,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalInstantiationCheck*</param>
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.IllegalSymbolCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck*</param>
