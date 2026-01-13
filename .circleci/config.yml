@@ -315,7 +315,7 @@ workflows:
           name: "openrewrite-recipes"
           image-name: "cimg/openjdk:21.0"
           command: "./.ci/validation.sh openrewrite-recipes"
-          no_output_timeout: 15m
+          no_output_timeout: 25m
 
   spotless:
     jobs:
