@@ -88,6 +88,7 @@
     &lt;module name="IllegalTokenText"&gt;
       &lt;property name="tokens" value="STRING_LITERAL"/&gt;
       &lt;property name="format" value="a href"/&gt;
+      &lt;property name="message" value="Avoid using a href string literal"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
