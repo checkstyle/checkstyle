@@ -55,5 +55,9 @@ public class Example2 {
   private void testMethod6() {
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end
