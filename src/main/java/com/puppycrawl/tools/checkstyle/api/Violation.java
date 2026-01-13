@@ -364,9 +364,9 @@ public final class Violation
             return false;
         }
         final Violation violation = (Violation) object;
-        return Objects.equals(lineNo, violation.lineNo)
-            && Objects.equals(columnNo, violation.columnNo)
-            && Objects.equals(columnCharIndex, violation.columnCharIndex)
+        return lineNo == violation.lineNo
+            && columnNo == violation.columnNo
+            && columnCharIndex == violation.columnCharIndex
             && Objects.equals(tokenType, violation.tokenType)
             && Objects.equals(severityLevel, violation.severityLevel)
             && Objects.equals(moduleId, violation.moduleId)
