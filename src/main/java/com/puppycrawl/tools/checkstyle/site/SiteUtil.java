@@ -737,7 +737,7 @@ public final class SiteUtil {
             getPropertyVersionFromItsJavadoc(propertyJavadoc);
 
         if (specifiedPropertyVersionInPropertyJavadoc.isPresent()) {
-            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.get();
+            sinceVersion = specifiedPropertyVersionInPropertyJavadoc.orElseThrow();
         }
         else {
             final String moduleSince = getSinceVersionFromJavadoc(moduleJavadoc);
