@@ -86,7 +86,7 @@ public class LineColumn implements Comparable<LineColumn> {
         }
         final LineColumn lineColumn = (LineColumn) other;
         return line == lineColumn.line
-                && column == lineColumn.column;
+            && column == lineColumn.column;
     }
 
     @Override

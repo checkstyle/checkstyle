@@ -506,12 +506,12 @@ public class SuppressionCommentFilter
             }
             final Tag tag = (Tag) other;
             return line == tag.line
-                    && column == tag.column
-                    && Objects.equals(tagType, tag.tagType)
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+                && column == tag.column
+                && Objects.equals(tagType, tag.tagType)
+                && Objects.equals(text, tag.text)
+                && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override

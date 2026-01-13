@@ -365,16 +365,16 @@ public final class Violation
         }
         final Violation violation = (Violation) object;
         return lineNo == violation.lineNo
-                && columnNo == violation.columnNo
-                && columnCharIndex == violation.columnCharIndex
-                && tokenType == violation.tokenType
-                && Objects.equals(severityLevel, violation.severityLevel)
-                && Objects.equals(moduleId, violation.moduleId)
-                && Objects.equals(key, violation.key)
-                && Objects.equals(bundle, violation.bundle)
-                && Objects.equals(sourceClass, violation.sourceClass)
-                && Objects.equals(customMessage, violation.customMessage)
-                && Arrays.equals(args, violation.args);
+            && columnNo == violation.columnNo
+            && columnCharIndex == violation.columnCharIndex
+            && tokenType == violation.tokenType
+            && Objects.equals(severityLevel, violation.severityLevel)
+            && Objects.equals(moduleId, violation.moduleId)
+            && Objects.equals(key, violation.key)
+            && Objects.equals(bundle, violation.bundle)
+            && Objects.equals(sourceClass, violation.sourceClass)
+            && Objects.equals(customMessage, violation.customMessage)
+            && Arrays.equals(args, violation.args);
     }
 
     @Override

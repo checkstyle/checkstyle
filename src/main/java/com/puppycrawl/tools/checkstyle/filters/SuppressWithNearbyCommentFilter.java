@@ -419,11 +419,11 @@ public class SuppressWithNearbyCommentFilter
             }
             final Tag tag = (Tag) other;
             return firstLine == tag.firstLine
-                    && lastLine == tag.lastLine
-                    && Objects.equals(text, tag.text)
-                    && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
-                    && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
-                    && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
+                && lastLine == tag.lastLine
+                && Objects.equals(text, tag.text)
+                && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
+                && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
+                && Objects.equals(tagIdRegexp, tag.tagIdRegexp);
         }
 
         @Override
