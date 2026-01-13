@@ -8,7 +8,6 @@
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
@@ -55,5 +54,9 @@ public class Example5 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end
