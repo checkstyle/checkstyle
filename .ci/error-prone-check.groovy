@@ -1,8 +1,8 @@
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
-import groovy.xml.XmlUtil
 import groovy.xml.XmlParser
+import groovy.xml.XmlUtil
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -33,7 +33,7 @@ System.exit(exitCode)
  */
 private int parseArgumentAndExecute(String argument, String flag) {
     final int exitCode
-    if (argument in ["compile", "test-compile"]) {
+    if (argument == "compile" || argument == "test-compile") {
         if (flag != null && flag != "-g" && flag != "--generate-suppression") {
             final String exceptionMessage = "Unexpected flag: '${flag}'\n" + USAGE_STRING
             throw new IllegalArgumentException(exceptionMessage)
@@ -68,7 +68,7 @@ private static int checkErrorProneReport(String profile, String flag) {
     final File suppressionFile = new File(suppressedErrorsFileUri)
     Set<ErrorProneError> suppressedErrors = Collections.emptySet()
     if (suppressionFile.exists()) {
-        final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
+        final groovy.util.Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
     return compareErrors(errors, suppressedErrors, flag)
@@ -169,7 +169,7 @@ private static Set<ErrorProneError> getSuppressedErrors(Node mainNode) {
     final Set<ErrorProneError> suppressedErrors = new HashSet<>()
 
     children.each { node ->
-        final Node errorNode = node as Node
+        final Node errorNode = node
         suppressedErrors.add(getError(errorNode))
     }
     return suppressedErrors
@@ -183,7 +183,7 @@ private static Set<ErrorProneError> getSuppressedErrors(Node mainNode) {
  * @return {@link ErrorProneError} object represented by the {@code error} XML node
  */
 private static ErrorProneError getError(Node errorNode) {
-    final List childNodes = errorNode.children()
+    final List<Node> childNodes = errorNode.children()
 
     String sourceFile = null
     String bugPattern = null
@@ -191,7 +191,7 @@ private static ErrorProneError getError(Node errorNode) {
     String lineContent = null
     final int lineNumber = -1
     childNodes.each {
-        final Node childNode = it as Node
+        final Node childNode = it
         final String text = childNode.name()
 
         final String childNodeText = XmlUtil.escapeXml(childNode.text())
