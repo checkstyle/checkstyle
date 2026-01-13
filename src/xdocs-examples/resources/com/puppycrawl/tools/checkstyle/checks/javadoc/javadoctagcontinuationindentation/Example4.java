@@ -8,17 +8,17 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctagcontinuationindentation;
 
 // xdoc section -- start
-
+/**
+ * <p> 'p' tag is unclosed
+ * <p> 'p' tag is closed</p>
+ */
 class Example4 {
 
-   /**
-   * Writes the object using a
-   * <a href="{@docRoot}/serialized-form.html#java.time.Ser">dedicated form</a>.
-   * @serialData
+  /**
    * <pre>
-   * out.writeByte(1);
-   * out.writeInt(nanos);
-   * </pre>
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."</pre>
    */
   public void testMethod1(String input) {}
 
@@ -38,13 +38,7 @@ class Example4 {
    *
    * @apiNote
    *          This is the predefined indentation applied by Eclipse formatter.
-   *          <pre>
-   * this content, and not any error:
-   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
-   *   No violation is expected here."</pre>
    */
-  public void testMethod3(String input) {}
-
+   public void testMethod3(String input) {}
 }
-
 // xdoc section -- end
