@@ -1,14 +1,8 @@
 /*xml
-<module name="Checker">
-  <module name="TreeWalker">
-    <module name="JavadocStyle">
-    <property name="tokens" value="CLASS_DEF"/>
-    </module>
-  </module>
-</module>
+<module name="Checker"><module name="TreeWalker"><module name="JavadocStyle">
+<property name="tokens" value="CLASS_DEF"/></module></module></module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here

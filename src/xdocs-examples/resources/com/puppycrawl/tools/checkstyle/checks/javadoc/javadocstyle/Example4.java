@@ -1,14 +1,8 @@
 /*xml
-<module name="Checker">
-  <module name="TreeWalker">
-    <module name="JavadocStyle">
-    <property name="checkFirstSentence" value="false"/>
-    </module>
-  </module>
-</module>
+<module name="Checker"><module name="TreeWalker"><module name="JavadocStyle">
+<property name="checkFirstSentence" value="false"/></module></module></module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here

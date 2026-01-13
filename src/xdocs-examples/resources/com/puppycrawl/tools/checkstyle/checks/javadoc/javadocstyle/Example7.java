@@ -2,11 +2,11 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocStyle">
-      <property name="checkEmptyJavadoc" value="true"/></module>
-  </module></module>
+      <property name="checkEmptyJavadoc" value="true"/>
+    </module>
+  </module>
+</module>
 */
-
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 // xdoc section -- start
 /**
