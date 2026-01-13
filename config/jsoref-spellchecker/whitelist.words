@@ -473,6 +473,7 @@ Fmetrics
 Fmodifier
 FModule
 Fnaming
+Fopenjdk
 forbiddenapis
 Foreach
 Fpuppycrawl
