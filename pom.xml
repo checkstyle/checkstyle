@@ -967,6 +967,7 @@
         <configuration>
           <compilerArgs>
             <arg>-Xpkginfo:always</arg>
+            <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
           </compilerArgs>
         </configuration>
       </plugin>

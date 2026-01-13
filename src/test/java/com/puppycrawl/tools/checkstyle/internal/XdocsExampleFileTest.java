@@ -64,13 +64,6 @@ public class XdocsExampleFileTest {
             Map.entry("WhitespaceAroundCheck", Set.of("allowEmptySwitchBlockStatements")),
             Map.entry("SuppressWarningsHolder", Set.of("aliasList")),
             Map.entry("IllegalTokenTextCheck", Set.of("message")),
-            Map.entry("IndentationCheck", Set.of(
-                    "basicOffset",
-                    "lineWrappingIndentation",
-                    "throwsIndent",
-                    "arrayInitIndent",
-                    "braceAdjustment"
-            )),
             Map.entry("ClassMemberImpliedModifierCheck", Set.of(
                     "violateImpliedStaticOnNestedEnum",
                     "violateImpliedStaticOnNestedRecord",
