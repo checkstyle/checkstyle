@@ -79,8 +79,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @since 3.5
  */
-public class SuppressionCommentFilter
-    extends AbstractAutomaticBean
+public class SuppressionCommentFilter extends AbstractAutomaticBean
     implements TreeWalkerFilter {
 
     /**
@@ -294,9 +293,7 @@ public class SuppressionCommentFilter
             tagSuppressions(contents.getSingleLineComments().values());
         }
         if (checkC) {
-            final Collection<List<TextBlock>> cComments = contents
-                    .getBlockComments().values();
-            cComments.forEach(this::tagSuppressions);
+            contents.getBlockComments().values().forEach(this::tagSuppressions);
         }
         Collections.sort(tags);
     }
@@ -478,23 +475,14 @@ public class SuppressionCommentFilter
          */
         @Override
         public int compareTo(Tag object) {
-            final int result;
-            if (line == object.line) {
-                result = Integer.compare(column, object.column);
-            }
-            else {
-                result = Integer.compare(line, object.line);
-            }
-            return result;
+            return line == object.line
+                    ? Integer.compare(column, object.column)
+                    : Integer.compare(line, object.line);
         }
 
         /**
          * Indicates whether some other object is "equal to" this one.
          * Suppression on enumeration is needed so code stays consistent.
-         *
-         * @noinspection EqualsCalledOnEnumConstant
-         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-         *      code consistent
          */
         @Override
         public boolean equals(Object other) {
@@ -507,7 +495,7 @@ public class SuppressionCommentFilter
             final Tag tag = (Tag) other;
             return Objects.equals(line, tag.line)
                     && Objects.equals(column, tag.column)
-                    && Objects.equals(tagType, tag.tagType)
+                    && tagType == tag.tagType
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
@@ -538,8 +526,7 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
-            final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
-            return checkMatcher.find();
+            return tagCheckRegexp.matcher(event.getSourceName()).find();
         }
 
         /**
@@ -549,17 +536,11 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
-            boolean match = true;
             if (tagIdRegexp != null) {
-                if (event.getModuleId() == null) {
-                    match = false;
-                }
-                else {
-                    final Matcher idMatcher = tagIdRegexp.matcher(event.getModuleId());
-                    match = idMatcher.find();
-                }
+                return event.getModuleId() != null
+                    && tagIdRegexp.matcher(event.getModuleId()).find();
             }
-            return match;
+            return true;
         }
 
         /**
@@ -569,12 +550,8 @@ public class SuppressionCommentFilter
          * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
-            boolean match = true;
-            if (tagMessageRegexp != null) {
-                final Matcher messageMatcher = tagMessageRegexp.matcher(event.getMessage());
-                match = messageMatcher.find();
-            }
-            return match;
+            return tagMessageRegexp == null
+                || tagMessageRegexp.matcher(event.getMessage()).find();
         }
 
         @Override
