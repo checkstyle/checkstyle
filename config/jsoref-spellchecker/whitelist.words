@@ -474,6 +474,7 @@ Fmetrics
 Fmodifier
 FModule
 Fnaming
+Fopenjdk
 forbiddenapis
 Foreach
 Fpuppycrawl
@@ -1530,6 +1531,7 @@ wontfix
 workaround
 workflow
 wq
+wrappinglines
 writetag
 writingchecks
 writingfilefilters
