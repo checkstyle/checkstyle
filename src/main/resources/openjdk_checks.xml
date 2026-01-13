@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  Checkstyle configuration that checks the OpenJDK coding conventions from the
+  OpenJDK Java Style Guidelines at https://cr.openjdk.org/~alundblad/styleguide/index-v6.html
+
+  Checkstyle is very configurable. Be sure to read the documentation at
+  https://checkstyle.org (or in your downloaded distribution).
+
+  To completely disable a check, just comment it out or delete it from the file.
+  To suppress certain violations please review suppression filters.
+
+-->
+
+<module name="Checker">
+  <property name="severity" value="error"/>
+
+  <property name="fileExtensions" value="java, properties, xml"/>
+
+  <!-- Excludes all 'module-info.java' files              -->
+  <!-- See https://checkstyle.org/filefilters/index.html -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+  </module>
+
+  <!-- https://checkstyle.org/filters/suppressionfilter.html -->
+  <module name="SuppressionFilter">
+    <property name="file" value="${org.checkstyle.openjdk.suppressionfilter.config}"
+              default="checkstyle-suppressions.xml" />
+    <property name="optional" value="true"/>
+  </module>
+
+  <!-- Add OpenJDK-specific checks here based on the style guide -->
+
+  <module name="TreeWalker">
+    <!-- Add TreeWalker checks based on OpenJDK style guide -->
+    <module name="OneStatementPerLine"/>
+
+    <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
+    <module name="SuppressionXpathFilter">
+      <property name="file" value="${org.checkstyle.openjdk.suppressionxpathfilter.config}"
+                default="checkstyle-xpath-suppressions.xml" />
+      <property name="optional" value="true"/>
+    </module>
+
+  </module>
+
+</module>
