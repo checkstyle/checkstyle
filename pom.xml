@@ -256,6 +256,7 @@
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
