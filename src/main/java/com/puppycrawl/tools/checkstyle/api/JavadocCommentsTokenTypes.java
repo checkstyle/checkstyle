@@ -72,7 +72,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int LEADING_ASTERISK = JavadocCommentsLexer.LEADING_ASTERISK;
 
     /**
-    * Newline character in a Javadoc comment. 
+    * Newline character in a Javadoc comment.
     *
     * <p><b>Example:</b></p>
     * <pre>{@code
@@ -84,27 +84,27 @@ public final class JavadocCommentsTokenTypes {
     *
     * <b>Tree:</b>
     * <pre>{@code
-    * JAVADOC_CONTENT -> JAVADOC_CONTENT 
-    * |--TEXT -> public class Test { 
-    * |--NEWLINE -> \n 
-    * |--NEWLINE -> \n 
-    * |--TEXT ->     /** 
-    * |--NEWLINE -> \n 
-    * |--LEADING_ASTERISK ->      * 
-    * |--TEXT ->  Line one. 
-    * |--NEWLINE -> \n 
-    * |--LEADING_ASTERISK ->      * 
-    * |--TEXT ->  Line two. 
-    * |--NEWLINE -> \n 
-    * |--LEADING_ASTERISK ->      * 
-    * |--TEXT -> / 
-    * |--NEWLINE -> \n 
-    * |--TEXT ->     void method() { 
-    * |--NEWLINE -> \n 
-    * |--TEXT ->     } 
-    * |--NEWLINE -> \n 
-    * |--TEXT -> } 
-    * `--NEWLINE -> \n 
+    * JAVADOC_CONTENT -> JAVADOC_CONTENT
+    * |--TEXT -> public class Test {
+    * |--NEWLINE -> \n
+    * |--NEWLINE -> \n
+    * |--TEXT ->     /**
+    * |--NEWLINE -> \n
+    * |--LEADING_ASTERISK ->      *
+    * |--TEXT ->  Line one.
+    * |--NEWLINE -> \n
+    * |--LEADING_ASTERISK ->      *
+    * |--TEXT ->  Line two.
+    * |--NEWLINE -> \n
+    * |--LEADING_ASTERISK ->      *
+    * |--TEXT -> /
+    * |--NEWLINE -> \n
+    * |--TEXT ->     void method() {
+    * |--NEWLINE -> \n
+    * |--TEXT ->     }
+    * |--NEWLINE -> \n
+    * |--TEXT -> }
+    * `--NEWLINE -> \n
     * }</pre>
     */
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
