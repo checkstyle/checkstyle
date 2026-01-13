@@ -4,10 +4,6 @@ name: org.checkstyle.AllAutoFixes
 displayName: Auto Fixes
 description: List of auto fixes from different providers.
 recipeList:
-  - org.checkstyle.autofix.CheckstyleAutoFix:
-      violationReportPath: target/cs_errors.xml
-      configurationPath: config/checkstyle-checks.xml
-      propertiesPath: config/openrewrite-recipes-checkstyle.properties
   - org.openrewrite.java.RemoveUnusedImports
   - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
   - org.openrewrite.java.format.NormalizeFormat
@@ -42,6 +38,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
