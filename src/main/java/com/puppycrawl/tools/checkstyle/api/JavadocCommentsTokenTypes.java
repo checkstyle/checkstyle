@@ -684,20 +684,33 @@ public final class JavadocCommentsTokenTypes {
     /**
      * End of an inline tag <code>}</code>.
      *
-     * <p>This token represents the closing brace that ends an inline Javadoc tag.</p>
-     *
      * <p><b>Example:</b></p>
-     * <pre>* &#123;@code text}</pre>
+     * <pre>{@code
+     * /**
+     * * {@code code}
+     * &#42;/
+     * }</pre>
      *
      * <b>Tree:</b>
-     * <pre>
-     * JAVADOC_INLINE_TAG -&gt; JAVADOC_INLINE_TAG
-     * `--CODE_INLINE_TAG -&gt; CODE_INLINE_TAG
-     *     |--JAVADOC_INLINE_TAG_START -&gt; &#123;@
-     *     |--TAG_NAME -&gt; code
-     *     |--TEXT -&gt;  text
-     *     `--JAVADOC_INLINE_TAG_END -&gt; }
-     * </pre>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
      *
      * @see #JAVADOC_INLINE_TAG
      * @see #JAVADOC_INLINE_TAG_START
