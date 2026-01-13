@@ -121,7 +121,10 @@ if ((condition1 &amp;&amp; condition2)
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
 &lt;module name="Checker"&gt;
   &lt;module name="TreeWalker"&gt;
-    &lt;module name="Indentation"/&gt;
+    &lt;module name="Indentation"&gt;
+        &lt;property name="basicOffset" value="4"/&gt;
+        &lt;property name="lineWrappingIndentation" value="4"/&gt;
+    &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
 </code></pre></div>
@@ -183,6 +186,8 @@ class Example1 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"&gt;
       &lt;property name="caseIndent" value="0"/&gt;
+      &lt;property name="throwsIndent" value="4"/&gt;
+      &lt;property name="arrayInitIndent" value="4"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
@@ -243,6 +248,7 @@ class Example2 {
   &lt;module name="TreeWalker"&gt;
     &lt;module name="Indentation"&gt;
       &lt;property name="forceStrictCondition" value="true"/&gt;
+      &lt;property name="braceAdjustment" value="0"/&gt;
     &lt;/module&gt;
   &lt;/module&gt;
 &lt;/module&gt;
