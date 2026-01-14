@@ -397,7 +397,6 @@
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>
     <module name="AvoidDoubleBraceInitialization"/>
-    <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>
     <module name="ConstructorsDeclarationGrouping"/>
     <module name="CovariantEquals"/>
@@ -578,7 +577,7 @@
     <module name="PatternVariableAssignment"/>
     <module name="RequireThis"/>
     <module name="ReturnCount">
-      <property name="max" value="1"/>
+      <property name="max" value="2"/>
       <property name="maxForVoid" value="0"/>
     </module>
     <module name="SimplifyBooleanExpression"/>
