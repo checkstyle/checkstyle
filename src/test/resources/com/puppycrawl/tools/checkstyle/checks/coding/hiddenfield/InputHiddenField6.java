@@ -2,10 +2,10 @@
 HiddenField
 ignoreFormat = (default)null
 ignoreConstructorParameter = true
+ignoreSetter = (default)false
 setterCanReturnItsClass = (default)false
 ignoreAbstractMethods = (default)false
 tokens = (default)VARIABLE_DEF, PARAMETER_DEF, PATTERN_VARIABLE_DEF, LAMBDA, RECORD_COMPONENT_DEF
-
 
 */
 
