@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="">
-<exception>
-<![CDATA[
-stackTrace&#10;example
-]]>
-</exception>
+<file name="InputXMLLoggerException.java">
+<error line="11" column="17" severity="error" message="Name 'BadMemberName' must match pattern '^[a-z][a-zA-Z0-9]*$'." source="com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck"/>
+</file>
 </checkstyle>
