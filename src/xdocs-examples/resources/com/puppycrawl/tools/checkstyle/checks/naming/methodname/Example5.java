@@ -14,9 +14,10 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodname;
 
 // xdoc section -- start
 class Example5 {
-  public void Method1() {}
-  protected void Method2() {}
+  public void method1() {}
+  protected void Method2() {} // ok because, 'Property 'applyToProtected' is false'
   private void Method3() {} // violation 'Name 'Method3' must match pattern'
-  void Method4() {} // violation 'Name 'Method4' must match pattern'
+  public void Method4() {} // ok because, 'Property 'applyToPublic' is false'
+  void Method5() {} // violation 'Name 'Method5' must match pattern'
 }
 // xdoc section -- end
