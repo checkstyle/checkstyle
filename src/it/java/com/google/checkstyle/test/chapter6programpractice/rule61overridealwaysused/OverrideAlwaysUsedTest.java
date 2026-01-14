@@ -32,6 +32,36 @@ class OverrideAlwaysUsedTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testOverrideAlwaysUsedForRecordViolation() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordViolation.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordValid() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordValid.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordNested() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordNested.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordGeneric() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordGeneric.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordMixed() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordMixed.java"));
+    }
+
+    @Test
+    public void testOverrideAlwaysUsedForRecordInClass() throws Exception {
+        verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecordInClass.java"));
+    }
+
+    @Test
     public void testOverrideAlwaysUsedForRecord() throws Exception {
         verifyWithWholeConfig(getPath("InputOverrideAlwaysUsedForRecord.java"));
     }

@@ -2221,11 +2221,14 @@
                         src="images/ok_blue.png"
                         alt="" />
                   </span>
-                  Coverage is missing for explicitly declared accessor method for a record
-                  component. It will be addressed at:
-                  <a href="https://github.com/checkstyle/checkstyle/issues/17561">
-                    #17561
-                  </a>
+                  <a href="checks/annotation/missingoverrideonrecordaccessor.html#MissingOverrideOnRecordAccessor">
+                    MissingOverrideOnRecordAccessor</a>
+                  (<a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
+                  config</a>)
+                </td>
+                <td>
+                  <a href="https://github.com/checkstyle/checkstyle/tree/master/src/it/resources/com/google/checkstyle/test/chapter6programpractice/rule61overridealwaysused">
+                    samples</a>
                 </td>
                 <td/>
               </tr>
