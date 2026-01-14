@@ -1,7 +1,10 @@
 /*xml
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="Indentation"/>
+    <module name="Indentation">
+        <property name="basicOffset" value="4"/>
+        <property name="lineWrappingIndentation" value="4"/>
+    </module>
   </module>
 </module>
 */
