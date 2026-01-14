@@ -138,6 +138,12 @@ jobs:
           path: ~/.m2/repository
           key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
 
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
       - name: Download contribution
         uses: actions/checkout@v6
         with:
