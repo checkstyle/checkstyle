@@ -172,4 +172,8 @@
   <!-- Uses non-ascii symbols intentionally -->
   <suppress id="checkASCII"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]ConfigurationLoaderTest.java"/>
+
+  <!-- Existing source code did not comply before check was introduced -->
+  <suppress id="javadocUtilizingTrailingSpace"
+            files="src[\\/](main|test|it)[\\/]java[\\/].*\.java"/>
 </suppressions>
