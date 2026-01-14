@@ -735,6 +735,7 @@
       <property name="scope" value="public"/>
     </module>
     <module name="JavadocTagContinuationIndentation"/>
+    <module name="JavadocUtilizingTrailingSpace"/>
     <module name="JavadocType">
       <!-- avoid errors on tag '@noinspection' -->
       <property name="allowUnknownTags" value="true"/>
