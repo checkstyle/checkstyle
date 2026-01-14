@@ -3,6 +3,8 @@
   <module name="TreeWalker">
     <module name="Indentation">
       <property name="caseIndent" value="0"/>
+      <property name="throwsIndent" value="4"/>
+      <property name="arrayInitIndent" value="4"/>
     </module>
   </module>
 </module>
@@ -54,6 +56,3 @@ class Example2 {
     }
 }
 // xdoc section -- end
-
-
-
