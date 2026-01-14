@@ -885,7 +885,7 @@ no-error-equalsverifier)
   echo "Checkout target sources ..."
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle compile \
+  mvn -e --no-transfer-progress -Pstatic-analysis-checkstyle -DdisableStaticAnalysis compile \
     checkstyle:check -Dversion.checkstyle="${CS_POM_VERSION}"
   cd ../
   removeFolderWithProtectedFiles equalsverifier

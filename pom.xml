@@ -253,9 +253,11 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
