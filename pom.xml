@@ -5210,6 +5210,7 @@
               <excludedClasses>
                 <class>com.puppycrawl.tools.checkstyle.utils.OsSpecificUtil</class>
                 <class>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</class>
+                <class>com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder</class>
               </excludedClasses>
               <targetTests>
                 <param>com.puppycrawl.tools.checkstyle.utils.*</param>
