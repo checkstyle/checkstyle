@@ -781,6 +781,26 @@ public class SuppressWithNearbyCommentFilterTest
             .isEmpty();
     }
 
+    @Test
+    public void testDoesNotRetagSameFileContents() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final FileContents contents = new FileContents(new FileText(new File("filename"),
+                Collections.singletonList("//SUPPRESS CHECKSTYLE ignore")));
+        final Violation violation = new Violation(1, null, null, null, null, Object.class, null);
+        final TreeWalkerAuditEvent auditEvent =
+                new TreeWalkerAuditEvent(contents, "filename", violation, null);
+
+        assertWithMessage("Filter should accept without tags")
+                .that(filter.accept(auditEvent))
+                .isTrue();
+
+        contents.reportSingleLineComment(1, 0);
+
+        assertWithMessage("Filter should not retag same FileContents")
+                .that(filter.accept(auditEvent))
+                .isTrue();
+    }
+
     /**
      * Calls the filter with a minimal set of inputs and returns a list of
      * {@link SuppressWithNearbyCommentFilter} internal type {@code Tag}.
