@@ -389,6 +389,7 @@
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
+    <module name="MissingOverrideOnRecordAccessor"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocTagContinuationIndentation"/>
