@@ -127,6 +127,10 @@
     files="javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription\.java"/>
 
   <!-- intentional problem for testing -->
+  <suppress id="javadocUtilizingTrailingSpace"
+    files="src[\\/]test[\\/]resources[\\/].*[\\/]Input.*\.java"/>
+
+  <!-- intentional problem for testing -->
   <suppress checks="FileTabCharacter"
     files="[\\/]InputJavadocWithCrAsNewline\.javadoc"/>
   <suppress checks="FileTabCharacter"
@@ -139,6 +143,8 @@
     files="[\\/]InputUnclosedParagraphFollowedByJavadocTag\.javadoc"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputFileTabCharacter\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputJavadocUtilizingTrailingSpaceEdgeCases\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputMainGenerateChecksAndFilesSuppressionsTabWidth\.java"/>
   <suppress checks="FileTabCharacter"

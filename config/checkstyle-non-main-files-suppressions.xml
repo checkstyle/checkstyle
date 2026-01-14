@@ -87,6 +87,8 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]javadocutilizingtrailingspace[\\/]InputJavadocUtilizingTrailingSpace.*\.java"/>
   <!-- Indentation inputs align trailing comments and can exceed the line length limit. -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]indentation[\\/]indentation[\\/]InputIndentation.*\.java"/>
