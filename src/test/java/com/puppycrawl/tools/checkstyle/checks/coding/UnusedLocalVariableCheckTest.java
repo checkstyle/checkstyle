@@ -24,6 +24,7 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableC
 import static com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck.MSG_UNUSED_NAMED_LOCAL_VARIABLE;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
@@ -580,5 +581,53 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
                 expected);
+    }
+
+    @Test
+    public void testIsInsideLocalAnonInnerClass() throws Exception {
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputUnusedLocalVariableLambdaAnonInner.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+        /*
+         *  Use reflection to access the private static method isInsideLocalAnonInnerClass
+         *  to test this because it produces optimization mutations that are hard to kill
+         */
+        final Method insideMethodCheck = UnusedLocalVariableCheck.class
+                .getDeclaredMethod("isInsideLocalAnonInnerClass", DetailAST.class);
+        insideMethodCheck.setAccessible(true);
+
+        final DetailAST fieldObj = TestUtil.findTokenInAstByPredicate(root,
+                        ast -> {
+                            return ast.getType() == TokenTypes.VARIABLE_DEF
+                                    && "fieldObj".equals(ast.findFirstToken(TokenTypes.IDENT)
+                                    .getText());
+                        })
+                .orElseThrow();
+        final DetailAST literalNewField = fieldObj.findFirstToken(TokenTypes.ASSIGN)
+                .findFirstToken(TokenTypes.EXPR)
+                .findFirstToken(TokenTypes.LITERAL_NEW);
+
+        final boolean resultFalse = (boolean) insideMethodCheck.invoke(null, literalNewField);
+
+        assertWithMessage("Should be false for field initialization (no SLIST in ancestry)")
+                .that(resultFalse)
+                .isFalse();
+
+        final DetailAST localObj = TestUtil.findTokenInAstByPredicate(root,
+                        ast -> {
+                            return ast.getType() == TokenTypes.VARIABLE_DEF
+                                    && "localObj".equals(ast.findFirstToken(TokenTypes.IDENT)
+                                    .getText());
+                        })
+                .orElseThrow();
+        final DetailAST literalNewLocal = localObj.findFirstToken(TokenTypes.ASSIGN)
+                .findFirstToken(TokenTypes.EXPR)
+                .findFirstToken(TokenTypes.LITERAL_NEW);
+
+        final boolean resultTrue = (boolean) insideMethodCheck.invoke(null, literalNewLocal);
+
+        assertWithMessage("Should be true for local variable initialization")
+                .that(resultTrue)
+                .isTrue();
     }
 }
