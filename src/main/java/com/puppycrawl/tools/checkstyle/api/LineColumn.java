@@ -25,7 +25,8 @@ import java.util.Objects;
  * Immutable line and column numbers.
  *
  * @noinspection ClassCanBeRecord
- * @noinspectionreason Public API class – converting to record would break binary compatibility.
+ * @noinspectionreason Public API class – converting to record would break
+ *                     binary compatibility.
  */
 public class LineColumn implements Comparable<LineColumn> {
 
@@ -70,6 +71,7 @@ public class LineColumn implements Comparable<LineColumn> {
         if (line == lineColumn.line) {
             result = Integer.compare(column, lineColumn.column);
         }
+
         else {
             result = Integer.compare(line, lineColumn.line);
         }
@@ -85,8 +87,8 @@ public class LineColumn implements Comparable<LineColumn> {
             return false;
         }
         final LineColumn lineColumn = (LineColumn) other;
-        return Objects.equals(line, lineColumn.line)
-                && Objects.equals(column, lineColumn.column);
+        return line == lineColumn.line
+                && column == lineColumn.column;
     }
 
     @Override
