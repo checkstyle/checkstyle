@@ -2,13 +2,12 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocStyle">
-    <property name="checkHtml" value="false"/>
+      <property name="checkHtml" value="false"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
@@ -26,9 +25,7 @@ public class Example5 {
    * {@return {@code true} if this object
    * has been initialized, {@code false} otherwise}
    */
-  private boolean testMethod2() {
-    return true;
-  }
+  private boolean testMethod2() { return true; }
   /**
    * Some description here
    */
@@ -53,7 +50,10 @@ public class Example5 {
    * <p
    */
   private void testMethod6() { // violation 4 lines above 'should end with a period'
-
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end
