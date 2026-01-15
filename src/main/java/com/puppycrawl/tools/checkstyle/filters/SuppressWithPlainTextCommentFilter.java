@@ -355,13 +355,6 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
         }
 
-        /**
-         * Indicates whether some other object is "equal to" this one.
-         *
-         * @noinspection EqualsCalledOnEnumConstant
-         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-         *      code consistent
-         */
         @Override
         public boolean equals(Object other) {
             if (this == other) {
@@ -372,7 +365,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             }
             final Suppression suppression = (Suppression) other;
             return Objects.equals(lineNo, suppression.lineNo)
-                    && Objects.equals(suppressionType, suppression.suppressionType)
+                    && suppressionType == suppression.suppressionType
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
                     && Objects.equals(eventIdRegexp, suppression.eventIdRegexp);
