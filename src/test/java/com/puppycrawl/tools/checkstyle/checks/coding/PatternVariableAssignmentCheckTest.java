@@ -70,6 +70,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
+            "66:9: " + getCheckMessage(MSG_KEY, "r"),
             "81:22: " + getCheckMessage(MSG_KEY, "string"),
         };
 
