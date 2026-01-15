@@ -14,8 +14,9 @@
       <subsection name="Useful information" id="OpenJDK_Useful_information">
         <p>
           This coverage report was created for
-          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html">
-            OpenJDK Java Style Guidelines</a> (Draft, v6).
+          <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html">OpenJDK Java Style</a>
+          (<a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html">cached page</a>),
+          Draft v6, December 2015.
         </p>
         <p>
           <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/openjdk_checks.xml">
@@ -77,7 +78,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-introduction">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1-introduction">
                     <strong>1 - Introduction</strong>
                   </a>
                 </td>
@@ -94,7 +95,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-motivation">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.1-motivation">
                     1.1 Motivation
                   </a>
                 </td>
@@ -111,7 +112,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-guiding-principles">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s1.2-guiding-principles">
                     1.2 Guiding Principles
                   </a>
                 </td>
@@ -129,7 +130,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-java-source-files">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2-java-source-files">
                     <strong>2 - Java Source Files</strong>
                   </a>
                 </td>
@@ -146,7 +147,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-special-characters">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s2.1-special-characters">
                     2.1 Special Characters
                   </a>
                 </td>
@@ -164,7 +165,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-formatting">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3-formatting">
                     <strong>3 - Formatting</strong>
                   </a>
                 </td>
@@ -181,7 +182,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-copyright-notice">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.1-copyright-notice">
                     3.1 Copyright notice
                   </a>
                 </td>
@@ -198,7 +199,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-package-declaration">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.2-package-declaration">
                     3.2 Package declaration
                   </a>
                 </td>
@@ -215,7 +216,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3-import-statements">
                     3.3 Import statements
                   </a>
                 </td>
@@ -232,7 +233,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-import-statements">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.3.1-wildcard-imports">
                     3.3.1 Wildcard Imports
                   </a>
                 </td>
@@ -249,7 +250,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4-class-structure">
                     3.4 Class Structure
                   </a>
                 </td>
@@ -266,7 +267,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-structure">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.4.1-order-of-constructors-and-overloaded-methods">
                     3.4.1 Order of Constructors and Overloaded Methods
                   </a>
                 </td>
@@ -283,7 +284,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-modifiers">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.5-modifiers">
                     3.5 Modifiers
                   </a>
                 </td>
@@ -300,7 +301,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-braces">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6-braces">
                     3.6 Braces
                   </a>
                 </td>
@@ -317,7 +318,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-braces">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.6.1-short-forms">
                     3.6.1 Short Forms
                   </a>
                 </td>
@@ -334,7 +335,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-indentation">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.7-indentation">
                     3.7 Indentation
                   </a>
                 </td>
@@ -351,7 +352,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-lines">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8-wrapping-lines">
                     3.8 Wrapping Lines
                   </a>
                 </td>
@@ -382,7 +383,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-lines">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.1-wrapping-class-declarations">
                     3.8.1 Wrapping Class Declarations
                   </a>
                 </td>
@@ -399,7 +400,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-lines">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.2-wrapping-method-declarations">
                     3.8.2 Wrapping Method Declarations
                   </a>
                 </td>
@@ -416,7 +417,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-wrapping-lines">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.8.3-wrapping-expressions">
                     3.8.3 Wrapping Expressions
                   </a>
                 </td>
@@ -433,7 +434,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9-whitespace">
                     3.9 Whitespace
                   </a>
                 </td>
@@ -450,7 +451,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.1-vertical-whitespace">
                     3.9.1 Vertical Whitespace
                   </a>
                 </td>
@@ -467,7 +468,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-whitespace">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.9.2-horizontal-whitespace">
                     3.9.2 Horizontal Whitespace
                   </a>
                 </td>
@@ -484,7 +485,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-variable-declarations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.10-variable-declarations">
                     3.10 Variable Declarations
                   </a>
                 </td>
@@ -501,7 +502,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-annotations">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.11-annotations">
                     3.11 Annotations
                   </a>
                 </td>
@@ -518,7 +519,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-lambda-expressions">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.12-lambda-expressions">
                     3.12 Lambda Expressions
                   </a>
                 </td>
@@ -535,7 +536,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-redundant-parentheses">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.13-redundant-parentheses">
                     3.13 Redundant Parentheses
                   </a>
                 </td>
@@ -552,7 +553,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-literals">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.14-literals">
                     3.14 Literals
                   </a>
                 </td>
@@ -569,7 +570,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-javadoc">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s3.15-javadoc">
                     3.15 Javadoc
                   </a>
                 </td>
@@ -587,7 +588,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-naming">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4-naming">
                     <strong>4 - Naming</strong>
                   </a>
                 </td>
@@ -604,7 +605,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-package-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.1-package-names">
                     4.1 Package Names
                   </a>
                 </td>
@@ -621,7 +622,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-class-interface-and-enum-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.2-class-interface-enum-names">
                     4.2 Class, Interface and Enum Names
                   </a>
                 </td>
@@ -638,7 +639,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-method-names">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.3-method-names">
                     4.3 Method Names
                   </a>
                 </td>
@@ -655,7 +656,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-variables">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.4-variables">
                     4.4 Variables
                   </a>
                 </td>
@@ -672,7 +673,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-type-variables">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.5-type-variables">
                     4.5 Type Variables
                   </a>
                 </td>
@@ -689,7 +690,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-constants">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s4.6-constants">
                     4.6 Constants
                   </a>
                 </td>
@@ -707,7 +708,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-programming-practices">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5-programming-practices">
                     <strong>5 - Programming Practices</strong>
                   </a>
                 </td>
@@ -724,7 +725,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-commenting-code">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s5.1-commenting-code">
                     5.1 Commenting Code
                   </a>
                 </td>
@@ -742,7 +743,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-when-to-reformat-code">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s6-when-to-reformat">
                     <strong>6 - When to reformat code</strong>
                   </a>
                 </td>
@@ -760,7 +761,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="https://cr.openjdk.org/~alundblad/styleguide/index-v6.html#toc-cases-not-covered">
+                  <a href="styleguides/openjdk-java-style-v6/openjdk-styleguide.html#s7-cases-not-covered">
                     <strong>7 - Cases not covered</strong>
                   </a>
                 </td>
