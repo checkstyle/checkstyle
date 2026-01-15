@@ -581,4 +581,43 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUnusedLocalVariableAnonInnerClasses3.java"),
                 expected);
     }
+
+    @Test
+    public void testAnonInnerClassHoldersStateWithLocalAndNonLocal() throws Exception {
+        final UnusedLocalVariableCheck check = new UnusedLocalVariableCheck();
+        final DetailAST root = JavaParser.parseFile(
+                new File(getPath("InputUnusedLocalVariableLocalVsNonLocal.java")),
+                JavaParser.Options.WITHOUT_COMMENTS);
+
+        final Optional<DetailAST> fieldLevelNew = TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.LITERAL_NEW && ast.getLineNo() == 16);
+
+        assertWithMessage("Should find field-level anonymous inner class")
+                .that(fieldLevelNew.isPresent())
+                .isTrue();
+
+        final Optional<DetailAST> localNew = TestUtil.findTokenInAstByPredicate(root,
+                ast -> ast.getType() == TokenTypes.LITERAL_NEW && ast.getLineNo() == 24);
+
+        assertWithMessage("Should find local anonymous inner class")
+                .that(localNew.isPresent())
+                .isTrue();
+
+        check.beginTree(root);
+
+        final DetailAST classDef = root.findFirstToken(TokenTypes.CLASS_DEF);
+        check.visitToken(Objects.requireNonNull(classDef));
+        check.visitToken(fieldLevelNew.orElseThrow());
+        check.visitToken(localNew.orElseThrow());
+
+        final Collection<?> anonInnerClassHolders =
+                (Collection<?>) TestUtil.getInternalState(
+                        check, "anonInnerClassHolders", Object.class);
+
+        assertWithMessage("Only local anonymous inner classes should be in "
+                + "anonInnerClassHolders. If field-level classes are added"
+                + ", the mutation is present.")
+                .that(anonInnerClassHolders.size())
+                .isEqualTo(1);
+    }
 }
