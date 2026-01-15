@@ -1,14 +1,8 @@
 /*xml
-<module name="Checker">
-  <module name="TreeWalker">
-    <module name="JavadocStyle">
-    <property name="scope" value="public"/>
-    </module>
-  </module>
-</module>
+<module name="Checker"><module name="TreeWalker"><module name="JavadocStyle">
+<property name="scope" value="public"/></module></module></module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
@@ -55,5 +49,9 @@ public class Example2 {
   private void testMethod6() {
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end
