@@ -349,10 +349,6 @@ public final class Violation
     /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
-     *
-     * @noinspection EqualsCalledOnEnumConstant
-     * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-     *      code consistent
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
@@ -364,11 +360,11 @@ public final class Violation
             return false;
         }
         final Violation violation = (Violation) object;
-        return Objects.equals(lineNo, violation.lineNo)
-                && Objects.equals(columnNo, violation.columnNo)
-                && Objects.equals(columnCharIndex, violation.columnCharIndex)
-                && Objects.equals(tokenType, violation.tokenType)
-                && Objects.equals(severityLevel, violation.severityLevel)
+        return lineNo == violation.lineNo
+                && columnNo == violation.columnNo
+                && columnCharIndex == violation.columnCharIndex
+                && tokenType == violation.tokenType
+                && severityLevel == violation.severityLevel
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
                 && Objects.equals(bundle, violation.bundle)
