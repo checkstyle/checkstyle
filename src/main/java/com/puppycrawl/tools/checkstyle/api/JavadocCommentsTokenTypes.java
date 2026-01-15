@@ -1438,10 +1438,6 @@ public final class JavadocCommentsTokenTypes {
      * <b>Tree:</b>
      * <pre>{@code
      * JAVADOC_CONTENT -> JAVADOC_CONTENT
-     * |--TEXT -> public class Test {
-     * |--NEWLINE -> \n
-     * |--TEXT ->     /**
-     * |--NEWLINE -> \n
      * |--LEADING_ASTERISK ->      *
      * |--TEXT ->
      * |--HTML_ELEMENT -> HTML_ELEMENT
@@ -1459,11 +1455,6 @@ public final class JavadocCommentsTokenTypes {
      * |--NEWLINE -> \n
      * |--LEADING_ASTERISK ->      *
      * |--TEXT -> /
-     * |--NEWLINE -> \n
-     * |--TEXT ->     void method() {}
-     * |--NEWLINE -> \n
-     * |--TEXT -> }
-     * `--NEWLINE -> \n
      * }</pre>
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
