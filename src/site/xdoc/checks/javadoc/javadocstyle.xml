@@ -235,19 +235,18 @@ public class Example1 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
     // violation 3 lines above 'Incomplete HTML tag found'
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
           To configure the check for <code>public</code> scope:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-    &lt;property name="scope" value="public"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="scope" value="public"/&gt;&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
 </code></pre></div>
         <p id="Example2-code">Example2:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -296,6 +295,10 @@ public class Example2 {
   private void testMethod6() {
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -304,14 +307,10 @@ public class Example2 {
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-    &lt;property name="scope" value="private"/&gt;
-    &lt;property name="excludeScope" value="package"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="scope" value="private"/&gt;
+&lt;property name="excludeScope" value="package"/&gt;
+&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
 </code></pre></div>
         <p id="Example3-code">Example3:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -319,9 +318,7 @@ public class Example2 {
  * Some description here
  */
 public class Example3 {
-  Example3() {
-
-  }
+  Example3() {}
   /**
    * Some description here.
    */
@@ -360,6 +357,10 @@ public class Example3 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
     // violation 3 lines above 'Incomplete HTML tag'
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-config">
@@ -367,13 +368,8 @@ public class Example3 {
         </p>
 
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-    &lt;property name="checkFirstSentence" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkFirstSentence" value="false"/&gt;&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
 </code></pre></div>
         <p id="Example4-code">Example4:</p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
@@ -422,19 +418,18 @@ public class Example4 {
   private void testMethod6() {
     // violation 3 lines above 'Incomplete HTML tag'
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example5-config">
           To configure the check to turn off validation of incomplete html tags:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-    &lt;property name="checkHtml" value="false"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkHtml" value="false"/&gt;&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
 </code></pre></div>
 
         <p id="Example5-code">Example5:</p>
@@ -484,19 +479,18 @@ public class Example5 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example6-config">
           To configure the check for only class definitions:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
-&lt;module name="Checker"&gt;
-  &lt;module name="TreeWalker"&gt;
-    &lt;module name="JavadocStyle"&gt;
-    &lt;property name="tokens" value="CLASS_DEF"/&gt;
-    &lt;/module&gt;
-  &lt;/module&gt;
-&lt;/module&gt;
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="tokens" value="CLASS_DEF"/&gt;&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
 </code></pre></div>
 
         <p id="Example6-code">Example6:</p>
@@ -546,6 +540,10 @@ public class Example6 {
   private void testMethod6() {
 
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 </code></pre></div>
       </subsection>
