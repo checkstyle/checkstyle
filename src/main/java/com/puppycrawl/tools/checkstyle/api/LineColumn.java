@@ -25,7 +25,8 @@ import java.util.Objects;
  * Immutable line and column numbers.
  *
  * @noinspection ClassCanBeRecord
- * @noinspectionreason Public API class – converting to record would break binary compatibility.
+ * @noinspectionreason Public API class – converting to record would break
+ *                     binary compatibility.
  */
 public class LineColumn implements Comparable<LineColumn> {
 
@@ -38,7 +39,7 @@ public class LineColumn implements Comparable<LineColumn> {
     /**
      * Constructs a new pair of line and column numbers.
      *
-     * @param line the one-based line number
+     * @param line   the one-based line number
      * @param column the zero-based column number
      */
     public LineColumn(int line, int column) {
@@ -69,13 +70,19 @@ public class LineColumn implements Comparable<LineColumn> {
         final int result;
         if (line == lineColumn.line) {
             result = Integer.compare(column, lineColumn.column);
-        }
-        else {
+        } else {
             result = Integer.compare(line, lineColumn.line);
         }
         return result;
     }
 
+    /**
+     * Indicates whether some other object is \"equal to\" this one.
+     *
+     * @noinspection OverlyComplexBooleanExpression
+     * @noinspectionreason OverlyComplexBooleanExpression - multiple fields need to
+     *                     be compared
+     */
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -85,8 +92,8 @@ public class LineColumn implements Comparable<LineColumn> {
             return false;
         }
         final LineColumn lineColumn = (LineColumn) other;
-        return Objects.equals(line, lineColumn.line)
-                && Objects.equals(column, lineColumn.column);
+        return line == lineColumn.line
+                && column == lineColumn.column;
     }
 
     @Override

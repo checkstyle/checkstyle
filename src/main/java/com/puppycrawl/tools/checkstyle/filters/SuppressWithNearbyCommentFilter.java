@@ -39,22 +39,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to suppress audit events.
+ * Filter {@code SuppressWithNearbyCommentFilter} uses nearby comments to
+ * suppress audit events.
  * </div>
  *
  * <p>
  * Rationale: Same as {@code SuppressionCommentFilter}.
  * Whereas the SuppressionCommentFilter uses matched pairs of filters to turn
- * on/off comment matching, {@code SuppressWithNearbyCommentFilter} uses single comments.
- * This requires fewer lines to mark a region, and may be aesthetically preferable in some contexts.
+ * on/off comment matching, {@code SuppressWithNearbyCommentFilter} uses single
+ * comments.
+ * This requires fewer lines to mark a region, and may be aesthetically
+ * preferable in some contexts.
  * </p>
  *
  * <p>
  * Attention: This filter may only be specified within the TreeWalker module
- * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
- * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline},
+ * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which
+ * are also
+ * defined within this module. To filter non-TreeWalker checks like
+ * {@code RegexpSingleline},
  * a
- * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
+ * <a href=
+ * "https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
  *
@@ -67,12 +73,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.0
  */
 public class SuppressWithNearbyCommentFilter
-    extends AbstractAutomaticBean
-    implements TreeWalkerFilter {
+        extends AbstractAutomaticBean
+        implements TreeWalkerFilter {
 
     /** Format to turn checkstyle reporting off. */
-    private static final String DEFAULT_COMMENT_FORMAT =
-        "SUPPRESS CHECKSTYLE (\\w+)";
+    private static final String DEFAULT_COMMENT_FORMAT = "SUPPRESS CHECKSTYLE (\\w+)";
 
     /** Default regex for checks that should be suppressed. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
@@ -203,7 +208,8 @@ public class SuppressWithNearbyCommentFilter
     }
 
     /**
-     * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
+     * Setter to control whether to check C style comments
+     * ({@code &#47;* ... *&#47;}).
      *
      * @param checkC {@code true} if C comments are checked.
      * @since 5.0
@@ -265,8 +271,7 @@ public class SuppressWithNearbyCommentFilter
             tagSuppressions(contents.getSingleLineComments().values());
         }
         if (checkC) {
-            final Collection<List<TextBlock>> cComments =
-                contents.getBlockComments().values();
+            final Collection<List<TextBlock>> cComments = contents.getBlockComments().values();
             cComments.forEach(this::tagSuppressions);
         }
     }
@@ -339,8 +344,8 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Constructs a tag.
          *
-         * @param text the text of the suppression.
-         * @param line the line number.
+         * @param text   the text of the suppression.
+         * @param line   the line number.
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
@@ -356,16 +361,14 @@ public class SuppressWithNearbyCommentFilter
                 tagCheckRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     tagMessageRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, filter.commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idFormat == null) {
                     tagIdRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, filter.commentFormat);
                     tagIdRegexp = Pattern.compile(format);
@@ -378,15 +381,13 @@ public class SuppressWithNearbyCommentFilter
                 if (influence >= 1) {
                     firstLine = line;
                     lastLine = line + influence;
-                }
-                else {
+                } else {
                     firstLine = line + influence;
                     lastLine = line;
                 }
-            }
-            catch (final PatternSyntaxException exc) {
+            } catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, exc);
+                        "unable to parse expanded comment " + format, exc);
             }
         }
 
@@ -402,13 +403,19 @@ public class SuppressWithNearbyCommentFilter
         private static int parseInfluence(String format, String influenceFormat, String text) {
             try {
                 return Integer.parseInt(format);
-            }
-            catch (final NumberFormatException exc) {
+            } catch (final NumberFormatException exc) {
                 throw new IllegalArgumentException("unable to parse influence from '" + text
                         + "' using " + influenceFormat, exc);
             }
         }
 
+        /**
+         * Indicates whether some other object is \"equal to\" this one.
+         *
+         * @noinspection OverlyComplexBooleanExpression
+         * @noinspectionreason OverlyComplexBooleanExpression - multiple fields need to
+         *                     be compared
+         */
         @Override
         public boolean equals(Object other) {
             if (this == other) {
@@ -418,8 +425,8 @@ public class SuppressWithNearbyCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(firstLine, tag.firstLine)
-                    && Objects.equals(lastLine, tag.lastLine)
+            return firstLine == tag.firstLine
+                    && lastLine == tag.lastLine
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
@@ -447,10 +454,12 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /**
-         * Checks whether the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
+         * Checks whether the {@link TreeWalkerAuditEvent} is in the scope of the
+         * suppression.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
+         * @return true if the {@link TreeWalkerAuditEvent} is in the scope of the
+         *         suppression.
          */
         private boolean isInScopeOfSuppression(TreeWalkerAuditEvent event) {
             final int line = event.getLine();
@@ -458,10 +467,12 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /**
-         * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
+         * Checks whether {@link TreeWalkerAuditEvent} source name matches the check
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @return true if the {@link TreeWalkerAuditEvent} source name matches the
+         *         check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
             final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
@@ -469,18 +480,19 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /**
-         * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID
+         *         format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
             if (tagIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
-                }
-                else {
+                } else {
                     final Matcher idMatcher = tagIdRegexp.matcher(event.getModuleId());
                     match = idMatcher.find();
                 }
@@ -489,10 +501,12 @@ public class SuppressWithNearbyCommentFilter
         }
 
         /**
-         * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
+         * Checks whether the {@link TreeWalkerAuditEvent} message matches the message
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @return true if the {@link TreeWalkerAuditEvent} message matches the message
+         *         format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
