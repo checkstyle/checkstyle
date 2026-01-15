@@ -1451,6 +1451,7 @@ unnecessarysemicoloninenumeration
 unnecessarysemicolonintrywithresources
 unparseable
 Unproxyable
+Unrecognised
 unregister
 unstale
 unsubscribe
@@ -1509,6 +1510,7 @@ Webp
 website
 webtoolkit
 Wellformedness
+Werror
 wget
 whenshouldbeused
 wherejavadocrequired
