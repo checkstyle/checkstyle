@@ -296,11 +296,81 @@ public class JavadocTypeCheck
         final JavadocTags tags = JavadocUtil.getJavadocTags(textBlock,
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
-            tags.getInvalidTags().forEach(tag -> {
-                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
-            });
+            final String[] lines = textBlock.getText();
+            tags.getInvalidTags().stream()
+                .filter(tag -> !isTagInsideCodeOrLiteralBlock(lines, textBlock, tag))
+                .forEach(tag -> {
+                    log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
+                });
         }
         return tags.getValidTags();
+    }
+
+    /**
+     * Checks if a tag is positioned inside a {@code @code} or {@code @literal} inline tag block.
+     *
+     * @param lines the Javadoc comment lines.
+     * @param textBlock the text block containing the Javadoc.
+     * @param tag the invalid tag to check.
+     * @return true if the tag is inside a code or literal block.
+     */
+    private static boolean isTagInsideCodeOrLiteralBlock(String[] lines,
+                                                         TextBlock textBlock,
+                                                         InvalidJavadocTag tag) {
+        final int tagLineIndex = tag.getLine() - textBlock.getStartLineNo();
+        final int tagCol = tag.getCol();
+
+        final StringBuilder textUpToTag = new StringBuilder();
+        for (int index = 0; index <= tagLineIndex && index < lines.length; index++) {
+            if (index == tagLineIndex) {
+                final int endIndex = Math.min(tagCol, lines[index].length());
+                textUpToTag.append(lines[index].substring(0, endIndex));
+            }
+            else {
+                textUpToTag.append(lines[index]).append('\n');
+            }
+        }
+
+        final String textBefore = textUpToTag.toString();
+        return isInsideInlineTag(textBefore);
+    }
+
+    /**
+     * Determines if the position is inside an unclosed {@code @code}, {@code @literal},
+     * or {@code @snippet} inline tag by counting opening and closing braces.
+     * These tags display content verbatim and should not be parsed for Javadoc block tags.
+     *
+     * @param textBefore the text from the start of Javadoc up to the tag position.
+     * @return true if inside an unclosed code, literal, or snippet inline tag.
+     */
+    private static boolean isInsideInlineTag(String textBefore) {
+        boolean insideVerbatimTag = false;
+        int braceDepth = 0;
+        final int length = textBefore.length();
+
+        for (int index = 0; index < length; index++) {
+            final char ch = textBefore.charAt(index);
+            if (ch == '{') {
+                if (index + 1 < length && textBefore.charAt(index + 1) == '@') {
+                    // Check if this is {@code, {@literal, or {@snippet
+                    final String remaining = textBefore.substring(index);
+                    if (remaining.startsWith("{@code")
+                            || remaining.startsWith("{@literal")
+                            || remaining.startsWith("{@snippet")) {
+                        insideVerbatimTag = true;
+                    }
+                }
+                braceDepth++;
+            }
+            else if (ch == '}') {
+                braceDepth--;
+                if (braceDepth == 0) {
+                    insideVerbatimTag = false;
+                }
+            }
+        }
+
+        return insideVerbatimTag;
     }
 
     /**
