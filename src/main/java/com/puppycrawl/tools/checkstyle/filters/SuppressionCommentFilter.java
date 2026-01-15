@@ -505,8 +505,8 @@ public class SuppressionCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(line, tag.line)
-                    && Objects.equals(column, tag.column)
+            return line == tag.line
+                    && column == tag.column
                     && Objects.equals(tagType, tag.tagType)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
