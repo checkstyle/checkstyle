@@ -6467,6 +6467,18 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter elements of String.join.</message>
+    <lineContent>final String textBefore = String.join(&quot;\n&quot;, Arrays.copyOfRange(lines, 0, tagLineIndex));</lineContent>
+    <details>
+      found   : @Initialized @Nullable String @Initialized @NonNull []
+      required: @Initialized @NonNull CharSequence @Initialized @NonNull []
+    </details>
+  </checkerFrameworkError>
+
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference ident</message>
     <lineContent>componentList.add(ident.getText());</lineContent>
@@ -6476,7 +6488,7 @@
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocTypeCheck.java</fileName>
     <specifier>dereference.of.nullable</specifier>
     <message>dereference of possibly-null reference matchInAngleBrackets.group(1)</message>
-    <lineContent>typeParamName = matchInAngleBrackets.group(1).trim();</lineContent>
+    <lineContent>paramName = matchInAngleBrackets.group(1).trim();</lineContent>
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
