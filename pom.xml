@@ -3713,6 +3713,10 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- performance optimization for early exit from loop -->
+                <param>hasSlistParent</param>
+              </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
               </features>
