@@ -131,7 +131,7 @@
           </tr>
           <tr>
             <td>
-              12.x
+              13.x
             </td>
             <td>
               21 and above
@@ -139,7 +139,7 @@
           </tr>
           <tr>
             <td>
-              11.x
+              11.x, 12.x
             </td>
             <td>
               17 and above
@@ -180,7 +180,7 @@
         </table>
       </div>
       <p>
-        Checkstyle currently is confirmed to be buildable by all JDKs from 21 through 22.
+        Checkstyle currently is confirmed to be buildable by all JDKs from 21 through 23.
         Most recent JDKs may be supported. Please
         <a href="https://checkstyle.org/report_issue.html">report an issue</a>
         if there are any problems with recent JDKs.
