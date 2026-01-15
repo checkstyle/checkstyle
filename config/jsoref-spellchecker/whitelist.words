@@ -18,6 +18,11 @@ Adoptium
 adr
 AFBR
 AFilter
+afterclosedbrace
+aftercode
+afteremptycode
+afterliteral
+aftersinglebrace
 aggregators
 allchecks
 allclasses
@@ -99,6 +104,7 @@ Backquote
 backticks
 BADN
 badpackage
+badtag
 baeldung
 baratali
 Barowski
@@ -131,6 +137,9 @@ BNOT
 booleanexpressioncomplexity
 bothfiles
 Bpmn
+bracealinetag
+bracelettertag
+bracespaceattag
 breadcrumb
 BSR
 Bsubscribe
@@ -383,6 +392,7 @@ emptystatement
 emptytag
 Emtpy
 endline
+endoflinebrace
 enegger
 ENMI
 ent
@@ -570,6 +580,7 @@ htag
 htdocs
 html
 HTMLJS
+htmlpretag
 htmltags
 htmlunit
 http
@@ -969,6 +980,7 @@ nonlegacy
 nonnull
 nonrequiredjavadoc
 nonvalidating
+nonverbatimtag
 noparentfile
 NOPMD
 noprofile
@@ -1443,6 +1455,7 @@ uninterned
 uniq
 uniqueproperties
 Unitless
+unknowntag
 unnecessarynullcheckwithinstanceof
 unnecessaryparentheses
 unnecessarysemicolonafteroutertypedeclaration
