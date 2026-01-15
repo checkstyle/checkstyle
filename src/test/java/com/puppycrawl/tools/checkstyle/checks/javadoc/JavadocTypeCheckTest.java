@@ -496,4 +496,39 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputJavadocTypeWithBlockComment.java"), expected);
     }
+
+    @Test
+    public void testAnnotationsInCodeBlock() throws Exception {
+        final String[] expected = {
+            "105:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "unknowntag"),
+            "112:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "badtag"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationsInCodeBlock2() throws Exception {
+        final String[] expected = {
+            "28:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "htmlpretag"),
+            "46:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "nonverbatimtag"),
+            "61:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "aftercode"),
+            "69:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "afterliteral"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock2.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationsInCodeBlock3() throws Exception {
+        final String[] expected = {
+            "32:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "endoflinebrace"),
+            "71:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "aftersinglebrace"),
+            "79:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "afterclosedbrace"),
+            "87:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "afteremptycode"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputJavadocTypeAnnotationsInCodeBlock3.java"), expected);
+    }
 }
+
