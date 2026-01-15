@@ -42,6 +42,7 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.ClassRulesRecipes
   - tech.picnic.errorprone.refasterrules.CollectionRulesRecipes
   - tech.picnic.errorprone.refasterrules.ComparatorRulesRecipes
+  - tech.picnic.errorprone.refasterrules.EqualityRulesRecipes
   - tech.picnic.errorprone.refasterrules.FileRulesRecipes
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
