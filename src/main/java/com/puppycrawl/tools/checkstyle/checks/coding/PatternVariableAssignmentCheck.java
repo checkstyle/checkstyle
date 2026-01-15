@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <div>
@@ -82,14 +84,7 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         final List<DetailAST> reassignedVariableIdents = getReassignedVariableIdents(ast);
 
         for (DetailAST patternVariableIdent : patternVariableIdents) {
-            for (DetailAST assignTokenIdent : reassignedVariableIdents) {
-                if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
-
-                    log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
-                    break;
-                }
-
-            }
+            checkForReassignment(patternVariableIdent, reassignedVariableIdents);
         }
     }
 
@@ -144,63 +139,70 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the array list made out of AST branches of reassigned variable idents.
+     * Gets the list of AST branches of reassigned variable identifiers.
      *
-     * @param ast ast tree of checked instanceof statement.
-     * @return the list of AST branches of reassigned variable idents.
+     * @param ast ast tree of checked instanceof statement
+     * @return list of AST identifiers that represent reassigned variables
      */
     private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
 
-        final DetailAST branchLeadingToReassignedVar = getBranchLeadingToReassignedVars(ast);
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
+        final DetailAST scopeRoot = findReassignmentScopeRoot(ast);
 
-        for (DetailAST expressionBranch = branchLeadingToReassignedVar;
-             expressionBranch != null;
-             expressionBranch = traverseUntilNeededBranchType(expressionBranch,
-                 branchLeadingToReassignedVar, TokenTypes.EXPR)) {
+        if (scopeRoot != null) {
 
-            final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
+            final List<DetailAST> branches =
+                    expandReassignmentScopes(scopeRoot);
 
-            if (assignToken != null) {
-                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
-                if (neededAssignIdent.getPreviousSibling() == null) {
-                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+            for (DetailAST branch : branches) {
+                for (DetailAST expressionBranch = branch;
+                     expressionBranch != null;
+                     expressionBranch = traverseUntilNeededBranchType(
+                             expressionBranch, branch, TokenTypes.EXPR)) {
+
+                    final DetailAST assignToken =
+                            getMatchedAssignToken(expressionBranch);
+
+                    if (assignToken != null) {
+                        final DetailAST neededAssignIdent =
+                                getNeededAssignIdent(assignToken);
+
+                        if (neededAssignIdent.getPreviousSibling() == null) {
+                            reassignedVariableIdents.add(neededAssignIdent);
+                        }
+                    }
                 }
             }
         }
 
         return reassignedVariableIdents;
-
     }
 
     /**
-     * Gets the closest consistent AST branch that leads to reassigned variable's ident.
+     * Gets statements that follow the conditional where pattern variable scope extends.
+     * Only returns top-level statements that are siblings of the conditional, excluding
+     * statements nested in control structures like while loops.
      *
-     * @param ast ast tree of checked instanceof statement.
-     * @return the closest consistent AST branch that leads to reassigned variable's ident.
+     * @param conditionalStatement The if statement.
+     * @return List of statement nodes in the extended scope.
      */
-    @Nullable
-    private static DetailAST getBranchLeadingToReassignedVars(DetailAST ast) {
-        DetailAST leadingToReassignedVarBranch = null;
+    private static List<DetailAST> getStatementsInExtendedScope(DetailAST conditionalStatement) {
+        final List<DetailAST> statements = new ArrayList<>();
 
-        for (DetailAST conditionalStatement = ast;
-             conditionalStatement != null && leadingToReassignedVarBranch == null;
-             conditionalStatement = conditionalStatement.getParent()) {
+        DetailAST nextSibling = conditionalStatement.getNextSibling();
 
-            if (conditionalStatement.getType() == TokenTypes.LITERAL_IF
-                || conditionalStatement.getType() == TokenTypes.LITERAL_ELSE) {
-
-                leadingToReassignedVarBranch =
-                    conditionalStatement.findFirstToken(TokenTypes.SLIST);
-
+        while (nextSibling != null) {
+            final int type = nextSibling.getType();
+            if (type == TokenTypes.EXPR || type == TokenTypes.LITERAL_RETURN) {
+                statements.add(nextSibling);
             }
-            else if (conditionalStatement.getType() == TokenTypes.QUESTION) {
-                leadingToReassignedVarBranch = conditionalStatement;
+            else if (type != TokenTypes.SEMI) {
+                break;
             }
+            nextSibling = nextSibling.getNextSibling();
         }
 
-        return leadingToReassignedVarBranch;
-
+        return statements;
     }
 
     /**
@@ -299,4 +301,101 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
 
         return assignIdent;
     }
+
+    /**
+     * Checks whether a pattern variable is reassigned and logs a violation if so.
+     *
+     * @param patternVariableIdent AST ident of the pattern variable
+     * @param reassignedVariableIdents list of AST idents that represent reassigned variables
+     */
+    private void checkForReassignment(
+            DetailAST patternVariableIdent,
+            Iterable<DetailAST> reassignedVariableIdents) {
+
+        for (DetailAST assignTokenIdent : reassignedVariableIdents) {
+            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
+                log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
+            }
+        }
+    }
+
+    /**
+     * Finds the nearest AST node that defines the scope in which reassignment
+     * of a pattern variable may occur.
+     *
+     * <p>
+     * The scope is determined by locating the closest enclosing conditional
+     * structure such as {@code if}, {@code else}, or ternary operator.
+     * </p>
+     *
+     * @param ast the AST node to start searching from
+     * @return the AST node representing the reassignment scope root,
+     *         or {@code null} if none is found
+     */
+    @Nullable
+    private static DetailAST findReassignmentScopeRoot(DetailAST ast) {
+
+        DetailAST result = null;
+
+        for (DetailAST node = ast; node != null && result == null;
+             node = node.getParent()) {
+
+            final int type = node.getType();
+
+            if (type == TokenTypes.LITERAL_IF
+                    || type == TokenTypes.LITERAL_ELSE
+                    || type == TokenTypes.QUESTION) {
+                result = node;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Expands the reassignment scope root into concrete AST branches
+     * that may contain reassigned pattern variables.
+     *
+     * <p>
+     * For ternary expressions, the conditional expression itself is
+     * treated as the reassignment scope. For {@code if} / {@code else}
+     * statements, the method includes the statement list and any
+     * subsequent statements where the pattern variable remains in scope.
+     * </p>
+     *
+     * @param scopeRoot the root AST node of the reassignment scope
+     * @return list of AST branches that may contain reassignments
+     */
+    private static List<DetailAST> expandReassignmentScopes(
+            DetailAST scopeRoot) {
+
+        final List<DetailAST> branches = new ArrayList<>();
+
+        addBodyBranch(branches, scopeRoot);
+        branches.addAll(getStatementsInExtendedScope(scopeRoot));
+
+        return branches;
+    }
+
+    /**
+     * Adds the body branch of a conditional (if/else) to the list.
+     * For braced blocks, adds the SLIST. For unbraced statements,
+     * adds the single statement directly.
+     *
+     * @param branches collection to add the body branch to
+     * @param scopeRoot the if/else AST node
+     */
+    private static void addBodyBranch(Collection<DetailAST> branches,
+            DetailAST scopeRoot) {
+        if (scopeRoot.getType() == TokenTypes.LITERAL_IF) {
+            TokenUtil.findFirstTokenByPredicate(scopeRoot,
+                    node -> node.getType() == TokenTypes.RPAREN)
+                    .map(DetailAST::getNextSibling)
+                    .ifPresent(branches::add);
+        }
+        else {
+            branches.add(scopeRoot);
+        }
+    }
+
 }
