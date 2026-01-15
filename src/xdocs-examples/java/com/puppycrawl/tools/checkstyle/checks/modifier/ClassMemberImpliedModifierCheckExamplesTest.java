@@ -26,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractExamplesModuleTestSupport;
 
 public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExamplesModuleTestSupport {
+
     @Override
     public String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/modifier/classmemberimpliedmodifier";
@@ -43,4 +44,41 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         verifyWithInlineConfigParser(
                 getPath("Example1.java"), expected);
     }
+
+    @Test
+    public void testExample2() throws Exception {
+        final String[] expected = {
+            "25:3: " + getCheckMessage(MSG_KEY, "static"),
+            "31:3: " + getCheckMessage(MSG_KEY, "static"),
+            "36:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example2.java"), expected);
+    }
+    
+    @Test
+    public void testExample3() throws Exception {
+        final String[] expected = {
+            "19:3: " + getCheckMessage(MSG_KEY, "static"), 
+            "33:3: " + getCheckMessage(MSG_KEY, "static"),
+            "38:5: " + getCheckMessage(MSG_KEY, "static"),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example3.java"), expected);
+    }
+    
+    @Test
+    public void testExample4() throws Exception {
+        final String[] expected = {
+            "19:3: " + getCheckMessage(MSG_KEY, "static"), // Address2
+            "26:3: " + getCheckMessage(MSG_KEY, "static"), // Age2
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("Example4.java"), expected);
+    }
+
 }
+
