@@ -1,3 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressedMutations>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>expandReassignmentScopes</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+        <description>removed conditional - replaced equality check with true</description>
+        <lineContent>if (scopeType == TokenTypes.LITERAL_IF) {</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>expandReassignmentScopes</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+        <description>removed conditional - replaced equality check with true</description>
+        <lineContent>if (slist != null) {</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+        <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+        <lineContent>&amp;&amp; nextSibling.getType() != TokenTypes.RCURLY) {</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+        <description>removed conditional - replaced equality check with true</description>
+        <lineContent>&amp;&amp; nextSibling.getType() != TokenTypes.RCURLY) {</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+        <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+        <lineContent>if (nextSibling.getType() != TokenTypes.SEMI</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF</mutator>
+        <description>removed conditional - replaced equality check with true</description>
+        <lineContent>if (nextSibling.getType() != TokenTypes.SEMI</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+        <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getNextSibling</description>
+        <lineContent>nextSibling = nextSibling.getNextSibling();</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator</mutator>
+        <description>removed call to com/puppycrawl/tools/checkstyle/api/DetailAST::getType</description>
+        <lineContent>|| nextSibling.getType() == TokenTypes.LITERAL_RETURN) {</lineContent>
+    </mutation>
+
+    <mutation unstable="false">
+        <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+        <mutatedClass>com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck</mutatedClass>
+        <mutatedMethod>getStatementsInExtendedScope</mutatedMethod>
+        <mutator>org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_ELSE</mutator>
+        <description>removed conditional - replaced equality check with false</description>
+        <lineContent>|| nextSibling.getType() == TokenTypes.LITERAL_RETURN) {</lineContent>
+    </mutation>
+
 </suppressedMutations>
