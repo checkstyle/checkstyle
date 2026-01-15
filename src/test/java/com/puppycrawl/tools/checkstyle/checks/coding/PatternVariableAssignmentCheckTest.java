@@ -70,11 +70,50 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
+            "66:9: " + getCheckMessage(MSG_KEY, "r"),
             "81:22: " + getCheckMessage(MSG_KEY, "string"),
         };
 
         verifyWithInlineXmlConfig(getPath(
             "InputPatternVariableAssignmentCheck2.java"), expected);
+    }
+
+    @Test
+    public void testExtendedScope1() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "24:13: " + getCheckMessage(MSG_KEY, "s"),
+            "25:13: " + getCheckMessage(MSG_KEY, "s"),
+            "28:13: " + getCheckMessage(MSG_KEY, "s"),
+            "33:17: " + getCheckMessage(MSG_KEY, "i"),
+            "37:13: " + getCheckMessage(MSG_KEY, "i"),
+            "44:17: " + getCheckMessage(MSG_KEY, "s"),
+            "47:13: " + getCheckMessage(MSG_KEY, "s"),
+            "52:21: " + getCheckMessage(MSG_KEY, "i"),
+            "55:21: " + getCheckMessage(MSG_KEY, "i"),
+            "63:17: " + getCheckMessage(MSG_KEY, "s"),
+            "65:17: " + getCheckMessage(MSG_KEY, "s"),
+            "69:13: " + getCheckMessage(MSG_KEY, "x"),
+            "70:13: " + getCheckMessage(MSG_KEY, "y"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentExtendedScope.java"), expected);
+    }
+
+    @Test
+    public void testExtendedScope2() throws Exception {
+        final String[] expected = {
+            "19:17: " + getCheckMessage(MSG_KEY, "s"),
+            "21:13: " + getCheckMessage(MSG_KEY, "s"),
+            "24:13: " + getCheckMessage(MSG_KEY, "s"),
+            "29:16: " + getCheckMessage(MSG_KEY, "s"),
+            "44:16: " + getCheckMessage(MSG_KEY, "s"),
+            "51:9: " + getCheckMessage(MSG_KEY, "s"),
+            "52:9: " + getCheckMessage(MSG_KEY, "s"),
+            "59:17: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentExtendedScope2.java"), expected);
     }
 
 }
