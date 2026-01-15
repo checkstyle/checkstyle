@@ -279,6 +279,7 @@
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
