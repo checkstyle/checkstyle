@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>GoogleMemberName</title>
+  </head>
+  <body>
+    <section name="GoogleMemberName">
+      <p>Since Checkstyle 13.1.0</p>
+      <subsection name="Description" id="GoogleMemberName_Description">
+        <div>
+          Checks that member names conform to the
+          <a href=
+          "https://google.github.io/styleguide/javaguide.html#s5.2.5-non-constant-field-names">
+          Google Java Style Guide</a> for non-constant field naming.
+        </div>
+
+        <p>
+          This check enforces Google's specific member naming requirements:
+        </p>
+        <ul>
+        <li>Member names must start with a lowercase letter and use uppercase letters
+          for word boundaries.</li>
+        <li>Underscores may be used to separate adjacent numbers (e.g., version
+          numbers like <code>guava33_4_5</code>), but NOT between letters and digits.</li>
+        </ul>
+      </subsection>
+
+      <subsection name="Examples" id="GoogleMemberName_Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="GoogleMemberName"/&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example1-code">Code Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example1 {
+
+  int fooBar;
+  int guava33_4_5;
+  int httpClient;
+  int version1_2;
+
+  int Foo;
+  // violation above, 'Member name 'Foo' must start with a lowercase letter'
+
+  int f;
+  // violation above, ''f' must start with a lowercase letter, min 2 chars'
+
+  int gradle_9_5_1;
+  // violation above, ''gradle_9_5_1' has invalid underscore usage'
+
+  int foo_bar;
+  // violation above, ''foo_bar' has invalid underscore usage'
+}
+</code></pre></div>
+      </subsection>
+
+      <subsection name="Example of Usage" id="GoogleMemberName_Example_of_Usage">
+        <ul>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="GoogleMemberName_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22google.member.name.format%22">
+              google.member.name.format
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fnaming%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22google.member.name.underscore%22">
+              google.member.name.underscore
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="GoogleMemberName_Package">
+        <p> com.puppycrawl.tools.checkstyle.checks.naming </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="GoogleMemberName_Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
