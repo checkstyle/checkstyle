@@ -257,11 +257,11 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
         else if (type == TokenTypes.IDENT) {
             visitIdentToken(ast, variables);
         }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            visitLocalAnonInnerClass(ast);
-        }
         else if (isNonLocalTypeDeclaration(ast)) {
             visitNonLocalTypeDeclarationToken(ast);
+        }
+        else if (isInsideLocalAnonInnerClass(ast)) {
+            visitLocalAnonInnerClass(ast);
         }
         else if (type == TokenTypes.PACKAGE_DEF) {
             packageName = CheckUtil.extractQualifiedName(ast.getFirstChild().getNextSibling());
