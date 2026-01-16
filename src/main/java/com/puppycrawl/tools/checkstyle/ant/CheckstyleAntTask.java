@@ -195,20 +195,6 @@ public class CheckstyleAntTask extends Task {
     }
 
     /**
-     * Creates classpath.
-     *
-     * @return a created path for locating classes
-     * @deprecated left in implementation until #12556 only to allow users to migrate to new gradle
-     *     plugins. This method will be removed in Checkstyle 11.x.x .
-     * @noinspection DeprecatedIsStillUsed
-     * @noinspectionreason DeprecatedIsStillUsed - until #12556
-     */
-    @Deprecated(since = "10.7.0")
-    public org.apache.tools.ant.types.Path createClasspath() {
-        return new org.apache.tools.ant.types.Path(getProject());
-    }
-
-    /**
      * Sets file to be checked.
      *
      * @param file the file to be checked
@@ -253,6 +239,17 @@ public class CheckstyleAntTask extends Task {
         properties = props.toPath();
     }
 
+    /**
+     * Gets implementation version for version info.
+     *
+     * @return implementation version for version info
+     */
+    public String getVersionString() {
+        return Objects.toString(
+                CheckstyleAntTask.class.getPackage().getImplementationVersion(),
+                "");
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // The doers
     ////////////////////////////////////////////////////////////////////////////
@@ -262,9 +259,7 @@ public class CheckstyleAntTask extends Task {
         final long startTime = System.currentTimeMillis();
 
         try {
-            final String version = Objects.toString(
-                    CheckstyleAntTask.class.getPackage().getImplementationVersion(),
-                    "");
+            final String version = getVersionString();
 
             log("checkstyle version " + version, Project.MSG_VERBOSE);
 

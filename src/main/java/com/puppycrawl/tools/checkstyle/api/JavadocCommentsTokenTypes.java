@@ -73,7 +73,28 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Newline character in a Javadoc comment.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * This is a Javadoc line.
+     *  * /
+     * }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * --BLOCK_COMMENT_BEGIN -> /**
+     *    |--COMMENT_CONTENT -> *\r\n * This is a Javadoc line.\r\n
+     *    |   `--JAVADOC_CONTENT -> JAVADOC_CONTENT
+     *    |       |--NEWLINE -> \r\n
+     *    |       |--LEADING_ASTERISK ->  *
+     *    |       |--TEXT ->  This is a Javadoc line.
+     *    |       |--NEWLINE -> \r\n
+     *    |       `--TEXT ->
+     * `   --BLOCK_COMMENT_END -> *
+     * }</pre>
      */
+
     public static final int NEWLINE = JavadocCommentsLexer.NEWLINE;
 
     /**
@@ -110,6 +131,35 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General block tag (e.g. {@code @param}, {@code @return}).
+     *
+     * <p>Such Javadoc tag can have these children:</p>
+     * <ol>
+     * <li>{@link #PARAM_BLOCK_TAG}</li>
+     * <li>{@link #RETURN_BLOCK_TAG}</li>
+     * <li>{@link #THROWS_BLOCK_TAG}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @param value The parameter of method.}</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->
+     * `--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--PARAM_BLOCK_TAG -> PARAM_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> param
+     *         |--TEXT ->
+     *         |--PARAMETER_NAME -> value
+     *         `--DESCRIPTION -> DESCRIPTION
+     *             `--TEXT ->  The parameter of method.
+     * }</pre>
+     *
+     * @see #PARAM_BLOCK_TAG
+     * @see #RETURN_BLOCK_TAG
+     * @see #THROWS_BLOCK_TAG
      */
     public static final int JAVADOC_BLOCK_TAG = JavadocCommentsLexer.JAVADOC_BLOCK_TAG;
 
@@ -606,6 +656,43 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * General inline tag (e.g. {@code @link}).
+     *
+     * <p>Such Javadoc tag can have these children:</p>
+     * <ol>
+     * <li>{@link #CODE_INLINE_TAG}</li>
+     * <li>{@link #LINK_INLINE_TAG}</li>
+     * <li>{@link #VALUE_INLINE_TAG}</li>
+     * </ol>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     * * {@code code}
+     * &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
@@ -1339,7 +1426,36 @@ public final class JavadocCommentsTokenTypes {
     // HTML
 
     /**
-     * General HTML element.
+     * General HTML element in a Javadoc comment.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     *  * <p>Hello</p>
+     *  &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT ->
+     * |--HTML_ELEMENT -> HTML_ELEMENT
+     * |   |--HTML_TAG_START -> HTML_TAG_START
+     * |   |   |--TAG_OPEN -> <
+     * |   |   |--TAG_NAME -> p
+     * |   |   `--TAG_CLOSE -> >
+     * |   |--HTML_CONTENT -> HTML_CONTENT
+     * |   |   `--TEXT -> Hello
+     * |   `--HTML_TAG_END -> HTML_TAG_END
+     * |       |--TAG_OPEN -> <
+     * |       |--TAG_SLASH -> /
+     * |       |--TAG_NAME -> p
+     * |       `--TAG_CLOSE -> >
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->      *
+     * |--TEXT -> /
+     * }</pre>
      */
     public static final int HTML_ELEMENT = JavadocCommentsLexer.HTML_ELEMENT;
 

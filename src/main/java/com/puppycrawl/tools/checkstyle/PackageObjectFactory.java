@@ -267,14 +267,14 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Create Object from optional full module names.
-     * In most case, there should be only one element in {@code fullModuleName}, otherwise
+     * In most case, there should be only one element in {@code fullModuleNames}, otherwise
      * an exception would be thrown.
      *
      * @param name name of module
      * @param fullModuleNames the supplied full module names set
-     * @return instance of module if there is only one element in {@code fullModuleName}
+     * @return instance of module if there is only one element in {@code fullModuleNames}
      * @throws CheckstyleException if the class fails to instantiate or there are more than one
-     *      element in {@code fullModuleName}
+     *      element in {@code fullModuleNames}
      */
     private Object createObjectFromFullModuleNames(String name, Set<String> fullModuleNames)
             throws CheckstyleException {
@@ -457,6 +457,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.annotation.MissingDeprecatedCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingOverrideCheck",
                 BASE_PACKAGE + ".checks.annotation.MissingOverrideCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MissingOverrideOnRecordAccessorCheck",
+                BASE_PACKAGE + ".checks.annotation.MissingOverrideOnRecordAccessorCheck");
         NAME_TO_FULL_MODULE_NAME.put("PackageAnnotationCheck",
                 BASE_PACKAGE + ".checks.annotation.PackageAnnotationCheck");
         NAME_TO_FULL_MODULE_NAME.put("SuppressWarningsCheck",

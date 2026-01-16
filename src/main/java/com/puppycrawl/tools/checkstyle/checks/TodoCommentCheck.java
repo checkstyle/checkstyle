@@ -90,7 +90,7 @@ public class TodoCommentCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String[] lines = ast.getText().split("\n");
+        final String[] lines = ast.getText().split("\n", -1);
 
         for (String line : lines) {
             if (format.matcher(line).find()) {

@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -329,7 +330,7 @@ public final class SarifLogger extends AbstractAutomaticBean implements AuditLis
      */
     private static String replaceVersionString(String report) {
         final String version = SarifLogger.class.getPackage().getImplementationVersion();
-        return report.replace(VERSION_PLACEHOLDER, String.valueOf(version));
+        return report.replace(VERSION_PLACEHOLDER, Objects.toString(version, "null"));
     }
 
     @Override

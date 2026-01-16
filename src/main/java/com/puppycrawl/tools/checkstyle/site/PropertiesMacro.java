@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.site;
 
 import java.lang.reflect.Field;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -92,7 +92,7 @@ public class PropertiesMacro extends AbstractMacro {
     @Override
     public void execute(Sink sink, MacroRequest request) throws MacroExecutionException {
         // until https://github.com/checkstyle/checkstyle/issues/13426
-        if (!(sink instanceof XdocSink)) {
+        if (!(sink instanceof XdocSink xdocSink)) {
             throw new MacroExecutionException("Expected Sink to be an XdocSink.");
         }
 
@@ -100,7 +100,7 @@ public class PropertiesMacro extends AbstractMacro {
 
         configureGlobalProperties(modulePath);
 
-        writePropertiesTable((XdocSink) sink);
+        writePropertiesTable(xdocSink);
     }
 
     /**
@@ -219,7 +219,7 @@ public class PropertiesMacro extends AbstractMacro {
      */
     private static List<String> orderProperties(Set<String> properties) {
 
-        final List<String> orderProperties = new LinkedList<>(properties);
+        final List<String> orderProperties = new ArrayList<>(properties);
 
         if (orderProperties.remove(TOKENS_PROPERTY)) {
             orderProperties.add(TOKENS_PROPERTY);

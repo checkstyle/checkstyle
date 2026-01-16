@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath.iterators;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 import net.sf.saxon.om.AxisInfo;
@@ -45,7 +45,7 @@ public class DescendantIterator implements AxisIterator {
     /**
      * Queue for sibling nodes.
      */
-    private final Queue<NodeInfo> queue = new LinkedList<>();
+    private final Queue<NodeInfo> queue = new ArrayDeque<>();
     /**
      * Descendant axis iterator.
      */

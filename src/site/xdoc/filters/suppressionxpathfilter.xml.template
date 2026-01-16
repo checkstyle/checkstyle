@@ -549,6 +549,10 @@ CLASS_DEF -&gt; CLASS_DEF [1:0]
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
               Checkstyle Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
       <subsection name="Package" id="SuppressionXpathFilter_Package">

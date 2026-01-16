@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>13.0.1-SNAPSHOT</version>
+  <version>13.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -233,8 +233,8 @@
     <forbiddenapis.version>3.10</forbiddenapis.version>
     <json-schema-validator.version>1.2.0</json-schema-validator.version>
     <checkerframework.version>3.53.0</checkerframework.version>
-    <error-prone.version>2.45.0</error-prone.version>
-    <error-prone-support.version>0.27.0</error-prone-support.version>
+    <error-prone.version>2.46.0</error-prone.version>
+    <error-prone-support.version>0.28.0</error-prone-support.version>
     <doxia.version>1.12.0</doxia.version>
     <error-prone.configuration-args>
       -Xep:AmbiguousJsonCreator:ERROR
@@ -253,9 +253,11 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
@@ -274,12 +276,15 @@
       -Xep:UnusedMethod:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
+      -Xep:StatementSwitchToExpressionSwitch:ERROR
+      -Xep:StringSplitter:ERROR
+      -Xep:JdkObsolete:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
-      -Xep:EqualsGetClass:WARN
-      -Xep:InlineFormatString:WARN
-      -Xep:JdkObsolete:WARN
-      -Xep:StatementSwitchToExpressionSwitch:WARN
-      -Xep:StringSplitter:WARN
+      -Xep:InlineFormatString:OFF
+      <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
+      -Xep:EqualsGetClass:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
       -Xep:JUnitClassModifiers:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/8252. -->
@@ -470,6 +475,7 @@
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
@@ -637,7 +643,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.26.0</version>
+          <version>6.27.1</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
@@ -669,17 +675,17 @@
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-migrate-java</artifactId>
-              <version>3.24.0</version>
+              <version>3.25.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-static-analysis</artifactId>
-              <version>2.24.0</version>
+              <version>2.25.0</version>
             </dependency>
             <dependency>
               <groupId>org.openrewrite.recipe</groupId>
               <artifactId>rewrite-rewrite</artifactId>
-              <version>0.17.0</version>
+              <version>0.18.0</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -745,7 +751,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.7.2</version>
+                <version>7.7.3</version>
               </plugin>
             </plugins>
           </configuration>
@@ -1582,7 +1588,7 @@
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.9.0</version>
+        <version>0.10.0</version>
         <extensions>true</extensions>
         <configuration>
           <publishingServerId>central</publishingServerId>
@@ -2703,6 +2709,7 @@
                   <compilerArgs>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>
                       -Xplugin:ErrorProne ${error-prone.configuration-args}
@@ -2760,6 +2767,7 @@
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>-Xpkginfo:always</arg>
                     <arg>-XDcompilePolicy=simple</arg>
+                    <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>
                       -Xplugin:ErrorProne \
                       -XepExcludedPaths:.*[\\/]resources[\\/].* \
@@ -3321,6 +3329,7 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.NullUtil</avoidCallsTo>
                 <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
               </avoidCallsTo>
               <features>
@@ -3998,8 +4007,12 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <param>clearCreatedHandlers</param>
+                <param>clearState</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
-              <mutationThreshold>97</mutationThreshold>
+              <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
@@ -4499,6 +4512,10 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- this method in CheckstyleAntTask.java works properly only when execution is from jar -->
+                <param>getVersionString</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>92</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -4696,6 +4713,10 @@
                 <param>replaceVersionString</param>
                 <!-- this method in XMLLogger.java works properly only when execution is from jar -->
                 <param>printVersionString</param>
+                <!-- Switch expressions with enum cases produce equivalent mutations
+                that cannot be killed since all branches are already covered.
+                See https://github.com/checkstyle/checkstyle/issues/18024 -->
+                <param>renderSeverityLevel</param>
               </excludedMethods>
               <features>
                 <feature>+funmodifiablecollection</feature>
