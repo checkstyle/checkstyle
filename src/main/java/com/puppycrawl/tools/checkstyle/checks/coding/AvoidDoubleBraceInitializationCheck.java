@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.BitSet;
-import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -62,7 +61,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     public static final String MSG_KEY = "avoid.double.brace.init";
 
     /**
-     * Set of token types that are used in {@link #HAS_MEMBERS} predicate.
+     * Set of token types that are ignored when checking class members.
      */
     private static final BitSet IGNORED_TYPES = TokenUtil.asBitSet(
         TokenTypes.INSTANCE_INIT,
@@ -70,12 +69,6 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
         TokenTypes.LCURLY,
         TokenTypes.RCURLY
     );
-
-    /**
-     * Predicate for tokens that is used in {@link #hasOnlyInitialization(DetailAST)}.
-     */
-    private static final Predicate<DetailAST> HAS_MEMBERS =
-        token -> !IGNORED_TYPES.get(token.getType());
 
     @Override
     public int[] getDefaultTokens() {
@@ -104,12 +97,23 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
      * Checks that block has at least one instance init block and no other class members.
      *
      * @param objBlock token to check
-     * @return true if there is least one instance init block and no other class members,
+     * @return true if there is at least one instance init block and no other class members,
      *     false otherwise
      */
     private static boolean hasOnlyInitialization(DetailAST objBlock) {
         final boolean hasInitBlock = objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null;
         return hasInitBlock
-                  && TokenUtil.findFirstTokenByPredicate(objBlock, HAS_MEMBERS).isEmpty();
+            && TokenUtil.findFirstTokenByPredicate(objBlock,
+                AvoidDoubleBraceInitializationCheck::hasMember).isEmpty();
+    }
+
+    /**
+     * Checks whether a token represents a class member other than initialization-related tokens.
+     *
+     * @param token the token to check
+     * @return true if the token represents a class member
+     */
+    private static boolean hasMember(DetailAST token) {
+        return !IGNORED_TYPES.get(token.getType());
     }
 }
