@@ -90,6 +90,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_MULTIPLE_LINES_INSIDE =
             "empty.line.separator.multiple.lines.inside";
 
+    /**
+     * Minimum line number required to safely check two previous lines in the file.
+     */
+    private static final int MIN_LINE_NUMBER_TO_CHECK_PREVIOUS_PREVIOUS = 3;
+
     /** Allow no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
@@ -569,7 +574,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
              typeChild != null; typeChild = typeChild.getPreviousSibling()) {
 
             if (isTokenNotOnPreviousSiblingLines(typeChild, token)) {
-
+                // Ensuring typeChild.getLineNo() is large enough to check two previous lines.
+                final int typeChildLineNo = typeChild.getLineNo();
+                if (typeChildLineNo < MIN_LINE_NUMBER_TO_CHECK_PREVIOUS_PREVIOUS) {
+                    continue;
+                }
                 final String commentBeginningPreviousLine =
                     getLine(typeChild.getLineNo() - 2);
                 final String commentBeginningPrePreviousLine =

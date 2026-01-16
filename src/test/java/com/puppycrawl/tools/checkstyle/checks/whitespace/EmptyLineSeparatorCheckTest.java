@@ -84,6 +84,13 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testCrash18660() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputEmptyLineSeparatorCrash18660.java"), expected);
+    }
+
+    @Test
     public void testSeparationOfClassAndPackageWithComment() throws Exception {
 
         final String[] expected = {
