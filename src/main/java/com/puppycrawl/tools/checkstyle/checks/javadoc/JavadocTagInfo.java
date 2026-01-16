@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>
  * For now, the number of required/optional tag arguments are not included
  * because some Javadoc tags have very complex rules for determining this
- * (ex: {@code {@value}} tag).
+ * (ex: <code>{&#64;value}</code> tag).
  * </p>
  *
  * <p>
@@ -136,7 +136,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@inheritDoc}}.
+     * <code>{&#64;inheritDoc}</code>.
      */
     INHERIT_DOC("{@inheritDoc}", "inheritDoc", Type.INLINE) {
 
@@ -153,7 +153,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@link}}.
+     * <code>{&#64;link}</code>.
      */
     LINK("{@link}", "link", Type.INLINE) {
 
@@ -167,7 +167,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@linkplain}}.
+     * <code>{&#64;linkplain}</code>.
      */
     LINKPLAIN("{@linkplain}", "linkplain", Type.INLINE) {
 
@@ -181,7 +181,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@literal}}.
+     * <code>{&#64;literal}</code>.
      */
     LITERAL("{@literal}", "literal", Type.INLINE) {
 
@@ -323,7 +323,7 @@ public enum JavadocTagInfo {
     },
 
     /**
-     * {@code {@value}}.
+     * <code>{&#64;value}</code>.
      */
     VALUE("{@value}", "value", Type.INLINE) {
 
