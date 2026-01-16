@@ -3168,17 +3168,6 @@
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
     <specifier>argument</specifier>
-    <message>incompatible argument for parameter bound of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
-    <lineContent>branchLeadingToReassignedVar, TokenTypes.EXPR)) {</lineContent>
-    <details>
-      found   : @Initialized @Nullable DetailAST
-      required: @Initialized @NonNull DetailAST
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/PatternVariableAssignmentCheck.java</fileName>
-    <specifier>argument</specifier>
     <message>incompatible argument for parameter startingBranch of PatternVariableAssignmentCheck.traverseUntilNeededBranchType.</message>
     <lineContent>assignIdent, assignToken.getFirstChild(), TokenTypes.IDENT) != null) {</lineContent>
     <details>
