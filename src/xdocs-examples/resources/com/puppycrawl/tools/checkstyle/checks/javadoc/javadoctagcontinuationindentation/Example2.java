@@ -31,5 +31,13 @@ class Example2 {
   public void testMethod2(String input) {
     // ok, Indentation above 1 is fine as offset value is 2
   }
+
+  /**
+   * Test class.
+   *
+   * @apiNote
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */
+   public void testMethod3(String input) {}
 }
 // xdoc section -- end
