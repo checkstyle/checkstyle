@@ -261,6 +261,7 @@
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
+      -Xep:ObjectEqualsForPrimitives:ERROR
       -Xep:OptionalOrElseGet:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
