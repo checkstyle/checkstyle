@@ -56,11 +56,11 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         verifyWithInlineConfigParser(
                 getPath("Example2.java"), expected);
     }
-    
+
     @Test
     public void testExample3() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY, "static"), 
+            "19:3: " + getCheckMessage(MSG_KEY, "static"),
             "33:3: " + getCheckMessage(MSG_KEY, "static"),
             "38:5: " + getCheckMessage(MSG_KEY, "static"),
         };
@@ -68,12 +68,12 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
         verifyWithInlineConfigParser(
                 getPath("Example3.java"), expected);
     }
-    
+
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY, "static"), 
-            "26:3: " + getCheckMessage(MSG_KEY, "static"), 
+            "19:3: " + getCheckMessage(MSG_KEY, "static"),
+            "26:3: " + getCheckMessage(MSG_KEY, "static"),
         };
 
         verifyWithInlineConfigParser(
