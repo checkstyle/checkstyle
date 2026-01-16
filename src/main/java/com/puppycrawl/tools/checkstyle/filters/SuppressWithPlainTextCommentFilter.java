@@ -71,13 +71,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * Notes:
- * Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
- * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
+ * Properties {@code offCommentFormat} and {@code onCommentFormat} must have
+ * equal
+ * <a href=
+ * "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
  * </p>
  *
  * <p>
- * SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+ * SuppressionWithPlainTextCommentFilter can suppress Checks that have
+ * Treewalker or
  * Checker as parent module.
  * </p>
  *
@@ -91,7 +94,9 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /** Comment format which turns checkstyle reporting on. */
     private static final String DEFAULT_ON_FORMAT = "// CHECKSTYLE:ON";
 
-    /** Default check format to suppress. By default, the filter suppress all checks. */
+    /**
+     * Default check format to suppress. By default, the filter suppress all checks.
+     */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
     /** List of suppressions from the file. By default, Its null. */
@@ -131,7 +136,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /**
      * Setter to specify comment pattern to trigger filter to end suppression.
      *
-     * @param pattern  on comment format pattern.
+     * @param pattern on comment format pattern.
      * @since 8.6
      */
     public final void setOnCommentFormat(Pattern pattern) {
@@ -208,8 +213,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         if (!file.isDirectory()) {
             try {
                 result = new FileText(file, StandardCharsets.UTF_8.name());
-            }
-            catch (IOException exc) {
+            } catch (IOException exc) {
                 throw new IllegalStateException("Cannot read source file: " + fileName, exc);
             }
         }
@@ -218,7 +222,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     }
 
     /**
-     * Collects the list of {@link Suppression} instances retrieved from the given {@link FileText}.
+     * Collects the list of {@link Suppression} instances retrieved from the given
+     * {@link FileText}.
      *
      * @param fileText {@link FileText} instance.
      */
@@ -233,7 +238,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
      * Tries to extract the suppression from the given line.
      *
      * @param fileText {@link FileText} instance.
-     * @param lineNo line number.
+     * @param lineNo   line number.
      * @return {@link Optional} of {@link Suppression}.
      */
     private Optional<Suppression> getSuppression(FileText fileText, int lineNo) {
@@ -244,11 +249,11 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         Suppression suppression = null;
         if (onCommentMatcher.find()) {
             suppression = new Suppression(onCommentMatcher.group(0),
-                lineNo + 1, SuppressionType.ON, this);
+                    lineNo + 1, SuppressionType.ON, this);
         }
         if (offCommentMatcher.find()) {
             suppression = new Suppression(offCommentMatcher.group(0),
-                lineNo + 1, SuppressionType.OFF, this);
+                    lineNo + 1, SuppressionType.OFF, this);
         }
 
         return Optional.ofNullable(suppression);
@@ -256,21 +261,22 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
 
     /**
      * Finds the nearest {@link Suppression} instance which can suppress
-     * the given {@link AuditEvent}. The nearest suppression is the suppression which scope
+     * the given {@link AuditEvent}. The nearest suppression is the suppression
+     * which scope
      * is before the line and column of the event.
      *
      * @param suppressions collection of {@link Suppression} instances.
-     * @param event {@link AuditEvent} instance.
+     * @param event        {@link AuditEvent} instance.
      * @return {@link Suppression} instance.
      */
     private static Suppression getNearestSuppression(Collection<Suppression> suppressions,
-                                                     AuditEvent event) {
+            AuditEvent event) {
         return suppressions
-            .stream()
-            .filter(suppression -> suppression.isMatch(event))
-            .reduce((first, second) -> second)
-            .filter(suppression -> suppression.suppressionType != SuppressionType.ON)
-            .orElse(null);
+                .stream()
+                .filter(suppression -> suppression.isMatch(event))
+                .reduce((first, second) -> second)
+                .filter(suppression -> suppression.suppressionType != SuppressionType.ON)
+                .orElse(null);
     }
 
     /** Enum which represents the type of the suppression. */
@@ -286,14 +292,14 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
     /** The class which represents the suppression. */
     private static final class Suppression {
 
-        /** The regexp which is used to match the event source.*/
+        /** The regexp which is used to match the event source. */
         private final Pattern eventSourceRegexp;
-        /** The regexp which is used to match the event message.*/
+        /** The regexp which is used to match the event message. */
         private final Pattern eventMessageRegexp;
-        /** The regexp which is used to match the event ID.*/
+        /** The regexp which is used to match the event ID. */
         private final Pattern eventIdRegexp;
 
-        /** Suppression line.*/
+        /** Suppression line. */
         private final int lineNo;
 
         /** Suppression type. */
@@ -302,26 +308,26 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         /**
          * Creates new suppression instance.
          *
-         * @param text suppression text.
-         * @param lineNo suppression line number.
+         * @param text            suppression text.
+         * @param lineNo          suppression line number.
          * @param suppressionType suppression type.
-         * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
-         * @throws IllegalArgumentException if there is an error in the filter regex syntax.
+         * @param filter          the {@link SuppressWithPlainTextCommentFilter} with
+         *                        the context.
+         * @throws IllegalArgumentException if there is an error in the filter regex
+         *                                  syntax.
          */
         private Suppression(
-            String text,
-            int lineNo,
-            SuppressionType suppressionType,
-            SuppressWithPlainTextCommentFilter filter
-        ) {
+                String text,
+                int lineNo,
+                SuppressionType suppressionType,
+                SuppressWithPlainTextCommentFilter filter) {
             this.lineNo = lineNo;
             this.suppressionType = suppressionType;
 
             final Pattern commentFormat;
             if (this.suppressionType == SuppressionType.ON) {
                 commentFormat = filter.onCommentFormat;
-            }
-            else {
+            } else {
                 commentFormat = filter.offCommentFormat;
             }
 
@@ -334,33 +340,31 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
                 eventSourceRegexp = Pattern.compile(format);
                 if (filter.messageFormat == null) {
                     eventMessageRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, commentFormat);
                     eventMessageRegexp = Pattern.compile(format);
                 }
                 if (filter.idFormat == null) {
                     eventIdRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, commentFormat);
                     eventIdRegexp = Pattern.compile(format);
                 }
-            }
-            catch (final PatternSyntaxException exc) {
+            } catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, exc);
+                        "unable to parse expanded comment " + format, exc);
             }
         }
 
         /**
          * Indicates whether some other object is "equal to" this one.
          *
-         * @noinspection EqualsCalledOnEnumConstant
-         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-         *      code consistent
+         * @noinspection EqualsCalledOnEnumConstant, OverlyComplexBooleanExpression
+         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to
+         *                     keep
+         *                     code consistent
          */
         @Override
         public boolean equals(Object other) {
@@ -371,7 +375,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
                 return false;
             }
             final Suppression suppression = (Suppression) other;
-            return Objects.equals(lineNo, suppression.lineNo)
+            return lineNo == suppression.lineNo
                     && Objects.equals(suppressionType, suppression.suppressionType)
                     && Objects.equals(eventSourceRegexp, suppression.eventSourceRegexp)
                     && Objects.equals(eventMessageRegexp, suppression.eventMessageRegexp)
@@ -381,8 +385,8 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
         @Override
         public int hashCode() {
             return Objects.hash(
-                lineNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
-                eventIdRegexp);
+                    lineNo, suppressionType, eventSourceRegexp, eventMessageRegexp,
+                    eventIdRegexp);
         }
 
         /**
@@ -430,8 +434,7 @@ public class SuppressWithPlainTextCommentFilter extends AbstractAutomaticBean im
             if (eventIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
-                }
-                else {
+                } else {
                     final Matcher idMatcher = eventIdRegexp.matcher(event.getModuleId());
                     match = idMatcher.find();
                 }

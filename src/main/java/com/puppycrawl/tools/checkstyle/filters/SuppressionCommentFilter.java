@@ -40,7 +40,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress audit events.
+ * Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress
+ * audit events.
  * </div>
  *
  * <p>
@@ -60,28 +61,33 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * <p>
  * Attention: This filter may only be specified within the TreeWalker module
- * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which are also
- * defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
- * <a href="https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
+ * ({@code &lt;module name="TreeWalker"/&gt;}) and only applies to checks which
+ * are also
+ * defined within this module. To filter non-TreeWalker checks like
+ * {@code RegexpSingleline}, a
+ * <a href=
+ * "https://checkstyle.org/filters/suppresswithplaintextcommentfilter.html">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
  *
  * <p>
  * Notes:
  * {@code offCommentFormat} and {@code onCommentFormat} must have equal
- * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
+ * <a href=
+ * "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
  * </p>
  *
  * <p>
- * SuppressionCommentFilter can suppress Checks that have Treewalker as parent module.
+ * SuppressionCommentFilter can suppress Checks that have Treewalker as parent
+ * module.
  * </p>
  *
  * @since 3.5
  */
 public class SuppressionCommentFilter
-    extends AbstractAutomaticBean
-    implements TreeWalkerFilter {
+        extends AbstractAutomaticBean
+        implements TreeWalkerFilter {
 
     /**
      * Enum to be used for switching checkstyle reporting for tags.
@@ -227,7 +233,8 @@ public class SuppressionCommentFilter
     }
 
     /**
-     * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
+     * Setter to control whether to check C style comments
+     * ({@code &#47;* ... *&#47;}).
      *
      * @param checkC {@code true} if C comments are checked.
      * @since 3.5
@@ -272,8 +279,8 @@ public class SuppressionCommentFilter
         for (Tag tag : tags) {
             final int eventLine = event.getLine();
             if (tag.getLine() > eventLine
-                || tag.getLine() == eventLine
-                    && tag.getColumn() > event.getColumn()) {
+                    || tag.getLine() == eventLine
+                            && tag.getColumn() > event.getColumn()) {
                 break;
             }
             if (tag.isMatch(event)) {
@@ -322,16 +329,15 @@ public class SuppressionCommentFilter
      * Tags a string if it matches the format for turning
      * checkstyle reporting on or the format for turning reporting off.
      *
-     * @param text the string to tag.
-     * @param line the line number of text.
+     * @param text   the string to tag.
+     * @param line   the line number of text.
      * @param column the column number of text.
      */
     private void tagCommentLine(String text, int line, int column) {
         final Matcher offMatcher = offCommentFormat.matcher(text);
         if (offMatcher.find()) {
             addTag(offMatcher.group(0), line, column, TagType.OFF);
-        }
-        else {
+        } else {
             final Matcher onMatcher = onCommentFormat.matcher(text);
             if (onMatcher.find()) {
                 addTag(onMatcher.group(0), line, column, TagType.ON);
@@ -342,9 +348,9 @@ public class SuppressionCommentFilter
     /**
      * Adds a {@code Tag} to the list of all tags.
      *
-     * @param text the text of the tag.
-     * @param line the line number of the tag.
-     * @param column the column number of the tag.
+     * @param text        the text of the tag.
+     * @param line        the line number of the tag.
+     * @param column      the column number of the tag.
      * @param reportingOn {@code true} if the tag turns checkstyle reporting on.
      */
     private void addTag(String text, int line, int column, TagType reportingOn) {
@@ -357,7 +363,7 @@ public class SuppressionCommentFilter
      * whether the suppression turns checkstyle reporting on or off.
      */
     private static final class Tag
-        implements Comparable<Tag> {
+            implements Comparable<Tag> {
 
         /** The text of the tag. */
         private final String text;
@@ -383,15 +389,15 @@ public class SuppressionCommentFilter
         /**
          * Constructs a tag.
          *
-         * @param line the line number.
-         * @param column the column number.
-         * @param text the text of the suppression.
+         * @param line    the line number.
+         * @param column  the column number.
+         * @param text    the text of the suppression.
          * @param tagType {@code ON} if the tag turns checkstyle reporting.
-         * @param filter the {@code SuppressionCommentFilter} with the context
+         * @param filter  the {@code SuppressionCommentFilter} with the context
          * @throws IllegalArgumentException if unable to parse expanded text.
          */
         private Tag(int line, int column, String text, TagType tagType,
-                   SuppressionCommentFilter filter) {
+                SuppressionCommentFilter filter) {
             this.line = line;
             this.column = column;
             this.text = text;
@@ -400,8 +406,7 @@ public class SuppressionCommentFilter
             final Pattern commentFormat;
             if (this.tagType == TagType.ON) {
                 commentFormat = filter.onCommentFormat;
-            }
-            else {
+            } else {
                 commentFormat = filter.offCommentFormat;
             }
 
@@ -415,8 +420,7 @@ public class SuppressionCommentFilter
 
                 if (filter.messageFormat == null) {
                     tagMessageRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.messageFormat, text, commentFormat);
                     tagMessageRegexp = Pattern.compile(format);
@@ -424,16 +428,14 @@ public class SuppressionCommentFilter
 
                 if (filter.idFormat == null) {
                     tagIdRegexp = null;
-                }
-                else {
+                } else {
                     format = CommonUtil.fillTemplateWithStringsByRegexp(
                             filter.idFormat, text, commentFormat);
                     tagIdRegexp = Pattern.compile(format);
                 }
-            }
-            catch (final PatternSyntaxException exc) {
+            } catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException(
-                    "unable to parse expanded comment " + format, exc);
+                        "unable to parse expanded comment " + format, exc);
             }
         }
 
@@ -473,16 +475,15 @@ public class SuppressionCommentFilter
          *
          * @param object the tag to compare with this one.
          * @return a negative number if this tag is before the other tag,
-         *     0 if they are at the same position, and a positive number if this
-         *     tag is after the other tag.
+         *         0 if they are at the same position, and a positive number if this
+         *         tag is after the other tag.
          */
         @Override
         public int compareTo(Tag object) {
             final int result;
             if (line == object.line) {
                 result = Integer.compare(column, object.column);
-            }
-            else {
+            } else {
                 result = Integer.compare(line, object.line);
             }
             return result;
@@ -492,9 +493,10 @@ public class SuppressionCommentFilter
          * Indicates whether some other object is "equal to" this one.
          * Suppression on enumeration is needed so code stays consistent.
          *
-         * @noinspection EqualsCalledOnEnumConstant
-         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-         *      code consistent
+         * @noinspection EqualsCalledOnEnumConstant, OverlyComplexBooleanExpression
+         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to
+         *                     keep
+         *                     code consistent
          */
         @Override
         public boolean equals(Object other) {
@@ -505,8 +507,8 @@ public class SuppressionCommentFilter
                 return false;
             }
             final Tag tag = (Tag) other;
-            return Objects.equals(line, tag.line)
-                    && Objects.equals(column, tag.column)
+            return line == tag.line
+                    && column == tag.column
                     && Objects.equals(tagType, tag.tagType)
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
@@ -532,10 +534,12 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
+         * Checks whether {@link TreeWalkerAuditEvent} source name matches the check
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
+         * @return true if the {@link TreeWalkerAuditEvent} source name matches the
+         *         check format.
          */
         private boolean isCheckMatch(TreeWalkerAuditEvent event) {
             final Matcher checkMatcher = tagCheckRegexp.matcher(event.getSourceName());
@@ -543,18 +547,19 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID
+         *         format.
          */
         private boolean isIdMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
             if (tagIdRegexp != null) {
                 if (event.getModuleId() == null) {
                     match = false;
-                }
-                else {
+                } else {
                     final Matcher idMatcher = tagIdRegexp.matcher(event.getModuleId());
                     match = idMatcher.find();
                 }
@@ -563,10 +568,12 @@ public class SuppressionCommentFilter
         }
 
         /**
-         * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
+         * Checks whether the {@link TreeWalkerAuditEvent} message matches the message
+         * format.
          *
          * @param event {@link TreeWalkerAuditEvent} instance.
-         * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
+         * @return true if the {@link TreeWalkerAuditEvent} message matches the message
+         *         format.
          */
         private boolean isMessageMatch(TreeWalkerAuditEvent event) {
             boolean match = true;
