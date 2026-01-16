@@ -253,6 +253,7 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InvalidInlineTag:ERROR
       -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
@@ -2712,7 +2713,9 @@
                     <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                     <arg>--should-stop=ifError=FLOW</arg>
                     <arg>
-                      -Xplugin:ErrorProne ${error-prone.configuration-args}
+                      -Xplugin:ErrorProne
+                      -XepExcludedPaths:.*/JavadocCommentsTokenTypes\.java
+                      ${error-prone.configuration-args}
                     </arg>
                   </compilerArgs>
                   <annotationProcessorPaths>

@@ -132,14 +132,14 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
      * |--TEXT[4x2] : [ ]
-     * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
+     * |--JAVADOC_BLOCK_TAG[4x3] : [@param The bar.\n ]
      * </pre>
      * Or it can also look like:
      * <pre>
      * JAVADOC_CONTENT[3x0]
      * |--NEWLINE[3x0] : [\n]
      * |--LEADING_ASTERISK[4x0] : [ *]
-     * |--JAVADOC_BLOCK_TAG[4x3] : [@param T The bar.\n ]
+     * |--JAVADOC_BLOCK_TAG[4x3] : [@param The bar.\n ]
      * </pre>
      * We do not include the variation
      * <pre>

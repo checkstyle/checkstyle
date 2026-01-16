@@ -140,7 +140,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter of method.}</pre>
+     * <pre>{@code * @param The parameter of method.}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -251,7 +251,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * @param value The parameter of method.}</pre>
+     * <pre>{@code * @param The parameter of method.}</pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
