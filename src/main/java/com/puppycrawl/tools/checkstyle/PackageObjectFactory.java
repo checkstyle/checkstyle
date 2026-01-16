@@ -595,6 +595,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInEnumerationCheck");
         NAME_TO_FULL_MODULE_NAME.put("UnnecessarySemicolonInTryWithResourcesCheck",
                 BASE_PACKAGE + ".checks.coding.UnnecessarySemicolonInTryWithResourcesCheck");
+        NAME_TO_FULL_MODULE_NAME.put("UseEnhancedSwitchCheck",
+            BASE_PACKAGE + ".checks.coding.UseEnhancedSwitchCheck");
         NAME_TO_FULL_MODULE_NAME.put("VariableDeclarationUsageDistanceCheck",
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
         NAME_TO_FULL_MODULE_NAME.put("WhenShouldBeUsedCheck",
