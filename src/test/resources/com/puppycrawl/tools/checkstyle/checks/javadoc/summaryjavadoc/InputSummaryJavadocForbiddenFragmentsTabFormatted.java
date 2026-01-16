@@ -6,7 +6,8 @@ forbiddenSummaryFragments = ^[a-z]
 
 */
 
-
+// Note: This file uses tab indentation. The Javadoc continuation lines
+// have tab characters before the asterisks (e.g., "\t *" not " *").
 package com.puppycrawl.tools.checkstyle.checks.javadoc.summaryjavadoc;
 
 public class InputSummaryJavadocForbiddenFragmentsTabFormatted {
