@@ -16,6 +16,9 @@
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressionXpathFilter.java"/>
         </macro>
+        <p>
+          Checkstyle supports XPath 3.1.
+        </p>
       </subsection>
       <subsection name="Notes" id="SuppressionXpathFilter_Notes">
         <macro name="notes">
