@@ -82,14 +82,7 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
         final List<DetailAST> reassignedVariableIdents = getReassignedVariableIdents(ast);
 
         for (DetailAST patternVariableIdent : patternVariableIdents) {
-            for (DetailAST assignTokenIdent : reassignedVariableIdents) {
-                if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
-
-                    log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
-                    break;
-                }
-
-            }
+            checkForReassignment(patternVariableIdent, reassignedVariableIdents);
         }
     }
 
@@ -151,20 +144,23 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
      */
     private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
 
-        final DetailAST branchLeadingToReassignedVar = getBranchLeadingToReassignedVars(ast);
+        final List<DetailAST> branchesLeadingToReassignedVars =
+                getBranchesLeadingToReassignedVars(ast);
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
 
-        for (DetailAST expressionBranch = branchLeadingToReassignedVar;
-             expressionBranch != null;
-             expressionBranch = traverseUntilNeededBranchType(expressionBranch,
-                 branchLeadingToReassignedVar, TokenTypes.EXPR)) {
+        for (DetailAST branchLeadingToReassignedVar : branchesLeadingToReassignedVars) {
+            for (DetailAST expressionBranch = branchLeadingToReassignedVar;
+                 expressionBranch != null;
+                 expressionBranch = traverseUntilNeededBranchType(expressionBranch,
+                         branchLeadingToReassignedVar, TokenTypes.EXPR)) {
 
-            final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
+                final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
 
-            if (assignToken != null) {
-                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
-                if (neededAssignIdent.getPreviousSibling() == null) {
-                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                if (assignToken != null) {
+                    final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
+                    if (neededAssignIdent.getPreviousSibling() == null) {
+                        reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
+                    }
                 }
             }
         }
@@ -174,33 +170,70 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the closest consistent AST branch that leads to reassigned variable's ident.
+     * Gets all AST branches that may contain reassigned variables.
      *
      * @param ast ast tree of checked instanceof statement.
-     * @return the closest consistent AST branch that leads to reassigned variable's ident.
+     * @return list of AST branches that may contain reassignments.
      */
-    @Nullable
-    private static DetailAST getBranchLeadingToReassignedVars(DetailAST ast) {
-        DetailAST leadingToReassignedVarBranch = null;
+    private static List<DetailAST> getBranchesLeadingToReassignedVars(DetailAST ast) {
+        final List<DetailAST> branches = new ArrayList<>();
 
         for (DetailAST conditionalStatement = ast;
-             conditionalStatement != null && leadingToReassignedVarBranch == null;
+             conditionalStatement != null;
              conditionalStatement = conditionalStatement.getParent()) {
 
             if (conditionalStatement.getType() == TokenTypes.LITERAL_IF
                 || conditionalStatement.getType() == TokenTypes.LITERAL_ELSE) {
 
-                leadingToReassignedVarBranch =
-                    conditionalStatement.findFirstToken(TokenTypes.SLIST);
+                final DetailAST slist = conditionalStatement.findFirstToken(TokenTypes.SLIST);
+                if (slist != null) {
+                    branches.add(slist);
+                }
 
+                if (conditionalStatement.getType() == TokenTypes.LITERAL_IF) {
+                    final List<DetailAST> extendedScopeStatements =
+                            getStatementsInExtendedScope(conditionalStatement);
+                    branches.addAll(extendedScopeStatements);
+                }
+                break;
             }
             else if (conditionalStatement.getType() == TokenTypes.QUESTION) {
-                leadingToReassignedVarBranch = conditionalStatement;
+                branches.add(conditionalStatement);
+                break;
             }
         }
 
-        return leadingToReassignedVarBranch;
+        return branches;
+    }
 
+    /**
+     * Gets statements that follow the conditional where pattern variable scope extends.
+     * Only returns top-level statements that are siblings of the conditional, excluding
+     * statements nested in control structures like while loops.
+     *
+     * @param conditionalStatement The if statement.
+     * @return List of statement nodes in the extended scope.
+     */
+    private static List<DetailAST> getStatementsInExtendedScope(DetailAST conditionalStatement) {
+        final List<DetailAST> statements = new ArrayList<>();
+
+        DetailAST nextSibling = conditionalStatement.getNextSibling();
+
+        while (nextSibling != null) {
+            if (nextSibling.getType() != TokenTypes.SEMI
+                    && nextSibling.getType() != TokenTypes.RCURLY) {
+                if (nextSibling.getType() == TokenTypes.EXPR
+                        || nextSibling.getType() == TokenTypes.LITERAL_RETURN) {
+                    statements.add(nextSibling);
+                }
+                else {
+                    break;
+                }
+            }
+            nextSibling = nextSibling.getNextSibling();
+        }
+
+        return statements;
     }
 
     /**
@@ -299,4 +332,22 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
 
         return assignIdent;
     }
+
+    /**
+     * Checks whether a pattern variable is reassigned and logs a violation if so.
+     *
+     * @param patternVariableIdent AST ident of the pattern variable
+     * @param reassignedVariableIdents list of AST idents that represent reassigned variables
+     */
+    private void checkForReassignment(
+            DetailAST patternVariableIdent,
+            Iterable<DetailAST> reassignedVariableIdents) {
+
+        for (DetailAST assignTokenIdent : reassignedVariableIdents) {
+            if (patternVariableIdent.getText().equals(assignTokenIdent.getText())) {
+                log(assignTokenIdent, MSG_KEY, assignTokenIdent.getText());
+            }
+        }
+    }
+
 }
