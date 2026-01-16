@@ -708,12 +708,12 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG_END = JavadocCommentsLexer.JAVADOC_INLINE_TAG_END;
 
     /**
-     * {@code {@code}} Javadoc inline tag.
+     * {@code <code>{&#64;code}</code>} Javadoc inline tag.
      *
      * <p>Such Javadoc tag can have no children:</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@code println("Hello");}}</pre>
+     * <pre><code> * {&#64;code println("Hello");}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -730,7 +730,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int CODE_INLINE_TAG = JavadocCommentsLexer.CODE_INLINE_TAG;
 
     /**
-     * {@code {@link}} Javadoc inline tag.
+     * {@code <code>{&#64;link}</code>} Javadoc inline tag.
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
@@ -739,7 +739,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@link Math#max(int, int) label}}</pre>
+     * <pre><code> * {&#64;link Math#max(int, int) label}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -770,7 +770,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int LINK_INLINE_TAG = JavadocCommentsLexer.LINK_INLINE_TAG;
 
     /**
-     * {@code {@linkplain}} Javadoc inline tag.
+     * {@code <code>{&#64;linkplain}</code>} Javadoc inline tag.
      *
      * <p>Such Javadoc tag can have two children:</p>
      * <ol>
@@ -779,7 +779,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@linkplain String#indexOf(int, int) label}}</pre>
+     * <pre><code> * {&#64;linkplain String#indexOf(int, int) label}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -810,7 +810,7 @@ public final class JavadocCommentsTokenTypes {
     public static final int LINKPLAIN_INLINE_TAG = JavadocCommentsLexer.LINKPLAIN_INLINE_TAG;
 
     /**
-     * {@code {@value}} Javadoc inline tag.
+     * {@code <code>{&#64;value}</code>} Javadoc inline tag.
      *
      * <p>Such Javadoc tag can have one child:</p>
      * <ol>
@@ -818,7 +818,7 @@ public final class JavadocCommentsTokenTypes {
      * </ol>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@value Integer#MAX_VALUE}}</pre>
+     * <pre><code> * {&#64;value Integer#MAX_VALUE}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -847,7 +847,7 @@ public final class JavadocCommentsTokenTypes {
      * short summary description within a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@summary This is a short summary.}}</pre>
+     * <pre><code> * Example showing {&#64;summary This is a short summary.}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -868,13 +868,13 @@ public final class JavadocCommentsTokenTypes {
     public static final int SUMMARY_INLINE_TAG = JavadocCommentsLexer.SUMMARY_INLINE_TAG;
 
     /**
-     * {@code {@inheritDoc}} inline tag.
+     * {@code <code>{&#64;inheritDoc}</code>} inline tag.
      *
      * <p>This node models the inline {@code {@inheritDoc}} tag that instructs Javadoc
      * to inherit documentation from the corresponding element in a parent class or interface.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@inheritDoc}}</pre>
+     * <pre><code> * {&#64;inheritDoc}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -892,12 +892,12 @@ public final class JavadocCommentsTokenTypes {
     public static final int INHERIT_DOC_INLINE_TAG = JavadocCommentsLexer.INHERIT_DOC_INLINE_TAG;
 
     /**
-     * {@code {@systemProperty}} inline tag.
+     * {@code <code>{&#64;systemProperty}</code>} inline tag.
      *
      * <p>Such Javadoc tag is used to reference a system property.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * This method uses {@systemProperty user.home} system property.}</pre>
+     * <pre><code> * This method uses {&#64;systemProperty user.home} system property.</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -919,10 +919,10 @@ public final class JavadocCommentsTokenTypes {
             JavadocCommentsLexer.SYSTEM_PROPERTY_INLINE_TAG;
 
     /**
-     * {@code {@literal}} inline tag.
+     * {@code <code>{&#64;literal}</code>} inline tag.
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * {@literal @Override}}</pre>
+     * <pre><code> * {&#64;literal @Override}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -947,7 +947,7 @@ public final class JavadocCommentsTokenTypes {
      * describe the returned value directly within a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code Example showing result {@return The computed value.}}</pre>
+     * <pre><code> Example showing result {&#64;return The computed value.}</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -968,13 +968,13 @@ public final class JavadocCommentsTokenTypes {
     public static final int RETURN_INLINE_TAG = JavadocCommentsLexer.RETURN_INLINE_TAG;
 
     /**
-     * {@code {@index}} inline tag.
+     * {@code <code>{&#64;index}</code>} inline tag.
      *
      * <p>This node represents an inline {@code {@index ...}} tag used to mark an
      * index term inside a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>
-     * <pre>{@code * Example showing {@index keyword description of the index term}.}</pre>
+     * <pre><code> * Example showing {&#64;index keyword description of the index term}.</code></pre>
      *
      * <b>Tree:</b>
      * <pre>{@code
@@ -998,9 +998,9 @@ public final class JavadocCommentsTokenTypes {
     public static final int INDEX_INLINE_TAG = JavadocCommentsLexer.INDEX_INLINE_TAG;
 
     /**
-     * {@code @snippet} inline tag.
+     * {@code <code>{&#64;snippet}</code>} inline tag.
      *
-     * <p>This node represents an inline { @code { @snippet :}} tag used to embed
+     * <p>This node represents an inline <code>{&#64;snippet}</code> tag used to embed
      * code snippets directly inside a Javadoc sentence.</p>
      *
      * <p><b>Example:</b></p>

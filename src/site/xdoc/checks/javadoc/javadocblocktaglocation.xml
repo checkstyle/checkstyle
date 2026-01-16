@@ -31,7 +31,7 @@
       <subsection name="Notes" id="JavadocBlockTagLocation_Notes">
         <p>
           To place a tag explicitly as text, escape the <code>@</code> symbol with HTML entity
-          &amp;#64; or place it inside <code>{@code }</code>, for example:
+          &amp;#64; or place it inside <code>{&#64;code }</code>, for example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 &#47;**
