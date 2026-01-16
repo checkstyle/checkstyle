@@ -34,8 +34,6 @@ import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
-import com.puppycrawl.tools.checkstyle.PropertyType;
-import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
@@ -44,8 +42,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <div>
- * Checks the header of a source file against multiple header files that contain a
- * <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
+ * Checks the header of a source file against multiple header files that contain
+ * a
+ * <a href=
+ * "https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html">
  * pattern</a> for each line of the source header.
  * </div>
  *
@@ -88,16 +88,8 @@ public class MultiFileRegexpHeaderCheck
     private final List<HeaderFileMetadata> headerFilesMetadata = new ArrayList<>();
 
     /**
-     * Specify a comma-separated list of files containing the required headers.
-     * If a file's header matches none, the violation references
-     * the first file in this list. Users can order files to set
-     * a preferred header for such reporting.
-     */
-    @XdocsPropertyType(PropertyType.STRING)
-    private String headerFiles;
-
-    /**
-     * Setter to specify a comma-separated list of files containing the required headers.
+     * Setter to specify a comma-separated list of files containing the required
+     * headers.
      * If a file's header matches none, the violation references
      * the first file in this list. Users can order files to set
      * a preferred header for such reporting.
@@ -110,8 +102,7 @@ public class MultiFileRegexpHeaderCheck
         final String[] files;
         if (headerFiles == null) {
             files = CommonUtil.EMPTY_STRING_ARRAY;
-        }
-        else {
+        } else {
             files = headerFiles.clone();
         }
 
@@ -126,7 +117,8 @@ public class MultiFileRegexpHeaderCheck
      * Returns a comma-separated string of all configured header file paths.
      *
      * @return A comma-separated string of all configured header file paths,
-     *         or an empty string if no header files are configured or none have valid paths.
+     *         or an empty string if no header files are configured or none have
+     *         valid paths.
      */
     public String getConfiguredHeaderPaths() {
         return headerFilesMetadata.stream()
@@ -159,9 +151,10 @@ public class MultiFileRegexpHeaderCheck
     }
 
     /**
-     * Analyzes if the file text matches the header file patterns and generates a detailed result.
+     * Analyzes if the file text matches the header file patterns and generates a
+     * detailed result.
      *
-     * @param fileText the text of the file being checked
+     * @param fileText   the text of the file being checked
      * @param headerFile the header file metadata to check against
      * @return a MatchResult containing the result of the analysis
      */
@@ -185,8 +178,7 @@ public class MultiFileRegexpHeaderCheck
         final MatchResult matchResult;
         if (mismatchLine == MISMATCH_CODE) {
             matchResult = MatchResult.matching();
-        }
-        else {
+        } else {
             matchResult = createMismatchResult(headerFile, fileText, mismatchLine);
         }
         return matchResult;
@@ -195,13 +187,13 @@ public class MultiFileRegexpHeaderCheck
     /**
      * Creates a MatchResult for a mismatch case.
      *
-     * @param headerFile the header file metadata
-     * @param fileText the text of the file being checked
+     * @param headerFile   the header file metadata
+     * @param fileText     the text of the file being checked
      * @param mismatchLine the line number of the mismatch (0-based)
      * @return a MatchResult representing the mismatch
      */
     private static MatchResult createMismatchResult(HeaderFileMetadata headerFile,
-                                                    FileText fileText, int mismatchLine) {
+            FileText fileText, int mismatchLine) {
         final String messageKey;
         final int lineToLog;
         final String messageArg;
@@ -210,15 +202,13 @@ public class MultiFileRegexpHeaderCheck
             messageKey = MSG_HEADER_MISSING;
             lineToLog = 1;
             messageArg = headerFile.headerFilePath();
-        }
-        else {
+        } else {
             messageKey = MSG_HEADER_MISMATCH;
             lineToLog = mismatchLine + 1;
             final String lineContent = headerFile.lineContents().get(mismatchLine);
             if (lineContent.isEmpty()) {
                 messageArg = EMPTY_LINE_PATTERN;
-            }
-            else {
+            } else {
                 messageArg = lineContent;
             }
         }
@@ -229,7 +219,7 @@ public class MultiFileRegexpHeaderCheck
      * Reads all lines from the specified header file URI.
      *
      * @param headerFile path to the header file (for error messages)
-     * @param uri URI of the header file
+     * @param uri        URI of the header file
      * @return list of lines read from the header file
      * @throws IllegalArgumentException if the file cannot be read or is empty
      */
@@ -238,8 +228,7 @@ public class MultiFileRegexpHeaderCheck
         try (LineNumberReader lineReader = new LineNumberReader(
                 new InputStreamReader(
                         new BufferedInputStream(uri.toURL().openStream()),
-                        StandardCharsets.UTF_8)
-        )) {
+                        StandardCharsets.UTF_8))) {
             String line;
             do {
                 line = lineReader.readLine();
@@ -247,8 +236,7 @@ public class MultiFileRegexpHeaderCheck
                     readerLines.add(line);
                 }
             } while (line != null);
-        }
-        catch (final IOException exc) {
+        } catch (final IOException exc) {
             throw new IllegalArgumentException("unable to load header file " + headerFile, exc);
         }
 
@@ -259,12 +247,13 @@ public class MultiFileRegexpHeaderCheck
     }
 
     /**
-     * Metadata holder for a header file, storing its URI, compiled patterns, and line contents.
+     * Metadata holder for a header file, storing its URI, compiled patterns, and
+     * line contents.
      *
-     * @param headerFileUri URI of the header file
+     * @param headerFileUri  URI of the header file
      * @param headerFilePath original path string of the header file
      * @param headerPatterns compiled regex patterns for header lines
-     * @param lineContents raw lines from the header file
+     * @param lineContents   raw lines from the header file
      */
     private record HeaderFileMetadata(
             URI headerFileUri,
@@ -278,7 +267,8 @@ public class MultiFileRegexpHeaderCheck
          *
          * @param headerPath path to the header file
          * @return HeaderFileMetadata instance
-         * @throws IllegalArgumentException if the header file is invalid or cannot be read
+         * @throws IllegalArgumentException if the header file is invalid or cannot be
+         *                                  read
          */
         /* package */ static HeaderFileMetadata createFromFile(String headerPath) {
             if (CommonUtil.isBlank(headerPath)) {
@@ -291,8 +281,7 @@ public class MultiFileRegexpHeaderCheck
                         .map(HeaderFileMetadata::createPatternFromLine)
                         .toList();
                 return new HeaderFileMetadata(uri, headerPath, patterns, readerLines);
-            }
-            catch (CheckstyleException exc) {
+            } catch (CheckstyleException exc) {
                 throw new IllegalArgumentException(
                         "Error reading or corrupted header file: " + headerPath, exc);
             }
@@ -308,8 +297,7 @@ public class MultiFileRegexpHeaderCheck
             final Pattern result;
             if (line.isEmpty()) {
                 result = BLANK_LINE;
-            }
-            else {
+            } else {
                 result = Pattern.compile(validateRegex(line));
             }
             return result;
@@ -338,7 +326,8 @@ public class MultiFileRegexpHeaderCheck
         /**
          * Ensures that the given input string is a valid regular expression.
          *
-         * <p>This method validates that the input is a correctly formatted regex string
+         * <p>
+         * This method validates that the input is a correctly formatted regex string
          * and will throw a PatternSyntaxException if it's invalid.
          *
          * @param input the string to be treated as a regex pattern
@@ -349,15 +338,15 @@ public class MultiFileRegexpHeaderCheck
             try {
                 Pattern.compile(input);
                 return input;
-            }
-            catch (final PatternSyntaxException exc) {
+            } catch (final PatternSyntaxException exc) {
                 throw new IllegalArgumentException("Invalid regex pattern: " + input, exc);
             }
         }
     }
 
     /**
-     * Represents the result of a header match check, containing information about any mismatch.
+     * Represents the result of a header match check, containing information about
+     * any mismatch.
      *
      * @param isMatching whether the header matched
      * @param lineNumber line number of mismatch (1-based)
@@ -388,7 +377,7 @@ public class MultiFileRegexpHeaderCheck
          * @return a mismatch result
          */
         /* package */ static MatchResult mismatch(int lineNumber, String messageKey,
-                                           String messageArg) {
+                String messageArg) {
             return new MatchResult(false, lineNumber, messageKey, messageArg);
         }
     }
