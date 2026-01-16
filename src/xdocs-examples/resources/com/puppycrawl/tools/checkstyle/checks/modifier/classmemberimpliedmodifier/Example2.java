@@ -11,7 +11,7 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier.classmemberimpliedmodifier;
 
 // xdoc section -- start
-public final class Example1 {
+public final class Example2 {
   static interface Address1 {
   }
 

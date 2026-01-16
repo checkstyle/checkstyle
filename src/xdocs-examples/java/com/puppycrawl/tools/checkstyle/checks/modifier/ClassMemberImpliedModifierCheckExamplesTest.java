@@ -72,8 +72,8 @@ public class ClassMemberImpliedModifierCheckExamplesTest extends AbstractExample
     @Test
     public void testExample4() throws Exception {
         final String[] expected = {
-            "19:3: " + getCheckMessage(MSG_KEY, "static"), // Address2
-            "26:3: " + getCheckMessage(MSG_KEY, "static"), // Age2
+            "19:3: " + getCheckMessage(MSG_KEY, "static"), 
+            "26:3: " + getCheckMessage(MSG_KEY, "static"), 
         };
 
         verifyWithInlineConfigParser(
