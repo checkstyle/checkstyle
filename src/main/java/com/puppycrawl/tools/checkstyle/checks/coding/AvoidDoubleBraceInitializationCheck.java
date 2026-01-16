@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import java.util.BitSet;
-import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -35,15 +34,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * <p>
  * Rationale: Double brace initialization (set of
- * <a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
- * Instance Initializers</a> in class body) may look cool, but it is considered as anti-pattern
+ * <a href=
+ * "https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6">
+ * Instance Initializers</a> in class body) may look cool, but it is considered
+ * as anti-pattern
  * and should be avoided.
- * This is also can lead to a hard-to-detect memory leak, if the anonymous class instance is
+ * This is also can lead to a hard-to-detect memory leak, if the anonymous class
+ * instance is
  * returned outside and other object(s) hold reference to it.
- * Created anonymous class is not static, it holds an implicit reference to the outer class
+ * Created anonymous class is not static, it holds an implicit reference to the
+ * outer class
  * instance.
  * See this
- * <a href="https://blog.jooq.org/dont-be-clever-the-double-curly-braces-anti-pattern/">
+ * <a href=
+ * "https://blog.jooq.org/dont-be-clever-the-double-curly-braces-anti-pattern/">
  * blog post</a> and
  * <a href="https://www.baeldung.com/java-double-brace-initialization">
  * article</a> for more details.
@@ -62,16 +66,13 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     public static final String MSG_KEY = "avoid.double.brace.init";
 
     /**
-     * Set of token types that are used in {@link #HAS_MEMBERS} predicate.
+     * Set of token types that are ignored when checking class members.
      */
     private static final BitSet IGNORED_TYPES = TokenUtil.asBitSet(
-        TokenTypes.INSTANCE_INIT,
-        TokenTypes.SEMI,
-        TokenTypes.LCURLY,
-        TokenTypes.RCURLY
-    );
-
-
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.SEMI,
+            TokenTypes.LCURLY,
+            TokenTypes.RCURLY);
 
     @Override
     public int[] getDefaultTokens() {
@@ -85,28 +86,41 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.OBJBLOCK};
+        return new int[] { TokenTypes.OBJBLOCK };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getParent().getType() == TokenTypes.LITERAL_NEW
-            && hasOnlyInitialization(ast)) {
+                && hasOnlyInitialization(ast)) {
             log(ast, MSG_KEY);
         }
     }
 
     /**
-     * Checks that block has at least one instance init block and no other class members.
+     * Checks that block has at least one instance init block and no other class
+     * members.
      *
      * @param objBlock token to check
-     * @return true if there is least one instance init block and no other class members,
-     *     false otherwise
+     * @return true if there is at least one instance init block and no other class
+     *         members,
+     *         false otherwise
      */
     private static boolean hasOnlyInitialization(DetailAST objBlock) {
         final boolean hasInitBlock = objBlock.findFirstToken(TokenTypes.INSTANCE_INIT) != null;
         return hasInitBlock
-                  && TokenUtil.findFirstTokenByPredicate(objBlock,
-                          token -> !IGNORED_TYPES.get(token.getType())).isEmpty();
+                && TokenUtil.findFirstTokenByPredicate(objBlock,
+                        AvoidDoubleBraceInitializationCheck::hasMember).isEmpty();
+    }
+
+    /**
+     * Checks whether a token represents a class member other than
+     * initialization-related tokens.
+     *
+     * @param token the token to check
+     * @return true if the token represents a class member
+     */
+    private static boolean hasMember(DetailAST token) {
+        return !IGNORED_TYPES.get(token.getType());
     }
 }
