@@ -94,6 +94,7 @@ public class MultiFileRegexpHeaderCheck
      * a preferred header for such reporting.
      */
     @XdocsPropertyType(PropertyType.STRING)
+    @SuppressWarnings("UnusedVariable")
     private String headerFiles;
 
     /**

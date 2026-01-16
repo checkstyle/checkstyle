@@ -274,7 +274,8 @@
       -Xep:TruthAssertExpected:ERROR
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnusedMethod:ERROR
-      -Xep:VoidUsed:ERROR
+      -Xep:UnusedNestedClass:ERROR
+      -Xep:UnusedVariable:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
