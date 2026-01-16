@@ -35,11 +35,12 @@ import com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil;
  * java.text.MessageFormat.
  *
  * @noinspection ClassWithTooManyConstructors
- * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class requires a
- *      bunch of constructors
+ * @noinspectionreason ClassWithTooManyConstructors - immutable nature of class
+ *                     requires a
+ *                     bunch of constructors
  */
 public final class Violation
-    implements Comparable<Violation> {
+        implements Comparable<Violation> {
 
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
@@ -78,33 +79,35 @@ public final class Violation
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
+     * @param lineNo          line number associated with the violation
+     * @param columnNo        column number associated with the violation
      * @param columnCharIndex column char index associated with the violation
-     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
-     * @param customMessage optional custom violation overriding the default
+     * @param tokenType       token type of the event associated with violation. See
+     *                        {@link TokenTypes}
+     * @param bundle          resource bundle name
+     * @param key             the key to locate the translation
+     * @param args            arguments for the translation
+     * @param severityLevel   severity level for the violation
+     * @param moduleId        the id of the module the violation is associated with
+     * @param sourceClass     the Class that is the source of the violation
+     * @param customMessage   optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
-     * @noinspectionreason ConstructorWithTooManyParameters - immutable class requires a large
-     *      number of arguments
+     * @noinspectionreason ConstructorWithTooManyParameters - immutable class
+     *                     requires a large
+     *                     number of arguments
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            int columnCharIndex,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            @Nullable String customMessage) {
+            int columnNo,
+            int columnCharIndex,
+            int tokenType,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this.lineNo = lineNo;
         this.columnNo = columnNo;
         this.columnCharIndex = columnCharIndex;
@@ -127,31 +130,33 @@ public final class Violation
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param tokenType     token type of the event associated with violation. See
+     *                      {@link TokenTypes}
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
-     * @noinspectionreason ConstructorWithTooManyParameters - immutable class requires a large
-     *      number of arguments
+     * @noinspectionreason ConstructorWithTooManyParameters - immutable class
+     *                     requires a large
+     *                     number of arguments
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            int tokenType,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            @Nullable String customMessage) {
+            int columnNo,
+            int tokenType,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this(lineNo, columnNo, columnNo, tokenType, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -159,29 +164,30 @@ public final class Violation
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
-     * @noinspectionreason ConstructorWithTooManyParameters - immutable class requires a large
-     *      number of arguments
+     * @noinspectionreason ConstructorWithTooManyParameters - immutable class
+     *                     requires a large
+     *                     number of arguments
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            @Nullable String customMessage) {
+            int columnNo,
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this(lineNo, columnNo, 0, bundle, key, args, severityLevel, moduleId, sourceClass,
                 customMessage);
     }
@@ -189,62 +195,64 @@ public final class Violation
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param columnNo column number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the Class that is the source of the violation
+     * @param lineNo        line number associated with the violation
+     * @param columnNo      column number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the Class that is the source of the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
-     * @noinspectionreason ConstructorWithTooManyParameters - immutable class requires a large
-     *      number of arguments
+     * @noinspectionreason ConstructorWithTooManyParameters - immutable class
+     *                     requires a large
+     *                     number of arguments
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            int columnNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            @Nullable String customMessage) {
+            int columnNo,
+            String bundle,
+            String key,
+            Object[] args,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this(lineNo,
                 columnNo,
-             bundle,
-             key,
-             args,
-             DEFAULT_SEVERITY,
-             moduleId,
-             sourceClass,
-             customMessage);
+                bundle,
+                key,
+                args,
+                DEFAULT_SEVERITY,
+                moduleId,
+                sourceClass,
+                customMessage);
     }
 
     /**
      * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the violation
-     * @param bundle resource bundle name
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
+     * @param lineNo        line number associated with the violation
+     * @param bundle        resource bundle name
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
      * @param severityLevel severity level for the violation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the source class for the violation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the source class for the violation
      * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
-     * @noinspectionreason ConstructorWithTooManyParameters - immutable class requires a large
-     *      number of arguments
+     * @noinspectionreason ConstructorWithTooManyParameters - immutable class
+     *                     requires a large
+     *                     number of arguments
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
     public Violation(int lineNo,
-                            String bundle,
-                            String key,
-                            Object[] args,
-                            SeverityLevel severityLevel,
-                            String moduleId,
-                            Class<?> sourceClass,
-                            @Nullable String customMessage) {
+            String bundle,
+            String key,
+            Object[] args,
+            SeverityLevel severityLevel,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this(lineNo, 0, bundle, key, args, severityLevel, moduleId,
                 sourceClass, customMessage);
     }
@@ -253,22 +261,23 @@ public final class Violation
      * Creates a new {@code Violation} instance. The column number
      * defaults to 0.
      *
-     * @param lineNo line number associated with the violation
-     * @param bundle name of a resource bundle that contains audit event violations
-     * @param key the key to locate the translation
-     * @param args arguments for the translation
-     * @param moduleId the id of the module the violation is associated with
-     * @param sourceClass the name of the source for the violation
+     * @param lineNo        line number associated with the violation
+     * @param bundle        name of a resource bundle that contains audit event
+     *                      violations
+     * @param key           the key to locate the translation
+     * @param args          arguments for the translation
+     * @param moduleId      the id of the module the violation is associated with
+     * @param sourceClass   the name of the source for the violation
      * @param customMessage optional custom violation overriding the default
      */
     public Violation(
-        int lineNo,
-        String bundle,
-        String key,
-        Object[] args,
-        String moduleId,
-        Class<?> sourceClass,
-        @Nullable String customMessage) {
+            int lineNo,
+            String bundle,
+            String key,
+            Object[] args,
+            String moduleId,
+            Class<?> sourceClass,
+            @Nullable String customMessage) {
         this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, moduleId,
                 sourceClass, customMessage);
     }
@@ -351,8 +360,9 @@ public final class Violation
      * Suppression on enumeration is needed so code stays consistent.
      *
      * @noinspection EqualsCalledOnEnumConstant
-     * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-     *      code consistent
+     * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to
+     *                     keep
+     *                     code consistent
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
     @Override
@@ -364,10 +374,10 @@ public final class Violation
             return false;
         }
         final Violation violation = (Violation) object;
-        return Objects.equals(lineNo, violation.lineNo)
-                && Objects.equals(columnNo, violation.columnNo)
-                && Objects.equals(columnCharIndex, violation.columnCharIndex)
-                && Objects.equals(tokenType, violation.tokenType)
+        return lineNo == violation.lineNo
+                && columnNo == violation.columnNo
+                && columnCharIndex == violation.columnCharIndex
+                && tokenType == violation.tokenType
                 && Objects.equals(severityLevel, violation.severityLevel)
                 && Objects.equals(moduleId, violation.moduleId)
                 && Objects.equals(key, violation.key)
@@ -396,21 +406,17 @@ public final class Violation
                 if (Objects.equals(moduleId, other.moduleId)) {
                     if (Objects.equals(sourceClass, other.sourceClass)) {
                         result = getViolation().compareTo(other.getViolation());
-                    }
-                    else if (sourceClass == null) {
+                    } else if (sourceClass == null) {
                         result = -1;
-                    }
-                    else if (other.sourceClass == null) {
+                    } else if (other.sourceClass == null) {
                         result = 1;
                     }
                     else {
                         result = sourceClass.getName().compareTo(other.sourceClass.getName());
                     }
-                }
-                else if (moduleId == null) {
+                } else if (moduleId == null) {
                     result = -1;
-                }
-                else if (other.moduleId == null) {
+                } else if (other.moduleId == null) {
                     result = 1;
                 }
                 else {
