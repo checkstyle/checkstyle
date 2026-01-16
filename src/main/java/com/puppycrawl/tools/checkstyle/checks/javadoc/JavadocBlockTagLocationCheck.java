@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes;
  * <p>
  * Notes:
  * To place a tag explicitly as text, escape the {@code @} symbol with HTML entity
- * &amp;#64; or place it inside {@code {@code }}, for example:
+ * &amp;#64; or place it inside <code>{&#64;code }</code>, for example:
  * </p>
  * <div class="wrapper"><pre class="prettyprint"><code class="language-java">
  * &#47;**
