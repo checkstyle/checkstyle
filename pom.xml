@@ -262,7 +262,7 @@
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
       -Xep:OptionalOrElseGet:ERROR
-      -Xep:UnrecognisedJavadocTag:ERROR
+      -Xep:UnrecognizedJavadocTag:ERROR
       -Xep:PrimitiveComparison:ERROR
       -Xep:RedundantStringConversion:ERROR
       -Xep:RedundantStringEscape:ERROR
