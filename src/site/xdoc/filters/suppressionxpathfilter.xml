@@ -15,6 +15,7 @@
           SuppressionFilter</a>, but also processes <code>suppress-xpath</code> elements,
           which contain xpath-expressions. Xpath-expressions are queries for
           suppressed nodes inside the AST tree.
+          Checkstyle supports XPath 3.1.
         </div>
 
         <p>
