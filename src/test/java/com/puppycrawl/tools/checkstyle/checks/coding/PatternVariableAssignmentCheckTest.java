@@ -70,6 +70,7 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
+            "66:9: " + getCheckMessage(MSG_KEY, "r"),
             "81:22: " + getCheckMessage(MSG_KEY, "string"),
         };
 
@@ -77,4 +78,136 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
             "InputPatternVariableAssignmentCheck2.java"), expected);
     }
 
+    @Test
+    public void testPatternVariableInElseIfBranch() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "i"),
+            "19:13: " + getCheckMessage(MSG_KEY, "s"),
+            "22:13: " + getCheckMessage(MSG_KEY, "d"),
+            "29:17: " + getCheckMessage(MSG_KEY, "i"),
+            "32:17: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineXmlConfig(getPath(
+                "InputPatternVariableAssignmentElseIf.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableSingleStatementNoBlock() throws Exception {
+        final String[] expected = {
+            "18:13: " + getCheckMessage(MSG_KEY, "s"),
+            "25:17: " + getCheckMessage(MSG_KEY, "s"),
+            "33:17: " + getCheckMessage(MSG_KEY, "i"),
+            "41:17: " + getCheckMessage(MSG_KEY, "i"),
+            "50:21: " + getCheckMessage(MSG_KEY, "i"),
+            "53:21: " + getCheckMessage(MSG_KEY, "i"),
+            "61:17: " + getCheckMessage(MSG_KEY, "s"),
+            "64:17: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineXmlConfig(getPath(
+                "InputPatternVariableAssignmentSingleStmt.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableMultipleStatementsInBlock() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "18:13: " + getCheckMessage(MSG_KEY, "s"),
+            "20:13: " + getCheckMessage(MSG_KEY, "s"),
+            "29:13: " + getCheckMessage(MSG_KEY, "s"),
+            "36:17: " + getCheckMessage(MSG_KEY, "s"),
+            "39:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineXmlConfig(getPath(
+                "InputPatternVariableAssignmentMultipleStmts.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableWithReturn() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "25:17: " + getCheckMessage(MSG_KEY, "s"),
+            "28:13: " + getCheckMessage(MSG_KEY, "s"),
+            "35:17: " + getCheckMessage(MSG_KEY, "s"),
+            "38:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineXmlConfig(getPath(
+                "InputPatternVariableAssignmentAfterReturn.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableWithThrow() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "24:17: " + getCheckMessage(MSG_KEY, "s"),
+            "27:13: " + getCheckMessage(MSG_KEY, "s"),
+            "33:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineXmlConfig(getPath(
+                "InputPatternVariableAssignmentAfterThrow.java"), expected);
+    }
+
+    @Test
+    public void testIfWithoutBraces() throws Exception {
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_KEY, "i"),
+            "24:17: " + getCheckMessage(MSG_KEY, "i"),
+            "31:17: " + getCheckMessage(MSG_KEY, "s"),
+            "40:13: " + getCheckMessage(MSG_KEY, "i"),
+            "48:13: " + getCheckMessage(MSG_KEY, "x"),
+            "54:13: " + getCheckMessage(MSG_KEY, "s"),
+            "56:13: " + getCheckMessage(MSG_KEY, "s"),
+            "63:17: " + getCheckMessage(MSG_KEY, "i"),
+            "72:21: " + getCheckMessage(MSG_KEY, "i"),
+            "75:21: " + getCheckMessage(MSG_KEY, "i"),
+            "83:17: " + getCheckMessage(MSG_KEY, "s"),
+            "86:17: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentIfWithoutBraces.java"),
+                expected);
+    }
+
+    @Test
+    public void testExtendedScope() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "24:13: " + getCheckMessage(MSG_KEY, "s"),
+            "26:13: " + getCheckMessage(MSG_KEY, "s"),
+            "33:13: " + getCheckMessage(MSG_KEY, "i"),
+            "41:17: " + getCheckMessage(MSG_KEY, "s"),
+            "44:13: " + getCheckMessage(MSG_KEY, "s"),
+            "50:13: " + getCheckMessage(MSG_KEY, "s"),
+            "58:13: " + getCheckMessage(MSG_KEY, "i"),
+            "61:13: " + getCheckMessage(MSG_KEY, "i"),
+            "67:13: " + getCheckMessage(MSG_KEY, "i"),
+            "68:13: " + getCheckMessage(MSG_KEY, "i"),
+            "69:13: " + getCheckMessage(MSG_KEY, "i"),
+            "76:17: " + getCheckMessage(MSG_KEY, "s"),
+            "84:17: " + getCheckMessage(MSG_KEY, "i"),
+            "92:17: " + getCheckMessage(MSG_KEY, "i"),
+            "101:21: " + getCheckMessage(MSG_KEY, "i"),
+            "104:21: " + getCheckMessage(MSG_KEY, "i"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentExtendedScope.java"), expected);
+    }
+
+    @Test
+    public void testExtendedScopePart2() throws Exception {
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_KEY, "s"),
+            "20:17: " + getCheckMessage(MSG_KEY, "s"),
+            "29:13: " + getCheckMessage(MSG_KEY, "x"),
+            "30:13: " + getCheckMessage(MSG_KEY, "y"),
+            "38:13: " + getCheckMessage(MSG_KEY, "s"),
+            "40:13: " + getCheckMessage(MSG_KEY, "s"),
+            "47:17: " + getCheckMessage(MSG_KEY, "s"),
+            "49:13: " + getCheckMessage(MSG_KEY, "s"),
+            "55:13: " + getCheckMessage(MSG_KEY, "i"),
+            "64:17: " + getCheckMessage(MSG_KEY, "s"),
+            "67:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentExtendedScopePart2.java"), expected);
+    }
 }
