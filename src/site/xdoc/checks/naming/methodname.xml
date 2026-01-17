@@ -234,10 +234,6 @@ class Example7 {
       <subsection name="Example of Usage" id="MethodName_Example_of_Usage">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
-            Google Style</a>
-          </li>
-          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodName">
             Sun Style</a>
           </li>
