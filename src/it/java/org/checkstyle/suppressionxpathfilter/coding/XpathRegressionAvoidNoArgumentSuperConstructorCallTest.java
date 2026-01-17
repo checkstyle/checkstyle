@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='InputXpathAvoidNoArgumentSuperConstructorCallDefault']]"
                     + "/OBJBLOCK/CTOR_DEF[./IDENT["
@@ -83,7 +82,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                 AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                 + "'InputXpathAvoidNoArgumentSuperConstructorCallInnerClass']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"

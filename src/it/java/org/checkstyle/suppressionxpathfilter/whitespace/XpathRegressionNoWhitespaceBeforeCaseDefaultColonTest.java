@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -59,7 +58,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'InputXpathNoWhitespaceBeforeCaseDefaultColonOne']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP/LITERAL_CASE/COLON"
@@ -83,7 +82,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                     NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'InputXpathNoWhitespaceBeforeCaseDefaultColonTwo']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
@@ -108,7 +107,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'InputXpathNoWhitespaceBeforeCaseDefaultColonThree']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"
@@ -133,7 +132,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
                         NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                     + "'InputXpathNoWhitespaceBeforeCaseDefaultColonFour']]"
                     + "/OBJBLOCK/INSTANCE_INIT/SLIST/LITERAL_SWITCH/CASE_GROUP"

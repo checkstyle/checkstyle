@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text='Bad']]/OBJBLOCK/SEMI"
         );
 
@@ -79,7 +78,7 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
                 UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/ENUM_DEF[./IDENT[@text="
                 + "'InputXpathUnnecessarySemicolonInEnumerationAll']]"
                 + "/OBJBLOCK/SEMI"
