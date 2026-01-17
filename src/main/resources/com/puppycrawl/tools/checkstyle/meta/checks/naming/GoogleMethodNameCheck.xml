@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.GoogleMethodNameCheck"
+             name="GoogleMethodName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;div&gt;
+ Checks that method names conform to the
+ &lt;a href=
+ "https://google.github.io/styleguide/javaguide.html#s5.2.3-method-names"&gt;
+ Google Java Style Guide&lt;/a&gt; for method naming.
+ &lt;/div&gt;
+
+ &lt;p&gt;Regular method names must:&lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Be at least 2 characters long.&lt;/li&gt;
+ &lt;li&gt;Start with a lowercase letter.&lt;/li&gt;
+ &lt;li&gt;Not have a single lowercase letter followed by uppercase.&lt;/li&gt;
+ &lt;li&gt;Contain only letters and digits and underscores.&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;Test method names must:&lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Be at least 2 characters long per segment.&lt;/li&gt;
+ &lt;li&gt;Start each segment with a lowercase letter.&lt;/li&gt;
+ &lt;li&gt;Not have a single lowercase letter followed by uppercase in any segment.&lt;/li&gt;
+ &lt;li&gt;Allow underscores to separate segment and digits.&lt;/li&gt;
+ &lt;li&gt;Not have leading, trailing, or consecutive underscores.&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;
+ Methods annotated with &lt;code&gt;@Override&lt;/code&gt; are ignored, as they must
+ match the name defined in the parent class or interface.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="google.method.name.character.usage"/>
+            <message-key key="google.method.name.format.regular"/>
+            <message-key key="google.method.name.format.test"/>
+            <message-key key="google.method.name.underscore.regular"/>
+            <message-key key="google.method.name.underscore.test"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
