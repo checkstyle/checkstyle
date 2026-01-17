@@ -16,7 +16,7 @@ class Example1 {
 
   /**
    * @tag comment
-   *     Indentation spacing is 4
+   *     Attention to Indentation spacing
    */
   public void testMethod1(String input) {
     // ok, Default expected Indentation is 4
@@ -24,10 +24,20 @@ class Example1 {
 
   /**
    * @tag comment
-   *   Indentation spacing is 2
+   *   Attention to Indentation spacing
    */
   public void testMethod2(String input) {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
+
+  /**
+   * Test class.
+   *
+   * @apiNote
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */
+    public void testMethod3(String input) {}
+
 }
+
 // xdoc section -- end
