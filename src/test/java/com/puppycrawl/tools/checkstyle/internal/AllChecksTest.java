@@ -85,7 +85,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
      * These checks exist but are not activated in Checkstyle's internal configuration.
      */
     private static final Set<String> MODULES_NOT_IN_CHECKSTYLE_CONFIG = Set.of(
-        "GoogleNonConstantFieldName"
+        "GoogleNonConstantFieldName",
+        "GoogleMethodName"
     );
 
     private static final Set<String> INTERNAL_MODULES;
