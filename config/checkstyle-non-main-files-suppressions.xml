@@ -352,6 +352,8 @@
             files="src/site/xdoc/checks/naming/googlenonconstantfieldname.xml.template"/>
   <suppress id="propertiesMacroMustExist"
             files="src/site/xdoc/checks/coding/useenhancedswitch.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
+            files="src/site/xdoc/checks/naming/googlemethodname.xml.template"/>
 
   <!-- Index templates don't need since macro by design -->
   <suppress id="sinceMacroMustExist"
