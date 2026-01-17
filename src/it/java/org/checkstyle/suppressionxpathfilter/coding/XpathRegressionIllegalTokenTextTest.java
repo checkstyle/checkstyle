@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -112,7 +111,7 @@ public class XpathRegressionIllegalTokenTextTest extends AbstractXpathTestSuppor
             "4:10: " + getCheckMessage(IllegalTokenTextCheck.class,
                         IllegalTokenTextCheck.MSG_KEY, "invalidIdentifier"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                     + "/INTERFACE_DEF[./IDENT[@text='InputXpathIllegalTokenTextInterface']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='invalidIdentifier']"
