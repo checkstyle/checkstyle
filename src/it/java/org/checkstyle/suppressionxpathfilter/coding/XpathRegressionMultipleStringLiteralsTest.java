@@ -23,7 +23,6 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLitera
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -86,7 +85,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                     MSG_KEY, "\", \"", 3),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMultipleStringLiteralsAllowDuplicates']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"
@@ -111,7 +110,7 @@ public class XpathRegressionMultipleStringLiteralsTest extends AbstractXpathTest
                     MSG_KEY, "\"DoubleString\"", 2),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathMultipleStringLiteralsIgnoreRegexp']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='myTest']]/SLIST/VARIABLE_DEF"

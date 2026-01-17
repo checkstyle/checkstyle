@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.blocks;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +53,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
             "8:38: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathEmptyCatchBlockOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"
@@ -75,7 +74,7 @@ public class XpathRegressionEmptyCatchBlockTest extends AbstractXpathTestSupport
             "8:47: " + getCheckMessage(CLAZZ, EmptyCatchBlockCheck.MSG_KEY_CATCH_BLOCK_EMPTY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathEmptyCatchBlockTwo']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='main']]"

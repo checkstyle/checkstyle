@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.design;
 import static com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck.MSG_KEY;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +56,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
             "6:9: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathVisibilityModifierDefault']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='field']"
@@ -80,7 +79,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
                     "annotatedString"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathVisibilityModifierAnnotation']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='annotatedString']"
@@ -101,7 +100,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
             "6:23: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field1"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathVisibilityModifierAnonymous']]"
                         + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='runnable']]"
@@ -124,7 +123,7 @@ public class XpathRegressionVisibilityModifierTest extends AbstractXpathTestSupp
             "7:20: " + getCheckMessage(VisibilityModifierCheck.class, MSG_KEY, "field2"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathVisibilityModifierInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
