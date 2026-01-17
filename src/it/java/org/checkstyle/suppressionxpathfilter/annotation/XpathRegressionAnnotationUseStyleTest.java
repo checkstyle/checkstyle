@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.annotation;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -160,7 +159,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAnnotationUseStyleFour']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]"
@@ -287,7 +286,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
                     AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathAnnotationUseStyleEight']]"
                         + "/MODIFIERS/ANNOTATION[./IDENT[@text='SuppressWarnings']]"

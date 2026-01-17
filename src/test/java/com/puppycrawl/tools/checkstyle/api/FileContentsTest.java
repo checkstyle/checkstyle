@@ -55,12 +55,12 @@ public class FileContentsTest {
     public void testIsLineBlank() {
         assertWithMessage("Invalid result")
                 .that(new FileContents(
-                        new FileText(new File("filename"), Collections.singletonList("123")))
+                        new FileText(new File("filename"), List.of("123")))
                                 .lineIsBlank(0))
                 .isFalse();
         assertWithMessage("Invalid result")
                 .that(new FileContents(new FileText(new File("filename"),
-                        Collections.singletonList("")))
+                        List.of("")))
                         .lineIsBlank(0))
                 .isTrue();
     }
@@ -69,12 +69,12 @@ public class FileContentsTest {
     public void testLineIsComment() {
         assertWithMessage("Invalid result")
                 .that(new FileContents(
-                        new FileText(new File("filename"), Collections.singletonList("123")))
+                        new FileText(new File("filename"), List.of("123")))
                                 .lineIsComment(0))
                 .isFalse();
         assertWithMessage("Invalid result")
                 .that(new FileContents(
-                        new FileText(new File("filename"), Collections.singletonList(" // abc")))
+                        new FileText(new File("filename"), List.of(" // abc")))
                                 .lineIsComment(0))
                 .isTrue();
     }
@@ -103,7 +103,7 @@ public class FileContentsTest {
     public void testSinglelineCommentNotIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("  //  ")));
+                new FileText(new File("filename"), List.of("  //  ")));
         fileContents.reportSingleLineComment(1, 2);
         assertWithMessage("Should return false when there is no intersection")
                 .that(fileContents.hasIntersectionWithComment(1, 0, 1, 1))
@@ -114,7 +114,7 @@ public class FileContentsTest {
     public void testSinglelineCommentIntersect() {
         // just to make UT coverage 100%
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("  //   ")));
+                new FileText(new File("filename"), List.of("  //   ")));
         fileContents.reportSingleLineComment("type", 1, 2);
         assertWithMessage("Should return true when comments intersect")
                 .that(fileContents.hasIntersectionWithComment(1, 5, 1, 6))
@@ -124,7 +124,7 @@ public class FileContentsTest {
     @Test
     public void testReportCppComment() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("   //  ")));
+                new FileText(new File("filename"), List.of("   //  ")));
         fileContents.reportSingleLineComment(1, 2);
         final Map<Integer, TextBlock> cppComments = fileContents.getSingleLineComments();
 
@@ -148,7 +148,7 @@ public class FileContentsTest {
     @Test
     public void testReportComment() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("  //   ")));
+                new FileText(new File("filename"), List.of("  //   ")));
         fileContents.reportBlockComment("type", 1, 2, 1, 2);
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
@@ -160,7 +160,7 @@ public class FileContentsTest {
     @Test
     public void testReportBlockCommentSameLine() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("/* a */ /* b */ ")));
+                new FileText(new File("filename"), List.of("/* a */ /* b */ ")));
         fileContents.reportBlockComment("type", 1, 0, 1, 6);
         fileContents.reportBlockComment("type", 1, 8, 1, 14);
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
@@ -182,7 +182,7 @@ public class FileContentsTest {
 
         assertWithMessage("Invalid comment")
                 .that(comments.get(1).toString())
-                .isEqualTo(Collections.singletonList(
+                .isEqualTo(List.of(
                     new Comment(new String[] {"/*", "c", "*/"}, 0, 3, 1)).toString()
             );
     }
@@ -235,7 +235,7 @@ public class FileContentsTest {
     @Test
     public void testReportJavadocComment() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
+                new FileText(new File("filename"), List.of("  /** */   ")));
         fileContents.reportBlockComment(1, 2, 1, 6);
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
@@ -247,7 +247,7 @@ public class FileContentsTest {
     @Test
     public void testReportJavadocComment2() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("  /** */   ")));
+                new FileText(new File("filename"), List.of("  /** */   ")));
         fileContents.reportBlockComment(1, 2, 1, 6);
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
@@ -265,7 +265,7 @@ public class FileContentsTest {
     public void testInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
                 new File("package-info.java"),
-                Collections.singletonList("  //   ")));
+                List.of("  //   ")));
 
         assertWithMessage("Should return true when in package info")
                 .that(fileContents.inPackageInfo())
@@ -281,7 +281,7 @@ public class FileContentsTest {
     public void testNotInPackageInfo() {
         final FileContents fileContents = new FileContents(new FileText(
                 new File("some-package-info.java"),
-                Collections.singletonList("  //   ")));
+                List.of("  //   ")));
 
         assertWithMessage("Should return false when not in package info")
                 .that(fileContents.inPackageInfo())
@@ -291,7 +291,7 @@ public class FileContentsTest {
     @Test
     public void testGetJavadocBefore() {
         final FileContents fileContents = new FileContents(
-                new FileText(new File("filename"), Collections.singletonList("    ")));
+                new FileText(new File("filename"), List.of("    ")));
         final Map<Integer, TextBlock> javadoc = new HashMap<>();
         javadoc.put(0, new Comment(new String[] {"// "}, 2, 1, 2));
         TestUtil.setInternalState(fileContents, "javadocComments", javadoc);
@@ -324,7 +324,7 @@ public class FileContentsTest {
         final Map<Integer, List<TextBlock>> clangComments = TestUtil.getInternalStateMapIntegerList(
                 fileContents, "clangComments");
         final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
-        clangComments.put(1, Collections.singletonList(textBlock));
+        clangComments.put(1, List.of(textBlock));
         clangComments.put(2, Collections.emptyList());
 
         assertWithMessage("Invalid results")

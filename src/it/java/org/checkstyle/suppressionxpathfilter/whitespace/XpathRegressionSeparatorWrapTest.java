@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
                         SeparatorWrapCheck.MSG_LINE_PREVIOUS, ","),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathSeparatorWrapClass']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod']]"
@@ -80,7 +79,7 @@ public class XpathRegressionSeparatorWrapTest extends AbstractXpathTestSupport {
                         SeparatorWrapCheck.MSG_LINE_PREVIOUS, "..."),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF"
                         + "[./IDENT[@text='InputXpathSeparatorWrapInterface']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='testMethod2']]"
