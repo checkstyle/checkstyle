@@ -48,75 +48,84 @@ public class InputUnderscoreUsedInNames {
 
   static class MultipartVersioningNamesBad {
 
-    void guava_34_4_6() {} // false-negative, _ between digit and letter
+    // violation below, 'Method name 'guava_34_4_6' has invalid underscore usage'
+    void guava_34_4_6() {}
 
     void guava34_4_6() {}
 
-    void kotlin_2_9_94() {} // false-negative, _ between digit and letter
+    // violation below, 'Method name 'kotlin_2_9_94' has invalid underscore usage'
+    void kotlin_2_9_94() {}
 
     void kotlin2_9_94() {}
 
-    void gradle_9_5_1() {} // false-negative, _ between digit and letter
+    // violation below, 'Method name 'gradle_9_5_1' has invalid underscore usage'
+    void gradle_9_5_1() {}
 
     void gradle9_5_1() {}
 
-    void jdk_9_0_392() {} // false-negative, _ between digit and letter
+    // violation below, 'Method name 'jdk_9_0_392' has invalid underscore usage'
+    void jdk_9_0_392() {}
 
     void jdk9_0_392() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below, 'Method name 'kotlin_lang1_9_2' has invalid underscore usage'
     void kotlin_lang1_9_2() {}
 
     void kotlinLang1_9_2() {}
 
     void convertToKotlinVersion1_9_24() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below, 'Method name 'jdk_method8_90' has invalid underscore usage'
     void jdk_method8_90() {}
 
-    void jdk_Method8_90() {} // violation, uppercase letter after _, 'must match pattern'
+    // violation below, 'Method name 'jdk_Method8_90' has invalid underscore usage'
+    void jdk_Method8_90() {}
 
     void jdkMethod8_90() {}
 
-    // violation below, _ not allowed between lowercase character sequences, 'pattern'
+    // violation below, ''guava_version33_4_2' has invalid underscore usage'
     void guava_version33_4_2() {}
 
-    void guava_Version33_4_2() {} // violation, uppercase letter after _, 'match pattern'
+    // violation below, ''guava_Version33_4_2' has invalid underscore usage'
+    void guava_Version33_4_2() {}
 
     void guavaVersion33_4_2() {}
 
-    void kotlin1_9_24_() {} // violation, _ at the end, 'must match pattern'
+    // violation below, 'Method name 'kotlin1_9_24_' has invalid underscore usage'
+    void kotlin1_9_24_() {}
 
     void kotlin1_9_24() {}
 
-    void guava_33_4_5_() {} // violation, _ at the end, 'must match pattern'
+    // violation below, 'Method name 'guava_33_4_5_' has invalid underscore usage'
+    void guava_33_4_5_() {}
 
     void guava33_4_5() {}
   }
 
   class UnderscoresInNonTestMethods {
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below, 'Method name '.*' has invalid underscore usage'
     void testSetCount_zeroToZero_addSupported() {}
 
     void testSetCountZeroToZeroAddSupported() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below, ''testPutNullValue_supported' has invalid underscore usage'
     void testPutNullValue_supported() {}
 
     void testPutNullValueSupported() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below, ''testAddAll_nonEmptyList' has invalid underscore usage'
     void testAddAll_nonEmptyList() {}
 
     void testAddAllNonEmptyList() {}
 
-    // violation below, normal method must not use _, 'must match pattern'
+    // violation below, ''testEntrySet_hashCode_size1' has invalid underscore usage'
     void testEntrySet_hashCode_size1() {}
 
     void testEntrySetHashCodeSize1() {}
 
-    void testCount_3() {} // false-negative, normal method must not use _
+    // violation below, 'Method name 'testCount_3' has invalid underscore usage'
+    void testCount_3() {}
 
     void testCount3() {}
   }
@@ -129,7 +138,7 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testsetcount_zerotozero_addsupported() {}
 
-    @Test // violation below, uppercase letter after _, 'must match pattern'
+    @Test // violation below, 'Test method .* not valid. Each segment must start with a lowercase'
     void testSetCount_ZeroToZero_AddSupported() {}
 
     @Test
@@ -138,7 +147,7 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testputnullvalue_supported() {}
 
-    @Test // violation below, uppercase letter after _, 'must match pattern'
+    @Test // violation below, 'Test method .* not valid. Each segment must start with a lowercase'
     void testPutNullValue_Supported() {}
 
     @Test
@@ -147,8 +156,8 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testaddall_nonemptylist() {}
 
-    @Test
-    void testAddAll_NonEmptyList() {} // violation, uppercase letter after _, 'pattern'
+    @Test // violation below, 'Test method .* not valid. Each segment must start with a lowercase'
+    void testAddAll_NonEmptyList() {}
 
     @Test
     void testEntrySet_hashCode_size1() {}
@@ -156,10 +165,10 @@ public class InputUnderscoreUsedInNames {
     @Test
     void testentryset_hashcode_size1() {}
 
-    @Test
-    void testEntrySet_HashCode_Size1() {} // violation, uppercase letter after _, 'pattern'
+    @Test // violation below, 'Test method .* not valid. Each segment must start with a lowercase'
+    void testEntrySet_HashCode_Size1() {}
 
-    @Test
+    @Test // violation below, 'Test method name 'testCount_3' has invalid underscore usage'
     void testCount_3() {}
 
     @Test
