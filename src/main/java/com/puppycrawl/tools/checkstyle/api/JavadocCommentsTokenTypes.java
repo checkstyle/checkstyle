@@ -1079,6 +1079,29 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Comma symbol {@code , }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * @see #method(int, int)}</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * |--JAVADOC_BLOCK_TAG -> JAVADOC_BLOCK_TAG
+     *     `--SEE_BLOCK_TAG -> SEE_BLOCK_TAG
+     *         |--AT_SIGN -> @
+     *         |--TAG_NAME -> see
+     *         |--TEXT ->
+     *         `--REFERENCE -> REFERENCE
+     *             |--HASH -> #
+     *             `--MEMBER_REFERENCE -> MEMBER_REFERENCE
+     *                 |--IDENTIFIER -> method
+     *                 |--LPAREN -> (
+     *                 |--PARAMETER_TYPE_LIST -> PARAMETER_TYPE_LIST
+     *                 |   |--PARAMETER_TYPE -> int
+     *                 |   |--COMMA -> ,
+     *                 |   |--TEXT ->
+     *                 |   `--PARAMETER_TYPE -> int
+     *                 `--RPAREN -> )
+     * }</pre>
      */
     public static final int COMMA = JavadocCommentsLexer.COMMA;
 
