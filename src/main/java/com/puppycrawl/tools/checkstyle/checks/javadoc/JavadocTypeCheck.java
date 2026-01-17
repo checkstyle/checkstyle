@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -109,6 +110,9 @@ public class JavadocTypeCheck
 
     /** Space literal. */
     private static final String SPACE = " ";
+
+    /** Javadoc tag token literal. */
+    private static final String JAVADOC_TAG_TOKEN = "@";
 
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
@@ -296,11 +300,67 @@ public class JavadocTypeCheck
         final JavadocTags tags = JavadocUtil.getJavadocTags(textBlock,
             JavadocUtil.JavadocTagType.BLOCK);
         if (!allowUnknownTags) {
-            tags.getInvalidTags().forEach(tag -> {
-                log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
-            });
+            final String[] lines = textBlock.getText();
+            tags.getInvalidTags().stream()
+                .filter(tag -> !isTagInsideCodeOrLiteralBlock(lines, textBlock, tag))
+                .forEach(tag -> {
+                    log(tag.getLine(), tag.getCol(), MSG_UNKNOWN_TAG, tag.getName());
+                });
         }
         return tags.getValidTags();
+    }
+
+    /**
+     * Checks if a tag is positioned inside a {@code @code} or {@code @literal} inline tag block.
+     * Since block tags must appear at line-start position (per BlockTagUtil regex pattern),
+     * we only need to check content from previous lines - there cannot be inline content
+     * before a block tag on the same line.
+     *
+     * @param lines the Javadoc comment lines.
+     * @param textBlock the text block containing the Javadoc.
+     * @param tag the invalid tag to check.
+     * @return true if the tag is inside a code or literal block.
+     */
+    private static boolean isTagInsideCodeOrLiteralBlock(String[] lines,
+                                                         TextBlock textBlock,
+                                                         InvalidJavadocTag tag) {
+        final int tagLineIndex = tag.getLine() - textBlock.getStartLineNo();
+
+        final String textBefore = String.join("\n", Arrays.copyOfRange(lines, 0, tagLineIndex));
+        return isInsideInlineTag(textBefore);
+    }
+
+    /**
+     * Determines if the position is inside an unclosed {@code @code}, {@code @literal},
+     * or {@code @snippet} inline tag by counting opening and closing braces.
+     * These tags display content verbatim and should not be parsed for Javadoc block tags.
+     *
+     * @param textBefore the text from the start of Javadoc up to the tag position.
+     * @return true if inside an unclosed code, literal, or snippet inline tag.
+     */
+    private static boolean isInsideInlineTag(String textBefore) {
+        boolean insideVerbatimTag = false;
+        int braceDepth = 0;
+
+        for (int index = 0; index < textBefore.length(); index++) {
+            final char ch = textBefore.charAt(index);
+            if (ch == '{') {
+                if (textBefore.startsWith("{@code", index)
+                        || textBefore.startsWith("{@literal", index)
+                        || textBefore.startsWith("{@snippet", index)) {
+                    insideVerbatimTag = true;
+                }
+                braceDepth++;
+            }
+            else if (ch == '}') {
+                braceDepth--;
+                if (braceDepth == 0) {
+                    insideVerbatimTag = false;
+                }
+            }
+        }
+
+        return insideVerbatimTag;
     }
 
     /**
@@ -315,18 +375,18 @@ public class JavadocTypeCheck
                           Pattern formatPattern) {
         if (formatPattern != null) {
             boolean hasTag = false;
-            final String tagPrefix = "@";
 
-            for (final JavadocTag tag :tags) {
+            for (final JavadocTag tag : tags) {
                 if (tag.getTagName().equals(tagName)) {
                     hasTag = true;
                     if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                        log(ast, MSG_TAG_FORMAT, tagPrefix + tagName, formatPattern.pattern());
+                        log(ast, MSG_TAG_FORMAT, JAVADOC_TAG_TOKEN + tagName,
+                            formatPattern.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(ast, MSG_MISSING_TAG, tagPrefix + tagName);
+                log(ast, MSG_MISSING_TAG, JAVADOC_TAG_TOKEN + tagName);
             }
         }
     }
@@ -397,15 +457,15 @@ public class JavadocTypeCheck
                         || recordComponentNames.contains(paramName);
 
                 if (!found) {
-                    if (paramName.isEmpty()) {
+                    final String displayName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER
+                            .split(tag.getFirstArg(), -1)[0];
+                    if (displayName.isEmpty()) {
                         log(tag.getLineNo(), tag.getColumnNo(), MSG_UNUSED_TAG_GENERAL);
                     }
                     else {
-                        final String actualParamName =
-                            TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
                         log(tag.getLineNo(), tag.getColumnNo(),
                             MSG_UNUSED_TAG,
-                            JavadocTagInfo.PARAM.getText(), actualParamName);
+                            JavadocTagInfo.PARAM.getText(), displayName);
                     }
                 }
             }
@@ -420,16 +480,16 @@ public class JavadocTypeCheck
      * @return extracts type parameter name from tag
      */
     private static String extractParamNameFromTag(JavadocTag tag) {
-        final String typeParamName;
-        final Matcher matchInAngleBrackets =
-                TYPE_NAME_IN_JAVADOC_TAG.matcher(tag.getFirstArg());
+        final String firstArg = tag.getFirstArg();
+        final Matcher matchInAngleBrackets = TYPE_NAME_IN_JAVADOC_TAG.matcher(firstArg);
+        final String paramName;
         if (matchInAngleBrackets.find()) {
-            typeParamName = matchInAngleBrackets.group(1).trim();
+            paramName = matchInAngleBrackets.group(1).trim();
         }
         else {
-            typeParamName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg(), -1)[0];
+            paramName = TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(firstArg, -1)[0];
         }
-        return typeParamName;
+        return paramName;
     }
 
     /**
