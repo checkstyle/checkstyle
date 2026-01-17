@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -83,7 +82,7 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
                 AvoidInlineConditionalsCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='"
                         + "InputXpathAvoidInlineConditionalsAssign']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='setB']]/SLIST"

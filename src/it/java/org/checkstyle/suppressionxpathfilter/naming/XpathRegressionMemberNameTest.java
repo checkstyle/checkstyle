@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM2", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathMemberNameDefault']]"
@@ -85,7 +84,7 @@ public class XpathRegressionMemberNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "NUM1", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathMemberNameIgnoreProtected']]"
