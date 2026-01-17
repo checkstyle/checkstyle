@@ -421,6 +421,12 @@
                        java.lang.RuntimeException,
                        java.lang.NullPointerException"/>
     </module>
+    <module name="IllegalSymbol">
+      <property name="symbolCodes"
+                value="0x1F000-0x1FAFF,0x2600-0x26FF,0x2700-0x27BF,0xFE0F,0x200D"/>
+      <property name="tokens"
+                value="COMMENT_CONTENT,TEXT_BLOCK_CONTENT,IDENT,STRING_LITERAL,CHAR_LITERAL"/>
+    </module>
     <module name="IllegalInstantiation">
       <property name="classes"
                 value="org.xml.sax.SAXException, org.xml.sax.SAXParseException,
