@@ -120,6 +120,6 @@ public final class UnmodifiableCollectionUtil {
      * @return immutable set
      */
     public static <T> Set<T> singleton(T obj) {
-        return Collections.singleton(obj);
+        return Set.of(obj);
     }
 }

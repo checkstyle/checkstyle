@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -820,7 +819,7 @@ public final class JavaAstVisitor extends JavaLanguageParserBaseVisitor<DetailAs
         final DetailAstImpl dummyNode = new DetailAstImpl();
         // Since the TYPE AST is built by visitAnnotationMethodOrConstantRest(), we skip it
         // here (child [0])
-        processChildren(dummyNode, Collections.singletonList(ctx.children.get(1)));
+        processChildren(dummyNode, List.of(ctx.children.get(1)));
         // We also append the SEMI token to the first child [size() - 1],
         // until https://github.com/checkstyle/checkstyle/issues/3151
         dummyNode.getFirstChild().addChild(create(ctx.SEMI()));
