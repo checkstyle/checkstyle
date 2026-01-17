@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionAvoidStaticImportTest
                 AvoidStaticImportCheck.MSG_KEY, "javax.swing.WindowConstants.*"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT"
         );
 
@@ -78,7 +77,7 @@ public class XpathRegressionAvoidStaticImportTest
                 AvoidStaticImportCheck.MSG_KEY, "java.io.File.createTempFile"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/STATIC_IMPORT/DOT[./IDENT[@text='createTempFile']]"
         );
 

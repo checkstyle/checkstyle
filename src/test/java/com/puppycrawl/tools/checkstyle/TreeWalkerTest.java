@@ -35,7 +35,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -674,7 +673,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(configuration1);
 
         final List<File> files =
-                Collections.singletonList(new File(getPath("InputTreeWalker2.java")));
+                List.of(new File(getPath("InputTreeWalker2.java")));
         final Checker checker = createChecker(treeWalkerConfig);
 
         try {
@@ -735,7 +734,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         final Checker checker = createChecker(config);
         final Map<String, List<String>> expectedViolation = new HashMap<>();
         expectedViolation.put(getPath("InputTreeWalkerProperFileExtension.java"),
-                Collections.singletonList(
+                List.of(
                         "10:27: " + getCheckMessage(ConstantNameCheck.class,
                         MSG_INVALID_PATTERN, "k", "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$")));
         verify(checker, files, expectedViolation);
