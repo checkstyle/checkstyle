@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "SecondMethod", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathMethodNameDefault']]"
@@ -83,7 +82,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "MyMethod2", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathMethodNameInner']]"
@@ -112,7 +111,7 @@ public class XpathRegressionMethodNameTest extends AbstractXpathTestSupport {
                         "ThirdMethod", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/INTERFACE_DEF[./IDENT[@text='Check']]"
                         + "/OBJBLOCK/METHOD_DEF/IDENT[@text='ThirdMethod']"
