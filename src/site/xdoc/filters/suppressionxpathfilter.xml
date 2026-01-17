@@ -209,6 +209,15 @@
           ATTENTION: filtering by message is dependent on runtime locale. If project is running
           in different languages it is better to avoid filtering by message.
         </p>
+
+        <p>
+         <b>Attention:</b> The structure of the Abstract Syntax Tree (AST) can change
+          depending on the enabled checks. If "comment-aware" checks (such as
+          <code>TodoComment</code>) are enabled, comment nodes are added to the AST.
+          XPath queries should be written robustly to handle the potential presence
+          of comment nodes. For example, relying on strict <code>count(*)</code>
+          checks might fail if comments are present in the code block.
+         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <div class="wrapper">
