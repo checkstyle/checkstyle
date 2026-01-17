@@ -59,9 +59,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -83,7 +81,6 @@ import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.annotation.PreserveOrder;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
-import com.puppycrawl.tools.checkstyle.internal.utils.XdocGenerator;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.site.SiteUtil;
@@ -272,21 +269,6 @@ public class XdocsPagesTest {
 
     private static final String NAMES_MUST_BE_IN_ALPHABETICAL_ORDER_SITE_PATH =
             " names must be in alphabetical order at " + SITE_PATH;
-
-    @TempDir
-    private static File temporaryFolder;
-
-    /**
-     * Generate xdoc content from templates before validation.
-     * This method will be removed once
-     * <a href="https://github.com/checkstyle/checkstyle/issues/13426">#13426</a> is resolved.
-     *
-     * @throws Exception if something goes wrong
-     */
-    @BeforeAll
-    public static void generateXdocContent() throws Exception {
-        XdocGenerator.generateXdocContent(temporaryFolder);
-    }
 
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
