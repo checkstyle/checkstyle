@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -85,7 +84,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
             "4:25: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathMatchXpathTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='func1']]"
@@ -460,7 +459,7 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
             "5:1: " + getCheckMessage(MatchXpathCheck.class, MatchXpathCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text='InputXpathMatchXpathThree']]"
                         + "/OBJBLOCK/RCURLY"

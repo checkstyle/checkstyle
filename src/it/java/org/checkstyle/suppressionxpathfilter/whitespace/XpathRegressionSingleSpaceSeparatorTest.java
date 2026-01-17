@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathSingleSpaceSeparator']]/OBJBLOCK"
                 + "/VARIABLE_DEF/IDENT[@text='bad']"
@@ -81,7 +80,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                     SingleSpaceSeparatorCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[."
                 + "/IDENT[@text='InputXpathSingleSpaceSeparatorValidateComments']]"
                 + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT"
