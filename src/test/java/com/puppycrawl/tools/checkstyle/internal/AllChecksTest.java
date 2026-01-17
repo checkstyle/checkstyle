@@ -79,6 +79,15 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             new HashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
+
+    /**
+     * Modules not included in checkstyle-checks.xml.
+     * These checks exist but are not activated in Checkstyle's internal configuration.
+     */
+    private static final Set<String> MODULES_NOT_IN_CHECKSTYLE_CONFIG = Set.of(
+        "GoogleMethodName"
+    );
+
     private static final Set<String> INTERNAL_MODULES;
 
     static {
@@ -375,6 +384,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
         moduleNames.removeAll(INTERNAL_MODULES);
+        moduleNames.removeAll(MODULES_NOT_IN_CHECKSTYLE_CONFIG);
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
@@ -521,6 +531,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
         moduleNames.removeAll(INTERNAL_MODULES);
+        moduleNames.removeAll(MODULES_NOT_IN_CHECKSTYLE_CONFIG);
         for (String moduleName : moduleNames) {
             assertWithMessage("checkstyle-checks.xml is missing module: %s", moduleName)
                     .that(configChecks)
