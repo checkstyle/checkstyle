@@ -35,4 +35,21 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (currentAst.getType() == TokenTypes.SLIST) {</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>PatternVariableAssignmentCheck.java</sourceFile>
+    <mutatedClass>
+      com.puppycrawl.tools.checkstyle.checks.coding.PatternVariableAssignmentCheck
+    </mutatedClass>
+    <mutatedMethod>expandReassignmentScopes</mutatedMethod>
+    <mutator>
+      org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator_EQUAL_IF
+    </mutator>
+    <description>
+      equivalent mutation – extended scope for non-if constructs is unobservable
+      because Java pattern variables are never in scope for else or ternary roots
+    </description>
+    <lineContent>if (scopeType == TokenTypes.LITERAL_IF) {</lineContent>
+  </mutation>
+
 </suppressedMutations>
