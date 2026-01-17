@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -59,7 +58,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
                 ImportControlCheck.MSG_DISALLOWED, "java.util.Scanner"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/IMPORT"
         );
 
@@ -126,7 +125,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
                 ImportControlCheck.MSG_DISALLOWED, "java.util.Scanner"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Scanner']]"
         );
 
