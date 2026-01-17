@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.coding;
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck.MSG_KEY;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
             "6:9: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                 + "'InputXpathSimplifyBooleanReturnIfBooleanEqualsBoolean']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toTest']]/SLIST/LITERAL_IF"
@@ -81,7 +80,7 @@ public class XpathRegressionSimplifyBooleanReturnTest extends AbstractXpathTestS
             "11:13: " + getCheckMessage(CLASS, MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text="
                 + "'InputXpathSimplifyBooleanReturnIfBooleanReturnBoolean']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='toTest']]/SLIST/EXPR/METHOD_CALL/ELIST"

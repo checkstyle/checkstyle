@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "v_1", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathParameterNameDefaultPattern']]"
@@ -84,7 +83,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "V2", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathParameterNameDifferentPattern']]"
@@ -110,7 +109,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "V2", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathParameterNameIgnoreOverridden']]"
@@ -137,7 +136,7 @@ public class XpathRegressionParameterNameTest extends AbstractXpathTestSupport {
                         AbstractNameCheck.MSG_INVALID_PATTERN, "b", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT"
                         + "/CLASS_DEF[./IDENT[@text"
                         + "='InputXpathParameterNameAccessModifier']]"

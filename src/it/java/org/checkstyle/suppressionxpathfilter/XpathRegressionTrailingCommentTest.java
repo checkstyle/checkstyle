@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -49,7 +48,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                         TrailingCommentCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathTrailingCommentSingleLine']]/"
                         + "OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' don&apos;"
@@ -73,7 +72,7 @@ public class XpathRegressionTrailingCommentTest extends AbstractXpathTestSupport
                         TrailingCommentCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathTrailingCommentBlock']]"
                         + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' warn\\n']]"

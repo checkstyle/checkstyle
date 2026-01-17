@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.sizes;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +53,7 @@ public class XpathRegressionLambdaBodyLengthTest
             "7:48: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 11, 10),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLambdaBodyLengthDefaultMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
@@ -73,7 +72,7 @@ public class XpathRegressionLambdaBodyLengthTest
             "7:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathLambdaBodyLengthCustomMax']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
