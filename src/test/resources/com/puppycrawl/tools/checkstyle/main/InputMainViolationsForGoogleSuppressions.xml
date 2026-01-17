@@ -10,7 +10,7 @@
   />
   <suppress
          files="InputMainViolationsForGoogle.java"
-         checks="MethodNameCheck"
+         checks="GoogleMethodNameCheck"
          lines="9"
   />
 </suppressions>
