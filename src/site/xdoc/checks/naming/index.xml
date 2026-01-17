@@ -63,6 +63,17 @@
           </tr>
           <tr>
             <td>
+              <a href="googlemembername.html#GoogleMemberName">
+                GoogleMemberName
+              </a>
+            </td>
+            <td>
+              Checks that member names conform to the <a href="https://google.github.io/styleguide/javaguide.html#s5.2.5-non-constant-field-names">
+              Google Java Style Guide</a> for non-constant field naming.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="illegalidentifiername.html#IllegalIdentifierName">
                 IllegalIdentifierName
               </a>
