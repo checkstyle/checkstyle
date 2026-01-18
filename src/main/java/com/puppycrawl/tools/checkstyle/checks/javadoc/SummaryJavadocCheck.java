@@ -80,7 +80,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * This regexp is used to convert multiline javadoc to single-line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
-            Pattern.compile("\n +(\\*)|^ +(\\*)");
+            Pattern.compile("\n[ \\t]+(\\*)|^[ \\t]+(\\*)");
 
     /**
      * This regexp is used to remove html tags, whitespace, and asterisks from a string.

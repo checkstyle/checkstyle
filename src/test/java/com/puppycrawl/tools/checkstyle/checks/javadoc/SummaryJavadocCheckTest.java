@@ -417,4 +417,14 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getPath("InputSummaryJavadocLargeJavadoc.java"), expected);
     }
+
+    @Test
+    public void testForbiddenFragmentsTabFormatted() throws Exception {
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputSummaryJavadocForbiddenFragmentsTabFormatted.java"), expected);
+    }
 }
