@@ -156,6 +156,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheck extends AbstractJavadocChe
      * @param tagNode the at tag node to check if there is nothing before it
      * @return true if there is no text before the tagNode
      */
+    @SuppressWarnings("InvalidInlineTag")
     private static boolean isOnlyTagInWholeJavadoc(DetailNode tagNode) {
         final List<Integer> previousNodeTypes = new ArrayList<>();
         DetailNode currentNode = tagNode.getPreviousSibling();

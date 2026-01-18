@@ -4486,6 +4486,8 @@
                        In this case, there will be a warning "AutoCloseableResource", which need
                        to be suppressed. -->
         <option value="resource"/>
+        <!-- suppression for invalid inline tag -->
+        <option value="InvalidInlineTag"/>
         <!-- false positives -->
         <option value="JUnitTestCaseWithNoTests"/>
         <!-- false positives -->
