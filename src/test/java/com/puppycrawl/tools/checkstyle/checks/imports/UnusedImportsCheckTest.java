@@ -245,6 +245,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsAnnotation.java"), expected);
+    }
+
+    @Test
     public void testImportsFromJavaLang() throws Exception {
         final String[] expected = {
             "10:8: " + getCheckMessage(MSG_KEY, "java.lang.String"),
