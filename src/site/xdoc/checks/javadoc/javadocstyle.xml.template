@@ -118,6 +118,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example6.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the Check to check if the Javadoc is missing a describing text:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example7.java"/>
+          <param name="type" value="config"/>
+        </macro>
+
+        <p id="Example7-code">Example7:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/javadoc/javadocstyle/Example7.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
