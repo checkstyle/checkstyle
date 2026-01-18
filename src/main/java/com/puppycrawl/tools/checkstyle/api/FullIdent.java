@@ -101,13 +101,34 @@ public final class FullIdent {
                 pushToIdentStack(identStack, firstChild);
             }
             else if (typeOfAst == TokenTypes.DOT) {
-                pushToIdentStack(identStack, firstChild.getNextSibling());
+                final DetailAST next = firstChild.getNextSibling();
+                processDot(identStack, next);
                 pushToIdentStack(identStack, firstChild);
                 dotCounter++;
             }
             else {
                 dotCounter = appendToFull(full, currentAst, dotCounter,
                         bracketsExist, isArrayTypeDeclarationStart);
+            }
+        }
+    }
+
+    /**
+     * Check a node is comment node or not then push to stack.
+     *
+     * @param identStack the Deque to add to
+     * @param ast the node
+     */
+    public static void processDot(Deque<DetailAST> identStack, DetailAST ast) {
+        if (ast != null) {
+            final int astType = ast.getType();
+
+            if (astType == TokenTypes.SINGLE_LINE_COMMENT
+                    || astType == TokenTypes.BLOCK_COMMENT_BEGIN) {
+                pushToIdentStack(identStack, ast.getNextSibling());
+            }
+            else {
+                pushToIdentStack(identStack, ast);
             }
         }
     }
