@@ -532,7 +532,7 @@ public class HiddenFieldCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(
-                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                    TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElse(null),
                         "frame", new CheckIfStatefulFieldCleared()))
                 .isTrue();
     }

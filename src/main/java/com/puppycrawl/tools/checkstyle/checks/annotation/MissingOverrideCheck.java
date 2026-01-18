@@ -179,7 +179,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
             .filter(JavadocUtil::isJavadocComment)
             .findFirst();
         return javadoc.isPresent()
-                && MATCH_INHERIT_DOC.matcher(javadoc.orElseThrow()).find();
+                && MATCH_INHERIT_DOC.matcher(javadoc.orElse(null)).find();
     }
 
 }

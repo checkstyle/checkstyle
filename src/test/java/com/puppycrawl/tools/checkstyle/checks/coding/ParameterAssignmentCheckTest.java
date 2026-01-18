@@ -117,7 +117,7 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
                 .that(methodDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.orElseThrow(),
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.orElse(null),
                 "parameterNamesStack",
                 parameterNamesStack -> ((Collection<Set<String>>) parameterNamesStack).isEmpty()))
             .isTrue();

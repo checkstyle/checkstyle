@@ -421,7 +421,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        annotationDef.orElseThrow(), "ENTRIES",
+                        annotationDef.orElse(null), "ENTRIES",
                         entries -> ((ThreadLocal<List<Object>>) entries).get().isEmpty()))
                 .isTrue();
     }

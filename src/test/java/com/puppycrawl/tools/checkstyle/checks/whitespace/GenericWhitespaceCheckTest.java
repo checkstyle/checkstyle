@@ -296,7 +296,7 @@ public class GenericWhitespaceCheckTest
         assertWithMessage("State is not cleared on beginTree")
                 .that(
                     TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                            genericStart.orElseThrow(), "depth",
+                            genericStart.orElse(null), "depth",
                             depth -> ((Number) depth).intValue() == 0))
                 .isTrue();
     }

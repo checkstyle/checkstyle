@@ -137,7 +137,7 @@ public class UnusedCatchParameterShouldBeUnnamedCheckTest extends AbstractModule
 
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        literalCatch.orElseThrow(),
+                        literalCatch.orElse(null),
                         "catchParameters",
                         catchParameters -> {
                             return ((Collection<?>) catchParameters).isEmpty();

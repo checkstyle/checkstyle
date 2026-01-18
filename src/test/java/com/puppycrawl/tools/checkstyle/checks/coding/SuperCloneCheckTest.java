@@ -107,7 +107,7 @@ public class SuperCloneCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        methodDef.orElseThrow(), "methodStack",
+                        methodDef.orElse(null), "methodStack",
                         methodStack -> ((Collection<Set<String>>) methodStack).isEmpty()))
                 .isTrue();
     }

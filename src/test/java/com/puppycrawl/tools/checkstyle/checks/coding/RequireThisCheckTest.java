@@ -572,7 +572,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElse(null),
                         "current", current -> ((Collection<?>) current).isEmpty()))
                 .isTrue();
     }
