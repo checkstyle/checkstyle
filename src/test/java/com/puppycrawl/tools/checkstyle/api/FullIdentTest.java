@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+import com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck;
 
 public class FullIdentTest extends AbstractModuleTestSupport {
 
@@ -264,6 +265,17 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         };
 
         verifyWithInlineConfigParser(getPath("InputFullIdentLiteralNewCondition.java"),
+                expected);
+    }
+
+    @Test
+    public void testUnusedImport() throws Exception {
+        final String[] expected = {
+            "9:8: " + getCheckMessage(UnusedImportsCheck.class,
+                    UnusedImportsCheck.MSG_KEY, "java.util.List"),
+        };
+
+        verifyWithInlineConfigParser(getPath("InputFullIdentUnusedImport.java"),
                 expected);
     }
 }

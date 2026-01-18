@@ -158,6 +158,15 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultFalse() throws Exception {
+        final String[] expected = {
+            "8:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsMutation.java"), expected);
+    }
+
+    @Test
     public void testBug() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWithInlineConfigParser(
@@ -242,6 +251,13 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verifyWithInlineConfigParser(
                 getNonCompilablePath("InputUnusedImportsFileInUnnamedPackage.java"),
             expected);
+    }
+
+    @Test
+    public void testAnnotation() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedImportsAnnotation.java"), expected);
     }
 
     @Test
