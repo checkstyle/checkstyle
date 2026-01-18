@@ -350,6 +350,22 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnusedLocalVarLambdas2() throws Exception {
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "outer"),
+            "16:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r"),
+            "18:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "l"),
+            "23:21: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "inner3"),
+            "33:13: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "inner4"),
+            "39:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "r3"),
+            "42:17: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "inner5"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputUnusedLocalVariableLambdaExpression2.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedLocalVariableLocalClasses() throws Exception {
         final String[] expected = {
             "14:9: " + getCheckMessage(MSG_UNUSED_LOCAL_VARIABLE, "a"),
