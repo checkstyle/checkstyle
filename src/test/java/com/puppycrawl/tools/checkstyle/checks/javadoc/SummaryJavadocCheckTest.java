@@ -33,388 +33,398 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
 
-    @Override
-    public String getPackageLocation() {
-        return "com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc";
-    }
+        @Override
+        public String getPackageLocation() {
+                return "com/puppycrawl/tools/checkstyle/checks/javadoc/summaryjavadoc";
+        }
 
-    @Test
-    public void testGetRequiredTokens() {
-        final SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertWithMessage("Default required tokens are invalid")
-                .that(checkObj.getRequiredTokens())
-                .isEqualTo(expected);
-    }
+        @Test
+        public void testGetRequiredTokens() {
+                final SummaryJavadocCheck checkObj = new SummaryJavadocCheck();
+                final int[] expected = { TokenTypes.BLOCK_COMMENT_BEGIN };
+                assertWithMessage("Default required tokens are invalid")
+                                .that(checkObj.getRequiredTokens())
+                                .isEqualTo(expected);
+        }
 
-    @Test
-    public void testCorrect() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testCorrect() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocCorrect.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocCorrect.java"), expected);
+        }
 
-    @Test
-    public void testCorrect2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testCorrect2() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocCorrect2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocCorrect2.java"), expected);
+        }
 
-    @Test
-    public void testInlineCorrect() throws Exception {
-        final String[] expected = {
-            "112: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-        };
+        @Test
+        public void testInlineCorrect() throws Exception {
+                final String[] expected = {
+                                "112: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineCorrect.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineCorrect.java"), expected);
+        }
 
-    @Test
-    public void testInlineCorrectTwo() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testInlineCorrectTwo() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineCorrect2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineCorrect2.java"), expected);
+        }
 
-    @Test
-    public void testIncorrect() throws Exception {
-        final String[] expected = {
-            "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "25: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "43: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "48: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "64: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "80: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocIncorrect.java"), expected);
-    }
+        @Test
+        public void testIncorrect() throws Exception {
+                final String[] expected = {
+                                "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "25: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "43: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "48: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                                "64: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "69: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "80: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocIncorrect.java"), expected);
+        }
 
-    @Test
-    public void testIncorrect2() throws Exception {
-        final String[] expected = {
-            "20: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "40: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "63: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "77: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocIncorrect4.java"), expected);
-    }
+        @Test
+        public void testIncorrect2() throws Exception {
+                final String[] expected = {
+                                "20: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                                "40: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "53: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "63: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "69: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "77: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocIncorrect4.java"), expected);
+        }
 
-    @Test
-    public void testInlineForbidden() throws Exception {
-        final String[] expected = {
-            "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "31: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "36: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "45: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "49: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "59: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineForbidden.java"), expected);
-    }
+        @Test
+        public void testInlineForbidden() throws Exception {
+                final String[] expected = {
+                                "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "31: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "36: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                                "45: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "49: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "59: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineForbidden.java"), expected);
+        }
 
-    @Test
-    public void testInlineForbidden2() throws Exception {
-        final String[] expected = {
-            "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "48: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "54: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-        };
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineForbidden2.java"), expected);
-    }
+        @Test
+        public void testInlineForbidden2() throws Exception {
+                final String[] expected = {
+                                "20: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "48: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "54: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                };
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineForbidden2.java"), expected);
+        }
 
-    @Test
-    public void testPeriod() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-        };
+        @Test
+        public void testPeriod() throws Exception {
+                final String[] expected = {
+                                "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocPeriod.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocPeriod.java"), expected);
+        }
 
-    @Test
-    public void testNoPeriod() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testNoPeriod() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocNoPeriod.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocNoPeriod.java"), expected);
+        }
 
-    @Test
-    public void testDefaultConfiguration() throws Exception {
-        final String[] expected = {
-            "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "42: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "47: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "63: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "68: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "79: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testDefaultConfiguration() throws Exception {
+                final String[] expected = {
+                                "19: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "24: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "42: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "47: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "63: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "68: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "79: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocIncorrect2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocIncorrect2.java"), expected);
+        }
 
-    @Test
-    public void testDefaultConfiguration2() throws Exception {
-        final String[] expected = {
-            "38: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "51: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "67: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "72: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "75: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testDefaultConfiguration2() throws Exception {
+                final String[] expected = {
+                                "38: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "51: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "67: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "72: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "75: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocIncorrect5.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocIncorrect5.java"), expected);
+        }
 
-    @Test
-    public void testIncorrectUsageOfSummaryTag() throws Exception {
-        final String[] expected = {
-            "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "49: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "57: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "64: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            // Until https://github.com/checkstyle/checkstyle/issues/11425
-            "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "103: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "110: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testIncorrectUsageOfSummaryTag() throws Exception {
+                final String[] expected = {
+                                "34: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "49: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "57: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "64: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "74: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                // Until https://github.com/checkstyle/checkstyle/issues/11425
+                                "82: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "93: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "103: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "110: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-            getPath("InputSummaryJavadocIncorrect3.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocIncorrect3.java"), expected);
+        }
 
-    @Test
-    public void testInlineDefaultConfiguration() throws Exception {
-        final String[] expected = {
-            "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "30: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "40: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "44: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "60: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-        };
+        @Test
+        public void testInlineDefaultConfiguration() throws Exception {
+                final String[] expected = {
+                                "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "26: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "30: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "40: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "44: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "56: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "60: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineDefault.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineDefault.java"), expected);
+        }
 
-    @Test
-    public void testInlineDefaultConfiguration2() throws Exception {
-        final String[] expected = {
-            "18: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "27: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "54: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "80: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-        };
+        @Test
+        public void testInlineDefaultConfiguration2() throws Exception {
+                final String[] expected = {
+                                "18: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "22: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "27: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "37: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "54: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "58: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "80: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineDefault2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineDefault2.java"), expected);
+        }
 
-    @Test
-    public void testInlineReturn() throws Exception {
-        final String[] expected = {
-            "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testInlineReturn() throws Exception {
+                final String[] expected = {
+                                "74: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineReturn.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineReturn.java"), expected);
+        }
 
-    @Test
-    public void testInlineReturn2() throws Exception {
-        final String[] expected = {
-            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testInlineReturn2() throws Exception {
+                final String[] expected = {
+                                "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineReturn2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineReturn2.java"), expected);
+        }
 
-    @Test
-    public void testInlineReturnForbidden() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-            "28: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        @Test
+        public void testInlineReturnForbidden() throws Exception {
+                final String[] expected = {
+                                "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                                "21: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                                "28: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInlineReturnForbidden.java"), expected);
+        }
 
-    @Test
-    public void testPeriodAtEnd() throws Exception {
-        final String[] expected = {
-            "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "26: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "40: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "70: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-        };
+        @Test
+        public void testPeriodAtEnd() throws Exception {
+                final String[] expected = {
+                                "19: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "26: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "33: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "40: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "60: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "70: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocPeriodAtEnd.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocPeriodAtEnd.java"), expected);
+        }
 
-    @Test
-    public void testForbiddenFragmentRelativeToPeriod() throws Exception {
-        final String[] expected = {
-            "23: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        @Test
+        public void testForbiddenFragmentRelativeToPeriod() throws Exception {
+                final String[] expected = {
+                                "23: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocForbiddenFragmentRelativeToPeriod.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocForbiddenFragmentRelativeToPeriod.java"), expected);
+        }
 
-    @Test
-    public void testJapanesePeriod() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testJapanesePeriod() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocJapanesePeriod.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocJapanesePeriod.java"), expected);
+        }
 
-    @Test
-    public void testHtmlFormatSummary() throws Exception {
-        final String[] expected = {
-            "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "36: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testHtmlFormatSummary() throws Exception {
+                final String[] expected = {
+                                "22: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+                                "36: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocHtmlFormat.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocHtmlFormat.java"), expected);
+        }
 
-    @Test
-    public void testPackageInfo() throws Exception {
-        final String[] expected = {
-            "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testPackageInfo() throws Exception {
+                final String[] expected = {
+                                "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("package-info.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("package-info.java"), expected);
+        }
 
-    @Test
-    public void testPackageInfoWithAnnotation() throws Exception {
-        final String[] expected = {
-            "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testPackageInfoWithAnnotation() throws Exception {
+                final String[] expected = {
+                                "10: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("inputs/package-info.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("inputs/package-info.java"), expected);
+        }
 
-    @Test
-    public void testForbidden() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        @Test
+        public void testForbidden() throws Exception {
+                final String[] expected = {
+                                "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocTestForbiddenFragments.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocTestForbiddenFragments.java"), expected);
+        }
 
-    @Test
-    public void testEmptyPeriod() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testEmptyPeriod() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocEmptyPeriod.java"), expected);
+        }
 
-    @Test
-    public void testForbidden3() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        @Test
+        public void testForbidden3() throws Exception {
+                final String[] expected = {
+                                "14: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocTestForbiddenFragments3.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocTestForbiddenFragments3.java"), expected);
+        }
 
-    @Test
-    public void testForbidden2() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testForbidden2() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocTestForbiddenFragments2.java"), expected);
+        }
 
-    @Test
-    public void testSummaryJavaDoc() throws Exception {
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        @Test
+        public void testForbiddenWithTabs() throws Exception {
+                final String[] expected = {
+                                "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadoc1.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocTestForbiddenFragmentsWithTabs.java"), expected);
+        }
 
-    @Test
-    public void testSummaryJavaDoc2() throws Exception {
-        final String[] expected = {
-            "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
-        };
+        @Test
+        public void testSummaryJavaDoc() throws Exception {
+                final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadoc2.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadoc1.java"), expected);
+        }
 
-    @Test
-    public void testInheritDoc() throws Exception {
-        final String[] expected = {
-            "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-        };
+        @Test
+        public void testSummaryJavaDoc2() throws Exception {
+                final String[] expected = {
+                                "15: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocInheritDoc.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadoc2.java"), expected);
+        }
 
-    @Test
-    public void testSummaryJavadocLargeJavaDoc() throws Exception {
-        final String[] expected = {
-            "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
-            "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-        };
+        @Test
+        public void testInheritDoc() throws Exception {
+                final String[] expected = {
+                                "14: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                };
 
-        verifyWithInlineConfigParser(
-                getPath("InputSummaryJavadocLargeJavadoc.java"), expected);
-    }
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocInheritDoc.java"), expected);
+        }
+
+        @Test
+        public void testSummaryJavadocLargeJavaDoc() throws Exception {
+                final String[] expected = {
+                                "13: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "27: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                                "41: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                                "61: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+                };
+
+                verifyWithInlineConfigParser(
+                                getPath("InputSummaryJavadocLargeJavadoc.java"), expected);
+        }
 }
