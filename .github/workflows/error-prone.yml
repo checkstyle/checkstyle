@@ -22,13 +22,13 @@ jobs:
           java-version: 21
           distribution: 'temurin'
 
-      - name: Install Groovy using SDKMAN
+      - name: Install Groovy
         run: |
           curl --fail-with-body -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 5.0.0
-          echo "GROOVY_HOME=$HOME/.sdkman/candidates/groovy/current" >> "$GITHUB_ENV"
+          sdk install groovy
           echo "$HOME/.sdkman/candidates/groovy/current/bin" >> "$GITHUB_PATH"
+          groovy --version
 
       - name: Checkout
         uses: actions/checkout@v6

@@ -180,6 +180,10 @@ public class Example2 {
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fsun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
             Sun Style</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+repo%3Acheckstyle%2Fcheckstyle+OneStatementPerLine">
+            OpenJDK Style</a>
+          </li>
         </ul>
       </subsection>
 

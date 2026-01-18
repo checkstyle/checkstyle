@@ -1,0 +1,1326 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>DRAFT: Java Style Guidelines</title>
+    <link rel="stylesheet" href="javaguide.css">
+    <script src="include/styleguide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body onload="initStyleGuide();">
+    <div id="content">
+        <h1>Java Style Guidelines <span style="color: red">(Draft, v6)</span></h1>
+        Andreas Lundblad, December 2015
+
+        <div id="tocDiv" class="vertical_toc"></div>
+
+        <h2 id="s1-introduction">Introduction</h2>
+        <p>This is a set of style guidelines for for JDK Release Projects in the OpenJDK Community. Other OpenJDK
+            Projects, and projects outside of OpenJDK, are welcome to adopt these guidelines as they see fit.</p>
+
+        <h3 id="s1.1-motivation">Motivation</h3>
+        <p>Code that looks familiar is easier to understand and therefore also easier to review, debug and maintain. To
+            ensure that code looks familiar to all developers on the project it&rsquo;s important to agree on a common
+            set of style guidelines.</p>
+
+        <p>This document provides guidelines for low level coding practices such as how to indent code and how to name
+            types and variables. Many of the stylistic choices are subjective and different developers may have
+            different opinions about them. Keep in mind however, that having a consistent style is more important than
+            to satisfy each individual developers preference.</p>
+
+        <h3 id="s1.2-guiding-principles">Guiding Principles</h3>
+        <p>The guidelines in this document strive to maximize,</p>
+        <ol>
+            <li>Correctness</li>
+            <li>Readability</li>
+            <li>Maintainability</li>
+            <li>Debuggability</li>
+            <li>Consistency</li>
+            <li>Aesthetics</li>
+        </ol>
+        <p>While this document covers a lot of ground, it should be noted that no style guide can answer all questions
+            for us, and developers will always need to use good judgment towards the end of producing code that is
+            correct, readable, maintainable, debuggable, consistently formatted, and aesthetically pleasing.</p>
+
+        <p>Examples in this document are non-normative; While they intend to illustrate correct way of formatting the
+            code, there may be other ways to correctly format the code. This is a general principle: There may be
+            several ways to format the code, all adhering to the guidelines in this document.</p>
+
+        <p>Tool support is nice, but ultimately each IDE and style checking tool can handle different sets of rules, and
+            support for rules that can&rsquo;t be handled today might be added in future versions. So, whether a rule
+            plays well with tools or not can be a factor, but it&rsquo;s secondary to the above principles.</p>
+
+        <h2 id="s2-java-source-files">Java Source Files</h2>
+        <p>This section concerns ordinary <code>.java</code> files only. Rules do not necessarily apply to other source
+            files in the project such as <code>.jasm</code>, <code>.sh</code> or <code>.gmk</code>.</p>
+
+        <section>Source files must be encoded in 7-bit ASCII.</section>
+
+        <section>All lines must be terminated with an line feed character (<code>LF</code>, ASCII value 10) and
+            <em>not</em> for instance <code>CR</code> or <code>CR</code>+<code>LF</code>.
+        </section>
+
+        <section>There may be no trailing white space at the end of a line.</section>
+
+        <section>The name of a source file must equal the name of the class it contains followed by the
+            <code>.java</code> extension, even for files that only contain a package private class. This does not apply
+            to files that do not contain any class declarations, such as <code>package-info.java</code>.
+        </section>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>7-bit ASCII reduces errors due to confusion of characters since there are no invisible spaces, characters
+                that look like minus signs but are really dashes, etc. It also ensures packages and classes are named in
+                such way that the corresponding directories and source files are portable across different filesystems.
+            </p>
+
+            <p>Agreeing on a common line delimiter character is important since different operating systems have
+                different defaults. Editing a file on Windows that was originally written on Linux, may cause all
+                <code>LF</code> to be saved back as <code>CR</code>+<code>LF</code>. This creates an unnecessarily big
+                patches and may not display correctly in the text editor it was originally written in. A single line
+                feed character is default for Unix-like systems and supported by all common text editors and IDEs.
+            </p>
+
+            <p>Trailing white space is nothing but unnecessary cruft. It&rsquo;s easy to remove and agreeing on doing so
+                consistently minimizes diffs.</p>
+
+            <p>Not using the name of the class as filename can be confusing. Also, unless the file is given explicitly
+                to the compiler, the class it contains may not be resolved correctly.</p>
+        </div>
+
+        <h3 id="s2.1-special-characters">Special Characters</h3>
+        <section>Apart from <code>LF</code> the only allowed white space character is Space (ASCII value 32). Note that
+            this implies that other white space characters (in, for instance, string and character literals) must be
+            written in escaped form.</section>
+        <section>
+            <code>\'</code>, <code>\&quot;</code>, <code>\\</code>, <code>\t</code>, <code>\b</code>, <code>\r</code>,
+            <code>\f</code>, and <code>\n</code> should be preferred over corresponding octal (e.g. <code>\047</code>)
+            or Unicode (e.g. <code>\u0027</code>) escaped characters.
+        </section>
+        <section>
+            Should there be a need to go against the above rules for the sake of testing, the test should generate the
+            required source.
+        </section>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Having any white space character but space and <code>LF</code> in the source code can be a source of
+                confusion.</p>
+
+            <p>The short forms (e.g. <code>\t</code>) are commonly used and easier to recognize than the corresponding
+                longer forms (<code>\011</code>, <code>\u0009</code>).</p>
+        </div>
+
+        <h2 id="s3-formatting">Formatting</h2>
+        <section>
+            A <code>.java</code> source file should be structured as follows:
+            <ol>
+                <li>The copyright notice</li>
+                <li>Package declaration</li>
+                <li>Import statements</li>
+                <li>Class declaration</li>
+            </ol>
+        </section>
+        <section>There may be only one top level class declaration per file.</section>
+
+        <h3 id="s3.1-copyright-notice">Copyright notice</h3>
+        <section>
+            All source files should have an appropriate copyright notice at the top of the file.
+        </section>
+        <section>
+            For files under Oracle copyright, the copyright notice must follow the standard wording and format. In
+            particular the first two lines should be
+            <pre><code>/*
+ * Copyright (c) 2011, Oracle and/or its affiliates. All rights reserved.</code></pre>
+            or
+            <pre><code>/*
+ * Copyright (c) 2011, 2015, Oracle and/or its affiliates. All rights reserved.</code></pre>
+            where the first year is the year the file was created and the second year is the year the file was last
+            edited.
+        </section>
+        <p>
+            For questions regarding copyright or license notices, please contact <a
+                href="mailto:iris.clark@oracle.com">iris.clark@oracle.com</a>.
+        </p>
+        <h3 id="s3.2-package-declaration">Package declaration</h3>
+        <section>
+            The package declaration should not be line wrapped, regardless of whether it exceeds the recommended maximum
+            length of a line. (See section on <i>Wrapping Lines</i>.)
+        </section>
+
+        <h3 id="s3.3-import-statements">Import statements</h3>
+        <section>
+            Import statements should be sorted&hellip;
+            <ul>
+                <li>&hellip;primarily by non-static / static with non-static imports first.</li>
+                <li>
+                    &hellip;secondarily by package origin according to the following order
+                    <ul>
+                        <li><code>java</code> packages</li>
+                        <li><code>javax</code> packages</li>
+                        <li>external packages (e.g. <code>org.xml</code>)</li>
+                        <li>internal packages (e.g. <code>com.sun</code>)</li>
+                    </ul>
+                </li>
+                <li>&hellip;tertiary by package and class identifier in lexicographical order</li>
+            </ul>
+        </section>
+        <section>Import statements should not be line wrapped, regardless of whether it exceeds the recommended maximum
+            length of a line.</section>
+        <section>No unused imports should be present.</section>
+        <h4 id="s3.3.1-wildcard-imports">Wildcard Imports</h4>
+        <section>Wildcard imports should in general not be used.</section>
+        <section>When importing a large number of closely-related classes (such as implementing a visitor over a tree
+            with dozens of distinct &ldquo;node&rdquo; classes), a wildcard import may be used.</section>
+        <section>In any case, no more than one wildcard import per file should be used.</section>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Wildcard imports makes it unclear what actually needs to be imported.</p>
+            <p>Having more than one wildcard import makes the code fragile since adding a new class in one of the
+                imported packages can introduce a name clash.</p>
+            <p>An unused import gives a false impression of a dependency. Also, many IDEs list such import statements as
+                warnings which clutters the list of problems.</p>
+        </div>
+
+        <h3 id="s3.4-class-structure">Class Structure</h3>
+        <section>
+            <p>The recommended order of class members is the following:</p>
+            <ol>
+                <li>Fields</li>
+                <li>Constructors</li>
+                <li>Factory methods</li>
+                <li>Other Methods</li>
+            </ol>
+        </section>
+
+        <section>Related fields should be grouped together. Ordering fields primarily according to access modifiers or
+            identifier is not required. The same applies to methods.</section>
+
+        <section>Nested types are put at the top of the class or right before it is first used.</section>
+
+        <h4 id="s3.4.1-order-of-constructors-and-overloaded-methods">Order of Constructors and Overloaded Methods</h4>
+        <section>Constructors and overloaded methods should be grouped together by functionality and ordered with
+            increasing arity. This implies that delegation among these constructs flow downward in the code.</section>
+        <section>Constructors and overloaded methods should not be split apart by other members.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>public HashSet() {
+    this(DEFAULT_INITIAL_CAPACITY);
+}
+
+public HashSet(int capacity) {
+    this(capacity, DEFAULT_LOAD_FACTOR);
+}
+
+public HashSet(int capacity, double loadFactor) {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don'ts</div>
+                    <pre><code>// Overloaded methods should not be split apart
+void logValue(int i) {
+    log("Int: %d", i);
+}
+
+void setValue(int i) {
+    val = i;
+}
+
+void logValue(double d) {
+    log("Double: %.2d", d);
+}
+
+void setValue(double d) {
+    val = d;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>This order puts the most generally applicable versions first. Also, making sure delegation is always done
+                downwards in the file makes the code easier to follow.</p>
+        </div>
+
+        <h3 id="s3.5-modifiers">Modifiers</h3>
+        <section>
+            Modifiers should go in the following order
+            <ol>
+                <li>Access modifier (<code>public</code> / <code>private</code> / <code>protected</code>)</li>
+                <li><code>abstract</code></li>
+                <li><code>static</code></li>
+                <li><code>final</code></li>
+                <li><code>transient</code></li>
+                <li><code>volatile</code></li>
+                <li><code>default</code></li>
+                <li><code>synchronized</code></li>
+                <li><code>native</code></li>
+                <li><code>strictfp</code></li>
+            </ol>
+        </section>
+        <section>
+            Modifiers should not be written out when they are implicit. For example, interface methods should neither be
+            declared public nor abstract, and nested enums and interfaces should not be declared static.
+        </section>
+        <section>Method parameters and local variables should not be declared final unless it improves readability or
+            documents an actual design decision.</section>
+        <section>Fields should be declared final unless there is a compelling reason to make them mutable.</section>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Writing out modifiers where they are implicit clutters the code and learning which modifiers are implicit
+                where is easy.</p>
+            <p>Although method parameters should typically not be mutated, consistently marking all parameters in every
+                methods as <code>final</code> is an exaggeration.</p>
+            <p>Making fields immutable where possible is good programming practice. Refer to <em>Effective Java, Item
+                    15: Minimize Mutability</em> for details.</p>
+        </div>
+
+        <h3 id="s3.6-braces">Braces</h3>
+        <section>Opening braces should be put on the end of the current line rather than on a line by its own.</section>
+        <section>There should be a new line in front of a closing brace unless the block is empty (see&nbsp;<em>Short
+                Forms</em> below)</section>
+
+        <section>
+            <!-- Braces are always recommended, but may be omitted for single line blocks (including comments) if it improves readability. -->
+            <!-- Braces are recommended even where the language makes them optional (such as in single-line if and loop bodies) but may be omitted if it improves readability. -->
+            <p>Braces are recommended even where the language makes them optional, such as single-line if and loop
+                bodies.</p>
+            <ul>
+                <li>If a block spans more than one line (including comments) it must have braces.</li>
+                <li>If one of the blocks in a if / else statement has braces, the other block must too.</li>
+                <li>If the block comes last in an enclosing block, it must have braces.</li>
+            </ul>
+        </section>
+
+        <section>The<code> else</code>,&nbsp;<code>catch</code> and the <code>while</code> keyword in
+            <code>do</code>&hellip;<code>while</code> loops go on the same line as the closing brace of the preceding
+            block.
+        </section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>void method() {
+    &hellip;
+}</code></pre>
+                    <!--                    <pre><code>if (flag) {
+    y = 123;
+    x = 321;
+} else {
+    y = 321;
+}</code></pre> -->
+                    <pre><code>try {
+    something();
+} catch (AnException e) {
+    &hellip;
+}</code></pre>
+                    <pre><code>for (int[] row : matrix) {
+    for (int val : row) {
+        sum += val;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>// Wrong placement of opening brace
+void method()
+{
+    &hellip;
+}</code></pre>
+                    <!--                    <pre><code>// The second block should have braces since the
+// first block has braces
+if (flag) {
+    y = 123;
+    x = 321;
+} else
+    y = 321;</code></pre> -->
+                    <pre><code>// Newline in front of catch should be avoided
+try {
+    something();
+}
+catch (AnException e) {
+    &hellip;
+}</code></pre>
+                    <pre><code>// Braces should be used
+if (flag)
+    // Restore x
+    x = 1;</code></pre>
+                    <pre><code>// Use braces if block comes last in enclosing block
+// to avoid accidentally indenting the closing brace.
+for (int[] row : matrix) {
+    for (int val : row)
+        sum += val;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Putting opening braces on the end of the line (as opposed to on a line of its own) is a long standing
+                Java convention. This style is also suitable for Java, considering that it&rsquo;s common to have small
+                blocks (in for instance anonymous classes and lambda expressions) and having opening braces on a
+                separate line creates an unnecessary amount of white space in such situations.</p>
+            <p>Omitting braces is error prone and can lead to mistakes in the indentation and hard to detect bugs.</p>
+        </div>
+
+        <h4 id="s3.6.1-short-forms">Short Forms</h4>
+        <section>
+            The above recommendations are intended to improve uniformity (and thus increase familiarity / readability).
+            In some cases &ldquo;short forms&rdquo; that deviate from the above guidelines are just as readable and may
+            be used instead. These cases include for instance simple enum declarations and trivial methods and lambda
+            expressions.
+        </section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>enum Response { YES, NO, MAYBE }</code></pre>
+                    <pre><code>public boolean isReference() { return true; }</code></pre>
+                </div>
+            </div>
+
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>public boolean getResult() { int value = getValue(); return value &lt; 0 ? 0 : value; }</code></pre>
+                    <pre><code>for (int i = 0; i < size; i++) { sum += data[i]; }</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s3.7-indentation">Indentation</h3>
+        <section>Indentation level is four spaces.</section>
+        <section>Only space characters may be used for indentation. No tabs.</section>
+        <section>Empty lines must not be indented. (This is implied by the no trailing white space rule.)</section>
+        <section>
+            <p><code>case</code> lines should be indented with four spaces, and statements within the case should be
+                indented with another four spaces.</p>
+            <p>Existing code that follows the old style of not indenting <code>case</code> lines (see Don&rsquo;ts
+                example below) is acceptable to leave as is.
+            <p>
+        </section>
+        Refer to Section&nbsp;<em>Wrapping Lines</em>&nbsp;for guidelines on how to indent continuation lines.
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>switch (var) {
+    case TWO:
+        setChoice("two");
+        break;
+    case THREE:
+        setChoice("three");
+        break;
+    default:
+        throw new IllegalArgumentException();
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>switch (var) {
+case TWO:
+    setChoice("two");
+    break;
+case THREE:
+    setChoice("three");
+    break;
+default:
+    throw new IllegalArgumentException();
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>By using spaces for indentation, problems regarding different default settings for tab stops in various
+                editors are avoided.</p>
+        </div>
+
+        <h3 id="s3.8-wrapping-lines">Wrapping Lines</h3>
+        <section>
+            <p>Source code and comments should generally not exceed 80 characters per line and rarely if ever exceed 100
+                characters per line, including indentation.</p>
+
+            <p>The character limit must be judged on a case by case basis. What really matters is the semantical
+                &ldquo;density&rdquo; and readability of the line. Making lines gratuitously long makes them hard to
+                read; similarly, making &ldquo;heroic attempts&rdquo; to fit them into 80 columns can also make them
+                hard to read. The flexibility outlined here aims to enable developers to avoid these extremes, not to
+                maximize use of monitor real-estate.</p>
+        </section>
+        <section>URLs or example commands should not be wrapped.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>// Ok even though it might exceed max line width when indented.
+Error e = isTypeParam
+        ? Errors.InvalidRepeatableAnnotationNotApplicable(targetContainerType, on)
+        : Errors.InvalidRepeatableAnnotationNotApplicableInContext(targetContainerType));</code></pre>
+                    <pre><code>String pretty = Stream.of(args)
+                      .map(Argument::prettyPrint)
+                      .collectors(joining(", "));</code></pre>
+                </div>
+            </div>
+
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>// Too strict interpretation of max line width. Readability suffers.
+Error e = isTypeParam
+        ? Errors.InvalidRepeatableAnnotationNotApplicable(
+                targetContainerType, on)
+        : Errors.InvalidRepeatableAnnotationNotApplicableInContext(
+                targetContainerType);</code></pre>
+
+                    <pre><code>// Should be wrapped even though it fits within the character limit
+String pretty = Stream.of(args).map(Argument::prettyPrint).collectors(joining(", "));</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <section>
+            Wrapping at a higher syntactical level is preferred over wrapping at a lower syntactical level.
+
+            <div>
+                <div class="leftcol">
+                    <div class="box">
+                        <div class="boxheader dos">Dos</div>
+                        <pre><code>aMethodCall(withMany(arguments, that, needs),
+            to(be, (wrapped - to) * avoid / veryLong - lines));</code></pre>
+                    </div>
+                </div>
+
+                <div class="rightcol">
+                    <div class="box">
+                        <div class="boxheader donts">Don&rsquo;ts</div>
+                        <pre><code>aMethodCall(withMany(arguments, that, needs), to(be, (wrapped
+    - to) * avoid / veryLong - lines));</code></pre>
+                    </div>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </section>
+
+        <section>
+            There should be at most 1 statement per line.
+
+            <div>
+                <div class="leftcol">
+                    <div class="box">
+                        <div class="boxheader dos">Dos</div>
+                        <pre><code>i += j;
+j += k;</code></pre>
+                        <pre><code>if (condition) {
+    return expression;
+}</code></pre>
+                    </div>
+                </div>
+                <div class="rightcol">
+                    <div class="box">
+                        <div class="boxheader donts">Don&rsquo;ts</div>
+                        <pre><code>i += j; j += k;</code></pre>
+                        <pre><code>if (condition) { return expression; }</code></pre>
+                    </div>
+                </div>
+                <p style="clear: both"></p>
+            </div>
+        </section>
+        <section>A continuation line should be indented in one of the following four ways
+            <ul>
+                <li><strong>Variant 1:</strong> With 8 extra spaces relative to the indentation of the previous line.
+                </li>
+                <li><strong>Variant 2:</strong> With 8 extra spaces relative to the starting column of the wrapped
+                    expression.</li>
+                <li><strong>Variant 3:</strong> Aligned with previous sibling expression (as long as it is clear that
+                    it&rsquo;s a continuation line)</li>
+                <li><strong>Variant 4:</strong> Aligned with previous method call in a chained expression.</li>
+            </ul>
+
+            <div>
+                <div class="leftcol">
+                    <div class="box">
+                        <div class="boxheader dos">Dos</div>
+                        <pre><code>// Variant 1
+int anInteger = aMethod(that, takes,
+        a, lengthy, list, of, arguments);</code></pre>
+                        <pre><code>// Variant 2
+int anInteger = that * (is + computed) / using
+                        + a * complex - expression;</code></pre>
+                        <pre><code>// Variant 3
+int anInteger = aMethod(thatTakes,
+                        aLongList,
+                        ofArguments);</code></pre>
+                        <pre><code>// Variant 4
+int anInteger = IntStream.of(numbers)
+                         .map(Math::sqrt)
+                         .sum();</code></pre>
+                    </div>
+                </div>
+                <div class="rightcol">
+                    <div class="box">
+                        <div class="boxheader donts">Don&rsquo;ts</div>
+                        <pre><code>// Mixing of wrapping variants (unless there
+// is a logical grouping of arguments)
+int anInteger = aMethod(that,
+                        takes,
+                        a, lengthy, list,
+                        of, arguments);</code></pre>
+                        <pre><code>// Don't align with sibling expression if the continuation
+// line can be confused with a block indentation
+if (somePredicate() ||
+    someOtherPredicate()) {
+    System.out.println("Avoid");
+}</code></pre>
+                    </div>
+                </div>
+                <p style="clear: both"></p>
+            </div>
+
+        </section>
+
+
+        <h4 id="s3.8.1-wrapping-class-declarations">Wrapping Class Declarations</h4>
+        <section>A class header should not be wrapped unless it approaches the maximum column limit.</section>
+        <section>If it does, it may be wrapped before <code>extends</code> and/or <code>implements</code> keywords.
+        </section>
+        <section>Declarations of type parameters may, if necessary, be wrapped the same way as method arguments
+        </section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>public class MyGenericClass&lt;T, S&gt;
+        extends HashMap&lt;T, S&gt;
+        implements Comparable&lt;T&gt; {
+    &hellip;
+}</code></pre>
+                    <pre><code>public class AnotherClass&lt;K, R&gt; implements Collector&lt;T extends K,
+                                                     Set&lt;? extends R&gt;,
+                                                     List&lt;R&gt;&gt; {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>public class MyGenericClass&lt;T&gt; implements Comparable&lt;T&gt;,
+        Predicate&lt;T&gt; {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h4 id="s3.8.2-wrapping-method-declarations">Wrapping Method Declarations</h4>
+        <section>Method declarations can be formatted by listing the arguments vertically, or by a new line and +8 extra
+            spaces</section>
+        <section>If a throws clause needs to be wrapped, put the line break in front of the throws clause and make sure
+            it stands out from the argument list, either by indenting +8 relative to the function declaration, or +8
+            relative to the previous line.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>int someMethod(String aString,
+               List&lt;Integer&gt; aList,
+               Map&lt;String, String&gt; aMap,
+               int anInt,
+               long aLong,
+               Set&lt;Number&gt; aSet,
+               double aDouble) {
+    &hellip;
+}</code></pre>
+                    <pre><code>int someMethod(String aString, List&lt;Integer&gt; aList,
+        Map&lt;String, String&gt; aMap, int anInt, long aLong,
+        double aDouble, long aLong) {
+    &hellip;
+}</code></pre>
+                    <pre><code>int someMethod(String aString,
+               List&lt;Map&lt;Integer, StringBuffer&gt;&gt; aListOfMaps,
+               Map&lt;String, String&gt; aMap)
+        throws IllegalArgumentException {
+    &hellip;
+}</code></pre>
+                    <pre><code>int someMethod(String aString, List&lt;Integer&gt; aList,
+        Map&lt;String, String&gt; aMap, int anInt)
+                throws IllegalArgumentException {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>// If aligning the parameters vertically, don't put two
+// parameters on one line
+int someMethod(String aString,
+               List&lt;Integer&gt; aList,
+               Map&lt;String, String&gt; aMap,
+               int anInt, long aLong,
+               Set&lt;Number&gt; aSet,
+               double aDouble) {
+    &hellip;
+}</code></pre>
+                    <pre><code>int someMethod(String aString,
+               List&lt;Map&lt;Integer, StringBuffer&gt;&gt; aListOfMaps,
+               Map&lt;String, String&gt; aMap) throws InterruptedException {
+    &hellip;
+}</code></pre>
+                    <pre><code>int someMethod(String aString,
+               List&lt;Integer&gt; aList,
+               Map&lt;String, String&gt; aMap)
+               throws IllegalArgumentException {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+
+        <h4 id="s3.8.3-wrapping-expressions">Wrapping Expressions</h4>
+        <section>If a line approaches the maximum character limit, always consider breaking it down into multiple
+            statements / expressions instead of wrapping the line.</section>
+        <section>Break before operators.</section>
+        <section>Break before the <code>.</code> in chained method calls.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>methodCall(a * simple - formula,
+           some + complex - formula * spanning
+                        + multiple - lines * may
+                        + look - as * follows);</code></pre>
+                    <pre><code>popupMsg("Inbox notification: You have "
+        + newMsgs + " new messages");</code></pre>
+                    <pre><code>persons.stream()
+       .map(Person::getName)
+       .forEach(System.out::println);</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>// Arity unclear
+methodCall(a * simple - formula,
+           some + complex - formula * spanning +
+           multiple - lines * should + not *
+           look - as * follows);</code></pre>
+                    <pre><code>// Looks like two arguments
+popupMsg("Inbox notification: You have " +
+         newMsgs + " new messages");</code></pre>
+                    <pre><code>persons.stream().
+        map(Person::getName).
+        forEach(System.out::println);</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s3.9-whitespace">Whitespace</h3>
+        <h4 id="s3.9.1-vertical-whitespace">Vertical Whitespace</h4>
+        <section>
+            A single blank line should be used to separate&hellip;
+            <ul>
+                <li>Copyright notice</li>
+                <li>Package declaration</li>
+                <li>Class declarations</li>
+                <li>Constructors</li>
+                <li>Methods</li>
+                <li>Static initializers</li>
+                <li>Instance initializers</li>
+            </ul>
+            <p>&hellip;and may be used to separate logical groups of</p>
+            <ul>
+                <li>import statements</li>
+                <li>fields</li>
+                <li>statements</li>
+            </ul>
+        </section>
+        <section>Multiple consecutive blank lines should only be used to separate groups of related members and not as
+            the standard inter-member spacing.</section>
+
+        <h4 id="s3.9.2-horizontal-whitespace">Horizontal Whitespace</h4>
+        <section>
+            A single space should be used&hellip;
+            <ul>
+                <li>To separate keywords from neighboring opening or closing brackets and braces</li>
+                <li>Before and after all binary operators and operator like symbols such as arrows in lambda expressions
+                    and the colon in enhanced for loops (but not before the colon of a label)</li>
+                <li>After <code>//</code> that starts a comment.</li>
+                <li>After commas separating arguments and semicolons separating the parts of a for loop.</li>
+                <li>After the closing parenthesis of a cast.</li>
+            </ul>
+        </section>
+        <section>In variable declarations it is not recommended to align types and variables.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>int someInt;
+String myString;
+char aChar;
+long sixtyfourFlags;</code></pre>
+                    <pre><code>if (isFlagSet(GO)) {
+    &hellip;
+}</code></pre>
+                    <pre><code>IntUnaryOperator inc = x -&gt; x + 1;</code></pre>
+                    <pre><code>init: {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>int    someInt;
+String myString;
+char   aChar;
+long   sixtyfourFlags;</code></pre>
+                    <pre><code>if( isFlagSet( GO ) ) {
+    &hellip;
+}</code></pre>
+                    <pre><code>IntUnaryOperator inc = x-&gt;x + 1;</code></pre>
+                    <pre><code>init : {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>The improvement in readability when aligning variable names is negligible compared to the efforts needed
+                to keep them aligned as the code evolves. Realigning all variables when one of the types change also
+                causes unnecessarily complicated patches to review.</p>
+        </div>
+
+        <h3 id="s3.10-variable-declarations">Variable Declarations</h3>
+        <section>One variable per declaration (and at most one declaration per line)</section>
+        <section>Square brackets of arrays should be at the type (<code>String[] args</code>) and not on the variable
+            (<code>String args[]</code>).</section>
+        <section>Declare a local variable right before it is first used, and initialize it as close to the declaration
+            as possible.</section>
+
+        <h3 id="s3.11-annotations">Annotations</h3>
+        <section>Declaration annotations should be put on a separate line from the declaration being annotated.
+        </section>
+        <section>Few/short annotations annotating a single-line method may however be put on the same line as the method
+            if it improves readability.</section>
+        <section>Either all annotations should be put on the same line or each annotation should be put on a separate
+            line.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>@Deprecated
+@Override
+public void foo() {
+    &hellip;
+}</code></pre>
+                    <pre><code>@Deprecated @Override
+public void foo() {
+    &hellip;
+}</code></pre>
+                    <pre><code>addListener(new Listener() {
+ 
+    // Ignored events
+    @Override public void event1() { }
+    @Override public void event2() { }
+    @Override public void event3() { }
+ 
+    // Important event
+    @Override
+    public void event4() {
+        &hellip;
+    }
+});</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>@Override @Deprecated public void foo() {
+    &hellip;
+}</code></pre>
+                    <pre><code>@Override @Deprecated
+@SafeVarargs
+public void foo() {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s3.12-lambda-expressions">Lambda Expressions</h3>
+        <section>Expression lambdas are preferred over single-line block lambdas.</section>
+        <section>
+            <p>Method references should generally be preferred over lambda expressions.</p>
+            <p>For bound instance method references, or methods with arity greater than one, a lambda expression may be
+                easier to understand and therefore preferred. Especially if the behavior of the method is not clear from
+                the context.</p>
+        </section>
+        <section>The parameter types should be omitted unless they improve readability.</section>
+        <section>If a lambda expression stretches over more than a few lines, consider creating a method.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>Runnable r = () -&gt; System.out.println("Hello World");</code></pre>
+                    <pre><code>Supplier&lt;String&gt; c = () -&gt; "Hello World";</code></pre>
+                    <pre><code>// Collection::contains is a simple unary method and its behavior is
+// clear from the context. A method reference is preferred here.
+appendFilter(goodStrings::contains);</code></pre>
+                    <pre><code>// A lambda expression is more readable in this case
+// (cf. corresponding example in Don'ts section)
+trackTemperature((time, temp) -> tempMap.put(time, temp));</code></pre>
+                    <pre><code>Function&lt;Person, String&gt; nameFunc = p -&gt; p.getFirstName() + " " + p.getLastName();</code></pre>
+                    <pre><code>class Util {
+    private static String getCapitalizedFirstName(Person p) {
+        String first = p.getFirstName();
+        char initial = Character.toUpperCase(first.charAt(0));
+        return initial + first.substring(1);
+    }
+ 
+    static void printAllPersons(List&lt;Person&gt; persons) {
+        persons.stream()
+               .map(Util::getCapitalizedFirstName)
+               .forEach(System.out::println);
+    }
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>Runnable r = () -&gt; { System.out.println("Hello World"); };</code></pre>
+                    <pre><code>Supplier&lt;String&gt; s = () -&gt; { return "Hello World"; };</code></pre>
+                    <pre><code>// A lambda expression is not needed here
+appendFilter(s -> goodStrings.contains(s));</code></pre>
+                    <pre><code>// Map::put is a binary function, and it's not clear from context what type
+// of argument trackTemperature accepts. A lambda expression is better here.
+trackTemperature(tempMap::put);</code></pre>
+                    <pre><code>// Unnecessary parameter type
+Function&lt;Person, String&gt; nameFunc = (Person p) -&gt; p.getFirstName() + " " + p.getLastName();</code></pre>
+                    <pre><code>class Util {
+    static void printAllPersons(List&lt;Person&gt; persons) {
+        persons.stream()
+               .map(p -&gt; {
+                   String first = p.getFirstName();
+                   char initial = Character.toTitleCase(first.charAt(0));
+                   return initial + first.substring(1);
+               })
+               .forEach(System.out::println);
+    }
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s3.13-redundant-parentheses">Redundant Parentheses</h3>
+        <section>Redundant grouping parentheses (i.e. parentheses that does not affect evaluation) may be used if they
+            improve readability.</section>
+        <section>Redundant grouping parentheses should typically be left out in shorter expressions involving common
+            operators but included in longer expressions or expressions involving operators whose precedence and
+            associativity is unclear without parentheses. Ternary expressions with non-trivial conditions belong to the
+            latter.</section>
+        <section>The entire expression following a return keyword must not be surrounded by parentheses.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>return flag ? "yes" : "no";</code></pre>
+                    <pre><code>String cmp = (flag1 != flag2) ? "not equal" : "equal";</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>return (flag ? "yes" : "no");</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s3.14-literals">Literals</h3>
+        <section><code>long</code> literals should use the upper case letter <code>L</code> suffix.</section>
+        <section>Hexadecimal literals should use upper case letters <code>A</code>-<code>F</code>.</section>
+        <section>All other numerical prefixes, infixes, and suffixes should use lowercase letters.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>long l = 5432L;
+int i = 0x123 + 0xABC;
+byte b = 0b1010;
+float f1 = 1 / 5432f;
+float f2 = 0.123e4f;
+double d1 = 1 / 5432d;  // or 1 / 5432.0
+double d2 = 0x1.3p2;</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>long l = 5432l;
+int i = 0X123 + 0xabc;
+byte b = 0B1010;
+float f1 = 1 / 5432F;
+float f2 = 0.123E4f;
+double d1 = 1 / 5432D;
+double d2 = 0x1.3P2;</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Lower case L resembles a 1 in many monospace fonts which means that the literal <code>5432l</code> can be
+                confused with <code>54321</code>. Using upper case <code>L</code> suffix avoids this. The lowercase
+                <code>0x</code>, <code>0b</code>, <code>e</code>, <code>p</code>, <code>f</code>, and <code>d</code>
+                characters are easier to spot in a long sequence of digits, and they avoid confusion with the
+                hexadecimal digits <code>A</code>-<code>F</code>.
+            </p>
+        </div>
+
+        <h3 id="s3.15-javadoc">Javadoc</h3>
+        <p>This section only covers basic Javadoc formatting. For a complete reference refer to &nbsp;<a
+                href="http://www.oracle.com/technetwork/articles/java/index-137868.html">How to Write Doc Comments for
+                the Javadoc Tool</a>.</p>
+        <section>Start longer comments with a short summarizing sentence since Javadoc includes this in the method
+            summary table.</section>
+        <section>Prefer inline tags (such as <code>{@code &hellip;}</code> and <code>{@link &hellip;}</code> etc) over
+            corresponding HTML tags (<code>&lt;code&gt;&hellip;&lt;/code&gt;</code>,
+            <code>&lt;a href=&quot;&hellip;&quot;&gt;&hellip;&lt;/a&gt;</code> etc).
+        </section>
+        <section>Use <code>&lt;p&gt;</code> to separate paragraphs (closing <code>&lt;/p&gt;</code> tags are not needed
+            and should not be used)</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>/** A short javadoc comment */</code></pre>
+                    <pre><code>/**
+ * &hellip;
+ *
+ * &lt;blockquote&gt;{@code
+ *     List&lt;String&gt; names;
+ * }&lt;/blockquote&gt;
+ */</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>/** put on single line instead
+ */</code></pre>
+                    <pre><code>/**
+ * The &lt;String&gt; below may interfere with the HTML!
+ *
+ * &lt;blockquote&gt;&lt;pre&gt;
+ *     List&lt;String&gt; names;
+ * &lt;/pre&gt;&lt;/blockquote&gt;
+ */</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+
+        <h2 id="s4-naming">Naming</h2>
+        <section>Avoid hiding/shadowing methods, variables and type variables in outer scopes.</section>
+        <section>Let the verbosity of the name correlate to the size of the scope. (For instance, use descriptive names
+            for fields of large classes and brief names for local short-lived variables.)</section>
+        <section>When naming public static members, let the identifier be self descriptive if you believe they will be
+            statically imported.</section>
+
+        <h3 id="s4.1-package-names">Package Names</h3>
+        <section>Package names should be all lower case without underscores or other special characters.</section>
+        <section>Don&rsquo;t use plural form. Follow the convention of the standard API which uses for instance
+            <code>java.lang.annotation</code> and not <code>java.lang.annotations</code>.
+        </section>
+
+        <h3 id="s4.2-class-interface-enum-names">Class, Interface and Enum Names</h3>
+        <section>Class and enum names should typically be nouns.</section>
+        <section>Interface names should typically be nouns or adjectives ending with <i>&hellip;able</i>.</section>
+        <section>Use mixed case with the first letter in each word in upper case.</section>
+        <section>Use whole words and avoid using abbreviations unless the abbreviation is more widely used than the long
+            form.</section>
+        <section>Format an abbreviation as a word if the it is part of a longer class name.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>class EmptyCell {
+    &hellip;
+}</code></pre>
+                    <pre><code>class RunningMode {
+    &hellip;
+}</code></pre>
+                    <pre><code>interface Expandable {
+    &hellip;
+}</code></pre>
+                    <pre><code>class XmlParser {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>class Empty {
+    &hellip;
+}</code></pre>
+                    <pre><code>class Running {
+    &hellip;
+}</code></pre>
+                    <pre><code>class Expandable {
+    &hellip;
+}</code></pre>
+                    <pre><code>// Abbreviation should be formatted as 'Xml'
+class XMLParser {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s4.3-method-names">Method Names</h3>
+        <section>Method names should typically be verbs or other descriptions of actions.</section>
+        <section>Use mixed case with the first letter in lower case.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>public void expand() {
+    &hellip;
+}</code></pre>
+                    <pre><code>public boolean isExpanding() {
+    &hellip;
+}</code></pre>
+                    <pre><code>public State getState() {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>public boolean expanding() {
+    &hellip;
+}</code></pre>
+                    <pre><code>public State GetState() {
+    &hellip;
+}</code></pre>
+                    <pre><code>public int get_index() {
+    &hellip;
+}</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s4.4-variables">Variables</h3>
+        <section>Variable names should be in mixed case with the first letter in lower case.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>int currentIndex;
+boolean dataAvailable;
+</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>int current_index;
+boolean DataAvailable;</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s4.5-type-variables">Type Variables</h3>
+        <section>For simple cases where there are few type variables involved use a single upper case letter.</section>
+        <section>If one letter is more descriptive than another (such as <code>K</code> and <code>V</code> for keys and
+            values in maps or <code>R</code> for a function return type) use that, otherwise use <code>T</code>.
+        </section>
+        <section>For complex cases where single letter type variables become confusing, use longer names written in all
+            capital letters and use underscore (<code>_</code>) to separate words.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>interface SpecialMap&lt;K, V&gt; extends Map&lt;K, V&gt; {
+    &hellip;
+}
+</code></pre>
+                    <pre><code>class GraphMapper&lt;SRC_VERTEX, SRC_EDGE, DST_VERTEX, DST_EDGE&gt; {
+    &hellip;
+}
+</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>interface SpecialMap&lt;Key, Value&gt; extends Map&lt;Key, Value&gt; {
+    &hellip;
+}
+</code></pre>
+                    <pre><code>class GraphMapper&lt;S, T, U, V&gt; {
+    &hellip;
+}
+</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+        <h3 id="s4.6-constants">Constants</h3>
+        <section>Constants (static final fields whose content is immutable, by language rules or by convention) should
+            be named with all capital letters and underscore (<code>_</code>) to separate words.</section>
+
+        <div>
+            <div class="leftcol">
+                <div class="box">
+                    <div class="boxheader dos">Dos</div>
+                    <pre><code>public static final int BUFFER_SIZE = 1024;</code></pre>
+                    <pre><code>enum ApplicationMode { RUNNING, PAUSED, TERMINATED }</code></pre>
+                </div>
+            </div>
+            <div class="rightcol">
+                <div class="box">
+                    <div class="boxheader donts">Don&rsquo;ts</div>
+                    <pre><code>public final List&lt;String&gt; CURRENT_WORDS = new ArrayList&lt;&gt;();</code></pre>
+                    <pre><code>enum ApplicationMode { Running, Paused, Terminated }</code></pre>
+                </div>
+            </div>
+            <p style="clear: both"></p>
+        </div>
+
+
+        <h2 id="s5-programming-practices">Programming Practices</h2>
+        <p>
+            The focus of the guidelines in this document is on style. General guidelines on best programming practices,
+            use of design patterns, how to structure programs etc is thus out of scope.&nbsp;A few &ldquo;low
+            level&rdquo; practices that are easy to pin down is however good to agree upon.
+        </p>
+        <section>Always use <code>@Override</code> where it is possible to do so.</section>
+        <section>Document any non-obvious pre and post conditions (also for private methods). In particular, all
+            parameters / return values are assumed to be non-null unless explicitly stated otherwise.</section>
+        <section>Avoid checking in &ldquo;<code>TODO</code>&rdquo; comments. If the missing code doesn&rsquo;t affect
+            correctness or performance, skip the comment, otherwise file an issue for it.</section>
+        <section>Avoid checking in dead code.</section>
+        <section>Static mutable state should be used judiciously. In particular enums should not have mutable state, and
+            any public static variable must also be final.</section>
+        <section>Make fields final unless they have a need to be mutable.</section>
+        <section>Qualify static method invocations and fields with class identifiers and not variable identifiers.
+        </section>
+        <section>Fall through on non-empty cases in switch statements should be documented, typically with a
+            &ldquo;<code>// fall through</code>&rdquo; comment.</section>
+        <section>Mutating method parameters is discouraged. This is because parameters are typically associated with the
+            input values and by mutating these the code may be harder to understand, especially when only looking at
+            parts of the method below the mutation.</section>
+        <section>Keep methods short. Consider splitting up long methods into smaller ones to limit variable scopes and
+            simplify structure of the code.</section>
+
+
+
+
+        <h3 id="s5.1-commenting-code">Commenting Code</h3>
+        <section>First and foremost, try to make the code simple enough that it&rsquo;s self explanatory. While comments
+            explaining the code are good, not having to explain the code is better.</section>
+        <section>For single line comments, use end-of-line comments (<code>//</code>) otherwise use multiline comments
+            (<code>/* &hellip; */</code>).</section>
+        <section>Avoid comments that run the risk of getting out of sync as the code evolves. (If a comment runs the
+            risk of getting out of sync, it&rsquo;s often a sign that it comments how the code works rather than what
+            the code achieves.)</section>
+        <section>Small well documented methods are preferred over longer methods with comments in the body of the
+            method.</section>
+        <section>Don&rsquo;t check in code that&rsquo;s commented out.</section>
+        <section>IDE/tool-specific comments should be avoided wherever possible, especially when there are reasonable
+            alternatives, such as external settings files, etc.</section>
+        <section>Comments should be grammatically correct and follow general recommendations of technical writing.
+        </section>
+
+        <h2 id="s6-when-to-reformat">When to reformat code</h2>
+        <section>Do not reformat code in files unrelated to the current changeset, even if the code doesn&rsquo;t adhere
+            to the guidelines.</section>
+        <section>Minor cleanups in files that are already touched for other reasons are fine. Put the cleanups in a
+            separate patch if you think it will simplify the review process. Large cleanups should always go in a
+            separate changeset.</section>
+
+        <div class="box">
+            <div class="boxheader">Motivation</div>
+            <p>Cleaning up code that&rsquo;s unrelated to the patch may&hellip;</p>
+            <ul>
+                <li>Complicate the review of the patch in which case correctness may suffer</li>
+                <li>Run the risk of breaking existing code</li>
+                <li>Have a downstream impact, e.g. affect ports to other versions.</li>
+                <li>Trigger an unnecessary debate (perhaps the original formatting was intentional).</li>
+            </ul>
+        </div>
+
+        <h2 id="s7-cases-not-covered">Cases not covered</h2>
+        <section>If some aspect is not covered by these guidelines one should fall back on the style of the surrounding
+            code within the same file, within the package or within the project in that order.</section>
+
+        <script type="text/javascript">
+            $('#toc').toc({
+                'selectors': 'h2,h3',
+            });
+        </script>
+    </div>
+</body>
+</html>

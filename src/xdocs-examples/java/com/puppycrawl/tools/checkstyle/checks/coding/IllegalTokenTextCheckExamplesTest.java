@@ -68,4 +68,13 @@ public class IllegalTokenTextCheckExamplesTest extends AbstractExamplesModuleTes
 
         verifyWithInlineConfigParser(getPath("Example4.java"), expected);
     }
+
+    @Test
+    public void testExample5() throws Exception {
+        final String[] expected = {
+            "18:20: Custom illegal text found",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example5.java"), expected);
+    }
 }

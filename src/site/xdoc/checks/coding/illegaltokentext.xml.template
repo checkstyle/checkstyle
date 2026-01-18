@@ -87,6 +87,21 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example4.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check with a custom violation message using the
+          <code>message</code> property:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example5.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example5-code">Example:</p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/coding/illegaltokentext/Example5.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
