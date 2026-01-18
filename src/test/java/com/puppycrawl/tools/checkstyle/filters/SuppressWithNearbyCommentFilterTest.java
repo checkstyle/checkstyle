@@ -781,6 +781,21 @@ public class SuppressWithNearbyCommentFilterTest
             .isEmpty();
     }
 
+    @Test
+    public void testDoesNotRetagSameFileContents() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final FileContents contents = new FileContents(
+                new FileText(new File("filename"), Arrays.asList("//SUPPRESS CHECKSTYLE ignore")));
+        contents.reportSingleLineComment(1, 0);
+        // Call getTagsAfterExecution twice with the same filter and FileContents.
+        // Verify that retagging does not occur on the second invocation;
+        // this ensures the lazy evaluation is working as intended.
+        final Object tags1 = getTagsAfterExecution(filter, contents).getFirst();
+        final Object tags2 = getTagsAfterExecution(filter, contents).getFirst();
+        assertWithMessage("Should not retag the same file contents")
+                .that(tags1 == tags2).isTrue();
+    }
+
     /**
      * Calls the filter with a minimal set of inputs and returns a list of
      * {@link SuppressWithNearbyCommentFilter} internal type {@code Tag}.
@@ -797,6 +812,19 @@ public class SuppressWithNearbyCommentFilterTest
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
                 new Violation(1, null, null, null, null, Object.class, null), null);
+        filter.accept(dummyEvent);
+        return TestUtil.getInternalState(filter, "tags", List.class);
+    }
+
+    /**
+     * Calls the filter with the given FileContents and returns its internal 'tags' list.
+     */
+    private static List<?> getTagsAfterExecution(SuppressWithNearbyCommentFilter filter,
+                                                 FileContents contents) {
+        final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents,
+                contents.getFileName(),
+                new Violation(1, null, null, null, null,
+                        Object.class, null), null);
         filter.accept(dummyEvent);
         return TestUtil.getInternalState(filter, "tags", List.class);
     }
