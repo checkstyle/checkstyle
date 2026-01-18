@@ -461,7 +461,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain METHOD_DEF")
                 .that(methodDef.isPresent())
                 .isTrue();
-        final DetailAST variableDef = methodDef.orElseThrow().getLastChild()
+        final DetailAST variableDef = methodDef.orElse(null).getLastChild()
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, variableDef,
@@ -483,7 +483,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain CLASS_DEF")
                 .that(classDef.isPresent())
                 .isTrue();
-        final DetailAST classDefToken = classDef.orElseThrow();
+        final DetailAST classDefToken = classDef.orElse(null);
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDefToken,
                         "typeDeclarations",
@@ -523,7 +523,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         check.beginTree(root);
         check.visitToken(classDefAst);
-        check.visitToken(literalNew.orElseThrow());
+        check.visitToken(literalNew.orElse(null));
         check.beginTree(null);
         final Predicate<Object> isClear = anonInnerAstToTypeDesc -> {
             return ((Map<?, ?>) anonInnerAstToTypeDesc).isEmpty();
@@ -552,7 +552,7 @@ public class UnusedLocalVariableCheckTest extends AbstractModuleTestSupport {
         assertWithMessage("Ast should contain PACKAGE_DEF")
                 .that(packageDef.isPresent())
                 .isTrue();
-        final DetailAST packageDefToken = packageDef.orElseThrow();
+        final DetailAST packageDefToken = packageDef.orElse(null);
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, packageDefToken,
                         "packageName",

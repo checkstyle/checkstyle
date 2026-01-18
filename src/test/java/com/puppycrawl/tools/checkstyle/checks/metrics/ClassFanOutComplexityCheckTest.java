@@ -327,7 +327,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                    importAst.orElseThrow(), "importedClassPackages",
+                    importAst.orElse(null), "importedClassPackages",
                     importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()))
                 .isTrue();
     }
@@ -352,7 +352,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElse(null),
                         "classesContexts",
                         classContexts -> ((Collection<?>) classContexts).size() == 1))
                 .isTrue();
@@ -379,7 +379,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        packageDef.orElseThrow(), "packageName",
+                        packageDef.orElse(null), "packageName",
                         packageName -> ((CharSequence) packageName).isEmpty()))
                 .isTrue();
     }

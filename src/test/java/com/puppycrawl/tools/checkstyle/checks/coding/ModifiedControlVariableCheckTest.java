@@ -201,7 +201,7 @@ public class ModifiedControlVariableCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        methodDef.orElseThrow(), "variableStack",
+                        methodDef.orElse(null), "variableStack",
                         variableStack -> ((Collection<Set<String>>) variableStack).isEmpty()))
                 .isTrue();
     }

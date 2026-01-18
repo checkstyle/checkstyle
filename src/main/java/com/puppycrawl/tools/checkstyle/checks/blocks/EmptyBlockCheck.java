@@ -123,7 +123,7 @@ public class EmptyBlockCheck
     public void visitToken(DetailAST ast) {
         final Optional<DetailAST> leftCurly = getLeftCurly(ast);
         if (leftCurly.isPresent()) {
-            final DetailAST leftCurlyAST = leftCurly.orElseThrow();
+            final DetailAST leftCurlyAST = leftCurly.orElse(null);
             if (option == BlockOption.STATEMENT) {
                 final boolean emptyBlock;
                 if (leftCurlyAST.getType() == TokenTypes.LCURLY) {
