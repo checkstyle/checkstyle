@@ -7,9 +7,6 @@
   </head>
   <body>
     <section name="Filters Checks">
-      <p>
-        Checkstyle supports XPath 3.1.
-      </p>
       <div class="wrapper">
         <table>
           <tr>
