@@ -306,7 +306,6 @@
     <exclude name="DataClass"/>
     <!-- Too many alarms on the check classes, we will never move logic out of the check,
          each check is an independent logic container. -->
-    <exclude name="ExceptionAsFlowControl"/>
     <exclude name="GodClass"/>
     <!-- Too many violations, will be suppressed until we find out how use these metrics. -->
     <exclude name="LawOfDemeter"/>
