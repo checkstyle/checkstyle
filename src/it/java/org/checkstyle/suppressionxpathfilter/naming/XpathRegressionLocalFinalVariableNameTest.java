@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.naming;
 import static com.puppycrawl.tools.checkstyle.checks.naming.LocalFinalVariableNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -60,7 +59,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                     MSG_INVALID_PATTERN, "scanner", "^[A-Z][A-Z0-9]*$"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathLocalFinalVariableNameResource']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/LITERAL_TRY"
@@ -84,7 +83,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                     MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathLocalFinalVariableNameVar']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/SLIST/VARIABLE_DEF"
@@ -108,7 +107,7 @@ public class XpathRegressionLocalFinalVariableNameTest extends AbstractXpathTest
                         MSG_INVALID_PATTERN, "VAR1", "^[A-Z][a-z0-9]*$"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                         + "@text='InputXpathLocalFinalVariableNameInner']]"
                         + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK"

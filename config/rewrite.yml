@@ -17,7 +17,9 @@ recipeList:
   - org.openrewrite.java.format.PadEmptyForLoopComponents
   - org.openrewrite.java.format.RemoveTrailingWhitespace
   - org.openrewrite.java.migrate.UpgradeToJava21
+  - org.openrewrite.java.migrate.lang.JavaLangAPIs
   - org.openrewrite.java.migrate.lang.StringRulesRecipes
+  - org.openrewrite.java.migrate.util.JavaUtilAPIs
   - org.openrewrite.java.migrate.util.MigrateInflaterDeflaterToClose
   - org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList
   - org.openrewrite.java.migrate.util.SequencedCollection

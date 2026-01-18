@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.blocks;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -57,7 +56,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 RightCurlyCheck.MSG_KEY_LINE_SAME, "}", 9),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRightCurlyOne']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/SLIST/RCURLY"
@@ -81,7 +80,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 15),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRightCurlyTwo']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='fooMethod']]/SLIST/LITERAL_TRY/SLIST/RCURLY"
@@ -105,7 +104,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 RightCurlyCheck.MSG_KEY_LINE_ALONE, "}", 72),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRightCurlyThree']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"
@@ -129,7 +128,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
                 RightCurlyCheck.MSG_KEY_LINE_BREAK_BEFORE, "}", 27),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathRightCurlyFour']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='sample']]/SLIST/LITERAL_IF/SLIST/RCURLY"

@@ -165,7 +165,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
-        packages = Collections.singleton(packageName);
+        packages = Set.of(packageName);
         this.moduleClassLoader = moduleClassLoader;
     }
 

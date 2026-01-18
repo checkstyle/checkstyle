@@ -23,7 +23,6 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenTextCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
-import java.util.Collections;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -152,7 +151,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final boolean optional = false;
         final String fileName = getPath("InputSuppressionXpathFilterIdAndQuery.xml");
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
-        final Set<String> expected = Collections.singleton(fileName);
+        final Set<String> expected = Set.of(fileName);
         final Set<String> actual = filter.getExternalResourceLocations();
         assertWithMessage("Invalid external resource")
             .that(actual)
