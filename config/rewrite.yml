@@ -59,3 +59,32 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.StreamRulesRecipes
   - tech.picnic.errorprone.refasterrules.TimeRulesRecipes
 ---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.openrewrite.staticanalysis.CodeCleanup
+displayName: Code cleanup
+description: |
+  Automatically cleanup code, e.g. remove unnecessary parentheses, simplify expressions.
+recipeList:
+  - org.openrewrite.staticanalysis.DefaultComesLast
+  - org.openrewrite.staticanalysis.EmptyBlock
+  - org.openrewrite.java.format.EmptyNewlineAtEndOfFile
+  - org.openrewrite.staticanalysis.ForLoopControlVariablePostfixOperators
+  - org.openrewrite.staticanalysis.FinalizePrivateFields
+  - org.openrewrite.java.format.MethodParamPad
+  # - org.openrewrite.java.format.NoWhitespaceAfter
+  # - org.openrewrite.java.format.NoWhitespaceBefore
+  - org.openrewrite.java.format.PadEmptyForLoopComponents
+  - org.openrewrite.staticanalysis.TypecastParenPad
+  - org.openrewrite.staticanalysis.EqualsAvoidsNull
+  - org.openrewrite.staticanalysis.ExplicitInitialization
+  - org.openrewrite.staticanalysis.FallThrough
+  - org.openrewrite.staticanalysis.HideUtilityClassConstructor
+  - org.openrewrite.staticanalysis.NeedBraces
+  - org.openrewrite.staticanalysis.OperatorWrap
+  - org.openrewrite.staticanalysis.UnnecessaryParentheses
+  - org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart
+  - org.openrewrite.staticanalysis.ChainStringBuilderAppendCalls
+  - org.openrewrite.staticanalysis.ReplaceStringBuilderWithString
+  - org.openrewrite.java.ShortenFullyQualifiedTypeReferences
+  - org.openrewrite.java.SimplifySingleElementAnnotation
+  - org.openrewrite.staticanalysis.CustomImportOrder
