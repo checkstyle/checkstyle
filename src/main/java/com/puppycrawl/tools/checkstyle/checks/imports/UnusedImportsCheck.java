@@ -28,10 +28,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.Comment;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -129,6 +131,9 @@ public class UnusedImportsCheck extends AbstractCheck {
             Pattern.CASE_INSENSITIVE
     );
 
+    /** Line split pattern. */
+    private static final Pattern LINE_SPLIT_PATTERN = Pattern.compile("\\R");
+
     /** Suffix for the star import. */
     private static final String STAR_IMPORT_SUFFIX = ".*";
 
@@ -154,6 +159,11 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     public void setProcessJavadoc(boolean value) {
         processJavadoc = value;
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
     @Override
@@ -311,18 +321,84 @@ public class UnusedImportsCheck extends AbstractCheck {
     }
 
     /**
+     * Retrieves the Javadoc comment associated with a given AST node.
+     *
+     * @param ast the AST node (e.g., class, method, constructor) to search above.
+     * @return the {@code DetailAST} representing the Javadoc comment if found and
+     *          valid; {@code null} otherwise.
+     */
+    @Nullable
+    private static DetailAST getJavadoc(DetailAST ast) {
+        // Prefer Javadoc directly above the node
+        DetailAST cmt = ast.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+        if (cmt == null) {
+            // Check MODIFIERS and TYPE block and TYPE_PARAMETERS for comments
+            cmt = getJavadocFromModifiers(ast);
+            final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
+            final DetailAST typeParam = ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);
+
+            if (cmt == null && type != null) {
+                cmt = type.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+            if (cmt == null && typeParam != null) {
+                cmt = typeParam.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+        }
+
+        final DetailAST javadoc;
+        if (cmt != null && JavadocUtil.isJavadocComment(cmt)) {
+            javadoc = cmt;
+        }
+        else {
+            javadoc = null;
+        }
+
+        return javadoc;
+    }
+
+    /**
+     * Retrieves the Javadoc comment associated with modifiers in given AST node.
+     *
+     * @param ast the ast node to search above.
+     * @return the {@code DetailAST} representing the Javadoc comment if found and
+     *          valid; {@code null} otherwise.
+     */
+    @Nullable
+    private static DetailAST getJavadocFromModifiers(DetailAST ast) {
+        DetailAST cmt = null;
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers != null) {
+            final DetailAST annotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+            if (annotation != null) {
+                cmt = annotation.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+            if (cmt == null) {
+                cmt = modifiers.findFirstToken(TokenTypes.BLOCK_COMMENT_BEGIN);
+            }
+        }
+        return cmt;
+    }
+
+    /**
      * Collects references made in Javadoc comments.
      *
      * @param ast node to inspect for Javadoc
      */
-    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
-    @SuppressWarnings("deprecation")
     private void collectReferencesFromJavadoc(DetailAST ast) {
-        final FileContents contents = getFileContents();
-        final int lineNo = ast.getLineNo();
-        final TextBlock textBlock = contents.getJavadocBefore(lineNo);
-        if (textBlock != null) {
-            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
+        final DetailAST javadoc = getJavadoc(ast);
+        if (javadoc != null) {
+            final String content = JavadocUtil.getJavadocCommentContent(javadoc);
+            final String[] cmtLines;
+            if (content.contains("\n")) {
+                cmtLines = LINE_SPLIT_PATTERN.split(content);
+            }
+            else {
+                // added a start in start for single line javadoc
+                cmtLines = new String[] {"*", content};
+            }
+            // all other parameters are set to 1 as they are not used
+            final Comment comment = new Comment(cmtLines, 1, 1, 1);
+            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(comment));
         }
     }
 
