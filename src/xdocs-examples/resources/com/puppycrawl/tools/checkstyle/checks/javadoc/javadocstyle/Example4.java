@@ -2,20 +2,18 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocStyle">
-    <property name="checkFirstSentence" value="false"/>
+      <property name="checkFirstSentence" value="false"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
  */
 public class Example4 {
   Example4() {
-
   }
   /**
    * Some description here.
@@ -33,20 +31,17 @@ public class Example4 {
    * Some description here
    */
   private void testMethod3() {
-
   }
   /**
    * Some description here
    */
   public void testMethod4() {
-
   }
   /**
    * Some description here
    * Second line of description
    */
   private void testMethod5() {
-
   }
   /**
    * Some description here
@@ -55,5 +50,9 @@ public class Example4 {
   private void testMethod6() {
     // violation 3 lines above 'Incomplete HTML tag'
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end

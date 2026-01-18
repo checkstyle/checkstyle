@@ -2,22 +2,19 @@
 <module name="Checker">
   <module name="TreeWalker">
     <module name="JavadocStyle">
-    <property name="scope" value="private"/>
-    <property name="excludeScope" value="package"/>
+      <property name="scope" value="private"/>
+      <property name="excludeScope" value="package"/>
     </module>
   </module>
 </module>
 */
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
-
 // xdoc section -- start
 /**
  * Some description here
  */
 public class Example3 {
-  Example3() {
-
-  }
+  Example3() {}
   /**
    * Some description here.
    */
@@ -40,7 +37,6 @@ public class Example3 {
    * Some description here
    */
   public void testMethod4() {
-
   }
   /**
    * Some description here
@@ -56,5 +52,9 @@ public class Example3 {
   private void testMethod6() { // violation 4 lines above 'should end with a period'
     // violation 3 lines above 'Incomplete HTML tag'
   }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
 }
 // xdoc section -- end
