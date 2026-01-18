@@ -277,6 +277,7 @@
       -Xep:TypeParameterUnusedInFormals:ERROR
       -Xep:UnsynchronizedOverridesSynchronized:ERROR
       -Xep:UnusedMethod:ERROR
+      -Xep:NullArgumentForNonNullParameter:ERROR
       -Xep:VoidUsed:ERROR
       -Xep:FormatStringShouldUsePlaceholders:ERROR
       -Xep:StatementSwitchToExpressionSwitch:ERROR
