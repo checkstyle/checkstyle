@@ -8,41 +8,50 @@ class InputWhitespaceAroundWhen {
   void test(Object o) {
     switch (o) {
       case Integer i when(i == 0) -> // violation ''when' is not followed by whitespace.'
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       // violation below, ''when' is not followed by whitespace.'
       case String s when(
               s.equals("a")) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
 
       // violation below, ''when' is not followed by whitespace.'
       case Point(int x, int y) when!(x >= 0 && y >= 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
 
       default ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
     }
 
     switch (o) {
+      // violation below ''when' is not preceded with whitespace.'
       case Point(int x, int y)when (x < 9 && y >= 0) ->
-        {
-        }  // violation 2 lines above ''when' is not preceded with whitespace.'
-      case Point(int x, int y)when(x >= 0 && y >= 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
-      // 2 violations 3 lines above:
+      // 2 violations 3 lines below:
+      //              ''when' is not followed by whitespace.'
+      //              ''when' is not preceded with whitespace.'
+      case Point(int x, int y)when(x >= 0 && y >= 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
+        {
+        }
+      // 2 violations 3 lines below:
       //              ''when' is not followed by whitespace.'
       //              ''when' is not preceded with whitespace.'
       case Point(int x, int y)when!(x >= 0 && y >= 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
-      // 2 violations 3 lines above:
-      //              ''when' is not followed by whitespace.'
-      //              ''when' is not preceded with whitespace.'
       default ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
     }
@@ -53,30 +62,38 @@ class InputWhitespaceAroundWhen {
 
     switch (o) {
       case Integer i when (i == 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       case String s when (s.equals("a")) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       case Point(int x, int y) when (x >= 0 && y >= 0) ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       default ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
     }
 
     switch (o) {
       case Integer i when i == 0 ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       case String s when s.equals("a") ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       case Point(int x, int y) when x >= 0 && y >= 0 ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       default ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
     }
@@ -108,6 +125,7 @@ class InputWhitespaceAroundWhen {
         System.out.println("o");
       }
       default ->
+        // violation below ''{' at column 9 should be on the previous line.'
         {
           System.out.println("default");
         }

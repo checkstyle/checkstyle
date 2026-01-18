@@ -33,6 +33,7 @@ public class InputWhitespaceAroundArrow {
     switch (o) {
       case String s when (
           s.equals("a"))-> // violation ''->' is not preceded with whitespace.'
+        // violation below ''{' at column 9 should be on the previous line.'
         {
         }
       case Point(int x, int xy) when !(x >= 0 && y >= 0) -> {}
