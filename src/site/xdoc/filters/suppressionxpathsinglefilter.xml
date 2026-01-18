@@ -30,6 +30,9 @@
           Attention: This filter only supports single suppression, and will need multiple
           instances if users wants to suppress multiple violations.
         </p>
+        <p>
+          Checkstyle supports XPath 3.1.
+        </p>
       </subsection>
       <subsection name="Notes" id="SuppressionXpathSingleFilter_Notes">
         <p>

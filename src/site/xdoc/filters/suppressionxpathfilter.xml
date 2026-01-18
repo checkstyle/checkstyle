@@ -137,6 +137,9 @@
           configuration file and input files. See <a href="https://checkstyle.org/cmdline.html">here</a>
           for more details.
         </p>
+        <p>
+          Checkstyle supports XPath 3.1.
+        </p>
       </subsection>
       <subsection name="Notes" id="SuppressionXpathFilter_Notes">
         <p>

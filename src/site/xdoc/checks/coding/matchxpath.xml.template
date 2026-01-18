@@ -16,6 +16,9 @@
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java"/>
         </macro>
+        <p>
+          Checkstyle supports XPath 3.1.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="MatchXpath_Properties">
