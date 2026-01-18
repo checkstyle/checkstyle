@@ -225,6 +225,9 @@
     files="[\\/]InputCheckerTabCharacterCustomWidth\.java"/>
   <suppress checks="FileTabCharacter"
     files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]textblockgooglestyleformatting[\\/]InputTextBlockGoogleStyleFormattingWithTabs\.java"/>
+  <!-- intentional tabs for testing SummaryJavadocCheck with tab-formatted javadoc -->
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputSummaryJavadocForbiddenFragmentsTabFormatted\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
