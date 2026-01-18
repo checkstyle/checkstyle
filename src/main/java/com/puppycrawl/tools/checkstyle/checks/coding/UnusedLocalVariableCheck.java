@@ -375,8 +375,7 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isInsideLocalAnonInnerClass(DetailAST literalNewAst) {
         boolean result = false;
-        final DetailAST lastChild = literalNewAst.getLastChild();
-        if (lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK) {
+        if (literalNewAst.findFirstToken(TokenTypes.OBJBLOCK) != null) {
             DetailAST currentAst = literalNewAst;
             while (!TokenUtil.isTypeDeclaration(currentAst.getType())) {
                 if (currentAst.getType() == TokenTypes.SLIST) {
@@ -727,18 +726,23 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
         final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variablesStack);
-        }
-        else if (type == TokenTypes.VARIABLE_DEF) {
-            addLocalVariables(ast, variablesStack);
-        }
-        else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variablesStack);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+        switch (type) {
+            case TokenTypes.DOT -> visitDotToken(ast, variablesStack);
+
+            case TokenTypes.VARIABLE_DEF -> addLocalVariables(ast, variablesStack);
+
+            case TokenTypes.IDENT -> visitIdentToken(ast, variablesStack);
+
+            case TokenTypes.LITERAL_NEW -> {
+                if (ast.findFirstToken(TokenTypes.OBJBLOCK) != null) {
+                    final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+                    modifyVariablesStack(obtainedClass, variablesStack, ast);
+                }
+            }
+
+            default -> {
+                // No action needed for other token types
+            }
         }
     }
 
