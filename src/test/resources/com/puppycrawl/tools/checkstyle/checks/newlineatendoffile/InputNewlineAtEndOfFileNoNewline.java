@@ -1,4 +1,4 @@
-/* // violation 'File does not end with a newline.'
+/* // violation "File does not end with a newline 'lf'."
 NewlineAtEndOfFile
 lineSeparator = LF
 fileExtensions = (default)""
