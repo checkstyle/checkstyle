@@ -43,7 +43,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
         // reason: checkstyle check: Line gets longer than 100 characters
-        "InputIndentationInvalidLabelIndent.java",
         "InputIndentationInvalidMethodIndent2.java",
         "InputIndentationNewChildren.java",
         "InputIndentationNewWithForceStrictCondition.java",
