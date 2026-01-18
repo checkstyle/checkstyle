@@ -32,6 +32,9 @@
           <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
           XpathUtil</a>.
         </p>
+        <p>
+          Checkstyle supports XPath 3.1.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="MatchXpath_Properties">
