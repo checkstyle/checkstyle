@@ -1329,10 +1329,6 @@ website-only)
   ./mvnw -e --no-transfer-progress clean site -Pno-validations
   ;;
 
-pmd)
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check
-  ;;
-
 spotbugs)
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
