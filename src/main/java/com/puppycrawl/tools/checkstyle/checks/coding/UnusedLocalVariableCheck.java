@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -727,18 +728,25 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
         final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variablesStack);
-        }
-        else if (type == TokenTypes.VARIABLE_DEF) {
-            addLocalVariables(ast, variablesStack);
-        }
-        else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variablesStack);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+        switch (type) {
+            case TokenTypes.DOT -> visitDotToken(ast, variablesStack);
+
+            case TokenTypes.VARIABLE_DEF -> addLocalVariables(ast, variablesStack);
+
+            case TokenTypes.IDENT -> visitIdentToken(ast, variablesStack);
+
+            case TokenTypes.LITERAL_NEW -> {
+                final DetailAST lastChild = Objects.requireNonNull(ast.getLastChild(),
+                        "LITERAL_NEW ast should always have a last child");
+                if (lastChild.getType() == TokenTypes.OBJBLOCK) {
+                    final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+                    modifyVariablesStack(obtainedClass, variablesStack, ast);
+                }
+            }
+
+            default -> {
+                // No action needed for other token types
+            }
         }
     }
 
