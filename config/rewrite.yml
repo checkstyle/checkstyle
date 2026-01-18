@@ -24,7 +24,12 @@ recipeList:
   - org.openrewrite.java.recipes.JavaRecipeBestPractices
   - org.openrewrite.java.recipes.RecipeTestingBestPractices
   - org.openrewrite.maven.BestPractices
+  # Composite Recipes
+  # Recipes that include further recipes, often including the individual recipes below.
   - org.openrewrite.staticanalysis.BufferedWriterCreationRecipes
+  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
+  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
+  # Non-composite recipes
   - org.openrewrite.staticanalysis.EqualsAvoidsNull
   - org.openrewrite.staticanalysis.InlineVariable
   - org.openrewrite.staticanalysis.JavaApiBestPractices
@@ -37,8 +42,6 @@ recipeList:
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateFields
   - org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods
   - org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference
-  - org.openrewrite.staticanalysis.SimplifyTernaryRecipes
-  - org.openrewrite.staticanalysis.URLEqualsHashCodeRecipes
   - org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources
   - org.openrewrite.staticanalysis.UnnecessaryExplicitTypeArguments
   - org.openrewrite.staticanalysis.UnnecessaryParentheses
