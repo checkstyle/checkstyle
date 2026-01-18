@@ -250,6 +250,8 @@
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]innerassignment.xml.template"/>
   <suppress id="propertiesMacroMustExist"
+      files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]naming[\\/]googlemethodname.xml.template"/>
+  <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingctor.xml.template"/>
   <suppress id="propertiesMacroMustExist"
          files="src[\\/]site[\\/]xdoc[\\/]checks[\\/]coding[\\/]missingnullcaseinswitch.xml.template"/>
