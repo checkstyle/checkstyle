@@ -1009,6 +1009,15 @@ class Test {
   </p>
 </div>
 
+<p>
+  Note: The generated XPath query is specific to the configuration used during generation.
+  If you later add "comment-aware" checks (like <code>TodoComment</code>) to your
+  configuration, Checkstyle will insert comment nodes into the AST. This changes the
+  tree structure and may cause strict XPath queries (like those relying on child counts
+  or specific indices) to fail. It is recommended to regenerate the suppression XML
+  if you significantly change the active checks in your configuration.
+</p>
+
 <h4 id="Generating_Checks_And_Files_Suppressions_XML"><span>
 7. Generating Checks And Files Suppressions XML
 (<span class="no-transform">-G, --generate-checks-and-files-suppression</span>)
