@@ -498,15 +498,15 @@ public class HiddenFieldCheckTest
     public void testHiddenFieldRecordPattern() throws Exception {
 
         final String[] expected = {
-            "18:46: " + getCheckMessage(MSG_KEY, "s"),
-            "18:53: " + getCheckMessage(MSG_KEY, "x"),
-            "26:39: " + getCheckMessage(MSG_KEY, "s"),
-            "26:46: " + getCheckMessage(MSG_KEY, "x"),
-            "35:45: " + getCheckMessage(MSG_KEY, "s"),
-            "35:52: " + getCheckMessage(MSG_KEY, "x"),
-            "35:63: " + getCheckMessage(MSG_KEY, "z"),
-            "43:37: " + getCheckMessage(MSG_KEY, "s"),
-            "43:44: " + getCheckMessage(MSG_KEY, "x"),
+            "24:46: " + getCheckMessage(MSG_KEY, "s"),
+            "24:53: " + getCheckMessage(MSG_KEY, "x"),
+            "32:39: " + getCheckMessage(MSG_KEY, "s"),
+            "32:46: " + getCheckMessage(MSG_KEY, "x"),
+            "41:45: " + getCheckMessage(MSG_KEY, "s"),
+            "41:52: " + getCheckMessage(MSG_KEY, "x"),
+            "41:63: " + getCheckMessage(MSG_KEY, "z"),
+            "49:37: " + getCheckMessage(MSG_KEY, "s"),
+            "49:44: " + getCheckMessage(MSG_KEY, "x"),
         };
         verifyWithInlineConfigParser(
                 getPath("InputHiddenFieldRecordPattern.java"), expected);

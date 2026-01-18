@@ -253,9 +253,11 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
       -Xep:LexicographicalAnnotationListing:ERROR
+      -Xep:LoopOverCharArray:ERROR
       -Xep:MockitoMockClassReference:ERROR
       -Xep:MockitoStubbing:ERROR
       -Xep:NestedOptionals:ERROR
@@ -277,6 +279,8 @@
       -Xep:StatementSwitchToExpressionSwitch:ERROR
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
+      -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
@@ -471,6 +475,7 @@
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
       <version>${checkerframework.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
@@ -638,7 +643,7 @@
         <plugin>
           <groupId>org.openrewrite.maven</groupId>
           <artifactId>rewrite-maven-plugin</artifactId>
-          <version>6.27.0</version>
+          <version>6.27.1</version>
           <configuration>
             <configLocation>config/rewrite.yml</configLocation>
             <exportDatatables>true</exportDatatables>
@@ -746,7 +751,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.7.2</version>
+                <version>7.7.3</version>
               </plugin>
             </plugins>
           </configuration>
@@ -4507,6 +4512,10 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- this method in CheckstyleAntTask.java works properly only when execution is from jar -->
+                <param>getVersionString</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>92</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
