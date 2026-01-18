@@ -174,7 +174,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
 
         assertWithMessage("State is not cleared on beginTree")
-                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.orElseThrow(),
+                .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, question.orElse(null),
                         "processingTokenEnd", processingTokenEnd -> {
                             return TestUtil.<Integer>getInternalState(processingTokenEnd,
                                     "endLineNo", Integer.class) == 0

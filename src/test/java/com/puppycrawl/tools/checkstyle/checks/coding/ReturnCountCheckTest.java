@@ -170,7 +170,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        methodDef.orElseThrow(), "contextStack",
+                        methodDef.orElse(null), "contextStack",
                         contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()))
                 .isTrue();
     }

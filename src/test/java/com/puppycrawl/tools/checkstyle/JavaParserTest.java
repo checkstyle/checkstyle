@@ -70,7 +70,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(blockComment.isPresent())
                 .isTrue();
 
-        final DetailAST comment = blockComment.orElseThrow();
+        final DetailAST comment = blockComment.orElse(null);
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
@@ -111,7 +111,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
             .that(singleLineComment.isPresent())
             .isTrue();
 
-        final DetailAST comment = singleLineComment.orElseThrow();
+        final DetailAST comment = singleLineComment.orElse(null);
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
@@ -151,7 +151,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(singleLineComment.isPresent())
                 .isTrue();
 
-        final DetailAST comment = singleLineComment.orElseThrow();
+        final DetailAST comment = singleLineComment.orElse(null);
 
         assertWithMessage("Unexpected line number")
             .that(comment.getLineNo())
@@ -244,7 +244,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 .that(textBlockContent.isPresent())
                 .isTrue();
 
-        final DetailAST content = textBlockContent.orElseThrow();
+        final DetailAST content = textBlockContent.orElse(null);
         final String expectedContents = "\n                 string";
 
         assertWithMessage("Unexpected line number")

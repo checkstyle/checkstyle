@@ -274,7 +274,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 // The first child is DOT in case of POSTFIX which have at least 2 children
                 // First child of DOT again puts us back to normal AST tree which will
                 // recurse down below from here
-                final DetailAST firstChildAfterPostFix = postFixNode.orElseThrow();
+                final DetailAST firstChildAfterPostFix = postFixNode.orElse(null);
                 result = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
             }
         }

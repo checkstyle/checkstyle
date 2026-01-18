@@ -184,7 +184,7 @@ public class IllegalInstantiationCheckTest
                 .that(classDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElseThrow(),
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.orElse(null),
                     "classNames", classNames -> ((Collection<String>) classNames).isEmpty()))
             .isTrue();
     }
@@ -209,7 +209,7 @@ public class IllegalInstantiationCheckTest
                 .that(importDef.isPresent())
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
-            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.orElseThrow(),
+            .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check, importDef.orElse(null),
                     "imports", imports -> ((Collection<?>) imports).isEmpty()))
             .isTrue();
     }
@@ -236,7 +236,7 @@ public class IllegalInstantiationCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        literalNew.orElseThrow(), "instantiations",
+                        literalNew.orElse(null), "instantiations",
                         instantiations -> ((Collection<DetailAST>) instantiations).isEmpty()))
                 .isTrue();
     }
