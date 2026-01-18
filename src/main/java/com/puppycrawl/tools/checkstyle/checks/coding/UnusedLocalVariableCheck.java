@@ -727,18 +727,30 @@ public class UnusedLocalVariableCheck extends AbstractCheck {
      */
     private void customVisitToken(DetailAST ast, Deque<VariableDesc> variablesStack) {
         final int type = ast.getType();
-        if (type == TokenTypes.DOT) {
-            visitDotToken(ast, variablesStack);
-        }
-        else if (type == TokenTypes.VARIABLE_DEF) {
-            addLocalVariables(ast, variablesStack);
-        }
-        else if (type == TokenTypes.IDENT) {
-            visitIdentToken(ast, variablesStack);
-        }
-        else if (isInsideLocalAnonInnerClass(ast)) {
-            final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
-            modifyVariablesStack(obtainedClass, variablesStack, ast);
+        switch (type) {
+            case TokenTypes.DOT:
+                visitDotToken(ast, variablesStack);
+                break;
+
+            case TokenTypes.VARIABLE_DEF:
+                addLocalVariables(ast, variablesStack);
+                break;
+
+            case TokenTypes.IDENT:
+                visitIdentToken(ast, variablesStack);
+                break;
+
+            case TokenTypes.LITERAL_NEW:
+                final DetailAST lastChild = ast.getLastChild();
+                if (lastChild.getType() == TokenTypes.OBJBLOCK) {
+                    final TypeDeclDesc obtainedClass = getSuperClassOfAnonInnerClass(ast);
+                    modifyVariablesStack(obtainedClass, variablesStack, ast);
+                }
+                break;
+
+            default:
+                // No action needed for other token types
+                break;
         }
     }
 
