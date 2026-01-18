@@ -28,8 +28,8 @@ import javax.swing.BorderFactory; // violation 'Unused import - javax.swing.Bord
 import static java.io.File.listRoots;
 
 import static javax.swing.WindowConstants.*;
-import static java.io.File. // violation 'Unused import - java.io.File.createTempFile.'
-    createTempFile;
+import static java.io.File.createTempFile;
+// violation above 'Unused import - java.io.File.createTempFile.'
 
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
