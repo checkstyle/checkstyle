@@ -28,8 +28,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import org.checkerframework.checker.index.qual.IndexOrLow;
-
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -485,7 +483,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      * @return -1 if parentheses are unbalanced, 0 if no method is found,
      *         or the index of the first space outside parentheses.
      */
-    private static @IndexOrLow("#1")int extractReferencePart(String input) {
+    private static int extractReferencePart(String input) {
         int parenthesesCount = 0;
         int firstSpaceOutsideParens = -1;
         for (int index = 0; index < input.length(); index++) {

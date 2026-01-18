@@ -1,9 +1,10 @@
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.Field
 import groovy.transform.Immutable
-import groovy.util.slurpersupport.GPathResult
-import groovy.util.slurpersupport.NodeChildren
+import groovy.xml.XmlParser
+import groovy.xml.XmlSlurper
 import groovy.xml.XmlUtil
+import groovy.xml.slurpersupport.GPathResult
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -52,10 +53,10 @@ private int parseArgumentAndExecute(final String argument) {
  */
 private static Set<String> getCheckerFrameworkProfiles() {
     final GPathResult mainNode = new XmlSlurper().parse(".${File.separator}pom.xml")
-    final NodeChildren ids = mainNode.profiles.profile.id as NodeChildren
+    final GPathResult ids = mainNode.profiles.profile.id
     final Set<String> profiles = new HashSet<>()
     ids.each { final node ->
-        final GPathResult id = node as GPathResult
+        final GPathResult id = node
         final String idText = id.text()
         if (idText.startsWith('checker-')) {
             profiles.add(idText)
@@ -84,7 +85,7 @@ private static int checkCheckerFrameworkReport(final String profile) {
     final File suppressionFile = new File(suppressedErrorsFileUri)
     List<CheckerFrameworkError> suppressedErrors = Collections.emptyList()
     if (suppressionFile.exists()) {
-        final Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
+        final groovy.util.Node suppressedErrorsNode = xmlParser.parse(suppressedErrorsFileUri)
         suppressedErrors = getSuppressedErrors(suppressedErrorsNode)
     }
 
@@ -241,12 +242,12 @@ private static List<CheckerFrameworkError> getErrorFromText(final List<List<Stri
  * @param mainNode the main {@code suppressedErrors} node
  * @return A set of suppressed errors
  */
-private static List<CheckerFrameworkError> getSuppressedErrors(final Node mainNode) {
+private static List<CheckerFrameworkError> getSuppressedErrors(groovy.util.Node mainNode) {
     final List<Node> children = mainNode.children()
     final List<CheckerFrameworkError> suppressedErrors = new ArrayList<>(children.size())
 
     children.each { final node ->
-        final Node errorNode = node as Node
+        final groovy.util.Node errorNode = node
         suppressedErrors.add(getError(errorNode))
     }
     return suppressedErrors
@@ -259,8 +260,8 @@ private static List<CheckerFrameworkError> getSuppressedErrors(final Node mainNo
  * @param errorNode the {@code error} XML node
  * @return {@link CheckerFrameworkError} object represented by the {@code error} XML node
  */
-private static CheckerFrameworkError getError(final Node errorNode) {
-    final List childNodes = errorNode.children()
+private static CheckerFrameworkError getError(groovy.util.Node errorNode) {
+    final List<Node> childNodes = errorNode.children()
 
     final List<String> details = new ArrayList<>()
     String fileName = null
@@ -269,7 +270,7 @@ private static CheckerFrameworkError getError(final Node errorNode) {
     String lineContent = null
     final int lineNumber = -1
     childNodes.each {
-        final Node childNode = it as Node
+        final groovy.util.Node childNode = it
         final String text = childNode.name()
 
         final String childNodeText = XmlUtil.escapeXml(childNode.text())
