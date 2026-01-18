@@ -1,0 +1,38 @@
+name: Qodana Code Quality
+on:
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qodana:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: none
+      checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Run Qodana Scan
+        uses: JetBrains/qodana-action@v2025.3.1
+        with:
+          args: --fail-threshold,0
+          upload-result: false
+
+      - name: Report Issues
+        if: always()
+        run: |
+          ./.ci/report-qodana-issues.sh ${{ runner.temp }}/qodana/results/qodana.sarif.json
