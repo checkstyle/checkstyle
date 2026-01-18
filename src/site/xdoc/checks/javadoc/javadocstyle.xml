@@ -554,6 +554,68 @@ public class Example6 {
    */
   private void testEmptyMethod() {}
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example7-config">
+          To configure the Check to check if the Javadoc is missing a describing text:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;&lt;module name="TreeWalker"&gt;&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkEmptyJavadoc" value="true"/&gt;
+&lt;/module&gt;&lt;/module&gt;&lt;/module&gt;
+</code></pre></div>
+
+        <p id="Example7-code">Example7:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+/**
+ * Some description here
+ */
+public class Example7 {
+  Example7() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here.
+   */
+  private void testMethod1() {}
+  /**
+   * {@return {@code true} if this object
+   * has been initialized, {@code false} otherwise}
+   */
+  private boolean testMethod2() {
+    return true;
+  }
+  /**
+   * Some description here
+   */
+  private void testMethod3() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   */
+  public void testMethod4() {
+    // violation 4 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * Second line of description
+   */
+  private void testMethod5() {
+    // violation 5 lines above 'First sentence should end with a period'
+  }
+  /**
+   * Some description here
+   * &lt;p
+   */
+  private void testMethod6() { // violation 4 lines above 'should end with a period'
+    // violation 3 lines above 'Incomplete HTML tag found'
+  }
+  /**
+   *
+   */
+  private void testEmptyMethod() {}
+  // violation 4 lines above 'Javadoc has empty description section'
+}
 </code></pre></div>
       </subsection>
 
