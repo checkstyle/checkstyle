@@ -360,7 +360,7 @@ public final class TranslationCheck extends AbstractFileSetCheck {
                 final ResourceBundle newBundle = new ResourceBundle(baseName, path, extension);
                 final Optional<ResourceBundle> bundle = findBundle(resourceBundles, newBundle);
                 if (bundle.isPresent()) {
-                    bundle.orElseThrow().addFile(currentFile);
+                    bundle.orElse(null).addFile(currentFile);
                 }
                 else {
                     newBundle.addFile(currentFile);

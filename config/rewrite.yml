@@ -53,6 +53,8 @@ recipeList:
   - tech.picnic.errorprone.refasterrules.MapRulesRecipes
   - tech.picnic.errorprone.refasterrules.MicrometerRulesRecipes
   - tech.picnic.errorprone.refasterrules.MockitoRulesRecipes
+  # current maintainer (romani) do understand consistency in java properly; don't "like" orElseThrow.
+  # - tech.picnic.errorprone.refasterrules.OptionalRulesRecipes
   - tech.picnic.errorprone.refasterrules.PatternRulesRecipes
   - tech.picnic.errorprone.refasterrules.PreconditionsRulesRecipes
   - tech.picnic.errorprone.refasterrules.PrimitiveRulesRecipes

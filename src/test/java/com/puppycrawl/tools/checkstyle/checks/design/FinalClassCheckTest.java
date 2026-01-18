@@ -278,7 +278,7 @@ public class FinalClassCheckTest
                 .isTrue();
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        packageDef.orElseThrow(), "packageName",
+                        packageDef.orElse(null), "packageName",
                         packageName -> ((CharSequence) packageName).isEmpty()))
                 .isTrue();
     }

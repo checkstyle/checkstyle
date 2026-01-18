@@ -443,7 +443,7 @@ public class CheckUtilTest extends AbstractModuleTestSupport {
             .that(node.isPresent())
             .isTrue();
 
-        return node.orElseThrow();
+        return node.orElse(null);
     }
 
     @Test

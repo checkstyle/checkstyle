@@ -139,7 +139,7 @@ public class UnusedLambdaParameterShouldBeUnnamedCheckTest extends AbstractModul
 
         assertWithMessage("State is not cleared on beginTree")
                 .that(TestUtil.isStatefulFieldClearedDuringBeginTree(check,
-                        literalCatch.orElseThrow(),
+                        literalCatch.orElse(null),
                         "lambdaParameters",
                         lambdaParameters -> {
                             return ((Collection<?>) lambdaParameters).isEmpty();
