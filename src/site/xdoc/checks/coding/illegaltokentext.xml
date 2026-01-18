@@ -175,6 +175,29 @@ public class Example4 {
     long test6 = 010L; // violation
   }
 }
+</code></pre></div><hr class="example-separator"/>
+        <p id="Example5-config">
+          To configure the check with a custom violation message using the
+          <code>message</code> property:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="IllegalTokenText"&gt;
+      &lt;property name="tokens" value="STRING_LITERAL"/&gt;
+      &lt;property name="format" value="href"/&gt;
+      &lt;property name="message" value="Custom illegal text found"/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example5-code">Example:</p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+public class Example5 {
+  public void test() {
+    String link  = "href"; // violation, Custom illegal text found
+  }
+}
 </code></pre></div>
       </subsection>
 

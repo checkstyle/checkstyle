@@ -241,6 +241,9 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         CheckUtil.getConfigGoogleStyleModules());
 
+    private static final Set<String> OPENJDK_MODULES = Collections.unmodifiableSet(
+        CheckUtil.getConfigOpenJdkStyleModules());
+
     private static final Set<String> NON_MODULE_XDOC = Set.of(
         "config_system_properties.xml",
         "sponsoring.xml",
@@ -252,6 +255,7 @@ public class XdocsPagesTest {
         "checks.xml",
         "property_types.xml",
         "google_style.xml",
+        "openjdk_style.xml",
         "sun_style.xml",
         "style_configs.xml",
         "writingfilters.xml",
@@ -676,6 +680,10 @@ public class XdocsPagesTest {
                 }
                 else if ("sun_style.xml".equals(fileName)) {
                     sectionName = "Sun";
+                    expectedId = (sectionName + "_" + nameString).replace(' ', '_');
+                }
+                else if ("openjdk_style.xml".equals(fileName)) {
+                    sectionName = "OpenJDK";
                     expectedId = (sectionName + "_" + nameString).replace(' ', '_');
                 }
                 else if ((path.toString().contains("filters")
@@ -1739,6 +1747,7 @@ public class XdocsPagesTest {
             .replace("Checkstyle Style", "")
             .replace("Google Style", "")
             .replace("Sun Style", "")
+            .replace("OpenJDK Style", "")
             .replace("Checkstyle's Import Control Config", "")
             .trim();
 
@@ -1750,6 +1759,7 @@ public class XdocsPagesTest {
         boolean hasCheckstyle = false;
         boolean hasGoogle = false;
         boolean hasSun = false;
+        boolean hasOpenjdk = false;
 
         for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
             final String url = node.getAttributes().getNamedItem("href").getTextContent();
@@ -1789,6 +1799,19 @@ public class XdocsPagesTest {
                     .that(SUN_MODULES)
                     .contains(sectionName);
             }
+            else if ("OpenJDK Style".equals(linkText)) {
+                hasOpenjdk = true;
+                expectedUrl = "https://github.com/search?q="
+                        + "path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fopenjdk_checks.xml+"
+                        + "repo%3Acheckstyle%2Fcheckstyle+"
+                        + sectionName;
+                assertWithMessage(
+                    "%s section '%s' should be in openjdk_checks.xml "
+                           + "or not reference 'OpenJDK Style'",
+                    fileName, sectionName)
+                    .that(OPENJDK_MODULES)
+                    .contains(sectionName);
+            }
             else if ("Checkstyle's Import Control Config".equals(linkText)) {
                 expectedUrl = "https://github.com/checkstyle/checkstyle/blob/master/config/"
                     + "import-control.xml";
@@ -1809,6 +1832,11 @@ public class XdocsPagesTest {
         assertWithMessage("%s section '%s' should have a sun section since it is in it's config",
             fileName, sectionName)
                 .that(hasSun || !SUN_MODULES.contains(sectionName))
+                .isTrue();
+        assertWithMessage("%s section '%s' should have an openjdk section since "
+                        + "it is in its config",
+            fileName, sectionName)
+                .that(hasOpenjdk || !OPENJDK_MODULES.contains(sectionName))
                 .isTrue();
     }
 
@@ -1871,6 +1899,7 @@ public class XdocsPagesTest {
 
             final Set<String> styleChecks = switch (styleName) {
                 case "google" -> new HashSet<>(GOOGLE_MODULES);
+                case "openjdk" -> new HashSet<>(OPENJDK_MODULES);
                 case "sun" -> {
                     final Set<String> checks = new HashSet<>(SUN_MODULES);
                     checks.removeAll(IGNORED_SUN_MODULES);
