@@ -70,27 +70,48 @@
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &lt;p&gt; 'p' tag is unclosed
- * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
- */
 class Example1 {
 
   /**
-   * @tag comment
-   *     Indentation spacing is 4
+   * @param input comment with
+   *     indentation spacing as 4
    */
-  public void testMethod1(String input) {
+  public void testIndentaion4(String input) {
     // ok, Default expected Indentation is 4
   }
 
   /**
-   * @tag comment
-   *   Indentation spacing is 2
+   * @param input comment with
+   *   indentation spacing as 2
    */
-  public void testMethod2(String input) {
+  public void testIndentaion2(String input) {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
+  /**
+   * &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethodPre(String input) {}
+  /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;code&gt; // violation
+   * out.writeByte(1); // violation
+   * out.writeInt(nanos); // violation
+   * &lt;/code&gt; // violation
+   */
+  public void testMethodCode(String input) {}
+  /**
+   * Test class.
+   *
+   * @param input comment with
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */
+    public void testIndentaionEclipse(String input) {}
+
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example2-config">
@@ -109,27 +130,47 @@ class Example1 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &lt;p&gt; 'p' tag is unclosed
- * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
- */
 class Example2 {
 
   /**
-   * @tag comment
-   *     Indentation spacing is 4
+   * @param input comment with
+   *     indentation spacing as 4
    */
-  public void testMethod1(String input) {
+  public void testIndentaion4(String input) {
     // ok, Indentation above 1 is fine as offset value is 2
   }
 
   /**
-   * @tag comment
-   *   Indentation spacing is 2
+   * @param input comment with
+   *   indentation spacing as 2
    */
-  public void testMethod2(String input) {
+  public void testIndentaion2(String input) {
     // ok, Indentation above 1 is fine as offset value is 2
   }
+  /**
+   * &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethodPre(String input) {}
+  /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;code&gt; // violation
+   * out.writeByte(1); // violation
+   * out.writeInt(nanos); // violation
+   * &lt;/code&gt; // violation
+   */
+  public void testMethodCode(String input) {}
+  /**
+   * Test class.
+   *
+   * @param input comment with
+   *          predefined indentation applied by Eclipse formatter.
+   */
+   public void testIndentaionEclipse(String input) {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example3-config">
@@ -148,27 +189,46 @@ class Example2 {
           Example:
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
-/**
- * &lt;p&gt; 'p' tag is unclosed
- * &lt;p&gt; 'p' tag is closed&lt;/p&gt;
- */
 class Example3 {
-  // violation 4 lines above 'Unclosed HTML tag found: p'
   /**
-   * @tag comment
-   *     Indentation spacing is 4
+   * @param input comment with
+   *     indentation spacing as 4
    */
-  public void testMethod1(String input) {
+  public void testIndentaion4(String input) {
     // ok, Default expected Indentation is 4
   }
 
   /**
-   * @tag comment
-   *  Indentation spacing is 1
+   * @param input comment with
+   *  indentation spacing as 1
    */
-  public void testMethod2(String input) {
+  public void testIndentaion1(String input) {
     // violation 3 lines above 'Line continuation have incorrect indentation level'
   }
+  /**
+   * &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethodPre(String input) {}
+  /**
+   * Writes the object using a
+   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
+   * @serialData
+   * &lt;code&gt; // violation
+   * out.writeByte(1); // violation
+   * out.writeInt(nanos); // violation
+   * &lt;/code&gt; // violation
+   */
+  public void testMethodCode(String input) {}
+  /**
+   * Test class.
+   *
+   * @param input comment with
+   *          This is the predefined indentation applied by Eclipse formatter.
+   */
+   public void testIndentaionEclipse(String input) {}
 }
 </code></pre></div><hr class="example-separator"/>
         <p id="Example4-code">
@@ -177,17 +237,27 @@ class Example3 {
         </p>
         <div class="wrapper"><pre class="prettyprint"><code class="language-java">
 class Example4 {
-
-   /**
-   * Writes the object using a
-   * &lt;a href="{@docRoot}/serialized-form.html#java.time.Ser"&gt;dedicated form&lt;/a&gt;.
-   * @serialData
-   * &lt;pre&gt;
-   * out.writeByte(1);
-   * out.writeInt(nanos);
-   * &lt;/pre&gt;
+  /**
+   * @param input comment with
+   *     indentation spacing as 4
    */
-  public void testMethod1(String input) {}
+  public void testIndentaion4(String input) {
+    // ok, Default expected Indentation is 4
+  }
+  /**
+   * @param input comment with
+   *    indentation spacing as 3
+   */
+  public void testIndentaion3(String input) {
+    // violation 3 lines above 'Line continuation have incorrect indentation level'
+  }
+  /**
+   * &lt;pre&gt;
+   * this content, and not any error:
+   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
+   *   No violation is expected here."&lt;/pre&gt;
+   */
+  public void testMethodPre(String input) {}
 
   /**
    * Writes the object using a
@@ -198,20 +268,15 @@ class Example4 {
    * out.writeInt(nanos); // violation
    * &lt;/code&gt; // violation
    */
-  public void testMethod2(String input) {}
+  public void testMethodCode(String input) {}
 
   /**
    * Test class.
    *
-   * @apiNote
+   * @param input comment with
    *          This is the predefined indentation applied by Eclipse formatter.
-   *          &lt;pre&gt;
-   * this content, and not any error:
-   *   "JavadocTagContinuation do not validate lines contained in Pre tag,
-   *   No violation is expected here."&lt;/pre&gt;
    */
-  public void testMethod3(String input) {}
-
+   public void testIndentaionEclipse(String input) {}
 }
 </code></pre></div>
       </subsection>
