@@ -70,11 +70,6 @@ public class XdocsExampleFileTest {
                     "arrayInitIndent",
                     "braceAdjustment"
             )),
-            Map.entry("ClassMemberImpliedModifierCheck", Set.of(
-                    "violateImpliedStaticOnNestedEnum",
-                    "violateImpliedStaticOnNestedRecord",
-                    "violateImpliedStaticOnNestedInterface"
-            )),
             Map.entry("DescendantTokenCheck", Set.of("minimumMessage")),
             Map.entry("InterfaceMemberImpliedModifierCheck", Set.of(
                     "violateImpliedFinalField",
