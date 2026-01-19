@@ -266,7 +266,17 @@ public final class JavadocCommentsTokenTypes {
      *         |--TEXT ->
      *         |--PARAMETER_NAME -> value
      *         `--DESCRIPTION -> DESCRIPTION
-     *             `--TEXT ->  The parameter of method.
+     *             |--TEXT ->  The parameter of method.
+     *             |--NEWLINE -> \n
+     *             |--LEADING_ASTERISK ->      *
+     *             |--TEXT -> /
+     *             |--NEWLINE -> \n
+     *             |--TEXT ->     void method(int value) {
+     *             |--NEWLINE -> \n
+     *             |--NEWLINE -> \n
+     *             |--TEXT ->     }
+     *             |--NEWLINE -> \n
+     *             `--TEXT -> }
      * }</pre>
      *
      * @see #JAVADOC_BLOCK_TAG
