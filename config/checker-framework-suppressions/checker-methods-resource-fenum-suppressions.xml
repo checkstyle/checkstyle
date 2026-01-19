@@ -166,6 +166,28 @@
   </checkerFrameworkError>
 
   <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <specifier>argument</specifier>
+    <message>incompatible argument for parameter obj of Object.equals.</message>
+    <lineContent>if (cached.equals(current)) {</lineContent>
+    <details>
+      found   : T extends @FenumTop Object
+      required: @FenumUnqualified Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
+    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/SuppressWithNearbyCommentFilter.java</fileName>
+    <specifier>method.invocation</specifier>
+    <message>call to equals(java.lang.Object) not allowed on the given receiver.</message>
+    <lineContent>if (cached.equals(current)) {</lineContent>
+    <details>
+      found   : T extends @FenumTop Object
+      required: @FenumUnqualified Object
+    </details>
+  </checkerFrameworkError>
+
+  <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/gui/MainFrame.java</fileName>
     <specifier>argument</specifier>
     <message>incompatible argument for parameter horizontalAlignment of JLabel constructor.</message>
