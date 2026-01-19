@@ -5139,6 +5139,9 @@
               </targetTests>
               <avoidCallsTo>
                 <avoidCallsTo>com.puppycrawl.tools.checkstyle.utils.UnmodifiableCollectionUtil</avoidCallsTo>
+                <!-- Since https://github.com/checkstyle/checkstyle/pull/18475 -->
+                <!-- getFileName() calls in accept() are performance optimization only.-->
+                <avoidCallsTo>com.puppycrawl.tools.checkstyle.api.FileContents</avoidCallsTo>
               </avoidCallsTo>
               <features>
                 <feature>+funmodifiablecollection</feature>
@@ -5146,6 +5149,11 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- Since https://github.com/checkstyle/checkstyle/pull/18475 -->
+                <!-- performance optimization for caching file-level suppression tags -->
+                <param>initIfDifferent</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>94</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
