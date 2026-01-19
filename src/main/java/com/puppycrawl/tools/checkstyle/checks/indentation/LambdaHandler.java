@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import javax.annotation.Nullable;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -89,6 +91,11 @@ public class LambdaHandler extends AbstractExpressionHandler {
     protected IndentLevel getIndentImpl() {
         if (getParent() instanceof MethodCallHandler) {
             return getParent().getSuggestedChildIndent(this);
+        }
+
+        final DetailAST enumConstDef = findParentEnumConstantDef();
+        if (enumConstDef != null) {
+            return getEnumConstantBasedIndent(enumConstDef);
         }
 
         DetailAST parent = getMainAst().getParent();
@@ -234,5 +241,35 @@ public class LambdaHandler extends AbstractExpressionHandler {
     private boolean isSameLineAsSwitch(DetailAST node) {
         return node.getType() == TokenTypes.LITERAL_SWITCH
             && TokenUtil.areOnSameLine(getMainAst(), node);
+    }
+
+    /**
+     * Finds the parent ENUM_CONSTANT_DEF node if this lambda is inside enum constant arguments.
+     *
+     * @return the ENUM_CONSTANT_DEF node if found, null otherwise
+     */
+    @Nullable
+    private DetailAST findParentEnumConstantDef() {
+        DetailAST parent = getMainAst().getParent();
+        while (parent != null) {
+            if (parent.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+                return parent;
+            }
+            parent = parent.getParent();
+        }
+        return parent;
+    }
+
+    /**
+     * Calculates the expected indentation for a lambda inside enum constant arguments.
+     * The expected indent is the enum constant's indent plus line wrapping indentation.
+     *
+     * @param enumConstDef the ENUM_CONSTANT_DEF node
+     * @return the expected indentation level
+     */
+    private IndentLevel getEnumConstantBasedIndent(DetailAST enumConstDef) {
+        final int enumConstIndent = getLineStart(enumConstDef);
+        final IndentLevel baseLevel = new IndentLevel(enumConstIndent);
+        return new IndentLevel(baseLevel, getIndentCheck().getLineWrappingIndentation());
     }
 }
