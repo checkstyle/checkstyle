@@ -64,10 +64,6 @@ public final class MetadataGeneratorUtilTest extends AbstractModuleTestSupport {
             throws Exception {
         systemOut.captureMuted();
 
-        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
-                        + "/src/main/java/com/puppycrawl/tools/checkstyle",
-                "checks", "filters", "filefilters");
-
         final Set<String> metaFiles;
         try (Stream<Path> fileStream = Files.walk(
                 Path.of(System.getProperty("user.dir") + "/src/main/resources/com/puppycrawl"
