@@ -363,6 +363,38 @@ public class SuppressWithNearbyCommentFilterTest
                 .isTrue();
     }
 
+    @Test
+    public void testSuppressWithNearbyCommentFilterMutation() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "A1", "^[a-z][a-zA-Z0-9]*$"),
+            "30:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "B1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterMutation.java"),
+            expected, removeSuppressed(expected, suppressed));
+    }
+
+    @Test
+    public void testSuppressWithNearbyCommentFilterMutation2() throws Exception {
+        final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "28:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "C1", "^[a-z][a-zA-Z0-9]*$"),
+            "30:17: "
+                + getCheckMessage(AbstractNameCheck.class,
+                    MSG_INVALID_PATTERN, "D1", "^[a-z][a-zA-Z0-9]*$"),
+        };
+        verifyFilterWithInlineConfigParser(
+            getPath("InputSuppressWithNearbyCommentFilterMutation2.java"),
+            expected, removeSuppressed(expected, suppressed));
+    }
+
     private void verifySuppressedWithParser(String fileName, String... suppressed)
             throws Exception {
         verifyFilterWithInlineConfigParser(fileName, ALL_MESSAGES,
@@ -779,6 +811,40 @@ public class SuppressWithNearbyCommentFilterTest
         assertWithMessage("Invalid tags size")
             .that(tags2)
             .isEmpty();
+    }
+
+    @Test
+    public void testSameFileDoesNotRecreateTags() {
+        final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
+        final String filename = "testFile.java";
+        final FileContents contents = new FileContents(
+                new FileText(new File(filename),
+                        Arrays.asList("//SUPPRESS CHECKSTYLE ignore")));
+        contents.reportSingleLineComment(1, 0);
+
+        final Violation violation = new Violation(1, null, null, null, null, Object.class, null);
+        final TreeWalkerAuditEvent event1 = new TreeWalkerAuditEvent(contents, filename,
+                violation, null);
+
+        filter.accept(event1);
+        final List<?> tags1 = TestUtil.getInternalState(filter, "tags", List.class);
+        assertWithMessage("Tags should be created on first call")
+            .that(tags1)
+            .hasSize(1);
+
+        final Object firstTag = tags1.get(0);
+
+        final TreeWalkerAuditEvent event2 = new TreeWalkerAuditEvent(contents, filename,
+                violation, null);
+        filter.accept(event2);
+        final List<?> tags2 = TestUtil.getInternalState(filter, "tags", List.class);
+
+        assertWithMessage("Tags should still have one element")
+            .that(tags2)
+            .hasSize(1);
+        assertWithMessage("Same tag object should be retained when processing same file")
+            .that(tags2.get(0))
+            .isSameInstanceAs(firstTag);
     }
 
     /**
