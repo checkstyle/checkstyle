@@ -23,8 +23,13 @@
             event.preventDefault();
 
             if (navigator.clipboard) {
-                navigator.clipboard.writeText(link);
-                showCopiedFeedback(feedbackTarget);
+                navigator.clipboard.writeText(link).then(function () {
+                    showCopiedFeedback(feedbackTarget);
+                }).catch(function (err) {
+                    console.warn("Failed to copy link to clipboard:", err);
+                });
+            } else {
+                console.warn("Clipboard API not available");
             }
 
             // Update URL without page jump

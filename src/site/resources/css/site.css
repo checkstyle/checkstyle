@@ -34,9 +34,11 @@ h4 {
 }
 
 .anchor-feedback {
+    display: inline-block;
     margin-left: 6px;
     font-size: 0.75rem;
-    color: black;
+    color: #4caf50;
+    font-weight: bold;
     vertical-align: middle;
     user-select: none;
     opacity: 1;
