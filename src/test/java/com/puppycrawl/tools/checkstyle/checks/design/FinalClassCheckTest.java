@@ -33,6 +33,8 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
@@ -327,4 +329,14 @@ public class FinalClassCheckTest
         verifyWithInlineConfigParser(getPath("InputFinalClassPrivateCtor3.java"),
                                      expected);
     }
+
+    @Test
+    public void testCompactSourceDoesNotThrowNpe() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+        getNonCompilablePath("com/example/InputFinalClassCompact.java"),
+        expected);
+    }
+
 }
