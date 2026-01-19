@@ -33,6 +33,16 @@ h4 {
   border: ridge;
 }
 
+.anchor-feedback {
+    margin-left: 6px;
+    font-size: 0.75rem;
+    color: black;
+    vertical-align: middle;
+    user-select: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 .container-fluid {
   padding-left: 15px;
   padding-right: 15px;
