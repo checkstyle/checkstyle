@@ -70,11 +70,36 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
 
         final String[] expected = {
             "56:17: " + getCheckMessage(MSG_KEY, "parent"),
+            "66:9: " + getCheckMessage(MSG_KEY, "r"),
             "81:22: " + getCheckMessage(MSG_KEY, "string"),
         };
 
         verifyWithInlineXmlConfig(getPath(
             "InputPatternVariableAssignmentCheck2.java"), expected);
+    }
+
+    @Test
+    public void testExtendedScope() throws Exception {
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "s"),
+            "24:13: " + getCheckMessage(MSG_KEY, "s"),
+            "25:13: " + getCheckMessage(MSG_KEY, "s"),
+            "31:13: " + getCheckMessage(MSG_KEY, "s"),
+            "39:17: " + getCheckMessage(MSG_KEY, "s"),
+            "42:13: " + getCheckMessage(MSG_KEY, "s"),
+            "49:17: " + getCheckMessage(MSG_KEY, "i"),
+            "58:21: " + getCheckMessage(MSG_KEY, "i"),
+            "61:21: " + getCheckMessage(MSG_KEY, "i"),
+            "68:13: " + getCheckMessage(MSG_KEY, "i"),
+            "75:17: " + getCheckMessage(MSG_KEY, "s"),
+            "77:17: " + getCheckMessage(MSG_KEY, "s"),
+            "86:13: " + getCheckMessage(MSG_KEY, "x"),
+            "87:13: " + getCheckMessage(MSG_KEY, "y"),
+            "94:17: " + getCheckMessage(MSG_KEY, "s"),
+            "96:13: " + getCheckMessage(MSG_KEY, "s"),
+        };
+        verifyWithInlineConfigParser(
+                getPath("InputPatternVariableAssignmentExtendedScope.java"), expected);
     }
 
 }

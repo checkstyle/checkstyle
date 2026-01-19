@@ -35,4 +35,5 @@
     <description>removed conditional - replaced equality check with true</description>
     <lineContent>if (currentAst.getType() == TokenTypes.SLIST) {</lineContent>
   </mutation>
+
 </suppressedMutations>
