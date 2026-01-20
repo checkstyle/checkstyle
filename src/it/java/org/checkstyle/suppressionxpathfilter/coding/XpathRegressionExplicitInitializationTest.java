@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                 ExplicitInitializationCheck.MSG_KEY, "a", 0),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathExplicitInitializationPrimitiveType']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='a']"
@@ -79,7 +78,7 @@ public class XpathRegressionExplicitInitializationTest extends AbstractXpathTest
                 ExplicitInitializationCheck.MSG_KEY, "bar", "null"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathExplicitInitializationObjectType']]"
                         + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='bar']"

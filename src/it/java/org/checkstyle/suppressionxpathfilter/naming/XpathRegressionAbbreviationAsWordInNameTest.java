@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.naming;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ANNOTATION", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameAnnotation']]"
                     + "/OBJBLOCK/ANNOTATION_DEF/IDENT[@text='ANNOTATION']"
@@ -79,7 +78,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ANNOTATION_FIELD", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/ANNOTATION_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameAnnotationField']]"
                     + "/OBJBLOCK/ANNOTATION_FIELD_DEF/IDENT[@text='ANNOTATION_FIELD']"
@@ -102,7 +101,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "CLASS", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameClass']]"
                     + "/OBJBLOCK/CLASS_DEF/IDENT[@text='CLASS']"
@@ -125,7 +124,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "ENUMERATION", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameEnum']]"
                     + "/OBJBLOCK/ENUM_DEF/IDENT[@text='ENUMERATION']"
@@ -148,7 +147,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "FIELD", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameField']]"
                     + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='FIELD']"
@@ -171,7 +170,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "INTERFACE", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameInterface']]"
                     + "/OBJBLOCK/INTERFACE_DEF/IDENT[@text='INTERFACE']"
@@ -194,7 +193,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "METHOD", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameMethod']]"
                     + "/OBJBLOCK/METHOD_DEF/IDENT[@text='METHOD']"
@@ -217,7 +216,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "PARAMETER", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/INTERFACE_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameParameter']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
@@ -241,7 +240,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
                 AbbreviationAsWordInNameCheck.MSG_KEY, "VARIABLE", 4),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
                     + "@text='InputXpathAbbreviationAsWordInNameVariable']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"

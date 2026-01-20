@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +53,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
             "4:23: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "java.util.HashSet"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT"
                 + "/CLASS_DEF[./IDENT[@text='InputXpathIllegalTypeOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='typeParam']]/TYPE_PARAMETERS/TYPE_PARAMETER"
@@ -79,7 +78,7 @@ public class XpathRegressionIllegalTypeTest extends AbstractXpathTestSupport {
             "6:20: " + getCheckMessage(IllegalTypeCheck.class,
                                       IllegalTypeCheck.MSG_KEY, "Boolean"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT[@text='InputXpathIllegalTypeTwo']"
                 + "]/OBJBLOCK/METHOD_DEF[./IDENT[@text='typeParam']]/TYPE_PARAMETERS/"
                 + "TYPE_PARAMETER[./IDENT[@text='T']]/TYPE_UPPER_BOUNDS/IDENT[@text='Boolean']"

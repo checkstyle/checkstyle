@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -185,9 +185,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         final String secondErrorMessage = getCheckMessage(MSG_KEY, "anotherKey");
 
         verify(checker, propertyFiles, ImmutableMap.of(
-            ":1", Collections.singletonList(" " + firstErrorMessage),
+            ":1", List.of(" " + firstErrorMessage),
             "InputTranslationCheckFireErrors_de.properties",
-                Collections.singletonList(line + secondErrorMessage)));
+                List.of(line + secondErrorMessage)));
 
         verifyXml(getPath("ExpectedTranslationLog.xml"), out,
             TranslationCheckTest::isFilenamesEqual,

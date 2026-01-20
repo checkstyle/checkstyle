@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -88,7 +87,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
                     "@param", "x"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathJavadocMethodTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='checkParam']]/PARAMETERS"
@@ -140,7 +139,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
                     "@throws", "Exception"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathJavadocMethodFour']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
@@ -165,7 +164,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
                     "@throws", "org.apache.tools.ant.BuildException"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/CLASS_DEF"
                         + "[./IDENT[@text='InputXpathJavadocMethodFive']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='bar']]/SLIST"

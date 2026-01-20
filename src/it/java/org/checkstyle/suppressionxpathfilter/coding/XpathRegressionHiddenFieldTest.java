@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 HiddenFieldCheck.MSG_KEY, "value"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathHiddenFieldLambdaExpInMethodCall']]/OBJBLOCK"
                 + "/INSTANCE_INIT/SLIST/EXPR/METHOD_CALL/ELIST/LAMBDA/PARAMETERS"
@@ -80,7 +79,7 @@ public class XpathRegressionHiddenFieldTest extends AbstractXpathTestSupport {
                 HiddenFieldCheck.MSG_KEY, "other"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathHiddenFieldMethodParam']]/OBJBLOCK"
                 + "/METHOD_DEF[./IDENT[@text='method']]/PARAMETERS/PARAMETER_DEF"

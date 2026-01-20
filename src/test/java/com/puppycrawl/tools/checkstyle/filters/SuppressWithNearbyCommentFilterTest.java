@@ -24,7 +24,6 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -466,7 +465,7 @@ public class SuppressWithNearbyCommentFilterTest
     public void testAcceptNullViolation() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
-                Collections.singletonList("//SUPPRESS CHECKSTYLE ignore")));
+                List.of("//SUPPRESS CHECKSTYLE ignore")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);

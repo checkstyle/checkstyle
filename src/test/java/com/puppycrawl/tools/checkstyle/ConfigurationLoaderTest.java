@@ -28,7 +28,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -443,8 +442,8 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Configuration[] grandchildren = children[0].getChildren();
         final List<String> messages = new ArrayList<>(grandchildren[0].getMessages().values());
         final String expectedKey = "name.invalidPattern";
-        final List<String> expectedMessages = Collections
-                .singletonList("Member ''{0}'' must start with ''m'' (checked pattern ''{1}'').");
+        final List<String> expectedMessages = List
+                .of("Member ''{0}'' must start with ''m'' (checked pattern ''{1}'').");
         assertWithMessage("Messages should contain key: %s", expectedKey)
                 .that(grandchildren[0].getMessages())
                 .containsKey(expectedKey);

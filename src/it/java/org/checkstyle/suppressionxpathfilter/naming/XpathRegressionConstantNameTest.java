@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.naming;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -58,7 +57,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
             "4:29: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "number", PATTERN),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathConstantNameLowercase']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='number']"
@@ -80,7 +79,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
                 MSG_INVALID_PATTERN, "badConstant", PATTERN),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathConstantNameCamelCase']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='badConstant']"
@@ -101,7 +100,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
             "4:33: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "_CONSTANT", PATTERN),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathConstantNameWithBeginningUnderscore']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='_CONSTANT']"
@@ -122,7 +121,7 @@ public class XpathRegressionConstantNameTest extends AbstractXpathTestSupport {
             "4:30: " + getCheckMessage(CLASS, MSG_INVALID_PATTERN, "BAD__NAME", PATTERN),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                 + "[@text='InputXpathConstantNameWithTwoUnderscores']]"
                 + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='BAD__NAME']"

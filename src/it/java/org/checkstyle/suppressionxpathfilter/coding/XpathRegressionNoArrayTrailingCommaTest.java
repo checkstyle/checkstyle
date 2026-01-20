@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
                 NoArrayTrailingCommaCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT"
                     + "[@text='InputXpathNoArrayTrailingCommaOne']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t1']]/ASSIGN/EXPR"
@@ -80,7 +79,7 @@ public class XpathRegressionNoArrayTrailingCommaTest extends AbstractXpathTestSu
                 NoArrayTrailingCommaCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                     + "[./IDENT[@text='InputXpathNoArrayTrailingCommaTwo']]"
                     + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='t4']]"

@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.coding;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +53,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathSuperFinalizeNoFinalize']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
@@ -73,7 +72,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathSuperFinalizeInnerClass']]"
                 + "/OBJBLOCK/METHOD_DEF/IDENT[@text='finalize']"
@@ -92,7 +91,7 @@ public class XpathRegressionSuperFinalizeTest extends AbstractXpathTestSupport {
                                         AbstractSuperCheck.MSG_KEY, "finalize"),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathSuperFinalizeAnonymousClass']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='createAnonymousClass']]"
