@@ -287,17 +287,13 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
   </Match>
   <Match>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/14122 -->
+    <!-- external projects inherits from it so it should not be changed  -->
     <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
-      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
     </Or>
-    <Bug pattern="CT_CONSTRUCTOR_THROW"/>
-  </Match>
-  <Match>
-    <!-- external projects inherits from it so it should not be changed  -->
-    <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
   <Match>
