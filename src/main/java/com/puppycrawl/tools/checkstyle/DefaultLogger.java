@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
  *
  * @see XMLLogger
  */
-public class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
+public final class DefaultLogger extends AbstractAutomaticBean implements AuditListener {
 
     /**
      * A key pointing to the add exception
