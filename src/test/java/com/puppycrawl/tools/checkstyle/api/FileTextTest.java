@@ -146,7 +146,7 @@ public class FileTextTest extends AbstractPathTestSupport {
 
     @Test
     public void testLines() throws IOException {
-        final List<String> lines = Collections.singletonList("abc");
+        final List<String> lines = List.of("abc");
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 lines);
         assertWithMessage("Invalid line")

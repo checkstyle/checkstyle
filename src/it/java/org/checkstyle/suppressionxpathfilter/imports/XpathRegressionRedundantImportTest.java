@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter.imports;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -54,7 +53,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
                         RedundantImportCheck.MSG_SAME, "org.checkstyle.suppressionxpathfilter"
                                 + ".imports.redundantimport.InputXpathRedundantImportInternal"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -71,7 +70,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
             "3:1: " + getCheckMessage(RedundantImportCheck.class,
                         RedundantImportCheck.MSG_LANG, "java.lang.String"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -88,7 +87,7 @@ public class XpathRegressionRedundantImportTest extends AbstractXpathTestSupport
             "4:1: " + getCheckMessage(RedundantImportCheck.class,
                         RedundantImportCheck.MSG_DUPLICATE, 3, "java.util.Scanner"),
         };
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
                 "/COMPILATION_UNIT/IMPORT[./DOT/IDENT[@text='Scanner']]");
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

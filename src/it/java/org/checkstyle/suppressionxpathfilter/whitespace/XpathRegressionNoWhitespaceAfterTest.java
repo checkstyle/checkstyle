@@ -21,7 +21,6 @@ package org.checkstyle.suppressionxpathfilter.whitespace;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -85,7 +84,7 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
                     NoWhitespaceAfterCheck.MSG_KEY, "."),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF"
                 + "[./IDENT[@text='InputXpathNoWhitespaceAfterTokens']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"

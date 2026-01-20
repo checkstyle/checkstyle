@@ -22,7 +22,6 @@ package org.checkstyle.suppressionxpathfilter.naming;
 import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MSG_INVALID_PATTERN;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
@@ -56,7 +55,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
                 "VAR", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
               + "@text='InputXpathLocalVariableNameMethod']]"
               + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]"
@@ -79,7 +78,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
                 "var_1", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
               + "@text='InputXpathLocalVariableNameIteration']]"
               + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='MyMethod']]/"
@@ -102,7 +101,7 @@ public class XpathRegressionLocalVariableNameTest extends AbstractXpathTestSuppo
                 "VAR", pattern),
         };
 
-        final List<String> expectedXpathQueries = Collections.singletonList(
+        final List<String> expectedXpathQueries = List.of(
             "/COMPILATION_UNIT/CLASS_DEF[./IDENT["
               + "@text='InputXpathLocalVariableNameInnerClass']]"
               + "/OBJBLOCK/CLASS_DEF[./IDENT[@text='InnerClass']]/OBJBLOCK/"
