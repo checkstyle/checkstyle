@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -42,20 +42,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static final int TAB_WIDTH = 4;
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
-        // reason: checkstyle check: Line gets longer than 100 characters
-        "InputIndentationInvalidLabelIndent.java",
-        "InputIndentationInvalidMethodIndent2.java",
-        "InputIndentationNewChildren.java",
-        "InputIndentationNewWithForceStrictCondition.java",
-        "InputIndentationStrictCondition.java",
-        "InputIndentationTryResourcesNotStrict.java",
-        "InputIndentationTryResourcesNotStrict1.java",
-        "InputIndentationTryWithResourcesStrict.java",
-        "InputIndentationTryWithResourcesStrict1.java",
-        "InputIndentationValidClassDefIndent.java",
-        "InputIndentationValidClassDefIndent1.java",
-        "InputIndentationCorrectIfAndParameter1.java",
-        "InputIndentationPackageDeclaration3.java"
+        // No files allowed violations
     );
 
     @MethodSource("indentationTestFiles")
@@ -65,7 +52,6 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
         if (ALLOWED_VIOLATION_FILES.contains(fileName)) {
             Assumptions.assumeTrue(false, "Skipping file: " + fileName);
         }
-
         final List<String> lines = Files.readAllLines(testFile);
         int expectedStartIndex = -1;
 
