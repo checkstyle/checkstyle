@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.XdocsPropertyType;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.WeakReferenceHolder;
 
 /**
  * <div>
@@ -111,6 +111,16 @@ public class SuppressionCommentFilter
     /** Tagged comments. */
     private final List<Tag> tags = new ArrayList<>();
 
+    /**
+     * References the current FileContents for this filter.
+     * Since this is a weak reference to the FileContents, the FileContents
+     * can be reclaimed as soon as the strong references in TreeWalker
+     * are reassigned to the next FileContents, at which time filtering for
+     * the current FileContents is finished.
+     */
+    private final WeakReferenceHolder<FileContents> fileContentsHolder =
+            new WeakReferenceHolder<>();
+
     /** Control whether to check C style comments ({@code &#47;* ... *&#47;}). */
     private boolean checkC = true;
 
@@ -138,15 +148,6 @@ public class SuppressionCommentFilter
     private String idFormat;
 
     /**
-     * References the current FileContents for this filter.
-     * Since this is a weak reference to the FileContents, the FileContents
-     * can be reclaimed as soon as the strong references in TreeWalker
-     * are reassigned to the next FileContents, at which time filtering for
-     * the current FileContents is finished.
-     */
-    private WeakReference<FileContents> fileContentsReference = new WeakReference<>(null);
-
-    /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
      * @param pattern a pattern.
@@ -164,24 +165,6 @@ public class SuppressionCommentFilter
      */
     public final void setOnCommentFormat(Pattern pattern) {
         onCommentFormat = pattern;
-    }
-
-    /**
-     * Returns FileContents for this filter.
-     *
-     * @return the FileContents for this filter.
-     */
-    private FileContents getFileContents() {
-        return fileContentsReference.get();
-    }
-
-    /**
-     * Set the FileContents for this filter.
-     *
-     * @param fileContents the FileContents for this filter.
-     */
-    private void setFileContents(FileContents fileContents) {
-        fileContentsReference = new WeakReference<>(fileContents);
     }
 
     /**
@@ -249,11 +232,7 @@ public class SuppressionCommentFilter
             // Lazy update. If the first event for the current file, update file
             // contents and tag suppressions
             final FileContents currentContents = event.fileContents();
-
-            if (getFileContents() != currentContents) {
-                setFileContents(currentContents);
-                tagSuppressions();
-            }
+            fileContentsHolder.lazyUpdate(currentContents, this::tagSuppressions);
             final Tag matchTag = findNearestMatch(event);
             accepted = matchTag == null || matchTag.getTagType() == TagType.ON;
         }
@@ -289,7 +268,7 @@ public class SuppressionCommentFilter
      */
     private void tagSuppressions() {
         tags.clear();
-        final FileContents contents = getFileContents();
+        final FileContents contents = fileContentsHolder.get();
         if (checkCPP) {
             tagSuppressions(contents.getSingleLineComments().values());
         }
