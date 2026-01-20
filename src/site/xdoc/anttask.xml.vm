@@ -331,12 +331,12 @@
       </p>
 
       <p>
-       <b>
-         Checkstyle uses Ant configuration to validate its own code. See example in our git
-         repository -
-         <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
-           config/ant-phase-verify.xml</a>.
-       </b>
+        <b>
+        Checkstyle uses Ant configuration to validate its own code. See example in our git
+        repository -
+        <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+          config/ant-phase-verify.xml</a>.
+        </b>
       </p>
 
       <p>
