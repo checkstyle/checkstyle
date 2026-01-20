@@ -21,7 +21,7 @@
       <p>
         This task runs Checkstyle over specified Java files.
         The latest version of checkstyle can be found at
-        <a href="./index.html">https://checkstyle.org/</a>.
+        <a href="./index.html">https://checkstyle.org/</a>
 
         This task is included in the checkstyle distribution.
       </p>
@@ -331,12 +331,12 @@
       </p>
 
       <p>
-        <b>
-          Checkstyle use ant configuration to validate its own code. See example is our git
-          repository -
-          <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
-            config/ant-phase-verify.xml</a>.
-        </b>
+       <b>
+         Checkstyle uses Ant configuration to validate its own code. See example in our git
+         repository -
+         <a href="https://github.com/checkstyle/checkstyle/blob/master/config/ant-phase-verify.xml#L25">
+           config/ant-phase-verify.xml</a>.
+       </b>
       </p>
 
       <p>
