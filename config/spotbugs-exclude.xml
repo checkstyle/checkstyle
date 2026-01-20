@@ -302,13 +302,15 @@
     <Or>
       <Class name="com.puppycrawl.tools.checkstyle.PackageObjectFactory"/>
       <Class name="com.puppycrawl.tools.checkstyle.XmlLoader"/>
-      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
     </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
   <Match>
     <!-- external projects inherits from it so it should not be changed  -->
-    <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+    <Or>
+      <Class name="com.puppycrawl.tools.checkstyle.Checker"/>
+      <Class name="com.puppycrawl.tools.checkstyle.DefaultLogger"/>
+    </Or>
     <Bug pattern="CT_CONSTRUCTOR_THROW"/>
   </Match>
   <Match>
