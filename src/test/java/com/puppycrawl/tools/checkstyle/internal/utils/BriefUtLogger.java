@@ -21,13 +21,18 @@ package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import java.io.OutputStream;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 
 /**
  * A brief logger that only display info about errors.
  */
-public class BriefUtLogger extends DefaultLogger {
+public class BriefUtLogger implements AuditListener {
+
+    /** The wrapped DefaultLogger instance. */
+    private final DefaultLogger delegate;
 
     /**
      * Creates BriefLogger object.
@@ -35,13 +40,38 @@ public class BriefUtLogger extends DefaultLogger {
      * @param out output stream for info messages and errors.
      */
     public BriefUtLogger(OutputStream out) {
-        super(out, OutputStreamOptions.CLOSE, out,
+        delegate = new DefaultLogger(out, OutputStreamOptions.CLOSE, out,
                 OutputStreamOptions.NONE, new AuditEventUtFormatter());
     }
 
     @Override
     public void auditStarted(AuditEvent event) {
         // has to NOT log audit started event
+    }
+
+    @Override
+    public void auditFinished(AuditEvent event) {
+        delegate.auditFinished(event);
+    }
+
+    @Override
+    public void fileStarted(AuditEvent event) {
+        delegate.fileStarted(event);
+    }
+
+    @Override
+    public void fileFinished(AuditEvent event) {
+        delegate.fileFinished(event);
+    }
+
+    @Override
+    public void addError(AuditEvent event) {
+        delegate.addError(event);
+    }
+
+    @Override
+    public void addException(AuditEvent event, Throwable throwable) {
+        delegate.addException(event, throwable);
     }
 
 }
