@@ -316,7 +316,9 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/annotation/missingoverrideonrecordaccessor/Example2",
             // contains ExampleX constructors
             "checks/naming/methodname/Example3",
-            "checks/naming/methodname/Example4"
+            "checks/naming/methodname/Example4",
+            // code change needed for another example
+            "checks/coding/unnecessarypermitsclause/Example2"
             );
 
     /**
