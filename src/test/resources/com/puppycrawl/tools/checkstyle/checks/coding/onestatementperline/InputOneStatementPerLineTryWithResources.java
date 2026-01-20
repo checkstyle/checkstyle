@@ -2,7 +2,6 @@
 OneStatementPerLine
 treatTryResourcesAsStatement = true
 
-
 */
 
 
@@ -14,6 +13,7 @@ import java.io.OutputStream;
 
 /**
  * Config treatTryResourcesAsStatement = true
+
  */
 public class InputOneStatementPerLineTryWithResources {
 

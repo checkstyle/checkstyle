@@ -1,5 +1,7 @@
 /*
 OneStatementPerLine
+treatTryResourcesAsStatement = (default)false
+
 
 */
 
