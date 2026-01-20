@@ -42,7 +42,7 @@ class IndentationTrailingCommentsVerticalAlignmentTest {
     private static final int TAB_WIDTH = 4;
 
     private static final Set<String> ALLOWED_VIOLATION_FILES = Set.of(
-        // No files allowed violations
+    // No files allowed violations
     );
 
     @MethodSource("indentationTestFiles")
