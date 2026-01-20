@@ -473,7 +473,9 @@ spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2g'
-  ./mvnw -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
+  ./mvnw -e --no-transfer-progress clean pmd:check
+  ./mvnw -e --no-transfer-progress clean compile spotbugs:check
+  ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
@@ -1334,6 +1336,7 @@ pmd)
   ;;
 
 spotbugs)
+  ./mvnw -e --no-transfer-progress clean compile spotbugs:check
   ./mvnw -e --no-transfer-progress clean test-compile spotbugs:check
   ;;
 
