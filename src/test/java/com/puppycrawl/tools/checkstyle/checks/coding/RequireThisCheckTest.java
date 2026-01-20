@@ -577,4 +577,20 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testAnnotationFieldDoesNotRequireThis() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationField.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationFieldInitializerDoesNotTriggerRequireThis() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationFieldDefaultValue.java"), expected);
+    }
+
 }
