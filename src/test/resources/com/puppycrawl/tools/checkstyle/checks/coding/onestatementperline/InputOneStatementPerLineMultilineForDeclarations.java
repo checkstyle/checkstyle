@@ -2,7 +2,6 @@
 OneStatementPerLine
 treatTryResourcesAsStatement = true
 
-
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
