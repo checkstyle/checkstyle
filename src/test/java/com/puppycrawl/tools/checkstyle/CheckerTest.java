@@ -1474,16 +1474,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddAuditListenerAsChild() throws Exception {
         final Checker checker = new Checker();
         final DebugAuditAdapter auditAdapter = new DebugAuditAdapter();
-        final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
-            @Override
-            public Object createModule(String name) throws CheckstyleException {
-                Object adapter = auditAdapter;
-                if (!name.equals(DebugAuditAdapter.class.getName())) {
-                    adapter = super.createModule(name);
-                }
-                return adapter;
+        final PackageObjectFactory delegate = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        final ModuleFactory factory = name -> {
+            Object adapter = auditAdapter;
+            if (!name.equals(DebugAuditAdapter.class.getName())) {
+                adapter = delegate.createModule(name);
             }
+            return adapter;
         };
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(DebugAuditAdapter.class));
@@ -1498,16 +1496,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testAddBeforeExecutionFileFilterAsChild() throws Exception {
         final Checker checker = new Checker();
         final TestBeforeExecutionFileFilter fileFilter = new TestBeforeExecutionFileFilter();
-        final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
-            @Override
-            public Object createModule(String name) throws CheckstyleException {
-                Object filter = fileFilter;
-                if (!name.equals(TestBeforeExecutionFileFilter.class.getName())) {
-                    filter = super.createModule(name);
-                }
-                return filter;
+        final PackageObjectFactory delegate = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        final ModuleFactory factory = name -> {
+            Object adapter = fileFilter;
+            if (!name.equals(TestBeforeExecutionFileFilter.class.getName())) {
+                adapter = delegate.createModule(name);
             }
+            return adapter;
         };
         checker.setModuleFactory(factory);
         checker.setupChild(createModuleConfig(TestBeforeExecutionFileFilter.class));
@@ -1521,16 +1517,14 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testFileSetCheckInitWhenAddedAsChild() throws Exception {
         final Checker checker = new Checker();
         final DummyFileSet fileSet = new DummyFileSet();
-        final PackageObjectFactory factory = new PackageObjectFactory(
-                new HashSet<>(), Thread.currentThread().getContextClassLoader()) {
-            @Override
-            public Object createModule(String name) throws CheckstyleException {
-                Object check = fileSet;
-                if (!name.equals(DummyFileSet.class.getName())) {
-                    check = super.createModule(name);
-                }
-                return check;
+        final PackageObjectFactory delegate = new PackageObjectFactory(
+                new HashSet<>(), Thread.currentThread().getContextClassLoader());
+        final ModuleFactory factory = name -> {
+            Object adapter = fileSet;
+            if (!name.equals(DummyFileSet.class.getName())) {
+                adapter = delegate.createModule(name);
             }
+            return adapter;
         };
         checker.setModuleFactory(factory);
         checker.finishLocalSetup();
