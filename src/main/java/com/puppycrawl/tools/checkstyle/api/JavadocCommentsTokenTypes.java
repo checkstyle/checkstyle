@@ -697,7 +697,40 @@ public final class JavadocCommentsTokenTypes {
     public static final int JAVADOC_INLINE_TAG = JavadocCommentsLexer.JAVADOC_INLINE_TAG;
 
     /**
-     * Start of an inline tag  <code>{</code>.
+     * Start of an inline tag <code>{</code>.
+     *
+     * <p>This node represents the start of a Javadoc inline tag like
+     * {@code @code} or {@code @link}.</p>
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code
+     * /**
+     * * {@code code}
+     * &#42;/
+     * }</pre>
+     *
+     * <b>Tree:</b>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--TEXT -> /**
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT ->
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |   `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   code
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * |--NEWLINE -> \n
+     * |--LEADING_ASTERISK ->   *
+     * |--TEXT -> /
+     * |--NEWLINE -> \n
+     * |--TEXT -> public class Test {}
+     * `--NEWLINE -> \n
+     * }</pre>
+     *
+     * @see #JAVADOC_INLINE_TAG
      */
     public static final int JAVADOC_INLINE_TAG_START =
             JavadocCommentsLexer.JAVADOC_INLINE_TAG_START;
