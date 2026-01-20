@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 /**
  * This class provides the functionality to check a set of files.
  */
-public class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
+public final class Checker extends AbstractAutomaticBean implements MessageDispatcher, RootModule {
 
     /** Message to use when an exception occurs and should be printed as a violation. */
     public static final String EXCEPTION_MSG = "general.exception";
@@ -532,7 +532,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
     }
 
     @Override
-    public final void addListener(AuditListener listener) {
+    public void addListener(AuditListener listener) {
         listeners.add(listener);
     }
 
@@ -543,7 +543,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param extensions the set of file extensions. A missing
      *     initial '.' character of an extension is automatically added.
      */
-    public final void setFileExtensions(String... extensions) {
+    public void setFileExtensions(String... extensions) {
         if (extensions != null) {
             fileExtensions = new String[extensions.length];
             for (int i = 0; i < extensions.length; i++) {
@@ -592,12 +592,12 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      * @param severity  The new severity level
      * @see SeverityLevel
      */
-    public final void setSeverity(String severity) {
+    public void setSeverity(String severity) {
         this.severity = SeverityLevel.getInstance(severity);
     }
 
     @Override
-    public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
+    public void setModuleClassLoader(ClassLoader moduleClassLoader) {
         this.moduleClassLoader = moduleClassLoader;
     }
 
@@ -630,7 +630,7 @@ public class Checker extends AbstractAutomaticBean implements MessageDispatcher,
      *
      * @param tabWidth an {@code int} value
      */
-    public final void setTabWidth(int tabWidth) {
+    public void setTabWidth(int tabWidth) {
         this.tabWidth = tabWidth;
     }
 
