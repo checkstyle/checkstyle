@@ -1812,20 +1812,49 @@ public class CheckerTest extends AbstractModuleTestSupport {
             "IllegalStateException from CommonUtil.relativizePath not found in cause chain");
     }
 
-    public static class DefaultLoggerWithCounter extends DefaultLogger {
+    public static class DefaultLoggerWithCounter implements AuditListener {
 
         private int fileStartedCount;
+
+        /** The wrapped DefaultLogger instance. */
+        private final DefaultLogger delegate;
 
         public DefaultLoggerWithCounter(OutputStream infoStream,
                                         OutputStreamOptions infoStreamOptions,
                                         OutputStream errorStream,
                                         OutputStreamOptions errorStreamOptions) {
-            super(infoStream, infoStreamOptions, errorStream, errorStreamOptions);
+            delegate = new DefaultLogger(infoStream, infoStreamOptions, errorStream,
+                    errorStreamOptions);
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            delegate.auditStarted(event);
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            delegate.auditFinished(event);
         }
 
         @Override
         public void fileStarted(AuditEvent event) {
             fileStartedCount++;
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            delegate.fileFinished(event);
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            delegate.addError(event);
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            delegate.addException(event, throwable);
         }
     }
 
