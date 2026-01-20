@@ -49,6 +49,10 @@
       <subsection name="Example of Usage" id="MissingOverrideOnRecordAccessor_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%20path%3A**%2Fgoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
+            Google Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingOverrideOnRecordAccessor">
             Checkstyle Style</a>
           </li>
