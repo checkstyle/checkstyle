@@ -40,8 +40,8 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultiCaseSmallTalkStyle() throws Exception {
         final String[] expected = {
-            "14:59: " + getCheckMessage(MSG_KEY),
-            "88:21: " + getCheckMessage(MSG_KEY),
+            "13:59: " + getCheckMessage(MSG_KEY),
+            "87:21: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineSingleLineSmallTalkStyle.java"),
@@ -51,11 +51,11 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMultiCaseLoops() throws Exception {
         final String[] expected = {
-            "27:18: " + getCheckMessage(MSG_KEY),
-            "53:17: " + getCheckMessage(MSG_KEY),
-            "65:25: " + getCheckMessage(MSG_KEY),
-            "85:23: " + getCheckMessage(MSG_KEY),
-            "89:63: " + getCheckMessage(MSG_KEY),
+            "26:18: " + getCheckMessage(MSG_KEY),
+            "52:17: " + getCheckMessage(MSG_KEY),
+            "64:25: " + getCheckMessage(MSG_KEY),
+            "84:23: " + getCheckMessage(MSG_KEY),
+            "88:63: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineSingleLineInLoops.java"),
@@ -87,11 +87,11 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDeclarationsWithMultilineStatements() throws Exception {
         final String[] expected = {
-            "49:21: " + getCheckMessage(MSG_KEY),
-            "66:17: " + getCheckMessage(MSG_KEY),
-            "74:17: " + getCheckMessage(MSG_KEY),
-            "86:10: " + getCheckMessage(MSG_KEY),
-            "95:28: " + getCheckMessage(MSG_KEY),
+            "48:21: " + getCheckMessage(MSG_KEY),
+            "65:17: " + getCheckMessage(MSG_KEY),
+            "73:17: " + getCheckMessage(MSG_KEY),
+            "85:10: " + getCheckMessage(MSG_KEY),
+            "94:28: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineMultilineForDeclarations.java"),
@@ -101,9 +101,9 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLoopsAndTryWithResourceWithMultilineStatements() throws Exception {
         final String[] expected = {
-            "53:39: " + getCheckMessage(MSG_KEY),
-            "87:44: " + getCheckMessage(MSG_KEY),
-            "99:45: " + getCheckMessage(MSG_KEY),
+            "52:39: " + getCheckMessage(MSG_KEY),
+            "86:44: " + getCheckMessage(MSG_KEY),
+            "98:45: " + getCheckMessage(MSG_KEY),
         };
         verifyWithInlineConfigParser(
                 getPath("InputOneStatementPerLineMultilineInLoopsAndTryWithResources.java"),
@@ -128,10 +128,10 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testResourceReferenceVariableIgnored() throws Exception {
         final String[] expected = {
-            "33:42: " + getCheckMessage(MSG_KEY),
-            "38:43: " + getCheckMessage(MSG_KEY),
-            "45:46: " + getCheckMessage(MSG_KEY),
-            "50:46: " + getCheckMessage(MSG_KEY),
+            "32:42: " + getCheckMessage(MSG_KEY),
+            "37:43: " + getCheckMessage(MSG_KEY),
+            "44:46: " + getCheckMessage(MSG_KEY),
+            "49:46: " + getCheckMessage(MSG_KEY),
         };
 
         verifyWithInlineConfigParser(
@@ -153,13 +153,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(OneStatementPerLineCheck.class);
 
         final String[] expected = {
-            "1:102: " + getCheckMessage(MSG_KEY),
-            "1:131: " + getCheckMessage(MSG_KEY),
-            "1:165: " + getCheckMessage(MSG_KEY),
-            "1:231: " + getCheckMessage(MSG_KEY),
-            "1:406: " + getCheckMessage(MSG_KEY),
-            "1:443: " + getCheckMessage(MSG_KEY),
-            "1:455: " + getCheckMessage(MSG_KEY),
+            "5:102: " + getCheckMessage(MSG_KEY),
+            "5:131: " + getCheckMessage(MSG_KEY),
+            "5:165: " + getCheckMessage(MSG_KEY),
+            "5:230: " + getCheckMessage(MSG_KEY),
+            "5:402: " + getCheckMessage(MSG_KEY),
+            "5:414: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputOneStatementPerLine.java"),
@@ -171,7 +170,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String inputWithWarnings = getPath("InputOneStatementPerLineBeginTree1.java");
         final String inputWithoutWarnings = getPath("InputOneStatementPerLineBeginTree2.java");
         final List<String> expectedFirstInput = List.of(
-                "6:96: " + getCheckMessage(MSG_KEY)
+            "7:96: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(inputWithWarnings,
@@ -185,7 +184,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final String file2 = getPath(
                 "InputOneStatementPerLineBeginTreeLastVariableResourcesStatementEnd2.java");
         final List<String> expectedFirstInput = List.of(
-                "15:59: " + getCheckMessage(MSG_KEY)
+            "14:59: " + getCheckMessage(MSG_KEY)
         );
         final List<String> expectedSecondInput = List.of(CommonUtil.EMPTY_STRING_ARRAY);
         verifyWithInlineConfigParser(file1, file2, expectedFirstInput, expectedSecondInput);
