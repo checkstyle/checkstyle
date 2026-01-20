@@ -577,4 +577,32 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
                 .isTrue();
     }
 
+    @Test
+    public void testAnnotationFieldDoesNotRequireThis() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationField.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationDefaultValueIsIgnored() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationDefault.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationUsageIsIgnored() throws Exception {
+        final String[] expected = {
+            "45:9: " + getCheckMessage(MSG_VARIABLE, "value", ""),
+            "46:9: " + getCheckMessage(MSG_VARIABLE, "name", ""),
+            "47:9: " + getCheckMessage(MSG_VARIABLE, "outer", ""),
+        };
+
+        verifyWithInlineConfigParser(
+                getPath("InputRequireThisAnnotationMutation.java"), expected);
+    }
+
 }
