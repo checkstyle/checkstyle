@@ -491,10 +491,6 @@ public class SuppressionCommentFilter
         /**
          * Indicates whether some other object is "equal to" this one.
          * Suppression on enumeration is needed so code stays consistent.
-         *
-         * @noinspection EqualsCalledOnEnumConstant
-         * @noinspectionreason EqualsCalledOnEnumConstant - enumeration is needed to keep
-         *      code consistent
          */
         @Override
         public boolean equals(Object other) {
@@ -507,7 +503,7 @@ public class SuppressionCommentFilter
             final Tag tag = (Tag) other;
             return Objects.equals(line, tag.line)
                     && Objects.equals(column, tag.column)
-                    && Objects.equals(tagType, tag.tagType)
+                    && tagType == tag.tagType
                     && Objects.equals(text, tag.text)
                     && Objects.equals(tagCheckRegexp, tag.tagCheckRegexp)
                     && Objects.equals(tagMessageRegexp, tag.tagMessageRegexp)
