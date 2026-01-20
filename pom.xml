@@ -215,7 +215,7 @@
     <maven.sevntu-checkstyle-check.checkstyle.version>
       10.4
     </maven.sevntu-checkstyle-check.checkstyle.version>
-    <maven.versions.plugin.version>2.20.1</maven.versions.plugin.version>
+    <maven.versions.plugin.version>2.21.0</maven.versions.plugin.version>
     <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
     <checkstyle.skipCompileInputResources>true</checkstyle.skipCompileInputResources>
     <checkstyle.openrewrite.version>1.0.0-SNAPSHOT</checkstyle.openrewrite.version>
@@ -253,6 +253,7 @@
       -Xep:FormatStringConcatenation:ERROR
       -Xep:IdentityConversion:ERROR
       -Xep:ImmutablesSortedSetComparator:ERROR
+      -Xep:InvalidInlineTag:ERROR
       -Xep:InvalidParam:ERROR
       -Xep:IsInstanceLambdaUsage:ERROR
       -Xep:LexicographicalAnnotationAttributeListing:ERROR
@@ -751,7 +752,7 @@
               <plugin>
                 <groupId>com.mebigfatguy.sb-contrib</groupId>
                 <artifactId>sb-contrib</artifactId>
-                <version>7.7.3</version>
+                <version>7.7.4</version>
               </plugin>
             </plugins>
           </configuration>
@@ -1928,7 +1929,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>xml-maven-plugin</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
         <executions>
           <execution>
             <goals>
@@ -2249,7 +2250,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jdepend-maven-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.2.0</version>
       </plugin>
 
       <plugin>
