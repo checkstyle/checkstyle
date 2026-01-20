@@ -49,7 +49,7 @@ import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
  *     </li>
  * </ul>
  */
-public class PackageObjectFactory implements ModuleFactory {
+public final class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Enum class to define loading options.
