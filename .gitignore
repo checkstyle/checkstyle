@@ -50,3 +50,5 @@ replay_pid*
 # antlr4 grammar generates these
 **/gen
 **/JavaLanguageLexer.tokens
+checkstyle/
+sevntu.checkstyle/
