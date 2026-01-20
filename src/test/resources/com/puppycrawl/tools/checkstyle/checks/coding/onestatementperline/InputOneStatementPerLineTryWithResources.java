@@ -2,7 +2,6 @@
 OneStatementPerLine
 treatTryResourcesAsStatement = true
 
-
 */
 
 
