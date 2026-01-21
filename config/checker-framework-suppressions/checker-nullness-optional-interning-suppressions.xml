@@ -7534,28 +7534,6 @@
 
   <checkerFrameworkError unstable="false">
     <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilterElement) not allowed on the given receiver.</message>
-    <lineContent>addFilter(new IntMatchFilterElement(matchValue));</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.filters.CsvFilterElement.class) @NonNull CsvFilterElement
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
-    <specifier>method.invocation</specifier>
-    <message>call to addFilter(com.puppycrawl.tools.checkstyle.filters.IntFilterElement) not allowed on the given receiver.</message>
-    <lineContent>addFilter(new IntRangeFilterElement(lowerBound, upperBound));</lineContent>
-    <details>
-      found   : @UnderInitialization(com.puppycrawl.tools.checkstyle.filters.CsvFilterElement.class) @NonNull CsvFilterElement
-      required: @Initialized @NonNull CsvFilterElement
-    </details>
-  </checkerFrameworkError>
-
-  <checkerFrameworkError unstable="false">
-    <fileName>src/main/java/com/puppycrawl/tools/checkstyle/filters/CsvFilterElement.java</fileName>
     <specifier>override.param</specifier>
     <message>Incompatible parameter type for object.</message>
     <lineContent>public boolean equals(Object object) {</lineContent>
