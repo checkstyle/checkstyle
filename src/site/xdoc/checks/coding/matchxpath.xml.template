@@ -16,6 +16,11 @@
             <param name="modulePath"
                    value="src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/MatchXpathCheck.java"/>
         </macro>
+        <p>
+	  Checkstyle supports XPath 3.1 or higher, for exact version please find
+	  "Saxon-HE" version in our <a href="../../project-info.html#Dependencies">dependency report</a>
+	  and find related documentation at <a href="https://www.saxonica.com/">saxonica.com</a>.
+	</p>
       </subsection>
 
       <subsection name="Properties" id="MatchXpath_Properties">
