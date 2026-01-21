@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.BitSet;
 import java.util.Objects;
@@ -391,10 +392,10 @@ public final class CommonUtil {
      */
     private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
         final URI uri;
-        final File file = new File(filename);
+        final Path path = Path.of(filename);
 
-        if (file.exists()) {
-            uri = file.toURI();
+        if (Files.exists(path)) {
+            uri = path.toFile().toURI();
         }
         else {
             final int lastIndexOfClasspathProtocol;
@@ -484,7 +485,7 @@ public final class CommonUtil {
      * @return file name without extension.
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
-        final String fileName = new File(fullFilename).getName();
+        final String fileName = Path.of(fullFilename).toFile().getName();
         final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {
