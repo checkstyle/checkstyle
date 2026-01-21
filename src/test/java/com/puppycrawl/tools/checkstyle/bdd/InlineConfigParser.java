@@ -319,17 +319,14 @@ public final class InlineConfigParser {
      *  Until <a href="https://github.com/checkstyle/checkstyle/issues/16807">#16807</a>.
      */
     private static final Set<String> SUPPRESSED_MODULES = Set.of(
-            "com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck",
-            "com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.UnusedLocalVariableCheck",
             "com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck",
-            "com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck",
             "com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck",

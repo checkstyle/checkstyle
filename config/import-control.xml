@@ -135,6 +135,10 @@
       <allow class="org.jspecify.annotations.NonNull"/>
       <allow class="org.jspecify.annotations.Nullable"/>
     </file>
+
+    <file name="WeakReferenceHolder">
+      <allow class="java.lang.ref.WeakReference" local-only="true"/>
+    </file>
   </subpackage>
 
   <subpackage name="ant">
@@ -200,7 +204,6 @@
     </file>
     <subpackage name="imports">
       <allow class="com.puppycrawl.tools.checkstyle.XmlLoader" local-only="true"/>
-      <allow class="org.checkerframework.checker.index.qual.IndexOrLow"/>
     </subpackage>
     <subpackage name="indentation">
       <allow pkg="java.lang.reflect"/>
