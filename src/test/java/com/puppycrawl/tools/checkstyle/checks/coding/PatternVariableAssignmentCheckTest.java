@@ -48,33 +48,49 @@ public class PatternVariableAssignmentCheckTest extends AbstractModuleTestSuppor
     }
 
     @Test
-    public void testPatternVariableAssignmentCheck() throws Exception {
+    public void testPatternVariableAssignmentCheckMultipleAssignments() throws Exception {
 
         final String[] expected = {
-            "27:13: " + getCheckMessage(MSG_KEY, "s"),
-            "31:13: " + getCheckMessage(MSG_KEY, "x"),
-            "33:13: " + getCheckMessage(MSG_KEY, "y"),
-            "37:13: " + getCheckMessage(MSG_KEY, "c"),
-            "41:13: " + getCheckMessage(MSG_KEY, "c"),
-            "45:13: " + getCheckMessage(MSG_KEY, "c"),
-            "50:21: " + getCheckMessage(MSG_KEY, "d"),
-            "67:14: " + getCheckMessage(MSG_KEY, "f"),
+            "15:17: " + getCheckMessage(MSG_KEY, "x"),
+            "16:17: " + getCheckMessage(MSG_KEY, "x"),
+            "17:17: " + getCheckMessage(MSG_KEY, "x"),
         };
 
         verifyWithInlineXmlConfig(getPath(
-            "InputPatternVariableAssignmentCheck1.java"), expected);
+            "InputPatternVariableAssignmentCheckMultipleAssignments.java"), expected);
     }
 
     @Test
-    public void testPatternVariableAssignmentCheck2() throws Exception {
+    public void testPatternVariableAssignmentCheckSwitch() throws Exception {
 
         final String[] expected = {
-            "56:17: " + getCheckMessage(MSG_KEY, "parent"),
-            "81:22: " + getCheckMessage(MSG_KEY, "string"),
+            "18:22: " + getCheckMessage(MSG_KEY, "x"),
         };
 
         verifyWithInlineXmlConfig(getPath(
-            "InputPatternVariableAssignmentCheck2.java"), expected);
+            "InputPatternVariableAssignmentCheckSwitch.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableAssignmentCheckLoop() throws Exception {
+
+        final String[] expected = {
+            "14:17: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineXmlConfig(getPath(
+            "InputPatternVariableAssignmentCheckLoop.java"), expected);
+    }
+
+    @Test
+    public void testPatternVariableAssignmentCheckTernary() throws Exception {
+
+        final String[] expected = {
+            "16:22: " + getCheckMessage(MSG_KEY, "x"),
+        };
+
+        verifyWithInlineXmlConfig(getPath(
+            "InputPatternVariableAssignmentCheckTernary.java"), expected);
     }
 
 }
