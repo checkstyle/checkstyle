@@ -313,6 +313,24 @@
           <param name="path"
                  value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example16.java"/>
           <param name="type" value="code"/>
+        </macro><hr class="example-separator"/>
+
+        <p id="Example17-config">
+          To configure the check to produce a violation with a custom message
+          when the minimum count of descendants is not reached:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
+          <param name="type" value="config"/>
+        </macro>
+        <p id="Example17-code">
+          Example:
+        </p>
+        <macro name="example">
+          <param name="path"
+                 value="resources/com/puppycrawl/tools/checkstyle/checks/descendanttoken/Example17.java"/>
+          <param name="type" value="code"/>
         </macro>
       </subsection>
 
