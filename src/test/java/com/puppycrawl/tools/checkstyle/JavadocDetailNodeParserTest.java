@@ -53,4 +53,21 @@ public class JavadocDetailNodeParserTest extends AbstractModuleTestSupport {
                 .isEqualTo(expected);
     }
 
+    @Test
+    public void testInlineTagKeepsTrailingText() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(
+            new File(getPath("InputJavadocDetailNodeParserInlineTag.java")),
+            JavaParser.Options.WITH_COMMENTS)
+                .getFirstChild().getNextSibling().getFirstChild().getFirstChild();
+        final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
+        final JavadocDetailNodeParser.ParseStatus status = parser.parseJavadocComment(ast);
+        final String actual = toLfLineEnding(DetailNodeTreeStringPrinter.printTree(status.getTree(),
+                "", ""));
+        final String expected = toLfLineEnding(Files.readString(Path.of(
+                getPath("ExpectedJavadocDetailNodeParserInlineTag.txt"))));
+        assertWithMessage("Inline tag parsing should preserve following text")
+                .that(actual)
+                .isEqualTo(expected);
+    }
+
 }
