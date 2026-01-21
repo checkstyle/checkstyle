@@ -909,6 +909,49 @@ class Example16 {
     assert a == 0 : "is not";
   }
 }
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example17-config">
+          To configure the check to produce a violation with a custom message
+          when the minimum count of descendants is not reached:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="LITERAL_SWITCH"/&gt;
+      &lt;property name="maximumDepth" value="2"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_DEFAULT"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+      &lt;property name="minimumMessage"
+        value="Switch must contain at least one default branch."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example17-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example17 {
+  void testMethod() {
+    int x = 1;
+    switch (x) { // violation, 'Switch must contain at least one default branch.'
+      case 1:
+        System.out.println("hi");
+        break;
+    }
+
+    switch (x) {
+      case 1:
+        System.out.println("hi");
+        break;
+      default:
+        System.out.println("Default");
+        break;
+    }
+  }
+}
 </code></pre></div>
       </subsection>
 
