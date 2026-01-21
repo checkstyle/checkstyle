@@ -1133,7 +1133,25 @@ public final class JavadocCommentsTokenTypes {
 
     /**
      * Greater-than symbol {@code > }.
+     *
+     * <p><b>Example:</b></p>
+     * <pre>{@code * Greater-than symbol {@code > }. }</pre>
+     *
+     * <p><b>Tree:</b></p>
+     * <pre>{@code
+     * JAVADOC_CONTENT -> JAVADOC_CONTENT
+     * |--LEADING_ASTERISK -> *
+     * |--TEXT ->  Greater-than symbol
+     * |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG
+     * |  `--CODE_INLINE_TAG -> CODE_INLINE_TAG
+     * |       |--JAVADOC_INLINE_TAG_START -> { @
+     * |       |--TAG_NAME -> code
+     * |       |--TEXT ->   >
+     * |       `--JAVADOC_INLINE_TAG_END -> }
+     * `--TEXT -> .
+     * }</pre>
      */
+
     public static final int GT = JavadocCommentsLexer.GT;
 
     /**
