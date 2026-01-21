@@ -930,11 +930,15 @@ no-error-spring-integration)
 no-error-htmlunit)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: "${CS_POM_VERSION}"
-  ./mvnw -e --no-transfer-progress clean install -Pno-validations
+  ./mvnw -e --no-transfer-progress clean package -Passembly,no-validations
   echo "Checkout target sources ..."
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
-  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version="${CS_POM_VERSION}"
+  echo "checkstyle.suppressions.file=checkstyle_suppressions.xml" > checkstyle.properties
+  java -jar ../../target/checkstyle-"${CS_POM_VERSION}"-all.jar \
+    -c checkstyle.xml \
+    -p checkstyle.properties \
+    src/main/java src/test/java
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;
