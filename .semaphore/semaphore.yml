@@ -71,6 +71,7 @@ blocks:
                 - .ci/validation.sh no-error-methods-distance
                 - .ci/validation.sh no-error-equalsverifier
                 - .ci/validation.sh jacoco
+                - .ci/validation.sh no-error-htmlunit
 
           commands:
             - echo "eval of CMD is starting";
