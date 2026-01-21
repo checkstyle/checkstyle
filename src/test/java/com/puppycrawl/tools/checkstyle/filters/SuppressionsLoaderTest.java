@@ -98,13 +98,13 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testLoadFromNonExistentUrl() {
         try {
-            SuppressionsLoader.loadSuppressions("http://^%$^* %&% %^&");
+            SuppressionsLoader.loadSuppressions("https://^%$^* %&% %^&");
             assertWithMessage("exception expected").fail();
         }
         catch (CheckstyleException exc) {
             assertWithMessage("Invalid error message")
                 .that(exc.getMessage())
-                .isEqualTo("Unable to find: http://^%$^* %&% %^&");
+                .isEqualTo("Unable to find: https://^%$^* %&% %^&");
         }
     }
 
