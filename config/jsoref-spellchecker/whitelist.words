@@ -327,7 +327,6 @@ doclint
 doctype
 documentationcomments
 donotignoreexceptions
-Dorekit
 Dorg
 DOTALL
 doubletag
