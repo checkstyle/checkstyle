@@ -129,6 +129,7 @@ public class XdocsExamplesAstConsistencyTest {
             "checks/descendanttoken/Example14",
             "checks/descendanttoken/Example15",
             "checks/descendanttoken/Example16",
+            "checks/descendanttoken/Example17",
             "checks/descendanttoken/Example4",
             "checks/descendanttoken/Example5",
             "checks/descendanttoken/Example6",
