@@ -281,6 +281,7 @@
       -Xep:StringSplitter:ERROR
       -Xep:JdkObsolete:ERROR
       -Xep:PatternMatchingInstanceof:ERROR
+      -Xep:InconsistentCapitalization:ERROR
       -Xep:UnnecessaryLambda:WARN
       <!-- Reason at https://github.com/checkstyle/checkstyle/issues/17988. -->
       -Xep:InlineFormatString:OFF
