@@ -168,4 +168,10 @@
   <suppress checks="PackageDeclaration"
     files="packagedeclaration[\\/]Example\d+.*"/>
 
+  <!-- violation messages are long by design to show full text -->
+  <suppress checks="LineLength"
+    files="googlemethodname[\\/]Example\d+.*"/>
+  <suppress id="discouragedRegexpInViolationMessage"
+            files="googlemethodname[\\/]Example\d+.*"/>
+
 </suppressions>
