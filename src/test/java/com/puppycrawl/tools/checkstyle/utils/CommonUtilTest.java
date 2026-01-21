@@ -36,6 +36,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Dictionary;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -577,6 +579,23 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertThat(CommonUtil.isCodePointWhitespace(codePoints, 1))
                 .isFalse();
     }
+
+    @Test
+    public void testGetFilepathOrClasspathUriExistingFile() throws Exception {
+        final Path tempFile = Files.createTempFile(
+            "commonUtilTest", ".txt");
+        Files.writeString(tempFile, "test");
+        try {
+            URI uri = CommonUtil.getUriByFilename(tempFile.toString());
+            assertWithMessage("URI should point to existing file")
+                .that(uri)
+                .isEqualTo(tempFile.toFile().toURI());
+        }
+        finally {
+            Files.deleteIfExists(tempFile);
+        }
+    }
+
 
     @Test
     public void testLoadSuppressionsUriSyntaxException() throws Exception {
