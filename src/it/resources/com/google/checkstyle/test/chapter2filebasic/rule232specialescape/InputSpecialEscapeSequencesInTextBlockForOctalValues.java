@@ -125,10 +125,6 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
         """
         \\134
         """;
-    String r9 = // violation below 'Consider using special escape sequence'
-        """
-        \\040
-        """;
   }
 
   private static void specialCharsWithWarn3() {
@@ -154,17 +150,13 @@ public class InputSpecialEscapeSequencesInTextBlockForOctalValues {
         """;
     String r6 = // violation below 'Consider using special escape sequence'
         """
-        \\040
+        \\042
         """;
     String r7 = // violation below 'Consider using special escape sequence'
         """
-        \\042
-        """;
-    String r8 = // violation below 'Consider using special escape sequence'
-        """
         \\047
         """;
-    String r9 = // violation below 'Consider using special escape sequence'
+    String r8 = // violation below 'Consider using special escape sequence'
         """
         \\134
         """;

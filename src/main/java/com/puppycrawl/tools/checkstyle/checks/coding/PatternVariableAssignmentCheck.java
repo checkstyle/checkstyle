@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.Nullable;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -144,159 +142,91 @@ public class PatternVariableAssignmentCheck extends AbstractCheck {
     }
 
     /**
-     * Gets the array list made out of AST branches of reassigned variable idents.
+     * Gets array list made out of AST branches of reassigned variable idents.
      *
      * @param ast ast tree of checked instanceof statement.
-     * @return the list of AST branches of reassigned variable idents.
+     * @return list of AST branches of reassigned variable idents.
      */
     private static List<DetailAST> getReassignedVariableIdents(DetailAST ast) {
 
-        final DetailAST branchLeadingToReassignedVar = getBranchLeadingToReassignedVars(ast);
+        // Get pattern variables first
+        final List<DetailAST> patternVariableIdents = getPatternVariableIdents(ast);
         final List<DetailAST> reassignedVariableIdents = new ArrayList<>();
 
-        for (DetailAST expressionBranch = branchLeadingToReassignedVar;
-             expressionBranch != null;
-             expressionBranch = traverseUntilNeededBranchType(expressionBranch,
-                 branchLeadingToReassignedVar, TokenTypes.EXPR)) {
-
-            final DetailAST assignToken = getMatchedAssignToken(expressionBranch);
-
-            if (assignToken != null) {
-                final DetailAST neededAssignIdent = getNeededAssignIdent(assignToken);
-                if (neededAssignIdent.getPreviousSibling() == null) {
-                    reassignedVariableIdents.add(getNeededAssignIdent(assignToken));
-                }
+        // Handle all assignment contexts, not just the first one found
+        final List<DetailAST> allAssignments = findAllAssignments(ast);
+        
+        for (DetailAST assignment : allAssignments) {
+            if (isPatternVariableAssignment(assignment, patternVariableIdents)) {
+                reassignedVariableIdents.add(assignment.findFirstToken(TokenTypes.IDENT));
             }
         }
 
         return reassignedVariableIdents;
-
     }
 
     /**
-     * Gets the closest consistent AST branch that leads to reassigned variable's ident.
+     * Finds all assignment tokens within given AST scope.
      *
-     * @param ast ast tree of checked instanceof statement.
-     * @return the closest consistent AST branch that leads to reassigned variable's ident.
+     * @param ast AST to search within
+     * @return list of all assignment tokens found
      */
-    @Nullable
-    private static DetailAST getBranchLeadingToReassignedVars(DetailAST ast) {
-        DetailAST leadingToReassignedVarBranch = null;
-
-        for (DetailAST conditionalStatement = ast;
-             conditionalStatement != null && leadingToReassignedVarBranch == null;
-             conditionalStatement = conditionalStatement.getParent()) {
-
-            if (conditionalStatement.getType() == TokenTypes.LITERAL_IF
-                || conditionalStatement.getType() == TokenTypes.LITERAL_ELSE) {
-
-                leadingToReassignedVarBranch =
-                    conditionalStatement.findFirstToken(TokenTypes.SLIST);
-
-            }
-            else if (conditionalStatement.getType() == TokenTypes.QUESTION) {
-                leadingToReassignedVarBranch = conditionalStatement;
-            }
-        }
-
-        return leadingToReassignedVarBranch;
-
+    private static List<DetailAST> findAllAssignments(DetailAST ast) {
+        final List<DetailAST> assignments = new ArrayList<>();
+        findAllAssignmentsRecursive(ast, ast, assignments);
+        return assignments;
     }
 
     /**
-     * Traverses along the AST tree to locate the first branch of certain token type.
+     * Recursively finds all assignment tokens within given scope.
      *
-     * @param startingBranch AST branch to start the traverse from, but not check.
-     * @param bound AST Branch that the traverse cannot further extend to.
-     * @param neededTokenType Token type whose first encountered branch is to look for.
-     * @return the AST tree of first encountered branch of needed token type.
+     * @param current current AST node to check
+     * @param boundary boundary AST node (usually the instanceof statement)
+     * @param assignments list to collect found assignments
      */
-    @Nullable
-    private static DetailAST traverseUntilNeededBranchType(DetailAST startingBranch,
-                              DetailAST bound, int neededTokenType) {
-
-        DetailAST match = null;
-
-        DetailAST iteratedBranch = shiftToNextTraversedBranch(startingBranch, bound);
-
-        while (iteratedBranch != null) {
-            if (iteratedBranch.getType() == neededTokenType) {
-                match = iteratedBranch;
-                break;
-            }
-
-            iteratedBranch = shiftToNextTraversedBranch(iteratedBranch, bound);
+    private static void findAllAssignmentsRecursive(DetailAST current, DetailAST boundary, 
+                                                  List<DetailAST> assignments) {
+        if (current == null || current.equals(boundary)) {
+            return;
         }
 
-        return match;
+        // Check if current node is an assignment
+        if (isAssignmentToken(current.getType())) {
+            assignments.add(current);
+        }
+
+        // Recursively check children
+        for (DetailAST child = current.getFirstChild(); child != null; child = child.getNextSibling()) {
+            findAllAssignmentsRecursive(child, boundary, assignments);
+        }
     }
 
     /**
-     * Shifts once to the next possible branch within traverse trajectory.
+     * Checks if the given token type is an assignment operator.
      *
-     * @param ast AST branch to shift from.
-     * @param boundAst AST Branch that the traverse cannot further extend to.
-     * @return the AST tree of next possible branch within traverse trajectory.
+     * @param tokenType token type to check
+     * @return true if it's an assignment token, false otherwise
      */
-    @Nullable
-    private static DetailAST shiftToNextTraversedBranch(DetailAST ast, DetailAST boundAst) {
-        DetailAST newAst = ast;
-
-        if (ast.getFirstChild() != null) {
-            newAst = ast.getFirstChild();
-        }
-        else {
-            while (newAst.getNextSibling() == null && !newAst.equals(boundAst)) {
-                newAst = newAst.getParent();
-            }
-            if (newAst.equals(boundAst)) {
-                newAst = null;
-            }
-            else {
-                newAst = newAst.getNextSibling();
-            }
-        }
-
-        return newAst;
+    private static boolean isAssignmentToken(int tokenType) {
+        return ASSIGN_TOKEN_TYPES.contains(tokenType);
     }
 
     /**
-     * Gets the type of ASSIGN tokens that particularly matches with what follows the preceding
-     * branch.
+     * Checks if the given assignment is for a pattern variable.
      *
-     * @param preAssignBranch branch that precedes the branch of ASSIGN token types.
-     * @return type of ASSIGN token.
+     * @param assignment the assignment AST node
+     * @param patternVariables list of pattern variable identifiers
+     * @return true if assignment targets a pattern variable, false otherwise
      */
-    @Nullable
-    private static DetailAST getMatchedAssignToken(DetailAST preAssignBranch) {
-        DetailAST matchedAssignToken = null;
-
-        for (int assignType : ASSIGN_TOKEN_TYPES) {
-            matchedAssignToken = preAssignBranch.findFirstToken(assignType);
-            if (matchedAssignToken != null) {
-                break;
-            }
+    private static boolean isPatternVariableAssignment(DetailAST assignment, 
+                                               List<DetailAST> patternVariables) {
+        final DetailAST assignIdent = assignment.findFirstToken(TokenTypes.IDENT);
+        if (assignIdent == null) {
+            return false;
         }
-
-        return matchedAssignToken;
-    }
-
-    /**
-     * Gets the needed AST Ident of reassigned variable for check to compare.
-     *
-     * @param assignToken The AST branch of reassigned variable's ASSIGN token.
-     * @return needed AST Ident.
-     */
-    private static DetailAST getNeededAssignIdent(DetailAST assignToken) {
-        DetailAST assignIdent = assignToken;
-
-        while (traverseUntilNeededBranchType(
-            assignIdent, assignToken.getFirstChild(), TokenTypes.IDENT) != null) {
-
-            assignIdent =
-                traverseUntilNeededBranchType(assignIdent, assignToken, TokenTypes.IDENT);
-        }
-
-        return assignIdent;
+        
+        final String assignIdentName = assignIdent.getText();
+        return patternVariables.stream()
+                .anyMatch(patternVar -> patternVar.getText().equals(assignIdentName));
     }
 }

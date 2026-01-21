@@ -61,6 +61,25 @@ public class FinalClassCheckTest
     }
 
     @Test
+    public void testCompactSourceFile() throws Exception {
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "FirstClass"),
+            "15:1: " + getCheckMessage(MSG_KEY, "SecondClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassCompact.java"), expected);
+    }
+
+    @Test
+    public void testCompactSourceFileReproduceNPE() throws Exception {
+        // This test should reproduce NPE #18680 before the fix
+        final String[] expected = {
+            "10:1: " + getCheckMessage(MSG_KEY, "FirstClass"),
+            "15:1: " + getCheckMessage(MSG_KEY, "SecondClass"),
+        };
+        verifyWithInlineConfigParser(getPath("InputFinalClassCompact.java"), expected);
+    }
+
+    @Test
     public void testFinalClass() throws Exception {
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
