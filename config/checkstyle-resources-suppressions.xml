@@ -250,8 +250,6 @@
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc2\.java"/>
   <suppress checks="FileLength"
-    files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly2\.java"/>
-  <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc3\.java"/>
   <suppress checks="FileLength"
     files="[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]javadoc[\\/]javadoctype[\\/]InputJavadocTypeNoJavadoc\.java"/>
