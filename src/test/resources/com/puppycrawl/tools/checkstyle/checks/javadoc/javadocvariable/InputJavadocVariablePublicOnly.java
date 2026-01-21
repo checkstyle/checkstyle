@@ -89,7 +89,6 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
     {
     }
 
-
     /**
        A param tag should not be required here when relaxed about Javadoc.
        Writing a little documentation should not be worse than not
@@ -104,7 +103,6 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
      */
     public class InnerWithoutAuthor
     {
-
     }
 
     /** {@inheritDoc} */
