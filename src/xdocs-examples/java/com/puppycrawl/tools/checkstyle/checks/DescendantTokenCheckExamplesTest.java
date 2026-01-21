@@ -185,4 +185,13 @@ public class DescendantTokenCheckExamplesTest extends AbstractExamplesModuleTest
 
         verifyWithInlineConfigParser(getPath("Example16.java"), expected);
     }
+
+    @Test
+    public void testExample17() throws Exception {
+        final String[] expected = {
+            "18:3: Method must contain at least one return statement.",
+        };
+
+        verifyWithInlineConfigParser(getPath("Example17.java"), expected);
+    }
 }

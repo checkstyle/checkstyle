@@ -909,6 +909,40 @@ class Example16 {
     assert a == 0 : "is not";
   }
 }
+</code></pre></div><hr class="example-separator"/>
+
+        <p id="Example17-config">
+          To configure the check to produce a violation with a custom message
+          when the minimum count of descendants is not reached:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-xml">
+&lt;module name="Checker"&gt;
+  &lt;module name="TreeWalker"&gt;
+    &lt;module name="DescendantToken"&gt;
+      &lt;property name="tokens" value="METHOD_DEF"/&gt;
+      &lt;property name="limitedTokens" value="LITERAL_RETURN"/&gt;
+      &lt;property name="minimumNumber" value="1"/&gt;
+      &lt;property name="minimumMessage"
+        value="Method must contain at least one return statement."/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+</code></pre></div>
+        <p id="Example17-code">
+          Example:
+        </p>
+        <div class="wrapper"><pre class="prettyprint"><code class="language-java">
+class Example17 {
+  void testMethod() {
+    // violation above, 'Method must contain at least one return statement.'
+    int x = 1;
+    x++;
+  }
+
+  int testMethodWithReturn() {
+    return 1;
+  }
+}
 </code></pre></div>
       </subsection>
 
