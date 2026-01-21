@@ -876,8 +876,6 @@
           <exclusionPatterns>
             <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/300 -->
             <exclusionPattern>java/util/Optional.get:.*</exclusionPattern>
-            <!-- until https://github.com/gaul/modernizer-maven-plugin/issues/318 -->
-            <exclusionPattern>java/io/File.*</exclusionPattern>
           </exclusionPatterns>
         </configuration>
         <executions>
