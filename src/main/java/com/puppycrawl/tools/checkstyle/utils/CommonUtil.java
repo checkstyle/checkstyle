@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.BitSet;
 import java.util.Objects;
@@ -389,23 +390,25 @@ public final class CommonUtil {
      * @return resolved file URI
      * @throws CheckstyleException on failure
      */
-    private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
+    private static URI getFilepathOrClasspathUri(String filename)
+            throws CheckstyleException {
         final URI uri;
-        final File file = new File(filename);
-
-        if (file.exists()) {
-            uri = file.toURI();
+        if (filename.startsWith(CLASSPATH_URL_PROTOCOL)) {
+            uri = getResourceFromClassPath(
+                filename.substring(CLASSPATH_URL_PROTOCOL.length()));
         }
         else {
-            final int lastIndexOfClasspathProtocol;
-            if (filename.lastIndexOf(CLASSPATH_URL_PROTOCOL) == 0) {
-                lastIndexOfClasspathProtocol = CLASSPATH_URL_PROTOCOL.length();
+            if (filename.matches("^[a-zA-Z][a-zA-Z0-9+.-]*:.*")) {
+                throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
+            }
+            final Path path = Path.of(filename);
+
+            if (Files.exists(path)) {
+                uri = path.toFile().toURI();
             }
             else {
-                lastIndexOfClasspathProtocol = 0;
+                uri = getResourceFromClassPath(filename);
             }
-            uri = getResourceFromClassPath(filename
-                .substring(lastIndexOfClasspathProtocol));
         }
         return uri;
     }
@@ -484,7 +487,7 @@ public final class CommonUtil {
      * @return file name without extension.
      */
     public static String getFileNameWithoutExtension(String fullFilename) {
-        final String fileName = new File(fullFilename).getName();
+        final String fileName = Path.of(fullFilename).toFile().getName();
         final int dotIndex = fileName.lastIndexOf('.');
         final String fileNameWithoutExtension;
         if (dotIndex == -1) {
