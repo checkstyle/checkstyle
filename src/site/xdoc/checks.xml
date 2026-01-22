@@ -2094,6 +2094,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/whitespace/whitespacebeforeemptybody.html#WhitespaceBeforeEmptyBody">
+                WhitespaceBeforeEmptyBody
+              </a>
+            </td>
+            <td>
+              Checks that a whitespace is present before the opening brace of an empty body.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/writetag.html#WriteTag">
                 WriteTag
               </a>
