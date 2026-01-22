@@ -1,0 +1,36 @@
+/*
+WhitespaceBeforeEmptyBody
+tokens = (default)METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF, \
+         CLASS_DEF, INTERFACE_DEF, ENUM_DEF, RECORD_DEF, ANNOTATION_DEF, \
+         LITERAL_WHILE, LITERAL_FOR, LITERAL_DO, \
+         STATIC_INIT, \
+         LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_SYNCHRONIZED, LITERAL_SWITCH, \
+         LAMBDA, LITERAL_NEW
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacebeforeemptybody;
+
+public class InputWhitespaceBeforeEmptyBodyRecord {
+
+    record EmptyRecord(){}
+    // violation above, 'Whitespace is not present before the empty body of 'EmptyRecord''
+
+    record EmptyRecord2(int x){}
+    // violation above, 'Whitespace is not present before the empty body of 'EmptyRecord2''
+
+    record ValidRecord() {}
+
+    record ValidRecord2(int x) {}
+
+    record NonEmptyRecord(String name){
+        public String name() {
+            return name.toUpperCase();
+        }
+    }
+
+    record RecordWithComment(String name){
+        // comment inside record body
+    }
+}
